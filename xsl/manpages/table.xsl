@@ -15,11 +15,11 @@
        ******************************************************************** -->
   <!--
   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
+  <xsl:param name="tbl.font.title">B</xsl:param>
+  <xsl:param name="tbl.font.headings">B</xsl:param>
   -->
   <xsl:param name="tbl.running.header.from.thead" select="0"/>
   <xsl:param name="tbl.column.separator.char">:</xsl:param>
-  <xsl:param name="tbl.title.font">B</xsl:param>
-  <xsl:param name="tbl.headings.font">B</xsl:param>
 
   <!-- ==================================================================== -->
 
@@ -127,7 +127,7 @@
       <xsl:if test="$title != '' or parent::td">
         <xsl:text>.PP&#10;</xsl:text>
         <xsl:text>.</xsl:text>
-        <xsl:value-of select="$tbl.title.font"/>
+        <xsl:value-of select="$tbl.font.title"/>
         <xsl:text> </xsl:text>
         <xsl:if test="parent::td">
           <xsl:text>*[nested&#160;table]</xsl:text>
@@ -510,8 +510,8 @@
     </xsl:if>
     <xsl:if test="@class = 'th'">
       <!-- * If this is a heading row, generate a font indicator (B or I), -->
-      <!-- * or if the value of $man.table.headings.font is empty, nothing. -->
-      <xsl:value-of select="$tbl.headings.font"/>
+      <!-- * or if the value of $tbl.font.headings is empty, nothing. -->
+      <xsl:value-of select="$tbl.font.headings"/>
     </xsl:if>
     <!-- * We only need to deal with colspans whose value is greater -->
     <!-- * than one (a colspan="1" is the same as having no colspan -->

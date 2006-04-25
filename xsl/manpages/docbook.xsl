@@ -42,14 +42,13 @@
   <xsl:param name="man.indent.lists" select="1"/>
   <xsl:param name="man.indent.verbatims" select="1"/>
   <xsl:param name="man.indent.width">3n</xsl:param>
-  <xsl:param name="man.funcprototype.font">BI</xsl:param>
-  <xsl:param name="man.funcsynopsisinfo.font">B</xsl:param>
-  <xsl:param name="man.table.headings.font">B</xsl:param>
-  <xsl:param name="man.table.title.font">B</xsl:param>
   <xsl:param name="man.table.footnotes.separator.line">----</xsl:param>
   <xsl:param name="man.output.in.separate.dir" select="0"/>
   <xsl:param name="man.output.base.dir">man/</xsl:param>
   <xsl:param name="man.output.subdirs.enabled" select="1"/>
+
+  <xsl:param name="tbl.font.headings" select="man.font.table.headings">B</xsl:param>
+  <xsl:param name="tbl.font.title" select="man.font.table.title">B</xsl:param>
 
   <!-- ==================================================================== -->
 

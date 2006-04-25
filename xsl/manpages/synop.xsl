@@ -220,7 +220,7 @@
 <!-- * this "bold everything in function synopsis" rule. -->
 <!-- * -->
 <!-- * Users who don't want the bold output can choose to adjust the -->
-<!-- * man.funcprototype.font parameter on their own. So even if you -->
+<!-- * man.font.funcprototype parameter on their own. So even if you -->
 <!-- * don't personally like the way it looks, please don't change the -->
 <!-- * default to be non-bold - because it's a convention that's -->
 <!-- * followed is the vast majority of existing man pages that document -->
@@ -238,7 +238,7 @@
   <xsl:value-of select="string-length (normalize-space ($funcprototype.string.value)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>.</xsl:text>
-  <xsl:value-of select="$man.funcprototype.font"/>
+  <xsl:value-of select="$man.font.funcprototype"/>
   <xsl:text> </xsl:text>
   <!-- * The following quotation mark (and the one further below) are -->
   <!-- * needed to properly delimit the parts of the Funcprototype that -->

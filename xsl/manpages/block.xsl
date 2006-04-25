@@ -109,13 +109,13 @@
       <!-- * this "bold everything in function synopsis" rule. -->
       <!-- * -->
       <!-- * Users who don't want the bold output can choose to adjust the -->
-      <!-- * man.funcsynopsisinfo.font parameter on their own. So even if you -->
+      <!-- * man.font.funcsynopsisinfo parameter on their own. So even if you -->
       <!-- * don't personally like the way it looks, please don't change the -->
       <!-- * default to be non-bold - because it's a convention that's -->
       <!-- * followed is the vast majority of existing man pages that document -->
       <!-- * functions, and we need to follow it by default, like it or no. -->
       <xsl:text>.ft </xsl:text>
-      <xsl:value-of select="$man.funcsynopsisinfo.font"/>
+      <xsl:value-of select="$man.font.funcsynopsisinfo"/>
       <xsl:text>&#10;</xsl:text>
       <xsl:text>.nf&#10;</xsl:text>
       <xsl:apply-templates/>
