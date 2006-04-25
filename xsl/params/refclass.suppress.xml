@@ -16,7 +16,7 @@
 <refsect1><title>Description</title>
 
 <para>If the value of <parameter>refclass.suppress</parameter> is
-non-zero, then display <sgmltag>refclass</sgmltag> contents is
+non-zero, then display of <sgmltag>refclass</sgmltag> contents is
 suppressed in output.</para>
 
 </refsect1>
