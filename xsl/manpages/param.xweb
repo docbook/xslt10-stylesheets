@@ -37,6 +37,11 @@
 &man.justify;
 &man.break.after.slash;
   </reference>
+  <reference id="fonts">
+  <title>Fonts</title>
+&man.font.funcprototype;
+&man.font.funcsynopsisinfo;
+  </reference>
   <reference id="links">
   <title>Link handling</title>
 &man.links.are.numbered;
@@ -124,6 +129,8 @@
 <src:fragref linkend="man.hyphenate.filenames.frag"/>
 <src:fragref linkend="man.hyphenate.computer.inlines.frag"/>
 <src:fragref linkend="man.justify.frag"/>
+<src:fragref linkend="man.font.funcprototype.frag"/>
+<src:fragref linkend="man.font.funcsynopsisinfo.frag"/>
 <src:fragref linkend="man.output.manifest.enabled.frag"/>
 <src:fragref linkend="man.output.manifest.filename.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
