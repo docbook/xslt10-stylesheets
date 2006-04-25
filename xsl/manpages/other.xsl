@@ -431,7 +431,6 @@ db:manvolnum
   <!-- *  file, we need to include in it a filename for each man-page -->
   <!-- *  generated, including any "stub" pages. -->
   <xsl:template name="generate.manifest">
-    <xsl:param name="filename">MAN.MANIFEST</xsl:param>
     <xsl:variable name="filelist">
       <xsl:for-each select="//refentry">
         <!-- * all refname instances in a Refentry inherit their section -->
@@ -456,7 +455,7 @@ db:manvolnum
     <!-- * Refentry -->
     <xsl:call-template name="write.text.chunk">
       <xsl:with-param name="filename">
-        <xsl:value-of select="$man.manifest.filename"/>
+        <xsl:value-of select="$man.output.manifest.filename"/>
       </xsl:with-param>
       <xsl:with-param name="quiet" select="1"/>
       <xsl:with-param name="message-prolog">Note: </xsl:with-param>
@@ -465,7 +464,9 @@ db:manvolnum
         <xsl:value-of select="$filelist"/>
       </xsl:with-param>
     </xsl:call-template>
-    <xsl:message><xsl:text>&#10;</xsl:text></xsl:message>
+    <xsl:if test="$man.output.quietly = 0">
+      <xsl:message><xsl:text>&#10;</xsl:text></xsl:message>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
