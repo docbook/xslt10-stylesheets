@@ -94,6 +94,9 @@
   <title>Output</title>
 &man.output.manifest.enabled;
 &man.output.manifest.filename;
+&man.output.in.separate.dir;
+&man.output.base.dir;
+&man.output.subdirs.enabled;
 &man.output.quietly;
 &man.output.encoding;
   </reference>
@@ -139,6 +142,9 @@
 <src:fragref linkend="man.output.manifest.filename.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
+<src:fragref linkend="man.output.in.separate.dir.frag"/>
+<src:fragref linkend="man.output.base.dir.frag"/>
+<src:fragref linkend="man.output.subdirs.enabled.frag"/>
 <src:fragref linkend="man.string.subst.map.frag"/>
 <src:fragref linkend="man.links.are.numbered.frag"/>
 <src:fragref linkend="man.links.are.underlined.frag"/>
