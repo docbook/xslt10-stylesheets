@@ -46,6 +46,7 @@
   </reference>
   <reference id="lists">
   <title>Lists</title>
+&man.segtitle.suppress;
 &variablelist.term.separator;
 &variablelist.term.break.after;
   </reference>
@@ -138,6 +139,7 @@
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
+<src:fragref linkend="man.segtitle.suppress.frag"/>
 <src:fragref linkend="man.subheading.divider.frag"/>
 <src:fragref linkend="man.subheading.divider.enabled.frag"/>
 <src:fragref linkend="refentry.date.profile.enabled.frag"/>

@@ -40,3 +40,4 @@
 <!ENTITY man.output.encoding SYSTEM "../params/man.output.encoding.xml">
 <!ENTITY man.subheading.divider SYSTEM "../params/man.subheading.divider.xml">
 <!ENTITY man.subheading.divider.enabled SYSTEM "../params/man.subheading.divider.enabled.xml">
+<!ENTITY man.segtitle.suppress SYSTEM "../params/man.segtitle.suppress.xml">
