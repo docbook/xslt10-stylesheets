@@ -43,9 +43,6 @@
   <xsl:param name="man.indent.verbatims" select="1"/>
   <xsl:param name="man.indent.width">3n</xsl:param>
   <xsl:param name="man.table.footnotes.separator.line">----</xsl:param>
-  <xsl:param name="man.output.in.separate.dir" select="0"/>
-  <xsl:param name="man.output.base.dir">man/</xsl:param>
-  <xsl:param name="man.output.subdirs.enabled" select="1"/>
 
   <!-- * we rename the following just to avoid using params with "man" -->
   <!-- * prefixes in the table.xsl stylesheet (because that stylesheet -->
