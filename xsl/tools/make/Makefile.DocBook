@@ -341,8 +341,9 @@ MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
   <xsl:import href="$(DOCBOOK_XSL)/manpages/docbook.xsl"/> \
   <xsl:param name="man.manifest.enabled" select="1"/> \
-  <xsl:param name="man.base.dir">man/</xsl:param> \
-  <xsl:param name="man.subdirs.enabled" select="1"/> \
+  <xsl:param name="man.output.in.separate.dir" select="1"/> \
+  <xsl:param name="man.output.base.dir">man/</xsl:param> \
+  <xsl:param name="man.output.subdirs.enabled" select="1"/> \
 </xsl:stylesheet>
 
 # -----------------------------------------------------------------
