@@ -163,6 +163,7 @@ generate.section.toc.level;
 &refentry.pagebreak;
 &refentry.title.properties;
 &refentry.xref.manvolnum;
+&refclass.suppress;
 </reference>
 
 <reference id="tables"><title>Tables</title>
@@ -754,6 +755,7 @@ around all these parameters.</para>
 <src:fragref linkend="refentry.pagebreak.frag"/>
 <src:fragref linkend="refentry.title.properties.frag"/>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
+<src:fragref linkend="refclass.suppress.frag"/>
 <src:fragref linkend="region.after.extent.frag"/>
 <src:fragref linkend="region.before.extent.frag"/>
 <src:fragref linkend="root.properties.frag"/>
