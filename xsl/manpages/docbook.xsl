@@ -37,7 +37,6 @@
   <xsl:include href="links.xsl"/>
   <xsl:include href="table.xsl"/>
 
-  <xsl:param name="man.segtitle.suppress" select="0"/>
   <xsl:param name="man.indent.authors.section" select="1"/>
   <xsl:param name="man.indent.headings" select="0"/>
   <xsl:param name="man.indent.lists" select="1"/>
