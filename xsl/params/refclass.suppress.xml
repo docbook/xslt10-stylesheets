@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='refclass.suppress.frag'>
-<xsl:param name="refclass.suppress">0</xsl:param></src:fragment>
+<xsl:param name="refclass.suppress" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
