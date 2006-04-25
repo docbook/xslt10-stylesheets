@@ -136,7 +136,7 @@
   <xsl:param name="end.indent">0pt</xsl:param>
 
   <xsl:choose>
-    <xsl:when test="$fop.extensions">
+    <xsl:when test="not($fop.extensions = 0)">
       <!-- fop 0.20.5 does not support floats -->
       <xsl:copy-of select="$content"/>
     </xsl:when>
