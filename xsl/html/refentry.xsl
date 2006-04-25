@@ -14,9 +14,6 @@
 
 <!-- ==================================================================== -->
 
-<!--* FIXME - need to document the following param -->
-<xsl:param name="refclass.suppress" select="0"/>
-
 <xsl:template match="reference">
   <xsl:call-template name="id.warning"/>
 
