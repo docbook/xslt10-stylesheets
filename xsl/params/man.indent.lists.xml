@@ -17,9 +17,9 @@
 
 <para>If the value of <parameter>man.indent.lists</parameter> is
 non-zero, the width of the left margin for list items in
-<parameter>itemizedlist</parameter>,
-<parameter>orderedlist</parameter>,
-<parameter>variablelist</parameter> output (and output of some other
+<sgmltag>itemizedlist</sgmltag>,
+<sgmltag>orderedlist</sgmltag>,
+<sgmltag>variablelist</sgmltag> output (and output of some other
 lists) is set to the value of the
 <parameter>man.indent.width</parameter> parameter
 (<literal>3n</literal> by default). If instead the value of
