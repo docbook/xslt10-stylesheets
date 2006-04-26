@@ -38,16 +38,9 @@
   <xsl:include href="links.xsl"/>
   <xsl:include href="table.xsl"/>
 
-  <xsl:param name="man.indent.authors.section" select="1"/>
-  <xsl:param name="man.indent.headings" select="0"/>
-  <xsl:param name="man.indent.lists" select="1"/>
-  <xsl:param name="man.indent.verbatims" select="1"/>
-  <xsl:param name="man.indent.width">3n</xsl:param>
-  <xsl:param name="man.table.footnotes.divider">----</xsl:param>
-
   <!-- * we rename the following just to avoid using params with "man" -->
   <!-- * prefixes in the table.xsl stylesheet (because that stylesheet -->
-  <!-- * can potentially be reused for more than just man output -->
+  <!-- * can potentially be reused for more than just man output) -->
   <xsl:param name="tbl.font.headings" select="$man.font.table.headings"/>
   <xsl:param name="tbl.font.title" select="$man.font.table.title"/>
 
@@ -68,7 +61,7 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- * Otherwise, we do not have a DocBook 5/NG document, or we are -->
-        <!-- * at the point where the first-pass has already been done to -->
+        <!-- * at the point where the first pass has already been done to -->
         <!-- * strip out the namespace; so we can now process it. -->
         <xsl:choose>
           <xsl:when test="//refentry">

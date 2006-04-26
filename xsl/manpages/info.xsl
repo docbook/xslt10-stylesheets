@@ -15,15 +15,15 @@
 
      ******************************************************************** -->
 
-  <xsl:variable name="authors-indent">
+  <xsl:variable name="blurb-indent">
     <xsl:choose>
-      <xsl:when test="not($man.indent.authors.section = 0)">
+      <xsl:when test="not($man.indent.blurbs = 0)">
         <xsl:value-of select="$man.indent.width"/>
       </xsl:when>
-      <xsl:when test="not($man.indent.headings = 0)">
+      <xsl:when test="not($man.indent.refsect = 0)">
         <!-- * "zq" is the name of a register we set for -->
         <!-- * preserving the original default indent value -->
-        <!-- * when $man.indent.headings is non-zero; -->
+        <!-- * when $man.indent.refsect is non-zero; -->
         <!-- * "u" is a roff unit specifier -->
         <xsl:text>\n(zqu</xsl:text>
       </xsl:when>
@@ -268,9 +268,9 @@
   <xsl:template name="publisher.attribution">
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>.IP ""</xsl:text> 
-    <xsl:if test="not($authors-indent = '')">
+    <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
-      <xsl:value-of select="$authors-indent"/>
+      <xsl:value-of select="$blurb-indent"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="gentext">
@@ -362,9 +362,9 @@
       <xsl:when test="self::author">
         <xsl:text>&#10;.sp -1n&#10;</xsl:text>
         <xsl:text>.IP ""</xsl:text> 
-        <xsl:if test="not($authors-indent = '')">
+        <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
-          <xsl:value-of select="$authors-indent"/>
+          <xsl:value-of select="$blurb-indent"/>
         </xsl:if>
         <xsl:text>&#10;</xsl:text>
         <xsl:call-template name="gentext">
@@ -375,9 +375,9 @@
       <xsl:when test="self::editor">
         <xsl:text>&#10;.sp -1n&#10;</xsl:text>
         <xsl:text>.IP ""</xsl:text> 
-        <xsl:if test="not($authors-indent = '')">
+        <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
-          <xsl:value-of select="$authors-indent"/>
+          <xsl:value-of select="$blurb-indent"/>
         </xsl:if>
         <xsl:text>&#10;</xsl:text>
         <xsl:call-template name="gentext">
@@ -392,9 +392,9 @@
           <xsl:when test="@class and @class != 'other'">
             <xsl:text>&#10;.sp -1n&#10;</xsl:text>
             <xsl:text>.IP ""</xsl:text> 
-            <xsl:if test="not($authors-indent = '')">
+            <xsl:if test="not($blurb-indent = '')">
               <xsl:text> </xsl:text>
-              <xsl:value-of select="$authors-indent"/>
+              <xsl:value-of select="$blurb-indent"/>
             </xsl:if>
             <xsl:text>&#10;</xsl:text>
             <xsl:call-template name="gentext">
@@ -418,9 +418,9 @@
   <xsl:template match="personblurb|authorblurb" mode="authorsect">
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>.IP ""</xsl:text> 
-    <xsl:if test="not($authors-indent = '')">
+    <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
-      <xsl:value-of select="$authors-indent"/>
+      <xsl:value-of select="$blurb-indent"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
     <!-- * yeah, it's possible for a *blurb to have a "title" -->
@@ -446,9 +446,9 @@
     <!-- * except that we don't need to check for a title. -->
     <xsl:text>&#10;.sp -1n&#10;</xsl:text>
     <xsl:text>&#10;.IP ""</xsl:text>
-    <xsl:if test="not($authors-indent = '')">
+    <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
-      <xsl:value-of select="$authors-indent"/>
+      <xsl:value-of select="$blurb-indent"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates/>
