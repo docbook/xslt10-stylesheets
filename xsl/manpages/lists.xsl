@@ -17,10 +17,10 @@
     <xsl:when test="not($man.indent.lists = 0)">
       <xsl:value-of select="$man.indent.width"/>
     </xsl:when>
-    <xsl:when test="not($man.indent.headings = 0)">
+    <xsl:when test="not($man.indent.refsect = 0)">
       <!-- * "zq" is the name of a register we set for -->
       <!-- * preserving the original default indent value -->
-      <!-- * when $man.indent.headings is non-zero; -->
+      <!-- * when $man.indent.refsect is non-zero; -->
       <!-- * "u" is a roff unit specifier -->
       <xsl:text>\n(zqu</xsl:text>
     </xsl:when>

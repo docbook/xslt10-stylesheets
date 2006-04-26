@@ -37,6 +37,14 @@
 &man.justify;
 &man.break.after.slash;
   </reference>
+  <reference id="indent">
+  <title>Indentation</title>
+&man.indent.width;
+&man.indent.refsect;
+&man.indent.blurbs;
+&man.indent.lists;
+&man.indent.verbatims;
+  </reference>
   <reference id="fonts">
   <title>Fonts</title>
 &man.font.funcprototype;
@@ -135,6 +143,11 @@
 <src:fragref linkend="man.hyphenate.filenames.frag"/>
 <src:fragref linkend="man.hyphenate.computer.inlines.frag"/>
 <src:fragref linkend="man.justify.frag"/>
+<src:fragref linkend="man.indent.width.frag"/>
+<src:fragref linkend="man.indent.refsect.frag"/>
+<src:fragref linkend="man.indent.blurbs.frag"/>
+<src:fragref linkend="man.indent.lists.frag"/>
+<src:fragref linkend="man.indent.verbatims.frag"/>
 <src:fragref linkend="man.font.funcprototype.frag"/>
 <src:fragref linkend="man.font.funcsynopsisinfo.frag"/>
 <src:fragref linkend="man.font.table.headings.frag"/>
