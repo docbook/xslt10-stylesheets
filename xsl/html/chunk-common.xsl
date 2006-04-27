@@ -700,6 +700,16 @@
       </xsl:for-each>
     </xsl:if>
 
+    <!-- * if we have a legalnotice and user wants it output as a -->
+    <!-- * separate page and $html.head.legalnotice.link.types is -->
+    <!-- * non-empty, we generate a link or links for each value in -->
+    <!-- * $html.head.legalnotice.link.types -->
+    <xsl:if test="//legalnotice
+                  and not($generate.legalnotice.link = 0)
+                  and not($html.head.legalnotice.link.types = '')">
+      <xsl:call-template name="make.legalnotice.head.links"/>
+    </xsl:if>
+
     <xsl:call-template name="user.head.content"/>
   </head>
 </xsl:template>
@@ -967,6 +977,61 @@
             <xsl:value-of select="$navtext"/>
         </xsl:otherwise>
     </xsl:choose>
+</xsl:template>
+
+<!-- ==================================================================== -->
+<!-- * The following does tail-recursion through a space-separated -->
+<!-- * list of link types specified in $html.head.legalnotice.link.types, -->
+<!-- * popping off link types and generating links for them until it -->
+<!-- * depletes the list. -->
+  
+<xsl:template name="make.legalnotice.head.links">
+  <!-- * the following ID is used as part of the legalnotice filename; -->
+  <!-- * we need it in order to construct the filename for use in the -->
+  <!-- * value of the href attribute on the link -->
+  <xsl:param name="id">
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="//legalnotice[1]"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="linktype">
+    <xsl:choose>
+      <xsl:when test="contains($html.head.legalnotice.link.types, ' ')">
+        <xsl:value-of
+            select="normalize-space(
+                    substring-before($html.head.legalnotice.link.types, ' '))"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$html.head.legalnotice.link.types"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <xsl:param
+      name="remaining.linktypes"
+      select="concat(
+              normalize-space(
+              substring-after($html.head.legalnotice.link.types, ' ')),' ')"/>
+  <xsl:if test="not($linktype = '')">
+    <link rel="{$linktype}">
+      <xsl:attribute name="href">
+        <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
+      </xsl:attribute>
+      <xsl:attribute name="title">
+        <xsl:apply-templates select="//legalnotice[1]"
+                             mode="object.title.markup.textonly"/>
+      </xsl:attribute>
+    </link>
+    <xsl:call-template name="make.legalnotice.head.links">
+      <!-- * pop the next value off the list of link types -->
+      <xsl:with-param
+          name="linktype"
+          select="substring-before($remaining.linktypes, ' ')"/>
+      <!-- * remove the link type from the list of remaining link types -->
+      <xsl:with-param
+          name="remaining.linktypes"
+          select="substring-after($remaining.linktypes, ' ')"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
