@@ -18,7 +18,7 @@ import com.icl.saxon.tree.AttributeCollection;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides the guts of a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon 6.*</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon 6.*</a>
  * implementation of callouts for verbatim environments. (It is used
  * by the Verbatim class.)</p>
  *
@@ -86,12 +86,11 @@ public class CalloutEmitter extends CopyEmitter {
 
   /** <p>Constructor for the CalloutEmitter.</p>
    *
+   * @param controller
    * @param namePool The name pool to use for constructing elements and attributes.
-   * @param graphicsPath The path to callout number graphics.
-   * @param graphicsExt The extension for callout number graphics.
-   * @param graphicsMax The largest callout number that can be represented as a graphic.
    * @param defaultColumn The default column for callouts.
    * @param foStylesheet Is this an FO stylesheet?
+   * @param fCallout
    */
   public CalloutEmitter(Controller controller,
 			NamePool namePool,
@@ -117,8 +116,7 @@ public class CalloutEmitter extends CopyEmitter {
    * <p>This data structure is used to augment the result tree fragment
    * with callout bullets.</p>
    *
-   * @param areaspecNodeSet The source document &lt;areaspec&gt; element.
-   *
+   * @param areaspecNodeList The source document &lt;areaspec&gt; element.
    */
   public void setupCallouts (NodeList areaspecNodeList) {
     callout = new Callout[10];

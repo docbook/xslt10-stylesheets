@@ -19,7 +19,7 @@ import com.icl.saxon.expr.FragmentValue;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides the guts of a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon 6.*</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon 6.*</a>
  * implementation of line numbering for verbatim environments. (It is used
  * by the Verbatim class.)</p>
  *

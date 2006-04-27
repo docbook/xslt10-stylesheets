@@ -22,7 +22,7 @@ import com.icl.saxon.functions.Extensions;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon</a>
  * implementation of some code to adjust CALS Tables to HTML
  * Tables.</p>
  *
@@ -287,7 +287,7 @@ public class Table {
    * </ol>
    *
    * @param context The stylesheet context; supplied automatically by Saxon
-   * @param rtf The result tree fragment containing the colgroup.
+   * @param rtf_ns The result tree fragment containing the colgroup.
    *
    * @return The result tree fragment containing the adjusted colgroup.
    *

@@ -7,14 +7,14 @@ import com.icl.saxon.om.*;
 import com.icl.saxon.expr.FragmentValue;
 
 /**
- * <p>Saxon extension to scan the column widthsin a result tree fragment.</p>
+ * <p>Saxon extension to scan the column widths in a result tree fragment.</p>
  *
  * <p>$Id$</p>
  *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon 6.*</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon 6.*</a>
  * implementation to scan the column widths in a result tree
  * fragment.</p>
  *

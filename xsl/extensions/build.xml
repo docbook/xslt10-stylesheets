@@ -1,6 +1,6 @@
 <!-- Build file for docbook-xsl extensions -->
 
-<!-- Submitted by Ville Skytt (scop@users.sf.net) -->
+<!-- Submitted by Ville Skyttä (scop@users.sf.net) -->
 
 <project name="docbook-xsl" default="all" basedir=".">
 

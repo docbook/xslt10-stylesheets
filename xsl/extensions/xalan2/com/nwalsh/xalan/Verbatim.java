@@ -44,7 +44,7 @@ import com.nwalsh.xalan.Params;
  * <p>Copyright (C) 2001 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://xml.apache.org/xalan">Xalan</a>
+ * <a href="http://xml.apache.org/xalan-j/">Xalan</a>
  * implementation of two features that would be impractical to
  * implement directly in XSLT: line numbering and callouts.</p>
  *
@@ -151,7 +151,8 @@ public class Verbatim {
    * attributes as the originals, except that 'name' and 'id' attributes
    * are not duplicated.</p>
    *
-   * @param xalanRTF The result tree fragment of the verbatim environment.
+   * @param context
+   * @param xalanNI
    *
    * @return The modified result tree fragment.
    */
@@ -428,19 +429,12 @@ public class Verbatim {
    * <p>Callouts are inserted before the character at the line/column
    * where they are to occur.</p>
    *
+   * @param context
    * @param areaspecNodeSet The source node set that contains the areaspec.
-   * @param xalanRTF The result tree fragment of the verbatim environment.
-   * @param defaultColumn The column for callouts that specify only a line.
-   * @param gPath The path to use for callout graphics.
-   * @param gExt The extension to use for callout graphics.
-   * @param gMax The largest number that can be represented as a graphic.
-   * @param useFO Should fo:external-graphics be produced, as opposed to
-   * HTML imgs. This is bogus, the extension should figure it out, but I
-   * haven't figured out how to do that yet.
+   * @param xalanNI
    *
    * @return The modified result tree fragment.
    */
-
   public DocumentFragment insertCallouts (ExpressionContext context,
 					  NodeIterator areaspecNodeSet,
 					  NodeIterator xalanNI) {

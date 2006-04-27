@@ -13,7 +13,7 @@ import org.xml.sax.SAXException;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon</a>
  * extension element factory for the Text extension element
  * family.</p>
  *

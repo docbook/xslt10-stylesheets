@@ -9,14 +9,14 @@ import java.util.StringTokenizer;
 import org.apache.xalan.extensions.ExpressionContext;
 
 /**
- * <p>Saxon extension to examine intrinsic size of images</p>
+ * <p>Xalan extension to examine intrinsic size of images</p>
  *
  * <p>$Id$</p>
  *
  * <p>Copyright (C) 2002 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://xml.apache.org/">Xalan</a>
+ * <a href="http://xml.apache.org/xalan-j/">Xalan</a>
  * extension to find the intrinsic size of images.</p>
  *
  * <p><b>Change Log:</b></p>

@@ -10,14 +10,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 
 /**
- * <p>Saxon extension to convert CVS date strings into local time</p>
+ * <p>Xalan extension to convert CVS date strings into local time</p>
  *
  * <p>$Id$</p>
  *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon</a>
+ * <a href="http://xml.apache.org/xalan-j/">Xalan</a>
  * extension to turn the CVS date strings, which are UTC:</p>
  *
  * <pre>&#36;Date: 2000/11/09 02:34:20 &#36;</pre>

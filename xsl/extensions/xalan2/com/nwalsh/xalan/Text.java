@@ -40,7 +40,7 @@ import javax.xml.transform.Source;
  * <p>Copyright (C) 2001 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://xml.apache.org/xalan/">Xalan</a>
+ * <a href="http://xml.apache.org/xalan-j/">Xalan</a>
  * extension element for inserting text into a result tree.</p>
  *
  * <p><b>Change Log:</b></p>
