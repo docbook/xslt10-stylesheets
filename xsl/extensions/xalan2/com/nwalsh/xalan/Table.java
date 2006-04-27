@@ -29,7 +29,7 @@ import org.apache.xml.utils.AttList;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://xml.apache.org/xalan/">Xalan</a>
+ * <a href="http://xml.apache.org/xalan-j/">Xalan</a>
  * implementation of some code to adjust CALS Tables to HTML
  * Tables.</p>
  *
@@ -214,7 +214,7 @@ public class Table {
    * </ol>
    *
    * @param context The stylesheet context; supplied automatically by Xalan
-   * @param rtf The result tree fragment containing the colgroup.
+   * @param xalanNI
    *
    * @return The result tree fragment containing the adjusted colgroup.
    *

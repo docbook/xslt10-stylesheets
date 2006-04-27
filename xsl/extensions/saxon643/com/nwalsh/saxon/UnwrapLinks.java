@@ -95,7 +95,8 @@ public class UnwrapLinks {
   /**
    * <p>Unwrap links</p>
    *
-   * @param rtf The result tree fragment of the verbatim environment.
+   * @param context The current stylesheet context.
+   * @param rtf_ns The result tree fragment of the verbatim environment.
    *
    * @return The modified result tree fragment.
    */

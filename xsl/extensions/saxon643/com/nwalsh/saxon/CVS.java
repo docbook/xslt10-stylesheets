@@ -17,7 +17,7 @@ import java.text.ParseException;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon</a>
  * extension to turn the CVS date strings, which are UTC:</p>
  *
  * <pre>&#36;Date: 2000/11/09 02:34:20 &#36;</pre>

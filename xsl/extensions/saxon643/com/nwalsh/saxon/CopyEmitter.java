@@ -23,7 +23,7 @@ import com.icl.saxon.tree.*;
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
- * <a href="http://users.iclway.co.uk/mhkay/saxon/">Saxon 6.*</a>
+ * <a href="http://saxon.sourceforge.net/">Saxon 6.*</a>
  * implementation of an emitter that manufactures a cloned result
  * tree fragment.</p>
  *
