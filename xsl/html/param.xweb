@@ -170,6 +170,8 @@ stylesheet like this:</para>
 &author.othername.in.middle;
 &generate.legalnotice.link;
 &generate.revhistory.link;
+&html.head.legalnotice.link.types;
+&html.head.legalnotice.link.multiple;
 </reference>
 
 <reference id="refentry"><title>Reference Pages</title>
@@ -535,6 +537,8 @@ around all these parameters.</para>
 <src:fragref linkend="html.cleanup.frag"/>
 <src:fragref linkend="html.ext.frag"/>
 <src:fragref linkend="html.extra.head.links.frag"/>
+<src:fragref linkend="html.head.legalnotice.link.types.frag"/>
+<src:fragref linkend="html.head.legalnotice.link.multiple.frag"/>
 <src:fragref linkend="html.longdesc.frag"/>
 <src:fragref linkend="html.longdesc.link.frag"/>
 <src:fragref linkend="html.stylesheet.frag"/>
