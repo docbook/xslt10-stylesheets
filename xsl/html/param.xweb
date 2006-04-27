@@ -83,6 +83,7 @@ stylesheet like this:</para>
 <reference id="toc_index"><title>ToC/LoT/Index Generation</title>
 &annotate.toc;
 &autotoc.label.separator;
+&autotoc.label.in.hyperlink;
 &process.source.toc;
 &process.empty.source.toc;
 &bridgehead.in.toc;
@@ -463,6 +464,7 @@ around all these parameters.</para>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="author.othername.in.middle.frag"/>
 <src:fragref linkend="autotoc.label.separator.frag"/>
+<src:fragref linkend="autotoc.label.in.hyperlink.frag"/>
 <src:fragref linkend="base.dir.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>

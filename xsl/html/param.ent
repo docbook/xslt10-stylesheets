@@ -7,6 +7,7 @@
 <!ENTITY appendix.autolabel SYSTEM "../params/appendix.autolabel.xml">
 <!ENTITY author.othername.in.middle SYSTEM "../params/author.othername.in.middle.xml">
 <!ENTITY autotoc.label.separator SYSTEM "../params/autotoc.label.separator.xml">
+<!ENTITY autotoc.label.in.hyperlink SYSTEM "../params/autotoc.label.in.hyperlink.xml">
 <!ENTITY base.dir SYSTEM "../params/base.dir.xml">
 <!ENTITY biblioentry.item.separator SYSTEM "../params/biblioentry.item.separator.xml">
 <!ENTITY bibliography.collection SYSTEM "../params/bibliography.collection.xml">

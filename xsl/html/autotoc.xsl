@@ -276,13 +276,10 @@
 
  <span>
   <xsl:attribute name="class"><xsl:value-of select="local-name(.)"/></xsl:attribute>
-  <a>
-    <xsl:attribute name="href">
-      <xsl:call-template name="href.target">
-        <xsl:with-param name="context" select="$toc-context"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    
+
+  <!-- * if $autotoc.label.in.hyperlink is zero, then output the label -->
+  <!-- * before the hyperlinked title (as the DSSSL stylesheet does) -->
+  <xsl:if test="$autotoc.label.in.hyperlink = 0">
     <xsl:variable name="label">
       <xsl:apply-templates select="." mode="label.markup"/>
     </xsl:variable>
@@ -290,6 +287,26 @@
     <xsl:if test="$label != ''">
       <xsl:value-of select="$autotoc.label.separator"/>
     </xsl:if>
+  </xsl:if>
+
+  <a>
+    <xsl:attribute name="href">
+      <xsl:call-template name="href.target">
+        <xsl:with-param name="context" select="$toc-context"/>
+      </xsl:call-template>
+    </xsl:attribute>
+    
+  <!-- * if $autotoc.label.in.hyperlink is non-zero, then output the label -->
+  <!-- * as part of the hyperlinked title -->
+  <xsl:if test="not($autotoc.label.in.hyperlink = 0)">
+    <xsl:variable name="label">
+      <xsl:apply-templates select="." mode="label.markup"/>
+    </xsl:variable>
+    <xsl:copy-of select="$label"/>
+    <xsl:if test="$label != ''">
+      <xsl:value-of select="$autotoc.label.separator"/>
+    </xsl:if>
+  </xsl:if>
 
     <xsl:apply-templates select="." mode="titleabbrev.markup"/>
   </a>
