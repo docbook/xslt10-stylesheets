@@ -554,10 +554,7 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="bibliography.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
-  </fo:inline>
+  <xsl:apply-templates select="."/> 
 </xsl:template>
 
 <xsl:template match="invpartnumber" mode="bibliography.mode">
@@ -1003,9 +1000,7 @@
 </xsl:template>
 
 <xsl:template match="indexterm" mode="bibliomixed.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliomixed.mode"/>
-  </fo:inline>
+  <xsl:apply-templates select="."/> 
 </xsl:template>
 
 <xsl:template match="invpartnumber" mode="bibliomixed.mode">
