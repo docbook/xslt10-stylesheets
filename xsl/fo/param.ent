@@ -297,3 +297,4 @@
 <!ENTITY itemizedlist.label.width SYSTEM "../params/itemizedlist.label.width.xml">
 <!ENTITY orderedlist.label.width SYSTEM "../params/orderedlist.label.width.xml">
 <!ENTITY keep.relative.image.uris SYSTEM "../params/keep.relative.image.uris.xml">
+<!ENTITY pgwide.properties SYSTEM "../params/pgwide.properties.xml">
