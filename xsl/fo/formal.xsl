@@ -13,6 +13,12 @@
 
      ******************************************************************** -->
 
+<!-- formal.object creates a basic block containing the
+     result of processing the object, including its title
+     and any keep-together properties.
+     The template calling formal.object may wrap these results in a
+     float or pgwide block. -->
+
 <xsl:template name="formal.object">
   <xsl:param name="placement" select="'before'"/>
 
@@ -43,6 +49,8 @@
   </xsl:variable>
 
   <xsl:choose>
+    <!-- tables have their own templates and 
+         are not handled by formal.object -->
     <xsl:when test="self::figure">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="figure.properties">
@@ -66,16 +74,6 @@
     <xsl:when test="self::equation">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="equation.properties">
-        <xsl:if test="$keep.together != ''">
-          <xsl:attribute name="keep-together.within-column"><xsl:value-of
-                          select="$keep.together"/></xsl:attribute>
-        </xsl:if>
-        <xsl:copy-of select="$content"/>
-      </fo:block>
-    </xsl:when>
-    <xsl:when test="self::table">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="table.properties">
         <xsl:if test="$keep.together != ''">
           <xsl:attribute name="keep-together.within-column"><xsl:value-of
                           select="$keep.together"/></xsl:attribute>
@@ -141,6 +139,8 @@
   </xsl:variable>
 
   <xsl:choose>
+    <!-- informaltables have their own templates and 
+         are not handled by formal.object -->
     <xsl:when test="local-name(.) = 'equation'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="equation.properties">
@@ -164,16 +164,6 @@
     <xsl:when test="local-name(.) = 'informalfigure'">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="informalfigure.properties">
-        <xsl:if test="$keep.together != ''">
-          <xsl:attribute name="keep-together.within-column"><xsl:value-of
-                          select="$keep.together"/></xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates/>
-      </fo:block>
-    </xsl:when>
-    <xsl:when test="local-name(.) = 'informaltable'">
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="informaltable.properties">
         <xsl:if test="$keep.together != ''">
           <xsl:attribute name="keep-together.within-column"><xsl:value-of
                           select="$keep.together"/></xsl:attribute>
@@ -226,8 +216,8 @@
 
 <xsl:template match="figure">
   <xsl:variable name="param.placement"
-                select="substring-after(normalize-space($formal.title.placement),
-                                        concat(local-name(.), ' '))"/>
+              select="substring-after(normalize-space($formal.title.placement),
+                                      concat(local-name(.), ' '))"/>
 
   <xsl:variable name="placement">
     <xsl:choose>
@@ -242,29 +232,32 @@
   </xsl:variable>
 
   <xsl:variable name="figure">
-    <xsl:call-template name="formal.object">
-      <xsl:with-param name="placement" select="$placement"/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="@pgwide = '1'">
+        <fo:block xsl:use-attribute-sets="pgwide.properties">
+          <xsl:call-template name="formal.object">
+            <xsl:with-param name="placement" select="$placement"/>
+          </xsl:call-template>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="formal.object">
+          <xsl:with-param name="placement" select="$placement"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="floatstyle">
+    <xsl:call-template name="floatstyle"/>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="(@float and @float != '0') or @floatstyle != ''">
-      <fo:float>
-        <xsl:attribute name="float">
-          <xsl:choose>
-            <xsl:when test="@floatstyle != ''">
-              <xsl:value-of select="@floatstyle"/>
-            </xsl:when>
-            <xsl:when test="@float = '1'">
-              <xsl:value-of select="$default.float.class"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="@float"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
-        <xsl:copy-of select="$figure"/>
-      </fo:float>
+    <xsl:when test="$floatstyle != ''">
+      <xsl:call-template name="floater">
+        <xsl:with-param name="position" select="$floatstyle"/>
+        <xsl:with-param name="content" select="$figure"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy-of select="$figure"/>
@@ -274,8 +267,8 @@
 
 <xsl:template match="example">
   <xsl:variable name="param.placement"
-                select="substring-after(normalize-space($formal.title.placement),
-                                        concat(local-name(.), ' '))"/>
+             select="substring-after(normalize-space($formal.title.placement),
+                                     concat(local-name(.), ' '))"/>
 
   <xsl:variable name="placement">
     <xsl:choose>
@@ -286,6 +279,27 @@
       <xsl:otherwise>
         <xsl:value-of select="$param.placement"/>
       </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <!-- Example doesn't have a pgwide attribute, so may use a PI -->
+  <xsl:variable name="pgwide.pi">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'pgwide'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="pgwide">
+    <xsl:choose>
+      <xsl:when test="$pgwide.pi">
+        <xsl:value-of select="$pgwide.pi"/>
+      </xsl:when>
+      <!-- child element may set pgwide -->
+      <xsl:when test="*[@pgwide]">
+        <xsl:value-of select="*[@pgwide][1]/@pgwide"/>
+      </xsl:when>
     </xsl:choose>
   </xsl:variable>
 
@@ -311,21 +325,48 @@
     </xsl:if>
   </xsl:variable>
 
+  <xsl:variable name="example">
+    <xsl:choose>
+      <xsl:when test="$pgwide = '1'">
+        <fo:block xsl:use-attribute-sets="pgwide.properties">
+          <xsl:if test="$align != ''">
+            <xsl:attribute name="text-align">
+              <xsl:value-of select="$align"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:call-template name="formal.object">
+            <xsl:with-param name="placement" select="$placement"/>
+          </xsl:call-template>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <fo:block>
+          <xsl:if test="$align != ''">
+            <xsl:attribute name="text-align">
+              <xsl:value-of select="$align"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:call-template name="formal.object">
+            <xsl:with-param name="placement" select="$placement"/>
+          </xsl:call-template>
+        </fo:block>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="floatstyle">
+    <xsl:call-template name="floatstyle"/>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="$align != ''">
-      <fo:block>
-          <xsl:attribute name="text-align">
-            <xsl:value-of select="$align"/>
-          </xsl:attribute>
-        <xsl:call-template name="formal.object">
-          <xsl:with-param name="placement" select="$placement"/>
-        </xsl:call-template>
-      </fo:block>
+    <xsl:when test="$floatstyle != ''">
+      <xsl:call-template name="floater">
+        <xsl:with-param name="position" select="$floatstyle"/>
+        <xsl:with-param name="content" select="$example"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="formal.object">
-        <xsl:with-param name="placement" select="$placement"/>
-      </xsl:call-template>
+      <xsl:copy-of select="$example"/>
     </xsl:otherwise>
   </xsl:choose>
 
@@ -628,8 +669,8 @@
 
 <xsl:template match="equation">
   <xsl:variable name="param.placement"
-                select="substring-after(normalize-space($formal.title.placement),
-                                        concat(local-name(.), ' '))"/>
+              select="substring-after(normalize-space($formal.title.placement),
+                                      concat(local-name(.), ' '))"/>
 
   <xsl:variable name="placement">
     <xsl:choose>
@@ -643,9 +684,47 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:call-template name="semiformal.object">
-    <xsl:with-param name="placement" select="$placement"/>
-  </xsl:call-template>
+  <!-- Equation doesn't have a pgwide attribute, so may use a PI -->
+  <xsl:variable name="pgwide">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'pgwide'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="equation">
+    <xsl:choose>
+      <xsl:when test="$pgwide = '1'">
+        <fo:block xsl:use-attribute-sets="pgwide.properties">
+          <xsl:call-template name="semiformal.object">
+            <xsl:with-param name="placement" select="$placement"/>
+          </xsl:call-template>
+        </fo:block>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="semiformal.object">
+          <xsl:with-param name="placement" select="$placement"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="floatstyle">
+    <xsl:call-template name="floatstyle"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$floatstyle != ''">
+      <xsl:call-template name="floater">
+        <xsl:with-param name="position" select="$floatstyle"/>
+        <xsl:with-param name="content" select="$equation"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$equation"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="figure/title"></xsl:template>
@@ -779,4 +858,19 @@
   <xsl:call-template name="informal.object"/>
 </xsl:template>
 
+<xsl:template name="floatstyle">
+  <xsl:if test="(@float and @float != '0') or @floatstyle != ''">
+    <xsl:choose>
+      <xsl:when test="@floatstyle != ''">
+        <xsl:value-of select="@floatstyle"/>
+      </xsl:when>
+      <xsl:when test="@float = '1'">
+        <xsl:value-of select="$default.float.class"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="@float"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
+</xsl:template>
 </xsl:stylesheet>
