@@ -184,8 +184,6 @@ else
     TIME=`date '+%H%M'`
     ZONE=`date '+%Z'`
 
-    UPPER_DISTRO=`echo $DISTRO | tr "[:lower:]" "[:upper:]"`
-
     if [ -f $DISTRO/CVS/Root ]; then
       CVSROOT=`cat $DISTRO/CVS/Root`
       export CVSROOT
@@ -325,7 +323,7 @@ EOF
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.zip
     rm -rf $TMP/docbook-$DISTRO-$RELEASEVERSION
 
-    rm -f $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_DATE $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
+    rm -f $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_$DATE $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
 
     date
 
