@@ -101,7 +101,18 @@
           <xsl:call-template name="make-html-table-columns">
             <xsl:with-param name="count" select="$numcols"/>
           </xsl:call-template>
-          <xsl:apply-templates mode="htmlTable"/>
+          <xsl:apply-templates select="thead" mode="htmlTable"/>
+          <xsl:apply-templates select="tfoot" mode="htmlTable"/>
+          <xsl:choose>
+            <xsl:when test="tbody">
+              <xsl:apply-templates select="tbody" mode="htmlTable"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <fo:table-body>
+                <xsl:apply-templates select="tr" mode="htmlTable"/>
+              </fo:table-body>
+            </xsl:otherwise>
+          </xsl:choose>
         </fo:table>
       </fo:block>
       <xsl:copy-of select="$footnotes"/>
