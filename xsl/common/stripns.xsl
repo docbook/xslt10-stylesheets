@@ -7,6 +7,18 @@
                 exclude-result-prefixes="db ng exsl saxon"
                 version='1.0'>
 
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     and other information.
+
+     This file contains general templates common to both the HTML and FO
+     versions of the DocBook stylesheets.
+     ******************************************************************** -->
+
 <!-- put an xml:base attribute on the root element -->
 <xsl:template match="/*" mode="stripNS">
   <xsl:choose>
