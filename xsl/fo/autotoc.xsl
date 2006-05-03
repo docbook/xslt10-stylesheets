@@ -190,8 +190,7 @@
     <xsl:apply-templates select="." mode="label.markup"/>
   </xsl:variable>
 
-  <fo:block text-align-last="justify"
-            text-align="start"
+  <fo:block xsl:use-attribute-sets="toc.line.properties"
             end-indent="{$toc.indent.width}pt"
             last-line-end-indent="-{$toc.indent.width}pt">
     <fo:inline keep-with-next.within-line="always">

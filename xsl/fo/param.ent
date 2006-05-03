@@ -280,6 +280,7 @@
 <!ENTITY subscript.properties SYSTEM "../params/subscript.properties.xml">
 <!ENTITY superscript.properties SYSTEM "../params/superscript.properties.xml">
 <!ENTITY table.table.properties SYSTEM "../params/table.table.properties.xml">
+<!ENTITY toc.line.properties SYSTEM "../params/toc.line.properties.xml">
 <!ENTITY graphical.admonition.properties SYSTEM "../params/graphical.admonition.properties.xml">
 <!ENTITY nongraphical.admonition.properties SYSTEM "../params/nongraphical.admonition.properties.xml">
 <!ENTITY body.start.indent SYSTEM "../params/body.start.indent.xml">
