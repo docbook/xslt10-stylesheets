@@ -109,24 +109,8 @@
 </xsl:template>
 
 <xsl:template match="orderedlist">
-  <xsl:variable name="pi-start">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'start'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
   <xsl:variable name="start">
-    <xsl:choose>
-      <xsl:when test="@continuation='continues'">
-        <xsl:call-template name="orderedlist-starting-number"/>
-      </xsl:when>
-      <xsl:when test="$pi-start != ''">
-        <xsl:value-of select="$pi-start"/>
-      </xsl:when>
-      <xsl:otherwise>1</xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="orderedlist-starting-number"/>
   </xsl:variable>
 
   <xsl:variable name="numeration">
