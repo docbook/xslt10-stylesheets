@@ -270,6 +270,7 @@ generate.section.toc.level;
 &footnote.number.symbols;
 &table.footnote.number.symbols;
 &footnote.properties;
+&table.footnote.properties;
 &footnote.mark.properties;
 &footnote.sep.leader.properties;
 &xref.with.number.and.title;
@@ -801,6 +802,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.cell.padding.frag"/>
 <src:fragref linkend="table.footnote.number.format.frag"/>
 <src:fragref linkend="table.footnote.number.symbols.frag"/>
+<src:fragref linkend="table.footnote.properties.frag"/>
 <src:fragref linkend="table.frame.border.color.frag"/>
 <src:fragref linkend="table.frame.border.style.frag"/>
 <src:fragref linkend="table.frame.border.thickness.frag"/>
