@@ -81,6 +81,7 @@
 <xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
 <xsl:include href="axf.xsl"/>
+<xsl:include href="ptc.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'fo'"/>
 
@@ -257,6 +258,19 @@
         </rx:outline>
       </xsl:if>
     </xsl:if>
+
+    <xsl:if test="$arbortext.extensions != 0 and $ati.xsl11.bookmarks != 0">
+      <xsl:variable name="bookmarks">
+	<xsl:apply-templates select="$document.element"
+			     mode="ati.xsl11.bookmarks"/>
+      </xsl:variable>
+      <xsl:if test="string($bookmarks) != ''">
+	<fo:bookmark-tree>
+	  <xsl:copy-of select="$bookmarks"/>
+	</fo:bookmark-tree>
+      </xsl:if>
+    </xsl:if>
+
     <xsl:apply-templates select="$document.element"/>
   </fo:root>
 </xsl:template>
