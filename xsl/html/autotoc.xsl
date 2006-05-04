@@ -125,18 +125,22 @@
 
 <xsl:template name="set.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
     <xsl:with-param name="nodes" select="book|setindex"/>
   </xsl:call-template>
 </xsl:template>
 
 <xsl:template name="division.toc">
   <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
 
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
     <xsl:with-param name="nodes" select="part|reference
                                          |preface|chapter|appendix
                                          |article
