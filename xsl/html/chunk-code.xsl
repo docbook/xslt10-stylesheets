@@ -733,9 +733,11 @@
               <xsl:with-param name="next" select="/foo"/>
               <xsl:with-param name="nav.context" select="'toc'"/>
               <xsl:with-param name="content">
-                <h1>
-                  <xsl:apply-templates select="." mode="object.title.markup"/>
-                </h1>
+		<xsl:if test="$chunk.tocs.and.lots.has.title != 0">
+		  <h1>
+		    <xsl:apply-templates select="." mode="object.title.markup"/>
+		  </h1>
+		</xsl:if>
                 <xsl:copy-of select="$lots"/>
               </xsl:with-param>
             </xsl:call-template>
