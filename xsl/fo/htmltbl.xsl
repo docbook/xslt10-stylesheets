@@ -19,16 +19,8 @@
   <xsl:attribute name="font-weight">bold</xsl:attribute>
 </xsl:attribute-set>
 
+<!-- Outputs an fo:table only, not the caption -->
 <xsl:template match="table|informaltable" mode="htmlTable">
-  <xsl:if test="tgroup/tbody/row
-                |tgroup/thead/row
-                |tgroup/tfoot/row">
-    <xsl:message terminate="yes">Broken table: row descendent of HTML table.</xsl:message>
-  </xsl:if>
-
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
-  </xsl:variable>
 
   <xsl:variable name="numcols">
     <xsl:call-template name="widest-html-row">
@@ -36,98 +28,53 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="footnotes">
-    <xsl:if test=".//footnote">
-      <fo:block font-family="{$body.fontset}"
-                font-size="{$footnote.font.size}"
-                keep-with-previous.within-column="always">
-        <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
-      </fo:block>
-    </xsl:if>
+  <xsl:variable name="prop-columns"
+                select=".//col[contains(@width, '%')] |
+                        .//colgroup[contains(@width, '%')]"/>
+
+  <xsl:variable name="table.width">
+    <xsl:call-template name="table.width"/>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="caption">
-      <fo:table-and-caption id="{$id}" 
-                            xsl:use-attribute-sets="table.properties">
-        <xsl:apply-templates select="caption" mode="htmlTable"/>
-        <fo:table xsl:use-attribute-sets="table.table.properties">
-          <xsl:choose>
-            <xsl:when test="$fop.extensions != 0 or
-                            $passivetex.extensions != 0">
-              <xsl:attribute name="table-layout">fixed</xsl:attribute>
-            </xsl:when>
-          </xsl:choose>
-          <xsl:attribute name="width">
-            <xsl:choose>
-              <xsl:when test="@width">
-                <xsl:value-of select="@width"/>
-              </xsl:when>
-              <xsl:otherwise>100%</xsl:otherwise>
-            </xsl:choose>
-          </xsl:attribute>
-          <xsl:call-template name="make-html-table-columns">
-            <xsl:with-param name="count" select="$numcols"/>
-          </xsl:call-template>
-          <xsl:apply-templates select="thead" mode="htmlTable"/>
-          <xsl:apply-templates select="tfoot" mode="htmlTable"/>
-          <xsl:choose>
-            <xsl:when test="tbody">
-              <xsl:apply-templates select="tbody" mode="htmlTable"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <fo:table-body>
-                <xsl:apply-templates select="tr" mode="htmlTable"/>
-              </fo:table-body>
-            </xsl:otherwise>
-          </xsl:choose>
-        </fo:table>
-      </fo:table-and-caption>
-      <xsl:copy-of select="$footnotes"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <fo:block id="{$id}"
-                xsl:use-attribute-sets="informaltable.properties">
-        <fo:table table-layout="fixed"
-                  xsl:use-attribute-sets="table.table.properties">
-          <xsl:attribute name="width">
-            <xsl:choose>
-              <xsl:when test="@width">
-                <xsl:value-of select="@width"/>
-              </xsl:when>
-              <xsl:otherwise>100%</xsl:otherwise>
-            </xsl:choose>
-          </xsl:attribute>
-          <xsl:call-template name="make-html-table-columns">
-            <xsl:with-param name="count" select="$numcols"/>
-          </xsl:call-template>
-          <xsl:apply-templates select="thead" mode="htmlTable"/>
-          <xsl:apply-templates select="tfoot" mode="htmlTable"/>
-          <xsl:choose>
-            <xsl:when test="tbody">
-              <xsl:apply-templates select="tbody" mode="htmlTable"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <fo:table-body>
-                <xsl:apply-templates select="tr" mode="htmlTable"/>
-              </fo:table-body>
-            </xsl:otherwise>
-          </xsl:choose>
-        </fo:table>
-      </fo:block>
-      <xsl:copy-of select="$footnotes"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <fo:table xsl:use-attribute-sets="table.table.properties">
+    <xsl:choose>
+      <xsl:when test="$fop.extensions != 0 or
+                      $passivetex.extensions != 0">
+        <xsl:attribute name="table-layout">fixed</xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:attribute name="width">
+      <xsl:choose>
+        <xsl:when test="@width">
+          <xsl:value-of select="@width"/>
+        </xsl:when>
+        <xsl:when test="$table.width">
+          <xsl:value-of select="$table.width"/>
+        </xsl:when>
+        <xsl:otherwise>100%</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+    <xsl:call-template name="make-html-table-columns">
+      <xsl:with-param name="count" select="$numcols"/>
+    </xsl:call-template>
+    <xsl:apply-templates select="thead" mode="htmlTable"/>
+    <xsl:apply-templates select="tfoot" mode="htmlTable"/>
+    <xsl:choose>
+      <xsl:when test="tbody">
+        <xsl:apply-templates select="tbody" mode="htmlTable"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <fo:table-body start-indent="0pt" end-indent="0pt">
+          <xsl:apply-templates select="tr" mode="htmlTable"/>
+        </fo:table-body>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:table>
+
 </xsl:template>
 
 <xsl:template match="caption" mode="htmlTable">
-  <fo:table-caption>
-    <fo:block>
-      <xsl:apply-templates select=".." mode="object.title.markup">
-        <xsl:with-param name="allow-anchors" select="1"/>
-      </xsl:apply-templates>
-    </fo:block>
-  </fo:table-caption>
+  <!-- Handled by formal.object.heading -->
 </xsl:template>
 
 <xsl:template name="widest-html-row">
@@ -165,11 +112,21 @@
       <xsl:for-each select="col|colgroup/col">
         <fo:table-column>
           <xsl:attribute name="column-number">
-            <xsl:number from="table" level="any" format="1"/>
+            <xsl:number from="table|informaltable" level="any" format="1"/>
           </xsl:attribute>
           <xsl:if test="@width">
             <xsl:attribute name="column-width">
-              <xsl:value-of select="@width"/>
+              <xsl:choose>
+                <xsl:when test="$fop.extensions != 0 and 
+                                contains(@width, '%')">
+                  <xsl:value-of select="concat('proportional-column-width(',
+                                               substring-before(@width, '%'),
+                                               ')')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="@width"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:attribute>
           </xsl:if>
         </fo:table-column>
@@ -191,7 +148,9 @@
 <xsl:template match="tbody" mode="htmlTable">
   <fo:table-body border-bottom-width="0.25pt"
                  border-bottom-style="solid"
-                 border-bottom-color="black">
+                 border-bottom-color="black"
+                 start-indent="0pt"
+                 end-indent="0pt">
     <xsl:apply-templates mode="htmlTable"/>
   </fo:table-body>
 </xsl:template>
@@ -206,6 +165,8 @@
   <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
     <xsl:call-template name="table.cell.properties">
       <xsl:with-param name="bgcolor.pi" select="$bgcolor"/>
+      <xsl:with-param name="rowsep.inherit" select="0"/>
+      <xsl:with-param name="colsep.inherit" select="0"/>
     </xsl:call-template>
     <fo:block>
       <xsl:call-template name="table.cell.block.properties"/>
@@ -215,7 +176,8 @@
 </xsl:template>
 
 <xsl:template match="tfoot" mode="htmlTable">
-  <fo:table-footer>
+  <fo:table-footer start-indent="0pt"
+                   end-indent="0pt">
     <xsl:apply-templates mode="htmlTable"/>
   </fo:table-footer>
 </xsl:template>
@@ -231,6 +193,8 @@
   <fo:table-cell xsl:use-attribute-sets="th.style table.cell.padding">
     <xsl:call-template name="table.cell.properties">
       <xsl:with-param name="bgcolor.pi" select="$bgcolor"/>
+      <xsl:with-param name="rowsep.inherit" select="0"/>
+      <xsl:with-param name="colsep.inherit" select="0"/>
     </xsl:call-template>
     <fo:block>
       <xsl:call-template name="table.cell.block.properties"/>
@@ -243,6 +207,8 @@
   <fo:table-header border-bottom-width="0.25pt"
                    border-bottom-style="solid"
                    border-bottom-color="black"
+                   start-indent="0pt"
+                   end-indent="0pt"
                    font-weight="bold">
     <xsl:apply-templates mode="htmlTable"/>
   </fo:table-header>
