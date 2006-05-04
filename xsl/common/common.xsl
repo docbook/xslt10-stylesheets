@@ -1326,8 +1326,36 @@ pointed to by the link is one of the elements listed in
 
 <xsl:template name="orderedlist-starting-number">
   <xsl:param name="list" select="."/>
+
+  <!-- Need a neutral dbxxx -->
+  <xsl:variable name="pi-html-start">
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis"
+                      select="$list/processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'start'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="pi-fo-start">
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis"
+                      select="$list/processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'start'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="not($list/@continuation = 'continues')">1</xsl:when>
+    <xsl:when test="not($list/@continuation = 'continues')">
+      <xsl:choose>
+	<xsl:when test="$pi-html-start != ''">
+	  <xsl:value-of select="$pi-html-start"/>
+	</xsl:when>
+	<xsl:when test="$pi-fo-start != ''">
+	  <xsl:value-of select="$pi-fo-start"/>
+	</xsl:when>
+	<xsl:otherwise>1</xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="prevlist"
                     select="$list/preceding::orderedlist[1]"/>
