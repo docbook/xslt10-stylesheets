@@ -236,28 +236,10 @@
       <xsl:when test="@entityref">
 	<xsl:value-of select="$filename"/>
       </xsl:when>
-      <xsl:when test="$keep.relative.image.uris != 0">
-	<!-- This works sometimes, but needs to take into account
-             1. When there is no /*/@xml:base
-             2. When the chunks are going somewhere else
-	<xsl:variable name="relpath">
-	  <xsl:call-template name="relative-uri">
-	    <xsl:with-param name="filename" select="@fileref"/>
-	  </xsl:call-template>
-	</xsl:variable>
-
-	<xsl:choose>
-	  <xsl:when test="/*/@xml:base
-	                  and starts-with($relpath,/*/@xml:base)">
-	    <xsl:value-of select="substring-after($relpath,/*/@xml:base)"/>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:value-of select="@fileref"/>
-	  </xsl:otherwise>
-	</xsl:choose>
-	-->
-	<xsl:value-of select="@fileref"/>
-      </xsl:when>
+      <!--
+        Moved test for $keep.relative.image.uris to template below:
+            <xsl:template match="@fileref">
+      -->
       <xsl:otherwise>
 	<xsl:value-of select="$filename"/>
       </xsl:otherwise>
@@ -1412,6 +1394,28 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   </xsl:copy>
 </xsl:template>
 
+
+<!-- The following works sometimes, but needs to take into account
+             1. When there is no /*/@xml:base
+             2. When the chunks are going somewhere else
+<xsl:variable name="relpath">
+  <xsl:call-template name="relative-uri">
+    <xsl:with-param name="filename" select="@fileref"/>
+  </xsl:call-template>
+</xsl:variable>
+
+<xsl:choose>
+  <xsl:when test="/*/@xml:base
+                  and starts-with($relpath,/*/@xml:base)">
+    <xsl:value-of select="substring-after($relpath,/*/@xml:base)"/>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:value-of select="@fileref"/>
+  </xsl:otherwise>
+</xsl:choose>
+<xsl:value-of select="@fileref"/>
+      </xsl:when>
+-->
 <!-- Resolve xml:base attributes -->
 <xsl:template match="@fileref">
   <!-- need a check for absolute urls -->
@@ -1420,8 +1424,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       <!-- it has a uri scheme so it is an absolute uri -->
       <xsl:value-of select="."/>
     </xsl:when>
+    <xsl:when test="$keep.relative.image.uris != 0">
+      <!-- leave it alone -->
+      <xsl:value-of select="."/>
+    </xsl:when>
     <xsl:otherwise>
-      <!-- its a relative uri -->
+      <!-- its a relative uri that needs xml:base processing -->
       <xsl:call-template name="relative-uri">
       </xsl:call-template>
     </xsl:otherwise>
