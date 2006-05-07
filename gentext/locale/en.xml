@@ -84,6 +84,7 @@
 <gentext key="Publisher" text="Publisher"/>
 <gentext key="Qandadiv" text="Q &amp; A"/>
 <gentext key="qandadiv" text="Q &amp; A"/>
+<gentext key="QandASet" text="Frequently Asked Questions"/>
 <gentext key="Question" text="Q:"/>
 <gentext key="question" text="Q:"/>
 <gentext key="RefEntry" text=""/>
