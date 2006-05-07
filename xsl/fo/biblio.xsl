@@ -182,8 +182,7 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing"
-                start-indent="0.5in" text-indent="-0.5in">
+      <fo:block id="{$id}" xsl:use-attribute-sets="biblioentry.properties">
         <xsl:copy-of select="$label"/>
         <xsl:apply-templates mode="bibliography.mode"/>
       </fo:block>
@@ -234,8 +233,7 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <fo:block id="{$id}" xsl:use-attribute-sets="normal.para.spacing"
-                start-indent="0.5in" text-indent="-0.5in">
+      <fo:block id="{$id}" xsl:use-attribute-sets="biblioentry.properties">
         <xsl:copy-of select="$label"/>
         <xsl:apply-templates mode="bibliomixed.mode"/>
       </fo:block>
