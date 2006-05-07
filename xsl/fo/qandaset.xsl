@@ -16,7 +16,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="qandaset">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <xsl:variable name="label-width">
     <xsl:call-template name="dbfo-attribute">
@@ -41,33 +43,58 @@
       <xsl:otherwise>2.5em</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  
+  <xsl:variable name="content">
+    <fo:block id="{$id}">
+      <xsl:choose>
+        <xsl:when test="parent::*">
+          <xsl:if test="blockinfo/title|info/title|title">
+            <xsl:apply-templates select="(blockinfo/title|
+                                          info/title|title)[1]"/>
+          </xsl:if>
+        </xsl:when>
+        <!-- If it is the root element -->
+        <xsl:otherwise>
+          <xsl:call-template name="qandaset.titlepage"/>
+        </xsl:otherwise>
+      </xsl:choose>
+  
+      <xsl:apply-templates select="*[name(.) != 'title'
+                                   and name(.) != 'titleabbrev'
+                                   and name(.) != 'qandadiv'
+                                   and name(.) != 'qandaentry']"/>
+      <xsl:apply-templates select="qandadiv"/>
+  
+      <xsl:if test="qandaentry">
+        <fo:list-block xsl:use-attribute-sets="list.block.spacing"
+                       provisional-label-separation="0.2em">
+          <xsl:attribute name="provisional-distance-between-starts">
+            <xsl:choose>
+              <xsl:when test="$label-length != ''">
+                <xsl:value-of select="$label-length"/>
+              </xsl:when>
+              <xsl:otherwise>2.5em</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:apply-templates select="qandaentry"/>
+        </fo:list-block>
+      </xsl:if>
+    </fo:block>
+  </xsl:variable>
 
-  <fo:block id="{$id}">
-    <xsl:if test="blockinfo/title|info/title|title">
-      <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
-    </xsl:if>
-
-    <xsl:apply-templates select="*[name(.) != 'title'
-                                 and name(.) != 'titleabbrev'
-                                 and name(.) != 'qandadiv'
-                                 and name(.) != 'qandaentry']"/>
-    <xsl:apply-templates select="qandadiv"/>
-
-    <xsl:if test="qandaentry">
-      <fo:list-block xsl:use-attribute-sets="list.block.spacing"
-                     provisional-label-separation="0.2em">
-	<xsl:attribute name="provisional-distance-between-starts">
-	  <xsl:choose>
-	    <xsl:when test="$label-length != ''">
-	      <xsl:value-of select="$label-length"/>
-	    </xsl:when>
-	    <xsl:otherwise>2.5em</xsl:otherwise>
-	  </xsl:choose>
-	</xsl:attribute>
-        <xsl:apply-templates select="qandaentry"/>
-      </fo:list-block>
-    </xsl:if>
-  </fo:block>
+  <xsl:choose>
+    <xsl:when test="parent::*">
+      <xsl:copy-of select="$content"/>
+    </xsl:when>
+    <!-- Otherwise create a page sequence -->
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="page.sequence">
+        <xsl:with-param name="content" select="$content"/>
+        <xsl:with-param name="master-reference" select="'body'"/>
+      </xsl:apply-templates>
+    </xsl:otherwise>
+  </xsl:choose>
+  
 </xsl:template>
 
 <xsl:template match="qandaset/blockinfo/title|qandset/info/title|qandaset/title">
