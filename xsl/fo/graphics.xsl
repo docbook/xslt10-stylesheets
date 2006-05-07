@@ -616,6 +616,10 @@
       <!-- it has a uri scheme so it is an absolute uri -->
       <xsl:value-of select="."/>
     </xsl:when>
+    <xsl:when test="$keep.relative.image.uris != 0">
+      <!-- leave it alone -->
+      <xsl:value-of select="."/>
+    </xsl:when>
     <xsl:otherwise>
       <!-- its a relative uri -->
       <xsl:call-template name="relative-uri">
