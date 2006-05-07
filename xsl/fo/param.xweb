@@ -230,6 +230,7 @@ generate.section.toc.level;
 &biblioentry.item.separator;
 &bibliography.collection;
 &bibliography.numbered;
+&biblioentry.properties;
 </reference>
 
 <reference id="glossary"><title>Glossary</title>
@@ -558,6 +559,7 @@ around all these parameters.</para>
 <src:fragref linkend="autotoc.label.separator.frag"/>
 <src:fragref linkend="axf.extensions.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
+<src:fragref linkend="biblioentry.properties.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
 <src:fragref linkend="bibliography.numbered.frag"/>
 <src:fragref linkend="blockquote.properties.frag"/>
