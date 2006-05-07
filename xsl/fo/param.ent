@@ -300,3 +300,4 @@
 <!ENTITY keep.relative.image.uris SYSTEM "../params/keep.relative.image.uris.xml">
 <!ENTITY pgwide.properties SYSTEM "../params/pgwide.properties.xml">
 <!ENTITY table.footnote.properties SYSTEM "../params/table.footnote.properties.xml">
+<!ENTITY biblioentry.properties SYSTEM "../params/biblioentry.properties.xml">
