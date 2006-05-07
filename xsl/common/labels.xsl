@@ -603,7 +603,8 @@ element label.</para>
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="bibliography|glossary|index|setindex" mode="label.markup">
+<xsl:template match="bibliography|glossary|
+                     qandaset|index|setindex" mode="label.markup">
   <xsl:if test="@label">
     <xsl:value-of select="@label"/>
   </xsl:if>
