@@ -111,6 +111,14 @@ subtitle of the element.
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="qandaset" mode="subtitle.markup">
+  <xsl:param name="allow-anchors" select="'0'"/>
+  <xsl:apply-templates select="blockinfo/subtitle[1]"
+                       mode="subtitle.markup">
+    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <xsl:template match="refentry" mode="subtitle.markup">
   <xsl:param name="allow-anchors" select="'0'"/>
   <xsl:apply-templates select="(refentryinfo/subtitle
