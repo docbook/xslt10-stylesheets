@@ -113,7 +113,7 @@
 </xsl:template>
 
 <!-- Update this list if new root elements supported -->
-<xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface refentry reference sect1 section set setindex '"/>
+<xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface qandaset refentry reference sect1 section set setindex '"/>
 
 <xsl:template match="/">
   <xsl:choose>
