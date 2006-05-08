@@ -21,7 +21,7 @@ hyphenation of ulinks is turned on, and any
 character contained in this parameter is treated as an allowable
 hyphenation point.</para>
 
-<para>The default value is <quote>/<quote>, but the parameter
+<para>The default value is <quote>/</quote>, but the parameter
 could be customized
 to contain other URL characters, as for example:</para>
 <programlisting>
