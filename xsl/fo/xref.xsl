@@ -890,15 +890,18 @@
     <xsl:when test="$ulink.hyphenate = ''">
       <xsl:value-of select="$url"/>
     </xsl:when>
-    <xsl:when test="contains($url, '/')">
-      <xsl:value-of select="substring-before($url, '/')"/>
-      <xsl:text>/</xsl:text>
-      <!-- Do not hyphen in-between // -->
-      <xsl:if test="substring(substring-after($url, '/'), 1, 1) != '/'">
-	<xsl:copy-of select="$ulink.hyphenate"/>
+    <xsl:when test="string-length($url) &gt; 1">
+      <xsl:variable name="char" select="substring($url, 1, 1)"/>
+      <xsl:value-of select="$char"/>
+      <xsl:if test="contains($ulink.hyphenate.chars, $char)">
+        <!-- Do not hyphen in-between // -->
+        <xsl:if test="not($char = '/' and substring($url,2,1) = '/')">
+          <xsl:copy-of select="$ulink.hyphenate"/>
+        </xsl:if>
       </xsl:if>
+      <!-- recurse to the next character -->
       <xsl:call-template name="hyphenate-url">
-        <xsl:with-param name="url" select="substring-after($url, '/')"/>
+        <xsl:with-param name="url" select="substring($url, 2)"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
