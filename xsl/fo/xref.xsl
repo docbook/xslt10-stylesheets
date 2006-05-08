@@ -758,6 +758,18 @@
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
 
+  <xsl:variable name="xrefstyle">
+    <xsl:choose>
+      <xsl:when test="@role and not(@xrefstyle) 
+                      and $use.role.as.xrefstyle != 0">
+        <xsl:value-of select="@role"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="@xrefstyle"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:basic-link internal-destination="{@linkend}"
                  xsl:use-attribute-sets="xref.properties">
     <xsl:choose>
@@ -798,6 +810,25 @@
       </xsl:otherwise>
     </xsl:choose>
   </fo:basic-link>
+
+  <!-- Add standard page reference? -->
+  <xsl:choose>
+    <!-- negative xrefstyle in instance turns it off -->
+    <xsl:when test="starts-with(normalize-space($xrefstyle), 'select:') 
+                  and contains($xrefstyle, 'nopage')">
+    </xsl:when>
+    <xsl:when test="(starts-with(normalize-space($xrefstyle), 'select:') 
+                  and $insert.link.page.number = 'maybe'  
+                  and (contains($xrefstyle, 'page')
+                       or contains($xrefstyle, 'Page')))
+                  or ( $insert.link.page.number = 'yes' 
+                     or $insert.link.page.number = '1')
+                  or local-name($target) = 'para'">
+      <xsl:apply-templates select="$target" mode="page.citation">
+        <xsl:with-param name="id" select="@linkend"/>
+      </xsl:apply-templates>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="ulink" name="ulink">
