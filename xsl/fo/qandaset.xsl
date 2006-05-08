@@ -44,6 +44,20 @@
     </xsl:choose>
   </xsl:variable>
   
+  <xsl:variable name="toc">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+                      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'toc'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="content">
     <fo:block id="{$id}">
       <xsl:choose>
@@ -59,6 +73,16 @@
         </xsl:otherwise>
       </xsl:choose>
   
+      <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') 
+                    or $toc = '1'">
+        <xsl:call-template name="qandaset.toc">
+          <xsl:with-param name="toc.title.p"
+                          select="contains($toc.params, 'title')"/>
+        </xsl:call-template>
+      </xsl:if>
+
+      <xsl:call-template name="qandaset.toc.separator"/>
+
       <xsl:apply-templates select="*[name(.) != 'title'
                                    and name(.) != 'titleabbrev'
                                    and name(.) != 'qandadiv'
@@ -167,14 +191,14 @@
       <xsl:if test="qandaentry">
         <fo:list-block xsl:use-attribute-sets="list.block.spacing"
                        provisional-label-separation="0.2em">
-	  <xsl:attribute name="provisional-distance-between-starts">
-	    <xsl:choose>
-	      <xsl:when test="$label-length != ''">
-	        <xsl:value-of select="$label-length"/>
-	      </xsl:when>
-	      <xsl:otherwise>2.5em</xsl:otherwise>
-	    </xsl:choose>
-	  </xsl:attribute>
+          <xsl:attribute name="provisional-distance-between-starts">
+            <xsl:choose>
+              <xsl:when test="$label-length != ''">
+                <xsl:value-of select="$label-length"/>
+              </xsl:when>
+              <xsl:otherwise>2.5em</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
           <xsl:apply-templates select="qandaentry"/>
         </fo:list-block>
       </xsl:if>
@@ -206,7 +230,7 @@
       <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
       <xsl:if test="$qandadiv.autolabel != 0">
         <xsl:apply-templates select="." mode="intralabel.punctuation"/>
-	<xsl:text> </xsl:text>
+        <xsl:text> </xsl:text>
       </xsl:if>
       <xsl:apply-templates/>
     </xsl:with-param>
@@ -248,9 +272,9 @@
         <xsl:otherwise>
           <fo:block>
             <xsl:apply-templates select="." mode="label.markup"/>
-	    <xsl:if test="$deflabel = 'number' and not(label)">
+            <xsl:if test="$deflabel = 'number' and not(label)">
               <xsl:apply-templates select="." mode="intralabel.punctuation"/>
-	    </xsl:if>
+            </xsl:if>
           </fo:block>
         </xsl:otherwise>
       </xsl:choose>
