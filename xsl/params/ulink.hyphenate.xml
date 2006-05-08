@@ -17,7 +17,9 @@
 <refsect1><title>Description</title>
 
 <para>If not empty, the specified character (or more generally, content) is
-added to URLs after every <quote>/</quote>. If the character specified is a
+added to URLs after every character included in the string
+in the <parameter>ulink.hyphenate.chars</parameter> parameter (default
+is <quote>/</quote>). If the character in this parameter is a
 Unicode soft hyphen (0x00AD) or Unicode zero-width space (0x200B), some FO
 processors will be able to reasonably hyphenate long URLs.</para>
 
