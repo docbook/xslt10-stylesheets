@@ -681,10 +681,20 @@
 
   <xsl:choose>
     <xsl:when test="($firstterm.only.link = 0 or $firstterm = 1) and @linkend">
-      <fo:basic-link internal-destination="{@linkend}"
-                     xsl:use-attribute-sets="xref.properties">
-        <xsl:call-template name="inline.italicseq"/>
-      </fo:basic-link>
+      <xsl:variable name="targets" select="key('id',@linkend)"/>
+      <xsl:variable name="target" select="$targets[1]"/>
+
+      <xsl:choose>
+        <xsl:when test="$target">
+          <fo:basic-link internal-destination="{@linkend}" 
+                         xsl:use-attribute-sets="xref.properties">
+            <xsl:call-template name="inline.italicseq"/>
+          </fo:basic-link>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="inline.italicseq"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
 
     <xsl:when test="not(@linkend)
