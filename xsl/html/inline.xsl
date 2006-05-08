@@ -775,23 +775,32 @@
         <xsl:with-param name="linkend" select="@linkend"/>
       </xsl:call-template>
 
-      <a>
-        <xsl:if test="@id">
-          <xsl:attribute name="name">
-            <xsl:value-of select="@id"/>
-          </xsl:attribute>
-        </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$target">
+          <a>
+            <xsl:if test="@id">
+              <xsl:attribute name="name">
+                <xsl:value-of select="@id"/>
+              </xsl:attribute>
+            </xsl:if>
 
-        <xsl:attribute name="href">
-          <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$target"/>
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="object" select="$target"/>
+              </xsl:call-template>
+            </xsl:attribute>
+
+            <xsl:call-template name="inline.italicseq">
+              <xsl:with-param name="content" select="$content"/>
+            </xsl:call-template>
+          </a>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="inline.italicseq">
+            <xsl:with-param name="content" select="$content"/>
           </xsl:call-template>
-        </xsl:attribute>
-
-        <xsl:call-template name="inline.italicseq">
-          <xsl:with-param name="content" select="$content"/>
-        </xsl:call-template>
-      </a>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
 
     <xsl:when test="not(@linkend)
