@@ -801,13 +801,14 @@
 </xsl:template>
 
 <xsl:template match="ulink" name="ulink">
-  <fo:basic-link xsl:use-attribute-sets="xref.properties">
-    <xsl:attribute name="external-destination">
-      <xsl:call-template name="fo-external-image">
-        <xsl:with-param name="filename" select="@url"/>
-      </xsl:call-template>
-    </xsl:attribute>
+  <xsl:variable name ="ulink.url">
+    <xsl:call-template name="fo-external-image">
+      <xsl:with-param name="filename" select="@url"/>
+    </xsl:call-template>
+  </xsl:variable>
 
+  <fo:basic-link xsl:use-attribute-sets="xref.properties"
+                 external-destination="{$ulink.url}">
     <xsl:choose>
       <xsl:when test="count(child::node())=0">
         <xsl:call-template name="hyphenate-url">
@@ -832,9 +833,9 @@
             <fo:block>
               <xsl:call-template name="ulink.footnote.number"/>
               <xsl:text> </xsl:text>
-              <fo:inline>
+              <fo:basic-link external-destination="{$ulink.url}">
                 <xsl:value-of select="@url"/>
-              </fo:inline>
+              </fo:basic-link>
             </fo:block>
           </fo:footnote-body>
         </fo:footnote>
@@ -842,14 +843,17 @@
       <xsl:otherwise>
         <fo:inline hyphenate="false">
           <xsl:text> [</xsl:text>
-          <xsl:call-template name="hyphenate-url">
-            <xsl:with-param name="url" select="@url"/>
-          </xsl:call-template>
+          <fo:basic-link external-destination="{$ulink.url}">
+            <xsl:call-template name="hyphenate-url">
+              <xsl:with-param name="url" select="@url"/>
+            </xsl:call-template>
+          </fo:basic-link>
           <xsl:text>]</xsl:text>
         </fo:inline>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:if>
+
 </xsl:template>
 
 <xsl:template name="ulink.footnote.number">
