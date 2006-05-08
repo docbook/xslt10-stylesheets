@@ -301,3 +301,5 @@
 <!ENTITY pgwide.properties SYSTEM "../params/pgwide.properties.xml">
 <!ENTITY table.footnote.properties SYSTEM "../params/table.footnote.properties.xml">
 <!ENTITY biblioentry.properties SYSTEM "../params/biblioentry.properties.xml">
+<!ENTITY ulink.hyphenate.chars SYSTEM "../params/ulink.hyphenate.chars.xml">
+<!ENTITY insert.link.page.number SYSTEM "../params/insert.link.page.number.xml">

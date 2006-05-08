@@ -202,6 +202,7 @@ generate.section.toc.level;
 &xref.label-title.separator;
 &xref.label-page.separator;
 &xref.title-page.separator;
+&insert.link.page.number;
 </reference>
 
 <reference id="lists"><title>Lists</title>
@@ -257,6 +258,7 @@ generate.section.toc.level;
 &ulink.show;
 &ulink.footnotes;
 &ulink.hyphenate;
+&ulink.hyphenate.chars;
 &shade.verbatim;
 &shade.verbatim.style;
 &hyphenate.verbatim;
@@ -669,6 +671,7 @@ around all these parameters.</para>
 <src:fragref linkend="index.number.separator.frag"/>
 <src:fragref linkend="index.range.separator.frag"/>
 <src:fragref linkend="index.term.separator.frag"/>
+<src:fragref linkend="insert.link.page.number.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="itemizedlist.properties.frag"/>
 <src:fragref linkend="itemizedlist.label.properties.frag"/>
@@ -826,6 +829,7 @@ around all these parameters.</para>
 <src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="ulink.footnotes.frag"/>
 <src:fragref linkend="ulink.hyphenate.frag"/>
+<src:fragref linkend="ulink.hyphenate.chars.frag"/>
 <src:fragref linkend="ulink.show.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
 <src:fragref linkend="use.local.olink.style.frag"/>
