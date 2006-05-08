@@ -217,6 +217,132 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+<xsl:template name="qandaset.toc">
+  <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc.title.p" select="true()"/>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="cid">
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="$toc-context"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="nodes" select="qandadiv|qandaentry"/>
+
+  <xsl:if test="$nodes">
+    <fo:block id="toc...{$id}"
+              xsl:use-attribute-sets="toc.margin.properties">
+      <xsl:if test="$toc.title.p">
+        <xsl:call-template name="table.of.contents.titlepage"/>
+      </xsl:if>
+      <xsl:apply-templates select="$nodes" mode="toc">
+        <xsl:with-param name="toc-context" select="$toc-context"/>
+      </xsl:apply-templates>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="qandaset.toc.separator">
+  <!-- Customize to output something between
+       qandaset.toc and first output -->
+</xsl:template>
+
+<xsl:template match="qandadiv" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="cid">
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="$toc-context"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:call-template name="toc.line"/>
+
+  <xsl:variable name="nodes" select="qandadiv|qandaentry"/>
+
+  <xsl:if test="$nodes">
+    <fo:block id="toc.{$cid}.{$id}">
+      <xsl:attribute name="margin-left">
+        <xsl:call-template name="set.toc.indent"/>
+      </xsl:attribute>
+
+      <xsl:apply-templates select="$nodes" mode="toc">
+        <xsl:with-param name="toc-context" select="$toc-context"/>
+      </xsl:apply-templates>
+    </fo:block>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="qandaentry" mode="toc">
+  <xsl:apply-templates select="question" mode="toc"/>
+</xsl:template>
+
+<xsl:template match="question" mode="toc">
+  <xsl:variable name="firstchunk">
+    <xsl:apply-templates select="(*[name(.)!='label'])[1]/node()"/>
+  </xsl:variable>
+
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="label">
+    <xsl:apply-templates select="." mode="label.markup"/>
+  </xsl:variable>
+
+  <fo:block xsl:use-attribute-sets="toc.line.properties"
+	    margin-left="3em"
+	    text-indent="-3em"
+            end-indent="{$toc.indent.width}pt"
+            last-line-end-indent="-{$toc.indent.width}pt">
+    <fo:inline keep-with-next.within-line="always">
+      <fo:basic-link internal-destination="{$id}">
+        <xsl:if test="$label != ''">
+          <xsl:copy-of select="$label"/>
+          <xsl:if test="$deflabel = 'number' and not(label)">
+            <xsl:value-of select="$autotoc.label.separator"/>
+          </xsl:if>
+	  <xsl:text> </xsl:text>
+        </xsl:if>
+        <xsl:copy-of select="$firstchunk"/>
+      </fo:basic-link>
+    </fo:inline>
+    <fo:inline keep-together.within-line="always">
+      <xsl:text> </xsl:text>
+      <fo:leader leader-pattern="dots"
+                 leader-pattern-width="3pt"
+                 leader-alignment="reference-area"
+                 keep-with-next.within-line="always"/>
+      <xsl:text> </xsl:text> 
+      <fo:basic-link internal-destination="{$id}">
+        <fo:page-number-citation ref-id="{$id}"/>
+      </fo:basic-link>
+    </fo:inline>
+  </fo:block>
+
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <xsl:template match="book|setindex" mode="toc">
   <xsl:param name="toc-context" select="."/>
