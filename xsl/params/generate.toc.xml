@@ -37,8 +37,6 @@ book      toc,title,figure,table,example,equation
 /chapter  toc,title
 part      toc,title
 /preface  toc,title
-qandadiv  toc
-qandaset  toc
 reference toc,title
 /sect1    toc
 /sect2    toc
