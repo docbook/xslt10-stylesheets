@@ -252,13 +252,18 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$pi-type = 'margin.note'">
       <xsl:call-template name="margin.note"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="content">
-        <fo:block xsl:use-attribute-sets="sidebar.properties">
+        <fo:block xsl:use-attribute-sets="sidebar.properties"
+		  id="{$id}">
 	  <xsl:call-template name="sidebar.titlepage"/>
           <xsl:apply-templates select="node()[not(title) and
 	                                 not(sidebarinfo)]"/>
