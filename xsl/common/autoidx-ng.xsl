@@ -1,14 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [
 <!ENTITY primary   'normalize-space(concat(primary/@sortas, primary[not(@sortas)]))'>
+<!-- Documents using the kimber index method must have a lang attribute -->
+<!-- Only one of these should be present in the entity -->
+
+<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang, "en")'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0"
                 xmlns:func="http://exslt.org/functions"
                 xmlns:exslt="http://exslt.org/common"
                 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+                xmlns:k="java:com.isogen.saxoni18n.Saxoni18nService"
                 extension-element-prefixes="func exslt"
-                exclude-result-prefixes="func exslt i l"
+                exclude-result-prefixes="func exslt i l k"
                 xmlns:i="urn:cz-kosek:functions:index">
 
 <!-- ********************************************************************
@@ -128,8 +133,14 @@
   <func:result select="$letters/l:l[@i=$index][1]"/>
 </func:function>
 
+<!-- The following key used in the kosek indexing method. -->
 <xsl:key name="group-code"
          match="indexterm"
          use="i:group-index(&primary;)"/>
+
+<!-- The following key used in the kimber indexing method. -->
+<xsl:key name="k-group"
+         match="indexterm"
+         use="k:getIndexGroupKey(&lang;, &primary;)"/>
 
 </xsl:stylesheet>
