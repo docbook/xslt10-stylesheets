@@ -409,6 +409,8 @@ zero by default, so this is simply the page-master region-left.
 &footer.rule;
 &header.column.widths;
 &footer.column.widths;
+&header.table.height;
+&footer.table.height;
 &header.content.properties;
 &footer.content.properties;
 &marker.section.level;
@@ -623,6 +625,7 @@ around all these parameters.</para>
 <src:fragref linkend="footer.content.properties.frag"/>
 <src:fragref linkend="footer.rule.frag"/>
 <src:fragref linkend="footer.column.widths.frag"/>
+<src:fragref linkend="footer.table.height.frag"/>
 <src:fragref linkend="footers.on.blank.pages.frag"/>
 <src:fragref linkend="footnote.font.size.frag"/>
 <src:fragref linkend="footnote.number.format.frag"/>
@@ -653,6 +656,7 @@ around all these parameters.</para>
 <src:fragref linkend="header.content.properties.frag"/>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="header.column.widths.frag"/>
+<src:fragref linkend="header.table.height.frag"/>
 <src:fragref linkend="headers.on.blank.pages.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="hyphenate.verbatim.frag"/>

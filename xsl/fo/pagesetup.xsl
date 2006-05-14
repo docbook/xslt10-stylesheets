@@ -1540,16 +1540,9 @@
 
       <fo:table-body>
         <fo:table-row>
-          <xsl:choose>
-            <xsl:when test="not($fop1.extensions = 0)">
-              <!-- * for any explanation of why this is here, see -->
-              <!-- * http://wiki.apache.org/xmlgraphics-fop/Troubleshooting/CommonLogMessages -->
-              <xsl:attribute name="block-progression-dimension.minimum">14pt</xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:attribute name="height">14pt</xsl:attribute>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:attribute name="block-progression-dimension.minimum">
+            <xsl:value-of select="$header.table.height"/>
+          </xsl:attribute>
           <fo:table-cell text-align="left"
                          display-align="before">
             <xsl:if test="$fop.extensions = 0">
@@ -1871,16 +1864,9 @@
 
       <fo:table-body>
         <fo:table-row>
-          <xsl:choose>
-            <xsl:when test="not($fop1.extensions = 0)">
-              <!-- * for any explanation of why this is here, see -->
-              <!-- * http://wiki.apache.org/xmlgraphics-fop/Troubleshooting/CommonLogMessages -->
-              <xsl:attribute name="block-progression-dimension.minimum">14pt</xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:attribute name="height">14pt</xsl:attribute>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:attribute name="block-progression-dimension.minimum">
+            <xsl:value-of select="$footer.table.height"/>
+          </xsl:attribute>
           <fo:table-cell text-align="left"
                          display-align="after">
             <xsl:if test="$fop.extensions = 0">
@@ -2042,19 +2028,19 @@
       <xsl:choose>
         <xsl:when test="$element = 'toc'">auto-odd</xsl:when>
         <xsl:when test="$element = 'book'">1</xsl:when>
-	<!-- preface typically continues TOC roman numerals -->
-	<!-- Change page.number.format if not -->
+        <!-- preface typically continues TOC roman numerals -->
+        <!-- Change page.number.format if not -->
         <xsl:when test="$element = 'preface'">auto-odd</xsl:when>
         <xsl:when test="($element = 'dedication' or $element = 'article') 
-	            and not(preceding::chapter
+                    and not(preceding::chapter
                             or preceding::preface
                             or preceding::appendix
                             or preceding::article
                             or preceding::dedication
                             or parent::part
                             or parent::reference)">1</xsl:when>
-	<xsl:when test="generate-id($first.book.content) =
-	                generate-id(.)">1</xsl:when>
+        <xsl:when test="generate-id($first.book.content) =
+                        generate-id(.)">1</xsl:when>
         <xsl:otherwise>auto-odd</xsl:otherwise>
       </xsl:choose>
     </xsl:when>
@@ -2073,8 +2059,8 @@
                             or preceding::dedication
                             or parent::part
                             or parent::reference)">1</xsl:when>
-	<xsl:when test="generate-id($first.book.content) =
-	                generate-id(.)">1</xsl:when>
+        <xsl:when test="generate-id($first.book.content) =
+                        generate-id(.)">1</xsl:when>
         <xsl:otherwise>auto</xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
