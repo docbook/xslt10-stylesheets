@@ -95,6 +95,7 @@ stylesheet like this:</para>
 &generate.toc;
 &generate.section.toc.level;
 &generate.index;
+&index.method;
 &index.on.type;
 &index.on.role;
 &index.prefer.titleabbrev;
@@ -598,6 +599,7 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.window.geometry.frag"/>
 <src:fragref linkend="img.src.path.frag"/>
 <src:fragref linkend="id.warnings.frag"/>
+<src:fragref linkend="index.method.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
 <src:fragref linkend="index.number.separator.frag"/>

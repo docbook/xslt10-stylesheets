@@ -288,3 +288,4 @@
 <!ENTITY annotation.css SYSTEM "../params/annotation.css.xml">
 <!ENTITY keep.relative.image.uris SYSTEM "../params/keep.relative.image.uris.xml">
 <!ENTITY id.warnings SYSTEM "../params/id.warnings.xml">
+<!ENTITY index.method SYSTEM "../params/index.method.xml">
