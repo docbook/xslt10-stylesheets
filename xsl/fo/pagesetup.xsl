@@ -72,7 +72,7 @@
       <fo:region-body display-align="center"
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
-        <xsl:if test="$fop.extensions = 0 and $fop1.extensions = 0">
+        <xsl:if test="$fop.extensions = 0">
           <xsl:attribute name="region-name">blank-body</xsl:attribute>
         </xsl:if>
       </fo:region-body>
@@ -1450,7 +1450,7 @@
 
   <xsl:call-template name="footnote-separator"/>
 
-  <xsl:if test="$fop.extensions = 0 and $fop1.extensions = 0">
+  <xsl:if test="$fop.extensions = 0">
     <xsl:call-template name="blank.page.content"/>
   </xsl:if>
 </xsl:template>
