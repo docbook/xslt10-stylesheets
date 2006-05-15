@@ -4,9 +4,10 @@
 <!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
 <!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
 
-<!ENTITY primary   'normalize-space(concat(primary/@sortas, primary[not(@sortas)]))'>
-<!ENTITY secondary 'normalize-space(concat(secondary/@sortas, secondary[not(@sortas)]))'>
-<!ENTITY tertiary  'normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas)]))'>
+<!ENTITY primary   'normalize-space(concat(primary/@sortas, primary[not(@sortas) or @sortas = ""]))'>
+<!ENTITY secondary 'normalize-space(concat(secondary/@sortas, secondary[not(@sortas) or @sortas = ""]))'>
+<!ENTITY tertiary  'normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas) or @sortas = ""]))'>
+
 
 <!ENTITY section   '(ancestor-or-self::set
                      |ancestor-or-self::book
@@ -35,11 +36,22 @@
 
 <!ENTITY section.id 'generate-id(&section;)'>
 <!ENTITY sep '" "'>
+<!-- Documents using the kimber index method must have a lang attribute -->
+<!-- Only one of these should be present in the entity -->
+
+<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang, "en")'>
 <!ENTITY scope 'count(ancestor::node()|$scope) = count(ancestor::node())
                 and ($role = @role or $type = @type or
                 (string-length($role) = 0 and string-length($type) = 0))'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:i="urn:cz-kosek:functions:index"
+                xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+                xmlns:func="http://exslt.org/functions"
+                xmlns:k="java:com.isogen.saxoni18n.Saxoni18nService"
+                xmlns:exslt="http://exslt.org/common"
+                extension-element-prefixes="func exslt"
+                exclude-result-prefixes="func exslt i l k"
                 version="1.0">
 
 <!-- ********************************************************************
@@ -53,9 +65,9 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-<!-- Jeni Tennison gets all the credit for what follows.
-     I think I understand it :-) Anyway, I've hacked it a bit, so the
-     bugs are mine. -->
+<!-- The "english" method derived from Jeni Tennison's work. -->
+<!-- The "kosek" method contributed by Jirka Kosek. -->
+<!-- The "kimber" method contributed by Eliot Kimber of Innodata Isogen. -->
 
 <xsl:key name="letter"
          match="indexterm"
@@ -99,8 +111,41 @@
 
 <xsl:key name="sections" match="*[@id]" use="@id"/>
 
+<!-- The following key is used in the kimber indexing method.
+     To use this method, either copy this key to a
+     customization layer, or xsl:import common/autoidx.xsl. -->
+<!--
+<xsl:key name="k-group"
+         match="indexterm"
+         use="k:getIndexGroupKey(&lang;, &primary;)"/>
+-->
+
+
 <xsl:template name="generate-index">
   <xsl:param name="scope" select="(ancestor::book|/)[last()]"/>
+
+  <xsl:choose>
+    <xsl:when test="$index.method = 'kosek'">
+      <xsl:call-template name="generate-kosek-index">
+        <xsl:with-param name="scope" select="$scope"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$index.method = 'kimber'">
+      <xsl:call-template name="generate-kimber-index">
+        <xsl:with-param name="scope" select="$scope"/>
+      </xsl:call-template>
+    </xsl:when>
+
+    <xsl:otherwise>
+      <xsl:call-template name="generate-english-index">
+        <xsl:with-param name="scope" select="$scope"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+      
+<xsl:template name="generate-english-index">
+  <xsl:param name="scope" select="NOTANODE"/>
 
   <xsl:variable name="role">
     <xsl:if test="$index.on.role != 0">
@@ -115,11 +160,13 @@
   </xsl:variable>
 
   <xsl:variable name="terms"
-                select="//indexterm[count(.|key('letter',
-                                                translate(substring(&primary;, 1, 1),
-                                                          &lowercase;,
-                                                          &uppercase;))[&scope;][1]) = 1
-                                    and not(@class = 'endofrange')]"/>
+                select="//indexterm
+                        [count(.|key('letter',
+                          translate(substring(&primary;, 1, 1),
+                             &lowercase;,
+                             &uppercase;))
+                          [&scope;][1]) = 1
+                          and not(@class = 'endofrange')]"/>
 
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
@@ -153,7 +200,7 @@
     <xsl:apply-templates select="$alphabetical[count(.|key('letter',
                                  translate(substring(&primary;, 1, 1),
                                            &lowercase;,&uppercase;))[&scope;][1]) = 1]"
-                         mode="index-div">
+                         mode="index-div-english">
       <xsl:with-param name="position" select="position()"/>
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -163,15 +210,166 @@
   </div>
 </xsl:template>
 
-<xsl:template match="indexterm" mode="index-div">
+<xsl:template name="generate-kosek-index">
+  <xsl:param name="scope" select="(ancestor::book|/)[last()]"/>
+
+  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
+  <xsl:if test="contains($vendor, 'libxslt')">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: the 'kosek' index method does not </xsl:text>
+      <xsl:text>work with the xsltproc XSLT processor.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+
+  <xsl:if test="not(function-available('exslt:node-set'))">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: the 'kosek' index method requires the </xsl:text>
+      <xsl:text>exslt:node-set() function. Use a processor that </xsl:text>
+      <xsl:text>has it, or use a different index method.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:if test="not(function-available('i:group-index'))">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: the 'kosek' index method requires the&#xA;</xsl:text>
+      <xsl:text>index extension functions be imported:&#xA;</xsl:text>
+      <xsl:text>  xsl:import href="common/autoidx-ng.xsl"</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:variable name="role">
+    <xsl:if test="$index.on.role != 0">
+      <xsl:value-of select="@role"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="type">
+    <xsl:if test="$index.on.type != 0">
+      <xsl:value-of select="@type"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="terms"
+                select="//indexterm[count(.|key('group-code',
+                                          i:group-index(&primary;))
+                                          [&scope;][1]) = 1
+                                    and not(@class = 'endofrange')]"/>
+
+  <div class="index">
+    <xsl:apply-templates select="$terms" mode="index-div-kosek">
+      <xsl:with-param name="scope" select="$scope"/>
+      <xsl:with-param name="role" select="$role"/>
+      <xsl:with-param name="type" select="$type"/>
+      <xsl:sort select="i:group-index(&primary;)" data-type="number"/>
+    </xsl:apply-templates>
+  </div>
+</xsl:template>
+
+<xsl:template name="generate-kimber-index">
+  <xsl:param name="scope" select="NOTANODE"/>
+
+  <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
+  <xsl:if test="not(contains($vendor, 'SAXON '))">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: the 'kimber' index method requires the </xsl:text>
+      <xsl:text>Saxon version 6 XSLT processor.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:if test="not(function-available('k:getIndexGroupKey'))">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: the 'kimber' index method requires the </xsl:text>
+      <xsl:text>Innodata Isogen &#x0A;Java extensions for </xsl:text>
+      <xsl:text>internationalized indexes. &#x0A;Install those </xsl:text>
+      <xsl:text>extensions, or use a different index method.&#x0A;</xsl:text>
+      <xsl:text>For more information, see:&#x0A;</xsl:text>
+      <xsl:text>http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:if test="not(function-available('i:group-index'))">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: the 'kimber' index method requires the&#xA;</xsl:text>
+      <xsl:text>index extension functions be imported:&#xA;</xsl:text>
+      <xsl:text>  xsl:import href="common/autoidx-ng.xsl"</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:variable name="role">
+    <xsl:if test="$index.on.role != 0">
+      <xsl:value-of select="@role"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="type">
+    <xsl:if test="$index.on.type != 0">
+      <xsl:value-of select="@type"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="terms"
+                select="//indexterm[count(.|key('k-group',
+                   k:getIndexGroupKey(&lang;, &primary;))
+                   [&scope;][1]) = 1
+                   and not(@class = 'endofrange')]"/>
+
+  <xsl:variable name="alphabetical"
+                select="$terms[not(starts-with(
+                k:getIndexGroupKey(&lang;, &primary;),
+                '#NUMERIC'
+                ))]"/>
+
+  <xsl:variable name="others"
+                select="$terms[starts-with(
+                k:getIndexGroupKey(&lang;, &primary;),
+                '#NUMERIC'
+                )]"/>
+
+  <div class="index">
+    <xsl:if test="$others">
+      <div class="indexdev">
+        <h3>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'index symbols'"/>
+          </xsl:call-template>
+        </h3>
+        <dl>
+          <xsl:apply-templates select="$others"
+                               mode="index-symbol-div">
+            <xsl:with-param name="scope" select="$scope"/>
+            <xsl:with-param name="role" select="$role"/>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:sort lang="&lang;"
+                select="k:getIndexGroupSortKey(&lang;,
+                        k:getIndexGroupKey(&lang;, &primary;))"/>
+          </xsl:apply-templates>
+        </dl>
+      </div>
+    </xsl:if>
+
+    <xsl:apply-templates select="$alphabetical"
+                         mode="index-div-kimber">
+      <xsl:with-param name="scope" select="$scope"/>
+      <xsl:with-param name="role" select="$role"/>
+      <xsl:with-param name="type" select="$type"/>
+      <xsl:sort lang="&lang;"
+             select="k:getIndexGroupSortKey(&lang;,
+                     k:getIndexGroupKey(&lang;, &primary;))"/>
+    </xsl:apply-templates>
+  </div>
+
+</xsl:template>
+
+<xsl:template match="indexterm" mode="index-div-english">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
 
   <xsl:variable name="key"
-                select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
+                select="translate(substring(&primary;, 1, 1),
+                         &lowercase;,&uppercase;)"/>
 
-  <!-- Make sure that we don't generate a div if there are no terms in scope -->
   <xsl:if test="key('letter', $key)[&scope;]
                 [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
     <div class="indexdiv">
@@ -182,7 +380,8 @@
       </xsl:if>
       <dl>
         <xsl:apply-templates select="key('letter', $key)[&scope;]
-                                     [count(.|key('primary', &primary;)[&scope;][1])=1]"
+                                     [count(.|key('primary', &primary;)
+                                     [&scope;][1])=1]"
                              mode="index-primary">
           <xsl:with-param name="position" select="position()"/>
           <xsl:with-param name="scope" select="$scope"/>
@@ -212,6 +411,70 @@
     <xsl:with-param name="type" select="$type"/>
     <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
   </xsl:apply-templates>
+</xsl:template>
+
+<xsl:template match="indexterm" mode="index-div-kosek">
+  <xsl:param name="scope" select="."/>
+  <xsl:param name="role" select="''"/>
+  <xsl:param name="type" select="''"/>
+
+  <xsl:variable name="key"
+                select="i:group-index(&primary;)"/>
+
+  <xsl:variable name="lang">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:variable>
+
+  <xsl:if test="key('group-code', $key)[&scope;]
+                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
+    <div class="indexdiv">
+      <h3>
+        <xsl:value-of select="i:group-letter($key)"/>
+      </h3>
+      <dl>
+        <xsl:apply-templates select="key('group-code', $key)[&scope;]
+                                     [count(.|key('primary', &primary;)[&scope;][1])=1]"
+                             mode="index-primary">
+          <xsl:sort select="&primary;" lang="{$lang}"/>
+          <xsl:with-param name="scope" select="$scope"/>
+          <xsl:with-param name="role" select="$role"/>
+          <xsl:with-param name="type" select="$type"/>
+        </xsl:apply-templates>
+      </dl>
+    </div>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="indexterm" mode="index-div-kimber">
+  <xsl:param name="scope" select="."/>
+  <xsl:param name="role" select="''"/>
+  <xsl:param name="type" select="''"/>
+
+  <xsl:variable name="key"
+          select="k:getIndexGroupKey(&lang;, &primary;)"/>
+
+  <xsl:variable name="label"
+          select="k:getIndexGroupLabel(&lang;, $key)"/>
+
+  <xsl:if test="key('k-group', $label)[&scope;]
+                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
+    <div class="indexdiv">
+      <h3>
+        <xsl:value-of select="$label"/>
+      </h3>
+      <dl>
+        <xsl:apply-templates select="key('k-group', $key)[&scope;]
+                            [count(.|key('primary', &primary;)[&scope;]
+                            [1])=1]"
+                             mode="index-primary">
+          <xsl:sort select="&primary;" lang="&lang;"/>
+          <xsl:with-param name="scope" select="$scope"/>
+          <xsl:with-param name="role" select="$role"/>
+          <xsl:with-param name="type" select="$type"/>
+        </xsl:apply-templates>
+      </dl>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-primary">
