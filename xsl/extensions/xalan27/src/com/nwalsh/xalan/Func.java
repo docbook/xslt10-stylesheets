@@ -3,12 +3,11 @@
 package com.nwalsh.xalan;
 
 import org.xml.sax.SAXException;
-import org.xml.sax.AttributeList;
 import org.xml.sax.ContentHandler;
 
-import org.w3c.dom.*;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Element;
 import org.w3c.dom.traversal.NodeIterator;
-import org.apache.xerces.dom.*;
 
 import org.apache.xpath.objects.XObject;
 import org.apache.xpath.objects.XRTreeFrag;
