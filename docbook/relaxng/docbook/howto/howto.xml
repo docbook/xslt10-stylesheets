@@ -1599,14 +1599,14 @@ db.spacing.enumeration |= "large"]]></programlisting>
 
 <para>DocBook V5.0 is not tightly coupled with some particular
 validation technology like DTDs. This also means that DocBook V5.0
-documents doesn't have to (and usually really doesn't) start with
-document type declaration (&lt;!DOCTYPE…>) which can specify schema
-(DTD) to use. Instead, DocBook V5.0 instance can be easily
-distinguished from other XML vocabularies by using elements in
+documents don't have to (and usually don't) start with a
+document type declaration (&lt;!DOCTYPE…>) to specify the schema
+(DTD) to use. Instead, DocBook V5.0 instances can be easily
+distinguished from other XML vocabularies by using elements in the
 <uri>http://docbook.org/ns/docbook</uri> namespace. This namespace is
-enough to distinguish DocBook from other XML based formats. But
-DocBook schema evolves over the time and there are several versions of
-DocBook (e.g. 3.1, 4.2, 4.5 and 5.0).  Since DocBook version 5.0 the
+enough to distinguish DocBook from other XML based formats. But the
+DocBook schema evolves over time and there are several versions of
+DocBook (e.g. 3.1, 4.2, 4.5 and 5.0).  Since DocBook version 5.0, the
 actual version used is indicated in the <tag
 class="attribute">version</tag> attribute on a root element.</para>
 
@@ -1616,19 +1616,20 @@ class="attribute">version</tag> attribute on a root element.</para>
 </book>]]></programlisting>
 
 <para>Future versions of DocBook documents will start with the same
-markup, only version number will be raised like 5.1 or 6.0. The
-namespace will remain same until semantic of elements will change in
-a backward incompatible way which is very unlikely to happen.</para>
+markup, except the version number will be raised, for example to 5.1
+or 6.0.
+The namespace will remain the same until the semantics of the elements
+change in a backward incompatible way, which is very unlikely to happen.</para>
 
-<para>If you create DocBook schema customization you must change <tag
+<para>If you create a DocBook schema customization you must change the <tag
 class="attribute">version</tag> attribute to distinguish your
-customization from the <quote>official</quote> DocBook. Namespace
-change is not recommended because it would break all processing
-tools. Remember that changing namespace is the same as renaming all
+customization from the <quote>official</quote> DocBook.  Changing the
+namespace is not recommended because that would break the processing
+tools.  Remember that changing namespaces is the same as renaming all
 elements in the namespace.</para>
 
-<para>Your own version identifiers should use the following syntax in
-order to record their DocBook derivation:</para>
+<para>When you customize the schema, use the following syntax to
+identify your DocBook derivation:</para>
 
 <programlisting><replaceable>base_version</replaceable>-[subset|extension|variant] [<replaceable>name</replaceable>[-<replaceable>version</replaceable>]?]+</programlisting>
 
@@ -1639,7 +1640,7 @@ order to record their DocBook derivation:</para>
 5.0-variant ASMBook-2006
 5.0-extension MathML-2.0 SVG-1.1</programlisting>
 
-<para>The first part of version identifier is a version number of the
+<para>The first part of the version identifier is the version number of the
 DocBook schema from which you derived your customization.</para>
 
 <para>If your schema is a proper subset, you can advertise this status
@@ -1649,8 +1650,8 @@ this status by using the <literal>extension</literal> keyword. If
 you'd rather not characterize your variant specifically as a subset or
 an extension, use the <literal>variant</literal> keyword.</para>
 
-<para>After these keywords you can place whitespace separated list of
-customization identifiers. Each name can be optionally followed by its
+<para>After these keywords you may add a whitespace separated list of
+customization identifiers. Each name may be optionally followed by its
 version number.</para>
 
 </section>
