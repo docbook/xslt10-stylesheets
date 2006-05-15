@@ -4,13 +4,17 @@ package com.nwalsh.xalan;
 
 import java.util.Stack;
 import java.util.StringTokenizer;
-import org.apache.xml.utils.DOMHelper;
 
-import org.xml.sax.*;
-import org.xml.sax.helpers.AttributesImpl;
-import org.w3c.dom.*;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
 import org.w3c.dom.traversal.NodeIterator;
-import org.apache.xerces.dom.*;
 
 import org.apache.xpath.objects.XObject;
 import org.apache.xpath.XPath;
@@ -35,6 +39,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import com.nwalsh.xalan.Callout;
 import com.nwalsh.xalan.Params;
+import org.xml.sax.helpers.AttributesImpl;
 
 /**
  * <p>Xalan extensions supporting DocBook verbatim environments</p>

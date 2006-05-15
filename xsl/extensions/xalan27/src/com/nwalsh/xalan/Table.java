@@ -3,9 +3,17 @@
 package com.nwalsh.xalan;
 
 import java.util.Hashtable;
-import org.xml.sax.*;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
-import org.w3c.dom.*;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.w3c.dom.traversal.NodeIterator;
 
 import javax.xml.transform.TransformerException;
@@ -17,7 +25,6 @@ import org.apache.xml.utils.DOMBuilder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.apache.xml.utils.DOMHelper;
 import org.apache.xml.utils.QName;
 import org.apache.xml.utils.AttList;
 
