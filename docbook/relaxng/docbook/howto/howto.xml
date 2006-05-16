@@ -1414,7 +1414,7 @@ db.person.author.contentmodel &=
       </para>
       <para>
         This modification will allow instances like this:
-<programlisting language="rng"><![CDATA[<author>
+<programlisting><![CDATA[<author>
   <personname>Babe Ruth</personname>
   <born>02/06/1895</born>
   <died>08/16/1948</died>
@@ -1422,7 +1422,7 @@ db.person.author.contentmodel &=
 but because we only modified the content model for authors
 who are human, it won't allow an instance like this, which
 uses <varname>db.org.author.contentmodel</varname>:
-<programlisting language="rng"><![CDATA[<!-- INVALID -->
+<programlisting><![CDATA[<!-- INVALID -->
 <author>
   <orgname>Boston Red Sox</orgname>
   <died>1919</died>
