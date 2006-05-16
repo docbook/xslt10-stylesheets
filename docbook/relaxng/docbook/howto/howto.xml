@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>  <!-- -*- nxml -*- -->
 <!DOCTYPE article [
-<!ENTITY version "5.0b3">
+<!ENTITY version "5.0b5">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
@@ -20,6 +20,7 @@
         <contrib>§changes-removed, customization, proofreading</contrib></author>
 </authorgroup>
 
+<pubdate>2006-05-16</pubdate>
 <pubdate>2006-03-01</pubdate>
 <pubdate>2005-12-28</pubdate>
 <pubdate>2005-10-27</pubdate>
@@ -472,7 +473,7 @@ size.</para>
 </procedure>
 
 <para>There is also an <link
-xl:href="http://badame.vse.cz/docbookvalidator/">on-line DocBook V5.0
+xl:href="http://relaxed.vse.cz/docbookvalidator/">on-line DocBook V5.0
 validator</link> that validates DocBook V5.0 documents against the normative
 RELAX NG schema with embedded Schematron rules.</para>
 
