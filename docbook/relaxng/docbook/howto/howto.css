@@ -36,3 +36,21 @@ dl            { margin-left: 3em;
 .screen, .programlisting { background-color: silver; padding: 4px; }
 .menuchoice, .guimenu, .guisubmenu, .guimenuitem { font-weight: bold; }
 .guibutton { background-color: silver; padding: 2px; }
+
+/* programlisting types */
+.programlisting, 
+.programlistingco, 
+.screen { padding-left: 14pt; }
+          
+.rolelabel {
+	position: absolute; 
+	margin-left: -14pt; 
+	background-color: #606060; 
+	color: white;
+	line-height: 1; 
+	font-family: sans-serif; 
+	font-weight: bold; 
+	text-align: center; 
+	padding: 1px; 
+	font-size: smaller; 
+	text-transform: uppercase }

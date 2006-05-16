@@ -2,7 +2,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="../../../../../xsl/html/docbook.xsl"/>
+<xsl:import href="../../../../../xsl/html/profile-docbook.xsl"/>
+
+<xsl:param name="profile.status">final</xsl:param>
 
 <xsl:template name="user.head.content">
   <xsl:param name="node" select="."/>
@@ -155,6 +157,76 @@
   <a href="{$baseUri}{.}.html">
     <xsl:apply-imports/>
   </a>
+</xsl:template>
+
+<!-- Support for labels identifying programlisting syntax used -->
+<xsl:template match="programlisting[@language]">
+  <xsl:param name="suppress-numbers" select="'0'"/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:call-template name="anchor"/>
+
+  <xsl:if test="$shade.verbatim != 0">
+    <xsl:message>
+      <xsl:text>The shade.verbatim parameter is deprecated. </xsl:text>
+      <xsl:text>Use CSS instead,</xsl:text>
+    </xsl:message>
+    <xsl:message>
+      <xsl:text>for example: pre.</xsl:text>
+      <xsl:value-of select="local-name(.)"/>
+      <xsl:text> { background-color: #E0E0E0; }</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:choose>
+    <xsl:when test="$suppress-numbers = '0'
+		    and @linenumbering = 'numbered'
+		    and $use.extensions != '0'
+		    and $linenumbering.extension != '0'">
+      <xsl:variable name="rtf">
+	<xsl:apply-templates/>
+      </xsl:variable>
+      <pre class="{name(.)}">
+        <xsl:call-template name="role.label"/>
+	<xsl:call-template name="number.rtf.lines">
+	  <xsl:with-param name="rtf" select="$rtf"/>
+	</xsl:call-template>
+      </pre>
+    </xsl:when>
+    <xsl:otherwise>
+      <pre class="{name(.)}">
+        <xsl:call-template name="role.label"/>
+	<xsl:apply-templates/>
+      </pre>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="role.label">
+  <span class="rolelabel">
+    <xsl:call-template name="brealize">
+      <xsl:with-param name="text" select="@language"/>
+    </xsl:call-template>
+  </span>
+</xsl:template>
+
+<xsl:template name="brealize">
+  <xsl:param name="text"/>
+  <xsl:variable name="head" select="substring($text, 1, 1)"/>
+  <xsl:variable name="tail" select="substring($text, 2)"/>
+
+  <xsl:if test="$head != ''">
+    <xsl:value-of select="$head"/>
+  </xsl:if>
+  
+  <xsl:if test="$tail != ''">
+    <br/>
+    <xsl:call-template name="brealize">
+      <xsl:with-param name="text" select="$tail"/>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

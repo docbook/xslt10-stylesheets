@@ -3,7 +3,9 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version="1.0">
 
-<xsl:import href="../../../../../xsl/fo/docbook.xsl"/>
+<xsl:import href="../../../../../xsl/fo/profile-docbook.xsl"/>
+
+<xsl:param name="profile.status">final</xsl:param>
 
 <xsl:param name="body.start.indent" select="'0pt'"/>
 <xsl:param name="title.margin.left" select="'0pt'"/>
@@ -127,5 +129,23 @@
 <xsl:param name="draft.watermark.image" select="''"/>
 
 <xsl:param name="ulink.footnotes" select="1"/>
+
+<xsl:template match="programlisting[@language]">
+  <fo:block clear="left"/>
+  <fo:float float="start">
+    <fo:block width="0.4cm" text-align="end" font-family="Helvetica" font-size="7pt" font-weight="bold" 
+              margin-left="-0.4cm">
+      <xsl:if test="not(preceding-sibling::*[1]/self::programlisting)">
+        <xsl:attribute name="margin-top">1.5em</xsl:attribute>
+      </xsl:if>
+      <fo:block-container reference-orientation="90" width="0.8cm">
+        <fo:block color="white" background-color="#808080" text-align="center">
+          <xsl:value-of select="translate(@language,'rngc','RNGC')"/>
+        </fo:block>
+      </fo:block-container>
+    </fo:block>
+  </fo:float>
+  <xsl:apply-imports/>
+</xsl:template>
 
 </xsl:stylesheet>
