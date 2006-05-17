@@ -577,8 +577,19 @@ Enhanced decompilation=</xsl:text>
           </param>&lf;
           <param name="Local">
             <xsl:attribute name="value">
-              <xsl:call-template name="href.target.with.base.dir"/>
-            </xsl:attribute>
+	      <xsl:choose>
+		<xsl:when test="$chunk.tocs.and.lots != 0">
+		  <xsl:apply-templates select="." mode="recursive-chunk-filename">
+		    <xsl:with-param name="recursive" select="true()"/>
+		  </xsl:apply-templates>
+		  <xsl:text>-toc</xsl:text>
+		  <xsl:value-of select="$html.ext"/>
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:call-template name="href.target.with.base.dir"/>
+		</xsl:otherwise>
+	      </xsl:choose>
+	    </xsl:attribute>
           </param>
       </OBJECT></LI>&lf;
       </xsl:if>
@@ -602,15 +613,26 @@ Enhanced decompilation=</xsl:text>
         <LI><OBJECT type="text/sitemap">&lf;
             <param name="Name">
               <xsl:attribute name="value">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'TableofContents'"/>
-            </xsl:call-template>
+		<xsl:call-template name="gentext">
+		  <xsl:with-param name="key" select="'TableofContents'"/>
+		</xsl:call-template>
               </xsl:attribute>
             </param>&lf;
             <param name="Local">
-              <xsl:attribute name="value">
-              <xsl:call-template name="href.target.with.base.dir"/>
-              </xsl:attribute>
+	      <xsl:attribute name="value">
+		<xsl:choose>
+		  <xsl:when test="$chunk.tocs.and.lots != 0">
+		    <xsl:apply-templates select="." mode="recursive-chunk-filename">
+		      <xsl:with-param name="recursive" select="true()"/>
+		    </xsl:apply-templates>
+		    <xsl:text>-toc</xsl:text>
+		    <xsl:value-of select="$html.ext"/>
+		  </xsl:when>
+		  <xsl:otherwise>
+		    <xsl:call-template name="href.target.with.base.dir"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+	      </xsl:attribute>
             </param>
         </OBJECT></LI>&lf;
       </xsl:if>
