@@ -16,15 +16,19 @@ saxon643.jar: build/lib/docbook-xsl-saxon.jar
 xalan25.jar: build/lib/docbook-xsl-xalan.jar
 	cp build/lib/docbook-xsl-xalan.jar xalan25.jar
 
-xalan27.jar: xalan27/dist/xalan27.jar
-	cp xalan27/dist/xalan27.jar .
+xalan27.jar: build2/lib/docbook-xsl-xalan27.jar
+	cp build2/lib/docbook-xsl-xalan27.jar xalan27.jar
 
 build/lib/docbook-xsl-saxon.jar:
 	$(ANT) jar.saxon
 
 build/lib/docbook-xsl-xalan.jar:
+	CLASSPATH=/usr/share/java/xalan25.jar:$$CLASSPATH \
 	$(ANT) jar.xalan
+
+build2/lib/docbook-xsl-xalan27.jar:
+	$(ANT) jar.xalan27
 
 clean:
 	$(ANT) clean
-	rm -rf *.jar
+	$(RM) *.jar

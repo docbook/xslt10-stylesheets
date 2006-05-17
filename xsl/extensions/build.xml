@@ -9,29 +9,42 @@
   <property name="name" value="docbook-xsl"/>
   <property name="src.saxon" value="saxon643"/>
   <property name="src.xalan" value="xalan2"/>
+  <property name="src.xalan27" value="xalan27/src"/>
   <property name="build" value="build"/>
+  <property name="build2" value="build2"/>
   <property name="build.classes" value="${build}/classes"/>
+  <property name="build2.classes" value="${build2}/classes"/>
   <property name="build.doc.xalan" value="${build}/api/xalan"/>
   <property name="build.doc.saxon" value="${build}/api/saxon"/>
   <property name="build.lib" value="${build}/lib"/>
+  <property name="build2.lib" value="${build2}/lib"/>
 
   <!-- Targets -->
 
   <target name="prepare" description="Prepare build directories">
     <mkdir dir="${build}"/>
+    <mkdir dir="${build2}"/>
     <mkdir dir="${build.classes}"/>
+    <mkdir dir="${build2.classes}"/>
     <mkdir dir="${build.lib}"/>
+    <mkdir dir="${build2.lib}"/>
     <mkdir dir="${build.doc.xalan}"/>
     <mkdir dir="${build.doc.saxon}"/>
   </target>
 
   <target name="clean" description="Remove build directories">
     <delete dir="${build}"/>
+    <delete dir="${build2}"/>
   </target>
 
   <target name="classes.xalan" depends="prepare"
           description="Build Xalan extension classes">
     <javac srcdir="${src.xalan}" destdir="${build.classes}"/>
+  </target>
+
+  <target name="classes.xalan27" depends="prepare"
+          description="Build Xalan 2.7 extension classes">
+    <javac srcdir="${src.xalan27}" destdir="${build2.classes}"/>
   </target>
 
   <target name="classes.saxon" depends="prepare"
@@ -47,6 +60,15 @@
     </jar>
   </target>
 
+  <target name="jar.xalan27" depends="classes.xalan27"
+          description="Build the Xalan 2.7 extension jar">
+    <jar destfile="${build2.lib}/${name}-xalan27.jar"
+         basedir="${build2.classes}"
+         includes="com/nwalsh/xalan/*">
+    </jar>
+  </target>
+
+
   <target name="jar.saxon" depends="classes.saxon"
           description="Build the Saxon extension jar">
     <jar destfile="${build.lib}/${name}-saxon.jar"
@@ -55,7 +77,7 @@
     </jar>
   </target>
 
-  <target name="jars" depends="jar.saxon,jar.xalan"
+  <target name="jars" depends="jar.saxon,jar.xalan,jar.xalan27"
           description="Build all jars" />
 
   <target name="javadoc.xalan" depends="prepare"
