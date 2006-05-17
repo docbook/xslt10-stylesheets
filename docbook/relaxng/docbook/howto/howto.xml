@@ -215,8 +215,10 @@ against the RELAX NG schema before further processing.</para>
 <section xml:id="schemas">
 <title>Where to get the schemas</title>
 
-<para>The latest versions of schemas can be obtained from the
-following locations:</para>
+<para>The latest versions of schemas can be obtained from <link
+xl:href="http://docbook.org/xml/index.html"/>. At the time of this
+writing the latest version is &version; and individual schemas are
+available at the following locations:</para>
 
 <variablelist>
 <varlistentry>
