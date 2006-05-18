@@ -697,7 +697,9 @@ db.bibliography.inlines =
  | db.citetitle
  | db.citebiblioid
  | db.author
+ | db.person
  | db.personname
+ | db.org
  | db.orgname
  | db.editor
 
@@ -864,6 +866,7 @@ db.info.elements =
  | db.keywordset
  | db.legalnotice
  | db.mediaobject
+ | db.org
  | db.orgname
  | db.othercredit
  | db.pagenums
@@ -885,6 +888,7 @@ db.bibliographic.elements =
  | db.citerefentry
  | db.citetitle
  | db.citebiblioid
+ | db.person
  | db.personname
  | db.subtitle
  | db.title
@@ -1411,7 +1415,7 @@ div {
    db.attribution =
       element attribution {
          db.attribution.attlist,
-         (db._text | db.personname | db.citetitle | db.citation)*
+         (db._text | db.person | db.personname | db.citetitle | db.citation)*
       }
 }
 
@@ -3829,9 +3833,7 @@ div {
          db.affiliation.attlist,
          db.shortaffil?,
          db.jobtitle*,
-         db.orgname?,
-         db.orgdiv*,
-         db.address*
+         (db.org? | (db.orgname?, db.orgdiv*, db.address*))
       }
 }
 
@@ -4091,7 +4093,7 @@ div {
    db.collab =
       element collab {
          db.collab.attlist,
-         (db.personname | db.orgname)+,
+         (db.person | db.personname | db.org | db.orgname)+,
          db.affiliation*
       }
 }
@@ -4115,6 +4117,52 @@ div {
       element authorinitials {
          db.authorinitials.attlist,
          db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "person" ]
+   db:refpurpose [ "A person and associated metadata" ]
+]
+div {
+
+   db.person.role.attribute = attribute role { text }
+
+   db.person.attlist =
+      db.person.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.person =
+      element person {
+         db.person.attlist,
+         db.personname,
+         (db.address|db.affiliation|db.email|db.personblurb)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "org" ]
+   db:refpurpose [ "An organization and associated metadata" ]
+]
+div {
+
+   db.org.role.attribute = attribute role { text }
+
+   db.org.attlist =
+      db.org.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.org =
+      element org {
+         db.org.attlist,
+         db.orgname,
+         (db.address|db.affiliation|db.email|db.orgdiv)*
       }
 }
 
