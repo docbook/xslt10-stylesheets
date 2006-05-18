@@ -3337,6 +3337,17 @@ div {
 
 # ======================================================================
 
+db.modifier.xml.space.attribute =
+   [
+      db:refpurpose [ "Can be used to indicate that whitespace in the modifier should be preserved (for multi-line annotations, for example)." ]
+   ]
+   attribute xml:space {
+      ## Extra whitespace and line breaks must be preserved.
+      "preserve"
+    | ## Extra whitespace and line breaks are not preserved.
+      "default"
+   }
+
 [
    db:refname [ "modifier" ]
    db:refpurpose [ "Modifiers in a synopsis" ]
@@ -3346,7 +3357,8 @@ div {
    db.modifier.role.attribute = attribute role { text }
 
    db.modifier.attlist =
-      db.modifier.role.attribute?
+      db.modifier.xml.space.attribute?
+    & db.modifier.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
 
@@ -3575,7 +3587,8 @@ div {
          db.methodparam.attlist,
          db.modifier*,
          db.type?,
-         ((db.parameter, db.initializer?) | db.funcparams),
+         ((db.modifier*, db.parameter, db.initializer?)
+          | db.funcparams),
          db.modifier*
       }
 }
