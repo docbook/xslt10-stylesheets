@@ -97,6 +97,20 @@ including:</para>
   <listitem>
     <para>support for generating crop marks in FO/PDF output</para>
   </listitem>
+  <listitem>
+    <para>support for qandaset as a root element in FO output</para>
+  </listitem>
+  <listitem>
+    <para>support for floatstyle and orient on all table types</para>
+  </listitem>
+  <listitem>
+    <para>support for floatstyle in figure, and example</para>
+  </listitem>
+  <listitem>
+    <para>pgwide.properties attribute-set supports extending figure,
+      example and table into the left indent area instead of spanning
+      multiple columns.</para>
+  </listitem>
 </itemizedlist>
     <para>The following is a detailed list of enhancements and API
     changes that have been made since the 1.69.1 release.</para>
