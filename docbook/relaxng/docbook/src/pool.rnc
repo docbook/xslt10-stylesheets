@@ -881,7 +881,7 @@ db.info.elements =
 
 db.bibliographic.elements =
    db.info.elements
- | db.abbrev
+ | db.publishing.inlines
  | db.citerefentry
  | db.citetitle
  | db.citebiblioid
