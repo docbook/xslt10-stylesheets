@@ -224,6 +224,32 @@
       <!-- nop; handled by the db.caption branch -->
     </xsl:when>
 
+    <!-- Handle the UPA problem in modifier... -->
+    <xsl:when test="@name = 'db.methodparam'">
+      <dtd:element name="methodparam">
+	<dtd:group>
+	  <dtd:choice repeat="*">
+	    <dtd:ref name="modifier"/>
+	    <dtd:ref name="type"/>
+	  </dtd:choice>
+	  <dtd:choice>
+	    <dtd:group>
+	      <dtd:ref name="parameter"/>
+	      <dtd:ref name="initializer" repeat="?"/>
+	    </dtd:group>
+	    <dtd:ref name="funcparams"/>
+	  </dtd:choice>
+	  <dtd:choice repeat="*">
+	    <dtd:ref name="modifier"/>
+	  </dtd:choice>
+	</dtd:group>
+      </dtd:element>
+      <dtd:attlist name="methodparam">
+	<xsl:apply-templates select="rng:element/doc:attributes"
+			     mode="attributes"/>
+      </dtd:attlist>
+    </xsl:when>
+
     <xsl:otherwise>
       <xsl:apply-templates/>
     </xsl:otherwise>
