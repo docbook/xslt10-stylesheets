@@ -652,7 +652,7 @@
 <xsl:template match="revhistory" mode="titlepage.mode">
   <xsl:variable name="numcols">
     <xsl:choose>
-      <xsl:when test="//authorinitials">3</xsl:when>
+      <xsl:when test=".//authorinitials|.//author">3</xsl:when>
       <xsl:otherwise>2</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -733,7 +733,7 @@
   <xsl:param name="numcols" select="'3'"/>
   <xsl:variable name="revnumber" select="revnumber"/>
   <xsl:variable name="revdate"   select="date"/>
-  <xsl:variable name="revauthor" select="authorinitials"/>
+  <xsl:variable name="revauthor" select="authorinitials|author"/>
   <xsl:variable name="revremark" select="revremark|revdescription"/>
   <tr>
     <td align="left">
@@ -783,6 +783,10 @@
 </xsl:template>
 
 <xsl:template match="revision/authorinitials" mode="titlepage.mode">
+  <xsl:apply-templates mode="titlepage.mode"/>
+</xsl:template>
+
+<xsl:template match="revision/author" mode="titlepage.mode">
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
