@@ -27,7 +27,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:variable name="htmlhelp.generate.index" select="//indexterm[1]"/>
+<xsl:param name="htmlhelp.generate.index" select="//indexterm[1]"/>
 
 <!-- Set up HTML Help flag -->
 <xsl:variable name="htmlhelp.output" select="1"/>
