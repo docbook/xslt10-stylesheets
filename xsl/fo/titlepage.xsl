@@ -534,14 +534,14 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:table table-layout="fixed" width="{$table.width}">
+  <fo:table table-layout="fixed" width="{$table.width}" xsl:use-attribute-sets="revhistory.table.properties">
     <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
     <fo:table-body start-indent="0pt" end-indent="0pt">
       <fo:table-row>
-        <fo:table-cell number-columns-spanned="3">
-          <fo:block>
+        <fo:table-cell number-columns-spanned="3" xsl:use-attribute-sets="revhistory.table.cell.properties">
+          <fo:block xsl:use-attribute-sets="revhistory.title.properties">
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'RevHistory'"/>
             </xsl:call-template>
@@ -559,7 +559,7 @@
   <xsl:variable name="revauthor" select="authorinitials|author"/>
   <xsl:variable name="revremark" select="revremark|revdescription"/>
   <fo:table-row>
-    <fo:table-cell>
+    <fo:table-cell xsl:use-attribute-sets="revhistory.table.cell.properties">
       <fo:block>
         <xsl:if test="$revnumber">
           <xsl:call-template name="gentext">
@@ -570,12 +570,12 @@
         </xsl:if>
       </fo:block>
     </fo:table-cell>
-    <fo:table-cell>
+    <fo:table-cell xsl:use-attribute-sets="revhistory.table.cell.properties">
       <fo:block>
         <xsl:apply-templates select="$revdate[1]" mode="titlepage.mode"/>
       </fo:block>
     </fo:table-cell>
-    <fo:table-cell>
+    <fo:table-cell xsl:use-attribute-sets="revhistory.table.cell.properties">
       <fo:block>
         <xsl:for-each select="$revauthor">
           <xsl:apply-templates select="." mode="titlepage.mode"/>
@@ -588,7 +588,7 @@
   </fo:table-row>
   <xsl:if test="$revremark">
     <fo:table-row>
-      <fo:table-cell number-columns-spanned="3">
+      <fo:table-cell number-columns-spanned="3" xsl:use-attribute-sets="revhistory.table.cell.properties">
         <fo:block>
           <xsl:apply-templates select="$revremark[1]" mode="titlepage.mode"/>
         </fo:block>

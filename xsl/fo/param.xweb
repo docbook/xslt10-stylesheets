@@ -475,6 +475,9 @@ zero by default, so this is simply the page-master region-left.
 &article.appendix.title.properties;
 &abstract.properties;
 &abstract.title.properties;
+&revhistory.table.properties;
+&revhistory.table.cell.properties;
+&revhistory.title.properties;
 </reference>
 
 <reference id="profiling"><title>Profiling</title>
@@ -773,6 +776,9 @@ around all these parameters.</para>
 <src:fragref linkend="refclass.suppress.frag"/>
 <src:fragref linkend="region.after.extent.frag"/>
 <src:fragref linkend="region.before.extent.frag"/>
+<src:fragref linkend="revhistory.table.properties.frag"/>
+<src:fragref linkend="revhistory.table.cell.properties.frag"/>
+<src:fragref linkend="revhistory.title.properties.frag"/>
 <src:fragref linkend="root.properties.frag"/>
 <src:fragref linkend="rootid.frag"/>
 <src:fragref linkend="runinhead.default.title.end.punct.frag"/>
