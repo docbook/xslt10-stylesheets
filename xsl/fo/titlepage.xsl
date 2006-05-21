@@ -556,7 +556,7 @@
 <xsl:template match="revhistory/revision" mode="titlepage.mode">
   <xsl:variable name="revnumber" select="revnumber"/>
   <xsl:variable name="revdate"   select="date"/>
-  <xsl:variable name="revauthor" select="authorinitials"/>
+  <xsl:variable name="revauthor" select="authorinitials|author"/>
   <xsl:variable name="revremark" select="revremark|revdescription"/>
   <fo:table-row>
     <fo:table-cell>
@@ -606,6 +606,10 @@
 </xsl:template>
 
 <xsl:template match="revision/authorinitials" mode="titlepage.mode">
+  <xsl:apply-templates mode="titlepage.mode"/>
+</xsl:template>
+
+<xsl:template match="revision/author" mode="titlepage.mode">
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
