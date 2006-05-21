@@ -344,7 +344,7 @@
 <xsl:template match="revhistory/revision">
   <xsl:variable name="revnumber" select="revnumber"/>
   <xsl:variable name="revdate"   select="date"/>
-  <xsl:variable name="revauthor" select="authorinitials"/>
+  <xsl:variable name="revauthor" select="authorinitials|author"/>
   <xsl:variable name="revremark" select="revremark|revdescription"/>
   <tr>
     <td align="left">
