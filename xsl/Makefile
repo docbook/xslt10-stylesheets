@@ -23,10 +23,10 @@ all:	xhtml RELEASE-NOTES.html
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml
 	$(XJPARSE) $<
-	$(XSLT) $< docsrc/doc-link-docbook.xsl $@
+	$(XSLT) $< docsrc/release-notes.xsl $@
 
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml
-	$(XSLT) $< fo/docbook.xsl RELEASE-NOTES.fo
+	$(XSLT) $< docsrc/release-notes-fo.xsl RELEASE-NOTES.fo
 	xep RELEASE-NOTES.fo
 	rm -f RELEASE-NOTES.fo
 

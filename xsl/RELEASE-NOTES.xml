@@ -1,61 +1,94 @@
-<?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
-<!-- * This is a DocBook 5 instance. The purpose of the --><!-- * internal subset is to make this it "backward compatible" --><!-- * with DocBook 4.x --><!-- * --><!ENTITY % article.element "IGNORE">
-<!ELEMENT article (((title | titleabbrev | subtitle)* , info?) , (glossary | bibliography | index | toc)* , (((itemizedlist | orderedlist | procedure | simplelist | variablelist | segmentedlist | glosslist | bibliolist | calloutlist | qandaset | caution | important | note | tip | warning | example | figure | table | informalexample | informalfigure | informaltable | sidebar | blockquote | address | epigraph | mediaobject | screenshot | task | productionset | constraintdef | msgset | programlisting | screen | literallayout | synopsis | programlistingco | screenco | cmdsynopsis | funcsynopsis | classsynopsis | methodsynopsis | constructorsynopsis | destructorsynopsis | fieldsynopsis | bridgehead | remark | revhistory | indexterm | equation | informalequation | anchor | para | formalpara | simpara | annotation)+ , ((section+ , simplesect*) | simplesect+ | (sect1+ , simplesect*) | refentry+)?) | (section+ , simplesect*) | simplesect+ | (sect1+ , simplesect*) | refentry+) , (appendix | glossary | bibliography | index | toc | ackno | colophon)*)>
-<!ATTLIST article xml:lang CDATA #IMPLIED>
-<!-- * --><!ELEMENT info ((title | titleabbrev | subtitle) | abstract | address | artpagenums | author | authorgroup | authorinitials | bibliocoverage | biblioid | bibliosource | collab | confgroup | contractsponsor | contractnum | copyright | cover | date | edition | editor | issuenum | keywordset | legalnotice | mediaobject | orgname | othercredit | pagenums | printhistory | productname | productnumber | pubdate | publisher | publishername | releaseinfo | revhistory | seriesvolnums | subjectset | volumenum | annotation | extendedlink | bibliomisc | bibliomset | bibliorelation | biblioset | itermset)*>
-<!-- * --><!ENTITY % author.element "IGNORE">
-<!ELEMENT author ((personname , (personblurb | affiliation | email | address | contrib)*) | (orgname , (orgdiv | affiliation | email | address | contrib)*))>
-<!-- * --><!ENTITY % id.attrib "xml:id         ID  #IMPLIED">
-<!ENTITY % idreq.attrib "xml:id         ID  #IMPLIED">
-<!ENTITY % xml-base.attrib "xml:base    CDATA  #IMPLIED">
-<!ENTITY % local.common.attrib "
-xmlns         CDATA  #FIXED   'http://docbook.org/ns/docbook'
-version       CDATA  #IMPLIED
-xmlns:xlink   CDATA  #FIXED   'http://www.w3.org/1999/xlink'
-xmlns:xi      CDATA  #FIXED   'http://www.w3.org/2001/XInclude'
-xlink:href    CDATA  #IMPLIED
-xlink:type    CDATA  #IMPLIED
-xlink:role    CDATA  #IMPLIED
-xlink:arcrole CDATA  #IMPLIED
-xlink:title   CDATA  #IMPLIED
-xlink:show    (new|replace|embed|other|none)	#IMPLIED
-xlink:actuate (onLoad|onRequest|other|none)	#IMPLIED
-">
-<!ELEMENT tag (#PCDATA | inlinemediaobject | remark | superscript | subscript | xref | link | olink | anchor | biblioref | alt | annotation | indexterm | phrase | replaceable)*>
-<!ENTITY % local.tech.char.class "|tag">
-<!ATTLIST tag xmlns CDATA #FIXED "http://docbook.org/ns/docbook">
-<!ATTLIST tag role CDATA #IMPLIED>
-<!ATTLIST tag class (attribute | attvalue | element | emptytag | endtag | genentity | numcharref | paramentity | pi | comment | starttag | xmlpi) #IMPLIED>
-<!ATTLIST tag namespace CDATA #IMPLIED>
-<!-- * --><!ELEMENT xi:include (xi:fallback)?>
-<!ATTLIST xi:include xmlns:xi CDATA #FIXED "http://www.w3.org/2001/XInclude">
-<!ATTLIST xi:include href CDATA #IMPLIED>
-<!ATTLIST xi:include parse (xml | text) "xml">
-<!ATTLIST xi:include xpointer CDATA #IMPLIED>
-<!ATTLIST xi:include encoding CDATA #IMPLIED>
-<!ATTLIST xi:include accept CDATA #IMPLIED>
-<!ATTLIST xi:include accept-language CDATA #IMPLIED>
-<!ELEMENT xi:fallback ANY>
-<!ATTLIST xi:fallback xmlns:xi CDATA #FIXED "http://www.w3.org/2001/XInclude">
-<!ENTITY % local.other.char.class "|sbr|alt">
-]>
-<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="http://docbook.org/ns/docbook" xml:lang="en" xml:id="releasenotes">
-  <info>
-    <title>Release Notes</title>
-    <subtitle>DocBook Project XSL Stylesheets</subtitle>
-    <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
-    <releaseinfo role="cvs">$Revision$ $Date$</releaseinfo>
-    <author><orgname>DocBook Project Development Team</orgname></author>
-  </info>
+<article xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 xmlns:xi="http://www.w3.org/2001/XInclude"
+	 xml:lang="en" xml:id="releasenotes"
+	 version="5.0">
+<info>
+  <title>Release Notes</title>
+  <subtitle>DocBook Project XSL Stylesheets</subtitle>
+  <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
+  <releaseinfo role="cvs">$Revision$ $Date$</releaseinfo>
+  <author><orgname>DocBook Project Development Team</orgname></author>
+</info>
 
-  <para>These are the release notes for the DocBook XSL Stylesheets
-  distribution. This document lists enhancements and changes to the
-  public APIs (user-configurable parameters) and generally excludes
-  descriptions of bug fixes, which are instead documented in a
-  separate <ulink url="NEWS"/> file.</para>
+<para>These are the release notes for the DocBook XSL Stylesheets
+distribution. This document lists enhancements and changes to the
+public APIs (user-configurable parameters) and generally excludes
+descriptions of bug fixes, which are instead documented in a
+separate <link xlink:href="NEWS"/> file.</para>
 
-  <sect1 xml:id="V1700">
+<sect1 xml:id="V1701">
+<title>Release: 1.70.1</title>
+
+<para>This is a stable release of the 1.70 stylesheets. It includes only a
+few small changes from 1.70.0.</para>
+
+<para>The following is a list of changes that have been made
+        since the 1.70.0 release.</para>
+
+<sect2 xml:id="V1701_FO">
+<title>FO</title>
+<para>The following changes have been made to the
+        <filename>fo</filename> code
+        since the 1.70.0 release.</para>
+<itemizedlist>
+<listitem role="commit-message">
+<para>Added three new attribute sets (revhistory.title.properties, revhistory.table.properties and revhistory.table.cell.properties) for controlling appearance of revhistory in FO output.</para>
+<para role="commit-changes">Modified: fo/block.xsl,1.34; fo/param.ent,1.101; fo/param.xweb,1.114; fo/titlepage.xsl,1.41; params/revhistory.table.cell.properties.xml,1.1; params/revhistory.table.properties.xml,1.1; params/revhistory.title.properties.xml,1.1 - Jirka Kosek</para>
+</listitem>
+<listitem role="commit-message">
+<para>Support DBv5 revisions with full author name (not only authorinitials)</para>
+<para role="commit-changes">Modified: fo/block.xsl,1.33; fo/titlepage.xsl,1.40 - Jirka Kosek</para>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.70.1-->
+
+<sect2 xml:id="V1701_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the
+        <filename>html</filename> code
+        since the 1.70.0 release.</para>
+<itemizedlist>
+<listitem role="commit-message">
+<para>Support DBv5 revisions with full author name (not only authorinitials)</para>
+<para role="commit-changes">Modified: html/block.xsl,1.23; html/titlepage.xsl,1.34 - Jirka Kosek</para>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.70.1-->
+
+<sect2 xml:id="V1701_HTMLHelp">
+<title>HTMLHelp</title>
+<para>The following changes have been made to the
+        <filename>htmlhelp</filename> code
+        since the 1.70.0 release.</para>
+<itemizedlist>
+<listitem role="commit-message">
+<para>htmlhelp.generate.index is now param, not variable. This means that you can override its setting from outside. This is useful when you generate indexterms on the fly (see http://www.xml.com/pub/a/2004/07/14/dbndx.html?page=3).</para>
+<para role="commit-changes">Modified: htmlhelp/htmlhelp-common.xsl,1.38 - Jirka Kosek</para>
+</listitem>
+<listitem role="commit-message">
+<para>Support chunk.tocs.and.lots in HTML Help</para>
+<para role="commit-changes">Modified: htmlhelp/htmlhelp-common.xsl,1.37 - Jirka Kosek</para>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTMLHelp changes for 1.70.1-->
+
+<sect2 xml:id="V1701_Params">
+<title>Params</title>
+<para>The following changes have been made to the
+        <filename>params</filename> code
+        since the 1.70.0 release.</para>
+<itemizedlist>
+<listitem role="commit-message">
+<para>Added three new attribute sets (revhistory.title.properties, revhistory.table.properties and revhistory.table.cell.properties) for controlling appearance of revhistory in FO output.</para>
+<para role="commit-changes">Modified: fo/block.xsl,1.34; fo/param.ent,1.101; fo/param.xweb,1.114; fo/titlepage.xsl,1.41; params/revhistory.table.cell.properties.xml,1.1; params/revhistory.table.properties.xml,1.1; params/revhistory.title.properties.xml,1.1 - Jirka Kosek</para>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.70.1-->
+
+</sect1>
+
+<sect1 xml:id="V1700">
 <title>Release: 1.70.0</title>
 <para>As with all DocBook Project <link linkend="dot0">dot-zero</link>
 releases, this is an experimental release. It will be followed shortly
@@ -121,109 +154,125 @@ including:</para>
         <filename>common</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">Add the xsl:key for the kimber
-indexing method.<alt>common/autoidx-ng.xsl,1.2 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add the xsl:key for the kimber
+indexing method.</para>
+<para role="commit-changes">Modified: common/autoidx-ng.xsl,1.2 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for
-<tag>qandaset</tag>.<alt>common/labels.xsl,1.37;
+<listitem role="commit-message">
+<para>Add support for
+<tag>qandaset</tag>.</para>
+<para role="commit-changes">Modified: common/labels.xsl,1.37;
 common/subtitles.xsl,1.7; common/titles.xsl,1.35 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support dbhtml/dbfo start PI for
+<listitem role="commit-message">
+<para>Support dbhtml/dbfo start PI for
 <tag>orderedlist</tag> numbering in both HTML and
-FO<alt>common/common.xsl,1.61; html/lists.xsl,1.50 - Norman
-Walsh</alt></phrase></para>
+FO</para>
+<para role="commit-changes">Modified: common/common.xsl,1.61; html/lists.xsl,1.50 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added CVS
-header.<alt>common/stripns.xsl,1.12 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added CVS
+header.</para>
+<para role="commit-changes">Modified: common/stripns.xsl,1.12 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Changed content model of text
-element to ANY rather than #PCDATA<sbr/>because they could contain
-markup.<alt>common/targetdatabase.dtd,1.7 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Changed content model of text
+element to ANY rather than #PCDATA because they could contain
+markup.</para>
+<para role="commit-changes">Modified: common/targetdatabase.dtd,1.7 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-<tag>refentry</tag>.meta.get.quietly param.<sbr/><sbr/>If zero (the
-default), notes and warnings about "missing" markup<sbr/>are generated
+<listitem role="commit-message">
+<para>Added
+<tag>refentry</tag>.meta.get.quietly param.</para>
+<para>If zero (the
+default), notes and warnings about "missing" markup are generated
 during gathering of <tag>refentry</tag> metadata. If
-non-zero,<sbr/>the metadata is gathered "quietly" -- that is, the
-notes and<sbr/>warnings are suppressed.<sbr/><sbr/>NOTE: If you are
-processing a large amount of <tag>refentry</tag> content,<sbr/> you
-may be able to speed up processing significantly by<sbr/> setting a
+non-zero, the metadata is gathered "quietly" -- that is, the
+notes and warnings are suppressed.</para>
+<para>NOTE: If you are
+processing a large amount of <tag>refentry</tag> content,  you
+may be able to speed up processing significantly by  setting a
 non-zero value for
-<tag>refentry</tag>.meta.get.quietly.<alt>common/refentry.xsl,1.17;
+<tag>refentry</tag>.meta.get.quietly.</para>
+<para role="commit-changes">Modified: common/refentry.xsl,1.17;
 manpages/param.ent,1.15; manpages/param.xweb,1.17;
 params/refentry.meta.get.quietly.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">After namespace stripping, the
-source document is the temporary tree<sbr/>created by the stripping
-process and it has the wrong base <tag>URI</tag> for<sbr/>relative
-references. Earlier versions of this code used to try to<sbr/>fix that
-by patching the elements with relative @fileref attributes.<sbr/>That
+<listitem role="commit-message">
+<para>After namespace stripping, the
+source document is the temporary tree created by the stripping
+process and it has the wrong base <tag>URI</tag> for relative
+references. Earlier versions of this code used to try to fix that
+by patching the elements with relative @fileref attributes. That
 was inadequate because it calculated an absolute base <tag>URI</tag>
-without<sbr/>considering that there might be xml:base attributes
-already in effect.<sbr/>It seems obvious now that the right thing to
-do is simply to put the<sbr/>xml:base on the root of the document. And
-that seems to work.<alt>common/stripns.xsl,1.7 - Norman
-Walsh</alt></phrase></para>
+without considering that there might be xml:base attributes
+already in effect. It seems obvious now that the right thing to
+do is simply to put the xml:base on the root of the document. And
+that seems to work.</para>
+<para role="commit-changes">Modified: common/stripns.xsl,1.7 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for "software" and
-"sectdesc" class values on<sbr/><tag>refmiscinfo</tag>; "software" is
-treated identically to "source", and<sbr/>"setdesc" is treated
-identically to "manual".<alt>common/refentry.xsl,1.10;
+<listitem role="commit-message">
+<para>Added support for "software" and
+"sectdesc" class values on <tag>refmiscinfo</tag>; "software" is
+treated identically to "source", and "setdesc" is treated
+identically to "manual".</para>
+<para role="commit-changes">Modified: common/refentry.xsl,1.10;
 params/man.th.extra2.max.length.xml,1.3;
 params/refentry.source.name.profile.xml,1.4 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for DocBook 5
-namespace-stripping in manpages<sbr/>stylesheet. Closes request
-#1210692.<alt>common/common.xsl,1.56; manpages/docbook.xsl,1.57 -
-Michael(tm) Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added support for DocBook 5
+namespace-stripping in manpages stylesheet. Closes request
+#1210692.</para>
+<para role="commit-changes">Modified: common/common.xsl,1.56; manpages/docbook.xsl,1.57 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added &lt;xsl:template
-match="/"&gt; to make stripns.xsl usable as a<sbr/>standalone
-stylesheet for stripping out DocBook 5/NG to DocBook 4.<sbr/>Note that
-DocBook XSLT drivers that include this stylesheet all<sbr/>override
-the match="/" template.<alt>common/stripns.xsl,1.4 - Michael(tm)
-Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added &lt;xsl:template
+match="/"&gt; to make stripns.xsl usable as a standalone
+stylesheet for stripping out DocBook 5/NG to DocBook 4. Note that
+DocBook XSLT drivers that include this stylesheet all override
+the match="/" template.</para>
+<para role="commit-changes">Modified: common/stripns.xsl,1.4 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Number figures, examples, and
+<listitem role="commit-message">
+<para>Number figures, examples, and
 tables from <tag>book</tag> if there is no prefix (i.e. if
 <parameter>chapter.autolabel</parameter> is set to 0). This avoids
 having the list of figures where the figures mysteriously restart
 their numeration periodically when
 <parameter>chapter.autolabel</parameter> is set to
-0.<alt>common/labels.xsl,1.36 - David Cramer</alt></phrase></para>
+0.</para>
+<para role="commit-changes">Modified: common/labels.xsl,1.36 - David Cramer</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add <tag>task</tag> template in
-<tag>title</tag>.markup mode.<alt>common/titles.xsl,1.34 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add <tag>task</tag> template in
+<tag>title</tag>.markup mode.</para>
+<para role="commit-changes">Modified: common/titles.xsl,1.34 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add children (with ids) of formal
-objects to target data.<alt>common/targets.xsl,1.10 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add children (with ids) of formal
+objects to target data.</para>
+<para role="commit-changes">Modified: common/targets.xsl,1.10 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for case when
+<listitem role="commit-message">
+<para>Added support for case when
 <tag>personname</tag> doesn't contain specific name markup (as allowed
-in DocBook 5.0)<alt>common/common.xsl,1.54 - Jirka
-Kosek</alt></phrase></para>
+in DocBook 5.0)</para>
+<para role="commit-changes">Modified: common/common.xsl,1.54 - Jirka
+Kosek</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Common changes for snapshot_2006-05-15_0803-->
@@ -234,9 +283,10 @@ Kosek</alt></phrase></para>
         <filename>extensions</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">Support Xalan
-2.7<alt>extensions/xalan27/.cvsignore,1.1;
+<listitem role="commit-message">
+<para>Support Xalan
+2.7</para>
+<para role="commit-changes">Modified: extensions/xalan27/.cvsignore,1.1;
 extensions/xalan27/build.xml,1.1;
 extensions/xalan27/nbproject/.cvsignore,1.1;
 extensions/xalan27/nbproject/build-impl.xml,1.1;
@@ -256,13 +306,14 @@ extensions/xalan27/src/com/nwalsh/xalan/Params.java,1.1;
 extensions/xalan27/src/com/nwalsh/xalan/Table.java,1.1;
 extensions/xalan27/src/com/nwalsh/xalan/Text.java,1.1;
 extensions/xalan27/src/com/nwalsh/xalan/Verbatim.java,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Handle the case where the imageFn
+<listitem role="commit-message">
+<para>Handle the case where the imageFn
 is actually a <tag>URI</tag>. This still needs
-work.<alt>extensions/saxon643/com/nwalsh/saxon/ImageIntrinsics.java,1.4
-- Norman Walsh</alt></phrase></para>
+work.</para>
+<para role="commit-changes">Modified: extensions/saxon643/com/nwalsh/saxon/ImageIntrinsics.java,1.4
+- Norman Walsh</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Extensions changes for snapshot_2006-05-15_0803-->
@@ -273,393 +324,456 @@ work.<alt>extensions/saxon643/com/nwalsh/saxon/ImageIntrinsics.java,1.4
         <filename>fo</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">Adapted to the new indexing
+<listitem role="commit-message">
+<para>Adapted to the new indexing
 code. Now works just like a wrapper that calls kosek indexing method,
-originally implemented here.<alt>fo/autoidx-ng.xsl,1.5 - Jirka
-Kosek</alt></phrase></para>
+originally implemented here.</para>
+<para role="commit-changes">Modified: fo/autoidx-ng.xsl,1.5 - Jirka
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added parameters for header/footer
-<tag>table</tag> minimum height.<alt>fo/pagesetup.xsl,1.60;
+<listitem role="commit-message">
+<para>Added parameters for header/footer
+<tag>table</tag> minimum height.</para>
+<para role="commit-changes">Modified: fo/pagesetup.xsl,1.60;
 fo/param.ent,1.100; fo/param.xweb,1.113 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add the <tag>index</tag>.method
-parameter.<alt>fo/param.ent,1.99; fo/param.xweb,1.112 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add the <tag>index</tag>.method
+parameter.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.99; fo/param.xweb,1.112 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Integrate support for three
-indexing methods:<sbr/>- the original English-only method.<sbr/>-
-Jirka Kosek's method using EXSLT extensions.<sbr/>- Eliot Kimber's
-method using Saxon extensions.<sbr/>Use the '<tag>index</tag>.method'
-parameter to select.<alt>fo/autoidx.xsl,1.38 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Integrate support for three
+indexing methods: - the original English-only method. -
+Jirka Kosek's method using EXSLT extensions. - Eliot Kimber's
+method using Saxon extensions. Use the '<tag>index</tag>.method'
+parameter to select.</para>
+<para role="commit-changes">Modified: fo/autoidx.xsl,1.38 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for <tag>TOC</tag> for
-<tag>qandaset</tag> in fo output.<alt>fo/autotoc.xsl,1.30;
-fo/qandaset.xsl,1.20 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add support for <tag>TOC</tag> for
+<tag>qandaset</tag> in fo output.</para>
+<para role="commit-changes">Modified: fo/autotoc.xsl,1.30;
+fo/qandaset.xsl,1.20 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added parameter
-<parameter>ulink.hyphenate</parameter>.chars.<sbr/>Added parameter
-insert.<tag>link</tag>.page.number.<alt>fo/param.ent,1.98;
-fo/param.xweb,1.111 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added parameter
+<parameter>ulink.hyphenate</parameter>.chars. Added parameter
+insert.<tag>link</tag>.page.number.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.98;
+fo/param.xweb,1.111 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented feature request
-#942524 to add insert.<tag>link</tag>.page.number to<sbr/>allow link
-element cross references to have a page number.<alt>fo/xref.xsl,1.67 -
-Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Implemented feature request
+#942524 to add insert.<tag>link</tag>.page.number to allow link
+element cross references to have a page number.</para>
+<para role="commit-changes">Modified: fo/xref.xsl,1.67 -
+Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for
+<listitem role="commit-message">
+<para>Add support for
 <parameter>ulink.hyphenate</parameter>.chars so more characters
-can<sbr/>be break points in urls.<alt>fo/xref.xsl,1.66 - Robert
-Stayton</alt></phrase></para>
+can be break points in urls.</para>
+<para role="commit-changes">Modified: fo/xref.xsl,1.66 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented patch #1075144 to make
-the url text in a ulink in FO<sbr/>output an active <tag>link</tag> as
-well.<alt>fo/xref.xsl,1.65 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Implemented patch #1075144 to make
+the url text in a ulink in FO output an active <tag>link</tag> as
+well.</para>
+<para role="commit-changes">Modified: fo/xref.xsl,1.65 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message"><tag>table</tag> footnotes now
+<listitem role="commit-message">
+<para><tag>table</tag> footnotes now
 have their own <tag>table</tag>.<tag>footnote</tag>.properties
-attribute set.<alt>fo/footnote.xsl,1.23 - Robert
-Stayton</alt></phrase></para>
+attribute set.</para>
+<para role="commit-changes">Modified: fo/footnote.xsl,1.23 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add <tag>qandaset</tag> to
-root.elements.<alt>fo/docbook.xsl,1.41 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add <tag>qandaset</tag> to
+root.elements.</para>
+<para role="commit-changes">Modified: fo/docbook.xsl,1.41 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added mode="page.sequence" to make
-it easier to put content<sbr/>into a page sequence.  First used for
-<tag>qandaset</tag>.<alt>fo/component.xsl,1.37 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added mode="page.sequence" to make
+it easier to put content into a page sequence.  First used for
+<tag>qandaset</tag>.</para>
+<para role="commit-changes">Modified: fo/component.xsl,1.37 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented feature request
+<listitem role="commit-message">
+<para>Implemented feature request
 #1434408 to support formatting
-of<sbr/><tag>biblioentry</tag>.<alt>fo/biblio.xsl,1.35 - Robert
-Stayton</alt></phrase></para>
+of <tag>biblioentry</tag>.</para>
+<para role="commit-changes">Modified: fo/biblio.xsl,1.35 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-<tag>biblioentry</tag>.properties.<alt>fo/param.ent,1.97;
-fo/param.xweb,1.110 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added
+<tag>biblioentry</tag>.properties.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.97;
+fo/param.xweb,1.110 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support PTC/Arbortext
-bookmarks<alt>fo/docbook.xsl,1.40; fo/ptc.xsl,1.1 - Norman
-Walsh</alt></phrase></para>
+<listitem role="commit-message">
+<para>Support PTC/Arbortext
+bookmarks</para>
+<para role="commit-changes">Modified: fo/docbook.xsl,1.40; fo/ptc.xsl,1.1 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 <tag>table</tag>.<tag>footnote</tag>.properties to permit
-<tag>table</tag> footnotes to<sbr/>format differently from regular
-footnotes.<alt>fo/param.ent,1.96; fo/param.xweb,1.109 - Robert
-Stayton</alt></phrase></para>
+<tag>table</tag> footnotes to format differently from regular
+footnotes.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.96; fo/param.xweb,1.109 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Refactored <tag>table</tag>
-templates to unify their processing and<sbr/>support all options in
-all types.  Now <tag>table</tag> and <tag>informaltable</tag>,<sbr/>in
-both Cals and Html markup, use the same templates where<sbr/>possible,
-and all support pgwide, rotation, and floats.<sbr/>There is also a
+<listitem role="commit-message">
+<para>Refactored <tag>table</tag>
+templates to unify their processing and support all options in
+all types.  Now <tag>table</tag> and <tag>informaltable</tag>, in
+both Cals and Html markup, use the same templates where possible,
+and all support pgwide, rotation, and floats. There is also a
 placeholder <tag>table</tag>.container template to
-support<sbr/>wrapping a <tag>table</tag> in a layout <tag>table</tag>,
-so the XEP <tag>table</tag> <tag>title</tag><sbr/>"continued"
-extension can be more easily implemented.<alt>fo/formal.xsl,1.52;
+support wrapping a <tag>table</tag> in a layout <tag>table</tag>,
+so the XEP <tag>table</tag> <tag>title</tag> "continued"
+extension can be more easily implemented.</para>
+<para role="commit-changes">Modified: fo/formal.xsl,1.52;
 fo/htmltbl.xsl,1.9; fo/table.xsl,1.48 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new attribute set
+<listitem role="commit-message">
+<para>Added new attribute set
 <tag>toc</tag>.line.properties for controlling appearance of lines in
-ToC/LoT<alt>fo/autotoc.xsl,1.29; fo/param.ent,1.95;
-fo/param.xweb,1.108 - Jirka Kosek</alt></phrase></para>
+ToC/LoT</para>
+<para role="commit-changes">Modified: fo/autotoc.xsl,1.29; fo/param.ent,1.95;
+fo/param.xweb,1.108 - Jirka Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for float to example
-and <tag>equation</tag>.<sbr/>Added support for pgwide to
-<tag>figure</tag>, example, and <tag>equation</tag><sbr/>(the latter
+<listitem role="commit-message">
+<para>Added support for float to example
+and <tag>equation</tag>. Added support for pgwide to
+<tag>figure</tag>, example, and <tag>equation</tag> (the latter
 two via a dbfo pgwide="1" processing
-instruction).<alt>fo/formal.xsl,1.51 - Robert
-Stayton</alt></phrase></para>
+instruction).</para>
+<para role="commit-changes">Modified: fo/formal.xsl,1.51 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add pgwide.properties
-attribute-set.<alt>fo/param.ent,1.94; fo/param.xweb,1.107 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add pgwide.properties
+attribute-set.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.94; fo/param.xweb,1.107 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added <tag>refclass</tag>.suppress
-param.<sbr/><sbr/>If the value of <tag>refclass</tag>.suppress is
-non-zero, then display<sbr/><tag>refclass</tag> contents is suppressed
-in output. Affects HTML and FO<sbr/>output
-only.<alt>fo/param.ent,1.93; fo/param.xweb,1.106; html/param.ent,1.90;
+<listitem role="commit-message">
+<para>Added <tag>refclass</tag>.suppress
+param.</para>
+<para>If the value of <tag>refclass</tag>.suppress is
+non-zero, then display <tag>refclass</tag> contents is suppressed
+in output. Affects HTML and FO output
+only.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.93; fo/param.xweb,1.106; html/param.ent,1.90;
 html/param.xweb,1.99; params/refclass.suppress.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Improved support for
-<tag>task</tag> subelements<alt>fo/task.xsl,1.3; html/task.xsl,1.3 -
-Jirka Kosek</alt></phrase></para>
+<listitem role="commit-message">
+<para>Improved support for
+<tag>task</tag> subelements</para>
+<para role="commit-changes">Modified: fo/task.xsl,1.3; html/task.xsl,1.3 -
+Jirka Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Adjusted spacing around
+<listitem role="commit-message">
+<para>Adjusted spacing around
 K&amp;R-formatted <tag>Funcdef</tag> and <tag>Paramdef</tag>
-output<sbr/>such that it can more easily be discerned where one ends
-and the<sbr/>other begins. Closes #1213264.<alt>fo/synop.xsl,1.18 -
-Michael(tm) Smith</alt></phrase></para>
+output such that it can more easily be discerned where one ends
+and the other begins. Closes #1213264.</para>
+<para role="commit-changes">Modified: fo/synop.xsl,1.18 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Made handling of
-paramdef/parameter in FO output consistent with<sbr/>that in HTML and
-manpages output. Closes #1213259.<alt>fo/synop.xsl,1.17 - Michael(tm)
-Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Made handling of
+paramdef/parameter in FO output consistent with that in HTML and
+manpages output. Closes #1213259.</para>
+<para role="commit-changes">Modified: fo/synop.xsl,1.17 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Made handling of
+<listitem role="commit-message">
+<para>Made handling of
 <tag>Refnamediv</tag> consistent with formatting in HTML
-and<sbr/>manpages output; specifically, changed so that
-<tag>Refname</tag><sbr/>(comma-separated list of multiple instances
-found) is used<sbr/>(instead of <tag>Refentrytitle</tag> as
-previously), then em-dash, then the<sbr/><tag>Refpurpose</tag>. Closes
-#1212562.<alt>fo/refentry.xsl,1.30 - Michael(tm)
-Smith</alt></phrase></para>
+and manpages output; specifically, changed so that
+<tag>Refname</tag> (comma-separated list of multiple instances
+found) is used (instead of <tag>Refentrytitle</tag> as
+previously), then em-dash, then the <tag>Refpurpose</tag>. Closes
+#1212562.</para>
+<para role="commit-changes">Modified: fo/refentry.xsl,1.30 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added output of
+<listitem role="commit-message">
+<para>Added output of
 <tag>Releaseinfo</tag> to recto titlepage ("<tag>copyright</tag>"
-page)<sbr/>for <tag>Book</tag> in FO output. This makes it consistent
-with HTML output.<sbr/>Closes #1327034. Thanks to Paul DuBois for
-reporting.<alt>fo/titlepage.templates.xml,1.28 - Michael(tm)
-Smith</alt></phrase></para>
+page) for <tag>Book</tag> in FO output. This makes it consistent
+with HTML output. Closes #1327034. Thanks to Paul DuBois for
+reporting.</para>
+<para role="commit-changes">Modified: fo/titlepage.templates.xml,1.28 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added condition for setting
-block-progression-dimension.minimum on<sbr/>table-row, instead of
+<listitem role="commit-message">
+<para>Added condition for setting
+block-progression-dimension.minimum on table-row, instead of
 height, when <parameter>fop1.extensions</parameter> is
-non-zero.<sbr/>For an explanation of the reason for the change,
-<tag>see</tag>:<sbr/>http://wiki.apache.org/xmlgraphics-fop/Troubleshooting/CommonLogMessages<alt>fo/pagesetup.xsl,1.59
-- Michael(tm) Smith</alt></phrase></para>
+non-zero. For an explanation of the reason for the change,
+<tag>see</tag>: http://wiki.apache.org/xmlgraphics-fop/Troubleshooting/CommonLogMessages</para>
+<para role="commit-changes">Modified: fo/pagesetup.xsl,1.59
+- Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new
+<listitem role="commit-message">
+<para>Added new
 <tag>refclass</tag>.suppress param for suppressing display
-of<sbr/><tag>Refclass</tag> in HTML and FO output. Did not add it to
-manpages because<sbr/>manpages stylesheet is currently just silently
-ignoring <tag>Refclass</tag><sbr/>anyway. Closes request
-#1461065. Thanks to Davor Ocelic (docelic)<sbr/>for
-reporting.<alt>fo/refentry.xsl,1.29; html/refentry.xsl,1.23 -
-Michael(tm) Smith</alt></phrase></para>
+of <tag>Refclass</tag> in HTML and FO output. Did not add it to
+manpages because manpages stylesheet is currently just silently
+ignoring <tag>Refclass</tag> anyway. Closes request
+#1461065. Thanks to Davor Ocelic (docelic) for
+reporting.</para>
+<para role="commit-changes">Modified: fo/refentry.xsl,1.29; html/refentry.xsl,1.23 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for keep-together PI
-to informal objects.<alt>fo/formal.xsl,1.50 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add support for keep-together PI
+to informal objects.</para>
+<para role="commit-changes">Modified: fo/formal.xsl,1.50 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for
-<parameter>fop1.extensions</parameter>.<alt>fo/formal.xsl,1.49;
+<listitem role="commit-message">
+<para>Add support for
+<parameter>fop1.extensions</parameter>.</para>
+<para role="commit-changes">Modified: fo/formal.xsl,1.49;
 fo/graphics.xsl,1.44; fo/table.xsl,1.47 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for fop1
-bookmarks.<alt>fo/docbook.xsl,1.39 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add support for fop1
+bookmarks.</para>
+<para role="commit-changes">Modified: fo/docbook.xsl,1.39 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add fop1.extentions parameter to
-add support for<sbr/>fop development version.<alt>fo/param.ent,1.92;
-fo/param.xweb,1.105 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add fop1.extentions parameter to
+add support for fop development version.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.92;
+fo/param.xweb,1.105 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Start supporting fop development
-version, which will<sbr/>become fop version 1.<alt>fo/fop1.xsl,1.1 -
-Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Start supporting fop development
+version, which will become fop version 1.</para>
+<para role="commit-changes">Modified: fo/fop1.xsl,1.1 -
+Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add template for <tag>task</tag>
-in mode="xref-to".<alt>fo/xref.xsl,1.63; html/xref.xsl,1.57 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add template for <tag>task</tag>
+in mode="xref-to".</para>
+<para role="commit-changes">Modified: fo/xref.xsl,1.63; html/xref.xsl,1.57 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message"><tag>table</tag> footnotes now
+<listitem role="commit-message">
+<para><tag>table</tag> footnotes now
 also get <tag>footnote</tag>.properties
-attribute-set.<alt>fo/footnote.xsl,1.22 - Robert
-Stayton</alt></phrase></para>
+attribute-set.</para>
+<para role="commit-changes">Modified: fo/footnote.xsl,1.22 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added <tag>index</tag>.separator
-named template to compute the<sbr/>separator punctuation based on
-locale.<alt>fo/autoidx.xsl,1.36 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added <tag>index</tag>.separator
+named template to compute the separator punctuation based on
+locale.</para>
+<para role="commit-changes">Modified: fo/autoidx.xsl,1.36 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for <tag>link</tag>,
+<listitem role="commit-message">
+<para>Added support for <tag>link</tag>,
 <tag>olink</tag>, and <tag>xref</tag> within OO
-<tag>Classsynopsis</tag><sbr/>and children. (Because DocBook NG/5
-allows it).<alt>fo/synop.xsl,1.15; html/synop.xsl,1.19 - Michael(tm)
-Smith</alt></phrase></para>
+<tag>Classsynopsis</tag> and children. (Because DocBook NG/5
+allows it).</para>
+<para role="commit-changes">Modified: fo/synop.xsl,1.15; html/synop.xsl,1.19 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support <tag>date</tag> as an
-inline<alt>fo/inline.xsl,1.43; html/inline.xsl,1.46 - Norman
-Walsh</alt></phrase></para>
+<listitem role="commit-message">
+<para>Support <tag>date</tag> as an
+inline</para>
+<para role="commit-changes">Modified: fo/inline.xsl,1.43; html/inline.xsl,1.46 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new parameter
-<parameter>keep.relative.image.uris</parameter><alt>fo/param.ent,1.91;
+<listitem role="commit-message">
+<para>Added new parameter
+<parameter>keep.relative.image.uris</parameter></para>
+<para role="commit-changes">Modified: fo/param.ent,1.91;
 fo/param.xweb,1.104; html/param.ent,1.87; html/param.xweb,1.96;
 params/keep.relative.image.uris.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Map Unicode space characters
-U+2000-U+200A to fo:leaders.<alt>fo/docbook.xsl,1.38;
+<listitem role="commit-message">
+<para>Map Unicode space characters
+U+2000-U+200A to fo:leaders.</para>
+<para role="commit-changes">Modified: fo/docbook.xsl,1.38;
 fo/passivetex.xsl,1.4; fo/spaces.xsl,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Output a real em dash for em-dash
-dingbat (instead of two hypens).<alt>fo/fo.xsl,1.7 - Michael(tm)
-Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Output a real em dash for em-dash
+dingbat (instead of two hypens).</para>
+<para role="commit-changes">Modified: fo/fo.xsl,1.7 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support default <tag>label</tag>
-width parameters for itemized and ordered lists<alt>fo/lists.xsl,1.64;
+<listitem role="commit-message">
+<para>Support default <tag>label</tag>
+width parameters for itemized and ordered lists</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.64;
 fo/param.ent,1.90; fo/param.xweb,1.103;
 params/itemizedlist.label.width.xml,1.1;
 params/orderedlist.label.width.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Generate localized
+<listitem role="commit-message">
+<para>Generate localized
 <tag>title</tag> for <tag>Refsynopsisdiv</tag> if no
-appropriate<sbr/><tag>Title</tag> descendant found in source. Closes
-#1212398. This change<sbr/>makes behavior for the <tag>Synopsis</tag>
-<tag>title</tag> consistent with the behavior<sbr/>of HTML and
-manpages output.<sbr/><sbr/>Also, added
+appropriate <tag>Title</tag> descendant found in source. Closes
+#1212398. This change makes behavior for the <tag>Synopsis</tag>
+<tag>title</tag> consistent with the behavior of HTML and
+manpages output.</para>
+<para>Also, added
 xsl:use-attribute-sets="normal.<tag>para</tag>.spacing" to
-block<sbr/>generated for <tag>Cmdsynopsis</tag> output. Previously,
-that block had no<sbr/>spacing at all specified, which resulted it
-being crammed up to<sbr/>closely to the <tag>Synopsis</tag>
-head.<alt>fo/refentry.xsl,1.28; fo/synop.xsl,1.13 - Michael(tm)
-Smith</alt></phrase></para>
+block generated for <tag>Cmdsynopsis</tag> output. Previously,
+that block had no spacing at all specified, which resulted it
+being crammed up to closely to the <tag>Synopsis</tag>
+head.</para>
+<para role="commit-changes">Modified: fo/refentry.xsl,1.28; fo/synop.xsl,1.13 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added parameters to support
+<listitem role="commit-message">
+<para>Added parameters to support
 localization of <tag>index</tag>
-item<sbr/>punctuation.<alt>fo/autoidx.xsl,1.35 - Robert
-Stayton</alt></phrase></para>
+item punctuation.</para>
+<para role="commit-changes">Modified: fo/autoidx.xsl,1.35 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 <parameter>index.number.separator</parameter>,
 <parameter>index.range.separator</parameter>,
-and<sbr/><parameter>index.term.separator</parameter> parameters to
-support localization<sbr/>of punctuation in <tag>index</tag>
-entries.<alt>fo/param.ent,1.89; fo/param.xweb,1.102 - Robert
-Stayton</alt></phrase></para>
+and <parameter>index.term.separator</parameter> parameters to
+support localization of punctuation in <tag>index</tag>
+entries.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.89; fo/param.xweb,1.102 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added "Cross References"
-<tag>section</tag> in HTML doc (for consistency with<sbr/>the FO
+<listitem role="commit-message">
+<para>Added "Cross References"
+<tag>section</tag> in HTML doc (for consistency with the FO
 doc). Also, moved the existing FO "Cross
-References"<sbr/><tag>section</tag> to follow the "Linking"
-<tag>section</tag>.<alt>fo/param.xweb,1.101; html/param.xweb,1.95 -
-Michael(tm) Smith</alt></phrase></para>
+References" <tag>section</tag> to follow the "Linking"
+<tag>section</tag>.</para>
+<para role="commit-changes">Modified: fo/param.xweb,1.101; html/param.xweb,1.95 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added ID attribues to all
-<tag>Reference</tag> elements (e.g., id="tables"<sbr/>for the doc for
+<listitem role="commit-message">
+<para>Added ID attribues to all
+<tag>Reference</tag> elements (e.g., id="tables" for the doc for
 <tag>section</tag> on <tag>Table</tag> params). So pages for
-all<sbr/>subsections of ref docs now have stable filenames instead
-of<sbr/>arbitrary generated filenames.<alt>fo/param.xweb,1.100;
-html/param.xweb,1.94 - Michael(tm) Smith</alt></phrase></para>
+all subsections of ref docs now have stable filenames instead
+of arbitrary generated filenames.</para>
+<para role="commit-changes">Modified: fo/param.xweb,1.100;
+html/param.xweb,1.94 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added two new parameters for
+<listitem role="commit-message">
+<para>Added two new parameters for
 handling of multi-term
-<tag>varlistentry</tag><sbr/>elements:<sbr/><sbr/><parameter>variablelist.term.break.after</parameter>:<sbr/>
+<tag>varlistentry</tag> elements:</para>
+<para><parameter>variablelist.term.break.after</parameter>: 
 When the <parameter>variablelist.term.break.after</parameter> is
-non-zero, it will<sbr/> generate a line break after each
+non-zero, it will  generate a line break after each
 <tag>term</tag> multi-term
-<tag>varlistentry</tag>.<sbr/><sbr/><parameter>variablelist.term.separator</parameter>:<sbr/>
+<tag>varlistentry</tag>.</para>
+<para><parameter>variablelist.term.separator</parameter>: 
 When a <tag>varlistentry</tag> contains multiple <tag>term</tag>
-elements, the string<sbr/> specified in the value of the
-<parameter>variablelist.term.separator</parameter><sbr/> parameter is
-placed after each <tag>term</tag> except the last. The default<sbr/>
-is ", " (a comma followed by a space). To suppress rendering of<sbr/>
+elements, the string  specified in the value of the
+<parameter>variablelist.term.separator</parameter>  parameter is
+placed after each <tag>term</tag> except the last. The default 
+is ", " (a comma followed by a space). To suppress rendering of 
 the separator, set the value of
-<parameter>variablelist.term.separator</parameter> to<sbr/> the empty
-string ("").<sbr/><sbr/>These parameters are primarily intended to be
-useful if you have<sbr/>multi-term varlistentries that have long
-terms.<sbr/><sbr/>Closes #1306676. Thanks to Sam Steingold for
-providing an example<sbr/>"lots of long terms" doc that demonstrated
-the value of having<sbr/>these options.<sbr/><sbr/>Also, added
+<parameter>variablelist.term.separator</parameter> to  the empty
+string ("").</para>
+<para>These parameters are primarily intended to be
+useful if you have multi-term varlistentries that have long
+terms.</para>
+<para>Closes #1306676. Thanks to Sam Steingold for
+providing an example "lots of long terms" doc that demonstrated
+the value of having these options.</para>
+<para>Also, added
 normalize-space() call to processing of each
-<tag>term</tag>.<sbr/><sbr/>This change affects all output formats
-(HTML, PDF, manpages). The<sbr/>default behavior should pretty much
-remain the same as before, but<sbr/>it is possible (as always) that
+<tag>term</tag>.</para>
+<para>This change affects all output formats
+(HTML, PDF, manpages). The default behavior should pretty much
+remain the same as before, but it is possible (as always) that
 the change may introduce some
-new<sbr/>bugginess.<alt>fo/lists.xsl,1.62; fo/param.ent,1.88;
+new bugginess.</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.62; fo/param.ent,1.88;
 fo/param.xweb,1.99; html/lists.xsl,1.48; html/param.ent,1.86;
 html/param.xweb,1.93; manpages/lists.xsl,1.22;
 manpages/param.ent,1.14; manpages/param.xweb,1.16;
 params/variablelist.term.break.after.xml,1.1;
 params/variablelist.term.separator.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add <tag>sidebar</tag> titlepage
-placeholder attset for styles.<alt>fo/titlepage.xsl,1.37 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add <tag>sidebar</tag> titlepage
+placeholder attset for styles.</para>
+<para role="commit-changes">Modified: fo/titlepage.xsl,1.37 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add titlepage for
-<tag>sidebar</tag>.<alt>fo/titlepage.templates.xml,1.27 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add titlepage for
+<tag>sidebar</tag>.</para>
+<para role="commit-changes">Modified: fo/titlepage.templates.xml,1.27 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented RFE
-#1292615.<sbr/><sbr/>Added bunch of new parameters (attribute sets)
+<listitem role="commit-message">
+<para>Implemented RFE
+#1292615.</para>
+<para>Added bunch of new parameters (attribute sets)
 that affect list presentation: list.block.properties,
 <tag>itemizedlist</tag>.properties, <tag>orderedlist</tag>.properties,
 <tag>itemizedlist</tag>.<tag>label</tag>.properties and
 <tag>orderedlist</tag>.<tag>label</tag>.properties. Default behaviour
 of stylesheets has not been changed but further customizations will be
-much more easier.<alt>fo/lists.xsl,1.61; fo/param.ent,1.87;
+much more easier.</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.61; fo/param.ent,1.87;
 fo/param.xweb,1.98; params/itemizedlist.label.properties.xml,1.1;
 params/itemizedlist.properties.xml,1.1;
 params/list.block.properties.xml,1.1;
 params/orderedlist.label.properties.xml,1.1;
 params/orderedlist.properties.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented RFE
-#1242092.<sbr/><sbr/>You can enable crop marks in your document by
-setting crop.marks=1 and xep.extensions=1.<sbr/>Appearance of crop
+<listitem role="commit-message">
+<para>Implemented RFE
+#1242092.</para>
+<para>You can enable crop marks in your document by
+setting crop.marks=1 and xep.extensions=1. Appearance of crop
 marks can be controlled by parameters
 <parameter>crop.mark.bleed</parameter> (6pt),
 <parameter>crop.mark.offset</parameter> (24pt) and
-<parameter>crop.mark.width</parameter> (0.5pt).<sbr/><sbr/>Also there
+<parameter>crop.mark.width</parameter> (0.5pt).</para>
+<para>Also there
 is new named template called user-xep-pis. You can overwrite it in
 order to produce some PIs that can control XEP as described in
-http://www.renderx.com/reference.html#Output_Formats<alt>fo/docbook.xsl,1.36;
+http://www.renderx.com/reference.html#Output_Formats</para>
+<para role="commit-changes">Modified: fo/docbook.xsl,1.36;
 fo/param.ent,1.86; fo/param.xweb,1.97; fo/xep.xsl,1.23;
 params/crop.mark.bleed.xml,1.1; params/crop.mark.offset.xml,1.1;
 params/crop.mark.width.xml,1.1; params/crop.marks.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of FO changes for snapshot_2006-05-15_0803-->
@@ -670,296 +784,357 @@ Kosek</alt></phrase></para>
         <filename>html</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">implemented
+<listitem role="commit-message">
+<para>implemented
 <tag>index</tag>.method parameter and three
-methods.<alt>html/autoidx.xsl,1.28 - Robert
-Stayton</alt></phrase></para>
+methods.</para>
+<para role="commit-changes">Modified: html/autoidx.xsl,1.28 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added <tag>index</tag>.method
-parameter to support 3 indexing methods.<alt>html/param.ent,1.94;
-html/param.xweb,1.103 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>added <tag>index</tag>.method
+parameter to support 3 indexing methods.</para>
+<para role="commit-changes">Modified: html/param.ent,1.94;
+html/param.xweb,1.103 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented feature request
-#1072510 as a processing instruction<sbr/>to permit including external
-HTML content into HTML output.<alt>html/pi.xsl,1.9 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Implemented feature request
+#1072510 as a processing instruction to permit including external
+HTML content into HTML output.</para>
+<para role="commit-changes">Modified: html/pi.xsl,1.9 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new parameter
+<listitem role="commit-message">
+<para>Added new parameter
 <parameter>chunk.tocs.and.lots</parameter>.has.<tag>title</tag> which
 controls presence of <tag>title</tag> in a separate chunk with
 ToC/LoT. Disabling <tag>title</tag> can be very useful if you are
 generating frameset output (well, yes those frames, but some customers
-really want them ;-).<alt>html/chunk-code.xsl,1.15;
+really want them ;-).</para>
+<para role="commit-changes">Modified: html/chunk-code.xsl,1.15;
 html/param.ent,1.93; html/param.xweb,1.102;
 params/chunk.tocs.and.lots.has.title.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support dbhtml/dbfo start PI for
+<listitem role="commit-message">
+<para>Support dbhtml/dbfo start PI for
 <tag>orderedlist</tag> numbering in both HTML and
-FO<alt>common/common.xsl,1.61; html/lists.xsl,1.50 - Norman
-Walsh</alt></phrase></para>
+FO</para>
+<para role="commit-changes">Modified: common/common.xsl,1.61; html/lists.xsl,1.50 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Allow <tag>ToC</tag> without
+<listitem role="commit-message">
+<para>Allow <tag>ToC</tag> without
 <tag>title</tag> also for set and
-<tag>book</tag>.<alt>html/autotoc.xsl,1.37; html/division.xsl,1.12 -
-Jirka Kosek</alt></phrase></para>
+<tag>book</tag>.</para>
+<para role="commit-changes">Modified: html/autotoc.xsl,1.37; html/division.xsl,1.12 -
+Jirka Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented floats uniformly for
+<listitem role="commit-message">
+<para>Implemented floats uniformly for
 <tag>figure</tag>, example, <tag>equation</tag>
-and<sbr/><tag>informalfigure</tag>, <tag>informalexample</tag>, and
-<tag>informalequation</tag>.<alt>html/formal.xsl,1.22 - Robert
-Stayton</alt></phrase></para>
+and <tag>informalfigure</tag>, <tag>informalexample</tag>, and
+<tag>informalequation</tag>.</para>
+<para role="commit-changes">Modified: html/formal.xsl,1.22 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added the
-autotoc.<tag>label</tag>.in.hyperlink param.<sbr/><sbr/>If the value
+<listitem role="commit-message">
+<para>Added the
+autotoc.<tag>label</tag>.in.hyperlink param.</para>
+<para>If the value
 of autotoc.<tag>label</tag>.in.hyperlink is non-zero, labels
-are<sbr/>included in hyperlinked titles in the <tag>TOC</tag>. If it
-is instead zero,<sbr/>labels are still displayed prior to the
-hyperlinked titles, but<sbr/>are not hyperlinked along with the
-titles.<sbr/><sbr/>Closes patch #1065868. Thanks to anatoly techtonik
-for the patch.<alt>html/autotoc.xsl,1.36; html/param.ent,1.92;
+are included in hyperlinked titles in the <tag>TOC</tag>. If it
+is instead zero, labels are still displayed prior to the
+hyperlinked titles, but are not hyperlinked along with the
+titles.</para>
+<para>Closes patch #1065868. Thanks to anatoly techtonik
+for the patch.</para>
+<para role="commit-changes">Modified: html/autotoc.xsl,1.36; html/param.ent,1.92;
 html/param.xweb,1.101; params/autotoc.label.in.hyperlink.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added two new params:
+<listitem role="commit-message">
+<para>Added two new params:
 html.head.<tag>legalnotice</tag>.<tag>link</tag>.types
-and<sbr/>html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple.<sbr/><sbr/>If
+and html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple.</para>
+<para>If
 the value of the <parameter>generate.legalnotice.link</parameter> is
-non-zero, then<sbr/>the stylesheet generates (in the head
-<tag>section</tag> of the HTML source)<sbr/>either a single HTML
+non-zero, then the stylesheet generates (in the head
+<tag>section</tag> of the HTML source) either a single HTML
 <tag>link</tag> element or, if the value of
-the<sbr/>html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple is
-non-zero, one <tag>link</tag> element<sbr/>for each <tag>link</tag>
+the html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple is
+non-zero, one <tag>link</tag> element for each <tag>link</tag>
 type specified. Each <tag>link</tag> has the
-following<sbr/>attributes:<sbr/><sbr/> - a rel attribute whose value
-is derived from the value of<sbr/>
-html.head.<tag>legalnotice</tag>.<tag>link</tag>.types<sbr/><sbr/> -
-an href attribute whose value is set to the URL of the file<sbr/>
-containing the <tag>legalnotice</tag><sbr/><sbr/> - a <tag>title</tag>
-attribute whose value is set to the <tag>title</tag> of the<sbr/>
+following attributes:</para>
+<para> - a rel attribute whose value
+is derived from the value of 
+html.head.<tag>legalnotice</tag>.<tag>link</tag>.types</para>
+<para> -
+an href attribute whose value is set to the URL of the file 
+containing the <tag>legalnotice</tag></para>
+<para> - a <tag>title</tag>
+attribute whose value is set to the <tag>title</tag> of the 
 corresponding <tag>legalnotice</tag> (or a <tag>title</tag>
-programatically<sbr/> determined by the stylesheet)<sbr/><sbr/>For
-example:<sbr/><sbr/> &lt;<tag>link</tag> rel="<tag>copyright</tag>"
-href="ln-id2524073.html" title="Legal Notice"&gt;<sbr/><sbr/>Closes
-#1476450. Thanks to Sam Steingold.<alt>html/chunk-common.xsl,1.45;
+programatically  determined by the stylesheet)</para>
+<para>For
+example:</para>
+<para> &lt;<tag>link</tag> rel="<tag>copyright</tag>"
+href="ln-id2524073.html" title="Legal Notice"&gt;</para>
+<para>Closes
+#1476450. Thanks to Sam Steingold.</para>
+<para role="commit-changes">Modified: html/chunk-common.xsl,1.45;
 html/param.ent,1.91; html/param.xweb,1.100;
 params/generate.legalnotice.link.xml,1.4;
 params/html.head.legalnotice.link.multiple.xml,1.1;
 params/html.head.legalnotice.link.types.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added <tag>refclass</tag>.suppress
-param.<sbr/><sbr/>If the value of <tag>refclass</tag>.suppress is
-non-zero, then display<sbr/><tag>refclass</tag> contents is suppressed
-in output. Affects HTML and FO<sbr/>output
-only.<alt>fo/param.ent,1.93; fo/param.xweb,1.106; html/param.ent,1.90;
+<listitem role="commit-message">
+<para>Added <tag>refclass</tag>.suppress
+param.</para>
+<para>If the value of <tag>refclass</tag>.suppress is
+non-zero, then display <tag>refclass</tag> contents is suppressed
+in output. Affects HTML and FO output
+only.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.93; fo/param.xweb,1.106; html/param.ent,1.90;
 html/param.xweb,1.99; params/refclass.suppress.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Improved support for
-<tag>task</tag> subelements<alt>fo/task.xsl,1.3; html/task.xsl,1.3 -
-Jirka Kosek</alt></phrase></para>
+<listitem role="commit-message">
+<para>Improved support for
+<tag>task</tag> subelements</para>
+<para role="commit-changes">Modified: fo/task.xsl,1.3; html/task.xsl,1.3 -
+Jirka Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new
+<listitem role="commit-message">
+<para>Added new
 <tag>refclass</tag>.suppress param for suppressing display
-of<sbr/><tag>Refclass</tag> in HTML and FO output. Did not add it to
-manpages because<sbr/>manpages stylesheet is currently just silently
-ignoring <tag>Refclass</tag><sbr/>anyway. Closes request
-#1461065. Thanks to Davor Ocelic (docelic)<sbr/>for
-reporting.<alt>fo/refentry.xsl,1.29; html/refentry.xsl,1.23 -
-Michael(tm) Smith</alt></phrase></para>
+of <tag>Refclass</tag> in HTML and FO output. Did not add it to
+manpages because manpages stylesheet is currently just silently
+ignoring <tag>Refclass</tag> anyway. Closes request
+#1461065. Thanks to Davor Ocelic (docelic) for
+reporting.</para>
+<para role="commit-changes">Modified: fo/refentry.xsl,1.29; html/refentry.xsl,1.23 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Process <tag>alt</tag> text with
-normalize-space().<sbr/>Replace tab indents with
-spaces.<alt>html/graphics.xsl,1.57 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Process <tag>alt</tag> text with
+normalize-space(). Replace tab indents with
+spaces.</para>
+<para role="commit-changes">Modified: html/graphics.xsl,1.57 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Content of <tag>citation</tag>
+<listitem role="commit-message">
+<para>Content of <tag>citation</tag>
 element is automatically linked to the bibliographic <tag>entry</tag>
-with the corresponding <tag>abbrev</tag>.<alt>html/biblio.xsl,1.26;
+with the corresponding <tag>abbrev</tag>.</para>
+<para role="commit-changes">Modified: html/biblio.xsl,1.26;
 html/inline.xsl,1.47; html/xref.xsl,1.58 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add template for <tag>task</tag>
-in mode="xref-to".<alt>fo/xref.xsl,1.63; html/xref.xsl,1.57 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add template for <tag>task</tag>
+in mode="xref-to".</para>
+<para role="commit-changes">Modified: fo/xref.xsl,1.63; html/xref.xsl,1.57 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Suppress ID warnings if the
-.warnings parameter is 0<alt>html/html.xsl,1.17 - Norman
-Walsh</alt></phrase></para>
+<listitem role="commit-message">
+<para>Suppress ID warnings if the
+.warnings parameter is 0</para>
+<para role="commit-changes">Modified: html/html.xsl,1.17 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for floatstyle to
-<tag>figure</tag>.<alt>html/formal.xsl,1.21 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add support for floatstyle to
+<tag>figure</tag>.</para>
+<para role="commit-changes">Modified: html/formal.xsl,1.21 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Handling of <tag>xref</tag> to
+<listitem role="commit-message">
+<para>Handling of <tag>xref</tag> to
 area/areaset need support in extensions code also. I currently have no
 time to touch extensions code, so code is here to be enabled when
-extension is fixed also.<alt>html/xref.xsl,1.56 - Jirka
-Kosek</alt></phrase></para>
+extension is fixed also.</para>
+<para role="commit-changes">Modified: html/xref.xsl,1.56 - Jirka
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added 3 parameters for overriding
-gentext for<sbr/><tag>index</tag>
-punctuation.<alt>html/param.ent,1.89; html/param.xweb,1.98 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added 3 parameters for overriding
+gentext for <tag>index</tag>
+punctuation.</para>
+<para role="commit-changes">Modified: html/param.ent,1.89; html/param.xweb,1.98 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added parameters to support
-localization of <tag>index</tag> item<sbr/>punctuation.<sbr/>Added
+<listitem role="commit-message">
+<para>Added parameters to support
+localization of <tag>index</tag> item punctuation. Added
 <tag>index</tag>.separator named template to compute
-the<sbr/>separator punctuation based on
-locale.<alt>html/autoidx.xsl,1.27 - Robert
-Stayton</alt></phrase></para>
+the separator punctuation based on
+locale.</para>
+<para role="commit-changes">Modified: html/autoidx.xsl,1.27 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added a &lt;div
-class="{$class}-contents"&gt; wrapper around output of<sbr/>contents
-of all formal objects. Also, added an optional<sbr/>&lt;br
+<listitem role="commit-message">
+<para>Added a &lt;div
+class="{$class}-contents"&gt; wrapper around output of contents
+of all formal objects. Also, added an optional &lt;br
 class="{class}-break"/&gt; linebreak after all formal
-objects.<sbr/><sbr/>WARNING: Because this change places an additional
-DIV between the<sbr/>DIV wrapper for the <tag>equation</tag> and the
-<tag>equation</tag> contents, it may<sbr/>break some existing CSS
-stylesheets that have been created with<sbr/>the assumption that there
-would never be an intervening DIV there.<sbr/><sbr/>The following is
-an example of what <tag>Equation</tag> output looks like as<sbr/>a
-result of the changes described above.<sbr/><sbr/> &lt;div
-class="<tag>equation</tag>"&gt;<sbr/> &lt;a name="three"
-id="three"&gt;&lt;/a&gt;<sbr/><sbr/> &lt;p
-class="<tag>title</tag>"&gt;&lt;b&gt;(1.3)&lt;/b&gt;&lt;/p&gt;<sbr/><sbr/>
-&lt;div class="equation-contents"&gt;<sbr/> &lt;span
-class="<tag>mathphrase</tag>"&gt;1+1=3&lt;/span&gt;<sbr/>
-&lt;/div&gt;<sbr/> &lt;/div&gt;&lt;br
-class="equation-break"&gt;<sbr/><sbr/>Rationale: These changes allow
-CSS control of the placement of the<sbr/>formal-object
+objects.</para>
+<para>WARNING: Because this change places an additional
+DIV between the DIV wrapper for the <tag>equation</tag> and the
+<tag>equation</tag> contents, it may break some existing CSS
+stylesheets that have been created with the assumption that there
+would never be an intervening DIV there.</para>
+<para>The following is
+an example of what <tag>Equation</tag> output looks like as a
+result of the changes described above.</para>
+<para> &lt;div
+class="<tag>equation</tag>"&gt;  &lt;a name="three"
+id="three"&gt;&lt;/a&gt;</para>
+<para> &lt;p
+class="<tag>title</tag>"&gt;&lt;b&gt;(1.3)&lt;/b&gt;&lt;/p&gt;</para>
+<para>
+&lt;div class="equation-contents"&gt;  &lt;span
+class="<tag>mathphrase</tag>"&gt;1+1=3&lt;/span&gt; 
+&lt;/div&gt;  &lt;/div&gt;&lt;br
+class="equation-break"&gt;</para>
+<para>Rationale: These changes allow
+CSS control of the placement of the formal-object
 <tag>title</tag> relative to the formal-object
-contents. For<sbr/>example, using the CSS "float" <tag>property</tag>
-enables the <tag>title</tag> and<sbr/>contents to be rendered on the
-same line. Example stylesheet:<sbr/><sbr/> .<tag>equation</tag>
-{<sbr/> margin-top: 20px;<sbr/> margin-bottom: 20px;<sbr/> }<sbr/>
-.equation-contents {<sbr/> float: left;<sbr/> }<sbr/><sbr/>
-.<tag>equation</tag> .<tag>title</tag> {<sbr/> margin-top: 0;<sbr/>
-float: right;<sbr/> margin-right: 200px;<sbr/> }<sbr/><sbr/>
-.<tag>equation</tag> .<tag>title</tag> b {<sbr/> font-weight:
-normal;<sbr/> }<sbr/><sbr/> .equation-break {<sbr/> clear: both;<sbr/>
-}<sbr/><sbr/>Note that the purpose of the ".equation-break" class is
-to provide<sbr/>a way to clear off the floats.<sbr/><sbr/>If you want
+contents. For example, using the CSS "float" <tag>property</tag>
+enables the <tag>title</tag> and contents to be rendered on the
+same line. Example stylesheet:</para>
+<para> .<tag>equation</tag>
+{  margin-top: 20px;  margin-bottom: 20px;  } 
+.equation-contents {  float: left;  }</para>
+<para>
+.<tag>equation</tag> .<tag>title</tag> {  margin-top: 0; 
+float: right;  margin-right: 200px;  }</para>
+<para>
+.<tag>equation</tag> .<tag>title</tag> b {  font-weight:
+normal;  }</para>
+<para> .equation-break {  clear: both; 
+}</para>
+<para>Note that the purpose of the ".equation-break" class is
+to provide a way to clear off the floats.</para>
+<para>If you want
 to instead have the <tag>equation</tag> <tag>title</tag> rendered to
-the left<sbr/>of the <tag>equation</tag> contents, you can do
-something like this:<sbr/><sbr/> .<tag>equation</tag> {<sbr/>
-margin-top: 20px;<sbr/> width: 300px;<sbr/> margin-bottom: 20px;<sbr/>
-}<sbr/> .equation-contents {<sbr/> float: right;<sbr/> }<sbr/><sbr/>
-.<tag>equation</tag> .<tag>title</tag> {<sbr/> margin-top: 0;<sbr/>
-float: left;<sbr/> margin-right: 200px;<sbr/> }<sbr/><sbr/>
-.<tag>equation</tag> .<tag>title</tag> b {<sbr/> font-weight:
-normal;<sbr/> }<sbr/><sbr/> .equation-break {<sbr/> clear: both;<sbr/>
-}<alt>html/formal.xsl,1.20 - Michael(tm) Smith</alt></phrase></para>
+the left of the <tag>equation</tag> contents, you can do
+something like this:</para>
+<para> .<tag>equation</tag> { 
+margin-top: 20px;  width: 300px;  margin-bottom: 20px; 
+}  .equation-contents {  float: right;  }</para>
+<para>
+.<tag>equation</tag> .<tag>title</tag> {  margin-top: 0; 
+float: left;  margin-right: 200px;  }</para>
+<para>
+.<tag>equation</tag> .<tag>title</tag> b {  font-weight:
+normal;  }</para>
+<para> .equation-break {  clear: both; 
+}</para>
+<para role="commit-changes">Modified: html/formal.xsl,1.20 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added a chunker.output.quiet
+<listitem role="commit-message">
+<para>Added a chunker.output.quiet
 top-level parameter so that the chunker can be made quiet by
-default<alt>html/chunker.xsl,1.26 - Norman Walsh</alt></phrase></para>
+default</para>
+<para role="commit-changes">Modified: html/chunker.xsl,1.26 - Norman Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for <tag>link</tag>,
+<listitem role="commit-message">
+<para>Added support for <tag>link</tag>,
 <tag>olink</tag>, and <tag>xref</tag> within OO
-<tag>Classsynopsis</tag><sbr/>and children. (Because DocBook NG/5
-allows it).<alt>fo/synop.xsl,1.15; html/synop.xsl,1.19 - Michael(tm)
-Smith</alt></phrase></para>
+<tag>Classsynopsis</tag> and children. (Because DocBook NG/5
+allows it).</para>
+<para role="commit-changes">Modified: fo/synop.xsl,1.15; html/synop.xsl,1.19 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">New parameter:
+<listitem role="commit-message">
+<para>New parameter:
 <parameter>id.warnings</parameter>. If non-zero, warnings are
 generated for titled objects that don't have titles. True by default;
-I wonder if this will be too aggressive?<alt>html/biblio.xsl,1.25;
+I wonder if this will be too aggressive?</para>
+<para role="commit-changes">Modified: html/biblio.xsl,1.25;
 html/component.xsl,1.27; html/division.xsl,1.11; html/formal.xsl,1.19;
 html/glossary.xsl,1.20; html/html.xsl,1.13; html/index.xsl,1.16;
 html/param.ent,1.88; html/param.xweb,1.97; html/refentry.xsl,1.22;
 html/sections.xsl,1.30; params/id.warnings.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">If the
+<listitem role="commit-message">
+<para>If the
 <parameter>keep.relative.image.uris</parameter> parameter is true,
 don't use the absolute <tag>URI</tag> (as calculated from xml:base) in
 the img src attribute, us the value the <tag>author</tag>
 specified. Note that we still have to calculate the absolute
 <tag>filename</tag> for use in the image intrinsics
-extension.<alt>html/graphics.xsl,1.56 - Norman
-Walsh</alt></phrase></para>
+extension.</para>
+<para role="commit-changes">Modified: html/graphics.xsl,1.56 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support <tag>date</tag> as an
-inline<alt>fo/inline.xsl,1.43; html/inline.xsl,1.46 - Norman
-Walsh</alt></phrase></para>
+<listitem role="commit-message">
+<para>Support <tag>date</tag> as an
+inline</para>
+<para role="commit-changes">Modified: fo/inline.xsl,1.43; html/inline.xsl,1.46 - Norman
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new parameter
-<parameter>keep.relative.image.uris</parameter><alt>fo/param.ent,1.91;
+<listitem role="commit-message">
+<para>Added new parameter
+<parameter>keep.relative.image.uris</parameter></para>
+<para role="commit-changes">Modified: fo/param.ent,1.91;
 fo/param.xweb,1.104; html/param.ent,1.87; html/param.xweb,1.96;
 params/keep.relative.image.uris.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added two new parameters for
+<listitem role="commit-message">
+<para>Added two new parameters for
 handling of multi-term
-<tag>varlistentry</tag><sbr/>elements:<sbr/><sbr/><parameter>variablelist.term.break.after</parameter>:<sbr/>
+<tag>varlistentry</tag> elements:</para>
+<para><parameter>variablelist.term.break.after</parameter>: 
 When the <parameter>variablelist.term.break.after</parameter> is
-non-zero, it will<sbr/> generate a line break after each
+non-zero, it will  generate a line break after each
 <tag>term</tag> multi-term
-<tag>varlistentry</tag>.<sbr/><sbr/><parameter>variablelist.term.separator</parameter>:<sbr/>
+<tag>varlistentry</tag>.</para>
+<para><parameter>variablelist.term.separator</parameter>: 
 When a <tag>varlistentry</tag> contains multiple <tag>term</tag>
-elements, the string<sbr/> specified in the value of the
-<parameter>variablelist.term.separator</parameter><sbr/> parameter is
-placed after each <tag>term</tag> except the last. The default<sbr/>
-is ", " (a comma followed by a space). To suppress rendering of<sbr/>
+elements, the string  specified in the value of the
+<parameter>variablelist.term.separator</parameter>  parameter is
+placed after each <tag>term</tag> except the last. The default 
+is ", " (a comma followed by a space). To suppress rendering of 
 the separator, set the value of
-<parameter>variablelist.term.separator</parameter> to<sbr/> the empty
-string ("").<sbr/><sbr/>These parameters are primarily intended to be
-useful if you have<sbr/>multi-term varlistentries that have long
-terms.<sbr/><sbr/>Closes #1306676. Thanks to Sam Steingold for
-providing an example<sbr/>"lots of long terms" doc that demonstrated
-the value of having<sbr/>these options.<sbr/><sbr/>Also, added
+<parameter>variablelist.term.separator</parameter> to  the empty
+string ("").</para>
+<para>These parameters are primarily intended to be
+useful if you have multi-term varlistentries that have long
+terms.</para>
+<para>Closes #1306676. Thanks to Sam Steingold for
+providing an example "lots of long terms" doc that demonstrated
+the value of having these options.</para>
+<para>Also, added
 normalize-space() call to processing of each
-<tag>term</tag>.<sbr/><sbr/>This change affects all output formats
-(HTML, PDF, manpages). The<sbr/>default behavior should pretty much
-remain the same as before, but<sbr/>it is possible (as always) that
+<tag>term</tag>.</para>
+<para>This change affects all output formats
+(HTML, PDF, manpages). The default behavior should pretty much
+remain the same as before, but it is possible (as always) that
 the change may introduce some
-new<sbr/>bugginess.<alt>fo/lists.xsl,1.62; fo/param.ent,1.88;
+new bugginess.</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.62; fo/param.ent,1.88;
 fo/param.xweb,1.99; html/lists.xsl,1.48; html/param.ent,1.86;
 html/param.xweb,1.93; manpages/lists.xsl,1.22;
 manpages/param.ent,1.14; manpages/param.xweb,1.16;
 params/variablelist.term.break.after.xml,1.1;
 params/variablelist.term.separator.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added "wrapper-name" param to
-inline.charseq named template,<sbr/>enabling it to output inlines
-other than just "span". <tag>Acronym</tag> and<sbr/><tag>Abbrev</tag>
+<listitem role="commit-message">
+<para>Added "wrapper-name" param to
+inline.charseq named template, enabling it to output inlines
+other than just "span". <tag>Acronym</tag> and <tag>Abbrev</tag>
 templates now use inline.charseq to output HTML
-"<tag>acronym</tag>"<sbr/>and "abbr" elements (instead of
-"span"). Closes #1305468. Thanks<sbr/>to Sam Steingold for suggesting
-the change.<alt>html/inline.xsl,1.45 - Michael(tm)
-Smith</alt></phrase></para>
+"<tag>acronym</tag>" and "abbr" elements (instead of
+"span"). Closes #1305468. Thanks to Sam Steingold for suggesting
+the change.</para>
+<para role="commit-changes">Modified: html/inline.xsl,1.45 - Michael(tm)
+Smith</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of HTML changes for snapshot_2006-05-15_0803-->
@@ -970,363 +1145,416 @@ Smith</alt></phrase></para>
         <filename>manpages</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">Added the following
-params:<sbr/><sbr/> - man.indent.width (string-valued)<sbr/> -
-man.indent.refsect (boolean)<sbr/> - man.indent.blurbs (boolean)<sbr/>
-- man.indent.lists (boolean)<sbr/> - man.indent.verbatims
-(boolean)<sbr/><sbr/>Note that in earlier snapshots, man.indent.width
-was named<sbr/>man.indentation.default.value and the boolean params
-had names<sbr/>like man.indentation.*.adjust. Also the
-man.indent.blurbs param<sbr/>was called man.indentation.authors.adjust
-(or something).<sbr/><sbr/>The behavior now is: If the value of a
-particular man.indent.*<sbr/>boolean param is non-zero, the
-corresponding contents (refsect*,<sbr/>list items,
-authorblurb/personblurb, vervatims) are displayed with<sbr/>a left
+<listitem role="commit-message">
+<para>Added the following
+params:</para>
+<para> - man.indent.width (string-valued)  -
+man.indent.refsect (boolean)  - man.indent.blurbs (boolean) 
+- man.indent.lists (boolean)  - man.indent.verbatims
+(boolean)</para>
+<para>Note that in earlier snapshots, man.indent.width
+was named man.indentation.default.value and the boolean params
+had names like man.indentation.*.adjust. Also the
+man.indent.blurbs param was called man.indentation.authors.adjust
+(or something).</para>
+<para>The behavior now is: If the value of a
+particular man.indent.* boolean param is non-zero, the
+corresponding contents (refsect*, list items,
+authorblurb/personblurb, vervatims) are displayed with a left
 margin indented by a width equal to the value
-of<sbr/>man.indent.width.<alt>params/man.indent.blurbs.xml,1.1;
+of man.indent.width.</para>
+<para role="commit-changes">Modified: params/man.indent.blurbs.xml,1.1;
 manpages/docbook.xsl,1.74; manpages/info.xsl,1.20;
 manpages/lists.xsl,1.30; manpages/other.xsl,1.20;
 manpages/param.ent,1.22; manpages/param.xweb,1.24;
 manpages/refentry.xsl,1.14; params/man.indent.lists.xml,1.1;
 params/man.indent.refsect.xml,1.1;
 params/man.indent.verbatims.xml,1.1; params/man.indent.width.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-man.<tag>table</tag>.footnotes.divider param.<sbr/><sbr/>In each
+<listitem role="commit-message">
+<para>Added
+man.<tag>table</tag>.footnotes.divider param.</para>
+<para>In each
 <tag>table</tag> that contains footenotes, the string specified
-by<sbr/>the man.<tag>table</tag>.footnotes.divider parameter is output
-before the<sbr/>list of footnotes for the
-<tag>table</tag>.<alt>manpages/docbook.xsl,1.73;
+by the man.<tag>table</tag>.footnotes.divider parameter is output
+before the list of footnotes for the
+<tag>table</tag>.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.73;
 manpages/links.xsl,1.6; manpages/param.ent,1.21;
 manpages/param.xweb,1.23; params/man.table.footnotes.divider.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added the
+<listitem role="commit-message">
+<para>Added the
 man.output.in.separate.dir,
 man.output.<parameter>base.dir</parameter>,
-and<sbr/>man.output.subdirs.enabled parameters.<sbr/><sbr/>The
+and man.output.subdirs.enabled parameters.</para>
+<para>The
 man.output.<parameter>base.dir</parameter> parameter specifies the
-base directory<sbr/>into which man-page files are
-output. The<sbr/>man.output.subdirs.enabled parameter controls whether
-the files<sbr/>are output in subdirectories within the base
-directory.<sbr/><sbr/>The values of the
+base directory into which man-page files are
+output. The man.output.subdirs.enabled parameter controls whether
+the files are output in subdirectories within the base
+directory.</para>
+<para>The values of the
 man.output.<parameter>base.dir</parameter>
-and<sbr/>man.output.subdirs.enabled parameters are used only if the
-value<sbr/>of man.output.in.separate.dir parameter is non-zero. If the
-value<sbr/>of man.output.in.separate.dir is zero, man-page files are
-not<sbr/>output in a separate
-directory.<alt>manpages/docbook.xsl,1.72; manpages/param.ent,1.20;
+and man.output.subdirs.enabled parameters are used only if the
+value of man.output.in.separate.dir parameter is non-zero. If the
+value of man.output.in.separate.dir is zero, man-page files are
+not output in a separate
+directory.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.72; manpages/param.ent,1.20;
 manpages/param.xweb,1.22; params/man.output.base.dir.xml,1.1;
 params/man.output.in.separate.dir.xml,1.1;
 params/man.output.subdirs.enabled.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 man.font.<tag>table</tag>.headings and
-man.font.<tag>table</tag>.<tag>title</tag> params,<sbr/>for
+man.font.<tag>table</tag>.<tag>title</tag> params, for
 controlling font in <tag>table</tag> headings and
-titles.<alt>manpages/docbook.xsl,1.71; manpages/param.ent,1.19;
+titles.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.71; manpages/param.ent,1.19;
 manpages/param.xweb,1.21; params/man.font.table.headings.xml,1.1;
 params/man.font.table.title.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 man.font.<tag>funcsynopsisinfo</tag> and
-man.font.<tag>funcprototype</tag><sbr/>params, for specifying the roff
-font (for example, BI, B, I) for<sbr/><tag>funcsynopsisinfo</tag> and
-<tag>funcprototype</tag> output.<alt>manpages/block.xsl,1.19;
+man.font.<tag>funcprototype</tag> params, for specifying the roff
+font (for example, BI, B, I) for <tag>funcsynopsisinfo</tag> and
+<tag>funcprototype</tag> output.</para>
+<para role="commit-changes">Modified: manpages/block.xsl,1.19;
 manpages/docbook.xsl,1.69; manpages/param.ent,1.18;
 manpages/param.xweb,1.20; manpages/synop.xsl,1.29;
 manpages/table.xsl,1.21; params/man.font.funcprototype.xml,1.1;
 params/man.font.funcsynopsisinfo.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-man.<tag>segtitle</tag>.suppress param.<sbr/><sbr/>If the value of
+<listitem role="commit-message">
+<para>Added
+man.<tag>segtitle</tag>.suppress param.</para>
+<para>If the value of
 man.<tag>segtitle</tag>.suppress is non-zero, then display
-of<sbr/><tag>segtitle</tag> contents is suppressed in
-output.<alt>manpages/docbook.xsl,1.68; manpages/param.ent,1.17;
+of <tag>segtitle</tag> contents is suppressed in
+output.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.68; manpages/param.ent,1.17;
 manpages/param.xweb,1.19; params/man.segtitle.suppress.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 man.output.<parameter>manifest</parameter>.enabled and
-man.output.manifest.<tag>filename</tag> params.<sbr/><sbr/>If
+man.output.manifest.<tag>filename</tag> params.</para>
+<para>If
 man.output.<parameter>manifest</parameter>.enabled is non-zero, a list
-of filenames<sbr/>for man pages generated by the stylesheet
-transformation is<sbr/>written to the file named by
-man.output.<parameter>manifest</parameter>.<tag>filename</tag><alt>manpages/docbook.xsl,1.67;
+of filenames for man pages generated by the stylesheet
+transformation is written to the file named by
+man.output.<parameter>manifest</parameter>.<tag>filename</tag></para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.67;
 manpages/other.xsl,1.19; manpages/param.ent,1.16;
 manpages/param.xweb,1.18; params/man.output.manifest.enabled.xml,1.1;
 params/man.output.manifest.filename.xml,1.1;
 tools/make/Makefile.DocBook,1.4 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-<tag>refentry</tag>.meta.get.quietly param.<sbr/><sbr/>If zero (the
-default), notes and warnings about "missing" markup<sbr/>are generated
+<listitem role="commit-message">
+<para>Added
+<tag>refentry</tag>.meta.get.quietly param.</para>
+<para>If zero (the
+default), notes and warnings about "missing" markup are generated
 during gathering of <tag>refentry</tag> metadata. If
-non-zero,<sbr/>the metadata is gathered "quietly" -- that is, the
-notes and<sbr/>warnings are suppressed.<sbr/><sbr/>NOTE: If you are
-processing a large amount of <tag>refentry</tag> content,<sbr/> you
-may be able to speed up processing significantly by<sbr/> setting a
+non-zero, the metadata is gathered "quietly" -- that is, the
+notes and warnings are suppressed.</para>
+<para>NOTE: If you are
+processing a large amount of <tag>refentry</tag> content,  you
+may be able to speed up processing significantly by  setting a
 non-zero value for
-<tag>refentry</tag>.meta.get.quietly.<alt>common/refentry.xsl,1.17;
+<tag>refentry</tag>.meta.get.quietly.</para>
+<para role="commit-changes">Modified: common/refentry.xsl,1.17;
 manpages/param.ent,1.15; manpages/param.xweb,1.17;
 params/refentry.meta.get.quietly.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Changed names of all boolean
-indentation params to man.indent.*<sbr/>Also discarded individual
-man.indent.*.value params and switched<sbr/>to just using a common
-man.indent.width param (3n by default).<alt>manpages/docbook.xsl,1.66;
+<listitem role="commit-message">
+<para>Changed names of all boolean
+indentation params to man.indent.* Also discarded individual
+man.indent.*.value params and switched to just using a common
+man.indent.width param (3n by default).</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.66;
 manpages/info.xsl,1.19; manpages/lists.xsl,1.29;
 manpages/other.xsl,1.18; manpages/refentry.xsl,1.13 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added boolean
-man.output.in.separate.dir param, to control whether<sbr/>or not man
-files are output in separate directory.<alt>manpages/docbook.xsl,1.65;
-manpages/utility.xsl,1.14 - Michael(tm) Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added boolean
+man.output.in.separate.dir param, to control whether or not man
+files are output in separate directory.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.65;
+manpages/utility.xsl,1.14 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added options for controlling
-indentation of verbatim output.<sbr/>Controlled through the
+<listitem role="commit-message">
+<para>Added options for controlling
+indentation of verbatim output. Controlled through the
 man.indentation.verbatims.adjust
-and<sbr/>man.indentation.verbatims.value params. Closes
-#1242997<alt>manpages/block.xsl,1.15; manpages/docbook.xsl,1.64 -
-Michael(tm) Smith</alt></phrase></para>
+and man.indentation.verbatims.value params. Closes
+#1242997</para>
+<para role="commit-changes">Modified: manpages/block.xsl,1.15; manpages/docbook.xsl,1.64 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added options for controlling
-indentation in lists and in *blurb<sbr/>output in the AUTHORS
+<listitem role="commit-message">
+<para>Added options for controlling
+indentation in lists and in *blurb output in the AUTHORS
 <tag>section</tag>. Controlled through
-the<sbr/>man.indentation.lists.adjust,
-man.indentation.lists.value,<sbr/>man.indentation.authors.adjust, and
-man.indentation.authors.value<sbr/>parameters. Default is 3 characters
-(instead of the roff default<sbr/>of 8 characters). Closes
-#1449369.<sbr/><sbr/>Also, removed the indent that was being set on
-<tag>informalexample</tag><sbr/>outuput. I will instead add an option
-for indenting verbatims,<sbr/>which I think is what the
+the man.indentation.lists.adjust,
+man.indentation.lists.value, man.indentation.authors.adjust, and
+man.indentation.authors.value parameters. Default is 3 characters
+(instead of the roff default of 8 characters). Closes
+#1449369.</para>
+<para>Also, removed the indent that was being set on
+<tag>informalexample</tag> outuput. I will instead add an option
+for indenting verbatims, which I think is what the
 <tag>informalexample</tag> indent was intended
-for<sbr/>originally.<alt>manpages/block.xsl,1.14;
+for originally.</para>
+<para role="commit-changes">Modified: manpages/block.xsl,1.14;
 manpages/docbook.xsl,1.63; manpages/info.xsl,1.18;
-manpages/lists.xsl,1.28 - Michael(tm) Smith</alt></phrase></para>
+manpages/lists.xsl,1.28 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Changed line-spacing call before
-<tag>synopfragment</tag> to use ".sp -1n"<sbr/>("n" units specified)
-instead of plain ".sp -1"<alt>manpages/synop.xsl,1.28 - Michael(tm)
-Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Changed line-spacing call before
+<tag>synopfragment</tag> to use ".sp -1n" ("n" units specified)
+instead of plain ".sp -1"</para>
+<para role="commit-changes">Modified: manpages/synop.xsl,1.28 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for writing man
-files into a specific output<sbr/>directory and into appropriate
-subdirectories within that output<sbr/>directory. Controlled through
-the man.<parameter>base.dir</parameter> parameter (similar<sbr/>to the
+<listitem role="commit-message">
+<para>Added support for writing man
+files into a specific output directory and into appropriate
+subdirectories within that output directory. Controlled through
+the man.<parameter>base.dir</parameter> parameter (similar to the
 <parameter>base.dir</parameter> support in the HTML stylesheet) and
-the<sbr/>man.subdirs.enabled parameter, which automatically determines
-the<sbr/>name of an appropriate subdir (for example, man/man7,
-man/man1,<sbr/>etc.) based on the <tag>section</tag> number/manvolnum
-of the source <tag>Refentry</tag>.<sbr/><sbr/>Closes #1255036 and
-#1170317. Thanks to Denis Bradford for the<sbr/>original feature
-request, and to Costin Stroie for submitting a<sbr/>patch that was
+the man.subdirs.enabled parameter, which automatically determines
+the name of an appropriate subdir (for example, man/man7,
+man/man1, etc.) based on the <tag>section</tag> number/manvolnum
+of the source <tag>Refentry</tag>.</para>
+<para>Closes #1255036 and
+#1170317. Thanks to Denis Bradford for the original feature
+request, and to Costin Stroie for submitting a patch that was
 very helpful in implementing the
-support.<alt>manpages/docbook.xsl,1.62; manpages/utility.xsl,1.13 -
-Michael(tm) Smith</alt></phrase></para>
+support.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.62; manpages/utility.xsl,1.13 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Refined XPath statements and
-notification messages for <tag>refentry</tag><sbr/>metadata
-handling.<alt>common/common.xsl,1.59; common/refentry.xsl,1.14;
+<listitem role="commit-message">
+<para>Refined XPath statements and
+notification messages for <tag>refentry</tag> metadata
+handling.</para>
+<para role="commit-changes">Modified: common/common.xsl,1.59; common/refentry.xsl,1.14;
 manpages/docbook.xsl,1.61; manpages/other.xsl,1.17 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for
-<tag>copyright</tag> and <tag>legalnotice</tag>.<sbr/>The manpages
+<listitem role="commit-message">
+<para>Added support for
+<tag>copyright</tag> and <tag>legalnotice</tag>. The manpages
 stylesheets now output a <tag>COPYRIGHT</tag> <tag>section</tag>,
-after the<sbr/>AUTHORS <tag>section</tag>, if a <tag>copyright</tag>
-or <tag>legalnotice</tag> is found in the<sbr/>source. The
+after the AUTHORS <tag>section</tag>, if a <tag>copyright</tag>
+or <tag>legalnotice</tag> is found in the source. The
 <tag>section</tag> contains the <tag>copyright</tag> contents followed
-by<sbr/>the <tag>legalnotice</tag> contents. Closes
-#1450209.<alt>manpages/docbook.xsl,1.59; manpages/info.xsl,1.17 -
-Michael(tm) Smith</alt></phrase></para>
+by the <tag>legalnotice</tag> contents. Closes
+#1450209.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.59; manpages/info.xsl,1.17 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Drastically reworked all of the
-XPath expressions used in <tag>refentry</tag><sbr/>metadata gathering
--- completely removed $parentinfo and turned<sbr/>$info into a set of
-nodes that includes the *info contents of the<sbr/><tag>Refentry</tag>
-plus the *info contents all all of its ancestor<sbr/>elements. The
-basic XPath expression now used throughout is (using<sbr/>the example
-of checking for a <tag>date</tag>):<sbr/><sbr/>
-(($info[//date])[last()]/date)[1].<sbr/><sbr/>That selects the "last"
-*info/date <tag>date</tag> in document order -- that<sbr/>is, the one
+<listitem role="commit-message">
+<para>Drastically reworked all of the
+XPath expressions used in <tag>refentry</tag> metadata gathering
+-- completely removed $parentinfo and turned $info into a set of
+nodes that includes the *info contents of the <tag>Refentry</tag>
+plus the *info contents all all of its ancestor elements. The
+basic XPath expression now used throughout is (using the example
+of checking for a <tag>date</tag>):</para>
+<para>
+(($info[//date])[last()]/date)[1].</para>
+<para>That selects the "last"
+*info/date <tag>date</tag> in document order -- that is, the one
 eitther on the <tag>Refentry</tag> itself or on the
-closest<sbr/>ancestor to the <tag>Refentry</tag>.<sbr/><sbr/>It's
-likely this change may break some things; may need to pick<sbr/>up
-some pieces later.<sbr/><sbr/>Also, changed the default value for the
-<parameter>man.th.extra2.max.length</parameter><sbr/>from 40 to
-30.<alt>common/common.xsl,1.58; common/refentry.xsl,1.7;
+closest ancestor to the <tag>Refentry</tag>.</para>
+<para>It's
+likely this change may break some things; may need to pick up
+some pieces later.</para>
+<para>Also, changed the default value for the
+<parameter>man.th.extra2.max.length</parameter> from 40 to
+30.</para>
+<para role="commit-changes">Modified: common/common.xsl,1.58; common/refentry.xsl,1.7;
 params/man.th.extra2.max.length.xml,1.2;
 params/refentry.date.profile.xml,1.2;
 params/refentry.manual.profile.xml,1.2;
 params/refentry.source.name.profile.xml,1.2;
 params/refentry.version.profile.xml,1.2; manpages/docbook.xsl,1.58;
-manpages/other.xsl,1.15 - Michael(tm) Smith</alt></phrase></para>
+manpages/other.xsl,1.15 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for DocBook 5
-namespace-stripping in manpages<sbr/>stylesheet. Closes request
-#1210692.<alt>common/common.xsl,1.56; manpages/docbook.xsl,1.57 -
-Michael(tm) Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added support for DocBook 5
+namespace-stripping in manpages stylesheet. Closes request
+#1210692.</para>
+<para role="commit-changes">Modified: common/common.xsl,1.56; manpages/docbook.xsl,1.57 -
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Fixed handling of <tag>table</tag>
-footnotes.<sbr/>With this checkin, the <tag>table</tag> support in the
-manpages stylesheet is<sbr/>now basically feature complete. So this
-change closes request<sbr/>#619532, "No support for tables" -- the
-oldest currently open<sbr/>manpages feature request, submitted by Ben
-Secrest (blsecres) on<sbr/>2002-10-07. Congratulations to me [patting
-myself on the back].<alt>manpages/block.xsl,1.11;
+<listitem role="commit-message">
+<para>Fixed handling of <tag>table</tag>
+footnotes. With this checkin, the <tag>table</tag> support in the
+manpages stylesheet is now basically feature complete. So this
+change closes request #619532, "No support for tables" -- the
+oldest currently open manpages feature request, submitted by Ben
+Secrest (blsecres) on 2002-10-07. Congratulations to me [patting
+myself on the back].</para>
+<para role="commit-changes">Modified: manpages/block.xsl,1.11;
 manpages/docbook.xsl,1.55; manpages/table.xsl,1.15 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added handling for
-<tag>table</tag> titles. Also fixed handling of nested<sbr/>tables;
-nest tables are now "extracted" and displayed just after<sbr/>their
-parent tables.<alt>manpages/docbook.xsl,1.54; manpages/table.xsl,1.14
-- Michael(tm) Smith</alt></phrase></para>
+<listitem role="commit-message">
+<para>Added handling for
+<tag>table</tag> titles. Also fixed handling of nested tables;
+nest tables are now "extracted" and displayed just after their
+parent tables.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.54; manpages/table.xsl,1.14
+- Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added option for turning off bold
-formatting in <tag>Funcsynopsis</tag>.<sbr/>Boldface formatting in
+<listitem role="commit-message">
+<para>Added option for turning off bold
+formatting in <tag>Funcsynopsis</tag>. Boldface formatting in
 <tag>function</tag> <tag>synopsis</tag> is mandated in the
-man(7)<sbr/>man page and is used almost universally in existing man
-pages.<sbr/>Despite that, it really does look like crap to have an
-entire<sbr/><tag>Funcsynopsis</tag> output in bold, so I added params
-for turning off the<sbr/>bold formatting and/or replacing it with a
-different roff special<sbr/>font (e.g., "RI" for alternating
-roman/italic instead of the<sbr/>default "BI" for alternating
+man(7) man page and is used almost universally in existing man
+pages. Despite that, it really does look like crap to have an
+entire <tag>Funcsynopsis</tag> output in bold, so I added params
+for turning off the bold formatting and/or replacing it with a
+different roff special font (e.g., "RI" for alternating
+roman/italic instead of the default "BI" for alternating
 bold/italic). The new params
-are<sbr/>"man.<tag>funcprototype</tag>.font" and
-"man.<tag>funcsynopsisinfo</tag>.font". To be<sbr/>documented
-later.<sbr/><sbr/>Closes #1452247. Thanks to Joe Orton for the feature
-request.<alt>params/man.string.subst.map.xml,1.16;
+are "man.<tag>funcprototype</tag>.font" and
+"man.<tag>funcsynopsisinfo</tag>.font". To be documented
+later.</para>
+<para>Closes #1452247. Thanks to Joe Orton for the feature
+request.</para>
+<para role="commit-changes">Modified: params/man.string.subst.map.xml,1.16;
 manpages/block.xsl,1.10; manpages/docbook.xsl,1.51;
 manpages/inline.xsl,1.16; manpages/synop.xsl,1.27 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Use AUTHORS instead of
-<tag>AUTHOR</tag> if we have multiple people to<sbr/>attribute. Also,
+<listitem role="commit-message">
+<para>Use AUTHORS instead of
+<tag>AUTHOR</tag> if we have multiple people to attribute. Also,
 fixed checking such that we generate
-<tag>author</tag><sbr/><tag>section</tag> even if we don't have an
-<tag>author</tag> (as long as there is at<sbr/>least one other
+<tag>author</tag> <tag>section</tag> even if we don't have an
+<tag>author</tag> (as long as there is at least one other
 person/entity we can put in the
-<tag>section</tag>). Also<sbr/>adjusted assembly of content for
-<tag>Author</tag> metainfo field such that<sbr/>we now not only use
-<tag>author</tag>, but try to find a "best match" if we<sbr/>can't
-find an <tag>author</tag> name to put there.<sbr/><sbr/>Closes
+<tag>section</tag>). Also adjusted assembly of content for
+<tag>Author</tag> metainfo field such that we now not only use
+<tag>author</tag>, but try to find a "best match" if we can't
+find an <tag>author</tag> name to put there.</para>
+<para>Closes
 #1233592. Thanks to Sam Steingold for the
-request.<alt>manpages/info.xsl,1.12 - Michael(tm)
-Smith</alt></phrase></para>
+request.</para>
+<para role="commit-changes">Modified: manpages/info.xsl,1.12 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Changes for request #1243027,
-"Impove handling of <tag>AUTHOR</tag> <tag>section</tag>."<sbr/>This
+<listitem role="commit-message">
+<para>Changes for request #1243027,
+"Impove handling of <tag>AUTHOR</tag> <tag>section</tag>." This
 adds support for <tag>Collab</tag>, Corpauthor, Corpcredt,
-<tag>Orgname</tag>,<sbr/><tag>Publishername</tag>, and
+<tag>Orgname</tag>, <tag>Publishername</tag>, and
 <tag>Publisher</tag>. Also adds support for output
-of<sbr/><tag>Affiliation</tag> and its children, and support for using
-gentext<sbr/>strings for auto-attributing roles (<tag>Author</tag>,
-<tag>Editor</tag>, <tag>Publisher</tag>,<sbr/>Translator, etc.). Also
-did a lot of code cleanup and<sbr/>modularization of all the
-<tag>AUTHOR</tag> handling code. And fixed a bug<sbr/>that was causing
+of <tag>Affiliation</tag> and its children, and support for using
+gentext strings for auto-attributing roles (<tag>Author</tag>,
+<tag>Editor</tag>, <tag>Publisher</tag>, Translator, etc.). Also
+did a lot of code cleanup and modularization of all the
+<tag>AUTHOR</tag> handling code. And fixed a bug that was causing
 <tag>Author</tag> <tag>info</tag> to not be picked up correctly
-for<sbr/>metainfo comment we embed in man-page
-source.<alt>manpages/info.xsl,1.11 - Michael(tm)
-Smith</alt></phrase></para>
+for metainfo comment we embed in man-page
+source.</para>
+<para role="commit-changes">Modified: manpages/info.xsl,1.11 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support bold output for
-"<tag>emphasis</tag> remap='B'". (because Eric<sbr/>Raymond's
-doclifter(1) tool converts groff source marked up with<sbr/>".B"
+<listitem role="commit-message">
+<para>Support bold output for
+"<tag>emphasis</tag> remap='B'". (because Eric Raymond's
+doclifter(1) tool converts groff source marked up with ".B"
 request or "\fB" escapes to DocBook "<tag>emphasis</tag>
-remap='B'".)<alt>manpages/inline.xsl,1.14 - Michael(tm)
-Smith</alt></phrase></para>
+remap='B'".)</para>
+<para role="commit-changes">Modified: manpages/inline.xsl,1.14 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for
-<tag>Segmentedlist</tag>.<sbr/>Details: Output is tabular, with no
-option for "list" type output.<sbr/>Output for <tag>Segtitle</tag>
+<listitem role="commit-message">
+<para>Added support for
+<tag>Segmentedlist</tag>. Details: Output is tabular, with no
+option for "list" type output. Output for <tag>Segtitle</tag>
 elements can be supressed by
-setting<sbr/>man.<tag>segtitle</tag>.suppress. If <tag>Segtitle</tag>
-content is output, it is<sbr/>rendered in italic type (not bold
-because not all terminals<sbr/>support bold and so italic ensures the
-stand out on those<sbr/>terminals). Extra space (.sp line) at end of
-<tag>table</tag> code ensures<sbr/>that it gets handled correctly in
-the case where its source is the<sbr/>child of a <tag>Para</tag>.
-Closes feature-request #1400097. Thanks to<sbr/>Daniel Leidert for the
-patch and push, and to Alastair Rankine for<sbr/>filing the original
-feature request.<alt>manpages/lists.xsl,1.23;
-manpages/utility.xsl,1.10 - Michael(tm) Smith</alt></phrase></para>
+setting man.<tag>segtitle</tag>.suppress. If <tag>Segtitle</tag>
+content is output, it is rendered in italic type (not bold
+because not all terminals support bold and so italic ensures the
+stand out on those terminals). Extra space (.sp line) at end of
+<tag>table</tag> code ensures that it gets handled correctly in
+the case where its source is the child of a <tag>Para</tag>.
+Closes feature-request #1400097. Thanks to Daniel Leidert for the
+patch and push, and to Alastair Rankine for filing the original
+feature request.</para>
+<para role="commit-changes">Modified: manpages/lists.xsl,1.23;
+manpages/utility.xsl,1.10 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Improved handling or
-Author/Editor/Othercredit.<sbr/><sbr/>Reworked content of
-(non-visible) comment added at top of each<sbr/>page (metadata
-stuff).<sbr/><sbr/>Added support for generating a
-<parameter>manifest</parameter> file (useful for cleaning<sbr/>up
-after builds, etc.)<alt>manpages/docbook.xsl,1.46;
+<listitem role="commit-message">
+<para>Improved handling or
+Author/Editor/Othercredit.</para>
+<para>Reworked content of
+(non-visible) comment added at top of each page (metadata
+stuff).</para>
+<para>Added support for generating a
+<parameter>manifest</parameter> file (useful for cleaning up
+after builds, etc.)</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.46;
 manpages/info.xsl,1.9; manpages/other.xsl,1.12;
-manpages/utility.xsl,1.6 - Michael(tm) Smith</alt></phrase></para>
+manpages/utility.xsl,1.6 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added two new parameters for
+<listitem role="commit-message">
+<para>Added two new parameters for
 handling of multi-term
-<tag>varlistentry</tag><sbr/>elements:<sbr/><sbr/><parameter>variablelist.term.break.after</parameter>:<sbr/>
+<tag>varlistentry</tag> elements:</para>
+<para><parameter>variablelist.term.break.after</parameter>: 
 When the <parameter>variablelist.term.break.after</parameter> is
-non-zero, it will<sbr/> generate a line break after each
+non-zero, it will  generate a line break after each
 <tag>term</tag> multi-term
-<tag>varlistentry</tag>.<sbr/><sbr/><parameter>variablelist.term.separator</parameter>:<sbr/>
+<tag>varlistentry</tag>.</para>
+<para><parameter>variablelist.term.separator</parameter>: 
 When a <tag>varlistentry</tag> contains multiple <tag>term</tag>
-elements, the string<sbr/> specified in the value of the
-<parameter>variablelist.term.separator</parameter><sbr/> parameter is
-placed after each <tag>term</tag> except the last. The default<sbr/>
-is ", " (a comma followed by a space). To suppress rendering of<sbr/>
+elements, the string  specified in the value of the
+<parameter>variablelist.term.separator</parameter>  parameter is
+placed after each <tag>term</tag> except the last. The default 
+is ", " (a comma followed by a space). To suppress rendering of 
 the separator, set the value of
-<parameter>variablelist.term.separator</parameter> to<sbr/> the empty
-string ("").<sbr/><sbr/>These parameters are primarily intended to be
-useful if you have<sbr/>multi-term varlistentries that have long
-terms.<sbr/><sbr/>Closes #1306676. Thanks to Sam Steingold for
-providing an example<sbr/>"lots of long terms" doc that demonstrated
-the value of having<sbr/>these options.<sbr/><sbr/>Also, added
+<parameter>variablelist.term.separator</parameter> to  the empty
+string ("").</para>
+<para>These parameters are primarily intended to be
+useful if you have multi-term varlistentries that have long
+terms.</para>
+<para>Closes #1306676. Thanks to Sam Steingold for
+providing an example "lots of long terms" doc that demonstrated
+the value of having these options.</para>
+<para>Also, added
 normalize-space() call to processing of each
-<tag>term</tag>.<sbr/><sbr/>This change affects all output formats
-(HTML, PDF, manpages). The<sbr/>default behavior should pretty much
-remain the same as before, but<sbr/>it is possible (as always) that
+<tag>term</tag>.</para>
+<para>This change affects all output formats
+(HTML, PDF, manpages). The default behavior should pretty much
+remain the same as before, but it is possible (as always) that
 the change may introduce some
-new<sbr/>bugginess.<alt>fo/lists.xsl,1.62; fo/param.ent,1.88;
+new bugginess.</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.62; fo/param.ent,1.88;
 fo/param.xweb,1.99; html/lists.xsl,1.48; html/param.ent,1.86;
 html/param.xweb,1.93; manpages/lists.xsl,1.22;
 manpages/param.ent,1.14; manpages/param.xweb,1.16;
 params/variablelist.term.break.after.xml,1.1;
 params/variablelist.term.separator.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Manpages changes for snapshot_2006-05-15_0803-->
@@ -1337,422 +1565,492 @@ Smith</alt></phrase></para>
         <filename>params</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">New parameters to set
+<listitem role="commit-message">
+<para>New parameters to set
 header/footer <tag>table</tag> minimum
-height.<alt>params/footer.table.height.xml,1.1;
+height.</para>
+<para role="commit-changes">Modified: params/footer.table.height.xml,1.1;
 params/header.table.height.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support multiple indexing methods
-for different languages.<alt>params/index.method.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Support multiple indexing methods
+for different languages.</para>
+<para role="commit-changes">Modified: params/index.method.xml,1.1 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Remove <tag>qandaset</tag> and
+<listitem role="commit-message">
+<para>Remove <tag>qandaset</tag> and
 <tag>qandadiv</tag> from <parameter>generate.toc</parameter> for fo
-output<sbr/>because formerly it wasn't working, but now it is and
-the<sbr/>default behavior should stay the
-same.<alt>params/generate.toc.xml,1.8 - Robert
-Stayton</alt></phrase></para>
+output because formerly it wasn't working, but now it is and
+the default behavior should stay the
+same.</para>
+<para role="commit-changes">Modified: params/generate.toc.xml,1.8 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">add support for page number
+<listitem role="commit-message">
+<para>add support for page number
 references to <tag>link</tag> element
-too.<alt>params/insert.link.page.number.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+too.</para>
+<para role="commit-changes">Modified: params/insert.link.page.number.xml,1.1 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Add support for more characters to
-hyphen on when <parameter>ulink.hyphenate</parameter><sbr/>is turned
-on.<alt>params/ulink.hyphenate.chars.xml,1.1;
-params/ulink.hyphenate.xml,1.3 - Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Add support for more characters to
+hyphen on when <parameter>ulink.hyphenate</parameter> is turned
+on.</para>
+<para role="commit-changes">Modified: params/ulink.hyphenate.chars.xml,1.1;
+params/ulink.hyphenate.xml,1.3 - Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">New attribute-set to format
+<listitem role="commit-message">
+<para>New attribute-set to format
 <tag>biblioentry</tag> and
-<tag>bibliomixed</tag>.<alt>params/biblioentry.properties.xml,1.1 -
-Robert Stayton</alt></phrase></para>
+<tag>bibliomixed</tag>.</para>
+<para role="commit-changes">Modified: params/biblioentry.properties.xml,1.1 -
+Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new parameter
+<listitem role="commit-message">
+<para>Added new parameter
 <parameter>chunk.tocs.and.lots</parameter>.has.<tag>title</tag> which
 controls presence of <tag>title</tag> in a separate chunk with
 ToC/LoT. Disabling <tag>title</tag> can be very useful if you are
 generating frameset output (well, yes those frames, but some customers
-really want them ;-).<alt>html/chunk-code.xsl,1.15;
+really want them ;-).</para>
+<para role="commit-changes">Modified: html/chunk-code.xsl,1.15;
 html/param.ent,1.93; html/param.xweb,1.102;
 params/chunk.tocs.and.lots.has.title.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new attribute set
+<listitem role="commit-message">
+<para>Added new attribute set
 <tag>toc</tag>.line.properties for controlling appearance of lines in
-ToC/LoT<alt>params/toc.line.properties.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+ToC/LoT</para>
+<para role="commit-changes">Modified: params/toc.line.properties.xml,1.1 - Jirka
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Allow <tag>table</tag> footnotes
+<listitem role="commit-message">
+<para>Allow <tag>table</tag> footnotes
 to have different properties from regular
-footnotes.<alt>params/table.footnote.properties.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+footnotes.</para>
+<para role="commit-changes">Modified: params/table.footnote.properties.xml,1.1 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Set properties for pgwide="1"
-objects.<alt>params/pgwide.properties.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Set properties for pgwide="1"
+objects.</para>
+<para role="commit-changes">Modified: params/pgwide.properties.xml,1.1 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added the
-autotoc.<tag>label</tag>.in.hyperlink param.<sbr/><sbr/>If the value
+<listitem role="commit-message">
+<para>Added the
+autotoc.<tag>label</tag>.in.hyperlink param.</para>
+<para>If the value
 of autotoc.<tag>label</tag>.in.hyperlink is non-zero, labels
-are<sbr/>included in hyperlinked titles in the <tag>TOC</tag>. If it
-is instead zero,<sbr/>labels are still displayed prior to the
-hyperlinked titles, but<sbr/>are not hyperlinked along with the
-titles.<sbr/><sbr/>Closes patch #1065868. Thanks to anatoly techtonik
-for the patch.<alt>html/autotoc.xsl,1.36; html/param.ent,1.92;
+are included in hyperlinked titles in the <tag>TOC</tag>. If it
+is instead zero, labels are still displayed prior to the
+hyperlinked titles, but are not hyperlinked along with the
+titles.</para>
+<para>Closes patch #1065868. Thanks to anatoly techtonik
+for the patch.</para>
+<para role="commit-changes">Modified: html/autotoc.xsl,1.36; html/param.ent,1.92;
 html/param.xweb,1.101; params/autotoc.label.in.hyperlink.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added two new params:
+<listitem role="commit-message">
+<para>Added two new params:
 html.head.<tag>legalnotice</tag>.<tag>link</tag>.types
-and<sbr/>html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple.<sbr/><sbr/>If
+and html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple.</para>
+<para>If
 the value of the <parameter>generate.legalnotice.link</parameter> is
-non-zero, then<sbr/>the stylesheet generates (in the head
-<tag>section</tag> of the HTML source)<sbr/>either a single HTML
+non-zero, then the stylesheet generates (in the head
+<tag>section</tag> of the HTML source) either a single HTML
 <tag>link</tag> element or, if the value of
-the<sbr/>html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple is
-non-zero, one <tag>link</tag> element<sbr/>for each <tag>link</tag>
+the html.head.<tag>legalnotice</tag>.<tag>link</tag>.multiple is
+non-zero, one <tag>link</tag> element for each <tag>link</tag>
 type specified. Each <tag>link</tag> has the
-following<sbr/>attributes:<sbr/><sbr/> - a rel attribute whose value
-is derived from the value of<sbr/>
-html.head.<tag>legalnotice</tag>.<tag>link</tag>.types<sbr/><sbr/> -
-an href attribute whose value is set to the URL of the file<sbr/>
-containing the <tag>legalnotice</tag><sbr/><sbr/> - a <tag>title</tag>
-attribute whose value is set to the <tag>title</tag> of the<sbr/>
+following attributes:</para>
+<para> - a rel attribute whose value
+is derived from the value of 
+html.head.<tag>legalnotice</tag>.<tag>link</tag>.types</para>
+<para> -
+an href attribute whose value is set to the URL of the file 
+containing the <tag>legalnotice</tag></para>
+<para> - a <tag>title</tag>
+attribute whose value is set to the <tag>title</tag> of the 
 corresponding <tag>legalnotice</tag> (or a <tag>title</tag>
-programatically<sbr/> determined by the stylesheet)<sbr/><sbr/>For
-example:<sbr/><sbr/> &lt;<tag>link</tag> rel="<tag>copyright</tag>"
-href="ln-id2524073.html" title="Legal Notice"&gt;<sbr/><sbr/>Closes
-#1476450. Thanks to Sam Steingold.<alt>html/chunk-common.xsl,1.45;
+programatically  determined by the stylesheet)</para>
+<para>For
+example:</para>
+<para> &lt;<tag>link</tag> rel="<tag>copyright</tag>"
+href="ln-id2524073.html" title="Legal Notice"&gt;</para>
+<para>Closes
+#1476450. Thanks to Sam Steingold.</para>
+<para role="commit-changes">Modified: html/chunk-common.xsl,1.45;
 html/param.ent,1.91; html/param.xweb,1.100;
 params/generate.legalnotice.link.xml,1.4;
 params/html.head.legalnotice.link.multiple.xml,1.1;
 params/html.head.legalnotice.link.types.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added the following
-params:<sbr/><sbr/> - man.indent.width (string-valued)<sbr/> -
-man.indent.refsect (boolean)<sbr/> - man.indent.blurbs (boolean)<sbr/>
-- man.indent.lists (boolean)<sbr/> - man.indent.verbatims
-(boolean)<sbr/><sbr/>Note that in earlier snapshots, man.indent.width
-was named<sbr/>man.indentation.default.value and the boolean params
-had names<sbr/>like man.indentation.*.adjust. Also the
-man.indent.blurbs param<sbr/>was called man.indentation.authors.adjust
-(or something).<sbr/><sbr/>The behavior now is: If the value of a
-particular man.indent.*<sbr/>boolean param is non-zero, the
-corresponding contents (refsect*,<sbr/>list items,
-authorblurb/personblurb, vervatims) are displayed with<sbr/>a left
+<listitem role="commit-message">
+<para>Added the following
+params:</para>
+<para> - man.indent.width (string-valued)  -
+man.indent.refsect (boolean)  - man.indent.blurbs (boolean) 
+- man.indent.lists (boolean)  - man.indent.verbatims
+(boolean)</para>
+<para>Note that in earlier snapshots, man.indent.width
+was named man.indentation.default.value and the boolean params
+had names like man.indentation.*.adjust. Also the
+man.indent.blurbs param was called man.indentation.authors.adjust
+(or something).</para>
+<para>The behavior now is: If the value of a
+particular man.indent.* boolean param is non-zero, the
+corresponding contents (refsect*, list items,
+authorblurb/personblurb, vervatims) are displayed with a left
 margin indented by a width equal to the value
-of<sbr/>man.indent.width.<alt>params/man.indent.blurbs.xml,1.1;
+of man.indent.width.</para>
+<para role="commit-changes">Modified: params/man.indent.blurbs.xml,1.1;
 manpages/docbook.xsl,1.74; manpages/info.xsl,1.20;
 manpages/lists.xsl,1.30; manpages/other.xsl,1.20;
 manpages/param.ent,1.22; manpages/param.xweb,1.24;
 manpages/refentry.xsl,1.14; params/man.indent.lists.xml,1.1;
 params/man.indent.refsect.xml,1.1;
 params/man.indent.verbatims.xml,1.1; params/man.indent.width.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-man.<tag>table</tag>.footnotes.divider param.<sbr/><sbr/>In each
+<listitem role="commit-message">
+<para>Added
+man.<tag>table</tag>.footnotes.divider param.</para>
+<para>In each
 <tag>table</tag> that contains footenotes, the string specified
-by<sbr/>the man.<tag>table</tag>.footnotes.divider parameter is output
-before the<sbr/>list of footnotes for the
-<tag>table</tag>.<alt>manpages/docbook.xsl,1.73;
+by the man.<tag>table</tag>.footnotes.divider parameter is output
+before the list of footnotes for the
+<tag>table</tag>.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.73;
 manpages/links.xsl,1.6; manpages/param.ent,1.21;
 manpages/param.xweb,1.23; params/man.table.footnotes.divider.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added the
+<listitem role="commit-message">
+<para>Added the
 man.output.in.separate.dir,
 man.output.<parameter>base.dir</parameter>,
-and<sbr/>man.output.subdirs.enabled parameters.<sbr/><sbr/>The
+and man.output.subdirs.enabled parameters.</para>
+<para>The
 man.output.<parameter>base.dir</parameter> parameter specifies the
-base directory<sbr/>into which man-page files are
-output. The<sbr/>man.output.subdirs.enabled parameter controls whether
-the files<sbr/>are output in subdirectories within the base
-directory.<sbr/><sbr/>The values of the
+base directory into which man-page files are
+output. The man.output.subdirs.enabled parameter controls whether
+the files are output in subdirectories within the base
+directory.</para>
+<para>The values of the
 man.output.<parameter>base.dir</parameter>
-and<sbr/>man.output.subdirs.enabled parameters are used only if the
-value<sbr/>of man.output.in.separate.dir parameter is non-zero. If the
-value<sbr/>of man.output.in.separate.dir is zero, man-page files are
-not<sbr/>output in a separate
-directory.<alt>manpages/docbook.xsl,1.72; manpages/param.ent,1.20;
+and man.output.subdirs.enabled parameters are used only if the
+value of man.output.in.separate.dir parameter is non-zero. If the
+value of man.output.in.separate.dir is zero, man-page files are
+not output in a separate
+directory.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.72; manpages/param.ent,1.20;
 manpages/param.xweb,1.22; params/man.output.base.dir.xml,1.1;
 params/man.output.in.separate.dir.xml,1.1;
 params/man.output.subdirs.enabled.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 man.font.<tag>table</tag>.headings and
-man.font.<tag>table</tag>.<tag>title</tag> params,<sbr/>for
+man.font.<tag>table</tag>.<tag>title</tag> params, for
 controlling font in <tag>table</tag> headings and
-titles.<alt>manpages/docbook.xsl,1.71; manpages/param.ent,1.19;
+titles.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.71; manpages/param.ent,1.19;
 manpages/param.xweb,1.21; params/man.font.table.headings.xml,1.1;
 params/man.font.table.title.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 man.font.<tag>funcsynopsisinfo</tag> and
-man.font.<tag>funcprototype</tag><sbr/>params, for specifying the roff
-font (for example, BI, B, I) for<sbr/><tag>funcsynopsisinfo</tag> and
-<tag>funcprototype</tag> output.<alt>manpages/block.xsl,1.19;
+man.font.<tag>funcprototype</tag> params, for specifying the roff
+font (for example, BI, B, I) for <tag>funcsynopsisinfo</tag> and
+<tag>funcprototype</tag> output.</para>
+<para role="commit-changes">Modified: manpages/block.xsl,1.19;
 manpages/docbook.xsl,1.69; manpages/param.ent,1.18;
 manpages/param.xweb,1.20; manpages/synop.xsl,1.29;
 manpages/table.xsl,1.21; params/man.font.funcprototype.xml,1.1;
 params/man.font.funcsynopsisinfo.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Changed to select="0" in
+<listitem role="commit-message">
+<para>Changed to select="0" in
 <tag>refclass</tag>.suppress (instead of
-..&gt;0&lt;/..)<alt>params/refclass.suppress.xml,1.3 - Michael(tm)
-Smith</alt></phrase></para>
+..&gt;0&lt;/..)</para>
+<para role="commit-changes">Modified: params/refclass.suppress.xml,1.3 - Michael(tm)
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-man.<tag>segtitle</tag>.suppress param.<sbr/><sbr/>If the value of
+<listitem role="commit-message">
+<para>Added
+man.<tag>segtitle</tag>.suppress param.</para>
+<para>If the value of
 man.<tag>segtitle</tag>.suppress is non-zero, then display
-of<sbr/><tag>segtitle</tag> contents is suppressed in
-output.<alt>manpages/docbook.xsl,1.68; manpages/param.ent,1.17;
+of <tag>segtitle</tag> contents is suppressed in
+output.</para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.68; manpages/param.ent,1.17;
 manpages/param.xweb,1.19; params/man.segtitle.suppress.xml,1.1 -
-Michael(tm) Smith</alt></phrase></para>
+Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
+<listitem role="commit-message">
+<para>Added
 man.output.<parameter>manifest</parameter>.enabled and
-man.output.manifest.<tag>filename</tag> params.<sbr/><sbr/>If
+man.output.manifest.<tag>filename</tag> params.</para>
+<para>If
 man.output.<parameter>manifest</parameter>.enabled is non-zero, a list
-of filenames<sbr/>for man pages generated by the stylesheet
-transformation is<sbr/>written to the file named by
-man.output.<parameter>manifest</parameter>.<tag>filename</tag><alt>manpages/docbook.xsl,1.67;
+of filenames for man pages generated by the stylesheet
+transformation is written to the file named by
+man.output.<parameter>manifest</parameter>.<tag>filename</tag></para>
+<para role="commit-changes">Modified: manpages/docbook.xsl,1.67;
 manpages/other.xsl,1.19; manpages/param.ent,1.16;
 manpages/param.xweb,1.18; params/man.output.manifest.enabled.xml,1.1;
 params/man.output.manifest.filename.xml,1.1;
 tools/make/Makefile.DocBook,1.4 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added <tag>refclass</tag>.suppress
-param.<sbr/><sbr/>If the value of <tag>refclass</tag>.suppress is
-non-zero, then display<sbr/><tag>refclass</tag> contents is suppressed
-in output. Affects HTML and FO<sbr/>output
-only.<alt>fo/param.ent,1.93; fo/param.xweb,1.106; html/param.ent,1.90;
+<listitem role="commit-message">
+<para>Added <tag>refclass</tag>.suppress
+param.</para>
+<para>If the value of <tag>refclass</tag>.suppress is
+non-zero, then display <tag>refclass</tag> contents is suppressed
+in output. Affects HTML and FO output
+only.</para>
+<para role="commit-changes">Modified: fo/param.ent,1.93; fo/param.xweb,1.106; html/param.ent,1.90;
 html/param.xweb,1.99; params/refclass.suppress.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added
-<tag>refentry</tag>.meta.get.quietly param.<sbr/><sbr/>If zero (the
-default), notes and warnings about "missing" markup<sbr/>are generated
+<listitem role="commit-message">
+<para>Added
+<tag>refentry</tag>.meta.get.quietly param.</para>
+<para>If zero (the
+default), notes and warnings about "missing" markup are generated
 during gathering of <tag>refentry</tag> metadata. If
-non-zero,<sbr/>the metadata is gathered "quietly" -- that is, the
-notes and<sbr/>warnings are suppressed.<sbr/><sbr/>NOTE: If you are
-processing a large amount of <tag>refentry</tag> content,<sbr/> you
-may be able to speed up processing significantly by<sbr/> setting a
+non-zero, the metadata is gathered "quietly" -- that is, the
+notes and warnings are suppressed.</para>
+<para>NOTE: If you are
+processing a large amount of <tag>refentry</tag> content,  you
+may be able to speed up processing significantly by  setting a
 non-zero value for
-<tag>refentry</tag>.meta.get.quietly.<alt>common/refentry.xsl,1.17;
+<tag>refentry</tag>.meta.get.quietly.</para>
+<para role="commit-changes">Modified: common/refentry.xsl,1.17;
 manpages/param.ent,1.15; manpages/param.xweb,1.17;
 params/refentry.meta.get.quietly.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added support for "software" and
-"sectdesc" class values on<sbr/><tag>refmiscinfo</tag>; "software" is
-treated identically to "source", and<sbr/>"setdesc" is treated
-identically to "manual".<alt>common/refentry.xsl,1.10;
+<listitem role="commit-message">
+<para>Added support for "software" and
+"sectdesc" class values on <tag>refmiscinfo</tag>; "software" is
+treated identically to "source", and "setdesc" is treated
+identically to "manual".</para>
+<para role="commit-changes">Modified: common/refentry.xsl,1.10;
 params/man.th.extra2.max.length.xml,1.3;
 params/refentry.source.name.profile.xml,1.4 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Drastically reworked all of the
-XPath expressions used in <tag>refentry</tag><sbr/>metadata gathering
--- completely removed $parentinfo and turned<sbr/>$info into a set of
-nodes that includes the *info contents of the<sbr/><tag>Refentry</tag>
-plus the *info contents all all of its ancestor<sbr/>elements. The
-basic XPath expression now used throughout is (using<sbr/>the example
-of checking for a <tag>date</tag>):<sbr/><sbr/>
-(($info[//date])[last()]/date)[1].<sbr/><sbr/>That selects the "last"
-*info/date <tag>date</tag> in document order -- that<sbr/>is, the one
+<listitem role="commit-message">
+<para>Drastically reworked all of the
+XPath expressions used in <tag>refentry</tag> metadata gathering
+-- completely removed $parentinfo and turned $info into a set of
+nodes that includes the *info contents of the <tag>Refentry</tag>
+plus the *info contents all all of its ancestor elements. The
+basic XPath expression now used throughout is (using the example
+of checking for a <tag>date</tag>):</para>
+<para>
+(($info[//date])[last()]/date)[1].</para>
+<para>That selects the "last"
+*info/date <tag>date</tag> in document order -- that is, the one
 eitther on the <tag>Refentry</tag> itself or on the
-closest<sbr/>ancestor to the <tag>Refentry</tag>.<sbr/><sbr/>It's
-likely this change may break some things; may need to pick<sbr/>up
-some pieces later.<sbr/><sbr/>Also, changed the default value for the
-<parameter>man.th.extra2.max.length</parameter><sbr/>from 40 to
-30.<alt>common/common.xsl,1.58; common/refentry.xsl,1.7;
+closest ancestor to the <tag>Refentry</tag>.</para>
+<para>It's
+likely this change may break some things; may need to pick up
+some pieces later.</para>
+<para>Also, changed the default value for the
+<parameter>man.th.extra2.max.length</parameter> from 40 to
+30.</para>
+<para role="commit-changes">Modified: common/common.xsl,1.58; common/refentry.xsl,1.7;
 params/man.th.extra2.max.length.xml,1.2;
 params/refentry.date.profile.xml,1.2;
 params/refentry.manual.profile.xml,1.2;
 params/refentry.source.name.profile.xml,1.2;
 params/refentry.version.profile.xml,1.2; manpages/docbook.xsl,1.58;
-manpages/other.xsl,1.15 - Michael(tm) Smith</alt></phrase></para>
+manpages/other.xsl,1.15 - Michael(tm) Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added option for turning off bold
-formatting in <tag>Funcsynopsis</tag>.<sbr/>Boldface formatting in
+<listitem role="commit-message">
+<para>Added option for turning off bold
+formatting in <tag>Funcsynopsis</tag>. Boldface formatting in
 <tag>function</tag> <tag>synopsis</tag> is mandated in the
-man(7)<sbr/>man page and is used almost universally in existing man
-pages.<sbr/>Despite that, it really does look like crap to have an
-entire<sbr/><tag>Funcsynopsis</tag> output in bold, so I added params
-for turning off the<sbr/>bold formatting and/or replacing it with a
-different roff special<sbr/>font (e.g., "RI" for alternating
-roman/italic instead of the<sbr/>default "BI" for alternating
+man(7) man page and is used almost universally in existing man
+pages. Despite that, it really does look like crap to have an
+entire <tag>Funcsynopsis</tag> output in bold, so I added params
+for turning off the bold formatting and/or replacing it with a
+different roff special font (e.g., "RI" for alternating
+roman/italic instead of the default "BI" for alternating
 bold/italic). The new params
-are<sbr/>"man.<tag>funcprototype</tag>.font" and
-"man.<tag>funcsynopsisinfo</tag>.font". To be<sbr/>documented
-later.<sbr/><sbr/>Closes #1452247. Thanks to Joe Orton for the feature
-request.<alt>params/man.string.subst.map.xml,1.16;
+are "man.<tag>funcprototype</tag>.font" and
+"man.<tag>funcsynopsisinfo</tag>.font". To be documented
+later.</para>
+<para>Closes #1452247. Thanks to Joe Orton for the feature
+request.</para>
+<para role="commit-changes">Modified: params/man.string.subst.map.xml,1.16;
 manpages/block.xsl,1.10; manpages/docbook.xsl,1.51;
 manpages/inline.xsl,1.16; manpages/synop.xsl,1.27 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase
-role="commit-message"><parameter>fop.extensions</parameter> now only
-for FOP version 0.20.5 and earlier.<alt>params/fop.extensions.xml,1.4
-- Robert Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para><parameter>fop.extensions</parameter> now only
+for FOP version 0.20.5 and earlier.</para>
+<para role="commit-changes">Modified: params/fop.extensions.xml,1.4
+- Robert Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support for fop1 different from
-fop 0.20.5 and earlier.<alt>params/fop1.extensions.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Support for fop1 different from
+fop 0.20.5 and earlier.</para>
+<para role="commit-changes">Modified: params/fop1.extensions.xml,1.1 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Reset default value to empty
-string so template<sbr/>uses gentext first, then the parameter value
-if not empty.<alt>params/index.number.separator.xml,1.2;
+<listitem role="commit-message">
+<para>Reset default value to empty
+string so template uses gentext first, then the parameter value
+if not empty.</para>
+<para role="commit-changes">Modified: params/index.number.separator.xml,1.2;
 params/index.range.separator.xml,1.2;
 params/index.term.separator.xml,1.2 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">New parameter:
+<listitem role="commit-message">
+<para>New parameter:
 <parameter>id.warnings</parameter>. If non-zero, warnings are
 generated for titled objects that don't have titles. True by default;
-I wonder if this will be too aggressive?<alt>html/biblio.xsl,1.25;
+I wonder if this will be too aggressive?</para>
+<para role="commit-changes">Modified: html/biblio.xsl,1.25;
 html/component.xsl,1.27; html/division.xsl,1.11; html/formal.xsl,1.19;
 html/glossary.xsl,1.20; html/html.xsl,1.13; html/index.xsl,1.16;
 html/param.ent,1.88; html/param.xweb,1.97; html/refentry.xsl,1.22;
 html/sections.xsl,1.30; params/id.warnings.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added new parameter
-<parameter>keep.relative.image.uris</parameter><alt>fo/param.ent,1.91;
+<listitem role="commit-message">
+<para>Added new parameter
+<parameter>keep.relative.image.uris</parameter></para>
+<para role="commit-changes">Modified: fo/param.ent,1.91;
 fo/param.xweb,1.104; html/param.ent,1.87; html/param.xweb,1.96;
 params/keep.relative.image.uris.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Support default <tag>label</tag>
-width parameters for itemized and ordered lists<alt>fo/lists.xsl,1.64;
+<listitem role="commit-message">
+<para>Support default <tag>label</tag>
+width parameters for itemized and ordered lists</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.64;
 fo/param.ent,1.90; fo/param.xweb,1.103;
 params/itemizedlist.label.width.xml,1.1;
 params/orderedlist.label.width.xml,1.1 - Norman
-Walsh</alt></phrase></para>
+Walsh</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added parameters to localize
-punctuation in indexes.<alt>params/index.number.separator.xml,1.1;
+<listitem role="commit-message">
+<para>Added parameters to localize
+punctuation in indexes.</para>
+<para role="commit-changes">Modified: params/index.number.separator.xml,1.1;
 params/index.range.separator.xml,1.1;
 params/index.term.separator.xml,1.1 - Robert
-Stayton</alt></phrase></para>
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Added two new parameters for
+<listitem role="commit-message">
+<para>Added two new parameters for
 handling of multi-term
-<tag>varlistentry</tag><sbr/>elements:<sbr/><sbr/><parameter>variablelist.term.break.after</parameter>:<sbr/>
+<tag>varlistentry</tag> elements:</para>
+<para><parameter>variablelist.term.break.after</parameter>: 
 When the <parameter>variablelist.term.break.after</parameter> is
-non-zero, it will<sbr/> generate a line break after each
+non-zero, it will  generate a line break after each
 <tag>term</tag> multi-term
-<tag>varlistentry</tag>.<sbr/><sbr/><parameter>variablelist.term.separator</parameter>:<sbr/>
+<tag>varlistentry</tag>.</para>
+<para><parameter>variablelist.term.separator</parameter>: 
 When a <tag>varlistentry</tag> contains multiple <tag>term</tag>
-elements, the string<sbr/> specified in the value of the
-<parameter>variablelist.term.separator</parameter><sbr/> parameter is
-placed after each <tag>term</tag> except the last. The default<sbr/>
-is ", " (a comma followed by a space). To suppress rendering of<sbr/>
+elements, the string  specified in the value of the
+<parameter>variablelist.term.separator</parameter>  parameter is
+placed after each <tag>term</tag> except the last. The default 
+is ", " (a comma followed by a space). To suppress rendering of 
 the separator, set the value of
-<parameter>variablelist.term.separator</parameter> to<sbr/> the empty
-string ("").<sbr/><sbr/>These parameters are primarily intended to be
-useful if you have<sbr/>multi-term varlistentries that have long
-terms.<sbr/><sbr/>Closes #1306676. Thanks to Sam Steingold for
-providing an example<sbr/>"lots of long terms" doc that demonstrated
-the value of having<sbr/>these options.<sbr/><sbr/>Also, added
+<parameter>variablelist.term.separator</parameter> to  the empty
+string ("").</para>
+<para>These parameters are primarily intended to be
+useful if you have multi-term varlistentries that have long
+terms.</para>
+<para>Closes #1306676. Thanks to Sam Steingold for
+providing an example "lots of long terms" doc that demonstrated
+the value of having these options.</para>
+<para>Also, added
 normalize-space() call to processing of each
-<tag>term</tag>.<sbr/><sbr/>This change affects all output formats
-(HTML, PDF, manpages). The<sbr/>default behavior should pretty much
-remain the same as before, but<sbr/>it is possible (as always) that
+<tag>term</tag>.</para>
+<para>This change affects all output formats
+(HTML, PDF, manpages). The default behavior should pretty much
+remain the same as before, but it is possible (as always) that
 the change may introduce some
-new<sbr/>bugginess.<alt>fo/lists.xsl,1.62; fo/param.ent,1.88;
+new bugginess.</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.62; fo/param.ent,1.88;
 fo/param.xweb,1.99; html/lists.xsl,1.48; html/param.ent,1.86;
 html/param.xweb,1.93; manpages/lists.xsl,1.22;
 manpages/param.ent,1.14; manpages/param.xweb,1.16;
 params/variablelist.term.break.after.xml,1.1;
 params/variablelist.term.separator.xml,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Convert 'no' to string in default
-value.<alt>params/olink.doctitle.xml,1.4 - Robert
-Stayton</alt></phrase></para>
+<listitem role="commit-message">
+<para>Convert 'no' to string in default
+value.</para>
+<para role="commit-changes">Modified: params/olink.doctitle.xml,1.4 - Robert
+Stayton</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented RFE
-#1292615.<sbr/><sbr/>Added bunch of new parameters (attribute sets)
+<listitem role="commit-message">
+<para>Implemented RFE
+#1292615.</para>
+<para>Added bunch of new parameters (attribute sets)
 that affect list presentation: list.block.properties,
 <tag>itemizedlist</tag>.properties, <tag>orderedlist</tag>.properties,
 <tag>itemizedlist</tag>.<tag>label</tag>.properties and
 <tag>orderedlist</tag>.<tag>label</tag>.properties. Default behaviour
 of stylesheets has not been changed but further customizations will be
-much more easier.<alt>fo/lists.xsl,1.61; fo/param.ent,1.87;
+much more easier.</para>
+<para role="commit-changes">Modified: fo/lists.xsl,1.61; fo/param.ent,1.87;
 fo/param.xweb,1.98; params/itemizedlist.label.properties.xml,1.1;
 params/itemizedlist.properties.xml,1.1;
 params/list.block.properties.xml,1.1;
 params/orderedlist.label.properties.xml,1.1;
 params/orderedlist.properties.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Implemented RFE
-#1242092.<sbr/><sbr/>You can enable crop marks in your document by
-setting crop.marks=1 and xep.extensions=1.<sbr/>Appearance of crop
+<listitem role="commit-message">
+<para>Implemented RFE
+#1242092.</para>
+<para>You can enable crop marks in your document by
+setting crop.marks=1 and xep.extensions=1. Appearance of crop
 marks can be controlled by parameters
 <parameter>crop.mark.bleed</parameter> (6pt),
 <parameter>crop.mark.offset</parameter> (24pt) and
-<parameter>crop.mark.width</parameter> (0.5pt).<sbr/><sbr/>Also there
+<parameter>crop.mark.width</parameter> (0.5pt).</para>
+<para>Also there
 is new named template called user-xep-pis. You can overwrite it in
 order to produce some PIs that can control XEP as described in
-http://www.renderx.com/reference.html#Output_Formats<alt>fo/docbook.xsl,1.36;
+http://www.renderx.com/reference.html#Output_Formats</para>
+<para role="commit-changes">Modified: fo/docbook.xsl,1.36;
 fo/param.ent,1.86; fo/param.xweb,1.97; fo/xep.xsl,1.23;
 params/crop.mark.bleed.xml,1.1; params/crop.mark.offset.xml,1.1;
 params/crop.mark.width.xml,1.1; params/crop.marks.xml,1.1 - Jirka
-Kosek</alt></phrase></para>
+Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Changed short descriptions in doc
-for *autolabel* params to match<sbr/>new autolabel
-behavior.<alt>params/appendix.autolabel.xml,1.5;
+<listitem role="commit-message">
+<para>Changed short descriptions in doc
+for *autolabel* params to match new autolabel
+behavior.</para>
+<para role="commit-changes">Modified: params/appendix.autolabel.xml,1.5;
 params/chapter.autolabel.xml,1.4; params/part.autolabel.xml,1.5;
 params/preface.autolabel.xml,1.4 - Michael(tm)
-Smith</alt></phrase></para>
+Smith</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Params changes for snapshot_2006-05-15_0803-->
@@ -1763,23 +2061,26 @@ Smith</alt></phrase></para>
         <filename>profiling</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">Profiling now works together with
+<listitem role="commit-message">
+<para>Profiling now works together with
 namespace stripping (V5 documents). Namespace striping should work
 with all stylesheets named profile-, even if they are not supporting
 namespace stripping in a non-profiling
-variant.<alt>profiling/profile-mode.xsl,1.4;
-profiling/xsl2profile.xsl,1.7 - Jirka Kosek</alt></phrase></para>
+variant.</para>
+<para role="commit-changes">Modified: profiling/profile-mode.xsl,1.4;
+profiling/xsl2profile.xsl,1.7 - Jirka Kosek</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">Moved profiling stage out of
+<listitem role="commit-message">
+<para>Moved profiling stage out of
 templates. This make possible to reuse profiled content by several
 templates and still maintaing node indentity (needed for example for
-HTML Help where content is processed multiple times).<sbr/><sbr/>I
+HTML Help where content is processed multiple times).</para>
+<para>I
 don't know why this was not on the top level before. Maybe some XSLT
 processors choked on it. I hope this will be OK
-now.<alt>profiling/xsl2profile.xsl,1.5 - Jirka
-Kosek</alt></phrase></para>
+now.</para>
+<para role="commit-changes">Modified: profiling/xsl2profile.xsl,1.5 - Jirka
+Kosek</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Profiling changes for snapshot_2006-05-15_0803-->
@@ -1790,11 +2091,12 @@ Kosek</alt></phrase></para>
         <filename>tools</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">Moved Makefile.DocBook from
+<listitem role="commit-message">
+<para>Moved Makefile.DocBook from
 <tag>contrib</tag> module to xsl
-module.<alt>tools/make/Makefile.DocBook,1.1 - Michael(tm)
-Smith</alt></phrase></para>
+module.</para>
+<para role="commit-changes">Modified: tools/make/Makefile.DocBook,1.1 - Michael(tm)
+Smith</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Tools changes for snapshot_2006-05-15_0803-->
@@ -1805,70 +2107,79 @@ Smith</alt></phrase></para>
         <filename>wordml</filename> code
         since the 1.69.1 release.</para>
 <itemizedlist>
-<listitem>
-<para><phrase role="commit-message">added <tag>contrib</tag> element,
+<listitem role="commit-message">
+<para>added <tag>contrib</tag> element,
 better handling of default paragraph
-style<alt>wordml/pages-normalise.xsl,1.6; wordml/supported.xml,1.2;
-wordml/wordml-final.xsl,1.14 - Steve Ball</alt></phrase></para>
+style</para>
+<para role="commit-changes">Modified: wordml/pages-normalise.xsl,1.6; wordml/supported.xml,1.2;
+wordml/wordml-final.xsl,1.14 - Steve Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added
-<tag>bridgehead</tag><alt>wordml/docbook-pages.xsl,1.6;
+<listitem role="commit-message">
+<para>added
+<tag>bridgehead</tag></para>
+<para role="commit-changes">Modified: wordml/docbook-pages.xsl,1.6;
 wordml/docbook.xsl,1.17; wordml/pages-normalise.xsl,1.5;
 wordml/template-pages.xml,1.7; wordml/template.dot,1.4;
 wordml/template.xml,1.14; wordml/wordml-final.xsl,1.13 - Steve
-Ball</alt></phrase></para>
+Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added blocks stylesheet to support
-bibliographies, glossaries and qandasets<alt>wordml/Makefile,1.4;
+<listitem role="commit-message">
+<para>added blocks stylesheet to support
+bibliographies, glossaries and qandasets</para>
+<para role="commit-changes">Modified: wordml/Makefile,1.4;
 wordml/README,1.3; wordml/blocks-spec.xml,1.1;
 wordml/docbook-pages.xsl,1.5; wordml/docbook.xsl,1.16;
 wordml/pages-normalise.xsl,1.4; wordml/sections-spec.xml,1.3;
 wordml/specifications.xml,1.13; wordml/template-pages.xml,1.6;
 wordml/template.dot,1.3; wordml/template.xml,1.13;
 wordml/wordml-blocks.xsl,1.1; wordml/wordml-final.xsl,1.12;
-wordml/wordml-sections.xsl,1.3 - Steve Ball</alt></phrase></para>
+wordml/wordml-sections.xsl,1.3 - Steve Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added <tag>mediaobject</tag>
-<tag>caption</tag><alt>wordml/docbook-pages.xsl,1.4;
+<listitem role="commit-message">
+<para>added <tag>mediaobject</tag>
+<tag>caption</tag></para>
+<para role="commit-changes">Modified: wordml/docbook-pages.xsl,1.4;
 wordml/docbook.xsl,1.15; wordml/specifications.xml,1.12;
 wordml/template-pages.xml,1.5; wordml/template.dot,1.2;
 wordml/template.xml,1.12; wordml/wordml-final.xsl,1.11 - Steve
-Ball</alt></phrase></para>
+Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added
-callouts<alt>wordml/docbook-pages.xsl,1.3; wordml/docbook.xsl,1.14;
+<listitem role="commit-message">
+<para>added
+callouts</para>
+<para role="commit-changes">Modified: wordml/docbook-pages.xsl,1.3; wordml/docbook.xsl,1.14;
 wordml/pages-normalise.xsl,1.3; wordml/specifications.xml,1.11;
 wordml/template-pages.xml,1.4; wordml/wordml-final.xsl,1.10 - Steve
-Ball</alt></phrase></para>
+Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added Word template
-file<alt>wordml/template.dot,1.1 - Steve Ball</alt></phrase></para>
+<listitem role="commit-message">
+<para>added Word template
+file</para>
+<para role="commit-changes">Modified: wordml/template.dot,1.1 - Steve Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">added <tag>abstract</tag>, fixed
-<tag>itemizedlist</tag>, ulink<alt>wordml/specifications.xml,1.10;
-wordml/wordml-final.xsl,1.9 - Steve Ball</alt></phrase></para>
+<listitem role="commit-message">
+<para>added <tag>abstract</tag>, fixed
+<tag>itemizedlist</tag>, ulink</para>
+<para role="commit-changes">Modified: wordml/specifications.xml,1.10;
+wordml/wordml-final.xsl,1.9 - Steve Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">fixed Makefile<sbr/>added many
-features to Pages support<sbr/>added <tag>revhistory</tag>, inlines,
-highlights, <tag>abstract</tag><alt>wordml/Makefile,1.2;
+<listitem role="commit-message">
+<para>fixed Makefile added many
+features to Pages support added <tag>revhistory</tag>, inlines,
+highlights, <tag>abstract</tag></para>
+<para role="commit-changes">Modified: wordml/Makefile,1.2;
 wordml/docbook-pages.xsl,1.2; wordml/pages-normalise.xsl,1.2;
 wordml/sections-spec.xml,1.2; wordml/specifications.xml,1.9;
 wordml/template-pages.xml,1.3; wordml/template.xml,1.11;
 wordml/wordml-final.xsl,1.8; wordml/wordml-sections.xsl,1.2 - Steve
-Ball</alt></phrase></para>
+Ball</para>
 </listitem>
-<listitem>
-<para><phrase role="commit-message">fixed handling linebreaks when
-generating WordML<sbr/>added Apple Pages
-support<alt>wordml/docbook.xsl,1.13; wordml/template-pages.xml,1.2 -
-Steve Ball</alt></phrase></para>
+<listitem role="commit-message">
+<para>fixed handling linebreaks when
+generating WordML added Apple Pages
+support</para>
+<para role="commit-changes">Modified: wordml/docbook.xsl,1.13; wordml/template-pages.xml,1.2 -
+Steve Ball</para>
 </listitem>
 </itemizedlist>
 </sect2><!--end of WordML changes for snapshot_2006-05-15_0803-->
@@ -1972,7 +2283,7 @@ Steve Ball</alt></phrase></para>
         <para>To indicate that you want a choice separator
         generated for a particular list, you need to put a processing
         instruction (PI) of the form
-        <tag class="xmlpi">dbchoice&#xA0;choice="foo"</tag> as a
+        <tag class="xmlpi">dbchoice choice="foo"</tag> as a
         child of the list. For example:
         <literallayout class="monospaced">  &lt;para&gt;Choose from
   ONE and ONLY ONE of the following: 
@@ -1990,7 +2301,7 @@ Steve Ball</alt></phrase></para>
         As a temporary workaround for the fact that most of the
         DocBook non-English locale files don't have a localization for
         the word <quote>or</quote>, you can put in a literal string to
-        be used; example for French: <tag class="pi">dbchoice&#xA0;choice="ou"</tag>.  That is, use
+        be used; example for French: <tag class="pi">dbchoice choice="ou"</tag>.  That is, use
         <quote>ou</quote> instead of <quote>or</quote>.</para>
       </listitem>
       </itemizedlist>
@@ -2006,7 +2317,7 @@ Steve Ball</alt></phrase></para>
         </listitem>
         <listitem>
           <para>Added support for generating
-          <literal>&lt;rx:meta-field&#xA0;creator="$VERSION"/&gt;</literal>
+          <literal>&lt;rx:meta-field creator="$VERSION"/&gt;</literal>
           field for XEP output. This makes the DocBook XSL
           stylesheet version information available through the
           <guimenu>Document Properties</guimenu> menu in Acrobat
@@ -2596,7 +2907,7 @@ Steve Ball</alt></phrase></para>
                 have a version number in the <quote>source</quote>
                 field. So, it looks like what we have is a two-part
                 field,
-                <replaceable>Name</replaceable>&#xA0;<replaceable>Version</replaceable>,
+                <replaceable>Name</replaceable> <replaceable>Version</replaceable>,
                 where:
                 <variablelist>
                   <varlistentry>
@@ -2770,8 +3081,8 @@ Steve Ball</alt></phrase></para>
       <listitem>
         <para>Removed the space that was being output between
         <tag>funcdef</tag> and <tag>paramdef</tag>; example: was:
-        <literal>float&#xA0;rand&#xA0;(void)</literal>; now:
-        <literal>float&#xA0;rand(void)</literal></para>
+        <literal>float rand (void)</literal>; now:
+        <literal>float rand(void)</literal></para>
       </listitem>
       <!-- ======================================================= -->
       <listitem>
@@ -2782,7 +3093,7 @@ Steve Ball</alt></phrase></para>
       <!-- ======================================================= -->
       <listitem>
         <para>Corrected rendering of <tag>simplelist</tag>. Any
-        <literal>&lt;simplelist&#xA0;type="inline"</literal> instance
+        <literal>&lt;simplelist type="inline"</literal> instance
         is now rendered as a comma-separated list (also with an
         optional localized <quote>and</quote> or <quote>or</quote> before the last item -- see
         description elsewhere in these release notes). Any simplelist
@@ -3557,7 +3868,7 @@ Added Bosnian locale file as common/bs.xml.
 </listitem> 
 <listitem>
 <para>Added a workaround to allow these stylesheets to process DocBook NG
-documents. (It&#x2019;s a hack that pre-processes the document to strip off the
+documents. (It’s a hack that pre-processes the document to strip off the
 namespace and then uses <function>exsl:node-set</function> to process
 the result.)
 </para>
@@ -3565,7 +3876,7 @@ the result.)
 <listitem>
 <para>Added alternative indexing mechanism which has better
 internationalization support. New indexing method allows grouping of
-accented letters like e, &#xE9;, &#xEB; into the same group under letter "e". It
+accented letters like e, é, ë into the same group under letter "e". It
 can also treat special letters (e.g. "ch") as one character and place
 them in the correct position (e.g. between "h" and "i" in Czech
 language).</para> 
@@ -3576,13 +3887,13 @@ layer which imports some base stylesheet (like
 stylesheet with new indexing code
 (<filename>fo/autoidx-ng.xsl</filename> or
 <filename>html/autoidx-ng.xsl</filename>). For example:</para> 
-<programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version="1.0">
+<programlisting>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version="1.0"&gt;
 
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
-<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/fo/autoidx-ng.xsl"/>
+&lt;xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/&gt;
+&lt;xsl:include href="http://docbook.sourceforge.net/release/xsl/current/fo/autoidx-ng.xsl"/&gt;
 
-</xsl:stylesheet>]]></programlisting>
+&lt;/xsl:stylesheet&gt;</programlisting>
 <para>New method is known to work with Saxon and it should also work
 with xsltproc 1.1.1 and later. Currently supported languages are
 English, Czech, German, French, Spanish and Danish.</para> 
@@ -3593,7 +3904,7 @@ English, Czech, German, French, Spanish and Danish.</para>
 <title>Release 1.64.1</title> 
 <itemizedlist>
 <para>General bug fixes and improvements. Sorry about the failure to produce
-an updated release notes file for 1.62.0&#x2014;1.63.2</para> 
+an updated release notes file for 1.62.0—1.63.2</para> 
 <listitem>
 <para>In the course of fixing bug #849787, wrapping Unicode callouts
 with an appropriate font change in the Xalan extensions, I discovered
@@ -3797,27 +4108,27 @@ and first varlistentry since DocBook 4.2 supports that now.
 the stylesheet that transforms them have been significantly changed. All of the
 attributes used to control the templates are now namespace qualified. So what
 used to be:</para> 
-<programlisting><![CDATA[<t:titlepage element="article" wrapper="fo:block">]]></programlisting>
+<programlisting>&lt;t:titlepage element="article" wrapper="fo:block"&gt;</programlisting>
 <para>is now:</para> 
-<programlisting><![CDATA[<t:titlepage t:element="article" t:wrapper="fo:block">]]></programlisting>
+<programlisting>&lt;t:titlepage t:element="article" t:wrapper="fo:block"&gt;</programlisting>
 <para>Attributes from other namespaces (including those that are unqualified) are
 now copied directly through. In practice, this means that the names that used
 to be <quote>fo:</quote> qualified:</para> 
-<programlisting><![CDATA[<title named-template="component.title"
+<programlisting>&lt;title named-template="component.title"
        param:node="ancestor-or-self::article[1]"
        fo:text-align="center"
        fo:keep-with-next="always"
-       fo:font-size="&hsize5;"
+       fo:font-size="&amp;hsize5;"
        fo:font-weight="bold"
-       fo:font-family="{$title.font.family}"/>]]></programlisting>
+       fo:font-family="{$title.font.family}"/&gt;</programlisting>
 <para>are now unqualified:</para> 
-<programlisting><![CDATA[<title t:named-template="component.title"
+<programlisting>&lt;title t:named-template="component.title"
        param:node="ancestor-or-self::article[1]"
        text-align="center"
        keep-with-next="always"
-       font-size="&hsize5;"
+       font-size="&amp;hsize5;"
        font-weight="bold"
-       font-family="{$title.font.family}"/>]]></programlisting>
+       font-family="{$title.font.family}"/&gt;</programlisting>
 <para>The <tag>t:titlepage</tag> and <tag>t:titlepage-content</tag>
 elements both generate wrappers now. And unqualified attributes on those elements
 are passed through. This means that you can now make the title font apply to
