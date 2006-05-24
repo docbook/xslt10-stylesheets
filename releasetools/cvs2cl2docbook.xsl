@@ -3,6 +3,7 @@
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:sf="http://sourceforge.net/"
                 xmlns:cvs="http://www.red-bean.com/xmlns/cvs2cl/"
+		xmlns="http://docbook.org/ns/docbook"
                 exclude-result-prefixes="exsl sf cvs"
                 version='1.0'>
   <!-- ********************************************************************
@@ -59,7 +60,7 @@
   <!-- *   XSL stylesheet param names, and marks them up with -->
   <!-- *   <parameter>hoge.moge.baz</parameter> instances -->
   <!-- * -->
-  <!-- * - preserves newlines (by converting them to <sbr/> instances) -->
+  <!-- * - discards newlines, so don't rely on them in your commit messages -->
   <!-- * -->
   <!-- * - converts cvs usernames to corresponding users' real names -->
   <!-- * -->
@@ -231,27 +232,24 @@
     <xsl:param name="dirname"/>
     <xsl:for-each select="cvs:entry[cvs:file/cvs:name[starts-with(.,concat($dirname,'/'))]]">
       <!-- * each Lisitem corresponds to a single commit -->
-      <listitem>
+      <listitem role="commit-message">
         <xsl:text>&#xa;</xsl:text>
         <!-- * for each entry (commit), get the commit message. Also -->
         <!-- * get the filename(s) + revision(s) and username, and -->
-        <!-- * put it into an Alt element, which will become a Title -->
-        <!-- * element in HTML output, generating "tooltip text"-->
-        <para>
-          <phrase role="commit-message">
-            <xsl:apply-templates
-                select="cvs:msg"/>
-            <alt>
-              <xsl:for-each select="cvs:file">
-                <xsl:apply-templates select="."/>
-                <xsl:if test="not(position() = last())">
-                  <xsl:text>; </xsl:text>
-                </xsl:if>
-              </xsl:for-each>
-              <xsl:text> - </xsl:text>
-              <xsl:apply-templates select="cvs:author"/>
-            </alt>
-          </phrase>
+        <!-- * put it on the end -->
+	<xsl:call-template name="format-message">
+	  <xsl:with-param name="text" select="string(cvs:msg)"/>
+	</xsl:call-template>
+	<para role="commit-changes">
+	  <xsl:text>Modified: </xsl:text>
+	  <xsl:for-each select="cvs:file">
+	    <xsl:apply-templates select="."/>
+	    <xsl:if test="not(position() = last())">
+	      <xsl:text>; </xsl:text>
+	    </xsl:if>
+	  </xsl:for-each>
+	  <xsl:text> - </xsl:text>
+	  <xsl:apply-templates select="cvs:author"/>
         </para>
         <xsl:text>&#xa;</xsl:text>
       </listitem>
@@ -259,12 +257,39 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="cvs:msg">
+  <xsl:template name="format-message">
+    <xsl:param name="text" select="''"/>
+    <xsl:choose>
+      <xsl:when test="contains($text,'&#xa;&#xa;')">
+	<para>
+	  <xsl:call-template name="add-markup">
+	    <xsl:with-param name="text"
+			    select="substring-before($text,'&#xa;&#xa;')"/>
+	  </xsl:call-template>
+	</para>
+	<xsl:call-template name="format-message">
+	  <xsl:with-param name="text"
+			  select="substring-after($text,'&#xa;&#xa;')"/>
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+	<para>
+	  <xsl:call-template name="add-markup">
+	    <xsl:with-param name="text" select="$text"/>
+	  </xsl:call-template>
+	</para>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="add-markup">
+    <xsl:param name="text" select="''"/>
+
     <!-- * trim off any leading and trailing whitespace from this -->
     <!-- * commit message -->
     <xsl:variable name="trimmed">
       <xsl:call-template name="trim.text">
-        <xsl:with-param name="contents" select="."/>
+        <xsl:with-param name="contents" select="$text"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="trimmed-contents" select="exsl:node-set($trimmed)"/>

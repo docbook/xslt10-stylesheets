@@ -4,7 +4,7 @@
 
 <xsl:include href="docbook-elements.xsl"/>
 
-<xsl:param name="tdg-baseuri" select="'http://www.docbook.org/tdg/en/html/'"/>
+<xsl:param name="tdg-baseuri" select="'http://docbook.org/tdg/en/html/'"/>
 
 <xsl:template match="sgmltag|tag">
   <xsl:variable name="tagmarkup">
