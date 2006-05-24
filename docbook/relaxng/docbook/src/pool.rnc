@@ -3344,8 +3344,15 @@ db.modifier.xml.space.attribute =
    attribute xml:space {
       ## Extra whitespace and line breaks must be preserved.
       "preserve"
-    | ## Extra whitespace and line breaks are not preserved.
-      "default"
+# Ideally the definition of xml:space used on modifier would be
+# different from the definition used on the verbatim elements. The
+# verbatim elements forbid the use of xml:space="default" which
+# wouldn't be a problem on modifier. But doing that causes the
+# generated XSD schemas to be broken so I'm just reusing the existing
+# definition for now. It won't be backwards incompatible to fix this
+# problem in the future.
+#    | ## Extra whitespace and line breaks are not preserved.
+#      "default"
    }
 
 [
@@ -3355,6 +3362,7 @@ db.modifier.xml.space.attribute =
 div {
 
    db.modifier.role.attribute = attribute role { text }
+
 
    db.modifier.attlist =
       db.modifier.xml.space.attribute?
