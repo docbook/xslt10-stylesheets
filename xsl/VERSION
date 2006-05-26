@@ -12,7 +12,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
-  <fm:Version>1.70.0</fm:Version>
+  <fm:Version>1.70.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -20,8 +20,8 @@
   <!-- Initial freshmeat announcement -->
   <!-- Documentation -->
   <!-- Code cleanup -->
-  <!-- Minor feature enhancements -->
-  Major feature enhancements
+  Minor feature enhancements
+  <!-- Major feature enhancements -->
   <!-- Minor bugfixes -->
   <!-- Major bugfixes -->
   <!-- Minor security fixes -->
@@ -34,7 +34,8 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://docbook.cvs.sourceforge.net/docbook/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>This release includes a significant number of enhancements.
+  <fm:Changes>This is a stable release of the 1.70 stylesheets. It
+    includes only a few small changes from 1.70.0.
 </fm:Changes>
 </fm:project>
 
