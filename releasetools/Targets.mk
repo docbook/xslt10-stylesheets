@@ -234,6 +234,7 @@ release-clean: clean
 	$(RM) NEWS.html
 	$(RM) NEWS.xml
 	$(RM) RELEASE-NOTES-TMP.xml
+	$(RM) ChangeHistory.xml
 	$(RM) ChangeHistory.xml.zip
 	$(RM) ChangeLog.xml 
 	$(RM) LatestTag
@@ -241,7 +242,14 @@ release-clean: clean
 	$(RM) RELEASE-NOTES.html
 	$(RM) RELEASE-NOTES.fo
 	$(RM) RELEASE-NOTES.pdf
+	$(RM) RELEASE-NOTES.FULL.xml
 	$(RM) install.sh
+	$(RM) test.sh
+	$(RM) uninstall.sh
 	$(RM) .CatalogManager.properties.example
+	$(RM) .cshrc.incl
+	$(RM) .profile.incl
+	$(RM) .emacs.el
 	$(RM) .urilist
 	$(RM) .make-catalog.xsl
+	$(RM) catalog.xml
