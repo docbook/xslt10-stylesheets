@@ -1,102 +1,74 @@
+# $Id$
+
 include ../cvstools/Makefile.incl
+include ../releasetools/Variables.mk
 
-CVS2LOG=../cvstools/cvs2log
-NEXTVER=
-DIFFVER=
-ZIPVER=
-CVSCHECK := $(shell cvs -n update 2>&1 | grep -v ^cvs | cut -c3-)
-RELVER := $(shell grep "<fm:Version" VERSION | sed "s/ *<\/\?fm:Version>//g")
-TAGVER := $(shell echo "V$(RELVER)" | sed "s/\.//g")
-SFRELID=
-FMGO=-N
+DISTRO=xsl
 
-DIRS=lib common html fo manpages extensions htmlhelp javahelp
+# value of DISTRIB_DEPENDS is a space-separated list of any
+# targets for this distro's "distrib" target to depend on
+DISTRIB_DEPENDS = website slides doc install.sh
 
-.PHONY : distrib clean doc xhtml
+# value of ZIP_EXCLUDES is a space-separated list of any file or
+# directory names (shell wildcards OK) that should be excluded
+# from the zip file and tarball for the release
+DISTRIB_EXCLUDES = extensions/xsltproc saxon8 extensions/build/ extensions/build2/
 
-all:	xhtml RELEASE-NOTES.html
+# value of DISTRIB_PACKAGES is a space-separated list of any
+# directory names that should be packaged as separate zip/tar
+# files for the release
+DISTRIB_PACKAGES = doc
+
+# to make sure that executable bit is retained after packaging,
+# you need to explicitly list any executable files here
+DISTRIB_EXECUTABLES = fo/pdf2index install.sh
+
+# list of pathname+URIs to test for catalog support
+URILIST = \
+.\ http://docbook.sourceforge.net/release/xsl/current/
+
+DIRS=extensions common lib html fo manpages htmlhelp javahelp wordml
+
+.PHONY: distrib clean doc xhtml
+
+all: base xhtml docsrc
+
+base:
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 		fi \
 	done
 
-RELEASE-NOTES.html: RELEASE-NOTES.xml
-	$(XJPARSE) $<
-	$(XSLT) $< docsrc/release-notes.xsl $@
-
-RELEASE-NOTES.pdf: RELEASE-NOTES.xml
-	$(XSLT) $< docsrc/release-notes-fo.xsl RELEASE-NOTES.fo
-	xep RELEASE-NOTES.fo
-	rm -f RELEASE-NOTES.fo
-
 xhtml:
 	$(MAKE) -C xhtml
+
+docsrc:
+	$(MAKE) -C docsrc
 
 doc:
 	$(MAKE) -C docsrc
 	$(MAKE) -C doc
 
-distrib: all doc
-	$(CVS2LOG) -w
-ifeq ($(DIFFVER),)
-	$(MERGELOGS) > WhatsNew
-else
-	$(MERGELOGS) -v $(DIFFVER) > WhatsNew
-endif
+website:
+	$(MAKE) -C ../website/xsl
+	cp -pR ../website/xsl website
 
-newversion:
-ifeq ($(CVSCHECK),)
-ifeq ($(DIFFVER),)
-	@echo "DIFFVER must be specified."
-else
-ifeq ($(NEXTVER),$(RELVER))
-	cvs tag $(TAGVER)
-	$(MAKE) DIFFVER=$(DIFFVER) distrib
-else
-	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
-endif
-endif
-else
-	@echo "CVS is not up-to-date! ($(CVSCHECK))"
-endif
-
-freshmeat:
-ifeq ($(SFRELID),)
-	@echo "You must specify the sourceforge release identifier in SFRELID"
-else
-	$(XSLT) VERSION VERSION /tmp/fm-docbook-xsl sf-relid=$(SFRELID)
-	grep -v "<?xml" /tmp/fm-docbook-xsl | freshmeat-submit $(FMGO)
-endif
-
-zip:
-ifeq ($(ZIPVER),)
-	@echo You must specify ZIPVER for the zip target
-else
-	rm -rf /tmp/docbook-xsl-$(ZIPVER)
-	rm -f /tmp/tar.exclude
-	rm -f /tmp/docbook-xsl-$(ZIPVER).tar.gz
-	rm -f /tmp/docbook-xsl-$(ZIPVER).zip
-	mkdir /tmp/docbook-xsl-$(ZIPVER)
-	touch /tmp/tar.exclude
-	find . -print  | grep /CVS$$ | cut -c3- >> /tmp/tar.exclude
-	find . -print  | grep /CVS/ | cut -c3- >> /tmp/tar.exclude
-	find . -print  | grep /debian/ | cut -c3- >> /tmp/tar.exclude
-	find . -print  | grep .classes | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "*~"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".*~"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".*.pyc"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "#*"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".#*"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name ".cvsignore"  | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "Makefile*"   | cut -c3- >> /tmp/tar.exclude
-	find . -type f -name "README.CVS"   | cut -c3- >> /tmp/tar.exclude
-	tar cf - * --exclude-from /tmp/tar.exclude | (cd /tmp/docbook-xsl-$(ZIPVER); tar xf -)
-	cd /tmp && tar cf - docbook-xsl-$(ZIPVER) | gzip > docbook-xsl-$(ZIPVER).tar.gz
-	cd /tmp && zip -rpD docbook-xsl-$(ZIPVER).zip docbook-xsl-$(ZIPVER)
-	rm -f tar.exclude
-endif
+slides:
+	$(MAKE) -C ../slides/xsl
+	cp -pR ../slides/xsl slides
+	cp -pR ../slides/graphics slides
+	cp -pR ../slides/browser slides
 
 clean:
-	$(MAKE) -C doc clean
-	$(MAKE) -C docsrc clean
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) clean -C $$i"; $(MAKE) clean -C $$i; \
+		fi \
+	done
+	$(MAKE) clean -C xhtml
+	$(MAKE) clean -C doc
+	$(MAKE) clean -C docsrc
+	$(RM) -r website
+
+include ../releasetools/Targets.mk
