@@ -9,7 +9,6 @@ import org.xml.sax.*;
 import org.xml.sax.helpers.AttributesImpl;
 import org.w3c.dom.*;
 import org.w3c.dom.traversal.NodeIterator;
-import org.apache.xerces.dom.*;
 
 import org.apache.xpath.objects.XObject;
 import org.apache.xpath.XPath;

@@ -1,6 +1,0 @@
-CLASSFILES=Callout.class \
-ImageIntrinsics.class \
-Text.class \
-TextFactory.class \
-Verbatim.class 
-

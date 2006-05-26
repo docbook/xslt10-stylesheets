@@ -15,7 +15,6 @@ import org.xml.sax.AttributeList;
 import org.xml.sax.ContentHandler;
 
 import org.w3c.dom.*;
-import org.apache.xerces.dom.*;
 
 import org.apache.xpath.objects.XObject;
 import org.apache.xpath.XPath;
