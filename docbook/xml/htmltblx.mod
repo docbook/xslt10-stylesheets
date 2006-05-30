@@ -63,6 +63,9 @@
   >
 
 <!-- Does not contain lang or dir because they are in %common.attribs -->
+<![%sgml.features;[
+<!ENTITY % i18n "">
+]]>
 <!ENTITY % i18n
  "xml:lang    NMTOKEN        #IMPLIED"
   >
@@ -93,15 +96,15 @@
   >
 
 <!--doc:A group of columns in an HTML table.-->
-<!ELEMENT colgroup (col)*>
+<!ELEMENT colgroup %ho; (col)*>
 <!--doc:Specifications for a column in an HTML table.-->
-<!ELEMENT col      EMPTY>
+<!ELEMENT col %ho; EMPTY>
 <!--doc:A row in an HTML table.-->
-<!ELEMENT tr       (th|td)+>
+<!ELEMENT tr %ho;  (th|td)+>
 <!--doc:A table header entry in an HTML table.-->
-<!ELEMENT th       (%para.char.mix; | %tabentry.mix; | table | informaltable)*>
-<!--doc:A table entry in an HTML table.-->
-<!ELEMENT td       (%para.char.mix; | %tabentry.mix; | table | informaltable)*>
+<!ELEMENT th %ho;  (%para.char.mix; | %tabentry.mix; | table | informaltable)*>
+<!--doc:A table ntry in an HTML table.-->
+<!ELEMENT td %ho;  (%para.char.mix; | %tabentry.mix; | table | informaltable)*>
 
 <!ATTLIST colgroup
   %attrs;
