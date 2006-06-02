@@ -25,11 +25,11 @@
   <fm:Version>{VERSION}</fm:Version>
   <fm:Release-Focus>
   <!-- initial freshmeat announcement -->
-  Documentation
+  <!-- Documentation -->
   <!-- code cleanup -->
   <!-- Minor feature enhancements -->
   <!-- major feature enhancements -->
-  <!-- Minor bugfixes -->
+  Minor bugfixes
   <!-- major bugfixes -->
   <!-- minor security fixes -->
   <!-- major security fixes -->
@@ -39,10 +39,10 @@
   <fm:Changelog-URL>http://docbook.org/xml/{VERSION}/ChangeLog</fm:Changelog-URL>
   <fm:CVS-URL>http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/docbook/docbook/xml/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook/</fm:Mailing-List-URL>
-  <fm:Changes>There are no backwards-incompatible changes in this release.
-
-Updated version number for final release.
-There are no technical changes from DocBook V4.5CR2.
+  <fm:Changes>This release fixes a couple of minor bugs in the SGML
+version. The xml:lang attribute is excluded from HTML tables (the SGML
+DTD does not include the xml:* attributes) and minimization indicators
+were added to several elements.
   </fm:Changes>  
 </fm:project>
 
