@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>  <!-- -*- nxml -*- -->
 <!DOCTYPE article [
-<!ENTITY version "5.0b5">
+<!ENTITY version "5.0b6">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xl="http://www.w3.org/1999/xlink"

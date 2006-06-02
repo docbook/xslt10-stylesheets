@@ -7,12 +7,12 @@ VARS=
 all: howto.html howto.pdf
 
 %.html : %.xml $(HTMLSTYLE)
-	$(XJPARSE) $<
+	jing -c ../docbook.rnc $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(VARS)
 
 
 %.fo : %.xml $(FOSTYLE)
-	$(XJPARSE) $<
+	jing -c ../docbook.rnc $<
 	$(XSLT) $< $(FOSTYLE) $@ xep.extensions=1 $(VARS)
 
 %.pdf : %.fo
