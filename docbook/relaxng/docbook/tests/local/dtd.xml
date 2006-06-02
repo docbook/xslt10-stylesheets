@@ -1,0 +1,8 @@
+<!DOCTYPE book SYSTEM "../../docbook.dtd">
+<book>
+<title>Book Title</title>
+<chapter>
+<title>Chapter Title</title>
+<para/>
+</chapter>
+</book>
