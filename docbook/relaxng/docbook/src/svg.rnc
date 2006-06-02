@@ -34,7 +34,33 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.imageobject.content |= db._any.svg+
+db.imageobject.content |= db.imagedata.svg
+
+# Allow imagedata to contain SVG
+
+db.imagedata.svg.role.attribute = attribute role { text }
+
+db.imagedata.svg.attlist =
+      db.imagedata.svg.role.attribute?
+    & db.common.attributes
+    & attribute format { "svg" }?
+    & db.imagedata.align.attribute?
+    & db.imagedata.valign.attribute?
+    & db.imagedata.width.attribute?
+    & db.imagedata.contentwidth.attribute?
+    & db.imagedata.scalefit.attribute?
+    & db.imagedata.scale.attribute?
+    & db.imagedata.depth.attribute?
+    & db.imagedata.contentdepth.attribute?
+
+db.imagedata.svg.info = db._info.title.forbidden
+
+db.imagedata.svg =
+   element imagedata {
+      db.imagedata.attlist,
+      db.imagedata.info,
+      db._any.svg+
+   }
 
 [
    db:refname [ "svg:*" ]

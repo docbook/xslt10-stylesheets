@@ -36,6 +36,34 @@ default namespace = "http://docbook.org/ns/docbook"
 
 db.equation.content |= db._any.mml+
 
+# Allow imagedata to contain MathML
+
+db.imagedata.mathml.role.attribute = attribute role { text }
+
+db.imagedata.mathml.attlist =
+      db.imagedata.mathml.role.attribute?
+    & db.common.attributes
+    & attribute format { "mathml" }?
+    & db.imagedata.align.attribute?
+    & db.imagedata.valign.attribute?
+    & db.imagedata.width.attribute?
+    & db.imagedata.contentwidth.attribute?
+    & db.imagedata.scalefit.attribute?
+    & db.imagedata.scale.attribute?
+    & db.imagedata.depth.attribute?
+    & db.imagedata.contentdepth.attribute?
+
+db.imagedata.mathml.info = db._info.title.forbidden
+
+db.imagedata.mathml =
+   element imagedata {
+      db.imagedata.attlist,
+      db.imagedata.info,
+      db._any.mml+
+   }
+
+db.imageobject.content |= db.imagedata.mathml
+
 [
    db:refname [ "mml:*" ]
    db:refpurpose [ "Any element from the MathML namespace" ]
