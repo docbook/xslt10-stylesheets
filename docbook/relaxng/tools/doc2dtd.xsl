@@ -250,6 +250,12 @@
       </dtd:attlist>
     </xsl:when>
 
+    <!-- suppress the SVG/MathML imagedata alternatives -->
+    <xsl:when test="@name = 'db.imagedata.mathml'
+		    or @name = 'db.imagedata.svg'">
+      <!-- nop -->
+    </xsl:when>
+
     <xsl:otherwise>
       <xsl:apply-templates/>
     </xsl:otherwise>
@@ -374,7 +380,10 @@
 		    and ../rng:ref[@name='db.cals.informaltable']">
       <!-- suppress -->
     </xsl:when>
-    <xsl:when test="@name = 'db._any.svg' or @name='db._any.mathml'">
+    <xsl:when test="@name = 'db._any.svg'
+		    or @name = 'db._any.mathml'
+		    or @name = 'db.imagedata.svg'
+		    or @name = 'db.imagedata.mathml'">
       <!-- suppress -->
     </xsl:when>
     <xsl:when test="$def/rng:element">
