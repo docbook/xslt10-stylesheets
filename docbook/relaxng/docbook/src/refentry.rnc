@@ -49,6 +49,10 @@ db.secondlevel.refsection = db.refsection+
 
 # ======================================================================
 
+db.reference.components = db.refentry
+
+# ======================================================================
+
 [
    db:refname [ "reference" ]
    db:refpurpose [ "A collection of reference entries" ]
@@ -71,7 +75,7 @@ div {
          db.reference.attlist,
          db.reference.info,
          db.partintro?,
-         db.refentry+
+         db.reference.components+
       }
 }
 
