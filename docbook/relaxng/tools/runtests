@@ -49,6 +49,7 @@ for f in $XMLFILES; do
 		echo "passed"
 		mv $f passed/
 	    else
+		echo -n "Try DocBook+XInclude validate $f..."
 		if jing ../docbookxi.rng $f; then
 		    echo "passed"
 		    mv $f passed/
