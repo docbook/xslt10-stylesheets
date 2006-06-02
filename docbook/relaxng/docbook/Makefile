@@ -13,7 +13,7 @@ PERL=perl
 MV ?= mv
 
 CLASS=wd
-VERSION=5.0b5
+VERSION=5.0b6
 SPECNAME=$(CLASS)-docbook-docbook-$(VERSION)
 
 TOOLS=../tools
@@ -66,3 +66,4 @@ distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
 	cp ../tools/db4-upgrade.xsl $(DISTRIB)/tools/
 	cp ../tools/db4-entities.pl $(DISTRIB)/tools/
 	cp README $(DISTRIB)/
+	cp ChangeLog $(DISTRIB)/
