@@ -2,7 +2,7 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
 
 <!-- ...................................................................... -->
-<!-- XML Catalog data for DocBook V4.5CR2 .................................... -->
+<!-- XML Catalog data for DocBook V4.5CR3 .................................... -->
 <!-- File catalog.xml ..................................................... -->
 
 <!-- Please direct all questions, bug reports, or suggestions for
@@ -10,7 +10,7 @@
      information, see http://www.oasis-open.org/.
   -->
 
-<!-- This is the catalog data file for DocBook V4.5CR2. It is provided as
+<!-- This is the catalog data file for DocBook V4.5CR3. It is provided as
      a convenience in building your own catalog files. You need not use
      the filenames listed here, and need not use the filename method of
      identifying storage objects at all.  See the documentation for
@@ -22,10 +22,10 @@
 <!-- ...................................................................... -->
 <!-- DocBook driver file .................................................. -->
 
-<public publicId="-//OASIS//DTD DocBook V4.5CR2//EN"
+<public publicId="-//OASIS//DTD DocBook V4.5CR3//EN"
         uri="docbook.dtd"/>
 
-<public publicId="-//OASIS//DTD DocBook XML V4.5CR2//EN"
+<public publicId="-//OASIS//DTD DocBook XML V4.5CR3//EN"
         uri="docbookx.dtd"/>
 
 <system systemId="http://www.oasis-open.org/docbook/sgml/4.5b1/docbook.dtd"
@@ -43,28 +43,28 @@
 <!-- ...................................................................... -->
 <!-- DocBook modules ...................................................... -->
 
-<public publicId="-//OASIS//DTD DocBook CALS Table Model V4.5CR2//EN"
+<public publicId="-//OASIS//DTD DocBook CALS Table Model V4.5CR3//EN"
         uri="calstblx.dtd"/>
 
-<public publicId="-//OASIS//ELEMENTS DocBook XML HTML Tables V4.5CR2//EN"
+<public publicId="-//OASIS//ELEMENTS DocBook XML HTML Tables V4.5CR3//EN"
 	uri="htmltblx.mod"/>
 
 <public publicId="-//OASIS//DTD XML Exchange Table Model 19990315//EN"
         uri="soextblx.dtd"/>
 
-<public publicId="-//OASIS//ELEMENTS DocBook Information Pool V4.5CR2//EN"
+<public publicId="-//OASIS//ELEMENTS DocBook Information Pool V4.5CR3//EN"
         uri="dbpoolx.mod"/>
 
-<public publicId="-//OASIS//ELEMENTS DocBook Document Hierarchy V4.5CR2//EN"
+<public publicId="-//OASIS//ELEMENTS DocBook Document Hierarchy V4.5CR3//EN"
         uri="dbhierx.mod"/>
 
-<public publicId="-//OASIS//ENTITIES DocBook Additional General Entities V4.5CR2//EN"
+<public publicId="-//OASIS//ENTITIES DocBook Additional General Entities V4.5CR3//EN"
         uri="dbgenent.mod"/>
 
-<public publicId="-//OASIS//ENTITIES DocBook Notations V4.5CR2//EN"
+<public publicId="-//OASIS//ENTITIES DocBook Notations V4.5CR3//EN"
         uri="dbnotnx.mod"/>
 
-<public publicId="-//OASIS//ENTITIES DocBook Character Entities V4.5CR2//EN"
+<public publicId="-//OASIS//ENTITIES DocBook Character Entities V4.5CR3//EN"
         uri="dbcentx.mod"/>
 
 <!-- ...................................................................... -->
@@ -127,7 +127,7 @@
 <public publicId="ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN"
         uri="iso-cyr2.gml"/>
 
-<!-- End of catalog data for DocBook XML V4.5CR2 ............................. -->
+<!-- End of catalog data for DocBook XML V4.5CR3 ............................. -->
 <!-- ...................................................................... -->
 
 </catalog>

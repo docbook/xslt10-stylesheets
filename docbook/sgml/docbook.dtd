@@ -1,8 +1,8 @@
 <!-- ...................................................................... -->
-<!-- DocBook DTD V4.5CR2 ..................................................... -->
+<!-- DocBook DTD V4.5CR3 ..................................................... -->
 <!-- File docbook.dtd ..................................................... -->
 
-<!-- Copyright 1992-2004 HaL Computer Systems, Inc.,
+<!-- Copyright 1992-2006 HaL Computer Systems, Inc.,
      O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
      Corporation, Norman Walsh, Sun Microsystems, Inc., and the
      Organization for the Advancement of Structured Information
@@ -30,21 +30,21 @@
 
 <!-- ...................................................................... -->
 
-<!-- This is the driver file for V4.5CR2 of the DocBook DTD.
+<!-- This is the driver file for V4.5CR3 of the DocBook DTD.
      Please use the following formal public identifier to identify it:
 
-     "-//OASIS//DTD DocBook V4.5CR2//EN"
+     "-//OASIS//DTD DocBook V4.5CR3//EN"
 
      For example, if your document's top-level element is Book, and
      you are using DocBook directly, use the FPI in the DOCTYPE
      declaration:
 
-     <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.5CR2//EN" [...]>
+     <!DOCTYPE Book PUBLIC "-//OASIS//DTD DocBook V4.5CR3//EN" [...]>
 
      Or, if you have a higher-level driver file that customizes DocBook,
      use the FPI in the parameter entity declaration:
 
-     <!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook V4.5CR2//EN">
+     <!ENTITY % DocBookDTD PUBLIC "-//OASIS//DTD DocBook V4.5CR3//EN">
      %DocBookDTD;
 
      The DocBook DTD is accompanied by an SGML declaration.
@@ -57,9 +57,9 @@
 
 <!ENTITY % sgml.features "INCLUDE">
 
-<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.5CR2//EN"
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.5CR3//EN"
                    "docbookx.dtd">
 %docbook;
 
-<!-- End of DocBook DTD V4.5CR2 .............................................. -->
+<!-- End of DocBook DTD V4.5CR3 .............................................. -->
 <!-- ...................................................................... -->
