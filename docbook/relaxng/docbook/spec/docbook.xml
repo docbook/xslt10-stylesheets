@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0b5</productnumber>
+<!-- productVersion --> <productnumber>5.0b6</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-04-12</pubdate>
+<pubdate>2006-06-02</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -153,6 +153,44 @@ from the
 DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
+
+<section xml:id="s.50b6">
+<title>Changes in DocBook V5.0b6</title>
+
+<para>This release contains several improvements over V5.0b5.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1434294">
+<para>Fixed <link xlink:href="&RFE;aid=1434294">RFE 1434294</link>:
+Allow MathML and SVG in <tag>imagedata</tag>. Note: SVG is no longer
+allowed as an <emphasis>alternative</emphasis> to <tag>imagedata</tag>.
+The alignment, scaling, and other presentational attributes are on
+<tag>imagedata</tag> so it seems more reasonable to allow SVG and MathML
+inside it.</para>
+</listitem>
+
+<listitem xml:id="rfe.1468921">
+<para>Fixed <link xlink:href="&RFE;aid=1468921">RFE 1468921</link>:
+Add <tag>person</tag> element. Added <tag>person</tag> and <tag>org</tag>.
+</para>
+</listitem>
+
+<listitem xml:id="rfe.1306027">
+<para>Fixed <link xlink:href="&RFE;aid=1306027">RFE 1306027</link>:
+Support for aspect-oriented programming. Allow <tag>modifier</tag> to
+appear in more places, and allow <tag class="attribute">xml:space</tag>
+on <tag>modifier</tag>.
+</para>
+</listitem>
+
+<listitem xml:id="publinlines">
+<para>Added <literal>db.publishing.inlines</literal> to 
+<literal>db.bibliographic.elements</literal> so that, for example,
+<tag>foreignphrase</tag> can be used in <tag>bibliomixed</tag>.
+</para>
+</listitem>
+</orderedlist>
+</section>
 
 <section xml:id="s.50b5">
 <title>Changes in DocBook V5.0b5</title>
@@ -1104,6 +1142,14 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/docbook-5.0b6-spec-wd-01.html">
+  <revnumber>Working Draft “Beta 6”</revnumber>
+  <date>2 June 2006</date>
+</revision>
+<revision role="&root;specs/docbook-5.0b5-spec-wd-01.html">
+  <revnumber>Working Draft “Beta 5”</revnumber>
+  <date>16 April 2006</date>
+</revision>
 <revision role="&root;specs/docbook-5.0b4-spec-wd-01.html">
   <revnumber>Working Draft “Beta 4”</revnumber>
   <date>9 March 2006</date>
