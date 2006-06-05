@@ -1443,7 +1443,8 @@ uses <varname>db.org.author.contentmodel</varname>:
         <xref linkend="ex-add-attr" xrefstyle="select: label"/>
         adds the optional attributes <tag class="attribute">born</tag>
         and <tag class="attribute">died</tag> to the attribute
-        list for <tag>author</tag>.  The <varname>db.author.attlist</varname>
+        list for <tag>author</tag>.
+        The <varname>db.author.attlist</varname>
         named pattern is redefined with the
         <tag class="attribute">combine</tag> attribute set to
         <quote>interleave</quote>, which interleaves the two new
