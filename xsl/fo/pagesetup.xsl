@@ -2020,6 +2020,7 @@
                               self::bookinfo or
                               self::info or
                               self::dedication or
+                              self::preface or
                               self::toc or
                               self::lot)][1]"/>
   <xsl:choose>
