@@ -36,11 +36,16 @@ default namespace = "http://docbook.org/ns/docbook"
 
 db.imageobject.content |= db.imagedata.svg
 
-# Allow imagedata to contain SVG
+# ============================================================
 
-db.imagedata.svg.role.attribute = attribute role { text }
+[
+   db:refname [ "imagedata" ]
+   db:refpurpose [ "An SVG drawing in a media object" ]
+]
+div {
+   db.imagedata.svg.role.attribute = attribute role { text }
 
-db.imagedata.svg.attlist =
+   db.imagedata.svg.attlist =
       db.imagedata.svg.role.attribute?
     & db.common.attributes
     & attribute format { "svg" }?
@@ -53,14 +58,17 @@ db.imagedata.svg.attlist =
     & db.imagedata.depth.attribute?
     & db.imagedata.contentdepth.attribute?
 
-db.imagedata.svg.info = db._info.title.forbidden
+   db.imagedata.svg.info = db._info.title.forbidden
 
-db.imagedata.svg =
-   element imagedata {
-      db.imagedata.svg.attlist,
-      db.imagedata.svg.info,
-      db._any.svg+
-   }
+   db.imagedata.svg =
+      element imagedata {
+         db.imagedata.attlist,
+         db.imagedata.info,
+         db._any.svg+
+      }
+}
+
+# ============================================================
 
 [
    db:refname [ "svg:*" ]
