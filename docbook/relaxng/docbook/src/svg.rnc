@@ -57,8 +57,8 @@ db.imagedata.svg.info = db._info.title.forbidden
 
 db.imagedata.svg =
    element imagedata {
-      db.imagedata.attlist,
-      db.imagedata.info,
+      db.imagedata.svg.attlist,
+      db.imagedata.svg.info,
       db._any.svg+
    }
 
