@@ -63,7 +63,7 @@ div {
 
    db.imagedata.mathml =
       element imagedata {
-         db.imagedata.attlist,
+         db.imagedata.mathml.attlist,
          db.imagedata.info,
          db._any.mml+
       }
