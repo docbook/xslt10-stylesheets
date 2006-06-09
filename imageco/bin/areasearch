@@ -1,0 +1,163 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+# areasearch -- Searches for rectangles and generates coords
+#
+# $Id$
+#
+# Copyright (C) 2006 Norman Walsh
+#
+# This is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# It is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# Usage:
+#
+# areasearch graphic
+#
+# The script searches for rectangular regions in the graphic and generates
+# CALS calspair coords for them.
+#
+# Bugs and limitations:
+#
+# Identifies the background color by searching exhaustively for the
+# predominate color. That may be slow on large graphics.
+#
+# Searches for rectangles, no other shapes.
+
+use strict;
+use English;
+use Getopt::Std;
+use GD;
+use Image::Info qw(image_info dim);
+
+my $usage = "$0 image\n";
+my $imagefile = shift @ARGV || die $usage;
+
+print STDERR "Loading $imagefile...\n";
+
+my $img = load($imagefile);
+my ($width, $height) = $img->getBounds();
+
+print STDERR "Searching for background color...\n";
+
+my %index = ();
+for (my $y = 0; $y < $height; $y++) {
+    for (my $x = 0; $x < $width; $x++) {
+	my $idx = $img->getPixel($x, $y);
+	$index{$idx} = 0 if ! exists $index{$idx};
+	$index{$idx}++;
+    }
+}
+
+my $count = -1;
+my $background = 0;
+foreach my $idx (keys %index) {
+    if ($index{$idx} > $count) {
+	$background = $idx;
+	$count = $index{$idx};
+    }
+}
+
+#print STDERR "Index $background is the background color.\n";
+
+print STDERR "Searching for rectangles...\n";
+
+my @squares = ();
+for (my $y = 0; $y < $height; $y++) {
+    for (my $x = 0; $x < $width; $x++) {
+	my $idx = $img->getPixel($x, $y);
+	if ($idx != $background && newSquare($x, $y)) {
+	    my ($width, $height) = findSquare($x, $y);
+	    print STDERR "New rectangle at $x, $y ($width x $height)\n";
+	}
+    }
+}
+
+foreach my $sq (@squares) {
+    my ($x, $y) = ($sq->{'x'}, $sq->{'y'});
+    my ($w, $h) = ($sq->{'w'}, $sq->{'h'});
+
+    my $lx = $x;
+    my $ly = $height - $y;
+    my $ux = $x+$w-1;
+    my $uy = $height - ($y + $h - 1);
+
+    printf ("<area xml:id=\"\" linkends=\"\" units=\"calspair\" coords=\"%d,%d %d,%d\"/>\n",
+	    int($lx/$width*10000.0),
+	    int($ly/$height*10000.0),
+	    int($ux/$width*10000.0),
+	    int($uy/$height*10000.0));
+}
+
+exit;
+
+# ============================================================
+
+sub findSquare {
+    my $x = shift;
+    my $y = shift;
+
+    my $w = 0;
+    my $h = 0;
+
+    while ($w < $width && $img->getPixel($x+$w, $y) != $background) {
+	$w++;
+    }
+
+    while ($h < $height && $img->getPixel($x, $y+$h) != $background) {
+	$h++;
+    }
+
+    my $sq = {};
+    $sq->{'x'} = $x;
+    $sq->{'y'} = $y;
+    $sq->{'w'} = $w;
+    $sq->{'h'} = $h;
+    push (@squares, $sq);
+
+    return ($w, $h);
+}
+
+sub newSquare {
+    my $x = shift;
+    my $y = shift;
+
+    foreach my $sq (@squares) {
+	if ($x >= $sq->{'x'}
+	    && $x <= $sq->{'x'}+$sq->{'w'}-1
+	    && $y >= $sq->{'y'}
+	    && $y <= $sq->{'y'}+$sq->{'h'}-1) {
+	    return 0;
+	}
+    }
+
+    return 1;
+}
+
+sub load {
+    my $file = shift;
+    my $ext = $file;
+    $ext =~ s/^.*\.([^\.]+)$/$1/;
+
+    if ($ext eq 'png') {
+	return GD::Image->newFromPng($file);
+    } elsif ($ext eq 'jpeg' || $ext eq 'jpg') {
+	return GD::Image->newFromJpeg($file);
+    } elsif ($ext eq 'xbm') {
+	return GD::Image->newFromXbm($file);
+    } elsif ($ext eq 'wmp') {
+	return GD::Image->newFromWMP($file);
+    } elsif ($ext eq 'gif') {
+	return GD::Image->newFromGif($file);
+    } elsif ($ext eq 'xpm') {
+	return GD::Image->newFromXpm($file);
+    } else {
+	die "Don't know how to load image: $file\n";
+    }
+}
