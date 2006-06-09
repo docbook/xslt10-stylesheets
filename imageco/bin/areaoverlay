@@ -1,0 +1,235 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+# areaoverlay -- Generates images with callouts from DocBook imageobjectco's
+#
+# $Id$
+#
+# Copyright (C) 2006 Norman Walsh
+#
+# This is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# It is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# Usage:
+#
+# areaoverlay [-d] [-p copath] [-e coext] docbook.xml
+#
+# The script searches for <imageobjectco> tags in docbook.xml. For each
+# one that it finds, it processes each of the <imageobject>s that it
+# contains. If you specify the base image with a processing instruction,
+# for example, <?base-image somegraphic.png?>, then this script will use
+# the base image plus the areas specified to generate the image identified
+# by the fileref with callouts at the specified locations.
+#
+# The callouts are 1.gif, 2.gif, etc. You can (and probably must) specify
+# the directory where the graphics are located with the -p option. You can
+# change the extension with the -e option. If you specify -d, the script
+# will add a black rectangle to the graphic showing the region that it
+# thinks each coords identifies.
+#
+# Bugs and limitations:
+#
+# Only supports calspair units.
+#
+# Requires GD library version 2 or later. Version 1 doesn't support
+# transparency so the results are usually pretty ugly.
+#
+# The version of GD that I have seems to mangle transparent PNGs.
+#
+# XML::XPath doesn't support unparsed-entity-uri() so entityref is handled
+# with a hack. And it doesn't support public identifiers or catalog
+# resolution.
+
+use strict;
+use English;
+use Getopt::Std;
+use GD;
+use XML::XPath;
+use vars qw($opt_d $opt_p $opt_e);
+
+my $usage = "$0 [-d] [-p copath] [-e coext] docbook.xml\n";
+
+die $usage if ! getopts('de:p:');
+
+my $debug = $opt_d || 0;
+my $path = $opt_p || "/sourceforge/docbook/xsl/images/callouts";
+my $ext  = $opt_e || "gif";
+
+my $docbook = shift @ARGV || die $usage;
+
+my $xp = XML::XPath->new(filename => $docbook);
+$xp->set_namespace('db', 'http://docbook.org/ns/docbook');
+
+my $cos = $xp->find("//imageobjectco|//db:imageobjectco");
+foreach my $node ($cos->get_nodelist()) {
+    processImage($node);
+}
+
+sub processImage {
+    my $node = shift;
+    my $pi = "processing-instruction('base-image')";
+    my $images = $node->find("imageobject[$pi]|db:imageobject[$pi]");
+
+    foreach my $img ($images->get_nodelist()) {
+	my $baseimg = ($img->find($pi . "[1]")->get_nodelist())[0]->getData();
+	my $data = ($img->find("imagedata|db:imagedata")->get_nodelist())[0];
+	my $fileref = $data->getAttribute('fileref');
+	if (!$fileref) {
+	    my $entref = $data->getAttribute('entityref');
+	    # HACK HACK HACK; this ought to be supported in XML::XPath
+	    open (F, $docbook);
+	    read (F, $_, 32768); # 32k far enough?
+	    close (F);
+	    # No support for public identifiers and catalog resolution :-(
+	    if (/<!ENTITY\s+$entref\s+SYSTEM\s+([\'\"])(.*?)\1/s) {
+		$fileref = $2;
+	    } else {
+		warn "Can't handle entityref in XML::XPath (skipping $entref)\n";
+		next;
+	    }
+	}
+	my @coords = ();
+
+	my $areas = $img->find("../areaspec/*|../db:areaspec/*");
+
+	my $count = 0;
+	foreach my $area ($areas->get_nodelist()) {
+	    $count++;
+	    if ($area->getLocalName() eq 'areaset') {
+		my $setareas = $area->find("area|db:area");
+		if ($area->getAttribute('units') eq 'calspair'
+		    || !$area->getAttribute('units')) {
+		    foreach my $sarea ($setareas->get_nodelist()) {
+			processArea(\@coords, $count, $sarea);
+		    }
+		}
+	    } else {
+		processArea(\@coords, $count, $area);
+	    }
+	}
+
+	print "Callouts: $baseimg -> $fileref\n";
+	makeOverlay($baseimg, $fileref, @coords);
+    }
+}
+
+sub processArea {
+    my $coords = shift;
+    my $count = shift;
+    my $area = shift;
+
+    if ($area->getAttribute('units') ne 'calspair'
+	&& $area->getAttribute('units')) {
+	# only process with calspairs
+	return;
+    }
+
+    push (@{$coords}, "$count " . $area->getAttribute('coords'));
+}
+
+sub makeOverlay {
+    my $baseimage = shift;
+    my $overimage = shift;
+    my @coords = @_;
+    my @overlays = ();
+
+    my $orig = load($baseimage);
+    my ($width, $height) = $orig->getBounds();
+
+    my $black = $orig->colorAllocate(0,0,0);
+
+    while (@coords) {
+	while (split(/\s+/, shift @coords)) {
+	    my $conumber = shift || die "Can't parse callout data.\n";
+	    my $llcorner = shift || die "Can't parse callout data.\n";
+	    my $urcorner = shift || die "Can't parse callout data.\n";
+
+	    die "Can't parse callout data.\n"
+		if ($conumber !~ /^\d+$/
+		    || $llcorner !~ /^\d+,\d+$/
+		    || $urcorner !~ /^\d+,\d+$/);
+
+	    my $cographic = load("$path/$conumber.$ext");
+	    my ($cowidth,$coheight) = $cographic->getBounds();
+
+	    my ($lx, $ly, $ux, $uy);
+	    ($lx, $ly) = ($1, $2) if $llcorner =~ /^(\d+),(\d+)$/;
+	    ($ux, $uy) = ($1, $2) if $urcorner =~ /^(\d+),(\d+)$/;
+
+	    $lx = int(($width * $lx) / 10000.0);
+	    $ly = $height - int(($height * $ly) / 10000.0) - 1;
+	    $ux = int(($width * $ux) / 10000.0);
+	    $uy = $height - int(($height * $uy) / 10000.0) - 1;
+
+	    $orig->rectangle($lx,$ly,$ux,$uy,$black) if $debug;
+
+	    $orig->copy($cographic, $lx, $ly, 0, 0, $cowidth, $coheight);
+	}
+    }
+
+    save($orig, $overimage);
+}
+
+sub load {
+    my $file = shift;
+    my $ext = $file;
+    $ext =~ s/^.*\.([^\.]+)$/$1/;
+
+    if (! -f $file) {
+	die "File not found: $file\n";
+    }
+
+    if ($ext eq 'png') {
+	return GD::Image->newFromPng($file);
+    } elsif ($ext eq 'jpeg' || $ext eq 'jpg') {
+	return GD::Image->newFromJpeg($file);
+    } elsif ($ext eq 'xbm') {
+	return GD::Image->newFromXbm($file);
+    } elsif ($ext eq 'wmp') {
+	return GD::Image->newFromWMP($file);
+    } elsif ($ext eq 'gif') {
+	return GD::Image->newFromGif($file);
+    } elsif ($ext eq 'xpm') {
+	return GD::Image->newFromXpm($file);
+    } else {
+	die "Don't know how to load image: $file\n";
+    }
+}
+
+sub save {
+    my $img = shift;
+    my $file = shift;
+    my %formats = ('png' => 1, 'jpeg' => 1, 'jpg' => 1,
+		   'wmp' => 1, 'gif' => 1);
+    my $ext = $file;
+    $ext =~ s/^.*\.([^\.]+)$/$1/;
+
+    if (!exists($formats{$ext})) {
+	warn "Cannot save $file.\n";
+	return;
+    }
+
+    open (F, ">$file");
+    binmode (F);
+
+    if ($ext eq 'png') {
+	print F $img->png();
+    } elsif ($ext eq 'jpeg' || $ext eq 'jpg') {
+	print F $img->jpeg();
+    } elsif ($ext eq 'wmp') {
+	print F $img->wbmp();
+    } elsif ($ext eq 'gif') {
+	print F $img->gif();
+    } else {
+	# shouldn't happen!
+	die "Don't know how to save image: $file\n";
+    }
+
+    close (F);
+}
