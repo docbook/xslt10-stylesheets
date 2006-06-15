@@ -36,6 +36,13 @@
   </span>
 </xsl:template>
 
+<xsl:template match="org">
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates select="orgname"/>
+  </span>
+</xsl:template>
+
 <xsl:template match="orgname">
   <span class="{name(.)}">
     <xsl:apply-templates/>
