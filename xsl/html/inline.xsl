@@ -1182,9 +1182,18 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="person">
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates select="personname"/>
+  </span>
+</xsl:template>
+
 <xsl:template match="personname">
-  <xsl:call-template name="anchor"/>
-  <xsl:call-template name="person.name"/>
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="person.name"/>
+  </span>
 </xsl:template>
 
 <!-- ==================================================================== -->
