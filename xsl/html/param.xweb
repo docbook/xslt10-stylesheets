@@ -284,6 +284,8 @@ stylesheet like this:</para>
 &table.footnote.number.format;
 &footnote.number.symbols;
 &table.footnote.number.symbols;
+&highlight.source;
+&highlight.default.language;
 </reference>
 
 <reference id="annos"><title>Annotations</title>
@@ -536,6 +538,8 @@ around all these parameters.</para>
 <src:fragref linkend="graphicsize.extension.frag"/>
 <src:fragref linkend="graphicsize.use.img.src.path.frag"/>
 <src:fragref linkend="header.rule.frag"/>
+<src:fragref linkend="highlight.default.language.frag"/>
+<src:fragref linkend="highlight.source.frag"/>
 <src:fragref linkend="html.base.frag"/>
 <src:fragref linkend="html.cellpadding.frag"/>
 <src:fragref linkend="html.cellspacing.frag"/>

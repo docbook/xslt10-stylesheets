@@ -18,6 +18,9 @@
 
      ******************************************************************** -->
 
+<xsl:include href="../highlighting/common.xsl"/>
+<xsl:include href="highlight.xsl"/>
+
 <lxslt:component prefix="xverb"
                  functions="numberLines"/>
 
@@ -33,12 +36,12 @@
                       and $linenumbering.extension != '0'">
         <xsl:call-template name="number.rtf.lines">
           <xsl:with-param name="rtf">
-            <xsl:apply-templates/>
+	    <xsl:call-template name="apply-highlighting"/>
           </xsl:with-param>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates/>
+	<xsl:call-template name="apply-highlighting"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
