@@ -25,24 +25,23 @@ syntax highlighting in content of programlisting element.</para>
 download this software from <ulink
 url="http://sourceforge.net/projects/xslthl"/>.</para>
 
-<para>Configuration of syntax highlighting is stored insise
+<para>Configuration of syntax highlighting is stored inside
 <filename>highlighting/xslthl-config.xml</filename> file. Java
 property <literal>xslthl.config</literal> must be pointing to this
 file using URL.</para>
 
 <para>This extension is known to work with Saxon 6.5.x. When using
 syntax highlighting, do not forget to modify your classpath and point
-to configuration file using property. Modified Saxon command looks
+to the configuration file using property. Modified Saxon command can look
 like:</para>
 
-<programlisting>java -cp c:\batch\;…;c:\cesta\k\xslthl.jar -Dxslthl.config=file:///c:/docbook-xsl/highlighting/xslthl-config.xml … com.icl.saxon.StyleSheet …</programlisting>
+<programlisting>java -cp c:\batch\;…;c:\path\to\xslthl.jar -Dxslthl.config=file:///c:/docbook-xsl/highlighting/xslthl-config.xml … com.icl.saxon.StyleSheet …</programlisting>
 
-<para>You can specify language of each programlisting using <sgmltag
-class="attribute">language</sgmltag> attribute. You can also specify
-language to be expected for programlistings without <sgmltag
-class="attribute">language</sgmltag> attribute. In this case, you can
-use parameter <parameter>highlighting.default.language</parameter> to
-set default language.</para>
+<para>You can specify language for each programlisting using <sgmltag
+class="attribute">language</sgmltag> attribute. Parameter
+<parameter>highlighting.default.language</parameter> can be used for specifying
+language to be used for programlistings without <sgmltag
+class="attribute">language</sgmltag> attribute.</para>
 
 </refsect1>
 </refentry>
