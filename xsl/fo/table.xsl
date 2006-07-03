@@ -85,9 +85,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <xsl:for-each select="tgroup">
 
-    <xsl:variable name="prop-columns"
-                  select=".//colspec[contains(@colwidth, '*')]"/>
-
     <fo:table xsl:use-attribute-sets="table.table.properties">
       <xsl:if test="$keep.together != ''">
         <xsl:attribute name="keep-together.within-column">
@@ -115,12 +112,6 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <xsl:attribute name="space-before.optimum">0pt</xsl:attribute>
         <xsl:attribute name="space-before.maximum">0pt</xsl:attribute>
       </xsl:if>
-      <xsl:if test="count($prop-columns) != 0 or
-                    $fop.extensions != 0 or
-                    $fop1.extensions != 0 or
-                    $passivetex.extensions != 0">
-        <xsl:attribute name="table-layout">fixed</xsl:attribute>
-      </xsl:if>
       <xsl:apply-templates select="."/>
     </fo:table>
   </xsl:for-each>
@@ -147,7 +138,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <xsl:variable name="param.placement"
                 select="substring-after(normalize-space(
-		   $formal.title.placement), concat(local-name(.), ' '))"/>
+                   $formal.title.placement), concat(local-name(.), ' '))"/>
 
   <xsl:variable name="placement">
     <xsl:choose>
@@ -479,6 +470,15 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="prop-columns"
+                select=".//colspec[contains(@colwidth, '*')]"/>
+  <xsl:if test="count($prop-columns) != 0 or
+                $fop.extensions != 0 or
+                $fop1.extensions != 0 or
+                $passivetex.extensions != 0">
+    <xsl:attribute name="table-layout">fixed</xsl:attribute>
+  </xsl:if>
+
   <xsl:if test="position() = 1">
     <!-- If this is the first tgroup, output the width attribute for the -->
     <!-- surrounding fo:table. (If this isn't the first tgroup, trying   -->
@@ -599,6 +599,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:if>
   </xsl:variable>
 
+  <xsl:variable name="prop-columns"
+                select=".//colspec[contains(@colwidth, '*')]"/>
+
   <xsl:variable name="table.width">
     <xsl:choose>
       <xsl:when test="$explicit.table.width != ''">
@@ -611,8 +614,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         <xsl:choose>
           <!-- These processors don't support table-layout="auto" -->
           <xsl:when test="$fop.extensions != 0 or
-			  $fop1.extensions != 0 or
+                          $fop1.extensions != 0 or
                           $passivetex.extensions != 0">
+            <xsl:text>100%</xsl:text>
+          </xsl:when>
+          <!-- Proportional columns imply 100% width -->
+          <xsl:when test="count($prop-columns) != 0">
             <xsl:text>100%</xsl:text>
           </xsl:when>
           <xsl:otherwise>
@@ -980,7 +987,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
         <xsl:choose>
           <xsl:when test="$fop.extensions = 0 and $passivetex.extensions = 0
-	                  and $orientation != ''">
+                          and $orientation != ''">
             <fo:block-container reference-orientation="{$orientation}">
               <xsl:if test="$rotated-width != ''">
                 <xsl:attribute name="width">
@@ -1040,7 +1047,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:if>
 
       <xsl:if test="$colsep.inherit &gt; 0 and 
-	              $col &lt; ancestor::tgroup/@cols">
+                      $col &lt; ancestor::tgroup/@cols">
         <xsl:call-template name="border">
           <xsl:with-param name="side" select="'right'"/>
         </xsl:call-template>
