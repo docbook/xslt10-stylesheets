@@ -9,7 +9,7 @@ MYDIR=`dirname $0`
 
 XERCES=`findxerces2`
 RESOLVER=`findresolver`
-if [ ! "$RESOLVER" ]; then
+if [ ! "$RESOLVER" ] && [[ $CLASSPATH != *xml-commons-resolver* ]]; then
   echo "cannot find resolver classes" 1>&2
   exit 1
 fi
@@ -24,7 +24,7 @@ fi
 
 XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
 
-if [ ${RESOLVER/sun/} != ${RESOLVER} ]; then
+if [ $RESOLVER ] && [ ${RESOLVER/sun/} != ${RESOLVER} ]; then
     # guess this is the sun resolver
     XREAD=com.sun.resolver.apps.xread
 else
