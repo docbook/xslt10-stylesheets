@@ -31,7 +31,7 @@ DIRS=extensions common lib html fo manpages htmlhelp javahelp wordml
 
 .PHONY: distrib clean doc xhtml
 
-all: base xhtml docsrc
+all: litprog base xhtml docsrc
 
 base:
 	for i in $(DIRS) __bogus__; do \
@@ -39,6 +39,9 @@ base:
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 		fi \
 	done
+
+litprog:
+	$(MAKE) -C ../litprog
 
 xhtml:
 	$(MAKE) -C xhtml
