@@ -47,8 +47,8 @@
   <!-- * *************************************************************** -->
   <!-- *    Acknowledgements -->
   <!-- * *************************************************************** -->
-  <!-- * References used in selecting roff mappings and character -->
-  <!-- * information -->
+  <!-- * The following references were consulted when selecting roff -->
+  <!-- * mappings and character information: -->
   <!-- * -->
   <!-- *   - groff_char(7) man page[3] -->
   <!-- *   - groff info file[4]; in particular, the "Page Motions" node[5] -->
@@ -68,9 +68,9 @@
   <!-- * -->
   <!-- *   [8] http://nwalsh.com/emacs/xmlchars/ -->
   <!-- * -->
-  <!-- * The idea for doing this in XML/XSLT came from working with -->
-  <!-- * Steve Cheng's docbook2x package[9] - in particular, the -->
-  <!-- * "utf8trans" utility and character-map system in that package. -->
+  <!-- * The idea for implementing a character map in the DocBook Project -->
+  <!-- * manpages system was inspired by Steve Cheng's docbook2x[9]; -->
+  <!-- * in particular, its "utf8trans" utility and character-map system. -->
   <!-- * -->
   <!-- *   [9] http://docbook2x.sourceforge.net/ -->
   <!-- * -->
@@ -82,7 +82,7 @@
   <!-- * ***************************************************************** -->
 
   <!-- * A no-break space can be written two ways in roff; the difference, -->
-  <!-- * according to the "Page Motions" node in the groff info page, ixsl: -->
+  <!-- * according to the "Page Motions" node in the groff info page, is: -->
   <!-- * -->
   <!-- *   "\ " = -->
   <!-- *   An unbreakable and unpaddable (i.e. not expanded during filling) -->
