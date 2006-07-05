@@ -34,12 +34,12 @@ endif
 $(MARKUP_XSL):
 	$(MAKE) -C $(dir $(MARKUP_XSL))
 
-NEWS.xml: ChangeLog.xml
-	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
-	latest-tag="'$(LATEST_TAG)'" \
-	release-version="'$(RELVER)'" \
-	element.file="'$(shell readlink -f ./docsrc/docbook-elements.xsl)'" \
-	param.file="'$(shell readlink -f ./docsrc/xsl-params.xsl)'"
+#NEWS.xml: ChangeLog.xml
+#	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
+#	latest-tag="'$(LATEST_TAG)'" \
+#	release-version="'$(RELVER)'" \
+#	element.file="'$(shell readlink -f ./docsrc/docbook-elements.xsl)'" \
+#	param.file="'$(shell readlink -f ./docsrc/xsl-params.xsl)'"
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
@@ -47,17 +47,17 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ChangeLog.xml: LatestTag
-	$(CVS2CL) $(CVS2CL_OPTS) \
-	--delta $(LATEST_TAG):HEAD --stdout --xml -g -q > $@
+#ChangeLog.xml: LatestTag
+#	$(CVS2CL) $(CVS2CL_OPTS) \
+#	--delta $(LATEST_TAG):HEAD --stdout --xml -g -q > $@
 
 LatestTag:
 # Note that one of the old commit messsage in the cvs log contains
 # a ^Z (x1a) character, which is not legal in XML, so it must
 # strip it out before using it with any XML processing apps
-	$(CVS2CL) $(CVS2CL_OPTS) --stdout --xml -g -q \
-	| $(SED) $(SED_OPTS) 's/\x1a//g' \
-	| $(XSLTPROC) $(GET_LATEST_TAG) - > $@
+#	$(CVS2CL) $(CVS2CL_OPTS) --stdout --xml -g -q \
+#	| $(SED) $(SED_OPTS) 's/\x1a//g' \
+#	| $(XSLTPROC) $(GET_LATEST_TAG) - > $@
 
 ChangeHistory.xml.zip: ChangeHistory.xml
 	$(ZIP) $(ZIP_OPTS) $@ $<
@@ -66,8 +66,8 @@ ChangeHistory.xml.zip: ChangeHistory.xml
 # ChangeHistory.xml holds the whole change history for the module,
 # including all subdirectories
 ChangeHistory.xml:
-	$(CVS2CL) $(CVS2CL_OPTS) \
-	--stdout --xml -g -q > $@
+#	$(CVS2CL) $(CVS2CL_OPTS) \
+#	--stdout --xml -g -q > $@
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
@@ -88,33 +88,33 @@ install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xm
 
 distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
 
-newversion:
-ifeq ($(CVSCHECK),)
-ifeq ($(DIFFVER),)
-	@echo "DIFFVER must be specified."
-	exit 1
-else
-ifeq ($(NEXTVER),$(RELVER))
-	read -s -n1 -p "OK to create cvs tag $(TAGVER)? [No] "; \
-	    echo "$$REPLY"; \
-	    case $$REPLY in \
-	      [yY]) \
-	      cvs tag $(TAGVER); \
-	      $(MAKE) DIFFVER=$(DIFFVER) distrib; \
-	      ;; \
-	      *) echo "OK, exiting without making creating tag."; \
-	      exit \
-	      ;; \
-	    esac
-else
-	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
-	exit 1
-endif
-endif
-else
-	@echo "CVS is not up-to-date! ($(CVSCHECK))"
-	exit 1
-endif
+#newversion:
+#ifeq ($(CVSCHECK),)
+#ifeq ($(DIFFVER),)
+#	@echo "DIFFVER must be specified."
+#	exit 1
+#else
+#ifeq ($(NEXTVER),$(RELVER))
+#	read -s -n1 -p "OK to create cvs tag $(TAGVER)? [No] "; \
+#	    echo "$$REPLY"; \
+#	    case $$REPLY in \
+#	      [yY]) \
+#	      cvs tag $(TAGVER); \
+#	      $(MAKE) DIFFVER=$(DIFFVER) distrib; \
+#	      ;; \
+#	      *) echo "OK, exiting without making creating tag."; \
+#	      exit \
+#	      ;; \
+#	    esac
+#else
+#	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
+#	exit 1
+#endif
+#endif
+#else
+#	@echo "CVS is not up-to-date! ($(CVSCHECK))"
+#	exit 1
+#endif
 
 freshmeat:
 ifeq ($(SFRELID),)
