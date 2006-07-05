@@ -8,32 +8,32 @@
 
 # $Id$
 
-CATALOGMANAGER=$(DOCBOOK_CVS)/releasetools/.CatalogManager.properties.example
-INSTALL_SH=$(DOCBOOK_CVS)/releasetools/install.sh
-MAKECATALOG=$(DOCBOOK_CVS)/releasetools/make-catalog.xsl
+CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
+INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
+MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
 
 # stylesheet for generating HTML version of release notes
-DOC-LINK-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/doc-link-docbook.xsl
+DOC-LINK-STYLE=$(DOCBOOK_SVN)/xsl/docsrc/doc-link-docbook.xsl
 
 # MARKUP_XSL is a modified version of Jeni Tennison's "Markup
 # Utility"
-MARKUP_XSL=$(DOCBOOK_CVS)/contrib/tools/tennison/modified-markup.xsl
+MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 
 # stylesheet used in taking XML output from the cvs2cl(1) perl
 # script, and using it to generate NEWS file(s) and releases notes
-CVS2CL2DOCBOOK=$(DOCBOOK_CVS)/releasetools/cvs2cl2docbook.xsl
+CVS2CL2DOCBOOK=$(DOCBOOK_SVN)/releasetools/cvs2cl2docbook.xsl
 
 # stylesheet used for determining the latest cvs tag in cvs log
-GET_LATEST_TAG=$(DOCBOOK_CVS)/releasetools/get-latest-tag.xsl
+GET_LATEST_TAG=$(DOCBOOK_SVN)/releasetools/get-latest-tag.xsl
 
 # stylesheet for stripping DB5 namespace
-STRIP_NS=$(DOCBOOK_CVS)/xsl/common/stripns.xsl
+STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
 
 # stylesheet for generating FO version of release notes
-FO-STYLE=$(DOCBOOK_CVS)/xsl/fo/docbook.xsl
+FO-STYLE=$(DOCBOOK_SVN)/xsl/fo/docbook.xsl
 
 # stylesheet for generating PDF of release notes with dblatex
-DBX-STYLE=$(DOCBOOK_CVS)/xsl/docsrc/dblatex-release-notes.xsl
+DBX-STYLE=$(DOCBOOK_SVN)/xsl/docsrc/dblatex-release-notes.xsl
 
 # browser to use for making text version of release notes
 # w3mmee is a fork of w3m; it provides a lot more options for
