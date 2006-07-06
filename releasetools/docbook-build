@@ -21,17 +21,17 @@ EOF
   exit 1
 fi
 
-# fail if no DOCBOOK_CVS set
-if [ -z "$DOCBOOK_CVS" ]; then
+# fail if no DOCBOOK_SVN set
+if [ -z "$DOCBOOK_SVN" ]; then
   cat <<- EOF
-`basename $0`: error: DOCBOOK_CVS not set. Stopping.
+`basename $0`: error: DOCBOOK_SVN not set. Stopping.
 
-Before invoking `basename $0`, you must set the DOCBOOK_CVS
+Before invoking `basename $0`, you must set the DOCBOOK_SVN
 environment variable in the environment from which the script
-runs. The value of DOCBOOK_CVS should be the absolute path to the
-base of a DocBook Project CVS working directory that contains the
+runs. The value of DOCBOOK_SVN should be the absolute path to the
+base of a DocBook Project SVN working directory that contains the
 various DocBook Project modules; that is, such that the modules
-can be found in \$DOCBOOK_CVS/xsl, \$DOCBOOK_CVS/website, etc.
+can be found in \$DOCBOOK_SVN/xsl, \$DOCBOOK_SVN/website, etc.
 EOF
   exit 1
 fi
@@ -63,9 +63,9 @@ help="
 Options:
 
   -b BASEDIR  Specifies the location of the base directory containing the
-              CVS working directories for modules from the DocBook project
+              SVN working directories for modules from the DocBook project
               (directory containing 'xsl', 'dsssl', 'slides', etc. subdirs) 
-              Default: value of the DOCBOOK_CVS environment variable, if set;
+              Default: value of the DOCBOOK_SVN environment variable, if set;
               otherwise, the directory from which the script is run.
 
   -d DOMAIN   Specifies the remote host (domain) to which the snaphost is
@@ -90,7 +90,7 @@ Options:
 
   -u USER     Specifies the (Sourceforge) username with which to upload the
               snapshot to the target (Sourceforge) website
-              Default: Username found in CVS/Root in working directory, if
+              Default: Username found in SVN/Root in working directory, if
               found; otherwise, local username.
 
   -v VERSION  Specifies the version name to put on the build.
@@ -120,14 +120,12 @@ while getopts ":b:d:hl:p:rst:u:v:z:" opt; do
     l  ) LOGDIR=$OPTARG ;;
     t  ) TMP=$OPTARG ;;
     v  ) RELEASEVERSION=$OPTARG ;;
-    u  ) SITEUSER=$OPTARG
-         OVERRIDE_CVSUSER=1 ;;
+    u  ) SITEUSER=$OPTARG ;;
     d  ) SITEHOST=$OPTARG ;;
     p  ) SITEBASE=$OPTARG ;;
     s  ) UPLOAD="yes" ;;
     z  ) TZ=$OPTARG
          alias date="TZ=$TZ date"
-         alias cvs2cl="TZ=$TZ cvs2cl" ;;
     h  ) printf "$usage"
          printf "$help"
          exit 0 ;;
@@ -184,23 +182,23 @@ else
     TIME=`date '+%H%M'`
     ZONE=`date '+%Z'`
 
-    if [ -f $DISTRO/CVS/Root ]; then
-      CVSROOT=`cat $DISTRO/CVS/Root`
-      export CVSROOT
-      CVSUSER=`sed 's/^:.\+:\([^@]\+\)@.\+$/\1/' $DISTRO/CVS/Root`
-      if [ "$CVSUSER" != "anonymous" ]; then
-        CVS_RSH=ssh
-        export CVS_RSH
-      fi
-      if [ -z "$OVERRIDE_CVSUSER" ]; then
-        # if no value for USER has been specified via -u option, set
-        # SITEUSER for ssh uploads to same value as CVSUSER
-        SITEUSER=$CVSUSER
-      fi
-    fi
+    #if [ -f $DISTRO/CVS/Root ]; then
+    #  CVSROOT=`cat $DISTRO/CVS/Root`
+    #  export CVSROOT
+    #  CVSUSER=`sed 's/^:.\+:\([^@]\+\)@.\+$/\1/' $DISTRO/CVS/Root`
+    #  if [ "$CVSUSER" != "anonymous" ]; then
+    #    CVS_RSH=ssh
+    #    export CVS_RSH
+    #  fi
+    #  if [ -z "$OVERRIDE_CVSUSER" ]; then
+    #    # if no value for USER has been specified via -u option, set
+    #    # SITEUSER for ssh uploads to same value as CVSUSER
+    #    SITEUSER=$CVSUSER
+    #  fi
+    #fi
     rm -f $DISTRO/LatestTag
     rm -f $DISTRO/VERSION
-    cvs update -C $DISTRO/VERSION 1>/dev/null 2>&1
+    svn update $DISTRO/VERSION 1>/dev/null 2>&1
 
     printf "." 1>&2
     if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then 
@@ -210,8 +208,8 @@ else
       DIFFVER=`cat $DISTRO/VERSION`
     fi
 
-    DIFFTAG=`cvs status -v $DISTRO/VERSION | grep -C1 "Existing Tags:" \
-      | grep revision | sed 's/^[ \t]\+\([^ \t]\+\)[ \t]\+.\+$/\1/'`
+    #DIFFTAG=`cvs status -v $DISTRO/VERSION | grep -C1 "Existing Tags:" \
+    #  | grep revision | sed 's/^[ \t]\+\([^ \t]\+\)[ \t]\+.\+$/\1/'`
     if [ $MESSAGE_ID ]; then
       BUILD_ID=$MESSAGE_ID
     else
@@ -241,9 +239,9 @@ else
     set | grep "BUILD_ID\|^CHANGE\|DIFFTAG\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
     echo
 
-    echo "Running cvs update in gentext and $DISTRO working directories..."
-    cvs update -d -P gentext || exit 1
-    cvs update -d -P $DISTRO || exit 1
+    echo "Running svn update in gentext and $DISTRO working directories..."
+    svn update gentext || exit 1
+    svn update $DISTRO || exit 1
     echo
 
     echo
@@ -255,7 +253,7 @@ else
 
     cat <<- EOF > HEADER.txt
 The snapshot for a particular distribution is re-built automatically each time
-a change is checked into the CVS source tree for the distribution. The most
+a change is checked into the SVN source tree for the distribution. The most
 recent build was of the "$DISTRO" distribution, on $DATE at $TIME $ZONE.
 
 These snapshots are intended for testing purposes only and otherwise come with
@@ -265,7 +263,7 @@ EOF
     cat <<- EOF > $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_$DATE
 This directory contains a pre-release snapshot of the DocBook "$DISTRO"
 distribution, auto-built from the latest development sources in the DocBook
-project CVS repository on $DATE at $TIME $ZONE.
+project SVN repository on $DATE at $TIME $ZONE.
 
 The unique ID for this snapshot is $BUILD_ID.
 
@@ -273,10 +271,10 @@ It is intended for testing purposes only and otherwise comes with no
 guarantees. It may in fact be broken.
 EOF
 
-    if [ $DIFFTAG ]; then
-      cvs2cl -S --delta $DIFFTAG:HEAD --stdout $DISTRO \
-      | expand -t2 > $DISTRO/LatestChanges
-    fi
+    #if [ $DIFFTAG ]; then
+    #  cvs2cl -S --delta $DIFFTAG:HEAD --stdout $DISTRO \
+    #  | expand -t2 > $DISTRO/LatestChanges
+    #fi
 
     if [ "$UPLOAD" = "yes" ]; then
 
@@ -289,11 +287,11 @@ Latest Changes:
 --------------------------------------------------------------------------------
 
 EOF
-    cvs2cl -S -l -d ">3 months ago" --stdout \
-      | expand -t2 > LatestChanges
+    #cvs2cl -S -l -d ">3 months ago" --stdout \
+    #  | expand -t2 > LatestChanges
 
-    cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
-    rm $TMP/line.tmp
+    #cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
+    #rm $TMP/line.tmp
 
     # Uncompress tarball to local mirror directory.
     # Previously, we uploaded and untarred it to the remote host
@@ -314,8 +312,6 @@ EOF
 
     scp \
       $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
-      README.txt \
-      LatestChanges \
       $SITEUSER@$SITEHOST:$SITEBASE
 
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
