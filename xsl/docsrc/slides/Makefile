@@ -1,7 +1,7 @@
 include ../../../cvstools/Makefile.incl
 
 JSTYLE=../../docsrc/xsl2jref.xsl
-VPATH=../../slides
+VPATH=../../../slides/xsl
 
 XMLFILES = docparam.xml
 
@@ -14,6 +14,6 @@ clean:
 	$(XSLT) $< $(JSTYLE) /dev/null output-file=$@
 	$(XJPARSE) $@
 
-docparam.xml: ../../slides/param.xsl
-	$(MAKE) -C ../../slides param.xml
-	cp ../../slides/param.xml docparam.xml
+docparam.xml: ../../../slides/xsl/param.xsl
+	$(MAKE) -C ../../../slides/xsl param.xml
+	cp ../../../slides/xsl/param.xml docparam.xml
