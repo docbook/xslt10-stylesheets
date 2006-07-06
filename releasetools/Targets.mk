@@ -86,7 +86,8 @@ catalog.xml: .make-catalog.xsl
 install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
 	cp $< $@
 
-distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
+#distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
+distrib: all $(DISTRIB_DEPENDS)
 
 #newversion:
 #ifeq ($(CVSCHECK),)
