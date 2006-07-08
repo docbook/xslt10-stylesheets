@@ -29,9 +29,9 @@ if [ -z "$DOCBOOK_SVN" ]; then
 Before invoking `basename $0`, you must set the DOCBOOK_SVN
 environment variable in the environment from which the script
 runs. The value of DOCBOOK_SVN should be the absolute path to the
-base of a DocBook Project SVN working directory that contains the
-various DocBook Project modules; that is, such that the modules
-can be found in \$DOCBOOK_SVN/xsl, etc.
+base of a DocBook Project Subversion working directory that
+contains the various DocBook Project modules; that is, such that
+the modules can be found in \$DOCBOOK_SVN/xsl, etc.
 EOF
   exit 1
 fi
