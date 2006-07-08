@@ -31,7 +31,7 @@ environment variable in the environment from which the script
 runs. The value of DOCBOOK_SVN should be the absolute path to the
 base of a DocBook Project SVN working directory that contains the
 various DocBook Project modules; that is, such that the modules
-can be found in \$DOCBOOK_SVN/xsl, \$DOCBOOK_SVN/website, etc.
+can be found in \$DOCBOOK_SVN/xsl, etc.
 EOF
   exit 1
 fi
