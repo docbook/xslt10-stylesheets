@@ -1,10 +1,5 @@
-<?xml version='1.0'?>
+<?xml version='1.0' encoding="utf-8"?>
 <!-- there is no doctype for these files, they are WF only -->
-<!DOCTYPE locale [
-<!ENTITY % cyr1 PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
-                "http://www.w3.org/2003/entities/iso8879/isocyr1.ent">
-%cyr1;
-]>
 <locale language="bg"
         english-language-name="Bulgarian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
@@ -15,184 +10,212 @@
       <firstname>Radostin</firstname><surname>Radnev</surname>
       <affiliation><address><email>radnev@yahoo.com</email></address></affiliation>
     </author>
+    <author>
+      <firstname>Anton</firstname><surname>Zinoviev</surname>
+      <affiliation><address><email>anton@lml.bas.bg</email></address></affiliation>
+    </author>
+    <author>
+      <firstname>Alexander</firstname><surname>Shopov</surname>
+      <affiliation><address><email>ash@contact.bg</email></address></affiliation>
+    </author>
   </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="&Acy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>
-<gentext key="abstract" text="&Acy;&ncy;&ocy;&tcy;&acy;&tscy;&icy;&yacy;"/>
-<gentext key="Answer" text="&Ocy;:"/>
-<gentext key="answer" text="&Ocy;:"/>
-<gentext key="Appendix" text="&Pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
-<gentext key="appendix" text="&pcy;&rcy;&icy;&lcy;&ocy;&zhcy;&iecy;&ncy;&icy;&iecy;"/>
-<gentext key="Article" text="&Scy;&tcy;&acy;&tcy;&icy;&yacy;"/>
-<gentext key="article" text="&Scy;&tcy;&acy;&tcy;&icy;&yacy;"/>
-<gentext key="Bibliography" text="&Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;"/>
-<gentext key="bibliography" text="&Lcy;&icy;&tcy;&iecy;&rcy;&acy;&tcy;&ucy;&rcy;&acy;"/>
-<gentext key="Book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
-<gentext key="book" text="&Kcy;&ncy;&icy;&gcy;&acy;"/>
-<gentext key="CAUTION" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
-<gentext key="Caution" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="caution" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="Chapter" text="&Gcy;&lcy;&acy;&vcy;&acy;"/>
-<gentext key="chapter" text="&gcy;&lcy;&acy;&vcy;&acy;"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/>
-<gentext key="Copyright" text="Copyright"/>
-<gentext key="copyright" text="Copyright"/>
-<gentext key="Dedication" text="&Pcy;&ocy;&scy;&vcy;&iecy;&shchcy;&iecy;&ncy;&icy;&iecy;"/>
-<gentext key="dedication" text="&Pcy;&ocy;&scy;&vcy;&iecy;&shchcy;&iecy;&ncy;&icy;&iecy;"/>
-<gentext key="Edition" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="edition" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="Equation" text="&Fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&acy;"/>
-<gentext key="equation" text="&Fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&acy;"/>
-<gentext key="Example" text="&Pcy;&rcy;&icy;&mcy;&iecy;&rcy;"/>
-<gentext key="example" text="&Pcy;&rcy;&icy;&mcy;&iecy;&rcy;"/>
-<gentext key="Figure" text="&Fcy;&icy;&gcy;&ucy;&rcy;&acy;"/>
-<gentext key="figure" text="&Fcy;&icy;&gcy;&ucy;&rcy;&acy;"/>
-<gentext key="Glossary" text="&Tcy;&iecy;&rcy;&mcy;&icy;&ncy;&ocy;&lcy;&ocy;&gcy;&icy;&chcy;&iecy;&ncy; &rcy;&iecy;&chcy;&ncy;&icy;&kcy;"/>
-<gentext key="glossary" text="&Tcy;&iecy;&rcy;&mcy;&icy;&ncy;&ocy;&lcy;&ocy;&gcy;&icy;&chcy;&iecy;&ncy; &rcy;&iecy;&chcy;&ncy;&icy;&kcy;"/>
-<gentext key="GlossSee" text="&vcy;&zhcy;."/>
-<gentext key="glosssee" text="&vcy;&zhcy;."/>
-<gentext key="GlossSeeAlso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
-<gentext key="glossseealso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
-<gentext key="IMPORTANT" text="&Vcy;&Acy;&ZHcy;&Ncy;&Ocy;"/>
-<gentext key="important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
-<gentext key="Important" text="&Vcy;&acy;&zhcy;&ncy;&ocy;"/>
-<gentext key="Index" text="&Icy;&ncy;&dcy;&iecy;&kcy;&scy;"/>
-<gentext key="index" text="&Icy;&ncy;&dcy;&iecy;&kcy;&scy;"/>
+<gentext key="Abstract" text="Анотация"/>
+<gentext key="abstract" text="Анотация"/>
+<gentext key="Answer" text="О"/>
+<gentext key="answer" text="О"/>
+<gentext key="Appendix" text="Приложение"/>
+<gentext key="appendix" text="Приложение"/>
+<gentext key="Article" text="Статия"/>
+<gentext key="article" text="Статия"/>
+<gentext key="Author" text="Автор"/>
+<gentext key="Bibliography" text="Литература"/>
+<gentext key="bibliography" text="Литература"/>
+<gentext key="Book" text="Книга"/>
+<gentext key="book" text="Книга"/>
+<gentext key="CAUTION" text="Внимание"/>
+<gentext key="Caution" text="Внимание"/>
+<gentext key="caution" text="Внимание"/>
+<gentext key="Chapter" text="Глава"/>
+<gentext key="chapter" text="Глава"/>
+<gentext key="Colophon" text="Библиографско каре"/>
+<gentext key="colophon" text="Библиографско каре"/>
+<gentext key="Copyright" text="Авторски права"/>
+<gentext key="copyright" text="Авторски права"/>
+<gentext key="Dedication" text="Посвещение"/>
+<gentext key="dedication" text="Посвещение"/>
+<gentext key="Edition" text="Издание"/>
+<gentext key="edition" text="Издание"/>
+<gentext key="Editor" text="Редактор"/>
+<gentext key="Equation" text="Формула"/>
+<gentext key="equation" text="Формула"/>
+<gentext key="Example" text="Пример"/>
+<gentext key="example" text="Пример"/>
+<gentext key="Figure" text="Фигура"/>
+<gentext key="figure" text="Фигура"/>
+<gentext key="Glossary" text="Терминологичен речник"/>
+<gentext key="glossary" text="Терминологичен речник"/>
+<gentext key="GlossSee" text="вж."/>
+<gentext key="glosssee" text="вж."/>
+<gentext key="GlossSeeAlso" text="вж."/>
+<gentext key="glossseealso" text="вж."/>
+<gentext key="IMPORTANT" text="Важно"/>
+<gentext key="important" text="Важно"/>
+<gentext key="Important" text="Важно"/>
+<gentext key="Index" text="Азбучен указател"/>
+<gentext key="index" text="Азбучен указател"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="&Acy;&vcy;&tcy;&ocy;&rcy;&scy;&kcy;&icy; &pcy;&rcy;&acy;&vcy;&acy;"/>
-<gentext key="legalnotice" text="&Acy;&vcy;&tcy;&ocy;&rcy;&scy;&kcy;&icy; &pcy;&rcy;&acy;&vcy;&acy;"/>
-<gentext key="MsgAud" text="Audience"/>
-<gentext key="msgaud" text="Audience"/>
-<gentext key="MsgLevel" text="&Ncy;&icy;&vcy;&ocy;"/>
-<gentext key="msglevel" text="&Ncy;&icy;&vcy;&ocy;"/>
-<gentext key="MsgOrig" text="&Icy;&zcy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
-<gentext key="msgorig" text="&Icy;&zcy;&tcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
-<gentext key="NOTE" text="&Zcy;&Acy;&Bcy;&IEcy;&Lcy;&IEcy;&ZHcy;&Kcy;&Acy;"/>
-<gentext key="Note" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&acy;"/>
-<gentext key="note" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&acy;"/>
-<gentext key="Part" text="&CHcy;&acy;&scy;&tcy;"/>
-<gentext key="part" text="&CHcy;&acy;&scy;&tcy;"/>
-<gentext key="Preface" text="&Pcy;&rcy;&iecy;&dcy;&gcy;&ocy;&vcy;&ocy;&rcy;"/>
-<gentext key="preface" text="&Pcy;&rcy;&iecy;&dcy;&gcy;&ocy;&vcy;&ocy;&rcy;"/>
-<gentext key="Procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;"/>
-<gentext key="procedure" text="&Pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&acy;"/>
-<gentext key="ProductionSet" text="Production"/>
-<gentext key="PubDate" text="&Dcy;&acy;&tcy;&acy; &ncy;&acy; &icy;&zcy;&dcy;&acy;&vcy;&acy;&ncy;&iecy;"/>
-<gentext key="pubdate" text="&Dcy;&acy;&tcy;&acy; &ncy;&acy; &icy;&zcy;&dcy;&acy;&vcy;&acy;&ncy;&iecy;"/>
-<gentext key="Published" text="&Icy;&zcy;&dcy;&acy;&dcy;&iecy;&ncy;"/>
-<gentext key="published" text="&Icy;&zcy;&dcy;&acy;&dcy;&iecy;&ncy;"/>
-<gentext key="Qandadiv" text="&Vcy;&hardcy;&pcy;&rcy;&ocy;&scy;&icy; &icy; &ocy;&tcy;&gcy;&ocy;&vcy;&ocy;&rcy;&icy;"/>
-<gentext key="qandadiv" text="&Vcy;&hardcy;&pcy;&rcy;&ocy;&scy;&icy; &icy; &ocy;&tcy;&gcy;&ocy;&vcy;&ocy;&rcy;&icy;"/>
-<gentext key="Question" text="&Vcy;:"/>
-<gentext key="question" text="&Vcy;:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
-<gentext key="Reference" text="&Scy;&pcy;&rcy;&acy;&vcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
-<gentext key="reference" text="&Scy;&pcy;&rcy;&acy;&vcy;&ocy;&chcy;&ncy;&icy;&kcy;"/>
-<gentext key="RefName" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="refname" text="&Ncy;&acy;&zcy;&vcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="&Scy;&icy;&ncy;&tcy;&acy;&kcy;&scy;&icy;&scy;"/>
-<gentext key="refsynopsisdiv" text="&Scy;&icy;&ncy;&tcy;&acy;&kcy;&scy;&icy;&scy;"/>
-<gentext key="RevHistory" text="&Pcy;&rcy;&ocy;&mcy;&iecy;&ncy;&icy;"/>
-<gentext key="revhistory" text="&Pcy;&rcy;&ocy;&mcy;&iecy;&ncy;&icy;"/>
-<gentext key="revision" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="Revision" text="&Icy;&zcy;&dcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="sect1" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="sect2" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="sect3" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="sect4" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="sect5" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="Section" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="see" text="&vcy;&zhcy;."/>
-<gentext key="See" text="&Vcy;&zhcy;."/>
-<gentext key="seealso" text="&vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
-<gentext key="Seealso" text="&Vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
-<gentext key="SeeAlso" text="&Vcy;&zhcy;. &scy;&hardcy;&shchcy;&ocy;"/>
-<gentext key="set" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
-<gentext key="Set" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
-<gentext key="setindex" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
-<gentext key="SetIndex" text="&Ucy;&kcy;&acy;&zcy;&acy;&tcy;&iecy;&lcy;"/>
-<gentext key="Sidebar" text="&Rcy;&acy;&zcy;&dcy;&iecy;&lcy;&icy;&tcy;&iecy;&lcy;"/>
-<gentext key="sidebar" text="&rcy;&acy;&zcy;&dcy;&iecy;&lcy;&icy;&tcy;&iecy;&lcy;"/>
-<gentext key="step" text="&Scy;&tcy;&hardcy;&pcy;&kcy;&acy;"/>
-<gentext key="Step" text="&Scy;&tcy;&hardcy;&pcy;&kcy;&acy;"/>
-<gentext key="Table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;"/>
-<gentext key="table" text="&Tcy;&acy;&bcy;&lcy;&icy;&tscy;&acy;"/>
-<gentext key="tip" text="&Pcy;&ocy;&zcy;&dcy;&scy;&kcy;&acy;&zcy;&kcy;&acy;"/>
-<gentext key="TIP" text="&Pcy;&Ocy;&Dcy;&Scy;&Kcy;&Acy;&Zcy;&Kcy;&Acy;"/>
-<gentext key="Tip" text="&Pcy;&ocy;&zcy;&dcy;&scy;&kcy;&acy;&zcy;&kcy;&acy;"/>
-<gentext key="Warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="warning" text="&Vcy;&ncy;&icy;&mcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="WARNING" text="&Vcy;&Ncy;&Icy;&Mcy;&Acy;&Ncy;&Icy;&IEcy;"/>
-<gentext key="and" text=""/>
-<gentext key="by" text=""/>
-<gentext key="called" text="called"/>
-<gentext key="Edited" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
-<gentext key="edited" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
-<gentext key="Editedby" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
-<gentext key="editedby" text="&Rcy;&iecy;&dcy;&acy;&kcy;&tcy;&icy;&rcy;&acy;&ncy;&ocy; &ocy;&tcy;"/>
-<gentext key="in" text="&vcy;"/>
+<gentext key="LegalNotice" text="Авторски права"/>
+<gentext key="legalnotice" text="Авторски права"/>
+<gentext key="MsgAud" text="Насоченост"/>
+<gentext key="msgaud" text="Насоченост"/>
+<gentext key="MsgLevel" text="Ниво"/>
+<gentext key="msglevel" text="Ниво"/>
+<gentext key="MsgOrig" text="Източник"/>
+<gentext key="msgorig" text="Източник"/>
+<gentext key="NOTE" text="Забележка"/>
+<gentext key="Note" text="Забележка"/>
+<gentext key="note" text="Забележка"/>
+<gentext key="Part" text="Част"/>
+<gentext key="part" text="Част"/>
+<gentext key="Preface" text="Предговор"/>
+<gentext key="preface" text="Предговор"/>
+<gentext key="Procedure" text="Процедура"/>
+<gentext key="procedure" text="Процедура"/>
+<gentext key="ProductionSet" text="Множество от декартови произведения по Бакхус-Наур"/>
+<gentext key="PubDate" text="Дата на издаване"/>
+<gentext key="pubdate" text="Дата на издаване"/>
+<gentext key="Published" text="Издаден"/>
+<gentext key="published" text="Издаден"/>
+<gentext key="Publisher" text="Издател"/>
+<gentext key="Qandadiv" text="Въпроси и отговори"/>
+<gentext key="qandadiv" text="Въпроси и отговори"/>
+<gentext key="QandASet" text="Често задавани въпроси"/>
+<gentext key="Question" text="В"/>
+<gentext key="question" text="В"/>
+<gentext key="RefEntry" text="вж."/>
+<gentext key="refentry" text="вж."/>
+<gentext key="Reference" text="Справочник"/>
+<gentext key="reference" text="Справочник"/>
+<gentext key="References" text="Препратки"/>
+<gentext key="RefName" text="Название"/>
+<gentext key="refname" text="Название"/>
+<gentext key="RefSection" text="вж."/>
+<gentext key="refsection" text="вж."/>
+<gentext key="RefSynopsisDiv" text="Синтаксис"/>
+<gentext key="refsynopsisdiv" text="Синтаксис"/>
+<gentext key="RevHistory" text="Промени"/>
+<gentext key="revhistory" text="Промени"/>
+<gentext key="revision" text="Издание"/>
+<gentext key="Revision" text="Издание"/>
+<gentext key="sect1" text="Раздел"/>
+<gentext key="sect2" text="Раздел"/>
+<gentext key="sect3" text="Раздел"/>
+<gentext key="sect4" text="Раздел"/>
+<gentext key="sect5" text="Раздел"/>
+<gentext key="section" text="Раздел"/>
+<gentext key="Section" text="Раздел"/>
+<gentext key="see" text="вж."/>             <!-- uncapitalized -->
+<gentext key="See" text="вж."/>
+<gentext key="seealso" text="вж."/>             <!-- uncapitalized -->
+<gentext key="Seealso" text="вж."/>
+<gentext key="SeeAlso" text="вж."/>
+<gentext key="set" text="Указател"/>
+<gentext key="Set" text="Указател"/>
+<gentext key="setindex" text="Указател"/>
+<gentext key="SetIndex" text="Указател"/>
+<gentext key="Sidebar" text="Разделител"/>
+<gentext key="sidebar" text="Разделител"/>
+<gentext key="step" text="Стъпка"/>
+<gentext key="Step" text="Стъпка"/>
+<gentext key="Table" text="Таблица"/>
+<gentext key="table" text="Таблица"/>
+<gentext key="task" text="Задача"/>
+<gentext key="Task" text="Задача"/>
+<gentext key="tip" text="Подсказка"/>
+<gentext key="TIP" text="Подсказка"/>
+<gentext key="Tip" text="Подсказка"/>
+<gentext key="Warning" text="Внимание"/>
+<gentext key="warning" text="Внимание"/>
+<gentext key="WARNING" text="Внимание"/>
+
+<gentext key="and" text="и"/>
+<gentext key="by" text="от"/>
+<gentext key="Edited" text="Редактирано от"/>
+<gentext key="edited" text="Редактирано от"/>
+<gentext key="Editedby" text="Редактирано от"/>
+<gentext key="editedby" text="Редактирано от"/>
+<gentext key="in" text="в"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="non-existant element"/>
-<gentext key="notes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
-<gentext key="Notes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
-<gentext key="Pgs" text="&scy;&tcy;&rcy;."/>
-<gentext key="pgs" text="&scy;&tcy;&rcy;."/>
-<gentext key="Revisedby" text="&Ocy;&dcy;&ocy;&bcy;&rcy;&iecy;&ncy;&ocy; &ocy;&tcy;: "/>
-<gentext key="revisedby" text="&Ocy;&dcy;&ocy;&bcy;&rcy;&iecy;&ncy;&ocy; &ocy;&tcy;: "/>
-<gentext key="TableNotes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
-<gentext key="tablenotes" text="&Zcy;&acy;&bcy;&iecy;&lcy;&iecy;&zhcy;&kcy;&icy;"/>
-<gentext key="TableofContents" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="tableofcontents" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
-<gentext key="the" text=""/>
-<gentext key="unexpectedelementname" text="unexpected element name"/>
-<gentext key="unsupported" text="unsupported"/>
-<gentext key="xrefto" text="xref to"/>
-<gentext key="listofequations" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&icy;&tcy;&iecy;"/>
-<gentext key="ListofEquations" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&ocy;&rcy;&mcy;&ucy;&lcy;&icy;&tcy;&iecy;"/>
-<gentext key="ListofExamples" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&icy;&mcy;&iecy;&rcy;&icy;&tcy;&iecy;"/>
-<gentext key="listofexamples" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&icy;&mcy;&iecy;&rcy;&icy;&tcy;&iecy;"/>
-<gentext key="ListofFigures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&icy;&gcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
-<gentext key="listoffigures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &fcy;&icy;&gcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
-<gentext key="ListofProcedures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
-<gentext key="listofprocedures" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &pcy;&rcy;&ocy;&tscy;&iecy;&dcy;&ucy;&rcy;&icy;&tcy;&iecy;"/>
-<gentext key="listoftables" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &tcy;&acy;&bcy;&lcy;&icy;&tscy;&icy;&tcy;&iecy;"/>
-<gentext key="ListofTables" text="&Scy;&pcy;&icy;&scy;&hardcy;&kcy; &ncy;&acy; &tcy;&acy;&bcy;&lcy;&icy;&tscy;&icy;&tcy;&iecy;"/>
-<gentext key="ListofUnknown" text="&Ncy;&iecy;&ocy;&pcy;&rcy;&iecy;&dcy;&iecy;&lcy;&iecy;&ncy; &scy;&pcy;&icy;&scy;&hardcy;&kcy;"/>
-<gentext key="listofunknown" text="&Ncy;&iecy;&ocy;&pcy;&rcy;&iecy;&dcy;&iecy;&lcy;&iecy;&ncy; &scy;&pcy;&icy;&scy;&hardcy;&kcy;"/>
+<gentext key="nonexistantelement" text="липсващ елемент"/>
+<gentext key="notes" text="Забележки"/>
+<gentext key="Notes" text="Забележки"/>
+<gentext key="Pgs" text="стр."/>
+<gentext key="pgs" text="стр."/>
+<gentext key="Revisedby" text="Преработено от"/>
+<gentext key="revisedby" text="Преработено от"/>
+<gentext key="TableNotes" text="Забележки"/>
+<gentext key="tablenotes" text="Забележки"/>
+<gentext key="TableofContents" text="Съдържание"/>
+<gentext key="tableofcontents" text="Съдържание"/>
+<gentext key="unexpectedelementname" text="неочакван елемент"/>
+<gentext key="unsupported" text="неподдържан елемент"/>
+<gentext key="xrefto" text="вж."/>
 
-<gentext key="nav-home" text="&Ncy;&acy;&chcy;&acy;&lcy;&ocy;"/>
-<gentext key="nav-next" text="&Scy;&lcy;&iecy;&dcy;&vcy;&acy;&shchcy;&acy; &scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&acy;"/>
-<gentext key="nav-next-sibling" text="&Scy;&lcy;&iecy;&dcy;&vcy;&acy;&shchcy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="nav-prev" text="&Pcy;&rcy;&iecy;&dcy;&icy;&shcy;&ncy;&acy; &scy;&tcy;&rcy;&acy;&ncy;&icy;&tscy;&acy;"/>
-<gentext key="nav-prev-sibling" text="&Pcy;&rcy;&iecy;&dcy;&icy;&shcy;&iecy;&ncy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;"/>
-<gentext key="nav-up" text="&Ncy;&acy;&chcy;&acy;&lcy;&ocy; &ncy;&acy; &rcy;&acy;&zcy;&dcy;&iecy;&lcy;&acy;"/>
-<gentext key="nav-toc" text="&Scy;&hardcy;&dcy;&hardcy;&rcy;&zhcy;&acy;&ncy;&icy;&iecy;"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Автори"/>
 
-<gentext key="Draft" text="&CHcy;&iecy;&rcy;&ncy;&ocy;&vcy;&acy;"/>
-<gentext key="above" text="&pcy;&ocy;-&gcy;&ocy;&rcy;&iecy;"/>
-<gentext key="below" text="&pcy;&ocy;-&dcy;&ocy;&lcy;&ucy;"/>
-<gentext key="sectioncalled" text="the section called"/>
-<gentext key="index symbols" text="&Scy;&icy;&mcy;&vcy;&ocy;&lcy;&icy;"/>
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Редактор"/>
+<gentext key="graphicdesigner" text="Автор на графичното оформление"/>
+<gentext key="productioneditor" text="Редактор на изданието"/>
+<gentext key="technicaleditor" text="Технически редактор"/>
+<gentext key="translator" text="Преводач"/>
 
-<gentext key="lowercase.alpha" text="&acy;&bcy;&vcy;&gcy;&dcy;&iecy;&zhcy;&zcy;&icy;&jcy;&kcy;&lcy;&mcy;&ncy;&ocy;&pcy;&rcy;&scy;&tcy;&ucy;&fcy;&khcy;&tscy;&chcy;&shcy;&shchcy;&hardcy;&ycy;&softcy;&ecy;&yucy;&yacy;"/>
-<gentext key="uppercase.alpha" text="&Acy;&Bcy;&Vcy;&Gcy;&Dcy;&IEcy;&ZHcy;&Zcy;&Icy;&Jcy;&Kcy;&Lcy;&Mcy;&Ncy;&Ocy;&Pcy;&Rcy;&Scy;&Tcy;&Ucy;&Fcy;&KHcy;&TScy;&CHcy;&SHcy;&SHCHcy;&HARDcy;&Ycy;&SOFTcy;&Ecy;&YUcy;&YAcy;"/>
+<gentext key="listofequations" text="Списък на формулите"/>
+<gentext key="ListofEquations" text="Списък на формулите"/>
+<gentext key="ListofExamples" text="Списък на примерите"/>
+<gentext key="listofexamples" text="Списък на примерите"/>
+<gentext key="ListofFigures" text="Списък на фигурите"/>
+<gentext key="listoffigures" text="Списък на фигурите"/>
+<gentext key="ListofProcedures" text="Списък на процедурите"/>
+<gentext key="listofprocedures" text="Списък на процедурите"/>
+<gentext key="listoftables" text="Списък на таблиците"/>
+<gentext key="ListofTables" text="Списък на таблиците"/>
+<gentext key="ListofUnknown" text="Списък с други неща"/>
+<gentext key="listofunknown" text="Списък с други неща"/>
 
-<dingbat key="startquote" text="&#8222;"/>
-<dingbat key="endquote" text="&#8220;"/>
-<dingbat key="nestedstartquote" text="&#8216;"/>
-<dingbat key="nestedendquote" text="&#8217;"/>
-<dingbat key="singlestartquote" text="&#x2018;"/>
-<dingbat key="singleendquote" text="&#x2019;"/>
-<dingbat key="bullet" text="&#8226;"/>
+<gentext key="nav-home" text="Начало"/>
+<gentext key="nav-next" text="Напред"/>
+<gentext key="nav-next-sibling" text="Прескачане напред"/>
+<gentext key="nav-prev" text="Назад"/>
+<gentext key="nav-prev-sibling" text="Прескачане назад"/>
+<gentext key="nav-up" text="Ниво нагоре"/>
+<gentext key="nav-toc" text="Съдържание"/>
 
+<gentext key="Draft" text="Чернова"/>
+<gentext key="above" text="по-горе"/>
+<gentext key="below" text="по-долу"/>
+<gentext key="sectioncalled" text="разделът със заглавие"/>
+<gentext key="index symbols" text="символи"/>
+
+<gentext key="lowercase.alpha" text="абвгдежзийклмнопрстуфхцчшщъыьэюя"/>
+<gentext key="uppercase.alpha" text="АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>
+
+<dingbat key="startquote" text="„"/>
+<dingbat key="endquote" text="“"/>
+<dingbat key="nestedstartquote" text="„"/>
+<dingbat key="nestedendquote" text="“"/>
+<dingbat key="singlestartquote" text="«"/>
+<dingbat key="singleendquote" text="»"/>
+<dingbat key="bullet" text="—"/>
+
+<!-- n.b. &#x2010; might be better, but it doesn't always render properly -->
 <gentext key="hyphenation-character" text="-"/>
 <gentext key="hyphenation-push-character-count" text="2"/>
 <gentext key="hyphenation-remain-character-count" text="2"/>
@@ -213,6 +236,7 @@
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
@@ -226,9 +250,12 @@
 <template name="equation"><Equation/>&#160;%n.&#160;%t</template>
 <template name="example"><Example/>&#160;%n.&#160;%t</template>
 <template name="figure"><Figure/>&#160;%n.&#160;%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
 <template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
@@ -270,6 +297,10 @@
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
 <template name="table"><Table/>&#160;%n.&#160;%t</template>
+<template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -291,6 +322,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="part">%t</template>
 
 </context>
 
@@ -307,6 +339,7 @@
 <template name="sect5">%n.&#160;%t</template>
 <template name="section">%n.&#160;%t</template>
 <template name="simplesect">%t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 
 </context>
 
@@ -355,7 +388,7 @@
 
 <context name="xref">
 <template name="abstract">%t</template>
-<template name="answer"><Answer/>&#160;%n</template>
+<template name="answer"><Answer/>.&#160;%n</template>
 <template name="appendix">%t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -374,6 +407,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -398,9 +433,9 @@
 <template name="procedure">%t</template>
 <template name="productionset">%t</template>
 <template name="qandadiv">%t</template>
-<template name="qandaentry"><Question/>&#160;%n</template>
+<template name="qandaentry"><Question/>.&#160;%n</template>
 <template name="qandaset">%t</template>
-<template name="question"><Question/>&#160;%n</template>
+<template name="question"><Question/>.&#160;%n</template>
 <template name="reference">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="segmentedlist">%t</template>
@@ -408,12 +443,20 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> in %o</template>
+<template name="olink.page.citation"> (page %p)</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(page %p)</template>
+<template name="docname"> in %o</template>
+<template name="docnamelong"> in the document titled %o</template>
+<template name="pageabbrev">(p. %p)</template>
+<template name="Page">Page %p</template>
 
 <template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
@@ -432,7 +475,7 @@
 
 <context name="xref-number">
 
-<template name="answer"><Answer/>&#160;%n</template>
+<template name="answer"><Answer/>.&#160;%n</template>
 <template name="appendix"><Appendix/>&#160;%n</template>
 <template name="bridgehead"><Section/>&#160;%n</template>
 <template name="chapter"><Chapter/>&#160;%n</template>
@@ -443,8 +486,8 @@
 <template name="procedure"><Procedure/>&#160;%n</template>
 <template name="productionset"><ProductionSet/>&#160;%n</template>
 <template name="qandadiv"><Qandadiv/>&#160;%n</template>
-<template name="qandaentry"><Question/>&#160;%n</template>
-<template name="question"><Question/>&#160;%n</template>
+<template name="qandaentry"><Question/>.&#160;%n</template>
+<template name="question"><Question/>.&#160;%n</template>
 <template name="sect1"><Section/>&#160;%n</template>
 <template name="sect2"><Section/>&#160;%n</template>
 <template name="sect3"><Section/>&#160;%n</template>
@@ -485,7 +528,7 @@
 <context name="authorgroup">
 <template name="sep"><listcomma/> </template>
 <template name="sep2"> <and/> </template>
-<template name="seplast"><lastlistcomma/> <and/> </template>
+<template name="seplast"> <and/> </template>
 </context>
 
 <context name="glossary">
@@ -500,55 +543,187 @@
 </context>
 
 <context name="datetime">
-<template name="format">d/m/Y</template>
+<template name="format">d.m.Y&#160;г.</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
 </context>
 
 <context name="datetime-full">
-<template name="January">&yacy;&ncy;&ucy;&acy;&rcy;&icy;</template>
-<template name="February">&fcy;&iecy;&vcy;&rcy;&ucy;&acy;&rcy;&icy;</template>
-<template name="March">&mcy;&acy;&rcy;&tcy;</template>
-<template name="April">&acy;&pcy;&rcy;&icy;&lcy;</template>
-<template name="May">&mcy;&acy;&jcy;</template>
-<template name="June">&yucy;&ncy;&icy;</template>
-<template name="July">&yucy;&lcy;&icy;</template>
-<template name="August">&acy;&vcy;&gcy;&ucy;&scy;&tcy;</template>
-<template name="September">&scy;&iecy;&pcy;&tcy;&iecy;&mcy;&vcy;&rcy;&icy;</template>
-<template name="October">&ocy;&kcy;&tcy;&ocy;&mcy;&vcy;&rcy;&icy;</template>
-<template name="November">&ncy;&ocy;&iecy;&mcy;&vcy;&rcy;&icy;</template>
-<template name="December">&dcy;&iecy;&kcy;&iecy;&mcy;&vcy;&rcy;&icy;</template>
-<template name="Monday">&pcy;&ocy;&ncy;&iecy;&dcy;&iecy;&lcy;&ncy;&icy;&kcy;</template>
-<template name="Tuesday">&vcy;&tcy;&ocy;&rcy;&ncy;&icy;&kcy;</template>
-<template name="Wednesday">&scy;&rcy;&yacy;&dcy;&acy;</template>
-<template name="Thursday">&chcy;&iecy;&tcy;&vcy;&hardcy;&rcy;&tcy;&hardcy;&kcy;</template>
-<template name="Friday">&pcy;&iecy;&tcy;&hardcy;&kcy;</template>
-<template name="Saturday">&scy;&hardcy;&bcy;&ocy;&tcy;&acy;</template>
-<template name="Sunday">&ncy;&iecy;&dcy;&iecy;&lcy;&yacy;</template>
+<template name="January">януари</template>
+<template name="February">февруари</template>
+<template name="March">март</template>
+<template name="April">април</template>
+<template name="May">май</template>
+<template name="June">юни</template>
+<template name="July">юли</template>
+<template name="August">август</template>
+<template name="September">септември</template>
+<template name="October">октомври</template>
+<template name="November">ноември</template>
+<template name="December">декември</template>
+<template name="Monday">понеделник</template>
+<template name="Tuesday">вторник</template>
+<template name="Wednesday">сряда</template>
+<template name="Thursday">четвъртък</template>
+<template name="Friday">петък</template>
+<template name="Saturday">събота</template>
+<template name="Sunday">неделя</template>
 </context>
 
 <context name="datetime-abbrev">
-<template name="Jan">&yacy;&ncy;.</template>
-<template name="Feb">&fcy;&iecy;&vcy;.</template>
-<template name="Mar">&mcy;&acy;&rcy;&tcy;</template>
-<template name="Apr">&acy;&pcy;&rcy;.</template>
-<template name="May">&mcy;&acy;&jcy;</template>
-<template name="Jun">&yucy;&ncy;&icy;</template>
-<template name="Jul">&yucy;&lcy;&icy;</template>
-<template name="Aug">&acy;&vcy;&gcy;.</template>
-<template name="Sep">&scy;&iecy;&pcy;.</template>
-<template name="Oct">&ocy;&kcy;&tcy;.</template>
-<template name="Nov">&ncy;&ocy;&iecy;&mcy;.</template>
-<template name="Dec">&dcy;&iecy;&kcy;.</template>
-<template name="Mon">&pcy;&ocy;&ncy;.</template>
-<template name="Tue">&vcy;&tcy;.</template>
-<template name="Wed">&scy;&rcy;.</template>
-<template name="Thu">&chcy;&iecy;&tcy;.</template>
-<template name="Fri">&pcy;&iecy;&tcy;.</template>
-<template name="Sat">&scy;&hardcy;&bcy;.</template>
-<template name="Sun">&ncy;&iecy;&dcy;.</template>
+<template name="Jan">ян.</template>
+<template name="Feb">фев.</template>
+<template name="Mar">март</template>
+<template name="Apr">апр.</template>
+<template name="May">май</template>
+<template name="Jun">юни</template>
+<template name="Jul">юли</template>
+<template name="Aug">авг.</template>
+<template name="Sep">сеп.</template>
+<template name="Oct">окт.</template>
+<template name="Nov">ноем.</template>
+<template name="Dec">дек.</template>
+<template name="Mon">пон.</template>
+<template name="Tue">вт.</template>
+<template name="Wed">ср.</template>
+<template name="Thu">чет.</template>
+<template name="Fri">пет.</template>
+<template name="Sat">съб.</template>
+<template name="Sun">нед.</template>
 </context>
 
 <context name="htmlhelp">
 <template name="langcode">0x0402 Bulgarian</template>
 </context>
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">—</template>
+</context>
+
+<letters>
+<l i="-1"/>
+<l i="0">Цифри и знаци</l>
+<l i="10">А</l>
+<l i="10">а</l>
+<l i="20">Б</l>
+<l i="20">б</l>
+<l i="30">В</l>
+<l i="30">в</l>
+<l i="40">Г</l>
+<l i="40">г</l>
+<l i="50">Д</l>
+<l i="50">д</l>
+<l i="60">Е</l>
+<l i="60">е</l>
+<l i="70">Ж</l>
+<l i="70">ж</l>
+<l i="80">З</l>
+<l i="80">з</l>
+<l i="90">И</l>
+<l i="90">и</l>
+<l i="100">Й</l>
+<l i="100">й</l>
+<l i="110">К</l>
+<l i="110">к</l>
+<l i="120">Л</l>
+<l i="120">л</l>
+<l i="130">М</l>
+<l i="130">м</l>
+<l i="140">Н</l>
+<l i="140">н</l>
+<l i="150">О</l>
+<l i="150">о</l>
+<l i="160">П</l>
+<l i="160">п</l>
+<l i="170">Р</l>
+<l i="170">р</l>
+<l i="180">С</l>
+<l i="180">с</l>
+<l i="190">Т</l>
+<l i="190">т</l>
+<l i="200">У</l>
+<l i="200">у</l>
+<l i="210">Ф</l>
+<l i="210">ф</l>
+<l i="220">Х</l>
+<l i="220">х</l>
+<l i="230">Ц</l>
+<l i="230">ц</l>
+<l i="240">Ч</l>
+<l i="240">ч</l>
+<l i="250">Ш</l>
+<l i="250">ш</l>
+<l i="260">Щ</l>
+<l i="260">щ</l>
+<l i="270">Ъ</l>
+<l i="270">ъ</l>
+<l i="280">Ь</l>
+<l i="280">ь</l>
+<l i="290">Ю</l>
+<l i="290">ю</l>
+<l i="300">Я</l>
+<l i="300">я</l>
+<l i="310">Э</l>
+<l i="310">э</l>
+<l i="320">Ы</l>
+<l i="320">ы</l>
+<l i="410">A</l>
+<l i="410">a</l>
+<l i="420">B</l>
+<l i="420">b</l>
+<l i="430">C</l>
+<l i="430">c</l>
+<l i="440">D</l>
+<l i="440">d</l>
+<l i="450">E</l>
+<l i="450">e</l>
+<l i="460">F</l>
+<l i="460">f</l>
+<l i="470">G</l>
+<l i="470">g</l>
+<l i="480">H</l>
+<l i="480">h</l>
+<l i="490">I</l>
+<l i="490">i</l>
+<l i="500">J</l>
+<l i="500">j</l>
+<l i="510">K</l>
+<l i="510">k</l>
+<l i="520">L</l>
+<l i="520">l</l>
+<l i="530">M</l>
+<l i="530">m</l>
+<l i="540">N</l>
+<l i="540">n</l>
+<l i="550">O</l>
+<l i="550">o</l>
+<l i="560">P</l>
+<l i="560">p</l>
+<l i="570">Q</l>
+<l i="570">q</l>
+<l i="580">R</l>
+<l i="580">r</l>
+<l i="590">S</l>
+<l i="590">s</l>
+<l i="600">T</l>
+<l i="600">t</l>
+<l i="610">U</l>
+<l i="610">u</l>
+<l i="620">V</l>
+<l i="620">v</l>
+<l i="630">W</l>
+<l i="630">w</l>
+<l i="640">X</l>
+<l i="640">x</l>
+<l i="650">Y</l>
+<l i="650">y</l>
+<l i="660">Z</l>
+<l i="660">z</l>
+</letters>
 
 </locale>
