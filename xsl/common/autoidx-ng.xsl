@@ -4,7 +4,7 @@
 <!-- Documents using the kimber index method must have a lang attribute -->
 <!-- Only one of these should be present in the entity -->
 
-<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang, "en")'>
+<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang)'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0"
