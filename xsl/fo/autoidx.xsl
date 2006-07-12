@@ -12,7 +12,7 @@
 <!-- Documents using the kimber index method must have a lang attribute -->
 <!-- Only one of these should be present in the entity -->
 
-<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang, "en")'>
+<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang)'>
 <!ENTITY scope 'count(ancestor::node()|$scope) = count(ancestor::node())
                 and ($role = @role or $type = @type or
                 (string-length($role) = 0 and string-length($type) = 0))'>
