@@ -58,12 +58,13 @@ div {
 
 # ======================================================================
 
-db.effectivity.attributes =
+db.arch.attribute =
   [
     db:refpurpose [ "Designates the computer or chip architecture to which the element applies" ]
   ]
-  attribute arch        { text }?,
+  attribute arch        { text }
 
+db.condition.attribute =
   [
     db:refpurpose [ "provides a standard place for application-specific effectivity" ]
     dbx:description [
@@ -82,8 +83,9 @@ db.effectivity.attributes =
       ]
     ]
   ]
-  attribute condition   { text }?,
+  attribute condition   { text }
 
+db.conformance.attribute =
   [
     db:refpurpose [ "Indicates standards conformance characteristics of the element" ]
     dbx:description [
@@ -93,38 +95,55 @@ db.effectivity.attributes =
       ]
     ]
   ]
-  attribute conformance { text }?,
+  attribute conformance { text }
 
+db.os.attribute =
   [
     db:refpurpose [ "Indicates the operating system to which the element is applicable"
     ]
   ]
-  attribute os          { text }?,
+  attribute os          { text }
 
+db.revision.attribute =
   [
     db:refpurpose [ "Indicates the editorial revision to which the element belongs" ]
   ]
-  attribute revision    { text }?,
+  attribute revision    { text }
 
+db.security.attribute =
   [
     db:refpurpose [ "Indicates something about the security level associated with the element to which it applies" ]
   ]
-  attribute security    { text }?,
+  attribute security    { text }
 
+db.userlevel.attribute =
   [
     db:refpurpose [ "Indicates the level of user experience for which the element applies" ]
   ]
-  attribute userlevel   { text }?,
+  attribute userlevel   { text }
 
+db.vendor.attribute =
   [
     db:refpurpose [ "Indicates the computer vendor to which the element applies." ]
   ]
-  attribute vendor      { text }?,
+  attribute vendor      { text }
 
+db.wordsize.attribute =
   [
     db:refpurpose [ "Indicates the word size (width in bits) of the computer architecture to which the element applies" ]
   ]
-  attribute wordsize    { text }?
+  attribute wordsize    { text }
+
+db.effectivity.attributes =
+   db.arch.attribute?
+ & db.condition.attribute?
+ & db.conformance.attribute?
+ & db.os.attribute?
+ & db.revision.attribute?
+ & db.security.attribute?
+ & db.userlevel.attribute?
+ & db.vendor.attribute?
+ & db.wordsize.attribute?
 
 # ======================================================================
 
