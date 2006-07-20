@@ -116,9 +116,9 @@ div {
       db.simplemsgentry.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.simplemsgentry.msgaud.attribute
-    & db.simplemsgentry.msgorig.attribute
-    & db.simplemsgentry.msglevel.attribute
+    & db.simplemsgentry.msgaud.attribute?
+    & db.simplemsgentry.msgorig.attribute?
+    & db.simplemsgentry.msglevel.attribute?
 
    db.simplemsgentry =
       element simplemsgentry {
