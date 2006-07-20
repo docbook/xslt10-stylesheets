@@ -1840,6 +1840,12 @@ div {
       ]
       attribute continuation { db.orderedlist.continuation.enumeration }
 
+   db.orderedlist.startingnumber.attribute =
+      [
+         db:refpurpose [ "Specifies the initial line number." ]
+      ]
+   attribute startingnumber { xsd:integer }
+
    db.orderedlist.inheritnum.enumeration =
       ## Specifies that numbering should ignore list nesting
       "ignore"
@@ -1875,7 +1881,8 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
     & db.spacing.attribute?
-    & db.orderedlist.continuation.attribute?
+    & (db.orderedlist.continuation.attribute
+     |db.orderedlist.startingnumber.attribute)?
     & db.orderedlist.inheritnum.attribute?
     & db.orderedlist.numeration.attribute?
 
