@@ -431,6 +431,7 @@
 	<xsl:when test="@name = 'xreflabel'"/>
 	<xsl:when test="@name = 'revisionflag'"/>
 	<xsl:when test="@name = 'arch'"/>
+	<xsl:when test="@name = 'audience'"/>
 	<xsl:when test="@name = 'condition'"/>
 	<xsl:when test="@name = 'conformance'"/>
 	<xsl:when test="@name = 'os'"/>

@@ -1164,6 +1164,26 @@
 	  <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
 	</xsl:attribute>
       </xsl:when>
+
+      <xsl:when test="local-name($src) = 'simplemsgentry'
+	              and local-name(.) = 'audience'">
+        <xsl:attribute name="msgaud">
+          <xsl:value-of select="."/>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:when test="local-name($src) = 'simplemsgentry'
+	              and local-name(.) = 'origin'">
+        <xsl:attribute name="msgorig">
+          <xsl:value-of select="."/>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:when test="local-name($src) = 'simplemsgentry'
+	              and local-name(.) = 'level'">
+        <xsl:attribute name="msglevel">
+          <xsl:value-of select="."/>
+        </xsl:attribute>
+      </xsl:when>
+
       <xsl:otherwise>
         <xsl:copy/>
       </xsl:otherwise>
