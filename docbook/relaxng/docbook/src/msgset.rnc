@@ -94,31 +94,31 @@ div {
 
    db.simplemsgentry.role.attribute = attribute role { text }
 
-   db.simplemsgentry.audience.attribute =
+   db.simplemsgentry.msgaud.attribute =
       [
          db:refpurpose [ "The audience to which the message relevant" ]
       ]
-      attribute audience { text }
+      attribute msgaud { text }
 
-   db.simplemsgentry.origin.attribute =
+   db.simplemsgentry.msgorig.attribute =
       [
          db:refpurpose [ "The origin of the message" ]
       ]
-      attribute origin { text }
+      attribute msgorig { text }
 
-   db.simplemsgentry.level.attribute =
+   db.simplemsgentry.msglevel.attribute =
       [
          db:refpurpose [ "The level of importance or severity of a message" ]
       ]
-      attribute level { text }
+      attribute msglevel { text }
 
    db.simplemsgentry.attlist =
       db.simplemsgentry.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
-    & db.simplemsgentry.audience.attribute
-    & db.simplemsgentry.origin.attribute
-    & db.simplemsgentry.level.attribute
+    & db.simplemsgentry.msgaud.attribute
+    & db.simplemsgentry.msgorig.attribute
+    & db.simplemsgentry.msglevel.attribute
 
    db.simplemsgentry =
       element simplemsgentry {
