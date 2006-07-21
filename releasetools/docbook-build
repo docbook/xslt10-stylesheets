@@ -111,8 +111,7 @@ while getopts ":b:d:hl:p:rst:u:v:z:" opt; do
           if echo $LINE | grep "^Message-Id: " >/dev/null; then
             MESSAGE_ID=`echo $LINE | sed 's/^Message-Id: <\([^@]\+\)@[^\>]\+>$/\1/'`
           elif echo $LINE | grep "^Subject: " >/dev/null; then
-            CHANGE_DIR=`echo $LINE | sed 's/^.*CVS: \([^ ]\+\) .\+$/\1/'`
-            CHANGE_FILES=`echo $LINE | sed 's/^.*CVS: [^ ]\+ \(.\+\)$/\1/' | sed 's/ /:/g'`
+            CHANGE_SUMMARY=`echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \(.\+\)$/\1/'
             break
           fi
          done ;;
@@ -270,7 +269,7 @@ It is intended for testing purposes only and otherwise comes with no
 guarantees. It may in fact be broken.
 EOF
 
-    if [ $PREVIOUS_RELEASE ]; then
+    if [ -n "$PREVIOUS_RELEASE" ]; then
       svn log --verbose -r HEAD:$PREVIOUS_RELEASE > $DISTRO/LatestChanges
     fi
 
