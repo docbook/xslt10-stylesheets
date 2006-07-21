@@ -83,7 +83,7 @@ install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xm
 	cp $< $@
 
 #distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
-distrib: all $(DISTRIB_DEPENDS)
+distrib: all $(DISTRIB_DEPENDS) ChangeLog.xml
 
 #newversion:
 #ifeq ($(CVSCHECK),)
@@ -122,8 +122,7 @@ else
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | freshmeat-submit $(FMGO)
 endif
 
-#zip: ChangeHistory.xml.zip
-zip:
+zip: ChangeHistory.xml.zip
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
