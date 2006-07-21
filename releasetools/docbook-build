@@ -196,7 +196,7 @@ else
     #    SITEUSER=$CVSUSER
     #  fi
     #fi
-    rm -f $DISTRO/LatestTag
+    #rm -f $DISTRO/LatestTag
     rm -f $DISTRO/VERSION
     svn update $DISTRO/VERSION 1>/dev/null 2>&1
 
@@ -208,8 +208,7 @@ else
       DIFFVER=`cat $DISTRO/VERSION`
     fi
 
-    #DIFFTAG=`cvs status -v $DISTRO/VERSION | grep -C1 "Existing Tags:" \
-    #  | grep revision | sed 's/^[ \t]\+\([^ \t]\+\)[ \t]\+.\+$/\1/'`
+    PREVIOUS_RELEASE=`if [ -f PreviousRelease ]; then cat PreviousRelease; fi`
     if [ $MESSAGE_ID ]; then
       BUILD_ID=$MESSAGE_ID
     else
@@ -236,7 +235,7 @@ else
     date
     echo
     # echo selected variables
-    set | grep "BUILD_ID\|^CHANGE\|DIFFTAG\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
+    set | grep "BUILD_ID\|^CHANGE\|PREVIOUS_RELEASE\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
     echo
 
     echo "Running svn update in gentext and $DISTRO working directories..."
@@ -271,10 +270,9 @@ It is intended for testing purposes only and otherwise comes with no
 guarantees. It may in fact be broken.
 EOF
 
-    #if [ $DIFFTAG ]; then
-    #  cvs2cl -S --delta $DIFFTAG:HEAD --stdout $DISTRO \
-    #  | expand -t2 > $DISTRO/LatestChanges
-    #fi
+    if [ $PREVIOUS_RELEASE ]; then
+      svn log --verbose -r HEAD:$PREVIOUS_RELEASE > $DISTRO/LatestChanges
+    fi
 
     if [ "$UPLOAD" = "yes" ]; then
 
@@ -287,11 +285,10 @@ Latest Changes:
 --------------------------------------------------------------------------------
 
 EOF
-    #cvs2cl -S -l -d ">3 months ago" --stdout \
-    #  | expand -t2 > LatestChanges
+    svn log --verbose --limit 200 > LatestChanges
 
-    #cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
-    #rm $TMP/line.tmp
+    cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
+    rm $TMP/line.tmp
 
     # Uncompress tarball to local mirror directory.
     # Previously, we uploaded and untarred it to the remote host
