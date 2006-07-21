@@ -1347,6 +1347,9 @@ pointed to by the link is one of the elements listed in
   <xsl:choose>
     <xsl:when test="not($list/@continuation = 'continues')">
       <xsl:choose>
+	<xsl:when test="@startinglinenumber">
+	  <xsl:value-of select="@startinglinenumber"/>
+	</xsl:when>
 	<xsl:when test="$pi-html-start != ''">
 	  <xsl:value-of select="$pi-html-start"/>
 	</xsl:when>
