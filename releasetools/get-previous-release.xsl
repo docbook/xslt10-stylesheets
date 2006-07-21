@@ -14,10 +14,12 @@
   <xsl:output method="text"/>
 
   <xsl:template match="/">
-    <!-- * Get the value of the first tagdatetag element in the document -->
-    <!-- * that starts with a "V" (V1691, etc.). That is, hopefully, the -->
-    <!-- * tag for the previous release. -->
-    <xsl:value-of select="(//*[local-name() = 'tagdatetag'][starts-with(.,'V')])[1]"/>
+    <!-- * The value of the "revision" attribute on the commit element -->
+    <!-- * indicates the last time the file was checked in; since this -->
+    <!-- * is the VERSION file, and that only gets checked in once per -->
+    <!-- * release, that value should indicate the revision number -->
+    <!-- * associated with the latest release. -->
+    <xsl:value-of select="/lists/list/entry/commit/@revision"/>
   </xsl:template>
 
 </xsl:stylesheet>

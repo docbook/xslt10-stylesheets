@@ -47,17 +47,14 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-#ChangeLog.xml: LatestTag
-#	$(CVS2CL) $(CVS2CL_OPTS) \
-#	--delta $(LATEST_TAG):HEAD --stdout --xml -g -q > $@
+ChangeLog.xml: PreviousRelease
+	$(SVN) $(SVN_OPTS) log --xml --verbose \
+	-r HEAD:$(PREVIOUS_RELEASE) \
+	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
 
-LatestTag:
-# Note that one of the old commit messsage in the cvs log contains
-# a ^Z (x1a) character, which is not legal in XML, so it must
-# strip it out before using it with any XML processing apps
-#	$(CVS2CL) $(CVS2CL_OPTS) --stdout --xml -g -q \
-#	| $(SED) $(SED_OPTS) 's/\x1a//g' \
-#	| $(XSLTPROC) $(GET_LATEST_TAG) - > $@
+PreviousRelease:
+	$(SVN) $(SVN_OPTS) list --xml VERSION \
+	| $(XSLTPROC) $(GET_PREVIOUS_RELEASE) - > $@
 
 ChangeHistory.xml.zip: ChangeHistory.xml
 	$(ZIP) $(ZIP_OPTS) $@ $<
@@ -66,8 +63,7 @@ ChangeHistory.xml.zip: ChangeHistory.xml
 # ChangeHistory.xml holds the whole change history for the module,
 # including all subdirectories
 ChangeHistory.xml:
-#	$(CVS2CL) $(CVS2CL_OPTS) \
-#	--stdout --xml -g -q > $@
+	$(SVN) $(SVN_OPTS) log --xml --verbose > $@
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example

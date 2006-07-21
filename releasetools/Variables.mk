@@ -23,8 +23,9 @@ MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 # script, and using it to generate NEWS file(s) and releases notes
 CVS2CL2DOCBOOK=$(DOCBOOK_SVN)/releasetools/cvs2cl2docbook.xsl
 
-# stylesheet used for determining the latest cvs tag in cvs log
-GET_LATEST_TAG=$(DOCBOOK_SVN)/releasetools/get-latest-tag.xsl
+# stylesheet used for determining the revision number of the
+# last/latest release
+GET_PREVIOUS_RELEASE=$(DOCBOOK_SVN)/releasetools/get-previous-release.xsl
 
 # stylesheet for stripping DB5 namespace
 STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
@@ -53,7 +54,7 @@ DBLATEX_FLAGS = -b pdftex
 # file containing "What's New" info generated from CVS log
 NEWSFILE=NEWS
 
-LATEST_TAG=$(shell if [ -f LatestTag ];then cat LatestTag; fi)
+PREVIOUS_RELEASE=$(shell if [ -f PreviousRelease ];then cat PreviousRelease; fi)
 
 # determine RELVER automatically by:
 #
@@ -159,8 +160,8 @@ XMLLINT=xmllint
 XMLLINT_OPTS=
 XINCLUDE=$(XMLLINT) $(XMLLINT_OPTS) --xinclude
 
-CVS2CL=cvs2cl
-CVS2CL_OPTS=
+SVN=svn
+SVN_OPTS=
 
 SED=sed
 SED_OPTS=
