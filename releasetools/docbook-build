@@ -111,7 +111,7 @@ while getopts ":b:d:hl:p:rst:u:v:z:" opt; do
           if echo $LINE | grep "^Message-Id: " >/dev/null; then
             MESSAGE_ID=`echo $LINE | sed 's/^Message-Id: <\([^@]\+\)@[^\>]\+>$/\1/'`
           elif echo $LINE | grep "^Subject: " >/dev/null; then
-            CHANGE_SUMMARY=`echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \(.\+\)$/\1/'
+            CHANGE_SUMMARY=`echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \(.\+\)$/\1/'`
             break
           fi
          done ;;
@@ -207,7 +207,7 @@ else
       DIFFVER=`cat $DISTRO/VERSION`
     fi
 
-    PREVIOUS_RELEASE=`if [ -f PreviousRelease ]; then cat PreviousRelease; fi`
+    PREVIOUS_RELEASE=`if [ -f $DISTRO/PreviousRelease ]; then cat $DISTRO/PreviousRelease; fi`
     if [ $MESSAGE_ID ]; then
       BUILD_ID=$MESSAGE_ID
     else
@@ -270,7 +270,7 @@ guarantees. It may in fact be broken.
 EOF
 
     if [ -n "$PREVIOUS_RELEASE" ]; then
-      svn log --verbose -r HEAD:$PREVIOUS_RELEASE > $DISTRO/LatestChanges
+      svn log --verbose -r HEAD:$PREVIOUS_RELEASE $DISTRO > $DISTRO/LatestChanges
     fi
 
     if [ "$UPLOAD" = "yes" ]; then
