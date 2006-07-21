@@ -10,11 +10,14 @@
   <xsl:strip-space elements="*"/>
 
   <xsl:key name="defs" match="rng:define" use="@name"/>
+  <xsl:key name="refs" match="rng:ref" use="@name"/>
   <xsl:key name="combines" match="rng:define[@combine='choice']" use="@name"/>
   <xsl:key name="interleaves"
 	   match="rng:define[@combine='interleave']"
 	   use="@name"/>
   <xsl:key name="overrides" match="rng:define[@override]" use="@name"/>
+
+  <xsl:variable name="debug" select="1"/>
 
   <xsl:template match="/">
     <xsl:variable name="expanded">
@@ -31,8 +34,18 @@
 			   mode="override"/>
     </xsl:variable>
 
-    <xsl:apply-templates select="exsl:node-set($overridden)/*"
-			 mode="combine"/>
+    <xsl:variable name="combined">
+      <xsl:apply-templates select="exsl:node-set($overridden)/*"
+			   mode="combine"/>
+    </xsl:variable>
+
+    <xsl:variable name="withoutunused">
+      <xsl:call-template name="removeunused">
+	<xsl:with-param name="doc" select="exsl:node-set($combined)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:copy-of select="$withoutunused"/>
   </xsl:template>
 
   <!-- ====================================================================== -->
@@ -322,6 +335,81 @@
 
   <xsl:template match="comment()|processing-instruction()|text()"
 		mode="override">
+    <xsl:copy/>
+  </xsl:template>
+
+  <!-- ============================================================ -->
+
+  <xsl:template name="removeunused">
+    <xsl:param name="doc"/>
+
+    <xsl:variable name="unused">
+      <xsl:for-each select="$doc//rng:define[@name]">
+	<xsl:variable name="name" select="@name"/>
+	<xsl:if test="count(key('refs',@name)) = 0">1</xsl:if>
+      </xsl:for-each>
+      <xsl:for-each select="$doc//rng:div">
+	<xsl:if test="not(.//rng:*)">1</xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="string-length($unused) &gt; 0">
+	<xsl:message>
+	  <xsl:text>Removing </xsl:text>
+	  <xsl:value-of select="string-length($unused)"/>
+	  <xsl:text> patterns.</xsl:text>
+	</xsl:message>
+	<xsl:variable name="doc2">
+	  <xsl:apply-templates select="$doc" mode="remove-unused"/>
+	</xsl:variable>
+	<xsl:call-template name="removeunused">
+	  <xsl:with-param name="doc" select="exsl:node-set($doc2)"/>
+	</xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:copy-of select="$doc"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="rng:div" mode="remove-unused">
+    <xsl:choose>
+      <xsl:when test=".//rng:*">
+	<xsl:copy>
+	  <xsl:copy-of select="@*"/>
+	  <xsl:apply-templates mode="remove-unused"/>
+	</xsl:copy>
+      </xsl:when>
+      <xsl:when test="$debug != 0">
+	<xsl:message>   Removing empty rng:div</xsl:message>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="rng:define[@name]" mode="remove-unused">
+    <xsl:choose>
+      <xsl:when test="key('refs', @name) != 0">
+	<xsl:copy>
+	  <xsl:copy-of select="@*"/>
+	  <xsl:apply-templates mode="remove-unused"/>
+	</xsl:copy>
+      </xsl:when>
+      <xsl:when test="$debug != 0">
+	<xsl:message>   Removing <xsl:value-of select="@name"/>...</xsl:message>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="*" mode="remove-unused">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates mode="remove-unused"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="comment()|processing-instruction()|text()"
+		mode="remove-unused">
     <xsl:copy/>
   </xsl:template>
 
