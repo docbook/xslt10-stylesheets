@@ -126,7 +126,8 @@ else
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | freshmeat-submit $(FMGO)
 endif
 
-zip: ChangeHistory.xml.zip
+#zip: ChangeHistory.xml.zip
+zip:
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
