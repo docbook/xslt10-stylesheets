@@ -1,11 +1,11 @@
-README.CVS for the DocBook XSL Stylesheets at cvs.docbook.sourceforge.net
+README.CVS for the DocBook XSL Stylesheets at svn.sourceforge.net/svnroot/docbook
 
 These are XSL stylesheets for the DocBook XML DTD. (They would also
 work for the DocBook DTD, modulo certain namecase problems and the
 fact that there aren't any XSL implementations that work with SGML
 source documents.)
 
-CVS Manifest
+Subversion Manifest
 ------------
 
 README.CVS  this file
@@ -25,8 +25,8 @@ xhtml/      stylesheets that produce XHTML result trees
 Installation
 ------------
 
-*** NOTE: The CVS tree *IS NOT COMPLETE*. In order to run the stylesheets
-directly from the CVS tree, you must checkout several additional trees
+*** NOTE: The Subversion tree *IS NOT COMPLETE*. In order to run the stylesheets
+directly from the Subversion tree, you must checkout several additional trees
 and run some build scripts. This README will be updated to describe how
 sometime real soon now.
 
