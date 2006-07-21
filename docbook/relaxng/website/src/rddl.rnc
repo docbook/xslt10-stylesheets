@@ -16,6 +16,8 @@ namespace rddl = "http://www.rddl.org/"
 namespace xlink = "http://www.w3.org/1999/xlink"
 default namespace = "http://docbook.org/ns/docbook"
 
+db.technical.inlines |= rddl.resource
+
 [
    db:refname [ "rddl:resource" ]
    db:refpurpose [ "A RDDL resource" ]
