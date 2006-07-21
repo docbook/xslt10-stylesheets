@@ -309,6 +309,8 @@ EOF
 
     scp \
       $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
+      README.txt \
+      LatestChanges \
       $SITEUSER@$SITEHOST:$SITEBASE
 
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
