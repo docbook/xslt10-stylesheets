@@ -63,7 +63,7 @@ div {
    db.imagedata.svg =
       element imagedata {
          db.imagedata.svg.attlist,
-         db.imagedata.info,
+         db.imagedata.svg.info,
          db._any.svg+
       }
 }
