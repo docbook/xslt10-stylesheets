@@ -108,7 +108,7 @@ endif
 ZIP_EXCLUDES = \
  /CVS$$ \
  /CVS/ \
- /\.svn/ \
+ .*/\.svn \
  /debian \
  \.classes \
  ~$$ \
@@ -123,7 +123,7 @@ ZIP_EXCLUDES = \
  Makefile.incl \
  Makefile.param \
  LatestTag \
- README\.CVS \
+ README\.SVN \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl
 
