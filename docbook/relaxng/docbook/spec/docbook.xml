@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0b6</productnumber>
+<!-- productVersion --> <productnumber>5.0b7</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-06-02</pubdate>
+<pubdate>2006-07-21</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -153,6 +153,46 @@ from the
 DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
+
+<section xml:id="s.50b7">
+<title>Changes in DocBook V5.0b7</title>
+
+<para>This release contains several improvements over V5.0b6.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1520074">
+<para>Fixed <link xlink:href="&RFE;aid=1520074">RFE 1520074</link>:
+Define separate patterns for all the effectivity attributes to make
+customization easier.</para>
+</listitem>
+<listitem xml:id="rfe.1512505">
+<para>Attempted to address
+<link xlink:href="&RFE;aid=1512505">RFE 1512505</link>:
+Added an <tag class="attribute">audience</tag> effectivity attribute.
+</para>
+</listitem>
+<listitem xml:id="msgaud">
+<para>Rename <tag class="attribute">audience</tag>,
+<tag class="attribute">origin</tag>, and <tag class="attribute">level</tag>
+on <tag>simplemsgentry</tag> to <tag class="attribute">msgaud</tag>,
+<tag class="attribute">msgorig</tag>, and <tag class="attribute">msglevel</tag>,
+respectively. This is a better parallel with the descendent elements of
+<tag>msgentry</tag> and avoids a conflict with the newly introduced
+<tag class="attribute">audience</tag> effectivity attribute.</para>
+</listitem>
+<listitem xml:id="startinglinenumber">
+<para>Added <tag class="attribute">startinglinenumber</tag> attribute
+to <tag>orderedlist</tag>.
+</para>
+</listitem>
+<listitem xml:id="imagedata.fileref">
+<para>Fixed bug where one of <tag class="attribute">fileref</tag> or
+<tag class="attribute">entityref</tag> was required on
+<tag>imagedata</tag> even when the content was inline MathML or SVG.
+</para>
+</listitem>
+</orderedlist>
+</section>
 
 <section xml:id="s.50b6">
 <title>Changes in DocBook V5.0b6</title>
@@ -1054,6 +1094,7 @@ the formulation of this &standard;:</para>
 <listitem><para>Nancy Harrison, IBM</para></listitem>
 <listitem><para>Scott Hudson, Individual</para></listitem>
 <listitem><para>Mark Johnson, Debian</para></listitem>
+<listitem><para>Gershon Joseph, Tech-Tav Documentation Ltd.</para></listitem>
 <listitem><para>Jirka Kosek, Individual</para></listitem>
 <listitem><para>Larry Rowland, Hewlett-Packard</para></listitem>
 <listitem><para>Michael Smith, Individual</para></listitem>
@@ -1142,6 +1183,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/docbook-5.0b7-spec-wd-01.html">
+  <revnumber>Working Draft “Beta 7”</revnumber>
+  <date>21 July 2006</date>
+</revision>
 <revision role="&root;specs/docbook-5.0b6-spec-wd-01.html">
   <revnumber>Working Draft “Beta 6”</revnumber>
   <date>2 June 2006</date>
