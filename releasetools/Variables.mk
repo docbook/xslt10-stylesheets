@@ -108,6 +108,7 @@ endif
 ZIP_EXCLUDES = \
  /CVS$$ \
  /CVS/ \
+ \.svn \
  /debian \
  \.classes \
  ~$$ \
