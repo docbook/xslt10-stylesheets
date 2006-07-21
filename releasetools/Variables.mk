@@ -51,7 +51,7 @@ XEP_FLAGS =
 DBLATEX = dblatex
 DBLATEX_FLAGS = -b pdftex
 
-# file containing "What's New" info generated from CVS log
+# file containing "What's New" info generated from Subversion log
 NEWSFILE=NEWS
 
 PREVIOUS_RELEASE=$(shell if [ -f PreviousRelease ];then cat PreviousRelease; fi)
