@@ -117,12 +117,11 @@ ZIP_EXCLUDES = \
  \.\\\#.* \
  prj\.el \
  \.cvsignore \
- MANIFEST.build \
  Makefile$$ \
  Makefile.common \
  Makefile.incl \
  Makefile.param \
- LatestTag \
+ PreviousRelease \
  README\.SVN \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl
