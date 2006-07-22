@@ -154,14 +154,13 @@ else
   for DISTRO in $DISTROS; do
     lock_timer=0
     # wait for lock file (if any) to clear
-    printf "Waiting for $TMP/docbook-$DISTRO-$RELEASEVERSION.lock file to clear..." 1>&2
-    while [ -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock ]; do
+    printf "Waiting for lock file to clear..." 1>&2
+    while [ -f $TMP/docbook-*-$RELEASEVERSION.lock ]; do
       if [ $lock_timer = $LOCK_TIMEOUT ]; then
         # time out after reaching $LOCK_TIMEOUT seconds
         # default is 1200 seconds (20 minutes)
         echo
-        printf "Timed out after $LOCK_TIMEOUT seconds waiting for"
-        printf "$TMP/docbook-$DISTRO-$RELEASEVERSION.lock file to clear.\n"
+        printf "Timed out after $LOCK_TIMEOUT seconds waiting for lock file to clear.\n"
         echo "You probably have a stale $TMP/docbook-$DISTRO-$RELEASEVERSION.lock file that you need to delete."
         exit 1
       fi
@@ -238,8 +237,8 @@ else
     echo
 
     echo "Running svn update in gentext and $DISTRO working directories..."
-    svn update gentext || exit 1
-    svn update $DISTRO || exit 1
+    svn cleanup gentext && svn update gentext || exit 1
+    svn cleanup $DISTRO && svn update $DISTRO || exit 1
     echo
 
     echo
@@ -284,7 +283,7 @@ Latest Changes:
 --------------------------------------------------------------------------------
 
 EOF
-    svn log --verbose --limit 200 > LatestChanges
+    svn cleanup && svn update && svn log --verbose --limit 200 > LatestChanges
 
     cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
     rm $TMP/line.tmp
