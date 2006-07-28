@@ -18,9 +18,16 @@
 <!-- You can override this template to do more complex mapping of
      language attribute to highlighter language ID (see xslthl-config.xml) -->
 <xsl:template name="language.to.xslthl">
-  <xsl:param name="language"/>
+  <xsl:param name="context"/>
 
-  <xsl:value-of select="$language"/>
+  <xsl:choose>
+    <xsl:when test="$context/@language != ''">
+      <xsl:value-of select="$context/@language"/>
+    </xsl:when>
+    <xsl:when test="$highlight.default.language != ''">
+      <xsl:value-of select="$highlight.default.language"/>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="apply-highlighting">
@@ -28,16 +35,9 @@
     <!-- Do we want syntax highlighting -->
     <xsl:when test="$highlight.source != 0 and function-available('hl:highlight')">
       <xsl:variable name="language">
-	<xsl:choose>
-	  <xsl:when test="@language">
-	    <xsl:call-template name="language.to.xslthl">
-	      <xsl:with-param name="language" select="@language"/>
-	    </xsl:call-template>
-	  </xsl:when>
-	  <xsl:when test="$highlight.default.language != ''">
-	    <xsl:value-of select="$highlight.default.language"/>
-	  </xsl:when>
-	</xsl:choose>
+	<xsl:call-template name="language.to.xslthl">
+	  <xsl:with-param name="context" select="."/>
+	</xsl:call-template>
       </xsl:variable>
       <xsl:choose>
 	<xsl:when test="$language != ''">
