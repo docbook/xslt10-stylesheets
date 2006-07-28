@@ -137,7 +137,9 @@
   </xsl:variable>
 
   <xsl:variable name="href">
-    <xsl:call-template name="href.target.with.base.dir"/>
+    <xsl:call-template name="href.target.with.base.dir">
+      <xsl:with-param name="context" select="/"/>        <!-- Generate links relative to the location of root file/toc.xml file -->
+    </xsl:call-template>
   </xsl:variable>
 
   <topic label="{$title}" href="{$href}">
