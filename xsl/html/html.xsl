@@ -80,11 +80,13 @@
 </xsl:template>
 
 <xsl:template name="href.target.with.base.dir">
+  <xsl:param name="context" select="."/>
   <xsl:param name="object" select="."/>
   <xsl:if test="$manifest.in.base.dir = 0">
     <xsl:value-of select="$base.dir"/>
   </xsl:if>
   <xsl:call-template name="href.target">
+    <xsl:with-param name="context" select="$context"/>
     <xsl:with-param name="object" select="$object"/>
   </xsl:call-template>
 </xsl:template>
