@@ -22,38 +22,6 @@
                                           and name(.) != 'titleabbrev'
                                           and name(.) != 'qandadiv'
                                           and name(.) != 'qandaentry']"/>
-  <xsl:variable name="label-width">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="table-summary">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'table-summary'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="cellpadding">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'cellpadding'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="cellspacing">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'cellspacing'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
   <xsl:variable name="toc">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis"
@@ -74,39 +42,7 @@
       <xsl:call-template name="process.qanda.toc"/>
     </xsl:if>
     <xsl:apply-templates select="$preamble"/>
-    <table border="0" summary="Q and A Set">
-      <xsl:if test="$table-summary != ''">
-        <xsl:attribute name="summary">
-          <xsl:value-of select="$table-summary"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <xsl:if test="$cellpadding != ''">
-        <xsl:attribute name="cellpadding">
-          <xsl:value-of select="$cellpadding"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <xsl:if test="$cellspacing != ''">
-        <xsl:attribute name="cellspacing">
-          <xsl:value-of select="$cellspacing"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <col align="left">
-        <xsl:attribute name="width">
-          <xsl:choose>
-            <xsl:when test="$label-width != ''">
-              <xsl:value-of select="$label-width"/>
-            </xsl:when>
-            <xsl:otherwise>1%</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
-      </col>
-      <tbody>
-        <xsl:apply-templates select="qandaentry|qandadiv"/>
-      </tbody>
-    </table>
+    <xsl:call-template name="process.qandaset"/>
   </div>
 </xsl:template>
 
@@ -273,7 +209,13 @@
       </xsl:if>
     </td>
     <td align="left" valign="top">
-      <xsl:apply-templates select="*[name(.) != 'label']"/>
+      <xsl:apply-templates select="*[name(.) != 'label'
+        and name(.) != 'qandaentry']"/>
+      <!-- * handle nested answer/qandaentry instances -->
+      <!-- * (bug 1509043 from Daniel Leidert) -->
+      <xsl:if test="child::qandaentry">
+        <xsl:call-template name="process.qandaset"/>
+      </xsl:if>
     </td>
   </tr>
 </xsl:template>
@@ -354,6 +296,77 @@
       <xsl:value-of select="$firstch"/>
     </a>
   </dt>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="process.qandaset">
+
+  <xsl:variable name="label-width">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+        select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'label-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="table-summary">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+        select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'table-summary'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="cellpadding">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+        select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'cellpadding'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="cellspacing">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis"
+        select="processing-instruction('dbhtml')"/>
+      <xsl:with-param name="attribute" select="'cellspacing'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <table border="0" summary="Q and A Set">
+    <xsl:if test="$table-summary != ''">
+      <xsl:attribute name="summary">
+        <xsl:value-of select="$table-summary"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$cellpadding != ''">
+      <xsl:attribute name="cellpadding">
+        <xsl:value-of select="$cellpadding"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$cellspacing != ''">
+      <xsl:attribute name="cellspacing">
+        <xsl:value-of select="$cellspacing"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <col align="left">
+      <xsl:attribute name="width">
+        <xsl:choose>
+          <xsl:when test="$label-width != ''">
+            <xsl:value-of select="$label-width"/>
+          </xsl:when>
+          <xsl:otherwise>1%</xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+    </col>
+    <tbody>
+      <xsl:apply-templates select="qandaentry|qandadiv"/>
+    </tbody>
+  </table>
 </xsl:template>
 
 <!-- ==================================================================== -->
