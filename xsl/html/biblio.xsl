@@ -71,9 +71,7 @@
 				   and not(self::titleabbrev)
 			           and not(self::biblioentry)
 				   and not(self::bibliomixed)]"/>
-    <dl>
-      <xsl:apply-templates select="biblioentry|bibliomixed"/>
-    </dl>
+    <xsl:apply-templates select="biblioentry|bibliomixed"/>
   </div>
 </xsl:template>
 
