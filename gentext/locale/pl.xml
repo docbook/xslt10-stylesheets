@@ -30,7 +30,7 @@
 <gentext key="Caution" text="Uwaga!"/>
 <gentext key="caution" text="Uwaga!"/>
 <gentext key="Chapter" text="Rozdzia&#322;"/>
-<gentext key="chapter" text="rozdzia&#322;;"/>
+<gentext key="chapter" text="rozdzia&#322;"/>
 <gentext key="Colophon" text="Colophon"/>
 <gentext key="colophon" text="Colophon"/> <!-- en -->
 <gentext key="Copyright" text="Copyright"/>
@@ -90,8 +90,8 @@
 <gentext key="refname" text="Nazwa"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/> <!-- en -->
+<gentext key="RefSynopsisDiv" text="Sk&#322;adnia"/>
+<gentext key="refsynopsisdiv" text="Sk&#322;adnia"/>
 <gentext key="RevHistory" text="Historia zmian"/>
 <gentext key="revhistory" text="Historia zmian"/>
 <gentext key="Revision" text="Zmiana"/>
@@ -173,8 +173,8 @@
 <gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="a&#261;bc&#263;de&#281;fghijkl&#322;mn&#324;o&#242;pqrs&#347;tuvwxyz&#378;&#380;"/>        
+<gentext key="uppercase.alpha" text="A&#260;BC&#262;DE&#280;FGHIJKL&#321;MN&#323;O&#210;PQRS&#346;TUVWXYZ&#377;&#379;"/>
 
 <dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201D;"/>
