@@ -475,12 +475,15 @@
         <xsl:text>"&#10;</xsl:text>
         <!-- * the copyright mode="titlepage.mode" template is -->
         <!-- * imported from the HTML stylesheets -->
-        <xsl:apply-templates
-            select="(($info[//copyright])[last()]//copyright)[1]"
-            mode="titlepage.mode"/>
+        <xsl:for-each select="(($info[//copyright])[last()]//copyright)">
+          <xsl:apply-templates select="." mode="titlepage.mode"/>
+          <xsl:text>&#10;.br&#10;</xsl:text>
+        </xsl:for-each>
         <xsl:text>&#10;</xsl:text>
-        <xsl:apply-templates
-            select="(($info[//legalnotice])[last()]//legalnotice)[1]"/>
+        <xsl:for-each select="(($info[//legalnotice])[last()]//legalnotice)">
+          <xsl:apply-templates select="." mode="titlepage.mode"/>
+          <xsl:text>&#10;.br&#10;</xsl:text>
+        </xsl:for-each>
       </xsl:when>
       <xsl:otherwise/> <!-- * do nothing, no copyright or legalnotice found -->
     </xsl:choose>
