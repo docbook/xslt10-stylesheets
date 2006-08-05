@@ -44,11 +44,16 @@
       url="http://www.honky.net/">Honky</ulink>.</simpara>
       <qandaset>
 	<qandaentry>
-	  <question><simpara>What's their best album?</simpara></question>
+	  <question><simpara>What's the Honky album with the best name?</simpara></question>
 	  <answer><simpara><ulink
 	  url="http://www.austinchronicle.com/gyrobase/Issue/story?oid=oid%3A77367">Attacked
 	  by Lesbians in a Chicago Bowling Alley</ulink>.</simpara>
 	  </answer>
+        </qandaentry>
+        <qandaentry>
+          <question><simpara>What's Honky's favorite acronym?</simpara></question>
+          <answer><simpara><acronym><alt>What Would Ted Nugent
+          Do?</alt>WWTND</acronym></simpara></answer>
 	</qandaentry>
       </qandaset>
       </answer>
