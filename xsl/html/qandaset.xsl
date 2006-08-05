@@ -296,6 +296,17 @@
       <xsl:value-of select="$firstch"/>
     </a>
   </dt>
+  <xsl:if test="not($qanda.nested.in.toc = 0)">
+    <xsl:apply-templates select="following-sibling::answer" mode="qandatoc.mode"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="answer" mode="qandatoc.mode">
+  <xsl:if test="child::qandaentry">
+    <dd>
+      <xsl:call-template name="process.qanda.toc"/>
+    </dd>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
