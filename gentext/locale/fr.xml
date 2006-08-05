@@ -40,8 +40,8 @@
 <gentext key="CAUTION" text="ATTENTION"/>
 <gentext key="Chapter" text="Chapitre"/>
 <gentext key="chapter" text="chapitre"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/>
+<gentext key="Colophon" text="Achev&eacute; d'imprimer"/>
+<gentext key="colophon" text="Achev&eacute; d'imprimer"/>
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="D&eacute;dicace"/>
@@ -87,8 +87,8 @@
 <gentext key="ProductionSet" text="Production"/>
 <gentext key="PubDate" text="Date de publication"/>
 <gentext key="pubdate" text="Date de publication"/>
-<gentext key="Published" text="Publi&eacute;"/>
-<gentext key="published" text="Publi&eacute;"/>
+<gentext key="Published" text="Publi&eacute; le"/>
+<gentext key="published" text="Publi&eacute; le"/>
 <gentext key="Qandadiv" text="Q &amp; R"/>
 <gentext key="qandadiv" text="Q &amp; R"/>
 <gentext key="Question" text="Q&#x00A0;:"/>
@@ -123,8 +123,8 @@
 <gentext key="Set" text="Ensemble"/>
 <gentext key="setindex" text="Index"/>
 <gentext key="SetIndex" text="Index"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text=""/>
+<gentext key="Sidebar" text="Filet vertical"/>
+<gentext key="sidebar" text="Filet vertical"/>
 <gentext key="step" text="&eacute;tape"/>
 <gentext key="Step" text="&Eacute;tape"/>
 <gentext key="Table" text="Tableau"/>
@@ -151,14 +151,14 @@
 <gentext key="Notes" text="Notes"/>
 <gentext key="Pgs" text="Pages"/>
 <gentext key="pgs" text="Pages"/>
-<gentext key="Revisedby" text="Revu par&#x00A0;: "/>
-<gentext key="revisedby" text="Revu par&#x00A0;: "/>
+<gentext key="Revisedby" text="Revu et corrig&eacute; par&#x00A0;: "/>
+<gentext key="revisedby" text="Revu et corrig&eacute; par&#x00A0;: "/>
 <gentext key="TableNotes" text="Remarques"/>
 <gentext key="tablenotes" text="Remarques"/>
 <gentext key="TableofContents" text="Table des mati&egrave;res"/>
 <gentext key="tableofcontents" text="Table des mati&egrave;res"/>
 <gentext key="the" text=""/>
-<gentext key="unexpectedelementname" text="Nom d'&eacute;l&eacute;ment non attendu"/>
+<gentext key="unexpectedelementname" text="Nom d'&eacute;l&eacute;ment inattendu"/>
 <gentext key="unsupported" text="Non reconnu par le syst&egrave;me"/>
 <gentext key="xrefto" text="R&eacute;f&eacute;rence vers"/>
 
@@ -172,8 +172,8 @@
 <gentext key="listofprocedures" text="Liste des proc&eacute;dures"/>
 <gentext key="listoftables" text="Liste des tableaux"/>
 <gentext key="ListofTables" text="Liste des tableaux"/>
-<gentext key="ListofUnknown" text="Liste des inconnues"/>
-<gentext key="listofunknown" text="Liste des inconnues"/>
+<gentext key="ListofUnknown" text="Liste inconnue"/>
+<gentext key="listofunknown" text="Liste inconnue"/>
 
 <gentext key="nav-home" text="Sommaire"/>
 <gentext key="nav-next" text="Suivant"/>
@@ -184,8 +184,8 @@
 <gentext key="nav-toc" text="TdM"/>
 
 <gentext key="Draft"         text="Brouillon"/>
-<gentext key="above"         text="au dessus"/>
-<gentext key="below"         text="au dessous"/>
+<gentext key="above"         text="au-dessus"/>
+<gentext key="below"         text="au-dessous"/>
 <gentext key="sectioncalled" text="la section intitul&eacute;e" />
 <gentext key="index symbols" text="Symboles"/>
 
