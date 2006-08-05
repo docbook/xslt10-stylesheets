@@ -1,0 +1,6 @@
+#!/bin/bash
+# $Id$
+# svnpurge - purge files unknown to or ignored by Subversion
+
+rm -rf $(svn status --no-ignore * | grep '^I\|^?' | cut -c8- | cat -s)
+svn update
