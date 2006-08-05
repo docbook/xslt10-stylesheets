@@ -73,5 +73,6 @@ clean:
 	$(MAKE) clean -C doc
 	$(MAKE) clean -C docsrc
 	$(RM) -r website
+	$(RM) -r slides
 
 include ../releasetools/Targets.mk
