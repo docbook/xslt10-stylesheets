@@ -207,6 +207,7 @@ stylesheet like this:</para>
 <reference id="qa"><title>QAndASet</title>
 &qanda.defaultlabel;
 &qanda.inherit.numeration;
+&qanda.nested.in.toc;
 </reference>
 
 <reference id="links"><title>Linking</title>
@@ -678,6 +679,7 @@ around all these parameters.</para>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
+<src:fragref linkend="qanda.nested.in.toc.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
 <src:fragref linkend="refentry.generate.title.frag"/>

@@ -194,6 +194,7 @@
 <!ENTITY punct.honorific SYSTEM "../params/punct.honorific.xml">
 <!ENTITY qanda.defaultlabel SYSTEM "../params/qanda.defaultlabel.xml">
 <!ENTITY qanda.inherit.numeration SYSTEM "../params/qanda.inherit.numeration.xml">
+<!ENTITY qanda.nested.in.toc SYSTEM "../params/qanda.nested.in.toc.xml">
 <!ENTITY qandadiv.autolabel SYSTEM "../params/qandadiv.autolabel.xml">
 <!ENTITY refentry.generate.name SYSTEM "../params/refentry.generate.name.xml">
 <!ENTITY refentry.generate.title SYSTEM "../params/refentry.generate.title.xml">
