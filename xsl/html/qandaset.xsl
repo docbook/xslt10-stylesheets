@@ -213,7 +213,7 @@
         and name(.) != 'qandaentry']"/>
       <!-- * handle nested answer/qandaentry instances -->
       <!-- * (bug 1509043 from Daniel Leidert) -->
-      <xsl:if test="child::qandaentry">
+      <xsl:if test="descendant::question">
         <xsl:call-template name="process.qandaset"/>
       </xsl:if>
     </td>
@@ -227,10 +227,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="process.qanda.toc">
+  <!-- * if user wants nested qandaset and qandaentry in main Qandaset TOC, -->
+  <!-- * then don't also include the nested stuff in the sub TOCs -->
+  <xsl:if test="not($qanda.nested.in.toc = 0) and not(ancestor::answer)">
   <dl>
     <xsl:apply-templates select="qandadiv" mode="qandatoc.mode"/>
-    <xsl:apply-templates select="qandaentry" mode="qandatoc.mode"/>
+    <xsl:apply-templates select="qandaset|qandaentry" mode="qandatoc.mode"/>
   </dl>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="qandadiv" mode="qandatoc.mode">
@@ -259,6 +263,12 @@
     </xsl:attribute>
     <xsl:apply-templates/>
   </a>
+</xsl:template>
+
+<xsl:template match="qandaset" mode="qandatoc.mode">
+  <xsl:for-each select="qandaentry">
+    <xsl:apply-templates select="." mode="qandatoc.mode"/>
+  </xsl:for-each>
 </xsl:template>
 
 <xsl:template match="qandaentry" mode="qandatoc.mode">
@@ -296,13 +306,14 @@
       <xsl:value-of select="$firstch"/>
     </a>
   </dt>
+  <!-- * include nested qandaset/qandaentry in TOC if user wants it -->
   <xsl:if test="not($qanda.nested.in.toc = 0)">
     <xsl:apply-templates select="following-sibling::answer" mode="qandatoc.mode"/>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="answer" mode="qandatoc.mode">
-  <xsl:if test="child::qandaentry">
+  <xsl:if test="descendant::question">
     <dd>
       <xsl:call-template name="process.qanda.toc"/>
     </dd>
