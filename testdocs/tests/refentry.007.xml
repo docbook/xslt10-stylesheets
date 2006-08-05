@@ -27,6 +27,20 @@
         <email>smith@sideshowbarker.net</email>
       </editor>
     </authorgroup>
+    <copyright>
+      <year>2003</year>
+      <holder>Norman Walsh</holder>
+    </copyright>
+    <copyright>
+      <year>2006</year>
+      <holder>Michael(tm) Smith</holder>
+    </copyright>
+    <legalnotice>
+      <para>This file is a product of the DocBook Project.</para>
+    </legalnotice>
+    <legalnotice>
+      <para>Share and share alike.</para>
+    </legalnotice>
   </refentryinfo>
 <refnamediv>
 <refname>FirstName</refname>
