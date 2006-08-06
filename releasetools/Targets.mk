@@ -127,17 +127,6 @@ ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
 else
-# normalize perms/filemodes for all files and dirs
-	find . -type f | xargs chmod 0644
-	find . -type d | xargs chmod 0755
-# set executable bit on executables that are in all distributions
-ifneq ($(EXECUTABLES),)
-	chmod 0755 $(EXECUTABLES)
-endif
-# set executable bit on distro-specific executables
-ifneq ($(DISTRIB_EXECUTABLES),)
-	chmod 0755 $(DISTRIB_EXECUTABLES)
-endif
 
 # -----------------------------------------------------------------
 #          Prepare *zip files for main part of distro

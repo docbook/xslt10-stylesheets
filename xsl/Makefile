@@ -19,10 +19,6 @@ DISTRIB_EXCLUDES = extensions/xsltproc saxon8 extensions/build/ extensions/build
 # files for the release
 DISTRIB_PACKAGES = doc
 
-# to make sure that executable bit is retained after packaging,
-# you need to explicitly list any executable files here
-DISTRIB_EXECUTABLES = fo/pdf2index install.sh
-
 # list of pathname+URIs to test for catalog support
 URILIST = \
 .\ http://docbook.sourceforge.net/release/xsl/current/

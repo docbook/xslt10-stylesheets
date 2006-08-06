@@ -126,9 +126,6 @@ ZIP_EXCLUDES = \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl
 
-# list of executables that are included in all distributions
-EXECUTABLES =
-
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
 # SFRELID specifies Sourceforge release ID for current release.
