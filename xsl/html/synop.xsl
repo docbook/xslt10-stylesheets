@@ -911,7 +911,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 
 <xsl:template match="methodparam" mode="java">
   <xsl:param name="indent">0</xsl:param>
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>,</xsl:text>
     <br/>
     <xsl:if test="$indent &gt; 0">
@@ -1102,7 +1102,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="methodparam" mode="cpp">
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1282,7 +1282,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="methodparam" mode="idl">
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">
@@ -1449,7 +1449,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="methodparam" mode="perl">
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <span class="{name(.)}">

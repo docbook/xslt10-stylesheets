@@ -441,7 +441,7 @@
 
 <xsl:template match="methodparam" mode="java">
   <xsl:param name="indent">0</xsl:param>
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>,&RE;</xsl:text>
     <xsl:if test="$indent &gt; 0">
       <xsl:call-template name="copy-string">
@@ -608,7 +608,7 @@
 </xsl:template>
 
 <xsl:template match="methodparam" mode="cpp">
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="cpp"/>
@@ -765,7 +765,7 @@
 </xsl:template>
 
 <xsl:template match="methodparam" mode="idl">
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="idl"/>
@@ -911,7 +911,7 @@
 </xsl:template>
 
 <xsl:template match="methodparam" mode="perl">
-  <xsl:if test="preceding-sibling::*">
+  <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
   <xsl:apply-templates mode="perl"/>
