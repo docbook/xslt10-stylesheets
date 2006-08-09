@@ -27,7 +27,6 @@
      and other information.
 
      ******************************************************************** -->
-
 <xsl:template name="simple.xlink">
   <xsl:param name="node" select="."/>
   <xsl:param name="content">
@@ -1028,12 +1027,16 @@
 <xsl:template match="email">
   <xsl:call-template name="inline.monoseq">
     <xsl:with-param name="content">
-      <xsl:text>&lt;</xsl:text>
+      <xsl:if test="not($email.delimiters.enabled = 0)">
+        <xsl:text>&lt;</xsl:text>
+      </xsl:if>
       <a>
        <xsl:attribute name="href">mailto:<xsl:value-of select="."/></xsl:attribute>
        <xsl:apply-templates/>
       </a>
-      <xsl:text>&gt;</xsl:text>
+      <xsl:if test="not($email.delimiters.enabled = 0)">
+        <xsl:text>&gt;</xsl:text>
+      </xsl:if>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>

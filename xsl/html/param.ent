@@ -47,6 +47,7 @@
 <!ENTITY draft.watermark.image SYSTEM "../params/draft.watermark.image.xml">
 <!ENTITY ebnf.table.bgcolor SYSTEM "../params/ebnf.table.bgcolor.xml">
 <!ENTITY ebnf.table.border SYSTEM "../params/ebnf.table.border.xml">
+<!ENTITY email.delimiters.enabled SYSTEM "../params/email.delimiters.enabled.xml">
 <!ENTITY emphasis.propagates.style SYSTEM "../params/emphasis.propagates.style.xml">
 <!ENTITY firstterm.only.link SYSTEM "../params/firstterm.only.link.xml">
 <!ENTITY footer.rule SYSTEM "../params/footer.rule.xml">
