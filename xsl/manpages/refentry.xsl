@@ -71,14 +71,11 @@
   </xsl:template>
 
   <xsl:template match="refsect1|refentry/refsection">
-    <!-- * if empty title, don't output any roff markup for it -->
-    <xsl:if test="not(title = '')">
-      <xsl:call-template name="mark.subheading"/>
-      <xsl:text>.SH "</xsl:text>
-      <xsl:apply-templates select="." mode="title.markup"/>
-      <xsl:text>"&#10;</xsl:text>
-      <xsl:call-template name="mark.subheading"/>
-    </xsl:if>
+    <xsl:call-template name="mark.subheading"/>
+    <xsl:text>.SH "</xsl:text>
+    <xsl:apply-templates select="." mode="title.markup"/>
+    <xsl:text>"&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
   </xsl:template>
 
