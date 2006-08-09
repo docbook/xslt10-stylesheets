@@ -113,6 +113,7 @@
 &man.table.footnotes.divider;
 &man.subheading.divider.enabled;
 &man.subheading.divider;
+&email.delimiters.enabled;
   </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
@@ -193,6 +194,7 @@
 <src:fragref linkend="man.th.extra1.suppress.frag"/>
 <src:fragref linkend="man.th.extra2.suppress.frag"/>
 <src:fragref linkend="man.th.extra3.suppress.frag"/>
+<src:fragref linkend="email.delimiters.enabled.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 

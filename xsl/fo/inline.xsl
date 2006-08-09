@@ -912,9 +912,13 @@
   <xsl:call-template name="inline.monoseq">
     <xsl:with-param name="content">
       <fo:inline keep-together.within-line="always" hyphenate="false">
-        <xsl:text>&lt;</xsl:text>
+        <xsl:if test="not($email.delimiters.enabled = 0)">
+          <xsl:text>&lt;</xsl:text>
+        </xsl:if>
         <xsl:apply-templates/>
-        <xsl:text>&gt;</xsl:text>
+        <xsl:if test="not($email.delimiters.enabled = 0)">
+          <xsl:text>&gt;</xsl:text>
+        </xsl:if>
       </fo:inline>
     </xsl:with-param>
   </xsl:call-template>

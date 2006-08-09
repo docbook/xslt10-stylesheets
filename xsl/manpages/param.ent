@@ -54,3 +54,4 @@
 <!ENTITY man.font.funcsynopsisinfo SYSTEM "../params/man.font.funcsynopsisinfo.xml">
 <!ENTITY man.font.table.headings SYSTEM "../params/man.font.table.headings.xml">
 <!ENTITY man.font.table.title SYSTEM "../params/man.font.table.title.xml">
+<!ENTITY email.delimiters.enabled SYSTEM "../params/email.delimiters.enabled.xml">
