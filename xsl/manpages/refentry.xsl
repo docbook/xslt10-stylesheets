@@ -56,8 +56,10 @@
     <!-- * So why don't we precede the hyphen with a backslash here? -->
     <!-- * Well, because it's added later, by the apply-string-subst-map -->
     <!-- * template, before we generate final output -->
-    <xsl:text> - </xsl:text>
-    <xsl:value-of select="normalize-space (refpurpose)"/>
+    <xsl:if test="refpurpose/node()">
+      <xsl:text> - </xsl:text>
+      <xsl:value-of select="normalize-space(refpurpose)"/>
+    </xsl:if>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
@@ -82,13 +84,15 @@
   <xsl:template match="refsect2|refentry/refsection/refsection">
     <xsl:call-template name="mark.subheading"/>
     <xsl:variable name="title">
-      <xsl:value-of select="(info/title
-                            |refsectioninfo/title
-                            |refsect1info/title
-                            |title)[1]"/>
+      <xsl:apply-templates
+          select="(info/title
+                  |refsectioninfo/title
+                  |refsect1info/title
+                  |title)[1]/node()"/>
+      
     </xsl:variable>
     <xsl:text>.SS "</xsl:text>
-    <xsl:value-of select="$title"/>
+    <xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
     <xsl:choose>
@@ -110,9 +114,6 @@
         <xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>.\" end of SS subsection "</xsl:text>
-    <xsl:value-of select="$title"/>
-    <xsl:text>"&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template match="refsect3|refentry/refsection/refsection/refsection">
@@ -144,9 +145,6 @@
         <xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>.\" end of subsection "</xsl:text>
-    <xsl:value-of select="$title"/>
-    <xsl:text>"&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template match="refsection">
@@ -171,9 +169,6 @@
     <xsl:text>.RS (\n(SNu)&#10;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>.RE&#10;</xsl:text>
-    <xsl:text>.\" end of subsection "</xsl:text>
-    <xsl:value-of select="$title"/>
-    <xsl:text>"&#10;</xsl:text>
   </xsl:template>
 
   <!-- ==================================================================== -->

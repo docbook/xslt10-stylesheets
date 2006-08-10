@@ -413,12 +413,14 @@
 </xsl:template>
 
 <xsl:template match="refpurpose">
-  <xsl:text> </xsl:text>
-  <xsl:call-template name="dingbat">
-    <xsl:with-param name="dingbat">em-dash</xsl:with-param>
-  </xsl:call-template>
-  <xsl:text> </xsl:text>
-  <xsl:apply-templates/>
+  <xsl:if test="node()">
+    <xsl:text> </xsl:text>
+    <xsl:call-template name="dingbat">
+      <xsl:with-param name="dingbat">em-dash</xsl:with-param>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="refdescriptor">
