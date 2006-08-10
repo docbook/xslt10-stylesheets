@@ -374,9 +374,9 @@
         <!-- * in *info -->
         <xsl:choose>
           <!-- * look for date or pubdate in *info -->
-          <xsl:when test="$info/date
-                          |$info/pubdate">
-            <xsl:value-of
+          <xsl:when test="$info/date/node()
+                          |$info/pubdate/node()">
+            <xsl:apply-templates
                 select="(($info[date])[last()]/date)[1]|
                         (($info[pubdate])[last()]/pubdate)[1]"/>
           </xsl:when>
