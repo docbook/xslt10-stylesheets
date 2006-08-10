@@ -1201,6 +1201,33 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="org">
+  <span class="{name(.)}">
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates/>
+  </span>
+</xsl:template>
+
+<xsl:template match="orgname">
+  <span class="{name(.)}">
+    <xsl:apply-templates/>
+  </span>
+</xsl:template>
+
+<xsl:template match="orgdiv">
+  <span class="{name(.)}">
+    <xsl:apply-templates/>
+  </span>
+</xsl:template>
+
+<xsl:template match="affiliation">
+  <span class="{name(.)}">
+    <xsl:apply-templates/>
+  </span>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="beginpage">
   <!-- does nothing; this *is not* markup to force a page break. -->
 </xsl:template>

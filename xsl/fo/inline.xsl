@@ -1076,8 +1076,29 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="personname">
-  <xsl:call-template name="anchor"/>
   <xsl:call-template name="person.name"/>
+</xsl:template>
+
+<xsl:template match="jobtitle">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template match="org">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="orgname">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="orgdiv">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="affiliation">
+  <xsl:apply-templates/>
 </xsl:template>
 
 <!-- ==================================================================== -->
