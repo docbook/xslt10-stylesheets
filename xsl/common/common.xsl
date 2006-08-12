@@ -1755,8 +1755,10 @@ node location.</para>
 <xsl:template name="xml.base.dirs">
   <xsl:param name="base.elem" select="NONODE"/>
 
-  <!-- Recursively resolve xml:base attributes -->
-  <xsl:if test="$base.elem/ancestor::*[@xml:base != '']">
+  <!-- Recursively resolve xml:base attributes, up to a 
+       full path with : in uri -->
+  <xsl:if test="$base.elem/ancestor::*[@xml:base != ''] and
+                not(contains($base.elem/@xml:base, ':'))">
     <xsl:call-template name="xml.base.dirs">
       <xsl:with-param name="base.elem" 
                       select="$base.elem/ancestor::*[@xml:base != ''][1]"/>
