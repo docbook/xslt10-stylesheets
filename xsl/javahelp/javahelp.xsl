@@ -203,7 +203,7 @@ references. In that case you can select appropriate encoding here.</para>
       <xsl:value-of select="$title"/>
     </xsl:attribute>
     <xsl:apply-templates
-      select="preface|chapter|appendix|refentry|section|sect1"
+      select="article|preface|chapter|appendix|refentry|section|sect1"
       mode="jhtoc"/>
   </tocitem>
 </xsl:template>
