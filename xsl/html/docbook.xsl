@@ -237,6 +237,7 @@ body { background-image: url('</xsl:text>
   <xsl:apply-templates select="sect3info/keywordset" mode="html.header"/>
   <xsl:apply-templates select="sect4info/keywordset" mode="html.header"/>
   <xsl:apply-templates select="sect5info/keywordset" mode="html.header"/>
+  <xsl:apply-templates select="sectioninfo/keywordset" mode="html.header"/>
   <xsl:apply-templates select="refsect1info/keywordset" mode="html.header"/>
   <xsl:apply-templates select="refsect2info/keywordset" mode="html.header"/>
   <xsl:apply-templates select="refsect3info/keywordset" mode="html.header"/>
