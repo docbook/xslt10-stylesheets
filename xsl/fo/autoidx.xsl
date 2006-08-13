@@ -312,7 +312,7 @@
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
-          <xsl:sort lang="&lang;"
+          <xsl:sort lang="{&lang;}"
               select="k:getIndexGroupSortKey(&lang;,
                       k:getIndexGroupKey(&lang;, &primary;))"/>
         </xsl:apply-templates>
@@ -324,7 +324,7 @@
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
       <xsl:with-param name="type" select="$type"/>
-      <xsl:sort lang="&lang;"
+      <xsl:sort lang="{&lang;}"
              select="k:getIndexGroupSortKey(&lang;,
                      k:getIndexGroupKey(&lang;, &primary;))"/>
     </xsl:apply-templates>
@@ -453,7 +453,7 @@
                             [count(.|key('primary', &primary;)[&scope;]
                             [1])=1]"
                              mode="index-primary">
-          <xsl:sort select="&primary;" lang="&lang;"/>
+          <xsl:sort select="&primary;" lang="{&lang;}"/>
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
