@@ -647,10 +647,10 @@ Enhanced decompilation=</xsl:text>
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
     <xsl:call-template name="hhc.entry"/>
   </xsl:if>
-  <xsl:if test="reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv">
+  <xsl:if test="article|reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv">
     <UL>&lf;
       <xsl:apply-templates
-	select="reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv"
+	select="article|reference|preface|chapter|appendix|refentry|section|sect1|bibliodiv"
 	mode="hhc"/>
     </UL>
   </xsl:if>
