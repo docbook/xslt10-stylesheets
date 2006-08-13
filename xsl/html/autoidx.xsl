@@ -222,7 +222,8 @@
   </xsl:if>
 
 
-  <xsl:if test="not(function-available('exslt:node-set'))">
+  <xsl:if test="not(function-available('exslt:node-set') or
+                    function-available('exslt:nodeSet'))">
     <xsl:message terminate="yes">
       <xsl:text>ERROR: the 'kosek' index method requires the </xsl:text>
       <xsl:text>exslt:node-set() function. Use a processor that </xsl:text>
