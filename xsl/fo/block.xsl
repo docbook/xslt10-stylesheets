@@ -265,8 +265,8 @@
         <fo:block xsl:use-attribute-sets="sidebar.properties"
 		  id="{$id}">
 	  <xsl:call-template name="sidebar.titlepage"/>
-          <xsl:apply-templates select="node()[not(title) and
-	                                 not(sidebarinfo)]"/>
+          <xsl:apply-templates select="node()[not(self::title) and
+	                                 not(self::sidebarinfo)]"/>
         </fo:block>
       </xsl:variable>
     
