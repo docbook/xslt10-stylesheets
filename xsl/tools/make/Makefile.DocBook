@@ -383,7 +383,7 @@ debug:
 # -----------------------------------------------------------------
 #     pattern rule for making HTML and plain-text output
 # -----------------------------------------------------------------
-%.html: %.xml
+%.html: %$(DOCBOOK_FILE_EXTENSION)
 	@echo '$(HTML_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) - $< > $@
 
 %.txt: %.html
@@ -401,7 +401,7 @@ endif
 # -----------------------------------------------------------------
 #     pattern rule for making chunked HTML pages
 # -----------------------------------------------------------------
-%.$(HTML_MANIFEST_EXT): %.xml
+%.$(HTML_MANIFEST_EXT): %$(DOCBOOK_FILE_EXTENSION)
 	@echo '$(CHNK_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) \
 	--stringparam manifest $@  \
 	--stringparam base.dir $(basename $@)$(BASEDIR_SUFFIX)/  \
@@ -410,12 +410,12 @@ endif
 # -----------------------------------------------------------------
 #     pattern rules for making FO and PDF stuff
 # -----------------------------------------------------------------
-%.fo: %.xml
+%.fo: %$(DOCBOOK_FILE_EXTENSION)
 	@echo '$(FO_CUSTOM)' \
 	  | $(XSLT) $(XSLT_FLAGS) $(FO_PARAMS) - $< > $@
 
 ifeq ($(PDF_MAKER),dblatex)
-%.pdf: %.xml
+%.pdf: %$(DOCBOOK_FILE_EXTENSION)
 	mkdir -p $(DOCBOOK_TMP)
 	echo '$(DBX_CUSTOM)' > $(DOCBOOK_TMP)/dblatex.xsl
 	-$(DBLATEX) $(DBLATEX_FLAGS)\
@@ -460,7 +460,7 @@ endif
 # -----------------------------------------------------------------
 #     pattern rules for making TeXinfo stuff
 # -----------------------------------------------------------------
-%.txml: %.xml
+%.txml: %$(DOCBOOK_FILE_EXTENSION)
 	$(DB2X_XSLTPROC) $(DB2X_XSLTPROC_FLAGS) -s texi -o $@ $<
 
 %.texi: %.txml
@@ -474,7 +474,7 @@ endif
 # -----------------------------------------------------------------
 #     pattern rule for making man pages
 # -----------------------------------------------------------------
-%.$(MAN_MANIFEST_EXT): %.xml
+%.$(MAN_MANIFEST_EXT): %$(DOCBOOK_FILE_EXTENSION)
 	@if [ "$(strip $(shell echo '$(REFENTRY_CHECK)' | $(XSLT) $(XSLT_FLAGS) - $<))" != "true" ]; then \
 	  touch $@; \
 	else \
@@ -605,11 +605,13 @@ ifneq ($(DIRS_CHUNK),)
 	done
 endif
 ifneq ($(DIRS_MAN),)
+ifneq ($(DIRS_MAN),.)
 	for dir in $(DIRS_MAN); do \
 	  if [ -d "$$dir" ]; then \
 	    $(RMDIR) $(RMDIR_FLAGS) $$dir; \
 	  fi \
 	done
+endif
 endif
 ifneq ($(LISTS_MAN),)
 	$(RM) $(LISTS_MAN)
