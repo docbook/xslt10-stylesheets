@@ -121,6 +121,7 @@
 
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
                      glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  <xsl:text>&#10;</xsl:text>
   <xsl:text>.RS</xsl:text> 
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
