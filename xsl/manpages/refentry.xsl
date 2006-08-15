@@ -73,9 +73,12 @@
   </xsl:template>
 
   <xsl:template match="refsect1|refentry/refsection">
+    <xsl:variable name="title">
+      <xsl:apply-templates select="." mode="title.markup"/>
+    </xsl:variable>
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH "</xsl:text>
-    <xsl:apply-templates select="." mode="title.markup"/>
+    <xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
     <xsl:apply-templates/>
