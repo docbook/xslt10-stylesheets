@@ -39,7 +39,9 @@
 </xsl:template>
 
 <xsl:template match="para">
-  <xsl:if test="not(ancestor::footnote[ancestor::table])">
+  <xsl:if test="not(ancestor::footnote[ancestor::table]) and
+                not(ancestor::authorblurb) and
+                not(ancestor::personblurb)">
     <xsl:text>.PP&#10;</xsl:text>
   </xsl:if>
   <xsl:call-template name="mixed-block"/>
@@ -51,7 +53,10 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:value-of select="normalize-space($content)"/>
-  <xsl:text>.sp&#10;</xsl:text>
+  <xsl:if test="not(ancestor::authorblurb) and
+                not(ancestor::personblurb)">
+    <xsl:text>.sp&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
