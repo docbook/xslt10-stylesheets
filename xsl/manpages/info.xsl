@@ -222,14 +222,19 @@
     </xsl:variable>
     <!-- * If we have a person-name or email content, then output the name -->
     <!-- * and email content on the same line -->
-    <xsl:if test="not($person-name = '') or .//email">
-      <xsl:text>.PP&#10;</xsl:text>
-      <!-- * Display person name in bold -->
-      <xsl:apply-templates mode="bold" select="exsl:node-set($person-name)"/>
-      <!-- * Display e-mail address(es) on same line as name -->
-      <xsl:apply-templates select=".//email" mode="authorsect"/>
-      <xsl:text>&#10;</xsl:text>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="not($person-name = '') or .//email">
+        <xsl:text>.PP&#10;</xsl:text>
+        <!-- * Display person name in bold -->
+        <xsl:apply-templates mode="bold" select="exsl:node-set($person-name)"/>
+        <!-- * Display e-mail address(es) on same line as name -->
+        <xsl:apply-templates select=".//email" mode="authorsect"/>
+        <xsl:text>&#10;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>.br&#10;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
     <!-- * Display affiliation(s) on separate lines -->
     <xsl:apply-templates select="affiliation" mode="authorsect"/>
     <!-- * Display direct-child addresses on separate lines -->
@@ -358,7 +363,7 @@
     <xsl:choose>
       <!-- * if we have a *blurb or contrib, just use that -->
       <xsl:when test="contrib|personblurb|authorblurb">
-        <xsl:apply-templates select="(contrib|personblurb|authorblurb)" mode="authorsect"/>
+        <xsl:apply-templates select="contrib|personblurb|authorblurb" mode="authorsect"/>
         <xsl:text>&#10;</xsl:text>
       </xsl:when>
       <!-- * If we have no *blurb or contrib, but this is an Author or -->
@@ -420,28 +425,7 @@
   </xsl:template>
 
   <xsl:template match="personblurb|authorblurb" mode="authorsect">
-    <xsl:choose>
-      <!-- * If this *blurb has a sibling "name" element of some kind, then -->
-      <!-- * we are already outputting the name content, and we need to -->
-      <!-- * indent the *blurb content after that. -->
-      <xsl:when
-          test="../personname|../surname|../firstname
-                |../othername|../lineage|../honorific
-                |../affiliation|../email|../address">
-        <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-        <xsl:text>.IP ""</xsl:text> 
-        <xsl:if test="not($blurb-indent = '')">
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="$blurb-indent"/>
-        </xsl:if>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- * otherwise, we have no "name" content, so just output the -->
-        <!-- * *blurb content flush left -->
-        <xsl:text>.PP</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="mark.up.blurb.or.contrib"/>
     <!-- * yeah, it's possible for a *blurb to have a "title" -->
     <xsl:apply-templates select="title"/>
     <xsl:apply-templates select="*[not(self::title)]"/>
@@ -459,16 +443,45 @@
   </xsl:template>
 
   <xsl:template match="contrib" mode="authorsect">
-    <!-- * We treat Contrib the same as Personblurb/Authorblurb -->
-    <!-- * except that we don't need to check for a title. -->
-    <xsl:text>&#10;.sp -1n&#10;</xsl:text>
-    <xsl:text>&#10;.IP ""</xsl:text>
-    <xsl:if test="not($blurb-indent = '')">
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="$blurb-indent"/>
-    </xsl:if>
-    <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="mark.up.blurb.or.contrib"/>
     <xsl:apply-templates/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="mark.up.blurb.or.contrib">
+    <xsl:choose>
+      <!-- * If this *blurb has a sibling "name" element of some kind, then -->
+      <!-- * we are already outputting the name content, and we need to -->
+      <!-- * indent the *blurb content after that. -->
+      <xsl:when
+          test="../personname|../surname|../firstname
+                |../othername|../lineage|../honorific
+                |../affiliation|../email|../address">
+        <xsl:text>&#10;.sp -1n&#10;</xsl:text>
+        <xsl:text>.IP ""</xsl:text> 
+        <xsl:if test="not($blurb-indent = '')">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="$blurb-indent"/>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- * otherwise, we have no "name" content, so don't indent; -->
+        <!-- * instead, decide if we need a .PP or just a .br -->
+        <xsl:choose>
+          <xsl:when test="not(preceding-sibling::*)">
+            <!-- * if this *blurb or contrib has no preceding -->
+            <!-- * siblings, then we need to start a new paragraph -->
+            <xsl:text>.PP</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- * otherwise, this has no preceding siblings, so -->
+            <!-- * just put a linebreak -->
+            <xsl:text>.br</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
   <!-- * ============================================================== -->
