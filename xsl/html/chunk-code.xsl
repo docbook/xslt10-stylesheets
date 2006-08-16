@@ -191,7 +191,7 @@
 
              |ancestor::sect4[$chunk.section.depth &gt; 3
                                and preceding-sibling::sect4
-                               and parent::sect3[preceding-sibling::sect2]
+                               and parent::sect3[preceding-sibling::sect3]
                                and ancestor::sect2[preceding-sibling::sect2]
                                and ancestor::sect1[preceding-sibling::sect1]][1]
 
@@ -220,7 +220,7 @@
 
              |preceding::sect4[$chunk.section.depth &gt; 3
                                and preceding-sibling::sect4
-                               and parent::sect3[preceding-sibling::sect2]
+                               and parent::sect3[preceding-sibling::sect3]
                                and ancestor::sect2[preceding-sibling::sect2]
                                and ancestor::sect1[preceding-sibling::sect1]][1]
 
@@ -276,7 +276,7 @@
 
              |following::sect4[$chunk.section.depth &gt; 3
                                and preceding-sibling::sect4
-                               and parent::sect3[preceding-sibling::sect2]
+                               and parent::sect3[preceding-sibling::sect3]
                                and ancestor::sect2[preceding-sibling::sect2]
                                and ancestor::sect1[preceding-sibling::sect1]][1]
 
@@ -306,7 +306,7 @@
 
              |descendant::sect4[$chunk.section.depth &gt; 3
                                and preceding-sibling::sect4
-                               and parent::sect3[preceding-sibling::sect2]
+                               and parent::sect3[preceding-sibling::sect3]
                                and ancestor::sect2[preceding-sibling::sect2]
                                and ancestor::sect1[preceding-sibling::sect1]][1]
 
