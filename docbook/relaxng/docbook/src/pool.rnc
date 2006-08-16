@@ -2728,8 +2728,7 @@ div {
    db.imagedata =
       element imagedata {
          db.imagedata.attlist,
-         db.imagedata.info,
-         empty
+         db.imagedata.info
       }
 }
 
