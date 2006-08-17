@@ -1,10 +1,10 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
 <!DOCTYPE locale [
-<!ENTITY % lat1 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN//XML"
+<!ENTITY % lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
                 "http://www.w3.org/2003/entities/iso8879/isolat1.ent">
 %lat1;
-<!ENTITY % lat2 PUBLIC "ISO 8879-1986//ENTITIES Added Latin 2//EN//XML"
+<!ENTITY % lat2 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
                 "http://www.w3.org/2003/entities/iso8879/isolat2.ent">
 %lat2;
 ]>
