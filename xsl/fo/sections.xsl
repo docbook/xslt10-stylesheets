@@ -113,7 +113,7 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="section[not(parent::*)]" name="section.page.sequence">
+<xsl:template match="/section" name="section.page.sequence">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -317,9 +317,7 @@
 
 <xsl:template match="/sect1">
   <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="ancestor::reference"/>
-    </xsl:call-template>
+    <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
