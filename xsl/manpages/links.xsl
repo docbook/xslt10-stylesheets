@@ -16,7 +16,8 @@
 <!-- ==================================================================== -->
 
 <!-- * Make per-Refentry sets of all links in each Refentry which do not -->
-<!-- * have the same URL as any preceding link in that same Refentry -->
+<!-- * have the same URL as any preceding link in that same Refentry and -->
+<!-- * string value of which does not match value of the url attribute -->
 <!-- * -->
 <!-- * We need this in order to have inline numbering match the -->
 <!-- * numbering of the link list. In both places, for any link whose -->
@@ -52,6 +53,7 @@
                     and not(ancestor::refmeta)
                     and not(ancestor::refnamediv)
                     and not(ancestor::indexterm)
+                    and not(. = @url)
                     and not(@url =
                     preceding::ulink[node()
                     and not(ancestor::refentryinfo)
@@ -81,14 +83,15 @@
 
 <!-- ==================================================================== -->
 
-<!-- * We first find out if the link is empty; if it is, we just -->
-<!-- * display the contents of its URL (that is, the value of its "Url" -->
-<!-- * attribute), and stop there. -->
+<!-- * We check to see if the link is empty OR if its string value is -->
+<!-- * identical to the value of its url attribute; if either of those -->
+<!-- * is true, we just display the value of its url attribute (if the -->
+<!-- * ulink itself is empty), and stop there. -->
 <!-- * -->
-<!-- * On the other hand, if it is NON-empty, we need to display its -->
-<!-- * contents AND (optionally) display its URL. We could display the -->
-<!-- * URL inline, after the contents (as we did previously), but that -->
-<!-- * ends up looking horrible if you have a lot of links. -->
+<!-- * Otherwise we need to display its contents AND (optionally) -->
+<!-- * display its URL. We could display the URL inline, after the -->
+<!-- * contents (as we did previously), but that ends up looking -->
+<!-- * horrible if you have a lot of links. -->
 <!-- * -->
 <!-- * So, we instead need to display the URL out-of-line, in a way -->
 <!-- * that associates it with the content. How to do that in a -->
@@ -118,7 +121,7 @@
     <xsl:value-of select="@url"/>
   </xsl:variable>
   <!-- * $link is either the link contents (if the link is non-empty) or -->
-  <!-- * the URL (if the link is empty -->
+  <!-- * the URL (if the link is empty) -->
   <xsl:variable name="link">
     <xsl:choose>
       <!-- * check to see if the element is empty or not; if it's non-empty, -->
@@ -141,9 +144,10 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <!-- * if link is non-empty AND user wants links numbered, output -->
-  <!-- * a number for it -->
-  <xsl:if test="node() and $man.links.are.numbered != 0">
+  <!-- * if link is non-empty AND its string value is not equal to the -->
+  <!-- * value of its url attribute AND user wants links numbered, -->
+  <!-- * then output a number for it -->
+  <xsl:if test="node() and not(. = @url) and $man.links.are.numbered != 0">
     <!-- * We number links by checking the $links.with.unique.urls set -->
     <!-- * and finding the link whose URL matches the URL for this -->
     <!-- * link. If this is the only instance in this Refentry of a link -->
@@ -227,6 +231,7 @@
                         and not(ancestor::refmeta)
                         and not(ancestor::refnamediv)
                         and not(ancestor::indexterm)
+                        and not(. = @url)
                         and not(@url =
                         preceding::ulink[node()
                         and not(ancestor::refentryinfo)
@@ -259,6 +264,7 @@
                   and not(ancestor::refmeta)
                   and not(ancestor::refnamediv)
                   and not(ancestor::indexterm)
+                  and not(. = @url)
                   and not(@url =
                   preceding::ulink[node()
                   and not(ancestor::refentryinfo)
