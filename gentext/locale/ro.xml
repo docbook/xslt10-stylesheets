@@ -19,14 +19,18 @@
           <affiliation><address><email>ndw@nwalsh.com</email></address>
           </affiliation>
   </author>
+  <author><firstname>Eddy</firstname><surname>Petri&#537;or</surname>
+          <affiliation><address><email>eddy.petrisor@gmail.com</email></address>
+          </affiliation>
+  </author
 </authorgroup>
 -->
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Rezumat"/>
 <gentext key="abstract" text="Rezumat"/>
-<gentext key="Answer" text="A:"/>
-<gentext key="answer" text="A:"/> <!-- en -->
+<gentext key="Answer" text="R:"/>
+<gentext key="answer" text="R:"/>
 <gentext key="Appendix" text="Anexa"/>
 <gentext key="appendix" text="anexa"/>
 <gentext key="Article" text="Articol"/>
@@ -35,21 +39,21 @@
 <gentext key="bibliography" text="Bibliografie"/>
 <gentext key="Book" text="Carte"/>
 <gentext key="book" text="Carte"/>
-<gentext key="CAUTION" text="ATEN&#222;IE"/>
-<gentext key="Caution" text="Aten&#254;ie"/>
-<gentext key="caution" text="Aten&#254;ie"/>
+<gentext key="CAUTION" text="ATEN&#538;IE"/>
+<gentext key="Caution" text="Aten&#539;ie"/>
+<gentext key="caution" text="Aten&#539;ie"/>
 <gentext key="Chapter" text="Cap."/>
 <gentext key="chapter" text="cap."/>
-<gentext key="Colophon" text="Colophon"/>
+<gentext key="Colophon" text="Colophon"/> <!-- en -->
 <gentext key="colophon" text="Colophon"/> <!-- en -->
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
-<gentext key="Dedication" text="Dedica&#254;ie"/>
-<gentext key="dedication" text="Dedica&#254;ie"/>
-<gentext key="Edition" text="Edi&#254;ie"/>
-<gentext key="edition" text="Edi&#254;ie"/>
-<gentext key="Equation" text="ecua&#254;ia"/>
-<gentext key="equation" text="ecua&#254;ia"/>
+<gentext key="Dedication" text="Dedica&#539;ie"/>
+<gentext key="dedication" text="Dedica&#539;ie"/>
+<gentext key="Edition" text="Edi&#539;ie"/>
+<gentext key="edition" text="Edi&#539;ie"/>
+<gentext key="Equation" text="ecua&#539;ia"/>
+<gentext key="equation" text="ecua&#539;ia"/>
 <gentext key="Example" text="Exemplu"/>
 <gentext key="example" text="Exemplu"/>
 <gentext key="Figure" text="Fig."/>
@@ -58,8 +62,8 @@
 <gentext key="glossary" text="Glosar"/>
 <gentext key="GlossSee" text="Vezi"/>
 <gentext key="glosssee" text="Vezi"/>
-<gentext key="GlossSeeAlso" text="Vezi &scedil;i"/>
-<gentext key="glossseealso" text="Vezi &scedil;i"/>
+<gentext key="GlossSeeAlso" text="Vezi &#537;i"/>
+<gentext key="glossseealso" text="Vezi &#537;i"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
 <gentext key="Important" text="Important"/>
 <gentext key="important" text="Important"/>
@@ -75,26 +79,26 @@
 <gentext key="msglevel" text="Nivel"/>
 <gentext key="MsgOrig" text="Origine"/>
 <gentext key="msgorig" text="Origine"/>
-<gentext key="NOTE" text="NOT&#195;"/>
-<gentext key="Note" text="Not&#227;"/>
-<gentext key="note" text="Not&#227;"/>
+<gentext key="NOTE" text="NOT&#258;"/>
+<gentext key="Note" text="Not&#259;"/>
+<gentext key="note" text="Not&#259;"/>
 <gentext key="Part" text="Parte"/>
 <gentext key="part" text="Parte"/>
-<gentext key="Preface" text="Prefa&#254;&#227;"/>
-<gentext key="preface" text="Prefa&#254;&#227;"/>
-<gentext key="Procedure" text="Procedur&#227;"/>
-<gentext key="procedure" text="Procedur&#227;"/>
+<gentext key="Preface" text="Prefa&#539;&#259;"/>
+<gentext key="preface" text="Prefa&#539;&#259;"/>
+<gentext key="Procedure" text="Procedur&#259;"/>
+<gentext key="procedure" text="Procedur&#259;"/>
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="Publicat"/>
 <gentext key="published" text="Publicat"/>
-<gentext key="Qandadiv" text="Q &amp; A"/> <!-- en -->
-<gentext key="qandadiv" text="Q &amp; A"/> <!-- en -->
-<gentext key="Question" text="Q:"/>
-<gentext key="question" text="Q:"/> <!-- en -->
+<gentext key="Qandadiv" text="&#206;ntreb&#259;ri &#537;i r&#259;spunsuri"/> <!-- en -->
+<gentext key="qandadiv" text="&#238;ntreb&#259;ri &#537;i r&#259;spunsuri"/> <!-- en -->
+<gentext key="Question" text="&#206;:"/>
+<gentext key="question" text="&#238;:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
-<gentext key="Reference" text="Referin&#254;&#227;"/>
-<gentext key="reference" text="Referin&#254;&#227;"/>
+<gentext key="Reference" text="Referin&#539;&#259;"/>
+<gentext key="reference" text="Referin&#539;&#259;"/>
 <gentext key="RefName" text="Nume"/>
 <gentext key="refname" text="Nume"/>
 <gentext key="RefSection" text=""/>
@@ -105,36 +109,36 @@
 <gentext key="revhistory" text="Istoricul versiunilor"/>
 <gentext key="Revision" text="Versiune"/>
 <gentext key="revision" text="Versiune"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
-<gentext key="Section" text="Sec&#254;iune"/>
+<gentext key="sect1" text="Sec&#539;iune"/> <!-- en -->
+<gentext key="sect2" text="Sec&#539;iune"/> <!-- en -->
+<gentext key="sect3" text="Sec&#539;iune"/> <!-- en -->
+<gentext key="sect4" text="Sec&#539;iune"/> <!-- en -->
+<gentext key="sect5" text="Sec&#539;iune"/> <!-- en -->
+<gentext key="Section" text="Sec&#539;iune"/>
 <gentext key="section" text="sec."/>
 <gentext key="See" text="Vezi"/>
 <gentext key="see" text="Vezi"/>
-<gentext key="SeeAlso" text="Vezi &scedil;i"/>
-<gentext key="Seealso" text="Vezi &scedil;i"/>
-<gentext key="seealso" text="Vezi &scedil;i"/>
+<gentext key="SeeAlso" text="Vezi &#537;i"/>
+<gentext key="Seealso" text="Vezi &#537;i"/>
+<gentext key="seealso" text="Vezi &#537;i"/>
 <gentext key="Set" text="Set"/>
 <gentext key="set" text="Set"/>
 <gentext key="SetIndex" text="Index"/>
 <gentext key="setindex" text="Index"/>
 <gentext key="Sidebar" text=""/>
 <gentext key="sidebar" text="sidebar"/>
-<gentext key="Step" text="Opera&#254;ie"/>
-<gentext key="step" text="opera&#254;iune"/>
+<gentext key="Step" text="Opera&#539;ie"/>
+<gentext key="step" text="opera&#539;iune"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="Tabel"/>
-<gentext key="TIP" text="INDICA&#222;IE"/>
-<gentext key="Tip" text="Indica&#254;ie"/>
-<gentext key="tip" text="Indica&#254;ie"/>
+<gentext key="TIP" text="INDICA&#538;IE"/>
+<gentext key="Tip" text="Indica&#539;ie"/>
+<gentext key="tip" text="Indica&#539;ie"/>
 <gentext key="WARNING" text="AVERTISMENT"/>
 <gentext key="Warning" text="Avertisment"/>
 <gentext key="warning" text="Avertisment"/>
 
-<gentext key="and" text="&scedil;i"/>
+<gentext key="and" text="&#537;i"/>
 <gentext key="by" text="de"/>
 <gentext key="Edited" text="Publicat"/>
 <gentext key="edited" text="Publicat"/>
@@ -154,41 +158,41 @@
 <gentext key="tablenotes" text="Remarci"/>
 <gentext key="TableofContents" text="Cuprins"/>
 <gentext key="tableofcontents" text="Cuprins"/>
-<gentext key="unexpectedelementname" text="Nume de element nea&scedil;teptat"/>
+<gentext key="unexpectedelementname" text="Nume de element nea&#537;teptat"/>
 <gentext key="unsupported" text="nerecunoscut de sisitem"/>
-<gentext key="xrefto" text="referin&#254;&#227; c&#227;tre"/>
+<gentext key="xrefto" text="referin&#539;&#259; c&#259;tre"/>
 
-<gentext key="listofequations" text="List&#227; de ecua&#254;ii"/>
-<gentext key="ListofEquations" text="List&#227; de ecua&#254;ii"/>
-<gentext key="ListofExamples" text="List&#227; de exemple"/>
-<gentext key="listofexamples" text="List&#227; de exemple"/>
-<gentext key="ListofFigures" text="List&#227; de figuri"/>
-<gentext key="listoffigures" text="List&#227; de figuri"/>
-<gentext key="listoftables" text="List&#227; de tabele"/>
-<gentext key="ListofTables" text="List&#227; de tabele"/>
-<gentext key="ListofUnknown" text="List&#227; de necunoscute"/>
-<gentext key="listofunknown" text="List&#227; de necunoscute"/>
+<gentext key="listofequations" text="List&#259; de ecua&#539;ii"/>
+<gentext key="ListofEquations" text="List&#259; de ecua&#539;ii"/>
+<gentext key="ListofExamples" text="List&#259; de exemple"/>
+<gentext key="listofexamples" text="List&#259; de exemple"/>
+<gentext key="ListofFigures" text="List&#259; de figuri"/>
+<gentext key="listoffigures" text="List&#259; de figuri"/>
+<gentext key="listoftables" text="List&#259; de tabele"/>
+<gentext key="ListofTables" text="List&#259; de tabele"/>
+<gentext key="ListofUnknown" text="List&#259; de necunoscute"/>
+<gentext key="listofunknown" text="List&#259; de necunoscute"/>
 
-<gentext key="nav-home" text="Acas&#227;"/>
+<gentext key="nav-home" text="Acas&#259;"/>
 <gentext key="nav-next" text="&#206;nainte"/>
 <gentext key="nav-next-sibling" text="Repede &#239;nainte"/>
 <gentext key="nav-prev" text="&#206;napoi"/>
 <gentext key="nav-prev-sibling" text="Repede &#238;napoi"/>
 <gentext key="nav-up" text="Sus"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="sectioncalled" text="sec&#539;iunea numit&#259;"/>
+<gentext key="Draft"         text="Ciorn&#259;"/>
+<gentext key="above"         text="deasupra"/>
+<gentext key="below"         text="sub"/>
+<gentext key="index symbols" text="Simboluri"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="a&#259;&#226;bcdefghi&#238;jklmnopqrs&#537;t&#537;uvwxyz"/>
+<gentext key="uppercase.alpha" text="A&#258;&#194;BCDEFGHI&#206;JKLMNOPQRS&#536;T&#538;UVWXYZ"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
+<dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
+<dingbat key="nestedstartquote" text="&#x00AB;"/>
+<dingbat key="nestedendquote" text="&#x00BB;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
 <context name="styles">
