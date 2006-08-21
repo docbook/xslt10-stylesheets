@@ -141,10 +141,11 @@
         <xsl:call-template name="person.name"/>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test=".//email">
+    <xsl:if test=".//email|address/otheraddr/ulink">
       <xsl:text> </xsl:text>
-      <!-- * For each attribution found, use only the first e-mail address -->
-      <xsl:apply-templates select="(.//email)[1]"/>
+      <!-- * For each attribution found, use only the first e-mail -->
+      <!-- * address or ulink value found -->
+      <xsl:apply-templates select="(.//email|address/otheraddr/ulink)[1]"/>
     </xsl:if>
   </xsl:template>
 
@@ -220,15 +221,15 @@
     <xsl:variable name="person-name">
       <xsl:call-template name="person.name"/>
     </xsl:variable>
-    <!-- * If we have a person-name or email content, then output the name -->
-    <!-- * and email content on the same line -->
+    <!-- * If we have a person-name or email or ulink content, then -->
+    <!-- * output name and email or ulink content on the same line -->
     <xsl:choose>
-      <xsl:when test="not($person-name = '') or .//email">
+      <xsl:when test="not($person-name = '') or .//email or address/otheraddr/ulink">
         <xsl:text>.PP&#10;</xsl:text>
         <!-- * Display person name in bold -->
         <xsl:apply-templates mode="bold" select="exsl:node-set($person-name)"/>
-        <!-- * Display e-mail address(es) on same line as name -->
-        <xsl:apply-templates select=".//email" mode="authorsect"/>
+        <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
+        <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
         <xsl:text>&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
@@ -246,8 +247,8 @@
   <xsl:template match="collab" mode="authorsect">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="collabname"/>
-    <!-- * Display e-mail address(es) on same line as name -->
-    <xsl:apply-templates select=".//email" mode="authorsect"/>
+    <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
+    <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
     <xsl:text>&#10;</xsl:text>
     <!-- * Display affilition(s) on separate lines -->
     <xsl:apply-templates select="affiliation" mode="authorsect"/>
@@ -266,8 +267,8 @@
   <xsl:template match="publisher" mode="authorsect">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="publishername"/>
-    <!-- * Display e-mail address(es) on same line as name -->
-    <xsl:apply-templates select=".//email" mode="authorsect"/>
+    <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
+    <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
     <!-- * Display addresses on separate lines -->
     <xsl:apply-templates select="address" mode="authorsect"/>
     <!-- * Display localized "Publisher" literal -->
@@ -288,21 +289,43 @@
     <xsl:text>.&#10;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="email" mode="authorsect">
+  <xsl:template match="email|address/otheraddr/ulink" mode="authorsect">
     <xsl:choose>
-      <xsl:when test="position() != 1"/> <!-- do nothing -->
+      <xsl:when test="preceding-sibling::*[descendant-or-self::email]
+                      or preceding-sibling::address/otheraddr/ulink
+                      or ancestor::address[preceding-sibling::*[descendant-or-self::email]]
+                      or ancestor::address[preceding-sibling::address/otheraddr/ulink]">
+        <!-- * This is not the first instance, so do nothing. -->
+      </xsl:when>
       <xsl:otherwise>
-        <!-- * this is 1st e-mail address, so put space before it -->
+        <!-- * This is first instances of an e-mail address or ulink, -->
+        <!-- * so put a space before it. -->
         <xsl:text> </xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:text>&lt;</xsl:text>
-    <xsl:apply-templates/>
-    <xsl:text>&gt;</xsl:text>
+    <!-- * Note that the reason for the \& character after the opening -->
+    <!-- * angle bracket and before the closing angle bracket is to -->
+    <!-- * prevent groff from inserting a linebreak at those points and -->
+    <!-- * outputting a hyphen character where the break occurs -->
+    <xsl:text>&lt;\&amp;</xsl:text>
     <xsl:choose>
-      <xsl:when test="position() = last()"/> <!-- do nothing -->
+      <xsl:when test="self::email">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="self::ulink">
+        <xsl:apply-templates select="."/>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:text>\&amp;&gt;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="not(following-sibling::*[descendant-or-self::email]
+                      or following-sibling::address/otheraddr/ulink
+                      or ancestor::address[following-sibling::*[descendant-or-self::email]]
+                      or ancestor::address[following-sibling::address/otheraddr/ulink])">
+        <!-- * This is the final instance, so do nothing. -->
+      </xsl:when>
       <xsl:otherwise>
-        <!-- * separate multiple e-mail addresses with a comma -->
+        <!-- * Separate multiple e-mail addresses or ulinks with a comma -->
         <xsl:text>, </xsl:text>
       </xsl:otherwise>
     </xsl:choose>
@@ -310,24 +333,24 @@
 
   <xsl:template match="affiliation" mode="authorsect">
     <!-- * Get the string value of the contents of this Affiliation. If the -->
-    <!-- * affiliation only contains an Address child whose only child is -->
-    <!-- * an Email instance, then these contents will end up being empty. -->
+    <!-- * affiliation only contains an Address child whose only content is -->
+    <!-- * an email address or ulink, then these contents will end up empty. -->
     <xsl:variable name="contents">
       <xsl:apply-templates mode="authorsect"/>
     </xsl:variable>
-    <!-- * If contents are actually empty except for an Email address, -->
-    <!-- * then output nothing. -->
+    <!-- * If contents are actually empty except for an email address -->
+    <!-- * or ulink, then output nothing. -->
     <xsl:if test="$contents != ''">
       <xsl:text>.br&#10;</xsl:text>
       <xsl:for-each select="shortaffil|jobtitle|orgname|orgdiv|address">
-        <!-- * only display output of nodes other than Email element -->
-        <xsl:apply-templates select="node()[local-name() != 'email']"/>
+        <!-- * only display output of nodes other than email or ulink -->
+        <xsl:apply-templates select="node()[not(self::email) and not(self::otheraddr/ulink)]"/>
         <xsl:choose>
           <xsl:when test="position() = last()"/> <!-- do nothing -->
           <xsl:otherwise>
             <!-- * only add comma if the node has a child node other than -->
-            <!-- * an Email element -->
-            <xsl:if test="child::node()[local-name() != 'email']">
+            <!-- * an email address or ulink -->
+            <xsl:if test="child::node()[not(self::email) and not(self::otheraddr/ulink)]">
               <xsl:text>, </xsl:text>
             </xsl:if>
           </xsl:otherwise>
@@ -347,14 +370,15 @@
 
   <xsl:template match="address" mode="authorsect">
     <xsl:variable name="contents"
-                  select="normalize-space(node()[local-name() != 'email'])"/>
+                  select="normalize-space(node()[not(self::email)
+                          and not(self::otheraddr/ulink)])"/>
     <!-- * If this contents of this Address do not contain anything except -->
-    <!-- * an Email child, then output nothing. -->
+    <!-- * an email address or ulink, then output nothing. -->
     <xsl:if test="$contents != ''">
       <xsl:text>&#10;</xsl:text>
       <xsl:text>.br&#10;</xsl:text>
-      <!--* Skip Email children of Address (rendered elsewhere) -->
-      <xsl:apply-templates select="node()[local-name() != 'email']"/>
+      <!--* Skip email and ulink descendants of Address (rendered elsewhere) -->
+      <xsl:apply-templates select="node()[not(self::email) and not(self::otheraddr/ulink)]"/>
     </xsl:if>
   </xsl:template>
 
