@@ -1131,8 +1131,15 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-<!-- * The following does tail-recursion through a space-separated -->
-<!-- * list of link types specified in $html.head.legalnotice.link.types, -->
+
+<!-- * The following template assumes that the first legalnotice -->
+<!-- * instance found in a document applies to the contents of the -->
+<!-- * entire document. It generates an HTML link in each chunk, back -->
+<!-- * to the file containing the contents of the first legalnotice. -->
+<!-- * -->
+<!-- * Actually, it may generate multiple link instances in each chunk, -->
+<!-- * because it walks through the space-separated list of link -->
+<!-- * types specified in the $html.head.legalnotice.link.types param, -->
 <!-- * popping off link types and generating links for them until it -->
 <!-- * depletes the list. -->
   
@@ -1142,7 +1149,7 @@
   <!-- * value of the href attribute on the link -->
   <xsl:param name="id">
     <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="//legalnotice[1]"/>
+      <xsl:with-param name="object" select="(//legalnotice)[1]"/>
     </xsl:call-template>
   </xsl:param>
   <xsl:param name="linktype">
@@ -1167,9 +1174,11 @@
       <xsl:attribute name="href">
         <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
       </xsl:attribute>
+      <xsl:variable name="contents">
+        <xsl:apply-templates select="(//legalnotice)[1]" mode="object.title.markup.textonly"/>
+      </xsl:variable>
       <xsl:attribute name="title">
-        <xsl:apply-templates select="//legalnotice[1]"
-                             mode="object.title.markup.textonly"/>
+        <xsl:value-of select="normalize-space($contents)"/>
       </xsl:attribute>
     </link>
     <xsl:call-template name="make.legalnotice.head.links">
