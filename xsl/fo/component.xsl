@@ -638,6 +638,7 @@
 <xsl:template match="article/articleinfo"></xsl:template>
 <xsl:template match="article/title"></xsl:template>
 <xsl:template match="article/subtitle"></xsl:template>
+<xsl:template match="article/titleabbrev"></xsl:template>
 
 <xsl:template match="article/appendix">
   <xsl:variable name="id">
