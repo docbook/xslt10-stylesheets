@@ -196,22 +196,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="sidebar">
-  <div class="{name(.)}">
-    <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
-  </div>
-</xsl:template>
-
-<xsl:template match="sidebar/title">
-  <p class="title">
-    <b><xsl:apply-templates/></b>
-  </p>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template match="abstract">
+<xsl:template match="abstract|sidebar">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="formal.object.heading">
@@ -225,7 +210,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="abstract/title">
+<xsl:template match="abstract/title|sidebar/title">
 </xsl:template>
 
 <!-- ==================================================================== -->
