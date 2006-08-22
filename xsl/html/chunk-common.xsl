@@ -1174,11 +1174,9 @@
       <xsl:attribute name="href">
         <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
       </xsl:attribute>
-      <xsl:variable name="contents">
-        <xsl:apply-templates select="(//legalnotice)[1]" mode="object.title.markup.textonly"/>
-      </xsl:variable>
       <xsl:attribute name="title">
-        <xsl:value-of select="normalize-space($contents)"/>
+        <xsl:apply-templates select="(//legalnotice)[1]"
+                             mode="object.title.markup.textonly"/>
       </xsl:attribute>
     </link>
     <xsl:call-template name="make.legalnotice.head.links">

@@ -211,7 +211,7 @@
 <xsl:template name="formal.object.heading">
   <xsl:param name="object" select="."/>
   <xsl:param name="title">
-    <bold><xsl:apply-templates select="$object" mode="object.title.markup"/></bold>
+    <bold><xsl:apply-templates select="$object" mode="object.title.markup.textonly"/></bold>
   </xsl:param>
   <xsl:apply-templates mode="bold" select="exsl:node-set($title)"/>
 </xsl:template>

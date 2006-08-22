@@ -43,7 +43,7 @@
     <xsl:param name="source"/>
     <xsl:param name="title">
       <xsl:if test="local-name(.) = 'table'">
-        <xsl:apply-templates select="." mode="object.title.markup"/>
+        <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
       </xsl:if>
     </xsl:param>
     <!-- * ============================================================== -->
