@@ -38,7 +38,8 @@
 
   <div class="{name(.)}">
     <xsl:apply-templates select="$title"/>
-    <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') or $toc = '1'">
+    <xsl:if test="((contains($toc.params, 'toc') and $toc != '0') or $toc = '1')
+                  and not(ancestor::answer and not($qanda.nested.in.toc=0))">
       <xsl:call-template name="process.qanda.toc"/>
     </xsl:if>
     <xsl:apply-templates select="$preamble"/>
@@ -229,12 +230,10 @@
 <xsl:template name="process.qanda.toc">
   <!-- * if user wants nested qandaset and qandaentry in main Qandaset TOC, -->
   <!-- * then don't also include the nested stuff in the sub TOCs -->
-  <xsl:if test="not($qanda.nested.in.toc = 0) and not(ancestor::answer)">
   <dl>
     <xsl:apply-templates select="qandadiv" mode="qandatoc.mode"/>
     <xsl:apply-templates select="qandaset|qandaentry" mode="qandatoc.mode"/>
   </dl>
-  </xsl:if>
 </xsl:template>
 
 <xsl:template match="qandadiv" mode="qandatoc.mode">
