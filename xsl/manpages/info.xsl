@@ -131,8 +131,11 @@
     <xsl:choose>
       <xsl:when test="collabname">
         <!-- * If this node is a Collab, then it should have a -->
-        <!-- * Collabname child, so get the string value of that -->
-        <xsl:value-of select="normalize-space(collabname)"/>
+        <!-- * Collabname child, so get that. -->
+        <xsl:variable name="contents">
+          <xsl:apply-templates select="collabname"/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($contents)"/>
       </xsl:when>
       <xsl:otherwise>
         <!-- * Otherwise, this node is not a Collab, but instead -->
@@ -150,7 +153,10 @@
   </xsl:template>
 
   <xsl:template match="corpauthor|corpcredit|orgname|publishername" mode="metadata.author">
-    <xsl:value-of select="normalize-space(.)"/>
+    <xsl:variable name="contents">
+      <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($contents)"/>
   </xsl:template>
 
   <!-- * ============================================================== -->
