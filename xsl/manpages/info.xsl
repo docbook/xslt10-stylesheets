@@ -141,7 +141,7 @@
         <!-- * Otherwise, this node is not a Collab, but instead -->
         <!-- * an author|editor|othercredit, which must have a name -->
         <!-- * of some kind; so get that name -->
-        <xsl:call-template name="person.name"/>
+        <xsl:call-template name="person.name.normalized"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:if test=".//email|address/otheraddr/ulink">
@@ -225,7 +225,7 @@
   
   <xsl:template match="author|editor|othercredit" mode="authorsect">
     <xsl:variable name="person-name">
-      <xsl:call-template name="person.name"/>
+      <xsl:call-template name="person.name.normalized"/>
     </xsl:variable>
     <!-- * If we have a person-name or email or ulink content, then -->
     <!-- * output name and email or ulink content on the same line -->
@@ -316,10 +316,16 @@
     <xsl:text>&lt;\&amp;</xsl:text>
     <xsl:choose>
       <xsl:when test="self::email">
-        <xsl:apply-templates/>
+        <xsl:variable name="contents">
+          <xsl:apply-templates/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($contents)"/>
       </xsl:when>
       <xsl:when test="self::ulink">
-        <xsl:apply-templates select="."/>
+        <xsl:variable name="contents">
+          <xsl:apply-templates select="."/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($contents)"/>
       </xsl:when>
     </xsl:choose>
     <xsl:text>\&amp;&gt;</xsl:text>
@@ -463,7 +469,10 @@
 
   <xsl:template match="personblurb/title|authorblurb/title">
     <!-- * always render period after title -->
-    <xsl:apply-templates/>
+    <xsl:variable name="contents">
+      <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($contents)"/>
     <xsl:text>.</xsl:text>
     <!-- * render space after Title+period if the title is followed -->
     <!-- * by something element content -->
@@ -539,7 +548,10 @@
         <!-- * the copyright mode="titlepage.mode" template is -->
         <!-- * imported from the HTML stylesheets -->
         <xsl:for-each select="(($info[//copyright])[last()]//copyright)">
-          <xsl:apply-templates select="." mode="titlepage.mode"/>
+          <xsl:variable name="contents">
+            <xsl:apply-templates select="." mode="titlepage.mode"/>
+          </xsl:variable>
+          <xsl:value-of select="normalize-space($contents)"/>
           <xsl:text>&#10;.br&#10;</xsl:text>
         </xsl:for-each>
         <xsl:text>&#10;</xsl:text>
