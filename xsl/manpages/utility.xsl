@@ -225,6 +225,15 @@
 
   <!-- ================================================================== -->
 
+  <xsl:template name="person.name.normalized">
+    <xsl:variable name="contents">
+      <xsl:call-template name="person.name"/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($contents)"/>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+
   <xsl:template name="make.adjusted.man.filename">
     <xsl:param name="name"/>
     <xsl:param name="section"/>
