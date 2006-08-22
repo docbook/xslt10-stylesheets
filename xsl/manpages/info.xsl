@@ -468,7 +468,10 @@
 
   <xsl:template match="contrib" mode="authorsect">
     <xsl:call-template name="mark.up.blurb.or.contrib"/>
-    <xsl:apply-templates/>
+    <xsl:variable name="contents">
+      <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($contents)"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
