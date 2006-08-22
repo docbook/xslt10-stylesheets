@@ -284,7 +284,7 @@
   <xsl:variable name="title">
     <xsl:apply-templates select="." mode="object.title.markup"/>
   </xsl:variable>
-  <xsl:value-of select="$title"/>
+  <xsl:value-of select="normalize-space($title)"/>
 </xsl:template>
 
 <!-- ============================================================ -->
