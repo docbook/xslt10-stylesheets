@@ -165,11 +165,15 @@ stylesheet like this:</para>
 &id.warnings;
 </reference>
 
-<reference id="meta"><title>Meta/*Info</title>
+<reference id="meta"><title>Meta/*Info and Titlepages</title>
 &inherit.keywords;
 &make.single.year.ranges;
 &make.year.ranges;
 &author.othername.in.middle;
+&blurb.on.titlepage.enabled;
+&contrib.inline.enabled;
+&editedby.enabled;
+&othercredit.like.author.enabled;
 &generate.legalnotice.link;
 &generate.revhistory.link;
 &html.head.legalnotice.link.types;
@@ -475,6 +479,7 @@ around all these parameters.</para>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
 <src:fragref linkend="bibliography.numbered.frag"/>
+<src:fragref linkend="blurb.on.titlepage.enabled.frag"/>
 <src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
@@ -497,6 +502,7 @@ around all these parameters.</para>
 <src:fragref linkend="citerefentry.link.frag"/>
 <src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="component.label.includes.part.label.frag"/>
+<src:fragref linkend="contrib.inline.enabled.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
@@ -513,6 +519,7 @@ around all these parameters.</para>
 <src:fragref linkend="eclipse.plugin.name.frag"/>
 <src:fragref linkend="eclipse.plugin.id.frag"/>
 <src:fragref linkend="eclipse.plugin.provider.frag"/>
+<src:fragref linkend="editedby.enabled.frag"/>
 <src:fragref linkend="email.delimiters.enabled.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
 <src:fragref linkend="entry.propagates.style.frag"/>
@@ -655,6 +662,7 @@ around all these parameters.</para>
 <src:fragref linkend="olink.pubid.frag"/>
 <src:fragref linkend="olink.resolver.frag"/>
 <src:fragref linkend="olink.sysid.frag"/>
+<src:fragref linkend="othercredit.like.author.enabled.frag"/>
 <src:fragref linkend="para.propagates.style.frag"/>
 <src:fragref linkend="part.autolabel.frag"/>
 <src:fragref linkend="phrase.propagates.style.frag"/>

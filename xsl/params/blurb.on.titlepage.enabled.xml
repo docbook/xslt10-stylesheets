@@ -1,0 +1,24 @@
+<refentry id="blurb.on.titlepage.enabled">
+<refmeta>
+<refentrytitle>blurb.on.titlepage.enabled</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>blurb.on.titlepage.enabled</refname>
+<refpurpose>Display personblurb and authorblurb on title pages?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='blurb.on.titlepage.enabled.frag'><xsl:param name="blurb.on.titlepage.enabled">0</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero, output from <sgmltag>authorblurb</sgmltag> and
+<sgmltag>personblurb</sgmltag> elements is displayed on title
+pages. If zero (the default), output from those elements is suppressed
+on title pages (unless you are using a titlepage customization that
+causes them to be included).</para>
+
+</refsect1>
+</refentry>
