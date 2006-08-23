@@ -19,7 +19,7 @@ $Id$
 </copyright>
 </bookinfo>
 
-<preface>
+<preface id="intro">
 <title>Introduction</title>
 
 <para>This is technical reference documentation for the DocBook XSL
@@ -33,10 +33,10 @@ parameter if there is such one.</para>
 
 </preface>
 
-<reference>
+<reference id="html">
 <title>HTML PIs</title>
 
-<partintro>
+<partintro id="partintro">
 <para>Following PIs are processed only if you are generating HTML
 output. This means that you are using HTML, XHTML, HTML Help or
 JavaHelp output format.</para>
@@ -122,18 +122,22 @@ chunk.</para>
 
 </reference>
 
-<reference>
+<reference id="common">
 <title>Common PIs</title>
 
-<partintro>
+<partintro id="partintro2">
 <para>Following PIs are recognized in all output formats.</para>
 </partintro>
 
-<refentry>
+<refentry id="FIXME">
 <refnamediv>
 <refname></refname>
 <refpurpose></refpurpose>
 </refnamediv>
+<refsect1>
+  <title></title>
+  <para></para>
+</refsect1>
 </refentry>
 </reference>
 
