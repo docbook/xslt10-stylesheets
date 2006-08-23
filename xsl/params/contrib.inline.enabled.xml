@@ -1,0 +1,21 @@
+<refentry id="contrib.inline.enabled">
+<refmeta>
+<refentrytitle>contrib.inline.enabled</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>contrib.inline.enabled</refname>
+<refpurpose>Display contrib output inline?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='contrib.inline.enabled.frag'><xsl:param name="contrib.inline.enabled">1</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero (the default), output of the <sgmltag>contrib</sgmltag> element is
+displayed as inline content rather than as block content.</para>
+
+</refsect1>
+</refentry>

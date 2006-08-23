@@ -1,0 +1,26 @@
+<refentry id="othercredit.like.author.enabled">
+<refmeta>
+<refentrytitle>othercredit.like.author.enabled</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>othercredit.like.author.enabled</refname>
+<refpurpose>Display othercredit in same style as author?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='othercredit.like.author.enabled.frag'><xsl:param name="othercredit.like.author.enabled">0</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero, output of the
+<sgmltag>othercredit</sgmltag> element on titlepages is displayed in
+the same style as <sgmltag>author</sgmltag> and
+<sgmltag>editor</sgmltag> output. If zero (the default),
+<sgmltag>othercredit</sgmltag> output is displayed using a style
+different than that of <sgmltag>author</sgmltag> and
+<sgmltag>editor</sgmltag>.</para>
+
+</refsect1>
+</refentry>

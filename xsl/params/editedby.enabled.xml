@@ -1,0 +1,22 @@
+cxb<refentry id="editedby.enabled">
+<refmeta>
+<refentrytitle>editedby.enabled</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>editedby.enabled</refname>
+<refpurpose>Display “Edited by” heading above editor name?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='editedby.enabled.frag'><xsl:param name="editedby.enabled">1</xsl:param></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If non-zero (the default), a localized <emphasis
+role="bold">Edited by</emphasis> heading is displayed above editor
+names in output of the <sgmltag>editor</sgmltag> element.</para>
+
+</refsect1>
+</refentry>

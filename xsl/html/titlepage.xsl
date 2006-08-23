@@ -189,12 +189,33 @@
   </span>
 </xsl:template>
 
-<xsl:template match="author" mode="titlepage.mode">
+<xsl:template match="author|editor" mode="titlepage.mode">
+  <xsl:call-template name="credits.div"/>
+</xsl:template>
+
+<xsl:template name="credits.div">
   <div class="{name(.)}">
+    <xsl:if test="self::editor[position()=1] and not($editedby.enabled = 0)">
+      <h4 class="editedby"><xsl:call-template name="gentext.edited.by"/></h4>
+    </xsl:if>
     <h3 class="{name(.)}"><xsl:call-template name="person.name"/></h3>
-    <xsl:apply-templates mode="titlepage.mode" select="./contrib"/>
+    <xsl:if test="not($contrib.inline.enabled = 0)">
+      <xsl:apply-templates mode="titlepage.mode" select="./contrib"/>
+    </xsl:if>
     <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
     <xsl:apply-templates mode="titlepage.mode" select="./email"/>
+    <xsl:if test="not($blurb.on.titlepage.enabled = 0)">
+      <xsl:choose>
+        <xsl:when test="$contrib.inline.enabled = 0">
+          <xsl:apply-templates mode="titlepage.mode"
+                               select="./contrib|./authorblurb|./personblurb"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="titlepage.mode"
+                               select="./authorblurb|./personblurb"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
   </div>
 </xsl:template>
 
@@ -284,9 +305,18 @@
 </xsl:template>
 
 <xsl:template match="contrib" mode="titlepage.mode">
-  <span class="{name(.)}">
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </span>
+  <xsl:choose>
+    <xsl:when test="not($contrib.inline.enabled = 0)">
+      <span class="{name(.)}">
+        <xsl:apply-templates mode="titlepage.mode"/>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <div class="{name(.)}">
+        <p><xsl:apply-templates mode="titlepage.mode"/></p>
+      </div>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="copyright" mode="titlepage.mode">
@@ -374,15 +404,6 @@
       <xsl:with-param name="key" select="'Edition'"/>
     </xsl:call-template>
   </p>
-</xsl:template>
-
-<xsl:template match="editor" mode="titlepage.mode">
-  <h3 class="{name(.)}"><xsl:call-template name="person.name"/></h3>
-</xsl:template>
-
-<xsl:template match="editor[position()=1]" mode="titlepage.mode">
-  <h4 class="editedby"><xsl:call-template name="gentext.edited.by"/></h4>
-  <h3 class="{name(.)}"><xsl:call-template name="person.name"/></h3>
 </xsl:template>
 
 <xsl:template match="email" mode="titlepage.mode">
@@ -541,6 +562,8 @@
 </xsl:template>
 
 <xsl:template match="othercredit" mode="titlepage.mode">
+<xsl:choose>
+  <xsl:when test="not($othercredit.like.author.enabled = 0)">
   <xsl:variable name="contrib" select="string(contrib)"/>
   <xsl:choose>
     <xsl:when test="contrib">
@@ -567,6 +590,11 @@
       <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
     </xsl:otherwise>
   </xsl:choose>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="credits.div"/>
+  </xsl:otherwise>
+</xsl:choose>
 </xsl:template>
 
 <xsl:template match="othercredit" mode="titlepage.othercredits">
