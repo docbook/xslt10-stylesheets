@@ -148,8 +148,28 @@
       <xsl:text> </xsl:text>
       <!-- * For each attribution found, use only the first e-mail -->
       <!-- * address or ulink value found -->
-      <xsl:apply-templates select="(.//email|address/otheraddr/ulink)[1]"/>
+      <xsl:apply-templates select="(.//email|address/otheraddr/ulink)[1]"
+                           mode="metadata.author"/>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="email|address/otheraddr/ulink" mode="metadata.author">
+    <xsl:text>&lt;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="self::email">
+        <xsl:variable name="contents">
+          <xsl:apply-templates/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($contents)"/>
+      </xsl:when>
+      <xsl:when test="self::ulink">
+        <xsl:variable name="contents">
+          <xsl:apply-templates select="."/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($contents)"/>
+      </xsl:when>
+    </xsl:choose>
+    <xsl:text>&gt;</xsl:text>
   </xsl:template>
 
   <xsl:template match="corpauthor|corpcredit|orgname|publishername" mode="metadata.author">
