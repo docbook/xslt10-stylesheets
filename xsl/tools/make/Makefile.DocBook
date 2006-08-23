@@ -32,6 +32,14 @@
 #
 DOCBOOK_OUTPUT_FORMATS ?= man chunk txt pdf
 
+# If you want XHTML output instead of HTML, set HTML_OR_XHTML to
+# 'xhtml' or just specify 'xhtml" in DOCBOOK_OUTPUT_FORMATS.
+ifeq ($(findstring xhtml,$(DOCBOOK_OUTPUT_FORMATS)),)
+HTML_OR_XHTML ?= html
+else
+HTML_OR_XHTML ?= xhtml
+endif
+
 # -----------------------------------------------------------------
 #                *** TOOLS and other DEPENDENCIES ***
 # -----------------------------------------------------------------
@@ -303,10 +311,10 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
   </xsl:attribute-set> \
 </xsl:stylesheet>
 
-# for single-file HTML outpout
+# for single-file (X)HTML outpout
 HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
-  <xsl:import href="$(DOCBOOK_XSL)/html/docbook.xsl"/> \
+  <xsl:import href="$(DOCBOOK_XSL)/$(HTML_OR_XHTML)/docbook.xsl"/> \
   <xsl:param name="gentext.custom">local.l10n.xml</xsl:param> \
   <xsl:param name="local.l10n.xml" select="document($$gentext.custom)"/> \
   <xsl:param name="refentry.generate.name">1</xsl:param> \
@@ -318,10 +326,10 @@ HTML_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
   <xsl:param name="index.on.type">1</xsl:param> \
 </xsl:stylesheet>
 
-# for chunked HTML output
+# for chunked (X)HTML output
 CHNK_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
                 version="1.0"> \
-  <xsl:import href="$(DOCBOOK_XSL)/html/chunk.xsl"/> \
+  <xsl:import href="$(DOCBOOK_XSL)/$(HTML_OR_XHTML)/chunk.xsl"/> \
   <xsl:param name="refentry.generate.name">0</xsl:param> \
   <xsl:param name="refentry.generate.title">1</xsl:param> \
   <xsl:param name="variablelist.as.table">0</xsl:param> \
@@ -381,7 +389,7 @@ debug:
 	@echo $(DIRS_MAN)
 
 # -----------------------------------------------------------------
-#     pattern rule for making HTML and plain-text output
+#     pattern rule for making (X)HTML and plain-text output
 # -----------------------------------------------------------------
 %.html: %$(DOCBOOK_FILE_EXTENSION)
 	@echo '$(HTML_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) - $< > $@
@@ -399,7 +407,7 @@ ifeq ($(findstring html,$(DOCBOOK_OUTPUT_FORMATS)),)
 endif
 
 # -----------------------------------------------------------------
-#     pattern rule for making chunked HTML pages
+#     pattern rule for making chunked (X)HTML pages
 # -----------------------------------------------------------------
 %.$(HTML_MANIFEST_EXT): %$(DOCBOOK_FILE_EXTENSION)
 	@echo '$(CHNK_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) \
