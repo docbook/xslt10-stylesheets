@@ -79,7 +79,7 @@
   </xsl:variable>
 
   <xsl:call-template name="section.heading">
-    <xsl:with-param name="section" select=".."/>
+    <xsl:with-param name="section" select="$section"/>
     <xsl:with-param name="level" select="$level"/>
     <xsl:with-param name="title">
       <xsl:apply-templates select="$section" mode="object.title.markup">
@@ -89,7 +89,8 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="section/title" mode="titlepage.mode" priority="2">
+<xsl:template match="section/title|section/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -138,7 +139,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect1/title" mode="titlepage.mode" priority="2">
+<xsl:template match="sect1/title|sect1/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -187,7 +189,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect2/title" mode="titlepage.mode" priority="2">
+<xsl:template match="sect2/title|sect2/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -236,7 +239,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect3/title" mode="titlepage.mode" priority="2">
+<xsl:template match="sect3/title|sect3/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -285,7 +289,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect4/title" mode="titlepage.mode" priority="2">
+<xsl:template match="sect4/title|sect4/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -334,7 +339,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect5/title" mode="titlepage.mode" priority="2">
+<xsl:template match="sect5/title|sect5/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -351,7 +357,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="simplesect/title" mode="titlepage.mode" priority="2">
+<xsl:template match="simplesect/title|simplesect/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
 
@@ -421,7 +428,7 @@
            than 5 levels down just becomes H6 -->
       <xsl:when test="$level &gt; 5">6</xsl:when>
       <xsl:otherwise>
-	<xsl:value-of select="$level + 1"/>
+        <xsl:value-of select="$level + 1"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
