@@ -35,8 +35,8 @@ $Id$
 </referenceinfo>
 <title>Formatting Object Table Reference</title>
 
-<partintro>
-<section><title>Introduction</title>
+<partintro id="partintro">
+<section id="intro"><title>Introduction</title>
 
 <para>This is technical reference documentation for the DocBook XSL
 Stylesheets; it documents (some of) the parameters, templates, and

@@ -32,7 +32,7 @@
 &wordml.template;
 &pages.template;
 
-  <appendix>
+  <appendix id="stylesheet">
     <title>The Stylesheet</title>
 
     <para>The <filename>param.xsl</filename> stylesheet is just a wrapper around all of these parameters.</para>
