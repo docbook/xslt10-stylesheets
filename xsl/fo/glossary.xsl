@@ -642,7 +642,7 @@ GlossEntry ::=
 
 <xsl:template match="glossentry/glosssee" mode="glossary.as.list">
   <xsl:variable name="otherterm" select="@otherterm"/>
-  <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <fo:block>
@@ -711,7 +711,7 @@ GlossEntry ::=
 
 <xsl:template match="glossseealso" mode="glossary.as.list">
   <xsl:variable name="otherterm" select="@otherterm"/>
-  <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>
@@ -846,7 +846,7 @@ GlossEntry ::=
 
 <xsl:template match="glossentry/glosssee" mode="glossary.as.blocks">
   <xsl:variable name="otherterm" select="@otherterm"/>
-  <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:variable name="template">
@@ -919,7 +919,7 @@ GlossEntry ::=
 
 <xsl:template match="glossseealso" mode="glossary.as.blocks">
   <xsl:variable name="otherterm" select="@otherterm"/>
-  <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>

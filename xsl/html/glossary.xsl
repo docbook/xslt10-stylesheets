@@ -186,7 +186,7 @@ GlossEntry ::=
 
 <xsl:template match="glossentry/glosssee">
   <xsl:variable name="otherterm" select="@otherterm"/>
-  <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <dd>
@@ -257,7 +257,7 @@ GlossEntry ::=
 
 <xsl:template match="glossseealso">
   <xsl:variable name="otherterm" select="@otherterm"/>
-  <xsl:variable name="targets" select="//node()[@id=$otherterm]"/>
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>
