@@ -206,10 +206,26 @@
                      |sect2/title
                      |sect3/title
                      |sect4/title
-                     |sect5/title"
+                     |sect5/title
+                     |section/info/title
+                     |simplesect/info/title
+                     |sect1/info/title
+                     |sect2/info/title
+                     |sect3/info/title
+                     |sect4/info/title
+                     |sect5/info/title"
               mode="titlepage.mode"
               priority="2">
-  <xsl:variable name="section" select="parent::*"/>
+
+  <xsl:variable name="section" 
+                select="(ancestor::section |
+                        ancestor::simplesect |
+                        ancestor::sect1 |
+                        ancestor::sect2 |
+                        ancestor::sect3 |
+                        ancestor::sect4 |
+                        ancestor::sect5)[position() = last()]"/>
+
   <fo:block keep-with-next.within-column="always">
     <xsl:variable name="id">
       <xsl:call-template name="object.id">
