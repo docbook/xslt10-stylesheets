@@ -245,9 +245,10 @@
 <xsl:template match="doc:template[@match]">
   <xsl:variable name="match" select="@match"/>
   <xsl:variable name="mode" select="@mode"/>
+  <xsl:variable name="id" select="@id"/>
 
   <xsl:text>&#10;</xsl:text>
-  <refentry>
+  <refentry id="{$id}">
     <xsl:text>&#10;</xsl:text>
     <refnamediv>
       <xsl:text>&#10;</xsl:text>

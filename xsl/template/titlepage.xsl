@@ -59,7 +59,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:templates" xmlns="">
+<doc:template match="t:templates" xmlns="" id="templates">
 <refpurpose>Construct a stylesheet for the templates provided</refpurpose>
 
 <refdescription>
@@ -103,7 +103,7 @@ set of templates. This template creates an appropriate
 
 <!-- ==================================================================== -->
 
-<doc:template match="xsl:*" xmlns="">
+<doc:template match="xsl:*" xmlns="" id="star">
 <refpurpose>Copy xsl: elements straight through</refpurpose>
 
 <refdescription>
@@ -118,7 +118,7 @@ straight through into the result tree.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:titlepage" xmlns="">
+<doc:template match="t:titlepage" xmlns="" id="titlepage">
 <refpurpose>Create the templates necessary to construct a title page</refpurpose>
 
 <refdescription>
@@ -446,7 +446,8 @@ and <quote>verso</quote> sides of the title page.</para>
   </xsl:for-each>
 </xsl:template>
 
-<doc:template match="@*" mode="copy.literal.atts" xmlns="">
+<doc:template match="@*" mode="copy.literal.atts" xmlns=""
+              id="attr_star_in_copy.literal.atts">
 <refpurpose>Copy t:titlepage attributes</refpurpose>
 
 <refdescription>
@@ -467,7 +468,7 @@ wrapper.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:titlepage-content">
+<doc:template match="t:titlepage-content" id="titlepage-content">
 <refpurpose>Create templates for the content of one side of a title page</refpurpose>
 
 <refdescription>
@@ -625,7 +626,7 @@ you'll have to construct the templates by hand.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:titlepage-separator">
+<doc:template match="t:titlepage-separator" id="titlepage-separator">
 <refpurpose>Create templates for the separator</refpurpose>
 
 <refdescription>
@@ -650,7 +651,7 @@ element.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:titlepage-before">
+<doc:template match="t:titlepage-before" id="titlepage-before">
 <refpurpose>Create templates for what precedes a title page</refpurpose>
 
 <refdescription>
@@ -676,7 +677,7 @@ side.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="*" mode="copy" xmlns="">
+<doc:template match="*" mode="copy" xmlns="" id="star_in_copy">
 <refpurpose>Copy elements</refpurpose>
 
 <refdescription>
@@ -694,7 +695,7 @@ straight through into the result tree.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="@*" mode="copy" xmlns="">
+<doc:template match="@*" mode="copy" xmlns="" id="attr_star_in_copy">
 <refpurpose>Copy attributes</refpurpose>
 
 <refdescription>
@@ -711,7 +712,7 @@ straight through into the result tree.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="*" mode="document.order" xmlns="">
+<doc:template match="*" mode="document.order" xmlns="" id="attr_star_in_document.order">
 <refpurpose>Create rules to process titlepage elements in document order</refpurpose>
 
 <refdescription>
@@ -818,7 +819,7 @@ names.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="*" mode="document.order" xmlns="">
+<doc:template match="*" mode="document.order" xmlns="" id="star_in_document.order">
 <refpurpose>Create rules to process titlepage elements in stylesheet order</refpurpose>
 
 <refdescription>
@@ -1095,7 +1096,8 @@ names.</para>
 
 <!-- ==================================================================== -->
 
-<doc:template match="*" mode="titlepage.specialrules" xmlns="">
+<doc:template match="*" mode="titlepage.specialrules" xmlns=""
+              id="star_in_titlepage.specialrules">
 <refpurpose>Create templates for special rules</refpurpose>
 
 <refdescription>
@@ -1147,7 +1149,8 @@ processing. At present, that's just <literal>t:or</literal> elements.
 
 <!-- ==================================================================== -->
 
-<doc:template match="*" mode="titlepage.subrules" xmlns="">
+<doc:template match="*" mode="titlepage.subrules" xmlns=""
+              id="star_in_titlepage.subrules">
 <refpurpose>Create template for individual special rules</refpurpose>
 
 <refdescription>
@@ -1186,7 +1189,7 @@ template elements.
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:or" xmlns="">
+<doc:template match="t:or" xmlns="" id="or">
 <refpurpose>Process the t:or special rule</refpurpose>
 
 <refdescription>
@@ -1224,7 +1227,8 @@ template elements.
 
 <!-- ==================================================================== -->
 
-<doc:template match="t:or" mode="titlepage.subrules" xmlns="">
+<doc:template match="t:or" mode="titlepage.subrules" xmlns=""
+              id="or_in_titlepage.subrules">
 <refpurpose>Process the t:or special rule in
 titlepage.subrules mode</refpurpose>
 
