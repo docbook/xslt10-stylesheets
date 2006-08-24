@@ -227,6 +227,7 @@
 
 <xsl:template match="authorgroup" mode="titlepage.mode">
   <div class="{name(.)}">
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates mode="titlepage.mode"/>
   </div>
 </xsl:template>
