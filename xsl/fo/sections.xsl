@@ -213,7 +213,13 @@
                      |sect2/info/title
                      |sect3/info/title
                      |sect4/info/title
-                     |sect5/info/title"
+                     |sect5/info/title
+                     |section/sectioninfo/title
+                     |sect1/sect1info/title
+                     |sect2/sect2info/title
+                     |sect3/sect3info/title
+                     |sect4/sect4info/title
+                     |sect5/sect5info/title"
               mode="titlepage.mode"
               priority="2">
 
