@@ -89,7 +89,9 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="section/title|section/info/title" 
+<xsl:template match="section/title
+                    |section/info/title
+                    |sectioninfo/title" 
               mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
@@ -139,7 +141,9 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect1/title|sect1/info/title" 
+<xsl:template match="sect1/title
+                    |sect1/info/title
+                    |sect1info/title" 
               mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
@@ -189,7 +193,9 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect2/title|sect2/info/title" 
+<xsl:template match="sect2/title
+                    |sect2/info/title
+                    |sect2info/title" 
               mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
@@ -239,7 +245,9 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect3/title|sect3/info/title" 
+<xsl:template match="sect3/title
+                    |sect3/info/title
+                    |sect3info/title" 
               mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
@@ -289,7 +297,9 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect4/title|sect4/info/title" 
+<xsl:template match="sect4/title
+                    |sect4/info/title
+                    |sect4info/title" 
               mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
@@ -339,7 +349,9 @@
   </div>
 </xsl:template>
 
-<xsl:template match="sect5/title|sect5/info/title" 
+<xsl:template match="sect5/title
+                    |sect5/info/title
+                    |sect5info/title" 
               mode="titlepage.mode" priority="2">
   <xsl:call-template name="section.title"/>
 </xsl:template>
