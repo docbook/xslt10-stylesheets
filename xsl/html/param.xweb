@@ -21,7 +21,7 @@ $Id$
 </copyright>
 </bookinfo>
 
-<preface><title>Introduction</title>
+<preface id="intro"><title>Introduction</title>
 
 <para>This is reference documentation for all user-configurable
 parameters in the DocBook XSL HTML stylesheets (for generating
@@ -349,7 +349,7 @@ stylesheet like this:</para>
 </reference>
 
 <reference id="profiling"><title>Profiling</title>
-<partintro>
+<partintro id="partintro">
 <para>Following parameters can be used for attribute value based
 profiling of your document. For more info about profiling look at
 <ulink
@@ -437,7 +437,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &l10n.lang.value.rfc.compliant;
 </reference>
 
-<appendix><title>The Stylesheet</title>
+<appendix id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>

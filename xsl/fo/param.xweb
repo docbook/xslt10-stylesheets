@@ -21,7 +21,7 @@ $Id$
 </copyright>
 </bookinfo>
 
-<preface><title>Introduction</title>
+<preface id="intro"><title>Introduction</title>
 
 <para>This is reference documentation for all user-configurable
 parameters in the DocBook XSL FO stylesheets (for generating
@@ -297,13 +297,14 @@ generate.section.toc.level;
 </reference>
 
 <reference id="general"><title>Pagination and General Styles</title>
-<partintro>
-<section><title>Understanding XSL FO Margins</title>
+<partintro id="margins_partintro">
+<section id="margins_intro"><title>Understanding XSL FO Margins</title>
 
 <para>In order for the parameters in this section to make sense, it is useful to
 consider <xref linkend="fig.pagemodel"/>.</para>
 
 <figure id="fig.pagemodel">
+  <title>Page Model</title>
 <mediaobject>
 <imageobject>
 <imagedata fileref="page.png"/>
@@ -484,7 +485,7 @@ zero by default, so this is simply the page-master region-left.
 </reference>
 
 <reference id="profiling"><title>Profiling</title>
-<partintro>
+<partintro id="profiling_partintro">
 <para>Following parameters can be used for attribute value based
 profiling of your document. For more info about profiling look at
 <ulink
@@ -530,7 +531,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 </reference>
 -->
 
-<appendix><title>The Stylesheet</title>
+<appendix id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
