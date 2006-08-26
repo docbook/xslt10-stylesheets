@@ -11,11 +11,19 @@
   <author><orgname>DocBook Project Development Team</orgname></author>
 </info>
 
-<para>These are the release notes for the DocBook XSL Stylesheets
-distribution. This document lists enhancements and changes to the
-public APIs (user-configurable parameters) and generally excludes
-descriptions of bug fixes, which are instead documented in a
-separate <link xlink:href="NEWS"/> file.</para>
+  <para>This is a pre-release "snapshot" of the DocBook XSL
+  Stylesheets. The information is this document is auto-generated from
+  change descriptions stored in the project source-code
+  repository. That means it contains descriptions both of bug fixes
+  and of feature changes. The release notes for the next official
+  release will be a manually edited subset of this document, trimmed
+  down to just those those descriptions that document enhancements and
+  changes to the public APIs (user-configurable parameters) – that is,
+  without the descriptions of bug fixes. So for now, it’s a lot of
+  information to wade through, but at least you can trust that it’s
+  complete…</para>
+
+  <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
 
 <sect1 xml:id="V1701">
 <title>Release: 1.70.1</title>
