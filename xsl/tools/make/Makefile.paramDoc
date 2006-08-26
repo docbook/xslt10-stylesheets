@@ -1,0 +1,53 @@
+# $Source$
+# $Author$
+# $Date$
+# $Revision$
+# vim: number
+#
+# ------------------------------------------------------------------
+#  ** Makefile.paramDoc - create param.xsl files w/ embedded doc **
+# ------------------------------------------------------------------
+
+PARAMFILES = $(wildcard ../../*/param.xsl)
+PARAMFILESDOCD = $(foreach base,$(basename $(PARAMFILES)),$(base).docd.xsl)
+
+XSLT=xsltproc
+XSLTFLAGS=
+
+COPYDOC := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0" \
+                version="1.0"> \
+  <xsl:template match="*[local-name() = &apos;param&apos;]"> \
+    <xsl:variable \
+        name="source" \
+        select="concat(&apos;../../params/&apos;,@name,&apos;.xml&apos;)"/> \
+    <xsl:apply-templates select="document($$source)/refentry"/> \
+    <xsl:copy> \
+      <xsl:apply-templates select="@* | node()"/> \
+    </xsl:copy> \
+  </xsl:template> \
+  <xsl:template match="node() | @*"> \
+    <xsl:copy> \
+      <xsl:apply-templates select="@* | node()"/> \
+    </xsl:copy> \
+  </xsl:template> \
+  <xsl:template match="refentry"> \
+    <xsl:text>&\#x0a;</xsl:text> \
+    <doc:refentry id="{@id}"> \
+      <xsl:apply-templates/> \
+    </doc:refentry> \
+    <xsl:text>&\#x0a;</xsl:text> \
+  </xsl:template> \
+  <xsl:template match="refsynopsisdiv"/> \
+</xsl:stylesheet>
+
+all: $(PARAMFILESDOCD)
+
+%.docd.xsl: %.xsl
+	echo '$(COPYDOC)' | $(XSLT) $(XSLTFLAGS) - $< > $@
+
+debug:
+	@echo $(PARAMFILESDOCD)
+
+clean:
+	$(RM) $(PARAMFILESDOCD)
