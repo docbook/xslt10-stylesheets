@@ -34,12 +34,12 @@ endif
 $(MARKUP_XSL):
 	$(MAKE) -C $(dir $(MARKUP_XSL))
 
-#NEWS.xml: ChangeLog.xml
-#	$(XSLT) $< $(CVS2CL2DOCBOOK) $@ \
-#	latest-tag="'$(LATEST_TAG)'" \
-#	release-version="'$(RELVER)'" \
-#	element.file="'$(shell readlink -f ./docsrc/docbook-elements.xsl)'" \
-#	param.file="'$(shell readlink -f ./docsrc/xsl-params.xsl)'"
+NEWS.xml: ChangeLog.xml
+	$(XSLT) $< $(SVNLOG2DOCBOOK) $@ \
+	previous-release="'$(PREVIOUS_RELEASE)'" \
+	release-version="'$(RELVER)'" \
+	element.file="'$(shell readlink -f ./docsrc/docbook-elements.xsl)'" \
+	param.file="'$(shell readlink -f ./docsrc/xsl-params.xsl)'"
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC-LINK-STYLE) $@
@@ -47,14 +47,14 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ChangeLog.xml: PreviousRelease
+ChangeLog.xml: PreviousRevision
 	$(SVN) $(SVN_OPTS) log --xml --verbose \
-	-r HEAD:$(PREVIOUS_RELEASE) \
+	-r HEAD:$(PREVIOUS_REVISION) \
 	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
 
-PreviousRelease:
+PreviousRevision:
 	$(SVN) $(SVN_OPTS) list --xml VERSION \
-	| $(XSLTPROC) $(GET_PREVIOUS_RELEASE) - > $@
+	| $(XSLTPROC) $(GET_PREVIOUS_REVISION) - > $@
 
 ChangeHistory.xml.zip: ChangeHistory.xml
 	$(ZIP) $(ZIP_OPTS) $@ $<
@@ -82,8 +82,7 @@ catalog.xml: .make-catalog.xsl
 install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
 	cp $< $@
 
-#distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
-distrib: all $(DISTRIB_DEPENDS) ChangeLog.xml
+distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
 
 #newversion:
 #ifeq ($(CVSCHECK),)

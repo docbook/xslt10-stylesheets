@@ -21,11 +21,24 @@ MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 
 # stylesheet used in taking XML output from the cvs2cl(1) perl
 # script, and using it to generate NEWS file(s) and releases notes
-CVS2CL2DOCBOOK=$(DOCBOOK_SVN)/releasetools/cvs2cl2docbook.xsl
+SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
 # stylesheet used for determining the revision number of the
 # last/latest release
-GET_PREVIOUS_RELEASE=$(DOCBOOK_SVN)/releasetools/get-previous-release.xsl
+GET_PREVIOUS_REVISION=$(DOCBOOK_SVN)/releasetools/get-previous-revision.xsl
+
+# stylesheet used for finding the previous release number in the
+# RELEASE-NOTES.xml file.
+GET_PREVIOUS_RELEASE := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
+                xmlns:db="http://docbook.org/ns/docbook" \
+                version="1.0"> \
+  <xsl:output method="text"/> \
+  <xsl:template match="/"> \
+    <xsl:value-of select="substring-after(/db:article/db:sect1/db:title, &apos; &apos;)"/> \
+  </xsl:template> \
+</xsl:stylesheet>
+
+PREVIOUS_RELEASE=$(shell echo '$(GET_PREVIOUS_RELEASE)' | $(XSLTPROC) $(XSLTPROC_OPTS) - RELEASE-NOTES.xml)
 
 # stylesheet for stripping DB5 namespace
 STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
@@ -54,7 +67,7 @@ DBLATEX_FLAGS = -b pdftex
 # file containing "What's New" info generated from Subversion log
 NEWSFILE=NEWS
 
-PREVIOUS_RELEASE=$(shell if [ -f PreviousRelease ];then cat PreviousRelease; fi)
+PREVIOUS_REVISION=$(shell if [ -f PreviousRevision ];then cat PreviousRevision; fi)
 
 # determine RELVER automatically by:
 #
@@ -121,7 +134,7 @@ ZIP_EXCLUDES = \
  Makefile.common \
  Makefile.incl \
  Makefile.param \
- PreviousRelease \
+ PreviousRevision \
  README\.SVN \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl
