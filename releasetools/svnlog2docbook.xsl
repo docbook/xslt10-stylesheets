@@ -32,7 +32,7 @@
   <!-- * automatically marked up -->
   <xsl:param 
       name="stopwords"
-      >code,example,markup,note,option,optional,part,parameter,set,step,type,warning</xsl:param>
+      >code,example,markup,note,option,optional,part,parameter,property,set,step,type,warning</xsl:param>
 
   <!-- ==================================================================== -->
 
