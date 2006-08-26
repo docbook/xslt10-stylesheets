@@ -206,7 +206,7 @@ else
       DIFFVER=`cat $DISTRO/VERSION`
     fi
 
-    PREVIOUS_RELEASE=`if [ -f $DISTRO/PreviousRelease ]; then cat $DISTRO/PreviousRelease; fi`
+    PREVIOUS_REVISION=`if [ -f $DISTRO/PreviousRevision ]; then cat $DISTRO/PreviousRevision; fi`
     if [ $MESSAGE_ID ]; then
       BUILD_ID=$MESSAGE_ID
     else
@@ -233,7 +233,7 @@ else
     date
     echo
     # echo selected variables
-    set | grep "BUILD_ID\|^CHANGE\|PREVIOUS_RELEASE\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
+    set | grep "BUILD_ID\|^CHANGE\|PREVIOUS_REVISION\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
     echo
 
     echo "Running svn update in gentext and $DISTRO working directories..."
@@ -268,8 +268,8 @@ It is intended for testing purposes only and otherwise comes with no
 guarantees. It may in fact be broken.
 EOF
 
-    if [ -n "$PREVIOUS_RELEASE" ]; then
-      svn log --verbose -r HEAD:$PREVIOUS_RELEASE $DISTRO > $DISTRO/LatestChanges
+    if [ -n "$PREVIOUS_REVISION" ]; then
+      svn log --verbose -r HEAD:$PREVIOUS_REVISION $DISTRO > $DISTRO/LatestChanges
     fi
 
     if [ "$UPLOAD" = "yes" ]; then
