@@ -5,6 +5,8 @@
 
 debug:
 
+.PHONY: ChangeLog.xml ChangeHistory.xml
+
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
 	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC-LINK-STYLE) $@
@@ -82,7 +84,7 @@ catalog.xml: .make-catalog.xsl
 install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
 	cp $< $@
 
-distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE)
+distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE) ChangeHistory.xml.zip
 
 #newversion:
 #ifeq ($(CVSCHECK),)
@@ -222,7 +224,6 @@ release-clean: clean
 	$(RM) ChangeHistory.xml
 	$(RM) ChangeHistory.xml.zip
 	$(RM) ChangeLog.xml 
-	$(RM) LatestTag
 	$(RM) RELEASE-NOTES.txt
 	$(RM) RELEASE-NOTES.html
 	$(RM) RELEASE-NOTES.fo
