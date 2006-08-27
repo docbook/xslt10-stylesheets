@@ -184,14 +184,22 @@
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
+  <!-- * DocBook allows just about any block content to appear in -->
+  <!-- * lists before the actual list items, so we need to get that -->
+  <!-- * content (if any) before getting the list items -->
+  <xsl:apply-templates
+      select="*[not(self::listitem) and not(self::title)]"/>
   <xsl:text>.TP</xsl:text> 
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:if test="following-sibling::node()">
+  <xsl:apply-templates select="listitem"/>
+  <!-- * If this list is a child of para and has content following -->
+  <!-- * it, within the same para, then add a blank line and move -->
+  <!-- * the left margin back to where it was -->
+  <xsl:if test="parent::para and following-sibling::node()">
     <xsl:text>.sp&#10;</xsl:text>
     <xsl:text>.RE&#10;</xsl:text>
   </xsl:if>
