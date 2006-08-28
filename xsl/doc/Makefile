@@ -4,9 +4,7 @@ PROCOPT=
 
 .PHONY : clean
 
-RSTYLE=reference.xsl
-CRSTYLE=creference.xsl
-BSTYLE=book.xsl
+RSTYLE=../docsrc/reference.xsl
 VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages wordml slides website template pi

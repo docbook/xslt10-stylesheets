@@ -1,6 +1,6 @@
 include ../../../cvstools/Makefile.incl
 
-STYLE=../jrefhtml.xsl
+STYLE=../../docsrc/jrefhtml.xsl
 VPATH=../../docsrc/website
 XSLTOPT=
 

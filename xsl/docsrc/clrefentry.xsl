@@ -11,7 +11,7 @@
 <xsl:param name="refentry.separator" select="0"/>
 
 <!-- n.b. reference pages are one directory down, so we point back up -->
-<xsl:param name="html.stylesheet" select="'../ref.css'"/>
+<xsl:param name="html.stylesheet" select="'../css/ref.css'"/>
 
 <xsl:template match="src:fragment" mode="label.markup">
   <xsl:text>&#xA7;</xsl:text>
