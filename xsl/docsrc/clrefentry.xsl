@@ -11,7 +11,12 @@
 <xsl:param name="refentry.separator" select="0"/>
 
 <!-- n.b. reference pages are one directory down, so we point back up -->
-<xsl:param name="html.stylesheet" select="'../css/ref.css'"/>
+<xsl:param name="html.stylesheet" select="'../css/reference.css'"/>
+<xsl:param name="admon.graphics" select="1"></xsl:param>
+<xsl:param name="admon.textlabel" select="0"></xsl:param>
+<xsl:param name="admon.graphics.path">../images/</xsl:param>
+<xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
+<xsl:param name="admon.style"/>
 
 <xsl:template match="src:fragment" mode="label.markup">
   <xsl:text>&#xA7;</xsl:text>
