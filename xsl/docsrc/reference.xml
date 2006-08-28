@@ -12,6 +12,7 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 <!ENTITY slides-param.xml SYSTEM "slides/docparam.xml" NDATA SGML>
 <!ENTITY website-param.xml SYSTEM "website/docparam.xml" NDATA SGML>
 <!ENTITY titlepage.xml SYSTEM "template/titlepage.xml" NDATA SGML>
+<!ENTITY pi.xml SYSTEM "pi/pi.xml" NDATA SGML>
 ]>
 <book>
   <bookinfo>
@@ -39,7 +40,7 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     publishing content using the DocBook XSL stylesheets, see Bob
     Stayton’s <ulink
     url="http://www.sagehill.net/book-description.html" >DocBook
-    XSL:The Complete Guide</ulink>, available online at <ulink
+    XSL: The Complete Guide</ulink>, available online at <ulink
     url="http://www.sagehill.net/docbookxsl/index.html"
     >http://www.sagehill.net/docbookxsl/index.html</ulink></para>
   </note>
@@ -66,6 +67,9 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
       </listitem>
       <listitem><para><olink type="title" localinfo="website/index.html"
       targetdocent="website-param.xml"/></para>
+      </listitem>
+      <listitem><para><olink type="title" localinfo="pi/index.html"
+      targetdocent="pi.xml"/></para>
       </listitem>
     </itemizedlist>
 
