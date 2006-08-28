@@ -73,7 +73,7 @@
     the <tag>releaseinfo</tag> element.</para>
 
     <para>Taking all that in mind, the
-    <function>get.refentry.info</function> function tries to gather
+    <function>get.refentry.metadata</function> function tries to gather
     metadata from a <tag>refentry</tag> element and its ancestor
     elements in an intelligent and user-configurable way. The basic
     mechanism used in the XPath expressions throughout this stylesheet
@@ -82,7 +82,7 @@
     <tag>refentry</tag> itself, or on its nearest ancestor.</para>
 
     <note>
-      <para>The <function>get.refentry.info</function> function is
+      <para>The <function>get.refentry.metadata</function> function is
       actually just sort of a "driver" function; it calls other
       functions that do the actual data collection, then returns the
       data as a set.</para>
