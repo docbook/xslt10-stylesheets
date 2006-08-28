@@ -34,7 +34,7 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
   adjust to control the behavior of the stylesheets.</para>
   
   <note>
-    <para>This is purely reference documentation&#xa0;–not how-to
+    <para>This is purely reference documentation&#xa0;– not how-to
     documentation. For a thorough step-by-step how-to guide to
     publishing content using the DocBook XSL stylesheets, see Bob
     Stayton’s <ulink
