@@ -78,40 +78,41 @@ schema/DTD, use one of the following stylesheets:
 ----------------------------------------------------------------------
 Manifest
 ----------------------------------------------------------------------
-AUTHORS     contact information
-BUGS        about known problems
-COPYING     copyright information
-INSTALL     installation instructions
-README      this file
-RELEASE.*   per-release cumulative summaries of user-visible changes
-TODO        about planned features not yet implemented
-VERSION     the current version number (note that this is an XSL stylesheet,
-            included by both fo/docbook.xsl and html/docbook.xsl)
-NEWS        changes since the last public release (for cumulative lists of
-            changes, see the ChangeLog files in each subdirectory)
+AUTHORS       contact information
+BUGS          about known problems
+COPYING       copyright information
+INSTALL       installation instructions
+README        this file
+RELEASE.*     per-release cumulative summaries of user-visible changes
+TODO          about planned features not yet implemented
+VERSION       the current version number (note that this is an XSL stylesheet,
+              included by both fo/docbook.xsl and html/docbook.xsl)
+NEWS          changes since the last public release (for a cumulative list of
+              changes, see the ChangeHistory.xml file)
 
-common/     contains code common to both the HTML and FO stylesheets
-doc/        documentation
-docsrc/     documentation sources
-eclipse/    stylesheet that produces Eclipse Help
-extensions/ Java extensions
-fo/         stylesheets that produce XSL FO
-html/       stylesheets that produce HTML
-htmlhelp/   stylesheets that produce HTML Help
-images/     images
-javahelp/   stylesheets that produce Java Help
-lib/        contains schema-independent functions
-manpages/   stylesheets for producing groff/nroff man pages
-profiling/  stylesheets for profiling (omitting/including conditional text)
-slides/     stylesheets for producing slides (from DocBook Slides source)
-template/   contains templates for building stylesheet customization layers
-website/    stylesheets for producing a website (from DocBook Website source)
-xhtml/      stylesheets that produce XHTML
+common/       contains code common to both the HTML and FO stylesheets
+doc/          documentation
+docsrc/       documentation sources
+eclipse/      stylesheet that produces Eclipse Help
+extensions/   Java extensions
+fo/           stylesheets that produce XSL FO
+highlighting  files used for adding code syntax-highlighting in output
+html/         stylesheets that produce HTML
+htmlhelp/     stylesheets that produce HTML Help
+images/       images
+javahelp/     stylesheets that produce Java Help
+lib/          contains schema-independent functions
+manpages/     stylesheets for producing groff/nroff man pages
+profiling/    stylesheets for profiling (omitting/including conditional text)
+slides/       stylesheets for producing slides (from DocBook Slides source)
+template/     contains templates for building stylesheet customization layers
+website/      stylesheets for producing a website (from DocBook Website source)
+xhtml/        stylesheets that produce XHTML
 
 ----------------------------------------------------------------------
 Changes
 ----------------------------------------------------------------------
-See the ChangeLog in each subdirectory for cumulative lists of all changes.
+See the ChangeHistory.xml file for a cumulative lists of all changes.
 
 See the NEWS file for changes made since the previous release.
 
