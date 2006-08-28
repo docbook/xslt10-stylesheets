@@ -1,34 +1,9 @@
-README.CVS for the DocBook XSL Stylesheets at svn.sourceforge.net/svnroot/docbook
+README.SVN for the DocBook XSL Stylesheets at svn.sourceforge.net/svnroot/docbook
 
-These are XSL stylesheets for the DocBook XML DTD. (They would also
-work for the DocBook DTD, modulo certain namecase problems and the
-fact that there aren't any XSL implementations that work with SGML
-source documents.)
+Some details on building the DocBook Project XSL stylesheets are
+available at the DocBook Wiki:
 
-Subversion Manifest
-------------
-
-README.CVS  this file
-TODO        planned features not yet implemented (may be incomplete :-)
-BUGS        known problems (may also be incomplete :-)
-VERSION     the current version number (note that this is an XSL stylesheet,
-            included by both fo/docbook.xsl and html/docbook.xsl)
-common/	    contains code common to both stylesheets
-docsrc/     source files for the stylesheet documentation
-extensions/ Java extension functions
-fo/         stylesheets that produce XSL FO result trees
-html/	    stylesheets that produce HTML result trees
-images/     images used by the stylesheets
-lib/        contains schema-independent functions
-xhtml/      stylesheets that produce XHTML result trees
-
-Installation
-------------
-
-*** NOTE: The Subversion tree *IS NOT COMPLETE*. In order to run the stylesheets
-directly from the Subversion tree, you must checkout several additional trees
-and run some build scripts. This README will be updated to describe how
-sometime real soon now.
+  http://wiki.docbook.org/topic/DocBookXslBuild
 
 Copyright
 ---------
