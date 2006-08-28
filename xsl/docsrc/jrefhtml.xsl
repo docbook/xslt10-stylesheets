@@ -22,6 +22,8 @@
 <!-- ==================================================================== -->
 
 <xsl:param name="part.autolabel" select="0"/>
+<xsl:param name="html.stylesheet" select="'css/reference.css'"/>
+
 
 <xsl:template match="refentry">
   <xsl:apply-imports/>
@@ -162,6 +164,30 @@
     </b>
     <xsl:apply-templates/>
   </div>
+</xsl:template>
+
+<xsl:template match="copyright" mode="titlepage.mode">
+  <xsl:variable name="years" select="year"/>
+  <xsl:variable name="holders" select="holder"/>
+
+  <p class="{name(.)}">
+    <a href="../copyright.html">
+      <xsl:call-template name="gentext.element.name"/>
+    </a>
+    <xsl:call-template name="gentext.space"/>
+    <xsl:call-template name="dingbat">
+      <xsl:with-param name="dingbat">copyright</xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="gentext.space"/>
+    <xsl:apply-templates select="$years" mode="titlepage.mode"/>
+    <xsl:call-template name="gentext.space"/>
+    <xsl:call-template name="gentext.by"/>
+    <xsl:call-template name="gentext.space"/>
+    <xsl:apply-templates select="$holders" mode="titlepage.mode"/>
+    <xsl:text>. </xsl:text>
+    <a href="../warranty.html">No Warranty</a>
+    <xsl:text>.</xsl:text>
+  </p>
 </xsl:template>
 
 <!-- ==================================================================== -->
