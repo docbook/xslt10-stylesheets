@@ -237,8 +237,9 @@ else
     echo
 
     echo "Running svn update in gentext and $DISTRO working directories..."
-    svn cleanup gentext && svn update gentext || exit 1
-    svn cleanup $DISTRO && svn update $DISTRO || exit 1
+    svn cleanup
+    svn update gentext || exit 1
+    svn update $DISTRO || exit 1
     echo
 
     echo
