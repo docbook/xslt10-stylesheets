@@ -10,7 +10,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='index.method.frag'>
-<xsl:param name="index.method" select="'english'"/>
+<xsl:param name="index.method" select="'basic'"/>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -18,29 +18,33 @@
 
 <para>This parameter lets you select which method should be
 used to sort and group index entries in an index.
-Indexes in languages that have accented characters typically
+Indexes in latin-based languages that have accented characters typically
 sort together accented words and unaccented words.
-So <quote>&#xC1;</quote> (A acute) would sort together
+Thus <quote>&#xC1;</quote> (A acute) would sort together
 with <quote>A</quote>, so both would appear in the <quote>A</quote>
 section of the index.
+Languages using other alphabets (such as Russian cyrillic)
+and languages using ideographic chararacters (such as Japanese)
+require grouping specific to the languages and alphabets.
 </para>
 
-<para>The default indexing method does not sort accented characters this way.
-Words that start with an accented character will instead appear in the
-<quote>Symbols</quote> section of the index.
-As such, the default method is only suitable for
-English and other unaccented languages.
+<para>The default indexing method is limited.
+It can group accented characters in latin-based languages only.
+It cannot handle non-latin alphabets or ideographic languages.
 The other indexing methods require extensions of one type or
-another, which is why there are not used by default.</para>
+another, and do not work with
+all XSLT processors, which is why there are not used by default.</para>
 
 <para>The three choices for indexing method are:</para>
 <variablelist>
 <varlistentry>
-<term><literal>english</literal></term>
+<term><literal>basic</literal></term>
 <listitem>
 <para>
 (default)  Sort and groups words based only on the Latin alphabet.
-Accented words and words in non-Latin alphabets will be
+Words with accented latin letters will group and sort with
+their respective primary letter, but
+words in non-Latin alphabets will be
 put in the <quote>Symbols</quote> section of the index.
 </para>
 </listitem>
@@ -51,9 +55,10 @@ put in the <quote>Symbols</quote> section of the index.
 <para>
 Sort and groups words based on letter groups configured in
 the DocBook locale file for the given language.
-For example, the French locale file is <filename>common/fr.xml</filename>.
-This method requires support for EXSLT extensions in
-the XSL processor. It also requires support for using 
+See, for example, the French locale file <filename>common/fr.xml</filename>.
+This method requires that the XSLT processor
+support the EXSLT extensions (most do).
+It also requires support for using 
 user-defined functions in xsl:key (xsltproc does not).
 </para>
 <para>This method is suitable for any language for which you can
@@ -62,15 +67,28 @@ in each letter group in an index.
 It is probably not practical to use it for ideographic languages
 such as Chinese that have hundreds or thousands of characters.
 </para>
-<para>To use this method, your customization must set this
-parameter and import an additional stylesheet module:</para>
-<programlisting><![CDATA[<xsl:import href="[path-to-stylesheets]/common/autoidx-ng.xsl"/>
-<xsl:param name="index.method">kosek</xsl:param>
-]]>
-</programlisting>
-<para>The stylesheet module defines functions and adds an xsl:key
-used by the method.
+
+<para>To use the kosek method, you must:</para>
+
+<orderedlist>
+<listitem>
+<para>Use a processor that supports its extensions, such as
+Saxon 6 or Xalan (xsltproc and Saxon 8 do not).
 </para>
+</listitem>
+<listitem>
+<para>Set the index.method parameter's value to <quote>kosek</quote>.
+</para>
+</listitem>
+<listitem>
+<para>Import the appropriate index extensions stylesheet module
+<filename>fo/autoidx-kosek.xsl</filename> or 
+<filename>html/autoidx-kosek.xsl</filename> into your
+customization.
+</para>
+</listitem>
+</orderedlist>
+
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -81,13 +99,15 @@ This method uses extensions to the Saxon processor to implement
 sophisticated indexing processes.  It uses its own 
 configuration file, which can include information for any number of
 languages.  Each language's configuration can group
-words using either an
-enumerated method similar to the kosek method, or it can
-designate the first character in each group when viewed in sort order.
+words using one of two processes.  In the
+enumerated process similar to that used in the kosek method,
+you indicate the groupings character-by-character.
+In the between-key process, you specify the
+break-points in the sort order that should start a new group.
 The latter configuration is useful for ideographic languages
 such as Chinese, Japanese, and Korean.
-You can also define your own collation algorithms and where you
-want Latin-alphabet words sorted.</para>
+You can also define your own collation algorithms and how you
+want mixed Latin-alphabet words sorted.</para>
 <itemizedlist>
 <listitem>
 <para>For a whitepaper describing the extensions, see:
@@ -101,11 +121,11 @@ want Latin-alphabet words sorted.</para>
 </listitem>
 </itemizedlist>
 
-<para>To use this method, you must:</para>
+<para>To use the kimber method, you must:</para>
 
 <orderedlist>
 <listitem>
-<para>Use Saxon as your XSLT processor.
+<para>Use Saxon (version 6 or 8) as your XSLT processor.
 </para>
 </listitem>
 <listitem>
@@ -114,12 +134,13 @@ the documentation that comes with it.
 </para>
 </listitem>
 <listitem>
-<para>Set this parameter's value to <quote>kimber</quote>.
+<para>Set the index.method parameter's value to <quote>kimber</quote>.
 </para>
 </listitem>
 <listitem>
-<para>Import the index extensions stylesheet module
-<filename>common/autoidx-ng.xsl</filename> into your
+<para>Import the appropriate index extensions stylesheet module
+<filename>fo/autoidx-kimber.xsl</filename> or 
+<filename>html/autoidx-kimber.xsl</filename> into your
 customization.
 </para>
 </listitem>
