@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE xsl:stylesheet [
 
-<!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
-<!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
+<!ENTITY lowercase "'Aa&#192;&#224;&#193;&#225;&#194;&#226;&#195;&#227;&#196;&#228;&#197;&#229;&#256;&#257;&#258;&#259;&#260;&#261;&#461;&#462;&#478;&#479;&#480;&#481;&#506;&#507;&#512;&#513;&#514;&#515;&#550;&#551;&#7680;&#7681;&#7834;&#7840;&#7841;&#7842;&#7843;&#7844;&#7845;&#7846;&#7847;&#7848;&#7849;&#7850;&#7851;&#7852;&#7853;&#7854;&#7855;&#7856;&#7857;&#7858;&#7859;&#7860;&#7861;&#7862;&#7863;Bb&#384;&#385;&#595;&#386;&#387;&#7682;&#7683;&#7684;&#7685;&#7686;&#7687;Cc&#199;&#231;&#262;&#263;&#264;&#265;&#266;&#267;&#268;&#269;&#391;&#392;&#597;&#7688;&#7689;Dd&#270;&#271;&#272;&#273;&#394;&#599;&#395;&#396;&#453;&#498;&#545;&#598;&#7690;&#7691;&#7692;&#7693;&#7694;&#7695;&#7696;&#7697;&#7698;&#7699;Ee&#200;&#232;&#201;&#233;&#202;&#234;&#203;&#235;&#274;&#275;&#276;&#277;&#278;&#279;&#280;&#281;&#282;&#283;&#516;&#517;&#518;&#519;&#552;&#553;&#7700;&#7701;&#7702;&#7703;&#7704;&#7705;&#7706;&#7707;&#7708;&#7709;&#7864;&#7865;&#7866;&#7867;&#7868;&#7869;&#7870;&#7871;&#7872;&#7873;&#7874;&#7875;&#7876;&#7877;&#7878;&#7879;Ff&#401;&#402;&#7710;&#7711;Gg&#284;&#285;&#286;&#287;&#288;&#289;&#290;&#291;&#403;&#608;&#484;&#485;&#486;&#487;&#500;&#501;&#7712;&#7713;Hh&#292;&#293;&#294;&#295;&#542;&#543;&#614;&#7714;&#7715;&#7716;&#7717;&#7718;&#7719;&#7720;&#7721;&#7722;&#7723;&#7830;Ii&#204;&#236;&#205;&#237;&#206;&#238;&#207;&#239;&#296;&#297;&#298;&#299;&#300;&#301;&#302;&#303;&#304;&#407;&#616;&#463;&#464;&#520;&#521;&#522;&#523;&#7724;&#7725;&#7726;&#7727;&#7880;&#7881;&#7882;&#7883;Jj&#308;&#309;&#496;&#669;Kk&#310;&#311;&#408;&#409;&#488;&#489;&#7728;&#7729;&#7730;&#7731;&#7732;&#7733;Ll&#313;&#314;&#315;&#316;&#317;&#318;&#319;&#320;&#321;&#322;&#410;&#456;&#564;&#619;&#620;&#621;&#7734;&#7735;&#7736;&#7737;&#7738;&#7739;&#7740;&#7741;Mm&#625;&#7742;&#7743;&#7744;&#7745;&#7746;&#7747;Nn&#209;&#241;&#323;&#324;&#325;&#326;&#327;&#328;&#413;&#626;&#414;&#544;&#459;&#504;&#505;&#565;&#627;&#7748;&#7749;&#7750;&#7751;&#7752;&#7753;&#7754;&#7755;Oo&#210;&#242;&#211;&#243;&#212;&#244;&#213;&#245;&#214;&#246;&#216;&#248;&#332;&#333;&#334;&#335;&#336;&#337;&#415;&#416;&#417;&#465;&#466;&#490;&#491;&#492;&#493;&#510;&#511;&#524;&#525;&#526;&#527;&#554;&#555;&#556;&#557;&#558;&#559;&#560;&#561;&#7756;&#7757;&#7758;&#7759;&#7760;&#7761;&#7762;&#7763;&#7884;&#7885;&#7886;&#7887;&#7888;&#7889;&#7890;&#7891;&#7892;&#7893;&#7894;&#7895;&#7896;&#7897;&#7898;&#7899;&#7900;&#7901;&#7902;&#7903;&#7904;&#7905;&#7906;&#7907;Pp&#420;&#421;&#7764;&#7765;&#7766;&#7767;Qq&#672;Rr&#340;&#341;&#342;&#343;&#344;&#345;&#528;&#529;&#530;&#531;&#636;&#637;&#638;&#7768;&#7769;&#7770;&#7771;&#7772;&#7773;&#7774;&#7775;Ss&#346;&#347;&#348;&#349;&#350;&#351;&#352;&#353;&#536;&#537;&#642;&#7776;&#7777;&#7778;&#7779;&#7780;&#7781;&#7782;&#7783;&#7784;&#7785;Tt&#354;&#355;&#356;&#357;&#358;&#359;&#427;&#428;&#429;&#430;&#648;&#538;&#539;&#566;&#7786;&#7787;&#7788;&#7789;&#7790;&#7791;&#7792;&#7793;&#7831;Uu&#217;&#249;&#218;&#250;&#219;&#251;&#220;&#252;&#360;&#361;&#362;&#363;&#364;&#365;&#366;&#367;&#368;&#369;&#370;&#371;&#431;&#432;&#467;&#468;&#469;&#470;&#471;&#472;&#473;&#474;&#475;&#476;&#532;&#533;&#534;&#535;&#7794;&#7795;&#7796;&#7797;&#7798;&#7799;&#7800;&#7801;&#7802;&#7803;&#7908;&#7909;&#7910;&#7911;&#7912;&#7913;&#7914;&#7915;&#7916;&#7917;&#7918;&#7919;&#7920;&#7921;Vv&#434;&#651;&#7804;&#7805;&#7806;&#7807;Ww&#372;&#373;&#7808;&#7809;&#7810;&#7811;&#7812;&#7813;&#7814;&#7815;&#7816;&#7817;&#7832;Xx&#7818;&#7819;&#7820;&#7821;Yy&#221;&#253;&#255;&#376;&#374;&#375;&#435;&#436;&#562;&#563;&#7822;&#7823;&#7833;&#7922;&#7923;&#7924;&#7925;&#7926;&#7927;&#7928;&#7929;Zz&#377;&#378;&#379;&#380;&#381;&#382;&#437;&#438;&#548;&#549;&#656;&#657;&#7824;&#7825;&#7826;&#7827;&#7828;&#7829;&#7829;'">
+<!ENTITY uppercase "'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFFFFFFGGGGGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIJJJJJJKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLLLLLLLLLLLMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOPPPPPPPPQQQRRRRRRRRRRRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUVVVVVVVVWWWWWWWWWWWWWWWXXXXXXYYYYYYYYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZZZZZZ'">
 
 <!ENTITY primary   'normalize-space(concat(primary/@sortas, primary[not(@sortas) or @sortas = ""]))'>
 <!ENTITY secondary 'normalize-space(concat(secondary/@sortas, secondary[not(@sortas) or @sortas = ""]))'>
@@ -36,22 +36,15 @@
 
 <!ENTITY section.id 'generate-id(&section;)'>
 <!ENTITY sep '" "'>
-<!-- Documents using the kimber index method must have a lang attribute -->
-<!-- Only one of these should be present in the entity -->
 
-<!ENTITY lang 'concat(/*/@lang, /*/@xml:lang)'>
 <!ENTITY scope 'count(ancestor::node()|$scope) = count(ancestor::node())
                 and ($role = @role or $type = @type or
                 (string-length($role) = 0 and string-length($type) = 0))'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:i="urn:cz-kosek:functions:index"
-                xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-                xmlns:func="http://exslt.org/functions"
-                xmlns:k="java:com.isogen.saxoni18n.Saxoni18nService"
                 xmlns:exslt="http://exslt.org/common"
-                extension-element-prefixes="func exslt"
-                exclude-result-prefixes="func exslt i l k"
+                extension-element-prefixes="exslt"
+                exclude-result-prefixes="exslt"
                 version="1.0">
 
 <!-- ********************************************************************
@@ -65,9 +58,12 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-<!-- The "english" method derived from Jeni Tennison's work. -->
+<!-- The "basic" method derived from Jeni Tennison's work. -->
 <!-- The "kosek" method contributed by Jirka Kosek. -->
 <!-- The "kimber" method contributed by Eliot Kimber of Innodata Isogen. -->
+
+<xsl:variable name="kimber.imported" select="0"/>
+<xsl:variable name="kosek.imported" select="0"/>
 
 <xsl:key name="letter"
          match="indexterm"
@@ -111,15 +107,6 @@
 
 <xsl:key name="sections" match="*[@id]" use="@id"/>
 
-<!-- The following key is used in the kimber indexing method.
-     To use this method, either copy this key to a
-     customization layer, or xsl:import common/autoidx-ng.xsl. -->
-<!--
-<xsl:key name="k-group"
-         match="indexterm"
-         use="k:getIndexGroupKey(&lang;, &primary;)"/>
--->
-
 
 <xsl:template name="generate-index">
   <xsl:param name="scope" select="(ancestor::book|/)[last()]"/>
@@ -137,14 +124,14 @@
     </xsl:when>
 
     <xsl:otherwise>
-      <xsl:call-template name="generate-english-index">
+      <xsl:call-template name="generate-basic-index">
         <xsl:with-param name="scope" select="$scope"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
       
-<xsl:template name="generate-english-index">
+<xsl:template name="generate-basic-index">
   <xsl:param name="scope" select="NOTANODE"/>
 
   <xsl:variable name="role">
@@ -200,7 +187,7 @@
     <xsl:apply-templates select="$alphabetical[count(.|key('letter',
                                  translate(substring(&primary;, 1, 1),
                                            &lowercase;,&uppercase;))[&scope;][1]) = 1]"
-                         mode="index-div-english">
+                         mode="index-div-basic">
       <xsl:with-param name="position" select="position()"/>
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -210,8 +197,9 @@
   </div>
 </xsl:template>
 
+<!-- This template not used if html/autoidx-kosek.xsl is imported -->
 <xsl:template name="generate-kosek-index">
-  <xsl:param name="scope" select="(ancestor::book|/)[last()]"/>
+  <xsl:param name="scope" select="NOTANODE"/>
 
   <xsl:variable name="vendor" select="system-property('xsl:vendor')"/>
   <xsl:if test="contains($vendor, 'libxslt')">
@@ -231,42 +219,17 @@
     </xsl:message>
   </xsl:if>
 
-  <xsl:if test="not(function-available('i:group-index'))">
+  <xsl:if test="$kosek.imported = 0">
     <xsl:message terminate="yes">
       <xsl:text>ERROR: the 'kosek' index method requires the&#xA;</xsl:text>
-      <xsl:text>index extension functions be imported:&#xA;</xsl:text>
-      <xsl:text>  xsl:import href="common/autoidx-ng.xsl"</xsl:text>
+      <xsl:text>kosek index extensions be imported:&#xA;</xsl:text>
+      <xsl:text>  xsl:import href="html/autoidx-kosek.xsl"</xsl:text>
     </xsl:message>
   </xsl:if>
 
-  <xsl:variable name="role">
-    <xsl:if test="$index.on.role != 0">
-      <xsl:value-of select="@role"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="type">
-    <xsl:if test="$index.on.type != 0">
-      <xsl:value-of select="@type"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="terms"
-                select="//indexterm[count(.|key('group-code',
-                                          i:group-index(&primary;))
-                                          [&scope;][1]) = 1
-                                    and not(@class = 'endofrange')]"/>
-
-  <div class="index">
-    <xsl:apply-templates select="$terms" mode="index-div-kosek">
-      <xsl:with-param name="scope" select="$scope"/>
-      <xsl:with-param name="role" select="$role"/>
-      <xsl:with-param name="type" select="$type"/>
-      <xsl:sort select="i:group-index(&primary;)" data-type="number"/>
-    </xsl:apply-templates>
-  </div>
 </xsl:template>
 
+<!-- This template not used if html/autoidx-kimber.xsl is imported -->
 <xsl:template name="generate-kimber-index">
   <xsl:param name="scope" select="NOTANODE"/>
 
@@ -274,95 +237,21 @@
   <xsl:if test="not(contains($vendor, 'SAXON '))">
     <xsl:message terminate="yes">
       <xsl:text>ERROR: the 'kimber' index method requires the </xsl:text>
-      <xsl:text>Saxon version 6 XSLT processor.</xsl:text>
+      <xsl:text>Saxon version 6 or 8 XSLT processor.</xsl:text>
     </xsl:message>
   </xsl:if>
 
-  <xsl:if test="not(function-available('k:getIndexGroupKey'))">
-    <xsl:message terminate="yes">
-      <xsl:text>ERROR: the 'kimber' index method requires the </xsl:text>
-      <xsl:text>Innodata Isogen &#x0A;Java extensions for </xsl:text>
-      <xsl:text>internationalized indexes. &#x0A;Install those </xsl:text>
-      <xsl:text>extensions, or use a different index method.&#x0A;</xsl:text>
-      <xsl:text>For more information, see:&#x0A;</xsl:text>
-      <xsl:text>http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport</xsl:text>
-    </xsl:message>
-  </xsl:if>
-
-  <xsl:if test="not(function-available('i:group-index'))">
+  <xsl:if test="$kimber.imported = 0">
     <xsl:message terminate="yes">
       <xsl:text>ERROR: the 'kimber' index method requires the&#xA;</xsl:text>
-      <xsl:text>index extension functions be imported:&#xA;</xsl:text>
-      <xsl:text>  xsl:import href="common/autoidx-ng.xsl"</xsl:text>
+      <xsl:text>kimber index extensions be imported:&#xA;</xsl:text>
+      <xsl:text>  xsl:import href="html/autoidx-kimber.xsl"</xsl:text>
     </xsl:message>
   </xsl:if>
-
-  <xsl:variable name="role">
-    <xsl:if test="$index.on.role != 0">
-      <xsl:value-of select="@role"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="type">
-    <xsl:if test="$index.on.type != 0">
-      <xsl:value-of select="@type"/>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="terms"
-                select="//indexterm[count(.|key('k-group',
-                   k:getIndexGroupKey(&lang;, &primary;))
-                   [&scope;][1]) = 1
-                   and not(@class = 'endofrange')]"/>
-
-  <xsl:variable name="alphabetical"
-                select="$terms[not(starts-with(
-                k:getIndexGroupKey(&lang;, &primary;),
-                '#NUMERIC'
-                ))]"/>
-
-  <xsl:variable name="others"
-                select="$terms[starts-with(
-                k:getIndexGroupKey(&lang;, &primary;),
-                '#NUMERIC'
-                )]"/>
-
-  <div class="index">
-    <xsl:if test="$others">
-      <div class="indexdev">
-        <h3>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key" select="'index symbols'"/>
-          </xsl:call-template>
-        </h3>
-        <dl>
-          <xsl:apply-templates select="$others"
-                               mode="index-symbol-div">
-            <xsl:with-param name="scope" select="$scope"/>
-            <xsl:with-param name="role" select="$role"/>
-            <xsl:with-param name="type" select="$type"/>
-            <xsl:sort lang="{&lang;}"
-                select="k:getIndexGroupSortKey(&lang;,
-                        k:getIndexGroupKey(&lang;, &primary;))"/>
-          </xsl:apply-templates>
-        </dl>
-      </div>
-    </xsl:if>
-
-    <xsl:apply-templates select="$alphabetical"
-                         mode="index-div-kimber">
-      <xsl:with-param name="scope" select="$scope"/>
-      <xsl:with-param name="role" select="$role"/>
-      <xsl:with-param name="type" select="$type"/>
-      <xsl:sort lang="{&lang;}"
-             select="k:getIndexGroupSortKey(&lang;,
-                     k:getIndexGroupKey(&lang;, &primary;))"/>
-    </xsl:apply-templates>
-  </div>
 
 </xsl:template>
 
-<xsl:template match="indexterm" mode="index-div-english">
+<xsl:template match="indexterm" mode="index-div-basic">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
@@ -412,70 +301,6 @@
     <xsl:with-param name="type" select="$type"/>
     <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
   </xsl:apply-templates>
-</xsl:template>
-
-<xsl:template match="indexterm" mode="index-div-kosek">
-  <xsl:param name="scope" select="."/>
-  <xsl:param name="role" select="''"/>
-  <xsl:param name="type" select="''"/>
-
-  <xsl:variable name="key"
-                select="i:group-index(&primary;)"/>
-
-  <xsl:variable name="lang">
-    <xsl:call-template name="l10n.language"/>
-  </xsl:variable>
-
-  <xsl:if test="key('group-code', $key)[&scope;]
-                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
-    <div class="indexdiv">
-      <h3>
-        <xsl:value-of select="i:group-letter($key)"/>
-      </h3>
-      <dl>
-        <xsl:apply-templates select="key('group-code', $key)[&scope;]
-                                     [count(.|key('primary', &primary;)[&scope;][1])=1]"
-                             mode="index-primary">
-          <xsl:sort select="&primary;" lang="{$lang}"/>
-          <xsl:with-param name="scope" select="$scope"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="type" select="$type"/>
-        </xsl:apply-templates>
-      </dl>
-    </div>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template match="indexterm" mode="index-div-kimber">
-  <xsl:param name="scope" select="."/>
-  <xsl:param name="role" select="''"/>
-  <xsl:param name="type" select="''"/>
-
-  <xsl:variable name="key"
-          select="k:getIndexGroupKey(&lang;, &primary;)"/>
-
-  <xsl:variable name="label"
-          select="k:getIndexGroupLabel(&lang;, $key)"/>
-
-  <xsl:if test="key('k-group', $label)[&scope;]
-                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
-    <div class="indexdiv">
-      <h3>
-        <xsl:value-of select="$label"/>
-      </h3>
-      <dl>
-        <xsl:apply-templates select="key('k-group', $key)[&scope;]
-                            [count(.|key('primary', &primary;)[&scope;]
-                            [1])=1]"
-                             mode="index-primary">
-          <xsl:sort select="&primary;" lang="{&lang;}"/>
-          <xsl:with-param name="scope" select="$scope"/>
-          <xsl:with-param name="role" select="$role"/>
-          <xsl:with-param name="type" select="$type"/>
-        </xsl:apply-templates>
-      </dl>
-    </div>
-  </xsl:if>
 </xsl:template>
 
 <xsl:template match="indexterm" mode="index-primary">
