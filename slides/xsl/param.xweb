@@ -16,7 +16,7 @@ $Id$
 </copyright>
 </bookinfo>
 
-<preface><title>Introduction</title>
+<preface id="intro"><title>Introduction</title>
 
 <para>This is reference documentation for all user-configurable
 parameters in the DocBook XSL Slides stylesheets (for generating
@@ -45,18 +45,8 @@ stylesheet like this:</para>
 <literal>&lt;xsl:import&gt;</literal> to point to the stylesheet
 on your system.</para>
 </preface>
-<part id="html_output">
-<title>Slides FO Parameters</title>
-<preface>
-<title>[none]</title>
-  <para>There currently are no Slides parameters for FO
-  output.</para>
-</preface>
-</part>
 
-<part id="html_output">
-<title>Slides HTML Parameters</title>
-<reference id="html_general">
+<reference id="general_params">
 <title>General Parameters</title>
 
 <refentry id="keyboard.nav">
@@ -290,8 +280,8 @@ not supported in all output formats.</para>
 
 </reference>
 
-<reference>
-<title>Frame Parameters</title>
+<reference id="frame_params">
+<title>HTML Frame Parameters</title>
 
 <refentry id="nav.separator">
 <refmeta>
@@ -620,7 +610,7 @@ exclusive.</para>
 
 </reference>
 
-<reference>
+<reference id="graphic_parms">
 <title>Graphics Parameters</title>
 
 <refentry id="graphics.dir">
@@ -1012,7 +1002,7 @@ enabled.</para>
 
 </reference>
 
-<reference>
+<reference id="javascript_params">
 <title>JavaScript Parameters</title>
 
 <refentry id="script.dir">
@@ -1213,7 +1203,7 @@ that you will ever need to change this parameter.</para>
 </refentry>
 </reference>
 
-<reference>
+<reference id="l10n_params">
 <title>Localization Parameters</title>
 
 <refentry id="text.home">
@@ -1357,9 +1347,8 @@ that you will ever need to change this parameter.</para>
 -->
 
 </reference>
-</part>
 
-<appendix><title>The Stylesheet</title>
+<appendix id="styleheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
