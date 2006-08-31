@@ -461,4 +461,16 @@ or 0 (the empty string)</para>
   </xsl:for-each>
 </xsl:template>
 
+<xsl:template name="consume-row">
+  <xsl:param name="spans"/>
+
+  <xsl:if test="contains($spans,':')">
+    <xsl:value-of select="substring-before($spans,':') - 1"/>
+    <xsl:text>:</xsl:text>
+    <xsl:call-template name="consume-row">
+      <xsl:with-param name="spans" select="substring-after($spans,':')"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
 </xsl:stylesheet>
