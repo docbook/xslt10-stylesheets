@@ -15,14 +15,14 @@ $Id$
 </copyright>
 </bookinfo>
 
-<preface><title>Introduction</title>
+<preface id="intro"><title>Introduction</title>
 
 <para>This is reference documentation for all user-configurable
 parameters in the DocBook XSL Website stylesheets (for generating
 output from DocBook Website documents).</para>
 </preface>
 
-<reference>
+<reference id="params">
 <title>Parameters</title>
 
 <refentry id="header.hr">
@@ -724,7 +724,7 @@ website presentation.</para>
 </refentry>
 </reference>
 
-<appendix><title>The Stylesheet</title>
+<appendix id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
