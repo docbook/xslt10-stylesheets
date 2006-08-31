@@ -1,4 +1,6 @@
-<refentry id="chunk.separate.lots">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunk.separate.lots">
 <refmeta>
 <refentrytitle>chunk.separate.lots</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

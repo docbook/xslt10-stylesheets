@@ -1,4 +1,6 @@
-<refentry id="man.justify">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.justify">
 <refmeta>
 <refentrytitle>man.justify</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

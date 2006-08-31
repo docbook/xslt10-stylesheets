@@ -1,4 +1,6 @@
-<refentry id="column.count.index">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="column.count.index">
 <refmeta>
 <refentrytitle>column.count.index</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

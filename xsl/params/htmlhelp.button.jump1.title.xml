@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.button.jump1.title">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.button.jump1.title">
 <refmeta>
 <refentrytitle>htmlhelp.button.jump1.title</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

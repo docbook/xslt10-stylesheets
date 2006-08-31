@@ -1,4 +1,6 @@
-<refentry id="graphicsize.use.img.src.path">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="graphicsize.use.img.src.path">
 <refmeta>
 <refentrytitle>graphicsize.use.img.src.path</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

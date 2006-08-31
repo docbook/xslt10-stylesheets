@@ -1,4 +1,6 @@
-<refentry id="man.output.in.separate.dir">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.output.in.separate.dir">
 <refmeta>
 <refentrytitle>man.output.in.separate.dir</refentrytitle>
 

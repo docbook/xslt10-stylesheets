@@ -1,4 +1,6 @@
-<refentry id="glosslist.as.blocks">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="glosslist.as.blocks">
 <refmeta>
 <refentrytitle>glosslist.as.blocks</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

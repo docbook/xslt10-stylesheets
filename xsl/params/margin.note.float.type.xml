@@ -1,4 +1,6 @@
-<refentry id="margin.note.float.type">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="margin.note.float.type">
 <refmeta>
 <refentrytitle>margin.note.float.type</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>

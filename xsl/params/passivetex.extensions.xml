@@ -1,4 +1,6 @@
-<refentry id="passivetex.extensions">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="passivetex.extensions">
 <refmeta>
 <refentrytitle>passivetex.extensions</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

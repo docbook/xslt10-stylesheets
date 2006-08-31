@@ -1,4 +1,6 @@
-<refentry id="table.footnote.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="table.footnote.properties">
 <refnamediv>
 <refname>table.footnote.properties</refname>
 <refpurpose>Properties applied to each table footnote body

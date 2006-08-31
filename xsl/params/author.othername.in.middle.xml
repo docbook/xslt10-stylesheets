@@ -1,4 +1,6 @@
-<refentry id="author.othername.in.middle">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="author.othername.in.middle">
 <refmeta>
 <refentrytitle>author.othername.in.middle</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="menuchoice.separator">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="menuchoice.separator">
 <refmeta>
 <refentrytitle>menuchoice.separator</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

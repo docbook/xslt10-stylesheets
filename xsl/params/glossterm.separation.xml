@@ -1,4 +1,6 @@
-<refentry id="glossterm.separation">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="glossterm.separation">
 <refmeta>
 <refentrytitle>glossterm.separation</refentrytitle>
 <refmiscinfo role="type">length</refmiscinfo>

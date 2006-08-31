@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.display.progress">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.display.progress">
 <refmeta>
 <refentrytitle>htmlhelp.display.progress</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

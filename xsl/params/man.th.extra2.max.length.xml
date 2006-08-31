@@ -1,4 +1,6 @@
-<refentry id="man.th.extra2.max.length">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.th.extra2.max.length">
 <refmeta>
 <refentrytitle>man.th.extra2.max.length</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

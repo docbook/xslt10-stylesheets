@@ -1,4 +1,6 @@
-<refentry id="use.svg">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="use.svg">
 <refmeta>
 <refentrytitle>use.svg</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

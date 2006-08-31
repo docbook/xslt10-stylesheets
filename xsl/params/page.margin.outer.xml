@@ -1,4 +1,6 @@
-<refentry id="page.margin.outer">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="page.margin.outer">
 <refmeta>
 <refentrytitle>page.margin.outer</refentrytitle>
 

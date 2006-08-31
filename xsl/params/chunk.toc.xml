@@ -1,4 +1,6 @@
-<refentry id="chunk.toc">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunk.toc">
 <refmeta>
 <refentrytitle>chunk.toc</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

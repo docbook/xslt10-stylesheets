@@ -1,4 +1,6 @@
-<refentry id="margin.note.width">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="margin.note.width">
 <refmeta>
 <refentrytitle>margin.note.width</refentrytitle>
 </refmeta>

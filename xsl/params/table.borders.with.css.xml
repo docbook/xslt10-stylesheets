@@ -1,4 +1,6 @@
-<refentry id="table.borders.with.css">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="table.borders.with.css">
 <refmeta>
 <refentrytitle>table.borders.with.css</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

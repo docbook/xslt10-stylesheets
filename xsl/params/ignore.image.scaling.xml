@@ -1,4 +1,6 @@
-<refentry id="ignore.image.scaling">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="ignore.image.scaling">
 <refmeta>
 <refentrytitle>ignore.image.scaling</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="pixels.per.inch">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="pixels.per.inch">
 <refmeta>
 <refentrytitle>pixels.per.inch</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="formal.procedures">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="formal.procedures">
 <refmeta>
 <refentrytitle>formal.procedures</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

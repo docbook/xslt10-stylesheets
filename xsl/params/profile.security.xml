@@ -1,4 +1,6 @@
-<refentry id="profile.security">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="profile.security">
 <refmeta>
 <refentrytitle>profile.security</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -20,7 +22,7 @@ attribute</refpurpose>
 <para>Value of this parameter specifies profiles which should be
 included in the output. You can specify multiple profiles by
 separating them by semicolon. You can change separator character by
-<link linkend="profile.separator"><parameter>profile.separator</parameter></link>
+<parameter>profile.separator</parameter>
 parameter.</para>
 
 <para>This parameter has effect only when you are using profiling

@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.button.options">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.button.options">
 <refmeta>
 <refentrytitle>htmlhelp.button.options</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

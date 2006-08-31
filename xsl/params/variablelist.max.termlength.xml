@@ -1,4 +1,6 @@
-<refentry id="variablelist.max.termlength">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="variablelist.max.termlength">
 <refmeta>
 <refentrytitle>variablelist.max.termlength</refentrytitle>
 

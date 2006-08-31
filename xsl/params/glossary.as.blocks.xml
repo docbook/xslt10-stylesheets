@@ -1,4 +1,6 @@
-<refentry id="glossary.as.blocks">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="glossary.as.blocks">
 <refmeta>
 <refentrytitle>glossary.as.blocks</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

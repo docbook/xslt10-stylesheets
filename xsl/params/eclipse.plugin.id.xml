@@ -1,4 +1,6 @@
-<refentry id="eclipse.plugin.id">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="eclipse.plugin.id">
 <refmeta>
 <refentrytitle>eclipse.plugin.id</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

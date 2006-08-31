@@ -1,4 +1,6 @@
-<refentry id="glossentry.show.acronym">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="glossentry.show.acronym">
 <refmeta>
 <refentrytitle>glossentry.show.acronym</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="informalequation.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="informalequation.properties">
 <refnamediv>
 <refname>informalequation.properties</refname>
 <refpurpose>Properties associated with a informalequation</refpurpose>

@@ -1,4 +1,6 @@
-<refentry id="points.per.em">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="points.per.em">
 <refmeta>
 <refentrytitle>points.per.em</refentrytitle>
 <refmiscinfo role="type">number</refmiscinfo>

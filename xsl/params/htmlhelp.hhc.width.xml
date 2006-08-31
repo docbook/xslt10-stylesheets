@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.hhc.width">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.hhc.width">
 <refmeta>
 <refentrytitle>htmlhelp.hhc.width</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

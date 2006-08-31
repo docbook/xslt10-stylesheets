@@ -1,4 +1,6 @@
-<refentry id="crop.mark.bleed">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="crop.mark.bleed">
 <refmeta>
 <refentrytitle>crop.mark.bleed</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

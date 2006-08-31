@@ -1,4 +1,6 @@
-<refentry id="footer.column.widths">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="footer.column.widths">
 <refmeta>
 <refentrytitle>footer.column.widths</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

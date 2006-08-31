@@ -1,4 +1,6 @@
-<refentry id="toc.list.type">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="toc.list.type">
 <refmeta>
 <refentrytitle>toc.list.type</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>

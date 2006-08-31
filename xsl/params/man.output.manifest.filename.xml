@@ -1,4 +1,6 @@
-<refentry id="man.output.manifest.filename">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.output.manifest.filename">
   <refmeta>
     <refentrytitle>man.output.manifest.filename</refentrytitle>
     <refmiscinfo role="type">string</refmiscinfo>

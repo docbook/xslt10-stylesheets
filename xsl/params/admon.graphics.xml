@@ -1,4 +1,6 @@
-<refentry id="admon.graphics">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="admon.graphics">
 <refmeta>
 <refentrytitle>admon.graphics</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="index.term.separator">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="index.term.separator">
 <refmeta>
 <refentrytitle>index.term.separator</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

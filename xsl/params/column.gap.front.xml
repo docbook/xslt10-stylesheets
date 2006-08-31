@@ -1,4 +1,6 @@
-<refentry id="column.gap.front">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="column.gap.front">
 <refmeta>
 <refentrytitle>column.gap.front</refentrytitle>
 <refmiscinfo role="type">length</refmiscinfo>

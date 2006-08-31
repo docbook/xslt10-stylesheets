@@ -1,4 +1,6 @@
-<refentry id="qandadiv.autolabel">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="qandadiv.autolabel">
 <refmeta>
 <refentrytitle>qandadiv.autolabel</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

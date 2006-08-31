@@ -1,4 +1,6 @@
-<refentry id="toc.indent.width">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="toc.indent.width">
 <refmeta>
 <refentrytitle>toc.indent.width</refentrytitle>
 <refmiscinfo role="type">float</refmiscinfo>

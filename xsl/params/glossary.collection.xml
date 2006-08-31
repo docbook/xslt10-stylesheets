@@ -1,4 +1,6 @@
-<refentry id="glossary.collection">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="glossary.collection">
 <refmeta>
 <refentrytitle>glossary.collection</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

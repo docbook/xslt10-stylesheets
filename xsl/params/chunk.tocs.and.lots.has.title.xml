@@ -1,4 +1,6 @@
-<refentry id="chunk.tocs.and.lots.has.title">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunk.tocs.and.lots.has.title">
 <refmeta>
 <refentrytitle>chunk.tocs.and.lots.has.title</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="chunk.section.depth">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunk.section.depth">
 <refmeta>
 <refentrytitle>chunk.section.depth</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

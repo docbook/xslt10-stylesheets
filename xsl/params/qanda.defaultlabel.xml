@@ -1,4 +1,6 @@
-<refentry id="qanda.defaultlabel">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="qanda.defaultlabel">
 <refmeta>
 <refentrytitle>qanda.defaultlabel</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

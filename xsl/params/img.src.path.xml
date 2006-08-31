@@ -1,4 +1,6 @@
-<refentry id="img.src.path">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="img.src.path">
 <refmeta>
 <refentrytitle>img.src.path</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

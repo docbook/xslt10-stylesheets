@@ -1,4 +1,6 @@
-<refentry id="process.empty.source.toc">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="process.empty.source.toc">
 <refmeta>
 <refentrytitle>process.empty.source.toc</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

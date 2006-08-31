@@ -1,4 +1,6 @@
-<refentry id="refentry.source.name.profile">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="refentry.source.name.profile">
 <refmeta>
 <refentrytitle>refentry.source.name.profile</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

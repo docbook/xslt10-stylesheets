@@ -1,4 +1,6 @@
-<refentry id="default.table.width">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="default.table.width">
 <refmeta>
 <refentrytitle>default.table.width</refentrytitle>
 <refmiscinfo role="type">length</refmiscinfo>

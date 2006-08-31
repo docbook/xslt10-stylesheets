@@ -1,4 +1,6 @@
-<refentry id="informalfigure.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="informalfigure.properties">
 <refnamediv>
 <refname>informalfigure.properties</refname>
 <refpurpose>Properties associated with an informalfigure</refpurpose>

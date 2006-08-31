@@ -1,4 +1,6 @@
-<refentry id="use.role.for.mediaobject">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="use.role.for.mediaobject">
 <refmeta>
 <refentrytitle>use.role.for.mediaobject</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

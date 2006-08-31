@@ -1,4 +1,6 @@
-<refentry id="man.output.manifest.enabled">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.output.manifest.enabled">
   <refmeta>
     <refentrytitle>man.output.manifest.enabled</refentrytitle>
     <refmiscinfo role="type">boolean</refmiscinfo>

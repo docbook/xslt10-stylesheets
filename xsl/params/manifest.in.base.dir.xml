@@ -1,4 +1,6 @@
-<refentry id="manifest.in.base.dir">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="manifest.in.base.dir">
 <refmeta>
 <refentrytitle>manifest.in.base.dir</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

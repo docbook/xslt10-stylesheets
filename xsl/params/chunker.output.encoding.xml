@@ -1,4 +1,6 @@
-<refentry id="chunker.output.encoding">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunker.output.encoding">
 <refmeta>
 <refentrytitle>chunker.output.encoding</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

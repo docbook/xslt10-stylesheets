@@ -1,4 +1,6 @@
-<refentry id="callout.graphics.extension">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="callout.graphics.extension">
 <refmeta>
 <refentrytitle>callout.graphics.extension</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

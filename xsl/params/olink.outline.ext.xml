@@ -1,4 +1,6 @@
-<refentry id="olink.outline.ext">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="olink.outline.ext">
 <refmeta>
 <refentrytitle>olink.outline.ext</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

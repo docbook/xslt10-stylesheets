@@ -1,4 +1,6 @@
-<refentry id="refentry.pagebreak">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="refentry.pagebreak">
 <refmeta>
 <refentrytitle>refentry.pagebreak</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

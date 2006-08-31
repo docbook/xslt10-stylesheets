@@ -1,4 +1,6 @@
-<refentry id="man.hyphenate.urls">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.hyphenate.urls">
 <refmeta>
 <refentrytitle>man.hyphenate.urls</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

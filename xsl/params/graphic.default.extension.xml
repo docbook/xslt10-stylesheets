@@ -1,4 +1,6 @@
-<refentry id="graphic.default.extension">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="graphic.default.extension">
 <refmeta>
 <refentrytitle>graphic.default.extension</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

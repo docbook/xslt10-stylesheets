@@ -1,4 +1,6 @@
-<refentry id="chunker.output.cdata-section-elements">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunker.output.cdata-section-elements">
 <refmeta>
 <refentrytitle>chunker.output.cdata-section-elements</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

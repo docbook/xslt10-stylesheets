@@ -1,4 +1,6 @@
-<refentry id="refentry.version.profile.enabled">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="refentry.version.profile.enabled">
 <refmeta>
 <refentrytitle>refentry.version.profile.enabled</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

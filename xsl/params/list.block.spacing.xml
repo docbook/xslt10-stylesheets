@@ -1,4 +1,6 @@
-<refentry id="list.block.spacing">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="list.block.spacing">
 <refnamediv>
 <refname>list.block.spacing</refname>
 <refpurpose>What spacing do you want before and after lists?</refpurpose>

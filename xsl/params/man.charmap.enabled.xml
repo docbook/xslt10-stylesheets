@@ -1,4 +1,6 @@
-<refentry id="man.charmap.enabled">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.charmap.enabled">
 <refmeta>
 <refentrytitle>man.charmap.enabled</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

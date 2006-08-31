@@ -1,4 +1,6 @@
-<refentry id="nongraphical.admonition.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="nongraphical.admonition.properties">
 <refnamediv>
 <refname>nongraphical.admonition.properties</refname>
 <refpurpose>To add properties to the outer block of a nongraphical admonition.</refpurpose>

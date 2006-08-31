@@ -1,4 +1,6 @@
-<refentry id="toc.margin.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="toc.margin.properties">
 <refnamediv>
 <refname>toc.margin.properties</refname>
 <refpurpose>Margin properties used on Tables of Contents</refpurpose>

@@ -1,4 +1,6 @@
-<refentry id="margin.note.title.Properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="margin.note.title.Properties">
 <refmeta>
 <refentrytitle>margin.note.title.properties</refentrytitle>
 <refmiscinfo role="type">attribute set</refmiscinfo>

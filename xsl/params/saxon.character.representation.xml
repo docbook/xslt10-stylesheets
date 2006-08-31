@@ -1,4 +1,6 @@
-<refentry id="saxon.character.representation">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="saxon.character.representation">
 <refmeta>
 <refentrytitle>saxon.character.representation</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

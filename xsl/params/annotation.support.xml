@@ -1,4 +1,6 @@
-<refentry id="annotation.support">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="annotation.support">
 <refmeta>
 <refentrytitle>annotation.support</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

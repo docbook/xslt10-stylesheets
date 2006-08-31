@@ -1,4 +1,6 @@
-<refentry id="fop1.extensions">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="fop1.extensions">
 <refmeta>
 <refentrytitle>fop1.extensions</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

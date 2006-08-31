@@ -1,4 +1,6 @@
-<refentry id="table.frame.border.thickness">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="table.frame.border.thickness">
 <refmeta>
 <refentrytitle>table.frame.border.thickness</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

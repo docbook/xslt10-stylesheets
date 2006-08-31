@@ -1,4 +1,6 @@
-<refentry id="use.extensions">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="use.extensions">
 <refmeta>
 <refentrytitle>use.extensions</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

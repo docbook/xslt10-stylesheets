@@ -1,4 +1,6 @@
-<refentry id="glossterm.auto.link">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="glossterm.auto.link">
 <refmeta>
 <refentrytitle>glossterm.auto.link</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

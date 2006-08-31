@@ -1,4 +1,6 @@
-<refentry id="annotate.toc">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="annotate.toc">
 <refmeta>
 <refentrytitle>annotate.toc</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

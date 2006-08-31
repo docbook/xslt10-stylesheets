@@ -1,4 +1,6 @@
-<refentry id="id.warnings">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="id.warnings">
 <refmeta>
 <refentrytitle>id.warnings</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

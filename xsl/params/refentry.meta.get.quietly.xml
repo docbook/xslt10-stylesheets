@@ -1,4 +1,6 @@
-<refentry id="refentry.meta.get.quietly">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="refentry.meta.get.quietly">
 <refmeta>
 <refentrytitle>refentry.meta.get.quietly</refentrytitle>
 

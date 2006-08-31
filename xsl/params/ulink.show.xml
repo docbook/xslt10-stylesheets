@@ -1,4 +1,6 @@
-<refentry id="ulink.show">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="ulink.show">
 <refmeta>
 <refentrytitle>ulink.show</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

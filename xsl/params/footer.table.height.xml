@@ -1,4 +1,6 @@
-<refentry id="footer.table.height">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="footer.table.height">
 <refmeta>
 <refentrytitle>footer.table.height</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

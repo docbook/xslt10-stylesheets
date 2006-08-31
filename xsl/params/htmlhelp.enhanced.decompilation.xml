@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.enhanced.decompilation">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.enhanced.decompilation">
 <refmeta>
 <refentrytitle>htmlhelp.enhanced.decompilation</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
