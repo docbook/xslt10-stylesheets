@@ -1,4 +1,6 @@
-<refentry id="generate.manifest">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="generate.manifest">
   <refmeta>
     <refentrytitle>generate.manifest</refentrytitle>
     <refmiscinfo role="type">boolean</refmiscinfo>

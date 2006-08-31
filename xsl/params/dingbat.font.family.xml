@@ -1,4 +1,6 @@
-<refentry id="dingbat.font.family">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="dingbat.font.family">
 <refmeta>
 <refentrytitle>dingbat.font.family</refentrytitle>
 

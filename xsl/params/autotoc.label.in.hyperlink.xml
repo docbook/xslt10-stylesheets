@@ -1,4 +1,6 @@
-<refentry id="autotoc.label.in.hyperlink">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="autotoc.label.in.hyperlink">
 <refmeta>
 <refentrytitle>autotoc.label.in.hyperlink</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="man.indent.width">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.indent.width">
 <refnamediv>
 <refname>man.indent.width</refname>
 <refpurpose>Specifies width used for adjusted indents</refpurpose>

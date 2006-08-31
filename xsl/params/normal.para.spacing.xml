@@ -1,4 +1,6 @@
-<refentry id="normal.para.spacing">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="normal.para.spacing">
 <refnamediv>
 <refname>normal.para.spacing</refname>
 <refpurpose>What space do you want between normal paragraphs</refpurpose>

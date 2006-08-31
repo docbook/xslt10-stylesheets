@@ -1,4 +1,6 @@
-<refentry id="component.label.includes.part.label">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="component.label.includes.part.label">
 <refmeta>
 <refentrytitle>component.label.includes.part.label</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

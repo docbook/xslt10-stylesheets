@@ -1,4 +1,6 @@
-<refentry id="table.table.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="table.table.properties">
 <refnamediv>
 <refname>table.table.properties</refname>
 <refpurpose>Properties associated with a table</refpurpose>

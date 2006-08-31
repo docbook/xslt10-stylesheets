@@ -1,4 +1,6 @@
-<refentry id="nominal.image.depth">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="nominal.image.depth">
 <refmeta>
 <refentrytitle>nominal.image.depth</refentrytitle>
 <refmiscinfo role="type">length</refmiscinfo>

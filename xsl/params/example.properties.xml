@@ -1,4 +1,6 @@
-<refentry id="example.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="example.properties">
 <refnamediv>
 <refname>example.properties</refname>
 <refpurpose>Properties associated with a example</refpurpose>

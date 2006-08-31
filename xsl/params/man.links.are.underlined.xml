@@ -1,4 +1,6 @@
-<refentry id="man.links.are.underlined">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.links.are.underlined">
 <refmeta>
 <refentrytitle>man.links.are.underlined</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

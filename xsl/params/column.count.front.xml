@@ -1,4 +1,6 @@
-<refentry id="column.count.front">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="column.count.front">
 <refmeta>
 <refentrytitle>column.count.front</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

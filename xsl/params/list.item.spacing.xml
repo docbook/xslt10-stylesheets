@@ -1,4 +1,6 @@
-<refentry id="list.item.spacing">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="list.item.spacing">
 <refnamediv>
 <refname>list.item.spacing</refname>
 <refpurpose>What space do you want between list items?</refpurpose>

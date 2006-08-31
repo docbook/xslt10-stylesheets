@@ -1,4 +1,6 @@
-<refentry id="man.links.list.enabled">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.links.list.enabled">
 <refmeta>
 <refentrytitle>man.links.list.enabled</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

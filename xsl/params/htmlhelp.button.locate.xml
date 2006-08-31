@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.button.locate">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.button.locate">
 <refmeta>
 <refentrytitle>htmlhelp.button.locate</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

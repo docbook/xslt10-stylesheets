@@ -1,4 +1,6 @@
-<refentry id="footnote.mark.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="footnote.mark.properties">
 <refnamediv>
 <refname>footnote.mark.properties</refname>
 <refpurpose>Properties applied to each footnote mark

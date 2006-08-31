@@ -1,4 +1,6 @@
-<refentry id="make.graphic.viewport">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="make.graphic.viewport">
 <refmeta>
 <refentrytitle>make.graphic.viewport</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

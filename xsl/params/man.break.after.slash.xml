@@ -1,4 +1,6 @@
-<refentry id="man.break.after.slash">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.break.after.slash">
 <refmeta>
 <refentrytitle>man.break.after.slash</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

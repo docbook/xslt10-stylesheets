@@ -1,4 +1,6 @@
-<refentry id="column.count.lot">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="column.count.lot">
 <refmeta>
 <refentrytitle>column.count.lot</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

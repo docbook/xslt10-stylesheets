@@ -1,4 +1,6 @@
-<refentry id="table.cell.border.style">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="table.cell.border.style">
 <refmeta>
 <refentrytitle>table.cell.border.style</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

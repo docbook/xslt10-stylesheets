@@ -1,4 +1,6 @@
-<refentry id="column.gap.index">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="column.gap.index">
 <refmeta>
 <refentrytitle>column.gap.index</refentrytitle>
 <refmiscinfo role="type">length</refmiscinfo>

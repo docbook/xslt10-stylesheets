@@ -1,4 +1,6 @@
-<refentry id="olink.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="olink.properties">
 <refnamediv>
 <refname>olink.properties</refname>
 <refpurpose>Properties associated with the cross-reference 

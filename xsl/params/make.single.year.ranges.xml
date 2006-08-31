@@ -1,4 +1,6 @@
-<refentry id="make.single.year.ranges">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="make.single.year.ranges">
 <refmeta>
 <refentrytitle>make.single.year.ranges</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

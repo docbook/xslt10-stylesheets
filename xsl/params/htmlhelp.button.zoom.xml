@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.button.zoom">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.button.zoom">
 <refmeta>
 <refentrytitle>htmlhelp.button.zoom</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

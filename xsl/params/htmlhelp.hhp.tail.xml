@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.hhp.tail">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.hhp.tail">
 <refmeta>
 <refentrytitle>htmlhelp.hhp.tail</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

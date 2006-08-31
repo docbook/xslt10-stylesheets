@@ -1,4 +1,6 @@
-<refentry id="ulink.hyphenate">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="ulink.hyphenate">
 <refmeta>
 <refentrytitle>ulink.hyphenate</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

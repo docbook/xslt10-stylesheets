@@ -1,4 +1,6 @@
-<refentry id="biblioentry.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="biblioentry.properties">
 <refnamediv>
 <refname>biblioentry.properties</refname>
 <refpurpose>To set the style for biblioentry.</refpurpose>

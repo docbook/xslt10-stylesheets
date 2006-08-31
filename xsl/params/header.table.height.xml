@@ -1,4 +1,6 @@
-<refentry id="header.table.height">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="header.table.height">
 <refmeta>
 <refentrytitle>header.table.height</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="index.on.type">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="index.on.type">
 <refmeta>
 <refentrytitle>index.on.type</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

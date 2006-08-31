@@ -1,4 +1,6 @@
-<refentry id="body.font.family">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="body.font.family">
 <refmeta>
 <refentrytitle>body.font.family</refentrytitle>
 

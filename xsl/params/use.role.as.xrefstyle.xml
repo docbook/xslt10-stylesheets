@@ -1,4 +1,6 @@
-<refentry id="use.role.as.xrefstyle">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="use.role.as.xrefstyle">
 <refmeta>
 <refentrytitle>use.role.as.xrefstyle</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

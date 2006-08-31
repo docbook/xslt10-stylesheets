@@ -1,4 +1,6 @@
-<refentry id="ulink.footnotes">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="ulink.footnotes">
 <refmeta>
 <refentrytitle>ulink.footnotes</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

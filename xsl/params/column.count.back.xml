@@ -1,4 +1,6 @@
-<refentry id="column.count.back">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="column.count.back">
 <refmeta>
 <refentrytitle>column.count.back</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

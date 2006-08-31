@@ -1,4 +1,6 @@
-<refentry id="callout.graphics.number.limit">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="callout.graphics.number.limit">
 <refmeta>
 <refentrytitle>callout.graphics.number.limit</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

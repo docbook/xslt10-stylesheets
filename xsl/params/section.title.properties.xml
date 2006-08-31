@@ -1,4 +1,6 @@
-<refentry id="section.title.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="section.title.properties">
 <refmeta>
 <refentrytitle>section.title.properties</refentrytitle>
 <refmiscinfo role="type">attribute set</refmiscinfo>

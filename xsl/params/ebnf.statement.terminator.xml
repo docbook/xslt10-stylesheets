@@ -1,4 +1,6 @@
-<refentry id="ebnf.statement.terminator">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="ebnf.statement.terminator">
 <refmeta>
 <refentrytitle>ebnf.statement.terminator</refentrytitle>
 <refmiscinfo role="type">rtf</refmiscinfo>

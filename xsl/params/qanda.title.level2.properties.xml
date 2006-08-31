@@ -1,4 +1,6 @@
-<refentry id="qanda.title.level2.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="qanda.title.level2.properties">
 <refmeta>
 <refentrytitle>qanda.title.level2.properties</refentrytitle>
 <refmiscinfo role="type">attribute set</refmiscinfo>

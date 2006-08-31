@@ -1,4 +1,6 @@
-<refentry id="suppress.header.navigation">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="suppress.header.navigation">
 <refmeta>
 <refentrytitle>suppress.header.navigation</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

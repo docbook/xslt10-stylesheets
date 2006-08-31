@@ -1,4 +1,6 @@
-<refentry id="para.propagates.style">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="para.propagates.style">
 <refmeta>
 <refentrytitle>para.propagates.style</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

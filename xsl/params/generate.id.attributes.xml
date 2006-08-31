@@ -1,4 +1,6 @@
-<refentry id="generate.id.attributes">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="generate.id.attributes">
 <refmeta>
 <refentrytitle>generate.id.attributes</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

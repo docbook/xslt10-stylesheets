@@ -1,4 +1,6 @@
-<refentry id="saxon.callouts">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="saxon.callouts">
 <refmeta>
 <refentrytitle>saxon.callouts</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

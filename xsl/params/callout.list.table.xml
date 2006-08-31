@@ -1,4 +1,6 @@
-<refentry id="callout.list.table">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="callout.list.table">
 <refmeta>
 <refentrytitle>callout.list.table</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

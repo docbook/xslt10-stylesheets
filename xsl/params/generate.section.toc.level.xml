@@ -1,4 +1,6 @@
-<refentry id="generate.section.toc.level">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="generate.section.toc.level">
 <refmeta>
 <refentrytitle>generate.section.toc.level</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

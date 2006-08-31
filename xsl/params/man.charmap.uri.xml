@@ -1,4 +1,6 @@
-<refentry id="man.charmap.uri">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.charmap.uri">
 <refmeta>
 <refentrytitle>man.charmap.uri</refentrytitle>
 <refmiscinfo role="type">uri</refmiscinfo>

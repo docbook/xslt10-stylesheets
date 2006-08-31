@@ -1,4 +1,6 @@
-<refentry id="contrib.inline.enabled">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="contrib.inline.enabled">
 <refmeta>
 <refentrytitle>contrib.inline.enabled</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

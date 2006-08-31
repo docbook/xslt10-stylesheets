@@ -1,4 +1,6 @@
-<refentry id="ebnf.table.bgcolor">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="ebnf.table.bgcolor">
 <refmeta>
 <refentrytitle>ebnf.table.bgcolor</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

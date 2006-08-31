@@ -1,4 +1,6 @@
-<refentry id="use.local.olink.style"> 
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="use.local.olink.style"> 
 <refmeta> 
 <refentrytitle>use.local.olink.style</refentrytitle> 
 <refmiscinfo role="type">boolean</refmiscinfo> 

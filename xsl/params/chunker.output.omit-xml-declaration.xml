@@ -1,4 +1,6 @@
-<refentry id="chunker.output.omit-xml-declaration">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunker.output.omit-xml-declaration">
 <refmeta>
 <refentrytitle>chunker.output.omit-xml-declaration</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

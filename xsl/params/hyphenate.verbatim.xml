@@ -1,4 +1,6 @@
-<refentry id="hyphenate.verbatim">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="hyphenate.verbatim">
 <refmeta>
 <refentrytitle>hyphenate.verbatim</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

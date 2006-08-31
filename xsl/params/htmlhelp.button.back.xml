@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.button.back">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.button.back">
 <refmeta>
 <refentrytitle>htmlhelp.button.back</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="chunker.output.method">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="chunker.output.method">
 <refmeta>
 <refentrytitle>chunker.output.method</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>

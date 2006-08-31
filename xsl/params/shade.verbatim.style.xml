@@ -1,4 +1,6 @@
-<refentry id="shade.verbatim.style">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="shade.verbatim.style">
 <refmeta>
 <refentrytitle>shade.verbatim.style</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

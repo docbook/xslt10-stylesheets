@@ -1,4 +1,6 @@
-<refentry id="variablelist.as.blocks">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="variablelist.as.blocks">
 <refmeta>
 <refentrytitle>variablelist.as.blocks</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="table.footnote.number.symbols">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="table.footnote.number.symbols">
 <refmeta>
 <refentrytitle>table.footnote.number.symbols</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="arbortext.extensions">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="arbortext.extensions">
 <refmeta>
 <refentrytitle>arbortext.extensions</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

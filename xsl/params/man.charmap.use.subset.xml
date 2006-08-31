@@ -1,4 +1,6 @@
-<refentry id="man.charmap.use.subset">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="man.charmap.use.subset">
 <refmeta>
 <refentrytitle>man.charmap.use.subset</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

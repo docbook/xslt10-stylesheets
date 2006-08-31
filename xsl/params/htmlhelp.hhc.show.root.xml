@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.hhc.show.root">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.hhc.show.root">
 <refmeta>
 <refentrytitle>htmlhelp.hhc.show.root</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

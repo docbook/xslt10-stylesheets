@@ -1,4 +1,6 @@
-<refentry id="refentry.separator">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="refentry.separator">
 <refmeta>
 <refentrytitle>refentry.separator</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

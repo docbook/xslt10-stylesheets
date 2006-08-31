@@ -1,4 +1,6 @@
-<refentry id="formal.title.placement">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="formal.title.placement">
 <refmeta>
 <refentrytitle>formal.title.placement</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

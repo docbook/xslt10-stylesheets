@@ -1,4 +1,6 @@
-<refentry id="formal.title.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="formal.title.properties">
 <refnamediv>
 <refname>formal.title.properties</refname>
 <refpurpose>Style the title element of formal object such as a figure.</refpurpose>

@@ -1,4 +1,6 @@
-<refentry id="profile.attribute">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="profile.attribute">
 <refmeta>
 <refentrytitle>profile.attribute</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -16,8 +18,8 @@
 
 <refsect1><title>Description</title>
 
-<para>This parameter is used in conjuction with <link
-linkend="profile.value"><parameter>profile.value</parameter></link>.</para>
+<para>This parameter is used in conjuction with
+<parameter>profile.value</parameter>.</para>
 
 <para>This parameter has effect only when you are using profiling
 stylesheets (<filename>profile-docbook.xsl</filename>,

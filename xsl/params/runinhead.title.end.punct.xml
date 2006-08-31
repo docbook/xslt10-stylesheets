@@ -1,4 +1,6 @@
-<refentry id="runinhead.title.end.punct">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="runinhead.title.end.punct">
 <refmeta>
 <refentrytitle>runinhead.title.end.punct</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

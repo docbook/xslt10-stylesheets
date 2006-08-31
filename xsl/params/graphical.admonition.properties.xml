@@ -1,4 +1,6 @@
-<refentry id="graphical.admonition.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="graphical.admonition.properties">
 <refnamediv>
 <refname>graphical.admonition.properties</refname>
 <refpurpose>To add properties to the outer block of a graphical admonition.</refpurpose>

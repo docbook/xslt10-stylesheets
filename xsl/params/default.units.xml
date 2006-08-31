@@ -1,4 +1,6 @@
-<refentry id="default.units">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="default.units">
 <refmeta>
 <refentrytitle>default.units</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>

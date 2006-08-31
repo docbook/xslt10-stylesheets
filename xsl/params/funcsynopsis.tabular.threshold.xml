@@ -1,4 +1,6 @@
-<refentry id="funcsynopsis.tabular.threshold">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="funcsynopsis.tabular.threshold">
 <refmeta>
 <refentrytitle>funcsynopsis.tabular.threshold</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

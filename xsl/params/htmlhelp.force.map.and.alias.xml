@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.force.map.and.alias">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.force.map.and.alias">
 <refmeta>
 <refentrytitle>htmlhelp.force.map.and.alias</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

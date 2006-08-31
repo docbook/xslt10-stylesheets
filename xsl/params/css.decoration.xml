@@ -1,4 +1,6 @@
-<refentry id="css.decoration">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="css.decoration">
 <refmeta>
 <refentrytitle>css.decoration</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

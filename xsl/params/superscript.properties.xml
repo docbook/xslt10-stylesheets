@@ -1,4 +1,6 @@
-<refentry id="superscript.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="superscript.properties">
 <refmeta>
 <refentrytitle>superscript.properties</refentrytitle>
 <refmiscinfo role="type"></refmiscinfo>

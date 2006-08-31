@@ -1,4 +1,6 @@
-<refentry id="draft.mode">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="draft.mode">
 <refmeta>
 <refentrytitle>draft.mode</refentrytitle>
 <refmiscinfo role="type">list</refmiscinfo>

@@ -1,4 +1,6 @@
-<refentry id="linenumbering.everyNth">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="linenumbering.everyNth">
 <refmeta>
 <refentrytitle>linenumbering.everyNth</refentrytitle>
 <refmiscinfo role="type">integer</refmiscinfo>

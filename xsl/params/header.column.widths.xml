@@ -1,4 +1,6 @@
-<refentry id="header.column.widths">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="header.column.widths">
 <refmeta>
 <refentrytitle>header.column.widths</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

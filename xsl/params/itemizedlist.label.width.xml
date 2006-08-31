@@ -1,4 +1,6 @@
-<refentry id="itemizedlist.label.width">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="itemizedlist.label.width">
 <refnamediv>
 <refname>itemizedlist.label.width</refname>
 <refpurpose>The default width of the label (bullet) in an itemized list.</refpurpose>

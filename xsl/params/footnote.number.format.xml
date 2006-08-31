@@ -1,4 +1,6 @@
-<refentry id="footnote.number.format">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="footnote.number.format">
 <refmeta>
 <refentrytitle>footnote.number.format</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

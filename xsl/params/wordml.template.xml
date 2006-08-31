@@ -1,4 +1,6 @@
-<refentry id="wordml.template">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="wordml.template">
 <refmeta>
 <refentrytitle>wordml.template</refentrytitle>
 </refmeta>

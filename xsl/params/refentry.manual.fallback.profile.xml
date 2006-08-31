@@ -1,4 +1,6 @@
-<refentry id="refentry.manual.fallback.profile">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="refentry.manual.fallback.profile">
 <refmeta>
 <refentrytitle>refentry.manual.fallback.profile</refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>

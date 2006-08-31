@@ -1,4 +1,6 @@
-<refentry id="html.ext">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="html.ext">
 <refmeta>
 <refentrytitle>html.ext</refentrytitle>
 

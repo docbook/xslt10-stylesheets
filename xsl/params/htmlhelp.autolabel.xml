@@ -1,4 +1,6 @@
-<refentry id="htmlhelp.autolabel">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="htmlhelp.autolabel">
 <refmeta>
 <refentrytitle>htmlhelp.autolabel</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>

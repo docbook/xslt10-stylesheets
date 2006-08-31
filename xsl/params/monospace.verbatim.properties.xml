@@ -1,4 +1,6 @@
-<refentry id="monospace.verbatim.properties">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="monospace.verbatim.properties">
 <refnamediv>
 <refname>monospace.verbatim.properties</refname>
 <refpurpose>What font and size do you want for monospaced content?</refpurpose>

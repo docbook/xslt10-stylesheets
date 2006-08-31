@@ -1,4 +1,6 @@
-<refentry id="email.delimiters.enabled">
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="email.delimiters.enabled">
 <refmeta>
 <refentrytitle>email.delimiters.enabled</refentrytitle>
 <refmiscinfo role="type">boolean</refmiscinfo>
