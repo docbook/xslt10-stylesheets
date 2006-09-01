@@ -21,7 +21,7 @@ VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages wordml slides website template pi
 
-all: copyright.html warranty.html reference.html index.html reference.pdf.gz reference.txt.gz
+all: copyright.html warranty.html reference.html index.html reference.txt.gz
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
@@ -64,6 +64,9 @@ clean:
 			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 		fi \
 	done
+	$(RM) ../docsrc/reference.fo
+	$(RM) ../docsrc/reference.pdf
+	$(RM) ../docsrc/reference.txt
 	$(RM) reference.pdf
 	$(RM) reference.txt
 	$(RM) reference.pdf.gz
