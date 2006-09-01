@@ -30,7 +30,7 @@
   <title>Refentry Metadata-Gathering Template Reference</title>
 
   <partintro id="partintro">
-    <section id="intro"><title>Introduction</title>
+    <title>Introduction</title>
 
     <para>This is technical reference documentation for the "refentry
     metadata gathering" templates in the DocBook XSL Stylesheets.</para>
@@ -44,7 +44,6 @@
       templates. They are, however, potentially useful elsewhere.</para>
     </note>
 
-    </section>
   </partintro>
 
 </doc:reference>

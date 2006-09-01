@@ -28,7 +28,7 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
   </bookinfo>
 
   <preface id="about">
-    <title/>
+    <title>About this document</title>
 
   <para>This is generated reference documentation for the DocBook XSL
   stylesheets, primarily documentation on the parameters you can
@@ -45,8 +45,9 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     >http://www.sagehill.net/docbookxsl/index.html</ulink></para>
   </note>
 
-  <para>This document is divided into two parts: the first provides
-  user documentation; the second, developer documentation.</para>
+  <para>This document is divided into two sets of references: the
+  first set provides user documentation; the second, developer
+  documentation.</para>
 
     <itemizedlist>
     <title>User documentation</title>

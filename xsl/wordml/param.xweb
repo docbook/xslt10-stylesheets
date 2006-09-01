@@ -28,10 +28,11 @@
 
     <para>This is not intended to be <quote>user</quote> documentation.  It is provided for developers writing customisation layers for the stylesheets, and for anyone who's interested in <quote>how it works</quote>.</para>
   </preface>
-
+  <reference id="params">
+  <title>Parameters</title>
 &wordml.template;
 &pages.template;
-
+  </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
 
