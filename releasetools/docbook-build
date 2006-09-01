@@ -270,6 +270,7 @@ guarantees. It may in fact be broken.
 EOF
 
     if [ -n "$PREVIOUS_REVISION" ]; then
+      svn cleanup
       svn log --verbose -r HEAD:$PREVIOUS_REVISION $DISTRO > $DISTRO/LatestChanges
     fi
 
