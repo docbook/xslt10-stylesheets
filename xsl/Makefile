@@ -12,7 +12,7 @@ DISTRIB_DEPENDS = website slides doc install.sh
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release
-DISTRIB_EXCLUDES = extensions/xsltproc saxon8 extensions/build/ extensions/build2/
+DISTRIB_EXCLUDES = extensions/xsltproc doc/reference.txt$$ doc/reference.pdf$$
 
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
