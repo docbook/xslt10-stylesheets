@@ -121,6 +121,7 @@ stylesheet like this:</para>
 &chapter.autolabel;
 &appendix.autolabel;
 &part.autolabel;
+&reference.autolabel;
 &preface.autolabel;
 &qandadiv.autolabel;
 &section.autolabel;
@@ -695,6 +696,7 @@ around all these parameters.</para>
 <src:fragref linkend="refentry.generate.title.frag"/>
 <src:fragref linkend="refentry.separator.frag"/>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
+<src:fragref linkend="reference.autolabel.frag"/>
 <src:fragref linkend="refclass.suppress.frag"/>
 <src:fragref linkend="root.filename.frag"/>
 <src:fragref linkend="rootid.frag"/>
