@@ -254,6 +254,7 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
   <xsl:param name="paper.type">A4</xsl:param> \
   <xsl:param name="draft.watermark.image"></xsl:param> \
   <xsl:param name="hyphenation">false</xsl:param> \
+  <xsl:param name="hyphenate.verbatim">1</xsl:param> \
   <xsl:param name="alignment">left</xsl:param> \
   <xsl:param name="refentry.generate.name">1</xsl:param> \
   <xsl:param name="refentry.generate.title">0</xsl:param> \
@@ -304,6 +305,8 @@ FO_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
     </xsl:attribute> \
   </xsl:attribute-set> \
   <xsl:attribute-set name="monospace.verbatim.properties"> \
+    <xsl:attribute name="wrap-option">wrap</xsl:attribute> \
+    <xsl:attribute name="hyphenation-character">\</xsl:attribute> \
     <xsl:attribute name="font-size"> \
       <xsl:value-of select="$$body.font.master * 0.8"></xsl:value-of> \
       <xsl:text>pt</xsl:text> \
