@@ -192,10 +192,10 @@ element label.</para>
     <xsl:when test="@label">
       <xsl:value-of select="@label"/>
     </xsl:when>
-    <xsl:when test="string($part.autolabel) != 0">
+    <xsl:when test="string($reference.autolabel) != 0">
       <xsl:variable name="format">
         <xsl:call-template name="autolabel.format">
-          <xsl:with-param name="format" select="$part.autolabel"/>
+          <xsl:with-param name="format" select="$reference.autolabel"/>
         </xsl:call-template>
       </xsl:variable>
       <xsl:number from="book" count="reference" format="{$format}" level="any"/>
