@@ -18,7 +18,7 @@
 </copyright>
 </bookinfo>
 
-<preface><title>Introduction</title>
+<preface id="intro"><title>Introduction</title>
 
 <para>This is technical reference documentation for the DocBook XSL
 Stylesheets; it documents (some of) the parameters, templates, and
@@ -1193,7 +1193,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <!-- ================================================================== -->
 
-<appendix><title>The Stylesheet</title>
+<appendix id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>lib.xsl</filename> stylesheet is just a wrapper
 around these functions.</para>
