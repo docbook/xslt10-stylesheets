@@ -34,7 +34,7 @@ $Id$
 <title>Template Stylesheet Reference</title>
 
 <partintro id="intro_partintro">
-<section id="intro"><title>Introduction</title>
+<title>Introduction</title>
 
 <para>This is technical reference documentation for the DocBook XSL
 Stylesheets; it documents (some of) the parameters, templates, and
@@ -47,7 +47,6 @@ works</quote>.</para>
 
 <para>Although I am trying to be thorough, this documentation is known
 to be incomplete. Don't forget to read the source, too :-)</para>
-</section>
 </partintro>
 
 </doc:reference>

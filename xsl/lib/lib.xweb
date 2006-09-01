@@ -34,7 +34,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
 </preface>
 
-<reference>
+<reference id="generallibrary">
 <title>General Library Templates</title>
 
 <refentry id="dot.count">
@@ -576,7 +576,7 @@ that has been transformed so that it can safely be output as an XML comment.
 Internal occurrences of "--" will be replaced with "- -" and a leading and/or
 trailing space will be added to the string, if necessary.</para>
 
-<programlisting><src:fragment id='comment-escape-string'>
+<programlisting><src:fragment id='comment-escape-string.frag'>
 <xsl:template name="comment-escape-string">
   <xsl:param name="string" select="''"/>
 
@@ -610,7 +610,7 @@ trailing space will be added to the string, if necessary.</para>
 <para>The <function>comment-escape-string.recursive</function> template is used
 by <function>comment-escape-string</function>.</para>
 
-<programlisting><src:fragment id="comment-escape-string.recursive">
+<programlisting><src:fragment id="comment-escape-string.recursive.frag">
 <xsl:template name="comment-escape-string.recursive">
   <xsl:param name="string" select="''"/>
   <xsl:choose>
@@ -1088,10 +1088,10 @@ does not support it.
 
 <!-- ==================================================================  -->
 
-<reference>
+<reference id="relativeuri">
 <title>Relative URI Functions</title>
 
-<partintro><title>Introduction</title>
+<partintro id="partintro"><title>Introduction</title>
 
 <para>These functions manipulate relative URI references.</para>
 
@@ -1228,8 +1228,8 @@ around these functions.</para>
 <src:fragref linkend="pi-attribute.frag"/>
 <src:fragref linkend="lookup.key.frag"/>
 <src:fragref linkend="xpath.location.frag"/>
-<src:fragref linkend="comment-escape-string"/>
-<src:fragref linkend="comment-escape-string.recursive"/>
+<src:fragref linkend="comment-escape-string.frag"/>
+<src:fragref linkend="comment-escape-string.recursive.frag"/>
 <src:fragref linkend="prepend-pad.frag"/>
 <src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
 <src:fragref linkend="apply-string-subst-map.frag"/>
