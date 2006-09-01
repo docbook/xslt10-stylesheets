@@ -56,3 +56,5 @@ autoidx-ng.xsl
 docbookng.xsl
 db5strip.xsl
 highlight.xsl
+autoidx-kosek.xsl
+autoidx-kimber.xsl
