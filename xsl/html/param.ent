@@ -297,3 +297,4 @@
 <!ENTITY keep.relative.image.uris SYSTEM "../params/keep.relative.image.uris.xml">
 <!ENTITY id.warnings SYSTEM "../params/id.warnings.xml">
 <!ENTITY index.method SYSTEM "../params/index.method.xml">
+<!ENTITY reference.autolabel SYSTEM "../params/reference.autolabel.xml">

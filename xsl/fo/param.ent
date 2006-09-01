@@ -312,3 +312,4 @@
 <!ENTITY ulink.hyphenate.chars SYSTEM "../params/ulink.hyphenate.chars.xml">
 <!ENTITY insert.link.page.number SYSTEM "../params/insert.link.page.number.xml">
 <!ENTITY index.method SYSTEM "../params/index.method.xml">
+<!ENTITY reference.autolabel SYSTEM "../params/reference.autolabel.xml">
