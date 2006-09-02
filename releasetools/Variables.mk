@@ -12,6 +12,13 @@ CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
 
+# stylesheet to extract embedded jrefentry XML from XSL files
+XSL2JREF=$(DOCBOOK_SVN)/xsl/docsrc/xsl2jref.xsl
+# stylesheet for converting jrefentry XML to HTML output
+JREFHTML=$(DOCBOOK_SVN)/xsl/docsrc/jrefhtml.xsl
+# stylesheet for converting jrefentry XML to DocBook Refsect1
+JREF2REFSECT1=$(DOCBOOK_SVN)/xsl/docsrc/jref2refsect1.xsl
+
 # stylesheet for generating HTML version of release notes
 DOC-LINK-STYLE=$(DOCBOOK_SVN)/xsl/docsrc/doc-link-docbook.xsl
 
@@ -162,6 +169,8 @@ TAR=tar
 TARFLAGS=P
 ZIP=zip
 ZIPFLAGS=-q -rpD
+GZIP=gzip
+GZIPFLAGS=
 
 XSLTPROC=xsltproc
 XSLTPROC_OPTS=
