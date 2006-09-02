@@ -21,12 +21,19 @@ VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages wordml slides website template pi
 
-all: copyright.html warranty.html reference.html index.html reference.txt.gz
+all: html reference.txt.gz
+
+html: base copyright.html warranty.html reference.html index.html
+
+base: docsrc
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 		fi \
 	done
+
+docsrc:
+	$(MAKE) -C ../docsrc
 
 copyright.html: copyright.xml $(RSTYLE)
 	$(XJPARSE) $(VPATH)/$<
@@ -43,11 +50,11 @@ reference.html: reference.xml $(RSTYLE)
 index.html: reference.html
 	cp -pR $< $@
 
-reference.pdf: ../docsrc/reference.dbk $(REFERENCE_MAKEFILE)
+reference.pdf: ../docsrc/reference.dbk docsrc $(REFERENCE_MAKEFILE)
 	$(MAKE) -f $(REFERENCE_MAKEFILE) ../docsrc/reference.pdf PDF_MAKER=$(PDF_MAKER) DOCBOOK_FILE_EXTENSION=$(DOCBOOK_FILE_EXTENSION) FO_PARAMS=$(FO_PARAMS) \
 	  && mv ../docsrc/reference.pdf .
 
-reference.txt: ../docsrc/reference.dbk $(REFERENCE_MAKEFILE)
+reference.txt: ../docsrc/reference.dbk docsrc $(REFERENCE_MAKEFILE)
 	$(MAKE) -f $(REFERENCE_MAKEFILE) ../docsrc/reference.txt TXT_MAKER=$(TXT_MAKER) TXT_MAKER_FLAGS=$(TXT_MAKER_FLAGS) DOCBOOK_FILE_EXTENSION=$(DOCBOOK_FILE_EXTENSION) HTML_PARAMS=$(HTML_PARAMS) \
 	  && mv ../docsrc/reference.txt . && $(RM) ../docsrc/reference.html
 
@@ -64,9 +71,6 @@ clean:
 			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 		fi \
 	done
-	$(RM) ../docsrc/reference.fo
-	$(RM) ../docsrc/reference.pdf
-	$(RM) ../docsrc/reference.txt
 	$(RM) reference.pdf
 	$(RM) reference.txt
 	$(RM) reference.pdf.gz

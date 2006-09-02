@@ -8,7 +8,9 @@ PARAM_XSL_FILES=$(shell for file in $$(find . -name "param.xsl"); do \
 MAKE_ELEMENTS_XSL=make-elements.xsl
 MAKE_PARAMS_XSL=make-xsl-params.xsl
 
-all: docbook-elements.xsl xsl-params.xsl
+all: base docbook-elements.xsl xsl-params.xsl
+
+base:
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
@@ -21,6 +23,10 @@ clean:
 			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 		fi \
 	done
+	$(RM) reference.txt
+	$(RM) reference.html
+	$(RM) reference.fo
+	$(RM) reference.pdf
 
 $(DOCBOOK5_RNG):
 	$(MAKE) -C $(dir $@) $(notdir $@)
