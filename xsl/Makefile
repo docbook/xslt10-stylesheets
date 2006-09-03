@@ -7,7 +7,7 @@ DISTRO=xsl
 
 # value of DISTRIB_DEPENDS is a space-separated list of any
 # targets for this distro's "distrib" target to depend on
-DISTRIB_DEPENDS = website slides doc install.sh
+DISTRIB_DEPENDS = doc install.sh
 
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
@@ -25,11 +25,11 @@ URILIST = \
 
 DIRS=extensions common lib html fo manpages htmlhelp javahelp wordml
 
-.PHONY: distrib clean doc xhtml
+.PHONY: distrib clean doc docsrc xhtml
 
-all: litprog base xhtml docsrc
+all: base xhtml
 
-base:
+base: litprog
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
@@ -42,11 +42,10 @@ litprog:
 xhtml:
 	$(MAKE) -C xhtml
 
-docsrc:
+docsrc: base website slides
 	$(MAKE) -C docsrc
 
-doc:
-	$(MAKE) -C docsrc
+doc: docsrc
 	$(MAKE) -C doc
 
 website:

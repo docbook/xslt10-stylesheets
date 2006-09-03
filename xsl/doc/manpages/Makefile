@@ -1,19 +1,4 @@
-include ../../../cvstools/Makefile.incl
-
-STYLE=../../docsrc/jrefhtml.xsl
+include ../../../releasetools/Variables.mk
 VPATH=../../docsrc/manpages
-XSLTOPT=
-
 HTMLFILES = param.html
-
-all: $(HTMLFILES)
-
-%.html : %.xml $(STYLE)
-	$(XSLT) $< $(STYLE) $@ $(XSLTOPT)
-
-param.html: docparam.xml
-	$(XSLT) $< ../../docsrc/clrefentry.xsl $(XSLTOPT)
-	touch param.html
-
-clean:
-	rm -f *.html
+include ../Makefile.incl

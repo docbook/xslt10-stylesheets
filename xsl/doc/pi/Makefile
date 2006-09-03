@@ -1,19 +1,8 @@
-include ../../../cvstools/Makefile.incl
-
-STYLE=../../docsrc/jrefhtml.xsl
+include ../../../releasetools/Variables.mk
 VPATH=../../docsrc/pi
-XSLTOPT=
-
 HTMLFILES = pi.html
-
-all: $(HTMLFILES)
-
-%.html : %.xml $(STYLE)
-	$(XSLT) $< $(STYLE) $@ $(XSLTOPT)
+include ../Makefile.incl
 
 pi.html: pi.xml
 	$(XSLT) $< ../../docsrc/pirefentry.xsl $(XSLTOPT)
 	touch pi.html
-
-clean:
-	rm -f *.html

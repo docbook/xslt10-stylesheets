@@ -14,7 +14,7 @@
     <xi:include href="./legalnotice.xml"/>
     <xi:include href="./warranty.xml"/>
   </bookinfo>
-  
+
   <preface id="about">
     <xi:include href="./reference.xml" xpointer="xpointer(/book/preface/node()[not(self::itemizedlist)])"/>
     <itemizedlist>
