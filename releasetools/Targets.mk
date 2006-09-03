@@ -216,6 +216,7 @@ install: zip
 	   )"
 
 release-clean: clean
+	$(RM) PreviousRevision
 	$(RM) TERMS.xml
 	$(RM) $(NEWSFILE)
 	$(RM) NEWS.html
