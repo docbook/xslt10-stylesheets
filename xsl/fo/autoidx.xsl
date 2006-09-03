@@ -454,6 +454,7 @@
               <xsl:with-param name="scope" select="$scope"/>
               <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="type" select="$type"/>
+              <xsl:with-param name="position" select="position()"/>
             </xsl:apply-templates>
           </xsl:for-each>
         </xsl:variable>
@@ -576,6 +577,7 @@
               <xsl:with-param name="scope" select="$scope"/>
               <xsl:with-param name="role" select="$role"/>
               <xsl:with-param name="type" select="$type"/>
+              <xsl:with-param name="position" select="position()"/>
             </xsl:apply-templates>
           </xsl:for-each>
         </xsl:variable>
