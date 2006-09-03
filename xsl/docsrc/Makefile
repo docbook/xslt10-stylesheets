@@ -1,5 +1,5 @@
 include ../../cvstools/Makefile.incl
-DIRS=common refentry html fo manpages wordml slides website template pi
+DIRS=common refentry html fo manpages wordml slides website template
 
 DOCBOOK5_RNG=../../docbook/relaxng/docbook/docbook.rng
 PARAM_XSL_FILES=$(shell for file in $$(find . -name "param.xsl"); do \
@@ -23,10 +23,6 @@ clean:
 			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 		fi \
 	done
-	$(RM) reference.txt
-	$(RM) reference.html
-	$(RM) reference.fo
-	$(RM) reference.pdf
 
 $(DOCBOOK5_RNG):
 	$(MAKE) -C $(dir $@) $(notdir $@)

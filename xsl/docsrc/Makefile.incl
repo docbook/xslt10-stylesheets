@@ -1,0 +1,15 @@
+all: $(XMLFILES)
+
+clean:
+	$(RM) $(XMLFILES)
+
+%.refsect1.xml: %.xml $(JREF2REFSECT1)
+	$(XSLT) $< $(JREF2REFSECT1) $@
+
+%.xml : %.xsl $(XSL2JREF) ../../docsrc/legalnotice.xml
+	$(XSLT) $< $(XSL2JREF) /dev/null output-file=$@
+	$(XJPARSE) $@
+
+docparam.xml: $(VPATH)/param.xsl
+	$(MAKE) -C $(VPATH) param.xml
+	cp $(VPATH)/param.xml docparam.xml
