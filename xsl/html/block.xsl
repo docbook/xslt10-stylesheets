@@ -213,6 +213,8 @@
 <xsl:template match="abstract/title|sidebar/title">
 </xsl:template>
 
+<xsl:template match="sidebar/sidebarinfo"/>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="msgset">
