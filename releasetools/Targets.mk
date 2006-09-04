@@ -152,7 +152,7 @@ endif
 # excludes for distros that end up as multiple packages
 ifneq ($(DISTRIB_PACKAGES),)
 	for part in $(DISTRIB_PACKAGES); do \
-	  find . -print  | grep "^./$$part\|^./$${part}src" | cut -c3- >> $(TMP)/tar.exclude; \
+	  find . -print  | grep "^./$$part" | cut -c3- >> $(TMP)/tar.exclude; \
 	done
 endif
 # tar up distro, then gzip/bzip/zip it
@@ -182,7 +182,7 @@ ifneq ($(DISTRIB_PACKAGES),)
 	for file in $(ZIP_EXCLUDES); do \
 	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
 	done; \
-	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part $${part}src images | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -); \
+	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part images | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -); \
 	umask 022; (cd $(TMP) && \
 	if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
 	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
