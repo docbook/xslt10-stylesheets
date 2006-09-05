@@ -743,7 +743,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     <xsl:when test="$language='perl' or $language='Perl'">
       <xsl:apply-templates select="." mode="perl"/>
     </xsl:when>
-    <xsl:when test="$language='idl' or $language='IDL''">
+    <xsl:when test="$language='idl' or $language='IDL'">
       <xsl:apply-templates select="." mode="idl"/>
     </xsl:when>
     <xsl:when test="$language='cpp' or $language='c++' or $language='C++'">
