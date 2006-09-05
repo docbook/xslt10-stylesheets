@@ -56,22 +56,7 @@
 </xsl:template>
 
 <xsl:template match="varlistentry|glossentry">
-  <xsl:choose>
-    <!-- * if we have multiple terms in the same varlistentry, we can't -->
-    <!-- * use the .TP macro; we need to use .PP instead, then manually -->
-    <!-- * indent the listitem using .RS and .RE (see further down)-->
-    <xsl:when test="count(term) > 1">
-      <xsl:text>.PP&#10;</xsl:text> 
-    </xsl:when>
-    <xsl:otherwise> <!-- * we only have one term, so use .TP -->
-      <xsl:text>.TP</xsl:text> 
-      <xsl:if test="not($list-indent = '')">
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="$list-indent"/>
-      </xsl:if>
-      <xsl:text>&#10;</xsl:text> 
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:text>.PP&#10;</xsl:text> 
   <xsl:for-each select="term|glossterm">
     <xsl:variable name="content">
       <xsl:apply-templates/>
@@ -97,23 +82,14 @@
     </xsl:choose>
   </xsl:for-each>
   <xsl:text>&#10;</xsl:text>
-  <xsl:choose>
-    <!-- * if we have multiple terms in the same varlistentry, we need to-->
-    <!-- *  manually indent the listitem using .RS and .RE -->
-    <xsl:when test="count(term) > 1">
-      <xsl:text>.RS</xsl:text> 
-      <xsl:if test="not($list-indent = '')">
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="$list-indent"/>
-      </xsl:if>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:apply-templates/>
-      <xsl:text>.RE&#10;</xsl:text>
-    </xsl:when>
-    <xsl:otherwise> <!-- * we only have one term, so just apply-templates -->
-      <xsl:apply-templates/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:text>.RS</xsl:text> 
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>.RE&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/term"/>
