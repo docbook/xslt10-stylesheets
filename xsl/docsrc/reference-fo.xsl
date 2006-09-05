@@ -17,11 +17,12 @@
   <xsl:param name="ulink.show">1</xsl:param>
   <xsl:param name="ulink.footnotes">1</xsl:param>
   <xsl:param name="index.on.type">1</xsl:param>
+  <xsl:param name="keep.relative.image.uris" select="0"/>
   <xsl:attribute-set name="xref.properties">
     <xsl:attribute name="color">blue</xsl:attribute>
   </xsl:attribute-set>
   <xsl:attribute-set name="shade.verbatim.style">
-    <xsl:attribute name="background-color">\#E0E0E0</xsl:attribute>
+    <xsl:attribute name="background-color">#E0E0E0</xsl:attribute>
     <xsl:attribute name="padding-left">4pt</xsl:attribute>
     <xsl:attribute name="padding-right">4pt</xsl:attribute>
     <xsl:attribute name="padding-top">4pt</xsl:attribute>

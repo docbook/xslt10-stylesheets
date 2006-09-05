@@ -21,7 +21,7 @@ VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages wordml slides website template
 
-all: reference.txt.gz html
+all: reference.txt.gz reference.pdf.gz html
 
 html: base copyright.html warranty.html reference.html index.html
 
