@@ -37,6 +37,9 @@
 
 <xsl:include href="../common/autoidx-kimber.xsl"/>
 
+<!-- Java sort apparently works only on lang part, not country -->
+<xsl:param name="sort.lang" select="substring(&lang;, 1, 2)"/>
+
 <xsl:template name="generate-kimber-index">
   <xsl:param name="scope" select="NOTANODE"/>
 
@@ -103,7 +106,7 @@
             <xsl:with-param name="scope" select="$scope"/>
             <xsl:with-param name="role" select="$role"/>
             <xsl:with-param name="type" select="$type"/>
-            <xsl:sort lang="{&lang;}"
+            <xsl:sort lang="{$sort.lang}"
                 select="k:getIndexGroupSortKey(&lang;,
                         k:getIndexGroupKey(&lang;, &primary;))"/>
           </xsl:apply-templates>
@@ -116,7 +119,7 @@
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
       <xsl:with-param name="type" select="$type"/>
-      <xsl:sort lang="{&lang;}"
+      <xsl:sort lang="{$sort.lang}"
              select="k:getIndexGroupSortKey(&lang;,
                      k:getIndexGroupKey(&lang;, &primary;))"/>
     </xsl:apply-templates>
@@ -146,7 +149,7 @@
                             [count(.|key('primary', &primary;)[&scope;]
                             [1])=1]"
                              mode="index-primary">
-          <xsl:sort select="&primary;" lang="{&lang;}"/>
+          <xsl:sort select="&primary;" lang="{$sort.lang}"/>
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
