@@ -287,16 +287,16 @@
   -->
 
   <xsl:choose>
-    <xsl:when test="$language='java'">
+    <xsl:when test="$language='java' or $language='Java'">
       <xsl:apply-templates select="." mode="java"/>
     </xsl:when>
-    <xsl:when test="$language='perl'">
+    <xsl:when test="$language='perl' or $language='Perl'">
       <xsl:apply-templates select="." mode="perl"/>
     </xsl:when>
-    <xsl:when test="$language='idl'">
+    <xsl:when test="$language='idl' or $language='IDL'">
       <xsl:apply-templates select="." mode="idl"/>
     </xsl:when>
-    <xsl:when test="$language='cpp'">
+    <xsl:when test="$language='cpp' or $language='c++' or $language='C++'">
       <xsl:apply-templates select="." mode="cpp"/>
     </xsl:when>
     <xsl:otherwise>
