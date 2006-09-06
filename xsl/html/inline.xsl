@@ -1128,10 +1128,6 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>
-	<xsl:text>Citation to nonexistent publication abbrev: </xsl:text>
-        <xsl:value-of select="."/>
-      </xsl:message>
       <xsl:text>[</xsl:text>
       <xsl:call-template name="inline.charseq"/>
       <xsl:text>]</xsl:text>
