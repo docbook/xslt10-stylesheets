@@ -38,7 +38,19 @@
 <xsl:include href="../common/autoidx-kimber.xsl"/>
 
 <!-- Java sort apparently works only on lang part, not country -->
-<xsl:param name="sort.lang" select="substring(&lang;, 1, 2)"/>
+<xsl:param name="sort.lang">
+  <xsl:choose>
+    <xsl:when test="contains(&lang;, '-')">
+      <xsl:value-of select="substring-before(&lang;, '-')"/>
+    </xsl:when>
+    <xsl:when test="contains(&lang;, '_')">
+      <xsl:value-of select="substring-before(&lang;, '_')"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="&lang;"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 
 <xsl:template name="generate-kimber-index">
   <xsl:param name="scope" select="NOTANODE"/>
