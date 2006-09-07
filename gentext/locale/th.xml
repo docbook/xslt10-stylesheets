@@ -14,6 +14,10 @@
           <affiliation><address><email>pruet@eng.cmu.ac.th</email></address>
           </affiliation>
   </author>
+  <author><firstname>Theppitak</firstname><surname>Karoonboonyanan</surname>
+          <affiliation><address><email>thep@linux.thai.net</email></address>
+          </affiliation>
+  </author>
 </authorgroup></doc:localeinfo>
 
 <gentext key="Abstract" text="บทคัดย่อ"/>
@@ -47,8 +51,8 @@
 <gentext key="example" text="ตัวอย่าง"/>
 <gentext key="Figure" text="รูป"/>
 <gentext key="figure" text="รูป"/>
-<gentext key="Glossary" text="อภิทานศัพท์"/>
-<gentext key="glossary" text="อภิทานศัพท์"/>
+<gentext key="Glossary" text="อภิธานศัพท์"/>
+<gentext key="glossary" text="อภิธานศัพท์"/>
 <gentext key="GlossSee" text="ดู"/>
 <gentext key="glosssee" text="ดู"/>
 <gentext key="GlossSeeAlso" text="ดูเพิ่มเติม"/>
@@ -80,8 +84,8 @@
 <gentext key="ProductionSet" text="ผลิต"/>
 <gentext key="Published" text="ตีพิมพ์"/>
 <gentext key="published" text="ตีพิมพ์"/>
-<gentext key="Qandadiv" text="ถามีและีตอบ"/>
-<gentext key="qandadiv" text="ถามีและีตอบ"/>
+<gentext key="Qandadiv" text="ถาม-ตอบ"/>
+<gentext key="qandadiv" text="ถาม-ตอบ"/>
 <gentext key="Question" text="ถาม:"/>
 <gentext key="question" text="ถาม:"/>
 <gentext key="RefEntry" text=""/>
@@ -123,16 +127,16 @@
 <gentext key="tip" text="คำแนะนำ"/>
 <gentext key="TIP" text="คำแนะนำ"/>
 <gentext key="Tip" text="คำแนะนำ"/>
-<gentext key="Warning" text="โปรดระวัง"/>
-<gentext key="warning" text="โปรดระวัง"/>
-<gentext key="WARNING" text="โปรดระวัง"/>
+<gentext key="Warning" text="คำเตือน"/>
+<gentext key="warning" text="คำเตือน"/>
+<gentext key="WARNING" text="คำเตือน"/>
 
 <gentext key="and" text="และ"/>
 <gentext key="by" text="โดย"/>
 <gentext key="Edited" text="เรียบเรียง"/>
 <gentext key="edited" text="เรียบเรียง"/>
-<gentext key="Editedby" text="เรียบเรียงโดบ"/>
-<gentext key="editedby" text="เรียบเรียงโดบ"/>
+<gentext key="Editedby" text="เรียบเรียงโดย"/>
+<gentext key="editedby" text="เรียบเรียงโดย"/>
 <gentext key="in" text="ใน"/>
 
 <gentext key="lastlistcomma" text=","/>
@@ -173,7 +177,7 @@
 <gentext key="nav-prev-sibling" text="ก่อนหน้า"/>
 <gentext key="nav-up" text="กลับ"/>
 
-<gentext key="sectioncalled" text="ตอนนี้เ้รียกว่า"/>
+<gentext key="sectioncalled" text="หัวข้อ"/>
 <gentext key="Draft"         text="Draft"/> <!-- en -->
 <gentext key="above"         text="above"/> <!-- en -->
 <gentext key="below"         text="below"/> <!-- en -->
