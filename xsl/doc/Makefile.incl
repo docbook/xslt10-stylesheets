@@ -6,7 +6,7 @@ all: $(HTMLFILES)
 	$(XSLT) $< $(JREFHTML) $@ $(XSLTOPT)
 
 param.html: docparam.xml
-	$(XSLT) $< ../../docsrc/clrefentry.xsl $(XSLTOPT)
+	$(XSLT) $< $(CLREFENTRY) $(XSLTOPT)
 	touch param.html
 
 clean:

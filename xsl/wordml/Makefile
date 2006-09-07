@@ -5,6 +5,7 @@ STYLESHEETDIR = .
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
+LREFENTRY=../tools/xsl/build/lrefentry.xsl
 
 WORDML = $(STYLESHEETDIR)/docbook.xsl
 PAGES = $(STYLESHEETDIR)/docbook-pages.xsl
@@ -20,14 +21,14 @@ PROC = xsltproc
 
 include Makefile.param
 
-all:	param.xsl
+all: param.xsl
 
 xml: param.xml
 
 html: param.html
 
 param.html: param.xml
-	$(XSLT) $< ../docsrc/lrefentry.xsl $@
+	$(XSLT) $< $(LREFENTRY) $@
 
 param.xml: param.xweb $(PARAMS)
 	../../cvstools/paramchk -m Makefile.param $<

@@ -1,14 +1,11 @@
-include ../../cvstools/Makefile.incl
+include ../../releasetools/Variables.mk
 DIRS=common refentry html fo manpages wordml slides website template
 
 DOCBOOK5_RNG=../../docbook/relaxng/docbook/docbook.rng
 PARAM_XSL_FILES=$(shell for file in $$(find . -name "param.xsl"); do \
 	readlink -f $$file; done | grep -v xhtml)
 
-MAKE_ELEMENTS_XSL=make-elements.xsl
-MAKE_PARAMS_XSL=make-xsl-params.xsl
-
-all: base docbook-elements.xsl xsl-params.xsl
+all: base $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
 
 base:
 	for i in $(DIRS) __bogus__; do \
@@ -27,12 +24,12 @@ clean:
 $(DOCBOOK5_RNG):
 	$(MAKE) -C $(dir $@) $(notdir $@)
 
-docbook-elements.xsl: $(MAKE_ELEMENTS_XSL) $(DOCBOOK5_RNG)
+$(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK5_RNG)
 	$(XSLT) $(DOCBOOK5_RNG) $< $@
 
-xsl-params.xsl: $(MAKE_PARAMS_XSL) $(PARAM_XSL_FILES)
+$(XSL_PARAMS): $(MAKE_PARAMS_XSL) $(PARAM_XSL_FILES)
 	$(XSLT) $< $< $@
 
 realclean: clean
-	$(RM) docbook-elements.xsl
-	$(RM) xsl-params.xsl
+	$(RM) $(DOCBOOK_ELEMENTS)
+	$(RM) $(XSL_PARAMS)

@@ -5,8 +5,8 @@
                 xmlns:lxslt="http://xml.apache.org/xslt"
                 exclude-result-prefixes="doc xsl lxslt">
 
-<xsl:include href="../html/param.xsl"/>
-<xsl:include href="../html/chunker.xsl"/>
+<xsl:include href="../../../html/param.xsl"/>
+<xsl:include href="../../../html/chunker.xsl"/>
 
 <xsl:output
      method="xml"
