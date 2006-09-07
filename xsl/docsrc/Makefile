@@ -30,6 +30,6 @@ $(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK5_RNG)
 $(XSL_PARAMS): $(MAKE_PARAMS_XSL) $(PARAM_XSL_FILES)
 	$(XSLT) $< $< $@
 
-realclean: clean
+release-clean: clean
 	$(RM) $(DOCBOOK_ELEMENTS)
 	$(RM) $(XSL_PARAMS)
