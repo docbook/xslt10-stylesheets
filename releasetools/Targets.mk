@@ -9,7 +9,7 @@ debug:
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
-	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC-LINK-STYLE) $@
+	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@
 	$(RM) RELEASE-NOTES-TMP.xml
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
@@ -25,7 +25,7 @@ else
 ifeq ($(PDF_MAKER),dblatex)
 	$(XSLT) RELEASE-NOTES-TMP.xml $(STRIP_NS) RELEASE-NOTES-STRIPPED-TMP.xml
 	-$(DBLATEX) $(DBLATEX_FLAGS) \
-	  -p $(DBX-STYLE) \
+	  -p $(DBX_STYLE) \
 	  -o $@ \
 	  RELEASE-NOTES-STRIPPED-TMP.xml
 	$(RM) RELEASE-NOTES-STRIPPED-TMP.xml
@@ -40,11 +40,11 @@ NEWS.xml: ChangeLog.xml
 	$(XSLT) $< $(SVNLOG2DOCBOOK) $@ \
 	previous-release="'$(PREVIOUS_RELEASE)'" \
 	release-version="'$(RELVER)'" \
-	element.file="'$(shell readlink -f ./docsrc/docbook-elements.xsl)'" \
-	param.file="'$(shell readlink -f ./docsrc/xsl-params.xsl)'"
+	element.file="'$(shell readlink -f $(DOCBOOK_ELEMENTS))'" \
+	param.file="'$(shell readlink -f $(XSL_PARAMS))'"
 
 NEWS.html: NEWS.xml
-	$(XSLT) $< $(DOC-LINK-STYLE) $@
+	$(XSLT) $< $(DOC_LINK_STYLE) $@
 
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
