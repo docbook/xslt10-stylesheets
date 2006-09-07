@@ -14,18 +14,42 @@ CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
 
-# stylesheet to extract embedded jrefentry XML from XSL files
-XSL2JREF=$(DOCBOOK_SVN)/xsl/docsrc/xsl2jref.xsl
-# stylesheet for converting jrefentry XML to HTML output
-JREFHTML=$(DOCBOOK_SVN)/xsl/docsrc/jrefhtml.xsl
-# stylesheet for converting jrefentry XML to DocBook Refsect1
-JREF2REFSECT1=$(DOCBOOK_SVN)/xsl/docsrc/jref2refsect1.xsl
+DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
 
-# stylesheet for generating HTML version of release notes
-DOC-LINK-STYLE=$(DOCBOOK_SVN)/xsl/docsrc/doc-link-docbook.xsl
+# param.xml to param.html
+LREFENTRY=$(DOCBUILD_STYLESHEETS)/lrefentry.xsl
+# param.xml to param.html
+CLREFENTRY=$(DOCBUILD_STYLESHEETS)/clrefentry.xsl
+# pi.xml to pi.html
+PIREFENTRY=$(DOCBUILD_STYLESHEETS)/pirefentry.xsl
+# embedded doc in XSL files to jrefentry XML
+XSL2JREF=$(DOCBUILD_STYLESHEETS)/xsl2jref.xsl
+# jrefentry XML to HTML output
+JREFHTML=$(DOCBUILD_STYLESHEETS)/jrefhtml.xsl
+# jrefentry XML to DocBook Refsect1
+JREF2REFSECT1=$(DOCBUILD_STYLESHEETS)/jref2refsect1.xsl
 
-# MARKUP_XSL is a modified version of Jeni Tennison's "Markup
-# Utility"
+# RNG file to elements list
+MAKE_ELEMENTS_XSL=$(DOCBUILD_STYLESHEETS)/make-elements.xsl
+# XSL params files to params list
+MAKE_PARAMS_XSL=$(DOCBUILD_STYLESHEETS)/make-xsl-params.xsl
+# generated elements list
+DOCBOOK_ELEMENTS=$(DOCBUILD_STYLESHEETS)/docbook-elements.xsl
+XSL_PARAMS=$(DOCBUILD_STYLESHEETS)/xsl-params.xsl
+
+# reference.xml to reference.html
+RSTYLE=$(DOCBUILD_STYLESHEETS)/reference.xsl
+# reference.dbk to reference.fo
+REFERENCEFOXSL=$(DOCBUILD_STYLESHEETS)/reference-fo.xsl
+# reference.dbk to reference.txt
+REFERENCETXTXSL=$(DOCBUILD_STYLESHEETS)/reference-txt.xsl
+
+# RELEASE-NOTES.xml to RELEASE-NOTES.html
+DOC_LINK_STYLE=$(DOCBUILD_STYLESHEETS)/doc-link-docbook.xsl
+# RELEASE-NOTES.xml to RELEASE-NOTES.pdf
+DBX_STYLE=$(DOCBUILD_STYLESHEETS)/dblatex-release-notes.xsl
+
+# MARKUP_XSL is a modified version of Jeni Tennison's "Markup Utility"
 MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 
 # stylesheet used in taking XML output from the cvs2cl(1) perl
@@ -53,10 +77,7 @@ PREVIOUS_RELEASE=$(shell echo '$(GET_PREVIOUS_RELEASE)' | $(XSLTPROC) $(XSLTPROC
 STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
 
 # stylesheet for generating FO version of release notes
-FO-STYLE=$(DOCBOOK_SVN)/xsl/fo/docbook.xsl
-
-# stylesheet for generating PDF of release notes with dblatex
-DBX-STYLE=$(DOCBOOK_SVN)/xsl/docsrc/dblatex-release-notes.xsl
+FO_STYLE=$(DOCBOOK_SVN)/xsl/fo/docbook.xsl
 
 # browser to use for making text version of release notes
 # w3mmee is a fork of w3m; it provides a lot more options for
