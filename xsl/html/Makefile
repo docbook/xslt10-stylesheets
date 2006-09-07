@@ -1,8 +1,8 @@
-XSLT=../../cvstools/saxon
-XJPARSE=../../cvstools/xjparse
+include ../../cvstools/Makefile.incl
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
+LREFENTRY=../tools/xsl/build/lrefentry.xsl
 
 include Makefile.param
 
@@ -14,7 +14,7 @@ xml: param.xml
 html: param.html
 
 param.html: param.xml titlepage.templates.xsl
-	$(XSLT) $< ../docsrc/lrefentry.xsl $@
+	$(XSLT) $< $(LREFENTRY) $@
 
 param.xml: param.xweb $(PARAMS)
 	../../cvstools/paramchk -m Makefile.param $<

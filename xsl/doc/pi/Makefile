@@ -4,5 +4,5 @@ HTMLFILES = pi.html
 include ../Makefile.incl
 
 pi.html: pi.xml
-	$(XSLT) $< ../../docsrc/pirefentry.xsl $(XSLTOPT)
-	touch pi.html
+	$(XSLT) $< $(PIREFENTRY) $(XSLTOPT)
+	touch $@

@@ -5,7 +5,18 @@
                 exclude-result-prefixes="src verb"
                 version="1.0">
 
-<xsl:import href="../../litprog/html/ldocbook.xsl"/>
+<xsl:import href="../../../../litprog/html/cldocbook.xsl"/>
+
+<xsl:param name="use.id.as.filename" select="1"/>
+<xsl:param name="refentry.separator" select="0"/>
+
+<!-- n.b. reference pages are one directory down, so we point back up -->
+<xsl:param name="html.stylesheet" select="'../css/reference.css'"/>
+<xsl:param name="admon.graphics" select="1"></xsl:param>
+<xsl:param name="admon.textlabel" select="0"></xsl:param>
+<xsl:param name="admon.graphics.path">../images/</xsl:param>
+<xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
+<xsl:param name="admon.style"/>
 
 <xsl:template match="src:fragment" mode="label.markup">
   <xsl:text>&#xA7;</xsl:text>
@@ -86,6 +97,33 @@
       </td>
     </tr>
   </table>
+</xsl:template>
+
+<!-- ====================================================================== -->
+<!-- Special handling for elements -->
+
+<xsl:template match="parameter">
+  <!-- link parameters to their reference pages -->
+  <a href="{.}.html">
+    <xsl:apply-imports/>
+  </a>
+</xsl:template>
+
+<!-- * Check for both <sgmltag> and <tag>, but ignore those -->
+<!-- * with role="html" or namespace="http://docbook.sf.net/*" -->
+<!-- * or namespace="http://docbook.sourceforge.net/*" -->
+<xsl:template match="*[name() = 'sgmltag' or name() = 'tag']
+                     [(not(@class) or @class='element')
+                       and (not(@role) or @role != 'html')
+                       and (not(@namespace)
+                         or not(
+                         contains(@namespace, 'http://docbook.sf.net/')
+                         or contains(@namespace, 'http://docbook.sourceforge.net/')
+                         ))]">
+  <!-- link sgmltags to their reference pages -->
+  <a href="http://docbook.org/tdg/en/html/{.}.html">
+    <xsl:apply-imports/>
+  </a>
 </xsl:template>
 
 </xsl:stylesheet>

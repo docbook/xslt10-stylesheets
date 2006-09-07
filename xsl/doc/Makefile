@@ -4,9 +4,7 @@ PROCOPT=
 
 XEP=xep
 XEPFLAGS=
-REFERENCEFOXSL=../docsrc/reference-fo.xsl
 
-REFERENCETXTXSL=../docsrc/reference-txt.xsl
 TXT_MAKER = LANG=C w3mmee
 TXT_MAKER_FLAGS = -dump -config $(W3MMEECONFIG)
 W3MMEECONFIG = ../../releasetools/w3mmee_config
@@ -16,7 +14,6 @@ GZIPFLAGS=
 
 .PHONY : clean
 
-RSTYLE=../docsrc/reference.xsl
 VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages wordml slides website template

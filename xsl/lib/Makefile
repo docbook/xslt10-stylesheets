@@ -1,13 +1,13 @@
-XSLT=../../cvstools/saxon
-XJPARSE=../../cvstools/xjparse
+include ../../cvstools/Makefile.incl
 
 PARAMPROF=.lib.profiled
 PARAMSTRIP=.lib.stripped
+LREFENTRY=../tools/xsl/build/lrefentry.xsl
 
 all: lib.xsl lib.xml
 
 lib.html: lib.xml lib.xsl
-	$(XSLT) $< ../docsrc/lrefentry.xsl $@
+	$(XSLT) $< $(LREFENTRY) $@
 
 lib.xml: lib.xweb
 	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html

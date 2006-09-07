@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="../html/docbook.xsl"/>
+<xsl:import href="../../../html/docbook.xsl"/>
 
 <xsl:param name="html.stylesheet" select="'css/reference.css'"/>
 <xsl:param name="admon.graphics" select="1"></xsl:param>

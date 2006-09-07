@@ -3,6 +3,7 @@ include ../../cvstools/Makefile.incl
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
 MAKE_SYNOP=html2roff.xsl
+LREFENTRY=../tools/xsl/build/lrefentry.xsl
 
 include Makefile.param
 
@@ -13,7 +14,7 @@ xml: param.xml
 html: param.html
 
 param.html: param.xml
-	$(XSLT) $< ../docsrc/lrefentry.xsl $@
+	$(XSLT) $< $(LREFENTRY) $@
 
 param.xml: param.xweb $(PARAMS)
 	../../cvstools/paramchk -m Makefile.param $<
