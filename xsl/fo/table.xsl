@@ -478,7 +478,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     <xsl:attribute name="table-layout">fixed</xsl:attribute>
   </xsl:if>
 
-  <xsl:if test="position() = 1">
+  <xsl:if test="count(preceding-sibling::*) = 0">
     <!-- If this is the first tgroup, output the width attribute for the -->
     <!-- surrounding fo:table. (If this isn't the first tgroup, trying   -->
     <!-- to output the attribute will cause an error.)                   -->
