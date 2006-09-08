@@ -2,7 +2,7 @@ include ../../releasetools/Variables.mk
 DIRS=common refentry html fo manpages wordml slides website template
 
 DOCBOOK5_RNG=../../docbook/relaxng/docbook/docbook.rng
-PARAM_XSL_FILES=$(shell for file in $$(find . -name "param.xsl"); do \
+PARAM_XSL_FILES=$(shell for file in $$(find .. -name "param.xsl"); do \
 	readlink -f $$file; done | grep -v xhtml)
 
 all: base $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
