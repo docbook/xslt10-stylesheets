@@ -190,7 +190,7 @@
     <xi:include href="./fo/table.refsect1.xml" xpointer="xpointer(/reference/title)" />
 
       <xi:include href="./fo/table.refsect1.xml"
-                  xpoint.er="xpointer(/reference/partintro)" />
+                  xpointer="xpointer(/reference/partintro)" />
 
     <reference id="fotabletemplates">
       <title>Templates</title>
