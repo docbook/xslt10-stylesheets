@@ -216,6 +216,7 @@ install: zip
 	   )"
 
 release-clean: clean
+	$(MAKE) -C docsrc release-clean
 	$(RM) PreviousRevision
 	$(RM) TERMS.xml
 	$(RM) $(NEWSFILE)

@@ -245,9 +245,17 @@
     <!-- * trim off any leading and trailing whitespace from this -->
     <!-- * commit message -->
     <xsl:variable name="trimmed">
-      <xsl:call-template name="trim.text">
-        <xsl:with-param name="contents" select="."/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="parent::logentry[@revision='6226']">
+          <xsl:text
+              >Added namespace declarations to document elements for all param files.</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="trim.text">
+            <xsl:with-param name="contents" select="."/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
     <xsl:variable name="trimmed-contents" select="exsl:node-set($trimmed)"/>
     <!-- * mask any periods in the contents -->
@@ -262,7 +270,7 @@
             name="phrases"
             select="document($element.file)//member|
                     document($param.file)//member"
-          />
+            />
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="marked.up" select="exsl:node-set($marked.up.contents)"/>
