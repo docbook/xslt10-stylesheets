@@ -7,7 +7,7 @@ DISTRO=xsl
 
 # value of DISTRIB_DEPENDS is a space-separated list of any
 # targets for this distro's "distrib" target to depend on
-DISTRIB_DEPENDS = doc install.sh
+DISTRIB_DEPENDS = doc docsrc install.sh
 
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded

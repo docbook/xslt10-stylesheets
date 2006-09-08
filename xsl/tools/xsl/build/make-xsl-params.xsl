@@ -81,7 +81,7 @@
     <!-- * When the value of $dir reaches empty, then we have depleted -->
     <!-- * the list of directories and it's time to stop recursing -->
     <xsl:if test="not($dir = '')">
-      <xsl:variable name="param.xsl" select="concat('../', $dir, '/', 'param.xsl')"/>
+      <xsl:variable name="param.xsl" select="concat('../../../', $dir, '/', 'param.xsl')"/>
       <xslt:variable name="xsl-{$dir}-parameters-list">
         <simplelist role="param">
           <xsl:for-each select="document($param.xsl)//*[local-name() = 'param']">
