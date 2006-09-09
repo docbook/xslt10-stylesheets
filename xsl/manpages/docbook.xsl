@@ -140,6 +140,10 @@
     <!-- * page (which may different from the "title"...) -->
     <xsl:variable name="first.refname" select="refnamediv[1]/refname[1]"/>
 
+    <xsl:call-template name="root.messages">
+      <xsl:with-param name="refname" select="$first.refname"/>
+    </xsl:call-template>
+
     <!-- * Because there are several times when we need to check *info of -->
     <!-- * each refentry and its ancestors, we get those and store the -->
     <!-- * data from them as a node-set in memory. -->
