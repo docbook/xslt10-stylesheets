@@ -19,6 +19,7 @@
 <!-- * just assembling the actual text of the main text flow of each man -->
 <!-- * page. This "other" stuff currently amounts to these steps: -->
 <!-- * -->
+<!-- *  - output boilerplate messages -->
 <!-- *  - add a comment to top part of roff source of each page -->
 <!-- *  - make a .TH title line (for controlling page header/footer) -->
 <!-- *  - set hyphenation, alignment, indent & line-breaking defaults -->
@@ -137,6 +138,23 @@ db:manvolnum
       </xsl:call-template>
     </xsl:if>
   </xsl:variable>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="root.messages">
+  <xsl:param name="refname"/>
+  <!-- redefine this any way you'd like to output messages -->
+  <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
+  <xsl:if test="//footnote">
+    <xsl:call-template name="log.message">
+      <xsl:with-param name="level">Warn</xsl:with-param>
+      <xsl:with-param name="source" select="$refname"/>
+      <xsl:with-param
+          name="message"
+          >Output for footnote element is not yet supported.</xsl:with-param>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
 
 <!-- ==================================================================== -->
 
