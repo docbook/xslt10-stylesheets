@@ -11,6 +11,14 @@
   <author><orgname>DocBook Project Development Team</orgname></author>
 </info>
 
+<para>These are the release notes for the DocBook XSL Stylesheets
+distribution. This document lists enhancements and changes to the
+public APIs (user-configurable parameters) and generally excludes
+descriptions of bug fixes, which are instead documented in a separate
+file (<link xlink:href="NEWS">plain text</link> and <link
+xlink:href="NEWS.html">HTML</link>).</para>
+
+<!--
   <para>This is a pre-release "snapshot" of the DocBook XSL
   Stylesheets. The information is this document is auto-generated from
   change descriptions stored in the project source-code
@@ -24,6 +32,456 @@
   complete…</para>
 
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
+-->
+
+<sect1 xml:id="V1.71.0">
+<title>Release: 1.71.0</title>
+<para>This is mainly a bug fix release, but it also includes two
+significant feature changes:
+<variablelist>
+  <varlistentry>
+    <term>Highlighting support added</term>
+    <listitem>
+      <para>The stylesheets now include support for source-code
+      highlighting in output of programlisting instances (controlled
+      through the <parameter>highlight.source</parameter>
+      parameter). The Java-based implementation requires Saxon and
+      makes use of <link
+      xlink:href="http://molhanec.net/"><person><personname
+      ><firstname>Michal</firstname><surname
+      >Molhanec</surname></personname></person></link>’s <link
+      xlink:href="http://sourceforge.net/projects/xslthl"
+      >XSLTHL</link>. More details are available at Jirka Kosek’s
+      website: <blockquote ><simpara ><link
+      xlink:href="http://xmlguru.cz/2006/07/docbook-syntax-highlighting"/></simpara
+      ></blockquote> The support is currently limited to highlighting
+      of XML, Java, PHP, Delphi, Modula-2 sources, and INI
+      files.</para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>Changes to autoindexing</term>
+    <listitem>
+      <para>The templates that handle alternative indexing methods
+      were reworked to avoid errors produced by certain processors not
+      being able to tolerate the presence of unused functions.  With
+      this release, none of the code for the 'kimber' or 'kosek'
+      methods is included in the default stylesheets.  In order to use
+      one of those methods, your customization layer must import one
+      of the optional stylesheet modules:</para>
+      <para>
+        <itemizedlist>
+           <listitem>
+             <simpara>html/autoidx-kosek.xsl</simpara>
+           </listitem>
+           <listitem>
+             <simpara>html/autoidx-kimber.xsl</simpara>
+           </listitem>
+           <listitem>
+             <simpara>fo/autoidx-kosek.xsl</simpara>
+           </listitem>
+           <listitem>
+             <simpara>fo/autoidx-kimber.xsl</simpara>
+           </listitem>
+        </itemizedlist>
+        See the <parameter>index.method</parameter> parameter
+        reference page for more information.
+      </para>
+      <para>Two other changes to note:
+      <itemizedlist>
+        <listitem>
+          <simpara>The default indexing method now can handle accented
+          characters in latin-based alphabets, not just English. This
+          means accented latin letters will group and sort with their
+          unaccented counterpart.</simpara>
+        </listitem>
+        <listitem>
+          <simpara>The default value for the
+          <parameter>index.method</parameter> parameter was changed
+          from 'english' to 'basic' because now the default method can
+          handle latin-based alphabets, not just English.</simpara>
+        </listitem>
+      </itemizedlist>
+      </para>
+    </listitem>
+  </varlistentry>
+</variablelist>
+The following is a list of changes that have
+been made since the 1.70.1 release.</para>
+
+<sect2 xml:id="V1.71.0_Common">
+<title>Common</title>
+<para>The following changes have been made to the
+            <filename>common</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added <parameter>reference.autolabel</parameter> parameter for controlling labels on
+<tag>reference</tag> output.<alt>M: /trunk/xsl/common/labels.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support <tag>row</tag>s that are *completely* overlapped by the preceding <tag>row</tag><alt>M: /trunk/xsl/common/table.xsl - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">New modules for supporting indexing extensions.<alt>A: /trunk/xsl/common/autoidx-kimber.xsl; A: /trunk/xsl/common/autoidx-kosek.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support startinglinenumber on <tag>orderedlist</tag><alt>M: /trunk/xsl/common/common.xsl - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Common changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_Extensions">
+<title>Extensions</title>
+<para>The following changes have been made to the
+            <filename>extensions</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Completely reworked extensions build system; now uses NetBeans and ant<alt>D: /trunk/xsl/extensions/xalan27/.cvsignore; A: /trunk/xsl/extensions/saxon65/nbproject; A: /trunk/xsl/extensions/saxon65/nbproject/project.properties; D: /trunk/xsl/extensions/prj.el; A: /trunk/xsl/extensions/saxon65/src; A: /trunk/xsl/extensions/xalan2/src/com; M: /trunk/xsl/extensions/xalan2/src/com/nwalsh/xalan/Text.java; A: /trunk/xsl/extensions/saxon65/nbproject/project.xml; D: /trunk/xsl/extensions/build.xml; A: /trunk/xsl/extensions/saxon65/build.xml; A: /trunk/xsl/extensions/xalan2/nbproject/genfiles.properties; A: /trunk/xsl/extensions/saxon65; D: /trunk/xsl/extensions/xalan2/com; M: /trunk/xsl/extensions/xalan2/src/com/nwalsh/xalan/Func.java; A: /trunk/xsl/extensions/xalan2/test; A: /trunk/xsl/extensions/saxon65/src/com; A: /trunk/xsl/extensions/xalan2/nbproject/build-impl.xml; A: /trunk/xsl/extensions/xalan2/nbproject; A: /trunk/xsl/extensions/xalan2/src; A: /trunk/xsl/extensions/xalan2/nbproject/project.properties; D: /trunk/xsl/extensions/.cvsignore; M: /trunk/xsl/extensions/Makefile; D: /trunk/xsl/extensions/saxon8; A: /trunk/xsl/extensions/saxon65/nbproject/genfiles.properties; A: /trunk/xsl/extensions/xalan2/nbproject/project.xml; A: /trunk/xsl/extensions/saxon65/test; M: /trunk/xsl/extensions/xalan2/src/com/nwalsh/xalan/Verbatim.java; A: /trunk/xsl/extensions/xalan2/build.xml; M: /trunk/xsl/extensions/xalan2; D: /trunk/xsl/extensions/saxon643; A: /trunk/xsl/extensions/saxon65/nbproject/build-impl.xml - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Extensions changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_FO">
+<title>FO</title>
+<para>The following changes have been made to the
+            <filename>fo</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">xsl:sort lang attribute now uses two-char substring of lang attribute.<alt>M: /trunk/xsl/fo/autoidx-kimber.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support titlecase "Java", "Perl", and "IDL" as values for the
+language attribute on <tag>classsynopsis</tag>, etc. (instead of just
+lowercase "java", "perl", and "idl"). Also support "c++" and "C++"
+(instead of just "cpp").
+
+Affects HTML, FO, and manpages output. Closes bug 1552332. Thanks
+to "Brian A. Vanderburg II".<alt>M: /trunk/xsl/fo/synop.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support for the <parameter>reference.autolabel</parameter> param in (X)HTML and FO
+output.<alt>M: /trunk/xsl/fo/param.xweb; M: /trunk/xsl/fo/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support <tag>row</tag>s that are *completely* overlapped by the preceding <tag>row</tag><alt>M: /trunk/xsl/fo/table.xsl - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Rearranged templates for the 3 indexing methods
+and changed method named 'english' to 'basic'.<alt>M: /trunk/xsl/fo/autoidx.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">New modules for supporting indexing extensions.<alt>A: /trunk/xsl/fo/autoidx-kimber.xsl; A: /trunk/xsl/fo/autoidx-kosek.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Turn off blank-body for <parameter>fop1.extensions</parameter> too since fop 0.92
+does not support it either.<alt>M: /trunk/xsl/fo/pagesetup.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Add Xalan variant to test for exslt:node-set <tag>function</tag>.
+Xalan can use <tag>function</tag> named node-set(), but doesn't
+recognize it using function-available().<alt>M: /trunk/xsl/fo/autoidx.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support to FO stylesheets for handling instances of <tag>Org</tag>
+where it occurs outside of *<tag>info</tag> content. In HTML stylesheets,
+moved handling of <tag>Org</tag> out of info.xsl and into inline.xsl. In both
+FO and HTML stylesheets, added support for correctly processing
+<tag>Affiliation</tag> and <tag>Jobtitle</tag>.<alt>M: /trunk/xsl/fo/inline.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Don't output punctuation between <tag>Refname</tag> and <tag>Refpurpose</tag> if
+<tag>Refpurpose</tag> is empty. Also corrected handling of <tag>Refsect2</tag>/<tag>title</tag>
+instances, and removed some debugging stuff that was generated in
+manpages output to mark the ends of sections.<alt>M: /trunk/xsl/fo/refentry.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added new <parameter>email.delimiters.enabled</parameter> param. If non-zero (the
+default), delimiters are generated around e-mail addresses (output
+of the <tag>email</tag> element). If zero, the delimiters are suppressed.<alt>M: /trunk/xsl/fo/inline.xsl; M: /trunk/xsl/fo/param.xweb; M: /trunk/xsl/fo/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Initial support of syntax highlighting of programlistings.<alt>M: /trunk/xsl/fo/param.ent; M: /trunk/xsl/fo/param.xweb; A: /trunk/xsl/fo/highlight.xsl; M: /trunk/xsl/fo/verbatim.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message"><tag>Chapter</tag> after <tag>preface</tag> should restart numbering of pages.<alt>M: /trunk/xsl/fo/pagesetup.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the
+            <filename>html</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">xsl:sort lang attribute now uses two-char substring of lang attribute.<alt>M: /trunk/xsl/html/autoidx-kimber.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support titlecase "Java", "Perl", and "IDL" as values for the
+language attribute on <tag>classsynopsis</tag>, etc. (instead of just
+lowercase "java", "perl", and "idl"). Also support "c++" and "C++"
+(instead of just "cpp").
+
+Affects HTML, FO, and manpages output. Closes bug 1552332. Thanks
+to "Brian A. Vanderburg II".<alt>M: /trunk/xsl/html/synop.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support for the <parameter>reference.autolabel</parameter> param in (X)HTML and FO
+output.<alt>M: /trunk/xsl/html/param.xweb; M: /trunk/xsl/html/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support <tag>row</tag>s that are *completely* overlapped by the preceding <tag>row</tag><alt>M: /trunk/xsl/html/table.xsl - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Rearranged templates for the 3 indexing methods
+and changed method named 'english' to 'basic'.<alt>M: /trunk/xsl/html/autoidx.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">New modules for supporting indexing extensions.<alt>A: /trunk/xsl/html/autoidx-kimber.xsl; A: /trunk/xsl/html/autoidx-kosek.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added several new HTML parameters for controlling appearance of
+content on HTML <tag>title</tag> pages:
+
+<parameter>contrib.inline.enabled</parameter>:
+  If non-zero (the default), output of the <tag>contrib</tag> element is
+  displayed as inline content rather than as block content.
+
+<parameter>othercredit.like.author.enabled</parameter>:
+  If non-zero, output of the <tag>othercredit</tag> element on titlepages is
+  displayed in the same style as <tag>author</tag> and <tag>editor</tag> output. If zero
+  (the default), <tag>othercredit</tag> output is displayed using a style
+  different than that of <tag>author</tag> and <tag>editor</tag>.
+
+<parameter>blurb.on.titlepage.enabled</parameter>:
+  If non-zero, output from authorblurb and <tag>personblurb</tag> elements is
+  displayed on <tag>title</tag> pages. If zero (the default), output from
+  those elements is suppressed on <tag>title</tag> pages (unless you are
+  using a titlepage customization that causes them to be included).
+
+<parameter>editedby.enabled</parameter>
+  If non-zero (the default), a localized Edited by heading is
+  displayed above <tag>editor</tag> names in output of the <tag>editor</tag> element.<alt>M: /trunk/xsl/html/titlepage.xsl; M: /trunk/xsl/html/param.xweb; M: /trunk/xsl/html/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Add Xalan variant to test for exslt:node-set <tag>function</tag>.
+Xalan can use <tag>function</tag> named node-set(), but doesn't
+recognize it using function-available().<alt>M: /trunk/xsl/html/autoidx.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support to FO stylesheets for handling instances of <tag>Org</tag>
+where it occurs outside of *<tag>info</tag> content. In HTML stylesheets,
+moved handling of <tag>Org</tag> out of info.xsl and into inline.xsl. In both
+FO and HTML stylesheets, added support for correctly processing
+<tag>Affiliation</tag> and <tag>Jobtitle</tag>.<alt>M: /trunk/xsl/html/inline.xsl; M: /trunk/xsl/html/info.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Don't output punctuation between <tag>Refname</tag> and <tag>Refpurpose</tag> if
+<tag>Refpurpose</tag> is empty. Also corrected handling of <tag>Refsect2</tag>/<tag>title</tag>
+instances, and removed some debugging stuff that was generated in
+manpages output to mark the ends of sections.<alt>M: /trunk/xsl/html/refentry.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added new <parameter>email.delimiters.enabled</parameter> param. If non-zero (the
+default), delimiters are generated around e-mail addresses (output
+of the <tag>email</tag> element). If zero, the delimiters are suppressed.<alt>M: /trunk/xsl/html/inline.xsl; M: /trunk/xsl/html/param.xweb; M: /trunk/xsl/html/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added <parameter>qanda.nested.in.toc</parameter> param. Default value is zero. If
+non-zero, instances of "nested" <tag>Qandaentry</tag> (ones that are children
+of <tag>Answer</tag> elements) are displayed in the <tag>TOC</tag>. Closes patch 1509018
+(from Daniel Leidert). Currently on affects HTML output (no patch
+for FO output provided).<alt>M: /trunk/xsl/html/param.xweb; M: /trunk/xsl/html/param.ent; M: /trunk/xsl/html/qandaset.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Improved handling of relative locations generated files<alt>M: /trunk/xsl/html/html.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Initial support of syntax highlighting of programlistings.<alt>M: /trunk/xsl/html/param.ent; M: /trunk/xsl/html/param.xweb; A: /trunk/xsl/html/highlight.xsl; M: /trunk/xsl/html/verbatim.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support <tag>org</tag><alt>M: /trunk/xsl/html/info.xsl - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support <tag>person</tag><alt>M: /trunk/xsl/html/inline.xsl - Norman Walsh</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Support $keep.relative.image.uris also when chunking<alt>M: /trunk/xsl/html/chunk-code.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_Highlighting">
+<title>Highlighting</title>
+<para>The following changes have been made to the
+            <filename>highlighting</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Initial support of syntax highlighting of programlistings.<alt>A: /trunk/xsl/highlighting/php-hl.xml; A: /trunk/xsl/highlighting/common.xsl; A: /trunk/xsl/highlighting/delphi-hl.xml; A: /trunk/xsl/highlighting/myxml-hl.xml; A: /trunk/xsl/highlighting/m2-hl.xml; A: /trunk/xsl/highlighting/ini-hl.xml; A: /trunk/xsl/highlighting/xslthl-config.xml; A: /trunk/xsl/highlighting/java-hl.xml - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Highlighting changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_Manpages">
+<title>Manpages</title>
+<para>The following changes have been made to the
+            <filename>manpages</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Suppress <tag>footnote</tag> markers and output warning that footnotes are
+not yet supported.<alt>M: /trunk/xsl/manpages/docbook.xsl; M: /trunk/xsl/manpages/links.xsl; M: /trunk/xsl/manpages/other.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Handle instances of <tag>address</tag>/<tag>otheraddr</tag>/ulink in <tag>author</tag> et al in the
+same way as <tag>email</tag> instances; that is, display them on the same
+linke as the <tag>author</tag>, <tag>editor</tag>, etc., name.<alt>M: /trunk/xsl/manpages/info.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Don't number or link-list any Ulink instance whose string value is
+identical to the value of its url attribute. Just display it inline.<alt>M: /trunk/xsl/manpages/links.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Don't output punctuation between <tag>Refname</tag> and <tag>Refpurpose</tag> if
+<tag>Refpurpose</tag> is empty. Also corrected handling of <tag>Refsect2</tag>/<tag>title</tag>
+instances, and removed some debugging stuff that was generated in
+manpages output to mark the ends of sections.<alt>M: /trunk/xsl/manpages/refentry.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added new <parameter>email.delimiters.enabled</parameter> param. If non-zero (the
+default), delimiters are generated around e-mail addresses (output
+of the <tag>email</tag> element). If zero, the delimiters are suppressed.<alt>M: /trunk/xsl/manpages/param.xweb; M: /trunk/xsl/manpages/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">In manpages output, if the last/nearest *<tag>info</tag> element for
+particular <tag>Refentry</tag> has multiple <tag>Copyright</tag> and/or <tag>Legalnotice</tag>
+children, process them all (not just the first ones). Closes bug
+1524576. Thanks to Sam Steingold for the report and to Daniel
+Leidert for providing a patch.<alt>M: /trunk/xsl/manpages/info.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+</itemizedlist>
+</sect2><!--end of Manpages changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_Params">
+<title>Params</title>
+<para>The following changes have been made to the
+            <filename>params</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added <parameter>reference.autolabel</parameter> parameter for controlling labels on
+<tag>reference</tag> output.<alt>A: /trunk/xsl/params/reference.autolabel.xml - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added namespace declarations to document elements for all param files.<alt>M: /trunk/xsl/params/toc.line.properties.xml; M: /trunk/xsl/params/title.font.family.xml; M: /trunk/xsl/params/component.label.includes.part.label.xml; M: /trunk/xsl/params/refentry.manual.profile.xml; M: /trunk/xsl/params/orderedlist.properties.xml; M: /trunk/xsl/params/olink.pubid.xml; M: /trunk/xsl/params/informalexample.properties.xml; M: /trunk/xsl/params/appendix.autolabel.xml; M: /trunk/xsl/params/htmlhelp.show.toolbar.text.xml; M: /trunk/xsl/params/index.on.role.xml; M: /trunk/xsl/params/htmlhelp.button.jump2.url.xml; M: /trunk/xsl/params/variablelist.term.separator.xml; M: /trunk/xsl/params/para.propagates.style.xml; M: /trunk/xsl/params/html.stylesheet.xml; M: /trunk/xsl/params/qanda.nested.in.toc.xml; M: /trunk/xsl/params/annotation.css.xml; M: /trunk/xsl/params/funcsynopsis.style.xml; M: /trunk/xsl/params/htmlhelp.encoding.xml; M: /trunk/xsl/params/footer.content.properties.xml; M: /trunk/xsl/params/verbatim.properties.xml; M: /trunk/xsl/params/autotoc.label.in.hyperlink.xml; M: /trunk/xsl/params/body.margin.top.xml; M: /trunk/xsl/params/bibliography.numbered.xml; M: /trunk/xsl/params/figure.properties.xml; M: /trunk/xsl/params/variablelist.max.termlength.xml; M: /trunk/xsl/params/table.cell.border.style.xml; M: /trunk/xsl/params/htmlhelp.button.options.xml; M: /trunk/xsl/params/preferred.mediaobject.role.xml; M: /trunk/xsl/params/htmlhelp.chm.xml; M: /trunk/xsl/params/man.charmap.subset.profile.xml; M: /trunk/xsl/params/qanda.title.level3.properties.xml; M: /trunk/xsl/params/page.width.xml; M: /trunk/xsl/params/firstterm.only.link.xml; M: /trunk/xsl/params/section.level6.properties.xml; M: /trunk/xsl/params/htmlhelp.button.locate.xml; M: /trunk/xsl/params/chunk.sections.xml; M: /trunk/xsl/params/use.local.olink.style.xml; M: /trunk/xsl/params/refentry.date.profile.enabled.xml; M: /trunk/xsl/params/refentry.version.suppress.xml; M: /trunk/xsl/params/refentry.generate.title.xml; M: /trunk/xsl/params/punct.honorific.xml; M: /trunk/xsl/params/column.gap.index.xml; M: /trunk/xsl/params/body.start.indent.xml; M: /trunk/xsl/params/crop.mark.width.xml; M: /trunk/xsl/params/refentry.version.profile.enabled.xml; M: /trunk/xsl/params/superscript.properties.xml; M: /trunk/xsl/params/chunker.output.doctype-public.xml; M: /trunk/xsl/params/saxon.character.representation.xml; M: /trunk/xsl/params/saxon.linenumbering.xml; M: /trunk/xsl/params/shade.verbatim.style.xml; M: /trunk/xsl/params/annotate.toc.xml; M: /trunk/xsl/params/profile.attribute.xml; M: /trunk/xsl/params/callout.graphics.number.limit.xml; M: /trunk/xsl/params/profile.arch.xml; M: /trunk/xsl/params/saxon.tablecolumns.xml; M: /trunk/xsl/params/glossterm.auto.link.xml; M: /trunk/xsl/params/default.units.xml; M: /trunk/xsl/params/qanda.title.level1.properties.xml; M: /trunk/xsl/params/list.block.spacing.xml; M: /trunk/xsl/params/section.level4.properties.xml; M: /trunk/xsl/params/spacing.paras.xml; M: /trunk/xsl/params/column.count.index.xml; M: /trunk/xsl/params/dingbat.font.family.xml; M: /trunk/xsl/params/citerefentry.link.xml; M: /trunk/xsl/params/keep.relative.image.uris.xml; M: /trunk/xsl/params/ulink.footnotes.xml; M: /trunk/xsl/params/prefer.internal.olink.xml; M: /trunk/xsl/params/refentry.title.properties.xml; M: /trunk/xsl/params/variablelist.term.break.after.xml; M: /trunk/xsl/params/use.id.function.xml; M: /trunk/xsl/params/callout.unicode.start.character.xml; M: /trunk/xsl/params/column.gap.titlepage.xml; M: /trunk/xsl/params/editedby.enabled.xml; M: /trunk/xsl/params/funcsynopsis.tabular.threshold.xml; M: /trunk/xsl/params/use.extensions.xml; M: /trunk/xsl/params/index.preferred.page.properties.xml; M: /trunk/xsl/params/man.th.extra3.max.length.xml; M: /trunk/xsl/params/column.gap.back.xml; M: /trunk/xsl/params/tex.math.delims.xml; M: /trunk/xsl/params/article.appendix.title.properties.xml; M: /trunk/xsl/params/ulink.target.xml; M: /trunk/xsl/params/suppress.header.navigation.xml; M: /trunk/xsl/params/olink.resolver.xml; M: /trunk/xsl/params/admon.textlabel.xml; M: /trunk/xsl/params/procedure.properties.xml; M: /trunk/xsl/params/blurb.on.titlepage.enabled.xml; M: /trunk/xsl/params/section.level2.properties.xml; M: /trunk/xsl/params/column.gap.front.xml; M: /trunk/xsl/params/margin.note.title.properties.xml; M: /trunk/xsl/params/glossary.collection.xml; M: /trunk/xsl/params/admon.graphics.xml; M: /trunk/xsl/params/current.docid.xml; M: /trunk/xsl/params/qanda.inherit.numeration.xml; M: /trunk/xsl/params/table.cell.padding.xml; M: /trunk/xsl/params/preface.autolabel.xml; M: /trunk/xsl/params/man.th.extra3.suppress.xml; M: /trunk/xsl/params/wordml.template.xml; M: /trunk/xsl/params/htmlhelp.use.hhk.xml; M: /trunk/xsl/params/textinsert.extension.xml; M: /trunk/xsl/params/ebnf.table.bgcolor.xml; M: /trunk/xsl/params/refentry.source.fallback.profile.xml; M: /trunk/xsl/params/body.font.master.xml; M: /trunk/xsl/params/l10n.gentext.default.language.xml; M: /trunk/xsl/params/list.block.properties.xml; M: /trunk/xsl/params/refentry.source.name.suppress.xml; M: /trunk/xsl/params/htmlhelp.hhp.window.xml; M: /trunk/xsl/params/sidebar.properties.xml; M: /trunk/xsl/params/tex.math.file.xml; M: /trunk/xsl/params/man.justify.xml; M: /trunk/xsl/params/subscript.properties.xml; M: /trunk/xsl/params/column.count.front.xml; M: /trunk/xsl/params/index.term.separator.xml; M: /trunk/xsl/params/biblioentry.properties.xml; M: /trunk/xsl/params/biblioentry.item.separator.xml; M: /trunk/xsl/params/htmlhelp.button.home.url.xml; M: /trunk/xsl/params/column.count.body.xml; M: /trunk/xsl/params/suppress.navigation.xml; M: /trunk/xsl/params/htmlhelp.remember.window.position.xml; M: /trunk/xsl/params/htmlhelp.hhc.section.depth.xml; M: /trunk/xsl/params/xref.with.number.and.title.xml; M: /trunk/xsl/params/make.year.ranges.xml; M: /trunk/xsl/params/region.before.extent.xml; M: /trunk/xsl/params/xref.label-page.separator.xml; M: /trunk/xsl/params/html.longdesc.link.xml; M: /trunk/xsl/params/man.subheading.divider.enabled.xml; M: /trunk/xsl/params/index.entry.properties.xml; M: /trunk/xsl/params/generate.legalnotice.link.xml; M: /trunk/xsl/params/section.autolabel.xml; M: /trunk/xsl/params/html.base.xml; M: /trunk/xsl/params/suppress.footer.navigation.xml; M: /trunk/xsl/params/nominal.image.depth.xml; M: /trunk/xsl/params/table.footnote.number.symbols.xml; M: /trunk/xsl/params/table.footnote.number.format.xml; M: /trunk/xsl/params/callout.graphics.xml; M: /trunk/xsl/params/man.break.after.slash.xml; M: /trunk/xsl/params/function.parens.xml; M: /trunk/xsl/params/part.autolabel.xml; M: /trunk/xsl/params/saxon.callouts.xml; M: /trunk/xsl/params/css.decoration.xml; M: /trunk/xsl/params/htmlhelp.button.home.xml; M: /trunk/xsl/params/email.delimiters.enabled.xml; M: /trunk/xsl/params/column.count.lot.xml; M: /trunk/xsl/params/draft.mode.xml; M: /trunk/xsl/params/use.role.for.mediaobject.xml; M: /trunk/xsl/params/refentry.separator.xml; M: /trunk/xsl/params/man.font.funcsynopsisinfo.xml; M: /trunk/xsl/params/man.output.manifest.filename.xml; M: /trunk/xsl/params/process.empty.source.toc.xml; M: /trunk/xsl/params/man.output.in.separate.dir.xml; M: /trunk/xsl/params/graphicsize.use.img.src.path.xml; M: /trunk/xsl/params/man.output.encoding.xml; M: /trunk/xsl/params/column.gap.lot.xml; M: /trunk/xsl/params/profile.role.xml; M: /trunk/xsl/params/column.count.titlepage.xml; M: /trunk/xsl/params/show.comments.xml; M: /trunk/xsl/params/informalfigure.properties.xml; M: /trunk/xsl/params/entry.propagates.style.xml; M: /trunk/xsl/params/bibliography.collection.xml; M: /trunk/xsl/params/contrib.inline.enabled.xml; M: /trunk/xsl/params/section.title.level5.properties.xml; M: /trunk/xsl/params/fop.extensions.xml; M: /trunk/xsl/params/htmlhelp.button.jump1.xml; M: /trunk/xsl/params/man.hyphenate.urls.xml; M: /trunk/xsl/params/profile.condition.xml; M: /trunk/xsl/params/header.column.widths.xml; M: /trunk/xsl/params/annotation.js.xml; M: /trunk/xsl/params/chunker.output.standalone.xml; M: /trunk/xsl/params/targets.filename.xml; M: /trunk/xsl/params/default.float.class.xml; M: /trunk/xsl/params/chapter.autolabel.xml; M: /trunk/xsl/params/sidebar.float.type.xml; M: /trunk/xsl/params/profile.separator.xml; M: /trunk/xsl/params/generate.index.xml; M: /trunk/xsl/params/nongraphical.admonition.properties.xml; M: /trunk/xsl/params/navig.graphics.xml; M: /trunk/xsl/params/htmlhelp.button.next.xml; M: /trunk/xsl/params/insert.olink.pdf.frag.xml; M: /trunk/xsl/params/htmlhelp.button.stop.xml; M: /trunk/xsl/params/footnote.font.size.xml; M: /trunk/xsl/params/profile.value.xml; M: /trunk/xsl/params/ebnf.table.border.xml; M: /trunk/xsl/params/htmlhelp.hhc.folders.instead.books.xml; M: /trunk/xsl/params/glossary.as.blocks.xml; M: /trunk/xsl/params/body.end.indent.xml; M: /trunk/xsl/params/use.role.as.xrefstyle.xml; M: /trunk/xsl/params/man.indent.blurbs.xml; M: /trunk/xsl/params/chunker.output.encoding.xml; M: /trunk/xsl/params/chunker.output.omit-xml-declaration.xml; M: /trunk/xsl/params/sans.font.family.xml; M: /trunk/xsl/params/html.cleanup.xml; M: /trunk/xsl/params/htmlhelp.hhp.xml; M: /trunk/xsl/params/htmlhelp.only.xml; M: /trunk/xsl/params/eclipse.plugin.name.xml; M: /trunk/xsl/params/section.title.level3.properties.xml; M: /trunk/xsl/params/man.th.extra1.suppress.xml; M: /trunk/xsl/params/chunk.section.depth.xml; M: /trunk/xsl/params/htmlhelp.hhp.tail.xml; M: /trunk/xsl/params/sidebar.title.properties.xml; M: /trunk/xsl/params/hyphenate.xml; M: /trunk/xsl/params/paper.type.xml; M: /trunk/xsl/params/chunk.tocs.and.lots.has.title.xml; M: /trunk/xsl/params/symbol.font.family.xml; M: /trunk/xsl/params/page.margin.bottom.xml; M: /trunk/xsl/params/callout.unicode.number.limit.xml; M: /trunk/xsl/params/itemizedlist.properties.xml; M: /trunk/xsl/params/root.filename.xml; M: /trunk/xsl/params/tablecolumns.extension.xml; M: /trunk/xsl/params/htmlhelp.show.favorities.xml; M: /trunk/xsl/params/informaltable.properties.xml; M: /trunk/xsl/params/revhistory.table.cell.properties.xml; M: /trunk/xsl/params/htmlhelp.default.topic.xml; M: /trunk/xsl/params/compact.list.item.spacing.xml; M: /trunk/xsl/params/page.height.portrait.xml; M: /trunk/xsl/params/html.head.legalnotice.link.types.xml; M: /trunk/xsl/params/passivetex.extensions.xml; M: /trunk/xsl/params/orderedlist.label.properties.xml; M: /trunk/xsl/params/othercredit.like.author.enabled.xml; M: /trunk/xsl/params/header.content.properties.xml; M: /trunk/xsl/params/refentry.meta.get.quietly.xml; M: /trunk/xsl/params/section.properties.xml; M: /trunk/xsl/params/htmlhelp.button.hideshow.xml; M: /trunk/xsl/params/simplesect.in.toc.xml; M: /trunk/xsl/params/chunk.quietly.xml; M: /trunk/xsl/params/htmlhelp.enumerate.images.xml; M: /trunk/xsl/params/section.title.level1.properties.xml; M: /trunk/xsl/params/qanda.defaultlabel.xml; M: /trunk/xsl/params/htmlhelp.enhanced.decompilation.xml; M: /trunk/xsl/params/man.th.title.max.length.xml; M: /trunk/xsl/params/footnote.number.format.xml; M: /trunk/xsl/params/body.margin.bottom.xml; M: /trunk/xsl/params/htmlhelp.window.geometry.xml; M: /trunk/xsl/params/htmlhelp.button.jump2.xml; M: /trunk/xsl/params/use.svg.xml; M: /trunk/xsl/params/qanda.title.level6.properties.xml; M: /trunk/xsl/params/collect.xref.targets.xml; M: /trunk/xsl/params/html.extra.head.links.xml; M: /trunk/xsl/params/variablelist.as.table.xml; M: /trunk/xsl/params/man.indent.width.xml; M: /trunk/xsl/params/eclipse.plugin.id.xml; M: /trunk/xsl/params/linenumbering.width.xml; M: /trunk/xsl/params/axf.extensions.xml; M: /trunk/xsl/params/menuchoice.separator.xml; M: /trunk/xsl/params/glossterm.separation.xml; M: /trunk/xsl/params/htmlhelp.autolabel.xml; M: /trunk/xsl/params/chunk.separate.lots.xml; M: /trunk/xsl/params/man.hyphenate.computer.inlines.xml; M: /trunk/xsl/params/linenumbering.separator.xml; M: /trunk/xsl/params/htmlhelp.title.xml; M: /trunk/xsl/params/index.number.separator.xml; M: /trunk/xsl/params/htmlhelp.button.prev.xml; M: /trunk/xsl/params/refentry.manual.fallback.profile.xml; M: /trunk/xsl/params/table.frame.border.color.xml; M: /trunk/xsl/params/footnote.sep.leader.properties.xml; M: /trunk/xsl/params/hyphenate.verbatim.characters.xml; M: /trunk/xsl/params/table.cell.border.thickness.xml; M: /trunk/xsl/params/template.xml; M: /trunk/xsl/params/margin.note.properties.xml; M: /trunk/xsl/params/man.segtitle.suppress.xml; M: /trunk/xsl/params/generate.toc.xml; M: /trunk/xsl/params/formal.object.properties.xml; M: /trunk/xsl/params/footnote.mark.properties.xml; M: /trunk/xsl/params/header.table.height.xml; M: /trunk/xsl/params/htmlhelp.button.back.xml; M: /trunk/xsl/params/qanda.title.level4.properties.xml; M: /trunk/xsl/params/man.links.are.numbered.xml; M: /trunk/xsl/params/manual.toc.xml; M: /trunk/xsl/params/olink.lang.fallback.sequence.xml; M: /trunk/xsl/params/refentry.manual.profile.enabled.xml; M: /trunk/xsl/params/ulink.hyphenate.chars.xml; M: /trunk/xsl/params/manifest.xml; M: /trunk/xsl/params/olink.fragid.xml; M: /trunk/xsl/params/refentry.date.profile.xml; M: /trunk/xsl/params/linenumbering.extension.xml; M: /trunk/xsl/params/component.title.properties.xml; M: /trunk/xsl/params/alignment.xml; M: /trunk/xsl/params/refentry.version.profile.xml; M: /trunk/xsl/params/ebnf.assignment.xml; M: /trunk/xsl/params/htmlhelp.button.print.xml; M: /trunk/xsl/params/annotation.support.xml; M: /trunk/xsl/params/sidebar.float.width.xml; M: /trunk/xsl/params/normal.para.spacing.xml; M: /trunk/xsl/params/xref.title-page.separator.xml; M: /trunk/xsl/params/callout.unicode.font.xml; M: /trunk/xsl/params/default.table.frame.xml; M: /trunk/xsl/params/pages.template.xml; M: /trunk/xsl/params/htmlhelp.button.zoom.xml; M: /trunk/xsl/params/admonition.title.properties.xml; M: /trunk/xsl/params/callout.graphics.extension.xml; M: /trunk/xsl/params/make.valid.html.xml; M: /trunk/xsl/params/qanda.title.level2.properties.xml; M: /trunk/xsl/params/page.margin.top.xml; M: /trunk/xsl/params/xep.index.item.properties.xml; M: /trunk/xsl/params/section.level5.properties.xml; M: /trunk/xsl/params/line-height.xml; M: /trunk/xsl/params/table.cell.border.color.xml; M: /trunk/xsl/params/qandadiv.autolabel.xml; M: /trunk/xsl/params/xref.label-title.separator.xml; M: /trunk/xsl/params/chunk.tocs.and.lots.xml; M: /trunk/xsl/params/man.font.funcprototype.xml; M: /trunk/xsl/params/process.source.toc.xml; M: /trunk/xsl/params/page.orientation.xml; M: /trunk/xsl/params/refentry.generate.name.xml; M: /trunk/xsl/params/navig.showtitles.xml; M: /trunk/xsl/params/table.table.properties.xml; M: /trunk/xsl/params/arbortext.extensions.xml; M: /trunk/xsl/params/informalequation.properties.xml; M: /trunk/xsl/params/headers.on.blank.pages.xml; M: /trunk/xsl/params/table.footnote.properties.xml; M: /trunk/xsl/params/root.properties.xml; M: /trunk/xsl/params/htmlhelp.display.progress.xml; M: /trunk/xsl/params/htmlhelp.hhp.windows.xml; M: /trunk/xsl/params/graphical.admonition.properties.xml; M: /trunk/xsl/params/refclass.suppress.xml; M: /trunk/xsl/params/profile.conformance.xml; M: /trunk/xsl/params/htmlhelp.button.forward.xml; M: /trunk/xsl/params/segmentedlist.as.table.xml; M: /trunk/xsl/params/margin.note.float.type.xml; M: /trunk/xsl/params/man.table.footnotes.divider.xml; M: /trunk/xsl/params/man.output.quietly.xml; M: /trunk/xsl/params/htmlhelp.hhc.show.root.xml; M: /trunk/xsl/params/footers.on.blank.pages.xml; M: /trunk/xsl/params/crop.mark.offset.xml; M: /trunk/xsl/params/olink.doctitle.xml; M: /trunk/xsl/params/section.level3.properties.xml; M: /trunk/xsl/params/callout.unicode.xml; M: /trunk/xsl/params/formal.procedures.xml; M: /trunk/xsl/params/toc.section.depth.xml; M: /trunk/xsl/params/index.prefer.titleabbrev.xml; M: /trunk/xsl/params/nominal.image.width.xml; M: /trunk/xsl/params/htmlhelp.show.menu.xml; M: /trunk/xsl/params/linenumbering.everyNth.xml; M: /trunk/xsl/params/double.sided.xml; M: /trunk/xsl/params/generate.revhistory.link.xml; M: /trunk/xsl/params/olink.properties.xml; M: /trunk/xsl/params/tex.math.in.alt.xml; M: /trunk/xsl/params/man.output.subdirs.enabled.xml; M: /trunk/xsl/params/section.title.properties.xml; M: /trunk/xsl/params/column.count.back.xml; M: /trunk/xsl/params/toc.indent.width.xml; M: /trunk/xsl/params/man.charmap.uri.xml; M: /trunk/xsl/params/index.method.xml; M: /trunk/xsl/params/generate.section.toc.level.xml; M: /trunk/xsl/params/page.width.portrait.xml; M: /trunk/xsl/params/man.th.extra2.max.length.xml; M: /trunk/xsl/params/abstract.properties.xml; M: /trunk/xsl/params/revhistory.table.properties.xml; M: /trunk/xsl/params/nominal.table.width.xml; M: /trunk/xsl/params/ulink.show.xml; M: /trunk/xsl/params/htmlhelp.button.jump1.title.xml; M: /trunk/xsl/params/index.div.title.properties.xml; M: /trunk/xsl/params/profile.userlevel.xml; M: /trunk/xsl/params/html.cellpadding.xml; M: /trunk/xsl/params/orderedlist.label.width.xml; M: /trunk/xsl/params/crop.marks.xml; M: /trunk/xsl/params/menuchoice.menu.separator.xml; M: /trunk/xsl/params/author.othername.in.middle.xml; M: /trunk/xsl/params/section.level1.properties.xml; M: /trunk/xsl/params/textdata.default.encoding.xml; M: /trunk/xsl/params/label.from.part.xml; M: /trunk/xsl/params/use.embed.for.svg.xml; M: /trunk/xsl/params/list.item.spacing.xml; M: /trunk/xsl/params/htmlhelp.hhc.width.xml; M: /trunk/xsl/params/column.gap.body.xml; M: /trunk/xsl/params/rootid.xml; M: /trunk/xsl/params/glosslist.as.blocks.xml; M: /trunk/xsl/params/index.range.separator.xml; M: /trunk/xsl/params/html.ext.xml; M: /trunk/xsl/params/callout.list.table.xml; M: /trunk/xsl/params/highlight.source.xml; M: /trunk/xsl/params/show.revisionflag.xml; M: /trunk/xsl/params/man.output.manifest.enabled.xml; M: /trunk/xsl/params/make.single.year.ranges.xml; M: /trunk/xsl/params/pgwide.properties.xml; M: /trunk/xsl/params/generate.id.attributes.xml; M: /trunk/xsl/params/emphasis.propagates.style.xml; M: /trunk/xsl/params/abstract.title.properties.xml; M: /trunk/xsl/params/htmlhelp.hhc.xml; M: /trunk/xsl/params/monospace.properties.xml; M: /trunk/xsl/params/htmlhelp.hhk.xml; M: /trunk/xsl/params/table.borders.with.css.xml; M: /trunk/xsl/params/man.links.are.underlined.xml; M: /trunk/xsl/params/profile.vendor.xml; M: /trunk/xsl/params/shade.verbatim.xml; M: /trunk/xsl/params/callout.graphics.path.xml; M: /trunk/xsl/params/olink.debug.xml; M: /trunk/xsl/params/make.graphic.viewport.xml; M: /trunk/xsl/params/footnote.number.symbols.xml; M: /trunk/xsl/params/man.charmap.enabled.xml; M: /trunk/xsl/params/page.height.xml; M: /trunk/xsl/params/htmlhelp.button.jump1.url.xml; M: /trunk/xsl/params/man.font.table.title.xml; M: /trunk/xsl/params/revhistory.title.properties.xml; M: /trunk/xsl/params/chunker.output.media-type.xml; M: /trunk/xsl/params/glossterm.width.xml; M: /trunk/xsl/params/points.per.em.xml; M: /trunk/xsl/params/page.margin.inner.xml; M: /trunk/xsl/params/itemizedlist.label.width.xml; M: /trunk/xsl/params/ulink.hyphenate.xml; M: /trunk/xsl/params/crop.mark.bleed.xml; M: /trunk/xsl/params/use.id.as.filename.xml; M: /trunk/xsl/params/section.title.level6.properties.xml; M: /trunk/xsl/params/highlight.default.language.xml; M: /trunk/xsl/params/man.th.extra2.suppress.xml; M: /trunk/xsl/params/id.warnings.xml; M: /trunk/xsl/params/title.margin.left.xml; M: /trunk/xsl/params/chunker.output.doctype-system.xml; M: /trunk/xsl/params/man.indent.verbatims.xml; M: /trunk/xsl/params/table.frame.border.thickness.xml; M: /trunk/xsl/params/monospace.verbatim.properties.xml; M: /trunk/xsl/params/formal.title.properties.xml; M: /trunk/xsl/params/margin.note.width.xml; M: /trunk/xsl/params/man.hyphenate.filenames.xml; M: /trunk/xsl/params/blockquote.properties.xml; M: /trunk/xsl/params/callout.defaultcolumn.xml; M: /trunk/xsl/params/profile.security.xml; M: /trunk/xsl/params/informal.object.properties.xml; M: /trunk/xsl/params/formal.title.placement.xml; M: /trunk/xsl/params/draft.watermark.image.xml; M: /trunk/xsl/params/equation.properties.xml; M: /trunk/xsl/params/body.font.family.xml; M: /trunk/xsl/params/ignore.image.scaling.xml; M: /trunk/xsl/params/chunk.first.sections.xml; M: /trunk/xsl/params/base.dir.xml; M: /trunk/xsl/params/footnote.properties.xml; M: /trunk/xsl/params/olink.outline.ext.xml; M: /trunk/xsl/params/img.src.path.xml; M: /trunk/xsl/params/qanda.title.properties.xml; M: /trunk/xsl/params/ebnf.statement.terminator.xml; M: /trunk/xsl/params/callouts.extension.xml; M: /trunk/xsl/params/manifest.in.base.dir.xml; M: /trunk/xsl/params/fop1.extensions.xml; M: /trunk/xsl/params/olink.sysid.xml; M: /trunk/xsl/params/section.title.level4.properties.xml; M: /trunk/xsl/params/monospace.font.family.xml; M: /trunk/xsl/params/l10n.gentext.language.xml; M: /trunk/xsl/params/graphic.default.extension.xml; M: /trunk/xsl/params/default.image.width.xml; M: /trunk/xsl/params/htmlhelp.button.refresh.xml; M: /trunk/xsl/params/chunker.output.cdata-section-elements.xml; M: /trunk/xsl/params/admon.graphics.path.xml; M: /trunk/xsl/params/admon.style.xml; M: /trunk/xsl/params/profile.revision.xml; M: /trunk/xsl/params/generate.manifest.xml; M: /trunk/xsl/params/html.longdesc.xml; M: /trunk/xsl/params/footer.rule.xml; M: /trunk/xsl/params/eclipse.plugin.provider.xml; M: /trunk/xsl/params/refentry.source.name.profile.xml; M: /trunk/xsl/params/toc.max.depth.xml; M: /trunk/xsl/params/chunker.output.indent.xml; M: /trunk/xsl/params/html.head.legalnotice.link.multiple.xml; M: /trunk/xsl/params/toc.list.type.xml; M: /trunk/xsl/params/link.mailto.url.xml; M: /trunk/xsl/params/table.properties.xml; M: /trunk/xsl/params/side.float.properties.xml; M: /trunk/xsl/params/man.charmap.use.subset.xml; M: /trunk/xsl/params/annotation.graphic.open.xml; M: /trunk/xsl/params/html.cellspacing.xml; M: /trunk/xsl/params/default.table.width.xml; M: /trunk/xsl/params/xep.extensions.xml; M: /trunk/xsl/params/admonition.properties.xml; M: /trunk/xsl/params/toc.margin.properties.xml; M: /trunk/xsl/params/chunk.toc.xml; M: /trunk/xsl/params/table.entry.padding.xml; M: /trunk/xsl/params/header.rule.xml; M: /trunk/xsl/params/glossentry.show.acronym.xml; M: /trunk/xsl/params/variablelist.as.blocks.xml; M: /trunk/xsl/params/man.hyphenate.xml; M: /trunk/xsl/params/refentry.source.name.profile.enabled.xml; M: /trunk/xsl/params/section.label.includes.component.label.xml; M: /trunk/xsl/params/bridgehead.in.toc.xml; M: /trunk/xsl/params/section.title.level2.properties.xml; M: /trunk/xsl/params/admon.graphics.extension.xml; M: /trunk/xsl/params/inherit.keywords.xml; M: /trunk/xsl/params/insert.xref.page.number.xml; M: /trunk/xsl/params/pixels.per.inch.xml; M: /trunk/xsl/params/refentry.pagebreak.xml; M: /trunk/xsl/params/profile.lang.xml; M: /trunk/xsl/params/insert.olink.page.number.xml; M: /trunk/xsl/params/generate.meta.abstract.xml; M: /trunk/xsl/params/graphicsize.extension.xml; M: /trunk/xsl/params/man.indent.lists.xml; M: /trunk/xsl/params/funcsynopsis.decoration.xml; M: /trunk/xsl/params/runinhead.title.end.punct.xml; M: /trunk/xsl/params/man.string.subst.map.xml; M: /trunk/xsl/params/man.links.list.enabled.xml; M: /trunk/xsl/params/section.autolabel.max.depth.xml; M: /trunk/xsl/params/htmlhelp.show.advanced.search.xml; M: /trunk/xsl/params/htmlhelp.map.file.xml; M: /trunk/xsl/params/l10n.gentext.use.xref.language.xml; M: /trunk/xsl/params/body.font.size.xml; M: /trunk/xsl/params/html.stylesheet.type.xml; M: /trunk/xsl/params/refentry.xref.manvolnum.xml; M: /trunk/xsl/params/runinhead.default.title.end.punct.xml; M: /trunk/xsl/params/navig.graphics.extension.xml; M: /trunk/xsl/params/itemizedlist.label.properties.xml; M: /trunk/xsl/params/htmlhelp.force.map.and.alias.xml; M: /trunk/xsl/params/profile.os.xml; M: /trunk/xsl/params/htmlhelp.alias.file.xml; M: /trunk/xsl/params/page.margin.outer.xml; M: /trunk/xsl/params/annotation.graphic.close.xml; M: /trunk/xsl/params/eclipse.autolabel.xml; M: /trunk/xsl/params/table.frame.border.style.xml; M: /trunk/xsl/params/navig.graphics.path.xml; M: /trunk/xsl/params/htmlhelp.hhc.binary.xml; M: /trunk/xsl/params/index.on.type.xml; M: /trunk/xsl/params/target.database.document.xml; M: /trunk/xsl/params/man.subheading.divider.xml; M: /trunk/xsl/params/chunker.output.method.xml; M: /trunk/xsl/params/make.index.markup.xml; M: /trunk/xsl/params/olink.base.uri.xml; M: /trunk/xsl/params/phrase.propagates.style.xml; M: /trunk/xsl/params/man.indent.refsect.xml; M: /trunk/xsl/params/example.properties.xml; M: /trunk/xsl/params/man.font.table.headings.xml; M: /trunk/xsl/params/profile.revisionflag.xml; M: /trunk/xsl/params/region.after.extent.xml; M: /trunk/xsl/params/qanda.title.level5.properties.xml; M: /trunk/xsl/params/marker.section.level.xml; M: /trunk/xsl/params/footer.table.height.xml; M: /trunk/xsl/params/autotoc.label.separator.xml; M: /trunk/xsl/params/footer.column.widths.xml; M: /trunk/xsl/params/hyphenate.verbatim.xml; M: /trunk/xsl/params/xref.properties.xml; M: /trunk/xsl/params/man.output.base.dir.xml; M: /trunk/xsl/params/man.links.list.heading.xml; M: /trunk/xsl/params/insert.link.page.number.xml; M: /trunk/xsl/params/htmlhelp.button.jump2.title.xml; M: /trunk/xsl/params/l10n.lang.value.rfc.compliant.xml - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Updated index.method doc to describe revised setup for importing <tag>index</tag> extensions.<alt>M: /trunk/xsl/params/index.method.xml - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added several new HTML parameters for controlling appearance of
+content on HTML <tag>title</tag> pages:
+
+<parameter>contrib.inline.enabled</parameter>:
+  If non-zero (the default), output of the <tag>contrib</tag> element is
+  displayed as inline content rather than as block content.
+
+<parameter>othercredit.like.author.enabled</parameter>:
+  If non-zero, output of the <tag>othercredit</tag> element on titlepages is
+  displayed in the same style as <tag>author</tag> and <tag>editor</tag> output. If zero
+  (the default), <tag>othercredit</tag> output is displayed using a style
+  different than that of <tag>author</tag> and <tag>editor</tag>.
+
+<parameter>blurb.on.titlepage.enabled</parameter>:
+  If non-zero, output from authorblurb and <tag>personblurb</tag> elements is
+  displayed on <tag>title</tag> pages. If zero (the default), output from
+  those elements is suppressed on <tag>title</tag> pages (unless you are
+  using a titlepage customization that causes them to be included).
+
+<parameter>editedby.enabled</parameter>
+  If non-zero (the default), a localized Edited by heading is
+  displayed above <tag>editor</tag> names in output of the <tag>editor</tag> element.<alt>A: /trunk/xsl/params/contrib.inline.enabled.xml; A: /trunk/xsl/params/blurb.on.titlepage.enabled.xml; A: /trunk/xsl/params/othercredit.like.author.enabled.xml; A: /trunk/xsl/params/editedby.enabled.xml - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added new <parameter>email.delimiters.enabled</parameter> param. If non-zero (the
+default), delimiters are generated around e-mail addresses (output
+of the <tag>email</tag> element). If zero, the delimiters are suppressed.<alt>A: /trunk/xsl/params/email.delimiters.enabled.xml - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added <parameter>qanda.nested.in.toc</parameter> param. Default value is zero. If
+non-zero, instances of "nested" <tag>Qandaentry</tag> (ones that are children
+of <tag>Answer</tag> elements) are displayed in the <tag>TOC</tag>. Closes patch 1509018
+(from Daniel Leidert). Currently on affects HTML output (no patch
+for FO output provided).<alt>A: /trunk/xsl/params/qanda.nested.in.toc.xml - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Initial support of syntax highlighting of programlistings.<alt>A: /trunk/xsl/params/highlight.source.xml; A: /trunk/xsl/params/highlight.default.language.xml - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.71.0-->
+
+<sect2 xml:id="V1.71.0_Tools">
+<title>Tools</title>
+<para>The following changes have been made to the
+            <filename>tools</filename> code
+            since the 1.70.1 release.</para>
+<itemizedlist>
+
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Racheted down font sizes of headings in example makefile FO output.<alt>M: /trunk/xsl/tools/make/Makefile.DocBook - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added param and attribute set to example makefile, for getting
+wrapping in verbatims in FO output.<alt>M: /trunk/xsl/tools/make/Makefile.DocBook - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Renamed Makefile.paramDoc to Makefile.docParam.<alt>A: /trunk/xsl/tools/make/Makefile.docParam; D: /trunk/xsl/tools/make/Makefile.paramDoc - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added Makefile.paramDoc file, for creating versions of param.xsl
+files with doc embedded.<alt>A: /trunk/xsl/tools/make/Makefile.paramDoc - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added variable to example makefile for controlling whether HTML or
+XHTML is generated.<alt>M: /trunk/xsl/tools/make/Makefile.DocBook - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+
+</itemizedlist>
+</sect2><!--end of Tools changes for 1.71.0-->
+</sect1>
 
 <sect1 xml:id="V1701">
 <title>Release: 1.70.1</title>
