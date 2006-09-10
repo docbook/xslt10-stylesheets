@@ -2,6 +2,7 @@ include ../../cvstools/Makefile.incl
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
+LREFENTRY=$(DOCBOOK_SVN)/xsl/tools/xsl/build/lrefentry.xsl
 
 all: param.xsl
 
@@ -13,7 +14,7 @@ xml: param.xml
 html: param.html
 
 param.html: param.xml
-	$(XSLT) $< ../../xsl/docsrc/lrefentry.xsl $@
+	$(XSLT) $< $(LREFENTRY) $@
 
 param.xml: param.xweb
 	$(XSLT) $< ../../xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=html
