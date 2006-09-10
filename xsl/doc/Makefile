@@ -18,7 +18,12 @@ VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages wordml slides website template
 
+# build reference.pdf.gz except for snapshot releases
+ifneq (snapshot,$(findstring snapshot,$(RELVER)))
+all: reference.txt.gz reference.pdf.gz html
+else
 all: reference.txt.gz html
+endif
 
 html: base copyright.html warranty.html reference.html index.html
 
@@ -50,8 +55,11 @@ reference.fo: ../docsrc/reference.dbk $(REFERENCEFOXSL)
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
 
-reference.txt: ../docsrc/reference.dbk $(REFERENCETXTXSL)
-	$(XSLTPROC) --xinclude $(REFERENCETXTXSL) $< | $(TXT_MAKER) $(TXT_MAKER_FLAGS) > $@
+reference.txt.html: ../docsrc/reference.dbk $(REFERENCETXTXSL)
+	$(XSLTPROC) --xinclude $(REFERENCETXTXSL) $< > $@
+
+reference.txt: reference.txt.html
+	$(TXT_MAKER) $(TXT_MAKER_FLAGS) $< > $@
 
 reference.pdf.gz: reference.pdf
 	cat $< | $(GZIP) $(GZIPFLAGS) > $@
