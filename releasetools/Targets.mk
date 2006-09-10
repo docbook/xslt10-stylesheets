@@ -208,6 +208,8 @@ install: zip
 	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
 	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   mv docbook-$(DISTRO)-$(ZIPVER) $(ZIPVER); \
+	   gunzip $(ZIPVER)/doc/reference.pdf.gz; \
+	   gunzip $(ZIPVER)/doc/reference.txt.gz; \
 	   rm -rf docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
 	   rm -rf docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   chmod -R g+w $(ZIPVER); \

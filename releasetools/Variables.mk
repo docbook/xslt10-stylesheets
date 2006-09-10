@@ -165,6 +165,7 @@ ZIP_EXCLUDES = \
  Makefile.incl \
  Makefile.param \
  PreviousRevision \
+ ChangeLog\.xml \
  README\.SVN \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl
