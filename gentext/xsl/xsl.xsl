@@ -32,7 +32,7 @@
     <xsl:comment> * </xsl:comment>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> *  <xsl:value-of
-    select="concat('https://svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/',$locale.file)"/> </xsl:comment>
+    select="concat('https://svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/',$locale.file, ' ')"/> </xsl:comment>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> * </xsl:comment>
     <xsl:text>&#10;</xsl:text>
@@ -40,7 +40,7 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> * </xsl:comment>
     <xsl:text>&#10;</xsl:text>
-    <xsl:comment> *   docbook-developers@lists.sourceforge.net</xsl:comment>
+    <xsl:comment> *  docbook-developers@lists.sourceforge.net </xsl:comment>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> ******************************************************************** </xsl:comment>
