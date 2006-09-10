@@ -1527,7 +1527,7 @@
 
 <xsl:template name="foil.number">
   <xsl:choose>
-    <xsl:when test="$show.foil.number != 0">
+    <xsl:when test="$show.foil.number != 0 and self::foil">
       <xsl:number count="foil" level="any"/>
       /
       <xsl:value-of select="count(//foil)"/>
