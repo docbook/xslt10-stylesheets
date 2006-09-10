@@ -387,9 +387,35 @@
 </xsl:template>
 
 <xsl:template match="text()" mode="hyphenate.verbatim" priority="2">
-  <xsl:call-template name="hyphenate.verbatim">
+  <xsl:call-template name="hyphenate.verbatim.block">
     <xsl:with-param name="content" select="."/>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="hyphenate.verbatim.block">
+  <xsl:param name="content" select="''"/>
+  <xsl:param name="count" select="1"/>
+
+  <!-- recurse on lines first to keep recursion depth reasonable -->
+  <xsl:choose>
+    <xsl:when test="contains($content, '&#xA;')">
+      <xsl:variable name="line" select="substring-before($content, '&#xA;')"/>
+      <xsl:variable name="rest" select="substring-after($content, '&#xA;')"/>
+      <xsl:call-template name="hyphenate.verbatim">
+        <xsl:with-param name="content" select="concat($line, '&#xA;')"/>
+      </xsl:call-template>
+      <xsl:call-template name="hyphenate.verbatim.block">
+        <xsl:with-param name="content" select="$rest"/>
+        <xsl:with-param name="count" select="$count + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="hyphenate.verbatim">
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+  
 </xsl:template>
 
 <xsl:template name="hyphenate.verbatim">
