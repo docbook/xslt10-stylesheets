@@ -768,7 +768,7 @@ lang="en</template>
 </context>
 
 <context name="htmlhelp">
-<template name="langcode">0x081a Serbian (Cyrillic)</template>
+<template name="langcode">0x0C1A Serbian (Cyrillic)</template>
 </context>
 
 </locale>
