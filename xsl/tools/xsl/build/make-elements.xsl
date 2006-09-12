@@ -54,6 +54,7 @@
         </xslt:choose>
       </xslt:template>
     </xslt:stylesheet>
+    <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>
