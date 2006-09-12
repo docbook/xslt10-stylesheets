@@ -43,8 +43,8 @@
 
     <rewriteURI uriStartString="{$URI_BASE}/{$DISTRO}/{$VERSION}/" rewritePrefix="./"/>
     <rewriteSystem systemIdStartString="{$URI_BASE}/{$DISTRO}/{$VERSION}/" rewritePrefix="./"/>
-
   </catalog>
+  <xsl:text>&#10;</xsl:text>
 
 </xsl:template>
 
