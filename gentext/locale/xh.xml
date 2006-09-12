@@ -481,4 +481,8 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="htmlhelp">
+<template name="langcode">0x0434 Xhosa</template>
+</context>
+
 </locale>

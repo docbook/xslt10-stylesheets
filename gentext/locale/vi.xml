@@ -479,7 +479,7 @@
 </context>
 
 <context name="htmlhelp">
-<template name="langcode">0x242a Vietnamese</template>
+<template name="langcode">0x042a Vietnamese</template>
 </context>
 
 </locale>

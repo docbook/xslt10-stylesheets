@@ -574,9 +574,7 @@
 </context>
 
 <context name="htmlhelp">
-<template name="langcode">0x0439 Tamil</template>
-<!-- 0x0439 is actually the language code for Hindi. There is no HTML Help -->
-<!-- language code for Tamil. -->
+<template name="langcode">0x0049 Tamil</template>
 </context>
 
 </locale>
