@@ -41,39 +41,59 @@ of the following:
 
     /usr/share/xml/docbook/stylesheet/nwalsh/html/chunk.xsl
 
-To transform documents created with the standard DocBook schema/DTD
-(or DocBook NG schema/DTD, use one of the following stylesheets:
+To transform documents created with the standard DocBook
+schema/DTD, use one of the following stylesheets:
 
-  fo/docbook.xsl          - for XSL-FO
-  fo/profile-docbook.xsl  - for XSL-FO (single-pass profiled)
+  fo/docbook.xsl              - for XSL-FO
+  fo/profile-docbook.xsl      - for XSL-FO (single-pass profiled)
 
-  html/docbook.xsl        - for HTML (as a single file)
-  html/chunk.xsl          - for HTML (chunked into multiple files)
-  html/onechunk.xsl       - for HTML (chunked output in single file)
-  html/profile-*          - for HTML (single-pass profiled versions)
+  html/docbook.xsl            - for HTML (as a single file)
+  html/chunk.xsl              - for HTML (chunked into multiple files)
+  html/onechunk.xsl           - for HTML (chunked output in single file)
+  html/profile-*              - for HTML (single-pass profiled versions)
 
-  xhtml/*.xsl             - for XHTML versions of the above
+  xhtml/*.xsl                 - for XHTML versions of the above
 
-  htmlhelp/htmlhelp.xsl   - for HTML Help
-  javahelp/javahelp.xsl   - for JavaHelp
-  eclipse/eclipse.xsl     - for Eclipse Help
+  htmlhelp/htmlhelp.xsl       - for HTML Help
+  javahelp/javahelp.xsl       - for JavaHelp
+  eclipse/eclipse.xsl         - for Eclipse Help
 
-  manpages/docbook.xsl    - for groff/nroff man pages
+  manpages/docbook.xsl        - for groff/nroff man pages[1]
+  [1] more information at http://wiki.docbook.org/topic/ManPages
+
+  wordml/docbook.xsl          - DocBook XML to WordML
+  wordml/docbook-pages.xsl    - DocBook XML to Pages index.xml
+  wordml/pages-normalise.xsl  - Pages index.xml to (1a)
+
+To convert WordML into DocBook, use the following chain of stylesheets:
+
+  wordml/wordml-normalise.xsl - WordML to (1w)
+  wordml/wordml-sections.xsl  - (1a or 1w) to (2)
+  wordml/wordml-blocks.xsl    - (2) to (3)
+  wordml/wordml-final.xsl     - (3) to DocBook XML
 
 To transform documents created with the DocBook Slides schema/DTD,
 use one of the following stylesheets:
 
-  slides/html/*.xsl       - for HTML slides of various kinds
-  slides/xhtml/*.xsl      - for XHTML slides of various kinds
-  slides/fo/plain.xsl     - for XSL-FO slides
-  slides/htmlhelp/...     - for HTML Help slides
+  slides/html/*.xsl           - for HTML slides of various kinds
+  slides/xhtml/*.xsl          - for XHTML slides of various kinds
+  slides/fo/plain.xsl         - for XSL-FO slides
+  slides/htmlhelp/...         - for HTML Help slides
 
 To transform documents created with the DocBook Website
 schema/DTD, use one of the following stylesheets:
 
-  website/website.xsl     - for non-tabular, non-chunked output
-  website/tabular.xsl     - for tabular, non-chunked output
-  website/chunk-*         - for chunked output
+  website/website.xsl         - for non-tabular, non-chunked output
+  website/tabular.xsl         - for tabular, non-chunked output
+  website/chunk-*             - for chunked output
+
+To generate a titlepage customization layer from a titlepage spec:
+
+  template/titlepage.xsl
+
+For details about creating titlepage spec files and generating and
+using titlepage customization layers, see "DocBook XSL: The
+Complete Guide" <http://www.sagehill.net/docbookxsl/>
 
 ----------------------------------------------------------------------
 Manifest
@@ -90,24 +110,24 @@ VERSION       the current version number (note that this is an XSL stylesheet,
 NEWS          changes since the last public release (for a cumulative list of
               changes, see the ChangeHistory.xml file)
 
-common/       contains code common to both the HTML and FO stylesheets
-doc/          documentation
+common/       code used among several output formats (HTML, FO, manpages,...)
 docsrc/       documentation sources
-eclipse/      stylesheet that produces Eclipse Help
-extensions/   Java extensions
-fo/           stylesheets that produce XSL FO
-highlighting  files used for adding code syntax-highlighting in output
-html/         stylesheets that produce HTML
-htmlhelp/     stylesheets that produce HTML Help
-images/       images
-javahelp/     stylesheets that produce Java Help
-lib/          contains schema-independent functions
-manpages/     stylesheets for producing groff/nroff man pages
-profiling/    stylesheets for profiling (omitting/including conditional text)
-slides/       stylesheets for producing slides (from DocBook Slides source)
-template/     contains templates for building stylesheet customization layers
-website/      stylesheets for producing a website (from DocBook Website source)
-xhtml/        stylesheets that produce XHTML
+eclipse/      for producing Eclipse Help
+extensions/   Java XSLT extensions
+fo/           for producing XSL-FO
+highlighting  files used for adding source-code syntax highlighting in output
+html/         for producing HTML
+htmlhelp/     for producing HTML Help
+images/       images used in callouts and graphical admonitions
+javahelp/     for producing Java Help
+lib/          utility stylesheets with schema-independent functions
+manpages/     for producing groff/nroff man pages
+profiling/    for profiling (omitting/including conditional text)
+slides/       for producing slides output (from Slides source)
+template/     templates for building stylesheet customization layers
+website/      for producing website output (from Website source)
+wordml/       for "round trip" conversion between DocBook XML and WordML
+xhtml/        for producing XHTML
 
 ----------------------------------------------------------------------
 Changes
