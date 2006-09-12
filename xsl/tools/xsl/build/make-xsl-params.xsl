@@ -64,6 +64,7 @@
             select="concat(normalize-space(substring-after($param.dirs, ' ')),' ')"/>
       </xsl:call-template>
     </xslt:stylesheet>
+    <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 
   <!-- ==================================================================== -->

@@ -18,6 +18,12 @@
 
      ******************************************************************** -->
 
+<xsl:template match="/">
+  <xsl:text>&#x0a;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#x0a;</xsl:text>
+</xsl:template>
+
 <xsl:template match="node() | @*">
   <xsl:copy>
     <xsl:apply-templates select="@* | node()"/>
