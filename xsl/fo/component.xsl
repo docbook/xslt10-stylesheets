@@ -654,14 +654,6 @@
   </xsl:variable>
 
   <fo:block id='{$id}'>
-    <xsl:if test="$passivetex.extensions != 0">
-      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
-                      fotex-bookmark-level="{count(ancestor::*)+2}" 
-                      fotex-bookmark-label="{$id}">
-        <xsl:value-of select="$titleabbrev"/>
-      </fotex:bookmark>
-    </xsl:if>
-
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:outline-level">
         <xsl:value-of select="count(ancestor::*)+2"/>
@@ -670,6 +662,14 @@
       <xsl:attribute name="axf:outline-title">
         <xsl:value-of select="normalize-space($titleabbrev)"/>
       </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$passivetex.extensions != 0">
+      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
+                      fotex-bookmark-level="{count(ancestor::*)+2}" 
+                      fotex-bookmark-label="{$id}">
+        <xsl:value-of select="$titleabbrev"/>
+      </fotex:bookmark>
     </xsl:if>
 
     <fo:block xsl:use-attribute-sets="article.appendix.title.properties">
