@@ -1,14 +1,17 @@
 # Makefile.incl gets included by makefiles in all subdirs
 
+PARAMFILES = $(shell if [ -f $(VPATH)/docparam.xml ]; then $(XSLT) $(VPATH)/docparam.xml $(DOCPARAM2TXT); fi)
+
 all: $(HTMLFILES)
 
 %.html : %.xml $(JREFHTML)
 	$(XSLT) $< $(JREFHTML) $@ $(XSLTOPT)
 
-param.html: docparam.xml
+index.html: docparam.xml
 	$(XSLT) $< $(CLREFENTRY) $(XSLTOPT)
-	touch param.html
 
 clean:
 	$(RM) $(HTMLFILES)
-	$(RM) *.html
+ifneq ($(PARAMFILES),)
+	$(RM) $(PARAMFILES)
+endif
