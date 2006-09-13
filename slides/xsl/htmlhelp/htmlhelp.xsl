@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+<!DOCTYPE xsl:stylesheet [
+<!ENTITY lf '<xsl:text xmlns:xsl="http://www.w3.org/1999/XSL/Transform">&#xA;</xsl:text>'>
+]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:exsl="http://exslt.org/common"
@@ -38,27 +41,23 @@
         <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
       </xsl:if>
     </xsl:if>
-    <xsl:call-template name="escape-attr">
-      <xsl:with-param name="value">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
-      &lt;param name="Name" value="</xsl:text>
-          <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text disable-output-escaping="yes">"&gt;
-      &lt;param name="Local" value="</xsl:text>
+    <LI><OBJECT type="text/sitemap">&lf;
+      <param name="Name" value="{normalize-space($title)}"/>&lf;
+      <param name="Local">
+	<xsl:attribute name="value">
           <xsl:apply-templates select="." mode="filename"/>
-      <xsl:text disable-output-escaping="yes">"&gt;
-    &lt;/OBJECT&gt;</xsl:text>
+	</xsl:attribute>
+      </param>
+    </OBJECT></LI>&lf;
   </xsl:if>
   <xsl:if test="foil|foilgroup">
-    <xsl:text disable-output-escaping="yes">&lt;UL&gt;</xsl:text>
+    <UL>&lf;
       <xsl:apply-templates select="foil|foilgroup" mode="hhc"/>
-    <xsl:text disable-output-escaping="yes">&lt;/UL&gt;</xsl:text>
+    </UL>&lf;
   </xsl:if>
 </xsl:template>
 
@@ -72,22 +71,18 @@
         <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
       </xsl:if>
     </xsl:if>
-    <xsl:call-template name="escape-attr">
-      <xsl:with-param name="value">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:apply-templates select="." mode="title.markup"/>
   </xsl:variable>
 
   <xsl:if test="$htmlhelp.hhc.show.root != 0 or parent::*">
-    <xsl:text disable-output-escaping="yes">&lt;LI&gt; &lt;OBJECT type="text/sitemap"&gt;
-      &lt;param name="Name" value="</xsl:text>
-          <xsl:value-of select="normalize-space($title)"/>
-      <xsl:text disable-output-escaping="yes">"&gt;
-      &lt;param name="Local" value="</xsl:text>
-          <xsl:apply-templates select="." mode="filename"/>
-      <xsl:text disable-output-escaping="yes">"&gt;
-    &lt;/OBJECT&gt;</xsl:text>
+    <LI><OBJECT type="text/sitemap">&lf;
+      <param name="Name" value="{normalize-space($title)}"/>&lf;
+      <param name="Local">
+	<xsl:attribute name="value">
+	  <xsl:apply-templates select="." mode="filename"/>
+	</xsl:attribute>
+      </param>
+    </OBJECT></LI>&lf;
   </xsl:if>
 </xsl:template>
 
