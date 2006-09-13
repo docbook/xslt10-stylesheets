@@ -1,4 +1,4 @@
 include ../../../releasetools/Variables.mk
 VPATH=../../docsrc/wordml
-HTMLFILES = param.html
+HTMLFILES = index.html
 include ../Makefile.incl

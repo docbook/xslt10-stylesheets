@@ -1,4 +1,4 @@
 include ../../../releasetools/Variables.mk
 VPATH=../../docsrc/website
-HTMLFILES = param.html
+HTMLFILES = index.html
 include ../Makefile.incl

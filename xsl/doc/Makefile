@@ -16,7 +16,7 @@ GZIPFLAGS=
 
 VPATH=../docsrc
 
-DIRS=common refentry lib html fo manpages wordml slides website template
+DIRS=common refentry lib html fo manpages wordml slides website template pi
 
 # build reference.pdf.gz except for snapshot releases
 ifneq (snapshot,$(findstring snapshot,$(RELVER)))
@@ -68,14 +68,18 @@ reference.txt.gz: reference.txt
 	cat $< | $(GZIP) $(GZIPFLAGS) > $@
 
 clean:
-	$(RM) *.html
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 		fi \
 	done
+	$(RM) copyright.html
+	$(RM) index.html
+	$(RM) reference.html
+	$(RM) warranty.html
 	$(RM) reference.fo
 	$(RM) reference.pdf
 	$(RM) reference.txt
+	$(RM) reference.txt.html
 	$(RM) reference.pdf.gz
 	$(RM) reference.txt.gz
