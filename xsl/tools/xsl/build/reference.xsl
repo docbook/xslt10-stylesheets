@@ -11,6 +11,7 @@
 <xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
 <xsl:param name="admon.style"/>
 <xsl:param name="generate.toc"/>
+<xsl:param name="html.append"><xsl:text>&#x0a;</xsl:text></xsl:param>
 
 <xsl:template match="/legalnotice">
   <xsl:apply-templates select="." mode="titlepage.mode"/>

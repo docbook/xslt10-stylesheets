@@ -1241,6 +1241,7 @@
       <xsl:call-template name="user.footer.navigation"/>
     </body>
   </html>
+  <xsl:value-of select="$chunk.append"/>
 </xsl:template>
 
 </xsl:stylesheet>

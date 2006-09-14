@@ -522,6 +522,7 @@
               </div>
             </body>
           </html>
+          <xsl:value-of select="$chunk.append"/>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:when>
@@ -749,6 +750,7 @@
               <xsl:copy-of select="$contents"/>
             </body>
           </html>
+          <xsl:text>&#x0a;</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:when>

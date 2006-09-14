@@ -1254,6 +1254,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             </xsl:for-each>
           </body>
         </html>
+        <xsl:value-of select="$chunk.append"/>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:if>
