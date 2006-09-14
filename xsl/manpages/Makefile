@@ -2,7 +2,7 @@ include ../../cvstools/Makefile.incl
 
 PARAMPROF=.param.profiled
 PARAMSTRIP=.param.stripped
-MAKE_SYNOP=html2roff.xsl
+HTML2ROFF=../tools/xsl/build/html2roff.xsl
 LREFENTRY=../tools/xsl/build/lrefentry.xsl
 
 include Makefile.param
