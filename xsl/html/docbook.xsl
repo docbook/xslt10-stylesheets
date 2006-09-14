@@ -422,6 +422,7 @@ body { background-image: url('</xsl:text>
       </xsl:call-template>
     </body>
   </html>
+  <xsl:value-of select="$html.append"/>
 </xsl:template>
 
 <xsl:template name="root.messages">

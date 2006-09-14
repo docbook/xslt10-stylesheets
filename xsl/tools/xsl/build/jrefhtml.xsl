@@ -28,6 +28,7 @@
 <xsl:param name="admon.graphics.path">../images/</xsl:param>
 <xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
 <xsl:param name="admon.style"/>
+<xsl:param name="html.append"><xsl:text>&#x0a;</xsl:text></xsl:param>
 
 
 <xsl:template match="refentry">

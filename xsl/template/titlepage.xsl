@@ -20,6 +20,12 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="/">
+  <xsl:text>&#x0a;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#x0a;</xsl:text>
+</xsl:template>
+
 <doc:reference xmlns="">
 <referenceinfo>
 <releaseinfo role="meta">

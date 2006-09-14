@@ -9,6 +9,7 @@
 
 <xsl:param name="use.id.as.filename" select="1"/>
 <xsl:param name="refentry.separator" select="0"/>
+<xsl:param name="chunk.append"><xsl:text>&#x0a;</xsl:text></xsl:param>
 
 <!-- n.b. reference pages are one directory down, so we point back up -->
 <xsl:param name="html.stylesheet" select="'../css/reference.css'"/>

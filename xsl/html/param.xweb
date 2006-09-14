@@ -150,6 +150,7 @@ stylesheet like this:</para>
 &html.longdesc.link;
 &make.valid.html;
 &html.cleanup;
+&html.append;
 &draft.mode;
 &draft.watermark.image;
 &generate.id.attributes;
@@ -343,6 +344,7 @@ stylesheet like this:</para>
 &chunk.section.depth;
 &chunk.first.sections;
 &chunk.quietly;
+&chunk.append;
 &navig.graphics;
 &navig.graphics.extension;
 &navig.graphics.path;
@@ -493,6 +495,7 @@ around all these parameters.</para>
 <src:fragref linkend="callout.unicode.start.character.frag"/>
 <src:fragref linkend="callouts.extension.frag"/>
 <src:fragref linkend="chapter.autolabel.frag"/>
+<src:fragref linkend="chunk.append.frag"/>
 <src:fragref linkend="chunk.first.sections.frag"/>
 <src:fragref linkend="chunk.quietly.frag"/>
 <src:fragref linkend="chunk.section.depth.frag"/>
@@ -551,6 +554,7 @@ around all these parameters.</para>
 <src:fragref linkend="header.rule.frag"/>
 <src:fragref linkend="highlight.default.language.frag"/>
 <src:fragref linkend="highlight.source.frag"/>
+<src:fragref linkend="html.append.frag"/>
 <src:fragref linkend="html.base.frag"/>
 <src:fragref linkend="html.cellpadding.frag"/>
 <src:fragref linkend="html.cellspacing.frag"/>
@@ -623,6 +627,7 @@ around all these parameters.</para>
 <src:fragref linkend="index.prefer.titleabbrev.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
+<src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="keep.relative.image.uris.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
@@ -750,7 +755,6 @@ around all these parameters.</para>
 <src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>
 <src:fragref linkend="xref.title-page.separator.frag"/>
-<src:fragref linkend="insert.xref.page.number.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
