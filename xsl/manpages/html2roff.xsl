@@ -27,6 +27,11 @@
               encoding="UTF-8"
               indent="no"/>
 
+  <xsl:template match="/">
+    <xsl:apply-templates/>
+    <xsl:text>&#x0a;</xsl:text>
+  </xsl:template>
+
   <xsl:template match="node() | @*">
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
