@@ -10,6 +10,7 @@
 #    -2...     Specifies a particular version
 #    -debug    Debugging
 #    -config   Where is the config file? Defaults to ~/.xmlc
+#    -c14n     Canonicalize output using xmllint
 #    -opts id  Use additional options 'id' from the config file.
 #              The -opts option may be specified more than once
 #
@@ -29,6 +30,7 @@ my $version = "";
 my $debug = 0;
 my $config = "~/.xmlc";
 my @opts = ();
+my $c14n = 0;
 
 while (@ARGV) {
     if ($ARGV[0] =~ /^-\d/) {
@@ -40,6 +42,9 @@ while (@ARGV) {
     } elsif ($ARGV[0] eq '-config') {
 	shift @ARGV;
 	$config = shift @ARGV;
+    } elsif ($ARGV[0] eq '-c14n') {
+	shift @ARGV;
+	$c14n = 1;
     } elsif ($ARGV[0] eq '-opts') {
 	shift @ARGV;
 	push(@opts, shift @ARGV);
@@ -67,7 +72,11 @@ if (!defined($input) || $input =~ /^-/) {
 
 # Everything else goes to xsltproc
 my @xsltprocopts = @ARGV;
-push (@xsltprocopts, "-o $output") if defined($output) && $output ne '-';
+
+# xsltproc output sometimes contains unnecessary namespace nodes;
+# piping it through "xmllint --c14n" to canonicalize the output
+# removes those
+my @xmllintopts = ("--c14n");
 
 die $usage if !defined($input) || !defined($style);
 
@@ -85,8 +94,9 @@ my $xp = XML::XPath->new('filename' => $config);
 my $doc = ($xp->find("/config")->get_nodelist())[0];
 die "Unexpected root element in configuration file.\n" if !$doc;
 
+my $xsltprocexec;
 foreach my $name (@opts, $optsname) {
-    applyOpts($xp, $name);
+    $xsltprocexec = applyOpts($xp, $name);
 }
 
 showVars() if $debug;
@@ -94,6 +104,7 @@ showVars() if $debug;
 die "No execname?\n" if !defined($execname);
 
 my $xopts = join(" ", @xsltprocopts);
+my $xlintopts = join(" ", @xmllintopts);
 
 my $xparam = "";
 foreach my $param (@params) {
@@ -106,11 +117,23 @@ foreach my $param (@params) {
 	$name = $param;
     }
 
-    $xparam .= "-stringparam $name \"$value\" ";
+    $xparam .= "--stringparam $name \"$value\" ";
 }
 
-print "$execname $xopts $style $input\n" if $debug;
-exec("$execname $xopts $style $input");
+# note that there is a bug in the -o option in xsltproc; if you
+# do, for example, "xsltproc -o /dev/null foo.xsl bar.xml" with a
+# stylesheet that has exsl:document or saxon:output, xsltproc
+# tries to write the output in the /dev directory; so we need to
+# redirect the output instead of using xsltproc's -o option
+my $redirect = " > $output" if defined($output) && $output ne '-';
+
+if ($c14n) {
+  my $xmllintpipe =  " | " . applyOpts($xp, 'xmllint') . " " . $xlintopts;
+  $redirect = $xmllintpipe . " - " . $redirect;
+}
+
+print "$xsltprocexec $xopts $xparam $style $input$redirect\n" if $debug;
+exec("$xsltprocexec $xopts $xparam $style $input$redirect");
 
 # ============================================================
 
@@ -131,12 +154,18 @@ sub applyOpts {
 
     print STDERR "Loading $id from $config\n" if $debug;
 
-    $execname = $node->getAttribute('exec')
+    my $execname = $node->getAttribute('exec')
 	if $execname eq '';
 
-    foreach my $arg (configArgs($node, 'arg', '-', ' ')) {
-	addOpt(\@xsltprocopts, $arg, ' ');
-    }
+        if ($id eq "xsltproc") {
+          foreach my $arg (configArgs($node, 'arg', '--', ' ')) {
+            addOpt(\@xsltprocopts, $arg, ' ');
+          }
+        } elsif ($id eq "xmllint") {
+          foreach my $arg (configArgs($node, 'arg', '--', ' ')) {
+            addOpt(\@xmllintopts, $arg, ' ');
+          }
+        }
 
     foreach my $param (configArgs($node, 'param', '', '=')) {
 	addOpt(\@params, $param, '=');
@@ -144,6 +173,7 @@ sub applyOpts {
 
     my $extends = $node->getAttribute('extends');
     applyOpts($xp, $extends) if $extends ne '';
+    return $execname;
 }
 
 sub configArgs {
@@ -218,7 +248,10 @@ sub showVars {
     print STDERR "optsname: $optsname\n";
     showArr("opts", @opts);
     showArr("xsltproc opts", @xsltprocopts);
+    showArr("xmllint opts", @xmllintopts) if $c14n;
     print STDERR "input: $input\n" if defined($input);
+    print STDERR "output: $output\n" if defined($output);
+    print STDERR "c14n: enabled\n" if $c14n;
     print STDERR "style: $style\n" if defined($style);
     if (@params) {
 	print STDERR "params:\n";
@@ -232,7 +265,7 @@ sub showVars {
 		$name = $param;
 	    }
 
-	    print STDERR "\t-stringparam $name \"$value\"\n";
+	    print STDERR "\t--stringparam $name \"$value\"\n";
 	}
     }
 }
