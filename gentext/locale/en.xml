@@ -15,8 +15,8 @@
 
 <gentext key="Abstract" text="Abstract"/>
 <gentext key="abstract" text="Abstract"/>
-<gentext key="Answer" text="A:"/>
-<gentext key="answer" text="A:"/>
+<gentext key="Answer" text="foo"/>
+<gentext key="answer" text="foo"/>
 <gentext key="Appendix" text="Appendix"/>
 <gentext key="appendix" text="Appendix"/>
 <gentext key="Article" text="Article"/>
@@ -324,6 +324,7 @@
 <template name="article/appendix">%n.&#160;%t</template>
 <template name="bridgehead">%n.&#160;%t</template>
 <template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 <template name="sect1">%n.&#160;%t</template>
 <template name="sect2">%n.&#160;%t</template>
 <template name="sect3">%n.&#160;%t</template>
@@ -331,7 +332,6 @@
 <template name="sect5">%n.&#160;%t</template>
 <template name="section">%n.&#160;%t</template>
 <template name="simplesect">%t</template>
-<template name="part"><Part/>&#160;%n.&#160;%t</template>
 
 </context>
 

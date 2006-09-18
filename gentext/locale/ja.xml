@@ -284,8 +284,9 @@
 <context name="title-numbered">
 
 <template name="appendix"><Appendix/> %n. %t</template>
-<template name="chapter"><Chapter1/>%n<Chapter2/> %t</template>
 <template name="bridgehead">%n. %t</template>
+<template name="chapter"><Chapter1/>%n<Chapter2/> %t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
 <template name="sect3">%n. %t</template>

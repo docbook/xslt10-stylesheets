@@ -299,6 +299,7 @@
 <template name="article/appendix">%n.&#160;%t</template>
 <template name="bridgehead">%n.&#160;%t</template>
 <template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 <template name="sect1">%n.&#160;%t</template>
 <template name="sect2">%n.&#160;%t</template>
 <template name="sect3">%n.&#160;%t</template>

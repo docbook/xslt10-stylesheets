@@ -287,6 +287,7 @@
 <template name="article/appendix">%n.&#160;%t</template>
 <template name="bridgehead">%n. %t</template>
 <template name="chapter">%n<Chapter/>. %t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
 <template name="sect3">%n. %t</template>
@@ -294,7 +295,6 @@
 <template name="sect5">%n. %t</template>
 <template name="section">%n. %t</template>
 <template name="simplesect">%n. %t</template>
-<template name="part"><Part/>&#160;%n.&#160;%t</template>
 
 </context>
 
