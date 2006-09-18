@@ -14,7 +14,7 @@
                 (string-length($role) = 0 and string-length($type) = 0))'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:k="java:com.isogen.saxoni18n.Saxoni18nService"
+                xmlns:k="http://www.isogen.com/functions/com.isogen.saxoni18n.Saxoni18nService"
                 exclude-result-prefixes="k"
                 version="1.0">
 

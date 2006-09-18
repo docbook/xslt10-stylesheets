@@ -13,7 +13,7 @@
                 xmlns:i="urn:cz-kosek:functions:index"
                 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
                 xmlns:func="http://exslt.org/functions"
-                xmlns:k="java:com.isogen.saxoni18n.Saxoni18nService"
+                xmlns:k="http://www.isogen.com/functions/com.isogen.saxoni18n.Saxoni18nService"
                 xmlns:exslt="http://exslt.org/common"
                 extension-element-prefixes="func exslt"
                 exclude-result-prefixes="func exslt i l k"
