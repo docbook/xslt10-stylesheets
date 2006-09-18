@@ -286,6 +286,7 @@
 <template name="appendix">%n. <appendix/> - %t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%n. <chapter/> - %t</template>
+<template name="part">%n. <part/> - %t</template>
 <template name="sect1">%n. %t</template>
 <template name="sect2">%n. %t</template>
 <template name="sect3">%n. %t</template>
