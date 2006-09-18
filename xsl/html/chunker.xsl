@@ -1,12 +1,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:saxon="http://icl.com/saxon"
                 xmlns:lxslt="http://xml.apache.org/xslt"
-                xmlns:xalanredirect="org.apache.xalan.xslt.extensions.Redirect"
+                xmlns:redirect="http://xml.apache.org/xalan/redirect"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
 		version="1.0"
                 exclude-result-prefixes="doc"
-                extension-element-prefixes="saxon xalanredirect lxslt exsl">
+                extension-element-prefixes="saxon redirect lxslt exsl">
 
 <!-- ********************************************************************
      $Id$
@@ -21,7 +21,7 @@
 <!-- ==================================================================== -->
 
 <!-- This stylesheet works with XSLT implementations that support -->
-<!-- exsl:document, saxon:output, or xalanredirect:write -->
+<!-- exsl:document, saxon:output, or Xalan's redirect:write -->
 <!-- Note: Only Saxon 6.4.2 or later is supported. -->
 
 <xsl:param name="chunker.output.method" select="'html'"/>
@@ -60,7 +60,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
-    <xsl:when test="element-available('xalanredirect:write')">
+    <xsl:when test="element-available('redirect:write')">
       <!-- Xalan doesn't make the chunks relative -->
       <xsl:value-of select="concat($base.dir,$base.name)"/>
     </xsl:when>
@@ -353,11 +353,11 @@
       </xsl:choose>
     </xsl:when>
 
-    <xsl:when test="element-available('xalanredirect:write')">
-      <!-- Xalan uses xalanredirect -->
-      <xalanredirect:write file="{$filename}">
+    <xsl:when test="element-available('redirect:write')">
+      <!-- Xalan uses redirect -->
+      <redirect:write file="{$filename}">
         <xsl:copy-of select="$content"/>
-      </xalanredirect:write>
+      </redirect:write>
     </xsl:when>
 
     <xsl:otherwise>
