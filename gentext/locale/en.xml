@@ -15,8 +15,8 @@
 
 <gentext key="Abstract" text="Abstract"/>
 <gentext key="abstract" text="Abstract"/>
-<gentext key="Answer" text="foo"/>
-<gentext key="answer" text="foo"/>
+<gentext key="Answer" text="A:"/>
+<gentext key="answer" text="A:"/>
 <gentext key="Appendix" text="Appendix"/>
 <gentext key="appendix" text="Appendix"/>
 <gentext key="Article" text="Article"/>
