@@ -251,9 +251,14 @@
     <!-- * output name and email or ulink content on the same line -->
     <xsl:choose>
       <xsl:when test="not($person-name = '') or .//email or address/otheraddr/ulink">
+        <!-- * Our mode="bold" mechanism doesn't work on text nodes; so we -->
+        <!-- * need to turn the person-name into an element node first. -->
+        <xsl:variable name="person-name-node">
+          <bold><xsl:value-of select="$person-name"/></bold>
+        </xsl:variable>
         <xsl:text>.PP&#10;</xsl:text>
         <!-- * Display person name in bold -->
-        <xsl:apply-templates mode="bold" select="exsl:node-set($person-name)"/>
+        <xsl:apply-templates mode="bold" select="exsl:node-set($person-name-node)"/>
         <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
         <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
         <xsl:text>&#10;</xsl:text>
