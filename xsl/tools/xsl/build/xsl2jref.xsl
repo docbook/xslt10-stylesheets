@@ -52,6 +52,12 @@
         <xsl:with-param name="filename" select="$output-file"/>
         <xsl:with-param name="method" select="'xml'"/>
         <xsl:with-param name="encoding" select="'utf-8'"/>
+        <xsl:with-param
+            name="doctype-public"
+            >-//Norman Walsh//DTD JRefEntry V1.1//EN</xsl:with-param>
+        <xsl:with-param
+            name="doctype-system"
+            >http://docbook.sourceforge.net/release/jrefentry/1.1/jrefentry.dtd</xsl:with-param>
         <xsl:with-param name="content">
           <xsl:apply-templates/>
         </xsl:with-param>
