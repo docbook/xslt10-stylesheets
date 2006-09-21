@@ -48,15 +48,15 @@
                                               $conformance.content != '' or @conformance = ''"/>
 
   <xsl:variable name="lang.content">
-    <xsl:if test="@lang">
+    <xsl:if test="@lang | @xml:lang">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$profile.lang"/>
-        <xsl:with-param name="b" select="@lang"/>
+        <xsl:with-param name="b" select="(@lang | @xml:lang)[1]"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:variable>
-  <xsl:variable name="lang.ok" select="not(@lang) or not($profile.lang) or
-                                       $lang.content != '' or @lang = ''"/>
+  <xsl:variable name="lang.ok" select="not(@lang | @xml:lang) or not($profile.lang) or
+                                       $lang.content != '' or @lang = '' or @xml:lang = ''"/>
 
   <xsl:variable name="os.content">
     <xsl:if test="@os">
@@ -113,6 +113,17 @@
   <xsl:variable name="security.ok" select="not(@security) or not($profile.security) or
                                            $security.content != '' or @security = ''"/>
 
+  <xsl:variable name="status.content">
+    <xsl:if test="@status">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.status"/>
+        <xsl:with-param name="b" select="@status"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="status.ok" select="not(@status) or not($profile.status) or
+                                           $status.content != '' or @status = ''"/>
+
   <xsl:variable name="userlevel.content">
     <xsl:if test="@userlevel">
       <xsl:call-template name="cross.compare">
@@ -150,7 +161,7 @@
 
   <xsl:if test="$arch.ok and $condition.ok and $conformance.ok and $lang.ok and $os.ok 
                 and $revision.ok and $revisionflag.ok and $role.ok and $security.ok
-                and $userlevel.ok and $vendor.ok and $attribute.ok">
+		and $status.ok and $userlevel.ok and $vendor.ok and $attribute.ok">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
 

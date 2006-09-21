@@ -31,6 +31,7 @@
 <xsl:param name="profile.revisionflag" select="''"/>
 <xsl:param name="profile.role" select="''"/>
 <xsl:param name="profile.security" select="''"/>
+<xsl:param name="profile.status" select="''"/>
 <xsl:param name="profile.userlevel" select="''"/>
 <xsl:param name="profile.vendor" select="''"/>
 <xsl:param name="profile.attribute" select="''"/>

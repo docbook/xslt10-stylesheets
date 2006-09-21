@@ -1,0 +1,35 @@
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="profile.status">
+<refmeta>
+<refentrytitle>profile.status</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>profile.status</refname>
+<refpurpose>Target profile for <sgmltag class="attribute">status</sgmltag>
+attribute</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='profile.status.frag'>
+<xsl:param name="profile.status" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Value of this parameter specifies profiles which should be
+included in the output. You can specify multiple profiles by
+separating them by semicolon. You can change separator character by
+<parameter>profile.separator</parameter>
+parameter.</para>
+
+<para>This parameter has effect only when you are using profiling
+stylesheets (<filename>profile-docbook.xsl</filename>,
+<filename>profile-chunk.xsl</filename>, &#x2026;) instead of normal
+ones (<filename>docbook.xsl</filename>,
+<filename>chunk.xsl</filename>, &#x2026;).</para>
+
+</refsect1>
+</refentry>
