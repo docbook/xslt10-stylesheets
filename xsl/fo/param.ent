@@ -155,6 +155,7 @@
 <!ENTITY profile.role SYSTEM "../params/profile.role.xml">
 <!ENTITY profile.security SYSTEM "../params/profile.security.xml">
 <!ENTITY profile.separator SYSTEM "../params/profile.separator.xml">
+<!ENTITY profile.status SYSTEM "../params/profile.status.xml">
 <!ENTITY profile.userlevel SYSTEM "../params/profile.userlevel.xml">
 <!ENTITY profile.value SYSTEM "../params/profile.value.xml">
 <!ENTITY profile.vendor SYSTEM "../params/profile.vendor.xml">

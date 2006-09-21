@@ -367,6 +367,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &profile.revisionflag;
 &profile.role;
 &profile.security;
+&profile.status;
 &profile.userlevel;
 &profile.vendor;
 &profile.attribute;
@@ -689,6 +690,7 @@ around all these parameters.</para>
 <src:fragref linkend="profile.role.frag"/>
 <src:fragref linkend="profile.security.frag"/>
 <src:fragref linkend="profile.separator.frag"/>
+<src:fragref linkend="profile.status.frag"/>
 <src:fragref linkend="profile.userlevel.frag"/>
 <src:fragref linkend="profile.value.frag"/>
 <src:fragref linkend="profile.vendor.frag"/>
