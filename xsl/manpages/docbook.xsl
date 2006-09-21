@@ -230,7 +230,7 @@
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <xsl:if test="$man.links.list.enabled != 0 or
                     $man.links.are.numbered != 0">
-        <xsl:call-template name="links.list"/>
+        <xsl:call-template name="endnotes.list"/>
       </xsl:if>
     </xsl:variable> <!-- * end of manpage.contents -->
 

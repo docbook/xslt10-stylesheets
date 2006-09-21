@@ -39,12 +39,42 @@
 </xsl:template>
 
 <xsl:template match="para">
-  <xsl:if test="not(ancestor::footnote[ancestor::table]) and
-                not(ancestor::authorblurb) and
-                not(ancestor::personblurb)">
-    <xsl:text>.PP&#10;</xsl:text>
-  </xsl:if>
+  <!-- * FIXME: Need to extract the ancestor::footnote, etc. checking and -->
+  <!-- * move to named template so that we can call it from templates for -->
+  <!-- * other block elements also -->
+  <xsl:choose>
+    <!-- * If a para is a descendant of a footnote, etc., then indent it -->
+    <!-- * (unless it is the first child, in which case don't generate -->
+    <!-- * anything at all to mark its start). -->
+    <!-- * FIXME: *blurb checking should not be munged in here the way -->
+    <!-- * it currently is; this probably breaks blurb indenting. -->
+    <xsl:when test="ancestor::footnote or
+                    ancestor::annotation or
+                    ancestor::authorblurb or
+                    ancestor::personblurb">
+      <xsl:if test="preceding-sibling::*[not(name() ='')]">
+        <xsl:text>.sp</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>.RS 4n</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>.PP</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:call-template name="mixed-block"/>
+    <xsl:if test="ancestor::footnote or
+                  ancestor::annotation or
+                  ancestor::authorblurb or
+                  ancestor::personblurb">
+      <xsl:if test="preceding-sibling::*[not(name() ='')]">
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>.RE</xsl:text>
+        <xsl:text>&#10;</xsl:text>
+      </xsl:if>
+    </xsl:if>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 

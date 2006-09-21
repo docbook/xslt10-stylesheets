@@ -1,6 +1,9 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:ng="http://docbook.org/docbook-ng"
+                xmlns:db="http://docbook.org/ns/docbook"
+                exclude-result-prefixes="db ng exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -14,31 +17,65 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-
-<!-- * Make per-Refentry sets of all links in each Refentry which do not -->
-<!-- * have the same URL as any preceding link in that same Refentry and -->
-<!-- * string value of which does not match value of the url attribute -->
 <!-- * -->
-<!-- * We need this in order to have inline numbering match the -->
-<!-- * numbering of the link list. In both places, for any link whose -->
-<!-- * URL is a duplicate of that of a preceding link in the same -->
-<!-- * Refentry, we assign it the number of that previous link. -->
+<!-- * This stylesheet: -->
 <!-- * -->
-<!-- * Note that we don't get links in *info sections or Refmeta or -->
+<!-- * 1. Identifies all "note sources" (link, annotation, alt, and -->
+<!-- *    footnote instances) in a Refentry which do not have the same -->
+<!-- *    "earmark" as any preceding notesource in that same Refentry -->
+<!-- *    (and for notesources that are links, then only those links -->
+<!-- *    whose string value and url attribute value are not identical). -->
+<!-- * -->
+<!-- * 2. Puts a number inline to mark the place where the notesource -->
+<!-- *    occurs in the main text flow. -->
+<!-- * -->
+<!-- * 3. Generates a numbered endnotes list (titled NOTES in -->
+<!-- *    English) at the end of the man page, with the contents of -->
+<!-- *    each notesourcse. -->
+<!-- * -->
+<!-- * Note that table footnotes are not listed in the endnotes list, -->
+<!-- * and are not handled by this stylesheet (they are instead -->
+<!-- * handled by the table.xsl stylesheet). -->
+<!-- * -->
+<!-- * Also, we don't get notesources in *info sections or Refmeta or -->
 <!-- * Refnamediv or Indexterm, because, in manpages output, contents -->
 <!-- * of those are either suppressed or are displayed out of document -->
 <!-- * order - for example, the Info/Author content gets moved to the -->
-<!-- * end of the page. So, if we were to number links in the Author -->
+<!-- * end of the page. So, if we were to number notesources in the Author -->
 <!-- * content, it would "throw off" the numbering at the beginning of -->
 <!-- * the main text flow. -->
 <!-- * -->
-<!-- * And note especially that the reason we don't use xsl:key here -->
-<!-- * is that the "match" value is an XSLT _pattern_, not an XSLT -->
-<!-- * _expression_; XSLT patterns can't contain function calls, but -->
-<!-- * XSLT expressions can. We need the calls to the generate-id() -->
-<!-- * function in order to determine whether or not two links have -->
-<!-- * the same Refentry parent -->
-<xsl:variable name="get.all.links.with.unique.urls">
+<!-- * Important: For any notesource whose earmark matches that of a -->
+<!-- * preceding notesource in the same Refentry, we assign it the -->
+<!-- * number of that previous notesource. -->
+<!-- * -->
+<!-- * For links, we check to see if the link is empty OR if its -->
+<!-- * string value is identical to the value of its url attribute; if -->
+<!-- * either of those is true, we just display the value of its url -->
+<!-- * attribute (if the link itself is empty), and stop there. -->
+<!-- * -->
+<!-- * And for the record, one reason we don't use xsl:key to index -->
+<!-- * the notesources is that we need to get and check the sets of -->
+<!-- * notesources for uniqueness per-Refentry (not per-document). -->
+<!-- * -->
+<!-- * FIXME: mediaobject and inlinemediaobject should also be handled -->
+<!-- * as notesources; should change most link* variable names to -->
+<!-- * notesource*; as with "repeat" URLS, alt instances that have the -->
+<!-- * same string value as preceding ones (likely to occur for repeat -->
+<!-- * acroynyms and abbreviations) should be listed only once in -->
+<!-- * the endnotes list, and numbered accordingly inline; split -->
+<!-- * man.indent.width into man.indent.width.value (default 4) and -->
+<!-- * man.indent.width.units (default n); also, if the first child of -->
+<!-- * notesource is some block content other than a (non-formal) -->
+<!-- * paragraph, the current code will probably end up generating a -->
+<!-- * blank line after the corresponding number in the endnotes -->
+<!-- * list... we should probably try to instead display the title of -->
+<!-- * that block content there (if there is one: e.g., the list title, -->
+<!-- * admonition title, etc.) -->
+<!-- * -->
+<!-- ==================================================================== -->
+      
+<xsl:template name="get.all.links.with.unique.urls">
   <xsl:if test="$man.links.are.numbered != 0">
     <xsl:for-each select="//refentry">
       <refentry.link.set>
@@ -46,7 +83,11 @@
           <xsl:value-of select="generate-id()"/>
         </xsl:attribute>
         <xsl:for-each
-            select=".//ulink[node()
+            select=".//*[self::ulink
+                    or self::footnote[not(ancestor::table)]
+                    or self::annotation
+                    or self::alt]
+                    [node()
                     and not(ancestor::refentryinfo)
                     and not(ancestor::info)
                     and not(ancestor::docinfo)
@@ -64,74 +105,67 @@
                     and not(ancestor::indexterm)
                     and (generate-id(ancestor::refentry)
                     = generate-id(current()))]/@url)]">
-          <link>
-            <xsl:attribute name="url">
-              <xsl:value-of select="@url"/>
+          <notesource>
+            <xsl:attribute name="earmark">
+              <xsl:choose>
+                <xsl:when test="@url">
+                  <xsl:value-of select="@url"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="generate-id()"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:attribute>
             <xsl:copy>
               <xsl:copy-of select="node()"/>
             </xsl:copy>
-          </link>
+          </notesource>
         </xsl:for-each>
       </refentry.link.set>
     </xsl:for-each>
   </xsl:if>
-</xsl:variable>
-
-<xsl:variable name="all.links.with.unique.urls"
-              select="exsl:node-set($get.all.links.with.unique.urls)"/>
+</xsl:template>
 
 <!-- ==================================================================== -->
 
-<!-- * We check to see if the link is empty OR if its string value is -->
-<!-- * identical to the value of its url attribute; if either of those -->
-<!-- * is true, we just display the value of its url attribute (if the -->
-<!-- * ulink itself is empty), and stop there. -->
-<!-- * -->
-<!-- * Otherwise we need to display its contents AND (optionally) -->
-<!-- * display its URL. We could display the URL inline, after the -->
-<!-- * contents (as we did previously), but that ends up looking -->
-<!-- * horrible if you have a lot of links. -->
-<!-- * -->
-<!-- * So, we instead need to display the URL out-of-line, in a way -->
-<!-- * that associates it with the content. How to do that in a -->
-<!-- * text-based output format that lacks hyperlinks? -->
-<!-- * -->
-<!-- * Here's how: Do it the way that most text/curses-based browsers -->
-<!-- * (e.g., w3m and lynx) do in the "-dump" output: Put a number -->
-<!-- * (in brackets) before the contents, and then put the URL, with -->
-<!-- * the corresponding number, in a generated section -->
-<!-- * at the end of the page. -->
-<!-- * -->
-<!-- * For any link whose URL is a duplicate of that of a preceding -->
-<!-- * link in the same Refentry, we assign it the number of that -->
-<!-- * previous link. -->
-<xsl:template match="ulink">
+<xsl:template match="ulink|footnote[not(ancestor::table)]|annotation|alt">
+  <xsl:variable name="get.all.links.with.unique.urls">
+    <xsl:call-template  name="get.all.links.with.unique.urls"/>
+  </xsl:variable>
+  <xsl:variable name="all.links.with.unique.urls"
+                select="exsl:node-set($get.all.links.with.unique.urls)"/>
   <xsl:variable name="get.links.with.unique.urls">
-    <!-- * get the set of all unique links in the ancestor Refentry of -->
-    <!-- * this Ulink -->
+    <!-- * get the set of all unique notesources in the ancestor Refentry of -->
+    <!-- * this notesource -->
     <xsl:copy-of
         select="$all.links.with.unique.urls/refentry.link.set
-                [@idref = generate-id(current()/ancestor::refentry)]/link"/>
+                [@idref = generate-id(current()/ancestor::refentry)]/notesource"/>
   </xsl:variable>
   <xsl:variable name="links.with.unique.urls"
                 select="exsl:node-set($get.links.with.unique.urls)"/>
-  <!-- * store link URL in variable because we check it multiple times -->
-  <xsl:variable name="url">
-    <xsl:value-of select="@url"/>
-  </xsl:variable>
-  <!-- * $link is either the link contents (if the link is non-empty) or -->
-  <!-- * the URL (if the link is empty) -->
-  <xsl:variable name="link">
+  <!-- * Identify the "earmark" for this notesource -->
+  <xsl:variable name="earmark">
     <xsl:choose>
-      <!-- * check to see if the element is empty or not; if it's non-empty, -->
-      <!-- * get the content -->
+      <xsl:when test="@url">
+        <xsl:value-of select="@url"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="generate-id()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <!-- * for links, $notesource is either the link contents (if the -->
+  <!-- * link is non-empty) or the "earmark" URL (if the link is empty) -->
+  <xsl:variable name="notesource">
+    <xsl:choose>
+      <!-- * check to see if the element is empty or not; if it's -->
+      <!-- * non-empty, get the content -->
       <xsl:when test="node()">
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:otherwise>
-        <!-- * The element is empty, so we just get the value of the URL; -->
-        <!-- * note that we don't number empty links -->
+        <!-- * Otherwise this is an empty link, so we just get the -->
+        <!-- * value of its URL; note that we don't number empty links -->
         <!-- * -->
         <!-- * Add hyphenation suppression in URL output only if -->
         <!-- * break.after.slash is also non-zero -->
@@ -140,91 +174,69 @@
           <xsl:call-template name="suppress.hyphenation"/>
           <xsl:text>\%</xsl:text>
         </xsl:if>
-        <xsl:value-of select="$url"/>
+        <xsl:value-of select="$earmark"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <!-- * if link is non-empty AND its string value is not equal to the -->
-  <!-- * value of its url attribute AND user wants links numbered, -->
-  <!-- * then output a number for it -->
-  <xsl:if test="node() and not(. = @url) and $man.links.are.numbered != 0">
-    <!-- * We number links by checking the $links.with.unique.urls set -->
-    <!-- * and finding the link whose URL matches the URL for this -->
-    <!-- * link. If this is the only instance in this Refentry of a link -->
-    <!-- * with this URL, then it gets a unique number. But if this is a -->
-    <!-- * link for which there are multiple instances of links in this -->
-    <!-- * Refentry that have the same URL as this link, then the number -->
-    <!-- * assigned is the number of the _first_ instance of a link in -->
-    <!-- * this Refentry with the URL for this link (which be the number -->
-    <!-- * of this link itself, if it happens to be the first instance). -->
-    <xsl:variable name="link.number">
-      <xsl:apply-templates
-          select="$links.with.unique.urls/link[@url = $url][1]"
-          mode="link.number"/>
-    </xsl:variable>
-    <!-- * format the number by placing it in square brackets. This -->
-    <!-- * formatting could be made user-configurable - something -->
-    <!-- * other than square brackets. But what else would work? -->
-    <!-- * <10> Angle brackets? {10} Braces? -->
-    <xsl:text>[</xsl:text>
-    <xsl:value-of select="$link.number"/>
-    <xsl:text>]\&amp;</xsl:text>
-    <!-- * Note that the reason for the \& after the closing bracket -->
-    <!-- * is to prevent a hyphen character from being rendered -->
-    <!-- * between the closing bracket and the following text - even -->
-    <!-- * when the following text is preceded by a "hyphenation -->
-    <!-- * character"; for example: -->
-    <!-- * -->
-    <!-- *  [26]\&\fI\%COUNTRY\fR\fR -->
-    <!-- * -->
-    <!-- * Where COUNTRY is marked up with as <envar>COUNTRY</envar> -->
-    <!-- * in the source (we generate \% before all Envar output (and -->
-    <!-- * all other "computer inlines") to prevent it from being -->
-    <!-- * broken across lines. -->
-    <!-- * -->
-    <!-- * Without the \& after the closing bracket, if the -->
-    <!-- * [26]\fI\%COUNTRY\fR\fR instance fell at the end of a line, -->
-    <!-- * a hyphen could end up being inserted; for example: -->
-    <!-- * -->
-    <!-- *   if you are uncertain, check the value of the [26]- -->
-    <!-- *   COUNTRY environment variable -->
-    <!-- * -->
-    <!-- * The \& causes [26]COUNTRY to be treated as a unit, -->
-    <!-- * preventing insertion of the stray hyphen. -->
-  </xsl:if>
+  <xsl:if test="self::ulink">
   <xsl:choose>
     <!-- * if user wants links underlined, underline (ital) it -->
     <xsl:when test="$man.links.are.underlined != 0">
       <xsl:variable name="link.wrapper">
-        <italic><xsl:value-of select="$link"/></italic>
+        <italic><xsl:value-of select="$notesource"/></italic>
       </xsl:variable>
       <xsl:apply-templates mode="italic" select="exsl:node-set($link.wrapper)"/>
     </xsl:when>
     <xsl:otherwise>
       <!-- * user doesn't want links underlined, so just display content -->
-      <xsl:value-of select="$link"/>
+      <xsl:value-of select="$notesource"/>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
+  </xsl:if>
+  <!-- * If link is non-empty AND its string value is not equal to the -->
+  <!-- * value of its url attribute AND user wants notesources numbered, -->
+  <!-- * then output a number for it -->
+  <xsl:if test="node() and not(. = @url) and $man.links.are.numbered != 0">
+    <!-- * We number notesources by checking the $links.with.unique.urls -->
+    <!-- * set and finding the notesource whose earmark matches the -->
+    <!-- * earmark for this notesource. -->
+    <!-- * -->
+    <!-- * If this is the only instance in this Refentry of a notesource -->
+    <!-- * with this earmark, then it gets a unique number. -->
+    <!-- * -->
+    <!-- * But if this is a notesource for which there are multiple -->
+    <!-- * instances of notesources in this Refentry that have the same -->
+    <!-- * earmark as this notesource, then the number assigned is the -->
+    <!-- * number of the _first_ instance of a notesource in this -->
+    <!-- * Refentry with the earmark for this notesource (which be the -->
+    <!-- * number of this notesource itself, if it happens to be the -->
+    <!-- * first instance). -->
+    <xsl:variable name="notesource.number">
+      <xsl:apply-templates
+          select="$links.with.unique.urls/notesource[@earmark = $earmark][1]"
+          mode="notesource.number"/>
+    </xsl:variable>
+    <!-- * Format the number by placing it in square brackets. FIXME: -->
+    <!-- * This formatting should probably be made user-configurable, -->
+    <!-- * to allow something other than just square brackets; e.g., -->
+    <!-- * Angle brackets<10> or Braces{10}  -->
+    <xsl:text>\&amp;[</xsl:text>
+    <xsl:value-of select="$notesource.number"/>
+    <xsl:text>]</xsl:text>
+    <!-- * Note that the reason for the \& before the opening bracket -->
+    <!-- * is to prevent any possible linebreak from being introduced -->
+    <!-- * between the opening bracket and the following text. -->
+  </xsl:if>
+  </xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="*" mode="link.number">
-  <!-- * Count all links in this Refentry which do not have the same -->
-  <!-- * URL as any preceding link in this same Refentry -->
-  <!-- * -->
-  <!-- * Note that we don't get links in *info sections or Refmeta or -->
-  <!-- * Refnamediv or Indexterm, because, in manpages output, -->
-  <!-- * contents of those are either suppressed or are displayed out -->
-  <!-- * of document order -->
-  <!-- * -->
-  <!-- * And note that the reason we don't just use xsl:number here -->
-  <!-- * is that the "match" value is an XSLT _pattern_, not an XSLT -->
-  <!-- * _expression_; XSLT patterns can't contain function calls, but -->
-  <!-- * XSLT expressions can. We need the calls to the generate-id() -->
-  <!-- * function in order to determine whether or not two links have -->
-  <!-- * the same Refentry parent -->
-  <xsl:value-of select="count(preceding::ulink[node()
+<xsl:template match="*" mode="notesource.number">
+  <xsl:value-of select="count(preceding::*[(self::ulink
+                        or self::footnote[not(ancestor::table)]
+                        or self::annotation
+                        or self::alt)
+                        and node()
                         and not(ancestor::refentryinfo)
                         and not(ancestor::info)
                         and not(ancestor::docinfo)
@@ -248,16 +260,13 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template name="links.list">
-  <!-- * Get all links in this Refentry which do not have the same URL -->
-  <!-- * as any preceding link in this same Refentry -->
-  <!-- * -->
-  <!-- * Note that we don't get links in *info sections or Refmeta or -->
-  <!-- * Refnamediv or Indexterm, because, in manpages output, -->
-  <!-- * contents of those are either suppressed or are displayed out -->
-  <!-- * of document order -->
-  <xsl:variable name="links"
-                select=".//ulink[node()
+<xsl:template name="endnotes.list">
+  <xsl:variable name="notesources"
+                select=".//*[(self::ulink
+                  or self::footnote[not(ancestor::table)]
+                  or self::annotation
+                  or self::alt)
+                  and node()
                   and not(ancestor::refentryinfo)
                   and not(ancestor::info)
                   and not(ancestor::docinfo)
@@ -275,38 +284,21 @@
                   and not(ancestor::indexterm)
                   and (generate-id(ancestor::refentry)
                   = generate-id(current()))]/@url)]"/>
-  <!-- * check to see if we have actually found any links; if we have, -->
-  <!-- * we generate the links list, if not, we do nothing -->
-  <xsl:if test="$links/node()">
-    <xsl:call-template name="format.links.list">
-      <xsl:with-param name="links" select="$links"/>
+  <!-- * check to see if we have actually found any notesources; if we -->
+  <!-- * have, we generate the endnotes list, if not, we do nothing -->
+  <xsl:if test="$notesources/node()">
+    <xsl:call-template name="format.endnotes.list">
+      <xsl:with-param name="notesources" select="$notesources"/>
     </xsl:call-template>
   </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template name="format.links.list">
-  <xsl:param name="links"/>
-  <!-- * The value of $padding.length is used for determining how much -->
-  <!-- * to right-pad numbers in the LINKS list. So, for $length, we -->
-  <!-- * count how many links there are, then take the number of digits -->
-  <!-- * in that count, and add 2 to it. The reason we add 2 is that we -->
-  <!-- * also prepend a dot and no-break space to each link number in -->
-  <!-- * the list, so we need to consider what length to pad out to. -->
-  <xsl:param name="padding.length">
-    <xsl:choose>
-      <xsl:when test="$man.links.are.numbered != 0">
-        <xsl:value-of select="string-length(count($links)) + 2"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- * if links aren't numbered, just set padding to zero -->
-        <xsl:value-of select="0"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
+<xsl:template name="format.endnotes.list">
+  <xsl:param name="notesources"/>
   <xsl:call-template name="mark.subheading"/>
-  <!-- * make the link-list section heading (REFERENCES) -->
+  <!-- * make the endnotes-list section heading -->
   <xsl:text>.SH "</xsl:text>
   <xsl:call-template name="string.upper">
     <xsl:with-param name="string">
@@ -317,6 +309,7 @@
         </xsl:when>
         <xsl:otherwise>
           <!-- * otherwise, get localized heading from gentext -->
+          <!-- * (in English, NOTES) -->
           <xsl:call-template name="gentext">
             <xsl:with-param name="key" select="'References'"/>
           </xsl:call-template>
@@ -325,118 +318,65 @@
     </xsl:with-param>
   </xsl:call-template>
   <xsl:text>"&#10;</xsl:text>
-  <xsl:for-each select="$links">
-    <!-- * number the link, in the form " 1." followed by a -->
-    <!-- * non-breaking space; -->
-    <xsl:variable name="link.number">
-      <xsl:apply-templates select="." mode="link.number"/>
-      <xsl:text>.&#160;</xsl:text>
+  <xsl:for-each select="$notesources">
+    <!-- * make paragraph with hanging indent, and starting with a -->
+    <!-- * number in the form " 1." (padded to $man.indent.width - 1) -->
+    <xsl:text>.IP</xsl:text>
+    <xsl:text> "</xsl:text>
+    <xsl:variable name="endnote.number">
+      <xsl:apply-templates select="." mode="notesource.number"/>
+      <xsl:text>.</xsl:text>
     </xsl:variable>
-    <!-- * make paragraph with hanging indent; length of indent is -->
-    <!-- * same as value of $padding.length -->
-    <xsl:text>.TP </xsl:text>
-    <xsl:value-of select="$padding.length"/>
-    <xsl:text>&#10;</xsl:text>
-    <!-- * right-pad each number out to the correct length -->
-    <!-- * So, if there are 10 or more links, numbers -->
-    <!-- * 1 through 9 will have a space in front of them; if -->
-    <!-- * there are 100 or more, 1 through 9 will have two -->
-    <!-- * spaces, 10 through 99 will have one space, etc. -->
     <xsl:call-template name="prepend-pad">
-      <xsl:with-param name="padVar" select="$link.number"/>
-      <xsl:with-param name="length" select="$padding.length"/>
+      <xsl:with-param name="padVar" select="$endnote.number"/>
+      <!-- FIXME: the following assumes that $man.indent.width is in -->
+      <!-- en's; also, this should probably use $list.indent instead -->
+      <xsl:with-param name="length" select="$man.indent.width - 1"/>
     </xsl:call-template>
-    <!-- * Print the links contents -->
-    <!-- * IMPORTANT: If there are multiple links in this Refentry -->
-    <!-- * with the same URL, this gets the contents of the _first -->
-    <!-- * instance_ of the link in this Refentry with that URL -->
-    <xsl:variable name="link.contents">
-      <xsl:value-of select="."/>
-    </xsl:variable>
-    <xsl:value-of select="normalize-space($link.contents)"/>
-    <xsl:text>&#10;</xsl:text>
-    <!-- * Print the link's URL -->
-    <!-- * Add hyphenation suppression in URL output only if -->
-    <!-- * break.after.slash is also non-zero -->
-    <xsl:if test="$man.hyphenate.urls = 0 and
-                  $man.break.after.slash = 0">
-      <xsl:call-template name="suppress.hyphenation"/>
-      <xsl:text>\%</xsl:text>
+    <xsl:text>"</xsl:text>
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
     </xsl:if>
-    <xsl:value-of select="@url"/>
     <xsl:text>&#10;</xsl:text>
-  </xsl:for-each>
-</xsl:template>
-
-<xsl:template match="footnote"/>
-
-  <!-- * ============================================================== -->
-  <!-- *    Handle table footnotes                                      -->
-  <!-- * ============================================================== -->
-  <xsl:template match="footnote" mode="table.footnote.mode">
-    <xsl:variable name="footnotes" select=".//footnote"/>
-    <xsl:variable name="table.footnotes"
-                  select=".//tgroup//footnote"/>
-    <xsl:value-of select="$man.table.footnotes.divider"/>
-    <xsl:text>&#10;</xsl:text>
-    <xsl:text>.br&#10;</xsl:text>
-    <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
-    <xsl:apply-templates select="*[position() &gt; 1]"/>
-  </xsl:template>
-
-  <!-- * The following template for footnote.body.number mode was just -->
-  <!-- * lifted from the HTML stylesheets with some minor adjustments -->
-  <xsl:template match="*"  mode="footnote.body.number">
-    <xsl:variable name="name">
-      <xsl:text>ftn.</xsl:text>
-      <xsl:call-template name="object.id">
-        <xsl:with-param name="object" select="ancestor::footnote"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="href">
-      <xsl:text>#</xsl:text>
-      <xsl:call-template name="object.id">
-        <xsl:with-param name="object" select="ancestor::footnote"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="footnote.mark">
-      <xsl:text>[</xsl:text>
-      <xsl:apply-templates select="ancestor::footnote"
-                           mode="footnote.number"/>
-      <xsl:text>]&#10;</xsl:text>
-    </xsl:variable>
-    <xsl:variable name="html">
-      <xsl:apply-templates select="."/>
-    </xsl:variable>
+    <!-- * Print the endnote contents -->
+    <!-- * -->
+    <!-- * IMPORTANT: If there are multiple notesources in this Refentry -->
+    <!-- * with the same earmark, this gets the contents of the first -->
+    <!-- * instance of the notesource in this Refentry with that earmark -->
     <xsl:choose>
-      <xsl:when test="function-available('exsl:node-set')">
-        <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
-        <xsl:choose>
-          <xsl:when test="$html-nodes//p">
-            <xsl:apply-templates select="$html-nodes" mode="insert.html.p">
-              <xsl:with-param name="mark" select="$footnote.mark"/>
-            </xsl:apply-templates>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$html-nodes" mode="insert.html.text">
-              <xsl:with-param name="mark" select="$footnote.mark"/>
-            </xsl:apply-templates>
-          </xsl:otherwise>
-        </xsl:choose>
+      <xsl:when test="self::ulink">
+        <xsl:variable name="contents">
+          <xsl:apply-templates/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($contents)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:copy-of select="$html"/>
+        <xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
-
-  <!-- * The HTML stylesheets output <sup><a>...</a></sup> around -->
-  <!-- * footnote markers in tables -->
-  <xsl:template match="th/sup">
-    <xsl:apply-templates/>
-  </xsl:template>
-  <xsl:template match="a">
-    <xsl:apply-templates/>
-  </xsl:template>
+    <xsl:text>&#10;</xsl:text> 
+    <xsl:if test="@url">
+      <xsl:text>.RS</xsl:text>
+      <xsl:if test="not($list-indent = '')">
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="$list-indent"/>
+      </xsl:if>
+      <xsl:text>&#10;</xsl:text>
+      <!-- * This is a link, so print its URL. -->
+      <!-- * Add hyphenation suppression in URL output only if -->
+      <!-- * $break.after.slash is also non-zero -->
+      <xsl:if test="$man.hyphenate.urls = 0
+                    and $man.break.after.slash = 0">
+        <xsl:call-template name="suppress.hyphenation"/>
+        <xsl:text>\%</xsl:text>
+      </xsl:if>
+      <xsl:value-of select="@url"/>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:text>.RE</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:if>
+  </xsl:for-each>
+</xsl:template>
 
 </xsl:stylesheet>
