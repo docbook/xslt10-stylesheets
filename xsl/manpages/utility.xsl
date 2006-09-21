@@ -149,6 +149,7 @@
                         self::screen|self::synopsis">
           <xsl:text>&#10;</xsl:text>
           <xsl:text>.sp&#10;</xsl:text>
+          <xsl:call-template name="mark.up.block.start"/>
           <xsl:apply-templates select="."/>
         </xsl:when>
         <!-- * Check to see if this node is a list; if it is, we don't -->
@@ -160,6 +161,7 @@
                         self::segmentedlist|
                         self::caution|self::important|
                         self::note|self::tip|self::warning)">
+          <xsl:call-template name="mark.up.block.start"/>
           <xsl:apply-templates select="."/>
         </xsl:when>
         <xsl:when test="self::text()">
@@ -221,6 +223,84 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
+    <xsl:call-template name="mark.up.block.end"/>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+
+  <!-- * Footnote and annotation contents are displayed using a hanging -->
+  <!-- * indent out to $man.indent.width If a paragraph-level block -->
+  <!-- * element (verbatim, list, or admonition) is the first block -->
+  <!-- * element nested at its same level within the same footnote or -->
+  <!-- * annotation, then we push it over by the same indent width. -->
+  <!-- * -->
+  <!-- * We don't reset the indent for each following sibling, but -->
+  <!-- * instead do it after for-eaching over all block siblings at -->
+  <!-- * the same level. So the effect is that if there are any -->
+  <!-- * following-sibling blocks after the block that starts this -->
+  <!-- * indent, then they just retain the indent that was already set -->
+
+  <xsl:template name="mark.up.block.start">
+    <xsl:choose>
+      <xsl:when test="(ancestor::footnote
+                      or ancestor::annotation)">
+        <xsl:if test="not(preceding-sibling::address|
+                      preceding-sibling::literallayout|
+                      preceding-sibling::programlisting|
+                      preceding-sibling::screen|
+                      preceding-sibling::synopsis|
+                      preceding-sibling::itemizedlist|
+                      preceding-sibling::orderedlist|
+                      preceding-sibling::variablelist|
+                      preceding-sibling::glosslist|
+                      preceding-sibling::simplelist[@type !='inline']|
+                      preceding-sibling::segmentedlist|
+                      preceding-sibling::caution|
+                      preceding-sibling::important|
+                      preceding-sibling::note|
+                      preceding-sibling::tip|
+                      preceding-sibling::warning)">
+          <xsl:text>.RS</xsl:text>
+          <xsl:if test="not($list-indent = '')">
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="$list-indent"/>
+          </xsl:if>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- * Check to see if we were called from a block within a footnote or -->
+  <!-- * annotation; if so, and the block contains any nested block -->
+  <!-- * content, then we know the mark.up.block.end template was already -->
+  <!-- * called to generate a .RS macro to indent that nested block -->
+  <!-- * content; so we need to generated a .RE to set the margin back to -->
+  <!-- * where it was prior to the .RS call. -->
+  <xsl:template name="mark.up.block.end">
+    <xsl:if test="(ancestor::footnote
+                  or ancestor::annotation)">
+      <xsl:if test="address|
+                    literallayout|
+                    programlisting|
+                    screen|
+                    synopsis|
+                    itemizedlist|
+                    orderedlist|
+                    variablelist|
+                    glosslist|
+                    simplelist[@type !='inline']|
+                    segmentedlist|
+                    caution|
+                    important|
+                    note|
+                    tip|
+                    warning">
+        <xsl:text>&#10;</xsl:text>
+        <xsl:text>.RE</xsl:text>
+      <xsl:text>&#10;</xsl:text>
+      </xsl:if>
+    </xsl:if>
   </xsl:template>
 
   <!-- ================================================================== -->

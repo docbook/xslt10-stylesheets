@@ -8,7 +8,7 @@
 
 <refsynopsisdiv>
 <src:fragment id='man.indent.width.frag'>
-<xsl:param name="man.indent.width">3n</xsl:param>
+<xsl:param name="man.indent.width">4</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -23,8 +23,8 @@ are non-zero.</para>
 <para>The value of <parameter>man.indent.width</parameter> should
 include a valid roff measurement unit (for example,
 <literal>n</literal> or <literal>u</literal>). The default value of
-<literal>3n</literal> specifies a 3-en width; when viewed on a
-console, that amounts to the width of three characters. For details
+<literal>4n</literal> specifies a 4-en width; when viewed on a
+console, that amounts to the width of four characters. For details
 about roff measurment units, see the <literal>Measurements</literal>
 node in the groff info page.</para>
 
