@@ -28,7 +28,7 @@ docbook.rng: $(basename $(docbook_BINARY)).rnx
 docbook.rnc: docbook.rng
 	$(RUNTRANG) $< $@
 
-docbook.dtd: $(basename $(docbook_BINARY)).dtx docbook.rnc
+docbook.dtd: $(basename $(docbook_BINARY)).dtx docbook.rnc ../tools/xml2dtd.xsl
 	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
 
 docbook.sch: $(basename $(docbook_BINARY)).rnx
