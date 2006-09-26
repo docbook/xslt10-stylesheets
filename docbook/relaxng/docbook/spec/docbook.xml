@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0b7</productnumber>
+<!-- productVersion --> <productnumber>5.0b8</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -153,6 +153,30 @@ from the
 DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
+
+<section xml:id="s.50b8">
+<title>Changes in DocBook V5.0b8</title>
+
+<para>This release contains several improvements over V5.0b7.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1535166">
+<para>Fixed <link xlink:href="&RFE;aid=1535166">RFE 1535166</link>:
+Improve the data types of attributes in DocBook.</para>
+</listitem>
+
+<listitem xml:id="rfe.1549632">
+<para>Fixed <link xlink:href="&RFE;aid=1549632">RFE 1549632</link>:
+The <tag>inlineequation</tag> element should use
+<tag>inlinemediaobject</tag> not <tag>mediaobject</tag>.</para>
+</listitem>
+
+<listitem xml:id="docfix">
+<para>A number of small documentation improvements in the area of
+attribute and attribute enumerations.</para>
+</listitem>
+</orderedlist>
+</section>
 
 <section xml:id="s.50b7">
 <title>Changes in DocBook V5.0b7</title>
