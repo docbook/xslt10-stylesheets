@@ -73,11 +73,10 @@ db.colsep.attribute =
     db:refpurpose [ "Specifies the presence or absence of the column separator" ]
     dbx:description [
       db:para [
-         "If "
+         "A rule will be drawn to the right of all cells for which" ~
          db:tag [ class="attribute" "colsep" ]
-         " has the value 1 (true), then a rule will be drawn to the right of" ~
-         " all columns in this table. A value of 0 (false) suppresses" ~
-         " the rule. The rule to the right of the last column in the table" ~
+         " has the value 1 (true). Note, however, that" ~
+         " the rule to the right of the last column in the table" ~
          " is controlled by the "
          db:tag [ class="attribute" "frame" ]
          " attribute, not "
@@ -86,18 +85,22 @@ db.colsep.attribute =
       ]
     ]
   ]
-  attribute colsep { "0" | "1" }
+  attribute colsep {
+     ## No column separator rule.
+     "0"
+   | ## Provide a column separator rule on the right
+     "1"
+  }
 
 db.rowsep.attribute =
   [
     db:refpurpose [ "Specifies the presence or absence of the row separator" ]
     dbx:description [
       db:para [
-         "If "
+         "A rule will be drawn below all cells for which" ~
          db:tag [ class="attribute" "rowsep" ]
-         " has the value 1 (true), then a rule will be drawn below" ~
-         " all rows in this table. A value of 0 (false) suppresses" ~
-         " the rule. The rule below the last row in the table" ~
+         " has the value 1 (true). Note, however, that" ~
+         " the rule below the last row in the table" ~
          " is controlled by the "
          db:tag [ class="attribute" "frame" ]
          " attribute, not "
@@ -106,7 +109,12 @@ db.rowsep.attribute =
       ]
     ]
   ]
-  attribute rowsep { "0" | "1" }
+  attribute rowsep {
+     ## No row separator rule.
+     "0"
+   | ## Provide a row separator rule below
+     "1"
+  }
 
 db.orient.attribute =
    [
@@ -450,9 +458,16 @@ div {
       attribute morerows { xsd:integer }
    db.entry.rotate.attribute =
       [
-         db:refpurpose [ "Specifies the rotation of this entry. FIXME: what are the legal values of this attribute?" ]
+         db:refpurpose [ "Specifies the rotation of this entry. A value of 1 (true)" ~
+            " rotates the cell 90 degrees counter-clockwise. A value of 0 (false)" ~
+            " leaves the cell unrotated." ]
       ]
-      attribute rotate { "0" | "1" }
+      attribute rotate {
+         ## Do not rotate the cell.
+         "0"
+       | ## Rotate the cell 90 degrees counter-clockwise.
+         "1"
+      }
 
    db.entry.attlist =
       db.entry.role.attribute?
