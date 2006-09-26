@@ -48,7 +48,13 @@ div {
    db.imagedata.svg.attlist =
       db.imagedata.svg.role.attribute?
     & db.common.attributes
-    & attribute format { "svg" }?
+    & [
+       db:refpurpose [ "Specifies that the format of the data is SVG" ]
+      ]
+      attribute format {
+         ## Specifies SVG.
+         "svg"
+      }?
     & db.imagedata.align.attribute?
     & db.imagedata.valign.attribute?
     & db.imagedata.width.attribute?
