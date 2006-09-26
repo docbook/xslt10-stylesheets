@@ -132,6 +132,9 @@
 	  <xsl:choose>
 	    <xsl:when test="@type = 'anyURI'">CDATA</xsl:when>
 	    <xsl:when test="@type = 'integer'">NMTOKEN</xsl:when>
+	    <xsl:when test="@type = 'nonNegativeInteger'">NMTOKEN</xsl:when>
+	    <xsl:when test="@type = 'positiveInteger'">NMTOKEN</xsl:when>
+	    <xsl:when test="@type = 'decimal'">CDATA</xsl:when>
 	    <xsl:when test="@type = 'token'">NMTOKEN</xsl:when>
 	    <xsl:otherwise>
 	      <xsl:value-of select="@type"/>
