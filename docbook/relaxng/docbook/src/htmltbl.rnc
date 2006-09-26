@@ -254,7 +254,7 @@ db.html.informaltable.model =
 
 [
    db:refname [ "table" ]
-   db:refpurpose [ "A formal table in a document" ]
+   db:refpurpose [ "A formal (captioned) HTML table in a document" ]
 ]
 div {
 
@@ -277,7 +277,7 @@ div {
 
 [
    db:refname [ "informaltable" ]
-   db:refpurpose [ "A table without a title" ]
+   db:refpurpose [ "An HTML table without a title" ]
 ]
 div {
 
@@ -296,7 +296,7 @@ div {
 
 [
    db:refname [ "caption" ]
-   db:refpurpose [ "A caption" ]
+   db:refpurpose [ "An HTML table caption" ]
 ]
 div {
 
@@ -370,7 +370,7 @@ div {
 
 [
    db:refname [ "thead" ]
-   db:refpurpose [ "A table header consisting of one or more rows" ]
+   db:refpurpose [ "A table header consisting of one or more rows in an HTML table" ]
 ]
 div {
 
@@ -390,7 +390,7 @@ div {
 
 [
    db:refname [ "tfoot" ]
-   db:refpurpose [ "A table footer consisting of one or more rows" ]
+   db:refpurpose [ "A table footer consisting of one or more rows in an HTML table" ]
 ]
 div {
 
@@ -410,7 +410,7 @@ div {
 
 [
    db:refname [ "tbody" ]
-   db:refpurpose [ "A wrapper for the rows of a table or informal table" ]
+   db:refpurpose [ "A wrapper for the rows of an HTML table or informal HTML table" ]
 ]
 div {
 
