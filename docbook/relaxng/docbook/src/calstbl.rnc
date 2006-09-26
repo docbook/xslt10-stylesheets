@@ -73,7 +73,7 @@ db.colsep.attribute =
     db:refpurpose [ "Specifies the presence or absence of the column separator" ]
     dbx:description [
       db:para [
-         "A rule will be drawn to the right of all cells for which" ~
+         "A rule will be drawn to the right of all cells for which"
          db:tag [ class="attribute" "colsep" ]
          " has the value 1 (true). Note, however, that" ~
          " the rule to the right of the last column in the table" ~
@@ -97,7 +97,7 @@ db.rowsep.attribute =
     db:refpurpose [ "Specifies the presence or absence of the row separator" ]
     dbx:description [
       db:para [
-         "A rule will be drawn below all cells for which" ~
+         "A rule will be drawn below all cells for which"
          db:tag [ class="attribute" "rowsep" ]
          " has the value 1 (true). Note, however, that" ~
          " the rule below the last row in the table" ~
