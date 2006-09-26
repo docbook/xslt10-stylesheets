@@ -48,6 +48,7 @@ db.nopara.blocks |= db.math.blocks
 # ======================================================================
 
 db.equation.content = db.mediaobject+ | db.mathphrase+
+db.inlineequation.content = db.inlinemediaobject+ | db.mathphrase+
 
 # ======================================================================
 
@@ -126,7 +127,7 @@ div {
       element inlineequation {
          db.inlineequation.attlist,
          db.alt?,
-         db.equation.content
+         db.inlineequation.content
       }
 }
 
