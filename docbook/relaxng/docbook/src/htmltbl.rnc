@@ -127,7 +127,7 @@ db.html.cellhalign =
  & [
       db:refpurpose [ "When present, this attribute specifies the offset to the first occurrence of the alignment character on each line. If a line doesn't include the alignment character, it should be horizontally shifted to end at the alignment position. When charoff is used to set the offset of an alignment character, the direction of offset is determined by the current text direction (set by the dir attribute). In left-to-right texts (the default), offset is from the left margin. In right-to-left texts, offset is from the right margin. User agents are not required to support this attribute." ]
    ]
-   attribute charoff { text }?
+   attribute charoff { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
 
 db.html.cellvalign =
    [
@@ -151,11 +151,11 @@ db.html.table.attributes =
  & [
       db:refpurpose [ "Specifies the desired width of the entire table and is intended for visual user agents. When the value is a percentage value, the value is relative to the user agent's available horizontal space. In the absence of any width specification, table width is determined by the user agent." ]
    ]
-   attribute width { text }?
+   attribute width { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
  & [
       db:refpurpose [ "Specifies the width (in pixels only) of the frame around a table." ]
    ]
-   attribute border { text }?
+   attribute border { xsd:nonNegativeInteger }?
  & [
       db:refpurpose [ "Specifies which sides of the frame surrounding a table will be visible." ]
    ]
@@ -196,11 +196,11 @@ db.html.table.attributes =
  & [
       db:refpurpose [ "Specifies how much space the user agent should leave between the left side of the table and the left-hand side of the leftmost column, the top of the table and the top side of the topmost row, and so on for the right and bottom of the table. The attribute also specifies the amount of space to leave between cells." ]
    ]
-   attribute cellspacing { text }?
+   attribute cellspacing { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
  & [
       db:refpurpose [ "Specifies the amount of space between the border of the cell and its contents. If the value of this attribute is a pixel length, all four margins should be this distance from the contents. If the value of the attribute is a percentage length, the top and bottom margins should be equally separated from the content based on a percentage of the available vertical space, and the left and right margins should be equally separated from the content based on a percentage of the available horizontal space." ]
    ]
-   attribute cellpadding { text }?
+   attribute cellpadding { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
 
 db.html.tablecell.attributes =
    [
@@ -231,11 +231,11 @@ db.html.tablecell.attributes =
  & [
       db:refpurpose [ "Specifies the number of rows spanned by the current cell. The default value of this attribute is one (" db:quote [ "1" ] "). The value zero (" db:quote [ "0" ] ") means that the cell spans all rows from the current row to the last row of the table section (" db:tag [ "thead" ] ", " db:tag [ "tbody" ] ", or " db:tag [ "tfoot" ] ") in which the cell is defined." ]
    ]
-   attribute rowspan { text }?
+   attribute rowspan { xsd:nonNegativeInteger }?
  & [
       db:refpurpose [ "Specifies the number of columns spanned by the current cell. The default value of this attribute is one (" db:quote [ "1" ] "). The value zero (" db:quote [ "0" ] ") means that the cell spans all columns from the current column to the last column of the column group (" db:tag [ "colgroup" ] ") in which the cell is defined." ]
    ]
-   attribute colspan { text }?
+   attribute colspan { xsd:nonNegativeInteger }?
 
 db.html.table.model =
    db.html.caption,
@@ -323,7 +323,7 @@ div {
  & [
       db:refpurpose [ "This attribute, whose value must be an integer > 0, specifies the number of columns " db:quote [ "spanned" ] " by the " db:tag [ "col" ] " element; the " db:tag [ "col" ] " element shares its attributes with all the columns it spans. The default value for this attribute is 1 (i.e., a single column). If the span attribute is set to N > 1, the current " db:tag [ "col" ] " element shares its attributes with the next N-1 columns." ]
    ]
-   attribute span { text }?
+   attribute span { xsd:nonNegativeInteger }?
  & [
       db:refpurpose [ "Specifies a default width for each column spanned by the current " db:tag [ "col" ] " element. It has the same meaning as the " db:tag [ class="attribute" "width" ] " attribute for the " db:tag [ "colgroup" ] " element and overrides it." ]
    ]
@@ -351,7 +351,7 @@ div {
  & [
       db:refpurpose [ "This attribute, which must be an integer > 0, specifies the number of columns in a column group. In the absence of a span attribute, each " db:tag [ "colgroup" ] " defines a column group containing one column. If the span attribute is set to N > 0, the current " db:tag [ "colgroup" ] " element defines a column group containing N columns. User agents must ignore this attribute if the " db:tag [ "colgroup" ] " element contains one or more " db:tag [ "col" ] " elements." ]
    ]
-   attribute span { text }?
+   attribute span { xsd:nonNegativeInteger }?
  & [
       db:refpurpose [ "This attribute specifies a default width for each column in the current column group. In addition to the standard pixel, percentage, and relative values, this attribute allows the special form " db:quote [ "0*" ] " (zero asterisk) which means that the width of the each column in the group should be the minimum width necessary to hold the column's contents. This implies that a column's entire contents must be known before its width may be correctly computed. Authors should be aware that specifying " db:quote [ "0*" ] " will prevent visual user agents from rendering a table incrementally. This attribute is overridden for any column in the column group whose width is specified via a " db:tag [ "col" ] " element." ]
    ]

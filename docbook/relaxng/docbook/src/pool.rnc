@@ -176,7 +176,7 @@ db.xlink.href.attribute =
    [
       db:refpurpose [ "Identifies a link target with a URI" ]
    ]
-   attribute xlink:href { text }
+   attribute xlink:href { xsd:anyURI }
 
 db.xlink.type.attribute =
    [
@@ -272,7 +272,7 @@ db.xml.base.attribute =
    [
       db:refpurpose [ "Specifies the base URI of the element and its descendants" ]
    ]
-   attribute xml:base { text }
+   attribute xml:base { xsd:anyURI }
 
 db.remap.attribute =
    [
@@ -433,7 +433,7 @@ db.width.characters.attribute =
    [
       db:refpurpose [ "Specifies the width (in characters) of the element" ]
    ]
-   attribute width { xsd:integer }
+   attribute width { xsd:nonNegativeInteger }
 
 db.spacing.enumeration =
    ## The spacing should be "compact".
@@ -517,7 +517,7 @@ db.scale.attribute =
    [
       db:refpurpose [ "Specifies the scaling factor" ]
    ]
-   attribute scale { text }
+   attribute scale { xsd:positiveInteger }
 
 # ======================================================================
 

@@ -48,7 +48,7 @@ db.charoff.attribute =
       db:refpurpose [ "Specifies the percentage of the column's total width that should appear to the left of the first occurance of the character identified in " db:tag [ class="attribute" "char" ] " when " db:tag [ class="attribute" "align" ] " is set to " db:quote [ "char" ] "." ]
 
    ]
-   attribute charoff { text }
+   attribute charoff { xsd:decimal { minExclusive="0" maxExclusive="100" } }
 
 db.frame.attribute =
    [
@@ -86,7 +86,7 @@ db.colsep.attribute =
       ]
     ]
   ]
-  attribute colsep { text }
+  attribute colsep { "0" | "1" }
 
 db.rowsep.attribute =
   [
@@ -106,7 +106,7 @@ db.rowsep.attribute =
       ]
     ]
   ]
-  attribute rowsep { text }
+  attribute rowsep { "0" | "1" }
 
 db.orient.attribute =
    [
@@ -235,7 +235,7 @@ div {
       [
          db:refpurpose [ "The number of columns in the table. Must be an integer greater than zero." ]
       ]
-      attribute cols { xsd:integer }
+      attribute cols { xsd:positiveInteger }
 
    db.tgroup.attlist =
       db.tgroup.role.attribute?
@@ -273,7 +273,7 @@ div {
       [
          db:refpurpose [ "The number of the column to which this specification applies. Must be greater than any preceding column number. Defaults to one more than the number of the preceding column, if there is one, or one." ]
       ]
-      attribute colnum { xsd:integer }
+      attribute colnum { xsd:positiveInteger }
    db.colspec.colwidth.attribute =
       [
          db:refpurpose [ "Specifies the width of the column." ]
@@ -452,7 +452,7 @@ div {
       [
          db:refpurpose [ "Specifies the rotation of this entry. FIXME: what are the legal values of this attribute?" ]
       ]
-      attribute rotate { text }
+      attribute rotate { "0" | "1" }
 
    db.entry.attlist =
       db.entry.role.attribute?
@@ -492,7 +492,7 @@ div {
       [
          db:refpurpose [ "The number of columns in the entry table. Must be an integer greater than zero." ]
       ]
-      attribute cols { xsd:integer }
+      attribute cols { xsd:positiveInteger }
 
    db.entrytbl.attlist =
       db.entrytbl.role.attribute?
