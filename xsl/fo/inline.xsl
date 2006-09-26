@@ -76,7 +76,7 @@
             <!-- otherwise it's a URI -->
             <xsl:otherwise>
               <xsl:attribute name="internal-destination">
-                <xsl:value-of select="@xlink.href"/>
+                <xsl:value-of select="@xlink:href"/>
               </xsl:attribute>
             </xsl:otherwise>
           </xsl:choose>
