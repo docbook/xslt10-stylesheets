@@ -8,7 +8,7 @@
 
 <!--
 # ======================================================================
-# This file is part of DocBook V5.0b7
+# This file is part of DocBook V5.0b8
 #
 # Copyright 2005 Norman Walsh, Sun Microsystems, Inc., and the
 # Organization for the Advancement of Structured Information
