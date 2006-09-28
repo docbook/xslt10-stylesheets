@@ -6,10 +6,23 @@ clean:
 %.refsect1.xml: %.xml $(JREF2REFSECT1)
 	$(XSLT) $< $(JREF2REFSECT1) $@
 
-%.xml : %.xsl $(XSL2JREF) ../../docsrc/legalnotice.xml
+%.xml : %.xsl $(XSL2JREF) ../legalnotice.xml
 	$(XSLT) $< $(XSL2JREF) /dev/null output-file=$@
-	$(XJPARSE) $@
+	$(XJPARSE) $(XJPARSEFLAGS) $@
 
-docparam.xml: $(VPATH)/param.xsl
-	$(MAKE) -C $(VPATH) param.xml
-	cp $(VPATH)/param.xml docparam.xml
+docparam.xml: $(VPATH)/param.xweb $(PARAMS)
+ifeq ($(findstring website,$(VPATH)),)
+ifeq ($(findstring slides,$(VPATH)),)
+	$(DOCBOOK_SVN)/cvstools/paramchk -m Makefile.param $<
+endif
+endif
+	$(XSLT) $< ../../profiling/profile.xsl $(PARAMPROF) profile.condition=html
+	$(XSLT) $(PARAMPROF) ../../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
+ifeq ($(ADDNEWLINE),)
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/w2docbook.xsl $@
+else
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/w2docbook.xsl $@.tmp
+	$(XSLT) $@.tmp $(ADDNEWLINE) $@
+	$(RM) $@.tmp
+endif
+	$(RM) $(PARAMPROF) $(PARAMSTRIP)
