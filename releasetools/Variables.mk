@@ -16,6 +16,9 @@ MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
 
 DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
 
+PARAMPROF=$(VPATH)/.param.profiled
+PARAMSTRIP=$(VPATH)/.param.stripped
+
 # param.xml to param.html
 LREFENTRY=$(DOCBUILD_STYLESHEETS)/lrefentry.xsl
 # param.xml to param.html
@@ -36,6 +39,7 @@ MAKE_PARAMS_XSL=$(DOCBUILD_STYLESHEETS)/make-xsl-params.xsl
 # generated elements list
 DOCBOOK_ELEMENTS=$(DOCBUILD_STYLESHEETS)/docbook-elements.xsl
 XSL_PARAMS=$(DOCBUILD_STYLESHEETS)/xsl-params.xsl
+DOCPARAM2TXT=$(DOCBUILD_STYLESHEETS)/docparam2txt.xsl
 
 # reference.xml to reference.html
 RSTYLE=$(DOCBUILD_STYLESHEETS)/reference.xsl
@@ -52,8 +56,8 @@ DBX_STYLE=$(DOCBUILD_STYLESHEETS)/dblatex-release-notes.xsl
 # MARKUP_XSL is a modified version of Jeni Tennison's "Markup Utility"
 MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 
-# stylesheet used in taking XML output from the cvs2cl(1) perl
-# script, and using it to generate NEWS file(s) and releases notes
+# stylesheet used in taking XML output from "svn log" and using it
+# to generate NEWS file(s) and releases notes
 SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
 # stylesheet used for determining the revision number of the
@@ -168,7 +172,10 @@ ZIP_EXCLUDES = \
  ChangeLog\.xml \
  README\.SVN \
  RELEASE-NOTES\.fo \
- \.make-catalog\.xsl
+ \.make-catalog\.xsl \
+ param.ent$$ \
+ *.xweb$$ \
+ lib/lib.xml$$
 
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
