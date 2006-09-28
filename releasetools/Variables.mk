@@ -174,7 +174,7 @@ ZIP_EXCLUDES = \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl \
  param.ent$$ \
- *.xweb$$ \
+ .*\.xweb$$ \
  lib/lib.xml$$
 
 # specifies options to feed to "freshmeat-submit"
