@@ -173,9 +173,9 @@ ZIP_EXCLUDES = \
  README\.SVN \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl \
- param.ent$$ \
+ param\.ent$$ \
  .*\.xweb$$ \
- lib/lib.xml$$
+ lib/lib\.xml$$
 
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
