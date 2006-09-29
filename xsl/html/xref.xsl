@@ -892,13 +892,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">
+  <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="a.target"/>
 
-  <xsl:variable name="targets" select="key('id',@linkend)"/>
+  <xsl:variable name="targets" select="key('id',$linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:call-template name="check.id.unique">
-    <xsl:with-param name="linkend" select="@linkend"/>
+    <xsl:with-param name="linkend" select="$linkend"/>
   </xsl:call-template>
 
   <a>
@@ -982,6 +983,7 @@
 </xsl:template>
 
 <xsl:template match="ulink" name="ulink">
+  <xsl:param name="url" select="@url"/>
   <xsl:variable name="link">
     <a>
       <xsl:if test="@id">
@@ -989,7 +991,7 @@
           <xsl:value-of select="@id"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:attribute name="href"><xsl:value-of select="@url"/></xsl:attribute>
+      <xsl:attribute name="href"><xsl:value-of select="$url"/></xsl:attribute>
       <xsl:if test="$ulink.target != ''">
         <xsl:attribute name="target">
           <xsl:value-of select="$ulink.target"/>
@@ -997,7 +999,7 @@
       </xsl:if>
       <xsl:choose>
         <xsl:when test="count(child::node())=0">
-          <xsl:value-of select="@url"/>
+          <xsl:value-of select="$url"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates/>
