@@ -751,11 +751,12 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">
-  <xsl:variable name="targets" select="key('id',@linkend)"/>
-  <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:param name="linkend" select="@linkend"/>
+  <xsl:param name="targets" select="key('id',$linkend)"/>
+  <xsl:param name="target" select="$targets[1]"/>
 
   <xsl:call-template name="check.id.unique">
-    <xsl:with-param name="linkend" select="@linkend"/>
+    <xsl:with-param name="linkend" select="$linkend"/>
   </xsl:call-template>
 
   <xsl:variable name="xrefstyle">
@@ -770,7 +771,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:basic-link internal-destination="{@linkend}"
+  <fo:basic-link internal-destination="{$linkend}"
                  xsl:use-attribute-sets="xref.properties">
     <xsl:choose>
       <xsl:when test="count(child::node()) &gt; 0">
@@ -825,16 +826,18 @@
                      or $insert.link.page.number = '1')
                   or local-name($target) = 'para'">
       <xsl:apply-templates select="$target" mode="page.citation">
-        <xsl:with-param name="id" select="@linkend"/>
+        <xsl:with-param name="id" select="$linkend"/>
       </xsl:apply-templates>
     </xsl:when>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template match="ulink" name="ulink">
+  <xsl:param name="url" select="@url"/>
+
   <xsl:variable name ="ulink.url">
     <xsl:call-template name="fo-external-image">
-      <xsl:with-param name="filename" select="@url"/>
+      <xsl:with-param name="filename" select="$url"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -843,7 +846,7 @@
     <xsl:choose>
       <xsl:when test="count(child::node())=0">
         <xsl:call-template name="hyphenate-url">
-          <xsl:with-param name="url" select="@url"/>
+          <xsl:with-param name="url" select="$url"/>
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
@@ -853,7 +856,7 @@
   </fo:basic-link>
 
   <xsl:if test="count(child::node()) != 0
-                and string(.) != @url
+                and string(.) != $url
                 and $ulink.show != 0">
     <!-- yes, show the URI -->
     <xsl:choose>
@@ -865,7 +868,7 @@
               <xsl:call-template name="ulink.footnote.number"/>
               <xsl:text> </xsl:text>
               <fo:basic-link external-destination="{$ulink.url}">
-                <xsl:value-of select="@url"/>
+                <xsl:value-of select="$url"/>
               </fo:basic-link>
             </fo:block>
           </fo:footnote-body>
@@ -876,7 +879,7 @@
           <xsl:text> [</xsl:text>
           <fo:basic-link external-destination="{$ulink.url}">
             <xsl:call-template name="hyphenate-url">
-              <xsl:with-param name="url" select="@url"/>
+              <xsl:with-param name="url" select="$url"/>
             </xsl:call-template>
           </fo:basic-link>
           <xsl:text>]</xsl:text>
