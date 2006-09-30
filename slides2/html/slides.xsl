@@ -31,7 +31,7 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
 <!-- ============================================================ -->
 
 <xsl:template name="t:head">
-  <xsl:param name="notes" select="0"/>
+  <xsl:param name="notes" select="0" tunnel="yes"/>
 
   <title>
     <xsl:choose>
@@ -93,6 +93,9 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
   </xsl:for-each>
 
   <xsl:call-template name="css-style"/>
+  <xsl:if test="$notes != 0">
+    <link rel="stylesheet" type="text/css" href="notes.css" />
+  </xsl:if>
 
   <script type="text/javascript" language="javascript" src="script/ua.js"/>
   <script type="text/javascript" language="javascript" src="script/xbDOM.js"/>
@@ -114,6 +117,7 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
 </xsl:template>
 
 <xsl:template name="t:foil-body">
+  <xsl:param name="notes" select="0" tunnel="yes"/>
   <div class="body">
     <xsl:apply-templates select="node() except (db:foil|db:foilgroup)"/>
 
@@ -128,7 +132,28 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
 
 <xsl:template name="t:foil-footer">
   <div id="overlayDiv" class="footer">
-    <xsl:apply-templates select="/db:slides/db:info/db:copyright"/>
+
+    <table cellpadding="0" cellspacing="0" width="100%" summary="layout hack">
+      <tr>
+	<td>&#160;</td>
+	<td>
+	  <xsl:apply-templates select="/db:slides/db:info/db:copyright"/>
+	</td>
+	<td>
+	  <xsl:text>Slide </xsl:text>
+	  <xsl:value-of select="if (self::db:foil)
+				then count(preceding::db:foil)
+				     +count(preceding::db:foilgroup)
+				     +count(ancestor::db:foilgroup)
+				     +1
+				else count(preceding::db:foil)
+				     +count(preceding::db:foilgroup)
+				     +1"/>
+	  <xsl:text>/</xsl:text>
+	  <xsl:value-of select="count(//db:foilgroup|//db:foil)"/>
+	</td>
+      </tr>
+    </table>
   </div>
 </xsl:template>
 
@@ -147,8 +172,74 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
       <head>
 	<xsl:call-template name="t:head"/>
       </head>
-      <body>
-	<h1>Slides info…</h1>
+      <body onload="newPage(1)" onkeypress="navigate(event)">
+	<div class="titlepage">
+	  <h1>
+	    <xsl:value-of select="db:info/db:title"/>
+	  </h1>
+	  <xsl:if test="db:info/db:subtitle">
+	    <h2>
+	      <xsl:value-of select="db:info/db:subtitle"/>
+	    </h2>
+	  </xsl:if>
+	  <div class="author">
+	    <xsl:apply-templates select="db:info/db:author"
+				 mode="m:titlepage-mode"/>
+	    <xsl:if test="db:info/db:author//db:orgname">
+	      <h4>
+		<xsl:value-of select="(db:info/db:author//db:orgname)[1]"/>
+	      </h4>
+	    </xsl:if>
+	  </div>
+	  <div id="overlayDiv" class="overlayDiv"></div>
+	</div>
+      </body>
+    </html>
+  </xsl:result-document>
+
+  <xsl:result-document href="notes.html">
+    <html>
+      <head>
+	<xsl:call-template name="t:head">
+	  <xsl:with-param name="notes" select="1"/>
+	</xsl:call-template>
+      </head>
+      <body onload="newPage(1)" onkeypress="navigate(event)">
+	<h1>
+	  <xsl:value-of select="db:info/db:title"/>
+	</h1>
+	<p>Start of presentation</p>
+	<div id="overlayDiv" class="overlayDiv"></div>
+      </body>
+    </html>
+  </xsl:result-document>
+
+  <xsl:result-document href="startup.html">
+    <html>
+      <head>
+	<xsl:call-template name="t:head">
+	  <xsl:with-param name="notes" select="1"/>
+	</xsl:call-template>
+      </head>
+      <body onload="newPage(1)" onkeypress="navigate(event)">
+	<h1>
+	  <xsl:value-of select="db:info/db:title"/>
+	</h1>
+	<ul>
+	  <li>
+	    <a href="index.html" target="presentation">
+	      <xsl:text>Open presentation</xsl:text>
+	    </a>
+	  </li>
+	  <!--
+	  <li>
+	    <a href="notes.html" target="notes">
+	      <xsl:text>Open notes</xsl:text>
+	    </a>
+	  </li>
+	  -->
+	</ul>
+	<div id="overlayDiv" class="overlayDiv"></div>
       </body>
     </html>
   </xsl:result-document>
@@ -201,7 +292,9 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
       <body onload="newPage(1)" onkeypress="navigate(event)">
 	<div class="foil">
 	  <xsl:call-template name="t:foil-header"/>
-	  <xsl:call-template name="t:foil-body"/>
+	  <xsl:call-template name="t:foil-body">
+	    <xsl:with-param name="notes" select="0" tunnel="yes"/>
+	  </xsl:call-template>
 	  <xsl:call-template name="t:foil-footer"/>
 	</div>
       </body>
@@ -212,13 +305,23 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
     <html>
       <head>
 	<xsl:call-template name="t:head">
-	  <xsl:with-param name="notes" select="1"/>
+	  <xsl:with-param name="notes" select="1" tunnel="yes"/>
 	</xsl:call-template>
 	<link rel="bookmark" href="{f:filename(.,0)}" title="Foil"/>
       </head>
       <body onload="newPage(1)" onkeypress="navigate(event)">
 	<div class="speakernotes">
 	  <xsl:call-template name="t:foil-header"/>
+	  <div class="thumbnail">
+	    <xsl:apply-templates select="node() except db:foil">
+	      <xsl:with-param name="notes" select="1" tunnel="yes"/>
+	    </xsl:apply-templates>
+	    <xsl:if test="self::db:foilgroup">
+	      <ul>
+		<xsl:apply-templates select="db:foil" mode="m:slidetoc"/>
+	      </ul>
+	    </xsl:if>
+	  </div>
 	  <xsl:if test="db:speakernotes">
 	    <div class="notes">
 	      <h2>Notes</h2>
@@ -226,9 +329,6 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
 	    </div>
 	  </xsl:if>
 	  <xsl:call-template name="t:foil-footer"/>
-	  <div class="thumbnail">
-	    <xsl:apply-templates select="node() except db:foil"/>
-	  </div>
 	</div>
       </body>
     </html>
