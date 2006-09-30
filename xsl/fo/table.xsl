@@ -707,6 +707,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
       <fo:table-row>
 	<xsl:comment> This row intentionally left blank </xsl:comment>
+	<fo:table-cell><fo:block/></fo:table-cell>
       </fo:table-row>
 
       <xsl:apply-templates select="following-sibling::row[1]">
