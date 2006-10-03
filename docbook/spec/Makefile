@@ -1,6 +1,7 @@
 include ../../cvstools/Makefile.incl
 
 XJPARSE=/home/ndw/bin/xjparse
+TIDY=tidy
 
 HTMLSTYLE=html.xsl
 FOSTYLE=fo.xsl
@@ -12,14 +13,14 @@ all: docbook.html
 docbook.html: docbook.xml html.xsl
 	$(XJPARSE) $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
-	tidy -q -utf8 -mn -asxml $@
+	$(TIDY) -q -utf8 -mn -asxml $@
 
 docbook.fo: docbook.xml fo.xsl
 	$(XJPARSE) $<
 	$(XSLT) $< $(FOSTYLE) docbook.fo $(XSLPARAM)
 
 docbook.pdf: docbook.fo
-	xep $<
+	xep -q $<
 
 clean:
-	$(RM) *.html
+	$(RM) -f *.html *.fo *.pdf

@@ -19,10 +19,14 @@
   <xsl:value-of select="$tcProductVersion"/>
   <xsl:text>-</xsl:text>
   <xsl:value-of select="$tcArtifactType"/>
-  <xsl:text>-</xsl:text>
-  <xsl:value-of select="$tcStage"/>
-  <xsl:text>-</xsl:text>
-  <xsl:value-of select="$tcRevision"/>
+  <xsl:if test="$tcStage != 'os'">
+    <xsl:text>-</xsl:text>
+    <xsl:value-of select="$tcStage"/>
+  </xsl:if>
+  <xsl:if test="$tcRevision != ''">
+    <xsl:text>-</xsl:text>
+    <xsl:value-of select="$tcRevision"/>
+  </xsl:if>
   <xsl:if test="$tcLanguage != 'en' and $tcLanguage != ''">
     <xsl:text>-</xsl:text>
     <xsl:value-of select="$tcLanguage"/>
@@ -38,7 +42,7 @@
     <xsl:when test="$tcStage = 'cd'">oasis-cd.css</xsl:when>
     <xsl:when test="$tcStage = 'pr'">oasis-pr.css</xsl:when>
     <xsl:when test="$tcStage = 'cs'">oasis-cs.css</xsl:when>
-    <xsl:when test="$tcStage = 'os'">oasis-os.css</xsl:when>
+    <xsl:when test="$tcStage = 'os'">oasis-cs.css</xsl:when> <!-- sic -->
     <xsl:otherwise>
       <xsl:message>
         <xsl:text>Unrecognized stage: '</xsl:text>
@@ -56,8 +60,12 @@
   <meta name="tcProduct" content="{$tcProduct}"/>
   <meta name="tcProductVersion" content="{$tcProductVersion}"/>
   <meta name="tcArtifactType" content="{$tcArtifactType}"/>
-  <meta name="tcStage" content="{$tcStage}"/>
-  <meta name="tcRevision" content="{$tcRevision}"/>
+  <xsl:if test="$tcStage != ''">
+    <meta name="tcStage" content="{$tcStage}"/>
+  </xsl:if>
+  <xsl:if test="$tcRevision != ''">
+    <meta name="tcRevision" content="{$tcRevision}"/>
+  </xsl:if>
   <meta name="tcLanguage" content="{$tcLanguage}"/>
   <meta name="tcForm" content="html"/>
 

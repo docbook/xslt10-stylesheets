@@ -1,5 +1,5 @@
 <!DOCTYPE article [
-<!ENTITY standard "Committee Specification">
+<!ENTITY standard "OASIS Standard">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://www.oasis-open.org/docbook/">
@@ -13,8 +13,8 @@ $Id$
 <!-- product -->        <productname>docbook</productname>
 <!-- productVersion --> <productnumber>4.5</productnumber>
 <!-- artifactType       spec; what else? :-) -->
-<!-- stage -->          <releaseinfo role="stage">cs</releaseinfo>
-<!-- revision -->       <pubsnumber>02</pubsnumber>
+<!-- stage -->          <releaseinfo role="stage">os</releaseinfo>
+<!-- revision -->       <pubsnumber></pubsnumber>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
 
@@ -33,7 +33,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-04-14</pubdate>
+<pubdate>2006-10-01</pubdate>
 
 <copyright>
 <year>2001</year>
@@ -59,10 +59,9 @@ no backwards-incompatible changes.</para>
 
 <legalnotice role="status">
 <para>This &standard; was
-<ulink url="http://www.oasis-open.org/committees/ballot.php?id=994">approved</ulink>
-for publication by the
-OASIS DocBook Technical Committee. It represents the
-consensus of the committee.
+<ulink url="http://www.oasis-open.org/committees/ballot.php?id=1109">approved</ulink>
+for publication by the OASIS Membership. It represents the
+consensus of the community.
 </para>
 
 <!--
@@ -150,7 +149,31 @@ The DocBook site is mirrored on
 <ulink url="http://docbook.org/"/>.
 </para>
 
+<section id="release">
+<title>Changes in the OASIS Standard of DocBook V4.5</title>
+
+<para>There are no technical changes in this release.
+</para>
+
+<para>Version 4.5 is an OASIS Standard.</para>
+</section>
+
 <section id="s.cs">
+<title>Changes in DocBook V4.5CR3</title>
+
+<para>There are no backwards-incompatible changes in this release.
+</para>
+
+<para>Version 4.5CR3 contains two small bug fixes to the SGML version
+of the DTD: the <sgmltag class="attribute">xml:lang</sgmltag> attribute
+no longer appears on the HTML table elements (it was present erroneously,
+the <sgmltag class="attribute">xml:*</sgmltag> attributes are suppressed
+in the SGML DTD) and markup minimization flags have been added to a few
+elements where they were missing. With these changes, the SGML DTD is
+once again consistent with the DocBook SGML declaration.</para>
+</section>
+
+<section id="s.cr2">
 <title>Changes in DocBook V4.5CR2</title>
 
 <para>There are no backwards-incompatible changes in this release.
@@ -544,10 +567,21 @@ of the DocBook web page
 <appendix id="a.revhistory">
 <title>Revision History</title>
 
-<para>
-<revhistory>
-<revision role="&root;specs/docbook-4.5-spec-cs-01.html">
+<para><revhistory>
+<revision role="&root;specs/docbook-4.5-spec.html">
+  <revnumber>OASIS Standard</revnumber>
+  <date>1 October 2006</date>
+</revision>
+<revision role="&root;specs/docbook-4.5-spec-cs-03.html">
+  <revnumber>Committee Specification CR3</revnumber>
+  <date>2 June 2006</date>
+</revision>
+<revision role="&root;specs/docbook-4.5-spec-cs-02.html">
   <revnumber>Committee Specification CR2</revnumber>
+  <date>14 April 2006</date>
+</revision>
+<revision role="&root;specs/docbook-4.5-spec-cs-01.html">
+  <revnumber>Committee Specification CR1</revnumber>
   <date>09 March 2006</date>
 </revision>
 <revision role="&root;specs/pr-docbook-docbook-4.5.html">
@@ -562,8 +596,7 @@ of the DocBook web page
   <revnumber>Working Draft b1</revnumber>
   <date>05 May 2005</date>
 </revision>
-</revhistory>
-</para>
+</revhistory></para>
 
 </appendix>
 

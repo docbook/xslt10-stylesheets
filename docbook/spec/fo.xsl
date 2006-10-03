@@ -28,10 +28,14 @@
   <xsl:value-of select="$tcProductVersion"/>
   <xsl:text>-</xsl:text>
   <xsl:value-of select="$tcArtifactType"/>
-  <xsl:text>-</xsl:text>
-  <xsl:value-of select="$tcStage"/>
-  <xsl:text>-</xsl:text>
-  <xsl:value-of select="$tcRevision"/>
+  <xsl:if test="$tcStage != 'os'">
+    <xsl:text>-</xsl:text>
+    <xsl:value-of select="$tcStage"/>
+  </xsl:if>
+  <xsl:if test="$tcRevision != ''">
+    <xsl:text>-</xsl:text>
+    <xsl:value-of select="$tcRevision"/>
+  </xsl:if>
   <xsl:if test="$tcLanguage != 'en' and $tcLanguage != ''">
     <xsl:text>-</xsl:text>
     <xsl:value-of select="$tcLanguage"/>
