@@ -25,8 +25,8 @@
 
 <xsl:template match="xref" name="xref">
   <xsl:param name="targets" select="key('id',@linkend)"/>
-  <xsl:variable name="target" select="$targets[1]"/>
-  <xsl:variable name="refelem" select="local-name($target)"/>
+  <xsl:param name="target" select="$targets[1]"/>
+  <xsl:param name="refelem" select="local-name($target)"/>
 
   <xsl:call-template name="check.id.unique">
     <xsl:with-param name="linkend" select="@linkend"/>
