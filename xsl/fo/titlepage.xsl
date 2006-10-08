@@ -435,6 +435,9 @@
 </xsl:template>
 
 <xsl:template match="orgdiv" mode="titlepage.mode">
+  <xsl:if test="preceding-sibling::*[1][self::orgname]">
+    <xsl:text> </xsl:text>
+  </xsl:if>
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
