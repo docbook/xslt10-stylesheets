@@ -3,6 +3,7 @@
 		xmlns:ng="http://docbook.org/docbook-ng"
 		xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:saxon="http://icl.com/saxon"
+                xmlns:NodeInfo="http://org.apache.xalan.lib.NodeInfo"
                 xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="db ng exsl saxon"
                 version='1.0'>
@@ -248,34 +249,55 @@
 </xsl:template>
 
 <xsl:template name="add-xml-base">
-  <xsl:if test="not(@xml:base) and function-available('saxon:systemId')">
-    <xsl:variable name="base" select="saxon:systemId()"/>
-    <xsl:attribute name="xml:base">
-      <xsl:call-template name="systemIdToBaseURI">
-	<xsl:with-param name="systemId">
-	  <!-- file: seems to confuse some processors. -->
-	  <xsl:choose>
-	    <xsl:when test="starts-with($base, 'file:///')">
-	      <xsl:value-of select="substring-after($base,'file://')"/>
-	    </xsl:when>
-	    <xsl:when test="starts-with($base, 'file://')">
-	      <xsl:value-of select="substring-after($base,'file:/')"/>
-	    </xsl:when>
-	    <xsl:when test="starts-with($base, 'file:/')
-			    and substring($base, 8, 1) = ':'">
-	      <!-- Stupid windows file:/c:/path... -->
-	      <xsl:value-of select="concat('file:///', substring-after($base,'file:/'))"/>
-	    </xsl:when>
-	    <xsl:when test="starts-with($base, 'file:/')">
-	      <xsl:value-of select="substring-after($base,'file:')"/>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <xsl:value-of select="$base"/>
-	    </xsl:otherwise>
-	  </xsl:choose>
-	</xsl:with-param>
-      </xsl:call-template>
-    </xsl:attribute>
+  <xsl:if test="not(@xml:base)">
+    <xsl:variable name="base">
+      <xsl:choose>
+        <xsl:when test="function-available('saxon:systemId')">
+          <xsl:value-of select="saxon:systemId()"/>
+        </xsl:when>
+        <xsl:when test="function-available('NodeInfo:systemId')">
+          <xsl:value-of select="NodeInfo:systemId()"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>WARNING: cannot add @xml:base to node </xsl:text>
+            <xsl:text>set root element.  </xsl:text>
+            <xsl:text>Relative paths may not work.</xsl:text>
+          </xsl:message>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <!-- debug
+    <xsl:message>base is <xsl:value-of select="$base"/></xsl:message>
+    -->
+    <xsl:if test="$base != ''">
+      <xsl:attribute name="xml:base">
+        <xsl:call-template name="systemIdToBaseURI">
+  	<xsl:with-param name="systemId">
+  	  <!-- file: seems to confuse some processors. -->
+  	  <xsl:choose>
+  	    <xsl:when test="starts-with($base, 'file:///')">
+  	      <xsl:value-of select="substring-after($base,'file://')"/>
+  	    </xsl:when>
+  	    <xsl:when test="starts-with($base, 'file://')">
+  	      <xsl:value-of select="substring-after($base,'file:/')"/>
+  	    </xsl:when>
+  	    <xsl:when test="starts-with($base, 'file:/')
+  			    and substring($base, 8, 1) = ':'">
+  	      <!-- Stupid windows file:/c:/path... -->
+  	      <xsl:value-of select="concat('file:///', substring-after($base,'file:/'))"/>
+  	    </xsl:when>
+  	    <xsl:when test="starts-with($base, 'file:/')">
+  	      <xsl:value-of select="substring-after($base,'file:')"/>
+  	    </xsl:when>
+  	    <xsl:otherwise>
+  	      <xsl:value-of select="$base"/>
+  	    </xsl:otherwise>
+  	  </xsl:choose>
+  	</xsl:with-param>
+        </xsl:call-template>
+      </xsl:attribute>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
@@ -297,9 +319,11 @@
 
 <xsl:template match="/" priority="-1">
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')
+    <xsl:when test="(function-available('exsl:node-set') or
+                     contains(system-property('xsl:vendor'),
+                       'Apache Software Foundation'))
                     and (*/self::ng:* or */self::db:*)">
-      <xsl:message>Stripping NS from DocBook 5/NG document.</xsl:message>
+      <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
