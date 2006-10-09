@@ -85,13 +85,16 @@
 
 <xsl:template match="*">
   <xsl:message>
-    <xsl:text>No template matches </xsl:text>
-    <xsl:value-of select="name(.)"/>
+    <xsl:text>Element </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+    <xsl:text> in namespace '</xsl:text>
+    <xsl:value-of select="namespace-uri(.)"/>
+    <xsl:text>' encountered</xsl:text>
     <xsl:if test="parent::*">
       <xsl:text> in </xsl:text>
       <xsl:value-of select="name(parent::*)"/>
     </xsl:if>
-    <xsl:text>.</xsl:text>
+    <xsl:text>, but no template matches.</xsl:text>
   </xsl:message>
 
   <font color="red">
@@ -324,14 +327,17 @@ body { background-image: url('</xsl:text>
 
 <xsl:template match="/">
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')
-		    and (*/self::ng:* or */self::db:*)">
+    <!-- include extra test for Xalan quirk -->
+    <xsl:when test="(function-available('exsl:node-set') or
+                     contains(system-property('xsl:vendor'),
+                       'Apache Software Foundation'))
+                    and (*/self::ng:* or */self::db:*)">
       <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
 	   toss the namespace and continue. Someday we'll reverse this logic
 	   and add the namespace to documents that don't have one.
 	   But not before the whole stylesheet has been converted to use
 	   namespaces. i.e., don't hold your breath -->
-      <xsl:message>Stripping NS from DocBook 5/NG document.</xsl:message>
+      <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
 	<xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
