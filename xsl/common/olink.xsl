@@ -14,9 +14,25 @@
   <xsl:param name="targetptr.att" select="''"/>
   <xsl:param name="olink.lang" select="''"/>
 
+  <!-- use root's xml:base if exists -->
+  <xsl:variable name="xml.base" select="/*/@xml:base"/>
+
   <!-- This selection can be customized if needed -->
-  <xsl:variable name="target.database.filename" 
-      select="$target.database.document"/>
+  <xsl:variable name="target.database.filename">
+    <xsl:choose>
+      <xsl:when test="$xml.base != '' and
+                   not(starts-with($target.database.document, 'file:/')) and
+                   not(starts-with($target.database.document, '/'))">
+        <xsl:call-template name="systemIdToBaseURI">
+          <xsl:with-param name="systemId" select="$xml.base"/>
+        </xsl:call-template>
+        <xsl:value-of select="$target.database.document"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$target.database.document"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:variable name="target.database" 
       select="document($target.database.filename,/)"/>
