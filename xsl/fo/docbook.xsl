@@ -2,8 +2,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-		xmlns:ng="http://docbook.org/docbook-ng"
-		xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:ng="http://docbook.org/docbook-ng"
+                xmlns:db="http://docbook.org/ns/docbook"
                 exclude-result-prefixes="db ng exsl"
                 version='1.0'>
 
@@ -123,15 +123,22 @@
                        'Apache Software Foundation'))
                     and (*/self::ng:* or */self::db:*)">
       <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-	   toss the namespace and continue. Someday we'll reverse this logic
-	   and add the namespace to documents that don't have one.
-	   But not before the whole stylesheet has been converted to use
-	   namespaces. i.e., don't hold your breath -->
+           toss the namespace and continue. Someday we'll reverse this logic
+           and add the namespace to documents that don't have one.
+           But not before the whole stylesheet has been converted to use
+           namespaces. i.e., don't hold your breath -->
       <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
       <xsl:apply-templates select="exsl:node-set($nons)"/>
+    </xsl:when>
+    <!-- Can't process unless namespace removed -->
+    <xsl:when test="*/self::ng:* or */self::db:*">
+      <xsl:message terminate="yes">
+        <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+        <xsl:text> cannot proceed.</xsl:text>
+      </xsl:message>
     </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
@@ -243,12 +250,12 @@
     <xsl:if test="$fop1.extensions != 0">
       <xsl:variable name="bookmarks">
         <xsl:apply-templates select="$document.element" 
-	                     mode="fop1.outline"/>
+                             mode="fop1.outline"/>
       </xsl:variable>
       <xsl:if test="string($bookmarks) != ''">
         <fo:bookmark-tree>
           <xsl:copy-of select="$bookmarks"/>
-	</fo:bookmark-tree>
+        </fo:bookmark-tree>
       </xsl:if>
     </xsl:if>
 
@@ -265,13 +272,13 @@
 
     <xsl:if test="$arbortext.extensions != 0 and $ati.xsl11.bookmarks != 0">
       <xsl:variable name="bookmarks">
-	<xsl:apply-templates select="$document.element"
-			     mode="ati.xsl11.bookmarks"/>
+        <xsl:apply-templates select="$document.element"
+                             mode="ati.xsl11.bookmarks"/>
       </xsl:variable>
       <xsl:if test="string($bookmarks) != ''">
-	<fo:bookmark-tree>
-	  <xsl:copy-of select="$bookmarks"/>
-	</fo:bookmark-tree>
+        <fo:bookmark-tree>
+          <xsl:copy-of select="$bookmarks"/>
+        </fo:bookmark-tree>
       </xsl:if>
     </xsl:if>
 

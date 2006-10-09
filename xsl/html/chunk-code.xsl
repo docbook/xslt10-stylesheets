@@ -1,8 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
-		xmlns:ng="http://docbook.org/docbook-ng"
-		xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:ng="http://docbook.org/docbook-ng"
+                xmlns:db="http://docbook.org/ns/docbook"
                 version="1.0"
                 exclude-result-prefixes="exsl cf ng db">
 
@@ -248,7 +248,7 @@
              |preceding::bibliography[parent::article or parent::book or parent::part][1]
              |preceding::glossary[parent::article or parent::book or parent::part][1]
              |preceding::index[$generate.index != 0]
-	                       [parent::article or parent::book or parent::part][1]
+                               [parent::article or parent::book or parent::part][1]
              |preceding::setindex[$generate.index != 0][1]
              |ancestor::set
              |ancestor::book[1]
@@ -333,7 +333,7 @@
              |following::bibliography[parent::article or parent::book or parent::part][1]
              |following::glossary[parent::article or parent::book or parent::part][1]
              |following::index[$generate.index != 0]
-	                       [parent::article or parent::book or parent::part][1]
+                               [parent::article or parent::book or parent::part][1]
              |following::article[1]
              |following::setindex[$generate.index != 0][1]
              |descendant::book[1]
@@ -344,7 +344,7 @@
              |descendant::bibliography[parent::article or parent::book or parent::part][1]
              |descendant::glossary[parent::article or parent::book or parent::part][1]
              |descendant::index[$generate.index != 0]
-	                       [parent::article or parent::book or parent::part][1]
+                               [parent::article or parent::book or parent::part][1]
              |descendant::colophon[1]
              |descendant::setindex[$generate.index != 0][1]
              |descendant::part[1]
@@ -394,7 +394,7 @@
              |preceding::bibliography[parent::article or parent::book or parent::part][1]
              |preceding::glossary[parent::article or parent::book or parent::part][1]
              |preceding::index[$generate.index != 0]
-	                       [parent::article or parent::book or parent::part][1]
+                               [parent::article or parent::book or parent::part][1]
              |preceding::setindex[$generate.index != 0][1]
              |ancestor::set
              |ancestor::book[1]
@@ -436,7 +436,7 @@
              |following::bibliography[parent::article or parent::book or parent::part][1]
              |following::glossary[parent::article or parent::book or parent::part][1]
              |following::index[$generate.index != 0]
-	                       [parent::article or parent::book][1]
+                               [parent::article or parent::book][1]
              |following::article[1]
              |following::setindex[$generate.index != 0][1]
              |descendant::book[1]
@@ -447,7 +447,7 @@
              |descendant::bibliography[parent::article or parent::book][1]
              |descendant::glossary[parent::article or parent::book or parent::part][1]
              |descendant::index[$generate.index != 0]
-	                       [parent::article or parent::book][1]
+                               [parent::article or parent::book][1]
              |descendant::colophon[1]
              |descendant::setindex[$generate.index != 0][1]
              |descendant::part[1]
@@ -473,67 +473,74 @@
                        'Apache Software Foundation'))
                     and (*/self::ng:* or */self::db:*)">
       <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-	   toss the namespace and continue. Someday we'll reverse this logic
-	   and add the namespace to documents that don't have one.
-	   But not before the whole stylesheet has been converted to use
-	   namespaces. i.e., don't hold your breath -->
+           toss the namespace and continue. Someday we'll reverse this logic
+           and add the namespace to documents that don't have one.
+           But not before the whole stylesheet has been converted to use
+           namespaces. i.e., don't hold your breath -->
       <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
-	<xsl:apply-templates mode="stripNS"/>
+        <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
       <xsl:message>Processing stripped document.</xsl:message>
       <xsl:apply-templates select="exsl:node-set($nons)"/>
     </xsl:when>
+    <!-- Can't process unless namespace removed -->
+    <xsl:when test="*/self::ng:* or */self::db:*">
+      <xsl:message terminate="yes">
+        <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+        <xsl:text> cannot proceed.</xsl:text>
+      </xsl:message>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
-	<xsl:when test="$rootid != ''">
-	  <xsl:choose>
-	    <xsl:when test="count(key('id',$rootid)) = 0">
-	      <xsl:message terminate="yes">
-		<xsl:text>ID '</xsl:text>
-		<xsl:value-of select="$rootid"/>
-		<xsl:text>' not found in document.</xsl:text>
-	      </xsl:message>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <xsl:if test="$collect.xref.targets = 'yes' or
-			    $collect.xref.targets = 'only'">
-		<xsl:apply-templates select="key('id', $rootid)"
-				     mode="collect.targets"/>
-	      </xsl:if>
-	      <xsl:if test="$collect.xref.targets != 'only'">
-		<xsl:apply-templates select="key('id',$rootid)"
-				     mode="process.root"/>
-		<xsl:if test="$tex.math.in.alt != ''">
-		  <xsl:apply-templates select="key('id',$rootid)"
-				       mode="collect.tex.math"/>
-		</xsl:if>
-		<xsl:if test="$generate.manifest != 0">
-		  <xsl:call-template name="generate.manifest">
-		    <xsl:with-param name="node" select="key('id',$rootid)"/>
-		  </xsl:call-template>
-		</xsl:if>
-	      </xsl:if>
-	    </xsl:otherwise>
-	  </xsl:choose>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:if test="$collect.xref.targets = 'yes' or
-			$collect.xref.targets = 'only'">
-	    <xsl:apply-templates select="/" mode="collect.targets"/>
-	  </xsl:if>
-	  <xsl:if test="$collect.xref.targets != 'only'">
-	    <xsl:apply-templates select="/" mode="process.root"/>
-	    <xsl:if test="$tex.math.in.alt != ''">
-	      <xsl:apply-templates select="/" mode="collect.tex.math"/>
-	    </xsl:if>
-	    <xsl:if test="$generate.manifest != 0">
-	      <xsl:call-template name="generate.manifest">
-		<xsl:with-param name="node" select="/"/>
-	      </xsl:call-template>
-	    </xsl:if>
-	  </xsl:if>
-	</xsl:otherwise>
+        <xsl:when test="$rootid != ''">
+          <xsl:choose>
+            <xsl:when test="count(key('id',$rootid)) = 0">
+              <xsl:message terminate="yes">
+                <xsl:text>ID '</xsl:text>
+                <xsl:value-of select="$rootid"/>
+                <xsl:text>' not found in document.</xsl:text>
+              </xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:if test="$collect.xref.targets = 'yes' or
+                            $collect.xref.targets = 'only'">
+                <xsl:apply-templates select="key('id', $rootid)"
+                                     mode="collect.targets"/>
+              </xsl:if>
+              <xsl:if test="$collect.xref.targets != 'only'">
+                <xsl:apply-templates select="key('id',$rootid)"
+                                     mode="process.root"/>
+                <xsl:if test="$tex.math.in.alt != ''">
+                  <xsl:apply-templates select="key('id',$rootid)"
+                                       mode="collect.tex.math"/>
+                </xsl:if>
+                <xsl:if test="$generate.manifest != 0">
+                  <xsl:call-template name="generate.manifest">
+                    <xsl:with-param name="node" select="key('id',$rootid)"/>
+                  </xsl:call-template>
+                </xsl:if>
+              </xsl:if>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:if test="$collect.xref.targets = 'yes' or
+                        $collect.xref.targets = 'only'">
+            <xsl:apply-templates select="/" mode="collect.targets"/>
+          </xsl:if>
+          <xsl:if test="$collect.xref.targets != 'only'">
+            <xsl:apply-templates select="/" mode="process.root"/>
+            <xsl:if test="$tex.math.in.alt != ''">
+              <xsl:apply-templates select="/" mode="collect.tex.math"/>
+            </xsl:if>
+            <xsl:if test="$generate.manifest != 0">
+              <xsl:call-template name="generate.manifest">
+                <xsl:with-param name="node" select="/"/>
+              </xsl:call-template>
+            </xsl:if>
+          </xsl:if>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
@@ -736,11 +743,11 @@
               <xsl:with-param name="next" select="/foo"/>
               <xsl:with-param name="nav.context" select="'toc'"/>
               <xsl:with-param name="content">
-		<xsl:if test="$chunk.tocs.and.lots.has.title != 0">
-		  <h1>
-		    <xsl:apply-templates select="." mode="object.title.markup"/>
-		  </h1>
-		</xsl:if>
+                <xsl:if test="$chunk.tocs.and.lots.has.title != 0">
+                  <h1>
+                    <xsl:apply-templates select="." mode="object.title.markup"/>
+                  </h1>
+                </xsl:if>
                 <xsl:copy-of select="$lots"/>
               </xsl:with-param>
             </xsl:call-template>
@@ -994,18 +1001,18 @@
 
   <!-- FIXME: When chunking, only the annotations actually used
               in this chunk should be referenced. I don't think it
-	      does any harm to reference them all, but it adds
-	      unnecessary bloat to each chunk. -->
+              does any harm to reference them all, but it adds
+              unnecessary bloat to each chunk. -->
   <xsl:if test="$annotation.support != 0 and //annotation">
     <div class="annotation-list">
       <div class="annotation-nocss">
-	<p>The following annotations are from this essay. You are seeing
-	them here because your browser doesn’t support the user-interface
-	techniques used to make them appear as ‘popups’ on modern browsers.</p>
+        <p>The following annotations are from this essay. You are seeing
+        them here because your browser doesn’t support the user-interface
+        techniques used to make them appear as ‘popups’ on modern browsers.</p>
       </div>
 
       <xsl:apply-templates select="//annotation"
-			   mode="annotation-popup"/>
+                           mode="annotation-popup"/>
     </div>
   </xsl:if>
 </xsl:template>
