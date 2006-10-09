@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		xmlns:ng="http://docbook.org/docbook-ng"
-		xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:ng="http://docbook.org/docbook-ng"
+                xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="db ng exsl"
                 version='1.0'>
@@ -266,24 +266,24 @@ body { background-image: url('</xsl:text>
 
   <!-- FIXME: When chunking, only the annotations actually used
               in this chunk should be referenced. I don't think it
-	      does any harm to reference them all, but it adds
-	      unnecessary bloat to each chunk. -->
+              does any harm to reference them all, but it adds
+              unnecessary bloat to each chunk. -->
   <xsl:if test="$annotation.support != 0 and //annotation">
     <xsl:call-template name="add.annotation.links"/>
     <script type="text/javascript">
       <xsl:text>&#10;// Create PopupWindow objects</xsl:text>
       <xsl:for-each select="//annotation">
-	<xsl:text>&#10;var popup_</xsl:text>
-	<xsl:value-of select="generate-id(.)"/>
-	<xsl:text> = new PopupWindow("popup-</xsl:text>
-	<xsl:value-of select="generate-id(.)"/>
-	<xsl:text>");&#10;</xsl:text>
-	<xsl:text>popup_</xsl:text>
-	<xsl:value-of select="generate-id(.)"/>
-	<xsl:text>.offsetY = 15;&#10;</xsl:text>
-	<xsl:text>popup_</xsl:text>
-	<xsl:value-of select="generate-id(.)"/>
-	<xsl:text>.autoHide();&#10;</xsl:text>
+        <xsl:text>&#10;var popup_</xsl:text>
+        <xsl:value-of select="generate-id(.)"/>
+        <xsl:text> = new PopupWindow("popup-</xsl:text>
+        <xsl:value-of select="generate-id(.)"/>
+        <xsl:text>");&#10;</xsl:text>
+        <xsl:text>popup_</xsl:text>
+        <xsl:value-of select="generate-id(.)"/>
+        <xsl:text>.offsetY = 15;&#10;</xsl:text>
+        <xsl:text>popup_</xsl:text>
+        <xsl:value-of select="generate-id(.)"/>
+        <xsl:text>.autoHide();&#10;</xsl:text>
       </xsl:for-each>
     </script>
 
@@ -333,67 +333,74 @@ body { background-image: url('</xsl:text>
                        'Apache Software Foundation'))
                     and (*/self::ng:* or */self::db:*)">
       <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-	   toss the namespace and continue. Someday we'll reverse this logic
-	   and add the namespace to documents that don't have one.
-	   But not before the whole stylesheet has been converted to use
-	   namespaces. i.e., don't hold your breath -->
+           toss the namespace and continue. Someday we'll reverse this logic
+           and add the namespace to documents that don't have one.
+           But not before the whole stylesheet has been converted to use
+           namespaces. i.e., don't hold your breath -->
       <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
-	<xsl:apply-templates mode="stripNS"/>
+        <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
       <!--
       <xsl:message>Saving stripped document.</xsl:message>
       <xsl:call-template name="write.chunk">
-	<xsl:with-param name="filename" select="'/tmp/stripped.xml'"/>
-	<xsl:with-param name="method" select="'xml'"/>
-	<xsl:with-param name="content">
-	  <xsl:copy-of select="exsl:node-set($nons)"/>
-	</xsl:with-param>
+        <xsl:with-param name="filename" select="'/tmp/stripped.xml'"/>
+        <xsl:with-param name="method" select="'xml'"/>
+        <xsl:with-param name="content">
+          <xsl:copy-of select="exsl:node-set($nons)"/>
+        </xsl:with-param>
       </xsl:call-template>
       -->
       <xsl:message>Processing stripped document.</xsl:message>
       <xsl:apply-templates select="exsl:node-set($nons)"/>
     </xsl:when>
+    <!-- Can't process unless namespace removed -->
+    <xsl:when test="*/self::ng:* or */self::db:*">
+      <xsl:message terminate="yes">
+        <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+        <xsl:text> cannot proceed.</xsl:text>
+      </xsl:message>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
-	<xsl:when test="$rootid != ''">
-	  <xsl:choose>
-	    <xsl:when test="count(key('id',$rootid)) = 0">
-	      <xsl:message terminate="yes">
-		<xsl:text>ID '</xsl:text>
-		<xsl:value-of select="$rootid"/>
-		<xsl:text>' not found in document.</xsl:text>
-	      </xsl:message>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <xsl:if test="$collect.xref.targets = 'yes' or
-		            $collect.xref.targets = 'only'">
-		<xsl:apply-templates select="key('id', $rootid)"
-				     mode="collect.targets"/>
-	      </xsl:if>
-	      <xsl:if test="$collect.xref.targets != 'only'">
-		<xsl:apply-templates select="key('id',$rootid)"
-				     mode="process.root"/>
-		<xsl:if test="$tex.math.in.alt != ''">
-		  <xsl:apply-templates select="key('id',$rootid)"
-				       mode="collect.tex.math"/>
-		</xsl:if>
-	      </xsl:if>
-	    </xsl:otherwise>
-	  </xsl:choose>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:if test="$collect.xref.targets = 'yes' or
-		        $collect.xref.targets = 'only'">
-	    <xsl:apply-templates select="/" mode="collect.targets"/>
-	  </xsl:if>
-	  <xsl:if test="$collect.xref.targets != 'only'">
-	    <xsl:apply-templates select="/" mode="process.root"/>
-	    <xsl:if test="$tex.math.in.alt != ''">
-	      <xsl:apply-templates select="/" mode="collect.tex.math"/>
-	    </xsl:if>
-	  </xsl:if>
-	</xsl:otherwise>
+        <xsl:when test="$rootid != ''">
+          <xsl:choose>
+            <xsl:when test="count(key('id',$rootid)) = 0">
+              <xsl:message terminate="yes">
+                <xsl:text>ID '</xsl:text>
+                <xsl:value-of select="$rootid"/>
+                <xsl:text>' not found in document.</xsl:text>
+              </xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:if test="$collect.xref.targets = 'yes' or
+                            $collect.xref.targets = 'only'">
+                <xsl:apply-templates select="key('id', $rootid)"
+                                     mode="collect.targets"/>
+              </xsl:if>
+              <xsl:if test="$collect.xref.targets != 'only'">
+                <xsl:apply-templates select="key('id',$rootid)"
+                                     mode="process.root"/>
+                <xsl:if test="$tex.math.in.alt != ''">
+                  <xsl:apply-templates select="key('id',$rootid)"
+                                       mode="collect.tex.math"/>
+                </xsl:if>
+              </xsl:if>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:if test="$collect.xref.targets = 'yes' or
+                        $collect.xref.targets = 'only'">
+            <xsl:apply-templates select="/" mode="collect.targets"/>
+          </xsl:if>
+          <xsl:if test="$collect.xref.targets != 'only'">
+            <xsl:apply-templates select="/" mode="process.root"/>
+            <xsl:if test="$tex.math.in.alt != ''">
+              <xsl:apply-templates select="/" mode="collect.tex.math"/>
+            </xsl:if>
+          </xsl:if>
+        </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
