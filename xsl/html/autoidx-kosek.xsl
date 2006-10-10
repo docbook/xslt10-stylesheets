@@ -65,7 +65,7 @@
     <xsl:message terminate="yes">
       <xsl:text>ERROR: the 'kosek' index method requires the&#xA;</xsl:text>
       <xsl:text>index extension functions be imported:&#xA;</xsl:text>
-      <xsl:text>  xsl:import href="common/autoidx-ng.xsl"</xsl:text>
+      <xsl:text>  xsl:import href="common/autoidx-kosek.xsl"</xsl:text>
     </xsl:message>
   </xsl:if>
 
