@@ -14,7 +14,7 @@
 
 <!-- You should have this directly in your customization file. -->
 <!-- This file is there only to retain backward compatibility. -->
-<xsl:import href="../common/autoidx-ng.xsl"/>
+<xsl:import href="autoidx-kosek.xsl"/>
 <xsl:param name="index.method">kosek</xsl:param>
 
 </xsl:stylesheet>
