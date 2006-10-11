@@ -7414,7 +7414,7 @@ div {
 
    db.olink.attlist =
       db.common.attributes
-    & db.olink.targetdoc.attribute
+    & db.olink.targetdoc.attribute?
     & db.olink.role.attribute?
     & db.olink.xrefstyle.attribute?
     & db.olink.localinfo.attribute?
