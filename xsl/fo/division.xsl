@@ -218,6 +218,7 @@
 <xsl:template match="set/setinfo"></xsl:template>
 <xsl:template match="set/title"></xsl:template>
 <xsl:template match="set/subtitle"></xsl:template>
+<xsl:template match="set/titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
@@ -227,11 +228,12 @@
   </xsl:variable>
 
   <xsl:variable name="preamble"
-                select="title|subtitle|titleabbrev|bookinfo"/>
+                select="title|subtitle|titleabbrev|bookinfo|info"/>
 
   <xsl:variable name="content"
                 select="node()[not(self::title or self::subtitle
                             or self::titleabbrev
+                            or self::info
                             or self::bookinfo)]"/>
 
   <xsl:variable name="titlepage-master-reference">
@@ -652,7 +654,7 @@
 
         <xsl:call-template name="list.of.titles">
           <xsl:with-param name="titles" select="'equation'"/>
-          <xsl:with-param name="nodes" select=".//equation[title]"/>
+          <xsl:with-param name="nodes" select=".//equation[title or info/title]"/>
         </xsl:call-template>
       </fo:flow>
     </fo:page-sequence>
@@ -730,8 +732,10 @@
 </xsl:template>
 
 <xsl:template match="book/bookinfo"></xsl:template>
+<xsl:template match="book/info"></xsl:template>
 <xsl:template match="book/title"></xsl:template>
 <xsl:template match="book/subtitle"></xsl:template>
+<xsl:template match="book/titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
@@ -823,8 +827,10 @@
 </xsl:template>
 
 <xsl:template match="part/docinfo|partinfo"></xsl:template>
+<xsl:template match="part/info"></xsl:template>
 <xsl:template match="part/title"></xsl:template>
 <xsl:template match="part/subtitle"></xsl:template>
+<xsl:template match="part/titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
