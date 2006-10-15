@@ -83,6 +83,7 @@
     <xsl:apply-templates/>
   </xsl:variable>
   <xsl:value-of select="normalize-space($content)"/>
+  <xsl:text>&#10;</xsl:text>
   <xsl:if test="not(ancestor::authorblurb) and
                 not(ancestor::personblurb)">
     <xsl:text>.sp&#10;</xsl:text>
