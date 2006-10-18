@@ -34,7 +34,7 @@ default namespace = "http://docbook.org/ns/docbook"
 
 db.technical.blocks |= db.task
 
-db.task.info = db._info.title.only
+db.task.info = db._info.title.req
 
 # ======================================================================
 
