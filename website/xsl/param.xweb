@@ -13,14 +13,17 @@ $Id$
   <year>2002-2005</year>
   <holder>Norman Walsh</holder>
 </copyright>
+<abstract>
+  <para>This is reference documentation for all user-configurable
+  parameters in the DocBook XSL Website stylesheet (for generating
+  websites from DocBook XML sources). Note that the Website stylesheet
+  is a customization layer of the DocBook XSL HTML stylesheet.
+  Therefore, in addition to the Website-specific parameters listed in
+  this section, you can also use a number of <ulink
+  url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
+  >HTML stylesheet parameters</ulink> to control Website output.</para>
+</abstract>
 </bookinfo>
-
-<preface id="intro"><title>Introduction</title>
-
-<para>This is reference documentation for all user-configurable
-parameters in the DocBook XSL Website stylesheets (for generating
-output from DocBook Website documents).</para>
-</preface>
 
 <reference id="params">
 <title>Parameters</title>
