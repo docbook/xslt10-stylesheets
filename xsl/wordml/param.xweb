@@ -19,15 +19,13 @@
       <year>2004</year>
       <holder>Steve Ball</holder>
     </copyright>
+    <abstract>
+      <para>This is reference documentation for all user-configurable
+      parameters in the DocBook WordML Stylesheets (for generating
+      WordML or Apple Pages output).</para>
+    </abstract>
   </bookinfo>
 
-  <preface id="preface">
-    <title>Introduction</title>
-
-    <para>This is technical documentation for the DocBook XSL Stylesheets to produce WordML output (or Apple Pages); it documents the parameters, templates and usage of the stylesheet(s).</para>
-
-    <para>This is not intended to be <quote>user</quote> documentation.  It is provided for developers writing customisation layers for the stylesheets, and for anyone who's interested in <quote>how it works</quote>.</para>
-  </preface>
   <reference id="params">
   <title>Parameters</title>
 &wordml.template;

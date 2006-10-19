@@ -16,21 +16,17 @@ $Id$
   <year>2003</year>
   <holder>Ji&rcaron;&iacute; Kosek</holder>
 </copyright>
+<abstract>
+  <para>This is technical reference documentation for the DocBook XSL
+  Stylesheets. It documents processing instructions (PIs) recognized by
+  the stylesheets.</para>
+  
+  <para>These PIs can be usually used to change behaviour of stylesheets
+  in a particular place. If you want to change some setting globally it
+  is better to do it via setting appropriate stylesheet
+  parameter if there is such one.</para>
+</abstract>
 </bookinfo>
-
-<preface id="intro">
-<title>Introduction</title>
-
-<para>This is technical reference documentation for the DocBook XSL
-Stylesheets. It documents processing instructions (PIs) recognized by
-the stylesheets.</para>
-
-<para>These PIs can be usually used to change behaviour of stylesheets
-in a particular place. If you want to change some setting globally it
-is better to do it via setting appropriate stylesheet
-parameter if there is such one.</para>
-
-</preface>
 
 <reference id="html">
 <title>HTML PIs</title>
