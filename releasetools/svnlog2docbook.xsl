@@ -141,6 +141,7 @@
       </sect1>
       <xsl:text>&#xa;</xsl:text>
     </article>
+    <xsl:text>&#xa;</xsl:text>
   </xsl:template>
 
   <xsl:template name="format.subsection">
