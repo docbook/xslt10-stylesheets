@@ -11,15 +11,14 @@
   <author><orgname>DocBook Project Development Team</orgname></author>
 </info>
 
-<!--
 <para>These are the release notes for the DocBook XSL Stylesheets
 distribution. This document lists enhancements and changes to the
 public APIs (user-configurable parameters) and generally excludes
 descriptions of bug fixes, which are instead documented in a separate
 file (<link xlink:href="NEWS">plain text</link> and <link
 xlink:href="NEWS.html">HTML</link>).</para>
--->
 
+<!--
   <para>This is a pre-release “snapshot” of the DocBook XSL
   Stylesheets. The information is this document is auto-generated from
   change descriptions stored in the project source-code
@@ -33,6 +32,185 @@ xlink:href="NEWS.html">HTML</link>).</para>
   complete…</para>
 
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
+-->
+
+<sect1 xml:id="V1.71.1">
+<title>Release: 1.71.1</title>
+<para>This is a minor update to the 1.71.0 release. Along with a
+number of bug fixes, it includes two feature changes:
+
+<itemizedlist>
+  <listitem>
+    <para>Added support for profiling based on <tag
+    class="attribute">xml:lang</tag> and <tag
+    class="attribute">status</tag> attributes.</para>
+  </listitem>
+  <listitem>
+    <para>Added initial support in manpages output for
+    <tag>footnote</tag>, <tag>annotation</tag>, and <tag>alt</tag>
+    instances. Basically, they all now get handled the same way
+    <tag>ulink</tag> instances are. They are treated as a class as
+    "note sources": A numbered marker is generated at the place in the
+    main text flow where they occur, then their contents are displayed
+    in an endnotes section at the end of the man page.</para>
+  </listitem>
+</itemizedlist>
+</para>
+
+<sect2 xml:id="V1.71.1_Common">
+<title>Common</title>
+<para>The following changes have been made to the
+            <filename>common</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">For backward compatability autoidx-ng.xsl is invoking "kosek" indexing method again.<alt>D: /trunk/xsl/common/autoidx-ng.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Add support for Xalan generating a root xml:base like saxon.<alt>M: /trunk/xsl/common/stripns.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Common changes for 1.71.1-->
+
+<sect2 xml:id="V1.71.1_FO">
+<title>FO</title>
+<para>The following changes have been made to the
+            <filename>fo</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">For backward compatability autoidx-ng.xsl is invoking "kosek" indexing method again.<alt>M: /trunk/xsl/fo/autoidx-ng.xsl; M: /trunk/xsl/fo/autoidx-kosek.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Add support for Xalan to add root node xml:base for db5 docs.<alt>M: /trunk/xsl/fo/docbook.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support for profiling based on xml:lang and status attributes.<alt>M: /trunk/xsl/fo/param.xweb; M: /trunk/xsl/fo/param.ent - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.71.1-->
+
+<sect2 xml:id="V1.71.1_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the
+            <filename>html</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">For backward compatability autoidx-ng.xsl is invoking "kosek" indexing method again.<alt>M: /trunk/xsl/html/autoidx-ng.xsl; M: /trunk/xsl/html/autoidx-kosek.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Add support for Xalan to add root node xml:base for db5 docs.<alt>M: /trunk/xsl/html/chunk-code.xsl; M: /trunk/xsl/html/docbook.xsl - Robert Stayton</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support for profiling based on xml:lang and status attributes.<alt>M: /trunk/xsl/html/param.xweb; M: /trunk/xsl/html/param.ent - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Made changes in namespace declarations to prevent xmllint's
+canonicalizer from treating them as relative namespace URIs.
+
+  - Changed xmlns:k="java:com.isogen.saxoni18n.Saxoni18nService"
+    to xmlns:k="http://www.isogen.com/functions/com.isogen.saxoni18n.Saxoni18nService";
+    Saxon accepts either form
+    (see http://www.saxonica.com/documentation/extensibility/functions.html);
+    to Saxon, "the part of the URI before the final '/' is immaterial".
+
+  - Changed, e.g. xmlns:xverb="com.nwalsh.xalan.Verbatim" to
+    xmlns:xverb="xalan://com.nwalsh.xalan.Verbatim"; Xalan accepts
+    either form
+    (see http://xml.apache.org/xalan-j/extensions.html#java-namespace-declare);
+    just as Saxon does, it will "simply use the string to the
+    right of the rightmost forward slash as the Java class name".
+
+  - Changed xmlns:xalanredirect="org.apache.xalan.xslt.extensions.Redirect"
+    to xmlns:redirect="http://xml.apache.org/xalan/redirect", and
+    adjusted associated code to make the current Xalan redirect spec.
+    (see http://xml.apache.org/xalan-j/apidocs/org/apache/xalan/lib/Redirect.html)<alt>M: /trunk/xsl/html/oldchunker.xsl; M: /trunk/xsl/html/chunker.xsl; M: /trunk/xsl/html/graphics.xsl; M: /trunk/xsl/html/callout.xsl; M: /trunk/xsl/html/autoidx-kimber.xsl; M: /trunk/xsl/html/autoidx-kosek.xsl; M: /trunk/xsl/html/table.xsl; M: /trunk/xsl/html/verbatim.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added the <parameter>html.append</parameter> and <parameter>chunk.append</parameter> parameters. By default, the
+value of both is empty; but the internal DocBook XSL stylesheets
+build sets their value to "&lt;xsl:text&gt;&amp;#x0a;&lt;/xsl:text&gt;", in order
+to ensure that all files in the docbook-xsl-doc package end in a
+newline character. (Because diff and some other tools may emit
+error messages and/or not behave as expected when processing
+files that are not newline-terminated.)<alt>M: /trunk/xsl/html/chunk-common.xsl; M: /trunk/xsl/html/titlepage.xsl; M: /trunk/xsl/html/param.xweb; M: /trunk/xsl/html/docbook.xsl; M: /trunk/xsl/html/graphics.xsl; M: /trunk/xsl/html/param.ent - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.71.1-->
+
+<sect2 xml:id="V1.71.1_Highlighting">
+<title>Highlighting</title>
+<para>The following changes have been made to the
+            <filename>highlighting</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added license information<alt>M: /trunk/xsl/highlighting/delphi-hl.xml; M: /trunk/xsl/highlighting/myxml-hl.xml; M: /trunk/xsl/highlighting/php-hl.xml; M: /trunk/xsl/highlighting/m2-hl.xml; M: /trunk/xsl/highlighting/ini-hl.xml; M: /trunk/xsl/highlighting/xslthl-config.xml; M: /trunk/xsl/highlighting/java-hl.xml - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Highlighting changes for 1.71.1-->
+
+<sect2 xml:id="V1.71.1_Manpages">
+<title>Manpages</title>
+<para>The following changes have been made to the
+            <filename>manpages</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added initial support in manpages output for <tag>footnote</tag>, <tag>annotation</tag>,
+and <tag>alt</tag> instances. Basically, they all now get handled the same
+way ulink instances are. They are treated as a class as "note
+sources": A numbered marker is generated at the place in the main
+text flow where they occur, then their contents are displayed in
+an endnotes <tag>section</tag> at the end of the man page (currently titled
+REFERENCES, for English output, but will be changed to NOTES).
+
+This support is not yet complete. It works for most "normal"
+cases, but probably mishandles a good number of cases. More
+testing will be needed to expose the problems. It may well also
+introduce some bugs and regressions in other areas, including
+basic paragraph handling, handling of "mixed block" content,
+handling of other indented content, and handling of authorblurb
+and <tag>personblurb</tag> in the AUTHORS <tag>section</tag>.<alt>M: /trunk/xsl/manpages/table.xsl; M: /trunk/xsl/manpages/block.xsl; M: /trunk/xsl/manpages/docbook.xsl; M: /trunk/xsl/manpages/links.xsl; M: /trunk/xsl/manpages/other.xsl; M: /trunk/xsl/manpages/utility.xsl - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Manpages changes for 1.71.1-->
+
+<sect2 xml:id="V1.71.1_Params">
+<title>Params</title>
+<para>The following changes have been made to the
+            <filename>params</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support for profiling based on xml:lang and status attributes.<alt>A: /trunk/xsl/params/profile.status.xml - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added the <parameter>html.append</parameter> and <parameter>chunk.append</parameter> parameters. By default, the
+value of both is empty; but the internal DocBook XSL stylesheets
+build sets their value to "&lt;xsl:text&gt;&amp;#x0a;&lt;/xsl:text&gt;", in order
+to ensure that all files in the docbook-xsl-doc <tag>package</tag> end in a
+newline character. (Because diff and some other tools may emit
+error messages and/or not behave as expected when processing
+files that are not newline-terminated.)<alt>A: /trunk/xsl/params/html.append.xml; A: /trunk/xsl/params/chunk.append.xml - Michael(tm) Smith</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.71.1-->
+
+<sect2 xml:id="V1.71.1_Profiling">
+<title>Profiling</title>
+<para>The following changes have been made to the
+            <filename>profiling</filename> code
+            since the 1.71.1 release.</para>
+<itemizedlist>
+<listitem>
+<literallayout format="linespecific"><phrase role="commit-message">Added support for profiling based on xml:lang and status attributes.<alt>M: /trunk/xsl/profiling/profile.xsl; M: /trunk/xsl/profiling/profile-mode.xsl - Jirka Kosek</alt></phrase></literallayout>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Profiling changes for 1.71.1-->
+
+</sect1>
 
 <sect1 xml:id="V1.71.0">
 <title>Release: 1.71.0</title>
