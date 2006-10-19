@@ -38,10 +38,10 @@ $(MARKUP_XSL):
 
 NEWS.xml: ChangeLog.xml
 	$(XSLT) $< $(SVNLOG2DOCBOOK) $@ \
-	previous-release="'$(PREVIOUS_RELEASE)'" \
-	release-version="'$(RELVER)'" \
-	element.file="'$(shell readlink -f $(DOCBOOK_ELEMENTS))'" \
-	param.file="'$(shell readlink -f $(XSL_PARAMS))'"
+	previous-release="$(PREVIOUS_RELEASE)" \
+	release-version="$(RELVER)" \
+	element.file="$(shell readlink -f $(DOCBOOK_ELEMENTS))" \
+	param.file="$(shell readlink -f $(XSL_PARAMS))"
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC_LINK_STYLE) $@
