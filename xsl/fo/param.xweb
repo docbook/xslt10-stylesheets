@@ -19,15 +19,12 @@ $Id$
   <year>2001</year>
   <holder>Norman Walsh</holder>
 </copyright>
+<abstract>
+  <para>This is reference documentation for all user-configurable
+  parameters in the DocBook XSL FO stylesheets (for generating
+  XSL-FO output destined for final print/PDF output).</para>
+</abstract>
 </bookinfo>
-
-<preface id="intro"><title>Introduction</title>
-
-<para>This is reference documentation for all user-configurable
-parameters in the DocBook XSL FO stylesheets (for generating
-XSL-FO output destined for final print/PDF otutput).</para>
-
-</preface>
 
 <reference id="admons"><title>Admonitions</title>
 &admon.graphics;

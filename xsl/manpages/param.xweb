@@ -17,16 +17,18 @@
       <year>2005</year>
       <holder>The DocBook Project</holder>
     </copyright>
+    <abstract>
+      <para>This is reference documentation for all user-configurable
+      parameters in the DocBook XSL "manpages" stylesheet (for
+      generating groff/nroff output). Note that the manpages
+      stylesheet is a customization layer of the DocBook XSL HTML
+      stylesheet. Therefore, you can also use a number of <ulink
+      url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
+      >HTML stylesheet parameters</ulink> to control manpages output
+      (in addition to the manpages-specific parameters listed in this
+      section).</para>
+    </abstract>
   </bookinfo>
-
-  <preface id="preface">
-    <title>Introduction</title>
-
-    <para>This is reference documentation for all user-configurable
-    parameters in the DocBook XSL "manpages" stylesheets (for
-    generating groff/nroff output).</para>
-
-  </preface>
 
   <reference id="general">
   <title>Hyphenation, justification, and breaking</title>
