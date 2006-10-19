@@ -19,7 +19,7 @@
     <!-- * is the VERSION file, and that only gets checked in once per -->
     <!-- * release, that value should indicate the revision number -->
     <!-- * associated with the latest release. -->
-    <xsl:value-of select="/lists/list/entry/commit/@revision"/>
+    <xsl:value-of select="concat(/lists/list/entry/commit/@revision,'&#x0a;')"/>
   </xsl:template>
 
 </xsl:stylesheet>
