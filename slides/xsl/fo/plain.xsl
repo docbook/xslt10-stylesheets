@@ -28,50 +28,7 @@
 
 <xsl:param name="page.orientation" select="'landscape'"/>
 
-<xsl:param name="slide.title.font.family" select="'Helvetica'"/>
-<xsl:param name="slide.font.family" select="'Helvetica'"/>
-
 <xsl:param name="body.font.master" select="24"/>
-
-<xsl:param name="foil.title.master" select="36"/>
-<xsl:param name="foil.title.size">
- <xsl:value-of select="$foil.title.master"/><xsl:text>pt</xsl:text>
-</xsl:param>
-
-<xsl:attribute-set name="slides.properties">
-  <xsl:attribute name="font-family">
-    <xsl:value-of select="$slide.font.family"/>
-  </xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="foilgroup.properties">
-  <xsl:attribute name="font-family">
-    <xsl:value-of select="$slide.font.family"/>
-  </xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="foil.subtitle.properties">
-  <xsl:attribute name="font-family">
-    <xsl:value-of select="$slide.title.font.family"/>
-  </xsl:attribute>
-  <xsl:attribute name="text-align">center</xsl:attribute>
-  <xsl:attribute name="font-size">
-    <xsl:value-of select="$foil.title.master * 0.8"/><xsl:text>pt</xsl:text>
-  </xsl:attribute>
-  <xsl:attribute name="space-after">12pt</xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="foil.properties">
-  <xsl:attribute name="font-family">
-    <xsl:value-of select="$slide.font.family"/>
-  </xsl:attribute>
-  <xsl:attribute name="margin-left">1in</xsl:attribute>
-  <xsl:attribute name="margin-right">1in</xsl:attribute>
-  <xsl:attribute name="font-size">
-    <xsl:value-of select="$body.font.size"/>
-  </xsl:attribute>
-  <xsl:attribute name="font-weight">bold</xsl:attribute>
-</xsl:attribute-set>
 
 <xsl:attribute-set name="formal.title.properties"
                    use-attribute-sets="normal.para.spacing">
@@ -107,13 +64,6 @@
   <xsl:attribute name="space-before.maximum">10pt</xsl:attribute>
 </xsl:attribute-set>
 
-<xsl:attribute-set name="speakernote.properties">
-  <xsl:attribute name="font-family">Times Roman</xsl:attribute>
-  <xsl:attribute name="font-style">italic</xsl:attribute>
-  <xsl:attribute name="font-size">12pt</xsl:attribute>
-  <xsl:attribute name="font-weight">normal</xsl:attribute>
-</xsl:attribute-set>
-
 <xsl:attribute-set name="slides.titlepage.recto.style">
   <xsl:attribute name="font-family">
     <xsl:value-of select="$slide.font.family"/>
@@ -124,14 +74,6 @@
   <xsl:attribute name="font-family">
     <xsl:value-of select="$slide.font.family"/>
   </xsl:attribute>
-</xsl:attribute-set>
-
-<xsl:attribute-set name="running.foot.properties">
-  <xsl:attribute name="font-family">
-    <xsl:value-of select="$slide.font.family"/>
-  </xsl:attribute>
-  <xsl:attribute name="font-size">14pt</xsl:attribute>
-  <xsl:attribute name="color">#9F9F9F</xsl:attribute>
 </xsl:attribute-set>
 
 <!-- ============================================================ -->
