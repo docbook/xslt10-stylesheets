@@ -27,30 +27,6 @@ $Id$
 parameters in the DocBook XSL FO stylesheets (for generating
 XSL-FO output destined for final print/PDF otutput).</para>
 
-<para>This reference describes each of the XSL FO Stylesheet parameters.
-These are the <quote>easily customizable</quote> parts of the stylesheet.
-If you want to specify an alternate value for one or more of these
-parameters, you can do so in a <quote>driver</quote> stylesheet.</para>
-
-<para>For example, if you want to change the <literal>html.stylesheet</literal>
-to <filename>reference.css</filename>, you might create a driver
-stylesheet like this:</para>
-
-<programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version='1.0'>
-
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
-
-  <xsl:param name="html.stylesheet">reference.css</xsl:param>
-
-</xsl:stylesheet>]]></programlisting>
-
-<para>Naturally, you have to change the
-<sgmltag class='attribute'>href</sgmltag> attribute on
-<literal>&lt;xsl:import&gt;</literal> to point to
-<filename>docbook.xsl</filename> on your system. (Or
-<filename>chunk.xsl</filename>, if you're using chunking.)</para>
-
 </preface>
 
 <reference id="admons"><title>Admonitions</title>
