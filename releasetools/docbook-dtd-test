@@ -2,6 +2,8 @@
 # $Id$
 
 TEMPDIR=/tmp
+SVN=svn
+SVN_OPTS='-q'
 CVS=cvs
 CVS_OPTS='-Q'
 WGET=wget
@@ -53,7 +55,7 @@ if [ "$1" = "" ]; then
 fi
 
 cd $TEMPDIR
-$CVS $CVS_OPTS -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/docbook co testdocs
+$SVN $SVN_OPTS co https://svn.sourceforge.net/svnroot/docbook/trunk/testdocs
 
 zipfile=`basename $1`
 unzip_dir=`basename $1 .zip`
@@ -65,10 +67,10 @@ cd $unzip_dir
 $WGET $WGET_OPTS $1
 $UNZIP $UNZIP_OPTS `basename $1`
 
-XML_CATALOG_FILES=$TEMPDIR/$unzip_dir/catalog.xml
+XML_CATALOG_FILES="$TEMPDIR/$unzip_dir/catalog.xml"
 export XML_CATALOG_FILES
 cd $TEMPDIR/testdocs/tests
-for file in `find . -name "*.xml" -maxdepth 1 | cut -c3-`; do
+for file in `find .  -maxdepth 1 -name "*.xml" | cut -c3-`; do
   if [ "$VERBOSE" = "Yes" ]; then
     $SED $SED_OPTS "s#/[^/]\+/docbookx.dtd#/$version/docbookx.dtd#" $file \
     | $XMLLINT $XMLLINT_OPTS -
