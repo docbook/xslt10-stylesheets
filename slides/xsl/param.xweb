@@ -15,49 +15,324 @@ $Id$
   <holder>Norman Walsh</holder>
 </copyright>
 <abstract>
-  <title></title>
-  <para>
-    <caution>
-      <para>The following parameters apply only to the Slides
-      stylesheet for HTML output. They do not apply to the stylesheet
-      for FO output.</para>
-    </caution>
-  </para>
+  <para>This is reference documentation for all user-configurable
+  parameters in the DocBook XSL Slides stylesheet (for generating
+  slide presentations). Note that the Slides stylesheet for HTML
+  output is a customization layer of the DocBook XSL HTML stylesheet,
+  while the Slides stylesheet for FO output is a customization layer
+  of the DocBook XSL FO stylesheet. Therefore, in addition to the
+  slides-specific parameters listed in this section, you can also use
+  a number of <ulink
+  url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
+  >HTML stylesheet parameters</ulink> and <ulink
+  url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/index.html"
+  >FO stylesheet parameters</ulink> to control Slides output.</para>
 </abstract>
 </bookinfo>
 
-<preface id="intro"><title>Introduction</title>
+<reference id="fo_general_params">
+  <title>FO: General Params</title>
+<refentry id="slide.title.font.family">
+<refmeta>
+<refentrytitle>slide.title.font.family</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>slide.title.font.family</refname>
+<refpurpose>Specifies font family to use for slide titles</refpurpose>
+</refnamediv>
 
-<para>This is reference documentation for all user-configurable
-parameters in the DocBook XSL Slides stylesheets (for generating
-output from DocBook Slides documents).</para>
+<refsynopsisdiv>
+<src:fragment id='slide.title.font.family.frag'>
+<xsl:param name="slide.title.font.family" select="'Helvetica'"/>
+</src:fragment>
+</refsynopsisdiv>
 
-<para>This reference describes each of the parameters.
-These are the <quote>easily customizable</quote> parts of the stylesheet.
-If you want to specify an alternate value for one or more of these
-parameters, you can do so in a <quote>driver</quote> stylesheet.</para>
+<refsect1><title>Description</title>
 
-<para>For example, if you want to change the <literal>keyboard.nav</literal>
-parameter to <filename>0</filename>, you might create a driver
-stylesheet like this:</para>
+<para>Specifies the font family to use for slides titles.</para>
 
-<programlisting><![CDATA[<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version='1.0'>
+</refsect1>
+</refentry>
 
-  <xsl:import href="http://docbook.sourceforge.net/release/slides/current/xsl/slides.xsl"/>
+<refentry id="slide.font.family">
+<refmeta>
+<refentrytitle>slide.font.family</refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>slide.font.family</refname>
+<refpurpose>Specifies font family to use for slide bodies</refpurpose>
+</refnamediv>
 
-  <xsl:param name="keyboard.nav" select="0"/>
+<refsynopsisdiv>
+<src:fragment id='slide.font.family.frag'>
+<xsl:param name="slide.font.family" select="'Helvetica'"/>
+</src:fragment>
+</refsynopsisdiv>
 
-</xsl:stylesheet>]]></programlisting>
+<refsect1><title>Description</title>
 
-<para>Naturally, you have to change the
-<sgmltag class='attribute'>href</sgmltag> attribute on
-<literal>&lt;xsl:import&gt;</literal> to point to the stylesheet
-on your system.</para>
-</preface>
+<para>Specifies the font family to use for slides bodies.</para>
 
-<reference id="general_params">
-<title>General Parameters</title>
+</refsect1>
+</refentry>
+
+<refentry id="foil.title.master">
+<refmeta>
+<refentrytitle>foil.title.master</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>foil.title.master</refname>
+<refpurpose>Specifies unitless font size to use for foil titles</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='foil.title.master.frag'>
+<xsl:param name="foil.title.master" select="36"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>Specifies a unitless font size to use for foil titles; used in
+combination with the <parameter>foil.title.size</parameter>
+parameter.</para>
+</refsect1>
+</refentry>
+
+<refentry id="foil.title.size">
+<refmeta>
+<refentrytitle>foil.title.size</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>foil.title.size</refname>
+<refpurpose>Specifies font size to use for foil titles, including units</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='foil.title.size.frag'>
+    <xsl:param name="foil.title.size">
+      <xsl:value-of select="$foil.title.master"/><xsl:text>pt</xsl:text>
+    </xsl:param>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter combines the value of the
+<parameter>foil.title.master</parameter> parameter with a unit
+specification. The default unit is <literal>pt</literal>
+(points).</para>
+
+</refsect1>
+</refentry>
+</reference>
+
+<reference id="fo_property_sets">
+  <title>FO: Property Sets</title>
+
+<refentry id="slides.properties">
+<refmeta>
+<refentrytitle>slides.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>slides.properties</refname>
+<refpurpose>Specifies properties for all slides</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='slides.properties.frag'>
+    <xsl:attribute-set name="slides.properties">
+      <xsl:attribute name="font-family">
+        <xsl:value-of select="$slide.font.family"/>
+      </xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to all slides.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="foilgroup.properties">
+<refmeta>
+<refentrytitle>foilgroup.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>foilgroup.properties</refname>
+<refpurpose>Specifies properties for all foilgroups</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='foilgroup.properties.frag'>
+    <xsl:attribute-set name="foilgroup.properties">
+      <xsl:attribute name="font-family">
+        <xsl:value-of select="$slide.font.family"/>
+      </xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to all foilgroups.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="foil.subtitle.properties">
+<refmeta>
+<refentrytitle>foil.subtitle.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>foil.subtitle.properties</refname>
+<refpurpose>Specifies properties for all foil subtitles</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='foil.subtitle.properties.frag'>
+    <xsl:attribute-set name="foil.subtitle.properties">
+      <xsl:attribute name="font-family">
+        <xsl:value-of select="$slide.title.font.family"/>
+      </xsl:attribute>
+      <xsl:attribute name="text-align">center</xsl:attribute>
+      <xsl:attribute name="font-size">
+        <xsl:value-of select="$foil.title.master * 0.8"/><xsl:text>pt</xsl:text>
+      </xsl:attribute>
+      <xsl:attribute name="space-after">12pt</xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to all foil subtitles.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="foil.properties">
+<refmeta>
+<refentrytitle>foil.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>foil.properties</refname>
+<refpurpose>Specifies properties for all foils</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='foil.properties.frag'>
+    <xsl:attribute-set name="foil.properties">
+      <xsl:attribute name="font-family">
+        <xsl:value-of select="$slide.font.family"/>
+      </xsl:attribute>
+      <xsl:attribute name="margin-left">1in</xsl:attribute>
+      <xsl:attribute name="margin-right">1in</xsl:attribute>
+      <xsl:attribute name="font-size">
+        <xsl:value-of select="$body.font.size"/>
+      </xsl:attribute>
+      <xsl:attribute name="font-weight">bold</xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to all foils.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="speakernote.properties">
+<refmeta>
+<refentrytitle>speakernote.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>speakernote.properties</refname>
+<refpurpose>Specifies properties for all speakernotes</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='speakernote.properties.frag'>
+    <xsl:attribute-set name="speakernote.properties">
+      <xsl:attribute name="font-family">Times Roman</xsl:attribute>
+      <xsl:attribute name="font-style">italic</xsl:attribute>
+      <xsl:attribute name="font-size">12pt</xsl:attribute>
+      <xsl:attribute name="font-weight">normal</xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to all speakernotes.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="speakernote.properties">
+<refmeta>
+<refentrytitle>speakernote.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>speakernote.properties</refname>
+<refpurpose>Specifies properties for all speakernotes</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='speakernote.properties.frag'>
+    <xsl:attribute-set name="speakernote.properties">
+      <xsl:attribute name="font-family">Times Roman</xsl:attribute>
+      <xsl:attribute name="font-style">italic</xsl:attribute>
+      <xsl:attribute name="font-size">12pt</xsl:attribute>
+      <xsl:attribute name="font-weight">normal</xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to all speakernotes.</para>
+
+</refsect1>
+</refentry>
+
+<refentry id="running.foot.properties">
+<refmeta>
+<refentrytitle>running.foot.properties</refentrytitle>
+</refmeta>
+<refnamediv>
+<refname>running.foot.properties</refname>
+<refpurpose>Specifies properties for running foot on each slide</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+  <src:fragment id='running.foot.properties.frag'>
+    <xsl:attribute-set name="running.foot.properties">
+      <xsl:attribute name="font-family">
+        <xsl:value-of select="$slide.font.family"/>
+      </xsl:attribute>
+      <xsl:attribute name="font-size">14pt</xsl:attribute>
+      <xsl:attribute name="color">#9F9F9F</xsl:attribute>
+    </xsl:attribute-set>
+  </src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>This parameter specifies properties that are applied to the
+running foot area of each slide.</para>
+
+</refsect1>
+</refentry>
+</reference>
+
+<reference id="html_general_params">
+<title>HTML: General Parameters</title>
 
 <refentry id="keyboard.nav">
 <refmeta>
@@ -290,8 +565,8 @@ not supported in all output formats.</para>
 
 </reference>
 
-<reference id="frame_params">
-<title>HTML Frame Parameters</title>
+<reference id="html_frame_params">
+<title>HTML: Frame Parameters</title>
 
 <refentry id="nav.separator">
 <refmeta>
@@ -620,8 +895,8 @@ exclusive.</para>
 
 </reference>
 
-<reference id="graphic_parms">
-<title>Graphics Parameters</title>
+<reference id="html_graphic_parms">
+<title>HTML: Graphics Parameters</title>
 
 <refentry id="graphics.dir">
 <refmeta>
@@ -1012,8 +1287,8 @@ enabled.</para>
 
 </reference>
 
-<reference id="javascript_params">
-<title>JavaScript Parameters</title>
+<reference id="html_javascript_params">
+<title>HTML: JavaScript Parameters</title>
 
 <refentry id="script.dir">
 <refmeta>
@@ -1213,8 +1488,8 @@ that you will ever need to change this parameter.</para>
 </refentry>
 </reference>
 
-<reference id="l10n_params">
-<title>Localization Parameters</title>
+<reference id="html_l10n_params">
+<title>HTML: Localization Parameters</title>
 
 <refentry id="text.home">
 <refmeta>
