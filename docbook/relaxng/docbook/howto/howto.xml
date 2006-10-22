@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>  <!-- -*- nxml -*- -->
 <!DOCTYPE article [
-<!ENTITY version "5.0b6">
+<!ENTITY version "5.0b8">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
@@ -410,20 +410,13 @@ provides everything you need to edit DocBook V5.0 documents.</para>
 </mediaobject>
 </figure>
 
-<para>Since version 2.11, XXE comes bundled with a DocBook V5.0
-configuration. Unfortunately this configuration is not enabled by
-default. You must copy the contents of the directory
-<filename><replaceable>XXE_install_dir</replaceable>/doc/rnsupport/config/docbook5/</filename>
-into
-<filename><replaceable>XXE_install_dir</replaceable>/addon/config/docbook5/</filename>
-and restart XXE to activate it. After restarting XXE you will be able to
-create (a template for articles is provided) and edit DocBook V5.0
+<para>In order to use DocBook V5.0 in XXE you have to install
+correspoding add-on. Go to
+<menuchoice><guimenu>Options</guimenu><guimenuitem>Install
+Add-ons…</guimenuitem></menuchoice>. Then choose <guilabel>DocBook
+5 configuration</guilabel> and press <guibutton>OK</guibutton>
+button. After restart XXE is ready to work with DocBook V5.0
 documents.</para>
-
-<para>The RELAX NG schema provided with XXE may be outdated. If you want
-to use XXE with the latest schema just grab a fresh copy of 
-<filename>docbook.rng</filename> and copy it into
-<filename><replaceable>XXE_install_dir</replaceable>/addon/config/docbook5/docbook.rng</filename>.</para>
 
 </section>
 
@@ -526,14 +519,28 @@ under development.</para>
 
 <itemizedlist>
 <listitem><para>general annotations;</para></listitem>
-<listitem><para>general XLink links on all elements;</para></listitem>
+<listitem><para>general XLink links on all elements.</para></listitem>
 </itemizedlist>
 
+<note>
 <para>During namespace stripping, the base URI of the document is
 lost. This means that in rare situations, relatively referenced
 resources like images or programlistings can be processed incorrectly.
 The stylesheets attempt to compensate for this problem, but it is
 possible that there are corner cases where they will fail.</para>
+
+<para>If you want to use HTML Help, JavaHelp or Eclipse stylesheets
+with DocBook V5.0 you have to use profiling variants of those
+stylesheets (their name is starting with
+<literal>profile-</literal>).</para>
+
+<para>As you can see namespace stripping could cause troubles in some
+situations. To overcome those limitations Bob Stayton created
+a special version of the DocBook XSL stylesheets which doesn't use
+namespace stripping and supports only DocBook V5.0. You can get those
+experimental stylesheets from <link
+xl:href="http://sagehill.net/xml/docbook5ns/"/>.</para>
+</note>
 
 </section>
 
