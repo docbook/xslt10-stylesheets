@@ -369,8 +369,8 @@ div {
             s:rule [
                context = "db:termdef"
                s:assert [
-                  test = "count(db:glossterm) != 1"
-                  "A termdef must contain a glossterm"
+                  test = "count(db:glossterm) = 1"
+                  "A termdef must contain exactly one glossterm"
                ]
             ]
          ]
