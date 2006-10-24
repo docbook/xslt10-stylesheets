@@ -666,8 +666,6 @@ db.oo.inlines =
  | db.ooexception
  | db.oointerface
 
-# TEI: code, programlisting (x.data)
-
 db.programming.inlines =
    db.function
  | db.parameter
@@ -682,8 +680,6 @@ db.programming.inlines =
  | db.initializer
  | db.oo.inlines
 
-# TEI: names
-
 db.product.inlines =
    db.productnumber
  | db.productname
@@ -692,8 +688,6 @@ db.product.inlines =
  | db.hardware
  | db.trademark
 
-# TEI: x.data
-
 db.os.inlines =
    db.prompt
  | db.envar
@@ -701,8 +695,6 @@ db.os.inlines =
  | db.command
  | db.computeroutput
  | db.userinput
-
-# TEI: sgmlKeywords, ident
 
 db.markup.inlines =
    db.tag
@@ -715,8 +707,6 @@ db.markup.inlines =
  | db.email
  | db.uri
 
-# TEI: no class
-
 db.bibliography.inlines =
    db.citation
  | db.citerefentry
@@ -728,8 +718,7 @@ db.bibliography.inlines =
  | db.org
  | db.orgname
  | db.editor
-
-# TEI: hqPhrase
+ | db.jobtitle
 
 db.publishing.inlines =
    db.abbrev
@@ -745,15 +734,9 @@ db.publishing.inlines =
  | db.superscript
  | db.wordasword
 
-# TEI: figure
-
 db.graphic.inlines = db.inlinemediaobject
 
-# TEI: metadata
-
 db.indexing.inlines = notAllowed
-
-# TEI:
 
 db.gui.inlines =
    db.guiicon
@@ -3635,7 +3618,6 @@ div {
 }
 
 # ======================================================================
-# TEI: addrPart
 
 [
    db:refname [ "address" ]
