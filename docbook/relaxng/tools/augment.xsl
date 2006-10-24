@@ -79,23 +79,30 @@
 
       <xsl:for-each select="$exclusions/ctrl:exclusion[ctrl:from[*[name(.)=$name]]]">
 	<xsl:for-each select="ctrl:exclude/*">
-	  <!--
-	  <xsl:message>
-	    <xsl:value-of select="name(.)"/>
-	    <xsl:text> is excluded from </xsl:text>
-	    <xsl:value-of select="$name"/>
-	  </xsl:message>
-	  -->
+	  <xsl:variable name="ename" select="name(.)"/>
+	  <xsl:if test="($name != 'table' or name(.) != 'table')
+			and not(preceding-sibling::*[name(.) = $ename])">
+	    <!-- tables can't be excluded from themselves because HTML tables may nest -->
+	    <!-- don't output duplicate names, even if they occur in the list -->
 
-	  <s:pattern name="Element exclusion">
-	    <s:rule context="db:{$name}">
-	      <s:assert test="not(.//db:{name(.)})">
+	    <!--
+		<xsl:message>
 		<xsl:value-of select="name(.)"/>
-		<xsl:text> must not occur in the descendants of </xsl:text>
+		<xsl:text> is excluded from </xsl:text>
 		<xsl:value-of select="$name"/>
-	      </s:assert>
-	    </s:rule>
-	  </s:pattern>
+		</xsl:message>
+	    -->
+
+	    <s:pattern name="Element exclusion">
+	      <s:rule context="db:{$name}">
+		<s:assert test="not(.//db:{name(.)})">
+		  <xsl:value-of select="name(.)"/>
+		  <xsl:text> must not occur in the descendants of </xsl:text>
+		  <xsl:value-of select="$name"/>
+		</s:assert>
+	      </s:rule>
+	    </s:pattern>
+	  </xsl:if>
 	</xsl:for-each>
       </xsl:for-each>
 

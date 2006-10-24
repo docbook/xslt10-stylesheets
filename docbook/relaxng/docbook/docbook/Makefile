@@ -31,8 +31,9 @@ docbook.rnc: docbook.rng
 docbook.dtd: $(basename $(docbook_BINARY)).dtx docbook.rnc ../tools/xml2dtd.xsl
 	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
 
+# N.B. the schematron stylesheet is an XSLT 2.0 stylesheet!
 docbook.sch: $(basename $(docbook_BINARY)).rnx
-	$(XSLTPROC) --output $@ $(TOOLS)/schematron.xsl $<
+	saxon $< $(TOOLS)/schematron.xsl $@
 
 docbook.xsd: docbook.dtd
 	$(RUNTRANG) $< $@
