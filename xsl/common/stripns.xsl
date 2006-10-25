@@ -5,7 +5,7 @@
                 xmlns:saxon="http://icl.com/saxon"
                 xmlns:NodeInfo="http://org.apache.xalan.lib.NodeInfo"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="db ng exsl saxon"
+                exclude-result-prefixes="db ng exsl saxon NodeInfo"
                 version='1.0'>
 
 <!-- ********************************************************************
