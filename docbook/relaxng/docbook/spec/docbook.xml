@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0b8</productnumber>
+<!-- productVersion --> <productnumber>5.0b9</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2006-09-27</pubdate>
+<pubdate>2006-10-26</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -153,6 +153,38 @@ from the
 DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
+
+<section xml:id="s.50b9">
+<title>Changes in DocBook V5.0b9</title>
+
+<para>This release contains several improvements over V5.0b8.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1537424">
+<para>Fixed <link xlink:href="&RFE;aid=1537424">RFE 1537424</link>:
+Allow <tag>jobtitle</tag> inline.</para>
+</listitem>
+<listitem xml:id="tasktitle">
+<para>Fixed typo; <tag>title</tag>s are now required on <tag>task</tag>,
+consistent with DocBook V4.x.</para>
+</listitem>
+<listitem xml:id="rfe.1554914">
+<para>Fixed <link xlink:href="&RFE;aid=1554914">RFE 1554914</link>:
+Make <tag class="attribute">targetdoc</tag> attribute on <tag>olink</tag>
+optional.</para>
+</listitem>
+<listitem xml:id="rfe.1568417">
+<para>Fixed <link xlink:href="&RFE;aid=1568417">RFE 1568417</link>:
+Don't generate duplicate Schematron rules.
+</para>
+</listitem>
+<listitem xml:id="rfe.1568419">
+<para>Fixed <link xlink:href="&RFE;aid=1568419">RFE 1568419</link>:
+Inverted Schematron assertion for <tag>termdef</tag>.
+</para>
+</listitem>
+</orderedlist>
+</section>
 
 <section xml:id="s.50b8">
 <title>Changes in DocBook V5.0b8</title>
