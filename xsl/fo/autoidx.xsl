@@ -862,7 +862,7 @@
   <xsl:param name="type" select="''"/>
 
   <xsl:text>&lt;</xsl:text>
-  <xsl:value-of select="name(.)"/>
+  <xsl:value-of select="local-name(.)"/>
   <xsl:text>&gt;&#10;</xsl:text>
   <xsl:apply-templates mode="index-markup">
     <xsl:with-param name="scope" select="$scope"/>

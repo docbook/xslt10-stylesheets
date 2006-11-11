@@ -993,8 +993,8 @@
     <xsl:otherwise>
       <xsl:variable name="node" select="$nodelist[$count=position()]"/>
       <xsl:choose>
-        <xsl:when test="name($node)='guimenuitem'
-                        or name($node)='guisubmenu'">
+        <xsl:when test="local-name($node)='guimenuitem'
+                        or local-name($node)='guisubmenu'">
           <xsl:copy-of select="$mm.separator"/>
         </xsl:when>
         <xsl:otherwise>

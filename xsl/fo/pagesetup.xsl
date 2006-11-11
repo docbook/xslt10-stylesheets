@@ -1394,7 +1394,7 @@
 
 <xsl:template match="*" mode="running.head.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <xsl:param name="gentext-key" select="name(.)"/>
+  <xsl:param name="gentext-key" select="local-name(.)"/>
 
   <!-- remove -draft from reference -->
   <xsl:variable name="pageclass">
@@ -1739,7 +1739,7 @@
 
 <xsl:template match="*" mode="running.foot.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <xsl:param name="gentext-key" select="name(.)"/>
+  <xsl:param name="gentext-key" select="local-name(.)"/>
 
   <!-- remove -draft from reference -->
   <xsl:variable name="pageclass">
