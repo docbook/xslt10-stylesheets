@@ -47,7 +47,7 @@ title of the element. This does not include the label.
       <xsl:if test="$verbose != 0">
         <xsl:message>
           <xsl:text>Request for title of element with no title: </xsl:text>
-          <xsl:value-of select="name(.)"/>
+          <xsl:value-of select="local-name(.)"/>
           <xsl:if test="@id">
             <xsl:text> (id="</xsl:text>
             <xsl:value-of select="@id"/>
@@ -116,7 +116,7 @@ title of the element. This does not include the label.
 
 <!--
   <xsl:message>
-    <xsl:value-of select="name(.)"/>
+    <xsl:value-of select="local-name(.)"/>
     <xsl:text> </xsl:text>
     <xsl:value-of select="$allow-anchors"/>
   </xsl:message>
@@ -294,7 +294,7 @@ title of the element. This does not include the label.
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="gentext.element.name">
-        <xsl:with-param name="element.name" select="name(.)"/>
+        <xsl:with-param name="element.name" select="local-name(.)"/>
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
