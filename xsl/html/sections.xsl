@@ -19,7 +19,7 @@
 
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -99,7 +99,7 @@
 <xsl:template match="sect1">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -151,7 +151,7 @@
 <xsl:template match="sect2">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -203,7 +203,7 @@
 <xsl:template match="sect3">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -255,7 +255,7 @@
 <xsl:template match="sect4">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -307,7 +307,7 @@
 <xsl:template match="sect5">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -359,7 +359,7 @@
 <xsl:template match="simplesect">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>

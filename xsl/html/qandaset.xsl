@@ -18,10 +18,10 @@
 
 <xsl:template match="qandaset">
   <xsl:variable name="title" select="(blockinfo/title|info/title|title)[1]"/>
-  <xsl:variable name="preamble" select="*[name(.) != 'title'
-                                          and name(.) != 'titleabbrev'
-                                          and name(.) != 'qandadiv'
-                                          and name(.) != 'qandaentry']"/>
+  <xsl:variable name="preamble" select="*[local-name(.) != 'title'
+                                          and local-name(.) != 'titleabbrev'
+                                          and local-name(.) != 'qandadiv'
+                                          and local-name(.) != 'qandaentry']"/>
   <xsl:variable name="toc">
     <xsl:call-template name="dbhtml-attribute">
       <xsl:with-param name="pis"
@@ -36,7 +36,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:apply-templates select="$title"/>
     <xsl:if test="((contains($toc.params, 'toc') and $toc != '0') or $toc = '1')
                   and not(ancestor::answer and not($qanda.nested.in.toc=0))">
@@ -55,7 +55,7 @@
   </xsl:variable>
   <xsl:element name="h{string(number($qalevel)+1)}">
     <xsl:attribute name="class">
-      <xsl:value-of select="name(.)"/>
+      <xsl:value-of select="local-name(.)"/>
     </xsl:attribute>
     <xsl:apply-templates/>
   </xsl:element>
@@ -67,10 +67,10 @@
 </xsl:template>
 
 <xsl:template match="qandadiv">
-  <xsl:variable name="preamble" select="*[name(.) != 'title'
-                                          and name(.) != 'titleabbrev'
-                                          and name(.) != 'qandadiv'
-                                          and name(.) != 'qandaentry']"/>
+  <xsl:variable name="preamble" select="*[local-name(.) != 'title'
+                                          and local-name(.) != 'titleabbrev'
+                                          and local-name(.) != 'qandadiv'
+                                          and local-name(.) != 'qandaentry']"/>
 
   <xsl:if test="blockinfo/title|info/title|title">
     <tr class="qandadiv">
@@ -120,7 +120,7 @@
 
   <xsl:element name="h{string(number($qalevel)+1)}">
     <xsl:attribute name="class">
-      <xsl:value-of select="name(.)"/>
+      <xsl:value-of select="local-name(.)"/>
     </xsl:attribute>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select=".."/>
@@ -152,7 +152,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <tr class="{name(.)}">
+  <tr class="{local-name(.)}">
     <td align="left" valign="top">
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select=".."/>
@@ -178,10 +178,10 @@
     <td align="left" valign="top">
       <xsl:choose>
         <xsl:when test="$deflabel = 'none' and not(label)">
-          <b><xsl:apply-templates select="*[name(.) != 'label']"/></b>
+          <b><xsl:apply-templates select="*[local-name(.) != 'label']"/></b>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="*[name(.) != 'label']"/>
+          <xsl:apply-templates select="*[local-name(.) != 'label']"/>
         </xsl:otherwise>
       </xsl:choose>
     </td>
@@ -201,7 +201,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <tr class="{name(.)}">
+  <tr class="{local-name(.)}">
     <td align="left" valign="top">
       <xsl:call-template name="anchor"/>
       <xsl:variable name="answer.label">
@@ -214,8 +214,8 @@
       </xsl:if>
     </td>
     <td align="left" valign="top">
-      <xsl:apply-templates select="*[name(.) != 'label'
-        and name(.) != 'qandaentry']"/>
+      <xsl:apply-templates select="*[local-name(.) != 'label'
+        and local-name(.) != 'qandaentry']"/>
       <!-- * handle nested answer/qandaentry instances -->
       <!-- * (bug 1509043 from Daniel Leidert) -->
       <xsl:if test="descendant::question">
@@ -282,7 +282,7 @@
 
 <xsl:template match="question" mode="qandatoc.mode">
   <xsl:variable name="firstch">
-    <xsl:apply-templates select="(*[name(.)!='label'])[1]"/>
+    <xsl:apply-templates select="(*[local-name(.)!='label'])[1]"/>
   </xsl:variable>
   <xsl:variable name="deflabel">
     <xsl:choose>

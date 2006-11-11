@@ -61,7 +61,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <xsl:attribute name="border">1</xsl:attribute>
     </xsl:if>
     <xsl:attribute name="class">
-      <xsl:value-of select="name(.)"/>
+      <xsl:value-of select="local-name(.)"/>
     </xsl:attribute>
     <xsl:attribute name="summary">
       <xsl:text>EBNF</xsl:text>
@@ -73,7 +73,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
     <xsl:if test="title">
       <tr>
-	<th align="left" valign="top" class="{name(.)}">
+	<th align="left" valign="top" class="{local-name(.)}">
 	  <xsl:apply-templates select="title"/>
 	</th>
       </tr>
@@ -87,7 +87,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 	    </xsl:attribute>
 	  </xsl:if>
 	  <xsl:attribute name="class">
-	    <xsl:value-of select="name(.)"/>
+	    <xsl:value-of select="local-name(.)"/>
 	  </xsl:attribute>
 	  <xsl:attribute name="summary">EBNF productions</xsl:attribute>
 	  <xsl:apply-templates select="production|productionrecap"/>
@@ -312,7 +312,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 </xsl:template>
 
 <xsl:template match="constraintdef">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>

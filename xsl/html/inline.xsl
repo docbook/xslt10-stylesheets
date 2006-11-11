@@ -289,7 +289,7 @@
 <!-- some special cases -->
 
 <xsl:template match="author">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
     <xsl:call-template name="apply-annotations"/>
@@ -297,7 +297,7 @@
 </xsl:template>
 
 <xsl:template match="editor">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
     <xsl:call-template name="apply-annotations"/>
@@ -305,7 +305,7 @@
 </xsl:template>
 
 <xsl:template match="othercredit">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
     <xsl:call-template name="apply-annotations"/>
@@ -1092,8 +1092,8 @@
     <xsl:otherwise>
       <xsl:variable name="node" select="$nodelist[$count=position()]"/>
       <xsl:choose>
-        <xsl:when test="name($node)='guimenuitem'
-                        or name($node)='guisubmenu'">
+        <xsl:when test="local-name($node)='guimenuitem'
+                        or local-name($node)='guisubmenu'">
           <xsl:value-of select="$menuchoice.menu.separator"/>
         </xsl:when>
         <xsl:otherwise>
@@ -1182,14 +1182,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="person">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="personname"/>
   </span>
 </xsl:template>
 
 <xsl:template match="personname">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="person.name"/>
   </span>
@@ -1198,26 +1198,26 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="org">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>
 
 <xsl:template match="orgname">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates/>
   </span>
 </xsl:template>
 
 <xsl:template match="orgdiv">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates/>
   </span>
 </xsl:template>
 
 <xsl:template match="affiliation">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates/>
   </span>
 </xsl:template>

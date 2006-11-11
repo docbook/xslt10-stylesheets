@@ -17,7 +17,7 @@
 <xsl:template match="reference">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -85,7 +85,7 @@
 <xsl:template match="refentry">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -130,7 +130,7 @@
 </xsl:template>
 
 <xsl:template match="refnamediv">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -206,7 +206,7 @@
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -238,7 +238,7 @@
 </xsl:template>
 
 <xsl:template match="refsection|refsect1|refsect2|refsect3">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="dir">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>

@@ -262,7 +262,7 @@
           <xsl:copy>
             <xsl:for-each select="@*">
               <xsl:choose>
-                <xsl:when test="name(.) != 'name' and name(.) != 'id'">
+                <xsl:when test="local-name(.) != 'name' and local-name(.) != 'id'">
                   <xsl:copy/>
                 </xsl:when>
                 <xsl:otherwise>

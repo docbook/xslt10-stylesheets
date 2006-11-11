@@ -51,14 +51,14 @@
       <xsl:variable name="rtf">
 	<xsl:call-template name="apply-highlighting"/>
       </xsl:variable>
-      <pre class="{name(.)}">
+      <pre class="{local-name(.)}">
 	<xsl:call-template name="number.rtf.lines">
 	  <xsl:with-param name="rtf" select="$rtf"/>
 	</xsl:call-template>
       </pre>
     </xsl:when>
     <xsl:otherwise>
-      <pre class="{name(.)}">
+      <pre class="{local-name(.)}">
 	<xsl:call-template name="apply-highlighting"/>
       </pre>
     </xsl:otherwise>
@@ -91,14 +91,14 @@
 		    and $linenumbering.extension != '0'">
       <xsl:choose>
 	<xsl:when test="@class='monospaced'">
-	  <pre class="{name(.)}">
+	  <pre class="{local-name(.)}">
 	    <xsl:call-template name="number.rtf.lines">
 	      <xsl:with-param name="rtf" select="$rtf"/>
 	    </xsl:call-template>
 	  </pre>
 	</xsl:when>
 	<xsl:otherwise>
-	  <div class="{name(.)}">
+	  <div class="{local-name(.)}">
 	    <p>
 	      <xsl:call-template name="number.rtf.lines">
 		<xsl:with-param name="rtf" select="$rtf"/>
@@ -111,12 +111,12 @@
     <xsl:otherwise>
       <xsl:choose>
 	<xsl:when test="@class='monospaced'">
-	  <pre class="{name(.)}">
+	  <pre class="{local-name(.)}">
 	    <xsl:copy-of select="$rtf"/>
 	  </pre>
 	</xsl:when>
 	<xsl:otherwise>
-	  <div class="{name(.)}">
+	  <div class="{local-name(.)}">
 	    <p>
 	      <xsl:call-template name="make-verbatim">
 		<xsl:with-param name="rtf" select="$rtf"/>
@@ -141,7 +141,7 @@
                     and @linenumbering = 'numbered'
                     and $use.extensions != '0'
                     and $linenumbering.extension != '0'">
-      <div class="{name(.)}">
+      <div class="{local-name(.)}">
         <p>
           <xsl:call-template name="number.rtf.lines">
             <xsl:with-param name="rtf" select="$rtf"/>
@@ -151,7 +151,7 @@
     </xsl:when>
 
     <xsl:otherwise>
-      <div class="{name(.)}">
+      <div class="{local-name(.)}">
         <p>
           <xsl:call-template name="make-verbatim">
             <xsl:with-param name="rtf" select="$rtf"/>
