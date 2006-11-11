@@ -957,7 +957,7 @@
       <!-- We are done -->
     </xsl:when>
     <!-- Have we reached the top without a match? -->
-    <xsl:when test="name($dirnode) != 'dir'" >
+    <xsl:when test="local-name($dirnode) != 'dir'" >
         <xsl:message>Olink error: cannot locate targetdoc <xsl:value-of select="$targetdoc"/> in sitemap</xsl:message>
     </xsl:when>
     <!-- Is the target in a descendant? -->

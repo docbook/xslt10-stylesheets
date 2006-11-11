@@ -31,7 +31,7 @@ subtitle of the element.
 <xsl:template match="*" mode="subtitle.markup">
   <xsl:message>
     <xsl:text>Request for subtitle of unexpected element: </xsl:text>
-    <xsl:value-of select="name(.)"/>
+    <xsl:value-of select="local-name(.)"/>
   </xsl:message>
   <xsl:text>???SUBTITLE???</xsl:text>
 </xsl:template>

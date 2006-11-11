@@ -38,7 +38,7 @@ element label.</para>
   <xsl:if test="$verbose">
     <xsl:message>
       <xsl:text>Request for label of unexpected element: </xsl:text>
-      <xsl:value-of select="name(.)"/>
+      <xsl:value-of select="local-name(.)"/>
     </xsl:message>
   </xsl:if>
 </xsl:template>

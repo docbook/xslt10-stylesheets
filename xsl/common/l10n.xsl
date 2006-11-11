@@ -194,7 +194,7 @@
 </xsl:template>
 
 <xsl:template name="gentext.element.name">
-  <xsl:param name="element.name" select="name(.)"/>
+  <xsl:param name="element.name" select="local-name(.)"/>
   <xsl:param name="lang">
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
