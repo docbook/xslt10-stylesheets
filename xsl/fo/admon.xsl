@@ -83,7 +83,7 @@
             </fo:block>
           </fo:list-item-label>
           <fo:list-item-body start-indent="body-start()">
-            <xsl:if test="$admon.textlabel != 0 or title">
+            <xsl:if test="$admon.textlabel != 0 or title or info/title">
               <fo:block xsl:use-attribute-sets="admonition.title.properties">
                 <xsl:apply-templates select="." mode="object.title.markup"/>
               </fo:block>
@@ -104,7 +104,7 @@
 
   <fo:block id="{$id}"
             xsl:use-attribute-sets="nongraphical.admonition.properties">
-    <xsl:if test="$admon.textlabel != 0 or title">
+    <xsl:if test="$admon.textlabel != 0 or title or info/title">
       <fo:block keep-with-next.within-column='always'
                 xsl:use-attribute-sets="admonition.title.properties">
          <xsl:apply-templates select="." mode="object.title.markup"/>
