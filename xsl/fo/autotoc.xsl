@@ -287,7 +287,7 @@
 
 <xsl:template match="question" mode="toc">
   <xsl:variable name="firstchunk">
-    <xsl:apply-templates select="(*[name(.)!='label'])[1]/node()"/>
+    <xsl:apply-templates select="(*[local-name(.)!='label'])[1]/node()"/>
   </xsl:variable>
 
   <xsl:variable name="deflabel">

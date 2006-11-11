@@ -83,10 +83,10 @@
 
       <xsl:call-template name="qandaset.toc.separator"/>
 
-      <xsl:apply-templates select="*[name(.) != 'title'
-                                   and name(.) != 'titleabbrev'
-                                   and name(.) != 'qandadiv'
-                                   and name(.) != 'qandaentry']"/>
+      <xsl:apply-templates select="*[local-name(.) != 'title'
+                                   and local-name(.) != 'titleabbrev'
+                                   and local-name(.) != 'qandadiv'
+                                   and local-name(.) != 'qandaentry']"/>
       <xsl:apply-templates select="qandadiv"/>
   
       <xsl:if test="qandaentry">
@@ -181,10 +181,10 @@
 
   <fo:block id="{$id}">
     <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
-    <xsl:apply-templates select="*[name(.) != 'title'
-                                 and name(.) != 'titleabbrev'
-                                 and name(.) != 'qandadiv'
-                                 and name(.) != 'qandaentry']"/>
+    <xsl:apply-templates select="*[local-name(.) != 'title'
+                                 and local-name(.) != 'titleabbrev'
+                                 and local-name(.) != 'qandadiv'
+                                 and local-name(.) != 'qandaentry']"/>
     <fo:block>
       <xsl:apply-templates select="qandadiv"/>
 
