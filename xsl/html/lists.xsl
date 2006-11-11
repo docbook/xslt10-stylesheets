@@ -918,7 +918,7 @@
 <xsl:template match="calloutlist">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
-    <xsl:if test="title">
+    <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 

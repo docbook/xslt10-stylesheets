@@ -20,7 +20,7 @@
   <xsl:variable name="level">
     <xsl:choose>
       <xsl:when test="ancestor::section">
-	<xsl:value-of select="count(ancestor::section)+1"/>
+        <xsl:value-of select="count(ancestor::section)+1"/>
       </xsl:when>
       <xsl:when test="ancestor::sect5">6</xsl:when>
       <xsl:when test="ancestor::sect4">5</xsl:when>
@@ -86,13 +86,15 @@
   </div>
 </xsl:template>
 
-<xsl:template match="dedication/title" mode="titlepage.mode" priority="2">
+<xsl:template match="dedication/title|dedication/info/title" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::dedication[1]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="dedication/subtitle" mode="titlepage.mode" priority="2">
+<xsl:template match="dedication/subtitle|dedication/info/subtitle" 
+              mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.subtitle">
     <xsl:with-param name="node" select="ancestor::dedication[1]"/>
   </xsl:call-template>
@@ -185,6 +187,7 @@
 </xsl:template>
 
 <xsl:template match="preface/docinfo|prefaceinfo"></xsl:template>
+<xsl:template match="preface/info"></xsl:template>
 <xsl:template match="preface/title"></xsl:template>
 <xsl:template match="preface/titleabbrev"></xsl:template>
 <xsl:template match="preface/subtitle"></xsl:template>
@@ -241,6 +244,7 @@
 </xsl:template>
 
 <xsl:template match="chapter/docinfo|chapterinfo"></xsl:template>
+<xsl:template match="chapter/info"></xsl:template>
 <xsl:template match="chapter/title"></xsl:template>
 <xsl:template match="chapter/titleabbrev"></xsl:template>
 <xsl:template match="chapter/subtitle"></xsl:template>
@@ -318,6 +322,7 @@
 </xsl:template>
 
 <xsl:template match="appendix/docinfo|appendixinfo"></xsl:template>
+<xsl:template match="appendix/info"></xsl:template>
 <xsl:template match="appendix/title"></xsl:template>
 <xsl:template match="appendix/titleabbrev"></xsl:template>
 <xsl:template match="appendix/subtitle"></xsl:template>
@@ -377,6 +382,7 @@
 </xsl:template>
 
 <xsl:template match="article/artheader|article/articleinfo"></xsl:template>
+<xsl:template match="article/info"></xsl:template>
 <xsl:template match="article/title"></xsl:template>
 <xsl:template match="article/titleabbrev"></xsl:template>
 <xsl:template match="article/subtitle"></xsl:template>

@@ -35,6 +35,7 @@
 </xsl:template>
 
 <xsl:template match="bibliography/bibliographyinfo"></xsl:template>
+<xsl:template match="bibliography/info"></xsl:template>
 <xsl:template match="bibliography/title"></xsl:template>
 <xsl:template match="bibliography/subtitle"></xsl:template>
 <xsl:template match="bibliography/titleabbrev"></xsl:template>
@@ -63,14 +64,15 @@
 <xsl:template match="bibliolist">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
-    <xsl:if test="blockinfo/title|title">
+    <xsl:if test="blockinfo/title|info/title|title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <xsl:apply-templates select="*[not(self::blockinfo)
-			           and not(self::title)
-				   and not(self::titleabbrev)
-			           and not(self::biblioentry)
-				   and not(self::bibliomixed)]"/>
+                                   and not(self::info)
+                                   and not(self::title)
+                                   and not(self::titleabbrev)
+                                   and not(self::biblioentry)
+                                   and not(self::bibliomixed)]"/>
     <xsl:apply-templates select="biblioentry|bibliomixed"/>
   </div>
 </xsl:template>
@@ -92,16 +94,16 @@
       <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
-	  <xsl:choose>
-	    <xsl:when test="$bibliography.numbered != 0">
-	      <xsl:apply-templates select="$entry">
-		<xsl:with-param name="label" select="$label"/>
-	      </xsl:apply-templates>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <xsl:apply-templates select="$entry"/>
-	    </xsl:otherwise>
-	  </xsl:choose>
+          <xsl:choose>
+            <xsl:when test="$bibliography.numbered != 0">
+              <xsl:apply-templates select="$entry">
+                <xsl:with-param name="label" select="$label"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="$entry"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message>
@@ -113,7 +115,7 @@
           <div class="{name(.)}">
             <xsl:call-template name="anchor"/>
             <p>
-	      <xsl:copy-of select="$label"/>
+              <xsl:copy-of select="$label"/>
               <xsl:text>Error: no bibliography entry: </xsl:text>
               <xsl:value-of select="$id"/>
               <xsl:text> found in </xsl:text>
@@ -126,10 +128,10 @@
     <xsl:otherwise>
       <div class="{name(.)}">
         <xsl:call-template name="anchor">
-	  <xsl:with-param name="conditional" select="0"/>
-	</xsl:call-template>
+          <xsl:with-param name="conditional" select="0"/>
+        </xsl:call-template>
         <p>
-	  <xsl:copy-of select="$label"/>
+          <xsl:copy-of select="$label"/>
           <xsl:apply-templates mode="bibliography.mode"/>
         </p>
       </div>
@@ -152,16 +154,16 @@
       <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
-	  <xsl:choose>
-	    <xsl:when test="$bibliography.numbered != 0">
-	      <xsl:apply-templates select="$entry">
-		<xsl:with-param name="label" select="$label"/>
-	      </xsl:apply-templates>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <xsl:apply-templates select="$entry"/>
-	    </xsl:otherwise>
-	  </xsl:choose>
+          <xsl:choose>
+            <xsl:when test="$bibliography.numbered != 0">
+              <xsl:apply-templates select="$entry">
+                <xsl:with-param name="label" select="$label"/>
+              </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="$entry"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message>
@@ -173,7 +175,7 @@
           <div class="{name(.)}">
             <xsl:call-template name="anchor"/>
             <p>
-	      <xsl:copy-of select="$label"/>
+              <xsl:copy-of select="$label"/>
               <xsl:text>Error: no bibliography entry: </xsl:text>
               <xsl:value-of select="$id"/>
               <xsl:text> found in </xsl:text>
@@ -186,10 +188,10 @@
     <xsl:otherwise>
       <div class="{name(.)}">
         <xsl:call-template name="anchor">
-	  <xsl:with-param name="conditional" select="0"/>
-	</xsl:call-template>
+          <xsl:with-param name="conditional" select="0"/>
+        </xsl:call-template>
         <p class="{name(.)}">
-	  <xsl:copy-of select="$label"/>
+          <xsl:copy-of select="$label"/>
           <xsl:apply-templates mode="bibliomixed.mode"/>
         </p>
       </div>

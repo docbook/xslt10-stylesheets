@@ -17,7 +17,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="qandaset">
-  <xsl:variable name="title" select="(blockinfo/title|title)[1]"/>
+  <xsl:variable name="title" select="(blockinfo/title|info/title|title)[1]"/>
   <xsl:variable name="preamble" select="*[name(.) != 'title'
                                           and name(.) != 'titleabbrev'
                                           and name(.) != 'qandadiv'
@@ -47,7 +47,9 @@
   </div>
 </xsl:template>
 
-<xsl:template match="qandaset/blockinfo/title|qandaset/title">
+<xsl:template match="qandaset/blockinfo/title|
+                     qandaset/info/title|
+                     qandaset/title">
   <xsl:variable name="qalevel">
     <xsl:call-template name="qanda.section.level"/>
   </xsl:variable>
@@ -59,7 +61,7 @@
   </xsl:element>
 </xsl:template>
 
-<xsl:template match="qandaset/blockinfo">
+<xsl:template match="qandaset/blockinfo|qandaset/info">
   <!-- what should this template really do? -->
   <xsl:apply-templates select="legalnotice" mode="titlepage.mode"/>
 </xsl:template>
@@ -70,10 +72,10 @@
                                           and name(.) != 'qandadiv'
                                           and name(.) != 'qandaentry']"/>
 
-  <xsl:if test="blockinfo/title|title">
+  <xsl:if test="blockinfo/title|info/title|title">
     <tr class="qandadiv">
       <td align="left" valign="top" colspan="2">
-        <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
+        <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
       </td>
     </tr>
   </xsl:if>
@@ -109,7 +111,9 @@
   <xsl:apply-templates select="qandadiv|qandaentry"/>
 </xsl:template>
 
-<xsl:template match="qandadiv/blockinfo/title|qandadiv/title">
+<xsl:template match="qandadiv/blockinfo/title|
+                     qandadiv/info/title|
+                     qandadiv/title">
   <xsl:variable name="qalevel">
     <xsl:call-template name="qandadiv.section.level"/>
   </xsl:variable>
@@ -241,7 +245,9 @@
   <dd><xsl:call-template name="process.qanda.toc"/></dd>
 </xsl:template>
 
-<xsl:template match="qandadiv/blockinfo/title|qandadiv/title" mode="qandatoc.mode">
+<xsl:template match="qandadiv/blockinfo/title|
+                     qandadiv/info/title|
+                     qandadiv/title" mode="qandatoc.mode">
   <xsl:variable name="qalevel">
     <xsl:call-template name="qandadiv.section.level"/>
   </xsl:variable>
