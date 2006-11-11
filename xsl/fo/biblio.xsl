@@ -95,6 +95,7 @@
 </xsl:template>
 
 <xsl:template match="bibliography/bibliographyinfo"></xsl:template>
+<xsl:template match="bibliography/info"></xsl:template>
 <xsl:template match="bibliography/title"></xsl:template>
 <xsl:template match="bibliography/subtitle"></xsl:template>
 <xsl:template match="bibliography/titleabbrev"></xsl:template>
@@ -132,6 +133,7 @@
     </xsl:if>
 
     <xsl:apply-templates select="*[not(self::blockinfo)
+                                   and not(self::info)
                                    and not(self::title)
                                    and not(self::titleabbrev)]"/>
   </fo:block>
@@ -316,7 +318,8 @@
   </fo:inline>
 </xsl:template>
 
-<xsl:template match="artheader|articleinfo" mode="bibliography.mode">
+<xsl:template match="artheader|articleinfo|article/info" 
+              mode="bibliography.mode">
   <fo:inline>
     <xsl:apply-templates mode="bibliography.mode"/>
     <xsl:value-of select="$biblioentry.item.separator"/>

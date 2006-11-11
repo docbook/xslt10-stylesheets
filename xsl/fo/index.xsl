@@ -249,6 +249,8 @@
  </xsl:if>
 </xsl:template>
 
+<xsl:template match="index/indexinfo"></xsl:template>
+<xsl:template match="index/info"></xsl:template>
 <xsl:template match="index/title"></xsl:template>
 <xsl:template match="index/subtitle"></xsl:template>
 <xsl:template match="index/titleabbrev"></xsl:template>
@@ -468,7 +470,7 @@
 
   <xsl:variable name="parent" select="local-name($parentnode)"/>
 
-  <xsl:variable name="block.parents" select="'|answer|appendix|appendixinfo|article|articleinfo|bibliodiv|bibliography|bibliographyinfo|blockinfo|blockquote|bookinfo|callout|caution|chapter|chapterinfo|dedication|example|figure|formalpara|funcsynopsisinfo|glossary|glossaryinfo|glossdef|glossdiv|glossentry|highlights|important|index|indexinfo|informalexample|informalfigure|informaltable|itemizedlist|legalnotice|listitem|msgexplan|msgtext|note|objectinfo|orderedlist|partinfo|partintro|preface|prefaceinfo|procedure|qandadiv|qandaset|question|refentry|refentryinfo|referenceinfo|refmeta|refmiscinfo|refsect1|refsect1info|refsect2|refsect2info|refsect3|refsect3info|refsection|refsectioninfo|refsynopsisdiv|refsynopsisdivinfo|revdescription|screeninfo|sect1|sect1info|sect2|sect2info|sect3|sect3info|sect4|sect4info|sect5|sect5info|section|sectioninfo|setindex|setindexinfo|setinfo|sidebar|sidebarinfo|simplesect|step|table|task|taskprerequisites|taskrelated|tasksummary|tip|variablelist|warning|'"/>
+  <xsl:variable name="block.parents" select="'|answer|appendix|appendixinfo|article|articleinfo|bibliodiv|bibliography|bibliographyinfo|blockinfo|blockquote|bookinfo|callout|caution|chapter|chapterinfo|dedication|example|figure|formalpara|funcsynopsisinfo|glossary|glossaryinfo|glossdef|glossdiv|glossentry|highlights|important|index|indexinfo|info|informalexample|informalfigure|informaltable|itemizedlist|legalnotice|listitem|msgexplan|msgtext|note|objectinfo|orderedlist|partinfo|partintro|preface|prefaceinfo|procedure|qandadiv|qandaset|question|refentry|refentryinfo|referenceinfo|refmeta|refmiscinfo|refsect1|refsect1info|refsect2|refsect2info|refsect3|refsect3info|refsection|refsectioninfo|refsynopsisdiv|refsynopsisdivinfo|revdescription|screeninfo|sect1|sect1info|sect2|sect2info|sect3|sect3info|sect4|sect4info|sect5|sect5info|section|sectioninfo|setindex|setindexinfo|setinfo|sidebar|sidebarinfo|simplesect|step|table|task|taskprerequisites|taskrelated|tasksummary|tip|variablelist|warning|'"/>
 
   <xsl:choose>
     <xsl:when test="contains($parent, $block.parents)">fo:block</xsl:when>

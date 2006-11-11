@@ -175,6 +175,7 @@
 </xsl:template>
 
 <xsl:template match="glossary/glossaryinfo"></xsl:template>
+<xsl:template match="glossary/info"></xsl:template>
 <xsl:template match="glossary/title"></xsl:template>
 <xsl:template match="glossary/subtitle"></xsl:template>
 <xsl:template match="glossary/titleabbrev"></xsl:template>
@@ -209,8 +210,8 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:if test="title">
-    <xsl:apply-templates select="title" mode="list.title.mode"/>
+  <xsl:if test="title or info/title">
+    <xsl:apply-templates select="(title|info/title)[1]" mode="list.title.mode"/>
   </xsl:if>
 
   <xsl:choose>
