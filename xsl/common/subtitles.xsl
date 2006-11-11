@@ -94,7 +94,7 @@ subtitle of the element.
 
 <xsl:template match="dedication|colophon" mode="subtitle.markup">
   <xsl:param name="allow-anchors" select="'0'"/>
-  <xsl:apply-templates select="subtitle"
+  <xsl:apply-templates select="(subtitle|info/subtitle)[1]"
                        mode="subtitle.markup">
     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
   </xsl:apply-templates>
@@ -113,7 +113,7 @@ subtitle of the element.
 
 <xsl:template match="qandaset" mode="subtitle.markup">
   <xsl:param name="allow-anchors" select="'0'"/>
-  <xsl:apply-templates select="blockinfo/subtitle[1]"
+  <xsl:apply-templates select="(blockinfo/subtitle|info/subtitle)[1]"
                        mode="subtitle.markup">
     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
   </xsl:apply-templates>
