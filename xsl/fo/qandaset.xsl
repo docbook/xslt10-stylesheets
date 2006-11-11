@@ -147,7 +147,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="qandaset/blockinfo">
+<xsl:template match="qandaset/blockinfo|qandaset/info">
   <!-- what should this template really do? -->
   <xsl:apply-templates select="legalnotice" mode="titlepage.mode"/>
 </xsl:template>

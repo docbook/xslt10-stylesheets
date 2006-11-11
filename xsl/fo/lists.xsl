@@ -1142,8 +1142,9 @@
   <fo:block id="{$id}"
             text-align="{$alignment}">
     <!-- The above restores alignment altered by image align attribute -->
-    <xsl:if test="title">
-      <xsl:apply-templates select="title" mode="list.title.mode"/>
+    <xsl:if test="title|info/title">
+      <xsl:apply-templates select="(title|info/title)[1]" 
+                           mode="list.title.mode"/>
     </xsl:if>
 
     <!-- Preserve order of PIs and comments -->
