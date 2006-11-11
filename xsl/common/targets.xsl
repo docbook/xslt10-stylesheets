@@ -254,7 +254,7 @@ document output.
   <xsl:apply-templates mode="olink.mode"/>
 </xsl:template>
 
-<xsl:template match="equation[title]" mode="olink.mode">
+<xsl:template match="equation[title or info/title]" mode="olink.mode">
   <xsl:call-template name="obj"/>
 </xsl:template>
 

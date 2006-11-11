@@ -64,7 +64,7 @@ copyright dedication docinfo editor entrytbl epigraph equation
 example figure footnote footnoteref formalpara funcprototype
 funcsynopsis glossary glossdef glossdiv glossentry glosslist graphicco
 group highlights imagedata imageobject imageobjectco important index
-indexdiv indexentry indexterm informalequation informalexample
+indexdiv indexentry indexterm info informalequation informalexample
 informalfigure informaltable inlineequation inlinemediaobject
 itemizedlist itermset keycombo keywordset legalnotice listitem lot
 mediaobject mediaobjectco menuchoice msg msgentry msgexplan msginfo
