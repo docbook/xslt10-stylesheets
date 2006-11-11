@@ -15,7 +15,7 @@
 <!-- ==================================================================== -->
 <!-- What should we do about styling blockinfo? -->
 
-<xsl:template match="blockinfo">
+<xsl:template match="blockinfo|info">
   <!-- suppress -->
 </xsl:template>
 
@@ -106,7 +106,12 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="formalpara/title">
+<!-- Only use title from info -->
+<xsl:template match="formalpara/info">
+  <xsl:apply-templates select="title"/>
+</xsl:template>
+
+<xsl:template match="formalpara/title|formalpara/info/title">
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
@@ -169,7 +174,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="blockquote/title">
+<xsl:template match="blockquote/title|blockquote/info/title">
   <div class="blockquote-title">
     <p>
       <b>
@@ -213,7 +218,7 @@
 <xsl:template match="abstract/title|sidebar/title">
 </xsl:template>
 
-<xsl:template match="sidebar/sidebarinfo"/>
+<xsl:template match="sidebar/sidebarinfo|sidebar/info"/>
 
 <!-- ==================================================================== -->
 

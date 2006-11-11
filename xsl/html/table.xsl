@@ -455,7 +455,7 @@
 <xsl:template match="spanspec"></xsl:template>
 
 <xsl:template match="thead|tfoot">
-  <xsl:element name="{name(.)}">
+  <xsl:element name="{local-name(.)}">
     <xsl:if test="@align">
       <xsl:attribute name="align">
         <xsl:value-of select="@align"/>

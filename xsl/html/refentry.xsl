@@ -105,6 +105,7 @@
 </xsl:template>
 
 <xsl:template match="refentry/docinfo|refentry/refentryinfo"></xsl:template>
+<xsl:template match="refentry/info"></xsl:template>
 
 <xsl:template match="refentrytitle|refname|refdescriptor" mode="title">
   <xsl:apply-templates/>
@@ -290,9 +291,11 @@
   </h4>
 </xsl:template>
 
-<xsl:template match="refsect1info"></xsl:template>
-<xsl:template match="refsect2info"></xsl:template>
-<xsl:template match="refsect3info"></xsl:template>
+<xsl:template match="refsectioninfo|refsection/info"></xsl:template>
+<xsl:template match="refsect1info|refsect1/info"></xsl:template>
+<xsl:template match="refsect2info|refsect2/info"></xsl:template>
+<xsl:template match="refsect3info|refsect3/info"></xsl:template>
+
 
 <!-- ==================================================================== -->
 

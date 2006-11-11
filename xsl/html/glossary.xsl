@@ -53,6 +53,7 @@
 </xsl:template>
 
 <xsl:template match="glossary/glossaryinfo"></xsl:template>
+<xsl:template match="glossary/info"></xsl:template>
 <xsl:template match="glossary/title"></xsl:template>
 <xsl:template match="glossary/subtitle"></xsl:template>
 <xsl:template match="glossary/titleabbrev"></xsl:template>
@@ -62,7 +63,7 @@
 <xsl:template match="glosslist">
   <div class="{name(.)}">
     <xsl:call-template name="anchor"/>
-    <xsl:if test="blockinfo/title|title">
+    <xsl:if test="blockinfo/title|info/title|title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
     <dl>

@@ -70,9 +70,9 @@
     <table border="0">
       <xsl:attribute name="summary">
         <xsl:value-of select="$admon.type"/>
-        <xsl:if test="title">
+        <xsl:if test="title|info/title">
           <xsl:text>: </xsl:text>
-          <xsl:value-of select="title"/>
+          <xsl:value-of select="(title|info/title)[1]"/>
         </xsl:if>
       </xsl:attribute>
       <tr>
@@ -88,7 +88,7 @@
         </td>
         <th align="left">
           <xsl:call-template name="anchor"/>
-          <xsl:if test="$admon.textlabel != 0 or title">
+          <xsl:if test="$admon.textlabel != 0 or title or info/title">
             <xsl:apply-templates select="." mode="object.title.markup"/>
           </xsl:if>
         </th>
@@ -112,7 +112,7 @@
 
     <h3 class="title">
       <xsl:call-template name="anchor"/>
-      <xsl:if test="$admon.textlabel != 0 or title">
+      <xsl:if test="$admon.textlabel != 0 or title or info/title">
         <xsl:apply-templates select="." mode="object.title.markup"/>
       </xsl:if>
     </h3>
