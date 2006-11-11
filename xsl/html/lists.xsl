@@ -15,7 +15,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="itemizedlist">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -135,7 +135,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title">
@@ -254,7 +254,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -475,7 +475,7 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='inline']">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
   <!-- if dbchoice PI exists, use that to determine the choice separator -->
   <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
   <!-- value of "choice" otherwise -->
@@ -682,7 +682,7 @@
                 |comment()[not(preceding-sibling::step)]
                 |processing-instruction()[not(preceding-sibling::step)]"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -775,7 +775,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
 
     <xsl:choose>
@@ -916,7 +916,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="calloutlist">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>

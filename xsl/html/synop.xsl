@@ -22,7 +22,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="cmdsynopsis">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <p>
       <xsl:call-template name="anchor"/>
       <xsl:apply-templates/>
@@ -155,7 +155,7 @@
 </xsl:template>
 
 <xsl:template match="funcsynopsisinfo">
-  <pre class="{name(.)}"><xsl:apply-templates/></pre>
+  <pre class="{local-name(.)}"><xsl:apply-templates/></pre>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -228,7 +228,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="funcdef" mode="kr-nontabular">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:apply-templates mode="kr-nontabular"/>
     <xsl:text>(</xsl:text>
   </code>
@@ -344,7 +344,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="funcdef" mode="kr-tabular">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:apply-templates mode="kr-tabular"/>
     <xsl:text>(</xsl:text>
   </code>
@@ -509,7 +509,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="funcdef" mode="ansi-nontabular">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:apply-templates mode="ansi-nontabular"/>
     <xsl:text>(</xsl:text>
   </code>
@@ -595,7 +595,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="funcdef" mode="ansi-tabular">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:apply-templates mode="ansi-tabular"/>
     <xsl:text>(</xsl:text>
   </code>
@@ -752,7 +752,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     <xsl:otherwise>
       <xsl:message>
 	<xsl:text>Unrecognized language on </xsl:text>
-        <xsl:value-of select="name(.)"/>
+        <xsl:value-of select="local-name(.)"/>
         <xsl:text>: </xsl:text>
 	<xsl:value-of select="$language"/>
       </xsl:message>
@@ -778,7 +778,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- ===== Java ======================================================== -->
 
 <xsl:template match="classsynopsis" mode="java">
-  <pre class="{name(.)}">
+  <pre class="{local-name(.)}">
     <xsl:apply-templates select="ooclass[1]" mode="java"/>
     <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text> extends</xsl:text>
@@ -824,13 +824,13 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       <xsl:text> </xsl:text>
     </xsl:otherwise>
   </xsl:choose>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template match="modifier" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>
@@ -839,34 +839,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="classname" mode="java">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'classname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'classname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template match="interfacename" mode="java">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'interfacename'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'interfacename'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template match="exceptionname" mode="java">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'exceptionname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'exceptionname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="java">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
     </xsl:if>
@@ -877,34 +877,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="type" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="varname" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="initializer" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>=&nbsp;</xsl:text>
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template match="void" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>void&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="methodname" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
@@ -921,22 +921,22 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       </xsl:call-template>
     </xsl:if>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template match="parameter" mode="java">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="java"/>
   </span>
 </xsl:template>
 
 <xsl:template mode="java"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
-  <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[local-name(.) != 'modifier']]"/>
+  <xsl:variable name="notmod" select="*[local-name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[local-name(.) != 'modifier']]"/>
   <xsl:variable name="decl">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
@@ -944,14 +944,14 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     <xsl:apply-templates select="$start-modifiers" mode="java"/>
 
     <!-- type -->
-    <xsl:if test="name($notmod[1]) != 'methodname'">
+    <xsl:if test="local-name($notmod[1]) != 'methodname'">
       <xsl:apply-templates select="$notmod[1]" mode="java"/>
     </xsl:if>
 
     <xsl:apply-templates select="methodname" mode="java"/>
   </xsl:variable>
 
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:copy-of select="$decl"/>
     <xsl:text>(</xsl:text>
     <xsl:apply-templates select="methodparam" mode="java">
@@ -963,7 +963,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       <xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="java"/>
     </xsl:if>
-    <xsl:if test="modifier[preceding-sibling::*[name(.) != 'modifier']]">
+    <xsl:if test="modifier[preceding-sibling::*[local-name(.) != 'modifier']]">
       <xsl:text> </xsl:text>
       <xsl:apply-templates select="$end-modifiers" mode="java"/>
     </xsl:if>
@@ -975,7 +975,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- ===== C++ ========================================================= -->
 
 <xsl:template match="classsynopsis" mode="cpp">
-  <pre class="{name(.)}">
+  <pre class="{local-name(.)}">
     <xsl:apply-templates select="ooclass[1]" mode="cpp"/>
     <xsl:if test="ooclass[preceding-sibling::*]">
       <xsl:text>: </xsl:text>
@@ -1016,13 +1016,13 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template match="modifier" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>
@@ -1031,34 +1031,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="classname" mode="cpp">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'classname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'classname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template match="interfacename" mode="cpp">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'interfacename'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'interfacename'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template match="exceptionname" mode="cpp">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'exceptionname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'exceptionname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="cpp">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
     </xsl:if>
@@ -1069,34 +1069,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="type" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="varname" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="initializer" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>=&nbsp;</xsl:text>
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template match="void" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>void&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="methodname" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
@@ -1105,31 +1105,31 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template match="parameter" mode="cpp">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="cpp"/>
   </span>
 </xsl:template>
 
 <xsl:template mode="cpp"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
-  <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[local-name(.) != 'modifier']]"/>
+  <xsl:variable name="notmod" select="*[local-name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[local-name(.) != 'modifier']]"/>
 
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
     </xsl:if>
     <xsl:apply-templates select="$start-modifiers" mode="cpp"/>
 
     <!-- type -->
-    <xsl:if test="name($notmod[1]) != 'methodname'">
+    <xsl:if test="local-name($notmod[1]) != 'methodname'">
       <xsl:apply-templates select="$notmod[1]" mode="cpp"/>
     </xsl:if>
 
@@ -1142,7 +1142,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       <xsl:text>&nbsp;&nbsp;&nbsp;&nbsp;throws&nbsp;</xsl:text>
       <xsl:apply-templates select="exceptionname" mode="cpp"/>
     </xsl:if>
-    <xsl:if test="modifier[preceding-sibling::*[name(.) != 'modifier']]">
+    <xsl:if test="modifier[preceding-sibling::*[local-name(.) != 'modifier']]">
       <xsl:text> </xsl:text>
       <xsl:apply-templates select="$end-modifiers" mode="cpp"/>
     </xsl:if>
@@ -1154,7 +1154,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- ===== IDL ========================================================= -->
 
 <xsl:template match="classsynopsis" mode="idl">
-  <pre class="{name(.)}">
+  <pre class="{local-name(.)}">
     <xsl:text>interface </xsl:text>
     <xsl:apply-templates select="ooclass[1]" mode="idl"/>
     <xsl:if test="ooclass[preceding-sibling::*]">
@@ -1196,13 +1196,13 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="modifier" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>
@@ -1211,34 +1211,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="classname" mode="idl">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'classname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'classname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="interfacename" mode="idl">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'interfacename'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'interfacename'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="exceptionname" mode="idl">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'exceptionname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'exceptionname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="idl">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
     </xsl:if>
@@ -1249,34 +1249,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="type" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="varname" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="initializer" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>=&nbsp;</xsl:text>
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="void" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>void&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="methodname" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
@@ -1285,30 +1285,30 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="parameter" mode="idl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="idl"/>
   </span>
 </xsl:template>
 
 <xsl:template mode="idl"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
-  <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
-  <code class="{name(.)}">
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[local-name(.) != 'modifier']]"/>
+  <xsl:variable name="notmod" select="*[local-name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[local-name(.) != 'modifier']]"/>
+  <code class="{local-name(.)}">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
     </xsl:if>
     <xsl:apply-templates select="$start-modifiers" mode="idl"/>
 
     <!-- type -->
-    <xsl:if test="name($notmod[1]) != 'methodname'">
+    <xsl:if test="local-name($notmod[1]) != 'methodname'">
       <xsl:apply-templates select="$notmod[1]" mode="idl"/>
     </xsl:if>
 
@@ -1322,7 +1322,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       <xsl:apply-templates select="exceptionname" mode="idl"/>
       <xsl:text>)</xsl:text>
     </xsl:if>
-    <xsl:if test="modifier[preceding-sibling::*[name(.) != 'modifier']]">
+    <xsl:if test="modifier[preceding-sibling::*[local-name(.) != 'modifier']]">
       <xsl:text> </xsl:text>
       <xsl:apply-templates select="$end-modifiers" mode="idl"/>
     </xsl:if>
@@ -1334,7 +1334,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- ===== Perl ======================================================== -->
 
 <xsl:template match="classsynopsis" mode="perl">
-  <pre class="{name(.)}">
+  <pre class="{local-name(.)}">
     <xsl:text>package </xsl:text>
     <xsl:apply-templates select="ooclass[1]" mode="perl"/>
     <xsl:text>;</xsl:text>
@@ -1363,13 +1363,13 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:if test="preceding-sibling::*">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="modifier" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>
@@ -1378,34 +1378,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="classname" mode="perl">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'classname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'classname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="interfacename" mode="perl">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'interfacename'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'interfacename'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="exceptionname" mode="perl">
-  <xsl:if test="name(preceding-sibling::*[1]) = 'exceptionname'">
+  <xsl:if test="local-name(preceding-sibling::*[1]) = 'exceptionname'">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="fieldsynopsis" mode="perl">
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:if test="parent::classsynopsis">
       <xsl:text>&nbsp;&nbsp;</xsl:text>
     </xsl:if>
@@ -1416,34 +1416,34 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="type" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="varname" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
     <xsl:text>&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="initializer" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>=&nbsp;</xsl:text>
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="void" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:text>void&nbsp;</xsl:text>
   </span>
 </xsl:template>
 
 <xsl:template match="methodname" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
@@ -1452,24 +1452,24 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:if test="preceding-sibling::methodparam">
     <xsl:text>, </xsl:text>
   </xsl:if>
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template match="parameter" mode="perl">
-  <span class="{name(.)}">
+  <span class="{local-name(.)}">
     <xsl:apply-templates mode="perl"/>
   </span>
 </xsl:template>
 
 <xsl:template mode="perl"
   match="constructorsynopsis|destructorsynopsis|methodsynopsis">
-  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[name(.) != 'modifier']]"/>
-  <xsl:variable name="notmod" select="*[name(.) != 'modifier']"/>
-  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[name(.) != 'modifier']]"/>
+  <xsl:variable name="start-modifiers" select="modifier[following-sibling::*[local-name(.) != 'modifier']]"/>
+  <xsl:variable name="notmod" select="*[local-name(.) != 'modifier']"/>
+  <xsl:variable name="end-modifiers" select="modifier[preceding-sibling::*[local-name(.) != 'modifier']]"/>
 
-  <code class="{name(.)}">
+  <code class="{local-name(.)}">
     <xsl:text>sub </xsl:text>
 
     <xsl:apply-templates select="methodname" mode="perl"/>

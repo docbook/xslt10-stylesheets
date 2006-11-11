@@ -22,7 +22,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="block.object">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
@@ -185,7 +185,7 @@
 </xsl:template>
 
 <xsl:template match="epigraph">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
       <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
       <xsl:if test="attribution">
         <div class="attribution">
@@ -196,13 +196,13 @@
 </xsl:template>
 
 <xsl:template match="attribution">
-  <span class="{name(.)}"><xsl:apply-templates/></span>
+  <span class="{local-name(.)}"><xsl:apply-templates/></span>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template match="abstract|sidebar">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="formal.object.heading">
       <xsl:with-param name="title">
@@ -317,7 +317,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="revhistory">
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <table border="0" width="100%" summary="Revision history">
       <tr>
         <th align="left" valign="top" colspan="3">
@@ -408,7 +408,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="ackno">
-  <p class="{name(.)}">
+  <p class="{local-name(.)}">
     <xsl:apply-templates/>
   </p>
 </xsl:template>

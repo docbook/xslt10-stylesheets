@@ -50,7 +50,7 @@
       <xsl:choose>
         <xsl:when test="$verbatim/@linenumbering = 'numbered'
                         and $linenumbering.extension != '0'">
-          <div class="{name(.)}">
+          <div class="{local-name(.)}">
             <xsl:call-template name="number.rtf.lines">
               <xsl:with-param name="rtf" select="$rtf-with-callouts"/>
               <xsl:with-param name="pi.context"
@@ -60,7 +60,7 @@
           </div>
         </xsl:when>
         <xsl:otherwise>
-          <div class="{name(.)}">
+          <div class="{local-name(.)}">
             <xsl:copy-of select="$rtf-with-callouts"/>
             <xsl:apply-templates select="calloutlist"/>
           </div>
@@ -68,7 +68,7 @@
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <div class="{name(.)}">
+      <div class="{local-name(.)}">
         <xsl:apply-templates/>
       </div>
     </xsl:otherwise>

@@ -24,7 +24,7 @@
   <xsl:call-template name="id.warning"/>
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
-    <div class="{name(.)}">
+    <div class="{local-name(.)}">
       <xsl:if test="$generate.id.attributes != 0">
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
@@ -78,7 +78,7 @@
   <xsl:call-template name="id.warning"/>
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
-    <div class="{name(.)}">
+    <div class="{local-name(.)}">
       <xsl:if test="$generate.id.attributes != 0">
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
@@ -112,7 +112,7 @@
 <xsl:template match="indexdiv">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div class="{local-name(.)}">
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -128,7 +128,7 @@
 </xsl:template>
 
 <xsl:template match="indexdiv/title">
-  <h3 class="{name(.)}">
+  <h3 class="{local-name(.)}">
     <xsl:apply-templates/>
   </h3>
 </xsl:template>
