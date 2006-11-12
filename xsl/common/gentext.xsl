@@ -360,7 +360,7 @@
     <xsl:message>
       <xsl:text>object.xref.markup: empty xref template</xsl:text>
       <xsl:text> for linkend="</xsl:text>
-      <xsl:value-of select="@id"/>
+      <xsl:value-of select="@id|@xml:id"/>
       <xsl:text>" and @xrefstyle="</xsl:text>
       <xsl:value-of select="$xrefstyle"/>
       <xsl:text>"</xsl:text>
@@ -392,7 +392,7 @@
       <xsl:message>
         <xsl:text>Xref is only supported to listitems in an</xsl:text>
         <xsl:text> orderedlist: </xsl:text>
-        <xsl:value-of select="@id"/>
+        <xsl:value-of select="@id|@xml:id"/>
       </xsl:message>
       <xsl:text>???</xsl:text>
     </xsl:when>
