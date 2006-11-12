@@ -254,6 +254,8 @@
       <xsl:choose>
         <xsl:when test="(@name and count(@*) = 1)
                         or (@id and count(@*) = 1)
+                        or (@xml:id and count(@*) = 1)
+                        or (@xml:id and @name and count(@*) = 2)
                         or (@id and @name and count(@*) = 2)">
           <xsl:message>suppress anchor</xsl:message>
           <!-- suppress the whole thing -->
@@ -266,7 +268,8 @@
                   <xsl:copy/>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:message>removing <xsl:value-of select="name(.)"/></xsl:message>
+                  <xsl:message>removing <xsl:value-of 
+                             select="local-name(.)"/></xsl:message>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:for-each>
@@ -279,11 +282,12 @@
       <xsl:copy>
         <xsl:for-each select="@*">
           <xsl:choose>
-            <xsl:when test="name(.) != 'id'">
+            <xsl:when test="local-name(.) != 'id'">
               <xsl:copy/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message>removing <xsl:value-of select="name(.)"/></xsl:message>
+              <xsl:message>removing <xsl:value-of 
+                        select="local-name(.)"/></xsl:message>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:for-each>
@@ -308,7 +312,7 @@
       <xsl:text>Don't know what gentext to create for xref to: "</xsl:text>
       <xsl:value-of select="name(.)"/>
       <xsl:text>", ("</xsl:text>
-      <xsl:value-of select="@id"/>
+      <xsl:value-of select="(@id|@xml:id)[1]"/>
       <xsl:text>")</xsl:text>
     </xsl:message>
   </xsl:if>
@@ -465,8 +469,9 @@
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
-      <xsl:variable name="id" select="@id"/>
-      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:variable name="id" select="(@id|@xml:id)[1]"/>
+      <xsl:variable name="entry" select="$bib/bibliography/
+                                    *[@id=$id or @xml:id="$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
           <xsl:choose>
@@ -478,7 +483,7 @@
               <xsl:apply-templates select="$entry/*[1]"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="@id"/>
+              <xsl:value-of select="(@id:@xml:id)[1]"/>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -489,7 +494,7 @@
             <xsl:text> found in </xsl:text>
             <xsl:value-of select="$bibliography.collection"/>
           </xsl:message>
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="(@id:@xml:id)[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
@@ -503,7 +508,7 @@
           <xsl:apply-templates select="*[1]"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="(@id:@xml:id)[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -864,7 +869,7 @@
         <xsl:apply-templates select="*[1]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="@id"/>
+        <xsl:value-of select="(@id:@xml:id)[1]"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>]</xsl:text>
@@ -903,9 +908,7 @@
   </xsl:call-template>
 
   <a>
-    <xsl:if test="@id">
-      <xsl:attribute name="name"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
 
     <xsl:if test="$a.target">
       <xsl:attribute name="target"><xsl:value-of select="$a.target"/></xsl:attribute>
@@ -986,9 +989,9 @@
   <xsl:param name="url" select="@url"/>
   <xsl:variable name="link">
     <a>
-      <xsl:if test="@id">
+      <xsl:if test="@id or @xml:id">
         <xsl:attribute name="name">
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="(@id|@xml:id)[1]"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:attribute name="href"><xsl:value-of select="$url"/></xsl:attribute>
@@ -1198,7 +1201,8 @@
   <xsl:variable name="node-href">
     <xsl:choose>
       <xsl:when test="$localinfo != ''">
-        <xsl:variable name="node" select="$outline//*[@id=$localinfo]"/>
+        <xsl:variable name="node" select="$outline//
+                                   *[@id=$localinfo or @xml:id=$localinfo]"/>
         <xsl:value-of select="$node/@href"/>
       </xsl:when>
       <xsl:otherwise>
@@ -1210,7 +1214,8 @@
   <xsl:variable name="node-xref">
     <xsl:choose>
       <xsl:when test="$localinfo != ''">
-        <xsl:variable name="node" select="$outline//*[@id=$localinfo]"/>
+        <xsl:variable name="node" select="$outline//
+                               *[@id=$localinfo or @xml:id=$localinfo]"/>
         <xsl:copy-of select="$node/xref"/>
       </xsl:when>
       <xsl:otherwise>

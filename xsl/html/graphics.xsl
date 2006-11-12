@@ -1011,8 +1011,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:if test="@id">
-    <a name="{@id}"/>
+  <xsl:call-template name="anchor"/>
   </xsl:if>
 
   <xsl:choose>
@@ -1073,9 +1072,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         <xsl:value-of select="$align"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
 
     <xsl:apply-templates select="$object"/>
     <xsl:apply-templates select="caption"/>
@@ -1084,9 +1081,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <xsl:template match="inlinemediaobject">
   <span class="{local-name(.)}">
-    <xsl:if test="@id">
-      <a name="{@id}"/>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="select.mediaobject"/>
   </span>
 </xsl:template>
@@ -1100,9 +1095,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <!-- ==================================================================== -->
 
 <xsl:template match="imageobjectco">
-  <xsl:if test="@id">
-    <a name="{@id}"/>
-  </xsl:if>
+  <xsl:call-template name="anchor"/>
   <xsl:apply-templates select="imageobject"/>
   <xsl:apply-templates select="calloutlist"/>
 </xsl:template>

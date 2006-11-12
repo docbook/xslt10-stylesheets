@@ -45,7 +45,10 @@
 
   <xsl:if test="$chunk != 0">
     <xsl:call-template name="indent-spaces"/>
-    <tocentry linkend="{@id}">
+    <xsl:variable name="id">
+      <xsl:call-template name="object.id"/>
+    </xsl:variable>
+    <tocentry linkend="{$id}">
       <xsl:processing-instruction name="dbhtml">
         <xsl:text>filename="</xsl:text>
         <xsl:value-of select="$filename"/>
