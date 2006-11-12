@@ -471,7 +471,7 @@
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
       <xsl:variable name="id" select="(@id|@xml:id)[1]"/>
       <xsl:variable name="entry" select="$bib/bibliography/
-                                    *[@id=$id or @xml:id="$id][1]"/>
+                                    *[@id=$id or @xml:id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
           <xsl:choose>
@@ -483,7 +483,7 @@
               <xsl:apply-templates select="$entry/*[1]"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="(@id:@xml:id)[1]"/>
+              <xsl:value-of select="(@id|@xml:id)[1]"/>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -494,7 +494,7 @@
             <xsl:text> found in </xsl:text>
             <xsl:value-of select="$bibliography.collection"/>
           </xsl:message>
-          <xsl:value-of select="(@id:@xml:id)[1]"/>
+          <xsl:value-of select="(@id|@xml:id)[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
@@ -508,7 +508,7 @@
           <xsl:apply-templates select="*[1]"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="(@id:@xml:id)[1]"/>
+          <xsl:value-of select="(@id|@xml:id)[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -869,7 +869,7 @@
         <xsl:apply-templates select="*[1]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="(@id:@xml:id)[1]"/>
+        <xsl:value-of select="(@id|@xml:id)[1]"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>]</xsl:text>
