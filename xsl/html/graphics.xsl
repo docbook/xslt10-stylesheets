@@ -1012,7 +1012,6 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   </xsl:variable>
 
   <xsl:call-template name="anchor"/>
-  </xsl:if>
 
   <xsl:choose>
     <xsl:when test="@format='linespecific'">
