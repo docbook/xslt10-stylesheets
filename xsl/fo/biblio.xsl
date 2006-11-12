@@ -153,7 +153,8 @@
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
-      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:variable name="entry" select="$bib/bibliography/
+                                         *[@id=$id or @xml:id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
           <xsl:choose>
@@ -204,7 +205,8 @@
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
-      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:variable name="entry" select="$bib/bibliography/
+                                         *[@id=$id or @xml:id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
           <xsl:choose>
@@ -263,9 +265,9 @@
       <xsl:value-of select="$node/@xreflabel"/>
       <xsl:text>] </xsl:text>
     </xsl:when>
-    <xsl:when test="$node/@id">
+    <xsl:when test="$node/@id or $node/@xml:id">
       <xsl:text>[</xsl:text>
-      <xsl:value-of select="$node/@id"/>
+      <xsl:value-of select="($node/@id|$node/@xml:id)[1]"/>
       <xsl:text>] </xsl:text>
     </xsl:when>
     <xsl:otherwise><!-- nop --></xsl:otherwise>

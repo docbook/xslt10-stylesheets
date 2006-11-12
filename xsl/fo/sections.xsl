@@ -18,7 +18,7 @@
 
 <xsl:template match="section">
   <xsl:choose>
-    <xsl:when test="$rootid = @id">
+    <xsl:when test="$rootid = @id or $rootid = @xml:id">
       <xsl:call-template name="section.page.sequence"/>
     </xsl:when>
     <xsl:otherwise>

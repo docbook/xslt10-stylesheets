@@ -24,9 +24,7 @@
 
 <xsl:template name="block.object">
   <fo:block>
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -42,18 +40,14 @@
 
 <xsl:template match="simpara">
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="formalpara">
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -405,9 +399,7 @@
 
 <xsl:template match="abstract">
   <fo:block xsl:use-attribute-sets="abstract.properties">
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
@@ -512,9 +504,7 @@
 
 <xsl:template match="revhistory">
   <fo:table table-layout="fixed" xsl:use-attribute-sets="revhistory.table.properties">
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
@@ -541,9 +531,7 @@
   <fo:table-row>
     <fo:table-cell xsl:use-attribute-sets="revhistory.table.cell.properties">
       <fo:block>
-        <xsl:if test="@id">
-          <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-        </xsl:if>
+        <xsl:call-template name="anchor"/>
         <xsl:if test="$revnumber">
           <xsl:call-template name="gentext">
             <xsl:with-param name="key" select="'Revision'"/>
@@ -608,9 +596,7 @@
 
 <xsl:template match="ackno">
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
