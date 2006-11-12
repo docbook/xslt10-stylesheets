@@ -346,9 +346,7 @@
   <xsl:choose>
     <xsl:when test="$xep.extensions != 0">
       <rx:begin-index-range>
-        <xsl:attribute name="id">
-          <xsl:value-of select="@id"/>
-        </xsl:attribute>
+        <xsl:call-template name="anchor"/>
         <xsl:attribute name="rx:key">
           <xsl:value-of select="&primary;"/>
           <xsl:if test="@significance='preferred'"><xsl:value-of select="$significant.flag"/></xsl:if>

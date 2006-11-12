@@ -18,7 +18,10 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="anchor">
-  <fo:inline id="{@id}"/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <fo:inline id="{$id}"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -420,8 +423,9 @@
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
-      <xsl:variable name="id" select="@id"/>
-      <xsl:variable name="entry" select="$bib/bibliography/*[@id=$id][1]"/>
+      <xsl:variable name="id" select="(@id|@xml:id)[1]"/>
+      <xsl:variable name="entry" select="$bib/bibliography/
+                                         *[@id=$id or @xml:id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
           <xsl:choose>
@@ -433,7 +437,7 @@
               <xsl:apply-templates select="$entry/*[1]"/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="@id"/>
+              <xsl:value-of select="(@id|@xml:id)[1]"/>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -444,7 +448,7 @@
             <xsl:text> found in </xsl:text>
             <xsl:value-of select="$bibliography.collection"/>
           </xsl:message>
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="(@id|@xml:id)[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
@@ -458,7 +462,7 @@
           <xsl:apply-templates select="*[1]"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="(@id|@xml:id)[1]"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -1234,7 +1238,10 @@
 </xsl:template>
 
 <xsl:template match="*" mode="pagenumber.markup">
-  <fo:page-number-citation ref-id="{@id}"/>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <fo:page-number-citation ref-id="{$id}"/>
 </xsl:template>
 
 <!-- ==================================================================== -->

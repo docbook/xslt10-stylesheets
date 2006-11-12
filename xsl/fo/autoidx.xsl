@@ -682,8 +682,8 @@
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
 
-      <xsl:if test="key('endofrange', @id)[&scope;]">
-        <xsl:apply-templates select="key('endofrange', @id)[&scope;][last()]"
+      <xsl:if test="key('endofrange', $id)[&scope;]">
+        <xsl:apply-templates select="key('endofrange', $id)[&scope;][last()]"
                              mode="reference">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
@@ -1096,7 +1096,7 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
-          <xsl:if test="@id">
+          <xsl:if test="$id">
             <xsl:text>&lt;link linkend="</xsl:text>
             <xsl:value-of select="$id"/>
             <xsl:text>"&gt;</xsl:text>
@@ -1104,7 +1104,7 @@
           <fo:basic-link internal-destination="{$id}">
             <fo:page-number-citation ref-id="{$id}"/>
           </fo:basic-link>
-          <xsl:if test="@id">
+          <xsl:if test="$id">
             <xsl:text>&lt;/link&gt;</xsl:text>
           </xsl:if>
           <xsl:text>&lt;/phrase&gt;&#10;</xsl:text>
@@ -1131,7 +1131,7 @@
       </xsl:variable>
 
       <xsl:text>&lt;phrase fole="pageno"&gt;</xsl:text>
-      <xsl:if test="$target[1]/@id">
+      <xsl:if test="$target[1]/@id or $target[1]/@xml:id">
         <xsl:text>&lt;link linkend="</xsl:text>
         <xsl:value-of select="$id"/>
         <xsl:text>"&gt;</xsl:text>
@@ -1139,7 +1139,7 @@
       <fo:basic-link internal-destination="{$id}">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
-      <xsl:if test="$target[1]/@id">
+      <xsl:if test="$target[1]/@id or $target[1]/@xml:id">
         <xsl:text>&lt;/link&gt;</xsl:text>
       </xsl:if>
       <xsl:text>&lt;/phrase&gt;&#10;</xsl:text>
@@ -1162,7 +1162,7 @@
       </xsl:variable>
 
       <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
-      <xsl:if test="$target[1]/@id">
+      <xsl:if test="$target[1]/@id or target[1]/@xml:id">
         <xsl:text>&lt;link linkend="</xsl:text>
         <xsl:value-of select="$id"/>
         <xsl:text>"&gt;</xsl:text>
@@ -1170,7 +1170,7 @@
       <fo:basic-link internal-destination="{$id}">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
-      <xsl:if test="$target[1]/@id">
+      <xsl:if test="$target[1]/@id or target[1]/@xml:id">
         <xsl:text>&lt;/link&gt;</xsl:text>
       </xsl:if>
       <xsl:text>&lt;/phrase&gt;&#10;</xsl:text>

@@ -23,8 +23,11 @@ translates characters with code>255 back to ASCII.
 "'aaaccccddeeeeeegggghhiiiiijklllllnnnnooorrrsssstttuuuuuuwyzzzAAACCCCDDEEEEEEGGGGHHIIIIIJKLLLLLNNNNOOORRRSSSSTTTUUUUUUWYYZZZ'"/>
 
 <xsl:template match="*" mode="fop.outline">
-  <xsl:if test="@id">
-    <fox:destination internal-destination="{@id}"/>
+  <xsl:variable name="id">
+    <xsl:value-of select="(@id|@xml:id)[1]"/>
+  </xsl:variable>
+  <xsl:if test="$id != ''">
+    <fox:destination internal-destination="{$id}"/>
   </xsl:if>
   <xsl:apply-templates select="*" mode="fop.outline"/>
 </xsl:template>
