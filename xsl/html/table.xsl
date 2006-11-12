@@ -877,7 +877,8 @@
           </xsl:attribute>
         </xsl:if>
 
-        <xsl:if test="not(preceding-sibling::*) and ancestor::row/@id">
+        <xsl:if test="not(preceding-sibling::*) and 
+                    (ancestor::row[1]/@id or ancestor::row[1]/@xml:id)">
           <xsl:call-template name="anchor">
             <xsl:with-param name="node" select="ancestor::row[1]"/>
           </xsl:call-template>

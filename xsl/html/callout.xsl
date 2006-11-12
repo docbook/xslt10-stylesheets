@@ -93,9 +93,9 @@
   <xsl:choose>
     <xsl:when test="$target">
       <a>
-        <xsl:if test="@id">
+        <xsl:if test="@id or @xml:id">
           <xsl:attribute name="name">
-            <xsl:value-of select="@id"/>
+            <xsl:value-of select="(@id|@xml:id)[1]"/>
           </xsl:attribute>
         </xsl:if>
         <xsl:attribute name="href">

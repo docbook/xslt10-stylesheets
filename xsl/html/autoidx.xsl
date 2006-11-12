@@ -105,7 +105,7 @@
          match="indexterm[see]"
          use="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, see)"/>
 
-<xsl:key name="sections" match="*[@id]" use="@id"/>
+<xsl:key name="sections" match="*[@id or @xml:id]" use="@id|@xml:id"/>
 
 
 <xsl:template name="generate-index">
@@ -520,8 +520,9 @@
         <xsl:value-of select="$title"/> <!-- text only -->
       </a>
 
-      <xsl:if test="key('endofrange', @id)[&scope;]">
-        <xsl:apply-templates select="key('endofrange', @id)[&scope;][last()]"
+      <xsl:variable name="id" select="(@id|@xml:id)[1]"/>
+      <xsl:if test="key('endofrange', $id)[&scope;]">
+        <xsl:apply-templates select="key('endofrange', $id)[&scope;][last()]"
                              mode="reference">
           <xsl:with-param name="position" select="position()"/>
           <xsl:with-param name="scope" select="$scope"/>

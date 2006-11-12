@@ -140,7 +140,10 @@
     <xsl:apply-templates select="." mode="synopfragment.number"/>
   </xsl:variable>
   <p>
-    <a name="{@id}">
+    <xsl:variable name="id">
+      <xsl:call-template name="object.id"/>
+    </xsl:variable>
+    <a name="{$id}">
       <xsl:text>(</xsl:text>
       <xsl:value-of select="$snum"/>
       <xsl:text>)</xsl:text>

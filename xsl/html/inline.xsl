@@ -777,9 +777,9 @@
       <xsl:choose>
         <xsl:when test="$target">
           <a>
-            <xsl:if test="@id">
+            <xsl:if test="@id or @xml:id">
               <xsl:attribute name="name">
-                <xsl:value-of select="@id"/>
+                <xsl:value-of select="(@id|@xml:id)[1]"/>
               </xsl:attribute>
             </xsl:if>
 
@@ -858,14 +858,9 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:variable name="id">
-            <xsl:choose>
-              <xsl:when test="$cterm/@id">
-                <xsl:value-of select="$cterm/@id"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="generate-id($cterm)"/>
-              </xsl:otherwise>
-            </xsl:choose>
+            <xsl:call-template name="object.id">
+              <xsl:with-param name="object" select="$cterm"/>
+            </xsl:call-template>
           </xsl:variable>
           <a href="{$chunkbase}#{$id}">
             <xsl:call-template name="inline.italicseq">
@@ -905,9 +900,9 @@
         </xsl:when>
         <xsl:otherwise>
           <a>
-            <xsl:if test="@id">
+            <xsl:if test="@id or @xml:id">
               <xsl:attribute name="name">
-                <xsl:value-of select="@id"/>
+                <xsl:value-of select="(@id|@xml:id)[1]"/>
               </xsl:attribute>
             </xsl:if>
 
