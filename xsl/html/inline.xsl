@@ -33,10 +33,12 @@
     <xsl:apply-templates/>
   </xsl:param>
 
+  <xsl:variable name="xhref" select="$node/@xlink:href"/>
+
   <xsl:variable name="link">
     <xsl:choose>
-      <xsl:when test="$node/@xlink:href
-                      and (not($node/@xlink:type) or 
+      <xsl:when test="$xhref and 
+                      (not($node/@xlink:type) or 
                            $node/@xlink:type='simple')">
 
         <!-- Is it a local idref or a uri? -->
@@ -44,41 +46,41 @@
           <xsl:choose>
             <!-- if the href starts with # and does not contain an "(" -->
             <!-- or if the href starts with #xpointer(id(, it's just an ID -->
-            <xsl:when test="starts-with(@xlink:href,'#')
-                            and (not(contains(@xlink:href,'&#40;'))
-                            or starts-with(@xlink:href,
+            <xsl:when test="starts-with($xhref,'#')
+                            and (not(contains($xhref,'&#40;'))
+                            or starts-with($xhref,
                                        '#xpointer&#40;id&#40;'))">1</xsl:when>
             <xsl:otherwise>0</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
 
-        <a>
-          <xsl:choose>
-            <xsl:when test="$is.idref = 1">
+        <xsl:choose>
+          <xsl:when test="$is.idref = 1">
 
-              <xsl:variable name="idref">
-                <xsl:call-template name="xpointer.idref">
-                  <xsl:with-param name="xpointer" select="@xlink:href"/>
-                </xsl:call-template>
-              </xsl:variable>
-
-              <xsl:variable name="targets" select="key('id',$idref)"/>
-              <xsl:variable name="target" select="$targets[1]"/>
-
-              <xsl:call-template name="check.id.unique">
-                <xsl:with-param name="linkend" select="@linkend"/>
+            <xsl:variable name="idref">
+              <xsl:call-template name="xpointer.idref">
+                <xsl:with-param name="xpointer" select="$xhref"/>
               </xsl:call-template>
+            </xsl:variable>
 
-              <xsl:choose>
-                <xsl:when test="count($target) = 0">
-                  <xsl:message>
-                    <xsl:text>XLink to nonexistent id: </xsl:text>
-                    <xsl:value-of select="$idref"/>
-                  </xsl:message>
-                  <xsl:text>???</xsl:text>
-                </xsl:when>
+            <xsl:variable name="targets" select="key('id',$idref)"/>
+            <xsl:variable name="target" select="$targets[1]"/>
 
-                <xsl:otherwise>
+            <xsl:call-template name="check.id.unique">
+              <xsl:with-param name="linkend" select="$idref"/>
+            </xsl:call-template>
+
+            <xsl:choose>
+              <xsl:when test="count($target) = 0">
+                <xsl:message>
+                  <xsl:text>XLink to nonexistent id: </xsl:text>
+                  <xsl:value-of select="$idref"/>
+                </xsl:message>
+                <xsl:copy-of select="$content"/>
+              </xsl:when>
+
+              <xsl:otherwise>
+                <a>
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
                       <xsl:with-param name="object" select="$target"/>
@@ -86,9 +88,9 @@
                   </xsl:attribute>
 
                   <xsl:choose>
-                    <xsl:when test="@xlink.title">
+                    <xsl:when test="$node/@xlink.title">
                       <xsl:attribute name="title">
-                        <xsl:value-of select="@xlink:title"/>
+                        <xsl:value-of select="$node/@xlink:title"/>
                       </xsl:attribute>
                     </xsl:when>
                     <xsl:otherwise>
@@ -96,26 +98,29 @@
                                            mode="link.title.attribute"/>
                     </xsl:otherwise>
                   </xsl:choose>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:when>
+                  <xsl:copy-of select="$content"/>
+                </a>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
 
-            <!-- otherwise it's a URI -->
-            <xsl:otherwise>
+          <!-- otherwise it's a URI -->
+          <xsl:otherwise>
+            <a>
               <xsl:attribute name="href">
-                <xsl:value-of select="@xlink:href"/>
+                <xsl:value-of select="$xhref"/>
               </xsl:attribute>
-              <xsl:if test="@xlink.title">
+              <xsl:if test="$node/@xlink.title">
                 <xsl:attribute name="title">
-                  <xsl:value-of select="@xlink:title"/>
+                  <xsl:value-of select="$node/@xlink:title"/>
                 </xsl:attribute>
               </xsl:if>
-            </xsl:otherwise>
-          </xsl:choose>
-
-          <xsl:copy-of select="$content"/>
-        </a>
+              <xsl:copy-of select="$content"/>
+            </a>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
+
       <xsl:when test="$node/@linkend">
         <xsl:variable name="linkend" select="$node/@linkend"/>
         <xsl:variable name="targets" select="key('id',$linkend)"/>
