@@ -34,70 +34,108 @@
     <xsl:apply-templates/>
   </xsl:param>
 
+  <xsl:variable name="xhref" select="$node/@xlink:href"/>
+
   <xsl:choose>
-    <xsl:when test="$node/@xlink:type='simple' and $node/@xlink:href">
-      <fo:basic-link>
-        <xsl:attribute name="href">
+    <xsl:when test="$xhref
+                    and (not($node/@xlink:type) or 
+                         $node/@xlink:type='simple')">
+
+      <!-- Is it a local idref or a uri? -->
+      <xsl:variable name="is.idref">
+        <xsl:choose>
+          <!-- if the href starts with # and does not contain an "(" -->
+          <!-- or if the href starts with #xpointer(id(, it's just an ID -->
+          <xsl:when test="starts-with($xhref,'#')
+                          and (not(contains($xhref,'&#40;'))
+                          or starts-with($xhref,
+                                     '#xpointer&#40;id&#40;'))">1</xsl:when>
+          <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:choose>
+        <xsl:when test="$is.idref = 1">
+
+          <xsl:variable name="idref">
+            <xsl:call-template name="xpointer.idref">
+              <xsl:with-param name="xpointer" select="$xhref"/>
+            </xsl:call-template>
+          </xsl:variable>
+
+          <xsl:variable name="targets" select="key('id',$idref)"/>
+          <xsl:variable name="target" select="$targets[1]"/>
+
+          <xsl:call-template name="check.id.unique">
+            <xsl:with-param name="linkend" select="$idref"/>
+          </xsl:call-template>
+
           <xsl:choose>
-            <!-- if the href starts with # and does not contain an "(" -->
-            <!-- or if the href starts with #xpointer(id(, it's just an ID -->
-            <xsl:when test="starts-with(@xlink:href,'#')
-                            and (not(contains(@xlink:href,'&#40;'))
-                            or starts-with(@xlink:href,'#xpointer&#40;id&#40;'))">
-              <xsl:variable name="idref">
-                <xsl:call-template name="xpointer.idref">
-                  <xsl:with-param name="xpointer" select="@xlink:href"/>
-                </xsl:call-template>
-              </xsl:variable>
-
-              <xsl:variable name="targets" select="key('id',$idref)"/>
-              <xsl:variable name="target" select="$targets[1]"/>
-
-              <xsl:call-template name="check.id.unique">
-                <xsl:with-param name="linkend" select="@linkend"/>
-              </xsl:call-template>
-
-              <xsl:choose>
-                <xsl:when test="count($target) = 0">
-                  <xsl:message>
-                    <xsl:text>XLink to nonexistent id: </xsl:text>
-                    <xsl:value-of select="$idref"/>
-                  </xsl:message>
-                  <xsl:text>???</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:variable name="id">
-                    <xsl:call-template name="object.id">
-                      <xsl:with-param name="object" select="$target"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-                  <xsl:attribute name="internal-destination">
-                    <xsl:value-of select="$id"/>
-                  </xsl:attribute>
-                </xsl:otherwise>
-              </xsl:choose>
+            <xsl:when test="count($target) = 0">
+              <xsl:message>
+                <xsl:text>XLink to nonexistent id: </xsl:text>
+                <xsl:value-of select="$idref"/>
+              </xsl:message>
+              <xsl:copy-of select="$content"/>
             </xsl:when>
 
-            <!-- otherwise it's a URI -->
             <xsl:otherwise>
-              <xsl:attribute name="internal-destination">
-                <xsl:value-of select="@xlink:href"/>
-              </xsl:attribute>
+              <fo:basic-link internal-destination="{$idref}">
+                <xsl:copy-of select="$content"/>
+              </fo:basic-link>
             </xsl:otherwise>
           </xsl:choose>
-        </xsl:attribute>
-        <xsl:copy-of select="$content"/>
-      </fo:basic-link>
+        </xsl:when>
+
+        <!-- otherwise it's a URI -->
+        <xsl:otherwise>
+          <fo:basic-link external-destination="url({$xhref})">
+            <xsl:copy-of select="$content"/>
+          </fo:basic-link>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
+
+    <xsl:when test="$node/@linkend">
+      <xsl:variable name="linkend" select="$node/@linkend"/>
+      <xsl:variable name="targets" select="key('id',$linkend)"/>
+      <xsl:variable name="target" select="$targets[1]"/>
+
+      <xsl:call-template name="check.id.unique">
+        <xsl:with-param name="linkend" select="$linkend"/>
+      </xsl:call-template>
+
+      <xsl:choose>
+        <xsl:when test="count($target) = 0">
+          <xsl:message>
+            <xsl:text>XLink to nonexistent id: </xsl:text>
+            <xsl:value-of select="$linkend"/>
+          </xsl:message>
+          <xsl:copy-of select="$content"/>
+        </xsl:when>
+
+        <xsl:otherwise>
+          <fo:basic-link internal-destination="{$linkend}">
+            <xsl:copy-of select="$content"/>
+          </fo:basic-link>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+
     <xsl:otherwise>
       <xsl:copy-of select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
+
 </xsl:template>
 
 <xsl:template name="inline.charseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
 
   <xsl:choose>
@@ -120,8 +158,13 @@
 
 <xsl:template name="inline.monoseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
+
   <fo:inline xsl:use-attribute-sets="monospace.properties">
     <xsl:if test="@dir">
       <xsl:attribute name="direction">
@@ -137,8 +180,13 @@
 
 <xsl:template name="inline.boldseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
+
   <fo:inline font-weight="bold">
     <xsl:if test="@dir">
       <xsl:attribute name="direction">
@@ -154,8 +202,13 @@
 
 <xsl:template name="inline.italicseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
+
   <fo:inline font-style="italic">
     <xsl:call-template name="anchor"/>
     <xsl:if test="@dir">
@@ -172,8 +225,13 @@
 
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
+
   <fo:inline font-weight="bold" xsl:use-attribute-sets="monospace.properties">
     <xsl:call-template name="anchor"/>
     <xsl:if test="@dir">
@@ -190,8 +248,13 @@
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
+
   <fo:inline font-style="italic" xsl:use-attribute-sets="monospace.properties">
     <xsl:call-template name="anchor"/>
     <xsl:if test="@dir">
@@ -208,7 +271,11 @@
 
 <xsl:template name="inline.superscriptseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
 
   <fo:inline xsl:use-attribute-sets="superscript.properties">
@@ -235,7 +302,11 @@
 
 <xsl:template name="inline.subscriptseq">
   <xsl:param name="content">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:param>
 
   <fo:inline xsl:use-attribute-sets="subscript.properties">
@@ -545,7 +616,7 @@
   <xsl:variable name="depth">
     <xsl:call-template name="dot.count">
       <xsl:with-param name="string">
-	<xsl:number level="multiple"/>
+        <xsl:number level="multiple"/>
       </xsl:with-param>
     </xsl:call-template>
   </xsl:variable>
@@ -1005,7 +1076,7 @@
   <xsl:choose>
     <xsl:when test="$targets">
       <xsl:call-template name="xref">
-	<xsl:with-param name="targets" select="$targets"/>
+        <xsl:with-param name="targets" select="$targets"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
