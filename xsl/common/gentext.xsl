@@ -287,6 +287,55 @@
   <xsl:value-of select="normalize-space($title)"/>
 </xsl:template>
 
+<!-- Generate a title attribute for an active link -->
+<xsl:template match="*" mode="link.title.attribute">
+  <xsl:variable name="is.title">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'title'"/>
+      <xsl:with-param name="name" select="local-name(.)"/>
+      <xsl:with-param name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="is.title-numbered">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'title-numbered'"/>
+      <xsl:with-param name="name" select="local-name(.)"/>
+      <xsl:with-param name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="is.title-unnumbered">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'title-unnumbered'"/>
+      <xsl:with-param name="name" select="local-name(.)"/>
+      <xsl:with-param name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <!-- This construct avoids an error message if no title -->
+  <xsl:if test="$is.title != 0 or
+                $is.title-numbered != 0 or
+                $is.title-unnumbered != 0">
+    <xsl:variable name="title">
+      <xsl:apply-templates select="."
+                           mode="object.title.markup.textonly"/>
+    </xsl:variable>
+    <xsl:if test="string-length($title) != 0">
+      <xsl:attribute name="title">
+        <xsl:value-of select="$title"/>
+      </xsl:attribute>
+    </xsl:if>
+  </xsl:if>
+
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="object.titleabbrev.markup">
