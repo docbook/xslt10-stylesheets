@@ -423,7 +423,7 @@ div {
    db.ackno =
       element ackno {
          db.ackno.attlist,
-         db.para.blocks+
+         db.all.inlines*
       }
 }
 
