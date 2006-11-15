@@ -626,7 +626,8 @@
       <!-- Get the xref text for this record -->
       <xsl:variable name="xref.text" >
         <xsl:for-each select="$target.database" >
-          <xsl:value-of select="key('targetptr-key', $olink.key)/xreftext" />
+          <xsl:copy-of 
+                  select="key('targetptr-key', $olink.key)/xreftext/node()" />
         </xsl:for-each>
       </xsl:variable>
 
@@ -670,7 +671,7 @@
                         contains($xrefstyle, 'nopage')) and
                         not(contains($xrefstyle, 'title')) and
                         not(contains($xrefstyle, 'label'))"> 
-          <xsl:value-of select="$xref.text"/>
+          <xsl:copy-of select="$xref.text"/>
         </xsl:when>
         <xsl:when test="$xrefstyle != ''">
           <xsl:if test="$olink.debug != 0">
@@ -902,7 +903,7 @@
           </xsl:call-template>
         </xsl:when>
         <xsl:when test="$xref.text !=''">
-          <xsl:value-of select="$xref.text"/>
+          <xsl:copy-of select="$xref.text"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message>
