@@ -64,7 +64,7 @@ document output.
             <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
             <xsl:with-param name="doctype-public" select="''"/>
             <xsl:with-param name="doctype-system" select="''"/>
-            <xsl:with-param name="indent" select="'yes'"/>
+            <xsl:with-param name="indent" select="'no'"/>
             <xsl:with-param name="quiet" select="0"/>
             <xsl:with-param name="content">
               <xsl:apply-templates select="." mode="olink.mode"/>
