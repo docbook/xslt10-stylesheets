@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:xlink='http://www.w3.org/1999/xlink'
                 exclude-result-prefixes="suwl exsl"
                 version='1.0'>
 
@@ -900,28 +901,8 @@
   <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="a.target"/>
 
-  <xsl:variable name="targets" select="key('id',$linkend)"/>
-  <xsl:variable name="target" select="$targets[1]"/>
-
-  <xsl:call-template name="check.id.unique">
-    <xsl:with-param name="linkend" select="$linkend"/>
-  </xsl:call-template>
-
-  <a>
+  <xsl:variable name="content">
     <xsl:call-template name="anchor"/>
-
-    <xsl:if test="$a.target">
-      <xsl:attribute name="target"><xsl:value-of select="$a.target"/></xsl:attribute>
-    </xsl:if>
-
-    <xsl:attribute name="href">
-      <xsl:call-template name="href.target">
-        <xsl:with-param name="object" select="$target"/>
-      </xsl:call-template>
-    </xsl:attribute>
-
-    <xsl:apply-templates select="$target" mode="link.title.attribute"/>
-
     <xsl:choose>
       <xsl:when test="count(child::node()) &gt; 0">
         <!-- If it has content, use it -->
@@ -952,14 +933,22 @@
             <xsl:message>
               <xsl:text>Link element has no content and no Endterm. </xsl:text>
               <xsl:text>Nothing to show in the link to </xsl:text>
-              <xsl:value-of select="$target"/>
+              <xsl:value-of select="(@xlink:href|@linkend)[1]"/>
             </xsl:message>
             <xsl:text>???</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
-  </a>
+  </xsl:variable>
+
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="linkend" select="$linkend"/>
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="a.target" select="$a.target"/>
+  </xsl:call-template>
+
 </xsl:template>
 
 <xsl:template match="ulink" name="ulink">
