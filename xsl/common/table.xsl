@@ -213,11 +213,11 @@ or 0 (the empty string)</para>
   <xsl:choose>
     <xsl:when test="$namest != '' and $nameend != ''">
       <xsl:choose>
-        <xsl:when test="$ecol &gt;= $scol">
-          <xsl:value-of select="$ecol - $scol + 1"/>
+        <xsl:when test="number($ecol) &gt;= number($scol)">
+          <xsl:value-of select="number($ecol) - number($scol) + 1"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$scol - $ecol + 1"/>
+          <xsl:value-of select="number($scol) - number($ecol) + 1"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>

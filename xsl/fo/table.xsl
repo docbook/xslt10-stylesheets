@@ -247,7 +247,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="colsep">
     <xsl:choose>
       <!-- If this is the last column, colsep never applies. -->
-      <xsl:when test="$colnum &gt;= ancestor::tgroup/@cols">0</xsl:when>
+      <xsl:when test="number($colnum) &gt;= ancestor::tgroup/@cols">0</xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="inherited.table.attribute">
           <xsl:with-param name="entry" select="NOT-AN-ELEMENT-NAME"/>
@@ -272,7 +272,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
     </xsl:if>
 
-    <xsl:if test="$colsep &gt; 0 and $colnum &lt; ancestor::tgroup/@cols">
+    <xsl:if test="$colsep &gt; 0 and number($colnum) &lt; ancestor::tgroup/@cols">
       <xsl:call-template name="border">
         <xsl:with-param name="side" select="'right'"/>
       </xsl:call-template>
@@ -874,7 +874,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
     </xsl:when>
 
-    <xsl:when test="$entry.colnum &gt; $col">
+    <xsl:when test="number($entry.colnum) &gt; $col">
       <xsl:call-template name="empty.table.cell">
         <xsl:with-param name="colnum" select="$col"/>
       </xsl:call-template>
@@ -1186,7 +1186,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </xsl:call-template>
     </xsl:when>
 
-    <xsl:when test="$entry.colnum &gt; $col">
+    <xsl:when test="number($entry.colnum) &gt; $col">
       <xsl:text>0:</xsl:text>
       <xsl:call-template name="sentry">
         <xsl:with-param name="col" select="$col+$entry.colspan"/>
