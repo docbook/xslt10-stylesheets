@@ -19,12 +19,67 @@
 <!-- inline.boldseq), which in turn are called by other (element) -->
 <!-- templates, so it results, currently, in supporting generation of the -->
 <!-- HTML "title" attribute for a total of about 92 elements. -->
+<!-- You can use mode="html.title.attribute" to get a title for -->
+<!-- an element specified by a param, including targets of cross references. -->
 <xsl:template name="generate.html.title">
-  <xsl:if test="alt">
-    <xsl:attribute name="title">
-      <xsl:value-of select="normalize-space(alt)"/>
-    </xsl:attribute>
-  </xsl:if>
+  <xsl:apply-templates select="." mode="html.title.attribute"/>
+</xsl:template>
+
+<!-- Generate a title attribute for the context node -->
+<xsl:template match="*" mode="html.title.attribute">
+  <xsl:variable name="is.title">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'title'"/>
+      <xsl:with-param name="name" select="local-name(.)"/>
+      <xsl:with-param name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="is.title-numbered">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'title-numbered'"/>
+      <xsl:with-param name="name" select="local-name(.)"/>
+      <xsl:with-param name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="is.title-unnumbered">
+    <xsl:call-template name="gentext.template.exists">
+      <xsl:with-param name="context" select="'title-unnumbered'"/>
+      <xsl:with-param name="name" select="local-name(.)"/>
+      <xsl:with-param name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="gentext.title">
+    <xsl:if test="$is.title != 0 or
+                  $is.title-numbered != 0 or
+                  $is.title-unnumbered != 0">
+      <xsl:apply-templates select="."
+                           mode="object.title.markup.textonly"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="string-length($gentext.title) != 0">
+      <xsl:attribute name="title">
+        <xsl:value-of select="$gentext.title"/>
+      </xsl:attribute>
+    </xsl:when>
+    <!-- Fall back to alt if available -->
+    <xsl:when test="alt">
+      <xsl:attribute name="title">
+        <xsl:value-of select="normalize-space(alt)"/>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
+
 </xsl:template>
 
 <xsl:template name="dir">
