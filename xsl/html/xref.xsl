@@ -25,103 +25,92 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="xref" name="xref">
-  <xsl:param name="targets" select="key('id',@linkend)"/>
-  <xsl:param name="target" select="$targets[1]"/>
-  <xsl:param name="refelem" select="local-name($target)"/>
+  <xsl:param name="xhref" select="@xlink:href"/>
+  <!-- is the @xlink:href a local idref link? -->
+  <xsl:param name="xlink.idref">
+    <xsl:if test="starts-with($xhref,'#')
+                  and (not(contains($xhref,'&#40;'))
+                  or starts-with($xhref, '#xpointer&#40;id&#40;'))">
+      <xsl:call-template name="xpointer.idref">
+        <xsl:with-param name="xpointer" select="$xhref"/>
+      </xsl:call-template>
+   </xsl:if>
+  </xsl:param>
+  <xsl:param name="xlink.targets" select="key('id',$xlink.idref)"/>
+  <xsl:param name="linkend.targets" select="key('id',@linkend)"/>
+  <xsl:param name="target" select="($xlink.targets | $linkend.targets)[1]"/>
 
-  <xsl:call-template name="check.id.unique">
-    <xsl:with-param name="linkend" select="@linkend"/>
-  </xsl:call-template>
+  <xsl:variable name="xrefstyle">
+    <xsl:choose>
+      <xsl:when test="@role and not(@xrefstyle) 
+                      and $use.role.as.xrefstyle != 0">
+        <xsl:value-of select="@role"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="@xrefstyle"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:call-template name="anchor"/>
 
-  <xsl:choose>
-    <xsl:when test="count($target) = 0">
-      <xsl:message>
-        <xsl:text>XRef to nonexistent id: </xsl:text>
-        <xsl:value-of select="@linkend"/>
-      </xsl:message>
-      <xsl:text>???</xsl:text>
-    </xsl:when>
-
-    <xsl:when test="@endterm">
-      <xsl:variable name="href">
-        <xsl:call-template name="href.target">
-          <xsl:with-param name="object" select="$target"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:variable name="etargets" select="key('id',@endterm)"/>
-      <xsl:variable name="etarget" select="$etargets[1]"/>
-      <xsl:choose>
-        <xsl:when test="count($etarget) = 0">
-          <xsl:message>
-            <xsl:value-of select="count($etargets)"/>
-            <xsl:text>Endterm points to nonexistent ID: </xsl:text>
-            <xsl:value-of select="@endterm"/>
-          </xsl:message>
-          <a href="{$href}">
+  <xsl:variable name="content">
+    <xsl:choose>
+  
+      <xsl:when test="@endterm">
+        <xsl:variable name="etargets" select="key('id',@endterm)"/>
+        <xsl:variable name="etarget" select="$etargets[1]"/>
+        <xsl:choose>
+          <xsl:when test="count($etarget) = 0">
+            <xsl:message>
+              <xsl:value-of select="count($etargets)"/>
+              <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+              <xsl:value-of select="@endterm"/>
+            </xsl:message>
             <xsl:text>???</xsl:text>
-          </a>
-        </xsl:when>
-        <xsl:otherwise>
-          <a href="{$href}">
+          </xsl:when>
+          <xsl:otherwise>
             <xsl:apply-templates select="$etarget" mode="endterm"/>
-          </a>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-
-    <xsl:when test="$target/@xreflabel">
-      <a>
-        <xsl:attribute name="href">
-          <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$target"/>
-          </xsl:call-template>
-        </xsl:attribute>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+  
+      <xsl:when test="$target/@xreflabel">
         <xsl:call-template name="xref.xreflabel">
           <xsl:with-param name="target" select="$target"/>
         </xsl:call-template>
-      </a>
-    </xsl:when>
-
-    <xsl:otherwise>
-      <xsl:variable name="href">
-        <xsl:call-template name="href.target">
-          <xsl:with-param name="object" select="$target"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:if test="not(parent::citation)">
-        <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
-      </xsl:if>
-
-      <a href="{$href}">
-        <xsl:if test="$target/title or $target/*/title">
-          <xsl:attribute name="title">
-            <xsl:apply-templates select="$target" mode="xref-title"/>
-          </xsl:attribute>
+      </xsl:when>
+  
+      <xsl:when test="$target">
+        <xsl:if test="not(parent::citation)">
+          <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
         </xsl:if>
+  
         <xsl:apply-templates select="$target" mode="xref-to">
           <xsl:with-param name="referrer" select="."/>
-          <xsl:with-param name="xrefstyle">
-            <xsl:choose>
-              <xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
-                <xsl:value-of select="@role"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="@xrefstyle"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:with-param>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:apply-templates>
-      </a>
+  
+        <xsl:if test="not(parent::citation)">
+          <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+        </xsl:if>
+      </xsl:when>
 
-      <xsl:if test="not(parent::citation)">
-        <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
-      </xsl:if>
-    </xsl:otherwise>
-  </xsl:choose>
+      <xsl:otherwise>
+        <xsl:message>
+          <xsl:text>ERROR: xref linking to </xsl:text>
+          <xsl:value-of select="@linkend|@xlink:href"/>
+          <xsl:text> has no generated link text.</xsl:text>
+        </xsl:message>
+        <xsl:text>???</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content" select="$content"/>
+  </xsl:call-template>
+
 </xsl:template>
 
 <!-- ==================================================================== -->
