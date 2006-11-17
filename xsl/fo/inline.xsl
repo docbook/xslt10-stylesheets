@@ -33,8 +33,8 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-
-  <xsl:variable name="xhref" select="$node/@xlink:href"/>
+  <xsl:param name="linkend" select="$node/@linkend"/>
+  <xsl:param name="xhref" select="$node/@xlink:href"/>
 
   <xsl:choose>
     <xsl:when test="$xhref
@@ -96,8 +96,7 @@
       </xsl:choose>
     </xsl:when>
 
-    <xsl:when test="$node/@linkend">
-      <xsl:variable name="linkend" select="$node/@linkend"/>
+    <xsl:when test="$linkend">
       <xsl:variable name="targets" select="key('id',$linkend)"/>
       <xsl:variable name="target" select="$targets[1]"/>
 
