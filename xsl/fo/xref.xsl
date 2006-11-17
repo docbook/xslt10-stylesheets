@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:xlink='http://www.w3.org/1999/xlink'
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
@@ -27,13 +28,21 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="xref" name="xref">
-  <xsl:param name="targets" select="key('id',@linkend)"/>
-  <xsl:param name="target" select="$targets[1]"/>
+  <xsl:param name="xhref" select="@xlink:href"/>
+  <!-- is the @xlink:href a local idref link? -->
+  <xsl:param name="xlink.idref">
+    <xsl:if test="starts-with($xhref,'#')
+                  and (not(contains($xhref,'&#40;'))
+                  or starts-with($xhref, '#xpointer&#40;id&#40;'))">
+      <xsl:call-template name="xpointer.idref">
+        <xsl:with-param name="xpointer" select="$xhref"/>
+      </xsl:call-template>
+   </xsl:if>
+  </xsl:param>
+  <xsl:param name="xlink.targets" select="key('id',$xlink.idref)"/>
+  <xsl:param name="linkend.targets" select="key('id',@linkend)"/>
+  <xsl:param name="target" select="($xlink.targets | $linkend.targets)[1]"/>
   <xsl:param name="refelem" select="local-name($target)"/>
-
-  <xsl:call-template name="check.id.unique">
-    <xsl:with-param name="linkend" select="@linkend"/>
-  </xsl:call-template>
 
   <xsl:variable name="xrefstyle">
     <xsl:choose>
@@ -47,70 +56,72 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:choose>
-    <xsl:when test="$refelem=''">
-      <xsl:message>
-        <xsl:text>XRef to nonexistent id: </xsl:text>
-        <xsl:value-of select="@linkend"/>
-      </xsl:message>
-      <xsl:text>???</xsl:text>
-    </xsl:when>
+  <xsl:variable name="content">
+    <fo:inline xsl:use-attribute-sets="xref.properties">
+      <xsl:choose>
+        <xsl:when test="@endterm">
+          <xsl:variable name="etargets" select="key('id',@endterm)"/>
+          <xsl:variable name="etarget" select="$etargets[1]"/>
+          <xsl:choose>
+            <xsl:when test="count($etarget) = 0">
+              <xsl:message>
+                <xsl:value-of select="count($etargets)"/>
+                <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+                <xsl:value-of select="@endterm"/>
+              </xsl:message>
+              <xsl:text>???</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="$etarget" mode="endterm"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+  
+        <xsl:when test="$target/@xreflabel">
+          <xsl:call-template name="xref.xreflabel">
+            <xsl:with-param name="target" select="$target"/>
+          </xsl:call-template>
+        </xsl:when>
+  
+        <xsl:when test="$target">
+          <xsl:if test="not(parent::citation)">
+            <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+          </xsl:if>
+  
+          <xsl:apply-templates select="$target" mode="xref-to">
+            <xsl:with-param name="referrer" select="."/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+          </xsl:apply-templates>
+  
+          <xsl:if test="not(parent::citation)">
+            <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+          </xsl:if>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>ERROR: xref linking to </xsl:text>
+            <xsl:value-of select="@linkend|@xlink:href"/>
+            <xsl:text> has no generated link text.</xsl:text>
+          </xsl:message>
+          <xsl:text>???</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </fo:inline>
+  </xsl:variable>
 
-    <xsl:when test="@endterm">
-      <fo:basic-link internal-destination="{@linkend}"
-                     xsl:use-attribute-sets="xref.properties">
-        <xsl:variable name="etargets" select="key('id',@endterm)"/>
-        <xsl:variable name="etarget" select="$etargets[1]"/>
-        <xsl:choose>
-          <xsl:when test="count($etarget) = 0">
-            <xsl:message>
-              <xsl:value-of select="count($etargets)"/>
-              <xsl:text>Endterm points to nonexistent ID: </xsl:text>
-              <xsl:value-of select="@endterm"/>
-            </xsl:message>
-            <xsl:text>???</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="$etarget" mode="endterm"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </fo:basic-link>
-    </xsl:when>
-
-    <xsl:when test="$target/@xreflabel">
-      <fo:basic-link internal-destination="{@linkend}"
-                     xsl:use-attribute-sets="xref.properties">
-        <xsl:call-template name="xref.xreflabel">
-          <xsl:with-param name="target" select="$target"/>
-        </xsl:call-template>
-      </fo:basic-link>
-    </xsl:when>
-
-    <xsl:otherwise>
-      <xsl:if test="not(parent::citation)">
-        <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
-      </xsl:if>
-
-      <fo:basic-link internal-destination="{@linkend}"
-                     xsl:use-attribute-sets="xref.properties">
-        <xsl:apply-templates select="$target" mode="xref-to">
-          <xsl:with-param name="referrer" select="."/>
-          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
-        </xsl:apply-templates>
-      </fo:basic-link>
-
-      <xsl:if test="not(parent::citation)">
-        <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
-      </xsl:if>
-
-    </xsl:otherwise>
-  </xsl:choose>
+  <!-- Convert it into an active link -->
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content" select="$content"/>
+  </xsl:call-template>
 
   <!-- Add standard page reference? -->
   <xsl:choose>
-    <!-- negative xrefstyle in instance turns it off -->
+    <xsl:when test="not($target)">
+      <!-- page numbers only for local targets -->
+    </xsl:when>
     <xsl:when test="starts-with(normalize-space($xrefstyle), 'select:') 
                   and contains($xrefstyle, 'nopage')">
+      <!-- negative xrefstyle in instance turns it off -->
     </xsl:when>
     <!-- positive xrefstyle already handles it -->
     <xsl:when test="not(starts-with(normalize-space($xrefstyle), 'select:') 
@@ -120,7 +131,7 @@
                      or $insert.xref.page.number = '1')
                   or local-name($target) = 'para'">
       <xsl:apply-templates select="$target" mode="page.citation">
-        <xsl:with-param name="id" select="@linkend"/>
+        <xsl:with-param name="id" select="$target/@id|$target/@xml:id"/>
       </xsl:apply-templates>
     </xsl:when>
   </xsl:choose>
