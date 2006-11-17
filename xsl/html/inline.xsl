@@ -32,8 +32,9 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-
-  <xsl:variable name="xhref" select="$node/@xlink:href"/>
+  <xsl:param name="a.target"/>
+  <xsl:param name="linkend" select="$node/@linkend"/>
+  <xsl:param name="xhref" select="$node/@xlink:href"/>
 
   <xsl:variable name="link">
     <xsl:choose>
@@ -95,10 +96,18 @@
                     </xsl:when>
                     <xsl:otherwise>
                       <xsl:apply-templates select="$target"
-                                           mode="link.title.attribute"/>
+                                           mode="html.title.attribute"/>
                     </xsl:otherwise>
                   </xsl:choose>
+
+                  <xsl:if test="$a.target">
+                    <xsl:attribute name="target">
+                      <xsl:value-of select="$a.target"/>
+                    </xsl:attribute>
+                  </xsl:if>
+
                   <xsl:copy-of select="$content"/>
+
                 </a>
               </xsl:otherwise>
             </xsl:choose>
@@ -121,8 +130,7 @@
         </xsl:choose>
       </xsl:when>
 
-      <xsl:when test="$node/@linkend">
-        <xsl:variable name="linkend" select="$node/@linkend"/>
+      <xsl:when test="$linkend">
         <xsl:variable name="targets" select="key('id',$linkend)"/>
         <xsl:variable name="target" select="$targets[1]"/>
 
@@ -137,7 +145,7 @@
             </xsl:call-template>
           </xsl:attribute>
 
-          <xsl:apply-templates select="$target" mode="link.title.attribute"/>
+          <xsl:apply-templates select="$target" mode="html.title.attribute"/>
 
           <xsl:copy-of select="$content"/>
           
