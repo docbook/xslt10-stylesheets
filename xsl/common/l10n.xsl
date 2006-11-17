@@ -426,10 +426,8 @@ in the context named "</xsl:text>
       <xsl:with-param name="purpose" select="$purpose"/>
       <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
       <xsl:with-param name="referrer" select="$referrer"/>
-      <xsl:with-param name="lang" select="$lang">
-  
+      <xsl:with-param name="lang" select="$lang"/>
       <xsl:with-param name="verbose" select="0"/>
-  
     </xsl:call-template>
   </xsl:variable>
   
