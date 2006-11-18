@@ -119,9 +119,9 @@
   </xsl:variable>
   <p>
     <xsl:if test="@role and $para.propagates.style != 0">
-      <xsl:attribute name="class">
-        <xsl:value-of select="@role"/>
-      </xsl:attribute>
+      <xsl:apply-templates select="." mode="class.attribute">
+        <xsl:with-param name="class" select="@role"/>
+      </xsl:apply-templates>
     </xsl:if>
     <sup>
       <xsl:text>[</xsl:text>

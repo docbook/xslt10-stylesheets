@@ -705,9 +705,9 @@
   <span>
     <xsl:choose>
       <xsl:when test="@role and $emphasis.propagates.style != 0">
-        <xsl:attribute name="class">
-          <xsl:value-of select="@role"/>
-        </xsl:attribute>
+        <xsl:apply-templates select="." mode="class.attribute">
+          <xsl:with-param name="class" select="@role"/>
+        </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="class">
@@ -768,9 +768,9 @@
       <xsl:call-template name="language.attribute"/>
     </xsl:if>
     <xsl:if test="@role and $phrase.propagates.style != 0">
-      <xsl:attribute name="class">
-        <xsl:value-of select="@role"/>
-      </xsl:attribute>
+      <xsl:apply-templates select="." mode="class.attribute">
+        <xsl:with-param name="class" select="@role"/>
+      </xsl:apply-templates>
     </xsl:if>
     <xsl:call-template name="dir"/>
     <xsl:call-template name="anchor"/>
