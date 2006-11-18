@@ -88,10 +88,10 @@
   <xsl:variable name="dir">
     <xsl:choose>
       <xsl:when test="@dir">
-	<xsl:value-of select="@dir"/>
+        <xsl:value-of select="@dir"/>
       </xsl:when>
       <xsl:when test="$inherit != 0">
-	<xsl:value-of select="ancestor::*/@dir[1]"/>
+        <xsl:value-of select="ancestor::*/@dir[1]"/>
       </xsl:when>
     </xsl:choose>
   </xsl:variable>
@@ -183,20 +183,20 @@
   <xsl:if test="$id.warnings != 0 and not(@id) and not(@xml:id) and parent::*">
     <xsl:variable name="title">
       <xsl:choose>
-	<xsl:when test="title">
-	  <xsl:value-of select="title[1]"/>
-	</xsl:when>
-	<xsl:when test="substring(local-name(*[1]),
-			          string-length(local-name(*[1])-3) = 'info')
-			and *[1]/title">
-	  <xsl:value-of select="*[1]/title[1]"/>
-	</xsl:when>
-	<xsl:when test="refmeta/refentrytitle">
-	  <xsl:value-of select="refmeta/refentrytitle"/>
-	</xsl:when>
-	<xsl:when test="refnamediv/refname">
-	  <xsl:value-of select="refnamediv/refname[1]"/>
-	</xsl:when>
+        <xsl:when test="title">
+          <xsl:value-of select="title[1]"/>
+        </xsl:when>
+        <xsl:when test="substring(local-name(*[1]),
+                                  string-length(local-name(*[1])-3) = 'info')
+                        and *[1]/title">
+          <xsl:value-of select="*[1]/title[1]"/>
+        </xsl:when>
+        <xsl:when test="refmeta/refentrytitle">
+          <xsl:value-of select="refmeta/refentrytitle"/>
+        </xsl:when>
+        <xsl:when test="refnamediv/refname">
+          <xsl:value-of select="refnamediv/refname[1]"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
 
@@ -204,19 +204,27 @@
       <xsl:text>ID recommended on </xsl:text>
       <xsl:value-of select="local-name(.)"/>
       <xsl:if test="$title != ''">
-	<xsl:text>: </xsl:text>
-	<xsl:choose>
-	  <xsl:when test="string-length($title) &gt; 40">
-	    <xsl:value-of select="substring($title,1,40)"/>
-	    <xsl:text>...</xsl:text>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:value-of select="$title"/>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:text>: </xsl:text>
+        <xsl:choose>
+          <xsl:when test="string-length($title) &gt; 40">
+            <xsl:value-of select="substring($title,1,40)"/>
+            <xsl:text>...</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$title"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
     </xsl:message>
   </xsl:if>
+</xsl:template>
+
+<xsl:template match="*" mode="class.attribute">
+  <!-- permit customization of class attributes -->
+  <xsl:attribute name="class">
+    <!-- Use element name by default -->
+    <xsl:value-of select="local-name(.)"/>
+  </xsl:attribute>
 </xsl:template>
 
 </xsl:stylesheet>
