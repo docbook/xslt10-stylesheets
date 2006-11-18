@@ -220,10 +220,11 @@
 </xsl:template>
 
 <xsl:template match="*" mode="class.attribute">
+  <xsl:param name="class" select="local-name(.)"/>
   <!-- permit customization of class attributes -->
+  <!-- Use element name by default -->
   <xsl:attribute name="class">
-    <!-- Use element name by default -->
-    <xsl:value-of select="local-name(.)"/>
+    <xsl:value-of select="$class"/>
   </xsl:attribute>
 </xsl:template>
 
