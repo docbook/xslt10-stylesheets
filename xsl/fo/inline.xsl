@@ -334,15 +334,27 @@
 <!-- some special cases -->
 
 <xsl:template match="author">
-  <xsl:call-template name="person.name"/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:call-template name="person.name"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="editor">
-  <xsl:call-template name="person.name"/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:call-template name="person.name"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="othercredit">
-  <xsl:call-template name="person.name"/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:call-template name="person.name"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="authorinitials">
@@ -1137,29 +1149,53 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="personname">
-  <xsl:call-template name="person.name"/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:call-template name="person.name"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="jobtitle">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template match="org">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="orgname">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="orgdiv">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="affiliation">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ==================================================================== -->
