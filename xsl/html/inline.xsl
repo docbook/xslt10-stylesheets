@@ -1115,7 +1115,10 @@
     </xsl:choose>
   </xsl:variable>
 
-  <code class="sgmltag-{$class}">
+  <code>
+    <xsl:apply-templates select="." mode="class.attribute">
+      <xsl:with-param name="class" select="concat('sgmltag-', $class)"/>
+    </xsl:apply-templates>
     <xsl:call-template name="generate.html.title"/>
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content" select="$content"/>
