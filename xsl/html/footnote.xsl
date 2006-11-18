@@ -247,13 +247,15 @@
 <xsl:template match="footnote" name="process.footnote" mode="process.footnote.mode">
   <xsl:choose>
     <xsl:when test="local-name(*[1]) = 'para' or local-name(*[1]) = 'simpara'">
-      <div class="{local-name(.)}">
+      <div>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates/>
       </div>
     </xsl:when>
 
     <xsl:when test="$html.cleanup != 0 and function-available('exsl:node-set')">
-      <div class="{local-name(.)}">
+      <div>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
       </div>
@@ -266,7 +268,8 @@
         <xsl:value-of select="local-name(*[1])"/>
         <xsl:text> unexpected as first child of footnote.</xsl:text>
       </xsl:message>
-      <div class="{local-name(.)}">
+      <div>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates/>
       </div>
     </xsl:otherwise>

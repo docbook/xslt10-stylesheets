@@ -35,7 +35,8 @@
                 select="*[not(self::title
                               or self::titleabbrev)]"/>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title and $placement = 'before'">
