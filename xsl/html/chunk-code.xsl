@@ -50,7 +50,8 @@
 
   <xsl:choose>
     <xsl:when test="$chunk != 0">
-      <cf:div class="{local-name(.)}" id="{generate-id()}">
+      <cf:div id="{generate-id()}">
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates select="*" mode="find.chunks"/>
       </cf:div>
     </xsl:when>

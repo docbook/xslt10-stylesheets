@@ -36,7 +36,8 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates select="$title"/>
     <xsl:if test="((contains($toc.params, 'toc') and $toc != '0') or $toc = '1')
                   and not(ancestor::answer and not($qanda.nested.in.toc=0))">
@@ -152,7 +153,8 @@
     </xsl:choose>
   </xsl:variable>
 
-  <tr class="{local-name(.)}">
+  <tr>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <td align="left" valign="top">
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select=".."/>

@@ -23,7 +23,8 @@
 <!-- called from named templates in a given mode -->
 
 <xsl:template match="corpauthor">
-  <span class="{local-name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>
@@ -31,7 +32,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="jobtitle">
-  <span class="{local-name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>

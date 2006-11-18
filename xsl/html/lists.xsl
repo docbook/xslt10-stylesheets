@@ -15,7 +15,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="itemizedlist">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -135,7 +136,8 @@
     </xsl:choose>
   </xsl:variable>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title">
@@ -254,7 +256,8 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -475,7 +478,8 @@
 </xsl:template>
 
 <xsl:template match="simplelist[@type='inline']">
-  <span class="{local-name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
   <!-- if dbchoice PI exists, use that to determine the choice separator -->
   <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
   <!-- value of "choice" otherwise -->
@@ -682,7 +686,8 @@
                 |comment()[not(preceding-sibling::step)]
                 |processing-instruction()[not(preceding-sibling::step)]"/>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -775,7 +780,8 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:choose>
@@ -916,7 +922,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="calloutlist">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>

@@ -22,7 +22,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="block.object">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
@@ -138,7 +139,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="@lang or @xml:lang">
       <xsl:call-template name="language.attribute"/>
     </xsl:if>
@@ -166,7 +168,8 @@
         </table>
       </xsl:when>
       <xsl:otherwise>
-        <blockquote class="{local-name(.)}">
+        <blockquote>
+          <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:apply-templates/>
         </blockquote>
       </xsl:otherwise>
@@ -185,7 +188,8 @@
 </xsl:template>
 
 <xsl:template match="epigraph">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
       <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
       <xsl:if test="attribution">
         <div class="attribution">
@@ -196,13 +200,17 @@
 </xsl:template>
 
 <xsl:template match="attribution">
-  <span class="{local-name(.)}"><xsl:apply-templates/></span>
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates/>
+  </span>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template match="abstract|sidebar">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="formal.object.heading">
       <xsl:with-param name="title">
@@ -317,7 +325,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="revhistory">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <table border="0" width="100%" summary="Revision history">
       <tr>
         <th align="left" valign="top" colspan="3">
@@ -408,7 +417,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="ackno">
-  <p class="{local-name(.)}">
+  <p>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </p>
 </xsl:template>

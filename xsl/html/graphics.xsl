@@ -62,7 +62,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="screenshot">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
@@ -1065,7 +1066,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     <xsl:value-of select="$object/descendant::imagedata[@align][1]/@align"/>
   </xsl:variable>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="$align != '' ">
       <xsl:attribute name="align">
         <xsl:value-of select="$align"/>
@@ -1079,7 +1081,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 </xsl:template>
 
 <xsl:template match="inlinemediaobject">
-  <span class="{local-name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="select.mediaobject"/>
   </span>
@@ -1368,7 +1371,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <!-- ==================================================================== -->
 
 <xsl:template match="caption">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="@align = 'right' or @align = 'left' or @align='center'">
       <xsl:attribute name="align"><xsl:value-of
                          select="@align"/></xsl:attribute>

@@ -17,7 +17,8 @@
 <xsl:template match="glossary">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -61,7 +62,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="glosslist">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="blockinfo/title|info/title|title">
       <xsl:call-template name="formal.object.heading"/>
@@ -77,7 +79,8 @@
 <xsl:template match="glossdiv">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates select="(glossentry[1]/preceding-sibling::*)"/>
 
     <dl>
@@ -87,7 +90,8 @@
 </xsl:template>
 
 <xsl:template match="glossdiv/title">
-  <h3 class="{local-name(.)}">
+  <h3>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </h3>
 </xsl:template>
@@ -320,7 +324,8 @@ GlossEntry ::=
     </xsl:message>
   </xsl:if>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -375,7 +380,8 @@ GlossEntry ::=
 <xsl:template match="glossdiv" mode="auto-glossary">
   <xsl:param name="terms" select="."/>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates select="(glossentry[1]/preceding-sibling::*)"/>
 
     <dl>

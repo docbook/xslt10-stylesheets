@@ -22,7 +22,8 @@
 </xsl:template>
 
 <xsl:template match="mathphrase">
-  <span class="{local-name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>

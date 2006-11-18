@@ -60,7 +60,8 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="$admon.style != ''">
       <xsl:attribute name="style">
         <xsl:value-of select="$admon.style"/>
@@ -103,7 +104,8 @@
 </xsl:template>
 
 <xsl:template name="nongraphical.admonition">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="$admon.style">
       <xsl:attribute name="style">
         <xsl:value-of select="$admon.style"/>
