@@ -59,9 +59,9 @@
     <p>
       <xsl:call-template name="dir"/>
       <xsl:if test="$class != ''">
-        <xsl:attribute name="class">
-          <xsl:value-of select="$class"/>
-        </xsl:attribute>
+        <xsl:apply-templates select="." mode="class.attribute">
+          <xsl:with-param name="class" select="$class"/>
+        </xsl:apply-templates>
       </xsl:if>
       <xsl:copy-of select="$content"/>
     </p>
@@ -83,9 +83,9 @@
   <!-- see also listitem/simpara in lists.xsl -->
   <p>
     <xsl:if test="@role and $para.propagates.style != 0">
-      <xsl:attribute name="class">
-        <xsl:value-of select="@role"/>
-      </xsl:attribute>
+      <xsl:apply-templates select="." mode="class.attribute">
+        <xsl:with-param name="class" select="@role"/>
+      </xsl:apply-templates>
     </xsl:if>
 
     <xsl:call-template name="anchor"/>
@@ -373,9 +373,9 @@
           <xsl:for-each select="$revauthor">
             <xsl:apply-templates select="."/>
             <xsl:if test="position() != last()">
-	      <xsl:text>, </xsl:text>
-	    </xsl:if>
-	  </xsl:for-each>
+              <xsl:text>, </xsl:text>
+            </xsl:if>
+          </xsl:for-each>
         </td>
       </xsl:otherwise>
     </xsl:choose>
