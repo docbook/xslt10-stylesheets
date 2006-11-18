@@ -429,7 +429,11 @@
 <xsl:template match="varlistentry/term">
   <span class="term">
     <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>
@@ -495,7 +499,11 @@
   </xsl:variable>
 
   <xsl:for-each select="member">
-    <xsl:apply-templates/>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>
@@ -656,7 +664,11 @@
 
 <xsl:template match="member">
   <xsl:call-template name="anchor"/>
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ==================================================================== -->
