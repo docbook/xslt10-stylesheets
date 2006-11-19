@@ -587,7 +587,13 @@
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
-  <fo:inline><xsl:apply-templates/></fo:inline>
+  <fo:inline>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </fo:inline>
   <xsl:choose>
     <xsl:when test="not(following-sibling::term)"/> <!-- do nothing -->
     <xsl:otherwise>
@@ -875,7 +881,11 @@
 </xsl:template>
 
 <xsl:template match="member">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ==================================================================== -->
