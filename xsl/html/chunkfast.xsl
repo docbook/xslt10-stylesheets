@@ -32,11 +32,11 @@
 
       <xsl:variable name="prevdiv"
                     select="($div/preceding-sibling::cf:div|$div/preceding::cf:div|$div/parent::cf:div)[last()]"/>
-      <xsl:variable name="prev" select="key('genid', ($prevdiv/@id|prevdiv/@xml:id)[1])"/>
+      <xsl:variable name="prev" select="key('genid', ($prevdiv/@id|$prevdiv/@xml:id)[1])"/>
 
       <xsl:variable name="nextdiv"
                     select="($div/following-sibling::cf:div|$div/following::cf:div|$div/cf:div)[1]"/>
-      <xsl:variable name="next" select="key('genid', ($nextdiv/@id|prevdiv/@xml:id)[1])"/>
+      <xsl:variable name="next" select="key('genid', ($nextdiv/@id|$nextdiv/@xml:id)[1])"/>
 
       <xsl:choose>
         <xsl:when test="$onechunk != 0 and parent::*">
