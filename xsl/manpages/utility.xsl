@@ -185,9 +185,9 @@
                     self::tip or
                     self::warning or
                     self::variablelist or
-                    self::glosslistlist or
+                    self::glosslist or
                     self::itemizedlist or
-                    self::orderededlist or
+                    self::orderedlist or
                     self::segmentedlist or
                     self::procedure or
                     self::address or
