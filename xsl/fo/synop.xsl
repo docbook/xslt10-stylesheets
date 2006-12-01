@@ -376,11 +376,11 @@
   <xsl:apply-templates mode="java"/>
 </xsl:template>
 
-<xsl:template match="modifier" mode="java">
+<xsl:template match="modifier|package" mode="java">
   <xsl:apply-templates mode="java"/>
-    <xsl:if test="following-sibling::*">
-      <xsl:text>&nbsp;</xsl:text>
-    </xsl:if>
+  <xsl:if test="following-sibling::*">
+    <xsl:text>&nbsp;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="classname" mode="java">
@@ -544,7 +544,7 @@
   <xsl:apply-templates mode="cpp"/>
 </xsl:template>
 
-<xsl:template match="modifier" mode="cpp">
+<xsl:template match="modifier|package" mode="cpp">
   <xsl:apply-templates mode="cpp"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>
@@ -701,7 +701,7 @@
   <xsl:apply-templates mode="idl"/>
 </xsl:template>
 
-<xsl:template match="modifier" mode="idl">
+<xsl:template match="modifier|package" mode="idl">
   <xsl:apply-templates mode="idl"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>
@@ -847,7 +847,7 @@
   <xsl:apply-templates mode="perl"/>
 </xsl:template>
 
-<xsl:template match="modifier" mode="perl">
+<xsl:template match="modifier|package" mode="perl">
   <xsl:apply-templates mode="perl"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>&nbsp;</xsl:text>

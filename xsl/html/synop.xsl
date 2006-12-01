@@ -842,7 +842,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   </span>
 </xsl:template>
 
-<xsl:template match="modifier" mode="java">
+<xsl:template match="modifier|package" mode="java">
   <span>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates mode="java"/>
@@ -1049,7 +1049,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   </span>
 </xsl:template>
 
-<xsl:template match="modifier" mode="cpp">
+<xsl:template match="modifier|package" mode="cpp">
   <span>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates mode="cpp"/>
@@ -1244,7 +1244,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   </span>
 </xsl:template>
 
-<xsl:template match="modifier" mode="idl">
+<xsl:template match="modifier|package" mode="idl">
   <span>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates mode="idl"/>
@@ -1426,7 +1426,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   </span>
 </xsl:template>
 
-<xsl:template match="modifier" mode="perl">
+<xsl:template match="modifier|package" mode="perl">
   <span>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates mode="perl"/>
