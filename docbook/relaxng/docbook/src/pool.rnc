@@ -852,6 +852,8 @@ db.extension.blocks = notAllowed
 
 # ======================================================================
 
+db.info.extension = db._any
+
 db.info.elements =
    db.abstract
  | db.address
@@ -890,6 +892,7 @@ db.info.elements =
  | db.seriesvolnums
  | db.subjectset
  | db.volumenum
+ | db.info.extension
 
 db.bibliographic.elements =
    db.info.elements
