@@ -1,35 +1,39 @@
-<?xml version='1.0'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="fi"
         english-language-name="Finnish"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo xmlns="">
-<!-- FIXME: list the real contributors
+
 <authorgroup>
   <author><firstname>Norman</firstname><surname>Walsh</surname>
           <affiliation><address><email>ndw@nwalsh.com</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Tapio</firstname><surname>Lehtonen</surname>
+          <affiliation><address><email>tale@debian.org</email></address>
           </affiliation>
   </author>
 </authorgroup>
 -->
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Lyhennelm&#228;"/>
-<gentext key="abstract" text="Lyhennelm&#228;"/>
-<gentext key="Answer" text="A:"/>
-<gentext key="answer" text="A:"/> <!-- en -->
+<gentext key="Abstract" text="Tiivistelmä"/>
+<gentext key="abstract" text="tiivistelmä"/>
+<gentext key="Answer" text="V:"/>
+<gentext key="answer" text="V:"/>
 <gentext key="Appendix" text="Liite"/>
 <gentext key="appendix" text="liite"/>
 <gentext key="Article" text="Artikkeli"/>
 <gentext key="article" text="Artikkeli"/>
-<gentext key="Bibliography" text="L&#228;hteet"/>
-<gentext key="bibliography" text="L&#228;hteet"/>
+<gentext key="Bibliography" text="Lähteet"/>
+<gentext key="bibliography" text="Lähteet"/>
 <gentext key="Book" text="Kirja"/>
 <gentext key="book" text="Kirja"/>
 <gentext key="CAUTION" text="VARO"/>
 <gentext key="Caution" text="Varo"/>
-<gentext key="caution" text="Varo"/>
+<gentext key="caution" text="varo"/>
 <gentext key="Chapter" text="Luku"/>
 <gentext key="chapter" text="luku"/>
 <gentext key="Colophon" text="Colophon"/>
@@ -37,36 +41,36 @@
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Omistus"/>
-<gentext key="dedication" text="Omistus"/>
+<gentext key="dedication" text="omistus"/>
 <gentext key="Edition" text="Edition"/>
 <gentext key="edition" text="Edition"/>
 <gentext key="Equation" text="Kaava"/>
 <gentext key="equation" text="Kaava"/>
 <gentext key="Example" text="Esimerkki"/>
-<gentext key="example" text="Esimerkki"/>
+<gentext key="example" text="esimerkki"/>
 <gentext key="Figure" text="Kuva"/>
-<gentext key="figure" text="Kuva"/>
+<gentext key="figure" text="kuva"/>
 <gentext key="Glossary" text="Sanasto"/>
-<gentext key="glossary" text="Sanasto"/>
+<gentext key="glossary" text="sanasto"/>
 <gentext key="GlossSee" text="Katso"/>
-<gentext key="glosssee" text="Katso"/>
-<gentext key="GlossSeeAlso" text="Katso my&#246;s"/>
-<gentext key="glossseealso" text="Katso my&#246;s"/>
-<gentext key="IMPORTANT" text="T&#196;RKE&#196;&#196;"/>
-<gentext key="Important" text="T&#228;rke&#228;&#228;"/>
-<gentext key="important" text="T&#228;rke&#228;&#228;"/>
+<gentext key="glosssee" text="katso"/>
+<gentext key="GlossSeeAlso" text="Katso myös"/>
+<gentext key="glossseealso" text="Katso myös"/>
+<gentext key="IMPORTANT" text="TÄRKEÄÄ"/>
+<gentext key="Important" text="Tärkeää"/>
+<gentext key="important" text="tärkeää"/>
 <gentext key="Index" text="Indeksi"/>
 <gentext key="index" text="Indeksi"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text=""/>
-<gentext key="legalnotice" text=""/>
-<gentext key="MsgAud" text="Yleis&#246;"/>
-<gentext key="msgaud" text="Yleis&#246;"/>
+<gentext key="LegalNotice" text="Oikeudellinen ilmoitus"/>
+<gentext key="legalnotice" text="oikeudellinen ilmoitus"/>
+<gentext key="MsgAud" text="Yleisö"/>
+<gentext key="msgaud" text="Yleisö"/>
 <gentext key="MsgLevel" text="Taso"/>
 <gentext key="msglevel" text="Taso"/>
-<gentext key="MsgOrig" text="Alkuper&#228;"/>
-<gentext key="msgorig" text="Alkuper&#228;"/>
+<gentext key="MsgOrig" text="Alkuperä"/>
+<gentext key="msgorig" text="Alkuperä"/>
 <gentext key="NOTE" text="HUOMAA"/>
 <gentext key="Note" text="Huomaa"/>
 <gentext key="note" text="Huomaa"/>
@@ -79,14 +83,14 @@
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
 <gentext key="Published" text="Julkaistu"/>
 <gentext key="published" text="Julkaistu"/>
-<gentext key="Qandadiv" text="Q ja A"/>
-<gentext key="qandadiv" text="Q ja A"/>
-<gentext key="Question" text="Q:"/>
-<gentext key="question" text="Q:"/> <!-- en -->
+<gentext key="Qandadiv" text="K ja V"/>
+<gentext key="qandadiv" text="K ja V"/>
+<gentext key="Question" text="K:"/>
+<gentext key="question" text="K:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
-<gentext key="Reference" text="L&#228;hdeluettelo"/>
-<gentext key="reference" text="L&#228;hdeluettelo"/>
+<gentext key="Reference" text="Lähdeluettelo"/>
+<gentext key="reference" text="Lähdeluettelo"/>
 <gentext key="RefName" text="Nimi"/>
 <gentext key="refname" text="Nimi"/>
 <gentext key="RefSection" text=""/>
@@ -97,23 +101,23 @@
 <gentext key="revhistory" text="Versiohistoria"/>
 <gentext key="Revision" text="Versio"/>
 <gentext key="revision" text="Versio"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Luku"/>
+<gentext key="sect2" text="Luku"/>
+<gentext key="sect3" text="Luku"/>
+<gentext key="sect4" text="Luku"/>
+<gentext key="sect5" text="Luku"/>
 <gentext key="Section" text="Kohta"/>
 <gentext key="section" text="kohta"/>
 <gentext key="See" text="Katso"/>
 <gentext key="see" text="Katso"/>
-<gentext key="SeeAlso" text="Katso my&#246;s"/>
-<gentext key="Seealso" text="Katso my&#246;s"/>
-<gentext key="seealso" text="Katso my&#246;s"/>
+<gentext key="SeeAlso" text="Katso myös"/>
+<gentext key="Seealso" text="Katso myös"/>
+<gentext key="seealso" text="katso myös"/>
 <gentext key="Set" text="Kokoelma"/>
 <gentext key="set" text="Kokoelma"/>
 <gentext key="SetIndex" text="Kokoelman indeksi"/>
 <gentext key="setindex" text="Kokoelman indeksi"/>
-<gentext key="Sidebar" text=""/>
+<gentext key="Sidebar" text="Sivupalkki"/>
 <gentext key="sidebar" text="sivupalkki"/>
 <gentext key="Step" text="Step"/>
 <gentext key="step" text="step"/>
@@ -135,25 +139,25 @@
 <gentext key="in" text="teoksessa"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="elementti&#228; ei ole olemassa"/>
+<gentext key="nonexistantelement" text="elementtiä ei ole olemassa"/>
 <gentext key="notes" text=""/>
 <gentext key="Notes" text=""/>
 <gentext key="Pgs" text="Sivut"/>
 <gentext key="pgs" text="Sivut"/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Revisedby" text="Muokannut: "/>
+<gentext key="revisedby" text="muokannut: "/>
 <gentext key="TableNotes" text=""/>
 <gentext key="tablenotes" text=""/>
-<gentext key="TableofContents" text="Sis&#228;llys"/>
-<gentext key="tableofcontents" text="Sis&#228;llys"/>
+<gentext key="TableofContents" text="Sisällys"/>
+<gentext key="tableofcontents" text="Sisällys"/>
 <gentext key="unexpectedelementname" text="Odottamaton elementin nimi"/>
 <gentext key="unsupported" text="ei tueta"/>
 <gentext key="xrefto" text="xref johonkin"/>
 
-<gentext key="listofequations" text="Luettelo esimerkeist&#228;"/>
-<gentext key="ListofEquations" text="Luettelo esimerkeist&#228;"/>
-<gentext key="ListofExamples" text="Luettelo esimerkeist&#228;"/>
-<gentext key="listofexamples" text="Luettelo esimerkeist&#228;"/>
+<gentext key="listofequations" text="Luettelo esimerkeistä"/>
+<gentext key="ListofEquations" text="Luettelo esimerkeistä"/>
+<gentext key="ListofExamples" text="Luettelo esimerkeistä"/>
+<gentext key="listofexamples" text="Luettelo esimerkeistä"/>
 <gentext key="ListofFigures" text="Luettelo kuvista"/>
 <gentext key="listoffigures" text="Luettelo kuvista"/>
 <gentext key="listoftables" text="Luettelo tauluista"/>
@@ -163,23 +167,23 @@
 
 <gentext key="nav-home" text="Alkuun"/>
 <gentext key="nav-next" text="Seuraava"/>
-<gentext key="nav-next-sibling" text="Nopeasti eteenp&#x00E4;in"/>
+<gentext key="nav-next-sibling" text="Nopeasti eteenpäin"/>
 <gentext key="nav-prev" text="Edellinen"/>
-<gentext key="nav-prev-sibling" text="Nopeasti taaksep&#x00E4;in"/>
-<gentext key="nav-up" text="Yl&#x00F6;s"/>
+<gentext key="nav-prev-sibling" text="Nopeasti taaksepäin"/>
+<gentext key="nav-up" text="Ylös"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="sectioncalled" text="luku nimeltä"/>
+<gentext key="Draft"         text="Luonnos"/>
+<gentext key="above"         text="yllä"/>
+<gentext key="below"         text="alla"/>
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzåäöšž"/> 
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖŠŽ"/> 
 
-<dingbat key="startquote" text="&#x201C;"/>
+<dingbat key="startquote" text="&#x201D;"/>
 <dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
+<dingbat key="nestedstartquote" text="&#x2019;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
@@ -397,6 +401,11 @@
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(sivu %p)</template>
+<template name="docname"> kirjoitelmassa %o</template>
+<template name="docnamelong"> kirjoitelmassa otsikoltaan %o</template>
+<template name="pageabbrev">(s. %p)</template>
+<template name="Page">Sivu %p</template>
 
 <template name="bridgehead"><startquote/>%t<endquote/></template>
 <template name="refsection"><startquote/>%t<endquote/></template>
@@ -482,8 +491,123 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<l:context name="datetime">
+   <l:template name="format" text="d-m-Y"/>
+</l:context>
+
+<l:context name="datetime-full">
+  <l:template name="January" text="tammikuu"/>
+  <l:template name="February" text="helmikuu"/>
+  <l:template name="March" text="maaliskuu"/>
+  <l:template name="April" text="huhtikuu"/>
+  <l:template name="May" text="toukokuu"/>
+  <l:template name="June" text="kesäkuu"/>
+  <l:template name="July" text="heinäkuu"/>
+  <l:template name="August" text="elokuu"/>
+  <l:template name="September" text="syyskuu"/>
+  <l:template name="October" text="lokakuu"/>
+  <l:template name="November" text="marraskuu"/>
+  <l:template name="December" text="joulukuu"/>
+  <l:template name="Monday" text="maanantai"/>
+  <l:template name="Tuesday" text="tiistai"/>
+  <l:template name="Wednesday" text="keskiviikko"/>
+  <l:template name="Thursday" text="torstai"/>
+  <l:template name="Friday" text="perjantai"/>
+  <l:template name="Saturday" text="lauantai"/>
+  <l:template name="Sunday" text="sunnuntai"/>
+</l:context>
+
+<l:context name="datetime-abbrev">
+  <l:template name="Jan" text="tammi"/>
+  <l:template name="Feb" text="helmi"/>
+  <l:template name="Mar" text="maalis"/>
+  <l:template name="Apr" text="huhti"/>
+  <l:template name="May" text="touko"/>
+  <l:template name="Jun" text="kesä"/>
+  <l:template name="Jul" text="heinä"/>
+  <l:template name="Aug" text="elo"/>
+  <l:template name="Sep" text="syys"/>
+  <l:template name="Oct" text="loka"/>
+  <l:template name="Nov" text="marras"/>
+  <l:template name="Dec" text="joulu"/>
+  <l:template name="Mon" text="ma"/>
+  <l:template name="Tue" text="ti"/>
+  <l:template name="Wed" text="ke"/>
+  <l:template name="Thu" text="to"/>
+  <l:template name="Fri" text="pe"/>
+  <l:template name="Sat" text="la"/>
+  <l:template name="Sun" text="su"/>
+</l:context>
+
 <context name="htmlhelp">
 <template name="langcode">0x040b Finnish</template>
 </context>
+
+<letters>
+  <l i="-1"/>
+  <l i="0">Symbole</l>
+  <l i="1">A</l>
+  <l i="1">a</l>
+  <l i="2">B</l>
+  <l i="2">b</l>
+  <l i="3">C</l>
+  <l i="3">c</l>
+  <l i="4">D</l>
+  <l i="4">d</l>
+  <l i="5">E</l>
+  <l i="5">e</l>
+  <l i="6">F</l>
+  <l i="6">f</l>
+  <l i="7">G</l>
+  <l i="7">g</l>
+  <l i="8">H</l>
+  <l i="8">h</l>
+  <l i="9">I</l>
+  <l i="9">i</l>
+  <l i="10">J</l>
+  <l i="10">j</l>
+  <l i="11">K</l>
+  <l i="11">k</l>
+  <l i="12">L</l>
+  <l i="12">l</l>
+  <l i="13">M</l>
+  <l i="13">m</l>
+  <l i="14">N</l>
+  <l i="14">n</l>
+  <l i="15">O</l>
+  <l i="15">o</l>
+  <l i="16">P</l>
+  <l i="16">p</l>
+  <l i="17">Q</l>
+  <l i="17">q</l>
+  <l i="18">R</l>
+  <l i="18">r</l>
+  <l i="19">S</l>
+  <l i="19">s</l>
+  <l i="20">Š</l>
+  <l i="20">š</l>
+  <l i="21">T</l>
+  <l i="21">t</l>
+  <l i="22">U</l>
+  <l i="22">u</l>
+  <l i="23">V</l>
+  <l i="23">v</l>
+  <l i="24">W</l>
+  <l i="24">w</l>
+  <l i="25">X</l>
+  <l i="25">x</l>
+  <l i="26">Y</l>
+  <l i="26">y</l>
+  <l i="27">Z</l>
+  <l i="27">z</l>
+  <l i="28">Ž</l>
+  <l i="28">ž</l>
+  <l i="29">Å</l>
+  <l i="29">å</l>
+  <l i="30">Ä</l>
+  <l i="30">ä</l>
+  <l i="31">Ö</l>
+  <l i="31">ö</l>
+</letters>
 
 </locale>
