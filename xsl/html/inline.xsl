@@ -1225,12 +1225,23 @@
 <xsl:template match="citation">
   <!-- todo: integrate with bibliography collection -->
   <xsl:variable name="targets" select="(//biblioentry | //bibliomixed)[abbrev = string(current())]"/>
+  <xsl:variable name="target" select="$targets[1]"/>
 
   <xsl:choose>
-    <xsl:when test="$targets">
-      <xsl:call-template name="xref">
-        <xsl:with-param name="targets" select="$targets"/>
-      </xsl:call-template>
+    <!-- try automatic linking based on match to abbrev -->
+    <xsl:when test="$target and not(xref) and not(link)">
+
+      <xsl:text>[</xsl:text>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+
+        <xsl:call-template name="inline.charseq"/>
+      </a>
+      <xsl:text>]</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <xsl:text>[</xsl:text>
