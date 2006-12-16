@@ -80,7 +80,11 @@ set of templates. This template creates an appropriate
 
 <xsl:template match="t:templates">
   <xsl:element name="xsl:stylesheet">
-    <xsl:copy-of select="document('')/xsl:stylesheet/namespace::exsl"/>
+
+    <xsl:for-each select="document('')/xsl:stylesheet/namespace::exsl">
+      <xsl:copy/>
+    </xsl:for-each>
+
     <xsl:attribute name="version">1.0</xsl:attribute>
     <xsl:attribute name="exclude-result-prefixes">exsl</xsl:attribute>
 
