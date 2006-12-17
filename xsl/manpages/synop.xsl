@@ -297,9 +297,9 @@
 </xsl:template>
 
 <xsl:template match="funcparams">
-  <text>(</text>
+  <xsl:text>(</xsl:text>
   <xsl:apply-templates/>
-  <text>)</text>
+  <xsl:text>)</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>
