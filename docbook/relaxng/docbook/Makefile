@@ -31,7 +31,7 @@ DISTRIB=$(_OUTTOP)/docbook-$(VERSION)
 
 .PHONY: clean
 
-clean:: ; rm -rf $(_OUTTOP)
+clean:: ; rm -rf $(_OUTTOP) *.xsd
 
 .SUFFIXES:
 
