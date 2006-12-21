@@ -8,7 +8,7 @@
 
 <!--
 # ======================================================================
-# This file is part of DocBook V5.0b9
+# This file is part of DocBook V5.0CR1
 #
 # Copyright 2005 Norman Walsh, Sun Microsystems, Inc., and the
 # Organization for the Advancement of Structured Information
@@ -584,15 +584,6 @@
     <xsl:call-template name="copy.attributes"/>
     <xsl:apply-templates/>
   </personblurb>
-</xsl:template>
-
-<xsl:template match="ackno" priority="200">
-  <ackno>
-    <xsl:call-template name="copy.attributes"/>
-    <para>
-      <xsl:apply-templates/>
-    </para>
-  </ackno>
 </xsl:template>
 
 <xsl:template match="collabname" priority="200">
