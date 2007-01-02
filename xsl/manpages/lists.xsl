@@ -128,30 +128,57 @@
   <!-- * the roff bullet) because, when we do character-map -->
   <!-- * processing before final output, the character-map will -->
   <!-- * handle conversion of the &#x2022; to "\(bu" for us -->
-  <xsl:text>&#x2022;&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:if test="following-sibling::listitem">
-    <xsl:text>.TP</xsl:text> 
-    <xsl:if test="not($list-indent = '')">
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="$list-indent"/>
-    </xsl:if>
-    <xsl:text>&#10;</xsl:text>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.RS</xsl:text>
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
   </xsl:if>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>\h'-</xsl:text>
+    <xsl:if test="not($list-indent = '')">
+    <xsl:text>0</xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>'</xsl:text>
+  <xsl:text>&#x2022;</xsl:text>
+  <xsl:text>\h'+</xsl:text>
+    <xsl:if test="not($list-indent = '')">
+    <xsl:text>0</xsl:text>
+    <xsl:value-of select="$list-indent - 1"/>
+  <xsl:text>'</xsl:text>
+  </xsl:if>
+  <xsl:apply-templates/>
+  <xsl:text>.RE&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="orderedlist/listitem|procedure/step">
-  <xsl:number format="1."/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:if test="position()!=last()">
-    <xsl:text>.TP</xsl:text> 
-    <xsl:if test="not($list-indent = '')">
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="$list-indent"/>
-    </xsl:if>
-    <xsl:text>&#10;</xsl:text>
+  <xsl:text>.RS</xsl:text>
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
   </xsl:if>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>\h'-</xsl:text>
+    <xsl:if test="not($list-indent = '')">
+    <xsl:text>0</xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>'</xsl:text>
+  <xsl:if test="count(preceding-sibling::listitem) &lt; 9">
+    <xsl:text> </xsl:text>
+  </xsl:if>
+  <xsl:number format="1."/>
+  <xsl:text>\h'+</xsl:text>
+    <xsl:if test="not($list-indent = '')">
+    <xsl:text>0</xsl:text>
+    <xsl:value-of select="$list-indent - 2"/>
+  <xsl:text>'</xsl:text>
+  </xsl:if>
+  <xsl:apply-templates/>
+  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="itemizedlist|orderedlist|procedure">
@@ -165,12 +192,6 @@
   <!-- * content (if any) before getting the list items -->
   <xsl:apply-templates
       select="*[not(self::listitem) and not(self::title)]"/>
-  <xsl:text>.TP</xsl:text> 
-  <xsl:if test="not($list-indent = '')">
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="$list-indent"/>
-  </xsl:if>
-  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates select="listitem"/>
   <!-- * If this list is a child of para and has content following -->
   <!-- * it, within the same para, then add a blank line and move -->
@@ -184,25 +205,12 @@
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step  or ancestor::glossdef]|
 	             orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
                      procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
-  <xsl:text>.RS</xsl:text> 
-  <xsl:if test="not($list-indent = '')">
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="$list-indent"/>
-  </xsl:if>
-  <xsl:text>&#10;</xsl:text>
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>.TP</xsl:text> 
-  <xsl:if test="not($list-indent = '')">
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="$list-indent"/>
-  </xsl:if>
-  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;</xsl:text>
   <xsl:if test="following-sibling::node() or
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
