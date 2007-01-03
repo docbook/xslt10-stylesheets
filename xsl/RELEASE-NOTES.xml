@@ -22,8 +22,8 @@ xlink:href="NEWS.html">HTML</link>).</para>
 
   <para>This is a pre-release “snapshot” of the DocBook XSL
   Stylesheets. The change information in the first section of this
-  file (documenting “<xi:include href="NEWS.xml"
-  xpointer="xpointer(/article/title/text())"/>”) is
+  file (for “<xi:include href="NEWS.xml"
+  xpointer="xpointer(/article/sect1/title/text())"/>”) is
   auto-generated from change descriptions stored in the project
   source-code repository.</para>
 
