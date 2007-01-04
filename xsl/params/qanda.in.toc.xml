@@ -8,7 +8,7 @@
 <refnamediv>
 <refname>qanda.in.toc</refname>
 <refpurpose>Should qandaentry questions appear in 
-tables of contents?</refpurpose>
+the document table of contents?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -17,8 +17,14 @@ tables of contents?</refpurpose>
 
 <refsect1><title>Description</title>
 
-<para>If true (non-zero), then generated tables of contents
-will include qandaset titles, qandadiv titles, and question elements.
+<para>If true (non-zero), then the generated table of contents
+for a document will include <sgmltag>qandaset</sgmltag> titles, 
+<sgmltag>qandadiv</sgmltag> titles,
+and <sgmltag>question</sgmltag> elements.  The default value (zero) excludes
+them from the TOC.
+</para>
+<para>This parameter does not affect any tables of contents
+that may be generated inside a qandaset or qandadiv.
 </para>
 
 </refsect1>
