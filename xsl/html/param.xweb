@@ -187,6 +187,7 @@ $Id$
 <reference id="qa"><title>QAndASet</title>
 &qanda.defaultlabel;
 &qanda.inherit.numeration;
+&qanda.in.toc;
 &qanda.nested.in.toc;
 </reference>
 
@@ -239,6 +240,7 @@ $Id$
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
+&glossary.sort;
 &glossentry.show.acronym;
 </reference>
 
@@ -521,6 +523,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
+<src:fragref linkend="glossary.sort.frag"/>
 <src:fragref linkend="glossentry.show.acronym.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
@@ -671,6 +674,7 @@ around all these parameters.</para>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
+<src:fragref linkend="qanda.in.toc.frag"/>
 <src:fragref linkend="qanda.nested.in.toc.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
