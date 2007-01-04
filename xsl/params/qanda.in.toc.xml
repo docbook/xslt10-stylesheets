@@ -1,0 +1,25 @@
+<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          id="qanda.in.toc">
+<refmeta>
+<refentrytitle>qanda.in.toc</refentrytitle>
+<refmiscinfo role="type">boolean</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>qanda.in.toc</refname>
+<refpurpose>Should qandaentry questions appear in 
+tables of contents?</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment id='qanda.in.toc.frag'><xsl:param name="qanda.in.toc" select="0"/></src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>If true (non-zero), then generated tables of contents
+will include qandaset titles, qandadiv titles, and question elements.
+</para>
+
+</refsect1>
+</refentry>
