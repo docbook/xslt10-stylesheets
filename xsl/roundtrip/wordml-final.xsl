@@ -157,8 +157,6 @@
   <!-- This stylesheet processes the output of wordml-sects.xsl -->
 
   <xsl:output indent="yes" method="xml" 
-    doctype-public="-//OASIS//DTD DocBook XML V4.3//EN"
-    doctype-system="http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
     cdata-section-elements='programlisting literallayout'/>
 
   <!-- ================================================== -->
@@ -656,6 +654,7 @@
 
   <!-- Unmatched para style -->
   <xsl:template match="w:p" mode="group">
+    <xsl:message>No match found for <xsl:value-of select='w:pPr/w:pStyle/@w:val'/></xsl:message>
     <nomatch>
       <xsl:apply-templates select="w:r|w:hlink"/>
     </nomatch>
@@ -1214,7 +1213,9 @@
 	</mediaobjectco>
       </xsl:when>
       <xsl:when test='preceding-sibling::*[1]
-		      [self::&imageobject; |
+		      [self::&mediaobjecttitle; |
+		       self::&mediaobjectcotitle; |
+		       self::&imageobject; |
 		       self::&imageobjectco; |
 		       self::&audioobject; |
 		       self::&videoobject; |
@@ -1894,7 +1895,16 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match='aml:annotation' mode='group'/>
+  <xsl:template match='aml:annotation' mode='group'>
+    <xsl:choose>
+      <xsl:when test='@w:type = "Word.Deletion"'>
+	<emphasis role='deletion'>
+	  <xsl:comment> encode author and mod date here </xsl:comment>
+	  <xsl:apply-templates mode='revision'/>
+	</emphasis>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
   <xsl:template match='aml:annotation'/>
   <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "attributes"]'/>
   <xsl:template match='w:r[w:rPr/w:rStyle/@w:val = "CommentReference"]'/>

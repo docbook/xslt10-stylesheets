@@ -59,7 +59,7 @@
     </sl:document>
   </xsl:template>
 
-  <xsl:template match='book|article' mode='toplevel'>
+  <xsl:template match='book|article|chapter|preface|appendix' mode='toplevel'>
     <sf:text-storage sf:kind='body' sfa:ID='SFWPStorage-7'>
       <sf:stylesheet-ref sfa:IDREF='SFSStylesheet-1'/>
       <sf:text-body>
@@ -79,7 +79,7 @@
     <xsl:apply-templates select='*'/>
   </xsl:template>
 
-  <xsl:template match='articleinfo|bookinfo'>
+  <xsl:template match='articleinfo|bookinfo|chapterinfo|prefaceinfo|appendixinfo'>
     <xsl:apply-templates select='title|subtitle|titleabbrev'/>
     <xsl:apply-templates select='author|releaseinfo|revhistory|abstract'/>
     <!-- current implementation ignores all other metadata -->
