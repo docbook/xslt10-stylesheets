@@ -30,8 +30,8 @@
 <gentext key="caution" text="Observera"/> 
 <gentext key="Chapter" text="Kapitel"/>
 <gentext key="chapter" text="kapitel"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/> <!-- en -->
+<gentext key="Colophon" text="Kolofon"/>
+<gentext key="colophon" text="kolofon"/> 
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Dedikation"/>
@@ -132,7 +132,7 @@
 <gentext key="Editedby" text="Redigerad av"/>
 <gentext key="editedby" text="Redigerad av"/>
 <gentext key="in" text="i"/>
-<gentext key="lastlistcomma" text=","/>
+<gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="icke-existerande element"/>
 <gentext key="Notes" text="Noter"/>
@@ -172,14 +172,14 @@
 <gentext key="Draft"         text="Draft"/> <!-- en -->
 <gentext key="above"         text="above"/> <!-- en -->
 <gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="index symbols" text="Symboler"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
 
-<dingbat key="startquote" text="&#x201C;"/>
+<dingbat key="startquote" text="&#x201D;"/>
 <dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
+<dingbat key="nestedstartquote" text="&#x2019;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
