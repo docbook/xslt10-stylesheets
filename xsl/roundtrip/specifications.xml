@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ascii"?>
 <article>
-  <title>DocBook-WordML Conversion Specifications</title>
   <articleinfo>
+    <title>Round-Tripping Specifications</title>
     <author>
       <firstname>Bob</firstname>
       <surname>Stayton</surname>
@@ -17,6 +17,12 @@
       </affiliation>
     </author>
     <revhistory>
+      <revision>
+	<revnumber>1.5</revnumber>
+	<date>2007-01-05</date>
+	<authorinitials>SRB</authorinitials>
+	<revremark>Reduce emphasis on WordML, add support for OpenOffice.</revremark>
+      </revision>
       <revision>
 	<revnumber>1.4</revnumber>
 	<date>2005-11-11</date>
@@ -38,49 +44,50 @@
     </revhistory>
   </articleinfo>
   <abstract>
-    <para>This document specifies how DocBook  elements can be mapped to Microsoft Word styles. The specifications will be used to write conversions between DocBook XML and Microsoft's WordProcessingML (WordML).</para>
+    <para>This document specifies how DocBook elements can be mapped to paragraph and character styles in a word processor.  The specifications will be used to write conversions between DocBook XML and word processor XML formats, such as Microsoft's WordProcessingML (WordML), OpenOffice's OpenDocument and Apple's Pages.</para>
   </abstract>
   <section>
     <title>Introduction</title>
-    <para>Microsoft Word 2003 introduced WordProcessingML (WordML), an XML vocabulary for Word documents. By converting Word to XML, it becomes possible to convert a Word document to DocBook and vice versa using XSL transformations. Such conversions would then enable the following.</para>
+    <para>Microsoft Word 2003 introduced WordProcessingML (WordML), an XML vocabulary for Word documents.  Since then, other popular word processors have become available that use XML as their data representation, namely Apple's Pages and OpenOffice.  By converting Word (or OpenOffice or Pages) to XML, it becomes possible to convert a word processing document to DocBook and vice versa using XSL transformations. Such conversions would then enable the following.</para>
     <itemizedlist>
       <listitem>
-        <para>DocBook content creators could write in Word, a familiar wordprocessing application, rather than learning a new XML editing application.</para>
+        <para>DocBook content creators could write in their familiar wordprocessing application, rather than learning a new XML editing application.</para>
       </listitem>
       <listitem>
-        <para>DocBook XML documents could be styled for output using the typesetting features of Word.</para>
+        <para>DocBook XML documents could be styled for output using the typesetting features of the word processor.</para>
       </listitem>
     </itemizedlist>
-    <para>This specification describes how DocBook elements could map to a set of Word paragraph and character styles. It defines a specific set of style names for which a Word style template can be created. The style names would also be used in XSLT template match patterns for conversion.  Although originally targetted to MS Word, the system has subsequently been extended to use other word processors, notably Apple's Pages.</para>
+    <para>Word processors have a simple, flat data model; documents consist of paragraphs (and tables) and paragraphs contain text and character spans.  All word processors allow styles to be associated with paragraphs and spans.</para>
+    <para>This specification describes how DocBook elements could map to a set of paragraph and character styles. It defines a specific set of style names for which a Word style template can be created. The style names would also be used in XSLT template match patterns for conversion.  Although originally targetted to MS Word, the system has subsequently been extended to use other word processors, notably Apple's Pages.</para>
   </section>
   <section>
     <title>Project goals</title>
-    <para>The goal of this project is to enable Microsoft Word to be used with DocBook files.  The specific goals include:</para>
+    <para>The goal of this project is to enable a word processor, such as Microsoft Word, to be used with DocBook files.  The specific goals include:</para>
     <itemizedlist>
       <listitem>
-        <para>Enable authoring of basic DocBook documents in Word.</para>
+        <para>Enable authoring of basic DocBook documents in the word processor.</para>
       </listitem>
       <listitem>
-        <para>Enable importing of basic DocBook XML documents into Word.</para>
+        <para>Enable importing of basic DocBook XML documents into the word processor.</para>
       </listitem>
     </itemizedlist>
     <para>To meet these goals, the project will produce a toolkit that can be immediately put to use.  The kit will include:</para>
     <itemizedlist>
       <listitem>
-        <para>A Word template with formatting styles attached to the style names.</para>
+        <para>Templates for Microsoft Word, Apple Pages and OpenOffice with formatting styles attached to the style names.</para>
       </listitem>
       <listitem>
-        <para>A wordml-to-docbook XSLT stylesheet, which can convert a Word document that is authored with the Word template into a DocBook XML file.</para>
+        <para>XSLT stylesheets that convert a word processing document that is authored with the corresponding template into a DocBook XML file.</para>
       </listitem>
       <listitem>
-        <para>A docbook-to-wordml XSLT stylesheet, which can convert a DocBook document into a WordML document that can be opened in Word with the attached Word template.</para>
+        <para>XSLT stylesheets that convert a DocBook document into a word processing document that can be opened in a word processor.</para>
       </listitem>
     </itemizedlist>
     <section>
       <title>Why basic DocBook?</title>
-      <para>It isn't clear that this project will ever be able to support all DocBook elements and structure. The project will initially focus on a basic set of commonly used DocBook elements to demonstrate the feasibility and usefulness of using Word with DocBook. </para>
-      <para>One problem facing this conversion project is the sheer number of DocBook elements, over 400 in DocBook 4.3. To support DocBook structural models, several of the elements will require more than one Word style. This could lead to a very long and unwieldy list of styles in the Word interface. That would make authoring less efficient and discourage users.</para>
-      <para>So this project assumes that authors who need the full set of DocBook elements will use an XML authoring tool that better supports them. This project will enable authors to write basic DocBook documents using Word. Because Word is so widespread, this project will help a lot of new DocBook users get started with familiar tools.  They can then graduate to more advanced tools as their needs develop.</para>
+      <para>It isn't clear that this project will ever be able to support all DocBook elements and structure. The project will initially focus on a basic set of commonly used DocBook elements to demonstrate the feasibility and usefulness of using a word processor with DocBook. </para>
+      <para>One problem facing this conversion project is the sheer number of DocBook elements, over 400 in DocBook 4.3. To support DocBook structural models, several of the elements will require more than one paragraph or character style. This could lead to a very long and unwieldy list of styles in the word processor interface. That would make authoring less efficient and discourage users.</para>
+      <para>So this project assumes that authors who need the full set of DocBook elements will use an XML authoring tool that better supports them. This project will enable authors to write basic DocBook documents using a word processor. Because Microsoft Word is so widespread, this project will help a lot of new DocBook users get started with familiar tools.  They can then graduate to more advanced tools as their needs develop.</para>
     </section>
   </section>
   <section>
@@ -100,21 +107,21 @@
   </section>
   <section>
     <title>Mapping elements to styles</title>
-    <para>Although WordML and DocBook are both XML, there several challenges when trying to convert between them.</para>
-    <para>The basic problem in mapping Word styles to DocBook elements is that Word documents support far less structure than DocBook.  DocBook permits nesting of elements within other elements, providing multiple levels of context for each element.  </para>
+    <para>Although WordML, OpenDocument and DocBook are all XML, there several challenges when trying to convert between them.</para>
+    <para>The basic problem in mapping paragraph/character styles to DocBook elements is that word processor documents support far less structure than DocBook.  DocBook permits nesting of elements within other elements, providing multiple levels of context for each element.  </para>
     <para>Word's only structural feature is the outlining mode. In Word outlining, certain paragraph styles are assigned outline levels.  When a user applies those styles, they effectively create logical structure in the Word document.  Unfortunately, Word itself attempts to automatically determine which paragraphs are headings, and so this method is unreliable.</para>
-    <para>Instead of relying on Word's built-in outlining mode, this system uses only the names of styles to determine document structure.  Certain hueristics are applied to build the DocBook element structure from the (relatively flat) word processing structure.  Titles and other features are used to mark the beginning of a structure, and all paragraphs following that are included in that structure until the beginning of the next structure is found.  Problems may arise when a structure should end, but there is no Word feature that marks the endpoint.</para>
-    <para>Nesting of block elements is another commonly used feature of DocBook.  It is not possible to use Word's outline mode for blocks if it is being used for components and sections.  So in this specification, nesting of block elements is indicated by adding a number suffix to a style. So a Word paragraph with style <literal>orderedlist2</literal> is considered to be contained within a preceding paragraph with style <literal>listitem</literal>. In Word, paragraph indent levels will be used to visually indicate nesting of blocks. </para>
-    <para>Nesting of inline DocBook elements is particularly difficult to support because  Word does not nest character styles. That means a nested inline would require a separate Word style to indicate the parent-child relationship. Given the large number of combinations possible, a prohibitively large number of character styles would have to be created. In this project, nesting of character styles will not be supported in the first release. Nested inlines being imported from DocBook will be converted to a sequence of single-name  Word character styles.</para>
-    <para>In many cases, DocBook structure can be derived from the flat Word sequence of paragraphs based on sibling relationships. For example, when a paragraph styled as <literal>para</literal> is followed by a paragraph styled as  <literal>itemizedlist</literal>,   the conversion to DocBook will output a <sgmltag class="element">para</sgmltag> element and then start an <sgmltag class="element">itemizedlist</sgmltag> element, with the second paragraph as its first <sgmltag class="element">listitem</sgmltag>. All <literal>itemizedlist</literal> paragraphs that follow without interruption are put in the same <sgmltag class="element">itemizedlist</sgmltag> element.</para>
+    <para>Instead of relying on Word's built-in outlining mode, this system uses only the names of paragraph styles to determine document structure.  Certain heuristics are applied to build the DocBook element structure from the (relatively flat) word processing structure.  Titles and other features are used to mark the beginning of a structure, and all paragraphs following that are included in that structure until the beginning of the next structure is found.  Problems may arise when a structure should end, but there is no word processor feature that marks the endpoint.</para>
+    <para>Nesting of block elements is another commonly used feature of DocBook.  It is not possible to use Word's outline mode for blocks if it is being used for components and sections.  So in this specification, nesting of block elements is indicated by adding a number suffix to a style. So a paragraph with style <literal>orderedlist2</literal> is considered to be contained within a preceding paragraph with style <literal>listitem</literal>. In the word processor, paragraph indent levels will be used to visually indicate nesting of blocks. </para>
+    <para>Nesting of inline DocBook elements is particularly difficult to support because word processors do not nest character styles. That means a nested inline would require a separate character style to indicate the parent-child relationship. Given the large number of combinations possible, a prohibitively large number of character styles would have to be created. In this project, nesting of character styles will not be supported in the first release. Nested inlines being imported from DocBook will be converted to a sequence of single-name character styles.</para>
+    <para>In many cases, DocBook structure can be derived from the flat sequence of paragraphs based on sibling relationships. For example, when a paragraph styled as <literal>para</literal> is followed by a paragraph styled as  <literal>itemizedlist</literal>, the conversion to DocBook will output a <sgmltag class="element">para</sgmltag> element and then start an <sgmltag class="element">itemizedlist</sgmltag> element, with the second paragraph as its first <sgmltag class="element">listitem</sgmltag>. All <literal>itemizedlist</literal> paragraphs that follow without interruption are put in the same <sgmltag class="element">itemizedlist</sgmltag> element.</para>
     <para>Some combinations of elements cannot be supported (at least not with the techniques as described in this document).  An example is <sgmltag class="element">informalexample</sgmltag> and its permitted content; there is no title to mark the beginning of the element and no marker for the end of the element, also there are too many parent-child combinations to reasonably define style names.</para>
-    <para>Here are the design principles used in this project for selecting Word style names:</para>
+    <para>Here are the design principles used in this project for selecting paragraph/character style names:</para>
     <itemizedlist>
       <listitem>
-        <para>Where Word, by default, has a style or feature that corresponds directly to a DocBook element then that style or feature will be used (and documented in this document).  For example, the <literal>Normal</literal> paragraph style maps to a DocBook <sgmltag>para</sgmltag> element, and a Word table (<sgmltag>w:tbl</sgmltag>) maps to a DocBook <sgmltag>table</sgmltag><footnote><para>In some cases Word may posess a feature, but it doesn't function in an acceptable manner.  For example, lists.  In these cases the feature is to be avoided, and a workaround provided.</para></footnote>.</para>
+        <para>Where Word (or OpenOffice or Pages), by default, has a style or feature that corresponds directly to a DocBook element then that style or feature will be used (and documented in this document).  For example, the <literal>Normal</literal> paragraph style maps to a DocBook <sgmltag>para</sgmltag> element, and a Word table (<sgmltag>w:tbl</sgmltag>) maps to a DocBook <sgmltag>table</sgmltag><footnote><para>In some cases Word may posess a feature, but it doesn't function in an acceptable manner.  For example, lists.  In these cases the feature is to be avoided, and a workaround provided.</para></footnote>.</para>
       </listitem>
       <listitem>
-        <para>Word paragraph and character style names will match DocBook element names as much as possible. This will enable authors to learn DocBook element names, and help debug problems with conversion.</para>
+        <para>Paragraph and character style names will match DocBook element names as much as possible. This will enable authors to learn DocBook element names, and help debug problems with conversion.</para>
       </listitem>
       <listitem>
         <para>A style may indicate a parent-child relationship, but the paragraph for such an element may only occur after a paragraph that denotes the beginning of the parent structure.  In this case the element name is used as the style name.  For example, a <sgmltag>personblurb</sgmltag> paragraph may only occur after an <sgmltag>author</sgmltag>, <sgmltag>editor</sgmltag> or <sgmltag>othercontrib</sgmltag> paragraph.  If a paragraph occurs without the appropriate preceding paragraph, then an error is signalled.</para>
@@ -123,13 +130,13 @@
         <para>Some styles may also indicate a parent-child relationship, but either the parent structure is ambiguous or the paragraph starts the parent structure.  For example, <literal>chapter-title</literal> indicates that the paragraph is a <sgmltag>title</sgmltag> whose DocBook parent is a <sgmltag>chapter</sgmltag>.</para>
       </listitem>
       <listitem>
-        <para>Some style names are simplified to make them easier to use in Word. For example, a paragraph in an orderedlist requires three elements in DocBook: <sgmltag class="element">orderedlist</sgmltag>, <sgmltag class="element">listitem</sgmltag>, and <sgmltag class="element">para</sgmltag>. The paragraph style name in Word is shortened from <literal>orderedlist-listitem-para</literal> to just <literal>orderedlist</literal>.   In the case of lists (see below), the list level is appended so this example becomes <literal>orderedlist1</literal></para>
+        <para>Some style names are simplified to make them easier to use in the word processor. For example, a paragraph in an orderedlist requires three elements in DocBook: <sgmltag class="element">orderedlist</sgmltag>, <sgmltag class="element">listitem</sgmltag>, and <sgmltag class="element">para</sgmltag>. The paragraph style name in Word is shortened from <literal>orderedlist-listitem-para</literal> to just <literal>orderedlist</literal>.   In the case of lists (see below), the list level is appended so this example becomes <literal>orderedlist1</literal></para>
       </listitem>
       <listitem>
         <para>Style names with a number suffix indicate a nesting level, as described above.</para>
       </listitem>
       <listitem>
-        <para>Style names with <literal>continue</literal> indicate that the paragraph is part of the preceding element. For example, a <literal>para</literal> paragraph is used for a single paragraph <sgmltag class="element">para</sgmltag> element. This would cause any preceding list to be closed. If a list item in the preceding list is to contain more than one paragraph, then the subsequent paragraphs in Word would get a <literal>para-continue</literal> style.</para>
+        <para>Style names with <literal>continue</literal> indicate that the paragraph is part of the preceding element. For example, a <literal>para</literal> paragraph is used for a single paragraph <sgmltag class="element">para</sgmltag> element. This would cause any preceding list to be closed. If a list item in the preceding list is to contain more than one paragraph, then the subsequent paragraphs in the word processor document would get a <literal>para-continue</literal> style.</para>
       </listitem>
       <listitem>
         <para>Character styles map to elements that are children of the element for the paragraph, hence there is no need to encode parent-child relationships.  For example, a <sgmltag>surname</sgmltag> character style in an <sgmltag>author</sgmltag> paragraph becomes a <sgmltag>surname</sgmltag> child element of the <sgmltag>author</sgmltag> element.</para>
@@ -138,12 +145,12 @@
         <para>Empty paragraph and character styles are ignored.</para>
       </listitem>
       <listitem>
-        <para>The first paragraph style in the Word document is used to define the root element of the DocBook document. For example, if a Word document starts with <literal>book-title</literal>, then the DocBook document will have <literal>book</literal> as its root element.  All the rest of the document content will be contained in that root element.</para>
+        <para>The first paragraph style in the word processor document is used to define the root element of the DocBook document. For example, if the document starts with <literal>book-title</literal>, then the DocBook document will have <literal>book</literal> as its root element.  All the rest of the document content will be contained in that root element.</para>
       </listitem>
     </itemizedlist>
-    <para>Sequential structures are colesced into a single parent element.  For example, a sequence of <sgmltag>itemizedlist</sgmltag> paragraphs becomes a single <sgmltag>itemizedlist</sgmltag> element with several <sgmltag>listitem</sgmltag> children.</para>
+    <para>Sequential structures are coalesced into a single parent element.  For example, a sequence of <sgmltag>itemizedlist</sgmltag> paragraphs becomes a single <sgmltag>itemizedlist</sgmltag> element with several <sgmltag>listitem</sgmltag> children.</para>
     <table>
-      <title>DocBook to WordML styles</title>
+      <title>DocBook to Paragraph/Character Styles</title>
       <tgroup cols="3">
         <colspec colnum="1" colname="col1" colwidth="1.00*"/>
         <colspec colnum="2" colname="col2" colwidth="1.89*"/>
@@ -151,7 +158,7 @@
         <thead>
           <row>
             <entry colname="col1">DocBook element</entry>
-            <entry colname="col2">WordML styles</entry>
+            <entry colname="col2">Style(s)</entry>
             <entry colname="col3">Comments</entry>
           </row>
         </thead>

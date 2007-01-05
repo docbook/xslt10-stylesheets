@@ -187,13 +187,15 @@
     </w:body>
   </xsl:template>
 
-  <xsl:template match='book|article|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
+  <xsl:template match='book|article|chapter|section|sect1|sect2|sect3|sect4|sect5|simplesect'>
     <wx:sub-section>
       <xsl:apply-templates select='*'/>
     </wx:sub-section>
   </xsl:template>
 
-  <xsl:template match='articleinfo|bookinfo'>
+  <xsl:template match='articleinfo |
+		       chapterinfo |
+		       bookinfo'>
     <xsl:apply-templates select='title|subtitle|titleabbrev'/>
     <xsl:apply-templates select='author|releaseinfo'/>
     <!-- current implementation ignores all other metadata -->
@@ -844,11 +846,11 @@
     <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
 
-  <xsl:template match='text()[not(parent::para|parent::simpara|parent::literallayout)][string-length(normalize-space(.)) != 0]'>
+  <xsl:template match='text()[not(parent::para|parent::simpara|parent::literallayout|parent::programlisting)][string-length(normalize-space(.)) != 0]'>
     <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
   <xsl:template match='text()[string-length(normalize-space(.)) = 0]'/>
-  <xsl:template match='literallayout/text()'>
+  <xsl:template match='literallayout/text()|programlisting/text()'>
     <xsl:call-template name='handle-linebreaks'/>
   </xsl:template>
   <xsl:template name='handle-linebreaks'>
@@ -958,12 +960,12 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match='literallayout'>
+  <xsl:template match='literallayout|programlisting'>
     <xsl:param name='class'/>
 
     <w:p>
       <w:pPr>
-        <w:pStyle w:val='literallayout'/>
+        <w:pStyle w:val='{name()}'/>
       </w:pPr>
 
       <xsl:call-template name='attributes'/>
@@ -1101,7 +1103,6 @@
                       self::bridgehead |
                       self::calloutlist |
                       self::caption |
-                      self::chapter |
                       self::classsynopsis |
                       self::colophon |
                       self::constraintdef |
