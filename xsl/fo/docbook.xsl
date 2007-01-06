@@ -72,7 +72,6 @@
 <xsl:include href="pi.xsl"/>
 <xsl:include href="spaces.xsl"/>
 <xsl:include href="ebnf.xsl"/>
-<xsl:include href="docbookng.xsl"/>
 <xsl:include href="../html/chunker.xsl"/>
 <xsl:include href="annotations.xsl"/>
 <xsl:include href="../common/stripns.xsl"/>
