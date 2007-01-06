@@ -218,6 +218,7 @@ generate.section.toc.level;
 &glossary.as.blocks;
 &glosslist.as.blocks;
 &glossentry.show.acronym;
+&glossary.sort;
 </reference>
 
 <reference id="misc"><title>Miscellaneous</title>
@@ -633,6 +634,7 @@ around all these parameters.</para>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.as.blocks.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
+<src:fragref linkend="glossary.sort.frag"/>
 <src:fragref linkend="glossentry.show.acronym.frag"/>
 <src:fragref linkend="glosslist.as.blocks.frag"/>
 <src:fragref linkend="glossterm.auto.link.frag"/>
