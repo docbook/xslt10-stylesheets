@@ -169,13 +169,13 @@
 <gentext key="nav-up" text="Upp"/>
 
 <gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
+<gentext key="Draft"         text="Utkast"/> 
+<gentext key="above"         text="ovan"/> 
+<gentext key="below"         text="nedan"/> 
 <gentext key="index symbols" text="Symboler"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&#229;&#228;&#246;"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#197;&#196;&#214;"/>
 
 <dingbat key="startquote" text="&#x201D;"/>
 <dingbat key="endquote" text="&#x201D;"/>
