@@ -307,6 +307,21 @@ title of the element. This does not include the label.
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="glossdiv" mode="title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:variable name="title" select="(info/title|title)[1]"/>
+  <xsl:choose>
+    <xsl:when test="$title">
+      <xsl:apply-templates select="$title" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>ERROR: glossdiv missing its required title</xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="glossentry" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:apply-templates select="glossterm" mode="title.markup">
