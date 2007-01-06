@@ -19,7 +19,7 @@
 <refsect1><title>Description</title>
 
 <para>If non-zero, then the glossentry elements within a
-glossary or glosslist are sorted on the glossterm, using
+glossary, glossdiv, or glosslist are sorted on the glossterm, using
 the current lang setting.  If zero (the default), then
 glossentry elements are not sorted and are presented
 in document order.
