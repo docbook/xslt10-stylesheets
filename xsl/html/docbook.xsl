@@ -69,7 +69,6 @@
 <xsl:include href="ebnf.xsl"/>
 <xsl:include href="chunker.xsl"/>
 <xsl:include href="html-rtf.xsl"/>
-<xsl:include href="docbookng.xsl"/>
 <xsl:include href="annotations.xsl"/>
 <xsl:include href="../common/stripns.xsl"/>
 
