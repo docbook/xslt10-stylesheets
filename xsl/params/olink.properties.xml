@@ -10,14 +10,15 @@ text of an olink.</refpurpose>
 <refsynopsisdiv>
 <src:fragment id='olink.properties.frag'>
 <xsl:attribute-set name="olink.properties">
+  <xsl:attribute name="show-destination">replace</xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsect1><title>Description</title>
 
-<para>This attribute set is used on cross reference text
-from an olink. It is not applied to the
+<para>This attribute set is applied to the <sgmltag>fo:basic-link</sgmltag>
+element of an olink. It is not applied to the
 optional page number or 
 optional title of the external document.</para>
 
