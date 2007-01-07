@@ -815,6 +815,9 @@ Custom stylesheets may override it to get more selective behavior.</para>
         <xsl:when test="$format='upperroman' or $format='I'">
           <xsl:value-of select="'I'"/>
         </xsl:when>      
+	<xsl:when test="$format='arabicindic' or $format='&#x661;'">
+	  <xsl:value-of select="'&#x661;'"/>
+	</xsl:when>
         <xsl:otherwise>
           <xsl:message>
             <xsl:text>Unexpected </xsl:text><xsl:value-of select="local-name(.)"/><xsl:text>.autolabel value: </xsl:text>
@@ -832,7 +835,8 @@ Custom stylesheets may override it to get more selective behavior.</para>
 <refdescription>
 <para>Returns format passed as parameter if non zero. Supported
   format are 'arabic' or '1', 'loweralpha' or 'a', 'lowerroman' or 'i', 
-  'uppoerlapha' or 'A', 'upperroman' or 'I'. If its not one of these then 
+  'upperlapha' or 'A', 'upperroman' or 'I', 'arabicindic' or '&#x661;'.
+  If its not one of these then 
   returns the default format.</para>
 </refdescription>
 </doc:template>
