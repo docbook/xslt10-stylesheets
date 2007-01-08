@@ -473,4 +473,31 @@ or 0 (the empty string)</para>
   </xsl:if>
 </xsl:template>
 
+<!-- Returns the table style for the context element -->
+<xsl:template name="tabstyle">
+  <xsl:param name="node" select="."/>
+
+  <xsl:variable name="tgroup" select="$node/tgroup[1] | 
+                                      $node/ancestor-or-self::tgroup[1]"/>
+
+  <xsl:variable name="table" 
+                select="($node/ancestor-or-self::table | 
+                         $node/ancestor-or-self::informaltable)[1]"/>
+
+  <xsl:variable name="tabstyle">
+    <xsl:choose>
+      <xsl:when test="$table/@tabstyle != ''">
+        <xsl:value-of select="normalize-space($table/@tabstyle)"/>
+      </xsl:when>
+      <xsl:when test="$tgroup/@tgroupstyle != ''">
+        <xsl:value-of select="normalize-space($tgroup/@tgroupstyle)"/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:value-of select="$tabstyle"/>
+</xsl:template>
+
 </xsl:stylesheet>
