@@ -491,53 +491,53 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
-<l:context name="datetime">
-   <l:template name="format" text="d-m-Y"/>
-</l:context>
+<context name="datetime">
+   <template name="format" text="d-m-Y"/>
+</context>
 
-<l:context name="datetime-full">
-  <l:template name="January" text="tammikuu"/>
-  <l:template name="February" text="helmikuu"/>
-  <l:template name="March" text="maaliskuu"/>
-  <l:template name="April" text="huhtikuu"/>
-  <l:template name="May" text="toukokuu"/>
-  <l:template name="June" text="kesäkuu"/>
-  <l:template name="July" text="heinäkuu"/>
-  <l:template name="August" text="elokuu"/>
-  <l:template name="September" text="syyskuu"/>
-  <l:template name="October" text="lokakuu"/>
-  <l:template name="November" text="marraskuu"/>
-  <l:template name="December" text="joulukuu"/>
-  <l:template name="Monday" text="maanantai"/>
-  <l:template name="Tuesday" text="tiistai"/>
-  <l:template name="Wednesday" text="keskiviikko"/>
-  <l:template name="Thursday" text="torstai"/>
-  <l:template name="Friday" text="perjantai"/>
-  <l:template name="Saturday" text="lauantai"/>
-  <l:template name="Sunday" text="sunnuntai"/>
-</l:context>
+<context name="datetime-full">
+  <template name="January" text="tammikuu"/>
+  <template name="February" text="helmikuu"/>
+  <template name="March" text="maaliskuu"/>
+  <template name="April" text="huhtikuu"/>
+  <template name="May" text="toukokuu"/>
+  <template name="June" text="kesäkuu"/>
+  <template name="July" text="heinäkuu"/>
+  <template name="August" text="elokuu"/>
+  <template name="September" text="syyskuu"/>
+  <template name="October" text="lokakuu"/>
+  <template name="November" text="marraskuu"/>
+  <template name="December" text="joulukuu"/>
+  <template name="Monday" text="maanantai"/>
+  <template name="Tuesday" text="tiistai"/>
+  <template name="Wednesday" text="keskiviikko"/>
+  <template name="Thursday" text="torstai"/>
+  <template name="Friday" text="perjantai"/>
+  <template name="Saturday" text="lauantai"/>
+  <template name="Sunday" text="sunnuntai"/>
+</context>
 
-<l:context name="datetime-abbrev">
-  <l:template name="Jan" text="tammi"/>
-  <l:template name="Feb" text="helmi"/>
-  <l:template name="Mar" text="maalis"/>
-  <l:template name="Apr" text="huhti"/>
-  <l:template name="May" text="touko"/>
-  <l:template name="Jun" text="kesä"/>
-  <l:template name="Jul" text="heinä"/>
-  <l:template name="Aug" text="elo"/>
-  <l:template name="Sep" text="syys"/>
-  <l:template name="Oct" text="loka"/>
-  <l:template name="Nov" text="marras"/>
-  <l:template name="Dec" text="joulu"/>
-  <l:template name="Mon" text="ma"/>
-  <l:template name="Tue" text="ti"/>
-  <l:template name="Wed" text="ke"/>
-  <l:template name="Thu" text="to"/>
-  <l:template name="Fri" text="pe"/>
-  <l:template name="Sat" text="la"/>
-  <l:template name="Sun" text="su"/>
-</l:context>
+<context name="datetime-abbrev">
+  <template name="Jan" text="tammi"/>
+  <template name="Feb" text="helmi"/>
+  <template name="Mar" text="maalis"/>
+  <template name="Apr" text="huhti"/>
+  <template name="May" text="touko"/>
+  <template name="Jun" text="kesä"/>
+  <template name="Jul" text="heinä"/>
+  <template name="Aug" text="elo"/>
+  <template name="Sep" text="syys"/>
+  <template name="Oct" text="loka"/>
+  <template name="Nov" text="marras"/>
+  <template name="Dec" text="joulu"/>
+  <template name="Mon" text="ma"/>
+  <template name="Tue" text="ti"/>
+  <template name="Wed" text="ke"/>
+  <template name="Thu" text="to"/>
+  <template name="Fri" text="pe"/>
+  <template name="Sat" text="la"/>
+  <template name="Sun" text="su"/>
+</context>
 
 <context name="htmlhelp">
 <template name="langcode">0x040b Finnish</template>
