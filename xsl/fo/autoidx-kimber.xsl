@@ -152,7 +152,7 @@
   <xsl:variable name="label"
           select="k:getIndexGroupLabel(&lang;, $key)"/>
 
-  <xsl:if test="key('k-group', $label)[&scope;]
+  <xsl:if test="key('k-group', $key)[&scope;]
                 [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
     <fo:block>
       <xsl:call-template name="indexdiv.title">
