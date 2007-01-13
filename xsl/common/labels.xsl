@@ -750,6 +750,10 @@ element label.</para>
   <!-- nop -->
 </xsl:template>
 
+<xsl:template match="sidebar" mode="label.markup">
+  <!-- nop -->
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template name="label.this.section">
