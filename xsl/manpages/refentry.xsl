@@ -19,11 +19,11 @@
       <xsl:when test="preceding-sibling::refnamediv">
         <!-- * No title on secondary refnamedivs! -->
         <!-- * Just put a single line break instead -->
-        <xsl:text>.br&#10;</xsl:text>
+        <xsl:text>&#x2302;br&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="mark.subheading"/>
-        <xsl:text>.SH "</xsl:text>
+        <xsl:text>&#x2302;SH "</xsl:text>
         <xsl:apply-templates select="." mode="title.markup"/>
         <xsl:text>"</xsl:text>
         <xsl:text>&#10;</xsl:text>
@@ -65,7 +65,7 @@
 
   <xsl:template match="refsynopsisdiv">
     <xsl:call-template name="mark.subheading"/>
-    <xsl:text>.SH "</xsl:text>
+    <xsl:text>&#x2302;SH "</xsl:text>
     <xsl:apply-templates select="." mode="title.markup"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
@@ -77,7 +77,7 @@
       <xsl:apply-templates select="." mode="title.markup"/>
     </xsl:variable>
     <xsl:call-template name="mark.subheading"/>
-    <xsl:text>.SH "</xsl:text>
+    <xsl:text>&#x2302;SH "</xsl:text>
     <xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
@@ -94,7 +94,7 @@
                   |title)[1]/node()"/>
       
     </xsl:variable>
-    <xsl:text>.SS "</xsl:text>
+    <xsl:text>&#x2302;SS "</xsl:text>
     <xsl:value-of select="normalize-space($title)"/>
     <xsl:text>"&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
@@ -102,9 +102,9 @@
       <!-- * If default-indentation adjustment is on, then indent the -->
       <!-- * child content of this Refsect2 -->
       <xsl:when test="not($man.indent.refsect = 0)">
-        <xsl:text>.RS&#10;</xsl:text>
+        <xsl:text>&#x2302;RS&#10;</xsl:text>
         <xsl:apply-templates/>
-        <xsl:text>.RE&#10;</xsl:text>
+        <xsl:text>&#x2302;RE&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <!-- * If default-indentation adjustment is on, then do not -->
@@ -131,9 +131,9 @@
       <!-- * child content of this Refsect3 or Refsection. -->
       <xsl:when test="not($man.indent.refsect != 0)">
         <xsl:call-template name="nested-section-title"/>
-        <xsl:text>.RS&#10;</xsl:text>
+        <xsl:text>&#x2302;RS&#10;</xsl:text>
         <xsl:apply-templates/>
-        <xsl:text>.RE&#10;</xsl:text>
+        <xsl:text>&#x2302;RE&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <!-- * If default-indentation adjustment is on, then do not -->
@@ -143,7 +143,7 @@
         <!-- * actually means the title is indented by the value of -->
         <!-- * the SN register, which appears by default to be -->
         <!-- * about half of the default indentation value -->
-        <xsl:text>.ti (\n(SNu * 5u / 3u)&#10;</xsl:text>
+        <xsl:text>&#x2302;ti (\n(SNu * 5u / 3u)&#10;</xsl:text>
         <xsl:call-template name="nested-section-title"/>
         <xsl:apply-templates/>
       </xsl:otherwise>
@@ -169,9 +169,9 @@
       </xsl:if>
     </xsl:variable>
     <xsl:call-template name="nested-section-title"/>
-    <xsl:text>.RS (\n(SNu)&#10;</xsl:text>
+    <xsl:text>&#x2302;RS (\n(SNu)&#10;</xsl:text>
     <xsl:apply-templates/>
-    <xsl:text>.RE&#10;</xsl:text>
+    <xsl:text>&#x2302;RE&#10;</xsl:text>
   </xsl:template>
 
   <!-- ==================================================================== -->

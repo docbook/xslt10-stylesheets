@@ -106,11 +106,11 @@
   <xsl:template name="nested-section-title">
     <!-- * The next few lines are some arcane roff code to control line -->
     <!-- * spacing after headings. -->
-    <xsl:text>.sp&#10;</xsl:text>
-    <xsl:text>.it 1 an-trap&#10;</xsl:text>
-    <xsl:text>.nr an-no-space-flag 1&#10;</xsl:text>
-    <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
-    <xsl:text>.br&#10;</xsl:text>
+    <xsl:text>&#x2302;sp&#10;</xsl:text>
+    <xsl:text>&#x2302;it 1 an-trap&#10;</xsl:text>
+    <xsl:text>&#x2302;nr an-no-space-flag 1&#10;</xsl:text>
+    <xsl:text>&#x2302;nr an-break-flag 1&#10;</xsl:text>
+    <xsl:text>&#x2302;br&#10;</xsl:text>
     <!-- * make title wrapper so that we can use mode="bold" template to -->
     <!-- * apply character formatting to it -->
     <xsl:variable name="title.wrapper">
@@ -148,7 +148,7 @@
         <xsl:when test="self::address|self::literallayout|self::programlisting|
                         self::screen|self::synopsis">
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>.sp&#10;</xsl:text>
+          <xsl:text>&#x2302;sp&#10;</xsl:text>
           <xsl:call-template name="mark.up.block.start"/>
           <xsl:apply-templates select="."/>
         </xsl:when>
@@ -260,7 +260,7 @@
                       preceding-sibling::note|
                       preceding-sibling::tip|
                       preceding-sibling::warning)">
-          <xsl:text>.RS</xsl:text>
+          <xsl:text>&#x2302;RS</xsl:text>
           <xsl:if test="not($list-indent = '')">
             <xsl:text> </xsl:text>
             <xsl:value-of select="$list-indent"/>
@@ -297,7 +297,7 @@
                     tip|
                     warning">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>.RE</xsl:text>
+        <xsl:text>&#x2302;RE</xsl:text>
       <xsl:text>&#10;</xsl:text>
       </xsl:if>
     </xsl:if>
@@ -368,7 +368,7 @@
   <!-- * in roff source (just to make things easier to read). -->
   <xsl:template name="mark.subheading">
     <xsl:if test="$man.subheading.divider.enabled != 0">
-      <xsl:text>.\" </xsl:text>
+      <xsl:text>&#x2302;\" </xsl:text>
       <xsl:value-of select="$man.subheading.divider"/>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>

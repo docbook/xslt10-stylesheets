@@ -42,13 +42,13 @@
                 ]">
     <!-- * Make sure multiple paragraphs within a list item don't -->
     <!-- * merge together.                                        -->
-    <xsl:text>.sp&#10;</xsl:text>
+    <xsl:text>&#x2302;sp&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
 <xsl:template match="variablelist|glosslist">
   <xsl:if test="title">
-    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:text>&#x2302;PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
@@ -56,7 +56,7 @@
 </xsl:template>
 
 <xsl:template match="varlistentry|glossentry">
-  <xsl:text>.PP&#10;</xsl:text> 
+  <xsl:text>&#x2302;PP&#10;</xsl:text> 
   <xsl:for-each select="term|glossterm">
     <xsl:variable name="content">
       <xsl:apply-templates/>
@@ -76,20 +76,20 @@
         <xsl:value-of select="$variablelist.term.separator"/>
         <xsl:if test="not($variablelist.term.break.after = '0')">
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>.br&#10;</xsl:text>
+          <xsl:text>&#x2302;br&#10;</xsl:text>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.RS</xsl:text> 
+  <xsl:text>&#x2302;RS</xsl:text> 
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>&#x2302;RE&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="varlistentry/term"/>
@@ -98,19 +98,19 @@
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
                      glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.RS</xsl:text> 
+  <xsl:text>&#x2302;RS</xsl:text> 
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>&#x2302;RE&#10;</xsl:text>
   <xsl:if test="following-sibling::node() or
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
                 parent::remark[following-sibling::node()]">
-    <xsl:text>.IP ""</xsl:text> 
+    <xsl:text>&#x2302;IP ""</xsl:text> 
     <xsl:if test="not($list-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$list-indent"/>
@@ -129,7 +129,7 @@
   <!-- * processing before final output, the character-map will -->
   <!-- * handle conversion of the &#x2022; to "\(bu" for us -->
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.RS</xsl:text>
+  <xsl:text>&#x2302;RS</xsl:text>
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
     <xsl:value-of select="$list-indent"/>
@@ -149,12 +149,12 @@
   <xsl:text>'</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>&#x2302;RE&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="orderedlist/listitem|procedure/step">
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.RS</xsl:text>
+  <xsl:text>&#x2302;RS</xsl:text>
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
     <xsl:value-of select="$list-indent"/>
@@ -177,13 +177,13 @@
   <xsl:text>'</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
-  <xsl:text>.RE&#10;</xsl:text>
+  <xsl:text>&#x2302;RE&#10;</xsl:text>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="itemizedlist|orderedlist|procedure">
   <xsl:if test="title">
-    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:text>&#x2302;PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
@@ -197,8 +197,8 @@
   <!-- * it, within the same para, then add a blank line and move -->
   <!-- * the left margin back to where it was -->
   <xsl:if test="parent::para and following-sibling::node()">
-    <xsl:text>.sp&#10;</xsl:text>
-    <xsl:text>.RE&#10;</xsl:text>
+    <xsl:text>&#x2302;sp&#10;</xsl:text>
+    <xsl:text>&#x2302;RE&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -206,7 +206,7 @@
 	             orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
                      procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:if test="title">
-    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:text>&#x2302;PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
@@ -215,7 +215,7 @@
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
                 parent::remark[following-sibling::node()]">
-    <xsl:text>.IP ""</xsl:text> 
+    <xsl:text>&#x2302;IP ""</xsl:text> 
     <xsl:if test="not($list-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$list-indent"/>
@@ -265,7 +265,7 @@
 <!-- * list (ignoring the values of the type and columns attributes) -->
 <xsl:template match="simplelist">
   <xsl:for-each select="member">
-    <xsl:text>.IP ""</xsl:text> 
+    <xsl:text>&#x2302;IP ""</xsl:text> 
     <xsl:if test="not($list-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$list-indent"/>
@@ -282,14 +282,14 @@
 <!-- * is no option for outputting it in manpages in "list" form. -->
 <xsl:template match="segmentedlist">
   <xsl:if test="title">
-    <xsl:text>.PP&#10;</xsl:text>
+    <xsl:text>&#x2302;PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>.\" line length increase to cope w/ tbl weirdness&#10;</xsl:text>
-  <xsl:text>.ll +(\n(LLu * 62u / 100u)&#10;</xsl:text>
+  <xsl:text>&#x2302;\" line length increase to cope w/ tbl weirdness&#10;</xsl:text>
+  <xsl:text>&#x2302;ll +(\n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * .TS = "Table Start" -->
-  <xsl:text>.TS&#10;</xsl:text>
+  <xsl:text>&#x2302;TS&#10;</xsl:text>
     <!-- * first output the table "format" spec, which tells tbl(1) how -->
     <!-- * how to format each row and column. -->
   <xsl:for-each select=".//segtitle">
@@ -311,11 +311,11 @@
   </xsl:choose>
   <xsl:apply-templates/>
   <!-- * .TE = "Table End" -->
-  <xsl:text>.TE&#10;</xsl:text>
-  <xsl:text>.\" line length decrease back to previous value&#10;</xsl:text>
-  <xsl:text>.ll -(\n(LLu * 62u / 100u)&#10;</xsl:text>
+  <xsl:text>&#x2302;TE&#10;</xsl:text>
+  <xsl:text>&#x2302;\" line length decrease back to previous value&#10;</xsl:text>
+  <xsl:text>&#x2302;ll -(\n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * put a blank line of space below the table -->
-  <xsl:text>.sp&#10;</xsl:text>
+  <xsl:text>&#x2302;sp&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="segmentedlist/segtitle" mode="table-title">

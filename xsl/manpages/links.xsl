@@ -299,7 +299,7 @@
   <xsl:param name="notesources"/>
   <xsl:call-template name="mark.subheading"/>
   <!-- * make the endnotes-list section heading -->
-  <xsl:text>.SH "</xsl:text>
+  <xsl:text>&#x2302;SH "</xsl:text>
   <xsl:call-template name="string.upper">
     <xsl:with-param name="string">
       <xsl:choose>
@@ -321,7 +321,7 @@
   <xsl:for-each select="$notesources">
     <!-- * make paragraph with hanging indent, and starting with a -->
     <!-- * number in the form " 1." (padded to $man.indent.width - 1) -->
-    <xsl:text>.IP</xsl:text>
+    <xsl:text>&#x2302;IP</xsl:text>
     <xsl:text> "</xsl:text>
     <xsl:variable name="endnote.number">
       <xsl:apply-templates select="." mode="notesource.number"/>
@@ -357,7 +357,7 @@
     </xsl:choose>
     <xsl:text>&#10;</xsl:text> 
     <xsl:if test="@url">
-      <xsl:text>.RS</xsl:text>
+      <xsl:text>&#x2302;RS</xsl:text>
       <xsl:if test="not($list-indent = '')">
         <xsl:text> </xsl:text>
         <xsl:value-of select="$list-indent"/>
@@ -373,7 +373,7 @@
       </xsl:if>
       <xsl:value-of select="@url"/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>.RE</xsl:text>
+      <xsl:text>&#x2302;RE</xsl:text>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
   </xsl:for-each>
