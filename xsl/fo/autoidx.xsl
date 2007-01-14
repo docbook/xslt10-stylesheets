@@ -667,7 +667,8 @@
         <xsl:call-template name="object.id"/>
       </xsl:variable>
 
-      <fo:basic-link internal-destination="{$id}">
+      <fo:basic-link internal-destination="{$id}"
+                     xsl:use-attribute-sets="index.page.number.properties">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
 
@@ -707,7 +708,8 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <fo:basic-link internal-destination="{$id}">
+      <fo:basic-link internal-destination="{$id}"
+                     xsl:use-attribute-sets="index.page.number.properties">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
 
@@ -731,7 +733,8 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <fo:basic-link internal-destination="{$id}">
+      <fo:basic-link internal-destination="{$id}"
+                     xsl:use-attribute-sets="index.page.number.properties">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
     </xsl:otherwise>
@@ -758,7 +761,8 @@
     </xsl:call-template>
   </xsl:variable>
   
-  <fo:basic-link internal-destination="{$id}">
+  <fo:basic-link internal-destination="{$id}"
+                 xsl:use-attribute-sets="index.page.number.properties">
     <fo:page-number-citation ref-id="{$id}"/>
   </fo:basic-link>
 </xsl:template>
@@ -1075,7 +1079,8 @@
           <xsl:text>&lt;link linkend="</xsl:text>
           <xsl:value-of select="@startref"/>
           <xsl:text>"&gt;</xsl:text>
-          <fo:basic-link internal-destination="{@startref}">
+          <fo:basic-link internal-destination="{@startref}"
+                     xsl:use-attribute-sets="index.page.number.properties">
             <fo:page-number-citation ref-id="{@startref}"/>
             <xsl:text>-</xsl:text>
             <fo:page-number-citation ref-id="{$id}"/>
@@ -1090,7 +1095,8 @@
             <xsl:value-of select="$id"/>
             <xsl:text>"&gt;</xsl:text>
           </xsl:if>
-          <fo:basic-link internal-destination="{$id}">
+          <fo:basic-link internal-destination="{$id}"
+                     xsl:use-attribute-sets="index.page.number.properties">
             <fo:page-number-citation ref-id="{$id}"/>
           </fo:basic-link>
           <xsl:if test="$id">
@@ -1125,7 +1131,8 @@
         <xsl:value-of select="$id"/>
         <xsl:text>"&gt;</xsl:text>
       </xsl:if>
-      <fo:basic-link internal-destination="{$id}">
+      <fo:basic-link internal-destination="{$id}"
+                     xsl:use-attribute-sets="index.page.number.properties">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
       <xsl:if test="$target[1]/@id or $target[1]/@xml:id">
@@ -1156,7 +1163,8 @@
         <xsl:value-of select="$id"/>
         <xsl:text>"&gt;</xsl:text>
       </xsl:if>
-      <fo:basic-link internal-destination="{$id}">
+      <fo:basic-link internal-destination="{$id}"
+                     xsl:use-attribute-sets="index.page.number.properties">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
       <xsl:if test="$target[1]/@id or target[1]/@xml:id">
