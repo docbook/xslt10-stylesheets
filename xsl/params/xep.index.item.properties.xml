@@ -8,7 +8,8 @@
 
 <refsynopsisdiv>
 <src:fragment id='xep.index.item.properties.frag'>
-<xsl:attribute-set name="xep.index.item.properties">
+<xsl:attribute-set name="xep.index.item.properties"
+      use-attribute-sets="index.page.number.properties">
   <xsl:attribute name="merge-subsequent-page-numbers">true</xsl:attribute>
   <xsl:attribute name="link-back">true</xsl:attribute>
 </xsl:attribute-set>
@@ -17,10 +18,14 @@
 
 <refsect1><title>Description</title>
 
-<para>Properties associated with XEP index-items. For more info see
-the section "Indexes" in
+<para>Properties associated with XEP index-items, which generate
+page numbers in an index processed by XEP. For more info see
+the XEP documentation section "Indexes" in
 <ulink
-    url="http://xep.xattic.com/xep/doc/spec.html"/>.</para>
+    url="http://www.renderx.com/reference.html#Indexes" />.</para>
 
+<para>This attribute-set also adds by default any properties from the
+<sgmltaG CLASS="attribute">index.page.number.properties</sgmltag>
+attribute-set.
 </refsect1>
 </refentry>
