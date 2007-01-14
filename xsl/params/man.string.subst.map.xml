@@ -14,15 +14,23 @@
 <src:fragment id='man.string.subst.map.frag'>
 <xsl:param name="man.string.subst.map">
   <substitution oldstring="\" newstring="\\"/>
+  <!-- * escape all dots (because roff interprets them as newlines if they -->
+  <!-- * occur at the beginning of a line -->
+  <substitution oldstring="." newstring="\."/>
+  <!-- * the stylesheets use U+2302 internally to represent the start of a -->
+  <!-- * roff request; for output, we need to convert that internal -->
+  <!-- * representation to the character that roff actually uses to mark -->
+  <!-- * the start of requests, which is a dot -->
+  <substitution oldstring="&#x2302;" newstring="."/>
   <!-- * now, we need to restore single-backslashes in all roff -->
-  <!-- * requests (because the substitution above doubled them) -->
+  <!-- * requests (because slash substitution above doubled them) -->
   <substitution oldstring="\\fB" newstring="\fB"/>
   <substitution oldstring="\\fI" newstring="\fI"/>
   <substitution oldstring="\\fR" newstring="\fR"/>
   <substitution oldstring="\\n"  newstring="\n"/>
   <substitution oldstring="\\h"  newstring="\h"/>
   <!-- * requests in .SH sectsions output from Refsect1-level source -->
-  <!-- * end up getting capitalized... -->
+  <!-- * end up getting capitalized; the following changes fix that -->
   <substitution oldstring="\\FB" newstring="\fB"/>
   <substitution oldstring="\\FI" newstring="\fI"/>
   <substitution oldstring="\\FR" newstring="\fR"/>
@@ -79,7 +87,6 @@
   <!-- * for certain reasons, the stylesheets add it before and after -->
   <!-- * every Parameter in Funcprototype output -->
   <substitution oldstring="&#x2008;" newstring=" "/>
-  <substitution oldstring="&#x2302;" newstring="&#09;"/>
   <!-- * -->
   <!-- * Now deal with some other characters that are added by the -->
   <!-- * stylesheets during processing. -->
