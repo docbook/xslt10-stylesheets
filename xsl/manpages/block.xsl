@@ -19,6 +19,7 @@
 <xsl:template match="caution|important|note|tip|warning">
   <xsl:call-template name="nested-section-title"/>
   <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template> 
 
 <xsl:template match="formalpara">
