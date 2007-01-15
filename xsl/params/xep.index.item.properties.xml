@@ -25,7 +25,7 @@ the XEP documentation section "Indexes" in
     url="http://www.renderx.com/reference.html#Indexes" />.</para>
 
 <para>This attribute-set also adds by default any properties from the
-<sgmltaG CLASS="attribute">index.page.number.properties</sgmltag>
-attribute-set.
+<sgmltag CLASS="attribute">index.page.number.properties</sgmltag>
+attribute-set.</para>
 </refsect1>
 </refentry>
