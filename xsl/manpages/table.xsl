@@ -462,7 +462,9 @@
     <xsl:param name="cells"/>
     <xsl:apply-templates mode="table.format" select="$cells"/>
     <!-- * last line of table format section must end with a dot -->
-    <xsl:text>.</xsl:text>
+    <!-- * we use U+2302 internally to mark dots, and replace them -->
+    <!-- * with real dots before serializing to output -->
+    <xsl:text>&#x2302;</xsl:text>
   </xsl:template>
 
   <xsl:template match="cell" mode="table.format">
