@@ -14,9 +14,9 @@
 <src:fragment id='man.string.subst.map.frag'>
 <xsl:param name="man.string.subst.map">
   <substitution oldstring="\" newstring="\\"/>
-  <!-- * escape all dots (because roff interprets them as newlines if they -->
-  <!-- * occur at the beginning of a line -->
-  <substitution oldstring="." newstring="\."/>
+  <!-- * escape all dots at the beginnings of lines (because roff -->
+  <!-- * interprets them as the start of roff requests) -->
+  <substitution oldstring="&#10;." newstring="\."/>
   <!-- * the stylesheets use U+2302 internally to represent the start of a -->
   <!-- * roff request; for output, we need to convert that internal -->
   <!-- * representation to the character that roff actually uses to mark -->
