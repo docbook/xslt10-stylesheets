@@ -22,7 +22,7 @@
   <xsl:apply-templates mode="italic" select="."/>
 </xsl:template>
 
-<xsl:template match="option|userinput|envar|errorcode|constant">
+<xsl:template match="option|userinput|envar|errorcode|constant|markup">
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
