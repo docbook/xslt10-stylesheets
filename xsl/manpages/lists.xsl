@@ -297,7 +297,8 @@
     <!-- * output of all segmentedlist content -->
     <xsl:text>l</xsl:text>
   </xsl:for-each>
-  <xsl:text>.&#10;</xsl:text>
+  <!-- * last line of table format section must end with a dot -->
+  <xsl:text>&#x2302;&#10;</xsl:text>
   <!-- * optionally suppress output of segtitle -->
   <xsl:choose>
     <xsl:when test="$man.segtitle.suppress != 0">
