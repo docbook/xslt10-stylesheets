@@ -135,7 +135,7 @@
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>\h'-</xsl:text>
+  <xsl:text>\h'&#x2591;</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
     <xsl:value-of select="$list-indent"/>
@@ -160,7 +160,7 @@
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>\h'-</xsl:text>
+  <xsl:text>\h'&#x2591;</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
     <xsl:value-of select="$list-indent"/>
@@ -314,7 +314,7 @@
   <!-- * .TE = "Table End" -->
   <xsl:text>&#x2302;TE&#10;</xsl:text>
   <xsl:text>&#x2302;\" line length decrease back to previous value&#10;</xsl:text>
-  <xsl:text>&#x2302;ll -(\n(LLu * 62u / 100u)&#10;</xsl:text>
+  <xsl:text>&#x2302;ll &#x2591;(\n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * put a blank line of space below the table -->
   <xsl:text>&#x2302;sp&#10;</xsl:text>
 </xsl:template>

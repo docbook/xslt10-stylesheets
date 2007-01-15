@@ -101,15 +101,39 @@
 
   <!-- ================================================================== -->
 
+  <!-- * The replace.dots.and.dashes template is used to cause real -->
+  <!-- * dots and dashes to be output in the top comment (instead of -->
+  <!-- * escaped ones as in the source for the text displayed in the -->
+  <!-- * body of the page) -->
+  <xsl:template name="replace.dots.and.dashes">
+    <xsl:param name="content">
+      <xsl:apply-templates/>
+    </xsl:param>
+    <xsl:variable name="dot-content">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$content"/>
+        <xsl:with-param name="target" select="'.'"/>
+        <xsl:with-param name="replacement" select="'&#x2302;'"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:call-template name="string.subst">
+      <xsl:with-param name="string" select="$dot-content"/>
+      <xsl:with-param name="target" select="'-'"/>
+      <xsl:with-param name="replacement" select="'&#x2591;'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+
   <!-- * The nested-section-title template is called for refsect3, and any -->
   <!-- * refsection nested more than 2 levels deep. -->
   <xsl:template name="nested-section-title">
     <!-- * The next few lines are some arcane roff code to control line -->
     <!-- * spacing after headings. -->
     <xsl:text>&#x2302;sp&#10;</xsl:text>
-    <xsl:text>&#x2302;it 1 an-trap&#10;</xsl:text>
-    <xsl:text>&#x2302;nr an-no-space-flag 1&#10;</xsl:text>
-    <xsl:text>&#x2302;nr an-break-flag 1&#10;</xsl:text>
+    <xsl:text>&#x2302;it 1 an&#x2591;trap&#10;</xsl:text>
+    <xsl:text>&#x2302;nr an&#x2591;no&#x2591;space&#x2591;flag 1&#10;</xsl:text>
+    <xsl:text>&#x2302;nr an&#x2591;break&#x2591;flag 1&#10;</xsl:text>
     <xsl:text>&#x2302;br&#10;</xsl:text>
     <!-- * make title wrapper so that we can use mode="bold" template to -->
     <!-- * apply character formatting to it -->

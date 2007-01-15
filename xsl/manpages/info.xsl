@@ -308,7 +308,7 @@
 
   <xsl:template name="publisher.attribution">
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;sp -1n&#10;</xsl:text>
+    <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
     <xsl:text>&#x2302;IP ""</xsl:text> 
     <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
@@ -432,7 +432,7 @@
       <!-- * Editor, then render the corresponding localized gentext -->
       <xsl:when test="self::author">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp -1n&#10;</xsl:text>
+        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
         <xsl:text>&#x2302;IP ""</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
@@ -446,7 +446,7 @@
       </xsl:when>
       <xsl:when test="self::editor">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp -1n&#10;</xsl:text>
+        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
         <xsl:text>&#x2302;IP ""</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
@@ -464,7 +464,7 @@
         <xsl:choose>
           <xsl:when test="@class and @class != 'other'">
             <xsl:text>&#10;</xsl:text>
-            <xsl:text>&#x2302;sp -1n&#10;</xsl:text>
+            <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
             <xsl:text>&#x2302;IP ""</xsl:text> 
             <xsl:if test="not($blurb-indent = '')">
               <xsl:text> </xsl:text>
@@ -529,7 +529,7 @@
                 |../othername|../lineage|../honorific
                 |../affiliation|../email|../address">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp -1n&#10;</xsl:text>
+        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
         <xsl:text>&#x2302;IP ""</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
