@@ -170,30 +170,39 @@ db:manvolnum
     <xsl:param name="manual"/>
     <xsl:param name="source"/>
     <xsl:text>&#x2302;\"     Title: </xsl:text>
-    <xsl:value-of select="$title"/>
+    <xsl:call-template name="replace.dots.and.dashes">
+      <xsl:with-param name="content" select="$title"/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#x2302;\"    Author: </xsl:text>
-      <xsl:call-template name="make.roff.metadata.author">
-        <xsl:with-param name="info" select="$info"/>
-      </xsl:call-template>
+    <xsl:call-template name="replace.dots.and.dashes">
+      <xsl:with-param name="content">
+        <xsl:call-template name="make.roff.metadata.author">
+          <xsl:with-param name="info" select="$info"/>
+        </xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#x2302;\" Generator: DocBook XSL Stylesheets v</xsl:text>
-    <xsl:value-of select="$VERSION"/>
-    <xsl:text> &lt;http://docbook.sf.net/></xsl:text>
+    <xsl:call-template name="replace.dots.and.dashes">
+      <xsl:with-param name="content" select="$VERSION"/>
+    </xsl:call-template>
+    <xsl:text> &lt;http://docbook&#x2302;sf&#x2302;net/></xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#x2302;\"      Date: </xsl:text>
-      <xsl:call-template name="string.subst">
-        <!-- * replace hyphens in date with dots -->
-        <xsl:with-param name="string" select="$date"/>
-        <xsl:with-param name="target" select="'-'"/>
-        <xsl:with-param name="replacement" select="'.'"/>
-      </xsl:call-template>
+    <xsl:call-template name="replace.dots.and.dashes">
+      <xsl:with-param name="content" select="$date"/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#x2302;\"    Manual: </xsl:text>
-    <xsl:value-of select="$manual"/>
+    <xsl:call-template name="replace.dots.and.dashes">
+      <xsl:with-param name="content" select="$manual"/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#x2302;\"    Source: </xsl:text>
-    <xsl:value-of select="$source"/>
+    <xsl:call-template name="replace.dots.and.dashes">
+      <xsl:with-param name="content" select="$source"/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>&#x2302;\"</xsl:text>
     <xsl:text>&#10;</xsl:text>

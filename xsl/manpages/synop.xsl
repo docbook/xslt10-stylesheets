@@ -50,7 +50,7 @@
   <!-- * up one line vertically to negate the line of vertical space -->
   <!-- * that's added by the .HP macro -->
   <xsl:if test="preceding-sibling::*[1][self::synopfragment]">
-    <xsl:text>&#x2302;sp -1n&#10;</xsl:text>
+    <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
   </xsl:if>
   <xsl:text>&#x2302;HP </xsl:text>
   <!-- * For each Synopfragment, make a hanging paragraph, with the -->
@@ -237,7 +237,7 @@
   <!-- * (because funcdef is always followed by one open paren char) -->
   <xsl:value-of select="string-length (normalize-space ($funcprototype.string.value)) + 1"/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>.</xsl:text>
+  <xsl:text>&#x2302;</xsl:text>
   <xsl:value-of select="$man.font.funcprototype"/>
   <xsl:text> </xsl:text>
   <!-- * The following quotation mark (and the one further below) are -->
