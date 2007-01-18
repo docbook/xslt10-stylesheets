@@ -1,11 +1,11 @@
-Candidate DocBook 5 XSL stylesheets
+DocBook 5 XSL stylesheets
 ===========================================
 Bob Stayton
-8 January 2007
+bobs@sagehill.net
 
-This package contains a candidate release of XSL stylesheets
+This package contains a release of XSL stylesheets
 for processing DocBook 5 documents.  The stylesheets are
-the same as the snapshot stylesheet release of 2006-12-13 except that
+the same as the concurrent stylesheet release except that
 the templates match on elements in the DocBook namespace.
 
 Note, the stylesheets in these directories have
