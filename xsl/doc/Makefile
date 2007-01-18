@@ -16,7 +16,7 @@ GZIPFLAGS=
 
 VPATH=../docsrc
 
-DIRS=common refentry lib html fo manpages wordml slides website template pi
+DIRS=common refentry lib html fo manpages roundtrip slides website template pi
 
 # build reference.pdf.gz except for snapshot releases
 ifneq (snapshot,$(findstring snapshot,$(RELVER)))
