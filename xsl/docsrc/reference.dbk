@@ -36,7 +36,7 @@
       </listitem>
       <listitem>
         <para><xi:include
-        href="./wordml/docparam.xml"
+        href="./roundtrip/docparam.xml"
         xpointer="xpointer(/book/bookinfo/title/node())"/></para>
       </listitem>
       <listitem>
@@ -90,7 +90,7 @@
     <xi:include href="./html/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
     <partintro id="htmlintro">
       <xi:include href="./html/docparam.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
     <xi:include href="./html/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
@@ -99,7 +99,7 @@
     <xi:include href="./fo/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
     <partintro id="fointro">
       <xi:include href="./fo/docparam.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
     <xi:include href="./fo/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
@@ -108,25 +108,25 @@
     <xi:include href="./manpages/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
     <partintro id="manintro">
       <xi:include href="./manpages/docparam.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
     <xi:include href="./manpages/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
 
-  <part id="wordml">
-    <xi:include href="./wordml/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
-    <partintro id="wordmlintro">
-      <xi:include href="./wordml/docparam.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+  <part id="roundtrip">
+    <xi:include href="./roundtrip/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+    <partintro id="roundtripintro">
+      <xi:include href="./roundtrip/docparam.xml"
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
-    <xi:include href="./wordml/docparam.xml" xpointer="xpointer(/book/reference)" />
+    <xi:include href="./roundtrip/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
 
   <part id="slides">
     <xi:include href="./slides/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
     <partintro id="slidesintro">
       <xi:include href="./slides/docparam.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
     <xi:include href="./slides/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
@@ -135,7 +135,7 @@
     <xi:include href="./website/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
     <partintro id="websiteintro">
       <xi:include href="./website/docparam.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
     <xi:include href="./website/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
@@ -144,7 +144,7 @@
     <xi:include href="./pi/pi.xml" xpointer="xpointer(/book/bookinfo/title)" />
     <partintro id="piintro">
       <xi:include href="./pi/pi.xml"
-                  xpointer="xpointer(/book/preface/node())" />
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
     <xi:include href="./pi/pi.xml" xpointer="xpointer(/book/reference)" />
   </part>
