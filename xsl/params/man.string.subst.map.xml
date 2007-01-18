@@ -32,10 +32,6 @@
   <!-- *  -->
   <!-- ******************************************************************** -->
 
-  <!-- * escape dashes in content -->
-  <substitution oldstring="-" newstring="\-"/>
-  <!-- * replace U+2591 marker with dash -->
-  <substitution oldstring="&#x2591;" newstring="-"/>
   <!-- * escape backslashes in content -->
   <substitution oldstring="\" newstring="\\"/>
   <!-- * fix bad font-request capitalization in .SH (stylesheet artifact) -->
@@ -48,6 +44,10 @@
   <substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
   <!-- * replace U+2302 marker with dot -->
   <substitution oldstring="&#x2302;" newstring="."/>
+  <!-- * escape dashes in content -->
+  <substitution oldstring="-" newstring="\-"/>
+  <!-- * replace U+2591 marker with dash -->
+  <substitution oldstring="&#x2591;" newstring="-"/>
 
   <!-- ==================================================================== -->
 
