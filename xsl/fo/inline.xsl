@@ -1005,10 +1005,6 @@
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template match="orgname">
-  <xsl:call-template name="inline.charseq"/>
-</xsl:template>
-
 <xsl:template match="uri">
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
@@ -1179,35 +1175,19 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="org">
-  <xsl:call-template name="simple.xlink">
-    <xsl:with-param name="content">
-      <xsl:apply-templates/>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 
 <xsl:template match="orgname">
-  <xsl:call-template name="simple.xlink">
-    <xsl:with-param name="content">
-      <xsl:apply-templates/>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 
 <xsl:template match="orgdiv">
-  <xsl:call-template name="simple.xlink">
-    <xsl:with-param name="content">
-      <xsl:apply-templates/>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 
 <xsl:template match="affiliation">
-  <xsl:call-template name="simple.xlink">
-    <xsl:with-param name="content">
-      <xsl:apply-templates/>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
