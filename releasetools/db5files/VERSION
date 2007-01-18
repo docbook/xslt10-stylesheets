@@ -12,7 +12,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
-  <fm:Version>docbook5ns-snapshot-2007-01-08</fm:Version>
+  <fm:Version>docbook5ns-snapshot-2007-01-17</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
