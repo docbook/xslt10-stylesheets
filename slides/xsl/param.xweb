@@ -274,33 +274,6 @@ specification. The default unit is <literal>pt</literal>
 </refsect1>
 </refentry>
 
-<refentry id="speakernote.properties">
-<refmeta>
-<refentrytitle>speakernote.properties</refentrytitle>
-</refmeta>
-<refnamediv>
-<refname>speakernote.properties</refname>
-<refpurpose>Specifies properties for all speakernotes</refpurpose>
-</refnamediv>
-
-<refsynopsisdiv>
-  <src:fragment id='speakernote.properties.frag'>
-    <xsl:attribute-set name="speakernote.properties">
-      <xsl:attribute name="font-family">Times Roman</xsl:attribute>
-      <xsl:attribute name="font-style">italic</xsl:attribute>
-      <xsl:attribute name="font-size">12pt</xsl:attribute>
-      <xsl:attribute name="font-weight">normal</xsl:attribute>
-    </xsl:attribute-set>
-  </src:fragment>
-</refsynopsisdiv>
-
-<refsect1><title>Description</title>
-
-<para>This parameter specifies properties that are applied to all speakernotes.</para>
-
-</refsect1>
-</refentry>
-
 <refentry id="running.foot.properties">
 <refmeta>
 <refentrytitle>running.foot.properties</refentrytitle>
