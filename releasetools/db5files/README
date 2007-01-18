@@ -13,7 +13,7 @@ not yet been converted to use the DocBook 5 namespace:
 
   slides
   website
-  wordml
+  roundtrip
 
 
 Background
@@ -97,7 +97,7 @@ You can process a DocBook 5 document with these stylesheets
 using any XSLT processor, including xsltproc, Saxon 6 or 8,
 and Xalan.  Use these stylesheets as you would a stylesheet
 from the regular distribution (except for slides, website,
-and wordml).
+and roundtrip).
 
 If you happen to process a DocBook document whose root element
 is without the namespace declaration, the stylesheet
