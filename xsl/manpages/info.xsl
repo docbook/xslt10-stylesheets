@@ -25,7 +25,7 @@
         <!-- * preserving the original default indent value -->
         <!-- * when $man.indent.refsect is non-zero; -->
         <!-- * "u" is a roff unit specifier -->
-        <xsl:text>\n(zqu</xsl:text>
+        <xsl:text>&#x2593;n(zqu</xsl:text>
       </xsl:when>
       <xsl:otherwise/> <!-- * otherwise, just leave it empty -->
     </xsl:choose>
@@ -339,7 +339,7 @@
     <!-- * angle bracket and before the closing angle bracket is to -->
     <!-- * prevent groff from inserting a linebreak at those points and -->
     <!-- * outputting a hyphen character where the break occurs -->
-    <xsl:text>&lt;\&amp;</xsl:text>
+    <xsl:text>&lt;&#x2593;&amp;</xsl:text>
     <xsl:choose>
       <xsl:when test="self::email">
         <xsl:variable name="contents">
@@ -354,7 +354,7 @@
         <xsl:value-of select="normalize-space($contents)"/>
       </xsl:when>
     </xsl:choose>
-    <xsl:text>\&amp;&gt;</xsl:text>
+    <xsl:text>&#x2593;&amp;&gt;</xsl:text>
     <xsl:choose>
       <xsl:when test="not(following-sibling::*[descendant-or-self::email]
                       or following-sibling::address/otheraddr/ulink

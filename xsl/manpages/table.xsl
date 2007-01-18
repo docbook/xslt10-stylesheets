@@ -380,7 +380,7 @@
               >tbl convert : Extracted a nested table</xsl:text>
             </xsl:with-param>
           </xsl:call-template>
-          <xsl:text>[\fInested&#160;table\fR]*&#10;</xsl:text>
+          <xsl:text>[&#x2593;fInested&#160;table&#x2593;fR]*&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * Apply templates to the child contents of this cell, to -->

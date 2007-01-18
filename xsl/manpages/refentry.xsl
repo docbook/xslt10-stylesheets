@@ -143,7 +143,7 @@
         <!-- * actually means the title is indented by the value of -->
         <!-- * the SN register, which appears by default to be -->
         <!-- * about half of the default indentation value -->
-        <xsl:text>&#x2302;ti (\n(SNu * 5u / 3u)&#10;</xsl:text>
+        <xsl:text>&#x2302;ti (&#x2593;n(SNu * 5u / 3u)&#10;</xsl:text>
         <xsl:call-template name="nested-section-title"/>
         <xsl:apply-templates/>
       </xsl:otherwise>
@@ -165,11 +165,11 @@
       <xsl:if test="not($man.indent.refsect = 0)">
         <!-- * If default-indentation adjustment is on, then indent the -->
         <!-- * child content of this Refsect3 or Refsection. -->
-        <xsl:text>(\n(SNu)&#10;</xsl:text>
+        <xsl:text>(&#x2593;n(SNu)&#10;</xsl:text>
       </xsl:if>
     </xsl:variable>
     <xsl:call-template name="nested-section-title"/>
-    <xsl:text>&#x2302;RS (\n(SNu)&#10;</xsl:text>
+    <xsl:text>&#x2302;RS (&#x2593;n(SNu)&#10;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>&#x2302;RE&#10;</xsl:text>
   </xsl:template>

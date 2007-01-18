@@ -13,39 +13,44 @@
 <refsynopsisdiv>
 <src:fragment id='man.string.subst.map.frag'>
 <xsl:param name="man.string.subst.map">
-  <substitution oldstring="\" newstring="\\"/>
-  <!-- * escape all dots at the beginnings of lines (because roff -->
-  <!-- * interprets them as the start of roff requests) -->
-  <substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
-  <!-- * the stylesheets use U+2302 internally to represent the start of a -->
-  <!-- * roff request; for output, we need to convert that internal -->
-  <!-- * representation to the character that roff actually uses to mark -->
-  <!-- * the start of requests, which is a dot -->
-  <substitution oldstring="&#x2302;" newstring="."/>
-  <!-- * now, we need to restore single-backslashes in all roff -->
-  <!-- * requests (because slash substitution above doubled them) -->
-  <substitution oldstring="\\fB" newstring="\fB"/>
-  <substitution oldstring="\\fI" newstring="\fI"/>
-  <substitution oldstring="\\fR" newstring="\fR"/>
-  <substitution oldstring="\\n"  newstring="\n"/>
-  <substitution oldstring="\\h"  newstring="\h"/>
-  <!-- * requests in .SH sectsions output from Refsect1-level source -->
-  <!-- * end up getting capitalized; the following changes fix that -->
-  <substitution oldstring="\\FB" newstring="\fB"/>
-  <substitution oldstring="\\FI" newstring="\fI"/>
-  <substitution oldstring="\\FR" newstring="\fR"/>
-  <substitution oldstring='\\%' newstring='\%'/>
-  <substitution oldstring='\\&amp;' newstring='\&amp;'/>
-  <substitution oldstring='.\\"' newstring='.\"'/>
-  <!-- * although the groff docs do not make it clear, it appears that -->
-  <!-- * the only way to get a non-breaking hyphen in roff is to put a -->
-  <!-- * backslash in front of it; and, unfortunately, groff is not smart -->
-  <!-- * about where it breaks things (for example, it'll break an -->
-  <!-- * argument for a command across a line, if that argument contains -->
-  <!-- * a dash/hyphen); so, we must globally change all hyphens to "\-" -->
+
+  <!-- ******************************************************************** -->
+  <!-- *  -->
+  <!-- * The backslash and dot (\, .) characters have special meaning -->
+  <!-- * for roff, so we escape those characters when they appear in -->
+  <!-- * the source content, and we use certain (arbitrarily -->
+  <!-- * selected) Unicode characters as the internal representations -->
+  <!-- * for those characters, then replace them with real -->
+  <!-- * backslashes and dots in output. In addition, for certain -->
+  <!-- * reasons, we do the same thing for dashes. The mappings of -->
+  <!-- * those characters to the Unicode characters we use to -->
+  <!-- * represent them is hard-coded: -->
+  <!-- *  -->
+  <!-- *   - U+2591 = dash -->
+  <!-- *   - U+2593 = backslash -->
+  <!-- *   - U+2302 = dot -->
+  <!-- *  -->
+  <!-- ******************************************************************** -->
+
+  <!-- * escape dashes in content -->
   <substitution oldstring="-" newstring="\-"/>
-  <!-- * restore dashes in all roff requests and comments -->
+  <!-- * replace U+2591 marker with dash -->
   <substitution oldstring="&#x2591;" newstring="-"/>
+  <!-- * escape backslashes in content -->
+  <substitution oldstring="\" newstring="\\"/>
+  <!-- * fix bad font-request capitalization in .SH (stylesheet artifact) -->
+  <substitution oldstring="&#x2593;FB" newstring="\fB"/>
+  <substitution oldstring="&#x2593;FI" newstring="\fI"/>
+  <substitution oldstring="&#x2593;FR" newstring="\fR"/>
+  <!-- * replace U+2593 marker with backslash --> 
+  <substitution oldstring="&#x2593;" newstring="\"/>
+  <!-- * escape dashes in content (only at line beginnings) -->
+  <substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
+  <!-- * replace U+2302 marker with dot -->
+  <substitution oldstring="&#x2302;" newstring="."/>
+
+  <!-- ==================================================================== -->
+
   <!-- * squeeze multiple newlines before a roff request  -->
   <substitution oldstring="&#10;&#10;." newstring="&#10;."/>
   <!-- * remove any .sp occurences that directly follow a .PP  -->
@@ -147,10 +152,6 @@ particular customization of the DocBook XSL stylesheets.</para>
   causes target strings to be replaced in roff requests and escapes,
   not just in the visible contents.</para>
 
-  <para>In particular, do not attempt to add a mapping for the
-  dot/period character. Doing so will break your output. For an
-  explanation, see <xref linkend="Dots"/>.</para>
-
 </warning>
 
 <refsect2 id="map">
@@ -178,20 +179,44 @@ particular customization of the DocBook XSL stylesheets.</para>
   </para>
 </refsect2>
 
-<refsect2 id="Dots">
-  <title>About adding backslashes before dots</title>
-  <para>The stylesheets do not add backslashes before
-  periods/dots. One reason is that, because string substitution is
-  performed over the entire roff source of each man page, it would be
-  complicated to replace dots in visible contents without also causing
-  them to be replaced in roff requests and escapes; for example,
-  without causing, say, the <literal>.TH</literal> roff macro to be
-  replaced with <literal>\.TH</literal>. Additionally, backslashes in
-  front of periods/dots are needed only in the very rare case where a
-  period is the very first character in a line, without any space in
-  front of it. A better way to deal with that rare case is to add a
-  zero-width space in front of the offending dot(s) in your
-  source.</para>
+<refsect2 id="escape-replace">
+  <title>About escaping and replacing backslash, dot, and dash</title>
+  <para>The backslash and dot (\, .) characters have special meaning
+  for roff, so we:
+
+  <itemizedlist>
+    <listitem>
+      <para>escape backslashes and dots where they appear in the
+      source content</para>
+    </listitem>
+    <listitem>
+      <para>use certain (arbitrarily selected) Unicode characters as
+      “markers” – internal representations within the stylesheet – for
+      backslashes and dots</para>
+    </listitem>
+    <listitem>
+      <para>replace the Unicode characters with real backslashes and
+      dotes before output gets serialized</para>
+    </listitem>
+  </itemizedlist>
+  
+   In addition, for certain reasons, we do the same thing for
+   dashes.</para>
+
+  <para>The mappings of dash, backslash, and dot to the Unicode
+  characters we use to represent them is hard-coded in the stylesheet:
+
+  <itemizedlist>
+    <listitem><para><literal>U+2591</literal> = dash</para></listitem>
+    <listitem><para><literal>U+2593</literal> = backslash</para></listitem>
+    <listitem><para><literal>U+2302</literal> = dot</para></listitem>
+  </itemizedlist>
+
+  Those Unicode characters were chosen on the assumption that they are
+  never used in content intended for output to man pages. It would be
+  possible to provide a way for configuring the mappings (using XSLT
+  parameters), but doing so would make the stylesheet code much more
+  verbose and harder to read.</para>
 </refsect2>
 
 </refsect1>

@@ -169,12 +169,12 @@ db:manvolnum
     <xsl:param name="title"/>
     <xsl:param name="manual"/>
     <xsl:param name="source"/>
-    <xsl:text>&#x2302;\"     Title: </xsl:text>
+    <xsl:text>&#x2302;&#x2593;"     Title: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$title"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;\"    Author: </xsl:text>
+    <xsl:text>&#x2302;&#x2593;"    Author: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content">
         <xsl:call-template name="make.roff.metadata.author">
@@ -183,28 +183,28 @@ db:manvolnum
       </xsl:with-param>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;\" Generator: DocBook XSL Stylesheets v</xsl:text>
+    <xsl:text>&#x2302;&#x2593;" Generator: DocBook XSL Stylesheets v</xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$VERSION"/>
     </xsl:call-template>
     <xsl:text> &lt;http://docbook&#x2302;sf&#x2302;net/></xsl:text>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;\"      Date: </xsl:text>
+    <xsl:text>&#x2302;&#x2593;"      Date: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$date"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;\"    Manual: </xsl:text>
+    <xsl:text>&#x2302;&#x2593;"    Manual: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$manual"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;\"    Source: </xsl:text>
+    <xsl:text>&#x2302;&#x2593;"    Source: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$source"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;\"</xsl:text>
+    <xsl:text>&#x2302;&#x2593;"</xsl:text>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
@@ -315,31 +315,31 @@ db:manvolnum
     <!-- * If the value of man.hypenate is zero (the default), then -->
     <!-- * disable hyphenation (".nh" = "no hyphenation") -->
     <xsl:if test="$man.hyphenate = 0">
-      <xsl:text>&#x2302;\" disable hyphenation&#10;</xsl:text>
+      <xsl:text>&#x2302;&#x2593;" disable hyphenation&#10;</xsl:text>
       <xsl:text>&#x2302;nh&#10;</xsl:text>
     </xsl:if>
     <!-- * If the value of man.justify is zero (the default), then -->
     <!-- * disable justification (".ad l" means "adjust to left only") -->
     <xsl:if test="$man.justify = 0">
-      <xsl:text>&#x2302;\" disable justification</xsl:text>
+      <xsl:text>&#x2302;&#x2593;" disable justification</xsl:text>
       <xsl:text> (adjust text to left margin only)&#10;</xsl:text>
       <xsl:text>&#x2302;ad l&#10;</xsl:text>
     </xsl:if>
     <xsl:if test="not($man.indent.refsect = 0)">
-      <xsl:text>&#x2302;\" store initial "default indentation value"&#10;</xsl:text>
-      <xsl:text>&#x2302;nr zq \n(IN&#10;</xsl:text>
-      <xsl:text>&#x2302;\" adjust default indentation&#10;</xsl:text>
+      <xsl:text>&#x2302;&#x2593;" store initial "default indentation value"&#10;</xsl:text>
+      <xsl:text>&#x2302;nr zq &#x2593;n(IN&#10;</xsl:text>
+      <xsl:text>&#x2302;&#x2593;" adjust default indentation&#10;</xsl:text>
       <xsl:text>&#x2302;nr IN </xsl:text>
       <xsl:value-of select="$man.indent.width"/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;\" adjust indentation of SS headings&#10;</xsl:text>
-      <xsl:text>&#x2302;nr SN \n(IN&#10;</xsl:text>
+      <xsl:text>&#x2302;&#x2593;" adjust indentation of SS headings&#10;</xsl:text>
+      <xsl:text>&#x2302;nr SN &#x2593;n(IN&#10;</xsl:text>
     </xsl:if>
     <!-- * Unless the value of man.break.after.slash is zero (the -->
     <!-- * default), tell groff that it is OK to break a line -->
     <!-- * after a slash when needed. -->
     <xsl:if test="$man.break.after.slash != 0">
-      <xsl:text>&#x2302;\" enable line breaks after slashes&#10;</xsl:text>
+      <xsl:text>&#x2302;&#x2593;" enable line breaks after slashes&#10;</xsl:text>
       <xsl:text>&#x2302;cflags 4 /&#10;</xsl:text>
     </xsl:if>
   </xsl:template>
