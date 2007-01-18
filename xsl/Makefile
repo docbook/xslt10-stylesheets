@@ -51,12 +51,14 @@ doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
 website:
-	cp -pR ../website/xsl website
+	mkdir website
+	cp -pR ../website/xsl/* website/
 
 slides:
-	cp -pR ../slides/xsl slides
-	cp -pR ../slides/graphics slides
-	cp -pR ../slides/browser slides
+	mkdir slides
+	cp -pR ../slides/xsl/* slides/
+	cp -pR ../slides/graphics slides/
+	cp -pR ../slides/browser slides/
 
 clean:
 	for i in $(DIRS) __bogus__; do \
