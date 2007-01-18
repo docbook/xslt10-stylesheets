@@ -18,7 +18,7 @@
   <!-- ==================================================================== -->
 
   <!-- * This stylesheet expects itself as input  -->
-  <xsl:param name="param.dirs">html fo manpages wordml</xsl:param>
+  <xsl:param name="param.dirs">html fo manpages roundtrip</xsl:param>
 
   <xsl:template match="/">
     <xslt:stylesheet version="1.0"> 
