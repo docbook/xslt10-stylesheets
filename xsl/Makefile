@@ -44,16 +44,16 @@ xhtml:
 
 docsrc: base website slides
 	$(MAKE) -C docsrc
+	$(MAKE) -C website
+	$(MAKE) -C slides
 
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
 website:
-	$(MAKE) -C ../website/xsl
 	cp -pR ../website/xsl website
 
 slides:
-	$(MAKE) -C ../slides/xsl
 	cp -pR ../slides/xsl slides
 	cp -pR ../slides/graphics slides
 	cp -pR ../slides/browser slides
