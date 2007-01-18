@@ -22,7 +22,7 @@
       <!-- * preserving the original default indent value -->
       <!-- * when $man.indent.refsect is non-zero; -->
       <!-- * "u" is a roff unit specifier -->
-      <xsl:text>\n(zqu</xsl:text>
+      <xsl:text>&#x2593;n(zqu</xsl:text>
     </xsl:when>
     <xsl:otherwise/> <!-- * otherwise, just leave it empty -->
   </xsl:choose>
@@ -135,14 +135,14 @@
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>\h'&#x2591;</xsl:text>
+  <xsl:text>&#x2593;h'&#x2591;</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>'</xsl:text>
   <xsl:text>&#x2022;</xsl:text>
-  <xsl:text>\h'+</xsl:text>
+  <xsl:text>&#x2593;h'+</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
     <xsl:value-of select="$list-indent - 1"/>
@@ -160,7 +160,7 @@
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>\h'&#x2591;</xsl:text>
+  <xsl:text>&#x2593;h'&#x2591;</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
     <xsl:value-of select="$list-indent"/>
@@ -170,7 +170,7 @@
     <xsl:text> </xsl:text>
   </xsl:if>
   <xsl:number format="1."/>
-  <xsl:text>\h'+</xsl:text>
+  <xsl:text>&#x2593;h'+</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
     <xsl:value-of select="$list-indent - 2"/>
@@ -286,8 +286,8 @@
     <xsl:apply-templates mode="bold" select="title"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>&#x2302;\" line length increase to cope w/ tbl weirdness&#10;</xsl:text>
-  <xsl:text>&#x2302;ll +(\n(LLu * 62u / 100u)&#10;</xsl:text>
+  <xsl:text>&#x2302;&#x2593;" line length increase to cope w/ tbl weirdness&#10;</xsl:text>
+  <xsl:text>&#x2302;ll +(&#x2593;n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * .TS = "Table Start" -->
   <xsl:text>&#x2302;TS&#10;</xsl:text>
     <!-- * first output the table "format" spec, which tells tbl(1) how -->
@@ -313,8 +313,8 @@
   <xsl:apply-templates/>
   <!-- * .TE = "Table End" -->
   <xsl:text>&#x2302;TE&#10;</xsl:text>
-  <xsl:text>&#x2302;\" line length decrease back to previous value&#10;</xsl:text>
-  <xsl:text>&#x2302;ll &#x2591;(\n(LLu * 62u / 100u)&#10;</xsl:text>
+  <xsl:text>&#x2302;&#x2593;" line length decrease back to previous value&#10;</xsl:text>
+  <xsl:text>&#x2302;ll &#x2591;(&#x2593;n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * put a blank line of space below the table -->
   <xsl:text>&#x2302;sp&#10;</xsl:text>
 </xsl:template>

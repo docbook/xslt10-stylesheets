@@ -172,7 +172,7 @@
         <xsl:if test="$man.hyphenate.urls = 0 and
                       $man.break.after.slash = 0">
           <xsl:call-template name="suppress.hyphenation"/>
-          <xsl:text>\%</xsl:text>
+          <xsl:text>&#x2593;%</xsl:text>
         </xsl:if>
         <xsl:value-of select="$earmark"/>
       </xsl:otherwise>
@@ -220,7 +220,7 @@
     <!-- * This formatting should probably be made user-configurable, -->
     <!-- * to allow something other than just square brackets; e.g., -->
     <!-- * Angle brackets<10> or Braces{10}  -->
-    <xsl:text>\&amp;[</xsl:text>
+    <xsl:text>&#x2593;&amp;[</xsl:text>
     <xsl:value-of select="$notesource.number"/>
     <xsl:text>]</xsl:text>
     <!-- * Note that the reason for the \& before the opening bracket -->
@@ -369,7 +369,7 @@
       <xsl:if test="$man.hyphenate.urls = 0
                     and $man.break.after.slash = 0">
         <xsl:call-template name="suppress.hyphenation"/>
-        <xsl:text>\%</xsl:text>
+        <xsl:text>&#x2593;%</xsl:text>
       </xsl:if>
       <xsl:value-of select="@url"/>
       <xsl:text>&#10;</xsl:text>

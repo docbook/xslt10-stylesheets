@@ -37,17 +37,17 @@
 
   <xsl:template mode="bold" match="*">
     <xsl:for-each select="node()">
-      <xsl:text>\fB</xsl:text>
+      <xsl:text>&#x2593;fB</xsl:text>
       <xsl:apply-templates select="."/>
-      <xsl:text>\fR</xsl:text>
+      <xsl:text>&#x2593;fR</xsl:text>
     </xsl:for-each>
   </xsl:template>
 
   <xsl:template mode="italic" match="*">
     <xsl:for-each select="node()">
-      <xsl:text>\fI</xsl:text>
+      <xsl:text>&#x2593;fI</xsl:text>
       <xsl:apply-templates select="."/>
-      <xsl:text>\fR</xsl:text>
+      <xsl:text>&#x2593;fR</xsl:text>
     </xsl:for-each>
   </xsl:template>
 
@@ -95,7 +95,7 @@
     <xsl:if test="$man.hyphenate != 0 and
                   not(ancestor::cmdsynopsis) and
                   not(ancestor::funcsynopsis)">
-      <xsl:text>\%</xsl:text>
+      <xsl:text>&#x2593;%</xsl:text>
     </xsl:if>
   </xsl:template>
 
@@ -392,7 +392,7 @@
   <!-- * in roff source (just to make things easier to read). -->
   <xsl:template name="mark.subheading">
     <xsl:if test="$man.subheading.divider.enabled != 0">
-      <xsl:text>&#x2302;\" </xsl:text>
+      <xsl:text>&#x2302;&#x2593;" </xsl:text>
       <xsl:value-of select="$man.subheading.divider"/>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
