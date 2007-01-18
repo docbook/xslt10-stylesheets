@@ -581,7 +581,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
              <xsl:otherwise>
               <xsl:attribute name="border">0</xsl:attribute>
               <xsl:attribute name="usemap">
-                <xsl:value-of select="generate-id(../..)"/>
+                <xsl:value-of select="concat('#', generate-id(../..))"/>
               </xsl:attribute>
              </xsl:otherwise>
            </xsl:choose>
@@ -771,12 +771,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
              <xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
              <xsl:text>,</xsl:text>
              <xsl:value-of select="round($intrinsicdepth
-                                - ($y1p * $intrinsicdepth div 100.0))"/>
+                                - ($y2p * $intrinsicdepth div 100.0))"/>
              <xsl:text>,</xsl:text>
              <xsl:value-of select="round($x2p * $intrinsicwidth div 100.0)"/>
              <xsl:text>,</xsl:text>
              <xsl:value-of select="round($intrinsicdepth
-                                - ($y2p * $intrinsicdepth div 100.0))"/>
+                                - ($y1p * $intrinsicdepth div 100.0))"/>
            </xsl:message>
 -->
 
@@ -843,12 +843,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 	       <xsl:value-of select="round($x1p * $intrinsicwidth div 100.0)"/>
 	       <xsl:text>,</xsl:text>
 	       <xsl:value-of select="round($intrinsicdepth
-				       - ($y1p * $intrinsicdepth div 100.0))"/>
+				       - ($y2p * $intrinsicdepth div 100.0))"/>
 	       <xsl:text>,</xsl:text>
 	       <xsl:value-of select="round($x2p * $intrinsicwidth div 100.0)"/>
 	       <xsl:text>,</xsl:text>
 	       <xsl:value-of select="round($intrinsicdepth
-				     - ($y2p * $intrinsicdepth div 100.0))"/>
+				     - ($y1p * $intrinsicdepth div 100.0))"/>
 	     </xsl:attribute>
 	   </area>
          </xsl:when>
