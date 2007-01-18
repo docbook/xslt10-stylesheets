@@ -6,7 +6,7 @@
       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <bookinfo>
-    <title>WordML Parameter Reference</title>
+    <title>Roundtrip Parameter Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
@@ -21,8 +21,9 @@
     </copyright>
     <abstract>
       <para>This is reference documentation for all user-configurable
-      parameters in the DocBook WordML Stylesheets (for generating
-      WordML or Apple Pages output).</para>
+      parameters in the DocBook “Roundtrip” Stylesheets (for
+      transforming DocBook to WordML, OpenDocument, and Apple Pages,
+      and for converting from those formats back to DocBook).</para>
     </abstract>
   </bookinfo>
 
