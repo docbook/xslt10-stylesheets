@@ -8,7 +8,7 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 <!ENTITY fo-param.xml SYSTEM "fo/docparam.xml" NDATA SGML>
 <!ENTITY fo-table.xml SYSTEM "fo/table.xml" NDATA SGML>
 <!ENTITY manpages-param.xml SYSTEM "manpages/docparam.xml" NDATA SGML>
-<!ENTITY wordml-param.xml SYSTEM "wordml/docparam.xml" NDATA SGML>
+<!ENTITY roundtrip-param.xml SYSTEM "roundtrip/docparam.xml" NDATA SGML>
 <!ENTITY slides-param.xml SYSTEM "slides/docparam.xml" NDATA SGML>
 <!ENTITY website-param.xml SYSTEM "website/docparam.xml" NDATA SGML>
 <!ENTITY titlepage.xml SYSTEM "template/titlepage.xml" NDATA SGML>
@@ -60,8 +60,8 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
       <listitem><para><olink type="title" localinfo="manpages/index.html"
       targetdocent="manpages-param.xml"/></para>
       </listitem>
-      <listitem><para><olink type="title" localinfo="wordml/index.html"
-      targetdocent="wordml-param.xml"/></para>
+      <listitem><para><olink type="title" localinfo="roundtrip/index.html"
+      targetdocent="roundtrip-param.xml"/></para>
       </listitem>
       <listitem><para><olink type="title" localinfo="slides/index.html"
       targetdocent="slides-param.xml"/></para>
