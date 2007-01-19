@@ -78,11 +78,11 @@
     <xsl:call-template name="string.subst">
       <xsl:with-param name="string" select="$content"/>
       <xsl:with-param name="target" select="' '"/>
-      <!-- * We output a real nobreak space here (rather than, "\ ", -->
-      <!-- * the roff nobreak space) because, when we do character-map -->
-      <!-- * processing before final output, the character-map will -->
-      <!-- * handle conversion of the &#160; to "\ " for us -->
-      <xsl:with-param name="replacement" select="'&#160;'"/>
+      <!-- * U+2580 is a "UPPER HALF BLOCK"; we use it here because -->
+      <!-- * if we were to just use a normal space, it would get -->
+      <!-- * replaced when normalization is done. We replace it -->
+      <!-- * later with the groff markup for non-breaking space. -->
+      <xsl:with-param name="replacement" select="'&#x2580;'"/>
     </xsl:call-template>
   </xsl:template>
 
