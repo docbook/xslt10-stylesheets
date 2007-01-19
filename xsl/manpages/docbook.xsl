@@ -135,7 +135,9 @@
   <!-- ============================================================== -->
 
   <xsl:template match="refentry">
-
+    <xsl:param name="lang">
+      <xsl:call-template name="l10n.language"/>
+    </xsl:param>
     <!-- * Just use the first refname found as the "name" of the man -->
     <!-- * page (which may different from the "title"...) -->
     <xsl:variable name="first.refname" select="refnamediv[1]/refname[1]"/>
@@ -255,6 +257,7 @@
     <xsl:call-template name="write.man.file">
       <xsl:with-param name="name" select="$first.refname"/>
       <xsl:with-param name="section" select="$refentry.metadata/section"/>
+      <xsl:with-param name="lang" select="$lang"/>
       <xsl:with-param name="content" select="$manpage.contents.prepared"/>
     </xsl:call-template>
 
@@ -262,6 +265,7 @@
     <xsl:call-template name="write.stubs">
       <xsl:with-param name="first.refname" select="$first.refname"/>
       <xsl:with-param name="section" select="$refentry.metadata/section"/>
+      <xsl:with-param name="lang" select="$lang"/>
     </xsl:call-template>
 
   </xsl:template>
