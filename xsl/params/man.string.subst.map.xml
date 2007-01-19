@@ -143,7 +143,7 @@ is, before writing man-page files to disk) or, if the value of the
 before applying the roff character map.</para>
 
 <para>You can use <parameter>man.string.subst.map</parameter> as a
-"lightweight" character map to perform "essential" substitutions --
+“lightweight” character map to perform “essential” substitutions --
 that is, substitutions that are <emphasis>always</emphasis> performed,
 even if the value of the <parameter>man.charmap.enabled</parameter>
 parameter is zero. For example, you can use it to replace quotation
@@ -155,13 +155,33 @@ particular customization of the DocBook XSL stylesheets.</para>
 
 <warning>
   <para>Do you not change value of the
-  <parameter>man.string.subst.map</parameter> parameter unless
-  you are sure what you are doing. If you remove any of the default
-  mappings, you are likely to end up with broken output. And be very
-  careful about adding anything to it. Because it is used for doing
-  string substitution over the entire roff source of each man page, it
-  causes target strings to be replaced in roff requests and escapes,
-  not just in the visible contents.</para>
+  <parameter>man.string.subst.map</parameter> parameter unless you are
+  sure what you are doing. First consider adding your
+  string-substitution mappings to either or both of the following
+  parameters:
+  <variablelist>
+    <varlistentry>
+      <term><parameter>man.string.subst.map.local.pre</parameter></term>
+      <listitem><para>applied before
+      <parameter>man.string.subst.map</parameter></para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>man.string.subst.map.local.post</parameter></term>
+      <listitem><para>applied after
+      <parameter>man.string.subst.map</parameter></para></listitem>
+    </varlistentry>
+  </variablelist>
+  By default, both of those parameters contain no
+  string substitutions. They are intended as a means for you to
+  specify your own local string-substitution mappings.</para>
+
+  <para>If you remove any of default mappings from the value of the
+  <parameter>man.string.subst.map</parameter> parameter, you are
+  likely to end up with broken output. And be very about adding
+  anything to it; it’s used for doing string substitution over the
+  entire roff source of each man page – it causes target strings to be
+  replaced in roff requests and escapes, not just in the visible
+  contents of the page.</para>
 
 </warning>
 
