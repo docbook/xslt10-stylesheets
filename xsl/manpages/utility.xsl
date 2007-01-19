@@ -360,13 +360,42 @@
 
   <xsl:template name="make.adjusted.man.filename">
     <xsl:param name="name"/>
+    <xsl:param name="lang"/>
+    <xsl:param name="name.with.lang">
+      <xsl:choose>
+        <xsl:when test="not($man.output.lang.in.name.enabled = 0)
+                        and ($man.output.subdirs.enabled = 0)">
+          <!-- * user has specified man.output.lang.in.name.enabled -->
+          <!-- * AND doesn't want output going into separate manN dirs, -->
+          <!-- * so we include the $lang value in the filename; e.g., -->
+          <!-- * foo.ja.1 -->
+          <xsl:value-of select="concat($name, '.', $lang)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- * user either has man.output.lang.in.name.enabled unset -->
+          <!-- * or has set it but also has man.output.subdirs.enabled -->
+          <!-- * set (in which case the $lang value is used to add a -->
+          <!-- * $lang subdir in the pathname); in either case, we don't -->
+          <!-- * want to include the $lang in the filename -->
+          <xsl:value-of select="$name"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:param>
     <xsl:param name="section"/>
     <xsl:param name="dirname">
       <xsl:if test="not($man.output.in.separate.dir = 0)">
         <xsl:choose>
           <xsl:when test="not($man.output.subdirs.enabled = 0)">
+            <xsl:variable name="lang.subdir">
+              <xsl:if test="not($man.output.lang.in.name.enabled = 0)">
+                <!-- * user has man.output.lang.in.name.enabled set, so -->
+                <!-- * we need add a $lang subdir -->
+                <xsl:value-of select="concat($lang, '/')"/>
+              </xsl:if>
+            </xsl:variable>
             <xsl:value-of
-                select="concat($man.output.base.dir, 'man', normalize-space($section), '/')"/>
+                select="concat($man.output.base.dir, $lang.subdir,
+                        'man', normalize-space($section), '/')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="$man.output.base.dir"/>
@@ -379,7 +408,7 @@
       <!-- * a dot plus a section number to create the man filename -->
       <xsl:with-param name="string"
                       select="concat($dirname,
-                              normalize-space($name),
+                              normalize-space($name.with.lang),
                               '.', normalize-space($section))"/>
       <xsl:with-param name="target" select="' '"/>
       <xsl:with-param name="replacement" select="'_'"/>

@@ -433,11 +433,13 @@ db:manvolnum
   <xsl:template name="write.man.file">
     <xsl:param name="name"/>
     <xsl:param name="section"/>
+    <xsl:param name="lang"/>
     <xsl:param name="content"/>
     <xsl:param name="filename">
       <xsl:call-template name="make.adjusted.man.filename">
         <xsl:with-param name="name" select="$name"/>
         <xsl:with-param name="section" select="$section"/>
+        <xsl:with-param name="lang" select="$lang"/>
       </xsl:call-template>
     </xsl:param>
     <xsl:call-template name="write.text.chunk">
@@ -470,6 +472,7 @@ db:manvolnum
   <xsl:template name="write.stubs">
     <xsl:param name="first.refname"/>
     <xsl:param name="section"/>
+    <xsl:param name="lang"/>
     <xsl:for-each select="refnamediv/refname">
       <xsl:if test=". != $first.refname">
         <xsl:call-template name="write.text.chunk">
@@ -479,6 +482,7 @@ db:manvolnum
                 <xsl:apply-templates/>
               </xsl:with-param>
               <xsl:with-param name="section" select="$section"/>
+              <xsl:with-param name="lang" select="$lang"/>
             </xsl:call-template>
           </xsl:with-param>
           <xsl:with-param name="quiet" select="$man.output.quietly"/>
@@ -515,10 +519,14 @@ db:manvolnum
             <xsl:with-param name="quiet" select="1"/>
           </xsl:call-template>
         </xsl:variable>
+        <xsl:variable name="lang">
+          <xsl:call-template name="l10n.language"/>
+        </xsl:variable>
         <xsl:for-each select="refnamediv/refname">
           <xsl:call-template name="make.adjusted.man.filename">
             <xsl:with-param name="name" select="."/>
             <xsl:with-param name="section" select="$section"/>
+            <xsl:with-param name="lang" select="$lang"/>
           </xsl:call-template>
           <xsl:text>&#10;</xsl:text>
         </xsl:for-each>
