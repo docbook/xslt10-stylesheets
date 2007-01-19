@@ -346,23 +346,68 @@ db:manvolnum
 
   <!-- ================================================================== -->
 
-  <!-- * The prepare.manpage.contents template is called after -->
-  <!-- * everything else has been done, just before writing the actual -->
-  <!-- * man-page files to the filesystem. It works on the entire roff -->
-  <!-- * source for each man page (not just the visible contents). -->
+  <!-- * The prepare.manpage.contents template is called after all -->
+  <!-- * other processing has been done, before serializing the -->
+  <!-- * result of all the other processing. It basically works on -->
+  <!-- * the result as one big string. -->
   <xsl:template name="prepare.manpage.contents">
     <xsl:param name="content" select="''"/>
 
-    <!-- * First do "essential" string/character substitutions; for -->
-    <!-- * example, the backslash character _must_ be substituted with -->
-    <!-- * a double backslash, to prevent it from being interpreted as -->
-    <!-- * a roff escape -->
+    <!-- * If user has provided a "local" string-substitution map to -->
+    <!-- * be applied /before/ the standard string-substitution map, -->
+    <!-- * apply it. -->
+    <xsl:variable name="pre.adjusted.content">
+      <xsl:choose>
+        <xsl:when test="$man.string.subst.map.local.pre">
+          <!-- * normalized value of man.string.subst.map.local.pre -->
+          <!-- * is non-empty, so get contents of map and apply them -->
+          <xsl:call-template name="apply-string-subst-map">
+            <xsl:with-param name="content" select="$content"/>
+            <xsl:with-param name="map.contents"
+                            select="exsl:node-set($man.string.subst.map.local.pre)/*"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- * value of man.string.subst.map.local.pre is empty, -->
+          <!-- * so just copy original contents -->
+          <xsl:value-of select="$content"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <!-- * Apply standard string-substitution map. The main purpose -->
+    <!-- * of this map is to escape certain characters that have -->
+    <!-- * special meaning in roff, and to replace certain characters -->
+    <!-- * used within the stylesheet internally to represent roff -->
+    <!-- * markup characters. -->
     <xsl:variable name="adjusted.content">
       <xsl:call-template name="apply-string-subst-map">
-        <xsl:with-param name="content" select="$content"/>
+        <xsl:with-param name="content" select="$pre.adjusted.content"/>
         <xsl:with-param name="map.contents"
                         select="exsl:node-set($man.string.subst.map)/*"/>
       </xsl:call-template>
+    </xsl:variable>
+
+    <!-- * If user has provided a "local" string-substitution map to -->
+    <!-- * be applied /after/ the standard string-substitution map, -->
+    <!-- * apply it. -->
+    <xsl:variable name="post.adjusted.content">
+      <xsl:choose>
+        <xsl:when test="$man.string.subst.map.local.post">
+          <!-- * normalized value of man.string.subst.map.local.post -->
+          <!-- * is non-empty, so get contents of map and apply them -->
+          <xsl:call-template name="apply-string-subst-map">
+            <xsl:with-param name="content" select="$adjusted.content"/>
+            <xsl:with-param name="map.contents"
+                            select="exsl:node-set($man.string.subst.map.local.post)/*"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- * value of man.string.subst.map.local.post is empty, -->
+          <!-- * so just copy original contents -->
+          <xsl:value-of select="$adjusted.content"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
 
     <!-- * Optionally, apply a character map to replace Unicode -->
@@ -370,7 +415,7 @@ db:manvolnum
     <xsl:choose>
       <xsl:when test="$man.charmap.enabled != 0">
         <xsl:call-template name="apply-character-map">
-          <xsl:with-param name="content" select="$adjusted.content"/>
+          <xsl:with-param name="content" select="$post.adjusted.content"/>
           <xsl:with-param name="map.contents"
                           select="exsl:node-set($man.charmap.contents)/*"/>
         </xsl:call-template>

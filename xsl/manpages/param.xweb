@@ -73,7 +73,9 @@
 &man.charmap.uri;
 &man.charmap.use.subset;
 &man.charmap.subset.profile;
+&man.string.subst.map.local.pre;
 &man.string.subst.map;
+&man.string.subst.map.local.post;
   </reference>
   <reference id="refmeta">
   <title>Refentry metadata gathering</title>
@@ -162,7 +164,9 @@
 <src:fragref linkend="man.output.in.separate.dir.frag"/>
 <src:fragref linkend="man.output.base.dir.frag"/>
 <src:fragref linkend="man.output.subdirs.enabled.frag"/>
+<src:fragref linkend="man.string.subst.map.local.pre.frag"/>
 <src:fragref linkend="man.string.subst.map.frag"/>
+<src:fragref linkend="man.string.subst.map.local.post.frag"/>
 <src:fragref linkend="man.links.are.numbered.frag"/>
 <src:fragref linkend="man.links.are.underlined.frag"/>
 <src:fragref linkend="man.links.list.enabled.frag"/>
