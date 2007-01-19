@@ -107,6 +107,7 @@
 &man.output.manifest.enabled;
 &man.output.manifest.filename;
 &man.output.in.separate.dir;
+&man.output.lang.in.name.enabled;
 &man.output.base.dir;
 &man.output.subdirs.enabled;
 &man.output.quietly;
@@ -162,6 +163,7 @@
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
 <src:fragref linkend="man.output.in.separate.dir.frag"/>
+<src:fragref linkend="man.output.lang.in.name.enabled.frag"/>
 <src:fragref linkend="man.output.base.dir.frag"/>
 <src:fragref linkend="man.output.subdirs.enabled.frag"/>
 <src:fragref linkend="man.string.subst.map.local.pre.frag"/>
