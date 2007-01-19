@@ -32,8 +32,11 @@
   <!-- *  -->
   <!-- ******************************************************************** -->
 
-  <!-- * escape backslashes in content -->
-  <substitution oldstring="\" newstring="\\"/>
+  <!-- * escape backslashes in content; we use "\e" instead of "\\" -->
+  <!-- * because the groff docs say that's the correct thing to do; also -->
+  <!-- * because testing shows that "\\" doesn't always work as expected; -->
+  <!-- * for example, "\\" within a table seems to mess things up -->
+  <substitution oldstring="\" newstring="\e"/>
   <!-- * fix bad font-request capitalization in .SH (stylesheet artifact) -->
   <substitution oldstring="&#x2593;FB" newstring="\fB"/>
   <substitution oldstring="&#x2593;FI" newstring="\fI"/>
