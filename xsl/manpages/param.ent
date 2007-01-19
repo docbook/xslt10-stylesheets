@@ -46,6 +46,7 @@
 <!ENTITY man.output.manifest.filename SYSTEM "../params/man.output.manifest.filename.xml">
 <!ENTITY man.output.encoding SYSTEM "../params/man.output.encoding.xml">
 <!ENTITY man.output.in.separate.dir SYSTEM "../params/man.output.in.separate.dir.xml">
+<!ENTITY man.output.lang.in.name.enabled SYSTEM "../params/man.output.lang.in.name.enabled.xml">
 <!ENTITY man.output.base.dir SYSTEM "../params/man.output.base.dir.xml">
 <!ENTITY man.output.subdirs.enabled SYSTEM "../params/man.output.subdirs.enabled.xml">
 <!ENTITY man.subheading.divider SYSTEM "../params/man.subheading.divider.xml">
