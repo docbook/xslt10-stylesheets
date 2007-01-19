@@ -19,8 +19,8 @@
 <refsect1><title>Description</title>
 
   <para>The <parameter>man.output.lang.in.name.enabled</parameter>
-  parameter specifies which controls whether a <literal>$lang</literal>
-  value is included in man-page filenames and pathnames.</para>
+  parameter specifies whether a <literal>$lang</literal> value is
+  included in man-page filenames and pathnames.</para>
 
   <para>If the value of
   <parameter>man.output.lang.in.name.enabled</parameter> is non-zero,
