@@ -3164,7 +3164,7 @@
    character="&#x2216;"
    u:name="SET MINUS"
    u:entity="setmn"
-   string="\\"
+   string="\e"
    u:block="Mathematical Operators"
    />
   <xsl:output-character
