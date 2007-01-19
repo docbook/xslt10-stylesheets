@@ -28,7 +28,7 @@
   <xsl:text>(</xsl:text>
   <xsl:value-of select="$snum"/>
   <xsl:text>)</xsl:text>
-  <xsl:text>&#160;</xsl:text>
+  <xsl:text>&#x2580;</xsl:text>
   <xsl:variable name="synopfragmentref">
     <FragRefContents><xsl:value-of select="normalize-space(.)"/></FragRefContents>
   </xsl:variable>
@@ -149,8 +149,8 @@
 </xsl:template>
 
 <xsl:template match="sbr">
-  <xsl:text>&#10;</xsl:text>
-  <xsl:text>&#x2302;br&#10;</xsl:text>
+  <xsl:text>&#x2592;</xsl:text>
+  <xsl:text>&#x2302;br&#x2592;</xsl:text>
 </xsl:template>
 
 <xsl:template match="cmdsynopsis">

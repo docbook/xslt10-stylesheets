@@ -130,7 +130,7 @@
         <xsl:value-of select="$tbl.font.title"/>
         <xsl:text> </xsl:text>
         <xsl:if test="parent::td">
-          <xsl:text>*[nested&#160;table]</xsl:text>
+          <xsl:text>*[nested&#x2580;table]</xsl:text>
         </xsl:if>
         <xsl:value-of select="normalize-space($title)"/>
         <xsl:text>&#10;</xsl:text>
@@ -380,7 +380,7 @@
               >tbl convert : Extracted a nested table</xsl:text>
             </xsl:with-param>
           </xsl:call-template>
-          <xsl:text>[&#x2593;fInested&#160;table&#x2593;fR]*&#10;</xsl:text>
+          <xsl:text>[&#x2593;fInested&#x2580;table&#x2593;fR]*&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * Apply templates to the child contents of this cell, to -->

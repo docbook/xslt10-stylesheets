@@ -38,6 +38,10 @@
   <substitution oldstring="&#x2593;FB" newstring="\fB"/>
   <substitution oldstring="&#x2593;FI" newstring="\fI"/>
   <substitution oldstring="&#x2593;FR" newstring="\fR"/>
+  <!-- * remove no-break marker at beginning of line (stylesheet artifact) --> 
+  <substitution oldstring="&#x2592;&#x2580;" newstring="&#x2592;"/>
+  <!-- * replace U+2580 no-break marker (stylesheet-added) w/ no-break space -->
+  <substitution oldstring="&#x2580;" newstring="\ "/>
   <!-- * replace U+2593 marker with backslash --> 
   <substitution oldstring="&#x2593;" newstring="\"/>
   <!-- * escape dashes in content (only at line beginnings) -->
@@ -117,6 +121,13 @@
   <!-- * -->
   <!-- *   Product&#x2122; -> Product(TM) -->
   <substitution oldstring="&#x2122;" newstring="(TM)"/>
+
+  <!-- ==================================================================== -->
+
+  <!-- * we use U+2592 as a marker for the newline before output of <sbr>; -->
+  <!-- * so we now need to replace U+2592 marker with a real newline -->
+  <substitution oldstring="&#x2592;" newstring="&#10;"/>
+
 </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
