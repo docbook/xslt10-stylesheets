@@ -47,22 +47,6 @@
   <!-- ==================================================================== -->
 
   <xsl:template match="/">
-    <!-- * If we detect that this document is a DocBook 5/NG doc, then we -->
-    <!-- * need to pre-process it to strip out the namespace and to change -->
-    <!-- * a few other things so that we can process it with the stylesheets -->
-    <xsl:choose>
-      <xsl:when test="*/self::ng:* or */self::db:*">
-        <xsl:message>Note: Stripping NS from DocBook 5/NG document.</xsl:message>
-        <xsl:variable name="nons">
-          <xsl:apply-templates mode="stripNS"/>
-        </xsl:variable>
-        <xsl:message>Note: Processing stripped document.</xsl:message>
-        <xsl:apply-templates select="exsl:node-set($nons)"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- * Otherwise, we do not have a DocBook 5/NG document, or we are -->
-        <!-- * at the point where the first pass has already been done to -->
-        <!-- * strip out the namespace; so we can now process it. -->
         <xsl:choose>
           <xsl:when test="//refentry">
             <!-- * Check to see if we have any refentry children in this -->
@@ -128,8 +112,6 @@
             </xsl:message>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
   <!-- ============================================================== -->
