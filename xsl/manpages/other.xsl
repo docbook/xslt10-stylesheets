@@ -183,7 +183,9 @@ db:manvolnum
       </xsl:with-param>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;" Generator: DocBook XSL Stylesheets v</xsl:text>
+    <xsl:text>&#x2302;&#x2593;" Generator: DocBook </xsl:text>
+    <xsl:value-of select="$DistroTitle"/>
+    <xsl:text> v</xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$VERSION"/>
     </xsl:call-template>
