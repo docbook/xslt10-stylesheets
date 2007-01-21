@@ -144,7 +144,7 @@
     <base href="{$html.base}"/>
   </xsl:if>
 
-  <meta name="generator" content="DocBook XSL Stylesheets V{$VERSION}"/>
+  <meta name="generator" content="DocBook {$DistroTitle} V{$VERSION}"/>
 
   <xsl:if test="$generate.meta.abstract != 0">
     <xsl:variable name="info" select="(articleinfo

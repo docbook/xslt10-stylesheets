@@ -55,7 +55,9 @@
     <xsl:element name="rx:meta-field">
       <xsl:attribute name="name">creator</xsl:attribute>
       <xsl:attribute name="value">
-        <xsl:text>DocBook XSL Stylesheets V</xsl:text>
+        <xsl:text>DocBook </xsl:text>
+        <xsl:value-of select="$DistroTitle"/>
+        <xsl:text> V</xsl:text>
         <xsl:value-of select="$VERSION"/>
       </xsl:attribute>
     </xsl:element>
