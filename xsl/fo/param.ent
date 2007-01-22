@@ -93,6 +93,7 @@
 <!ENTITY index.on.role SYSTEM "../params/index.on.role.xml">
 <!ENTITY index.on.type SYSTEM "../params/index.on.type.xml">
 <!ENTITY index.number.separator SYSTEM "../params/index.number.separator.xml">
+<!ENTITY index.page.number.properties SYSTEM "../params/index.page.number.properties.xml">
 <!ENTITY index.range.separator SYSTEM "../params/index.range.separator.xml">
 <!ENTITY index.term.separator SYSTEM "../params/index.term.separator.xml">
 <!ENTITY informal.object.properties SYSTEM "../params/informal.object.properties.xml">
