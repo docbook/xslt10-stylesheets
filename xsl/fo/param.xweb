@@ -457,6 +457,7 @@ zero by default, so this is simply the page-master region-left.
 &article.appendix.title.properties;
 &abstract.properties;
 &abstract.title.properties;
+&index.page.number.properties;
 &revhistory.table.properties;
 &revhistory.table.cell.properties;
 &revhistory.title.properties;
@@ -656,6 +657,7 @@ around all these parameters.</para>
 <src:fragref linkend="index.method.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
+<src:fragref linkend="index.page.number.properties.frag"/>
 <src:fragref linkend="informalequation.properties.frag"/>
 <src:fragref linkend="informalexample.properties.frag"/>
 <src:fragref linkend="informalfigure.properties.frag"/>
