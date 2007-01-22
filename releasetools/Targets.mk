@@ -54,10 +54,6 @@ ChangeLog.xml: PreviousRevision
 	-r HEAD:$(PREVIOUS_REVISION) \
 	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
 
-PreviousRevision:
-	$(SVN) $(SVN_OPTS) list --xml VERSION \
-	| $(XSLTPROC) $(GET_PREVIOUS_REVISION) - > $@
-
 ChangeHistory.xml.zip: ChangeHistory.xml
 	$(ZIP) $(ZIP_OPTS) $@ $<
 	$(RM) $<

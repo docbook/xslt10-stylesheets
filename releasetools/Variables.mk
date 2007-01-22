@@ -60,18 +60,7 @@ MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 # to generate NEWS file(s) and releases notes
 SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
-# stylesheet used for finding the previous release number in the
-# RELEASE-NOTES.xml file.
-GET_PREVIOUS_RELEASE := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
-                xmlns:db="http://docbook.org/ns/docbook" \
-                version="1.0"> \
-  <xsl:output method="text"/> \
-  <xsl:template match="/"> \
-    <xsl:value-of select="substring-after(/db:article/db:sect1/db:title, &apos; &apos;)"/> \
-  </xsl:template> \
-</xsl:stylesheet>
-
-PREVIOUS_RELEASE=$(shell echo '$(GET_PREVIOUS_RELEASE)' | $(XSLTPROC) $(XSLTPROC_OPTS) - RELEASE-NOTES.xml)
+PREVIOUS_RELEASE=$(shell if [ -f PreviousRelease ];then cat PreviousRelease; fi)
 
 # stylesheet for stripping DB5 namespace
 STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
