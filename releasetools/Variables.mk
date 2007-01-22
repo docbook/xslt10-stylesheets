@@ -60,10 +60,6 @@ MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 # to generate NEWS file(s) and releases notes
 SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
-# stylesheet used for determining the revision number of the
-# last/latest release
-GET_PREVIOUS_REVISION=$(DOCBOOK_SVN)/releasetools/get-previous-revision.xsl
-
 # stylesheet used for finding the previous release number in the
 # RELEASE-NOTES.xml file.
 GET_PREVIOUS_RELEASE := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
