@@ -44,7 +44,7 @@ COPYDOC := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
 all: $(PARAMFILESDOCD)
 
 %.docd.xsl: %.xsl
-	echo '$(COPYDOC)' | $(XSLT) $(XSLTFLAGS) - $< > $@
+	@echo '$(COPYDOC)' | $(XSLT) $(XSLTFLAGS) - $< > $@
 
 debug:
 	@echo $(PARAMFILESDOCD)
