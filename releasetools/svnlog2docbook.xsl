@@ -225,8 +225,7 @@
         <!-- * get the filename(s) + revision(s) and username, and -->
         <!-- * put it into an Alt element, which will become a Title -->
         <!-- * element in HTML output, generating "tooltip text"-->
-        <literallayout format="linespecific"
-          ><phrase role="commit-message">
+        <literallayout><phrase role="commit-message">
             <xsl:apply-templates select="msg"/>
             <alt>
               <!-- * Only get path names for files that are in the subsection -->
