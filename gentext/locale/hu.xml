@@ -1,15 +1,10 @@
-<?xml version='1.0'?>
+<?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
-<!DOCTYPE locale [
-<!ENTITY % lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-                "http://www.w3.org/2003/entities/iso8879/isolat1.ent">
-%lat1;
-]>
 <locale language="hu"
         english-language-name="Hungarian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
-<doc:localeinfo xmlns="">
+<doc:localeinfo>
 <authorgroup>
   <author><firstname>Tamas</firstname><surname>Szanto</surname>
           <affiliation><address><email>tszanto@mol.hu</email></address>
@@ -22,85 +17,85 @@
 <gentext key="abstract" text="kivonat"/>
 <gentext key="Answer" text="V:"/>
 <gentext key="answer" text="v:"/>
-<gentext key="Appendix" text="F&#x00FC;ggel&#x00E9;k"/>
-<gentext key="appendix" text="f&#x00FC;ggel&#x00E9;k"/>
+<gentext key="Appendix" text="Függelék"/>
+<gentext key="appendix" text="függelék"/>
 <gentext key="Article" text="Cikk"/>
 <gentext key="article" text="cikk"/>
 <gentext key="Author" text="Szerz"/>
-<gentext key="Bibliography" text="Irodalomjegyz&#x00E9;k"/>
-<gentext key="bibliography" text="irodalomjegyz&#x00E9;k"/>
-<gentext key="Book" text="K&#x00F6;nyv"/>
-<gentext key="book" text="k&#x00F6;nyv"/>
+<gentext key="Bibliography" text="Irodalomjegyzék"/>
+<gentext key="bibliography" text="irodalomjegyzék"/>
+<gentext key="Book" text="Könyv"/>
+<gentext key="book" text="könyv"/>
 <gentext key="CAUTION" text="FIGYELEM"/>
 <gentext key="Caution" text="Figyelem"/>
 <gentext key="caution" text="figyelem"/>
 <gentext key="Chapter" text="Fejezet"/>
 <gentext key="chapter" text="fejezet"/>
-<gentext key="Colophon" text="V&#x00E9;gsz&#x00F3;"/>
-<gentext key="colophon" text="v&#x00E9;gsz&#x00F3;"/>
+<gentext key="Colophon" text="Végszó"/>
+<gentext key="colophon" text="végszó"/>
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="copyright"/>
-<gentext key="Dedication" text="Aj&#x00E1;nl&#x00E1;s"/>
-<gentext key="dedication" text="aj&#x00E1;nl&#x00E1;s"/>
-<gentext key="Edition" text="Kiad&#x00E1;s"/>
-<gentext key="edition" text="kiad&#x00E1;s"/>
+<gentext key="Dedication" text="Ajánlás"/>
+<gentext key="dedication" text="ajánlás"/>
+<gentext key="Edition" text="Kiadás"/>
+<gentext key="edition" text="kiadás"/>
 <gentext key="Equation" text="Egyenlet"/>
 <gentext key="equation" text="egyenlet"/>
-<gentext key="Example" text="P&#x00E9;lda"/>
-<gentext key="example" text="p&#x00E9;lda"/>
-<gentext key="Figure" text="&#x00C1;bra"/>
-<gentext key="figure" text="&#x00E1;bra"/>
-<gentext key="Glossary" text="Sz&#x00F3;jegyz&#x00E9;k"/>
-<gentext key="glossary" text="sz&#x00F3;jegyz&#x00E9;k"/>
-<gentext key="GlossSee" text="L&#x00E1;sd"/>
-<gentext key="glosssee" text="l&#x00E1;sd"/>
-<gentext key="GlossSeeAlso" text="L&#x00E1;sd m&#x00E9;g"/>
-<gentext key="glossseealso" text="l&#x00E1;sd m&#x00E9;g"/>
+<gentext key="Example" text="Példa"/>
+<gentext key="example" text="példa"/>
+<gentext key="Figure" text="Ábra"/>
+<gentext key="figure" text="ábra"/>
+<gentext key="Glossary" text="Szójegyzék"/>
+<gentext key="glossary" text="szójegyzék"/>
+<gentext key="GlossSee" text="Lásd"/>
+<gentext key="glosssee" text="lásd"/>
+<gentext key="GlossSeeAlso" text="Lásd még"/>
+<gentext key="glossseealso" text="lásd még"/>
 <gentext key="IMPORTANT" text="FONTOS"/>
 <gentext key="Important" text="Fontos"/>
 <gentext key="important" text="fontos"/>
-<gentext key="Index" text="T&#x00E1;rgymutat&#x00F3;"/>
-<gentext key="index" text="t&#x00E1;rgymutat&#x00F3;"/>
+<gentext key="Index" text="Tárgymutató"/>
+<gentext key="index" text="tárgymutató"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="isbn"/>
-<gentext key="LegalNotice" text="Jogi k&#x00F6;zlem&#x00E9;ny"/>
-<gentext key="legalnotice" text="jogi k&#x00F6;zlem&#x00E9;ny"/>
-<gentext key="MsgAud" text="C&#x00E9;lk&#x00F6;z&#x00F6;ns&#x00E9;g"/>
-<gentext key="msgaud" text="c&#x00E9;lk&#x00F6;z&#x00F6;ns&#x00E9;g"/>
+<gentext key="LegalNotice" text="Jogi közlemény"/>
+<gentext key="legalnotice" text="jogi közlemény"/>
+<gentext key="MsgAud" text="Célközönség"/>
+<gentext key="msgaud" text="célközönség"/>
 <gentext key="MsgLevel" text="Szint"/>
 <gentext key="msglevel" text="szint"/>
 <gentext key="MsgOrig" text="Eredet"/>
 <gentext key="msgorig" text="eredet"/>
-<gentext key="NOTE" text="MEGJEGYZ&#x00C9;S"/>
-<gentext key="Note" text="Megjegyz&#x00E9;s"/>
-<gentext key="note" text="megjegyz&#x00E9;s"/>
-<gentext key="Part" text="R&#x00E9;sz"/>
-<gentext key="part" text="r&#x00E9;sz"/>
-<gentext key="Preface" text="El&#x0151;sz&#x00F3;"/>
-<gentext key="preface" text="el&#x0151;sz&#x00F3;"/>
-<gentext key="Procedure" text="Elj&#x00E1;r&#x00E1;s"/>
-<gentext key="procedure" text="elj&#x00E1;r&#x00E1;s"/>
+<gentext key="NOTE" text="MEGJEGYZÉS"/>
+<gentext key="Note" text="Megjegyzés"/>
+<gentext key="note" text="megjegyzés"/>
+<gentext key="Part" text="Rész"/>
+<gentext key="part" text="rész"/>
+<gentext key="Preface" text="Előszó"/>
+<gentext key="preface" text="előszó"/>
+<gentext key="Procedure" text="Eljárás"/>
+<gentext key="procedure" text="eljárás"/>
 <gentext key="ProductionSet" text="Elemcsoport"/>
 <gentext key="Published" text="Megjelent"/>
 <gentext key="published" text="megjelent"/>
-<gentext key="Qandadiv" text="K &#x00E9;s V"/>
-<gentext key="qandadiv" text="K &#x00E9;s V"/>
+<gentext key="Qandadiv" text="K és V"/>
+<gentext key="qandadiv" text="K és V"/>
 <gentext key="Question" text="K:"/>
 <gentext key="question" text="k:"/>
-<gentext key="RefEntry" text="Bejegyz&#x00E9;s"/>
-<gentext key="refentry" text="bejegyz&#x00E9;s"/>
+<gentext key="RefEntry" text="Bejegyzés"/>
+<gentext key="refentry" text="bejegyzés"/>
 <gentext key="Reference" text="Referencia"/>
 <gentext key="reference" text="referencia"/>
-<gentext key="RefName" text="N&#x00E9;v"/>
-<gentext key="refname" text="n&#x00E9;v"/>
+<gentext key="RefName" text="Név"/>
+<gentext key="refname" text="név"/>
 <gentext key="RefSection" text="Szakasz"/>
 <gentext key="refsection" text="szakasz"/>
-<gentext key="RefSynopsisDiv" text="&#x00C1;ttekint&#x00E9;s"/>
-<gentext key="refsynopsisdiv" text="&#x00E1;ttekint&#x00E9;s"/>
-<gentext key="RevHistory" text="Verzi&#x00F3;t&#x00F6;rt&#x00E9;net"/>
-<gentext key="revhistory" text="verzi&#x00F3;t&#x00F6;rt&#x00E9;net"/>
-<gentext key="Revision" text="Verzi&#x00F3;"/>
-<gentext key="revision" text="verzi&#x00F3;"/>
+<gentext key="RefSynopsisDiv" text="Áttekintés"/>
+<gentext key="refsynopsisdiv" text="áttekintés"/>
+<gentext key="RevHistory" text="Verziótörténet"/>
+<gentext key="revhistory" text="verziótörténet"/>
+<gentext key="Revision" text="Verzió"/>
+<gentext key="revision" text="verzió"/>
 <gentext key="sect1" text="Szakasz"/>
 <gentext key="sect2" text="Szakasz"/>
 <gentext key="sect3" text="Szakasz"/>
@@ -108,21 +103,21 @@
 <gentext key="sect5" text="Szakasz"/>
 <gentext key="Section" text="Szakasz"/>
 <gentext key="section" text="szakasz"/>
-<gentext key="See" text="L&#x00E1;sd"/>
-<gentext key="see" text="l&#x00E1;sd"/>
-<gentext key="SeeAlso" text="L&#x00E1;sd m&#x00E9;g"/>
-<gentext key="Seealso" text="L&#x00E1;sd m&#x00E9;g"/>
-<gentext key="seealso" text="l&#x00E1;sd m&#x00E9;g"/>
+<gentext key="See" text="Lásd"/>
+<gentext key="see" text="lásd"/>
+<gentext key="SeeAlso" text="Lásd még"/>
+<gentext key="Seealso" text="Lásd még"/>
+<gentext key="seealso" text="lásd még"/>
 <gentext key="Set" text="Csoport"/>
 <gentext key="set" text="csoport"/>
-<gentext key="SetIndex" text="Csoportmutat&#x00F3;"/>
-<gentext key="setindex" text="csoportmutat&#x00F3;"/>
-<gentext key="Sidebar" text="Sz&#x00E9;ljegyzet"/>
-<gentext key="sidebar" text="sz&#x00E9;ljegyzet"/>
-<gentext key="Step" text="L&#x00E9;p&#x00E9;s"/>
-<gentext key="step" text="l&#x00E9;p&#x00E9;s"/>
-<gentext key="Table" text="T&#x00E1;bl&#x00E1;zat"/>
-<gentext key="table" text="t&#x00E1;bl&#x00E1;zat"/>
+<gentext key="SetIndex" text="Csoportmutató"/>
+<gentext key="setindex" text="csoportmutató"/>
+<gentext key="Sidebar" text="Széljegyzet"/>
+<gentext key="sidebar" text="széljegyzet"/>
+<gentext key="Step" text="Lépés"/>
+<gentext key="step" text="lépés"/>
+<gentext key="Table" text="Táblázat"/>
+<gentext key="table" text="táblázat"/>
 <gentext key="TIP" text="TIPP"/>
 <gentext key="Tip" text="Tipp"/>
 <gentext key="tip" text="tipp"/>
@@ -130,7 +125,7 @@
 <gentext key="Warning" text="Figyelem"/>
 <gentext key="warning" text="figyelem"/>
 
-<gentext key="and" text="&#x00E9;s"/>
+<gentext key="and" text="és"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Szerk."/>
 <gentext key="edited" text="szerk."/>
@@ -139,53 +134,53 @@
 <gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="nem l&#x00E9;tez&#x0151; elem"/>
-<gentext key="notes" text="megjegyz&#x00E9;sek"/>
-<gentext key="Notes" text="Megjegyz&#x00E9;sek"/>
+<gentext key="nonexistantelement" text="nem létező elem"/>
+<gentext key="notes" text="megjegyzések"/>
+<gentext key="Notes" text="Megjegyzések"/>
 <gentext key="Pgs" text="Lsz."/>
 <gentext key="pgs" text="lsz."/>
-<gentext key="Revisedby" text="Megvizsg&#x00E1;lva"/>
-<gentext key="revisedby" text="megvizsg&#x00E1;lva"/>
-<gentext key="TableNotes" text="Megjegyz&#x00E9;sek"/>
-<gentext key="tablenotes" text="megjegyz&#x00E9;sek"/>
+<gentext key="Revisedby" text="Megvizsgálva"/>
+<gentext key="revisedby" text="megvizsgálva"/>
+<gentext key="TableNotes" text="Megjegyzések"/>
+<gentext key="tablenotes" text="megjegyzések"/>
 <gentext key="TableofContents" text="Tartalom"/>
 <gentext key="tableofcontents" text="tartalom"/>
-<gentext key="unexpectedelementname" text="nem v&#x00E1;rt elemn&#x00E9;v"/>
-<gentext key="unsupported" text="nem t&#x00E1;mogatott"/>
+<gentext key="unexpectedelementname" text="nem várt elemnév"/>
+<gentext key="unsupported" text="nem támogatott"/>
 <gentext key="xrefto" text="keresztref"/>
 
-<gentext key="listofequations" text="az egyenletek list&#x00E1;ja"/>
-<gentext key="ListofEquations" text="Az egyenletek list&#x00E1;ja"/>
-<gentext key="ListofExamples" text="A p&#x00E9;ld&#x00E1;k list&#x00E1;ja"/>
-<gentext key="listofexamples" text="a p&#x00E9;ld&#x00E1;k list&#x00E1;ja"/>
-<gentext key="ListofFigures" text="Az &#x00E1;br&#x00E1;k list&#x00E1;ja"/>
-<gentext key="listoffigures" text="az &#x00E1;br&#x00E1;k list&#x00E1;ja"/>
-<gentext key="listoftables" text="a t&#x00E1;bl&#x00E1;zatok list&#x00E1;ja"/>
-<gentext key="ListofTables" text="A t&#x00E1;bl&#x00E1;zatok list&#x00E1;ja"/>
-<gentext key="ListofUnknown" text="Az egy&#x00E9;b elemek list&#x00E1;ja"/>
-<gentext key="listofunknown" text="az egy&#x00E9;b elemek list&#x00E1;ja"/>
+<gentext key="listofequations" text="az egyenletek listája"/>
+<gentext key="ListofEquations" text="Az egyenletek listája"/>
+<gentext key="ListofExamples" text="A példák listája"/>
+<gentext key="listofexamples" text="a példák listája"/>
+<gentext key="ListofFigures" text="Az ábrák listája"/>
+<gentext key="listoffigures" text="az ábrák listája"/>
+<gentext key="listoftables" text="a táblázatok listája"/>
+<gentext key="ListofTables" text="A táblázatok listája"/>
+<gentext key="ListofUnknown" text="Az egyéb elemek listája"/>
+<gentext key="listofunknown" text="az egyéb elemek listája"/>
 
 <gentext key="nav-home" text="Tartalom"/>
-<gentext key="nav-next" text="K&#x00F6;vetkez&#x0151;"/>
-<gentext key="nav-next-sibling" text="Gyors el&#x0151;re"/>
-<gentext key="nav-prev" text="El&#x0151;z&#x0151;"/>
+<gentext key="nav-next" text="Következő"/>
+<gentext key="nav-next-sibling" text="Gyors előre"/>
+<gentext key="nav-prev" text="Előző"/>
 <gentext key="nav-prev-sibling" text="Gyors vissza"/>
 <gentext key="nav-up" text="Fel"/>
 
-<gentext key="sectioncalled" text="ilyen nev&#x0171; szakasz:"/>
-<gentext key="Draft"         text="V&#x00E1;zlat"/>
-<gentext key="above"         text="fent"/>
-<gentext key="below"         text="lent"/>
-<gentext key="index symbols" text="szimb&#x00F3;lummutat&#x00F3;"/>
+<gentext key="sectioncalled" text="ilyen nevű szakasz:"/>
+<gentext key="Draft" text="Vázlat"/>
+<gentext key="above" text="fent"/>
+<gentext key="below" text="lent"/>
+<gentext key="index symbols" text="szimbólummutató"/>
 
-<gentext key="lowercase.alpha" text="a&#x00E1;bcde&#x00E9;fghi&#x00ED;jklmno&#x00F3;&#x00F6;&#x0151;pqrstu&#x00FA;&#x00FC;&#0171;vwxyz"/>
-<gentext key="uppercase.alpha" text="A&#x00C1;BCDE&#x00C9;FGHI&#x00CD;JKLMNO&#x00D3;&#x00D6;&#x0150;PQRSTU&#x00DA;&#x00DC;&#x0170;VWXYZ"/>
+<gentext key="lowercase.alpha" text="aábcdeéfghiíjklmnoóöőpqrstuúü«vwxyz"/>
+<gentext key="uppercase.alpha" text="AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ"/>
 
-<dingbat key="startquote" text="&#x201E;"/>
-<dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x00BB;"/>
-<dingbat key="nestedendquote" text="&#x00AB;"/>
-<dingbat key="bullet" text="&#x2022;"/>
+<dingbat key="startquote" text="„"/>
+<dingbat key="endquote" text="”"/>
+<dingbat key="nestedstartquote" text="»"/>
+<dingbat key="nestedendquote" text="«"/>
+<dingbat key="bullet" text="•"/>
 
 <context name="styles">
 

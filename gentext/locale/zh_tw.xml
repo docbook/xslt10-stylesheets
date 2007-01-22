@@ -177,11 +177,11 @@
 <gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
 
-<dingbat key="startquote"     text="&quot;"/>
-<dingbat key="endquote"       text="&quot;"/>
-<dingbat key="nestedstartquote" text="'"/>
-<dingbat key="nestedendquote"   text="'"/>
-<dingbat key="bullet"         text="&#x2022;"/>
+<dingbat key="startquote" text="“"/>
+<dingbat key="endquote" text="”"/>
+<dingbat key="nestedstartquote" text="‘"/>
+<dingbat key="nestedendquote" text="’"/>
+<dingbat key="bullet" text="•"/>
 
 <context name="styles">
 

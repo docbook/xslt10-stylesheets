@@ -1,15 +1,10 @@
-<?xml version='1.0' encoding="utf-8"?>
+<?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
-<!DOCTYPE locale [
-<!ENTITY % lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-                "http://www.w3.org/2003/entities/iso8879/isolat1.ent">
-%lat1;
-]>
 <locale language="ca"
         english-language-name="Catalan"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
-<doc:localeinfo xmlns="">
+<doc:localeinfo>
 <authorgroup>
   <author><firstname>Jordi</firstname><surname>Vilalta</surname>
           <affiliation><address><email>jvprat@wanadoo.es</email></address>
@@ -23,29 +18,29 @@
 <gentext key="abstract" text="Resum"/>
 <gentext key="Answer" text="Resposta"/>
 <gentext key="answer" text="Resposta"/>
-<gentext key="Appendix" text="Ap&egrave;ndix"/>
-<gentext key="appendix" text="Ap&egrave;ndix"/>
+<gentext key="Appendix" text="Apèndix"/>
+<gentext key="appendix" text="Apèndix"/>
 <gentext key="Article" text="Article"/>
 <gentext key="article" text="Article"/>
 <gentext key="Bibliography" text="Bibliografia"/>
 <gentext key="bibliography" text="Bibliografia"/>
 <gentext key="Book" text="Llibre"/>
 <gentext key="book" text="Llibre"/>
-<gentext key="Caution" text="Atenci&oacute;"/>
-<gentext key="caution" text="Atenci&oacute;"/>
-<gentext key="CAUTION" text="ATENCI&Oacute;"/>
-<gentext key="Chapter" text="Cap&iacute;tol"/>
-<gentext key="chapter" text="Cap&iacute;tol"/>
-<gentext key="Colophon" text="Colof&oacute;"/>
-<gentext key="colophon" text="Colof&oacute;"/>
-<gentext key="Copyright" text="Dret de reproducci&oacute;"/>
-<gentext key="copyright" text="Dret de reproducci&oacute;"/>
-<gentext key="Dedication" text="Dedicat&ograve;ria"/>
-<gentext key="dedication" text="Dedicat&ograve;ria"/>
-<gentext key="Edition" text="Edici&oacute;"/>
-<gentext key="edition" text="Edici&oacute;"/>
-<gentext key="Equation" text="Equaci&oacute;"/>
-<gentext key="equation" text="Equaci&oacute;"/>
+<gentext key="Caution" text="Atenció"/>
+<gentext key="caution" text="Atenció"/>
+<gentext key="CAUTION" text="ATENCIÓ"/>
+<gentext key="Chapter" text="Capítol"/>
+<gentext key="chapter" text="Capítol"/>
+<gentext key="Colophon" text="Colofó"/>
+<gentext key="colophon" text="Colofó"/>
+<gentext key="Copyright" text="Dret de reproducció"/>
+<gentext key="copyright" text="Dret de reproducció"/>
+<gentext key="Dedication" text="Dedicatòria"/>
+<gentext key="dedication" text="Dedicatòria"/>
+<gentext key="Edition" text="Edició"/>
+<gentext key="edition" text="Edició"/>
+<gentext key="Equation" text="Equació"/>
+<gentext key="equation" text="Equació"/>
 <gentext key="Example" text="Exemple"/>
 <gentext key="example" text="Exemple"/>
 <gentext key="Figure" text="Figura"/>
@@ -54,19 +49,19 @@
 <gentext key="glossary" text="Glossari"/>
 <gentext key="GlossSee" text="Veure"/>
 <gentext key="glosssee" text="Veure"/>
-<gentext key="GlossSeeAlso" text="Veure tamb&eacute;"/>
-<gentext key="glossseealso" text="Veure tamb&eacute;"/>
+<gentext key="GlossSeeAlso" text="Veure també"/>
+<gentext key="glossseealso" text="Veure també"/>
 <gentext key="IMPORTANT" text="IMPORTANT"/>
 <gentext key="Important" text="Important"/>
 <gentext key="important" text="Important"/>
-<gentext key="Index" text="&Iacute;ndex alfab&egrave;tic"/>
-<gentext key="index" text="&Iacute;ndex alfab&egrave;tic"/>
+<gentext key="Index" text="Índex alfabètic"/>
+<gentext key="index" text="Índex alfabètic"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Av&iacute;s legal"/>
-<gentext key="legalnotice" text="Av&iacute;s legal"/>
-<gentext key="MsgAud" text="Audi&egrave;ncia"/>
-<gentext key="msgaud" text="Audi&egrave;ncia"/>
+<gentext key="LegalNotice" text="Avís legal"/>
+<gentext key="legalnotice" text="Avís legal"/>
+<gentext key="MsgAud" text="Audiència"/>
+<gentext key="msgaud" text="Audiència"/>
 <gentext key="MsgLevel" text="Nivell"/>
 <gentext key="msglevel" text="Nivell"/>
 <gentext key="MsgOrig" text="Origen"/>
@@ -80,45 +75,45 @@
 <gentext key="preface" text="Prefaci"/>
 <gentext key="Procedure" text="Procediment"/>
 <gentext key="procedure" text="Procediment"/>
-<gentext key="ProductionSet" text="Producci&oacute;"/>
-<gentext key="PubDate" text="Data de publicaci&oacute;"/>
-<gentext key="pubdate" text="Data de publicaci&oacute;"/>
+<gentext key="ProductionSet" text="Producció"/>
+<gentext key="PubDate" text="Data de publicació"/>
+<gentext key="pubdate" text="Data de publicació"/>
 <gentext key="Published" text="Publicat"/>
 <gentext key="published" text="Publicat"/>
 <gentext key="Qandadiv" text="Pregunta i Resposta"/>
 <gentext key="qandadiv" text="Pregunta i Resposta"/>
 <gentext key="Question" text="Pregunta"/>
 <gentext key="question" text="Pregunta"/>
-<gentext key="RefEntry" text="Entrada de refer&egrave;ncia"/>
-<gentext key="refentry" text="Entrada de refer&egrave;ncia"/>
-<gentext key="Reference" text="Refer&egrave;ncia"/>
-<gentext key="reference" text="Refer&egrave;ncia"/>
+<gentext key="RefEntry" text="Entrada de referència"/>
+<gentext key="refentry" text="Entrada de referència"/>
+<gentext key="Reference" text="Referència"/>
+<gentext key="reference" text="Referència"/>
 <gentext key="RefName" text="Nom"/>
 <gentext key="refname" text="Nom"/>
-<gentext key="RefSection" text="Secci&oacute; de refer&egrave;ncia"/>
-<gentext key="refsection" text="Secci&oacute; de refer&egrave;ncia"/>
+<gentext key="RefSection" text="Secció de referència"/>
+<gentext key="refsection" text="Secció de referència"/>
 <gentext key="RefSynopsisDiv" text="Sinopsi"/>
 <gentext key="refsynopsisdiv" text="Sinopsi"/>
 <gentext key="RevHistory" text="Historial de revisions"/>
 <gentext key="revhistory" text="Historial de revisions"/>
-<gentext key="Revision" text="Revisi&oacute;"/>
-<gentext key="revision" text="Revisi&oacute;"/>
-<gentext key="sect1" text="Secci&oacute;"/>
-<gentext key="sect2" text="Secci&oacute;"/>
-<gentext key="sect3" text="Secci&oacute;"/>
-<gentext key="sect4" text="Secci&oacute;"/>
-<gentext key="sect5" text="Secci&oacute;"/>
-<gentext key="Section" text="Secci&oacute;"/>
-<gentext key="section" text="Secci&oacute;"/>
+<gentext key="Revision" text="Revisió"/>
+<gentext key="revision" text="Revisió"/>
+<gentext key="sect1" text="Secció"/>
+<gentext key="sect2" text="Secció"/>
+<gentext key="sect3" text="Secció"/>
+<gentext key="sect4" text="Secció"/>
+<gentext key="sect5" text="Secció"/>
+<gentext key="Section" text="Secció"/>
+<gentext key="section" text="Secció"/>
 <gentext key="See" text="Veure"/>
 <gentext key="see" text="Veure"/>
-<gentext key="SeeAlso" text="Veure Tamb&eacute;"/>
-<gentext key="Seealso" text="Veure tamb&eacute;"/>
-<gentext key="seealso" text="Veure tamb&eacute;"/>
+<gentext key="SeeAlso" text="Veure També"/>
+<gentext key="Seealso" text="Veure també"/>
+<gentext key="seealso" text="Veure també"/>
 <gentext key="Set" text="Conjunt"/>
 <gentext key="set" text="Conjunt"/>
-<gentext key="SetIndex" text="&Iacute;ndex del conjunt"/>
-<gentext key="setindex" text="&Iacute;ndex del conjunt"/>
+<gentext key="SetIndex" text="Índex del conjunt"/>
+<gentext key="setindex" text="Índex del conjunt"/>
 <gentext key="Sidebar" text="Barra lateral"/>
 <gentext key="sidebar" text="Barra lateral"/>
 <gentext key="step" text="Pas"/>
@@ -128,9 +123,9 @@
 <gentext key="TIP" text="SUGGERIMENT"/>
 <gentext key="Tip" text="Suggeriment"/>
 <gentext key="tip" text="Suggeriment"/>
-<gentext key="WARNING" text="AV&Iacute;S"/>
-<gentext key="Warning" text="Av&iacute;s"/>
-<gentext key="warning" text="Av&iacute;s"/>
+<gentext key="WARNING" text="AVÍS"/>
+<gentext key="Warning" text="Avís"/>
+<gentext key="warning" text="Avís"/>
 
 <gentext key="and" text="i"/>
 <gentext key="by" text="per"/>
@@ -144,8 +139,8 @@
 <gentext key="nonexistantelement" text="element inexistent"/>
 <gentext key="notes" text="notes"/>
 <gentext key="Notes" text="Notes"/>
-<gentext key="Pgs" text="P&agrave;gs."/>
-<gentext key="pgs" text="P&agrave;gs."/>
+<gentext key="Pgs" text="Pàgs."/>
+<gentext key="pgs" text="Pàgs."/>
 <gentext key="Revisedby" text="Revisat per: "/>
 <gentext key="revisedby" text="Revisat per: "/>
 <gentext key="TableNotes" text="Notes de taula"/>
@@ -154,40 +149,40 @@
 <gentext key="tableofcontents" text="Sumari"/>
 <gentext key="unexpectedelementname" text="nom d'element inesperat"/>
 <gentext key="unsupported" text="no reconeguda"/>
-<gentext key="xrefto" text="refer&egrave;ncia a"/>
+<gentext key="xrefto" text="referència a"/>
 
-<gentext key="listofequations" text="&Iacute;ndex d'equacions"/>
-<gentext key="ListofEquations" text="&Iacute;ndex d'equacions"/>
-<gentext key="ListofExamples" text="&Iacute;ndex d'exemples"/>
-<gentext key="listofexamples" text="&Iacute;ndex d'exemples"/>
-<gentext key="ListofFigures" text="&Iacute;ndex de figures"/>
-<gentext key="listoffigures" text="&Iacute;ndex de figures"/>
-<gentext key="listoftables" text="&Iacute;ndex de taules"/>
-<gentext key="ListofTables" text="&Iacute;ndex de taules"/>
-<gentext key="ListofUnknown" text="&Iacute;ndex de desconegut ?"/>
-<gentext key="listofunknown" text="&Iacute;ndex de desconegut ?"/>
+<gentext key="listofequations" text="Índex d'equacions"/>
+<gentext key="ListofEquations" text="Índex d'equacions"/>
+<gentext key="ListofExamples" text="Índex d'exemples"/>
+<gentext key="listofexamples" text="Índex d'exemples"/>
+<gentext key="ListofFigures" text="Índex de figures"/>
+<gentext key="listoffigures" text="Índex de figures"/>
+<gentext key="listoftables" text="Índex de taules"/>
+<gentext key="ListofTables" text="Índex de taules"/>
+<gentext key="ListofUnknown" text="Índex de desconegut ?"/>
+<gentext key="listofunknown" text="Índex de desconegut ?"/>
 
 <gentext key="nav-home" text="Inici"/>
-<gentext key="nav-next" text="Seg&uuml;ent"/>
-<gentext key="nav-next-sibling" text="Avan&ccedil;ar"/>
+<gentext key="nav-next" text="Següent"/>
+<gentext key="nav-next-sibling" text="Avançar"/>
 <gentext key="nav-prev" text="Anterior"/>
 <gentext key="nav-prev-sibling" text="Retrocedir"/>
 <gentext key="nav-up" text="Pujar"/>
 
-<gentext key="Draft"         text="Esborrany"/>
-<gentext key="above"         text="dalt"/>
-<gentext key="below"         text="baix"/>
-<gentext key="sectioncalled" text="secci&oacute; anomenada"/>
+<gentext key="Draft" text="Esborrany"/>
+<gentext key="above" text="dalt"/>
+<gentext key="below" text="baix"/>
+<gentext key="sectioncalled" text="secció anomenada"/>
 <gentext key="index symbols" text="Símbols"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&agrave;&egrave;&eacute;&iacute;&ograve;&oacute;&uacute;&ntilde;&ccedil;"/>
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&Agrave;&Egrave;&Eacute;&Iacute;&Ograve;&Oacute;&Uacute;&Ntilde;&Ccedil;"/>
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzàèéíòóúñç"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÀÈÉÍÒÓÚÑÇ"/>
 
-<dingbat key="startquote" text="&#x201C;"/>
-<dingbat key="endquote" text="&#x201D;"/>
-<dingbat key="nestedstartquote" text="&#x2018;"/>
-<dingbat key="nestedendquote" text="&#x2019;"/>
-<dingbat key="bullet" text="&#x2022;"/>
+<dingbat key="startquote" text="“"/>
+<dingbat key="endquote" text="”"/>
+<dingbat key="nestedstartquote" text="‘"/>
+<dingbat key="nestedendquote" text="’"/>
+<dingbat key="bullet" text="•"/>
 
 <context name="styles">
 
