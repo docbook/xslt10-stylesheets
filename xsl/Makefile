@@ -73,3 +73,4 @@ clean:
 	$(RM) -r slides
 
 include ../releasetools/Targets.mk
+include ../releasetools/db5.mk
