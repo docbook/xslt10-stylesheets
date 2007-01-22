@@ -1,18 +1,10 @@
-<?xml version='1.0' encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
-<!DOCTYPE locale [
-<!ENTITY % lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-                "http://www.w3.org/2003/entities/iso8879/isolat1.ent">
-%lat1;
-<!ENTITY % lat2 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
-                "http://www.w3.org/2003/entities/iso8879/isolat2.ent">
-%lat2;
-]>
 <locale language="fr"
         english-language-name="French"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
-<doc:localeinfo xmlns="">
+<doc:localeinfo>
 <authorgroup>
   <author><firstname>Sylvain</firstname><surname>Amrani</surname>
   </author>
@@ -22,8 +14,8 @@
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="R&eacute;sum&eacute;"/>
-<gentext key="abstract" text="R&eacute;sum&eacute;"/>
+<gentext key="Abstract" text="Résumé"/>
+<gentext key="abstract" text="Résumé"/>
 <gentext key="Answer" text="R&#x00A0;:"/>
 <gentext key="answer" text="R&#x00A0;:"/>
 <gentext key="Appendix" text="Annexe"/>
@@ -40,16 +32,16 @@
 <gentext key="CAUTION" text="ATTENTION"/>
 <gentext key="Chapter" text="Chapitre"/>
 <gentext key="chapter" text="chapitre"/>
-<gentext key="Colophon" text="Achev&eacute; d'imprimer"/>
-<gentext key="colophon" text="Achev&eacute; d'imprimer"/>
+<gentext key="Colophon" text="Achevé d'imprimer"/>
+<gentext key="colophon" text="Achevé d'imprimer"/>
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
-<gentext key="Dedication" text="D&eacute;dicace"/>
-<gentext key="dedication" text="D&eacute;dicace"/>
-<gentext key="Edition" text="&Eacute;dition"/>
-<gentext key="edition" text="&Eacute;dition"/>
-<gentext key="Equation" text="&Eacute;quation"/>
-<gentext key="equation" text="&Eacute;quation"/>
+<gentext key="Dedication" text="Dédicace"/>
+<gentext key="dedication" text="Dédicace"/>
+<gentext key="Edition" text="Édition"/>
+<gentext key="edition" text="Édition"/>
+<gentext key="Equation" text="Équation"/>
+<gentext key="equation" text="Équation"/>
 <gentext key="Example" text="Exemple"/>
 <gentext key="example" text="Exemple"/>
 <gentext key="Figure" text="Figure"/>
@@ -67,10 +59,10 @@
 <gentext key="index" text="Index"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Note l&eacute;gale"/>
-<gentext key="legalnotice" text="Note l&eacute;gale"/>
-<gentext key="MsgAud" text="Public vis&eacute;"/>
-<gentext key="msgaud" text="Public vis&eacute;"/>
+<gentext key="LegalNotice" text="Note légale"/>
+<gentext key="legalnotice" text="Note légale"/>
+<gentext key="MsgAud" text="Public visé"/>
+<gentext key="msgaud" text="Public visé"/>
 <gentext key="MsgLevel" text="Niveau"/>
 <gentext key="msglevel" text="Niveau"/>
 <gentext key="MsgOrig" text="Origine"/>
@@ -80,23 +72,23 @@
 <gentext key="note" text="Note"/>
 <gentext key="Part" text="Partie"/>
 <gentext key="part" text="Partie"/>
-<gentext key="Preface" text="Pr&eacute;face"/>
-<gentext key="preface" text="Pr&eacute;face"/>
-<gentext key="Procedure" text="Proc&eacute;dure"/>
-<gentext key="procedure" text="Proc&eacute;dure"/>
+<gentext key="Preface" text="Préface"/>
+<gentext key="preface" text="Préface"/>
+<gentext key="Procedure" text="Procédure"/>
+<gentext key="procedure" text="Procédure"/>
 <gentext key="ProductionSet" text="Production"/>
 <gentext key="PubDate" text="Date de publication"/>
 <gentext key="pubdate" text="Date de publication"/>
-<gentext key="Published" text="Publi&eacute; le"/>
-<gentext key="published" text="Publi&eacute; le"/>
+<gentext key="Published" text="Publié le"/>
+<gentext key="published" text="Publié le"/>
 <gentext key="Qandadiv" text="Q &amp; R"/>
 <gentext key="qandadiv" text="Q &amp; R"/>
 <gentext key="Question" text="Q&#x00A0;:"/>
 <gentext key="question" text="Q&#x00A0;:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
-<gentext key="Reference" text="R&eacute;f&eacute;rence"/>
-<gentext key="reference" text="R&eacute;f&eacute;rence"/>
+<gentext key="Reference" text="Référence"/>
+<gentext key="reference" text="Référence"/>
 <gentext key="RefName" text="Nom"/>
 <gentext key="refname" text="Nom"/>
 <gentext key="RefSection" text=""/>
@@ -125,8 +117,8 @@
 <gentext key="SetIndex" text="Index"/>
 <gentext key="Sidebar" text="Filet vertical"/>
 <gentext key="sidebar" text="Filet vertical"/>
-<gentext key="step" text="&eacute;tape"/>
-<gentext key="Step" text="&Eacute;tape"/>
+<gentext key="step" text="étape"/>
+<gentext key="Step" text="Étape"/>
 <gentext key="Table" text="Tableau"/>
 <gentext key="table" text="Tableau"/>
 <gentext key="tip" text="ASTUCE"/>
@@ -138,38 +130,38 @@
 
 <gentext key="and" text="et"/>
 <gentext key="by" text="par"/>
-<gentext key="called" text="intitul&eacute;"/>
-<gentext key="Edited" text="Publi&eacute;"/>
-<gentext key="edited" text="Publi&eacute;"/>
-<gentext key="Editedby" text="Publi&eacute; par"/>
-<gentext key="editedby" text="Publi&eacute; par"/>
+<gentext key="called" text="intitulé"/>
+<gentext key="Edited" text="Publié"/>
+<gentext key="edited" text="Publié"/>
+<gentext key="Editedby" text="Publié par"/>
+<gentext key="editedby" text="Publié par"/>
 <gentext key="in" text="dans"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="Cet &eacute;l&eacute;ment n'existe pas"/>
+<gentext key="nonexistantelement" text="Cet élément n'existe pas"/>
 <gentext key="notes" text="Notes"/>
 <gentext key="Notes" text="Notes"/>
 <gentext key="Pgs" text="Pages"/>
 <gentext key="pgs" text="Pages"/>
-<gentext key="Revisedby" text="Revu et corrig&eacute; par&#x00A0;: "/>
-<gentext key="revisedby" text="Revu et corrig&eacute; par&#x00A0;: "/>
+<gentext key="Revisedby" text="Revu et corrigé par&#x00A0;: "/>
+<gentext key="revisedby" text="Revu et corrigé par&#x00A0;: "/>
 <gentext key="TableNotes" text="Remarques"/>
 <gentext key="tablenotes" text="Remarques"/>
-<gentext key="TableofContents" text="Table des mati&egrave;res"/>
-<gentext key="tableofcontents" text="Table des mati&egrave;res"/>
+<gentext key="TableofContents" text="Table des matières"/>
+<gentext key="tableofcontents" text="Table des matières"/>
 <gentext key="the" text=""/>
-<gentext key="unexpectedelementname" text="Nom d'&eacute;l&eacute;ment inattendu"/>
-<gentext key="unsupported" text="Non reconnu par le syst&egrave;me"/>
-<gentext key="xrefto" text="R&eacute;f&eacute;rence vers"/>
+<gentext key="unexpectedelementname" text="Nom d'élément inattendu"/>
+<gentext key="unsupported" text="Non reconnu par le système"/>
+<gentext key="xrefto" text="Référence vers"/>
 
-<gentext key="listofequations" text="Liste des &eacute;quations"/>
-<gentext key="ListofEquations" text="Liste des &eacute;quations"/>
+<gentext key="listofequations" text="Liste des équations"/>
+<gentext key="ListofEquations" text="Liste des équations"/>
 <gentext key="ListofExamples" text="Liste des exemples"/>
 <gentext key="listofexamples" text="Liste des exemples"/>
 <gentext key="ListofFigures" text="Liste des illustrations"/>
 <gentext key="listoffigures" text="Liste des illustrations"/>
-<gentext key="ListofProcedures" text="Liste des proc&eacute;dures"/>
-<gentext key="listofprocedures" text="Liste des proc&eacute;dures"/>
+<gentext key="ListofProcedures" text="Liste des procédures"/>
+<gentext key="listofprocedures" text="Liste des procédures"/>
 <gentext key="listoftables" text="Liste des tableaux"/>
 <gentext key="ListofTables" text="Liste des tableaux"/>
 <gentext key="ListofUnknown" text="Liste inconnue"/>
@@ -178,28 +170,28 @@
 <gentext key="nav-home" text="Sommaire"/>
 <gentext key="nav-next" text="Suivant"/>
 <gentext key="nav-next-sibling" text="Avance rapide"/>
-<gentext key="nav-prev" text="Pr&#x00E9;c&#x00E9;dent"/>
-<gentext key="nav-prev-sibling" text="Arri&#xE8;re rapide"/>
-<gentext key="nav-up" text="Niveau sup&#x00E9;rieur"/>
+<gentext key="nav-prev" text="Précédent"/>
+<gentext key="nav-prev-sibling" text="Arrière rapide"/>
+<gentext key="nav-up" text="Niveau supérieur"/>
 <gentext key="nav-toc" text="TdM"/>
 
-<gentext key="Draft"         text="Brouillon"/>
-<gentext key="above"         text="au-dessus"/>
-<gentext key="below"         text="au-dessous"/>
-<gentext key="sectioncalled" text="la section intitul&eacute;e" />
+<gentext key="Draft" text="Brouillon"/>
+<gentext key="above" text="au-dessus"/>
+<gentext key="below" text="au-dessous"/>
+<gentext key="sectioncalled" text="la section intitulée"/>
 <gentext key="index symbols" text="Symboles"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&acirc;&ecirc;&icirc;&ocirc;&ucirc;&euml;&iuml;&uuml;&agrave;&egrave;&ugrave;&eacute;&ccedil;&aelig;&oelig;"/>
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&Acirc;&Ecirc;&Icirc;&Ocirc;&Ucirc;&Euml;&Iuml;&Uuml;&Agrave;&Egrave;&Ugrave;&Eacute;&Ccedil;&AElig;&OElig;"/>
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzâêîôûëïüàèùéçæœ"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÂÊÎÔÛËÏÜÀÈÙÉÇÆŒ"/>
 
-<dingbat key="startquote" text="&#x00AB;&#x00A0;"/>
-<dingbat key="endquote" text="&#x00A0;&#x00BB;"/>
-<dingbat key="nestedstartquote" text="&#x201C;"/>
-<dingbat key="nestedendquote" text="&#x201D;"/>
-<dingbat key="singlestartquote" text="&#x2039;"/>
-<dingbat key="singleendquote" text="&#x203A;"/>
+<dingbat key="startquote" text="«&#x00A0;"/>
+<dingbat key="endquote" text="&#x00A0;»"/>
+<dingbat key="nestedstartquote" text="“"/>
+<dingbat key="nestedendquote" text="”"/>
+<dingbat key="singlestartquote" text="‹"/>
+<dingbat key="singleendquote" text="›"/>
 
-<dingbat key="bullet" text="&#x2022;"/>
+<dingbat key="bullet" text="•"/>
 
 <!-- n.b. &#x2010; serait sans doute mieux, mais il n'est pas toujours -->
 <!-- affiche correctement -->
@@ -520,17 +512,17 @@
 
 <context name="datetime-full">
 <template name="January">janvier</template>
-<template name="February">f&eacute;vrier</template>
+<template name="February">février</template>
 <template name="March">mars</template>
 <template name="April">avril</template>
 <template name="May">mai</template>
 <template name="June">juin</template>
 <template name="July">juillet</template>
-<template name="August">ao&ucirc;t</template>
+<template name="August">août</template>
 <template name="September">septembre</template>
 <template name="October">octobre</template>
 <template name="November">novembre</template>
-<template name="December">d&eacute;cembre</template>
+<template name="December">décembre</template>
 <template name="Monday">lundi</template>
 <template name="Tuesday">mardi</template>
 <template name="Wednesday">mercredi</template>
@@ -542,17 +534,17 @@
 
 <context name="datetime-abbrev">
 <template name="Jan">jan</template>
-<template name="Feb">f&eacute;v</template>
+<template name="Feb">fév</template>
 <template name="Mar">mar</template>
 <template name="Apr">avr</template>
 <template name="May">mai</template>
 <template name="Jun">jun</template>
 <template name="Jul">jui</template>
-<template name="Aug">ao&ucirc;</template>
+<template name="Aug">aoû</template>
 <template name="Sep">sep</template>
 <template name="Oct">oct</template>
 <template name="Nov">nov</template>
-<template name="Dec">d&eacute;c</template>
+<template name="Dec">déc</template>
 <template name="Mon">lun</template>
 <template name="Tue">mar</template>
 <template name="Wed">mer</template>

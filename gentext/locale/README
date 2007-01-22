@@ -12,12 +12,12 @@ If you want to contribute a locale file for a language
 that is not in the current distribution, copy the
 en.xml file from here:
 
-  http://cvs.sourceforge.net/viewcvs.py/*checkout*/docbook/gentext/locale/en.xml
+  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/en.xml
 
 If you want to make changes to an existing locale file,
 copy the appropriate locale file from:
 
-  http://cvs.sourceforge.net/viewcvs.py/docbook/gentext/locale/
+  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/
 
 The main parts of the file that you need to translate are:
 
@@ -38,14 +38,14 @@ content of the <template> elements. In particular:
   <template name="Page">Page %p</template>
 
 NOTE: You don't have to translate empty elements such
-      as '<Chapter/>' that are used in the <template>
-      element content. For example, you can just leave
-      the <Chapter/> part of the following unchanged.
+as '<Chapter/>' that are used in the <template> element
+content. For example, you can just leave the <Chapter/>
+part of the following unchanged.
 
-      <template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+  <template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
 
-      You'd only want to change the "&#160;%n.&#160;%t"
-      if needed for your locale.
+You'd only want to change the "&#160;%n.&#160;%t" if
+needed for your locale.
 
 -------------------------------------------------------
 ABOUT THE <letters> PART
@@ -95,20 +95,11 @@ part, post a request to docbook-apps@lists.oasis-open.org
 -------------------------------------------------------
 ABOUT ENCODINGS
 -------------------------------------------------------
-If possible, please encode your locale file into UTF-8
-(or convert it to UTF-8 before submitting it).  You can
-use either "real" Unicode characters or Unicode
-numerical character entities (hexadecimal or decimal)
-
-But if that is not possible, please be sure to set the
-correct value for the file's encoding in the XML
-prolog. For example,
-
-  <?xml version='1.0' encoding="EUC-JP"?>
-
-A DocBook developer will then attempt to convert the
-file encoding to UTF-8 before checking it into the
-project source-code repository.
+Encode your locale file into UTF-8 (or convert it to
+UTF-8 before submitting it).  Use "real" Unicode
+characters is possible; if not, use numerical character
+references (hexadecimal or decimal). Do not use named
+character entities.
 
 -------------------------------------------------------
 SUBMITTING A NEW OR CHANGED LOCALE FILE
@@ -123,14 +114,14 @@ And/or mail it to:
 
   docbook-developers@lists.sourceforge.net
 
-NOTE: It is important to zip the file to prevent the
-      possibility of the file being corrupted by mail
-      programs.
+NOTE: It's important to zip/compress/tar the file to
+prevent the possibility of the file being corrupted by
+mail programs.
 
 That's all you need to know in order to create, change,
 and submit locale files.
 
-But If you want more info, read on.
+If you want more info, read on.
 
 -------------------------------------------------------
                 BACKGROUND INFORMATION
@@ -208,7 +199,6 @@ with English versions.
 
 The DSSSL distribution uses the dsssl.xsl stylesheet instead.
 It does not backfill missing entries with English.
-
 
 -------------------------------------------------------
 Comparing a locale file to the en.xml file

@@ -1,15 +1,10 @@
-<?xml version='1.0'?>
+<?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
-<!DOCTYPE locale [
-<!ENTITY % lat1 PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
-                "http://www.w3.org/2003/entities/iso8879/isolat1.ent">
-%lat1;
-]>
 <locale language="de"
         english-language-name="German"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
-<doc:localeinfo xmlns="">
+<doc:localeinfo>
 <authorgroup>
   <author><firstname>Oliver</firstname><surname>Fischer</surname>
           <affiliation><address><email>plexus@snafu.de</email></address>
@@ -23,7 +18,7 @@
           <affiliation><address><email>michael.wiedmann@detewe.de</email></address>
           </affiliation>
   </author>
-  <author><firstname>Frank</firstname><surname>Sch&#xFC;tte</surname>
+  <author><firstname>Frank</firstname><surname>Schütte</surname>
           <affiliation><address><email>F.Schuette@t-online.de</email></address>
           </affiliation>
   </author>
@@ -93,10 +88,10 @@
 <gentext key="Procedure" text="Prozedur"/>
 <gentext key="procedure" text="Prozedur"/>
 <gentext key="ProductionSet" text="Produktion"/>
-<gentext key="PubDate" text="Ver&ouml;ffentlicht"/>
-<gentext key="pubdate" text="Ver&ouml;ffentlicht"/>
-<gentext key="Published" text="Ver&ouml;ffentlicht"/>
-<gentext key="published" text="Ver&ouml;ffentlicht"/>
+<gentext key="PubDate" text="Veröffentlicht"/>
+<gentext key="pubdate" text="Veröffentlicht"/>
+<gentext key="Published" text="Veröffentlicht"/>
+<gentext key="published" text="Veröffentlicht"/>
 <gentext key="Qandadiv" text="F &amp; A"/>
 <gentext key="qandadiv" text="F &amp; A"/>
 <gentext key="Question" text="F:"/>
@@ -154,19 +149,19 @@
 <gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="nicht existierendes Element"/>
-<gentext key="notes" text="Fu&#x00DF;noten"/>
-<gentext key="Notes" text="Fu&#x00DF;noten"/>
+<gentext key="notes" text="Fußnoten"/>
+<gentext key="Notes" text="Fußnoten"/>
 <gentext key="Pgs" text="Seiten"/>
 <gentext key="pgs" text="Seiten"/>
-<gentext key="Revisedby" text="Ge&auml;ndert durch: "/>
-<gentext key="revisedby" text="Ge&auml;ndert durch: "/>
+<gentext key="Revisedby" text="Geändert durch: "/>
+<gentext key="revisedby" text="Geändert durch: "/>
 <gentext key="TableNotes" text="Bemerkungen"/>
 <gentext key="tablenotes" text="Bemerkungen"/>
 <gentext key="TableofContents" text="Inhaltsverzeichnis"/>
 <gentext key="tableofcontents" text="Inhaltsverzeichnis"/>
 <gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="Unerwarteter Elementname"/>
-<gentext key="unsupported" text="wird nicht unterst&uuml;tzt"/>
+<gentext key="unsupported" text="wird nicht unterstützt"/>
 <gentext key="xrefto" text="xref auf"/>
 
 <gentext key="listofequations" text="Gleichungen"/>
@@ -183,28 +178,28 @@
 <gentext key="nav-home" text="Zum Anfang"/>
 <gentext key="nav-next" text="Weiter"/>
 <gentext key="nav-next-sibling" text="Schnell weiter"/>
-<gentext key="nav-prev" text="Zur&uuml;ck"/>
-<gentext key="nav-prev-sibling" text="Schnell zur&uuml;ck"/>
+<gentext key="nav-prev" text="Zurück"/>
+<gentext key="nav-prev-sibling" text="Schnell zurück"/>
 <gentext key="nav-up" text="Nach oben"/>
 <gentext key="nav-toc" text="InhV"/>
   
 <gentext key="sectioncalled" text="der Abschnitt namens"/> 
-<gentext key="Draft"         text="Entwurf"/> 
-<gentext key="above"         text="oben"/> 
-<gentext key="below"         text="unten"/> 
+<gentext key="Draft" text="Entwurf"/> 
+<gentext key="above" text="oben"/> 
+<gentext key="below" text="unten"/> 
 <gentext key="index symbols" text="Symbole"/>
 
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&#x00E4;&#x00F6;&#x00FC;&#x00DF;"/> 
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x00C4;&#x00D6;&#x00DC;&#x00DF;"/> 
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzäöüß"/> 
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß"/> 
 
-<dingbat key="startquote" text="&#x201E;"/>
-<dingbat key="endquote" text="&#x201C;"/>
-<dingbat key="nestedstartquote" text="&#x201A;"/>
-<dingbat key="nestedendquote" text="&#x2018;"/>
-<dingbat key="singlestartquote" text="&#x201A;"/>
-<dingbat key="singleendquote" text="&#x2018;"/>
-<dingbat key="bullet" text="&#x2022;"/>
+<dingbat key="startquote" text="„"/>
+<dingbat key="endquote" text="“"/>
+<dingbat key="nestedstartquote" text="‚"/>
+<dingbat key="nestedendquote" text="‘"/>
+<dingbat key="singlestartquote" text="‚"/>
+<dingbat key="singleendquote" text="‘"/>
+<dingbat key="bullet" text="•"/>
 
 <!-- Hier mu"s"te man mal nachforschen, wie die Silbentrennung
      im Typografiebereich gehandhabt wird.
@@ -532,7 +527,7 @@
 <context name="datetime-full">
 <template name="January">Januar</template>
 <template name="February">Februar</template>
-<template name="March">M&#x00E4;rz</template>
+<template name="March">März</template>
 <template name="April">April</template>
 <template name="May">Mai</template>
 <template name="June">Juni</template>
