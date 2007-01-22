@@ -472,7 +472,6 @@ sub addFiles {
   print STDOUT "miscdir is $miscdir" . "\n";
   copy("$miscdir/db5.xsl", "$destdir/common");
   copy("$miscdir/README", "$destdir/README");
-  copy("$miscdir/VERSION", "$destdir/VERSION");
   copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
 
   # delete these obsolete files.
