@@ -84,7 +84,11 @@ catalog.xml: .make-catalog.xsl
 install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
 	cp $< $@
 
+ifeq ($(OFFLINE),yes)
+distrib: all $(DISTRIB_DEPENDS)
+else
 distrib: all $(DISTRIB_DEPENDS) RELEASE-NOTES.txt RELEASE-NOTES.pdf $(NEWSFILE) ChangeHistory.xml.zip
+endif
 
 #newversion:
 #ifeq ($(CVSCHECK),)
@@ -123,7 +127,11 @@ else
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | freshmeat-submit $(FMGO)
 endif
 
+ifeq ($(OFFLINE),yes)
+zip:
+else
 zip: ChangeHistory.xml.zip
+endif
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
@@ -152,7 +160,7 @@ endif
 # excludes for distros that end up as multiple packages
 ifneq ($(DISTRIB_PACKAGES),)
 	for part in $(DISTRIB_PACKAGES); do \
-	  find . -print  | grep "^./$$part" | cut -c3- >> $(TMP)/tar.exclude; \
+	  find . -print  | grep "^./$$part/" | cut -c3- >> $(TMP)/tar.exclude; \
 	done
 endif
 # tar up distro, then gzip/bzip/zip it
