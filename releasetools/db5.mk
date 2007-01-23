@@ -47,7 +47,7 @@ zip5: zip
 	umask 022; cd $(TMP) && $(ZIP) $(ZIPFLAGS) $(TMP)/docbook5-$(DISTRO)-$(ZIPVER).zip \
 	$(TMP)/docbook5-$(DISTRO)-$(ZIPVER)
 
-install5: zip5
+install5: zip5 install
 ifeq ($(SF_USERNAME),)
 	$(error You must specify a value for $$SF_USERNAME)
 else
