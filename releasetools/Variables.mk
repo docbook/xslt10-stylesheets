@@ -181,7 +181,6 @@ SF_UPLOAD_HOST=upload.sf.net
 SF_UPLOAD_DIR=incoming
 PROJECT_HOST=docbook.sf.net
 RELEASE_DIR=/home/groups/d/do/docbook/htdocs/release
-SF_USERNAME=
 TAR=tar
 TARFLAGS=P
 ZIP=zip
