@@ -153,6 +153,7 @@ ZIP_EXCLUDES = \
  Makefile.common \
  Makefile.incl \
  Makefile.param \
+ PreviousRelease \
  PreviousRevision \
  ChangeLog\.xml \
  README\.SVN \
