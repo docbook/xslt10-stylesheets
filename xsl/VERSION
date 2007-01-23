@@ -19,15 +19,15 @@
   <fm:License>MIT/X Consortium License</fm:License>
 -->
   <fm:Release-Focus>
-  <!-- Initial freshmeat announcement -->
-  <!-- Documentation -->
-  <!-- Code cleanup -->
-  Minor feature enhancements
-  <!-- Major feature enhancements -->
-  <!-- Minor bugfixes -->
-  <!-- Major bugfixes -->
-  <!-- Minor security fixes -->
-  <!-- Major security fixes -->
+<!-- * Initial freshmeat announcement -->
+<!-- * Documentation -->
+<!-- * Code cleanup -->
+<!-- * Minor feature enhancements -->
+Major feature enhancements
+<!-- * Minor bugfixes -->
+<!-- * Major bugfixes -->
+<!-- * Minor security fixes -->
+<!-- * Major security fixes -->
   </fm:Release-Focus>
   <fm:Home-Page-URL>http://sourceforge.net/projects/docbook/</fm:Home-Page-URL>
   <fm:Gzipped-Tar-URL>http://prdownloads.sourceforge.net/docbook/{DISTRONAME-VERSION}.tar.gz?download</fm:Gzipped-Tar-URL>
