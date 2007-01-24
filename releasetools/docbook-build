@@ -40,6 +40,7 @@ umask 002
 # set up some defaults
 TAR=tar
 TARFLAGS=P
+ZIPTARG=zip
 SITEUSER=`whoami`
 SITEBASE=/home/groups/d/do/docbook/htdocs/snapshots
 SITEHOST=docbook.sourceforge.net
@@ -52,8 +53,9 @@ LOCK_TIMEOUT=1200
 
 usage="Usage:
 
-  `basename $0` [-b BASEDIR] [-d DOMAIN] [-l LOGDIR] [-p PATH] [-r] [-s]
-                [-t TMPDIR] [-u USER] [-v VERSION] [-z ZONE] DISTRO...
+  `basename $0` [-b BASEDIR] [-d DOMAIN] [-l LOGDIR] [-p PATH]
+                [-r] [-s] [-t TMPDIR] [-u USER] [-v VERSION]
+                [-x ZIPTARG] [-z ZONE] DISTRO...
 
 "
 opts_admon="Type '`basename $0` -h' for details about options.
@@ -96,6 +98,10 @@ Options:
   -v VERSION  Specifies the version name to put on the build.
               Default: 'snapshot'
 
+  -x ZIPTARG  Specifies name of the target to use for building
+              compressed package file.
+              Default: 'zip'
+
   -z ZONE     Specifies timezone to use for date/time stamps
               Default: none -- if not set, 'date' uses timezone configured on
               local machine.
@@ -103,7 +109,7 @@ Options:
   DISTRO...   Space-separated list of distros to build (e.g. 'xsl dsssl')
 
 "
-while getopts ":b:d:hl:p:rst:u:v:z:" opt; do
+while getopts ":b:d:hl:p:rst:u:v:x:z:" opt; do
   case $opt in
     r  ) # parse commit message
          while read -r LINE
@@ -123,6 +129,7 @@ while getopts ":b:d:hl:p:rst:u:v:z:" opt; do
     d  ) SITEHOST=$OPTARG ;;
     p  ) SITEBASE=$OPTARG ;;
     s  ) UPLOAD="yes" ;;
+    x  ) ZIPTARG=$OPTARG ;;
     z  ) TZ=$OPTARG
          alias date="TZ=$TZ date" ;;
     h  ) printf "$usage"
@@ -276,7 +283,7 @@ EOF
 
     if [ "$UPLOAD" = "yes" ]; then
 
-    make zip -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP || exit 1
+    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP || exit 1
 
     cat <<- EOF > $TMP/line.tmp
 
@@ -295,7 +302,7 @@ EOF
     # (sourceforge.net web server), but 100Mb quota limit at
     # Sourceforge made that a not-very-efficient use of the
     # project disk space
-    cp $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2 $SITEBASE
+    cp $TMP/docbook*-$DISTRO*$RELEASEVERSION.tar.bz2 $SITEBASE
     (umask 002; \
     cd $SITEBASE; \
     rm -f docbook-$DISTRO-$RELEASEVERSION.log; \
@@ -308,15 +315,15 @@ EOF
     cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO;)
 
     scp \
-      $TMP/docbook-$DISTRO*$RELEASEVERSION.zip \
+      $TMP/docbook*-$DISTRO*$RELEASEVERSION.zip \
       README.txt \
       LatestChanges \
       $SITEUSER@$SITEHOST:$SITEBASE
 
-    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
-    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.gz
-    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.zip
-    rm -rf $TMP/docbook-$DISTRO-$RELEASEVERSION
+    rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.tar.bz2
+    rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.tar.gz
+    rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.zip
+    rm -rf $TMP/docbook*-$DISTRO-$RELEASEVERSION
 
     rm -f $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_$DATE $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
 
