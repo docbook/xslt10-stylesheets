@@ -117,8 +117,8 @@
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Короткий огляд"/>
 <gentext key="refsynopsisdiv" text="короткий огляд"/>
-<gentext key="RevHistory" text="Опис zcy;мін"/>
-<gentext key="revhistory" text="опис zcy;мін"/>
+<gentext key="RevHistory" text="Опис змін"/>
+<gentext key="revhistory" text="опис змін"/>
 <gentext key="Revision" text="Перегляд"/>
 <gentext key="revision" text="перегляд"/>
 <gentext key="sect1" text="Section"/> <!-- en -->
@@ -132,9 +132,9 @@
 <gentext key="section.abr" text="пар."/>
 <gentext key="See" text="Див."/>
 <gentext key="see" text="див."/>
-<gentext key="SeeAlso" text="Див. tcy;акож"/>
-<gentext key="Seealso" text="Див. tcy;акож"/>
-<gentext key="seealso" text="сив. tcy;акож"/>
+<gentext key="SeeAlso" text="Див. також"/>
+<gentext key="Seealso" text="Див. також"/>
+<gentext key="seealso" text="сив. також"/>
 <gentext key="Set" text="Вибірка"/>
 <gentext key="set" text="вибірка"/>
 <gentext key="SetIndex" text="Индекс вибірки"/>
