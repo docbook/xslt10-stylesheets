@@ -60,7 +60,7 @@ MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 # to generate NEWS file(s) and releases notes
 SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
-PREVIOUS_RELEASE=$(shell if [ -f PreviousRelease ];then cat PreviousRelease; fi)
+PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam param 'PreviousRelease' $(GETPARAM) VERSION)
 
 # stylesheet for stripping DB5 namespace
 STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
@@ -86,7 +86,7 @@ DBLATEX_FLAGS = -b pdftex
 # file containing "What's New" info generated from Subversion log
 NEWSFILE=NEWS
 
-PREVIOUS_REVISION=$(shell if [ -f PreviousRevision ];then cat PreviousRevision; fi)
+PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam param 'PreviousReleaseRevision' $(GETPARAM) VERSION)
 
 # determine RELVER automatically by:
 #
@@ -153,8 +153,6 @@ ZIP_EXCLUDES = \
  Makefile.common \
  Makefile.incl \
  Makefile.param \
- PreviousRelease \
- PreviousRevision \
  ChangeLog\.xml \
  README\.SVN \
  RELEASE-NOTES\.fo \
@@ -190,6 +188,8 @@ GZIPFLAGS=
 
 XSLTPROC=xsltproc
 XSLTPROC_OPTS=
+
+GETPARAM=$(DOCBOOK_SVN)/releasetools/get-param.xsl
 
 XMLLINT=xmllint
 XMLLINT_OPTS=
