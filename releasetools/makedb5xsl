@@ -473,6 +473,7 @@ sub addFiles {
   copy("$miscdir/db5.xsl", "$destdir/common");
   copy("$miscdir/README", "$destdir/README");
   copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
+  copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
 
   # delete these obsolete files.
 
