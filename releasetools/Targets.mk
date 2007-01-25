@@ -4,6 +4,8 @@
 # $Id$
 
 debug:
+	echo $(PREVIOUS_RELEASE)
+	echo $(PREVIOUS_REVISION)
 
 .PHONY: ChangeLog.xml ChangeHistory.xml
 
@@ -49,7 +51,7 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ChangeLog.xml: PreviousRevision
+ChangeLog.xml:
 	$(SVN) $(SVN_OPTS) log --xml --verbose \
 	-r HEAD:$(PREVIOUS_REVISION) \
 	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
@@ -227,7 +229,6 @@ endif
 
 release-clean: clean
 	$(MAKE) -C docsrc release-clean
-	$(RM) PreviousRevision
 	$(RM) TERMS.xml
 	$(RM) $(NEWSFILE)
 	$(RM) NEWS.html
