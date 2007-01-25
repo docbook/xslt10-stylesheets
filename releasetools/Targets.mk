@@ -4,8 +4,6 @@
 # $Id$
 
 debug:
-	echo $(PREVIOUS_RELEASE)
-	echo $(PREVIOUS_REVISION)
 
 .PHONY: ChangeLog.xml ChangeHistory.xml
 
