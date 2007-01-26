@@ -110,7 +110,9 @@
     </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')">
+    <!-- include extra test for Xalan quirk -->
+    <xsl:when test="function-available('exsl:node-set') or 
+		    contains(system-property('xsl:vendor'),'Apache Software Foundation')">
       <!-- We must preserve context node in order to get valid language -->
       <xsl:variable name="context" select="."/>
       <xsl:for-each select="exsl:node-set($tokenized-format-string)/node()">
