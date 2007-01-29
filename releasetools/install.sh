@@ -2,32 +2,44 @@
 # $Id$
 # $Source$ #
 
-# install.sh - Set up catalogs & locating rules for a XML/XSLT distribution
+# install.sh - Set up user environment for a XML/XSLT distribution
 
-# This is as a interactive installer for updating a single-user
-# environment to make use of XML catalog and schema "locating
-# rules" data provided in an XML/XSLT distribution.
+# This is as an interactive installer for updating your
+# environment to use an XML/XSLT distribution such as the DocBook
+# XSL Stylesheets. Its main purpose is to configure your
+# environment with XML catalog data and schema "locating rules"
+# data provided in the XML/XSLT distribution.
 #
 # Although this installer was created for the DocBook project, it
 # is a general-purpose tool that can be used with any XML/XSLT
 # distribution that provides XML/SGML catalogs and locating rules.
 #
-# It is mainly intended to make things easier for users who want
-# to install a particular XML/XSLT distribution that has not (yet)
-# been packaged for their OS distro (Debian, Fedora, whatever).
+# This script is mainly intended to make things easier for you if
+# you want to install a particular XML/XSLT distribution that has
+# not (yet) been packaged for your OS distro (Debian, Fedora,
+# whatever), or to use "snapshot" or development releases 
 #
-# It works by updating the user's shell startup files (e.g.,
-# .bashrc and .cshrc) and .emacs file and by finding or creating a
-# writable CatalogManager.properties file to update.
+# It works by updating your shell startup file (e.g., .bashrc and
+# .cshrc) and .emacs file and by finding or creating a writable
+# CatalogManager.properties file to update.
 #
 # It makes backup copies of any files it touches, and also
 # generates a uninstall.sh script for reverting its changes.
 #
 # In the same directory where it is located, it expects to find
-# four files (below). And if it is unable to locate a
-# CatalogManager.properties file in the user environment, it
-# expects to find an "example" one in the same directory, which it
-# copies over to the user's ~/.resolver directory.
+# the following four files:
+#   - locatingrules.xml
+#   - catalog.xml
+#   - catalog
+#   - .urilist
+# And if it's unable to locate a CatalogManager.properties file in
+# your environment, it expects to find an "example" one in the
+# same directory as itself, which it copies over to your
+# ~/.resolver directory.
+#
+# If the distribution contains any executables, change the value
+# of the thisBinDir to a colon-separated list of the pathnames of
+# the directories that contain those executables.
 
 mydir=$(readlink -f $(dirname $0))
 thisLocatingRules=$mydir/locatingrules.xml
@@ -36,12 +48,20 @@ thisSgmlCatalog=$mydir/catalog
 # .urilist file contains a list of pairs of local pathnames and
 # URIs to test for catalog resolution
 thisUriList=$mydir/.urilist
-
 exampleCatalogManager=$mydir/.CatalogManager.properties.example
 thisCatalogManager=$HOME/.resolver/CatalogManager.properties
 
+# thisBinDir directory is a colon-separated list of the pathnames
+# to all directories that contain executables provided with the
+# distribution (for example, the DocBook XSL Stylesheets
+# distribution contains a "docbook-xsl-update" convenience script
+# for rsync'ing up to the latest docbook-xsl snapshot). The
+# install.sh script adds the value of thisBinDir to your PATH
+# environment variable
+thisBinDir=$mydir/tools/bin
+
 emit_message() {
-  echo $1 1>&2
+  echo "$1" 1>&2
 }
 
 if [ ! "${*#--batch}" = "$*" ]; then
@@ -156,14 +176,16 @@ EOF
       cat 1>&2 <<EOF
 NOTE: $existingCatalogManager file found,
       but you don't have permission to write to it.
-      Will instead use $thisCatalogManager
+      Will instead use:
+      $thisCatalogManager
 EOF
     else
       # CLASSPATH is set, but no CatalogManager.properties found
       if [ -n "$CLASSPATH" ]; then
         cat 1>&2 <<EOF
 NOTE: No CatalogManager.properties found from CLASSPATH.
-      Will instead use $thisCatalogManager
+      Will instead use:
+      $thisCatalogManager
 EOF
       fi
     fi
@@ -191,7 +213,8 @@ EOF
           mkdir -p ${thisCatalogManager%/*}
         fi
         cp $mydir/.CatalogManager.properties.example $thisCatalogManager || exit 1
-        emit_message "NOTE: $thisCatalogManager file created"
+        emit_message "NOTE: Created the following file:"
+        emit_message "      $thisCatalogManager"
         myCatalogManager=$thisCatalogManager
         ;;
       esac
@@ -208,15 +231,16 @@ EOF
       && [ "${catalogsLine#*/etc/xml/catalog*}" = "$catalogsLine" ]; then
       cat 1>&2 <<EOF
 
-WARNING: /etc/xml/catalog exists but was not found in the
-         $myCatalogManager file. If the
-         /etc/xml/catalog file has content, you probably should reference
-         it in your $myCatalogManager
-         file. This installer can automatically add it for you,
-         but BE WARNED that once it has been added, the uninstaller
-         for this distribution CANNOT REMOVE IT automatically
-         during uninstall. If you no longer want it included, you
-         will need to remove it manually.
+WARNING: /etc/xml/catalog exists but was not found in:
+         $myCatalogManager
+         If /etc/xml/catalog file has content, you probably
+         should reference it in:
+         $myCatalogManager
+         This installer can automatically add it for you,
+         but BE WARNED that once it has been added, the
+         uninstaller for this distribution CANNOT REMOVE IT
+         automatically during uninstall. If you no longer want
+         it included, you will need to remove it manually.
 
 EOF
       REPLY=""
@@ -256,14 +280,17 @@ EOF
         *)
         if [ "$catalogsLine" ] ; then
           if [ "${catalogsLine#*$thisJavaXmlCatalog*}" != "$catalogsLine" ]; then
-            emit_message "NOTE: $thisJavaXmlCatalog already"
-            emit_message "      in $myCatalogManager"
+            emit_message "NOTE: $thisJavaXmlCatalog"
+            emit_message "      already in:"
+            emit_message "      $myCatalogManager"
           else
             mv $myCatalogManager $catalogBackup || exit 1
             sed "s#^catalogs=\(.*\)\$#catalogs=$thisJavaXmlCatalog;\1;$etcXmlCatalog#" $catalogBackup \
             | sed 's/;\+/;/' | sed 's/;$//' > $myCatalogManager || exit 1
-            emit_message "NOTE: $myCatalogManager file successfully updated."
-            emit_message "      Backup written to $catalogBackup"
+            emit_message "NOTE: Successfully updated the following file:"
+            emit_message "      $myCatalogManager"
+            emit_message "      Backup written to:"
+            emit_message "      $catalogBackup"
           fi
         else
           mv $myCatalogManager $catalogBackup || exit 1
@@ -290,6 +317,11 @@ writeDotFiles() {
   while read; do
     echo "$REPLY" >> $mydir/.profile.incl
   done <<EOF
+# $thisBinDir is not in PATH, so add it
+if [ "\${PATH#*$thisBinDir*}" = "\$PATH" ]; then
+  PATH="$thisBinDir:\$PATH"
+  export PATH
+fi
 if [ -z "\$XML_CATALOG_FILES" ]; then
   XML_CATALOG_FILES="$thisXmlCatalog"
 else
@@ -324,6 +356,10 @@ EOF
 while read; do
   echo "$REPLY" >> $mydir/.cshrc.incl
 done <<EOF
+# $thisBinDir is not in PATH, so add it
+if ( "\\\`echo \$PATH | grep -v $thisBinDir\\\`" != "" ) then
+  setenv PATH "$thisBinDir:\$PATH"
+endif
 if ( ! $\?XML_CATALOG_FILES ) then
   setenv XML_CATALOG_FILES "$thisXmlCatalog"
 # $thisXmlCatalog is not in XML_CATALOG_FILES, so add it
@@ -340,12 +376,12 @@ endif
 if ( ! $\?SGML_CATALOG_FILES ) then
   setenv SGML_CATALOG_FILES "$thisSgmlCatalog"
 else if ( "\\\`echo \$SGML_CATALOG_FILES | grep -v $thisSgmlCatalog\\\`" != "" ) then
-  setenv SGML_CATALOG_FILES "$thisSgmlCatalog \$SGML_CATALOG_FILES"
+  setenv SGML_CATALOG_FILES "$thisSgmlCatalog:\$SGML_CATALOG_FILES"
 endif
 endif
 # /etc/SGML/catalog exists but is not in SGML_CATALOG_FILES, so add it
 if ( -f /etc/sgml/catalog && "\\\`echo \$SGML_CATALOG_FILES | grep -v /etc/sgml/catalog\\\`" != "" ) then
-  setenv SGML_CATALOG_FILES "\$SGML_CATALOG_FILES /etc/sgml/catalog"
+  setenv SGML_CATALOG_FILES {\$SGML_CATALOG_FILES}:/etc/sgml/catalog
 endif
 EOF
 
@@ -412,10 +448,10 @@ EOF
     emit_message
   fi
 
-  # if user is running csh or tcsh, target .cshrc and .tcshrc
-  # files for update; otherwise, target .bash_* and .profiles
+  # if running csh or tcsh, target .cshrc and .tcshrc files for
+  # update; otherwise, target .bash_* and .profiles
 
-  parent=$(ps $PPID | grep "/")
+  parent=$(ps -p $PPID | grep "/")
   if [ "${parent#*csh}" != "$parent" ] || [ "${parent#*tcsh}" != "$parent" ]; then
     myStartupFiles=".cshrc .tcshrc"
     appendLine="source $mydir/.cshrc.incl"
@@ -452,14 +488,17 @@ EOF
           cp $dotFileBackup $HOME/$file     || exit 1
           echo "$appendLine" >> $HOME/$file || exit 1
           cat 1>&2 <<EOF
-NOTE: $HOME/$file file successfully updated.
-      Backup written to $dotFileBackup
+NOTE: Successfully updated the following file:
+      $HOME/$file 
+      Backup written to:
+      $dotFileBackup
 
 EOF
         else
           cat 1>&2 <<EOF
-NOTE: $HOME/$file already contains information for this distribution.
-      $HOME/$file not updated.
+NOTE: The following file already contains information for this
+      distribution, so I did not update it.
+      $HOME/$file
 
 EOF
         fi
@@ -555,14 +594,17 @@ EOF
         cp $dotEmacsBackup $myEmacsFile    || exit 1
         echo "$emacsAppendLine" >> $myEmacsFile || exit 1
         cat 1>&2 <<EOF
-NOTE: $myEmacsFile file successfully updated.
-      Backup written to $dotEmacsBackup
+NOTE: Successfully updated the following file:
+      $myEmacsFile
+      Backup written to:
+      $dotEmacsBackup
 EOF
       else
         cat 1>&2 <<EOF
 
-NOTE: $myEmacsFile already contains information for this distribution.
-      $myEmacsFile not updated.
+NOTE: The following file already contains information for this
+      distribution, so I did not update it.
+      $myEmacsFile
 
 EOF
       fi
@@ -620,20 +662,24 @@ EOF
           sed "s#^catalogs=\(.*\)$thisXmlCatalog\(.*\)\$#catalogs=\1\2#" $catalogBackup \
           | sed 's/;\+/;/' | sed 's/;$//' | sed 's/=;/=/' > $myCatalogManager || exit 1
           cat 1>&2 <<EOF
-NOTE: $myCatalogManager file successfully reverted.
-      Backup written to $catalogBackup
+NOTE: Successfully updated the following file:
+      $myCatalogManager
+      Backup written to:
+      $catalogBackup
 
 EOF
           ;;
         esac
       else
-        emit_message "NOTE: No data for this distribution found in $myCatalogManager"
+        emit_message "NOTE: No data for this distribution found in:"
+        emit_message "       $myCatalogManager"
         emit_message
       fi
     else
       cat 1>&2 <<EOF
-NOTE: No data for this distribution found in $myCatalogManager
-      So, nothing to revert in $myCatalogManager
+NOTE: No data for this distribution was found in the following
+      file, so I did not revert it.
+      $myCatalogManager
 EOF
     fi
   fi
@@ -669,14 +715,17 @@ EOF
           cp $dotEmacsBackup $myEmacsFile       || exit 1
           sed -i "/$revertLine/d" $myEmacsFile  || exit 1
           cat 1>&2 <<EOF
-NOTE: $myEmacsFile file successfully reverted.
-Backup written to $dotEmacsBackup
+NOTE: successfully reverted the following file:
+      $myEmacsFile
+      Backup written to:
+      $dotEmacsBackup
 
 EOF
           ;;
         esac
       else
-        emit_message "NOTE: No data for this distribution found in $myEmacsFile"
+        emit_message "NOTE: No data for this distribution found in:"
+        emit_message "      $myEmacsFile"
       fi
     fi
   fi
@@ -719,14 +768,17 @@ EOF
           cp $dotFileBackup $HOME/$file           || exit 1
           sed -i "/$revertLineEsc/d" $HOME/$file  || exit 1
           cat 1>&2 <<EOF
-NOTE: $HOME/$file file successfully updated.
-      Backup written to $dotFileBackup
+NOTE: Successfully updated the following file:
+      $HOME/$file
+      Backup written to:
+      $dotFileBackup
 
 EOF
           ;;
         esac
       else
-        emit_message "NOTE: No data for this distribution found in $HOME/$file"
+        emit_message "NOTE: No data for this distribution found in:"
+        emit_message "      $HOME/$file"
         emit_message
       fi
     fi
@@ -759,7 +811,8 @@ writeTestFile() {
 
 printExitMessage() {
   cat 1>&2 <<EOF
-Type the following to source your shell environment for the distribution
+To source your shell environment for this distribution, type the
+following:
 
 $appendLine
 
@@ -771,10 +824,11 @@ checkForResolver() {
   if [ -z "$resolverResponse" ]; then
     cat 1>&2 <<EOF
 
-NOTE: Your environment does not seem to contain the Apache XML Commons
-      Resolver; without that, you can't use XML catalogs with Java.
-      For more information, see the "How to use a catalog file" section
-      in Bob Stayton's "DocBook XSL: The Complete Guide"
+NOTE: Your environment does not seem to contain the Apache XML
+      Commons Resolver; without that, you can't use XML catalogs
+      with Java applications. For more information, see the "How
+      to use a catalog file" section in Bob Stayton's "DocBook
+      XSL: The Complete Guide"
 
       http://sagehill.net/docbookxsl/UseCatalog.html
 
@@ -785,7 +839,7 @@ EOF
 emitNoChangeMsg() {
   cat 1>&2 <<EOF
 
-NOTE: No changes was made to CatalogManagers.properties. To
+NOTE: No changes were made to CatalogManagers.properties. To
       provide your Java tools with XML catalog information for
       this distribution, you will need to make the appropriate
       changes manually.
@@ -893,7 +947,7 @@ esac
 
 # Copyright
 # ---------
-# Copyright 2005 Michael Smith <smith@sideshowbarker.net>
+# Copyright 2005-2007 Michael(tm) Smith <smith@sideshowbarker.net>
 # 
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
