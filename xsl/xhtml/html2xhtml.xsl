@@ -4,7 +4,7 @@
                 exclude-result-prefixes="exsl"
                 version="1.0">
 
-<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/lib/lib.xsl"/>
+<xsl:include href="../lib/lib.xsl"/>
 <xsl:output method="xml" encoding="US-ASCII"/>
 <xsl:preserve-space elements="*"/>
 
