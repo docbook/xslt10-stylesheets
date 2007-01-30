@@ -18,7 +18,7 @@
      ******************************************************************** -->
 
 <xsl:import href="../html/plain.xsl"/>
-<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/htmlhelp/htmlhelp-common.xsl"/>
+<xsl:include href="../../htmlhelp/htmlhelp-common.xsl"/>
 
 <xsl:param name="keyboard.nav" select="0"/>
 <xsl:param name="htmlhelp.default.topic" select="'index.html'"/>
