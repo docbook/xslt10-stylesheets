@@ -22,7 +22,8 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     </releaseinfo>
     <author><surname>Walsh</surname>
     <firstname>Norman</firstname></author>
-    <copyright><year>1999</year><year>2006</year>
+  <copyright>
+    <year>1999-2007</year>
     <holder>Norman Walsh</holder>
     </copyright>
   </bookinfo>
