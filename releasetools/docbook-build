@@ -114,10 +114,9 @@ while getopts ":b:d:hl:p:rst:u:v:x:z:" opt; do
     r  ) # parse commit message
          while read -r LINE
          do
-          if echo $LINE | grep "^Message-Id: " >/dev/null; then
-            MESSAGE_ID=`echo $LINE | sed 's/^Message-Id: <\([^@]\+\)@[^\>]\+>$/\1/'`
-          elif echo $LINE | grep "^Subject: " >/dev/null; then
-            CHANGE_SUMMARY=`echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \(.\+\)$/\1/'`
+          if echo $LINE | grep "^Subject: " >/dev/null; then
+            CHANGEPATH=$(echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \[[^\]\+\]\(.\+\)$/\1/')
+            REVISION=$(echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \[\([^\]\+\)\].\+$/\1/')
             break
           fi
          done ;;
@@ -214,19 +213,13 @@ else
     fi
 
     PREVIOUS_REVISION=`if [ -f $DISTRO/PreviousRevision ]; then cat $DISTRO/PreviousRevision; fi`
-    if [ $MESSAGE_ID ]; then
-      BUILD_ID=$MESSAGE_ID
-    else
-      BUILD_ID=$DATE\_$TIME\_$$
-    fi
-    # done setting up environment
 
     if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
       cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
-      sed "s/Version>.\+</Version>$RELEASEVERSION\_$DATE\_$TIME\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+      sed "s/Version>.\+</Version>$RELEASEVERSION\_$REVISION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
       rm $DISTRO/VERSION.tmp
     else
-      echo "$RELEASEVERSION_$DATE_$TIME" > $DISTRO/VERSION
+      echo "$RELEASEVERSION_$REVISION" > $DISTRO/VERSION
     fi
 
     printf "Done.\n" 1>&2
@@ -240,7 +233,7 @@ else
     date
     echo
     # echo selected variables
-    set | grep "BUILD_ID\|^CHANGE\|PREVIOUS_REVISION\|DIFFVER\|^DISTRO=\|RELEASEVERSION"
+    set | grep "^CHANGE\|REVISION"
     echo
 
     echo "Running svn update in gentext and $DISTRO working directories..."
@@ -259,21 +252,11 @@ else
     cat <<- EOF > HEADER.txt
 The snapshot for a particular distribution is re-built automatically each time
 a change is checked into the SVN source tree for the distribution. The most
-recent build was of the "$DISTRO" distribution, on $DATE at $TIME $ZONE.
+recent build was of the "$DISTRO" distribution, for revision $REVISION,
+on $DATE at $TIME $ZONE.
 
 These snapshots are intended for testing purposes only and otherwise come with
 no guarantees. Any of them may in fact be broken at any given time.
-EOF
-
-    cat <<- EOF > $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_$DATE
-This directory contains a pre-release snapshot of the DocBook "$DISTRO"
-distribution, auto-built from the latest development sources in the DocBook
-project SVN repository on $DATE at $TIME $ZONE.
-
-The unique ID for this snapshot is $BUILD_ID.
-
-It is intended for testing purposes only and otherwise comes with no
-guarantees. It may in fact be broken.
 EOF
 
     if [ -n "$PREVIOUS_REVISION" ]; then
@@ -325,7 +308,7 @@ EOF
     rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.zip
     rm -rf $TMP/docbook*-$DISTRO-$RELEASEVERSION
 
-    rm -f $DISTRO/$(echo $RELEASEVERSION | tr a-z A-Z)\_$DATE $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
+    rm -f $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
 
     date
 
