@@ -4,7 +4,7 @@
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
                 version="1.0">
 
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
+<xsl:import href="../../fo/docbook.xsl"/>
 
 <xsl:param name="alignment" select="'start'"/>
 

@@ -6,7 +6,7 @@
                 version="1.0">
 
 <xsl:import href="website.xsl"/>
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunker.xsl"/>
+<xsl:import href="../html/chunker.xsl"/>
 <xsl:include href="chunk-common.xsl"/>
 
 </xsl:stylesheet>
