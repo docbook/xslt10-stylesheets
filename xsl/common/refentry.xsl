@@ -23,8 +23,9 @@
       $Id$
     </releaseinfo>
     <corpauthor>The DocBook Project</corpauthor>
-    <copyright><year>2005</year>
-    <holder>The DocBook Project</holder>
+    <copyright>
+      <year>2005-2007</year>
+      <holder>The DocBook Project</holder>
     </copyright>
   </referenceinfo>
   <title>Refentry Metadata-Gathering Template Reference</title>
