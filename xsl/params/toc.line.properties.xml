@@ -15,6 +15,10 @@
 <xsl:attribute-set name="toc.line.properties">
   <xsl:attribute name="text-align-last">justify</xsl:attribute>
   <xsl:attribute name="text-align">start</xsl:attribute>
+  <xsl:attribute name="end-indent"><xsl:value-of
+                select="concat($toc.indent.width, 'pt')"/></xsl:attribute>
+  <xsl:attribute name="last-line-end-indent"><xsl:value-of
+                select="concat('-', $toc.indent.width, 'pt')"/></xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
