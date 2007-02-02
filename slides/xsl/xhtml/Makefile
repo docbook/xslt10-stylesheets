@@ -1,12 +1,14 @@
 include ../../../cvstools/Makefile.incl
 
-all: html2xhtml.xsl xsl-files
+XSLTPROC=xsltproc
+XSLTPROC_OPTS=
 
-html2xhtml.xsl:
-	cp -p ../../../xsl/xhtml/html2xhtml.xsl .
+HTML2XHTML=../../../xsl/xhtml/html2xhtml.xsl
+
+all: xsl-files
 
 remove-old:
-	for f in *.xsl; do if [ ! -f ../html/$$f -a "$$f" != "html2xhtml.xsl" ]; then rm $$f; fi; done
+	for f in ../html/*.xsl; do if [ -f `basename $$f` ]; then $(RM) `basename $$f`; fi; done
 
 add-new:
 	for f in ../html/*.xsl; do if [ ! -f `basename $$f` ]; then \
@@ -17,8 +19,6 @@ add-new:
 # Oh, come on! It must be possible to do this in Make, but I can't figure out how (ndw)
 
 xsl-files: remove-old add-new
-	for f in *.xsl; do if [ ../html/$$f -nt $$f ]; then $(XSLT) ../html/$$f html2xhtml.xsl $$f; fi; done
+	for f in *.xsl; do if [ ../html/$$f -nt $$f ]; then $(XSLTPROC) $(XSLTPROC_OPTS) $(HTML2XHTML) ../html/$$f > $$f; fi; done
 
 clean: remove-old
-	rm -f html2xhtml.xsl
-
