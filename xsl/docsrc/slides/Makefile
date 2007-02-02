@@ -1,4 +1,4 @@
 include ../../../releasetools/Variables.mk
-VPATH=../../../slides/xsl
+VPATH=../../slides
 XMLFILES = docparam.xml
 include ../Makefile.incl

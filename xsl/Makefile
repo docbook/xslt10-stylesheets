@@ -23,7 +23,7 @@ DISTRIB_PACKAGES = doc
 URILIST = \
 .\ http://docbook.sourceforge.net/release/xsl/current/
 
-DIRS=extensions common lib html fo manpages htmlhelp javahelp roundtrip
+DIRS=extensions common lib html fo manpages htmlhelp javahelp roundtrip slides website
 
 .PHONY: distrib clean doc docsrc xhtml
 
@@ -42,23 +42,11 @@ litprog:
 xhtml:
 	$(MAKE) -C xhtml
 
-docsrc: base website slides
+docsrc: base 
 	$(MAKE) -C docsrc
-	$(MAKE) -C website
-	$(MAKE) -C slides
 
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
-
-website:
-	mkdir website
-	cp -pR ../website/xsl/* website/
-
-slides:
-	mkdir slides
-	cp -pR ../slides/xsl/* slides/
-	cp -pR ../slides/graphics slides/
-	cp -pR ../slides/browser slides/
 
 clean:
 	for i in $(DIRS) __bogus__; do \
@@ -69,8 +57,6 @@ clean:
 	$(MAKE) clean -C xhtml
 	$(MAKE) clean -C doc
 	$(MAKE) clean -C docsrc
-	$(RM) -r website
-	$(RM) -r slides
 
 include ../releasetools/Targets.mk
 include ../releasetools/db5.mk
