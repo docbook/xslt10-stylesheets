@@ -14,7 +14,7 @@ import org.apache.xpath.objects.XObject;
 import org.apache.xpath.XPath;
 import org.apache.xpath.XPathContext;
 import org.apache.xpath.NodeSet;
-import org.apache.xpath.DOMHelper;
+import org.apache.xml.utils.DOMHelper;
 import org.apache.xalan.extensions.XSLProcessorContext;
 import org.apache.xalan.extensions.ExpressionContext;
 import org.apache.xalan.transformer.TransformerImpl;
