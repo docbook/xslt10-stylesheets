@@ -18,7 +18,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.apache.xml.utils.QName;
-import org.apache.xpath.DOMHelper;
+import org.apache.xml.utils.DOMHelper;
 import org.apache.xml.utils.AttList;
 
 /**
