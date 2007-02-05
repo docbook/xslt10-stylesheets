@@ -35,7 +35,7 @@
   <xsl:include href="inline.xsl"/>
   <xsl:include href="synop.xsl"/>
   <xsl:include href="lists.xsl"/>
-  <xsl:include href="links.xsl"/>
+  <xsl:include href="endnotes.xsl"/>
   <xsl:include href="table.xsl"/>
 
   <!-- * we rename the following just to avoid using params with "man" -->
