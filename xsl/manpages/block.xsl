@@ -219,7 +219,39 @@
   <xsl:call-template name="formal.object">
     <xsl:with-param name="placement" select="$placement"/>
   </xsl:call-template>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
 
+<!-- ==================================================================== -->
+
+<xsl:template match="mediaobject">
+  <xsl:text>&#x2302;sp</xsl:text>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>&#x2302;RS</xsl:text> 
+  <xsl:if test="not($list-indent = '')">
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$list-indent"/>
+  </xsl:if>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>&#x2302;RE&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="imageobject">
+  <xsl:text>[IMAGE]</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="textobject[parent::inlinemediaobject]">
+  <xsl:text>[</xsl:text>
+  <xsl:value-of select="."/>
+  <xsl:text>]</xsl:text>
+</xsl:template>
+
+<xsl:template match="textobject">
+  <xsl:apply-templates/>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -246,6 +278,7 @@
     <bold><xsl:apply-templates select="$object" mode="object.title.markup.textonly"/></bold>
   </xsl:param>
   <xsl:apply-templates mode="bold" select="exsl:node-set($title)"/>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <!-- ==================================================================== -->
