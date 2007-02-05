@@ -54,12 +54,12 @@
 &man.font.table.headings;
 &man.font.table.title;
   </reference>
-  <reference id="links">
-  <title>Link handling</title>
-&man.links.are.numbered;
+  <reference id="endnotes">
+  <title>Endnotes and link handling</title>
+&man.endnotes.list.enabled;
+&man.endnotes.list.heading;
+&man.endnotes.are.numbered;
 &man.links.are.underlined;
-&man.links.list.enabled;
-&man.links.list.heading;
   </reference>
   <reference id="lists">
   <title>Lists</title>
@@ -169,10 +169,10 @@
 <src:fragref linkend="man.string.subst.map.local.pre.frag"/>
 <src:fragref linkend="man.string.subst.map.frag"/>
 <src:fragref linkend="man.string.subst.map.local.post.frag"/>
-<src:fragref linkend="man.links.are.numbered.frag"/>
+<src:fragref linkend="man.endnotes.list.enabled.frag"/>
+<src:fragref linkend="man.endnotes.list.heading.frag"/>
+<src:fragref linkend="man.endnotes.are.numbered.frag"/>
 <src:fragref linkend="man.links.are.underlined.frag"/>
-<src:fragref linkend="man.links.list.enabled.frag"/>
-<src:fragref linkend="man.links.list.heading.frag"/>
 <src:fragref linkend="variablelist.term.separator.frag"/>
 <src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="man.charmap.enabled.frag"/>

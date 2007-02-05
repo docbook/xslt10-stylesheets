@@ -210,10 +210,10 @@
         <xsl:with-param name="info" select="$info"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <!-- * LINKS list (only if user wants links numbered and/or listed) -->
+      <!-- * NOTES list (only if user wants endnotes numbered and/or listed) -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <xsl:if test="$man.links.list.enabled != 0 or
-                    $man.links.are.numbered != 0">
+      <xsl:if test="$man.endnotes.list.enabled != 0 or
+                    $man.endnotes.are.numbered != 0">
         <xsl:call-template name="endnotes.list"/>
       </xsl:if>
     </xsl:variable> <!-- * end of manpage.contents -->
