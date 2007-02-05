@@ -17,13 +17,11 @@ $(CLDR_CVS_DIR)/cldr:
 	$(MAKE) -C $(CLDR_CVS_DIR)
 
 NEWS: $(CLDR_CVS_DIR)/cldr
-	mv CVS .CVS_REAL
 	(cd ..; $(CVS) $(CVS_OPTS) -d $(CLDR_CVS_PATH) co cldr)
 	$(CVS2LOG) -w
 	touch ChangeLog
 	$(MERGELOGS) -v NONE > $@
 	find . -name CVS -type d | xargs $(RM) -r
-	mv .CVS_REAL CVS
 
 clean:
 	$(RM) -r $(CLDR_CVS_MODULES)
