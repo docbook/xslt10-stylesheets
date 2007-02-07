@@ -129,6 +129,8 @@
   <!-- * processing before final output, the character-map will -->
   <!-- * handle conversion of the &#x2022; to "\(bu" for us -->
   <xsl:text>&#10;</xsl:text>
+  <xsl:text>&#x2302;sp</xsl:text>
+  <xsl:text>&#10;</xsl:text>
   <xsl:text>&#x2302;RS</xsl:text>
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
@@ -153,6 +155,8 @@
 </xsl:template>
 
 <xsl:template match="orderedlist/listitem|procedure/step">
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>&#x2302;sp</xsl:text>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>&#x2302;RS</xsl:text>
   <xsl:if test="not($list-indent = '')">
