@@ -175,11 +175,11 @@ xmlns:u="http://nwalsh.com/xsl/unittests#"
       <body onload="newPage(1)" onkeypress="navigate(event)">
 	<div class="titlepage">
 	  <h1>
-	    <xsl:value-of select="db:info/db:title"/>
+	    <xsl:apply-templates select="db:info/db:title/node()"/>
 	  </h1>
 	  <xsl:if test="db:info/db:subtitle">
 	    <h2>
-	      <xsl:value-of select="db:info/db:subtitle"/>
+	      <xsl:apply-templates select="db:info/db:subtitle/node()"/>
 	    </h2>
 	  </xsl:if>
 	  <div class="author">
