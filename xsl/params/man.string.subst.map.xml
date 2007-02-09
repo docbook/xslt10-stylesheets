@@ -1,5 +1,6 @@
 <refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0"
           id="man.string.subst.map">
 <refmeta>
 <refentrytitle>man.string.subst.map</refentrytitle>
@@ -36,41 +37,41 @@
   <!-- * because the groff docs say that's the correct thing to do; also -->
   <!-- * because testing shows that "\\" doesn't always work as expected; -->
   <!-- * for example, "\\" within a table seems to mess things up -->
-  <substitution oldstring="\" newstring="\e"/>
+  <ss:substitution oldstring="\" newstring="\e"/>
   <!-- * fix bad font-request capitalization in .SH (stylesheet artifact) -->
-  <substitution oldstring="&#x2593;FB" newstring="\fB"/>
-  <substitution oldstring="&#x2593;FI" newstring="\fI"/>
-  <substitution oldstring="&#x2593;FR" newstring="\fR"/>
+  <ss:substitution oldstring="&#x2593;FB" newstring="\fB"/>
+  <ss:substitution oldstring="&#x2593;FI" newstring="\fI"/>
+  <ss:substitution oldstring="&#x2593;FR" newstring="\fR"/>
   <!-- * remove no-break marker at beginning of line (stylesheet artifact) --> 
-  <substitution oldstring="&#x2592;&#x2580;" newstring="&#x2592;"/>
+  <ss:substitution oldstring="&#x2592;&#x2580;" newstring="&#x2592;"/>
   <!-- * replace U+2580 no-break marker (stylesheet-added) w/ no-break space -->
-  <substitution oldstring="&#x2580;" newstring="\ "/>
+  <ss:substitution oldstring="&#x2580;" newstring="\ "/>
   <!-- * replace U+2593 marker with backslash --> 
-  <substitution oldstring="&#x2593;" newstring="\"/>
+  <ss:substitution oldstring="&#x2593;" newstring="\"/>
   <!-- * escape dashes in content (only at line beginnings) -->
-  <substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
+  <ss:substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
   <!-- * replace U+2302 marker with dot -->
-  <substitution oldstring="&#x2302;" newstring="."/>
+  <ss:substitution oldstring="&#x2302;" newstring="."/>
   <!-- * escape dashes in content -->
-  <substitution oldstring="-" newstring="\-"/>
+  <ss:substitution oldstring="-" newstring="\-"/>
   <!-- * replace U+2591 marker with dash -->
-  <substitution oldstring="&#x2591;" newstring="-"/>
+  <ss:substitution oldstring="&#x2591;" newstring="-"/>
 
   <!-- ==================================================================== -->
 
   <!-- * squeeze multiple newlines before a roff request  -->
-  <substitution oldstring="&#10;&#10;." newstring="&#10;."/>
+  <ss:substitution oldstring="&#10;&#10;." newstring="&#10;."/>
   <!-- * remove any .sp occurences that directly follow a .PP  -->
-  <substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
+  <ss:substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
   <!-- * squeeze multiple newlines after start of no-fill (verbatim) env. -->
-  <substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>
+  <ss:substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>
   <!-- * squeeze multiple newlines after REstoring margin -->
-  <substitution oldstring=".RE&#10;&#10;" newstring=".RE&#10;"/>
+  <ss:substitution oldstring=".RE&#10;&#10;" newstring=".RE&#10;"/>
   <!-- * an apostrophe at the beginning of a line gets interpreted as a -->
   <!-- * roff request (groff(7) says it is "the non-breaking control -->
   <!-- * character"); so we must add backslash before any apostrophe -->
   <!-- * found at the start of a line -->
-  <substitution oldstring="&#10;'" newstring="&#10;\'"/>
+  <ss:substitution oldstring="&#10;'" newstring="&#10;\'"/>
   <!-- * -->
   <!-- * non-breaking space -->
   <!-- * -->
@@ -88,32 +89,32 @@
   <!-- * Unfortunately, roff seems to do some weird things with long -->
   <!-- * lines that only have words separated by "\~" spaces, so it's -->
   <!-- * safer just to stick with the "\ " space -->
-  <substitution oldstring="&#x00a0;" newstring="\ "/>
+  <ss:substitution oldstring="&#x00a0;" newstring="\ "/>
   <!-- * x2008 is a "punctuation space"; we must replace it here because, -->
   <!-- * for certain reasons, the stylesheets add it before and after -->
   <!-- * every Parameter in Funcprototype output -->
-  <substitution oldstring="&#x2008;" newstring=" "/>
+  <ss:substitution oldstring="&#x2008;" newstring=" "/>
   <!-- * -->
   <!-- * Now deal with some other characters that are added by the -->
   <!-- * stylesheets during processing. -->
   <!-- * -->
   <!-- * bullet -->
-  <substitution oldstring="&#x2022;" newstring="\(bu"/>
+  <ss:substitution oldstring="&#x2022;" newstring="\(bu"/>
   <!-- * left double quote -->
-  <substitution oldstring="&#x201c;" newstring="\(lq"/>
+  <ss:substitution oldstring="&#x201c;" newstring="\(lq"/>
   <!-- * right double quote -->
-  <substitution oldstring="&#x201d;" newstring="\(rq"/>
+  <ss:substitution oldstring="&#x201d;" newstring="\(rq"/>
   <!-- * left single quote -->
-  <substitution oldstring="&#x2018;" newstring="\(oq"/>
+  <ss:substitution oldstring="&#x2018;" newstring="\(oq"/>
   <!-- * right single quote -->
-  <substitution oldstring="&#x2019;" newstring="\(cq"/>
+  <ss:substitution oldstring="&#x2019;" newstring="\(cq"/>
   <!-- * copyright sign -->
-  <substitution oldstring="&#x00a9;" newstring="\(co"/>
+  <ss:substitution oldstring="&#x00a9;" newstring="\(co"/>
   <!-- * registered sign -->
-  <substitution oldstring="&#x00ae;" newstring="\(rg"/>
+  <ss:substitution oldstring="&#x00ae;" newstring="\(rg"/>
   <!-- * servicemark... -->
   <!-- * There is no groff equivalent for it. -->
-  <substitution oldstring="&#x2120;" newstring="(SM)"/>
+  <ss:substitution oldstring="&#x2120;" newstring="(SM)"/>
   <!-- * trademark... -->
   <!-- * We don't do "\(tm" because for console output, -->
   <!-- * groff just renders that as "tm"; that is: -->
@@ -123,13 +124,13 @@
   <!-- * So we just make it to "(TM)" instead; thus: -->
   <!-- * -->
   <!-- *   Product&#x2122; -> Product(TM) -->
-  <substitution oldstring="&#x2122;" newstring="(TM)"/>
+  <ss:substitution oldstring="&#x2122;" newstring="(TM)"/>
 
   <!-- ==================================================================== -->
 
   <!-- * we use U+2592 as a marker for the newline before output of <sbr>; -->
   <!-- * so we now need to replace U+2592 marker with a real newline -->
-  <substitution oldstring="&#x2592;" newstring="&#10;"/>
+  <ss:substitution oldstring="&#x2592;" newstring="&#10;"/>
 
 </xsl:param>
 </src:fragment>
@@ -192,7 +193,7 @@ particular customization of the DocBook XSL stylesheets.</para>
   <title>Contents of the substitution map</title>
   <para>The string-substitution map contains one or more <tag
   namespace="http://docbook.sf.net/xmlns/string.subst/1.0"
-  >substitution</tag> elements, each of which has two attributes:
+  >ss:substitution</tag> elements, each of which has two attributes:
   <variablelist>
     <varlistentry>
       <term>oldstring</term>
