@@ -3,6 +3,9 @@
 my @filenames = ();
 my $opts = "";
 
+my $tmpStdout = "/tmp/tidy.stdout.$$";
+my $tmpStderr = "/tmp/tidy.stderr.$$";
+
 while (@ARGV) {
     $_ = shift @ARGV;
     if (@filenames || !/^-/) {
@@ -21,19 +24,25 @@ while (@ARGV) {
 foreach my $file (@filenames) {
     my $content = "";
 
-    print STDERR "Tidy $file...\n";
-    open (F, "/usr/bin/tidy -wrap 512 $opts $file |");
-    while (<F>) {
-	$content .= $_;
-    }
-    close (F);
-
-    if ($content eq '') {
-	# we must have done an "in-place" tidy
-	if (open (F, $file)) {
-	    read (F, $content, -s $file);
-	    close (F);
+    system("/usr/bin/tidy -wrap 512 $opts $file > $tmpStdout 2>$tmpStderr");
+    if (-s $tmpStderr != 0) {
+	print STDERR "Tidy $file...\n";
+	open (F, $tmpStderr);
+	while (<F>) {
+	    print $_;
 	}
+	close (F);
+    }
+
+    if (-s $tmpStdout == 0) {
+	# we must have done an "in-place" tidy
+	open (F, $file);
+	read (F, $content, -s $file);
+	close (F);
+    } else {
+	open (F, $tmpStdout);
+	read (F, $content, -s $tmpStdout);
+	close (F);
     }
 
     $content = cleanupContent($content);
@@ -43,45 +52,8 @@ foreach my $file (@filenames) {
     close (F);
 }
 
-# the old way...
-# if ($#filenames == 0) {
-#     my $filename = shift @filenames;
-#     my $content = "";
-# 
-#     open (F, "/usr/bin/tidy -wrap 512 $opts $filename |");
-#     while (<F>) {
-# 	$content .= $_;
-#     }
-#     close (F);
-# 
-#     if ($content eq '') {
-# 	# we must have done an "in-place" tidy
-# 	if (open (F, $filename)) {
-# 	    read (F, $content, -s $filename);
-# 	    close (F);
-# 	}
-#     }
-# 
-#     $content = cleanupContent($content);
-# 
-#     open (F, ">$filename");
-#     print F $content;
-#     close (F);
-# } else {
-#     system ("/usr/bin/tidy -wrap 512 $opts " . join(" ", @filenames));
-#     foreach my $filename (@filenames) {
-# 	if (open (F, $filename)) {
-# 	    read (F, $content, -s $filename);
-# 	    close (F);
-# 	}
-# 
-# 	$content = cleanupContent($content);
-# 
-# 	open (F, ">$filename");
-# 	print F $content;
-# 	close (F);
-#     }
-# }
+unlink $tmpStdout;
+unlink $tmpStderr;
 
 sub cleanupContent {
     my $content = shift;
@@ -104,6 +76,26 @@ sub cleanupContent {
 	#print "====", addnbsp($litlayout), "====\n";
 
 	$newContent .= $pre . $starttag . addnbsp($litlayout);
+	$content = $post;
+    }
+
+    $content = $newContent . $content;
+    $newContent = "";
+
+    while ($content
+	   =~ /^(.*?)(<script[^>]+text\/javascript.*?>\s*\/\/<!\[CDATA\[)(.*?)(\/\/\]\]\>.*)$/is) {
+	my $pre = $1;
+	my $scripttag = $2;
+	my $script = $3;
+	my $post = $4;
+
+	# belt and suspenders is both unnecessary ... and WRONG
+	$script =~ s/\&lt;/</sg;
+	$script =~ s/\&gt;/>/sg;
+	$script =~ s/\&amp;/\&/sg;
+
+	$newContent .= $pre . $scripttag . $script;
+
 	$content = $post;
     }
 
