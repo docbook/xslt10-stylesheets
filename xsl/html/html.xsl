@@ -224,8 +224,17 @@
   <!-- permit customization of class attributes -->
   <!-- Use element name by default -->
   <xsl:attribute name="class">
-    <xsl:value-of select="$class"/>
+    <xsl:apply-templates select="." mode="class.value">
+      <xsl:with-param name="class" select="$class"/>
+    </xsl:apply-templates>
   </xsl:attribute>
+</xsl:template>
+
+<xsl:template match="*" mode="class.value">
+  <xsl:param name="class" select="local-name(.)"/>
+  <!-- permit customization of class value only -->
+  <!-- Use element name by default -->
+  <xsl:value-of select="$class"/>
 </xsl:template>
 
 </xsl:stylesheet>
