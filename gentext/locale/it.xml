@@ -6,6 +6,10 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
+  <author><firstname>Federico</firstname><surname>De Faveri</surname>
+          <affiliation><address><email>defaveri@di.unipi.it</email></address>
+          </affiliation>
+  </author>
   <author><firstname>Andrea</firstname><surname>Rizzi</surname>
           <affiliation><address><email>a.rizzi@sns.it</email></address>
           </affiliation>
@@ -82,6 +86,8 @@
 <gentext key="ProductionSet" text="Produzione"/>
 <gentext key="Published" text="Pubblicato"/>
 <gentext key="published" text="Pubblicato"/>
+<gentext key="PubDate" text="Data di pubblicazione"/>
+<gentext key="pubdate" text="Data di pubblicazione"/>
 <gentext key="Qandadiv" text="D e R"/>
 <gentext key="qandadiv" text="D e R"/>
 <gentext key="Question" text="D:"/>
@@ -90,6 +96,7 @@
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Riferimento"/>
 <gentext key="reference" text="Riferimento"/>
+<gentext key="References" text="Riferimenti"/>
 <gentext key="RefName" text="Nome"/>
 <gentext key="refname" text="Nome"/>
 <gentext key="RefSection" text=""/>
@@ -153,12 +160,18 @@
 <gentext key="unsupported" text="non supportato"/>
 <gentext key="xrefto" text="riferimento a"/>
 
+<gentext key="Authors" text="Autori"/>
+<gentext key="graphicdesigner" text="Designer Grafico"/>
+<gentext key="translator" text="Traduttore"/>
+
 <gentext key="listofequations" text="Lista delle Equazioni"/>
 <gentext key="ListofEquations" text="Lista delle Equazioni"/>
 <gentext key="ListofExamples" text="Lista degli Esempi"/>
 <gentext key="listofexamples" text="Lista degli Esempi"/>
 <gentext key="ListofFigures" text="Lista delle Figure"/>
 <gentext key="listoffigures" text="Lista delle Figure"/>
+<gentext key="ListofProcedures" text="Lista delle procedure"/>
+<gentext key="listofprocedures" text="Lista delle procedure"/>
 <gentext key="listoftables" text="Lista delle Tabelle"/>
 <gentext key="ListofTables" text="Lista delle Tabelle"/>
 <gentext key="ListofUnknown" text="Lista degli Sconosciuti"/>
@@ -503,7 +516,7 @@
    <template name="June">giugno</template>
    <template name="July">luglio</template>
    <template name="August">agosto</template>
-   <template name="September">settebre</template>
+   <template name="September">settembre</template>
    <template name="October">ottobre</template>
    <template name="November">novembre</template>
    <template name="December">dicembre</template>
@@ -523,7 +536,8 @@
    <template name="Apr">apr</template>
    <template name="May">mag</template>
    <template name="Jun">giu</template>
-   <template name="Jul">ago</template>
+   <template name="Jul">lug</template>
+   <template name="Aug">ago</template>
    <template name="Sep">set</template>
    <template name="Oct">ott</template>
    <template name="Nov">nov</template>
