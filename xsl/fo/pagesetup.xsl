@@ -1690,7 +1690,7 @@
   </xsl:variable>
 
   <xsl:variable name="candidate">
-    <fo:table table-layout="fixed" width="100%">
+    <fo:table xsl:use-attribute-sets="header.table.properties">
       <xsl:call-template name="head.sep.rule">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="$sequence"/>
@@ -2015,7 +2015,7 @@
   </xsl:variable>
 
   <xsl:variable name="candidate">
-    <fo:table table-layout="fixed" width="100%">
+    <fo:table xsl:use-attribute-sets="footer.table.properties">
       <xsl:call-template name="foot.sep.rule">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="$sequence"/>
