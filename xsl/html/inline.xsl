@@ -82,6 +82,8 @@
 
               <xsl:otherwise>
                 <a>
+                  <xsl:apply-templates select="." mode="class.attribute"/>
+
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
                       <xsl:with-param name="object" select="$target"/>
@@ -116,6 +118,7 @@
           <!-- otherwise it's a URI -->
           <xsl:otherwise>
             <a>
+              <xsl:apply-templates select="." mode="class.attribute"/>
               <xsl:attribute name="href">
                 <xsl:value-of select="$xhref"/>
               </xsl:attribute>
@@ -139,6 +142,7 @@
         </xsl:call-template>
 
         <a>
+          <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:attribute name="href">
             <xsl:call-template name="href.target">
               <xsl:with-param name="object" select="$target"/>
@@ -664,6 +668,7 @@
   <xsl:choose>
     <xsl:when test="$citerefentry.link != '0'">
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="generate.citerefentry.link"/>
         </xsl:attribute>
@@ -874,6 +879,7 @@
       <xsl:choose>
         <xsl:when test="$target">
           <a>
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:if test="@id or @xml:id">
               <xsl:attribute name="name">
                 <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -960,6 +966,7 @@
             </xsl:call-template>
           </xsl:variable>
           <a href="{$chunkbase}#{$id}">
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:call-template name="inline.italicseq">
               <xsl:with-param name="content" select="$content"/>
             </xsl:call-template>
@@ -997,6 +1004,7 @@
         </xsl:when>
         <xsl:otherwise>
           <a>
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:if test="@id or @xml:id">
               <xsl:attribute name="name">
                 <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -1133,6 +1141,7 @@
         <xsl:text>&lt;</xsl:text>
       </xsl:if>
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:text>mailto:</xsl:text>
           <xsl:value-of select="."/>
@@ -1233,6 +1242,7 @@
 
       <xsl:text>[</xsl:text>
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target"/>

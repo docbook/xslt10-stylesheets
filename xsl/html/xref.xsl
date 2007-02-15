@@ -154,11 +154,13 @@
             <xsl:value-of select="@endterm"/>
           </xsl:message>
           <a href="{$href}">
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:text>???</xsl:text>
           </a>
         </xsl:when>
         <xsl:otherwise>
           <a href="{$href}">
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:apply-templates select="$etarget" mode="endterm"/>
           </a>
         </xsl:otherwise>
@@ -167,6 +169,7 @@
 
     <xsl:when test="$target/@xreflabel">
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target"/>
@@ -190,6 +193,7 @@
       </xsl:if>
 
       <a href="{$href}">
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:if test="$target/title or $target/*/title">
           <xsl:attribute name="title">
             <xsl:apply-templates select="$target" mode="xref-title"/>
@@ -944,6 +948,7 @@
   <xsl:param name="url" select="@url"/>
   <xsl:variable name="link">
     <a>
+      <xsl:apply-templates select="." mode="class.attribute"/>
       <xsl:if test="@id or @xml:id">
         <xsl:attribute name="name">
           <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -1068,7 +1073,8 @@
 
       <xsl:choose>
         <xsl:when test="$href != ''">
-          <a href="{$href}" class="olink">
+          <a href="{$href}">
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:copy-of select="$hottext"/>
           </a>
           <xsl:copy-of select="$olink.page.citation"/>
@@ -1125,7 +1131,8 @@
     
       <xsl:choose>
         <xsl:when test="$href != ''">
-          <a href="{$href}" class="olink">
+          <a href="{$href}">
+            <xsl:apply-templates select="." mode="class.attribute"/>
             <xsl:call-template name="olink.hottext"/>
           </a>
         </xsl:when>
