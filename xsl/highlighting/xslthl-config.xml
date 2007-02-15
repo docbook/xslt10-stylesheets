@@ -6,5 +6,6 @@
   <highlighter id='php'    file='./php-hl.xml'   />
   <highlighter id='myxml'  file='./myxml-hl.xml' />
   <highlighter id='m2'     file='./m2-hl.xml'    />
+  <highlighter id='c'      file='./c-hl.xml'    />
   <namespace prefix="xslthl" uri="http://xslthl.sf.net" />
 </xslthl-config>
