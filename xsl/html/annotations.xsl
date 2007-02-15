@@ -113,6 +113,7 @@
 
   <a href="#annot-{generate-id(.)}" title="{$title}"
      name="anch-{generate-id(.)}" id="anch-{generate-id(.)}">
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:attribute name="onClick">
       <xsl:text>popup_</xsl:text>
       <xsl:value-of select="generate-id(.)"/>
@@ -145,6 +146,7 @@
     </div>
     <div class="annotation-close">
       <a href="#" onclick="popup_{generate-id(.)}.hidePopup();return false;">
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <img src="{$annotation.graphic.close}" alt="X" border="0"/>
       </a>
     </div>

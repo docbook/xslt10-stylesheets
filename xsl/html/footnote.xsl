@@ -28,6 +28,7 @@
       <sup>
         <xsl:text>[</xsl:text>
         <a name="{$name}" href="{$href}">
+          <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:apply-templates select="." mode="footnote.number"/>
         </a>
         <xsl:text>]</xsl:text>
@@ -37,6 +38,7 @@
       <sup>
         <xsl:text>[</xsl:text>
         <a name="{$name}" href="{$href}">
+          <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:apply-templates select="." mode="footnote.number"/>
         </a>
         <xsl:text>]</xsl:text>
@@ -57,6 +59,7 @@
   <sup>
     <xsl:text>[</xsl:text>
     <a href="{$href}">
+      <xsl:apply-templates select="." mode="class.attribute"/>
       <xsl:apply-templates select="$footnote" mode="footnote.number"/>
     </a>
     <xsl:text>]</xsl:text>
@@ -126,6 +129,7 @@
     <sup>
       <xsl:text>[</xsl:text>
       <a name="{$name}" href="{$href}">
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates select="ancestor::footnote"
                              mode="footnote.number"/>
       </a>
@@ -154,6 +158,7 @@
     <sup>
       <xsl:text>[</xsl:text>
       <a name="{$name}" href="{$href}">
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates select="ancestor::footnote"
                              mode="footnote.number"/>
       </a>
