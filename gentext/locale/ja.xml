@@ -446,7 +446,7 @@
 
 <template name="appendix"><Appendix/>&#160;%n. %t</template>
 <template name="bridgehead"><Section/>&#160;%n. <startquote/>%t<endquote/></template>
-<template name="chapter"><Chapter/>&#160;%n. %t</template>
+<template name="chapter"><Chapter1/>%n<Chapter2/></template>
 <template name="equation"><Equation/>&#160;%n. <startquote/>%t<endquote/></template>
 <template name="example"><Example/>&#160;%n. <startquote/>%t<endquote/></template>
 <template name="figure"><Figure/>&#160;%n. <startquote/>%t<endquote/></template>
