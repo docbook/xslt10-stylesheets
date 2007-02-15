@@ -96,6 +96,7 @@
   <xsl:choose>
     <xsl:when test="$target">
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:if test="@id or @xml:id">
           <xsl:attribute name="name">
             <xsl:value-of select="(@id|@xml:id)[1]"/>

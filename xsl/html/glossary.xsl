@@ -248,6 +248,7 @@ GlossEntry ::=
         <xsl:choose>
           <xsl:when test="$target">
             <a>
+              <xsl:apply-templates select="." mode="class.attribute"/>
               <xsl:attribute name="href">
                 <xsl:call-template name="href.target">
                   <xsl:with-param name="object" select="$target"/>
@@ -309,6 +310,7 @@ GlossEntry ::=
   <xsl:choose>
     <xsl:when test="$target">
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target"/>

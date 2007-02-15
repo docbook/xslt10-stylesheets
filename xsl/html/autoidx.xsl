@@ -461,6 +461,7 @@
     </xsl:when>
     <xsl:otherwise>
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:variable name="title">
           <xsl:choose>
             <xsl:when test="&section;/titleabbrev and $index.prefer.titleabbrev != 0">
@@ -509,6 +510,7 @@
       <xsl:variable name="target" select="key('sections', $zone)[&scope;]"/>
 
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target[1]"/>
@@ -531,6 +533,7 @@
       <xsl:variable name="target" select="key('sections', $zone)[&scope;]"/>
 
       <a>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target[1]"/>
