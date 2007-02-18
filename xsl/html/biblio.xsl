@@ -139,7 +139,14 @@
         </xsl:call-template>
         <p>
           <xsl:copy-of select="$label"/>
-          <xsl:apply-templates mode="bibliography.mode"/>
+	  <xsl:choose>
+	    <xsl:when test="$bibliography.style = 'iso690'">
+	      <xsl:call-template name="iso690.makecitation"/>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <xsl:apply-templates mode="bibliography.mode"/>
+	    </xsl:otherwise>
+	  </xsl:choose>
         </p>
       </div>
     </xsl:otherwise>

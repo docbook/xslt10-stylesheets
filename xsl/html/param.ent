@@ -254,6 +254,7 @@
 <!ENTITY menuchoice.separator SYSTEM "../params/menuchoice.separator.xml">
 <!ENTITY menuchoice.menu.separator SYSTEM "../params/menuchoice.menu.separator.xml">
 <!ENTITY bibliography.numbered SYSTEM "../params/bibliography.numbered.xml">
+<!ENTITY bibliography.style SYSTEM "../params/bibliography.style.xml">
 <!ENTITY chunk.tocs.and.lots SYSTEM "../params/chunk.tocs.and.lots.xml">
 <!ENTITY chunk.append SYSTEM "../params/chunk.append.xml">
 <!ENTITY chunk.tocs.and.lots.has.title SYSTEM "../params/chunk.tocs.and.lots.has.title.xml">

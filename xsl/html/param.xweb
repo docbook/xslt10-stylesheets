@@ -237,6 +237,7 @@ $Id$
 </reference>
 
 <reference id="biblio"><title>Bibliography</title>
+&bibliography.style;
 &biblioentry.item.separator;
 &bibliography.collection;
 &bibliography.numbered;
@@ -465,6 +466,7 @@ around all these parameters.</para>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
 <src:fragref linkend="bibliography.numbered.frag"/>
+<src:fragref linkend="bibliography.style.frag"/>
 <src:fragref linkend="blurb.on.titlepage.enabled.frag"/>
 <src:fragref linkend="bridgehead.in.toc.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>

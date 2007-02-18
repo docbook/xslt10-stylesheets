@@ -58,6 +58,7 @@
 <xsl:include href="admon.xsl"/>
 <xsl:include href="component.xsl"/>
 <xsl:include href="biblio.xsl"/>
+<xsl:include href="biblio-iso690.xsl"/>
 <xsl:include href="glossary.xsl"/>
 <xsl:include href="block.xsl"/>
 <xsl:include href="task.xsl"/>
