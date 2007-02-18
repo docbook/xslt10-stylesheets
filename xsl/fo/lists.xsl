@@ -924,7 +924,7 @@
                         |comment()[preceding-sibling::step]
                         |processing-instruction()[preceding-sibling::step]"/>
 
-  <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
+  <fo:block id="{$id}" xsl:use-attribute-sets="procedure.properties list.block.spacing">
     <xsl:if test="./title and $placement = 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
