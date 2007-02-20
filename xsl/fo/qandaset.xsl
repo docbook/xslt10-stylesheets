@@ -15,7 +15,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="qandaset">
+<xsl:template match="qandaset" name="process.qandaset">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -263,25 +263,25 @@
     </xsl:choose>
   </xsl:variable>
 
+
+      <xsl:variable name="label.content">
+        <xsl:apply-templates select="." mode="label.markup"/>
+        <xsl:if test="$deflabel = 'number' and not(label)">
+          <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+        </xsl:if>
+      </xsl:variable>
+
   <fo:list-item id="{$entry.id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
-      <xsl:choose>
-        <xsl:when test="$deflabel = 'none'">
-          <fo:block/>
-        </xsl:when>
-        <xsl:otherwise>
-          <fo:block>
-            <xsl:apply-templates select="." mode="label.markup"/>
-            <xsl:if test="$deflabel = 'number' and not(label)">
-              <xsl:apply-templates select="." mode="intralabel.punctuation"/>
-            </xsl:if>
-          </fo:block>
-        </xsl:otherwise>
-      </xsl:choose>
+        <xsl:if test="string-length($label.content) &gt; 0">
+			<fo:block font-weight="bold">
+			  <xsl:copy-of select="$label.content"/>          
+			</fo:block>
+        </xsl:if>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <xsl:choose>
-        <xsl:when test="$deflabel = 'none'">
+        <xsl:when test="$deflabel = 'none' and not(label)">
           <fo:block font-weight="bold">
             <xsl:apply-templates select="*[local-name(.)!='label']"/>
           </fo:block>
@@ -316,24 +316,30 @@
     </xsl:choose>
   </xsl:variable>
 
+      <xsl:variable name="answer.label">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </xsl:variable>
+
   <fo:list-item xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
       <xsl:choose>
-        <xsl:when test="$deflabel = 'none'">
-          <fo:block/>
+        <xsl:when test="string-length($answer.label) &gt; 0">
+			<fo:block font-weight="bold">
+			  <xsl:copy-of select="$answer.label"/>
+			</fo:block>
         </xsl:when>
         <xsl:otherwise>
-          <fo:block>
-            <xsl:variable name="answer.label">
-              <xsl:apply-templates select="." mode="label.markup"/>
-            </xsl:variable>
-            <xsl:copy-of select="$answer.label"/>
-          </fo:block>
+			<fo:block/>
         </xsl:otherwise>
       </xsl:choose>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
-      <xsl:apply-templates select="*[local-name(.)!='label']"/>
+      <xsl:apply-templates select="*[local-name(.)!='label' and local-name(.) != 'qandaentry']"/>
+      <!-- * handle nested answer/qandaentry instances -->
+      <!-- * (bug 1509043 from Daniel Leidert) -->
+      <xsl:if test="descendant::question">
+        <xsl:call-template name="process.qandaset"/>
+      </xsl:if>
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
