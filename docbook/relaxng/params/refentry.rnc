@@ -1,0 +1,26 @@
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace src = "http://nwalsh.com/xmlns/litprog/fragment"
+namespace html = "http://www.w3.org/1999/xhtml"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "../docbook/docbookxi/docbookxi.rnc" {
+   db.refsynopsisdiv =
+      element refsynopsisdiv {
+         db.refsynopsisdiv.attlist,
+         db.refsynopsisdiv.info,
+         fragment+
+      }
+
+   db._any =
+      element * - (db:* | html:* | src:*) {
+         (db._any.attribute | text | db._any)*
+      }
+}
+
+fragment = element src:fragment {
+   attribute xml:id { xsd:ID },
+   db._any*
+}
+
