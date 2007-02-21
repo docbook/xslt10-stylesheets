@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="nominal.image.width">
+          version="5.0" xml:id="nominal.image.width">
 <refmeta>
 <refentrytitle>nominal.image.width</refentrytitle>
-<refmiscinfo role="type">length</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>nominal.image.width</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='nominal.image.width.frag'>
+<src:fragment xml:id="nominal.image.width.frag">
 <xsl:param name="nominal.image.width" select="6 * $pixels.per.inch"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Graphic widths expressed as a percentage are problematic. In the
 following discussion, we speak of width and contentwidth, but
@@ -36,5 +39,5 @@ character with the meaning.</para>
 <parameter>nominal.image.width</parameter> and convert percentages to
 actual values based on that nominal size.</para>
 
-</refsect1>
+</refsection>
 </refentry>

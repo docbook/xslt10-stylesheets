@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="title.font.family">
+          version="5.0" xml:id="title.font.family">
 <refmeta>
 <refentrytitle>title.font.family</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='title.font.family.frag'>
+<src:fragment xml:id="title.font.family.frag">
 <xsl:param name="title.font.family" select="'sans-serif'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The title font family is used for titles (chapter, section, figure,
 etc.)
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

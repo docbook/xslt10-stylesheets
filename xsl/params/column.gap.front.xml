@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="column.gap.front">
+          version="5.0" xml:id="column.gap.front">
 <refmeta>
 <refentrytitle>column.gap.front</refentrytitle>
-<refmiscinfo role="type">length</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>column.gap.front</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='column.gap.front.frag'>
+<src:fragment xml:id="column.gap.front.frag">
 <xsl:param name="column.gap.front" select="'12pt'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies the gap between columns in front matter (if
 <parameter>column.count.front</parameter> is greater than one).</para>
 
-</refsect1>
+</refsection>
 </refentry>

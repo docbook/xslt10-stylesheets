@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="tex.math.file">
+          version="5.0" xml:id="tex.math.file">
 <refmeta>
 <refentrytitle>tex.math.file</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>tex.math.file</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='tex.math.file.frag'>
+<src:fragment xml:id="tex.math.file.frag">
 <xsl:param name="tex.math.file" select="'tex-math-equations.tex'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Name of auxiliary file for TeX equations. This file can be
 processed by dvi2bitmap to get bitmap versions of equations for HTML
 output.</para>
 
-</refsect1>
+</refsection>
 </refentry>

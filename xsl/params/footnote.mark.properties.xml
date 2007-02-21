@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="footnote.mark.properties">
+          version="5.0" xml:id="footnote.mark.properties">
 <refnamediv>
 <refname>footnote.mark.properties</refname>
 <refpurpose>Properties applied to each footnote mark
@@ -8,7 +11,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='footnote.mark.properties.frag'>
+<src:fragment xml:id="footnote.mark.properties.frag">
 <xsl:attribute-set name="footnote.mark.properties">
   <xsl:attribute name="font-size">75%</xsl:attribute>
   <xsl:attribute name="font-weight">normal</xsl:attribute>
@@ -17,7 +20,7 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This attribute set is applied to the footnote mark used
 for each footnote.
@@ -29,5 +32,5 @@ footnote template itself, because the current version of FOP reports
 an error if baseline-shift is used.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="generate.toc">
+          version="5.0" xml:id="generate.toc">
 <refmeta>
 <refentrytitle>generate.toc</refentrytitle>
-<refmiscinfo role="type">table</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">table</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>generate.toc</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='generate.toc.frag'>
+<src:fragment xml:id="generate.toc.frag">
 <xsl:param condition="html" name="generate.toc">
 appendix  toc,title
 article/appendix  nop
@@ -51,7 +54,7 @@ set       toc,title
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter has a structured value. It is a table of space-delimited
 path/value pairs. Each path identifies some element in the source document
@@ -65,15 +68,15 @@ determine if a ToC (or LoT(s)) should be generated.</para>
 
 <screen>book toc,figure</screen>
 
-<para>This indicates that whenever a <sgmltag>book</sgmltag> is formatted, a
+<para>This indicates that whenever a <tag>book</tag> is formatted, a
 Table Of Contents and a List of Figures should be generated. Similarly,</para>
 
 <screen>/chapter toc</screen>
 
 <para>indicates that whenever a document <emphasis>that has a root
-of</emphasis> <sgmltag>chapter</sgmltag> is formatted, a Table of
+of</emphasis> <tag>chapter</tag> is formatted, a Table of
 Contents should be generated. The entry <literal>chapter</literal> would match
-all chapters, but <literal>/chapter</literal> matches only <sgmltag>chapter</sgmltag>
+all chapters, but <literal>/chapter</literal> matches only <tag>chapter</tag>
 document elements.</para>
 
 <para>Generally, the longest match wins. So, for example, if you want to distinguish
@@ -101,5 +104,5 @@ path/value parser to get confused.</para>
 For a given section level to have a ToC, it must have both an entry in 
 <parameter>generate.toc</parameter> and be within the range enabled by
 <parameter>generate.section.toc.level</parameter>.</para>
-</refsect1>
+</refsection>
 </refentry>

@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="body.margin.bottom">
+          version="5.0" xml:id="body.margin.bottom">
 <refmeta>
 <refentrytitle>body.margin.bottom</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='body.margin.bottom.frag'>
+<src:fragment xml:id="body.margin.bottom.frag">
 <xsl:param name="body.margin.bottom" select="'0.5in'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The body bottom margin is the distance from the last line of text
 in the page body to the bottom of the region-after.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

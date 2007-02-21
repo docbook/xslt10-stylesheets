@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.button.jump2.title">
+          version="5.0" xml:id="htmlhelp.button.jump2.title">
 <refmeta>
 <refentrytitle>htmlhelp.button.jump2.title</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.button.jump2.title</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.button.jump2.title.frag'>
+<src:fragment xml:id="htmlhelp.button.jump2.title.frag">
 <xsl:param name="htmlhelp.button.jump2.title" select="'User2'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Title of Jump2 button.</para>
 
-</refsect1>
+</refsection>
 </refentry>

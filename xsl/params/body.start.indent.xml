@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="body.start.indent">
+          version="5.0" xml:id="body.start.indent">
 <refmeta>
 <refentrytitle>body.start.indent</refentrytitle>
 
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='body.start.indent.frag'>
+<src:fragment xml:id="body.start.indent.frag">
 <xsl:param name="body.start.indent">
   <xsl:choose>
     <xsl:when test="$fop.extensions != 0">0pt</xsl:when>
@@ -22,7 +25,7 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter provides
 one means of indenting the body text relative to
@@ -55,5 +58,5 @@ parameter to the negative value of the desired indent.
 <parameter>title.margin.left</parameter>.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="index.term.separator">
+          version="5.0" xml:id="index.term.separator">
 <refmeta>
 <refentrytitle>index.term.separator</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>index.term.separator</refname>
@@ -12,12 +15,12 @@ from its list of page references in an index</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='index.term.separator.frag'>
+<src:fragment xml:id="index.term.separator.frag">
 <xsl:param name="index.term.separator" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter permits you to override
 the text to insert between
@@ -43,9 +46,9 @@ fill in the content for this normally empty
 override parameter.
 The content can be a simple string, or it can be
 something more complex such as a call-template.
-For fo output, it could be an <sgmltag>fo:leader</sgmltag>
+For fo output, it could be an <tag>fo:leader</tag>
 element to provide space of a specific length, or a dot leader.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

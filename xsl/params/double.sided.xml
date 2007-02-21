@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="double.sided">
+          version="5.0" xml:id="double.sided">
 <refmeta>
 <refentrytitle>double.sided</refentrytitle>
 
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='double.sided.frag'>
+<src:fragment xml:id="double.sided.frag">
 <xsl:param name="double.sided" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Double-sided documents are printed with a slightly wider margin
 on the binding edge of the page.
@@ -24,5 +27,5 @@ on the binding edge of the page.
 <para>FIXME: The current set of parameters does not take writing direction
 into account.</para>
 
-</refsect1>
+</refsection>
 </refentry>

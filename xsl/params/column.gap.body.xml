@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="column.gap.body">
+          version="5.0" xml:id="column.gap.body">
 <refmeta>
 <refentrytitle>column.gap.body</refentrytitle>
-<refmiscinfo role="type">length</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>column.gap.body</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='column.gap.body.frag'>
+<src:fragment xml:id="column.gap.body.frag">
 <xsl:param name="column.gap.body" select="'12pt'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies the gap between columns in body matter (if
 <parameter>column.count.body</parameter> is greater than one).</para>
 
-</refsect1>
+</refsection>
 </refentry>

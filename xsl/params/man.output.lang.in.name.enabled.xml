@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.output.lang.in.name.enabled">
+          version="5.0" xml:id="man.output.lang.in.name.enabled">
 <refmeta>
 <refentrytitle>man.output.lang.in.name.enabled</refentrytitle>
 
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.output.lang.in.name.enabled.frag'>
+<src:fragment xml:id="man.output.lang.in.name.enabled.frag">
 <xsl:param name="man.output.lang.in.name.enabled" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
   <para>The <parameter>man.output.lang.in.name.enabled</parameter>
   parameter specifies whether a <literal>$lang</literal> value is
@@ -43,5 +46,5 @@
   </itemizedlist>
   </para>
 
-</refsect1>
+</refsection>
 </refentry>

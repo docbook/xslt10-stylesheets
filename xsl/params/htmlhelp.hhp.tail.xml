@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.hhp.tail">
+          version="5.0" xml:id="htmlhelp.hhp.tail">
 <refmeta>
 <refentrytitle>htmlhelp.hhp.tail</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.hhp.tail</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.hhp.tail.frag'>
+<src:fragment xml:id="htmlhelp.hhp.tail.frag">
 <xsl:param name="htmlhelp.hhp.tail"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If you want to include some additional parameters into project file,
 store appropriate part of project file into this parameter.</para>
 
-</refsect1>
+</refsection>
 </refentry>

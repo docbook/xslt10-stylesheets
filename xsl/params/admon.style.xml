@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="admon.style">
+          version="5.0" xml:id="admon.style">
 <refmeta>
 <refentrytitle>admon.style</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>admon.style</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='admon.style.frag'><xsl:param name="admon.style">
+<src:fragment xml:id="admon.style.frag"><xsl:param name="admon.style">
   <xsl:text>margin-left: 0.5in; margin-right: 0.5in;</xsl:text>
 </xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>Specifies the value of the <sgmltag class="attribute">STYLE</sgmltag>
+<para>Specifies the value of the <tag class="attribute">STYLE</tag>
 attribute that should be added to admonitions.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

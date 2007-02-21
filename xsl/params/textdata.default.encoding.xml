@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="textdata.default.encoding">
+          version="5.0" xml:id="textdata.default.encoding">
 <refmeta>
 <refentrytitle>textdata.default.encoding</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>textdata.default.encoding</refname>
@@ -12,12 +15,12 @@ using textdata element</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='textdata.default.encoding.frag'>
+<src:fragment xml:id="textdata.default.encoding.frag">
 <xsl:param name="textdata.default.encoding" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Default encoding of external text files which are included using
 textdata element. This value is used only when you do not specify
@@ -25,6 +28,5 @@ encoding by appropriate attribute directly on textdata. Default
 encoding (empty string) is interpreted as system default
 encoding.</para>
 
-</refsect1>
+</refsection>
 </refentry>
-

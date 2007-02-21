@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="html.ext">
+          version="5.0" xml:id="html.ext">
 <refmeta>
 <refentrytitle>html.ext</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='html.ext.frag'>
+<src:fragment xml:id="html.ext.frag">
 <xsl:param name="html.ext" select="'.html'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The extension identified by <parameter>html.ext</parameter> will
 be used as the filename extension for chunks created by this stylesheet.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

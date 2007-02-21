@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="default.image.width">
+          version="5.0" xml:id="default.image.width">
 <refmeta>
 <refentrytitle>default.image.width</refentrytitle>
-<refmiscinfo role="type">length</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>default.image.width</refname>
@@ -11,18 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='default.image.width.frag'>
+<src:fragment xml:id="default.image.width.frag">
 <xsl:param name="default.image.width" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If specified, this value will be used for the
-<sgmltag class="attribute">width</sgmltag> attribute on
+<tag class="attribute">width</tag> attribute on
 images that do not specify any
-<ulink url="http://docbook.org/tdg/en/html/imagedata.html#viewport.area">viewport
-dimensions</ulink>.</para>
+<link xlink:href="http://docbook.org/tdg/en/html/imagedata.html#viewport.area">viewport
+dimensions</link>.</para>
 
-</refsect1>
+</refsection>
 </refentry>

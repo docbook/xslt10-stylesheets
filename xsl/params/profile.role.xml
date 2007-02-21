@@ -1,23 +1,26 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="profile.role">
+          version="5.0" xml:id="profile.role">
 <refmeta>
 <refentrytitle>profile.role</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>profile.role</refname>
-<refpurpose>Target profile for <sgmltag class="attribute">role</sgmltag>
+<refpurpose>Target profile for <tag class="attribute">role</tag>
 attribute</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='profile.role.frag'>
+<src:fragment xml:id="profile.role.frag">
 <xsl:param name="profile.role" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Value of this parameter specifies profiles which should be
 included in the output. You can specify multiple profiles by
@@ -27,30 +30,25 @@ parameter.</para>
 
 <para>This parameter has effect only when you are using profiling
 stylesheets (<filename>profile-docbook.xsl</filename>,
-<filename>profile-chunk.xsl</filename>, &#x2026;) instead of normal
+<filename>profile-chunk.xsl</filename>, …) instead of normal
 ones (<filename>docbook.xsl</filename>,
-<filename>chunk.xsl</filename>, &#x2026;).</para>
+<filename>chunk.xsl</filename>, …).</para>
 
 <warning>
-<para>Note that <sgmltag class="attribute">role</sgmltag> is often
+<para>Note that <tag class="attribute">role</tag> is often
 used for other purposes than profiling. For example it is commonly
 used to get emphasize in bold font:</para>
 
-<programlisting><![CDATA[<emphasis role="bold">very important</emphasis>]]></programlisting>
+<programlisting>&lt;emphasis role="bold"&gt;very important&lt;/emphasis&gt;</programlisting>
 
-<para>If you are using <sgmltag class="attribute">role</sgmltag> for
+<para>If you are using <tag class="attribute">role</tag> for
 these purposes do not forget to add values like <literal>bold</literal> to
 value of this parameter. If you forgot you will get document with
 small pieces missing which are very hard to track.</para>
 
-<para>For this reason it is not recommended to use <sgmltag
-class="attribute">role</sgmltag> attribute for profiling. You should
-rather use profiling specific attributes like <sgmltag
-class="attribute">userlevel</sgmltag>, <sgmltag
-class="attribute">os</sgmltag>, <sgmltag
-class="attribute">arch</sgmltag>, <sgmltag
-class="attribute">condition</sgmltag>, etc.</para>
+<para>For this reason it is not recommended to use <tag class="attribute">role</tag> attribute for profiling. You should
+rather use profiling specific attributes like <tag class="attribute">userlevel</tag>, <tag class="attribute">os</tag>, <tag class="attribute">arch</tag>, <tag class="attribute">condition</tag>, etc.</para>
 </warning>
 
-</refsect1>
+</refsection>
 </refentry>

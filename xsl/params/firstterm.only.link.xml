@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="firstterm.only.link">
+          version="5.0" xml:id="firstterm.only.link">
 <refmeta>
 <refentrytitle>firstterm.only.link</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>firstterm.only.link</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='firstterm.only.link.frag'>
+<src:fragment xml:id="firstterm.only.link.frag">
 <xsl:param name="firstterm.only.link" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>If true, only <sgmltag>firstterm</sgmltag>s will be automatically linked
+<para>If true, only <tag>firstterm</tag>s will be automatically linked
 to the glossary. If glossary linking is not enabled, this parameter
 has no effect.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="page.orientation">
+          version="5.0" xml:id="page.orientation">
 <refmeta>
 <refentrytitle>page.orientation</refentrytitle>
 
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='page.orientation.frag'><xsl:param name="page.orientation" select="'portrait'"/></src:fragment>
+<src:fragment xml:id="page.orientation.frag"><xsl:param name="page.orientation" select="'portrait'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>In portrait orientation, the short edge is horizontal; in
 landscape orientation, it is vertical.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

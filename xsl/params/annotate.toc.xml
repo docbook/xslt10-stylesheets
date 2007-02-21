@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="annotate.toc">
+          version="5.0" xml:id="annotate.toc">
 <refmeta>
 <refentrytitle>annotate.toc</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>annotate.toc</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='annotate.toc.frag'><xsl:param name="annotate.toc" select="1"/></src:fragment>
+<src:fragment xml:id="annotate.toc.frag"><xsl:param name="annotate.toc" select="1"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If true, TOCs will be annotated. At present, this just means
-that the <sgmltag>RefPurpose</sgmltag> of <sgmltag>RefEntry</sgmltag>
+that the <tag>RefPurpose</tag> of <tag>RefEntry</tag>
 TOC entries will be displayed.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

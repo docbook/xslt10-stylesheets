@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.hhc">
+          version="5.0" xml:id="htmlhelp.hhc">
 <refmeta>
 <refentrytitle>htmlhelp.hhc</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.hhc</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.hhc.frag'>
+<src:fragment xml:id="htmlhelp.hhc.frag">
 <xsl:param name="htmlhelp.hhc" select="'toc.hhc'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Change this parameter if you want different name of TOC file
 than toc.hhc.</para>
 
-</refsect1>
+</refsection>
 </refentry>

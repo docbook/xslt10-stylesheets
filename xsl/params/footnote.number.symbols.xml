@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="footnote.number.symbols">
+          version="5.0" xml:id="footnote.number.symbols">
 <refmeta>
 <refentrytitle>footnote.number.symbols</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>footnote.number.symbols</refname>
@@ -11,18 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='footnote.number.symbols.frag'>
+<src:fragment xml:id="footnote.number.symbols.frag">
 <xsl:param name="footnote.number.symbols" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If <parameter>footnote.number.symbols</parameter> is not the empty string,
 footnotes will use the characters it contains as footnote symbols. For example,
 <quote>*&amp;#x2020;&amp;#x2021;&amp;#x25CA;&amp;#x2720;</quote> will identify
-footnotes with <quote>*</quote>, <quote>&#x2020;</quote>, <quote>&#x2021;</quote>,
-<quote>&#x25CA;</quote>, and <quote>&#x2720;</quote>. If there are more footnotes
+footnotes with <quote>*</quote>, <quote>†</quote>, <quote>‡</quote>,
+<quote>◊</quote>, and <quote>✠</quote>. If there are more footnotes
 than symbols, the stylesheets will fall back to numbered footnotes using
 <parameter>footnote.number.format</parameter>.</para>
 
@@ -32,5 +35,5 @@ capable of displaying the full range of Unicode characters. If the quoted charac
 in the preceding paragraph are not displayed properly, that's a good indicator
 that you may have trouble using those symbols for footnotes.</para>
 
-</refsect1>
+</refsection>
 </refentry>

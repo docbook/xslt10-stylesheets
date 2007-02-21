@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="l10n.gentext.default.language">
+          version="5.0" xml:id="l10n.gentext.default.language">
 <refmeta>
 <refentrytitle>l10n.gentext.default.language</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>l10n.gentext.default.language</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='l10n.gentext.default.language.frag'>
+<src:fragment xml:id="l10n.gentext.default.language.frag">
 <xsl:param name="l10n.gentext.default.language" select="'en'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The value of the <parameter>l10n.gentext.default.language</parameter>
 parameter is used as the language for generated text if no setting is provided
 in the source document.</para>
 
-</refsect1>
+</refsection>
 </refentry>

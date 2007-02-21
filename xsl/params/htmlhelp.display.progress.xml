@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.display.progress">
+          version="5.0" xml:id="htmlhelp.display.progress">
 <refmeta>
 <refentrytitle>htmlhelp.display.progress</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.display.progress</refname>
@@ -11,16 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.display.progress.frag'>
+<src:fragment xml:id="htmlhelp.display.progress.frag">
 <xsl:param name="htmlhelp.display.progress" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>You can swith off display of compile progress by setting this
 parameter to 0.</para>
 
-</refsect1>
+</refsection>
 </refentry>
-

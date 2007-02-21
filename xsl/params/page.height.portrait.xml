@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="page.height.portrait">
+          version="5.0" xml:id="page.height.portrait">
 <refmeta>
 <refentrytitle>page.height.portrait</refentrytitle>
 
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='page.height.portrait.frag'><xsl:param name="page.height.portrait">
+<src:fragment xml:id="page.height.portrait.frag"><xsl:param name="page.height.portrait">
   <xsl:choose>
     <xsl:when test="$paper.type = 'A4landscape'">210mm</xsl:when>
     <xsl:when test="$paper.type = 'USletter'">11in</xsl:when>
@@ -56,11 +59,11 @@
 </xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The portrait page height is the length of the long
 edge of the physical page.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

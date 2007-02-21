@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="hyphenate.verbatim.characters">
+          version="5.0" xml:id="hyphenate.verbatim.characters">
 <refmeta>
 <refentrytitle>hyphenate.verbatim.characters</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>hyphenate.verbatim.characters</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='hyphenate.verbatim.characters.frag'><xsl:param name="hyphenate.verbatim.characters" select="''"/></src:fragment>
+<src:fragment xml:id="hyphenate.verbatim.characters.frag"><xsl:param name="hyphenate.verbatim.characters" select="''"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If you enable <parameter>hyphenate.verbatim</parameter> line
 breaks are allowed only on space characters. If this is not enough for
 your document, you can specify list of additional characters after
 which line break is allowed in this parameter.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="ulink.hyphenate">
+          version="5.0" xml:id="ulink.hyphenate">
 <refmeta>
 <refentrytitle>ulink.hyphenate</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>ulink.hyphenate</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='ulink.hyphenate.frag'>
+<src:fragment xml:id="ulink.hyphenate.frag">
 <xsl:param name="ulink.hyphenate" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If not empty, the specified character (or more generally, content) is
 added to URLs after every character included in the string
@@ -28,5 +31,5 @@ processors will be able to reasonably hyphenate long URLs.</para>
 <para>As of 28 Jan 2002, discretionary hyphens are more widely and correctly
 supported than zero-width spaces for this purpose.</para>
 
-</refsect1>
+</refsection>
 </refentry>

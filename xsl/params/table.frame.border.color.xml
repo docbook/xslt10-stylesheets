@@ -1,25 +1,28 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="table.frame.border.color">
+          version="5.0" xml:id="table.frame.border.color">
 <refmeta>
 <refentrytitle>table.frame.border.color</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>table.frame.border.color</refname>
-<refpurpose></refpurpose>
+<refpurpose/>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='table.frame.border.color.frag'>
+<src:fragment xml:id="table.frame.border.color.frag">
 <xsl:param condition="html" name="table.frame.border.color" select="''"/>
 <xsl:param condition="fo" name="table.frame.border.color" select="'black'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>FIXME:</para>
 
-</refsect1>
+</refsection>
 </refentry>

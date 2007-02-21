@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="ulink.hyphenate.chars">
+          version="5.0" xml:id="ulink.hyphenate.chars">
 <refmeta>
 <refentrytitle>ulink.hyphenate.chars</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>ulink.hyphenate.chars</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='ulink.hyphenate.chars.frag'>
+<src:fragment xml:id="ulink.hyphenate.chars.frag">
 <xsl:param name="ulink.hyphenate.chars" select="'/'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the <parameter>ulink.hyphenate</parameter> is not empty, then 
 hyphenation of ulinks is turned on, and any
@@ -30,5 +33,5 @@ to contain other URL characters, as for example:</para>
 &lt;xsl:param name="ulink.hyphenate.chars"&gt;:/@&amp;?.#&lt;/xsl:param&gt;
 </programlisting>
 
-</refsect1>
+</refsection>
 </refentry>

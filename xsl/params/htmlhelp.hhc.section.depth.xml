@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.hhc.section.depth">
+          version="5.0" xml:id="htmlhelp.hhc.section.depth">
 <refmeta>
 <refentrytitle>htmlhelp.hhc.section.depth</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.hhc.section.depth</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.hhc.section.depth.frag'>
+<src:fragment xml:id="htmlhelp.hhc.section.depth.frag">
 <xsl:param name="htmlhelp.hhc.section.depth" select="5"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Change this parameter if you want shallower ToC in a left pane
 of HTML Help viewer.</para>
 
-</refsect1>
+</refsection>
 </refentry>

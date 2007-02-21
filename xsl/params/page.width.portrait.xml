@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="page.width.portrait">
+          version="5.0" xml:id="page.width.portrait">
 <refmeta>
 <refentrytitle>page.width.portrait</refentrytitle>
 
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='page.width.portrait.frag'><xsl:param name="page.width.portrait">
+<src:fragment xml:id="page.width.portrait.frag"><xsl:param name="page.width.portrait">
   <xsl:choose>
     <xsl:when test="$paper.type = 'USletter'">8.5in</xsl:when>
     <xsl:when test="$paper.type = '4A0'">1682mm</xsl:when>
@@ -54,11 +57,11 @@
 </xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The portrait page width is the length of the short
 edge of the physical page.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

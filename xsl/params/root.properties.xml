@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="root.properties">
+          version="5.0" xml:id="root.properties">
 <refmeta>
 <refentrytitle>root.properties</refentrytitle>
-<refmiscinfo role="type">attribute set</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>root.properties</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='root.properties.frag'>
+<src:fragment xml:id="root.properties.frag">
 <xsl:attribute-set name="root.properties">
   <xsl:attribute name="font-family">
     <xsl:value-of select="$body.fontset"/>
@@ -31,10 +34,10 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>This property set is used on the <sgmltag>fo:root</sgmltag> element of
+<para>This property set is used on the <tag>fo:root</tag> element of
 an FO file. It defines a set of default, global parameters.</para>
 
-</refsect1>
+</refsection>
 </refentry>

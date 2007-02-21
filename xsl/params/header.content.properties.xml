@@ -1,17 +1,20 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="header.content.properties">
+          version="5.0" xml:id="header.content.properties">
 <refmeta>
 <refentrytitle>header.content.properties</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>header.content.properties</refname>
-<refpurpose></refpurpose>
+<refpurpose/>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='header.content.properties.frag'>
+<src:fragment xml:id="header.content.properties.frag">
 <xsl:attribute-set name="header.content.properties">
   <xsl:attribute name="font-family">
     <xsl:value-of select="$body.fontset"/>
@@ -23,9 +26,9 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Properties of page header content.</para>
 
-</refsect1>
+</refsection>
 </refentry>

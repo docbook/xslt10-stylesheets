@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="sidebar.float.type">
+          version="5.0" xml:id="sidebar.float.type">
 <refmeta>
 <refentrytitle>sidebar.float.type</refentrytitle>
-<refmiscinfo role="type">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>sidebar.float.type</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='sidebar.float.type.frag'>
+<src:fragment xml:id="sidebar.float.type.frag">
 <xsl:param name="sidebar.float.type" select="'none'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Selects the type of float for sidebar elements.
 </para>
@@ -58,5 +61,5 @@ options for side floats as well.
 </listitem>
 </itemizedlist>
 
-</refsect1>
+</refsection>
 </refentry>

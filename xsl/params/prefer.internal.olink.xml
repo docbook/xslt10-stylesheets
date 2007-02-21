@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="prefer.internal.olink">
+          version="5.0" xml:id="prefer.internal.olink">
 <refmeta>
 <refentrytitle>prefer.internal.olink</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>prefer.internal.olink</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='prefer.internal.olink.frag'>
+<src:fragment xml:id="prefer.internal.olink.frag">
 <xsl:param name="prefer.internal.olink" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If you are re-using XML content modules in multiple documents,
 you may want to redirect some of your olinks.  This parameter
@@ -47,29 +50,29 @@ actually available in user.xml.</para>
 <para>If you set the <parameter>prefer.internal.olink</parameter>
 parameter to a non-zero value, then the processor will
 first look in the olink database
-for the olink's <sgmltag>targetptr</sgmltag> attribute value
+for the olink's <tag>targetptr</tag> attribute value
 in document matching the <parameter>current.docid</parameter>
 parameter value.  If it isn't found there, then
 it tries the document in the database
-with the <sgmltag>targetdoc</sgmltag>
-value that matches the olink's <sgmltag>targetdoc</sgmltag>
+with the <tag>targetdoc</tag>
+value that matches the olink's <tag>targetdoc</tag>
 attribute.
 </para>
 
 <para>This feature permits an olink reference to resolve to
 the current document if there is an element
-with an id matching the olink's <sgmltag>targetptr</sgmltag>
+with an id matching the olink's <tag>targetptr</tag>
 value.  The current document's olink data must be
 included in the target database for this to work.</para>
 
 <caution>
 <para>There is a potential for incorrect links if
-the same <sgmltag>id</sgmltag> attribute value is used for different
+the same <tag>id</tag> attribute value is used for different
 content in different documents.
 Some of your olinks may be redirected to the current document
 when they shouldn't be.  It is not possible to control
 individual olink instances.</para>
 </caution>
 
-</refsect1>
+</refsection>
 </refentry>

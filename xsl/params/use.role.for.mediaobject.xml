@@ -1,27 +1,30 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="use.role.for.mediaobject">
+          version="5.0" xml:id="use.role.for.mediaobject">
 <refmeta>
 <refentrytitle>use.role.for.mediaobject</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>use.role.for.mediaobject</refname>
-<refpurpose>Use <sgmltag class="attribute">role</sgmltag> attribute 
+<refpurpose>Use <tag class="attribute">role</tag> attribute 
 value for selecting which of several objects within a mediaobject to use.
 </refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='use.role.for.mediaobject.frag'>
+<src:fragment xml:id="use.role.for.mediaobject.frag">
 <xsl:param name="use.role.for.mediaobject" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>If non-zero, the <sgmltag class="attribute">role</sgmltag> attribute on
-<sgmltag>imageobject</sgmltag>s or other objects within a <sgmltag>mediaobject</sgmltag> container will be used to select which object will be
+<para>If non-zero, the <tag class="attribute">role</tag> attribute on
+<tag>imageobject</tag>s or other objects within a <tag>mediaobject</tag> container will be used to select which object will be
 used.
 </para>
 <para>
@@ -49,5 +52,5 @@ is zero, then role attributes are not considered
 and the first suitable object
 with or without a role value is used.
 </para>
-</refsect1>
+</refsection>
 </refentry>

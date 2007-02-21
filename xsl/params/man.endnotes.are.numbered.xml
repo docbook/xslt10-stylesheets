@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.endnotes.are.numbered">
+          version="5.0" xml:id="man.endnotes.are.numbered">
 <refmeta>
 <refentrytitle>man.endnotes.are.numbered</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.endnotes.are.numbered</refname>
@@ -11,20 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.endnotes.are.numbered.frag'>
+<src:fragment xml:id="man.endnotes.are.numbered.frag">
 <xsl:param name="man.endnotes.are.numbered">1</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of <parameter>man.endnotes.are.numbered</parameter> is
 non-zero (the default), then for each non-empty<footnote>
 <para>A “non-empty” notesource is one that looks like
-this:<literallayout class="monospaced"
- >  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/">manpages&lt;/ulink></literallayout>
-an “empty” notesource is on that looks like this:<literallayout class="monospaced"
- >  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/></literallayout>
+this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
+an “empty” notesource is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/&gt;</literallayout>
 </para></footnote> “notesource”:
 
 <itemizedlist>
@@ -62,9 +63,7 @@ contents (if any) of the notesource are displayed inline.
   before you do so, first take some time to carefully
   consider the information needs and experiences of your users. The
   square-bracketed numbers displayed inline after notesources may seem
-  obstrusive and aesthetically unpleasing<footnote 
-  
-  ><para>As far as notesources that are links, ytou might
+  obstrusive and aesthetically unpleasing<footnote><para>As far as notesources that are links, ytou might
   think it would be better to just display URLs for non-empty
   links inline, after their content, rather than displaying
   square-bracketed numbers all over the place. But it's not better. In
@@ -83,9 +82,7 @@ contents (if any) of the notesource are displayed inline.
   <para>Also, users of “text based” browsers such as
   <command>lynx</command> will already be accustomed to seeing inline
   numbers for links. And various "man to html" applications, such as
-  the widely used <command><ulink
-  url="http://users.actrix.gen.nz/michael/vhman2html.html"
-  >man2html</ulink></command> (<literal>VH-Man2html</literal>)
+  the widely used <command><link xlink:href="http://users.actrix.gen.nz/michael/vhman2html.html">man2html</link></command> (<literal>VH-Man2html</literal>)
   application, can automatically turn URLs into "real" HTML hyperlinks
   in output. So leaving <parameter>man.endnotes.are.numbered</parameter>
   at its default (non-zero) value ensures that no information is
@@ -100,5 +97,5 @@ inline. Empty links are never auto-numbered.</para>
 <para>If you disable endnotes numbering, you should probably also set
 <parameter>man.links.are.underlined</parameter> to zero (to disable
 link underlining).</para>
-</refsect1>
+</refsection>
 </refentry>

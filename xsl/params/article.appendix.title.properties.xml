@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="article.appendix.title.properties">
+          version="5.0" xml:id="article.appendix.title.properties">
 <refmeta>
 <refentrytitle>article.appendix.title.properties</refentrytitle>
-<refmiscinfo role="type">attribute set</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>article.appendix.title.properties</refname>
@@ -11,10 +14,8 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='article.appendix.title.properties.frag'>
-<xsl:attribute-set name="article.appendix.title.properties"
-                   use-attribute-sets="section.title.properties
-		                       section.title.level1.properties">
+<src:fragment xml:id="article.appendix.title.properties.frag">
+<xsl:attribute-set name="article.appendix.title.properties" use-attribute-sets="section.title.properties                          section.title.level1.properties">
   <xsl:attribute name="margin-left">
     <xsl:value-of select="$title.margin.left"/>
   </xsl:attribute>
@@ -22,12 +23,11 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The properties for the title of an appendix that
 appears inside an article.  The default is to use
 the properties of sect1 titles.</para>
 
-</refsect1>
+</refsection>
 </refentry>
-

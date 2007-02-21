@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="base.dir">
+          version="5.0" xml:id="base.dir">
 <refmeta>
 <refentrytitle>base.dir</refentrytitle>
 
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='base.dir.frag'><xsl:param name="base.dir" select="''"/></src:fragment>
+<src:fragment xml:id="base.dir.frag"><xsl:param name="base.dir" select="''"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If specified, the <literal>base.dir</literal> identifies
 the output directory for chunks. (If not specified, the output directory
 is system dependent.)</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="hyphenate">
+          version="5.0" xml:id="hyphenate">
 <refmeta>
 <refentrytitle>hyphenate</refentrytitle>
 
@@ -11,13 +14,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='hyphenate.frag'><xsl:param name="hyphenate">true</xsl:param></src:fragment>
+<src:fragment xml:id="hyphenate.frag"><xsl:param name="hyphenate">true</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If true, words may be hyphenated. Otherwise, they may not.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

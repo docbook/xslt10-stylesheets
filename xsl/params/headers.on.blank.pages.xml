@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="headers.on.blank.pages">
+          version="5.0" xml:id="headers.on.blank.pages">
 <refmeta>
 <refentrytitle>headers.on.blank.pages</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>headers.on.blank.pages</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='headers.on.blank.pages.frag'>
+<src:fragment xml:id="headers.on.blank.pages.frag">
 <xsl:param name="headers.on.blank.pages" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If non-zero, headers will be placed on blank pages.</para>
 
-</refsect1>
+</refsection>
 </refentry>

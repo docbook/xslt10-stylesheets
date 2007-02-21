@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="index.range.separator">
+          version="5.0" xml:id="index.range.separator">
 <refmeta>
 <refentrytitle>index.range.separator</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>index.range.separator</refname>
@@ -12,12 +15,12 @@ in a page range in index</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='index.range.separator.frag'>
+<src:fragment xml:id="index.range.separator.frag">
 <xsl:param name="index.range.separator" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter permits you
 to override the text to insert between
@@ -50,5 +53,5 @@ page number references. So there are no page ranges
 and this parameter has no effect.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

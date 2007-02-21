@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.hyphenate.filenames">
+          version="5.0" xml:id="man.hyphenate.filenames">
 <refmeta>
 <refentrytitle>man.hyphenate.filenames</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.hyphenate.filenames</refname>
@@ -11,11 +14,11 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.hyphenate.filenames.frag'>
+<src:fragment xml:id="man.hyphenate.filenames.frag">
 <xsl:param name="man.hyphenate.filenames">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If zero (the default), hyphenation is suppressed for
 <tag>filename</tag> output.</para>
@@ -40,5 +43,5 @@ just like other words.</para>
   will cause long pathnames to be broken after slashes.</para>
 </note>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="biblioentry.item.separator">
+          version="5.0" xml:id="biblioentry.item.separator">
 <refmeta>
 <refentrytitle>biblioentry.item.separator</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>biblioentry.item.separator</refname>
@@ -11,13 +14,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='biblioentry.item.separator.frag'><xsl:param name="biblioentry.item.separator">. </xsl:param></src:fragment>
+<src:fragment xml:id="biblioentry.item.separator.frag"><xsl:param name="biblioentry.item.separator">. </xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Text to separate bibliography entries
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

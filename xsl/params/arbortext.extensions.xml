@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="arbortext.extensions">
+          version="5.0" xml:id="arbortext.extensions">
 <refmeta>
 <refentrytitle>arbortext.extensions</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>arbortext.extensions</refname>
@@ -11,17 +14,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='arbortext.extensions.frag'><xsl:param name="arbortext.extensions" select="0"/></src:fragment>
+<src:fragment xml:id="arbortext.extensions.frag"><xsl:param name="arbortext.extensions" select="0"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If non-zero,
-<ulink url="http://www.arbortext.com/">Arbortext</ulink>
+<link xlink:href="http://www.arbortext.com/">Arbortext</link>
 extensions will be used.
 </para>
 <para>This parameter can also affect which graphics file formats
 are supported</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="graphicsize.use.img.src.path">
+          version="5.0" xml:id="graphicsize.use.img.src.path">
 <refmeta>
 <refentrytitle>graphicsize.use.img.src.path</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>graphicsize.use.img.src.path</refname>
@@ -12,16 +15,16 @@ filenames passed to extension functions</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='graphicsize.use.img.src.path.frag'>
+<src:fragment xml:id="graphicsize.use.img.src.path.frag">
 <xsl:param name="graphicsize.use.img.src.path" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If non-zero <parameter>img.src.path</parameter> parameter will
 be appended before filenames passed to extension functions for
 measuring image dimensions.</para>
 
-</refsect1>
+</refsection>
 </refentry>

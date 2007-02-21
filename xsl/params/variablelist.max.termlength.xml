@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="variablelist.max.termlength">
+          version="5.0" xml:id="variablelist.max.termlength">
 <refmeta>
 <refentrytitle>variablelist.max.termlength</refentrytitle>
 
@@ -11,22 +14,22 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='variablelist.max.termlength.frag'>
+<src:fragment xml:id="variablelist.max.termlength.frag">
 <xsl:param name="variablelist.max.termlength">24</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>In variablelists, the <sgmltag>listitem</sgmltag>
+<para>In variablelists, the <tag>listitem</tag>
 is indented to leave room for the 
-<sgmltag>term</sgmltag> elements. That indent may be computed
-if it is not specified with a <sgmltag class="attribute">termlength</sgmltag>
-attribute on the <sgmltag>variablelist</sgmltag> element.
+<tag>term</tag> elements. That indent may be computed
+if it is not specified with a <tag class="attribute">termlength</tag>
+attribute on the <tag>variablelist</tag> element.
 </para>
 <para>
 The computation counts characters in the 
-<sgmltag>term</sgmltag> elements in the list
+<tag>term</tag> elements in the list
 to find the longest term.  However, some terms are very long
 and would produce extreme indents.  This parameter lets you
 set a maximum character count.  Any terms longer than the maximum
@@ -39,5 +42,5 @@ in how many actual characters fit in the space
 since some characters are wider than others.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

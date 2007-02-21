@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="root.filename">
+          version="5.0" xml:id="root.filename">
 <refmeta>
 <refentrytitle>root.filename</refentrytitle>
 
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='root.filename.frag'><xsl:param name="root.filename" select="'index'"/></src:fragment>
+<src:fragment xml:id="root.filename.frag"><xsl:param name="root.filename" select="'index'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>root.filename</parameter> is the base filename for
 the chunk created for the root of each document processed.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

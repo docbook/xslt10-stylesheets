@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.hhp.windows">
+          version="5.0" xml:id="htmlhelp.hhp.windows">
 <refmeta>
 <refentrytitle>htmlhelp.hhp.windows</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.hhp.windows</refname>
@@ -11,17 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.hhp.windows.frag'>
+<src:fragment xml:id="htmlhelp.hhp.windows.frag">
 <xsl:param name="htmlhelp.hhp.windows"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Content of this parameter is placed at the end of [WINDOWS]
 section of project file. You can use it for defining your own
 addtional windows.</para>
 
-</refsect1>
+</refsection>
 </refentry>
-

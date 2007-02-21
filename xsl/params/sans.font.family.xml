@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="sans.font.family">
+          version="5.0" xml:id="sans.font.family">
 <refmeta>
 <refentrytitle>sans.font.family</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='sans.font.family.frag'>
+<src:fragment xml:id="sans.font.family.frag">
 <xsl:param name="sans.font.family" select="'sans-serif'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The default sans-serif font family. At the present, this isn't
 actually used by the stylesheets.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

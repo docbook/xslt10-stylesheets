@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.default.topic">
+          version="5.0" xml:id="htmlhelp.default.topic">
 <refmeta>
 <refentrytitle>htmlhelp.default.topic</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.default.topic</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.default.topic.frag'>
+<src:fragment xml:id="htmlhelp.default.topic.frag">
 <xsl:param name="htmlhelp.default.topic" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Normally first chunk of document is displayed when you open HTML
 Help file. If you want to display another topic, simply set its
@@ -25,9 +28,9 @@ filename by this parameter.</para>
 <para>This is useful especially if you don't generate ToC in front of
 your document and you also hide root element in ToC. E.g.:</para>
 
-<programlisting><![CDATA[<xsl:param name="generate.book.toc" select="0"/>
-<xsl:param name="htmlhelp.hhc.show.root" select="0"/>
-<xsl:param name="htmlhelp.default.topic" select="'pr01.html'"/>]]></programlisting>
+<programlisting>&lt;xsl:param name="generate.book.toc" select="0"/&gt;
+&lt;xsl:param name="htmlhelp.hhc.show.root" select="0"/&gt;
+&lt;xsl:param name="htmlhelp.default.topic" select="'pr01.html'"/&gt;</programlisting>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="formal.title.placement">
+          version="5.0" xml:id="formal.title.placement">
 <refmeta>
 <refentrytitle>formal.title.placement</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>formal.title.placement</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='formal.title.placement.frag'>
+<src:fragment xml:id="formal.title.placement.frag">
 <xsl:param name="formal.title.placement">
 figure before
 example before
@@ -23,16 +26,16 @@ task before
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies where formal object titles should occur. For each formal object
-type (<sgmltag>figure</sgmltag>,
-<sgmltag>example</sgmltag>,
-<sgmltag>equation</sgmltag>,
-<sgmltag>table</sgmltag>, and <sgmltag>procedure</sgmltag>)
+type (<tag>figure</tag>,
+<tag>example</tag>,
+<tag>equation</tag>,
+<tag>table</tag>, and <tag>procedure</tag>)
 you can specify either the keyword
 <quote><literal>before</literal></quote> or
 <quote><literal>after</literal></quote>.</para>
 
-</refsect1>
+</refsection>
 </refentry>

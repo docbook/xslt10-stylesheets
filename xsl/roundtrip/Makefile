@@ -1,10 +1,11 @@
 include ../../cvstools/Makefile.incl
 
+XSLFILES=param.xsl
+ALLTARGETS=$(XSLFILES)
+PROFILECONDITION=roundtrip
+
 # Change this to where you are storing your roundtripping stylesheets
 STYLESHEETDIR = .
-
-PARAMPROF=.param.profiled
-PARAMSTRIP=.param.stripped
 
 WORDML = $(STYLESHEETDIR)/docbook.xsl
 PAGES = $(STYLESHEETDIR)/docbook-pages.xsl
@@ -18,31 +19,7 @@ TEMPLATEPAGES = $(STYLESHEETDIR)/template-pages.xml
 
 PROC = xsltproc
 
-include Makefile.param
-
-all: param.xsl
-
-param.xsl:	param.xweb
-	../../cvstools/paramchk -m Makefile.param $<
-	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=wordml
-	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@
-else
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@.tmp
-	$(XSLT) $@.tmp $(ADDNEWLINE) $@
-	$(RM) $@.tmp
-endif
-	$(RM) $(PARAMPROF) $(PARAMSTRIP)
-
-Makefile.param:
-	../../cvstools/paramchk -m $@ param.xweb
-	$(MAKE)
-
-clean:
-	$(RM) param.xsl
-	$(RM) Makefile.param
-	echo "# foo" > Makefile.param
+include ../Makefile.incl
 
 # WordML-to-DocBook
 %.docbook.xml: %.blocks.xml $(DBKFINAL) Makefile
@@ -72,8 +49,8 @@ clean:
 
 # DocBook-to-WordML
 %.wordml.xml : %.xml $(WORDML) $(TEMPLATE) Makefile
-	xsltproc -o $@ --stringparam wordml.template $(TEMPLATE) $(WORDML) $<
+	$(PROC) -o $@ --stringparam wordml.template $(TEMPLATE) $(WORDML) $<
 
 # DocBook-to-Pages
 %.pages.xml: %.xml $(PAGES) $(TEMPLATEPAGES) Makefile
-	xsltproc -o $@ --stringparam pages.template $(TEMPLATEPAGES) $(PAGES) $<
+	$(PROC) -o $@ --stringparam pages.template $(TEMPLATEPAGES) $(PAGES) $<

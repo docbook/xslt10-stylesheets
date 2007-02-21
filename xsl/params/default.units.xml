@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="default.units">
+          version="5.0" xml:id="default.units">
 <refmeta>
 <refentrytitle>default.units</refentrytitle>
-<refmiscinfo role="type">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
 <refmiscinfo role="value">cm</refmiscinfo>
 <refmiscinfo role="value">mm</refmiscinfo>
 <refmiscinfo role="value">in</refmiscinfo>
@@ -18,15 +21,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='default.units.frag'><xsl:param name="default.units" select="'pt'"/></src:fragment>
+<src:fragment xml:id="default.units.frag"><xsl:param name="default.units" select="'pt'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If an unqualified dimension is encountered (for example, in a
 graphic width), the <parameter>default-units</parameter> will be used for the
 units. Unqualified dimensions are not allowed in XSL Formatting Objects.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

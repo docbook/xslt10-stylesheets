@@ -1,23 +1,26 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="profile.status">
+          version="5.0" xml:id="profile.status">
 <refmeta>
 <refentrytitle>profile.status</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>profile.status</refname>
-<refpurpose>Target profile for <sgmltag class="attribute">status</sgmltag>
+<refpurpose>Target profile for <tag class="attribute">status</tag>
 attribute</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='profile.status.frag'>
+<src:fragment xml:id="profile.status.frag">
 <xsl:param name="profile.status" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Value of this parameter specifies profiles which should be
 included in the output. You can specify multiple profiles by
@@ -27,9 +30,9 @@ parameter.</para>
 
 <para>This parameter has effect only when you are using profiling
 stylesheets (<filename>profile-docbook.xsl</filename>,
-<filename>profile-chunk.xsl</filename>, &#x2026;) instead of normal
+<filename>profile-chunk.xsl</filename>, …) instead of normal
 ones (<filename>docbook.xsl</filename>,
-<filename>chunk.xsl</filename>, &#x2026;).</para>
+<filename>chunk.xsl</filename>, …).</para>
 
-</refsect1>
+</refsection>
 </refentry>

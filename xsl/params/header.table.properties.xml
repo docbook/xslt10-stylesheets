@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.or/g2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="header.table.properties">
+          version="5.0" xml:id="header.table.properties">
 <refmeta>
 <refentrytitle>header.table.properties</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"></refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>header.table.properties</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='header.table.properties.frag'>
+<src:fragment xml:id='header.table.properties.frag'>
 <xsl:attribute-set name="header.table.properties">
   <xsl:attribute name="table-layout">fixed</xsl:attribute>
   <xsl:attribute name="width">100%</xsl:attribute>
@@ -19,9 +22,9 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Properties applied to the table that lays out the page header.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.hhp.window">
+          version="5.0" xml:id="htmlhelp.hhp.window">
 <refmeta>
 <refentrytitle>htmlhelp.hhp.window</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.hhp.window</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.hhp.window.frag'>
+<src:fragment xml:id="htmlhelp.hhp.window.frag">
 <xsl:param name="htmlhelp.hhp.window" select="'Main'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Name of default window. If empty no [WINDOWS] section will be
 added to project file.</para>
 
-</refsect1>
+</refsection>
 </refentry>

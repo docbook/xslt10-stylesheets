@@ -1,13 +1,16 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="verbatim.properties">
+          version="5.0" xml:id="verbatim.properties">
 <refnamediv>
 <refname>verbatim.properties</refname>
 <refpurpose>Properties associated with verbatim text</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='verbatim.properties.frag'>
+<src:fragment xml:id="verbatim.properties.frag">
 <xsl:attribute-set name="verbatim.properties">
   <xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
   <xsl:attribute name="space-before.optimum">1em</xsl:attribute>
@@ -24,8 +27,8 @@
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 <para>This attribute set is used on all verbatim environments.</para>
-</refsect1>
+</refsection>
 
 </refentry>

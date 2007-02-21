@@ -1,0 +1,41 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		version='1.0'
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                exclude-result-prefixes="fo"
+>
+  <xsl:import href="./identity.xsl"/>
+
+  <xsl:output method="xml"
+	      indent="no"/>
+  
+  <!-- copy all xsl:* elements but strip the extra namespaces nodes -->
+  <xsl:template match="*[namespace-uri() = 'http://www.w3.org/1999/XSL/Transform']">
+    <xsl:element name="{name()}">
+      <xsl:copy-of select="@*[not(local-name() = 'exclude-result-prefixes')]"/>
+      <xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+  
+  <!-- copy all fo:* elements but strip the extra namespace nodes -->
+  <xsl:template match="*[namespace-uri() = 'http://www.w3.org/1999/XSL/Format']">
+    <xsl:element name="{name()}">
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="*[local-name() = 'substitution']">
+    <xsl:element name="substitution">
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+
+  <xsl:template match="*[local-name() = 'code']">
+    <xsl:element name="code">
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+
+</xsl:stylesheet>

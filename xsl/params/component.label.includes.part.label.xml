@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="component.label.includes.part.label">
+          version="5.0" xml:id="component.label.includes.part.label">
 <refmeta>
 <refentrytitle>component.label.includes.part.label</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>component.label.includes.part.label</refname>
@@ -11,10 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='component.label.includes.part.label.frag'><xsl:param name="component.label.includes.part.label" select="0"/></src:fragment>
+<src:fragment xml:id="component.label.includes.part.label.frag"><xsl:param name="component.label.includes.part.label" select="0"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If true (non-zero), number labels for chapters, appendices, and other component
 elements are prefixed with the label of the
@@ -32,5 +35,5 @@ In that case, there would be more than one chapter
 each chapter unambiguously.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

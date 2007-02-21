@@ -1,23 +1,26 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="process.source.toc">
+          version="5.0" xml:id="process.source.toc">
 <refmeta>
 <refentrytitle>process.source.toc</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>process.source.toc</refname>
-<refpurpose>Process a non-empty <sgmltag>toc</sgmltag> element if it occurs in a source document?</refpurpose>
+<refpurpose>Process a non-empty <tag>toc</tag> element if it occurs in a source document?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='process.source.toc.frag'><xsl:param name="process.source.toc" select="0"/></src:fragment>
+<src:fragment xml:id="process.source.toc.frag"><xsl:param name="process.source.toc" select="0"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies that the contents of a non-empty "hard-coded"
-<sgmltag>toc</sgmltag> element in a source document are processed to
+<tag>toc</tag> element in a source document are processed to
 generate a TOC in output.
 <note>
   <para>This parameter has no effect on automated generation of
@@ -25,12 +28,12 @@ generate a TOC in output.
   "hard-coded" TOC. To suppress automated TOC generation, adjust the
   value of the <parameter>generate.toc</parameter> paramameter.</para>
 
-  <para>The <sgmltag>process.source.toc</sgmltag> parameter also has
-  no effect if the <sgmltag>toc</sgmltag> element is empty; handling
-  for empty <sgmltag>toc</sgmltag> is controlled by the
+  <para>The <tag>process.source.toc</tag> parameter also has
+  no effect if the <tag>toc</tag> element is empty; handling
+  for empty <tag>toc</tag> is controlled by the
   <parameter>process.empty.source.toc</parameter> parameter.</para>
 </note>
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

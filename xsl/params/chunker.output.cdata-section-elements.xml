@@ -1,19 +1,22 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="chunker.output.cdata-section-elements">
+          version="5.0" xml:id="chunker.output.cdata-section-elements">
 <refmeta>
 <refentrytitle>chunker.output.cdata-section-elements</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunker.output.cdata-section-elements</refname>
 <refpurpose>List of elements to escape with CDATA sections</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.cdata-section-elements" select="''"/>
+<refsynopsisdiv>&lt;xsl:param name="chunker.output.cdata-section-elements" select="''"/&gt;
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter specifies the list of elements that should be escaped
 as CDATA sections by the chunking stylesheet.  Not all processors support
@@ -25,5 +28,5 @@ specification of this parameter.
 in the <filename>chunker.xsl</filename> stylesheet module.</para>
 </note>
 
-</refsect1>
+</refsection>
 </refentry>

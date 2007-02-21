@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.endnotes.list.heading">
+          version="5.0" xml:id="man.endnotes.list.heading">
 <refmeta>
 <refentrytitle>man.endnotes.list.heading</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.endnotes.list.heading</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.endnotes.list.heading.frag'>
+<src:fragment xml:id="man.endnotes.list.heading.frag">
 <xsl:param name="man.endnotes.list.heading" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of the
 <parameter>man.endnotes.are.numbered</parameter> parameter
@@ -29,5 +32,5 @@ the current locale. To cause an alternate heading to be displayed,
 set a non-empty value for the
 <parameter>man.endnotes.list.heading</parameter> parameter —
 for example, <literal>REFERENCES</literal>.</para>
-</refsect1>
+</refsection>
 </refentry>

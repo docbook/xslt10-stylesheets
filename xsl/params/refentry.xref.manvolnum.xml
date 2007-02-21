@@ -1,26 +1,29 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="refentry.xref.manvolnum">
+          version="5.0" xml:id="refentry.xref.manvolnum">
 <refmeta>
 <refentrytitle>refentry.xref.manvolnum</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>refentry.xref.manvolnum</refname>
-<refpurpose>Output <sgmltag>manvolnum</sgmltag> as part of 
-<sgmltag>refentry</sgmltag> cross-reference?</refpurpose>
+<refpurpose>Output <tag>manvolnum</tag> as part of 
+<tag>refentry</tag> cross-reference?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='refentry.xref.manvolnum.frag'><xsl:param name="refentry.xref.manvolnum" select="1"/></src:fragment>
+<src:fragment xml:id="refentry.xref.manvolnum.frag"><xsl:param name="refentry.xref.manvolnum" select="1"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>if true (non-zero), the <sgmltag>manvolnum</sgmltag> is used when cross-referencing
-<sgmltag>refentry</sgmltag>s, either with <sgmltag>xref</sgmltag>
-or <sgmltag>citerefentry</sgmltag>.
+<para>if true (non-zero), the <tag>manvolnum</tag> is used when cross-referencing
+<tag>refentry</tag>s, either with <tag>xref</tag>
+or <tag>citerefentry</tag>.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

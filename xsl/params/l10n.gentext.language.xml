@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="l10n.gentext.language">
+          version="5.0" xml:id="l10n.gentext.language">
 <refmeta>
 <refentrytitle>l10n.gentext.language</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>l10n.gentext.language</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='l10n.gentext.language.frag'>
+<src:fragment xml:id="l10n.gentext.language.frag">
 <xsl:param name="l10n.gentext.language" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If this parameter is set to any value other than the empty string, its
 value will be used as the value for the language when generating text. Setting
@@ -26,5 +29,5 @@ document being formatted.</para>
 <para>It's much more likely that you might want to set the
 <parameter>l10n.gentext.default.language</parameter> parameter.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="glossterm.separation">
+          version="5.0" xml:id="glossterm.separation">
 <refmeta>
 <refentrytitle>glossterm.separation</refentrytitle>
-<refmiscinfo role="type">length</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>glossterm.separation</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='glossterm.separation.frag'>
+<src:fragment xml:id="glossterm.separation.frag">
 <xsl:param name="glossterm.separation" select="'0.25in'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies the separation between glossary terms and descriptions when
 glossarys are presented using lists.</para>
 
-</refsect1>
+</refsection>
 </refentry>

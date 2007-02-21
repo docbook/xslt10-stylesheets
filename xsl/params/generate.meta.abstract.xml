@@ -1,25 +1,28 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="generate.meta.abstract">
+          version="5.0" xml:id="generate.meta.abstract">
 <refmeta>
 <refentrytitle>generate.meta.abstract</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>generate.meta.abstract</refname>
-<refpurpose>Generate HTML <sgmltag>META</sgmltag> element from <sgmltag>abstract</sgmltag>?</refpurpose>
+<refpurpose>Generate HTML <tag>META</tag> element from <tag>abstract</tag>?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='generate.meta.abstract.frag'>
+<src:fragment xml:id="generate.meta.abstract.frag">
 <xsl:param name="generate.meta.abstract" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If non-zero, document abstracts will be reproduced in the HTML
-<sgmltag>HEAD</sgmltag> with <sgmltag class="starttag">meta name="description" content="..."</sgmltag>.</para>
+<tag>HEAD</tag> with <tag class="starttag">meta name="description" content="..."</tag>.</para>
 
-</refsect1>
+</refsection>
 </refentry>

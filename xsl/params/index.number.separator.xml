@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="index.number.separator">
+          version="5.0" xml:id="index.number.separator">
 <refmeta>
 <refentrytitle>index.number.separator</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>index.number.separator</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='index.number.separator.frag'>
+<src:fragment xml:id="index.number.separator.frag">
 <xsl:param name="index.number.separator" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter permits you to override the text to insert between
 page references in a formatted index entry.  Typically 
@@ -47,5 +50,5 @@ page number references.  This punctuation appears between
 such section titles in an HTML index.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

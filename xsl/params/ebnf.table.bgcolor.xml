@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="ebnf.table.bgcolor">
+          version="5.0" xml:id="ebnf.table.bgcolor">
 <refmeta>
 <refentrytitle>ebnf.table.bgcolor</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>ebnf.table.bgcolor</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='ebnf.table.bgcolor.frag'><xsl:param name="ebnf.table.bgcolor" select="'#F5DCB3'"/></src:fragment>
+<src:fragment xml:id="ebnf.table.bgcolor.frag"><xsl:param name="ebnf.table.bgcolor" select="'#F5DCB3'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>Sets the background color for EBNF tables. No <sgmltag>bgcolor</sgmltag>
+<para>Sets the background color for EBNF tables. No <tag>bgcolor</tag>
 attribute is output if <varname>ebnf.table.bgcolor</varname> is set to
 the null string. The default value matches the value used in recent
 online versions of the W3C's XML Spec productions.</para>
 
-</refsect1>
+</refsection>
 </refentry>

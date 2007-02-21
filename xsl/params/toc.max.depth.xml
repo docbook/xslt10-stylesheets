@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="toc.max.depth">
+          version="5.0" xml:id="toc.max.depth">
 <refmeta>
 <refentrytitle>toc.max.depth</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.max.depth</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='toc.max.depth.frag'><xsl:param name="toc.max.depth">8</xsl:param></src:fragment>
+<src:fragment xml:id="toc.max.depth.frag"><xsl:param name="toc.max.depth">8</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies the maximal depth of TOC on all levels.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="index.method">
+          version="5.0" xml:id="index.method">
 <refmeta>
 <refentrytitle>index.method</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>index.method</refname>
@@ -11,18 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='index.method.frag'>
+<src:fragment xml:id="index.method.frag">
 <xsl:param name="index.method" select="'basic'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter lets you select which method should be
 used to sort and group index entries in an index.
 Indexes in latin-based languages that have accented characters typically
 sort together accented words and unaccented words.
-Thus <quote>&#xC1;</quote> (A acute) would sort together
+Thus <quote>Á</quote> (A acute) would sort together
 with <quote>A</quote>, so both would appear in the <quote>A</quote>
 section of the index.
 Languages using other alphabets (such as Russian cyrillic)
@@ -113,12 +116,12 @@ want mixed Latin-alphabet words sorted.</para>
 <itemizedlist>
 <listitem>
 <para>For a whitepaper describing the extensions, see:
-<ulink url="http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf"/>.
+<uri xlink:href="http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf">http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf</uri>.
 </para>
 </listitem>
 <listitem>
 <para>To download the extension library, see
-<ulink url="http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport"/>.
+<uri xlink:href="http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport">http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport</uri>.
 </para>
 </listitem>
 </itemizedlist>
@@ -152,5 +155,5 @@ customization.
 </varlistentry>
 </variablelist>
 
-</refsect1>
+</refsection>
 </refentry>

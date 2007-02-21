@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="table.frame.border.thickness">
+          version="5.0" xml:id="table.frame.border.thickness">
 <refmeta>
 <refentrytitle>table.frame.border.thickness</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>table.frame.border.thickness</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='table.frame.border.thickness.frag'>
+<src:fragment xml:id="table.frame.border.thickness.frag">
 <xsl:param name="table.frame.border.thickness" select="'0.5pt'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Specifies the thickness of the border on the table's frame.</para>
 
-</refsect1>
+</refsection>
 </refentry>

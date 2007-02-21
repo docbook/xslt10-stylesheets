@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="variablelist.term.separator">
+          version="5.0" xml:id="variablelist.term.separator">
 <refmeta>
 <refentrytitle>variablelist.term.separator</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>variablelist.term.separator</refname>
@@ -12,11 +15,11 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='variablelist.term.separator.frag'>
+<src:fragment xml:id="variablelist.term.separator.frag">
 <xsl:param name="variablelist.term.separator">, </xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>When a <tag>varlistentry</tag> contains multiple <tag>term</tag>
 elements, the string specified in the value of the
@@ -33,5 +36,5 @@ after each <tag>term</tag> except the last.</para>
   after each <tag>term</tag>).</para>
 </note>
 
-</refsect1>
+</refsection>
 </refentry>

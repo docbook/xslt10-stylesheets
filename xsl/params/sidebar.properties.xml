@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="sidebar.properties">
+          version="5.0" xml:id="sidebar.properties">
 <refmeta>
 <refentrytitle>sidebar.properties</refentrytitle>
-<refmiscinfo role="type">attribute set</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>sidebar.properties</refname>
@@ -11,9 +14,8 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='sidebar.properties.frag'>
-<xsl:attribute-set name="sidebar.properties"
-                   use-attribute-sets="formal.object.properties">
+<src:fragment xml:id="sidebar.properties.frag">
+<xsl:attribute-set name="sidebar.properties" use-attribute-sets="formal.object.properties">
   <xsl:attribute name="border-style">solid</xsl:attribute>
   <xsl:attribute name="border-width">1pt</xsl:attribute>
   <xsl:attribute name="border-color">black</xsl:attribute>
@@ -32,9 +34,9 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The styling for sidebars.</para>
 
-</refsect1>
+</refsection>
 </refentry>

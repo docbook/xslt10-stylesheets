@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="eclipse.plugin.id">
+          version="5.0" xml:id="eclipse.plugin.id">
 <refmeta>
 <refentrytitle>eclipse.plugin.id</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>eclipse.plugin.id</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='eclipse.plugin.id.frag'>
+<src:fragment xml:id="eclipse.plugin.id.frag">
 <xsl:param name="eclipse.plugin.id">com.example.help</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Eclipse Help plugin id. You should change this id to something
 unique for each help.</para>
 
-</refsect1>
+</refsection>
 </refentry>
