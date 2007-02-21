@@ -48,7 +48,7 @@
   <ss:substitution oldstring="&#x2580;" newstring="\ "/>
   <!-- * replace U+2593 marker with backslash --> 
   <ss:substitution oldstring="&#x2593;" newstring="\"/>
-  <!-- * escape dashes in content (only at line beginnings) -->
+  <!-- * escape dots in content (only at line beginnings) -->
   <ss:substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
   <!-- * replace U+2302 marker with dot -->
   <ss:substitution oldstring="&#x2302;" newstring="."/>
@@ -231,7 +231,7 @@ particular customization of the DocBook XSL stylesheets.</para>
     </listitem>
     <listitem>
       <para>replace the Unicode characters with real backslashes and
-      dotes before output gets serialized</para>
+      dots before output gets serialized</para>
     </listitem>
   </itemizedlist>
   
