@@ -107,7 +107,7 @@ the IDs identified as type ID in the source document.</para>
   <xsl:include href="VERSION"/>
   <xsl:preserve-space elements="*"/>
 
-  <xsl:key name="fragment" match="src:fragment" use="@id"/>
+  <xsl:key name="fragment" match="src:fragment" use="@*[local-name() = 'id']"/>
 
   <xsl:param name="top" select="'top'"/>
 
