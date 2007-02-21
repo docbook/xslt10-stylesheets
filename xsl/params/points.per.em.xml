@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="points.per.em">
+          version="5.0" xml:id="points.per.em">
 <refmeta>
 <refentrytitle>points.per.em</refentrytitle>
-<refmiscinfo role="type">number</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">number</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>points.per.em</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='points.per.em.frag'>
+<src:fragment xml:id="points.per.em.frag">
 <xsl:param name="points.per.em" select="10"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>FIXME:</para>
 
-</refsect1>
+</refsection>
 </refentry>

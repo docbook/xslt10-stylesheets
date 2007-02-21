@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="chunk.toc">
+          version="5.0" xml:id="chunk.toc">
 <refmeta>
 <refentrytitle>chunk.toc</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunk.toc</refname>
@@ -11,17 +14,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='chunk.toc.frag'>
+<src:fragment xml:id="chunk.toc.frag">
 <xsl:param name="chunk.toc" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>chunk.toc</parameter> identifies an explicit TOC that
 will be used for chunking. This parameter is only used by the
 <filename>chunktoc.xsl</filename> stylesheet (and customization layers built
 from it).</para>
 
-</refsect1>
+</refsection>
 </refentry>

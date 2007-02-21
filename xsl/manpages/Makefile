@@ -1,35 +1,11 @@
 include ../../cvstools/Makefile.incl
 
-PARAMPROF=.param.profiled
-PARAMSTRIP=.param.stripped
+XSLFILES=param.xsl html-synop.xsl
+ALLTARGETS=$(XSLFILES)
+PROFILECONDITION=manpages
 HTML2ROFF=../tools/xsl/build/html2roff.xsl
 
-include Makefile.param
-
-all: param.xsl html-synop.xsl
-
-param.xsl: param.xweb $(PARAMS)
-	../../cvstools/paramchk -m Makefile.param $<
-	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
-	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@
-else
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@.tmp
-	$(XSLT) $@.tmp $(ADDNEWLINE) $@
-	$(RM) $@.tmp
-endif
-	$(RM) $(PARAMPROF) $(PARAMSTRIP)
-
-Makefile.param:
-	../../cvstools/paramchk -m $@ param.xweb
-	$(MAKE)
+include ../Makefile.incl
 
 html-synop.xsl: ../html/synop.xsl
 	$(XSLT) $< $(HTML2ROFF) $@
-
-clean:
-	$(RM) param.xml param.html param.xsl
-	$(RM) html-synop.xsl
-	$(RM) Makefile.param
-	echo "# foo" > Makefile.param

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="glossterm.auto.link">
+          version="5.0" xml:id="glossterm.auto.link">
 <refmeta>
 <refentrytitle>glossterm.auto.link</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>glossterm.auto.link</refname>
@@ -11,20 +14,20 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='glossterm.auto.link.frag'>
+<src:fragment xml:id="glossterm.auto.link.frag">
 <xsl:param name="glossterm.auto.link" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If true, a link will be automatically created from glossterm 
 to glossentry for that glossary term. This is usefull when your
 glossterm names are consistent and you don't want to add links
 manually.</para>
-<para>If there is <sgmltag class="attribute">linkend</sgmltag> on
-<sgmltag>glossterm</sgmltag> then is used instead of autogeneration of
+<para>If there is <tag class="attribute">linkend</tag> on
+<tag>glossterm</tag> then is used instead of autogeneration of
 link.</para>
 
-</refsect1>
+</refsection>
 </refentry>

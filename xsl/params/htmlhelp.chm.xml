@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.chm">
+          version="5.0" xml:id="htmlhelp.chm">
 <refmeta>
 <refentrytitle>htmlhelp.chm</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.chm</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.chm.frag'>
+<src:fragment xml:id="htmlhelp.chm.frag">
 <xsl:param name="htmlhelp.chm" select="'htmlhelp.chm'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Change this parameter if you want different name of result
 CHM file than htmlhelp.chm.</para>
 
-</refsect1>
+</refsection>
 </refentry>

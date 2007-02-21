@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.button.home.url">
+          version="5.0" xml:id="htmlhelp.button.home.url">
 <refmeta>
 <refentrytitle>htmlhelp.button.home.url</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.button.home.url</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.button.home.url.frag'>
+<src:fragment xml:id="htmlhelp.button.home.url.frag">
 <xsl:param name="htmlhelp.button.home.url"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>URL address of page accessible by Home button.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="refentry.source.fallback.profile">
+          version="5.0" xml:id="refentry.source.fallback.profile">
 <refmeta>
 <refentrytitle>refentry.source.fallback.profile</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>refentry.source.fallback.profile</refname>
@@ -11,13 +14,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='refentry.source.fallback.profile.frag'>
+<src:fragment xml:id="refentry.source.fallback.profile.frag">
 <xsl:param name="refentry.source.fallback.profile">
 refmeta/refmiscinfo[1]/node()</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The value of
 <parameter>refentry.source.fallback.profile</parameter> is a string
@@ -42,5 +45,5 @@ for the <parameter>refentry.source.fallback.profile</parameter>
 parameter.</para>
 </important>
 
-</refsect1>
+</refsection>
 </refentry>

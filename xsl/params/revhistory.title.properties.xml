@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="revhistory.title.properties">
+          version="5.0" xml:id="revhistory.title.properties">
 <refmeta>
 <refentrytitle>revhistory.title.properties</refentrytitle>
-<refmiscinfo role="type">attribute set</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>revhistory.title.properties</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='revhistory.title.properties.frag'>
+<src:fragment xml:id="revhistory.title.properties.frag">
 <xsl:attribute-set name="revhistory.title.properties">
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This property set defines appearance of revhistory title.</para>
 
-</refsect1>
+</refsection>
 </refentry>

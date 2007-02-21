@@ -1,13 +1,16 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="blockquote.properties">
+          version="5.0" xml:id="blockquote.properties">
 <refnamediv>
 <refname>blockquote.properties</refname>
 <refpurpose>To set the style for block quotations.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='blockquote.properties.frag'>
+<src:fragment xml:id="blockquote.properties.frag">
 <xsl:attribute-set name="blockquote.properties">
 <xsl:attribute name="margin-left">0.5in</xsl:attribute>
 <xsl:attribute name="margin-right">0.5in</xsl:attribute>
@@ -18,10 +21,10 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>blockquote.properties</parameter> attribute set specifies
 the formating properties of block quotations.</para>
 
-</refsect1>
+</refsection>
 </refentry>

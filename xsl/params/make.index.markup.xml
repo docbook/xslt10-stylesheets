@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="make.index.markup">
+          version="5.0" xml:id="make.index.markup">
 <refmeta>
 <refentrytitle>make.index.markup</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>make.index.markup</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='make.index.markup.frag'>
+<src:fragment xml:id="make.index.markup.frag">
 <xsl:param name="make.index.markup" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter enables a very neat trick for getting properly
 merged, collated back-of-the-book indexes. G. Ken Holman suggested
@@ -25,7 +28,7 @@ for it.</para>
 
 <para>Jeni Tennison's excellent code in
 <filename>autoidx.xsl</filename> does a great job of merging and
-sorting <sgmltag>indexterm</sgmltag>s in the document and building a
+sorting <tag>indexterm</tag>s in the document and building a
 back-of-the-book index. However, there's one thing that it cannot
 reasonably be expected to do: merge page numbers into ranges. (I would
 not have thought that it could collate and suppress duplicate page
@@ -38,7 +41,7 @@ It's a bit hard to explain, but what it boils down to is that instead of having
 an index at the back of the book that looks like this:</para>
 
 <blockquote>
-<formalpara><title>A</title>
+<formalpara><info><title>A</title></info>
 <para>ap1, 1, 2, 3</para>
 </formalpara>
 </blockquote>
@@ -46,13 +49,13 @@ an index at the back of the book that looks like this:</para>
 <para>you get one that looks like this:</para>
 
 <blockquote>
-<programlisting><![CDATA[<indexdiv>A</indexdiv>
-<indexentry>
-<primaryie>ap1</primaryie>,
-<phrase role="pageno">1</phrase>,
-<phrase role="pageno">2</phrase>,
-<phrase role="pageno">3</phrase>
-</indexentry>]]></programlisting>
+<programlisting>&lt;indexdiv&gt;A&lt;/indexdiv&gt;
+&lt;indexentry&gt;
+&lt;primaryie&gt;ap1&lt;/primaryie&gt;,
+&lt;phrase role="pageno"&gt;1&lt;/phrase&gt;,
+&lt;phrase role="pageno"&gt;2&lt;/phrase&gt;,
+&lt;phrase role="pageno"&gt;3&lt;/phrase&gt;
+&lt;/indexentry&gt;</programlisting>
 </blockquote>
 
 <para>After building a PDF file with this sort of odd-looking index, you can
@@ -66,5 +69,5 @@ merge page ranges and generate a proper index.</para>
 <para>Finally, reformat your original document using this literal index instead of
 an automatically generated one and <quote>bingo</quote>!</para>
 
-</refsect1>
+</refsection>
 </refentry>

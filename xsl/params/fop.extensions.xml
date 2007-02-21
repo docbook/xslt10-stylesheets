@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="fop.extensions">
+          version="5.0" xml:id="fop.extensions">
 <refmeta>
 <refentrytitle>fop.extensions</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>fop.extensions</refname>
@@ -11,13 +14,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='fop.extensions.frag'><xsl:param name="fop.extensions" select="0"/></src:fragment>
+<src:fragment xml:id="fop.extensions.frag"><xsl:param name="fop.extensions" select="0"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If non-zero, extensions intended for
-<ulink url="http://xml.apache.org/fop/">FOP</ulink>
+<link xlink:href="http://xml.apache.org/fop/">FOP</link>
 version 0.20.5 and earlier will be used.
 At present, this consists of PDF bookmarks.
 </para>
@@ -29,5 +32,5 @@ are supported</para>
 version 0.20.5, then use the <parameter>fop1.extensions</parameter>
 instead.
 </para>
-</refsect1>
+</refsection>
 </refentry>

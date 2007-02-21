@@ -1,20 +1,23 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="olink.lang.fallback.sequence"> 
+          version="5.0" xml:id="olink.lang.fallback.sequence"> 
 <refmeta> 
 <refentrytitle>olink.lang.fallback.sequence</refentrytitle> 
-<refmiscinfo role="type">string</refmiscinfo> 
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo> 
 </refmeta> 
 <refnamediv> 
 <refname>olink.lang.fallback.sequence</refname> 
 <refpurpose>look up translated documents if olink not found?</refpurpose>
 
 </refnamediv> 
-<refsynopsisdiv> <src:fragment id="olink.lang.fallback.sequence.frag">
+<refsynopsisdiv> <src:fragment xml:id="olink.lang.fallback.sequence.frag">
 <xsl:param name="olink.lang.fallback.sequence" select="''"/> </src:fragment> 
 </refsynopsisdiv> 
-<refsect1> 
-<title>Description</title> 
+<refsection><info><title>Description</title></info> 
+ 
 
 <para>This parameter defines a list of lang values
 to search among to resolve olinks.
@@ -23,16 +26,16 @@ to search among to resolve olinks.
 <para>Normally an olink tries to resolve to a document in the same
 language as the olink itself.  The language of an olink
 is determined by its nearest ancestor element with a
-<sgmltag class="attribute">lang</sgmltag> attribute, otherwise the
+<tag class="attribute">lang</tag> attribute, otherwise the
 value of the <parameter>l10n.gentext.default.lang</parameter>
 parameter.
 </para>
 
 <para>An olink database can contain target data for the same
 document in multiple languages.  Each set of data has the
-same value for the <sgmltag>targetdoc</sgmltag> attribute in
-the <sgmltag>document</sgmltag> element in the database, but with a 
-different <sgmltag>lang</sgmltag> attribute value.
+same value for the <tag>targetdoc</tag> attribute in
+the <tag>document</tag> element in the database, but with a 
+different <tag>lang</tag> attribute value.
 </para>
 
 <para>When an olink is being resolved, the target is first
@@ -75,5 +78,5 @@ a link to a document in a different language than to have
 a broken link.
 </para>
 
-</refsect1> 
-</refentry> 
+</refsection> 
+</refentry>

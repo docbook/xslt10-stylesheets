@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="shade.verbatim.style">
+          version="5.0" xml:id="shade.verbatim.style">
 <refmeta>
 <refentrytitle>shade.verbatim.style</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>shade.verbatim.style</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='shade.verbatim.style.frag'>
+<src:fragment xml:id="shade.verbatim.style.frag">
 <xsl:attribute-set condition="html" name="shade.verbatim.style">
   <xsl:attribute name="border">0</xsl:attribute>
   <xsl:attribute name="bgcolor">#E0E0E0</xsl:attribute>
@@ -22,9 +25,9 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>FIXME:</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,10 +1,13 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0"
-          id="man.string.subst.map">
+          version="5.0" xml:id="man.string.subst.map">
 <refmeta>
 <refentrytitle>man.string.subst.map</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.string.subst.map</refname>
@@ -12,7 +15,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.string.subst.map.frag'>
+<src:fragment xml:id="man.string.subst.map.frag">
 <xsl:param name="man.string.subst.map">
 
   <!-- ******************************************************************** -->
@@ -99,19 +102,19 @@
   <!-- * stylesheets during processing. -->
   <!-- * -->
   <!-- * bullet -->
-  <ss:substitution oldstring="&#x2022;" newstring="\(bu"/>
+  <ss:substitution oldstring="•" newstring="\(bu"/>
   <!-- * left double quote -->
-  <ss:substitution oldstring="&#x201c;" newstring="\(lq"/>
+  <ss:substitution oldstring="“" newstring="\(lq"/>
   <!-- * right double quote -->
-  <ss:substitution oldstring="&#x201d;" newstring="\(rq"/>
+  <ss:substitution oldstring="”" newstring="\(rq"/>
   <!-- * left single quote -->
-  <ss:substitution oldstring="&#x2018;" newstring="\(oq"/>
+  <ss:substitution oldstring="‘" newstring="\(oq"/>
   <!-- * right single quote -->
-  <ss:substitution oldstring="&#x2019;" newstring="\(cq"/>
+  <ss:substitution oldstring="’" newstring="\(cq"/>
   <!-- * copyright sign -->
-  <ss:substitution oldstring="&#x00a9;" newstring="\(co"/>
+  <ss:substitution oldstring="©" newstring="\(co"/>
   <!-- * registered sign -->
-  <ss:substitution oldstring="&#x00ae;" newstring="\(rg"/>
+  <ss:substitution oldstring="®" newstring="\(rg"/>
   <!-- * servicemark... -->
   <!-- * There is no groff equivalent for it. -->
   <ss:substitution oldstring="&#x2120;" newstring="(SM)"/>
@@ -124,7 +127,7 @@
   <!-- * So we just make it to "(TM)" instead; thus: -->
   <!-- * -->
   <!-- *   Product&#x2122; -> Product(TM) -->
-  <ss:substitution oldstring="&#x2122;" newstring="(TM)"/>
+  <ss:substitution oldstring="™" newstring="(TM)"/>
 
   <!-- ==================================================================== -->
 
@@ -136,7 +139,7 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>man.string.subst.map</parameter> parameter
 contains <link linkend="map">a map</link> that specifies a set of
@@ -189,11 +192,13 @@ particular customization of the DocBook XSL stylesheets.</para>
 
 </warning>
 
-<refsect2 id="map">
-  <title>Contents of the substitution map</title>
-  <para>The string-substitution map contains one or more <tag
-  namespace="http://docbook.sf.net/xmlns/string.subst/1.0"
-  >ss:substitution</tag> elements, each of which has two attributes:
+<refsection xml:id="map">
+  <info>
+    <title>Contents of the substitution map</title>
+  </info>
+  <para>The string-substitution map contains one or more
+  <tag>ss:substitution</tag> elements, each of which has two
+  attributes:
   <variablelist>
     <varlistentry>
       <term>oldstring</term>
@@ -204,18 +209,22 @@ particular customization of the DocBook XSL stylesheets.</para>
     <varlistentry>
       <term>newstring</term>
       <listitem>
-        <simpara>string with which to replace <tag class="attribute"
-        >oldstring</tag></simpara>
+        <simpara>string with which to replace <tag
+        class="attribute">oldstring</tag></simpara>
       </listitem>
     </varlistentry>
   </variablelist>
   It may also include XML comments (that is, delimited with
-  "<literal>&lt;!--</literal>" and "<literal>--></literal>").
+  "<literal>&lt;!--</literal>" and "<literal>--&gt;</literal>").
   </para>
-</refsect2>
+</refsection>
 
-<refsect2 id="escape-replace">
-  <title>About escaping and replacing backslash, dot, and dash</title>
+<refsection xml:id="escape-replace">
+  <info>
+    <title>About escaping and replacing backslash, dot, and
+    dash</title>
+  </info>
+  
   <para>The backslash and dot (\, .) characters have special meaning
   for roff, so we:
 
@@ -252,7 +261,7 @@ particular customization of the DocBook XSL stylesheets.</para>
   possible to provide a way for configuring the mappings (using XSLT
   parameters), but doing so would make the stylesheet code much more
   verbose and harder to read.</para>
-</refsect2>
+</refsection>
 
-</refsect1>
+</refsection>
 </refentry>

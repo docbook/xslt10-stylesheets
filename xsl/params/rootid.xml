@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="rootid">
+          version="5.0" xml:id="rootid">
 <refmeta>
 <refentrytitle>rootid</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>rootid</refname>
@@ -11,10 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='rootid.frag'><xsl:param name="rootid" select="''"/></src:fragment>
+<src:fragment xml:id="rootid.frag"><xsl:param name="rootid" select="''"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If <parameter>rootid</parameter> is specified, it must be the
 value of an ID that occurs in the document being formatted. The entire
@@ -25,5 +28,5 @@ you to process only chapter 4 of a book.</para>
 numbering, cross references, and other dependencies are correctly
 resolved.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="refentry.manual.profile">
+          version="5.0" xml:id="refentry.manual.profile">
 <refmeta>
 <refentrytitle>refentry.manual.profile</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>refentry.manual.profile</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='refentry.manual.profile.frag'>
+<src:fragment xml:id="refentry.manual.profile.frag">
 <xsl:param name="refentry.manual.profile">
   (($info[//title])[last()]/title)[1]|
   ../title/node()
@@ -19,7 +22,7 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The value of <parameter>refentry.manual.profile</parameter> is
 a string representing an XPath expression. It is evaluated at
@@ -65,5 +68,5 @@ existing man pages:
 </itemizedlist>
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

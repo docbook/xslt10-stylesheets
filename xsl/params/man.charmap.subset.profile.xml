@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.charmap.subset.profile">
+          version="5.0" xml:id="man.charmap.subset.profile">
 <refmeta>
 <refentrytitle>man.charmap.subset.profile</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.charmap.subset.profile</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.charmap.subset.profile.frag'>
+<src:fragment xml:id="man.charmap.subset.profile.frag">
 <xsl:param name="man.charmap.subset.profile">
 @*[local-name() = 'block'] = 'Miscellaneous Technical' or
 (@*[local-name() = 'block'] = 'C1 Controls And Latin-1 Supplement (Latin-1 Supplement)' and
@@ -33,7 +36,7 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of the
 <parameter>man.charmap.use.subset</parameter> parameter is non-zero,
@@ -43,13 +46,9 @@ instead of the full roff character map.</para>
 
 <para>The value of <parameter>man.charmap.subset.profile</parameter>
 is a string representating an XPath expression that matches attribute
-names and values for <tag
-namespace="http://docbook.sf.net/xmlns/unichar/1.0"
->output-character</tag> elements in the character map.</para>
+names and values for <tag namespace="http://docbook.sf.net/xmlns/unichar/1.0">output-character</tag> elements in the character map.</para>
 
-<para>The attributes supported in the <ulink
-url="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl"
->standard roff character map included in the distribution</ulink> are:
+<para>The attributes supported in the <link xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">standard roff character map included in the distribution</link> are:
 <variablelist>
   <varlistentry>
     <term>character</term>
@@ -72,8 +71,7 @@ url="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl"
       <simpara>a standard Unicode "block" name (e.g., "General
       Punctuation"); all characters have this attribute. For the full
       list of Unicode block names supported in the standard roff
-      character map, see <xref
-      linkend="BlocksAndClasses"/>.</simpara>
+      character map, see <xref linkend="BlocksAndClasses"/>.</simpara>
     </listitem>
   </varlistentry>
   <varlistentry>
@@ -115,7 +113,7 @@ or removing parts. For example, if you need to use a wide range of
 mathematical operators in a document, and you want to have them
 converted into roff markup properly, you might add the following:
 
-<literallayout class="monospaced" >  @*[local-name() = 'block'] ='MathematicalOperators' </literallayout>
+<literallayout class="monospaced">  @*[local-name() = 'block'] ='MathematicalOperators' </literallayout>
 
 That will cause a additional set of around 67 additional "math"
 characters to be converted into roff markup. </para>
@@ -144,9 +142,7 @@ include in it just the characters you want to use, and so you will
 most likely also want to set the value of
 <parameter>man.charmap.use.subset</parameter> to zero.</para>
 <para>You can create a
-custom character map by making a copy of the <ulink
-url="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl"
->standard roff character map</ulink> provided in the distribution, and
+custom character map by making a copy of the <link xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">standard roff character map</link> provided in the distribution, and
 then adding to, changing, and/or deleting from that.</para>
 
 <caution>
@@ -173,8 +169,8 @@ and add any of the supported Unicode block names to the value of
 <para>For other details, see the documentation for the
 <parameter>man.charmap.use.subset</parameter> parameter.</para>
 
-<refsect2 id="BlocksAndClasses">
-  <title>Supported Unicode block names and "class" values</title>
+<refsection xml:id="BlocksAndClasses"><info><title>Supported Unicode block names and "class" values</title></info>
+  
 
   <para>Below is the full list of Unicode block names and "class"
   values supported in the standard roff stylesheet provided in the
@@ -184,11 +180,9 @@ and add any of the supported Unicode block names to the value of
 
   <itemizedlist>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=C1%20Controls%20and%20Latin-1%20Supplement%20(Latin-1%20Supplement)"
-                >C1 Controls And Latin-1 Supplement (Latin-1 Supplement)</ulink> (x00a0 to x00ff)
-      <itemizedlist>
-        <title>class values</title>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=C1%20Controls%20and%20Latin-1%20Supplement%20(Latin-1%20Supplement)">C1 Controls And Latin-1 Supplement (Latin-1 Supplement)</link> (x00a0 to x00ff)
+      <itemizedlist><info><title>class values</title></info>
+        
         <listitem>
           <para>symbols</para>
         </listitem>
@@ -198,35 +192,23 @@ and add any of the supported Unicode block names to the value of
       </itemizedlist></para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Latin%20Extended-A"
-                >Latin Extended-A</ulink> (x0100 to x017f, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Latin%20Extended-A">Latin Extended-A</link> (x0100 to x017f, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Spacing%20Modifier%20Letters"
-                >Spacing Modifier Letters</ulink> (x02b0 to x02ee, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Spacing%20Modifier%20Letters">Spacing Modifier Letters</link> (x02b0 to x02ee, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Greek%20and%20Coptic"
-                >Greek and Coptic</ulink> (x0370 to x03ff, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Greek%20and%20Coptic">Greek and Coptic</link> (x0370 to x03ff, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=General%20Punctuation"
-                >General Punctuation</ulink> (x2000 to x206f, partial)
-      <itemizedlist>
-        <title>class values</title>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=General%20Punctuation">General Punctuation</link> (x2000 to x206f, partial)
+      <itemizedlist><info><title>class values</title></info>
+        
         <listitem>
-          <para><ulink
-                    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8192&amp;end=8203"
-                    >spaces</ulink></para>
+          <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8192&amp;end=8203">spaces</link></para>
         </listitem>
         <listitem>
-          <para><ulink
-                    url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8208&amp;end=8213"
-                    >dashes</ulink></para>
+          <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;start=8208&amp;end=8213">dashes</link></para>
         </listitem>
         <listitem>
           <para>quotes</para>
@@ -247,66 +229,42 @@ and add any of the supported Unicode block names to the value of
       </para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Superscripts%20and%20Subscripts"
-                >Superscripts and Subscripts</ulink> (x2070 to x209f)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Superscripts%20and%20Subscripts">Superscripts and Subscripts</link> (x2070 to x209f)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Currency%20Symbols"
-                >Currency Symbols</ulink> (x20a0 to x20b1)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Currency%20Symbols">Currency Symbols</link> (x20a0 to x20b1)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Letterlike%20Symbols"
-                >Letterlike Symbols</ulink> (x2100 to x214b)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Letterlike%20Symbols">Letterlike Symbols</link> (x2100 to x214b)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Number%20Forms"
-                >Number Forms</ulink> (x2150 to x218f)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Number%20Forms">Number Forms</link> (x2150 to x218f)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Arrows"
-                >Arrows</ulink> (x2190 to x21ff, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Arrows">Arrows</link> (x2190 to x21ff, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Mathematical%20Operators"
-                >Mathematical Operators</ulink> (x2200 to x22ff, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Mathematical%20Operators">Mathematical Operators</link> (x2200 to x22ff, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Control%20Pictures"
-                >Control Pictures</ulink> (x2400 to x243f)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Control%20Pictures">Control Pictures</link> (x2400 to x243f)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Enclosed%20Alphanumerics"
-                >Enclosed Alphanumerics</ulink> (x2460 to x24ff)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Enclosed%20Alphanumerics">Enclosed Alphanumerics</link> (x2460 to x24ff)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Geometric%20Shapes"
-                >Geometric Shapes</ulink> (x25a0 to x25f7, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Geometric%20Shapes">Geometric Shapes</link> (x25a0 to x25f7, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Miscellaneous%20Symbols"
-                >Miscellaneous Symbols</ulink> (x2600 to x26ff, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Miscellaneous%20Symbols">Miscellaneous Symbols</link> (x2600 to x26ff, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Dingbats"
-                >Dingbats</ulink> (x2700 to x27be, partial)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Dingbats">Dingbats</link> (x2700 to x27be, partial)</para>
     </listitem>
     <listitem>
-      <para><ulink
-                url="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Alphabetic%20Presentation%20Forms"
-                >Alphabetic Presentation Forms</ulink> (xfb00 to xfb04 only)</para>
+      <para><link xlink:href="http://zvon.org/other/charSearch/PHP/search.php?searchType=103&amp;id=Alphabetic%20Presentation%20Forms">Alphabetic Presentation Forms</link> (xfb00 to xfb04 only)</para>
     </listitem>
   </itemizedlist>
-</refsect2>
-</refsect1>
+</refsection>
+</refsection>
 </refentry>

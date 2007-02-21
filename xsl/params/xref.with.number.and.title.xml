@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="xref.with.number.and.title">
+          version="5.0" xml:id="xref.with.number.and.title">
 <refmeta>
 <refentrytitle>xref.with.number.and.title</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>xref.with.number.and.title</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='xref.with.number.and.title.frag'>
+<src:fragment xml:id="xref.with.number.and.title.frag">
 <xsl:param name="xref.with.number.and.title" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>FIXME:</para>
 
-</refsect1>
+</refsection>
 </refentry>

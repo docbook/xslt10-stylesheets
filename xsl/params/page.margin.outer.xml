@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="page.margin.outer">
+          version="5.0" xml:id="page.margin.outer">
 <refmeta>
 <refentrytitle>page.margin.outer</refentrytitle>
 
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='page.margin.outer.frag'><xsl:param name="page.margin.outer">
+<src:fragment xml:id="page.margin.outer.frag"><xsl:param name="page.margin.outer">
   <xsl:choose>
     <xsl:when test="$double.sided != 0">0.75in</xsl:when>
     <xsl:otherwise>1in</xsl:otherwise>
@@ -19,7 +22,7 @@
 </xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The outer page margin is the distance from non-binding edge of the
 page to the last column of text. In the left-to-right, top-to-bottom writing
@@ -28,5 +31,5 @@ direction, this is the right margin of recto pages.</para>
 is double-sided.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

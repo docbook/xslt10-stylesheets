@@ -1,0 +1,37 @@
+PARAMPROF=.param.profiled
+PARAMSTRIP=.param.stripped
+PARAMDBKNS=.param.dbkns
+FIXPARAMNS=$(DOCBOOK_SVN)/xsl/tools/xsl/build/fix-params-ns.xsl
+
+include Makefile.param
+
+all: $(ALLTARGETS)
+
+param.xsl: param.xweb $(PARAMS)
+	$(DOCBOOK_SVN)/cvstools/paramchk -m Makefile.param $<
+	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
+	$(XSLT) $(PARAMPROF) $(DOCBOOK_SVN)/xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/xtangle.xsl $(PARAMDBKNS)
+ifeq ($(ADDNEWLINE),)
+	$(XSLT) $(PARAMDBKNS) $(FIXPARAMNS) $@
+else
+	$(XSLT) $(PARAMDBKNS) $(FIXPARAMNS) $@.tmp
+	$(XSLT) $@.tmp $(ADDNEWLINE) $@
+	$(RM) $@.tmp
+endif
+	$(RM) $(PARAMPROF) $(PARAMSTRIP) $(PARAMDBKNS)
+
+titlepage.templates.xsl: titlepage.templates.xml $(DOCBOOK_SVN)/xsl/template/titlepage.xsl
+	$(XSLT) $< $(DOCBOOK_SVN)/xsl/template/titlepage.xsl $@
+
+Makefile.param:
+	$(DOCBOOK_SVN)/cvstools/paramchk -m $@ param.xweb
+	$(MAKE)
+
+profile-docbook.xsl: docbook.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl
+	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl $@
+
+clean: $(CLEANTARGETS)
+	$(RM) $(XSLFILES)
+	$(RM) Makefile.param
+	echo "# foo" > Makefile.param

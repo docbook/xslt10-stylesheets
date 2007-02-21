@@ -1,21 +1,24 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="orderedlist.label.width">
+          version="5.0" xml:id="orderedlist.label.width">
 <refnamediv>
 <refname>orderedlist.label.width</refname>
 <refpurpose>The default width of the label (number) in an ordered list.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='orderedlist.label.width.frag'>
+<src:fragment xml:id="orderedlist.label.width.frag">
 <xsl:param name="orderedlist.label.width" select="'1.2em'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 <para>Specifies the default width of the label (usually a number or
 sequence of numbers) in an ordered list. You can override the default
 value on any particular list with the “dbfo” processing instruction
 using the “label-width” pseudoattribute.</para>
-</refsect1>
+</refsection>
 </refentry>

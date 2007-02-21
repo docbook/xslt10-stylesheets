@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.table.footnotes.divider">
+          version="5.0" xml:id="man.table.footnotes.divider">
 <refmeta>
 <refentrytitle>man.table.footnotes.divider</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.table.footnotes.divider</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.table.footnotes.divider.frag'>
+<src:fragment xml:id="man.table.footnotes.divider.frag">
 <xsl:param name="man.table.footnotes.divider">----</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>In each table that contains footenotes, the string specified by
 the <parameter>man.table.footnotes.divider</parameter> parameter is
 output before the list of footnotes for the table.</para>
 
-</refsect1>
+</refsection>
 </refentry>

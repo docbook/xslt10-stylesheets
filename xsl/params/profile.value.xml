@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="profile.value">
+          version="5.0" xml:id="profile.value">
 <refmeta>
 <refentrytitle>profile.value</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>profile.value</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='profile.value.frag'>
+<src:fragment xml:id="profile.value.frag">
 <xsl:param name="profile.value" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>When you are using this parameter you must also specify name of
 profiling attribute with parameter
@@ -30,9 +33,9 @@ parameter.</para>
 
 <para>This parameter has effect only when you are using profiling
 stylesheets (<filename>profile-docbook.xsl</filename>,
-<filename>profile-chunk.xsl</filename>, &#x2026;) instead of normal
+<filename>profile-chunk.xsl</filename>, …) instead of normal
 ones (<filename>docbook.xsl</filename>,
-<filename>chunk.xsl</filename>, &#x2026;).</para>
+<filename>chunk.xsl</filename>, …).</para>
 
-</refsect1>
+</refsection>
 </refentry>

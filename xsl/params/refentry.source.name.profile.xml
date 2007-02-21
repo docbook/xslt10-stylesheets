@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="refentry.source.name.profile">
+          version="5.0" xml:id="refentry.source.name.profile">
 <refmeta>
 <refentrytitle>refentry.source.name.profile</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>refentry.source.name.profile</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='refentry.source.name.profile.frag'>
+<src:fragment xml:id="refentry.source.name.profile.frag">
 <xsl:param name="refentry.source.name.profile">
   (($info[//productname])[last()]/productname)[1]|
   (($info[//corpname])[last()]/corpname)[1]|
@@ -23,7 +26,7 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The value of <parameter>refentry.source.name.profile</parameter>
 is a string representing an XPath expression. It is evaluated at
@@ -33,7 +36,7 @@ non-zero. Otherwise, the <tag>refentry</tag> metadata-gathering logic
 "hard coded" into the stylesheets is used.</para>
 
 <para>A "source name" is one part of a (potentially) two-part
-<replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>
+<replaceable>Name</replaceable> <replaceable>Version</replaceable>
 "source" field. In man pages, it is usually displayed in the left
 footer of the page. It typically indicates the software system or
 product that the item documented in the man page belongs to. The
@@ -58,7 +61,7 @@ the command", and provides the following examples:
 <para>In practice, there are many pages that simply have a Version
 number in the "source" field. So, it looks like what we have is a
 two-part field,
-<replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>,
+<replaceable>Name</replaceable> <replaceable>Version</replaceable>,
 where:
 <variablelist>
   <varlistentry>
@@ -82,5 +85,5 @@ the version of the product. Or there may be no
 of the item itself, not the product it is part of. Or, if the
 <replaceable>Name</replaceable> is an organization name, then there
 probably will be no <replaceable>Version</replaceable>.</para>
-</refsect1>
+</refsection>
 </refentry>

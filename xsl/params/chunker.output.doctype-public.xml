@@ -1,19 +1,22 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="chunker.output.doctype-public">
+          version="5.0" xml:id="chunker.output.doctype-public">
 <refmeta>
 <refentrytitle>chunker.output.doctype-public</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunker.output.doctype-public</refname>
 <refpurpose>Public identifer to use in the document type of generated pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.doctype-public" select="''"/>
+<refsynopsisdiv>&lt;xsl:param name="chunker.output.doctype-public" select="''"/&gt;
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter specifies the public identifier that should be used by
 the chunking stylesheet in the document type declaration of chunked pages.
@@ -26,5 +29,5 @@ this parameter.
 in the <filename>chunker.xsl</filename> stylesheet module.</para>
 </note>
 
-</refsect1>
+</refsection>
 </refentry>

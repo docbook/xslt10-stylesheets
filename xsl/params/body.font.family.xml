@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="body.font.family">
+          version="5.0" xml:id="body.font.family">
 <refmeta>
 <refentrytitle>body.font.family</refentrytitle>
 
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='body.font.family.frag'>
+<src:fragment xml:id="body.font.family.frag">
 <xsl:param name="body.font.family" select="'serif'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The body font family is the default font used for text in the page body.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

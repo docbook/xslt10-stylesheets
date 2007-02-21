@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="body.margin.top">
+          version="5.0" xml:id="body.margin.top">
 <refmeta>
 <refentrytitle>body.margin.top</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='body.margin.top.frag'>
+<src:fragment xml:id="body.margin.top.frag">
 <xsl:param name="body.margin.top" select="'0.5in'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The body top margin is the distance from the top of the region-before
 to the first line of text in the page body.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

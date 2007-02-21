@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="section.title.level6.properties">
+          version="5.0" xml:id="section.title.level6.properties">
 <refmeta>
 <refentrytitle>section.title.level6.properties</refentrytitle>
-<refmiscinfo role="type">attribute set</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>section.title.level6.properties</refname>
@@ -11,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='section.title.level6.properties.frag'>
+<src:fragment xml:id="section.title.level6.properties.frag">
 <xsl:attribute-set name="section.title.level6.properties">
   <xsl:attribute name="font-size">
     <xsl:value-of select="$body.font.master"/>
@@ -21,10 +24,10 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The properties of level-6 section titles. This property set is actually
 used for all titles below level 5.</para>
 
-</refsect1>
+</refsection>
 </refentry>

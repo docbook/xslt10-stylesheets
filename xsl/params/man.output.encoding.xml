@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.output.encoding">
+          version="5.0" xml:id="man.output.encoding">
 <refmeta>
 <refentrytitle>man.output.encoding</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.output.encoding</refname>
@@ -11,11 +14,11 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.output.encoding.frag'>
+<src:fragment xml:id="man.output.encoding.frag">
 <xsl:param name="man.output.encoding" select="'UTF-8'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This parameter specifies the encoding to use for files generated
 by the manpages stylesheet. Not all processors support specification
@@ -26,7 +29,7 @@ of this parameter.</para>
   parameter is non-zero (the default), keeping the
   <parameter>man.output.encoding</parameter> parameter at its default
   value (<literal>UTF-8</literal>) or setting it to
-  <literal>UTF-16</literal> <emphasis role="bold" >does not cause your
+  <literal>UTF-16</literal> <emphasis role="bold">does not cause your
   man pages to be output in raw UTF-8 or UTF-16</emphasis> -- because
   any Unicode characters for which matches are found in the enabled
   character map will be replaced with roff escape sequences before the
@@ -45,5 +48,5 @@ of this parameter.</para>
   encodings.</para>
 </important>
 
-</refsect1>
+</refsection>
 </refentry>

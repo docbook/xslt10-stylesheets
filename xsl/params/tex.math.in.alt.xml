@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="tex.math.in.alt">
+          version="5.0" xml:id="tex.math.in.alt">
 <refmeta>
 <refentrytitle>tex.math.in.alt</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>tex.math.in.alt</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='tex.math.in.alt.frag'>
+<src:fragment xml:id="tex.math.in.alt.frag">
 <xsl:param name="tex.math.in.alt" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If you want type math directly in TeX notation in equations,
 this parameter specifies notation used. Currently are supported two
@@ -24,25 +27,25 @@ values -- <literal>plain</literal> and <literal>latex</literal>. Empty
 value means that you are not using TeX math at all.</para>
 
 <para>Preferred way for including TeX alternative of math is inside of
-<sgmltag>textobject</sgmltag> element. Eg.:</para>
+<tag>textobject</tag> element. Eg.:</para>
 
-<programlisting><![CDATA[<inlineequation>
-<inlinemediaobject>
-<imageobject>
-<imagedata fileref="eq1.gif"/>
-</imageobject>
-<textobject><phrase>E=mc squared</phrase></textobject>
-<textobject role="tex"><phrase>E=mc^2</phrase></textobject>
-</inlinemediaobject>
-</inlineequation>]]></programlisting>
+<programlisting>&lt;inlineequation&gt;
+&lt;inlinemediaobject&gt;
+&lt;imageobject&gt;
+&lt;imagedata fileref="eq1.gif"/&gt;
+&lt;/imageobject&gt;
+&lt;textobject&gt;&lt;phrase&gt;E=mc squared&lt;/phrase&gt;&lt;/textobject&gt;
+&lt;textobject role="tex"&gt;&lt;phrase&gt;E=mc^2&lt;/phrase&gt;&lt;/textobject&gt;
+&lt;/inlinemediaobject&gt;
+&lt;/inlineequation&gt;</programlisting>
 
-<para>If you are using <sgmltag>graphic</sgmltag> element, you can
-store TeX inside <sgmltag>alt</sgmltag> element:</para>
+<para>If you are using <tag>graphic</tag> element, you can
+store TeX inside <tag>alt</tag> element:</para>
 
-<programlisting><![CDATA[<inlineequation>
-<alt role="tex">a^2+b^2=c^2</alt>
-<graphic fileref="a2b2c2.gif"/>  
-</inlineequation>]]></programlisting>
+<programlisting>&lt;inlineequation&gt;
+&lt;alt role="tex"&gt;a^2+b^2=c^2&lt;/alt&gt;
+&lt;graphic fileref="a2b2c2.gif"/&gt;  
+&lt;/inlineequation&gt;</programlisting>
 
 <para>If you want use this feature, you should process your FO with
 PassiveTeX, which only supports TeX math notation. When calling
@@ -54,5 +57,5 @@ passivetex.extensions=1.</para>
 dvi2bitmap program on result DVI file. You will get images for
 equations in your document.</para>
 
-</refsect1>
+</refsection>
 </refentry>

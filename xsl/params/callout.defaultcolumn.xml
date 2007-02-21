@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="callout.defaultcolumn">
+          version="5.0" xml:id="callout.defaultcolumn">
 <refmeta>
 <refentrytitle>callout.defaultcolumn</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>callout.defaultcolumn</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='callout.defaultcolumn.frag'><xsl:param name="callout.defaultcolumn" select="'60'"/></src:fragment>
+<src:fragment xml:id="callout.defaultcolumn.frag"><xsl:param name="callout.defaultcolumn" select="'60'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If a callout does not identify a column (for example, if it uses
-the <literal>linerange</literal> <sgmltag class="attribute">unit</sgmltag>),
+the <literal>linerange</literal> <tag class="attribute">unit</tag>),
 it will appear in the default column.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

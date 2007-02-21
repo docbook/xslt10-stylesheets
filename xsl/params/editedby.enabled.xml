@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="editedby.enabled">
+          version="5.0" xml:id="editedby.enabled">
 <refmeta>
 <refentrytitle>editedby.enabled</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>editedby.enabled</refname>
@@ -11,14 +14,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='editedby.enabled.frag'><xsl:param name="editedby.enabled">1</xsl:param></src:fragment>
+<src:fragment xml:id="editedby.enabled.frag"><xsl:param name="editedby.enabled">1</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>If non-zero (the default), a localized <emphasis
-role="bold">Edited by</emphasis> heading is displayed above editor
-names in output of the <sgmltag>editor</sgmltag> element.</para>
+<para>If non-zero (the default), a localized <emphasis role="bold">Edited by</emphasis> heading is displayed above editor
+names in output of the <tag>editor</tag> element.</para>
 
-</refsect1>
+</refsection>
 </refentry>

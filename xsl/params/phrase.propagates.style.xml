@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="phrase.propagates.style">
+          version="5.0" xml:id="phrase.propagates.style">
 <refmeta>
 <refentrytitle>phrase.propagates.style</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>phrase.propagates.style</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='phrase.propagates.style.frag'><xsl:param name="phrase.propagates.style" select="1"/></src:fragment>
+<src:fragment xml:id="phrase.propagates.style.frag"><xsl:param name="phrase.propagates.style" select="1"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>If true, the role attribute of <sgmltag>phrase</sgmltag> elements
+<para>If true, the role attribute of <tag>phrase</tag> elements
 will be passed through to the HTML as a class attribute on a
-<sgmltag>span</sgmltag> that surrounds the phrase.</para>
+<tag>span</tag> that surrounds the phrase.</para>
 
-</refsect1>
+</refsection>
 </refentry>

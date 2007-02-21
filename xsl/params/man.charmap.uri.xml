@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.charmap.uri">
+          version="5.0" xml:id="man.charmap.uri">
 <refmeta>
 <refentrytitle>man.charmap.uri</refentrytitle>
-<refmiscinfo role="type">uri</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.charmap.uri</refname>
@@ -11,19 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.charmap.uri.frag'>
+<src:fragment xml:id="man.charmap.uri.frag">
 <xsl:param name="man.charmap.uri" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>For converting certain Unicode symbols and special characters in
 UTF-8 or UTF-16 encoded XML source to appropriate groff/roff
 equivalents in man-page output, the DocBook XSL Stylesheets
-distribution includes an <ulink
-url="http://www.w3.org/TR/xslt20/#character-maps" >XSLT character
-map</ulink>. That character map can be considered the standard roff
+distribution includes an <link xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
+map</link>. That character map can be considered the standard roff
 character map for the distribution.</para>
 
 <para>If the value of the <parameter>man.charmap.uri</parameter>
@@ -36,5 +38,5 @@ roff character map provided in the distribution.</para>
 unless you have a custom roff character map that differs from the
 standard one provided in the distribution.</para>
 </warning>
-</refsect1>
+</refsection>
 </refentry>

@@ -1,19 +1,21 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="table.properties">
+          version="5.0" xml:id="table.properties">
 <refnamediv>
 <refname>table.properties</refname>
 <refpurpose>Properties associated with the block surrounding a table</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='table.properties.frag'>
-<xsl:attribute-set name="table.properties"
-		   use-attribute-sets="formal.object.properties"/>
+<src:fragment xml:id="table.properties.frag">
+<xsl:attribute-set name="table.properties" use-attribute-sets="formal.object.properties"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Block styling properties for tables. This parameter should really
 have been called <literal>table.block.properties</literal> or something
@@ -22,5 +24,5 @@ problems.</para>
 
 <para>See also <parameter>table.table.properties</parameter>.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="htmlhelp.enumerate.images">
+          version="5.0" xml:id="htmlhelp.enumerate.images">
 <refmeta>
 <refentrytitle>htmlhelp.enumerate.images</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.enumerate.images</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.enumerate.images.frag'>
+<src:fragment xml:id="htmlhelp.enumerate.images.frag">
 <xsl:param name="htmlhelp.enumerate.images" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>You should turn on this flag, if you insert images into your documents 
 as external binary entities or if you are using absolute path in image names.</para>
 
-</refsect1>
+</refsection>
 </refentry>

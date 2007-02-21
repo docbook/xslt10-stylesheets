@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="insert.olink.pdf.frag">
+          version="5.0" xml:id="insert.olink.pdf.frag">
 <refmeta>
 <refentrytitle>insert.olink.pdf.frag</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>insert.olink.pdf.frag</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='insert.olink.pdf.frag.frag'>
+<src:fragment xml:id="insert.olink.pdf.frag.frag">
 <xsl:param name="insert.olink.pdf.frag" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The value of this parameter determines whether
 the cross reference URIs to PDF documents made with
-<sgmltag>olink</sgmltag> will 
+<tag>olink</tag> will 
 include fragment identifiers.
 </para>
 
@@ -40,26 +43,26 @@ to a non-zero value, then any olink targeting a
 PDF file will have the fragment identifier appended to the URI.
 The URI is formed by concatenating the value of the
 <parameter>olink.base.uri</parameter> parameter, the
-value of the <sgmltag class="attribute">baseuri</sgmltag>
-attribute from the <sgmltag class="element">document</sgmltag>
+value of the <tag class="attribute">baseuri</tag>
+attribute from the <tag class="element">document</tag>
 element in the olink database with the matching
-<sgmltag class="attribute">targetdoc</sgmltag> value,
-and the value of the <sgmltag class="attribute">href</sgmltag>
+<tag class="attribute">targetdoc</tag> value,
+and the value of the <tag class="attribute">href</tag>
 attribute for the targeted element in the olink database.
-The <sgmltag class="attribute">href</sgmltag> attribute
+The <tag class="attribute">href</tag> attribute
 contains the fragment identifier.
 </para>
 
 <para>If <parameter>insert.olink.pdf.frag</parameter> is set
 to zero (the default value), then 
-the <sgmltag class="attribute">href</sgmltag> attribute
+the <tag class="attribute">href</tag> attribute
 from the olink database
 is not appended to PDF olinks, so the fragment identifier is left off.
 A PDF olink is any olink for which the
-<sgmltag class="attribute">baseuri</sgmltag> attribute
-from the matching <sgmltag class="element">document</sgmltag>
+<tag class="attribute">baseuri</tag> attribute
+from the matching <tag class="element">document</tag>
 element in the olink database ends with '.pdf'.
 Any other olinks will still have the fragment identifier added.
 </para>
-</refsect1>
+</refsection>
 </refentry>

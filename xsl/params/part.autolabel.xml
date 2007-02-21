@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="part.autolabel">
+          version="5.0" xml:id="part.autolabel">
 <refmeta>
 <refentrytitle>part.autolabel</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>part.autolabel</refname>
@@ -11,10 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='part.autolabel.frag'><xsl:param name="part.autolabel" select="'I'"/></src:fragment>
+<src:fragment xml:id="part.autolabel.frag"><xsl:param name="part.autolabel" select="'I'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If zero, then parts will not be numbered.
 Otherwise parts will be numbered, using the parameter value
@@ -59,5 +62,5 @@ the default number format (upperroman).
 </para>
 
 
-</refsect1>
+</refsection>
 </refentry>

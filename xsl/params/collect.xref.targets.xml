@@ -1,21 +1,24 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="collect.xref.targets"> 
+          version="5.0" xml:id="collect.xref.targets"> 
 <refmeta> 
 <refentrytitle>collect.xref.targets</refentrytitle> 
-<refmiscinfo role="type">string</refmiscinfo> 
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo> 
 </refmeta> 
 <refnamediv> 
 <refname>collect.xref.targets</refname> 
 <refpurpose>Controls whether cross reference data is
 collected</refpurpose> 
 </refnamediv> 
-<refsynopsisdiv> <src:fragment id="collect.xref.targets.frag">
+<refsynopsisdiv> <src:fragment xml:id="collect.xref.targets.frag">
 <xsl:param name="collect.xref.targets" select="'no'"/>
 </src:fragment> 
 </refsynopsisdiv> 
-<refsect1> 
-<title>Description</title> 
+<refsection><info><title>Description</title></info> 
+ 
 <para>
 In order to resolve olinks efficiently, the stylesheets can
 generate an external data file containing information about
@@ -23,5 +26,5 @@ all potential cross reference endpoints in a document.
 This parameter determines whether the collection process is run when the document is processed by the stylesheet. The default value is  <literal>no</literal>, which means the data file is not generated during processing. The other choices are <literal>yes</literal>, which means the data file is created and the document is processed for output, and <literal>only</literal>, which means the data file is created but the document is not processed for output.
 See also <parameter>targets.filename</parameter>.
 </para> 
-</refsect1> 
-</refentry> 
+</refsection> 
+</refentry>

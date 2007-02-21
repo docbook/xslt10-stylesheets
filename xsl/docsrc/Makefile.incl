@@ -11,11 +11,7 @@ clean:
 	$(XJPARSE) $(XJPARSEFLAGS) $@
 
 docparam.xml: $(VPATH)/param.xweb $(PARAMS)
-ifeq ($(findstring website,$(VPATH)),)
-ifeq ($(findstring slides,$(VPATH)),)
 	$(DOCBOOK_SVN)/cvstools/paramchk -m Makefile.param $<
-endif
-endif
 	$(XSLT) $< ../../profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 ifeq ($(ADDNEWLINE),)

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="ebnf.assignment">
+          version="5.0" xml:id="ebnf.assignment">
 <refmeta>
 <refentrytitle>ebnf.assignment</refentrytitle>
-<refmiscinfo role="type">rtf</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">rtf</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>ebnf.assignment</refname>
@@ -11,12 +14,11 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='ebnf.assignment.frag'>
+<src:fragment xml:id="ebnf.assignment.frag">
 <xsl:param condition="html" name="ebnf.assignment">
-<code>::=</code>
+<code xmlns="">::=</code>
 </xsl:param>
-<xsl:param condition="fo" name="ebnf.assignment"
-           xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<xsl:param xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" condition="fo" name="ebnf.assignment">
   <fo:inline font-family="{$monospace.font.family}">
     <xsl:text>::=</xsl:text>
   </fo:inline>
@@ -24,14 +26,14 @@
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>ebnf.assignment</parameter> parameter determines what
-text is used to show <quote>assignment</quote> in <sgmltag>production</sgmltag>s
-in <sgmltag>productionset</sgmltag>s.</para>
+text is used to show <quote>assignment</quote> in <tag>production</tag>s
+in <tag>productionset</tag>s.</para>
 
 <para>While <quote><literal>::=</literal></quote> is common, so are several
 other operators.</para>
 
-</refsect1>
+</refsection>
 </refentry>

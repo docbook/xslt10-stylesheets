@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="monospace.font.family">
+          version="5.0" xml:id="monospace.font.family">
 <refmeta>
 <refentrytitle>monospace.font.family</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='monospace.font.family.frag'>
+<src:fragment xml:id="monospace.font.family.frag">
 <xsl:param name="monospace.font.family" select="'monospace'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The monospace font family is used for verbatim environments
 (program listings, screens, etc.).
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

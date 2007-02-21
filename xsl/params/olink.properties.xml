@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="olink.properties">
+          version="5.0" xml:id="olink.properties">
 <refnamediv>
 <refname>olink.properties</refname>
 <refpurpose>Properties associated with the cross-reference 
@@ -8,19 +11,19 @@ text of an olink.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='olink.properties.frag'>
+<src:fragment xml:id="olink.properties.frag">
 <xsl:attribute-set name="olink.properties">
   <xsl:attribute name="show-destination">replace</xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>This attribute set is applied to the <sgmltag>fo:basic-link</sgmltag>
+<para>This attribute set is applied to the <tag>fo:basic-link</tag>
 element of an olink. It is not applied to the
 optional page number or 
 optional title of the external document.</para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="section.level1.properties">
+          version="5.0" xml:id="section.level1.properties">
 <refmeta>
 <refentrytitle>section.level1.properties</refentrytitle>
-<refmiscinfo role="type">attribute set</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>section.level1.properties</refname>
@@ -11,19 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='section.level1.properties.frag'>
-<xsl:attribute-set name="section.level1.properties" 
-                   use-attribute-sets="section.properties">
+<src:fragment xml:id="section.level1.properties.frag">
+<xsl:attribute-set name="section.level1.properties" use-attribute-sets="section.properties">
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The properties that apply to the containing
 block of a level-1 section, and therefore apply to
-the whole section.  This includes <sgmltag>sect1</sgmltag>
-elements and <sgmltag>section</sgmltag> elements at level 1.
+the whole section.  This includes <tag>sect1</tag>
+elements and <tag>section</tag> elements at level 1.
 </para>
 
 <para>For example, you could start each level-1 section on
@@ -34,8 +36,8 @@ a new page by using:</para>
 </programlisting>
 
 <para>This attribute set inherits attributes from the
-general <sgmltag>section.properties</sgmltag> attribute set.
+general <tag>section.properties</tag> attribute set.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

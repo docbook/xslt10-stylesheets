@@ -1,27 +1,30 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="menuchoice.menu.separator">
+          version="5.0" xml:id="menuchoice.menu.separator">
 <refmeta>
 <refentrytitle>menuchoice.menu.separator</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>menuchoice.menu.separator</refname>
-<refpurpose>Separator between items of a <sgmltag>menuchoice</sgmltag>
-with <sgmltag>guimenuitem</sgmltag> or
-<sgmltag>guisubmenu</sgmltag></refpurpose>
+<refpurpose>Separator between items of a <tag>menuchoice</tag>
+with <tag>guimenuitem</tag> or
+<tag>guisubmenu</tag></refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='menuchoice.menu.separator.frag'>
-<xsl:param name="menuchoice.menu.separator"> &#x2192; </xsl:param>
+<src:fragment xml:id="menuchoice.menu.separator.frag">
+<xsl:param name="menuchoice.menu.separator"> → </xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>Separator used to connect items of a <sgmltag>menuchoice</sgmltag> with
-<sgmltag>guimenuitem</sgmltag> or <sgmltag>guisubmenu</sgmltag>. Other elements
+<para>Separator used to connect items of a <tag>menuchoice</tag> with
+<tag>guimenuitem</tag> or <tag>guisubmenu</tag>. Other elements
 are linked with <parameter>menuchoice.separator</parameter>.
 </para>
 <para>The default value is &amp;#x2192;, which is the
@@ -35,5 +38,5 @@ which will allow a line to break.  Replace the spaces with
 spaces to break.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

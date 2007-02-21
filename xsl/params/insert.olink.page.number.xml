@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="insert.olink.page.number">
+          version="5.0" xml:id="insert.olink.page.number">
 <refmeta>
 <refentrytitle>insert.olink.page.number</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>insert.olink.page.number</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='insert.olink.page.number.frag'>
+<src:fragment xml:id="insert.olink.page.number.frag">
 <xsl:param name="insert.olink.page.number">no</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The value of this parameter determines if
 cross references made between documents with
-<sgmltag>olink</sgmltag> will 
+<tag>olink</tag> will 
 include page number citations.
 In most cases this is only applicable to references in printed output.
 </para>
@@ -35,24 +38,24 @@ In most cases this is only applicable to references in printed output.
 <varlistentry>
 <term>yes</term>
 <listitem><para>Page number references will be generated
-for all <sgmltag>olink</sgmltag> references.
+for all <tag>olink</tag> references.
 The style of page reference may be changed
-if an <sgmltag class="attribute">xrefstyle</sgmltag>
+if an <tag class="attribute">xrefstyle</tag>
 attribute is used.
 </para></listitem>
 </varlistentry>
 <varlistentry>
 <term>maybe</term>
 <listitem><para>Page number references will not be generated
-for an <sgmltag>olink</sgmltag> element unless 
+for an <tag>olink</tag> element unless 
 it has an
-<sgmltag class="attribute">xrefstyle</sgmltag>
+<tag class="attribute">xrefstyle</tag>
 attribute whose value specifies a page reference.
 </para></listitem>
 </varlistentry>
 </variablelist>
 <para>Olinks that point to targets within the same document
-are treated as <sgmltag>xref</sgmltag>s, and controlled by
+are treated as <tag>xref</tag>s, and controlled by
 the <parameter>insert.xref.page.number</parameter> parameter.
 </para>
 
@@ -60,8 +63,8 @@ the <parameter>insert.xref.page.number</parameter> parameter.
 external documents can only be inserted if the 
 information exists in the olink database. 
 This means each olink target element 
-(<sgmltag>div</sgmltag> or <sgmltag>obj</sgmltag>)
-must have a <sgmltag class="attribute">page</sgmltag> attribute
+(<tag>div</tag> or <tag>obj</tag>)
+must have a <tag class="attribute">page</tag> attribute
 whose value is its page number in the target document.
 The XSL stylesheets are not able to extract that information
 during processing because pages have not yet been created in
@@ -73,5 +76,5 @@ page numbers in the olink database.
 
 
 
-</refsect1>
+</refsection>
 </refentry>

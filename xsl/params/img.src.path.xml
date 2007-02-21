@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="img.src.path">
+          version="5.0" xml:id="img.src.path">
 <refmeta>
 <refentrytitle>img.src.path</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>img.src.path</refname>
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='img.src.path.frag'><xsl:param name="img.src.path"></xsl:param></src:fragment>
+<src:fragment xml:id="img.src.path.frag"><xsl:param name="img.src.path"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Add a path prefix to each HTML
-<sgmltag class="element">img</sgmltag> or FO 
-<sgmltag class="element">fo:external-graphics</sgmltag> element's
-<sgmltag class="attribute">src</sgmltag> attribute.
+<tag class="element">img</tag> or FO 
+<tag class="element">fo:external-graphics</tag> element's
+<tag class="attribute">src</tag> attribute.
 This path could relative to the directory where the HTML/FO
 files are created, or it could be an absolute URI.
 The default value is empty.
@@ -29,5 +32,5 @@ Be sure to include a trailing slash if needed.
 with "/" or contain "//:".
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

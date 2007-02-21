@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.font.table.headings">
+          version="5.0" xml:id="man.font.table.headings">
 <refmeta>
 <refentrytitle>man.font.table.headings</refentrytitle>
 
@@ -11,17 +14,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.font.table.headings.frag'>
+<src:fragment xml:id="man.font.table.headings.frag">
   <xsl:param name="man.font.table.headings">B</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>man.font.table.headings</parameter> parameter
-specifies the font for <sgmltag>table</sgmltag> headings. It should be
+specifies the font for <tag>table</tag> headings. It should be
 a valid roff font, such as <literal>B</literal> or
 <literal>I</literal>.</para>
 
-</refsect1>
+</refsection>
 </refentry>

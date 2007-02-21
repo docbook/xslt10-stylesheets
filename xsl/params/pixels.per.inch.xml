@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="pixels.per.inch">
+          version="5.0" xml:id="pixels.per.inch">
 <refmeta>
 <refentrytitle>pixels.per.inch</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>pixels.per.inch</refname>
@@ -11,18 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='pixels.per.inch.frag'>
+<src:fragment xml:id="pixels.per.inch.frag">
 <xsl:param name="pixels.per.inch" select="90"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>When lengths are converted to pixels, this value is used to
 determine the size of a pixel. The default value is taken from the
-<ulink url="http://www.w3.org/TR/xsl/slice5.html#pixels">XSL
-Recommendation</ulink>.
+<link xlink:href="http://www.w3.org/TR/xsl/slice5.html#pixels">XSL
+Recommendation</link>.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="generate.section.toc.level">
+          version="5.0" xml:id="generate.section.toc.level">
 <refmeta>
 <refentrytitle>generate.section.toc.level</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>generate.section.toc.level</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='generate.section.toc.level.frag'>
+<src:fragment xml:id="generate.section.toc.level.frag">
 <xsl:param name="generate.section.toc.level" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>generate.section.toc.level</parameter> parameter
 controls the depth of section in which TOCs will be generated. Note
@@ -28,5 +31,5 @@ is <literal>3</literal>, TOCs will be generated in first, second, and third
 level sections, but not in fourth level sections.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

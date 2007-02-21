@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="chunk.sections">
+          version="5.0" xml:id="chunk.sections">
 <refmeta>
 <refentrytitle>chunk.sections</refentrytitle>
 
@@ -11,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='chunk.sections.frag'><xsl:param name="chunk.sections" select="'1'"/></src:fragment>
+<src:fragment xml:id="chunk.sections.frag"><xsl:param name="chunk.sections" select="'1'"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If non-zero, chunks will be created for top-level
-<sgmltag>sect1</sgmltag> and <sgmltag>section</sgmltag> elements in
+<tag>sect1</tag> and <tag>section</tag> elements in
 each component.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

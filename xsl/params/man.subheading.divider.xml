@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.subheading.divider">
+          version="5.0" xml:id="man.subheading.divider">
 <refmeta>
 <refentrytitle>man.subheading.divider</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.subheading.divider</refname>
@@ -11,13 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.subheading.divider.frag'>
-<xsl:param name="man.subheading.divider"
->========================================================================</xsl:param>
+<src:fragment xml:id="man.subheading.divider.frag">
+<xsl:param name="man.subheading.divider">========================================================================</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of the
 <parameter>man.subheading.divider.enabled</parameter> parameter is
@@ -31,5 +33,5 @@ simply for the purpose of increasing reability of the source.</para>
 <para>If <parameter>man.subheading.divider.enabled</parameter> is zero
 (the default), the subheading divider is suppressed.</para>
 
-</refsect1>
+</refsection>
 </refentry>

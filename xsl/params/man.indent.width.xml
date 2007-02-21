@@ -1,18 +1,21 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.indent.width">
+          version="5.0" xml:id="man.indent.width">
 <refnamediv>
 <refname>man.indent.width</refname>
 <refpurpose>Specifies width used for adjusted indents</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.indent.width.frag'>
+<src:fragment xml:id="man.indent.width.frag">
 <xsl:param name="man.indent.width">4</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 <para>The <parameter>man.indent.width</parameter> parameter specifies
 the width used for adjusted indents. The value of
 <parameter>man.indent.width</parameter> is used for indenting of
@@ -28,5 +31,5 @@ console, that amounts to the width of four characters. For details
 about roff measurment units, see the <literal>Measurements</literal>
 node in the groff info page.</para>
 
-</refsect1>
+</refsection>
 </refentry>

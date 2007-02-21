@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.indent.refsect">
+          version="5.0" xml:id="man.indent.refsect">
 <refmeta>
 <refentrytitle>man.indent.refsect</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.indent.refsect</refname>
@@ -11,36 +14,36 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.indent.refsect.frag'>
+<src:fragment xml:id="man.indent.refsect.frag">
 <xsl:param name="man.indent.refsect" select="0"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of <parameter>man.indent.refsect</parameter> is
 non-zero, the width of the left margin for
-<sgmltag>refsect1</sgmltag>, <sgmltag>refsect2</sgmltag> and
-<sgmltag>refsect3</sgmltag> contents and titles (and first-level,
+<tag>refsect1</tag>, <tag>refsect2</tag> and
+<tag>refsect3</tag> contents and titles (and first-level,
 second-level, and third-level nested
-<sgmltag>refsection</sgmltag>instances) is adjusted by the value of
+<tag>refsection</tag>instances) is adjusted by the value of
 the <parameter>man.indent.width</parameter> parameter. With
 <parameter>man.indent.width</parameter> set to its default value of
 <literal>3n</literal>, the main results are that:
 
 <itemizedlist>
   <listitem>
-    <para>contents of <sgmltag>refsect1</sgmltag> are output with a
+    <para>contents of <tag>refsect1</tag> are output with a
     left margin of three characters instead the roff default of seven
     or eight characters</para>
   </listitem>
   <listitem>
-    <para>contents of <sgmltag>refsect2</sgmltag> are displayed in
+    <para>contents of <tag>refsect2</tag> are displayed in
     console output with a left margin of six characters instead the of
     the roff default of seven characters</para>
   </listitem>
   <listitem>
-    <para> the contents of <sgmltag>refsect3</sgmltag> and nested
-    <sgmltag>refsection</sgmltag> instances are adjusted
+    <para> the contents of <tag>refsect3</tag> and nested
+    <tag>refsection</tag> instances are adjusted
     accordingly.</para>
   </listitem>
 </itemizedlist>
@@ -51,17 +54,17 @@ output.</para>
 
 <tip>
   <para>If your content is primarly comprised of
-  <sgmltag>refsect1</sgmltag> and <sgmltag>refsect2</sgmltag> content
-  (or the <sgmltag>refsection</sgmltag> equivalent)&#160;– with few or
-  no <sgmltag>refsect3</sgmltag> or lower nested sections , you may be
+  <tag>refsect1</tag> and <tag>refsect2</tag> content
+  (or the <tag>refsection</tag> equivalent) – with few or
+  no <tag>refsect3</tag> or lower nested sections , you may be
   able to “conserve” space in your output by setting
   <parameter>man.indent.refsect</parameter> to a non-zero value. Doing
   so will “squeeze” the left margin in such as way as to provide an
   additional four characters of “room” per line in
-  <sgmltag>refsect1</sgmltag> output. That extra room may be useful
+  <tag>refsect1</tag> output. That extra room may be useful
   if, for example, you have many verbatim sections with long lines in
   them.</para>
 </tip>
 
-</refsect1>
+</refsection>
 </refentry>

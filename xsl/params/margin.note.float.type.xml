@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="margin.note.float.type">
+          version="5.0" xml:id="margin.note.float.type">
 <refmeta>
 <refentrytitle>margin.note.float.type</refentrytitle>
-<refmiscinfo role="type">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>margin.note.float.type</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='margin.note.float.type.frag'>
+<src:fragment xml:id="margin.note.float.type.frag">
 <xsl:param name="margin.note.float.type" select="'none'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Selects the type of float for margin notes.
 DocBook does not define a margin note element, so this
@@ -62,5 +65,5 @@ options for side floats as well.
 </listitem>
 </itemizedlist>
 
-</refsect1>
+</refsection>
 </refentry>

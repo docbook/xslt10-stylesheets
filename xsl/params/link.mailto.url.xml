@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="link.mailto.url">
+          version="5.0" xml:id="link.mailto.url">
 <refmeta>
 <refentrytitle>link.mailto.url</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>link.mailto.url</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='link.mailto.url.frag'><xsl:param name="link.mailto.url"/></src:fragment>
+<src:fragment xml:id="link.mailto.url.frag"><xsl:param name="link.mailto.url"/></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If not the empty string, this address will be used for the
-REL=made <sgmltag>LINK</sgmltag> element in the HTML <sgmltag>HEAD</sgmltag>.
+REL=made <tag>LINK</tag> element in the HTML <tag>HEAD</tag>.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

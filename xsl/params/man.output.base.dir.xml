@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.output.base.dir">
+          version="5.0" xml:id="man.output.base.dir">
 <refmeta>
 <refentrytitle>man.output.base.dir</refentrytitle>
 
@@ -11,12 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment
-    id='man.output.base.dir.frag'
-    ><xsl:param name="man.output.base.dir">man/</xsl:param></src:fragment>
+<src:fragment xml:id="man.output.base.dir.frag"><xsl:param name="man.output.base.dir">man/</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The <parameter>man.output.base.dir</parameter> parameter
 specifies the base directory into which man-page files are output. The
@@ -34,5 +35,5 @@ directory.</para>
   files are not output in a separate directory.</para>
 </note>
 
-</refsect1>
+</refsection>
 </refentry>

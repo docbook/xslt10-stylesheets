@@ -1,24 +1,27 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="[[NAME]]">
+          version="5.0" xml:id="[[NAME]]">
 <refmeta>
 <refentrytitle>[[NAME]]</refentrytitle>
-<refmiscinfo role="type"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype"/>
 </refmeta>
 <refnamediv>
 <refname>[[NAME]]</refname>
-<refpurpose></refpurpose>
+<refpurpose/>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='[[NAME]].frag'>
+<src:fragment xml:id="[[NAME]].frag">
 <xsl:param name="[[NAME]]" select=""/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>FIXME:</para>
 
-</refsect1>
+</refsection>
 </refentry>

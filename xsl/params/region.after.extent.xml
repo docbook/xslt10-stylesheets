@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="region.after.extent">
+          version="5.0" xml:id="region.after.extent">
 <refmeta>
 <refentrytitle>region.after.extent</refentrytitle>
 
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='region.after.extent.frag'>
+<src:fragment xml:id="region.after.extent.frag">
 <xsl:param name="region.after.extent" select="'0.4in'"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The region after extent is the height of the area where footers
 are printed.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

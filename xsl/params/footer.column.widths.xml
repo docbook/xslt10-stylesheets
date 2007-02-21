@@ -1,20 +1,23 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="footer.column.widths">
+          version="5.0" xml:id="footer.column.widths">
 <refmeta>
 <refentrytitle>footer.column.widths</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>footer.column.widths</refname>
 <refpurpose>Specify relative widths of footer areas</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv><src:fragment id='footer.column.widths.frag'>
+<refsynopsisdiv><src:fragment xml:id="footer.column.widths.frag">
 <xsl:param name="footer.column.widths" select="'1 1 1'"/>
 </src:fragment></refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Page footers in print output use a three column table
 to position text at the left, center, and right side of
@@ -67,5 +70,5 @@ center area is no longer centered on the page
 since the right area is three times the width of the left area.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

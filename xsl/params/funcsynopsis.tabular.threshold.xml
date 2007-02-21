@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="funcsynopsis.tabular.threshold">
+          version="5.0" xml:id="funcsynopsis.tabular.threshold">
 <refmeta>
 <refentrytitle>funcsynopsis.tabular.threshold</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>funcsynopsis.tabular.threshold</refname>
@@ -11,16 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='funcsynopsis.tabular.threshold.frag'>
+<src:fragment xml:id="funcsynopsis.tabular.threshold.frag">
 <xsl:param name="funcsynopsis.tabular.threshold" select="40"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If <parameter>funcsynopsis.tabular.threshold</parameter> is greater than
-zero then if a <sgmltag>funcprototype</sgmltag> is wider than the threshold
+zero then if a <tag>funcprototype</tag> is wider than the threshold
 value, it will be presented in a table.</para>
 
-</refsect1>
+</refsection>
 </refentry>

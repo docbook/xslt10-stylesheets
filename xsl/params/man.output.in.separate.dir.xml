@@ -1,6 +1,9 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.output.in.separate.dir">
+          version="5.0" xml:id="man.output.in.separate.dir">
 <refmeta>
 <refentrytitle>man.output.in.separate.dir</refentrytitle>
 
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.output.in.separate.dir.frag'>
+<src:fragment xml:id="man.output.in.separate.dir.frag">
 <xsl:param name="man.output.in.separate.dir" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of <literal>man.output.in.separate.dir</literal>
 parameter is non-zero, man-page files are output in a separate
@@ -25,5 +28,5 @@ parameter; otherwise, if the value of
 <literal>man.output.in.separate.dir</literal> is zero, man-page files
 are not output in a separate directory.</para>
 
-</refsect1>
+</refsection>
 </refentry>

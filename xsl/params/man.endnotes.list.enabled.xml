@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="man.endnotes.list.enabled">
+          version="5.0" xml:id="man.endnotes.list.enabled">
 <refmeta>
 <refentrytitle>man.endnotes.list.enabled</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.endnotes.list.enabled</refname>
@@ -11,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.endnotes.list.enabled.frag'>
+<src:fragment xml:id="man.endnotes.list.enabled.frag">
 <xsl:param name="man.endnotes.list.enabled">1</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of <parameter>man.endnotes.list.enabled</parameter> is
 non-zero (the default), then an endnotes list is added to the end of
@@ -54,9 +57,7 @@ if a (numbered) list of endnotes is also generated.</para>
     terminals can always manualy cut and paste the URLs into a web
     browser.</para>
   <para>Also, note that various “man to html” tools, such as the
-    widely used <command><ulink
-        url="http://users.actrix.gen.nz/michael/vhman2html.html"
-  >man2html</ulink></command> (<literal>VH-Man2html</literal>)
+    widely used <command><link xlink:href="http://users.actrix.gen.nz/michael/vhman2html.html">man2html</link></command> (<literal>VH-Man2html</literal>)
   application, automatically mark up URLs with into a@href markup
   during conversion — resulting in “real” hyperlinks in HTML
   output from those tools.</para>
@@ -66,7 +67,7 @@ if a (numbered) list of endnotes is also generated.</para>
 endnotes list, set <parameter>man.endnotes.are.numbered</parameter>
 to zero. The endnotes list will
 still be displayed; it will just be displayed without the
-numbers<footnote ><para>It can still make sense to have
+numbers<footnote><para>It can still make sense to have
 the list of endnotes displayed even if you have endnotes numbering turned
 off. In that case, your endnotes list basically becomes a “list
 of references” without any association with specific text in
@@ -82,13 +83,11 @@ parameter.</para>
 
 <para>In the case of notesources that are links: Along with the
 URL for each link, the endnotes list includes the contents of the
-link. The list thus includes only non-empty<footnote
- >
+link. The list thus includes only non-empty<footnote>
 
 <para>A “non-empty” link is one that looks like
-this:<literallayout class="monospaced" >  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/">manpages&lt;/ulink></literallayout>
-an “empty link” is on that looks like this:<literallayout
-class="monospaced" >  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/></literallayout>
+this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
+an “empty link” is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/&gt;</literallayout>
 </para></footnote> links.
 
 Empty links are never included, and never numbered. They are simply
@@ -102,5 +101,5 @@ the contents of the first link which has that URL.</para>
 <para>If you disable endnotes listing, you should probably also set
 <parameter>man.links.are.underlined</parameter> to zero (to disable
 link underlining).</para>
-</refsect1>
+</refsection>
 </refentry>

@@ -15,7 +15,7 @@
      ******************************************************************** -->
 
 <xsl:template match="preface|reference|refentry|appendix">
-  <xsl:value-of select="concat(@id,'.html','&#x0a;')"/>
+  <xsl:value-of select="concat(@*[local-name() = 'id'],'.html','&#x0a;')"/>
   <xsl:apply-templates/>
 </xsl:template>
 

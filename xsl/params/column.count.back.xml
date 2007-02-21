@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="column.count.back">
+          version="5.0" xml:id="column.count.back">
 <refmeta>
 <refentrytitle>column.count.back</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>column.count.back</refname>
@@ -11,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='column.count.back.frag'>
+<src:fragment xml:id="column.count.back.frag">
 <xsl:param name="column.count.back" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Number of columns on back matter (appendix, glossary, etc.) pages.</para>
 
-</refsect1>
+</refsection>
 </refentry>

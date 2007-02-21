@@ -1,9 +1,12 @@
-<refentry xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          id="refentry.manual.profile.enabled">
+          version="5.0" xml:id="refentry.manual.profile.enabled">
 <refmeta>
 <refentrytitle>refentry.manual.profile.enabled</refentrytitle>
-<refmiscinfo role="type">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>refentry.manual.profile.enabled</refname>
@@ -11,11 +14,11 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='refentry.manual.profile.enabled.frag'>
+<src:fragment xml:id="refentry.manual.profile.enabled.frag">
 <xsl:param name="refentry.manual.profile.enabled">0</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If the value of
 <parameter>refentry.manual.profile.enabled</parameter> is
@@ -40,5 +43,5 @@ correct data to be gathered. </para>
 context. For details, see the documentation for the
 <parameter>refentry.manual.profile</parameter> parameter.</para>
 
-</refsect1>
+</refsection>
 </refentry>
