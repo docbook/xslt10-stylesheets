@@ -97,24 +97,12 @@
 
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
                      glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
-  <xsl:text>&#10;</xsl:text>
-  <xsl:text>&#x2302;RS</xsl:text> 
-  <xsl:if test="not($list-indent = '')">
-    <xsl:text> </xsl:text>
-    <xsl:value-of select="$list-indent"/>
-  </xsl:if>
-  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#x2302;RE&#10;</xsl:text>
   <xsl:if test="following-sibling::node() or
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
                 parent::remark[following-sibling::node()]">
-    <xsl:text>&#x2302;IP ""</xsl:text> 
-    <xsl:if test="not($list-indent = '')">
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="$list-indent"/>
-    </xsl:if>
+    <xsl:text>&#x2302;sp</xsl:text> 
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
