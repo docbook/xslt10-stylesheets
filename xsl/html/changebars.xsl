@@ -22,13 +22,15 @@
 
 <style type="text/css">
 <xsl:text>
-div.added    { background-color: #ffff99; }
+div.added    { background-color: #ffff99; 
+               text-decoration: underline; }
 div.deleted  { text-decoration: line-through;
                background-color: #FF7F7F; }
 div.changed  { background-color: #99ff99; }
 div.off      {  }
 
-span.added   { background-color: #ffff99; }
+span.added   { background-color: #ffff99; 
+               text-decoration: underline; }
 span.deleted { text-decoration: line-through;
                background-color: #FF7F7F; }
 span.changed { background-color: #99ff99; }
