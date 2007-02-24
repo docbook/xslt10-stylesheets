@@ -57,9 +57,9 @@ public class FormatGraphicCallout extends FormatCallout {
 	  ns = foURI;
 	  prefix = "fo:"; // FIXME: this could be a problem...
 	  imgName = "external-graphic";
-	  imgAttr.addAttribute("", "src", "src", "CDATA",
-			       graphicsPath + num + graphicsExt);
-	  imgAttr.addAttribute("", "alt", "alt", "CDATA", label);
+	  imgAttr.addAttribute("", "src", "src", "CDATA", "url(" +
+			       graphicsPath + num + graphicsExt + ")");
+
 	} else {
 	  ns = "";
 	  prefix = "";
