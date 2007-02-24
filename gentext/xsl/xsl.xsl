@@ -5,7 +5,7 @@
                 exclude-result-prefixes="doc"
                 version="1.0">
 
-<xsl:output method="xml" encoding="US-ASCII" indent="yes"/>
+<xsl:output method="xml" encoding="utf-8" indent="no"/>
 
 <xsl:strip-space elements="localization locale context"/>
 
@@ -59,10 +59,10 @@
     <xsl:apply-templates/>
 
   </l:l10n>
-  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="gentext|dingbat">
+  <xsl:text>&#10;</xsl:text>
   <xsl:variable name="key"><xsl:value-of  select="@key"/></xsl:variable>
   <!-- Use localized text if available -->
   <!-- otherwise use english -->
@@ -133,10 +133,10 @@
       <xsl:attribute name="lang">en</xsl:attribute>
     </xsl:if>
   </l:template>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="letters">
-  <xsl:text>&#10;</xsl:text>
   <!-- Use localized text if available -->
   <!-- otherwise use english -->
   <xsl:variable name="localnode"
@@ -154,6 +154,7 @@
             <xsl:copy-of select="@*"/>
             <xsl:value-of select="."/>
           </xsl:element>
+          <xsl:text>&#10;</xsl:text>
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
@@ -163,10 +164,12 @@
             <xsl:copy-of select="@*"/>
             <xsl:value-of select="."/>
           </xsl:element>
+          <xsl:text>&#10;</xsl:text>
         </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:element>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <!-- ============================================================ -->
