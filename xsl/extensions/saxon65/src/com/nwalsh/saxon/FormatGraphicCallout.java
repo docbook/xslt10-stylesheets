@@ -64,8 +64,9 @@ public class FormatGraphicCallout extends FormatCallout {
 	if (foStylesheet) {
 	  imgName = namePool.allocate("fo", foURI, "external-graphic");
 	  imgAttr = new AttributeCollection(namePool);
-	  imgAttr.addAttribute("", "", "src", "CDATA",
-			       graphicsPath + num + graphicsExt);
+	  imgAttr.addAttribute("", "", "src", "CDATA", "url(" +          
+			       graphicsPath + num + graphicsExt + ")"); 
+	  
 	} else {
 	  imgName = namePool.allocate("", "", "img");
 	  imgAttr = new AttributeCollection(namePool);
