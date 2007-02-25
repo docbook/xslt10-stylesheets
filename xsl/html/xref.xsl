@@ -901,36 +901,35 @@
         <!-- If it has content, use it -->
         <xsl:apply-templates/>
       </xsl:when>
-      <xsl:otherwise>
-        <!-- else look for an endterm -->
+      <!-- else look for an endterm -->
+      <xsl:when test="@endterm">
+        <xsl:variable name="etargets" select="key('id',@endterm)"/>
+        <xsl:variable name="etarget" select="$etargets[1]"/>
         <xsl:choose>
-          <xsl:when test="@endterm">
-            <xsl:variable name="etargets" select="key('id',@endterm)"/>
-            <xsl:variable name="etarget" select="$etargets[1]"/>
-            <xsl:choose>
-              <xsl:when test="count($etarget) = 0">
-                <xsl:message>
-                  <xsl:value-of select="count($etargets)"/>
-                  <xsl:text>Endterm points to nonexistent ID: </xsl:text>
-                  <xsl:value-of select="@endterm"/>
-                </xsl:message>
-                <xsl:text>???</xsl:text>
-              </xsl:when>
-              <xsl:otherwise>
-                  <xsl:apply-templates select="$etarget" mode="endterm"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-
-          <xsl:otherwise>
+          <xsl:when test="count($etarget) = 0">
             <xsl:message>
-              <xsl:text>Link element has no content and no Endterm. </xsl:text>
-              <xsl:text>Nothing to show in the link to </xsl:text>
-              <xsl:value-of select="(@xlink:href|@linkend)[1]"/>
+              <xsl:value-of select="count($etargets)"/>
+              <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+              <xsl:value-of select="@endterm"/>
             </xsl:message>
             <xsl:text>???</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:apply-templates select="$etarget" mode="endterm"/>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:when>
+      <!-- Use the xlink:href if no other text -->
+      <xsl:when test="@xlink:href">
+        <xsl:value-of select="@xlink:href"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>
+          <xsl:text>Link element has no content and no Endterm. </xsl:text>
+          <xsl:text>Nothing to show in the link to </xsl:text>
+          <xsl:value-of select="(@xlink:href|@linkend)[1]"/>
+        </xsl:message>
+        <xsl:text>???</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
