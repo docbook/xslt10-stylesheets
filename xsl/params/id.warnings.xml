@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="id.warnings.frag">
-<xsl:param name="id.warnings" select="1"/>
+<xsl:param name="id.warnings" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
