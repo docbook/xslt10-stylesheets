@@ -251,11 +251,13 @@
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
-    <xsl:apply-templates/>
+    <!-- pick up info title -->
+    <xsl:apply-templates select="(title|info/title)[1]"/>
+    <xsl:apply-templates select="node()[not(self::title) and not(self::info)]"/>
   </div>
 </xsl:template>
 
-<xsl:template match="refsection/title">
+<xsl:template match="refsection/title|refsection/info/title">
   <!-- the ID is output in the block.object call for refsect1 -->
   <xsl:variable name="level" select="count(ancestor-or-self::refsection)"/>
   <xsl:variable name="refsynopsisdiv">
@@ -275,21 +277,21 @@
   </xsl:element>
 </xsl:template>
 
-<xsl:template match="refsect1/title">
+<xsl:template match="refsect1/title|refsect1/info/title">
   <!-- the ID is output in the block.object call for refsect1 -->
   <h2>
     <xsl:apply-templates/>
   </h2>
 </xsl:template>
 
-<xsl:template match="refsect2/title">
+<xsl:template match="refsect2/title|refsect2/info/title">
   <!-- the ID is output in the block.object call for refsect2 -->
   <h3>
     <xsl:apply-templates/>
   </h3>
 </xsl:template>
 
-<xsl:template match="refsect3/title">
+<xsl:template match="refsect3/title|refsect3/info/title">
   <!-- the ID is output in the block.object call for refsect3 -->
   <h4>
     <xsl:apply-templates/>
