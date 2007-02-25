@@ -75,7 +75,7 @@
     <xsl:copy-of select="@key"/>
     <xsl:attribute name="text">
       <xsl:choose>
-        <xsl:when test="$localtext != ''">
+        <xsl:when test="$localtext">
           <xsl:value-of select="$localtext"/>
         </xsl:when>
         <xsl:otherwise>
