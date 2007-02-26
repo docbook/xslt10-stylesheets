@@ -254,6 +254,7 @@ or 0 (the empty string)</para>
   <xsl:param name="attribute" select="'colsep'"/>
 
   <xsl:variable name="tgroup" select="$row/parent::*/parent::tgroup[1]"/>
+  <xsl:variable name="tbody" select="$row/parent::*[1]"/>
 
   <xsl:variable name="table" select="($tgroup/ancestor::table
                                      |$tgroup/ancestor::informaltable
@@ -336,6 +337,13 @@ or 0 (the empty string)</para>
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="tbody.value">
+    <xsl:call-template name="get-attribute">
+      <xsl:with-param name="element" select="$tbody"/>
+      <xsl:with-param name="attribute" select="$attribute"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:variable name="table.value">
     <xsl:call-template name="get-attribute">
       <xsl:with-param name="element" select="$table"/>
@@ -382,6 +390,9 @@ or 0 (the empty string)</para>
     </xsl:when>
     <xsl:when test="$calc.colvalue != ''">
       <xsl:value-of select="$calc.colvalue"/>
+    </xsl:when>
+    <xsl:when test="$tbody.value != ''">
+      <xsl:value-of select="$tbody.value"/>
     </xsl:when>
     <xsl:when test="$tgroup.value != ''">
       <xsl:value-of select="$tgroup.value"/>
