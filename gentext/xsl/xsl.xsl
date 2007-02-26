@@ -68,9 +68,7 @@
   <!-- otherwise use english -->
   <xsl:variable name="localnode"
       select="$locale/locale/*[local-name(.) = local-name(current())][@key = $key]"/>
-  <xsl:variable name="localtext">
-      <xsl:value-of select="$localnode/@text"/>
-  </xsl:variable>
+  <xsl:variable name="localtext" select="$localnode/@text"/>
   <xsl:element name="l:{name(.)}">
     <xsl:copy-of select="@key"/>
     <xsl:attribute name="text">
