@@ -290,6 +290,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <xsl:when test="../@frame">
         <xsl:value-of select="../@frame"/>
       </xsl:when>
+      <xsl:when test="$default.table.frame != ''">
+        <xsl:value-of select="$default.table.frame"/>
+      </xsl:when>
       <xsl:otherwise>all</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -809,6 +812,13 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
                           or ancestor-or-self::tbody/preceding-sibling::tfoot)">
+        <xsl:value-of select="0"/>
+      </xsl:when>
+      <!-- Check for morerows too -->
+      <xsl:when test="(@morerows and count(ancestor-or-self::row[1]/
+                       following-sibling::row) = @morerows )
+                      and not (ancestor-or-self::thead/following-sibling::tbody
+                       or ancestor-or-self::tbody/preceding-sibling::tfoot)">
         <xsl:value-of select="0"/>
       </xsl:when>
       <xsl:otherwise>
