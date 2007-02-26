@@ -145,7 +145,7 @@ db:manvolnum
   <xsl:param name="refname"/>
   <!-- redefine this any way you'd like to output messages -->
   <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
-  <!--
+  <!-- Example:
   <xsl:if test="//footnote">
     <xsl:call-template name="log.message">
       <xsl:with-param name="level">Warn</xsl:with-param>
@@ -159,6 +159,117 @@ db:manvolnum
 </xsl:template>
 
 <!-- ==================================================================== -->
+<!-- * Escape roff special chars -->
+<!-- ==================================================================== -->
+
+<!-- ******************************************************************** -->
+<!-- *  -->
+<!-- * The backslash, dot, dash, and apostrophe (\, ., -, ') characters -->
+<!-- * have special meaning for roff, so before we do any other -->
+<!-- * processing, we must escape those characters where they appear in -->
+<!-- * the source content. -->
+<!-- *  -->
+<!-- * Here we also deal with replacing U+00a0 (non-breaking space) with -->
+<!-- * its roff equivalent -->
+<!-- *  -->
+<!-- ******************************************************************** -->
+
+<xsl:template match="//refentry//text()">
+  <xsl:call-template name="escape.roff.specials">
+    <xsl:with-param name="content">
+      <xsl:value-of select="."/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="escape.roff.specials">
+  <xsl:param name="content"/>
+  <xsl:call-template name="convert.nobreak-space">
+    <xsl:with-param name="content">
+      <xsl:call-template name="escape.apostrophe">
+        <xsl:with-param name="content">
+          <xsl:call-template name="escape.dash">
+            <xsl:with-param name="content">
+              <xsl:call-template name="escape.dot">
+                <xsl:with-param name="content">
+                  <xsl:call-template name="escape.backslash">
+                    <xsl:with-param name="content" select="$content"/>
+                  </xsl:call-template>
+                </xsl:with-param>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="escape.backslash">
+  <xsl:param name="content"/>
+  <xsl:call-template name="string.subst">
+    <xsl:with-param name="string" select="$content"/>
+    <xsl:with-param name="target">\</xsl:with-param>
+    <!-- * we use "\e" instead of "\\" because the groff docs say -->
+    <!-- * that's the correct thing to do; also because testing -->
+    <!-- * shows that "\\" doesn't always work as expected; for -->
+    <!-- * example, "\\" within a table seems to mess things up -->
+    <xsl:with-param name="replacement">\e</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="escape.dot">
+  <xsl:param name="content"/>
+  <xsl:call-template name="string.subst">
+    <xsl:with-param name="string" select="$content"/>
+    <xsl:with-param name="target">.</xsl:with-param>
+    <xsl:with-param name="replacement">\.</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="escape.dash">
+  <xsl:param name="content"/>
+  <xsl:call-template name="string.subst">
+    <xsl:with-param name="string" select="$content"/>
+    <xsl:with-param name="target">-</xsl:with-param>
+    <xsl:with-param name="replacement">\-</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="escape.apostrophe">
+  <xsl:param name="content"/>
+  <xsl:call-template name="string.subst">
+    <xsl:with-param name="string" select="$content"/>
+    <xsl:with-param name="target">'</xsl:with-param>
+    <xsl:with-param name="replacement">\'</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="convert.nobreak-space">
+  <xsl:param name="content"/>
+  <xsl:call-template name="string.subst">
+    <xsl:with-param name="string" select="$content"/>
+    <xsl:with-param name="target">&#x00a0;</xsl:with-param>
+    <!-- * A no-break space can be written two ways in roff; the -->
+    <!-- * difference, according to the "Page Motions" node in the -->
+    <!-- * groff info page, is: -->
+    <!-- *  -->
+    <!-- *   "\ " = -->
+    <!-- *   An unbreakable and unpaddable (i.e. not expanded -->
+    <!-- *   during filling) space. -->
+    <!-- *  -->
+    <!-- *   "\~" = -->
+    <!-- *   An unbreakable space that stretches like a normal -->
+    <!-- *   inter-word space when a line is adjusted."  -->
+    <!-- *  -->
+    <!-- * Unfortunately, roff seems to do some weird things with -->
+    <!-- * long lines that only have words separated by "\~" -->
+    <!-- * spaces, so it's safer just to stick with the "\ " space -->
+    <xsl:with-param name="replacement">\ </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- ==================================================================== -->
 
 <!-- * top.comment generates a comment containing metadata for the man -->
 <!-- * page; for example, Author, Generator, and Date information -->
@@ -169,12 +280,12 @@ db:manvolnum
     <xsl:param name="title"/>
     <xsl:param name="manual"/>
     <xsl:param name="source"/>
-    <xsl:text>&#x2302;&#x2593;"     Title: </xsl:text>
+    <xsl:text>.\"     Title: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$title"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;"    Author: </xsl:text>
+    <xsl:text>.\"    Author: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content">
         <xsl:call-template name="make.roff.metadata.author">
@@ -183,30 +294,30 @@ db:manvolnum
       </xsl:with-param>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;" Generator: DocBook </xsl:text>
+    <xsl:text>.\" Generator: DocBook </xsl:text>
     <xsl:value-of select="$DistroTitle"/>
     <xsl:text> v</xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$VERSION"/>
     </xsl:call-template>
-    <xsl:text> &lt;http://docbook&#x2302;sf&#x2302;net/></xsl:text>
+    <xsl:text> &lt;http://docbook.sf.net/></xsl:text>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;"      Date: </xsl:text>
+    <xsl:text>.\"      Date: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$date"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;"    Manual: </xsl:text>
+    <xsl:text>.\"    Manual: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$manual"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;"    Source: </xsl:text>
+    <xsl:text>.\"    Source: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$source"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;&#x2593;"</xsl:text>
+    <xsl:text>.\"</xsl:text>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
@@ -255,7 +366,7 @@ db:manvolnum
     <!-- * is", unchanged from the DocBook source; and DTD-based -->
     <!-- * validation does not provide a way to constrain them to be -->
     <!-- * "space free" -->
-    <xsl:text>&#x2302;TH "</xsl:text>
+    <xsl:text>.TH "</xsl:text>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
         <xsl:choose>
@@ -317,32 +428,32 @@ db:manvolnum
     <!-- * If the value of man.hypenate is zero (the default), then -->
     <!-- * disable hyphenation (".nh" = "no hyphenation") -->
     <xsl:if test="$man.hyphenate = 0">
-      <xsl:text>&#x2302;&#x2593;" disable hyphenation&#10;</xsl:text>
-      <xsl:text>&#x2302;nh&#10;</xsl:text>
+      <xsl:text>.\" disable hyphenation&#10;</xsl:text>
+      <xsl:text>.nh&#10;</xsl:text>
     </xsl:if>
     <!-- * If the value of man.justify is zero (the default), then -->
     <!-- * disable justification (".ad l" means "adjust to left only") -->
     <xsl:if test="$man.justify = 0">
-      <xsl:text>&#x2302;&#x2593;" disable justification</xsl:text>
+      <xsl:text>.\" disable justification</xsl:text>
       <xsl:text> (adjust text to left margin only)&#10;</xsl:text>
-      <xsl:text>&#x2302;ad l&#10;</xsl:text>
+      <xsl:text>.ad l&#10;</xsl:text>
     </xsl:if>
     <xsl:if test="not($man.indent.refsect = 0)">
-      <xsl:text>&#x2302;&#x2593;" store initial "default indentation value"&#10;</xsl:text>
-      <xsl:text>&#x2302;nr zq &#x2593;n(IN&#10;</xsl:text>
-      <xsl:text>&#x2302;&#x2593;" adjust default indentation&#10;</xsl:text>
-      <xsl:text>&#x2302;nr IN </xsl:text>
+      <xsl:text>.\" store initial "default indentation value"&#10;</xsl:text>
+      <xsl:text>.nr zq \n(IN&#10;</xsl:text>
+      <xsl:text>.\" adjust default indentation&#10;</xsl:text>
+      <xsl:text>.nr IN </xsl:text>
       <xsl:value-of select="$man.indent.width"/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;&#x2593;" adjust indentation of SS headings&#10;</xsl:text>
-      <xsl:text>&#x2302;nr SN &#x2593;n(IN&#10;</xsl:text>
+      <xsl:text>.\" adjust indentation of SS headings&#10;</xsl:text>
+      <xsl:text>.nr SN \n(IN&#10;</xsl:text>
     </xsl:if>
     <!-- * Unless the value of man.break.after.slash is zero (the -->
     <!-- * default), tell groff that it is OK to break a line -->
     <!-- * after a slash when needed. -->
     <xsl:if test="$man.break.after.slash != 0">
-      <xsl:text>&#x2302;&#x2593;" enable line breaks after slashes&#10;</xsl:text>
-      <xsl:text>&#x2302;cflags 4 /&#10;</xsl:text>
+      <xsl:text>.\" enable line breaks after slashes&#10;</xsl:text>
+      <xsl:text>.cflags 4 /&#10;</xsl:text>
     </xsl:if>
   </xsl:template>
 

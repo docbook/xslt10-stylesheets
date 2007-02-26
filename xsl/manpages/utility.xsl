@@ -37,17 +37,17 @@
 
   <xsl:template mode="bold" match="*">
     <xsl:for-each select="node()">
-      <xsl:text>&#x2593;fB</xsl:text>
+      <xsl:text>\fB</xsl:text>
       <xsl:apply-templates select="."/>
-      <xsl:text>&#x2593;fR</xsl:text>
+      <xsl:text>\fR</xsl:text>
     </xsl:for-each>
   </xsl:template>
 
   <xsl:template mode="italic" match="*">
     <xsl:for-each select="node()">
-      <xsl:text>&#x2593;fI</xsl:text>
+      <xsl:text>\fI</xsl:text>
       <xsl:apply-templates select="."/>
-      <xsl:text>&#x2593;fR</xsl:text>
+      <xsl:text>\fR</xsl:text>
     </xsl:for-each>
   </xsl:template>
 
@@ -95,7 +95,7 @@
     <xsl:if test="$man.hyphenate != 0 and
                   not(ancestor::cmdsynopsis) and
                   not(ancestor::funcsynopsis)">
-      <xsl:text>&#x2593;%</xsl:text>
+      <xsl:text>\%</xsl:text>
     </xsl:if>
   </xsl:template>
 
@@ -112,14 +112,14 @@
     <xsl:variable name="dot-content">
       <xsl:call-template name="string.subst">
         <xsl:with-param name="string" select="$content"/>
-        <xsl:with-param name="target" select="'.'"/>
-        <xsl:with-param name="replacement" select="'&#x2302;'"/>
+        <xsl:with-param name="target" select="'\.'"/>
+        <xsl:with-param name="replacement" select="'.'"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:call-template name="string.subst">
       <xsl:with-param name="string" select="$dot-content"/>
-      <xsl:with-param name="target" select="'-'"/>
-      <xsl:with-param name="replacement" select="'&#x2591;'"/>
+      <xsl:with-param name="target" select="'\-'"/>
+      <xsl:with-param name="replacement" select="'-'"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -130,11 +130,11 @@
   <xsl:template name="nested-section-title">
     <!-- * The next few lines are some arcane roff code to control line -->
     <!-- * spacing after headings. -->
-    <xsl:text>&#x2302;sp&#10;</xsl:text>
-    <xsl:text>&#x2302;it 1 an&#x2591;trap&#10;</xsl:text>
-    <xsl:text>&#x2302;nr an&#x2591;no&#x2591;space&#x2591;flag 1&#10;</xsl:text>
-    <xsl:text>&#x2302;nr an&#x2591;break&#x2591;flag 1&#10;</xsl:text>
-    <xsl:text>&#x2302;br&#10;</xsl:text>
+    <xsl:text>.sp&#10;</xsl:text>
+    <xsl:text>.it 1 an-trap&#10;</xsl:text>
+    <xsl:text>.nr an-no-space-flag 1&#10;</xsl:text>
+    <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
+    <xsl:text>.br&#10;</xsl:text>
     <!-- * make title wrapper so that we can use mode="bold" template to -->
     <!-- * apply character formatting to it -->
     <xsl:variable name="title.wrapper">
@@ -172,7 +172,7 @@
         <xsl:when test="self::address|self::literallayout|self::programlisting|
                         self::screen|self::synopsis">
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>&#x2302;sp&#10;</xsl:text>
+          <xsl:text>.sp&#10;</xsl:text>
           <xsl:call-template name="mark.up.block.start"/>
           <xsl:apply-templates select="."/>
         </xsl:when>
@@ -284,7 +284,7 @@
                       preceding-sibling::note|
                       preceding-sibling::tip|
                       preceding-sibling::warning)">
-          <xsl:text>&#x2302;RS</xsl:text>
+          <xsl:text>.RS</xsl:text>
           <xsl:if test="not($list-indent = '')">
             <xsl:text> </xsl:text>
             <xsl:value-of select="$list-indent"/>
@@ -321,7 +321,7 @@
                     tip|
                     warning">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;RE</xsl:text>
+        <xsl:text>.RE</xsl:text>
       <xsl:text>&#10;</xsl:text>
       </xsl:if>
     </xsl:if>
@@ -421,7 +421,7 @@
   <!-- * in roff source (just to make things easier to read). -->
   <xsl:template name="mark.subheading">
     <xsl:if test="$man.subheading.divider.enabled != 0">
-      <xsl:text>&#x2302;&#x2593;" </xsl:text>
+      <xsl:text>.\" </xsl:text>
       <xsl:value-of select="$man.subheading.divider"/>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>

@@ -25,7 +25,7 @@
         <!-- * preserving the original default indent value -->
         <!-- * when $man.indent.refsect is non-zero; -->
         <!-- * "u" is a roff unit specifier -->
-        <xsl:text>&#x2593;n(zqu</xsl:text>
+        <xsl:text>\n(zqu</xsl:text>
       </xsl:when>
       <xsl:otherwise/> <!-- * otherwise, just leave it empty -->
     </xsl:choose>
@@ -202,7 +202,7 @@
                       $info//othercredit)">
           </xsl:value-of>
         </xsl:variable>
-        <xsl:text>&#x2302;SH "</xsl:text>
+        <xsl:text>.SH "</xsl:text>
         <xsl:call-template name="make.authorsecttitle">
           <xsl:with-param name="authorcount" select="$authorcount"/>
         </xsl:call-template>
@@ -256,7 +256,7 @@
         <xsl:variable name="person-name-node">
           <bold><xsl:value-of select="$person-name"/></bold>
         </xsl:variable>
-        <xsl:text>&#x2302;PP&#10;</xsl:text>
+        <xsl:text>.PP&#10;</xsl:text>
         <!-- * Display person name in bold -->
         <xsl:apply-templates mode="bold" select="exsl:node-set($person-name-node)"/>
         <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
@@ -264,7 +264,7 @@
         <xsl:text>&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>&#x2302;br&#10;</xsl:text>
+        <xsl:text>.br&#10;</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
     <!-- * Display affiliation(s) on separate lines -->
@@ -276,7 +276,7 @@
   </xsl:template>
 
   <xsl:template match="collab" mode="authorsect">
-    <xsl:text>&#x2302;PP&#10;</xsl:text>
+    <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="collabname"/>
     <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
     <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
@@ -286,7 +286,7 @@
   </xsl:template>
 
   <xsl:template match="corpauthor|corpcredit|orgname|publishername" mode="authorsect">
-    <xsl:text>&#x2302;PP&#10;</xsl:text>
+    <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="."/>
     <xsl:text>&#10;</xsl:text>
     <xsl:if test="self::publishername">
@@ -296,7 +296,7 @@
   </xsl:template>
 
   <xsl:template match="publisher" mode="authorsect">
-    <xsl:text>&#x2302;PP&#10;</xsl:text>
+    <xsl:text>.PP&#10;</xsl:text>
     <xsl:apply-templates mode="bold" select="publishername"/>
     <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
     <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
@@ -308,8 +308,8 @@
 
   <xsl:template name="publisher.attribution">
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
-    <xsl:text>&#x2302;IP ""</xsl:text> 
+    <xsl:text>.sp -1n&#10;</xsl:text>
+    <xsl:text>.IP ""</xsl:text> 
     <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$blurb-indent"/>
@@ -339,7 +339,7 @@
     <!-- * angle bracket and before the closing angle bracket is to -->
     <!-- * prevent groff from inserting a linebreak at those points and -->
     <!-- * outputting a hyphen character where the break occurs -->
-    <xsl:text>&lt;&#x2593;&amp;</xsl:text>
+    <xsl:text>&lt;\&amp;</xsl:text>
     <xsl:choose>
       <xsl:when test="self::email">
         <xsl:variable name="contents">
@@ -354,7 +354,7 @@
         <xsl:value-of select="normalize-space($contents)"/>
       </xsl:when>
     </xsl:choose>
-    <xsl:text>&#x2593;&amp;&gt;</xsl:text>
+    <xsl:text>\&amp;&gt;</xsl:text>
     <xsl:choose>
       <xsl:when test="not(following-sibling::*[descendant-or-self::email]
                       or following-sibling::address/otheraddr/ulink
@@ -379,7 +379,7 @@
     <!-- * If contents are actually empty except for an email address -->
     <!-- * or ulink, then output nothing. -->
     <xsl:if test="$contents != ''">
-      <xsl:text>&#x2302;br&#10;</xsl:text>
+      <xsl:text>.br&#10;</xsl:text>
       <xsl:for-each select="shortaffil|jobtitle|orgname|orgdiv|address">
         <!-- * only display output of nodes other than email or ulink -->
         <xsl:apply-templates select="node()[not(self::email) and not(self::otheraddr/ulink)]"/>
@@ -400,7 +400,7 @@
         <xsl:otherwise>
           <!-- * put a line break after every Affiliation instance except -->
           <!-- * the last one in the set -->
-          <xsl:text>&#x2302;br&#10;</xsl:text>
+          <xsl:text>.br&#10;</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
@@ -414,7 +414,7 @@
     <!-- * an email address or ulink, then output nothing. -->
     <xsl:if test="$contents != ''">
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;br&#10;</xsl:text>
+      <xsl:text>.br&#10;</xsl:text>
       <!--* Skip email and ulink descendants of Address (rendered elsewhere) -->
       <xsl:apply-templates select="node()[not(self::email) and not(self::otheraddr/ulink)]"/>
     </xsl:if>
@@ -432,8 +432,8 @@
       <!-- * Editor, then render the corresponding localized gentext -->
       <xsl:when test="self::author">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
-        <xsl:text>&#x2302;IP ""</xsl:text> 
+        <xsl:text>.sp -1n&#10;</xsl:text>
+        <xsl:text>.IP ""</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
           <xsl:value-of select="$blurb-indent"/>
@@ -446,8 +446,8 @@
       </xsl:when>
       <xsl:when test="self::editor">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
-        <xsl:text>&#x2302;IP ""</xsl:text> 
+        <xsl:text>.sp -1n&#10;</xsl:text>
+        <xsl:text>.IP ""</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
           <xsl:value-of select="$blurb-indent"/>
@@ -464,8 +464,8 @@
         <xsl:choose>
           <xsl:when test="@class and @class != 'other'">
             <xsl:text>&#10;</xsl:text>
-            <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
-            <xsl:text>&#x2302;IP ""</xsl:text> 
+            <xsl:text>.sp -1n&#10;</xsl:text>
+            <xsl:text>.IP ""</xsl:text> 
             <xsl:if test="not($blurb-indent = '')">
               <xsl:text> </xsl:text>
               <xsl:value-of select="$blurb-indent"/>
@@ -529,8 +529,8 @@
                 |../othername|../lineage|../honorific
                 |../affiliation|../email|../address">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
-        <xsl:text>&#x2302;IP ""</xsl:text> 
+        <xsl:text>.sp -1n&#10;</xsl:text>
+        <xsl:text>.IP ""</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
           <xsl:value-of select="$blurb-indent"/>
@@ -543,12 +543,12 @@
           <xsl:when test="not(preceding-sibling::*)">
             <!-- * if this *blurb or contrib has no preceding -->
             <!-- * siblings, then we need to start a new paragraph -->
-            <xsl:text>&#x2302;PP</xsl:text>
+            <xsl:text>.PP</xsl:text>
           </xsl:when>
           <xsl:otherwise>
             <!-- * otherwise, this has no preceding siblings, so -->
             <!-- * just put a linebreak -->
-            <xsl:text>&#x2302;br</xsl:text>
+            <xsl:text>.br</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
@@ -566,7 +566,7 @@
     <xsl:param name="info"/>
     <xsl:choose>
       <xsl:when test="$info//copyright|$info//legalnotice">
-        <xsl:text>&#x2302;SH "</xsl:text>
+        <xsl:text>.SH "</xsl:text>
         <xsl:call-template name="string.upper">
           <xsl:with-param name="string">
             <xsl:call-template name="gentext">
@@ -583,13 +583,13 @@
           </xsl:variable>
           <xsl:value-of select="normalize-space($contents)"/>
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>&#x2302;br&#10;</xsl:text>
+          <xsl:text>.br&#10;</xsl:text>
         </xsl:for-each>
         <xsl:text>&#10;</xsl:text>
         <xsl:for-each select="(($info[//legalnotice])[last()]//legalnotice)">
           <xsl:apply-templates select="." mode="titlepage.mode"/>
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>&#x2302;br&#10;</xsl:text>
+          <xsl:text>.br&#10;</xsl:text>
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise/> <!-- * do nothing, no copyright or legalnotice found -->

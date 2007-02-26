@@ -125,7 +125,7 @@
       <!-- *   Output table title                                           -->
       <!-- * ============================================================== -->
       <xsl:if test="$title != '' or parent::td">
-        <xsl:text>&#x2302;PP&#10;</xsl:text>
+        <xsl:text>.PP&#10;</xsl:text>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="$tbl.font.title"/>
         <xsl:text> </xsl:text>
@@ -134,12 +134,12 @@
         </xsl:if>
         <xsl:value-of select="normalize-space($title)"/>
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
+        <xsl:text>.sp -1n&#10;</xsl:text>
       </xsl:if>
       
       <!-- * mark the start of the table -->
       <!-- * "TS" = "table start" -->
-      <xsl:text>&#x2302;TS</xsl:text>
+      <xsl:text>.TS</xsl:text>
       <xsl:if test="thead and $tbl.running.header.from.thead">
         <!-- * H = "has header" -->
         <xsl:text> H</xsl:text>
@@ -175,7 +175,7 @@
         <xsl:choose>
           <xsl:when test="$tbl.running.header.from.thead">
             <!-- * "TH" = "table header end" -->
-            <xsl:text>&#x2302;TH&#10;</xsl:text>
+            <xsl:text>.TH&#10;</xsl:text>
           </xsl:when>
           <xsl:otherwise>
             <!-- * "T&" = "table continuation" and is meant just as a kind -->
@@ -186,7 +186,7 @@
             <!-- * rows. It's necessary to output it here because the "TH" -->
             <!-- * macro is not being output, so there's otherwise no way -->
             <!-- * for tbl(1) to know we have the table "sectioned". -->
-            <xsl:text>&#x2302;T&amp;&#10;</xsl:text>
+            <xsl:text>.T&amp;&#10;</xsl:text>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
@@ -208,9 +208,9 @@
       <!-- * mark the end of the table -->
       <xsl:text>&#10;</xsl:text>
       <!-- * .TE = "Table End" -->
-      <xsl:text>&#x2302;TE&#10;</xsl:text>
+      <xsl:text>.TE&#10;</xsl:text>
       <!-- * put a blank line of space below the table -->
-      <xsl:text>&#x2302;sp&#10;</xsl:text>
+      <xsl:text>.sp&#10;</xsl:text>
     </xsl:for-each>
   </xsl:template>
 
@@ -380,7 +380,7 @@
               >tbl convert : Extracted a nested table</xsl:text>
             </xsl:with-param>
           </xsl:call-template>
-          <xsl:text>[&#x2593;fInested&#x2580;table&#x2593;fR]*&#10;</xsl:text>
+          <xsl:text>[\fInested&#x2580;table\fR]*&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * Apply templates to the child contents of this cell, to -->
@@ -436,7 +436,7 @@
       <xsl:when test="$rowspan > 1">
         <!-- * Tail recurse until we have no more rowspans, creating -->
         <!-- * an empty dummy cell each time. The type value, '^' -->
-        <!-- * is the marker that tbl(1) uses for indicates a -->
+        <!-- * is the marker that tbl(1) uses to indicate a -->
         <!-- * "vertically spanned heading". -->
         <cell row="{$row}" slot="{$slot}" type="^" colspan="{@colspan}"/>
         <xsl:call-template name="create.dummy.cells">
@@ -462,9 +462,7 @@
     <xsl:param name="cells"/>
     <xsl:apply-templates mode="table.format" select="$cells"/>
     <!-- * last line of table format section must end with a dot -->
-    <!-- * we use U+2302 internally to mark dots, and replace them -->
-    <!-- * with real dots before serializing to output -->
-    <xsl:text>&#x2302;</xsl:text>
+    <xsl:text>.</xsl:text>
   </xsl:template>
 
   <xsl:template match="cell" mode="table.format">
@@ -571,7 +569,7 @@
                   select=".//tgroup//footnote"/>
     <xsl:value-of select="$man.table.footnotes.divider"/>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>&#x2302;br&#10;</xsl:text>
+    <xsl:text>.br&#10;</xsl:text>
     <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
     <xsl:apply-templates select="*[position() &gt; 1]"/>
   </xsl:template>

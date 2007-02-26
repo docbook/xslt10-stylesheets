@@ -26,7 +26,7 @@
   <xsl:variable name="title.wrapper">
     <bold><xsl:value-of select="normalize-space(title[1])"/></bold>
   </xsl:variable>
-  <xsl:text>&#x2302;PP&#10;</xsl:text>
+  <xsl:text>.PP&#10;</xsl:text>
   <!-- * don't put linebreak after head; instead render it as a "run in" -->
   <!-- * head, that is, inline, with a period and space following it -->
   <xsl:apply-templates mode="bold" select="exsl:node-set($title.wrapper)"/>
@@ -54,14 +54,14 @@
                     ancestor::authorblurb or
                     ancestor::personblurb">
       <xsl:if test="preceding-sibling::*[not(name() ='')]">
-        <xsl:text>&#x2302;sp</xsl:text>
+        <xsl:text>.sp</xsl:text>
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;RS 4n</xsl:text>
+        <xsl:text>.RS 4n</xsl:text>
         <xsl:text>&#10;</xsl:text>
       </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:text>&#x2302;PP</xsl:text>
+      <xsl:text>.PP</xsl:text>
       <xsl:text>&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
@@ -72,7 +72,7 @@
                   ancestor::personblurb">
       <xsl:if test="preceding-sibling::*[not(name() ='')]">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>&#x2302;RE</xsl:text>
+        <xsl:text>.RE</xsl:text>
         <xsl:text>&#10;</xsl:text>
       </xsl:if>
     </xsl:if>
@@ -87,7 +87,7 @@
   <xsl:text>&#10;</xsl:text>
   <xsl:if test="not(ancestor::authorblurb) and
                 not(ancestor::personblurb)">
-    <xsl:text>&#x2302;sp&#10;</xsl:text>
+    <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -120,12 +120,12 @@
                     parent::td|parent::th" /> <!-- do nothing -->
     <xsl:otherwise>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;sp&#10;</xsl:text>
+      <xsl:text>.sp&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:if test="$indent = 'Yes'">
     <!-- * start indented section -->
-    <xsl:text>&#x2302;RS</xsl:text> 
+    <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($man.indent.width = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$man.indent.width"/>
@@ -151,31 +151,31 @@
       <!-- * default to be non-bold - because it's a convention that's -->
       <!-- * followed is the vast majority of existing man pages that document -->
       <!-- * functions, and we need to follow it by default, like it or no. -->
-      <xsl:text>&#x2302;ft </xsl:text>
+      <xsl:text>.ft </xsl:text>
       <xsl:value-of select="$man.font.funcsynopsisinfo"/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;nf&#10;</xsl:text>
+      <xsl:text>.nf&#10;</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;fi&#10;</xsl:text>
-      <xsl:text>&#x2302;ft&#10;</xsl:text>
+      <xsl:text>.fi&#10;</xsl:text>
+      <xsl:text>.ft&#10;</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <!-- * Other verbatims do not need to get bolded -->
-      <xsl:text>&#x2302;nf&#10;</xsl:text>
+      <xsl:text>.nf&#10;</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;fi&#10;</xsl:text>
+      <xsl:text>.fi&#10;</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:if test="$indent = 'Yes'">
     <!-- * end indented section -->
-    <xsl:text>&#x2302;RE&#10;</xsl:text> 
+    <xsl:text>.RE&#10;</xsl:text> 
   </xsl:if>
   <!-- * if first following sibling node of this verbatim -->
   <!-- * environment is a text node, output a line of space before it -->
   <xsl:if test="following-sibling::node()[1][name(.) = '']">
-    <xsl:text>&#x2302;sp&#10;</xsl:text>
+    <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -215,7 +215,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:text>&#x2302;PP&#10;</xsl:text>
+  <xsl:text>.PP&#10;</xsl:text>
   <xsl:call-template name="formal.object">
     <xsl:with-param name="placement" select="$placement"/>
   </xsl:call-template>
@@ -225,9 +225,9 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="mediaobject">
-  <xsl:text>&#x2302;sp</xsl:text>
+  <xsl:text>.sp</xsl:text>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>&#x2302;RS</xsl:text> 
+  <xsl:text>.RS</xsl:text> 
   <xsl:if test="not($list-indent = '')">
     <xsl:text> </xsl:text>
     <xsl:value-of select="$list-indent"/>
@@ -235,7 +235,7 @@
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>&#x2302;RE&#10;</xsl:text>
+  <xsl:text>.RE&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="imageobject">
