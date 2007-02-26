@@ -226,7 +226,7 @@
         <xsl:if test="$man.hyphenate.urls = 0 and
                       $man.break.after.slash = 0">
           <xsl:call-template name="suppress.hyphenation"/>
-          <xsl:text>&#x2593;%</xsl:text>
+          <xsl:text>\%</xsl:text>
         </xsl:if>
         <xsl:value-of select="$earmark"/>
       </xsl:otherwise>
@@ -293,7 +293,7 @@
     <!-- * This formatting should probably be made user-configurable, -->
     <!-- * to allow something other than just square brackets; e.g., -->
     <!-- * Angle brackets<10> or Braces{10}  -->
-    <xsl:text>&#x2593;&amp;[</xsl:text>
+    <xsl:text>\&amp;[</xsl:text>
     <xsl:value-of select="$notesource.number"/>
     <xsl:text>]</xsl:text>
     <!-- * Note that the reason for the \& before the opening bracket -->
@@ -344,7 +344,7 @@
   <xsl:call-template name="mark.subheading"/>
 
   <!-- * ======= make the endnotes-list section heading ============= -->
-  <xsl:text>&#x2302;SH "</xsl:text>
+  <xsl:text>.SH "</xsl:text>
   <xsl:call-template name="string.upper">
     <xsl:with-param name="string">
       <xsl:choose>
@@ -368,7 +368,7 @@
   <xsl:for-each select="$endnotes/earmark">
     <!-- * make paragraph with hanging indent, and starting with a -->
     <!-- * number in the form " 1." (padded to $man.indent.width - 1) -->
-    <xsl:text>&#x2302;IP</xsl:text>
+    <xsl:text>.IP</xsl:text>
     <xsl:text> "</xsl:text>
     <xsl:variable name="endnote.number">
       <xsl:value-of select="@number"/>
@@ -426,7 +426,7 @@
     <!-- * content and a uri attribute; so we check for that -->
     <!-- * condition here. -->
     <xsl:if test="*/node() and @uri">
-      <xsl:text>&#x2302;RS</xsl:text>
+      <xsl:text>.RS</xsl:text>
       <xsl:if test="not($list-indent = '')">
         <xsl:text> </xsl:text>
         <xsl:value-of select="$list-indent"/>
@@ -437,11 +437,11 @@
       <xsl:if test="$man.hyphenate.urls = 0
                     and $man.break.after.slash = 0">
         <xsl:call-template name="suppress.hyphenation"/>
-        <xsl:text>&#x2593;%</xsl:text>
+        <xsl:text>\%</xsl:text>
       </xsl:if>
       <xsl:value-of select="@uri"/>
       <xsl:text>&#10;</xsl:text>
-      <xsl:text>&#x2302;RE</xsl:text>
+      <xsl:text>.RE</xsl:text>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
 

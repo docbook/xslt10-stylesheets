@@ -50,9 +50,9 @@
   <!-- * up one line vertically to negate the line of vertical space -->
   <!-- * that's added by the .HP macro -->
   <xsl:if test="preceding-sibling::*[1][self::synopfragment]">
-    <xsl:text>&#x2302;sp &#x2591;1n&#10;</xsl:text>
+    <xsl:text>.sp -1n&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>&#x2302;HP </xsl:text>
+  <xsl:text>.HP </xsl:text>
   <!-- * For each Synopfragment, make a hanging paragraph, with the -->
   <!-- * indent calculated from the length of the generated number -->
   <!-- * used as a reference + pluse 3 characters (for the open and -->
@@ -150,30 +150,30 @@
 
 <xsl:template match="sbr">
   <xsl:text>&#x2592;</xsl:text>
-  <xsl:text>&#x2302;br&#x2592;</xsl:text>
+  <xsl:text>.br&#x2592;</xsl:text>
 </xsl:template>
 
 <xsl:template match="cmdsynopsis">
   <!-- * if justification is enabled by default, turn it off temporarily -->
   <xsl:if test="$man.justify != 0">
-    <xsl:text>&#x2302;ad l&#10;</xsl:text>
+    <xsl:text>.ad l&#10;</xsl:text>
   </xsl:if>
   <!-- * if hyphenation is enabled by default, turn it off temporarily -->
   <xsl:if test="$man.hyphenate != 0">
-    <xsl:text>&#x2302;hy 0&#10;</xsl:text>
+    <xsl:text>.hy 0&#10;</xsl:text>
   </xsl:if>
-  <xsl:text>&#x2302;HP </xsl:text>
+  <xsl:text>.HP </xsl:text>
   <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
   <!-- * if justification is enabled by default, turn it back on -->
   <xsl:if test="$man.justify != 0">
-    <xsl:text>&#x2302;ad&#10;</xsl:text>
+    <xsl:text>.ad&#10;</xsl:text>
   </xsl:if>
   <!-- * if hyphenation is enabled by default, turn it back on -->
   <xsl:if test="$man.hyphenate != 0">
-    <xsl:text>&#x2302;hy&#10;</xsl:text>
+    <xsl:text>.hy&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -191,20 +191,20 @@
 <xsl:template match="funcsynopsis">
   <!-- * if justification is enabled by default, turn it off temporarily -->
   <xsl:if test="$man.justify != 0">
-    <xsl:text>&#x2302;ad l&#10;</xsl:text>
+    <xsl:text>.ad l&#10;</xsl:text>
   </xsl:if>
   <!-- * if hyphenation is enabled by default, turn it off temporarily -->
   <xsl:if test="$man.hyphenate != 0">
-    <xsl:text>&#x2302;hy 0&#10;</xsl:text>
+    <xsl:text>.hy 0&#10;</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
   <!-- * if justification is enabled by default, turn it back on -->
   <xsl:if test="$man.justify != 0">
-    <xsl:text>&#x2302;ad&#10;</xsl:text>
+    <xsl:text>.ad&#10;</xsl:text>
   </xsl:if>
   <!-- * if hyphenation is enabled by default, turn it back on -->
   <xsl:if test="$man.hyphenate != 0">
-    <xsl:text>&#x2302;hy&#10;</xsl:text>
+    <xsl:text>.hy&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
 
@@ -232,12 +232,12 @@
   <xsl:variable name="funcprototype">
     <xsl:apply-templates select="funcdef"/>
   </xsl:variable>
-  <xsl:text>&#x2302;HP </xsl:text>
+  <xsl:text>.HP </xsl:text>
   <!-- * Hang Paragraph by length of string value of <funcdef> + 1 -->
   <!-- * (because funcdef is always followed by one open paren char) -->
   <xsl:value-of select="string-length (normalize-space ($funcprototype.string.value)) + 1"/>
   <xsl:text>&#10;</xsl:text>
-  <xsl:text>&#x2302;</xsl:text>
+  <xsl:text>.</xsl:text>
   <xsl:value-of select="$man.font.funcprototype"/>
   <xsl:text> </xsl:text>
   <!-- * The following quotation mark (and the one further below) are -->
@@ -282,18 +282,18 @@
 </xsl:template>
 
 <xsl:template match="paramdef/parameter">
-  <!-- * x2008 is a "punctuation space"; we use it here because if we -->
+  <!-- * We use U+2591 here in place of a normal space, because if we -->
   <!-- * were to just use a normal space, it would get replaced with a -->
   <!-- * non-breaking space when we run the whole Paramdef through the -->
   <!-- * prevent.line.breaking template. And as far as why we're -->
-  <!-- * inserting the space an quotation marks around each Parameter to -->
-  <!-- * begin with, the reason is that we need to because we are -->
+  <!-- * inserting the space and quotation marks around each Parameter -->
+  <!-- * to begin with, the reason is that we need to because we are -->
   <!-- * outputting Funcsynopsis in either the "BI" or "RI" font, and -->
   <!-- * the space and quotation marks delimit the text as the -->
   <!-- * "alternate" or "I" text that needs to be rendered in italic. -->
-  <xsl:text>"&#x2008;"</xsl:text>
+  <xsl:text>"&#x2591;"</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>"&#x2008;"</xsl:text>
+  <xsl:text>"&#x2591;"</xsl:text>
 </xsl:template>
 
 <xsl:template match="funcparams">

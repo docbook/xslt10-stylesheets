@@ -18,29 +18,6 @@
 <src:fragment xml:id="man.string.subst.map.frag">
 <xsl:param name="man.string.subst.map">
 
-  <!-- ******************************************************************** -->
-  <!-- *  -->
-  <!-- * The backslash and dot (\, .) characters have special meaning -->
-  <!-- * for roff, so we escape those characters when they appear in -->
-  <!-- * the source content, and we use certain (arbitrarily -->
-  <!-- * selected) Unicode characters as the internal representations -->
-  <!-- * for those characters, then replace them with real -->
-  <!-- * backslashes and dots in output. In addition, for certain -->
-  <!-- * reasons, we do the same thing for dashes. The mappings of -->
-  <!-- * those characters to the Unicode characters we use to -->
-  <!-- * represent them is hard-coded: -->
-  <!-- *  -->
-  <!-- *   - U+2591 = dash -->
-  <!-- *   - U+2593 = backslash -->
-  <!-- *   - U+2302 = dot -->
-  <!-- *  -->
-  <!-- ******************************************************************** -->
-
-  <!-- * escape backslashes in content; we use "\e" instead of "\\" -->
-  <!-- * because the groff docs say that's the correct thing to do; also -->
-  <!-- * because testing shows that "\\" doesn't always work as expected; -->
-  <!-- * for example, "\\" within a table seems to mess things up -->
-  <ss:substitution oldstring="\" newstring="\e"/>
   <!-- * fix bad font-request capitalization in .SH (stylesheet artifact) -->
   <ss:substitution oldstring="&#x2593;FB" newstring="\fB"/>
   <ss:substitution oldstring="&#x2593;FI" newstring="\fI"/>
@@ -49,16 +26,6 @@
   <ss:substitution oldstring="&#x2592;&#x2580;" newstring="&#x2592;"/>
   <!-- * replace U+2580 no-break marker (stylesheet-added) w/ no-break space -->
   <ss:substitution oldstring="&#x2580;" newstring="\ "/>
-  <!-- * replace U+2593 marker with backslash --> 
-  <ss:substitution oldstring="&#x2593;" newstring="\"/>
-  <!-- * escape dots in content (only at line beginnings) -->
-  <ss:substitution oldstring="&#10;." newstring="&#10;\&amp;."/>
-  <!-- * replace U+2302 marker with dot -->
-  <ss:substitution oldstring="&#x2302;" newstring="."/>
-  <!-- * escape dashes in content -->
-  <ss:substitution oldstring="-" newstring="\-"/>
-  <!-- * replace U+2591 marker with dash -->
-  <ss:substitution oldstring="&#x2591;" newstring="-"/>
 
   <!-- ==================================================================== -->
 
@@ -70,33 +37,11 @@
   <ss:substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>
   <!-- * squeeze multiple newlines after REstoring margin -->
   <ss:substitution oldstring=".RE&#10;&#10;" newstring=".RE&#10;"/>
-  <!-- * an apostrophe at the beginning of a line gets interpreted as a -->
-  <!-- * roff request (groff(7) says it is "the non-breaking control -->
-  <!-- * character"); so we must add backslash before any apostrophe -->
-  <!-- * found at the start of a line -->
-  <ss:substitution oldstring="&#10;'" newstring="&#10;\'"/>
-  <!-- * -->
-  <!-- * non-breaking space -->
-  <!-- * -->
-  <!-- * A no-break space can be written two ways in roff; the difference, -->
-  <!-- * according to the "Page Motions" node in the groff info page, ixsl: -->
-  <!-- * -->
-  <!-- *   "\ " = -->
-  <!-- *   An unbreakable and unpaddable (i.e. not expanded during filling) -->
-  <!-- *   space. -->
-  <!-- * -->
-  <!-- *   "\~" = -->
-  <!-- *   An unbreakable space that stretches like a normal -->
-  <!-- *   inter-word space when a line is adjusted."  -->
-  <!-- * -->
-  <!-- * Unfortunately, roff seems to do some weird things with long -->
-  <!-- * lines that only have words separated by "\~" spaces, so it's -->
-  <!-- * safer just to stick with the "\ " space -->
-  <ss:substitution oldstring="&#x00a0;" newstring="\ "/>
-  <!-- * x2008 is a "punctuation space"; we must replace it here because, -->
-  <!-- * for certain reasons, the stylesheets add it before and after -->
-  <!-- * every Parameter in Funcprototype output -->
-  <ss:substitution oldstring="&#x2008;" newstring=" "/>
+  <!-- * U+2591 is a marker we add before and after every Parameter in -->
+  <!-- * Funcprototype output -->
+  <ss:substitution oldstring="&#x2591;" newstring=" "/>
+  <!-- * U+2592 is a marker we add for the newline before output of <sbr>; -->
+  <ss:substitution oldstring="&#x2592;" newstring="&#10;"/>
   <!-- * -->
   <!-- * Now deal with some other characters that are added by the -->
   <!-- * stylesheets during processing. -->
@@ -115,10 +60,10 @@
   <ss:substitution oldstring="©" newstring="\(co"/>
   <!-- * registered sign -->
   <ss:substitution oldstring="®" newstring="\(rg"/>
-  <!-- * servicemark... -->
+  <!-- * ...servicemark... -->
   <!-- * There is no groff equivalent for it. -->
   <ss:substitution oldstring="&#x2120;" newstring="(SM)"/>
-  <!-- * trademark... -->
+  <!-- * ...trademark... -->
   <!-- * We don't do "\(tm" because for console output, -->
   <!-- * groff just renders that as "tm"; that is: -->
   <!-- * -->
@@ -128,12 +73,6 @@
   <!-- * -->
   <!-- *   Product&#x2122; -> Product(TM) -->
   <ss:substitution oldstring="™" newstring="(TM)"/>
-
-  <!-- ==================================================================== -->
-
-  <!-- * we use U+2592 as a marker for the newline before output of <sbr>; -->
-  <!-- * so we now need to replace U+2592 marker with a real newline -->
-  <ss:substitution oldstring="&#x2592;" newstring="&#10;"/>
 
 </xsl:param>
 </src:fragment>
