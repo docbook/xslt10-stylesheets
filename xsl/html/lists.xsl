@@ -450,6 +450,14 @@
 </xsl:template>
 
 <xsl:template match="varlistentry/listitem">
+  <!-- we can't just drop the anchor in since some browsers (Opera)
+       get confused about line breaks if we do. So if the first child
+       is a para, assume the para will put in the anchor. Otherwise,
+       put the anchor in anyway. -->
+  <xsl:if test="local-name(child::*[1]) != 'para'">
+    <xsl:call-template name="anchor"/>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="$show.revisionflag != 0 and @revisionflag">
       <div class="{@revisionflag}">
