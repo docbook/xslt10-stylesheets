@@ -151,6 +151,7 @@ generate.section.toc.level;
 <reference id="tables"><title>Tables</title>
 &default.table.width;
 &nominal.table.width;
+&default.table.frame;
 &table.cell.padding;
 &table.frame.border.thickness;
 &table.frame.border.style;
@@ -608,6 +609,7 @@ around all these parameters.</para>
 <src:fragref linkend="default.float.class.frag"/>
 <src:fragref linkend="default.image.width.frag"/>
 <src:fragref linkend="default.table.width.frag"/>
+<src:fragref linkend="default.table.frame.frag"/>
 <src:fragref linkend="default.units.frag"/>
 <src:fragref linkend="dingbat.font.family.frag"/>
 <src:fragref linkend="double.sided.frag"/>
