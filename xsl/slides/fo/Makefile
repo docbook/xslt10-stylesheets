@@ -1,4 +1,4 @@
-include ../../../cvstools/Makefile.incl
+include ../../../buildtools/Makefile.incl
 
 TTLTEMPLATEXSL=$(DOCBOOK_SVN)/xsl/template/titlepage.xsl
 

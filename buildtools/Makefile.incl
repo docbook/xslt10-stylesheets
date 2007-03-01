@@ -1,7 +1,7 @@
 # this file is a -*- makefile -*- snippet
 # use it to configure DocBook Project builds
 
-CVSTOOLSROOT=$(DOCBOOK_SVN)/cvstools
+CVSTOOLSROOT=$(DOCBOOK_SVN)/buildtools
 XSLROOT=$(DOCBOOK_SVN)/xsl
 DSSSLROOT=$(DOCBOOK_SVN)/dsssl
 WEBSITEROOT=$(DOCBOOK_SVN)/website

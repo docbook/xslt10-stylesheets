@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 XJPARSE=/home/ndw/bin/xjparse
 TIDY=tidy

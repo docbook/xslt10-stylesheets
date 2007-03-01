@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 all: fib.pl doc.xsd fib.xpp doc.xpp
 

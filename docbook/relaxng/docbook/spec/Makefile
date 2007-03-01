@@ -1,4 +1,4 @@
-include ../../../../cvstools/Makefile.incl
+include ../../../../buildtools/Makefile.incl
 
 XSLT=saxon
 HTMLSTYLE=html.xsl

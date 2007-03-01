@@ -1,5 +1,5 @@
-XSLT=../cvstools/saxon
-XJPARSE=../cvstools/xjparse
+XSLT=../buildtools/saxon
+XJPARSE=../buildtools/xjparse
 
 SOURCES=af.xml am.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml de.xml el.xml \
 	en.xml es.xml et.xml fa.xml fi.xml fr.xml ga.xml gu.xml hi.xml hu.xml id.xml it.xml \

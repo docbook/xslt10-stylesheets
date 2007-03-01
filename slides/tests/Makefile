@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 STYLE=tables
 NOFRAMESTYLE=../xsl/html/$(STYLE).xsl
 FRAMESTYLE=../xsl/html/frames.xsl

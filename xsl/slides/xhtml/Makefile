@@ -1,4 +1,4 @@
-include ../../../cvstools/Makefile.incl
+include ../../../buildtools/Makefile.incl
 
 XSLTPROC=xsltproc
 XSLTPROC_OPTS=

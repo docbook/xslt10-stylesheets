@@ -1,5 +1,5 @@
 # -*- Makefile -*-
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 .SUFFIXES: .html .fo .xml .pdf
 

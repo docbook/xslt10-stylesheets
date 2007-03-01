@@ -1,4 +1,4 @@
-include ../../../../cvstools/Makefile.incl
+include ../../../../buildtools/Makefile.incl
 
 HTMLSTYLE=stylesheets/html.xsl
 FOSTYLE=stylesheets/fo.xsl

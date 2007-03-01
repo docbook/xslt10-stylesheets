@@ -6,7 +6,7 @@
 # works and it isn't recursive. I still need to get the documentation
 # build into the new system.
 
-include ../../../cvstools/Makefile.incl
+include ../../../buildtools/Makefile.incl
 
 XSLTPROC=xsltproc
 PERL=perl

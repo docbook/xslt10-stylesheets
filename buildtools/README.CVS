@@ -1,4 +1,4 @@
-README.CVS for the cvstools at cvs.docbook.sourceforge.net
+README.CVS for the buildtools at cvs.docbook.sourceforge.net
 
 These tools won't work on your system. They'll be made more portable
 at some future date. For now, you should just hack them to make them

@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 MODULES=sdbcent.mod sdbhier.mod sdbpool.mod sinclist.mod
 VERSION=

@@ -8,7 +8,7 @@
 
 # $Id$
 
-include $(DOCBOOK_SVN)/cvstools/Makefile.incl
+include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
 CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh

@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 PARAMPROF=.lib.profiled
 PARAMSTRIP=.lib.stripped
