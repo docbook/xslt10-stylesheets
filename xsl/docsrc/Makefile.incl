@@ -11,7 +11,7 @@ clean:
 	$(XJPARSE) $(XJPARSEFLAGS) $@
 
 docparam.xml: $(VPATH)/param.xweb $(PARAMS)
-	$(DOCBOOK_SVN)/cvstools/paramchk -m Makefile.param $<
+	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
 	$(XSLT) $< ../../profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 ifeq ($(ADDNEWLINE),)

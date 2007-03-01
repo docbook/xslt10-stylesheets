@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 XSLFILES=param.xsl profile-docbook.xsl titlepage.templates.xsl \
   profile-chunk-code.xsl

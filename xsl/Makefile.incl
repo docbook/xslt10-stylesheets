@@ -8,7 +8,7 @@ include Makefile.param
 all: $(ALLTARGETS)
 
 param.xsl: param.xweb $(PARAMS)
-	$(DOCBOOK_SVN)/cvstools/paramchk -m Makefile.param $<
+	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
 	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
 	$(XSLT) $(PARAMPROF) $(DOCBOOK_SVN)/xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/xtangle.xsl $(PARAMDBKNS)
@@ -25,7 +25,7 @@ titlepage.templates.xsl: titlepage.templates.xml $(DOCBOOK_SVN)/xsl/template/tit
 	$(XSLT) $< $(DOCBOOK_SVN)/xsl/template/titlepage.xsl $@
 
 Makefile.param:
-	$(DOCBOOK_SVN)/cvstools/paramchk -m $@ param.xweb
+	$(DOCBOOK_SVN)/buildtools/paramchk -m $@ param.xweb
 	$(MAKE)
 
 profile-docbook.xsl: docbook.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl

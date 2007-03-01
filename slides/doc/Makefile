@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 VPATH = ../xsl/html
 all: index.html param.html
 

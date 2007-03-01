@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 XSLFILES=param.xsl html-synop.xsl
 ALLTARGETS=$(XSLFILES)

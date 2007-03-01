@@ -1,5 +1,5 @@
-XSLT=../../cvstools/saxon
-XJPARSE=../../cvstools/xjparse
+XSLT=../../buildtools/saxon
+XJPARSE=../../buildtools/xjparse
 
 all: profile-javahelp.xsl
 

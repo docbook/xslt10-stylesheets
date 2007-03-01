@@ -4,7 +4,7 @@ use Getopt::Std;
 use Cwd;
 
 $root = '/sourceforge/docbook/dsssl';
-$bindir  = '/sourceforge/docbook/cvstools';
+$bindir  = '/sourceforge/docbook/buildtools';
 
 $usage = "Usage: $0 [ -p prefix ] file\n";
 

@@ -1,4 +1,4 @@
-include ../cvstools/Makefile.incl
+include ../buildtools/Makefile.incl
 
 all: tangle.xsl weave.xsl w2docbook.xsl xtangle.xsl
 	$(MAKE) -C html

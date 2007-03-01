@@ -1,6 +1,6 @@
 # $Id$
 
-include ../cvstools/Makefile.incl
+include ../buildtools/Makefile.incl
 include ../releasetools/Variables.mk
 
 DISTRO=xsl

@@ -1,7 +1,7 @@
-include ../../../cvstools/Makefile.incl
+include ../../../buildtools/Makefile.incl
 
 ifeq ($(RUNTRANG),)
-$(error Cannot find "runtrang" script. Please do a "cvs update" of your cvstools directory)
+$(error Cannot find "runtrang" script. Please do a "cvs update" of your buildtools directory)
 endif
 
 VPATH=../dtd

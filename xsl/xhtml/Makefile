@@ -1,4 +1,4 @@
-include ../../cvstools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 all: xsl-files profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
 
