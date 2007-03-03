@@ -917,12 +917,12 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:choose>
     <xsl:when test="@contentwidth or @contentdepth">
       <!-- ignore @width/@depth, @scale, and @scalefit if specified -->
-      <xsl:if test="@contentwidth">
+      <xsl:if test="@contentwidth and $scaled.contentwidth != ''">
         <xsl:attribute name="width">
           <xsl:value-of select="$scaled.contentwidth"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:if test="@contentdepth">
+      <xsl:if test="@contentdepth and $scaled.contentdepth != ''">
         <xsl:attribute name="height">
           <xsl:value-of select="$scaled.contentdepth"/>
         </xsl:attribute>
