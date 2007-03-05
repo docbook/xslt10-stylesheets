@@ -2,11 +2,11 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="slides_doc">
+<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="slides_html_doc">
 <bookinfo>
-<title>Slides Parameter Reference</title>
+<title>Slides HTML Parameter Reference</title>
 <releaseinfo role="meta">
-$Id$
+$Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </releaseinfo>
 <author>
   <surname>Walsh</surname>
@@ -18,40 +18,18 @@ $Id$
 </copyright>
 <abstract>
   <para>This is reference documentation for all user-configurable
-  parameters in the DocBook XSL Slides stylesheet (for generating
-  slide presentations). Note that the Slides stylesheet for HTML
-  output is a customization layer of the DocBook XSL HTML stylesheet,
-  while the Slides stylesheet for FO output is a customization layer
-  of the DocBook XSL FO stylesheet. Therefore, in addition to the
-  slides-specific parameters listed in this section, you can also use
-  a number of <ulink
+  parameters in the DocBook XSL Slides HTML stylesheet (for generating
+  HTML slide presentations). Note that the Slides stylesheet for HTML
+  output is a customization layer of the DocBook XSL HTML
+  stylesheet. Therefore, in addition to the slides-specific parameters
+  listed in this section, you can also use a number of <ulink
   url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
-  >HTML stylesheet parameters</ulink> and <ulink
-  url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/index.html"
-  >FO stylesheet parameters</ulink> to control Slides output.</para>
+  >HTML stylesheet parameters</ulink> to control Slides HTML output.</para>
 </abstract>
 </bookinfo>
 
-<reference id="fo_general_params">
-  <title>FO: General Params</title>
-&slide.title.font.family;
-&slide.font.family;
-&foil.title.master;
-&foil.title.size;
-</reference>
-
-<reference id="fo_property_sets">
-  <title>FO: Property Sets</title>
-&slides.properties;
-&foilgroup.properties;
-&foil.subtitle.properties;
-&foil.properties;
-&speakernote.properties;
-&running.foot.properties;
-</reference>
-
 <reference id="html_general_params">
-<title>HTML: General Parameters</title>
+<title>General Parameters</title>
 &keyboard.nav;
 &css.stylesheet;
 &css.stylesheet.dir;
@@ -64,7 +42,7 @@ $Id$
 </reference>
 
 <reference id="html_frame_params">
-<title>HTML: Frame Parameters</title>
+<title>Frame Parameters</title>
 &nav.separator;
 &toc.row.height;
 &toc.bg.color;
@@ -81,7 +59,7 @@ $Id$
 </reference>
 
 <reference id="html_graphic_parms">
-<title>HTML: Graphics Parameters</title>
+<title>Graphics Parameters</title>
 &graphics.dir;
 &bullet.image;
 &next.image;
@@ -103,7 +81,7 @@ $Id$
 </reference>
 
 <reference id="html_javascript_params">
-<title>HTML: JavaScript Parameters</title>
+<title>JavaScript Parameters</title>
 &script.dir;
 &ua.js;
 &xbDOM.js;
@@ -115,7 +93,7 @@ $Id$
 </reference>
 
 <reference id="html_l10n_params">
-<title>HTML: Localization Parameters</title>
+<title>Localization Parameters</title>
 &text.home;
 &text.toc;
 &text.prev;
@@ -160,7 +138,7 @@ around all these parameters.</para>
 <xsl:stylesheet exclude-result-prefixes="src" version="1.0">
 
 <!-- ********************************************************************
-     $Id$
+     $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
      ********************************************************************
 
      This file is part of the DocBook Slides Stylesheet distribution.
@@ -175,12 +153,7 @@ around all these parameters.</para>
 <src:fragref linkend="css.stylesheet.frag"/>
 <src:fragref linkend="css.stylesheet.dir.frag"/>
 <src:fragref linkend="dynamic.toc.frag"/>
-<src:fragref linkend="foilgroup.properties.frag"/>
 <src:fragref linkend="foilgroup.toc.frag"/>
-<src:fragref linkend="foil.properties.frag"/>
-<src:fragref linkend="foil.subtitle.properties.frag"/>
-<src:fragref linkend="foil.title.master.frag"/>
-<src:fragref linkend="foil.title.size.frag"/>
 <src:fragref linkend="graphics.dir.frag"/>
 <src:fragref linkend="hidetoc.image.frag"/>
 <src:fragref linkend="home.image.frag"/>
@@ -203,14 +176,9 @@ around all these parameters.</para>
 <src:fragref linkend="overlay.logo.frag"/>
 <src:fragref linkend="plus.image.frag"/>
 <src:fragref linkend="prev.image.frag"/>
-<src:fragref linkend="running.foot.properties.frag"/>
 <src:fragref linkend="script.dir.frag"/>
 <src:fragref linkend="show.foil.number.frag"/>
 <src:fragref linkend="showtoc.image.frag"/>
-<src:fragref linkend="slide.title.font.family.frag"/>
-<src:fragref linkend="speakernote.properties.frag"/>
-<src:fragref linkend="slide.font.family.frag"/>
-<src:fragref linkend="slides.properties.frag"/>
 <src:fragref linkend="slides.js.frag"/>
 <src:fragref linkend="text.home.frag"/>
 <src:fragref linkend="text.next.frag"/>

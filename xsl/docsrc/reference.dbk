@@ -42,7 +42,12 @@
       </listitem>
       <listitem>
         <para><xi:include
-        href="./slides/docparam.xml"
+        href="./slides-html/docparam.xml"
+        xpointer="xpointer(/book/bookinfo/title/node())"/></para>
+      </listitem>
+      <listitem>
+        <para><xi:include
+        href="./slides-fo/docparam.xml"
         xpointer="xpointer(/book/bookinfo/title/node())"/></para>
       </listitem>
       <listitem>
@@ -123,13 +128,22 @@
     <xi:include href="./roundtrip/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
 
-  <part id="slides">
-    <xi:include href="./slides/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
-    <partintro id="slidesintro">
-      <xi:include href="./slides/docparam.xml"
+  <part id="slides-html">
+    <xi:include href="./slides-html/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+    <partintro id="slideshtmlintro">
+      <xi:include href="./slides-html/docparam.xml"
                   xpointer="xpointer(/book/bookinfo/abstract/node())" />
     </partintro>
-    <xi:include href="./slides/docparam.xml" xpointer="xpointer(/book/reference)" />
+    <xi:include href="./slides-html/docparam.xml" xpointer="xpointer(/book/reference)" />
+  </part>
+
+  <part id="slides-fo">
+    <xi:include href="./slides-fo/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+    <partintro id="slidesfointro">
+      <xi:include href="./slides-fo/docparam.xml"
+                  xpointer="xpointer(/book/bookinfo/abstract/node())" />
+    </partintro>
+    <xi:include href="./slides-fo/docparam.xml" xpointer="xpointer(/book/reference)" />
   </part>
 
   <part id="website">

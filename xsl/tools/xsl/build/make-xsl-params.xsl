@@ -18,7 +18,7 @@
   <!-- ==================================================================== -->
 
   <!-- * This stylesheet expects itself as input  -->
-  <xsl:param name="param.dirs">html fo manpages roundtrip</xsl:param>
+  <xsl:param name="param.dirs">html fo manpages roundtrip slides/fo slides/html website</xsl:param>
 
   <xsl:template match="/">
     <xslt:stylesheet version="1.0"> 
@@ -78,12 +78,17 @@
     <!-- * param.xsl file, then read through that param.xsl file -->
     <!-- * to collect parameter names. -->
     <xsl:param name="dir"/>
+    <xsl:param name="adjusted-dir">
+      <xsl:call-template name="make.adjusted-dir">
+        <xsl:with-param name="dir" select="$dir"/>
+      </xsl:call-template>
+    </xsl:param>
     <xsl:param name="remaining.dirs"/>
     <!-- * When the value of $dir reaches empty, then we have depleted -->
     <!-- * the list of directories and it's time to stop recursing -->
     <xsl:if test="not($dir = '')">
       <xsl:variable name="param.xsl" select="concat('../../../', $dir, '/', 'param.xsl')"/>
-      <xslt:variable name="xsl-{$dir}-parameters-list">
+      <xslt:variable name="xsl-{$adjusted-dir}-parameters-list">
         <simplelist role="param">
           <xsl:for-each select="document($param.xsl)//*[local-name() = 'param']">
             <xsl:sort select="@name"/>
@@ -91,8 +96,8 @@
           </xsl:for-each>
         </simplelist>
       </xslt:variable>
-      <xslt:variable name="xsl-{$dir}-parameters"
-                     select="exsl:node-set($xsl-{$dir}-parameters-list)/simplelist"/>
+      <xslt:variable name="xsl-{$adjusted-dir}-parameters"
+                     select="exsl:node-set($xsl-{$adjusted-dir}-parameters-list)/simplelist"/>
       <xsl:call-template name="make.param.list">
         <!-- * pop the name of the next directory off the list of -->
         <!-- * remaining directories -->
@@ -110,13 +115,18 @@
 
   <xsl:template name="make.is.parameter.template">
     <xsl:param name="dir"/>
+    <xsl:param name="adjusted-dir">
+      <xsl:call-template name="make.adjusted-dir">
+        <xsl:with-param name="dir" select="$dir"/>
+      </xsl:call-template>
+    </xsl:param>
     <xsl:param name="remaining.dirs"/>
     <xsl:if test="not($dir = '')">
       <!-- * for each directory, construct a template. -->
-      <xslt:template name="is-{$dir}-parameter">
+      <xslt:template name="is-{$adjusted-dir}-parameter">
         <xslt:param name="param" select="''"/>
         <xslt:choose>
-          <xslt:when test="$xsl-{$dir}-parameters/member[. = $param]">1</xslt:when>
+          <xslt:when test="$xsl-{$adjusted-dir}-parameters/member[. = $param]">1</xslt:when>
           <xslt:otherwise>0</xslt:otherwise>
         </xslt:choose>
       </xslt:template>
@@ -134,4 +144,23 @@
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
+
+  <xsl:template name="make.adjusted-dir">
+    <xsl:param name="dir"/>
+    <xsl:param name="basedir">
+      <xsl:value-of select="substring-before($dir, '/')"/>
+    </xsl:param>
+    <xsl:param name="subdir">
+      <xsl:value-of select="substring-after($dir, '/')"/>
+    </xsl:param>
+      <xsl:choose>
+        <xsl:when test="contains($dir,'/')">
+          <xsl:value-of select="concat($basedir,'-',$subdir)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$dir"/>
+        </xsl:otherwise>
+      </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
