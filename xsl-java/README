@@ -1,0 +1,52 @@
+----------------------------------------------------------------------
+              README file for the DocBook XSL Java Extensions
+----------------------------------------------------------------------
+$Id$
+
+These are XSL Java extensions for use with the DocBook XML
+stylesheets and the Saxon and Xalan-Java XSLT engines.
+
+This README file provides only very minimal documentation on the
+DocBook Project XSL Java extensions. For more complete information
+on the features the extensions provide and on how to use them
+with the DocBook Project XSL stylesheets, see Bob Stayton's book
+"DocBook XSL: The Complete Guide", available online at:
+
+  http://www.sagehill.net/docbookxsl/
+
+----------------------------------------------------------------------
+Installation
+----------------------------------------------------------------------
+For information about installing these extensions, see the INSTALL file.
+
+----------------------------------------------------------------------
+How to use the DocBook XSL Java extensions
+----------------------------------------------------------------------
+To use the DocBook XSL Java extensions, add the absolute paths to
+the saxon65.jar and xalan27.jar files to your Java classpath and
+process your documents with either the Saxon or Xalan-Java XSLT
+engines and with the value of the DocBook XSL stylesheets
+"use.extensions" parameter set to 1.
+
+----------------------------------------------------------------------
+Manifest
+----------------------------------------------------------------------
+AUTHORS       contact information
+BUGS          about known problems
+COPYING       copyright information
+INSTALL       installation instructions
+README        this file
+TODO          about planned features not yet implemented
+VERSION       release metadata, including the current version
+              number (note that the VERSION file is an XSL stylesheet)
+NEWS          changes since the last public release (for a cumulative
+              list of changes, see the ChangeHistory.xml file)
+
+saxon65.jar   Java extensions for use with the Saxon XSLT engine
+xalan27.jar   Java extensions for use with the Xalan-Java XSLT engine
+
+----------------------------------------------------------------------
+Changes
+----------------------------------------------------------------------
+See the ChangeHistory.xml.zip file for a cumulative list of all
+changes. See the NEWS file for changes made since the previous release.
