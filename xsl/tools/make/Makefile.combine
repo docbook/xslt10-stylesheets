@@ -21,7 +21,7 @@
 # of files per wrapper.
 #
 # Currently, this makefile has only a "man" target and is mainly
-# intended to speed up processing of large numbers if individual
+# intended to speed up processing of large numbers of individual
 # refentry instances.
 
 # What file extension do you use for DocBook source files?

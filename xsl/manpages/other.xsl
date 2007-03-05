@@ -19,7 +19,10 @@
 <!-- * just assembling the actual text of the main text flow of each man -->
 <!-- * page. This "other" stuff currently amounts to these steps: -->
 <!-- * -->
+<!-- *  - get contents of the "map" used to convert special characters -->
 <!-- *  - output boilerplate messages -->
+<!-- *  - escape backslash, dot, dash, and apostrophe characters -->
+<!-- *  - convert non-breaking spaces -->
 <!-- *  - add a comment to top part of roff source of each page -->
 <!-- *  - make a .TH title line (for controlling page header/footer) -->
 <!-- *  - set hyphenation, alignment, indent & line-breaking defaults -->

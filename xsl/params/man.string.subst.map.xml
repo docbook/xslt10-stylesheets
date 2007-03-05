@@ -123,7 +123,7 @@ particular customization of the DocBook XSL stylesheets.</para>
 
   <para>If you remove any of default mappings from the value of the
   <parameter>man.string.subst.map</parameter> parameter, you are
-  likely to end up with broken output. And be very about adding
+  likely to end up with broken output. And be very careful about adding
   anything to it; it’s used for doing string substitution over the
   entire roff source of each man page – it causes target strings to be
   replaced in roff requests and escapes, not just in the visible
@@ -156,50 +156,6 @@ particular customization of the DocBook XSL stylesheets.</para>
   It may also include XML comments (that is, delimited with
   "<literal>&lt;!--</literal>" and "<literal>--&gt;</literal>").
   </para>
-</refsection>
-
-<refsection xml:id="escape-replace">
-  <info>
-    <title>About escaping and replacing backslash, dot, and
-    dash</title>
-  </info>
-  
-  <para>The backslash and dot (\, .) characters have special meaning
-  for roff, so we:
-
-  <itemizedlist>
-    <listitem>
-      <para>escape backslashes and dots where they appear in the
-      source content</para>
-    </listitem>
-    <listitem>
-      <para>use certain (arbitrarily selected) Unicode characters as
-      “markers” – internal representations within the stylesheet – for
-      backslashes and dots</para>
-    </listitem>
-    <listitem>
-      <para>replace the Unicode characters with real backslashes and
-      dots before output gets serialized</para>
-    </listitem>
-  </itemizedlist>
-  
-   In addition, for certain reasons, we do the same thing for
-   dashes.</para>
-
-  <para>The mappings of dash, backslash, and dot to the Unicode
-  characters we use to represent them is hard-coded in the stylesheet:
-
-  <itemizedlist>
-    <listitem><para><literal>U+2591</literal> = dash</para></listitem>
-    <listitem><para><literal>U+2593</literal> = backslash</para></listitem>
-    <listitem><para><literal>U+2302</literal> = dot</para></listitem>
-  </itemizedlist>
-
-  Those Unicode characters were chosen on the assumption that they are
-  never used in content intended for output to man pages. It would be
-  possible to provide a way for configuring the mappings (using XSLT
-  parameters), but doing so would make the stylesheet code much more
-  verbose and harder to read.</para>
 </refsection>
 
 </refsection>
