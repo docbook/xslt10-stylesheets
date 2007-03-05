@@ -5,7 +5,7 @@
                 version="1.0">
 
 <xsl:import href="../../fo/docbook.xsl"/>
-<xsl:import href="../param.xsl"/>
+<xsl:import href="param.xsl"/>
 
 <xsl:param name="alignment" select="'start'"/>
 

@@ -5,7 +5,7 @@
 <xsl:import href="../../html/chunk.xsl"/>
 <xsl:include href="../../VERSION"/>
 
-<xsl:include href="../param.xsl"/>
+<xsl:include href="param.xsl"/>
 <xsl:include href="jscript.xsl"/>
 <xsl:include href="graphics.xsl"/>
 <xsl:include href="css.xsl"/>
