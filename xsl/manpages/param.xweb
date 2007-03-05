@@ -64,8 +64,6 @@
   <reference id="lists">
   <title>Lists</title>
 &man.segtitle.suppress;
-&variablelist.term.separator;
-&variablelist.term.break.after;
   </reference>
   <reference id="charmap">
   <title>Character/string substitution</title>
@@ -118,7 +116,6 @@
 &man.table.footnotes.divider;
 &man.subheading.divider.enabled;
 &man.subheading.divider;
-&email.delimiters.enabled;
   </reference>
   <appendix id="stylesheet">
     <title>The Stylesheet</title>
@@ -173,8 +170,6 @@
 <src:fragref linkend="man.endnotes.list.heading.frag"/>
 <src:fragref linkend="man.endnotes.are.numbered.frag"/>
 <src:fragref linkend="man.links.are.underlined.frag"/>
-<src:fragref linkend="variablelist.term.separator.frag"/>
-<src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="man.charmap.enabled.frag"/>
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
@@ -202,7 +197,6 @@
 <src:fragref linkend="man.th.extra1.suppress.frag"/>
 <src:fragref linkend="man.th.extra2.suppress.frag"/>
 <src:fragref linkend="man.th.extra3.suppress.frag"/>
-<src:fragref linkend="email.delimiters.enabled.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 

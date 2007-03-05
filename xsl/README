@@ -96,15 +96,15 @@ INSTALL       installation instructions
 README        this file
 RELEASE.*     per-release cumulative summaries of user-visible changes
 TODO          about planned features not yet implemented
-VERSION       the current version number (note that this is an XSL stylesheet,
-              included by both fo/docbook.xsl and html/docbook.xsl)
+VERSION       release metadata, including the current version
+              number (note that the VERSION file is an XSL stylesheet)
 NEWS          changes since the last public release (for a cumulative list of
               changes, see the ChangeHistory.xml file)
 
 common/       code used among several output formats (HTML, FO, manpages,...)
 docsrc/       documentation sources
 eclipse/      for producing Eclipse Help
-extensions/   Java XSLT extensions
+extensions/   DocBook XSL Java extensions
 fo/           for producing XSL-FO
 highlighting  files used for adding source-code syntax highlighting in output
 html/         for producing HTML
@@ -112,13 +112,14 @@ htmlhelp/     for producing HTML Help
 images/       images used in callouts and graphical admonitions
 javahelp/     for producing Java Help
 lib/          utility stylesheets with schema-independent functions
-manpages/     for producing groff/nroff man pages
+manpages/     for producing groff/troff man pages
 profiling/    for profiling (omitting/including conditional text)
-slides/       for producing slides output (from Slides source)
-template/     templates for building stylesheet customization layers
-website/      for producing website output (from Website source)
 roundtrip/    for "round trip" conversion among DocBook and
               various word-processor formats (WordML, etc.)
+slides/       for producing slides output (from Slides source)
+template/     templates for building stylesheet customization layers
+tools/        assorted supplementary tools
+website/      for producing website output (from Website source)
 xhtml/        for producing XHTML
 
 ----------------------------------------------------------------------
