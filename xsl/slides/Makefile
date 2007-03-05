@@ -1,6 +1,6 @@
 include ../../buildtools/Makefile.incl
 
-DIRS = fo xhtml
+DIRS = fo html xhtml
 
 base:
 	for i in $(DIRS) __bogus__; do \
