@@ -12,8 +12,11 @@ die $usage if ! getopts('m:');
 
 my $file = shift @ARGV || die $usage;
 my $dir = ".";
-
 $dir = $1 if $file =~ /^(.*)\/[^\/]+$/;
+
+if ($ENV{DOCBOOK_SVN}) {
+  $dir = "$ENV{DOCBOOK_SVN}/xsl/params";
+}
 
 my $entfile = $file;
 $entfile =~ s/\.xweb$/.ent/;
