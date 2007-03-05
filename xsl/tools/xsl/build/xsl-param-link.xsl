@@ -16,6 +16,15 @@
 <xsl:param name="roundtrip-baseuri"
            select="'http://docbook.sourceforge.net/release/xsl/current/doc/roundtrip/'"/>
 
+<xsl:param name="slides-html-baseuri"
+           select="'http://docbook.sourceforge.net/release/xsl/current/doc/slides-html/'"/>
+
+<xsl:param name="slides-fo-baseuri"
+           select="'http://docbook.sourceforge.net/release/xsl/current/doc/slides-fo/'"/>
+
+<xsl:param name="website-baseuri"
+           select="'http://docbook.sourceforge.net/release/xsl/current/doc/website/'"/>
+
 <xsl:template match="parameter">
   <xsl:variable name="markup">
     <xsl:apply-imports/>
@@ -45,6 +54,24 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="isslideshtml">
+    <xsl:call-template name="is-slides-html-parameter">
+      <xsl:with-param name="param" select="normalize-space(.)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="isslidesfo">
+    <xsl:call-template name="is-slides-fo-parameter">
+      <xsl:with-param name="param" select="normalize-space(.)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="iswebsite">
+    <xsl:call-template name="is-website-parameter">
+      <xsl:with-param name="param" select="normalize-space(.)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$ishtml != 0">
       <a href="{concat($html-baseuri, normalize-space(.))}.html">
@@ -63,6 +90,21 @@
     </xsl:when>
     <xsl:when test="$isroundtrip != 0">
       <a href="{concat($roundtrip-baseuri, normalize-space(.))}.html">
+        <xsl:copy-of select="$markup"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$isslideshtml != 0">
+      <a href="{concat($slides-html-baseuri, normalize-space(.))}.html">
+        <xsl:copy-of select="$markup"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$isslidesfo != 0">
+      <a href="{concat($slides-fo-baseuri, normalize-space(.))}.html">
+        <xsl:copy-of select="$markup"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$iswebsite != 0">
+      <a href="{concat($website-baseuri, normalize-space(.))}.html">
         <xsl:copy-of select="$markup"/>
       </a>
     </xsl:when>

@@ -1,2 +1,4 @@
 plain-titlepage.xsl
 ChangeLog
+param.xsl
+Makefile.param
