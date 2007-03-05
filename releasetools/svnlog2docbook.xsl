@@ -70,7 +70,7 @@
   <!-- * notes, then just add a "display name" for the subdirectory -->
   <xsl:param
       name="subsections"
-      >Common Extensions FO HTML Highlighting HTMLHelp Lib Manpages Params Profiling Template Tools Roundtrip</xsl:param>
+      >Common Extensions FO HTML Highlighting HTMLHelp Lib Manpages Roundtrip Slides Website Params Profiling Template Tools</xsl:param>
 
   <sf:users>
     <!-- * The sf:users structure associates Sourceforge usernames -->
