@@ -41,6 +41,15 @@
 
 <!-- "Support" for MathML -->
 
+<xsl:template match="mml:math" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <fo:instream-foreign-object>
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </fo:instream-foreign-object>
+</xsl:template>
+
 <xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
