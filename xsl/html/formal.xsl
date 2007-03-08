@@ -16,7 +16,9 @@
 
 <xsl:template name="formal.object">
   <xsl:param name="placement" select="'before'"/>
-  <xsl:param name="class" select="local-name(.)"/>
+  <xsl:param name="class">
+    <xsl:apply-templates select="." mode="class.value"/>
+  </xsl:param>
 
   <xsl:call-template name="id.warning"/>
 
