@@ -763,6 +763,11 @@ to be incomplete. Don't forget to read the source, too :-)</para>
     </xsl:attribute>
   </xsl:if>
 
+  <!-- Keep header row with next row -->
+  <xsl:if test="ancestor::thead">
+    <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
+  </xsl:if>
+
 </xsl:template>
 
 <xsl:template match="entry|entrytbl" name="entry">
