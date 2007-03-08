@@ -215,19 +215,8 @@
 </xsl:template>
 
 <xsl:template match="tr" mode="htmlTable">
-  <xsl:variable name="bgcolor">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis" select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'bgcolor'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
   <fo:table-row>
-    <xsl:if test="$bgcolor != ''">
-      <xsl:attribute name="background-color">
-        <xsl:value-of select="$bgcolor"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="table.row.properties"/>
     <xsl:apply-templates mode="htmlTable"/>
   </fo:table-row>
 </xsl:template>
