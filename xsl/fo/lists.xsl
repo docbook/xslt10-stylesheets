@@ -381,7 +381,7 @@
           <xsl:value-of select="@termlength + 0"/>
         </xsl:variable>
         <xsl:choose>
-          <xsl:when test="$termlength.is.number = 'NaN'">
+          <xsl:when test="string($termlength.is.number) = 'NaN'">
             <!-- if the term length isn't just a number, assume it's a measurement -->
             <xsl:value-of select="@termlength"/>
           </xsl:when>
