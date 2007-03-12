@@ -6593,12 +6593,18 @@ div {
       "endtag"
     | ## A general entity
       "genentity"
+    | ## The local name part of a qualified name
+      "localname"
+    | ## A namespace
+      "namespace"
     | ## A numeric character reference
       "numcharref"
     | ## A parameter entity
       "paramentity"
     | ## A processing instruction
       "pi"
+    | ## The prefix part of a qualified name
+      "prefix"
     | ## An SGML comment
       "comment"
     | ## A start tag
