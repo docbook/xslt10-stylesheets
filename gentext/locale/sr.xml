@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- there is no doctype for these files, they are WF only -->
-<locale language="sr"  <!-- also known as sr-Cyrl -->
+<!-- also known as sr-Cyrl -->
+<locale language="sr"
         english-language-name="Serbian in Cyrillic script"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
