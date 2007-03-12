@@ -306,7 +306,7 @@ div {
    db.html.caption =
       element caption {
          db.html.caption.attlist,
-         text
+         db.all.inlines*
       }
 }
 
