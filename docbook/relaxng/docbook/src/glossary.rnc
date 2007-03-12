@@ -312,7 +312,7 @@ div {
          db.glossary.attlist,
          db.glossary.info,
          db.all.blocks*,
-         (db.glossdiv+ | db.glossentry+),
+         (db.glossdiv* | db.glossentry*),
          db.bibliography?
       }
 }
