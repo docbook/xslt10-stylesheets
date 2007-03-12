@@ -117,7 +117,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
 
-   db.qandaentry.info = db._info.title.forbidden
+   db.qandaentry.info = db._info.title.only
 
    db.qandaentry =
       element qandaentry {
