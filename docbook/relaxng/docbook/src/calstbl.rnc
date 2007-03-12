@@ -650,7 +650,8 @@ div {
       db.cals.table.attlist,
       db.cals.table.info,
       (db.alt? & db.indexing.inlines* & db.textobject*),
-      (db.mediaobject+|db.tgroup+)
+      (db.mediaobject+|db.tgroup+),
+      db.caption?
    }
 }
 
@@ -684,6 +685,7 @@ div {
          db.cals.informaltable.attlist,
          db.cals.informaltable.info,
          (db.alt? & db.indexing.inlines* & db.textobject*),
-         (db.mediaobject+|db.tgroup+)
+         (db.mediaobject+|db.tgroup+),
+         db.caption?
       }
 }
