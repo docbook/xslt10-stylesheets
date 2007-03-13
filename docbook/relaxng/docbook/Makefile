@@ -8,6 +8,7 @@
 
 include ../../../buildtools/Makefile.incl
 
+SAXON=$(CVSTOOLSROOT)/saxon
 XSLTPROC=xsltproc
 PERL=perl
 MV ?= mv
@@ -62,7 +63,7 @@ distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
 	cp spec/docbook.xml $(DISTRIB)/docs/$(SPECNAME).xml
 	cp spec/docbook.html $(DISTRIB)/docs/$(SPECNAME).html
 	cp spec/docbook.pdf $(DISTRIB)/docs/$(SPECNAME).pdf
-	saxon -8b ../tools/catalog.xsl ../tools/catalog.xsl $(DISTRIB)/catalog.xml version=$(VERSION)
+	$(SAXON) -8b ../tools/catalog.xsl ../tools/catalog.xsl $(DISTRIB)/catalog.xml version=$(VERSION)
 	cp ../tools/db4-upgrade.xsl $(DISTRIB)/tools/
 	cp ../tools/db4-entities.pl $(DISTRIB)/tools/
 	cp README $(DISTRIB)/

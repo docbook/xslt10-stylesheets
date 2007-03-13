@@ -1,6 +1,7 @@
 include ../../../../buildtools/Makefile.incl
 
-XSLT=saxon
+SAXON=$(CVSTOOLSROOT)/saxon
+XSLT=$(SAXON)
 HTMLSTYLE=html.xsl
 FOSTYLE=fo.xsl
 
@@ -28,7 +29,7 @@ cmdiff.xml: cmdiff.pl 44-50-cm.diff
 
 showdiff.html: showdiff.xml elemdiff.xml cmdiff.xml
 	xmllint --xinclude $< > ,$<
-	saxon ,$< /sourceforge/docbook/xsl/html/docbook.xsl $@
+	$(SAXON) ,$< /sourceforge/docbook/xsl/html/docbook.xsl $@
 	rm -f ,$<
 
 clean:
