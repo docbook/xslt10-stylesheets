@@ -1,0 +1,25 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Sample book title</title>
+
+<chapter>
+<title>Sample chapter title</title>
+
+<para>This unit test contains a <tag>qandaentry</tag> with a <tag>title</tag>, per
+<link xlink:href="https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1589139&amp;group_id=21935&amp;atid=384107"/>.</para>
+
+<qandaset>
+<qandaentry>
+<title>QandA Entry Title</title>
+<question>
+<para>What is the question.</para>
+</question>
+<answer>
+<para>I don't know, but the answer is 42.</para>
+</answer>
+</qandaentry>
+</qandaset>
+
+</chapter>
+
+</book>

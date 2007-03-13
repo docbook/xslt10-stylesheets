@@ -17,22 +17,39 @@ fi
 
 
 if [ "$XMLFILES" = "" ]; then
+    if [ -d unit-tests ]; then
+	for f in unit-tests/*.xml; do
+	    XMLFILES="$XMLFILES `basename $f`"
+	done
+    fi
+
     for f in $SRCDIR/*.xml; do
 	XMLFILES="$XMLFILES `basename $f`"
     done
 fi
 
 for f in $XMLFILES; do
+    srcfile=$f
+    if [ -f $SRCDIR/$f ]; then
+	srcfile=$SRCDIR/$f
+    elif [ -f unit-tests/$f ]; then
+	srcfile=unit-tests/$f
+    fi
+
     REBUILD=1
-    if [ ! -f $SRCDIR/$f ]; then
+    if [ "$f" = "$srcfile" ]; then
 	REBUILD=0
     fi
 
-    if [ -f $f -a $f -nt $SRCDIR/$f -a $f -nt $DB4UPG ]; then
+    if [ -f $f -a $f -nt $srcfile -a $f -nt $DB4UPG ]; then
 	REBUILD=0
     fi
 
-    if [ -f passed/$f -a passed/$f -nt $SRCDIR/$f -a passed/$f -nt $DB4UPG ]; then
+    if [ -f passed/$f -a passed/$f -nt $srcfile -a passed/$f -nt $DB4UPG ]; then
+	REBUILD=0
+    fi
+
+    if grep -e "xmlns\(:[^=]+\)\?=\(.\)http://docbook.org/ns/docbook\2" $srcfile > /dev/null; then
 	REBUILD=0
     fi
 
@@ -40,7 +57,9 @@ for f in $XMLFILES; do
 
 	if [ "$REBUILD" != "0" ]; then
 	    echo -n "Update $f..."
-	    xsltproc --novalid --output $f $DB4UPG $SRCDIR/$f
+	    xsltproc --novalid --output $f $DB4UPG $srcfile
+	elif [ ! -f $f -a "$f" != "$srcfile" ]; then
+	    cp $srcfile $f
 	fi
 
 	if [ ! -f passed/$f -o $f -nt passed/$f ]; then
