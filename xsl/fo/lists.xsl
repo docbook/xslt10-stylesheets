@@ -1169,7 +1169,7 @@
                    provisional-distance-between-starts="2.2em"
                    provisional-label-separation="0.2em">
       <xsl:apply-templates select="callout
-                                |comment()[preceding-sibling::calllout]
+                                |comment()[preceding-sibling::callout]
                                 |processing-instruction()[preceding-sibling::callout]"/>
     </fo:list-block>
   </fo:block>
