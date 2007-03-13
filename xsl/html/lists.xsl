@@ -959,14 +959,14 @@
       <xsl:when test="$callout.list.table != 0">
         <table border="0" summary="Callout list">
 	  <xsl:apply-templates select="callout
-			        |comment()[preceding-sibling::calllout]
+			        |comment()[preceding-sibling::callout]
 				|processing-instruction()[preceding-sibling::callout]"/>
 	</table>
       </xsl:when>
       <xsl:otherwise>
 	<dl compact="compact">
 	  <xsl:apply-templates select="callout
-			        |comment()[preceding-sibling::calllout]
+			        |comment()[preceding-sibling::callout]
 				|processing-instruction()[preceding-sibling::callout]"/>
 	</dl>
       </xsl:otherwise>
