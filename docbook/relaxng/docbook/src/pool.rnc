@@ -3010,7 +3010,7 @@ div {
             s:rule [
                context = "db:synopfragmentref"
                s:assert [
-                  test = "local-name(//*[@id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                   "@linkend on synopfragmentref must point to a synopfragment."
                ]
             ]
@@ -7304,7 +7304,7 @@ div {
             s:rule [
                context = "db:footnoteref"
                s:assert [
-                  test = "local-name(//*[@id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'footnote' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                   "@linkend on footnoteref must point to a footnote."
                ]
             ]

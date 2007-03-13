@@ -164,7 +164,7 @@ div {
             s:rule [
                context = "db:glosssee[@otherterm]"
                s:assert [
-                  test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
+                  test = "local-name(//*[@xml:id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
                   "@otherterm on glosssee must point to a glossentry."
                ]
             ]
@@ -204,7 +204,7 @@ div {
             s:rule [
                context = "db:glossseealso[@otherterm]"
                s:assert [
-                  test = "local-name(//*[@id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
+                  test = "local-name(//*[@xml:id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
                   "@otherterm on glossseealso must point to a glossentry."
                ]
             ]
@@ -239,7 +239,7 @@ div {
             s:rule [
                context = "db:firstterm[@linkend]"
                s:assert [
-                  test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                   "@linkend on firstterm must point to a glossentry."
                ]
             ]
@@ -274,7 +274,7 @@ div {
             s:rule [
                context = "db:glossterm[@linkend]"
                s:assert [
-                  test = "local-name(//*[@id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                   "@linkend on glossterm must point to a glossentry."
                ]
             ]
