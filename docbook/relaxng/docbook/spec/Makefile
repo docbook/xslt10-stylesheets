@@ -4,6 +4,7 @@ SAXON=$(CVSTOOLSROOT)/saxon
 XSLT=$(SAXON)
 HTMLSTYLE=html.xsl
 FOSTYLE=fo.xsl
+XML2RFC=/share/doctypes/ietf/xml2rfc/xml2rfc.tcl
 
 XSLPARAM=
 
@@ -31,6 +32,12 @@ showdiff.html: showdiff.xml elemdiff.xml cmdiff.xml
 	xmllint --xinclude $< > ,$<
 	$(SAXON) ,$< /sourceforge/docbook/xsl/html/docbook.xsl $@
 	rm -f ,$<
+
+rfc.html: rfc.xml
+	$(XML2RFC) $< $@
+
+rfc.txt: rfc.xml
+	$(XML2RFC) $< $@
 
 clean:
 	$(RM) *.html

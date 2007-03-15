@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rfc ipr="full3978"> <!-- ??? -->
+<front>
+<title>The 'application/docbook+xml' Media Type</title>
+<author initials="N" surname="Walsh" fullname="Norman Walsh">
+<organization>Sun Microsystems</organization>
+</author>
+<date month="March" year="2007"/>
+<area>General</area>
+<keyword>RFC</keyword>
+<keyword>Request for Comments</keyword>
+<keyword>I-D</keyword>
+<keyword>Internet-Draft</keyword>
+<keyword>XML</keyword>
+<keyword>Extensible Markup Language</keyword>
+<abstract>
+<t>This document defines the 'application/docbook+xml' MIME media type for
+DocBook-based markup languages.
+</t>
+</abstract>
+</front>
+<middle>
+<section anchor="intro" title="Introduction">
+<t>The DocBook specification has for many years included an appendix which
+defines a MIME media type for DocBook. This document makes that media type
+official.</t>
+</section>
+
+<section title="Registration of MIME media type application/docbook+xml">
+
+<t><list style="hanging">
+<t hangText="MIME media type name:">application</t>
+<t hangText="MIME subtype name:">docbook+xml</t>
+<t hangText="Required parameters:">None</t>
+<t hangText="Optional parameters:">charset</t>
+<t>This parameter has identical semantics to the 'charset'
+parameter of the 'application/xml' media type as
+specified in RFC 3023<xref target="rfc3023"/> or its successors.
+</t>
+<t hangText="Encoding considerations:"/>
+<t>By virtue of DocBook XML
+content being XML, it has the same considerations when sent as
+'application/docbook+xml' as does XML. See RFC 3023<xref target="rfc3023"/>,
+Section 3.2.</t>
+<t hangText="Security considerations:"/>
+<t>Several DocBook elements may
+refer to arbitrary URIs. In this case, the security issues of RFC
+3986<xref target="rfc3986"/>, section 7, should be considered.</t>
+<t hangText="Interoperability considerations:"/>
+<t>None.</t>
+<t hangText="Published specification:"/>
+<t>This media type registration is
+for DocBook documents as described by DocBook: The Definitive
+Guide<xref target="tdg"/> or its successors.</t>
+<t hangText="Applications which use this media type:"/>
+<t>There is no
+experimental, vendor specific, or personal tree predecessor to
+'application/docbook+xml', reflecting the
+fact that no applications currently recognize it. This new type is
+being registered in order to allow for the deployment of DocBook on
+the World Wide Web, as a first class XML application.</t>
+<t hangText="Additional information:"/>
+<t>
+<list style="hanging">
+<t hangText="Magic number(s):"/>
+<t>There is no single initial octet sequence that is always present in
+DocBook documents.</t>
+<t hangText="file extension(s):"/>
+<t>DocBook documents are most often identified with the extension
+'.xml'.</t>
+<t hangText="Macintosh File Type Code(s):"/>
+<t>TEXT</t>
+</list>
+</t>
+<t hangText="Person &amp; email address to contact for further information:"/>
+<t>Norman Walsh, ndw@nwalsh.com</t>
+<t hangText="Intended usage:"/>
+<t>COMMON</t>
+<t hangText="Author/Change controller:"/>
+<t>DocBook is a work product of the DocBook Technical Committee at
+OASIS.</t>
+</list>
+</t>
+
+</section>
+<section title="Fragment identifiers">
+
+<t>For documents labeled as 'application/docbook+xml', the fragment
+identifier notation is exactly that for 'application/xml', as
+specified in <xref target="rfc3023"/> or its successors.</t>
+</section>
+
+<section title="Security Considerations">
+<t>An XML Resource Identifier does not in itself pose a security
+threat. However, XML Resource Identifers are often converted to IRIs
+or URIs and subsequently used to provide a compact set of instructions
+for access to network resources, care must be taken to properly
+interpret the data within an XML Resource Identifier, to prevent that
+data from causing unintended access, and to avoid including data that
+should not be revealed in plain text.</t>
+</section>
+</middle>
+
+<back>
+<references>
+<reference anchor='rfc3023'>
+  <front>
+    <title>XML Media Types</title>
+    <author initials='M.' surname='Murata'>
+      <organization abbrev='W3C'>IBM Tokyo Research Laboratory</organization>
+    </author>
+    <author initials='S.' surname='St. Laurent'>
+      <organization>simonstl.com</organization>
+    </author>
+    <author initials='D.' surname='Kohn'>
+      <organization>Skymoon Ventures</organization>
+    </author>
+    <date month='January' year='2001' />
+  </front>
+  <seriesInfo name='RFC' value='3023' />
+  <format type='TXT' target='http://www.ietf.org/rfc/rfc3023.txt'/>
+</reference>
+<reference anchor='rfc3986'>
+  <front>
+    <title>Uniform Resource Identifier (URI): Generic Syntax</title>
+    <author initials='T.' surname='Berners-Lee'>
+      <organization abbrev='W3C'>World Wide Web Consortium</organization>
+    </author>
+    <author initials='R.' surname='Fielding'>
+      <organization>Day Software</organization>
+    </author>
+    <author initials='L.' surname='Masinter'>
+      <organization>Adobe Systems</organization>
+    </author>
+    <date month='January' year='2005' />
+  </front>
+  <seriesInfo name='RFC' value='3986' />
+  <format type='TXT' target='http://www.ietf.org/rfc/rfc3986.txt'/>
+</reference>
+<reference anchor='tdg'>
+  <front>
+    <title>DocBook: The Definitive Guide</title>
+    <author initials='N.' surname='Walsh'><organization/></author>
+    <author initials='L.' surname='Muellner'><organization/></author>
+    <date month='October' year='1999' />
+  </front>
+  <format type='TXT' target='http://docbook.org/tdg/'/>
+</reference>
+</references>
+</back>
+</rfc>
