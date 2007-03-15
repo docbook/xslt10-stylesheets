@@ -1165,7 +1165,7 @@
       <xsl:when test="$action='click'">-</xsl:when>
       <xsl:when test="$action='double-click'">-</xsl:when>
       <xsl:when test="$action='other'"></xsl:when>
-      <xsl:otherwise>-</xsl:otherwise>
+      <xsl:otherwise>+</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <xsl:for-each select="*">
