@@ -40,7 +40,6 @@ db.computeroutput.inlines |= db.co
 db.verbatim.inlines |= db.co
 db.prompt.inlines |= db.co
 db.systemitem.inlines |= db.co
-db.computeroutput.inlines |= db.co
 db.userinput.inlines |= db.co
 db.replaceable.inlines |= db.co
 
