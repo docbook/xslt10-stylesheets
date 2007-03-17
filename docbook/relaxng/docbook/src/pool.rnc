@@ -66,7 +66,8 @@ db.arch.attribute =
 
 db.audience.attribute =
   [
-    db:refpurpose [ "Designates the intended audience to which the element applies" ]
+    db:refpurpose [ "Designates the intended audience to which the element applies," ~
+       " for example, system administrators, programmers, or new users." ]
   ]
   attribute audience    { text }
 
@@ -80,12 +81,15 @@ db.condition.attribute =
         " required "
         db:quote [ "abusing" ]
         " the semantics of one of the existing attributes, or adding" ~
-        " their own, making their customization "
-        db:link [ linkend="s-notdocbook" "an extension rather than a subset" ]
-        ". The"
+        " their own, making their customization an extension rather than a subset." ~
+        " The"
         db:tag [ class="attribute" "condition" ]
         " attribute is a general-purpose effectivity attribute" ~
         " with no specified semantics."
+      ]
+      db:para [ "The"
+         db:tag [ class="attribute" "condition" ]
+         " attribute provides a standard place for application-specific effectivity."
       ]
     ]
   ]
