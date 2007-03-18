@@ -184,6 +184,7 @@
 <!ENTITY sans.font.family SYSTEM "../params/sans.font.family.xml">
 <!ENTITY section.autolabel SYSTEM "../params/section.autolabel.xml">
 <!ENTITY section.autolabel.max.depth SYSTEM "../params/section.autolabel.max.depth.xml">
+<!ENTITY section.container.element SYSTEM "../params/section.container.element.xml">
 <!ENTITY section.label.includes.component.label SYSTEM "../params/section.label.includes.component.label.xml">
 <!ENTITY section.title.properties SYSTEM "../params/section.title.properties.xml">
 <!ENTITY segmentedlist.as.table SYSTEM "../params/segmentedlist.as.table.xml">
