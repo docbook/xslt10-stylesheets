@@ -433,6 +433,7 @@ zero by default, so this is simply the page-master region-left.
 &margin.note.float.type;
 &margin.note.width;
 &component.title.properties;
+&component.titlepage.properties;
 &section.title.properties;
 &section.title.level1.properties;
 &section.title.level2.properties;
@@ -601,6 +602,7 @@ around all these parameters.</para>
 <src:fragref linkend="compact.list.item.spacing.frag"/>
 <src:fragref linkend="component.label.includes.part.label.frag"/>
 <src:fragref linkend="component.title.properties.frag"/>
+<src:fragref linkend="component.titlepage.properties.frag"/>
 <src:fragref linkend="crop.marks.frag"/>
 <src:fragref linkend="crop.mark.width.frag"/>
 <src:fragref linkend="crop.mark.offset.frag"/>
