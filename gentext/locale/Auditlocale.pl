@@ -69,7 +69,7 @@ for $inputfile ( @ARGV ) {
         push @dingbat, $1;
     }
 
-    while ( $master =~ m|<context\s+name="(.*?)"\s*>(.*?)</context>|gs ) {
+    while ( $input =~ m|<context\s+name="(.*?)"\s*>(.*?)</context>|gs ) {
         my $context = $1;
         my $templates = $2;
     
