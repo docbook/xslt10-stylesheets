@@ -16,6 +16,7 @@
 
 <!-- ==================================================================== -->
 
+
 <xsl:template name="component.title">
   <xsl:param name="node" select="."/>
   <xsl:param name="pagewide" select="0"/>
