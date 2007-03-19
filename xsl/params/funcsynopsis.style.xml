@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>funcsynopsis.style</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
-<refmiscinfo role="value">ansi</refmiscinfo>
-<refmiscinfo role="value">kr</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">ansi</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">kr</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>funcsynopsis.style</refname>

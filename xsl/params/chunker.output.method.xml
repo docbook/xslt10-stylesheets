@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>chunker.output.method</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
-<refmiscinfo role="value">html</refmiscinfo>
-<refmiscinfo role="value">xml</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">html</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">xml</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunker.output.method</refname>

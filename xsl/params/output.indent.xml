@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>output.indent</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
-<refmiscinfo role="value">no</refmiscinfo>
-<refmiscinfo role="value">yes</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">no</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">yes</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>output.indent</refname>

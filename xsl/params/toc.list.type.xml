@@ -7,9 +7,9 @@
 <refmeta>
 <refentrytitle>toc.list.type</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
-<refmiscinfo role="value">dl</refmiscinfo>
-<refmiscinfo role="value">ul</refmiscinfo>
-<refmiscinfo role="value">ol</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">dl</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">ul</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">ol</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>toc.list.type</refname>
