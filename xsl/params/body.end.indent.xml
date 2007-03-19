@@ -6,7 +6,7 @@
           version="5.0" xml:id="body.end.indent">
 <refmeta>
 <refentrytitle>body.end.indent</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>body.end.indent</refname>

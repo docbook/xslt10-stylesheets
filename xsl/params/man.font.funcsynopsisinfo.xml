@@ -6,7 +6,7 @@
           version="5.0" xml:id="man.font.funcsynopsisinfo">
 <refmeta>
 <refentrytitle>man.font.funcsynopsisinfo</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.font.funcsynopsisinfo</refname>

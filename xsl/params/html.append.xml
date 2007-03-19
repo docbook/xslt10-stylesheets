@@ -6,7 +6,7 @@
           version="5.0" xml:id="html.append">
 <refmeta>
 <refentrytitle>html.append</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>html.append</refname>

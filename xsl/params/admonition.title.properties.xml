@@ -4,6 +4,11 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="admonition.title.properties">
+
+<refmeta>
+  <refentrytitle>admonition.title.properties</refentrytitle>
+  <refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>admonition.title.properties</refname>
 <refpurpose>To set the style for admonitions titles.</refpurpose>

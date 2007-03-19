@@ -6,7 +6,9 @@
           version="5.0" xml:id="page.orientation">
 <refmeta>
 <refentrytitle>page.orientation</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">portrait</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">landscape</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>page.orientation</refname>

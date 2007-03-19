@@ -6,7 +6,7 @@
           version="5.0" xml:id="graphics.dir">
 <refmeta>
 <refentrytitle>graphics.dir</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">URI</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>graphics.dir</refname>

@@ -6,7 +6,10 @@
           version="5.0" xml:id="paper.type">
 <refmeta>
 <refentrytitle>paper.type</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="list-type">open</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">A4<alt>210x297 mm</alt></refmiscinfo>
+<refmiscinfo class="other" otherclass="value">USletter<alt>8.5x11 in</alt></refmiscinfo>  
 </refmeta>
 <refnamediv>
 <refname>paper.type</refname>

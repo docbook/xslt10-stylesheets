@@ -6,7 +6,7 @@
           version="5.0" xml:id="chunk.sections">
 <refmeta>
 <refentrytitle>chunk.sections</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunk.sections</refname>

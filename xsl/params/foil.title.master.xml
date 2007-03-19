@@ -6,6 +6,7 @@
           version="5.0" xml:id="foil.title.master">
 <refmeta>
 <refentrytitle>foil.title.master</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">number</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>foil.title.master</refname>

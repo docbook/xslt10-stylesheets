@@ -6,7 +6,7 @@
           version="5.0" xml:id="body.font.master">
 <refmeta>
 <refentrytitle>body.font.master</refentrytitle>
-
+  <refmiscinfo class="other" otherclass="datatype">number</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>body.font.master</refname>

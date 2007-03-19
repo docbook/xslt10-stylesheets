@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="nongraphical.admonition.properties">
+<refmeta>
+<refentrytitle>nongraphical.admonition.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>nongraphical.admonition.properties</refname>
 <refpurpose>To add properties to the outer block of a nongraphical admonition.</refpurpose>

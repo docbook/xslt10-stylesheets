@@ -6,6 +6,7 @@
           version="5.0" xml:id="pages.template">
 <refmeta>
 <refentrytitle>pages.template</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>pages.template</refname>

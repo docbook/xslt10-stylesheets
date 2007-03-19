@@ -6,6 +6,7 @@
           version="5.0" xml:id="speakernote.properties">
 <refmeta>
 <refentrytitle>speakernote.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>speakernote.properties</refname>

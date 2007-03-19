@@ -6,7 +6,7 @@
           version="5.0" xml:id="monospace.font.family">
 <refmeta>
 <refentrytitle>monospace.font.family</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>monospace.font.family</refname>

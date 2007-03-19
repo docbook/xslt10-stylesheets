@@ -6,7 +6,7 @@
           version="5.0" xml:id="page.width.portrait">
 <refmeta>
 <refentrytitle>page.width.portrait</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>page.width.portrait</refname>

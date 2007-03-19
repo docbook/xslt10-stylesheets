@@ -6,7 +6,7 @@
           version="5.0" xml:id="chunk.append">
 <refmeta>
 <refentrytitle>chunk.append</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunk.append</refname>

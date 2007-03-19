@@ -6,7 +6,10 @@
           version="5.0" xml:id="hyphenate">
 <refmeta>
 <refentrytitle>hyphenate</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="list-type">closed</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">true</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">false</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>hyphenate</refname>

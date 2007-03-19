@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="informal.object.properties">
+<refmeta>
+<refentrytitle>informal.object.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>informal.object.properties</refname>
 <refpurpose>Properties associated with a formal object such as a figure, or other component that has a title</refpurpose>

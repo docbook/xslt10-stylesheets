@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="index.preferred.page.properties">
+<refmeta>
+<refentrytitle>index.preferred.page.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>index.preferred.page.properties</refname>
 <refpurpose>Properties used to emphasize page number references for

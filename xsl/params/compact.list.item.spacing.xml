@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="compact.list.item.spacing">
+<refmeta>
+<refentrytitle>compact.list.item.spacing</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>  
 <refnamediv>
 <refname>compact.list.item.spacing</refname>
 <refpurpose>What space do you want between list items (when spacing=compact)?</refpurpose>

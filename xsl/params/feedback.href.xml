@@ -6,7 +6,7 @@
           version="5.0" xml:id="feedback.href">
 <refmeta>
 <refentrytitle>feedback.href</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">URI</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>feedback.href</refname>

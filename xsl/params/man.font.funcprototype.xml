@@ -6,7 +6,7 @@
           version="5.0" xml:id="man.font.funcprototype">
 <refmeta>
 <refentrytitle>man.font.funcprototype</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.font.funcprototype</refname>

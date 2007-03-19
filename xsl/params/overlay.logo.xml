@@ -6,7 +6,7 @@
           version="5.0" xml:id="overlay.logo">
 <refmeta>
 <refentrytitle>overlay.logo</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">URI</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>overlay.logo</refname>

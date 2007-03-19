@@ -6,7 +6,7 @@
           version="5.0" xml:id="footnote.font.size">
 <refmeta>
 <refentrytitle>footnote.font.size</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>footnote.font.size</refname>

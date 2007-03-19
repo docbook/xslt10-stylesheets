@@ -6,6 +6,7 @@
           version="5.0" xml:id="slides.properties">
 <refmeta>
 <refentrytitle>slides.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>slides.properties</refname>

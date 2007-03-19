@@ -6,6 +6,7 @@
           version="5.0" xml:id="sidebar.float.width">
 <refmeta>
 <refentrytitle>sidebar.float.width</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>sidebar.float.width</refname>

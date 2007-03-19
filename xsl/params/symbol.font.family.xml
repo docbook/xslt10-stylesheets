@@ -6,7 +6,7 @@
           version="5.0" xml:id="symbol.font.family">
 <refmeta>
 <refentrytitle>symbol.font.family</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>symbol.font.family</refname>

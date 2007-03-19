@@ -6,7 +6,7 @@
           version="5.0" xml:id="variablelist.max.termlength">
 <refmeta>
 <refentrytitle>variablelist.max.termlength</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">number</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>variablelist.max.termlength</refname>
