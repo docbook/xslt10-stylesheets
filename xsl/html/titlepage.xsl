@@ -210,19 +210,19 @@
       <xsl:call-template name="person.name"/>
     </h3>
     <xsl:if test="not($contrib.inline.enabled = 0)">
-      <xsl:apply-templates mode="titlepage.mode" select="./contrib"/>
+      <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
     </xsl:if>
-    <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
-    <xsl:apply-templates mode="titlepage.mode" select="./email"/>
+    <xsl:apply-templates mode="titlepage.mode" select="affiliation"/>
+    <xsl:apply-templates mode="titlepage.mode" select="email"/>
     <xsl:if test="not($blurb.on.titlepage.enabled = 0)">
       <xsl:choose>
         <xsl:when test="$contrib.inline.enabled = 0">
           <xsl:apply-templates mode="titlepage.mode"
-                               select="./contrib|./authorblurb|./personblurb"/>
+                               select="contrib|authorblurb|personblurb"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates mode="titlepage.mode"
-                               select="./authorblurb|./personblurb"/>
+                               select="authorblurb|personblurb"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:if>
@@ -621,7 +621,7 @@
             <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
             <xsl:text>: </xsl:text>
             <xsl:call-template name="person.name"/>
-            <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+            <xsl:apply-templates mode="titlepage.mode" select="affiliation"/>
             <xsl:apply-templates select="following-sibling::othercredit[string(contrib)=$contrib]" mode="titlepage.othercredits"/>
           </xsl:with-param>
         </xsl:call-template>
@@ -634,7 +634,7 @@
           <xsl:call-template name="person.name"/>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:apply-templates mode="titlepage.mode" select="./affiliation"/>
+      <xsl:apply-templates mode="titlepage.mode" select="affiliation"/>
     </xsl:otherwise>
   </xsl:choose>
   </xsl:when>
