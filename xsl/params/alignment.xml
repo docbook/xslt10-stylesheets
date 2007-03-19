@@ -6,7 +6,12 @@
           version="5.0" xml:id="alignment">
 <refmeta>
 <refentrytitle>alignment</refentrytitle>
-
+  <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+  <refmiscinfo class="other" otherclass="list-type">open</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">left</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">right</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">center</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">justify</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>alignment</refname>

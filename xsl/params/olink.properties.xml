@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="olink.properties">
+<refmeta>
+<refentrytitle>olink.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>olink.properties</refname>
 <refpurpose>Properties associated with the cross-reference 

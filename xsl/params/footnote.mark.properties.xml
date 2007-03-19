@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="footnote.mark.properties">
+<refmeta>
+<refentrytitle>footnote.mark.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>  
 <refnamediv>
 <refname>footnote.mark.properties</refname>
 <refpurpose>Properties applied to each footnote mark

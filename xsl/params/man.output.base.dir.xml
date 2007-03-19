@@ -6,7 +6,7 @@
           version="5.0" xml:id="man.output.base.dir">
 <refmeta>
 <refentrytitle>man.output.base.dir</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.output.base.dir</refname>

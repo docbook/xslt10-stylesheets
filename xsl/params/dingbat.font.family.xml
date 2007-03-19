@@ -6,7 +6,7 @@
           version="5.0" xml:id="dingbat.font.family">
 <refmeta>
 <refentrytitle>dingbat.font.family</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>dingbat.font.family</refname>

@@ -6,6 +6,7 @@
           version="5.0" xml:id="wordml.template">
 <refmeta>
 <refentrytitle>wordml.template</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>wordml.template</refname>

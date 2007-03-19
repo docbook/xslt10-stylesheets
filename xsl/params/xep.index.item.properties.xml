@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="xep.index.item.properties">
+<refmeta>
+<refentrytitle>xep.index.item.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>xep.index.item.properties</refname>
 <refpurpose>Properties associated with XEP index-items</refpurpose>

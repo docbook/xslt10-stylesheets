@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="orderedlist.label.properties">
+<refmeta>
+<refentrytitle>orderedlist.label.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>orderedlist.label.properties</refname>
 <refpurpose>Properties that apply to each label inside ordered list.</refpurpose>

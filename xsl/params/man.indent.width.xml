@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="man.indent.width">
+<refmeta>
+<refentrytitle>man.indent.width</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>man.indent.width</refname>
 <refpurpose>Specifies width used for adjusted indents</refpurpose>

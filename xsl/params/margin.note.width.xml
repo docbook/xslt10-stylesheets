@@ -6,6 +6,7 @@
           version="5.0" xml:id="margin.note.width">
 <refmeta>
 <refentrytitle>margin.note.width</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>margin.note.width</refname>

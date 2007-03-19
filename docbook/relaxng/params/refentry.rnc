@@ -24,3 +24,27 @@ fragment = element src:fragment {
    db._any*
 }
 
+## The following patterns are here just to enable autocompletition in some editors
+
+db.refmiscinfo |=
+  element refmiscinfo {
+     attribute class { "other" },
+     attribute otherclass { "datatype" },
+     ("attribute set" | "boolean" | "string" | "filename" | "list" | "color" | "integer" 
+      | "uri" | "length" | "rtf" | "table" | "number" | "float" )
+  }
+
+db.refmiscinfo |=
+  element refmiscinfo {
+     attribute class { "other" },
+     attribute otherclass { "value" },
+     db._text
+  }
+
+db.refmiscinfo |=
+  element refmiscinfo {
+     attribute class { "other" },
+     attribute otherclass { "list-type" },
+     ( "open" | "closed" )
+  }
+     

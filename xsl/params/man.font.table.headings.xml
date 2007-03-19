@@ -6,7 +6,7 @@
           version="5.0" xml:id="man.font.table.headings">
 <refmeta>
 <refentrytitle>man.font.table.headings</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.font.table.headings</refname>

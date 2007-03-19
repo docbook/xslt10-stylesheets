@@ -6,6 +6,7 @@
           version="5.0" xml:id="running.foot.properties">
 <refmeta>
 <refentrytitle>running.foot.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>running.foot.properties</refname>

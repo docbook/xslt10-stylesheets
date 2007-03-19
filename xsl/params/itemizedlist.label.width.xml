@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="itemizedlist.label.width">
+<refmeta>
+<refentrytitle>itemizedlist.label.width</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>itemizedlist.label.width</refname>
 <refpurpose>The default width of the label (bullet) in an itemized list.</refpurpose>

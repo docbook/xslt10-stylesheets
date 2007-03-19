@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="index.div.title.properties">
+<refmeta>
+<refentrytitle>index.div.title.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>index.div.title.properties</refname>
 <refpurpose>Properties associated with the letter headings in an

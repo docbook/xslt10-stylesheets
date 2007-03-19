@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="toc.margin.properties">
+<refmeta>
+<refentrytitle>toc.margin.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>toc.margin.properties</refname>
 <refpurpose>Margin properties used on Tables of Contents</refpurpose>

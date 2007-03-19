@@ -4,6 +4,10 @@
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
           version="5.0" xml:id="list.block.spacing">
+<refmeta>
+<refentrytitle>list.block.spacing</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>list.block.spacing</refname>
 <refpurpose>What spacing do you want before and after lists?</refpurpose>

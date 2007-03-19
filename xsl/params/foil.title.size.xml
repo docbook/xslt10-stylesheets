@@ -6,6 +6,7 @@
           version="5.0" xml:id="foil.title.size">
 <refmeta>
 <refentrytitle>foil.title.size</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>foil.title.size</refname>

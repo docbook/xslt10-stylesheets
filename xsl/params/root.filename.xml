@@ -6,7 +6,7 @@
           version="5.0" xml:id="root.filename">
 <refmeta>
 <refentrytitle>root.filename</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>root.filename</refname>

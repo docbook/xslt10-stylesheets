@@ -6,7 +6,7 @@
           version="5.0" xml:id="css.stylesheet.dir">
 <refmeta>
 <refentrytitle>css.stylesheet.dir</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">URI</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>css.stylesheet.dir</refname>
