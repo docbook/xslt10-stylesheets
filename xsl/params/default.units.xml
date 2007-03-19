@@ -7,13 +7,13 @@
 <refmeta>
 <refentrytitle>default.units</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
-<refmiscinfo role="value">cm</refmiscinfo>
-<refmiscinfo role="value">mm</refmiscinfo>
-<refmiscinfo role="value">in</refmiscinfo>
-<refmiscinfo role="value">pt</refmiscinfo>
-<refmiscinfo role="value">pc</refmiscinfo>
-<refmiscinfo role="value">px</refmiscinfo>
-<refmiscinfo role="value">em</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">cm</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">mm</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">in</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">pt</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">pc</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">px</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">em</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>default.units</refname>
