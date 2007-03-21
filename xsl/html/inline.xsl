@@ -224,6 +224,7 @@
   </xsl:param>
 
   <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="generate.html.title"/>
     <xsl:call-template name="dir"/>
 
@@ -237,7 +238,6 @@
       </xsl:when>
       <xsl:otherwise>
         <strong>
-          <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:copy-of select="$content"/>
         </strong>
       </xsl:otherwise>
@@ -715,9 +715,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:attribute name="class">
-          <xsl:text>emphasis</xsl:text>
-        </xsl:attribute>
+        <xsl:apply-templates select="." mode="class.attribute"/>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:call-template name="anchor"/>
