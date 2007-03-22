@@ -2174,6 +2174,7 @@ div {
    db.example.role.attribute = attribute role { text }
    db.example.label.attribute = db.label.attribute
    db.example.width.attribute = db.width.characters.attribute
+   db.example.pgwide.attribute = db.pgwide.attribute
    db.example.floatstyle.attribute = db.floatstyle.attribute
 
    db.example.attlist =
@@ -2182,7 +2183,7 @@ div {
     & db.common.linking.attributes
     & db.example.label.attribute?
     & db.example.floatstyle.attribute?
-    & db.example.width.attribute?
+    & (db.example.width.attribute | db.example.pgwide.attribute)?
 
    db.example.info = db._info.title.onlyreq
 
