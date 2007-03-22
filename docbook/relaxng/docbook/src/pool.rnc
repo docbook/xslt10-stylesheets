@@ -2172,11 +2172,8 @@ div {
 div {
 
    db.example.role.attribute = attribute role { text }
-
    db.example.label.attribute = db.label.attribute
-
    db.example.width.attribute = db.width.characters.attribute
-
    db.example.floatstyle.attribute = db.floatstyle.attribute
 
    db.example.attlist =
