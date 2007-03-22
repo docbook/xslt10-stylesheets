@@ -194,6 +194,13 @@ db.xlink.type.attribute =
 db.xlink.role.attribute =
    [
       db:refpurpose [ "Identifies the XLink role of the link" ]
+      dbx:description [
+         db:para [
+            "DocBook uses the XLink role value "
+            db:uri [ "http://docbook.org/xlink/role/olink" ]
+            " to identify linking elements with OLink semantics."
+         ]
+      ]
    ]
    attribute xlink:role { xsd:anyURI }
 
