@@ -614,9 +614,11 @@ div {
    ctrl:exclude [ from="db.cals.table" exclude="db.cals.informaltable" ]
 
    db.cals.table.role.attribute = attribute role { text }
+   db.cals.table.label.attribute = db.label.attribute
 
    db.cals.table.attlist =
       db.cals.table.role.attribute?
+    & db.cals.table.label.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.tabstyle.attribute?

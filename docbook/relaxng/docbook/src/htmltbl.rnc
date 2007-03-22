@@ -257,10 +257,14 @@ db.html.informaltable.model =
    db:refpurpose [ "A formal (captioned) HTML table in a document" ]
 ]
 div {
+   db.html.table.role.attribute = attribute role { text }
+   db.html.table.label.attribute = db.label.attribute
 
    db.html.table.attlist =
       db.html.attrs
     & db.html.table.attributes
+    & db.html.table.role.attribute?
+    & db.html.table.label.attribute?
     & db.orient.attribute?
     & db.pgwide.attribute?
     & db.tabstyle.attribute?
