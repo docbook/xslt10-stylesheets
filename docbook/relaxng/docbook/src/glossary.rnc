@@ -349,6 +349,8 @@ div {
 
 # ======================================================================
 
+db.technical.inlines |= db.termdef
+
 [
    db:refname [ "termdef" ]
    db:refpurpose [ "An inline definition of a term" ]
@@ -369,7 +371,7 @@ div {
             s:rule [
                context = "db:termdef"
                s:assert [
-                  test = "count(db:glossterm) = 1"
+                  test = "count(db:firstterm) = 1"
                   "A termdef must contain exactly one glossterm"
                ]
             ]
