@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0CR2</productnumber>
+<!-- productVersion --> <productnumber>5.0CR3</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2007-03-13</pubdate>
+<pubdate>2007-03-22</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -154,6 +154,54 @@ from the
 DocBook is also available from the mirror on
 <link xlink:href="http://docbook.org/"/>.
 </para>
+
+<!--
+<listitem xml:id="rfe.">
+<para>Fixed <link xlink:href="&RFE;aid=">RFE </link>:
+
+</para>
+</listitem>
+-->
+
+<section xml:id="s.50CR3">
+<title>Changes in DocBook V5.0CR3</title>
+
+<para>This release contains a few improvements over V5.0CR2.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1679775">
+<para>Fixed <link xlink:href="&RFE;aid=1679775">RFE 1679775</link>:
+Changed semantics of <tag>termdef</tag>. A
+<tag>firstterm</tag> is now required (instead of a <tag>glossterm</tag> as
+in previous releases).</para>
+</listitem>
+<listitem xml:id="rfe.1673820">
+<para>Fixed <link xlink:href="&RFE;aid=1673820">RFE 1673820</link>:
+Adopted “<uri>http://docbook.org/xlink/role/olink</uri>”
+as an XLink role value (<tag class="attribute">xlink:role</tag>) to
+identify OLinks expressed using XLink attributes.</para>
+</listitem>
+<listitem xml:id="htmlinfo">
+<para>Allow <tag>info</tag> in HTML tables.</para>
+</listitem>
+<listitem xml:id="rfe.1682917">
+<para>Fixed <link xlink:href="&RFE;aid=1682917">RFE 1682917</link>:
+Added <tag class="attribute">pgwide</tag> attribute to
+<tag>example</tag>.</para>
+</listitem>
+<listitem xml:id="rfe.1644553">
+<para>Fixed <link xlink:href="&RFE;aid=1644553">RFE 1644553</link>:
+Added <tag class="attribute">label</tag> attribute to CALS and
+HTML tables.</para>
+</listitem>
+<listitem xml:id="rfe.1588693">
+<para>Fixed <link xlink:href="&RFE;aid=1588693">RFE 1588693</link>:
+Added an <tag>acknowledgements</tag> element, peer to 
+<tag>dedication</tag>, replacing <tag>ackno</tag> which had only
+been available at the end of <tag>article</tag>.</para>
+</listitem>
+</orderedlist>
+</section>
 
 <section xml:id="s.50CR2">
 <title>Changes in DocBook V5.0CR2</title>
