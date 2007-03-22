@@ -1093,6 +1093,15 @@
   </indexterm>
 </xsl:template>
 
+<xsl:template match="ackno" priority="200">
+  <acknowledgements>
+    <xsl:copy-of select="@*"/>
+    <para>
+      <xsl:apply-templates/>
+    </para>
+  </acknowledgements>
+</xsl:template>
+
 <!-- ====================================================================== -->
 
 <xsl:template match="ulink" priority="200" mode="copy">
