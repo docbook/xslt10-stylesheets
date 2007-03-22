@@ -60,6 +60,7 @@ db.divisions = db.part
 
 db.components =
    db.dedication
+ | db.acknowledgements
  | db.preface
  | db.chapter
  | db.appendix
@@ -142,7 +143,7 @@ div {
 
 [
    db:refname [ "dedication" ]
-   db:refpurpose [ "A wrapper for the dedication section of a book" ]
+   db:refpurpose [ "The dedication of a book or other component" ]
 ]
 div {
 
@@ -163,6 +164,35 @@ div {
       element dedication {
          db.dedication.attlist,
          db.dedication.info,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "acknowledgements" ]
+   db:refpurpose [ "Acknowledgements of a book or other component" ]
+]
+div {
+
+   db.acknowledgements.status.attribute = db.status.attribute
+
+   db.acknowledgements.role.attribute = attribute role { text }
+
+   db.acknowledgements.attlist =
+      db.acknowledgements.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.acknowledgements.status.attribute?
+
+   db.acknowledgements.info = db._info
+
+   db.acknowledgements =
+      element acknowledgements {
+         db.acknowledgements.attlist,
+         db.acknowledgements.info,
          db.all.blocks+
       }
 }
@@ -407,28 +437,6 @@ div {
 
 # ======================================================================
 
-[
-   db:refname [ "ackno" ]
-   db:refpurpose [ "Acknowledgements in an Article" ]
-]
-div {
-
-   db.ackno.role.attribute = attribute role { text }
-
-   db.ackno.attlist =
-      db.ackno.role.attribute?
-    & db.common.attributes
-    & db.common.linking.attributes
-
-   db.ackno =
-      element ackno {
-         db.ackno.attlist,
-         db.all.inlines*
-      }
-}
-
-# ======================================================================
-
 db.article.components = db.toplevel.sections
 
 # ======================================================================
@@ -478,10 +486,10 @@ div {
       element article {
          db.article.attlist,
          db.article.info,
-         db.navigation.components*,
+         (db.navigation.components | db.appendix | db.acknowledgements | db.colophon)*
          ((db.all.blocks+, db.article.components?)
           | db.article.components),
-         (db.appendix | db.navigation.components | db.ackno | db.colophon)*
+         (db.navigation.components | db.appendix | db.acknowledgements | db.colophon)*
       }
 }
 
