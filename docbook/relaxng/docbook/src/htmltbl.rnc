@@ -237,14 +237,20 @@ db.html.tablecell.attributes =
    ]
    attribute colspan { xsd:nonNegativeInteger }?
 
+db.html.table.info = db._info.title.forbidden
+
 db.html.table.model =
+   db.html.table.info?,
    db.html.caption,
    (db.html.col* | db.html.colgroup*),
    db.html.thead?,
    db.html.tfoot?,
    (db.html.tbody+ | db.html.tr+)
 
+db.html.informaltable.info = db._info.title.forbidden
+
 db.html.informaltable.model =
+   db.html.informaltable.info?,
    (db.html.col* | db.html.colgroup*),
    db.html.thead?,
    db.html.tfoot?,
