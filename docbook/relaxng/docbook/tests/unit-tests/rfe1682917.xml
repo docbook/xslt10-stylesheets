@@ -1,0 +1,31 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Sample book title</title>
+
+<chapter>
+<title>Sample chapter title</title>
+
+<para>This unit test contains examples with the width and pgwide attributes.
+They are optional and mutually exclusive.</para>
+
+<example pgwide="1">
+<title>Page wide example</title>
+<para>This example is page wide.</para>
+</example>
+
+<example width="80">
+<title>Eighty column example</title>
+<para>This example is 80 columns wide.</para>
+</example>
+
+<!-- this is an error -->
+<!--
+<example width="80" pgwide="0">
+<title>Broken example</title>
+<para>This example is 80 columns wide.</para>
+</example>
+-->
+
+</chapter>
+</book>
+

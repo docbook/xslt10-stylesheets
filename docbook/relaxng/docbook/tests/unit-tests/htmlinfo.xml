@@ -1,0 +1,26 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Sample book title</title>
+
+<chapter>
+<title>Sample chapter title</title>
+
+<para>This unit test contains an HTML <tag>table</tag> with an <tag>info</tag>.
+</para>
+
+<table>
+<info>
+<bibliomisc>Irrelevant</bibliomisc>
+</info>
+<caption>This is the HTML table <emphasis>title</emphasis></caption>
+<tr>
+<td>A1</td><td>A2</td>
+</tr>
+<tr>
+<td>B1</td><td>B2</td>
+</tr>
+</table>
+
+</chapter>
+
+</book>
