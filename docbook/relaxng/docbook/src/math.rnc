@@ -33,17 +33,11 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-# TEI: formula
+db.formal.blocks |= db.equation
+db.informal.blocks |= db.informalequation
 
 db.math.inlines = db.inlineequation
-
-db.math.blocks =
-   db.equation
- | db.informalequation
-
 db.domain.inlines |= db.math.inlines
-
-db.nopara.blocks |= db.math.blocks
 
 # ======================================================================
 
