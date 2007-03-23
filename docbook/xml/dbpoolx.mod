@@ -50,7 +50,7 @@
      declaration that uses the public identifier shown below:
 
      <!ENTITY % dbpool PUBLIC
-     "-//OASIS//ELEMENTS DocBook XML Information Pool V4.5//EN"
+     "-//OASIS//ELEMENTS DocBook Information Pool V4.5//EN"
      "dbpoolx.mod">
      %dbpool;
 
