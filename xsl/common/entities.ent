@@ -53,3 +53,20 @@
                 and ($role = @role or $type = @type or
                 (string-length($role) = 0 and string-length($type) = 0))'>
 
+<!ENTITY setup-language-variable '
+<xsl:variable name="language">
+  <xsl:call-template name="l10n.language"/>
+</xsl:variable>
+
+<xsl:variable name="lowercase">
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key">normalize.sort.input</xsl:with-param>
+  </xsl:call-template>
+</xsl:variable>
+
+<xsl:variable name="uppercase">
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key">normalize.sort.output</xsl:with-param>
+  </xsl:call-template>
+</xsl:variable>
+'>

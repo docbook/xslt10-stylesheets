@@ -182,6 +182,9 @@
 <gentext key="lowercase.alpha" text="aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž"/>
 <gentext key="uppercase.alpha" text="AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ"/>
 
+<gentext key="normalize.sort.input" text="aábcčdďeéěfghiíjklmnňoópqrřsštťuúůvwxyýzž"/>
+<gentext key="normalize.sort.output" text="AÁBCČDĎEÉĚFGHIÍJKLMNŇOÓPQRŘSŠTŤUÚŮVWXYÝZŽ"/>
+
 <dingbat key="startquote" text="&#x201e;"/>
 <dingbat key="endquote" text="&#x201c;"/>
 <dingbat key="nestedstartquote" text="&#x201a;"/>
