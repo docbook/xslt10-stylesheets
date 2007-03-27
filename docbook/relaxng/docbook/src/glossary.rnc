@@ -372,7 +372,7 @@ div {
                context = "db:termdef"
                s:assert [
                   test = "count(db:firstterm) = 1"
-                  "A termdef must contain exactly one glossterm"
+                  "A termdef must contain exactly one firstterm"
                ]
             ]
          ]
