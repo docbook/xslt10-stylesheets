@@ -3,7 +3,7 @@
                 xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
-                exclude-result-prefixes="suwl exsl"
+                exclude-result-prefixes="suwl exsl xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
