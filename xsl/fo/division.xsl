@@ -242,7 +242,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:apply-templates select="." mode="front.cover"/>
+  <xsl:call-template name="front.cover"/>
 
   <xsl:if test="$preamble">
     <xsl:call-template name="page.sequence">
@@ -262,7 +262,7 @@
 
   <xsl:apply-templates select="$content"/>
 
-  <xsl:apply-templates select="." mode="back.cover"/>
+  <xsl:call-template name="back.cover"/>
 
 </xsl:template>
 
@@ -273,8 +273,8 @@
 <xsl:template match="book/titleabbrev"></xsl:template>
 
 <!-- Placeholder templates -->
-<xsl:template match="*" mode="front.cover"/>
-<xsl:template match="*" mode="back.cover"/>
+<xsl:template name="front.cover"/>
+<xsl:template name="back.cover"/>
 
 <!-- ================================================================= -->
 <xsl:template name="make.book.tocs">
