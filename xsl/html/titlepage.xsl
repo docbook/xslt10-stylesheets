@@ -332,7 +332,7 @@
       <span>
         <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates mode="titlepage.mode"/>
-      </span>
+      </span><xsl:text>&#160;</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <div>
