@@ -703,12 +703,16 @@
 
 <!-- ==================================================================== -->
 
-<!-- Create a page sequence for an element -->
-<xsl:template match="*" mode="page.sequence">
-  <xsl:param name="content" select="NOTANODE"/>
+<!-- Utility template to create a page sequence for an element -->
+<xsl:template match="*" mode="page.sequence" name="page.sequence">
+  <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
   <xsl:param name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:param>
+  <xsl:param name="element" select="local-name(.)"/>
+  <xsl:param name="gentext-key" select="local-name(.)"/>
 
   <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
@@ -718,18 +722,21 @@
     <xsl:attribute name="format">
       <xsl:call-template name="page.number.format">
         <xsl:with-param name="master-reference" select="$master-reference"/>
+        <xsl:with-param name="element" select="$element"/>
       </xsl:call-template>
     </xsl:attribute>
 
     <xsl:attribute name="initial-page-number">
       <xsl:call-template name="initial.page.number">
         <xsl:with-param name="master-reference" select="$master-reference"/>
+        <xsl:with-param name="element" select="$element"/>
       </xsl:call-template>
     </xsl:attribute>
 
     <xsl:attribute name="force-page-count">
       <xsl:call-template name="force.page.count">
         <xsl:with-param name="master-reference" select="$master-reference"/>
+        <xsl:with-param name="element" select="$element"/>
       </xsl:call-template>
     </xsl:attribute>
 
@@ -751,10 +758,12 @@
 
     <xsl:apply-templates select="." mode="running.head.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
+      <xsl:with-param name="gentext-key" select="$gentext-key"/>
     </xsl:apply-templates>
 
     <xsl:apply-templates select="." mode="running.foot.mode">
       <xsl:with-param name="master-reference" select="$master-reference"/>
+      <xsl:with-param name="gentext-key" select="$gentext-key"/>
     </xsl:apply-templates>
 
     <fo:flow flow-name="xsl-region-body">
