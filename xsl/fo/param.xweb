@@ -207,6 +207,8 @@ generate.section.toc.level;
 &qandadiv.autolabel;
 &qanda.inherit.numeration;
 &qanda.defaultlabel;
+&qanda.in.toc;
+&qanda.nested.in.toc;
 </reference>
 
 <reference id="biblio"><title>Bibliography</title>
@@ -766,6 +768,8 @@ around all these parameters.</para>
 <src:fragref linkend="profile.vendor.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
+<src:fragref linkend="qanda.in.toc.frag"/>
+<src:fragref linkend="qanda.nested.in.toc.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
 <src:fragref linkend="qanda.title.level1.properties.frag"/>
