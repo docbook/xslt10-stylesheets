@@ -2277,15 +2277,27 @@
   <!-- This template is called after each <fo:flow> starts. -->
   <!-- Customize this template to set attributes on fo:flow -->
 
+  <!-- remove -draft from reference -->
+  <xsl:variable name="pageclass">
+    <xsl:choose>
+      <xsl:when test="contains($master-reference, '-draft')">
+        <xsl:value-of select="substring-before($master-reference, '-draft')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$master-reference"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$fop.extensions != 0 or $passivetex.extensions != 0">
       <!-- body.start.indent does not work well with these processors -->
     </xsl:when>
-    <xsl:when test="starts-with($master-reference, 'body') or
-                    starts-with($master-reference, 'lot') or
-                    starts-with($master-reference, 'front') or
+    <xsl:when test="starts-with($pageclass, 'body') or
+                    starts-with($pageclass, 'lot') or
+                    starts-with($pageclass, 'front') or
                     $element = 'preface' or
-                    (starts-with($master-reference, 'back') and
+                    (starts-with($pageclass, 'back') and
                     $element = 'appendix')">
       <xsl:attribute name="start-indent">
         <xsl:value-of select="$body.start.indent"/>
