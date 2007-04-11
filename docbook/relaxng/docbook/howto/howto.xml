@@ -1606,7 +1606,7 @@ db.spacing.enumeration |= "large"]]></programlisting>
     </section>
   </section>
 
-<section xml:id="cust-naming" status="draft">
+<section xml:id="cust-naming">
 <title>Naming and versioning DocBook customizations</title>
 
 <para>DocBook V5.0 is not tightly coupled with some particular
