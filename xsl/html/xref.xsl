@@ -16,6 +16,10 @@
 
      ******************************************************************** -->
 
+<!-- Use internal variable for olink xlink role for consistency -->
+<xsl:variable 
+      name="xolink.role">http://docbook.org/xlink/role/olink</xsl:variable>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="anchor">
@@ -981,6 +985,8 @@
 </xsl:template>
 
 <xsl:template match="olink" name="olink">
+  <!-- olink content may be passed in from xlink olink -->
+  <xsl:param name="content" select="NOTANELEMENT"/>
 
   <xsl:call-template name="anchor"/>
 
@@ -988,9 +994,33 @@
 
   <xsl:choose>
     <!-- olinks resolved by stylesheet and target database -->
-    <xsl:when test="@targetdoc or @targetptr" >
-      <xsl:variable name="targetdoc.att" select="@targetdoc"/>
-      <xsl:variable name="targetptr.att" select="@targetptr"/>
+    <xsl:when test="@targetdoc or @targetptr or
+                    (@xlink:role=$xolink.role and
+                     contains(@xlink:href, '#') )" >
+
+      <xsl:variable name="targetdoc.att">
+        <xsl:choose>
+          <xsl:when test="@targetdoc != ''">
+            <xsl:value-of select="@targetdoc"/>
+          </xsl:when>
+          <xsl:when test="@xlink:role=$xolink.role and
+                       contains(@xlink:href, '#')" >
+            <xsl:value-of select="substring-before(@xlink:href, '#')"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:variable name="targetptr.att">
+        <xsl:choose>
+          <xsl:when test="@targetptr != ''">
+            <xsl:value-of select="@targetptr"/>
+          </xsl:when>
+          <xsl:when test="@xlink:role=$xolink.role and
+                       contains(@xlink:href, '#')" >
+            <xsl:value-of select="substring-after(@xlink:href, '#')"/>
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
 
       <xsl:variable name="olink.lang">
         <xsl:call-template name="l10n.language">
@@ -1047,11 +1077,18 @@
       </xsl:variable>
 
       <xsl:variable name="hottext">
-        <xsl:call-template name="olink.hottext">
-          <xsl:with-param name="target.database" select="$target.database"/>
-          <xsl:with-param name="olink.key" select="$olink.key"/>
-          <xsl:with-param name="olink.lang" select="$olink.lang"/>
-        </xsl:call-template>
+        <xsl:choose>
+          <xsl:when test="$content">
+            <xsl:copy-of select="$content"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="olink.hottext">
+              <xsl:with-param name="olink.key" select="$olink.key"/>
+              <xsl:with-param name="olink.lang" select="$olink.lang"/>
+              <xsl:with-param name="target.database" select="$target.database"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:variable>
 
       <xsl:variable name="olink.docname.citation">

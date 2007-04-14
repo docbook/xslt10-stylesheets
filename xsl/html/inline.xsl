@@ -55,6 +55,17 @@
           </xsl:choose>
         </xsl:variable>
 
+        <!-- Is it an olink ? -->
+        <xsl:variable name="is.olink">
+          <xsl:choose>
+	    <!-- If xlink:role="http://docbook.org/xlink/role/olink" -->
+            <!-- and if the href contains # -->
+            <xsl:when test="contains($xhref,'#') and
+	         @xlink:role = $xolink.role">1</xsl:when>
+            <xsl:otherwise>0</xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
         <xsl:choose>
           <xsl:when test="$is.idref = 1">
 
@@ -113,6 +124,12 @@
                 </a>
               </xsl:otherwise>
             </xsl:choose>
+          </xsl:when>
+
+          <xsl:when test="$is.olink = 1">
+	    <xsl:call-template name="olink">
+	      <xsl:with-param name="content" select="$content"/>
+	    </xsl:call-template>
           </xsl:when>
 
           <!-- otherwise it's a URI -->
