@@ -41,7 +41,7 @@
                     and (not($node/@xlink:type) or 
                          $node/@xlink:type='simple')">
 
-      <!-- Is it a local idref or a uri? -->
+      <!-- Is it a local idref? -->
       <xsl:variable name="is.idref">
         <xsl:choose>
           <!-- if the href starts with # and does not contain an "(" -->
@@ -50,6 +50,17 @@
                           and (not(contains($xhref,'&#40;'))
                           or starts-with($xhref,
                                      '#xpointer&#40;id&#40;'))">1</xsl:when>
+          <xsl:otherwise>0</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <!-- Is it an olink ? -->
+      <xsl:variable name="is.olink">
+        <xsl:choose>
+	  <!-- If xlink:role="http://docbook.org/xlink/role/olink" -->
+          <!-- and if the href contains # -->
+          <xsl:when test="contains($xhref,'#') and
+	       @xlink:role = $xolink.role">1</xsl:when>
           <xsl:otherwise>0</xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
@@ -85,6 +96,12 @@
               </fo:basic-link>
             </xsl:otherwise>
           </xsl:choose>
+        </xsl:when>
+
+        <xsl:when test="$is.olink = 1">
+	  <xsl:call-template name="olink">
+	    <xsl:with-param name="content" select="$content"/>
+	  </xsl:call-template>
         </xsl:when>
 
         <!-- otherwise it's a URI -->
