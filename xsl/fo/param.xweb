@@ -49,6 +49,7 @@ $Id$
 &callout.graphics.extension;
 &callout.graphics.number.limit;
 &callout.graphics.path;
+&callout.icon.size;
 &callout.unicode;
 &callout.unicode.font;
 &callout.unicode.number.limit;
@@ -581,6 +582,7 @@ around all these parameters.</para>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
 <src:fragref linkend="callout.graphics.frag"/>
+<src:fragref linkend="callout.icon.size.frag"/>
 <src:fragref linkend="callout.graphics.number.limit.frag"/>
 <src:fragref linkend="callout.graphics.path.frag"/>
 <src:fragref linkend="callout.unicode.font.frag"/>
