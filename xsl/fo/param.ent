@@ -20,6 +20,7 @@
 <!ENTITY body.margin.bottom SYSTEM "../params/body.margin.bottom.xml">
 <!ENTITY body.margin.top SYSTEM "../params/body.margin.top.xml">
 <!ENTITY callout.defaultcolumn SYSTEM "../params/callout.defaultcolumn.xml">
+<!ENTITY callout.icon.size SYSTEM "../params/callout.icon.size.xml">
 <!ENTITY callout.graphics SYSTEM "../params/callout.graphics.xml">
 <!ENTITY callout.graphics.extension SYSTEM "../params/callout.graphics.extension.xml">
 <!ENTITY callout.graphics.number.limit SYSTEM "../params/callout.graphics.number.limit.xml">
