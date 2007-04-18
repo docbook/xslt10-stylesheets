@@ -138,7 +138,8 @@
       <xsl:variable name="filename"
                     select="concat($callout.graphics.path,$conum,$callout.graphics.extension)"/>
 
-      <fo:external-graphic>
+      <fo:external-graphic content-width={$callout.bug.size}"
+                           width="{$callout.bug.size}">
         <xsl:attribute name="src">
           <xsl:choose>
             <xsl:when test="$passivetex.extensions != 0
