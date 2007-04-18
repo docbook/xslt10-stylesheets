@@ -14,7 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="callout.graphics.extension.frag"><xsl:param name="callout.graphics.extension" select="'.png'"/></src:fragment>
+<src:fragment xml:id="callout.graphics.extension.frag">
+<xsl:param condition="html" name="callout.graphics.extension" select="'.png'"/>
+<xsl:param condition="fo" name="callout.graphics.extension" select="'.svg'"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
