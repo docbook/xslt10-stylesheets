@@ -136,7 +136,8 @@
     <xsl:when test="$callout.graphics != '0'
                     and $conum &lt;= $callout.graphics.number.limit">
       <xsl:variable name="filename"
-                    select="concat($callout.graphics.path,$conum,$callout.graphics.extension)"/>
+                    select="concat($callout.graphics.path, $conum,
+		                   $callout.graphics.extension)"/>
 
       <fo:external-graphic content-width={$callout.bug.size}"
                            width="{$callout.bug.size}">
