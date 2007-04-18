@@ -14,7 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="callout.graphics.number.limit.frag"><xsl:param name="callout.graphics.number.limit" select="'15'"/></src:fragment>
+<src:fragment xml:id="callout.graphics.number.limit.frag">
+<xsl:param condition="html" name="callout.graphics.number.limit" select="'15'"/>
+<xsl:param condition="fo" name="callout.graphics.number.limit" select="'30'"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
