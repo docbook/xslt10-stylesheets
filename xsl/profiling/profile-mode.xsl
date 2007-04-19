@@ -25,6 +25,18 @@
   <xsl:variable name="arch.ok" select="not(@arch) or not($profile.arch) or
                                        $arch.content != '' or @arch = ''"/>
 
+  <xsl:variable name="audience.content">
+    <xsl:if test="@audience">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.audience"/>
+        <xsl:with-param name="b" select="@audience"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="audience.ok" 
+                        select="not(@audience) or not($profile.audience) or
+                                $audience.content != '' or @audience = ''"/>
+
   <xsl:variable name="condition.content">
     <xsl:if test="@condition">
       <xsl:call-template name="cross.compare">
@@ -146,6 +158,18 @@
   <xsl:variable name="vendor.ok" select="not(@vendor) or not($profile.vendor) or
                                          $vendor.content != '' or @vendor = ''"/>
 
+  <xsl:variable name="wordsize.content">
+    <xsl:if test="@wordsize">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$profile.wordsize"/>
+        <xsl:with-param name="b" select="@wordsize"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="wordsize.ok" 
+                        select="not(@wordsize) or not($profile.wordsize) or
+                                $wordsize.content != '' or @wordsize = ''"/>
+
   <xsl:variable name="attribute.content">
     <xsl:if test="@*[local-name()=$profile.attribute]">
       <xsl:call-template name="cross.compare">
@@ -155,26 +179,39 @@
     </xsl:if>
   </xsl:variable>
   <xsl:variable name="attribute.ok" 
-                select="not(@*[local-name()=$profile.attribute]) or not($profile.value) or
-                        $attribute.content != '' or 
-                        @*[local-name()=$profile.attribute] = '' or not($profile.attribute)"/>
+                select="not(@*[local-name()=$profile.attribute]) or 
+                        not($profile.value) or $attribute.content != '' or 
+                        @*[local-name()=$profile.attribute] = '' or 
+                        not($profile.attribute)"/>
 
-  <xsl:if test="$arch.ok and $condition.ok and $conformance.ok and $lang.ok and $os.ok 
-                and $revision.ok and $revisionflag.ok and $role.ok and $security.ok
-		and $status.ok and $userlevel.ok and $vendor.ok and $attribute.ok">
+  <xsl:if test="$arch.ok and 
+                $audience.ok and 
+                $condition.ok and 
+                $conformance.ok and 
+                $lang.ok and 
+                $os.ok and 
+                $revision.ok and 
+                $revisionflag.ok and 
+                $role.ok and 
+                $security.ok and 
+                $status.ok and 
+                $userlevel.ok and 
+                $vendor.ok and 
+                $wordsize.ok and 
+                $attribute.ok">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
 
       <!-- Entity references must be replaced with filereferences for temporary tree -->
       <xsl:if test="@entityref and $profile.baseuri.fixup">
-	<xsl:attribute name="fileref">
-	  <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
-	</xsl:attribute>
+        <xsl:attribute name="fileref">
+          <xsl:value-of select="unparsed-entity-uri(@entityref)"/>
+        </xsl:attribute>
       </xsl:if>
 
       <!-- xml:base is eventually added to the root element -->
       <xsl:if test="not(../..) and $profile.baseuri.fixup">
-	<xsl:call-template name="add-xml-base"/>
+        <xsl:call-template name="add-xml-base"/>
       </xsl:if>
 
       <xsl:apply-templates select="node()" mode="profile"/>
