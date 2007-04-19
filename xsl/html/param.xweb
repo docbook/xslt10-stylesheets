@@ -342,6 +342,7 @@ profiling of your document. For more info about profiling look at
 url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html</ulink>.</para>
 </partintro>
 &profile.arch;
+&profile.audience;
 &profile.condition;
 &profile.conformance;
 &profile.lang;
@@ -353,6 +354,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &profile.status;
 &profile.userlevel;
 &profile.vendor;
+&profile.wordsize;
 &profile.attribute;
 &profile.value;
 &profile.separator;
@@ -665,6 +667,7 @@ around all these parameters.</para>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
 <src:fragref linkend="profile.arch.frag"/>
+<src:fragref linkend="profile.audience.frag"/>
 <src:fragref linkend="profile.attribute.frag"/>
 <src:fragref linkend="profile.condition.frag"/>
 <src:fragref linkend="profile.conformance.frag"/>
@@ -679,6 +682,7 @@ around all these parameters.</para>
 <src:fragref linkend="profile.userlevel.frag"/>
 <src:fragref linkend="profile.value.frag"/>
 <src:fragref linkend="profile.vendor.frag"/>
+<src:fragref linkend="profile.wordsize.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
 <src:fragref linkend="qanda.inherit.numeration.frag"/>
