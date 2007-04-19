@@ -23,6 +23,7 @@
 
 <!-- Profiling parameters -->
 <xsl:param name="profile.arch" select="''"/>
+<xsl:param name="profile.audience" select="''"/>
 <xsl:param name="profile.condition" select="''"/>
 <xsl:param name="profile.conformance" select="''"/>
 <xsl:param name="profile.lang" select="''"/>
@@ -34,6 +35,7 @@
 <xsl:param name="profile.status" select="''"/>
 <xsl:param name="profile.userlevel" select="''"/>
 <xsl:param name="profile.vendor" select="''"/>
+<xsl:param name="profile.wordsize" select="''"/>
 <xsl:param name="profile.attribute" select="''"/>
 <xsl:param name="profile.value" select="''"/>
 <xsl:param name="profile.separator" select="';'"/>
