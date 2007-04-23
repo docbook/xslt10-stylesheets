@@ -559,9 +559,9 @@ to be incomplete. Don't forget to read the source, too :-)</para>
   <xsl:variable name="column.sum">
     <xsl:choose>
       <!-- CALS table -->
-      <xsl:when test="tgroup[1][@cols]">
-        <xsl:if test="count(tgroup[1]/colspec) = tgroup/@cols">
-          <xsl:for-each select="tgroup[1]/colspec">
+      <xsl:when test="@cols">
+        <xsl:if test="count(colspec) = @cols">
+          <xsl:for-each select="colspec">
             <xsl:if test="position() != 1">
               <xsl:text> + </xsl:text>
             </xsl:if>
