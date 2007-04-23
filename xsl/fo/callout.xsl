@@ -139,7 +139,7 @@
                     select="concat($callout.graphics.path, $conum,
 		                   $callout.graphics.extension)"/>
 
-      <fo:external-graphic content-width={$callout.icon.size}"
+      <fo:external-graphic content-width="{$callout.icon.size}"
                            width="{$callout.icon.size}">
         <xsl:attribute name="src">
           <xsl:choose>
