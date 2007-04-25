@@ -90,7 +90,7 @@
             </xsl:call-template>
           </xsl:variable>
           
-          <toc label="{$title}" topic="{$href}">
+          <toc label="{normalize-space($title)}" topic="{$href}">
             <xsl:apply-templates select="key('id',$rootid)/*" mode="etoc"/>
           </toc>
         </xsl:when>
@@ -113,7 +113,7 @@
             </xsl:call-template>
           </xsl:variable>
           
-          <toc label="{$title}" topic="{$href}">
+          <toc label="{normalize-space($title)}" topic="{$href}">
             <xsl:apply-templates select="/*/*" mode="etoc"/>
           </toc>
         </xsl:otherwise>
@@ -142,7 +142,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <topic label="{$title}" href="{$href}">
+  <topic label="{normalize-space($title)}" href="{$href}">
     <xsl:apply-templates select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index" mode="etoc"/>
   </topic>
 
