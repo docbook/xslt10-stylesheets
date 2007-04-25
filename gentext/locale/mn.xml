@@ -10,6 +10,10 @@
           <affiliation><address><email>badral@openmn.org</email></address>
           </affiliation>
   </author>
+   <author><firstname>Ganbold</firstname><surname>Tsagaankhuu</surname>
+           <affiliation><address><email>ganbold@micom.mng.net</email></address>
+           </affiliation>
+   </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -31,39 +35,40 @@
 <gentext key="CAUTION" text="АНХААРУУЛГА"/>
 <gentext key="Chapter" text="Бүлэг"/>
 <gentext key="chapter" text="бүлэг"/>
-<gentext key="Colophon" text="Түлхүүр үг"/>
-<gentext key="colophon" text="Түлхүүр үг"/> 
+<gentext key="Colophon" text="Сүүл тайлбар"/>
+<gentext key="colophon" text="сүүл тайлбар"/> 
 <gentext key="Copyright" text="Зохиогчийн эрх"/>
 <gentext key="copyright" text="зохиогчийн эрх"/>
 <gentext key="Dedication" text="Зохиогчийн үг"/>
 <gentext key="dedication" text="зохиогчийн үг"/>
 <gentext key="Edition" text="Хэвлэл"/>
 <gentext key="edition" text="хэвлэл"/>
+<gentext key="Editor" text="Хянан тохиолдуулагч"/>
 <gentext key="Equation" text="Тэгшитгэл"/>
 <gentext key="equation" text="тэгшитгэл"/>
 <gentext key="Example" text="Жишээ"/>
 <gentext key="example" text="жишээ"/>
 <gentext key="Figure" text="Зураг"/>
 <gentext key="figure" text="зураг"/>
-<gentext key="Glossary" text="Тайлбар үгс"/>
-<gentext key="glossary" text="тайлбар үгс"/>
-<gentext key="GlossSee" text="Харна уу"/>
+<gentext key="Glossary" text="Нэр томъёо"/>
+<gentext key="glossary" text="нэр томъёо"/>
+<gentext key="GlossSee" text="харна уу"/>
 <gentext key="glosssee" text="харна уу"/>
 <gentext key="GlossSeeAlso" text="Бас харна уу"/>
 <gentext key="glossseealso" text="бас харна уу"/>
 <gentext key="IMPORTANT" text="ЧУХАЛ"/>
 <gentext key="Important" text="Чухал"/>
 <gentext key="important" text="чухал"/>
-<gentext key="Index" text="Толгойлсон үгс"/>
-<gentext key="index" text="толгойлсон үгс"/>
+<gentext key="Index" text="Үгийн жагсаалт"/>
+<gentext key="index" text="үгийн жагсаалт"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Хуулийн заалт"/>
 <gentext key="legalnotice" text="хуулийн заалт"/>
-<gentext key="MsgAud" text="Зориулсан"/>
-<gentext key="msgaud" text="зориулсан"/>
-<gentext key="MsgLevel" text="Яаралтай байдал"/>
-<gentext key="msglevel" text="яаралтай байдал"/>
+<gentext key="MsgAud" text="Зориулалт"/>
+<gentext key="msgaud" text="зориулалт"/>
+<gentext key="MsgLevel" text="Түвшин"/>
+<gentext key="msglevel" text="түвшин"/>
 <gentext key="MsgOrig" text="Үүсэл"/>
 <gentext key="msgorig" text="үүсэл"/>
 <gentext key="note" text="тэмдэглэл"/>
@@ -73,109 +78,129 @@
 <gentext key="Part" text="хэсэг"/>
 <gentext key="Preface" text="Өмнөх үг"/>
 <gentext key="preface" text="өмнөх үг"/>
-<gentext key="Procedure" text="Процедур"/>
-<gentext key="procedure" text="процедур"/>
+<gentext key="Procedure" text="Гүйцэтгэл"/>
+<gentext key="procedure" text="гүйцэтгэл"/>
 <gentext key="ProductionSet" text="Бүтээгдэхүүн"/>
 <gentext key="PubDate" text="Хэвлэгдсэн огноо"/>
 <gentext key="pubdate" text="хэвлэгдсэн огноо"/>
 <gentext key="Published" text="Хэвлэгдсэн"/>
 <gentext key="published" text="хэвлэгдсэн"/>
-<gentext key="Qandadiv" text="А &amp; Х"/>
-<gentext key="qandadiv" text="А &amp; Х"/>
+<gentext key="Publisher" text="Хэвлэсэн компани"/>
+<gentext key="Qandadiv" text="А ба Х"/>
+<gentext key="qandadiv" text="А ба Х"/>
+<gentext key="QandASet" text="Түгээмэл тавигддаг асуултууд"/>
 <gentext key="Question" text="А:"/>
 <gentext key="question" text="А:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Ашигласан ном"/>
 <gentext key="reference" text="ашигласан ном"/>
-<gentext key="refname" text="нэр"/>
+<gentext key="References" text="Ашигласан номнууд"/>
 <gentext key="RefName" text="Нэр"/>
-<gentext key="RefSection" text="Хэсэг"/>
-<gentext key="refsection" text="Хэсэг"/>
-<gentext key="RefSynopsisDiv" text="Тойм"/>
-<gentext key="refsynopsisdiv" text="тойм"/> 
-<gentext key="RevHistory" text="Хувилбарын түүх"/>
-<gentext key="revhistory" text="хувилбарын түүх"/>
-<gentext key="Revision" text="Хувилбар"/>
-<gentext key="revision" text="хувилбар"/>
-<gentext key="Section" text="Хэсэг"/>
-<gentext key="section" text="хэсэг"/>
+<gentext key="refname" text="нэр"/>
+<gentext key="RefSection" text=""/>
+<gentext key="refsection" text=""/>
+<gentext key="RefSynopsisDiv" text="Ерөнхий агуулга"/>
+<gentext key="refsynopsisdiv" text="ерөнхий агуулга"/> 
+<gentext key="RevHistory" text="Залруулалтын түүх"/>
+<gentext key="revhistory" text="залруулалтын түүх"/>
+<gentext key="Revision" text="Залруулалт"/>
+<gentext key="revision" text="залруулалт"/>
 <gentext key="sect1" text="Хэсэг"/> 
 <gentext key="sect2" text="Хэсэг"/> 
 <gentext key="sect3" text="Хэсэг"/> 
 <gentext key="sect4" text="Хэсэг"/> 
 <gentext key="sect5" text="Хэсэг"/> 
+<gentext key="section" text="Хэсэг"/>
+<gentext key="Section" text="Хэсэг"/>
 <gentext key="see" text="Харна уу"/>
 <gentext key="See" text="харна уу"/>
 <gentext key="SeeAlso" text="Бас харна уу"/>
 <gentext key="seealso" text="бас харна уу"/>
 <gentext key="Seealso" text="Бас харна уу"/>
-<gentext key="Set" text="Толгой үгс"/>
-<gentext key="set" text="толгой үгс"/>
-<gentext key="setindex" text="толгой үгсийн жагсаалт"/>
-<gentext key="SetIndex" text="Толгой үгсийн жагсаалт"/>
-<gentext key="sidebar" text="захын тэмдэглэл"/>
-<gentext key="Sidebar" text="Захын тэмдэглэл"/>
+
+<gentext key="Set" text="Цуглуулга"/>
+<gentext key="set" text="цуглуулга"/>
+<gentext key="setindex" text="цуглуулгын жагсаалт"/>
+<gentext key="SetIndex" text="Цуглуулгын жагсаалт"/>
+
+<gentext key="sidebar" text="хажуу самбар"/>
+<gentext key="Sidebar" text="Хажуу самбар"/>
 <gentext key="Step" text="Алхам"/>
 <gentext key="step" text="алхам"/>
 <gentext key="table" text="хүснэгт"/>
 <gentext key="Table" text="Хүснэгт"/>
-<gentext key="TIP" text="ЗӨВӨЛГӨӨ"/>
-<gentext key="Tip" text="Зөвөлгөө"/>
-<gentext key="tip" text="зөвөлгөө"/>
+<gentext key="task" text="даалгавар"/>
+<gentext key="Task" text="Даалгавар"/>
+<gentext key="TIP" text="ЗӨВЛӨГӨӨ"/>
+<gentext key="Tip" text="Зөвлөгөө"/>
+<gentext key="tip" text="зөвлөгөө"/>
 <gentext key="Warning" text="Сануулга"/>
 <gentext key="warning" text="сануулга"/>
 <gentext key="WARNING" text="САНУУЛГА"/>
 
 <gentext key="and" text="ба"/>
-<gentext key="by" text="-аар"/>
-<gentext key="Edited" text="Хэвлэгдсэн"/>
-<gentext key="edited" text="хэвлэгдсэн"/>
-<gentext key="Editedby" text="Эрхэлсэн"/>
-<gentext key="editedby" text="Эрхэлсэн"/>
+<gentext key="by" text=""/>
+<gentext key="Edited" text="Хянасан"/>
+<gentext key="edited" text="хянасан"/>
+<gentext key="Editedby" text="Хянан тохиолдуулсан"/>
+<gentext key="editedby" text="хянан тохиолдуулсан"/>
 <gentext key="in" text="дотор"/>
-<gentext key="lastlistcomma" text=""/>
+<gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="байхгүй элемент"/>
-<gentext key="notes" text="хөлийн тайлбар"/>
-<gentext key="Notes" text="Хөлийн тайлбар"/>
+<gentext key="notes" text="тайлбар"/>
+<gentext key="Notes" text="Тайлбар"/>
 <gentext key="Pgs" text="Хуудас"/>
 <gentext key="pgs" text="хуудас"/>
-<gentext key="Revisedby" text="Өөрчилсөн: "/>
-<gentext key="revisedby" text="Өөрчилсөн: "/>
-<gentext key="TableNotes" text="Ажиглалт"/>
-<gentext key="tablenotes" text="Ажиглалт"/>
+<gentext key="Revisedby" text="Залруулсан: "/>
+<gentext key="revisedby" text="залруулсан: "/>
+<gentext key="TableNotes" text="Тайлбар"/>
+<gentext key="tablenotes" text="тайлбар"/>
 <gentext key="TableofContents" text="Гарчиг"/>
-<gentext key="tableofcontents" text="Гарчиг"/>
-<gentext key="the" text=""/>
+<gentext key="tableofcontents" text="гарчиг"/>
 <gentext key="unexpectedelementname" text="Санамсаргүй элемент"/>
 <gentext key="unsupported" text="дэмжигдээгүй"/>
 <gentext key="xrefto" text="xref руу"/>
 
-<gentext key="listofequations" text="тэгшитгэл"/>
-<gentext key="ListofEquations" text="Тэгшитгэл"/>
-<gentext key="ListofExamples" text="Жишээ"/>
-<gentext key="listofexamples" text="жишээ"/>
-<gentext key="ListofFigures" text="Зургийн лавлах"/>
-<gentext key="listoffigures" text="зургийн лавлах"/>
-<gentext key="listoftables" text="хүснэгтүүдийн лавлах"/>
-<gentext key="ListofTables" text="Хүснэгтүүдийн лавлах"/>
-<gentext key="ListofUnknown" text="???-Лавлах"/>
-<gentext key="listofunknown" text="???-Лавлах"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Зохиогчид"/>
 
-<gentext key="nav-home" text="Эхлэл рүү"/>
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Хуулбар хянан тохиолдуулагч"/>
+<gentext key="graphicdesigner" text="График дизайнч"/>
+<gentext key="productioneditor" text="Бүтээгдэхүүн хянан тохиолдуулагч"/>
+<gentext key="technicaleditor" text="Техникийн хянан тохиолдуулагч"/>
+<gentext key="translator" text="Орчуулагч"/>
+
+<gentext key="listofequations" text="тэгшитгэлийн жагсаалт"/>
+<gentext key="ListofEquations" text="Тэгшитгэлийн жагсаалт"/>
+<gentext key="ListofExamples" text="Жишээний жагсаалт"/>
+<gentext key="listofexamples" text="жишээний жагсаалт"/>
+<gentext key="ListofFigures" text="Зургийн жагсаалт"/>
+<gentext key="listoffigures" text="зургийн жагсаалт"/>
+<gentext key="ListofProcedures" text="Гүйцэтгэлийн жагсаалт"/>
+<gentext key="listofprocedures" text="гүйцэтгэлийн жагсаалт"/>
+<gentext key="listoftables" text="хүснэгтийн жагсаалт"/>
+<gentext key="ListofTables" text="Хүснэгтийн жагсаалт"/>
+<gentext key="ListofUnknown" text="Тодорхойгүй жагсаалт"/>
+<gentext key="listofunknown" text="тодорхойгүй жагсаалт"/>
+
+<gentext key="nav-home" text="Эхлэл"/>
 <gentext key="nav-next" text="Дараах"/>
-<gentext key="nav-next-sibling" text="Түргэн дараах"/>
+<gentext key="nav-next-sibling" text="Дараах"/>
 <gentext key="nav-prev" text="Өмнөх"/>
-<gentext key="nav-prev-sibling" text="Түргэн өмнөх"/>
+<gentext key="nav-prev-sibling" text="Өмнөх"/>
 <gentext key="nav-up" text="Дээш"/>
-<gentext key="nav-toc" text="Лруу"/>
-  
-<gentext key="sectioncalled" text="Хэсгүүдийн нэрс"/> 
+<gentext key="nav-toc" text="Гарчиг"/>
+ 
 <gentext key="Draft"         text="Ноорог"/> 
 <gentext key="above"         text="дээр"/> 
 <gentext key="below"         text="доор"/> 
-<gentext key="index symbols" text="Символ"/>
+<gentext key="sectioncalled" text="Хэсгийн нэр"/>
+<gentext key="index symbols" text="тэмдэгтүүд"/>
 
 
 <gentext key="lowercase.alpha" text="абвгдеёжзийклмноөпрстуүфхцчшщъыьэюя"/> 
@@ -197,7 +222,7 @@
   
 <context name="styles">
 
-<template name="person-name">first-last</template>
+<template name="person-name">овог-нэр</template>
 
 </context>
 
@@ -211,6 +236,7 @@
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
@@ -224,9 +250,12 @@
 <template name="equation"><Equation/> %n. %t</template>
 <template name="example"><Example/> %n. %t</template>
 <template name="figure"><Figure/> %n. %t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
 <template name="glossentry">%t</template>    
 <template name="important">%t</template>
 <template name="index">%t</template>
@@ -269,6 +298,9 @@
 <template name="step">%t</template>
 <template name="table"><Table/> %n. %t</template>
 <template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -288,6 +320,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="part">%t</template>
 
 </context>
 
@@ -372,6 +405,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -406,15 +441,20 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> %o </template>
+<template name="olink.page.citation"> (хуудас %p)</template>
 <template name="page.citation"> [%p]</template>
-<template name="page">(Seite %p)</template>    
-<template name="pageabbrev">(S. %p)</template>
-<template name="Page">Seite %p</template>
+<template name="page">(Хуудас %p)</template>    
+<template name="docname"> %o </template>
+<template name="docnamelong"> %o гарчигтай баримтад</template>
+<template name="pageabbrev">(Х. %p)</template>
+<template name="Page">Хуудас %p</template>
 
 
 <template name="bridgehead"><startquote/>%t<endquote/></template>
@@ -502,22 +542,27 @@
 </context>
   
 <context name="datetime">
-<template name="format">d.m.Y</template>
+<template name="format">Y/m/d</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Тодорхойлолт: </template>
+<template name="suffix">]</template>
 </context>
   
 <context name="datetime-full">
-<template name="January">Хулгана</template>
-<template name="February">Үхэр</template>
-<template name="March">Бар</template>
-<template name="April">Туулай</template>
-<template name="May">Луу</template>
-<template name="June">Могой</template>
-<template name="July">Морь</template>
-<template name="August">Хонь</template>
-<template name="September">Бич</template>
-<template name="October">Тахиа</template>
-<template name="November">Нохой</template>
-<template name="December">Гахай</template>
+<template name="January">Хулгана сарын</template>
+<template name="February">Үхэр сарын</template>
+<template name="March">Бар сарын</template>
+<template name="April">Туулай сарын</template>
+<template name="May">Луу сарын</template>
+<template name="June">Могой сарын</template>
+<template name="July">Морь сарын</template>
+<template name="August">Хонь сарын</template>
+<template name="September">Бич сарын</template>
+<template name="October">Тахиа сарын</template>
+<template name="November">Нохой сарын</template>
+<template name="December">Гахай сарын</template>
 <template name="Monday">Даваа</template>
 <template name="Tuesday">Мягмар</template>
 <template name="Wednesday">Лхагва</template>
@@ -553,79 +598,143 @@
 <template name="langcode">0x0450 Mongolian (MONGOLIA)</template>
 </context>
 
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
 <letters>
     <l i="-1"/>
-    <l i="0">Symbole</l>
-    <l i="1">А</l>
-    <l i="1">а</l>
-    <l i="2">Б</l>
-    <l i="2">б</l>
-    <l i="3">В</l>
-    <l i="3">в</l>
-    <l i="4">Г</l>
-    <l i="4">г</l>
-    <l i="5">Д</l>
-    <l i="5">д</l>
-    <l i="6">Е</l>
-    <l i="6">е</l>
-    <l i="7">Ё</l>
-    <l i="7">ё</l>
-    <l i="8">Ж</l>
-    <l i="8">ж</l>
-    <l i="9">З</l>
-    <l i="9">з</l>
-    <l i="10">И</l>
-    <l i="10">и</l>
-    <l i="11">Й</l>
-    <l i="11">й</l>
-    <l i="12">К</l>
-    <l i="12">к</l>
-    <l i="13">Л</l>
-    <l i="13">л</l>
-    <l i="14">М</l>
-    <l i="14">м</l>
-    <l i="15">Н</l>
-    <l i="15">н</l>
-    <l i="16">О</l>
-    <l i="16">о</l>
-    <l i="17">Ө</l>
-    <l i="17">ө</l>
-    <l i="18">П</l>
-    <l i="18">п</l>
-    <l i="19">Р</l>
-    <l i="19">р</l>
-    <l i="20">С</l>
-    <l i="20">с</l>
-    <l i="21">Т</l>
-    <l i="21">т</l>
-    <l i="22">У</l>
-    <l i="22">у</l>
-    <l i="23">Ү</l>
-    <l i="23">ү</l>
-    <l i="24">Ф</l>
-    <l i="24">ф</l>
-    <l i="25">Х</l>
-    <l i="25">х</l>
-    <l i="26">Ц</l>
-    <l i="26">ц</l>
-    <l i="27">Ч</l>
-    <l i="27">ч</l>
-    <l i="28">Ш</l>
-    <l i="28">ш</l>
-    <l i="29">Щ</l>
-    <l i="29">щ</l>
-    <l i="30">Ъ</l>
-    <l i="30">ъ</l>
-    <l i="31">Ы</l>
-    <l i="31">ы</l>
-    <l i="32">Ь</l>
-    <l i="32">ь</l>
-    <l i="33">Э</l>
-    <l i="33">э</l>
-    <l i="34">Ю</l>
-    <l i="34">ю</l>
-    <l i="35">Я</l>
-    <l i="35">я</l>
+
+    <l i="0">Тэмдэгтүүд</l>
+
+<!--
+    <l i="0"/>
+-->
+    <l i="10">A</l>
+    <l i="10">a</l>
+    <l i="20">B</l>
+    <l i="20">b</l>
+    <l i="30">C</l>
+    <l i="30">c</l>
+    <l i="40">D</l>
+    <l i="40">d</l>
+    <l i="50">E</l>
+    <l i="50">e</l>
+    <l i="60">F</l>
+    <l i="60">f</l>
+    <l i="70">G</l>
+    <l i="70">g</l>
+    <l i="80">H</l>
+    <l i="80">h</l>
+    <l i="90">I</l>
+    <l i="90">i</l>
+    <l i="100">J</l>
+    <l i="100">j</l>
+    <l i="110">K</l>
+    <l i="110">k</l>
+    <l i="120">L</l>
+    <l i="120">l</l>
+    <l i="130">M</l>
+    <l i="130">m</l>
+    <l i="140">N</l>
+    <l i="140">n</l>
+    <l i="150">O</l>
+    <l i="150">o</l>
+    <l i="160">P</l>
+    <l i="160">p</l>
+    <l i="170">Q</l>
+    <l i="170">q</l>
+    <l i="180">R</l>
+    <l i="180">r</l>
+    <l i="190">S</l>
+    <l i="190">s</l>
+    <l i="200">T</l>
+    <l i="200">t</l>
+    <l i="210">U</l>
+    <l i="210">u</l>
+    <l i="220">V</l>
+    <l i="220">v</l>
+    <l i="230">W</l>
+    <l i="230">w</l>
+    <l i="240">X</l>
+    <l i="240">x</l>
+    <l i="250">Y</l>
+    <l i="250">y</l>
+    <l i="260">Z</l>
+    <l i="260">z</l>
+    <l i="270">А</l>
+    <l i="270">а</l>
+    <l i="280">Б</l>
+    <l i="280">б</l>
+    <l i="290">В</l>
+    <l i="290">в</l>
+    <l i="300">Г</l>
+    <l i="300">г</l>
+    <l i="310">Д</l>
+    <l i="310">д</l>
+    <l i="320">Е</l>
+    <l i="320">е</l>
+    <l i="330">Ё</l>
+    <l i="330">ё</l>
+    <l i="340">Ж</l>
+    <l i="340">ж</l>
+    <l i="350">З</l>
+    <l i="350">з</l>
+    <l i="360">И</l>
+    <l i="360">и</l>
+    <l i="370">Й</l>
+    <l i="370">й</l>
+    <l i="380">К</l>
+    <l i="380">к</l>
+    <l i="390">Л</l>
+    <l i="390">л</l>
+    <l i="400">М</l>
+    <l i="400">м</l>
+    <l i="410">Н</l>
+    <l i="410">н</l>
+    <l i="420">О</l>
+    <l i="420">о</l>
+    <l i="430">Ө</l>
+    <l i="430">ө</l>
+    <l i="440">П</l>
+    <l i="440">п</l>
+    <l i="450">Р</l>
+    <l i="450">р</l>
+    <l i="460">С</l>
+    <l i="460">с</l>
+    <l i="470">Т</l>
+    <l i="470">т</l>
+    <l i="480">У</l>
+    <l i="480">у</l>
+    <l i="490">Ү</l>
+    <l i="490">ү</l>
+    <l i="500">Ф</l>
+    <l i="500">ф</l>
+    <l i="510">Х</l>
+    <l i="510">х</l>
+    <l i="520">Ц</l>
+    <l i="520">ц</l>
+    <l i="530">Ч</l>
+    <l i="530">ч</l>
+    <l i="540">Ш</l>
+    <l i="540">ш</l>
+    <l i="550">Щ</l>
+    <l i="550">щ</l>
+    <l i="560">Ъ</l>
+    <l i="560">ъ</l>
+    <l i="570">Ы</l>
+    <l i="570">ы</l>
+    <l i="580">Ь</l>
+    <l i="580">ь</l>
+    <l i="590">Э</l>
+    <l i="590">э</l>
+    <l i="600">Ю</l>
+    <l i="600">ю</l>
+    <l i="610">Я</l>
+    <l i="610">я</l>
 </letters>
 
 </locale>
+
