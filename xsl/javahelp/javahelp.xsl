@@ -92,7 +92,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <helpset version="1.0">
     <title>
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </title>
 
     <!-- maps -->
@@ -166,7 +166,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates select="book" mode="jhtoc"/>
   </tocitem>
@@ -182,9 +182,9 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
-    <xsl:apply-templates select="part|reference|preface|chapter|appendix|article|colophon"
+    <xsl:apply-templates select="part|reference|preface|chapter|appendix|article|colophon|glossary|bibliography"
                          mode="jhtoc"/>
   </tocitem>
 </xsl:template>
@@ -200,10 +200,10 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates
-      select="article|preface|chapter|appendix|refentry|section|sect1"
+      select="article|preface|chapter|appendix|refentry|section|sect1|glossary|bibliography"
       mode="jhtoc"/>
   </tocitem>
 </xsl:template>
@@ -218,7 +218,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates select="section" mode="jhtoc"/>
   </tocitem>
@@ -234,7 +234,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates select="sect2" mode="jhtoc"/>
   </tocitem>
@@ -250,7 +250,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates select="sect3" mode="jhtoc"/>
   </tocitem>
@@ -266,7 +266,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates select="sect4" mode="jhtoc"/>
   </tocitem>
@@ -282,7 +282,7 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
     <xsl:apply-templates select="sect5" mode="jhtoc"/>
   </tocitem>
@@ -298,10 +298,50 @@ references. In that case you can select appropriate encoding here.</para>
 
   <tocitem target="{$id}">
     <xsl:attribute name="text">
-      <xsl:value-of select="$title"/>
+      <xsl:value-of select="normalize-space($title)"/>
     </xsl:attribute>
   </tocitem>
 </xsl:template>
+
+
+<xsl:template match="glossary" mode="jhtoc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="title">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'Glossary'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <tocitem target="{$id}">
+    <xsl:attribute name="text">
+      <xsl:value-of select="$title"/>
+    </xsl:attribute>
+  </tocitem>
+
+</xsl:template>
+
+<xsl:template match="bibliography" mode="jhtoc">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="title">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'Bibliography'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <tocitem target="{$id}">
+    <xsl:attribute name="text">
+      <xsl:value-of select="$title"/>
+    </xsl:attribute>
+    
+  </tocitem>
+</xsl:template>
+
 
 <!-- ==================================================================== -->
 
@@ -339,7 +379,9 @@ references. In that case you can select appropriate encoding here.</para>
                                      | key('id',$rootid)//sect3
                                      | key('id',$rootid)//sect4
                                      | key('id',$rootid)//sect5
-                                     | key('id',$rootid)//indexterm
+                                     | key('id',$rootid)//indexterm 
+                                     | key('id',$rootid)//glossary
+                                     | key('id',$rootid)//bibliography
 				     | key('id',$rootid)//*[@id]"
                              mode="map"/>
       </xsl:when>
@@ -361,6 +403,8 @@ references. In that case you can select appropriate encoding here.</para>
                                      | //sect4
                                      | //sect5
                                      | //indexterm
+                                     | //glossary
+                                     | //bibliography
 				     | //*[@id]"
                              mode="map"/>
       </xsl:otherwise>
@@ -394,7 +438,7 @@ references. In that case you can select appropriate encoding here.</para>
   </mapID>
 </xsl:template>
 
-<xsl:template match="part|reference|preface|chapter|appendix|refentry|article"
+<xsl:template match="part|reference|preface|chapter|appendix|refentry|article|glossary|bibliography"
               mode="map">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -482,20 +526,20 @@ references. In that case you can select appropriate encoding here.</para>
   </xsl:variable>
 
   <xsl:variable name="text">
-    <xsl:value-of select="primary"/>
+    <xsl:value-of select="normalize-space(primary)"/>
     <xsl:if test="secondary">
       <xsl:text>, </xsl:text>
-      <xsl:value-of select="secondary"/>
+      <xsl:value-of select="normalize-space(secondary)"/>
     </xsl:if>
     <xsl:if test="tertiary">
       <xsl:text>, </xsl:text>
-      <xsl:value-of select="tertiary"/>
+      <xsl:value-of select="normalize-space(tertiary)"/>
     </xsl:if>
   </xsl:variable>
 
   <xsl:choose>
     <xsl:when test="see">
-      <xsl:variable name="see"><xsl:value-of select="see"/></xsl:variable>
+      <xsl:variable name="see"><xsl:value-of select="normalize-space(see)"/></xsl:variable>
       <indexitem text="{$text} see '{$see}'"/>
     </xsl:when>
     <xsl:otherwise>
