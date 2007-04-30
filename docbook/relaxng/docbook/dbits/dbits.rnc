@@ -1,7 +1,7 @@
 # This schema integrates ITS markup (http://www.w3.org/TR/its/) 
 # into DocBook schema (http://docbook.org)
 #
-# $Id: $
+# $Id$
 #
 # Copyright 2007 Jirka Kosek (jirka@kosek.cz)
 #
