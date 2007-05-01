@@ -12,7 +12,7 @@
 # suitability of the schema for any purpose. It is provided "as is"
 # without expressed or implied warranty.
 
-# Namespace declartions for DocBook, ITS and HTML (HTML is used internally in DocBook schema)  
+# Namespace declarations for DocBook, ITS and HTML (HTML is used internally in DocBook schema)  
 namespace db = "http://docbook.org/ns/docbook"
 namespace its = "http://www.w3.org/2005/11/its"
 namespace html = "http://www.w3.org/1999/xhtml"
