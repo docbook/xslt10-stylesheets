@@ -731,6 +731,10 @@ reduce the total number of elements available in DocBook.</para>
 <entry><tag condition="v4">ulink</tag></entry>
 <entry><tag>link</tag></entry>
 </row>
+<row>
+<entry><tag condition="v4">ackno</tag></entry>
+<entry><tag>acknowledgements</tag></entry>
+</row>
 </tbody>
 </tgroup>
 </table>
