@@ -1,7 +1,7 @@
 include ../../buildtools/Makefile.incl
 
 SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
-        de.xml el.xml en.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
+        de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
         gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml lt.xml \
         mn.xml nl.xml nn.xml no.xml pa.xml pl.xml hr.xml la.xml or.xml pt.xml \
         pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
@@ -25,6 +25,7 @@ da.xml: ../../gentext/locale/da.xml $(GENSTYLE)
 de.xml: ../../gentext/locale/de.xml $(GENSTYLE)
 el.xml: ../../gentext/locale/el.xml $(GENSTYLE)
 en.xml: ../../gentext/locale/en.xml $(GENSTYLE)
+eo.xml: ../../gentext/locale/eo.xml $(GENSTYLE)
 es.xml: ../../gentext/locale/es.xml $(GENSTYLE)
 et.xml: ../../gentext/locale/et.xml $(GENSTYLE)
 eu.xml: ../../gentext/locale/eu.xml $(GENSTYLE)
