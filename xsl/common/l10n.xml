@@ -14,6 +14,7 @@
 <!ENTITY de SYSTEM "de.xml">
 <!ENTITY el SYSTEM "el.xml">
 <!ENTITY en SYSTEM "en.xml">
+<!ENTITY eo SYSTEM "eo.xml">
 <!ENTITY es SYSTEM "es.xml">
 <!ENTITY et SYSTEM "et.xml">
 <!ENTITY eu SYSTEM "eu.xml">
@@ -75,6 +76,7 @@
 &de;
 &el;
 &en;
+&eo;
 &es;
 &et;
 &eu;
