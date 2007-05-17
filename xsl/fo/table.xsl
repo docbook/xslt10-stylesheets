@@ -210,7 +210,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       </fo:block-container>
     </xsl:when>
     <xsl:when test="@pgwide = 1">
-      <fo:block span="all" start-indent="0pt" end-indent="0pt">
+      <fo:block xsl:use-attribute-sets="pgwide.properties">
         <xsl:copy-of select="$table.block"/>
       </fo:block>
     </xsl:when>
