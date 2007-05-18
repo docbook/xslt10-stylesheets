@@ -15,7 +15,7 @@ MV ?= mv
 
 CLASS=wd
 VERSION=5.0b6
-SPECNAME=$(CLASS)-docbook-docbook-$(VERSION)
+SPECNAME=docbook-$(VERSION)-spec-wd-01
 
 TOOLS=../tools
 AUGMENT=$(TOOLS)/augment.xsl
