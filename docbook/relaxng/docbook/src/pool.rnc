@@ -250,7 +250,7 @@ db.xlink.actuate.attribute =
    ]
    attribute xlink:actuate { db.xlink.actuate.enumeration }
 
-db.href.attribute =
+db.href.attributes =
    db.xlink.href.attribute
  & db.xlink.type.attribute?
  & db.xlink.role.attribute?
@@ -358,10 +358,10 @@ db.common.idreq.attributes =
  & db.effectivity.attributes
 
 db.common.linking.attributes =
-   (db.linkend.attribute | db.href.attribute)?
+   (db.linkend.attribute | db.href.attributes)?
 
 db.common.req.linking.attributes =
-   db.linkend.attribute | db.href.attribute
+   db.linkend.attribute | db.href.attributes
 
 db.common.data.attributes =
    [
