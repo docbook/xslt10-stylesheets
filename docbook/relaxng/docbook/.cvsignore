@@ -1,8 +1,0 @@
-RELEASES
-*.rnc
-*.rng
-*.dtd
-*.xsd
-*.sch
-build
-semantic.cache
