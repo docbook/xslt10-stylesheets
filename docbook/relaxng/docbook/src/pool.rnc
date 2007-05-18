@@ -6233,7 +6233,7 @@ div {
    db.code =
       element code {
          db.code.attlist,
-         db._text
+         (db.programming.inlines | db._text)*
       }
 }
 
