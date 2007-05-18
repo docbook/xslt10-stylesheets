@@ -360,6 +360,7 @@ div {
 
    db.termdef.attlist =
       db.termdef.role.attribute?
+    & db.glossentry.sortas.attribute?
     & db.common.attributes
     & db.common.linking.attributes
     & db.baseform.attribute
