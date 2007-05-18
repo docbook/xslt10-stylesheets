@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0CR3</productnumber>
+<!-- productVersion --> <productnumber>5.0CR4</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2007-03-22</pubdate>
+<pubdate>2007-05-18</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -162,6 +162,58 @@ DocBook is also available from the mirror on
 </para>
 </listitem>
 -->
+
+<section xml:id="s.50CR4">
+<title>Changes in DocBook V5.0CR4</title>
+
+<para>This release contains a few improvements over V5.0CR3.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1708032">
+<para>Fixed <link xlink:href="&RFE;aid=1708032">RFE 1708032</link>:
+Fixed pattern naming inconsistency; changed
+<literal>db.href.attribute</literal> to
+<literal>db.href.attributes</literal>.
+</para>
+</listitem>
+<listitem xml:id="rfe.1700154">
+<para>Fixed <link xlink:href="&RFE;aid=1700154">RFE 1700154</link>:
+Added <tag class="attribute">sortas</tag> to
+<tag>termdef</tag>.
+</para>
+</listitem>
+<listitem xml:id="rfe.1686919">
+<para>Fixed <link xlink:href="&RFE;aid=1686919">RFE 1686919</link>:
+Added an <link xlink:href="http://www.nvdl.org/">NVDL</link> rules file.
+</para>
+</listitem>
+<listitem xml:id="rfe.1705596">
+<para>Fixed <link xlink:href="&RFE;aid=1705596">RFE 1705596</link>:
+Aded <literal>db.programming.inlines</literal>
+(<tag>classname</tag>,
+<tag>exceptionname</tag>,
+<tag>function</tag>,
+<tag>initializer</tag>,
+<tag>interfacename</tag>,
+<tag>methodname</tag>,
+<tag>modifier</tag>,
+<tag>ooclass</tag>,
+<tag>ooexception</tag>,
+<tag>oointerface</tag>,
+<tag>parameter</tag>,
+<tag>returnvalue</tag>,
+<tag>type</tag>, and
+<tag>varname</tag>)
+to the content model of <tag>code</tag>.
+</para>
+</listitem>
+<listitem xml:id="rfe.1689228">
+<para>Fixed <link xlink:href="&RFE;aid=1689228">RFE 1689228</link>:
+Fixed typo in Schematron assertion.
+</para>
+</listitem>
+</orderedlist>
+</section>
 
 <section xml:id="s.50CR3">
 <title>Changes in DocBook V5.0CR3</title>
