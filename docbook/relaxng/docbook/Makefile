@@ -50,6 +50,7 @@ distrib: docbook.dtd docbook.rng   docbook.rnc   docbook.sch \
 	mkdir -p $(DISTRIB)/{rng,dtd,xsd,sch,docs,tools}
 	mkdir $(DISTRIB)/docs/images
 	echo $(VERSION) > $(DISTRIB)/VERSION
+	cp docbook.nvdl $(DISTRIB)/
 	cp docbook.{rng,rnc} docbookxi.{rng,rnc} $(DISTRIB)/rng/
 	cp docbook.dtd $(DISTRIB)/dtd/
 	cp docbook.sch $(DISTRIB)/sch/
