@@ -327,16 +327,14 @@ body { background-image: url('</xsl:text>
 
 <xsl:template match="/">
   <xsl:choose>
+    <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
+         toss the namespace and continue.  Use the docbook5 namespaced
+	 stylesheets for DocBook5 if you don't want to use this feature.-->
     <!-- include extra test for Xalan quirk -->
     <xsl:when test="(function-available('exsl:node-set') or
                      contains(system-property('xsl:vendor'),
                        'Apache Software Foundation'))
                     and (*/self::ng:* or */self::db:*)">
-      <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-           toss the namespace and continue. Someday we'll reverse this logic
-           and add the namespace to documents that don't have one.
-           But not before the whole stylesheet has been converted to use
-           namespaces. i.e., don't hold your breath -->
       <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
