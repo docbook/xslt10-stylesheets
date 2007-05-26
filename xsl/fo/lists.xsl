@@ -516,22 +516,6 @@
 </xsl:template>
 
 <xsl:template match="varlistentry" mode="vl.as.list">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
-    <fo:list-item-label end-indent="label-end()" text-align="start">
-      <fo:block>
-        <xsl:apply-templates select="term"/>
-      </fo:block>
-    </fo:list-item-label>
-    <fo:list-item-body start-indent="body-start()">
-      <fo:block>
-        <xsl:apply-templates select="listitem"/>
-      </fo:block>
-    </fo:list-item-body>
-  </fo:list-item>
-</xsl:template>
-
-<xsl:template match="varlistentry" mode="vl.as.list">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
