@@ -988,10 +988,12 @@
         </xsl:call-template>
 
         <td width="5%" valign="top" align="left">
-          <xsl:call-template name="anchor"/>
-          <xsl:call-template name="callout.arearefs">
-            <xsl:with-param name="arearefs" select="@arearefs"/>
-          </xsl:call-template>
+          <p>
+            <xsl:call-template name="anchor"/>
+            <xsl:call-template name="callout.arearefs">
+              <xsl:with-param name="arearefs" select="@arearefs"/>
+            </xsl:call-template>
+          </p>
         </td>
         <td valign="top" align="left">
           <xsl:apply-templates/>
