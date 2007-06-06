@@ -1,6 +1,21 @@
 # This schema integrates ITS markup (http://www.w3.org/TR/its/) 
 # into DocBook schema (http://docbook.org)
 #
+# This schema conforms to Conformance Type 1 defined in
+# http://www.w3.org/TR/its/#conformance-product-schema
+# 
+# Schema adds the following ITS elements into DocBook schema: 
+#  * rules
+#  * ruby
+#
+# Schema adds the following local ITS attributes into DocBook schema:
+#  * translate
+#  * locNote
+#  * locNoteType
+#  * locNoteRef
+#  * term
+#  * termInfoRef
+#
 # $Id$
 #
 # Copyright 2007 Jirka Kosek (jirka@kosek.cz)
@@ -37,7 +52,6 @@ db.its.attributes =
    its-att.translate.attributes?
    & its-att.locNote.attributes?
    & its-att.term.attributes?
-   & its-att.dir.attributes?
    & its-att.version.attributes?
 
 # Add local ITS attributes to all DocBook elements
