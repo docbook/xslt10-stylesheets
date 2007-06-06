@@ -176,9 +176,9 @@
       </xsl:variable>
 
       <xsl:if test="string-length($label.content) &gt; 0">
-        <b>
+        <p><b>
           <xsl:copy-of select="$label.content"/>
-        </b>
+        </b></p>
       </xsl:if>
     </td>
     <td align="left" valign="top">
@@ -214,9 +214,9 @@
         <xsl:apply-templates select="." mode="label.markup"/>
       </xsl:variable>
       <xsl:if test="string-length($answer.label) &gt; 0">
-        <b>
+        <p><b>
           <xsl:copy-of select="$answer.label"/>
-        </b>
+        </b></p>
       </xsl:if>
     </td>
     <td align="left" valign="top">
