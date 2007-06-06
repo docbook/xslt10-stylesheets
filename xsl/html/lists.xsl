@@ -392,6 +392,7 @@
     </xsl:call-template>
 
     <td>
+      <p>
       <xsl:call-template name="anchor"/>
       <xsl:choose>
         <xsl:when test="$presentation = 'bold'">
@@ -419,6 +420,7 @@
           <xsl:value-of select="$separator"/>
         </xsl:otherwise>
       </xsl:choose>
+      </p>
     </td>
     <td>
       <xsl:apply-templates select="listitem"/>
