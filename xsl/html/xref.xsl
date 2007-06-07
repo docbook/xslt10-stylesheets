@@ -884,6 +884,14 @@
   <xsl:apply-templates select="." mode="number"/>
 </xsl:template>
 
+<xsl:template match="step[not(./title)]" mode="title.markup">
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key" select="'Step'"/>
+  </xsl:call-template>
+  <xsl:text> </xsl:text>
+  <xsl:apply-templates select="." mode="number"/>
+</xsl:template>
+
 <xsl:template match="co" mode="xref-title">
   <xsl:variable name="title">
     <xsl:apply-templates select="." mode="callout-bug"/>
