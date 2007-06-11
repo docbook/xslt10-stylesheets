@@ -152,6 +152,14 @@
 <gentext key="unsupported" text="nepodporovaný"/>
 <gentext key="xrefto" text="xref k"/>
 
+<gentext key="Authors" text="Autoři"/>
+
+<gentext key="copyeditor" text="Korektor"/>
+<gentext key="graphicdesigner" text="Grafický designér"/>
+<gentext key="productioneditor" text="Produkce"/>
+<gentext key="technicaleditor" text="Technický editor"/>
+<gentext key="translator" text="Překladatel"/>
+
 <gentext key="listofequations" text="Seznam rovnic"/>
 <gentext key="ListofEquations" text="Seznam rovnic"/>
 <gentext key="ListofExamples" text="Seznam příkladů"/>
