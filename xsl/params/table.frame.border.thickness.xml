@@ -6,7 +6,7 @@
           version="5.0" xml:id="table.frame.border.thickness">
 <refmeta>
 <refentrytitle>table.frame.border.thickness</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>table.frame.border.thickness</refname>

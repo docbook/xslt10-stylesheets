@@ -6,7 +6,10 @@
           version="5.0" xml:id="insert.olink.page.number">
 <refmeta>
 <refentrytitle>insert.olink.page.number</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">no</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">yes</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">maybe</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>insert.olink.page.number</refname>

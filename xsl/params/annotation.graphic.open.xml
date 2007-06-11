@@ -6,7 +6,7 @@
           version="5.0" xml:id="annotation.graphic.open">
 <refmeta>
 <refentrytitle>annotation.graphic.open</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">uri</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>annotation.graphic.open</refname>

@@ -6,7 +6,7 @@
           version="5.0" xml:id="annotation.css">
 <refmeta>
 <refentrytitle>annotation.css</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>annotation.css</refname>

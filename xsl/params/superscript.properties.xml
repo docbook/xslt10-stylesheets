@@ -6,7 +6,7 @@
           version="5.0" xml:id="superscript.properties">
 <refmeta>
 <refentrytitle>superscript.properties</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>superscript.properties</refname>

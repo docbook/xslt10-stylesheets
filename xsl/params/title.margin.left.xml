@@ -6,7 +6,7 @@
           version="5.0" xml:id="title.margin.left">
 <refmeta>
 <refentrytitle>title.margin.left</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>title.margin.left</refname>

@@ -6,7 +6,7 @@
           version="5.0" xml:id="table.footnote.number.symbols">
 <refmeta>
 <refentrytitle>table.footnote.number.symbols</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>table.footnote.number.symbols</refname>

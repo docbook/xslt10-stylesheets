@@ -6,7 +6,7 @@
           version="5.0" xml:id="header.table.height">
 <refmeta>
 <refentrytitle>header.table.height</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>header.table.height</refname>

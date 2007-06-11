@@ -6,7 +6,10 @@
           version="5.0" xml:id="index.method">
 <refmeta>
 <refentrytitle>index.method</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">basic</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">kosek</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">kimber</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>index.method</refname>

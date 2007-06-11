@@ -6,7 +6,7 @@
           version="5.0" xml:id="menuchoice.menu.separator">
 <refmeta>
 <refentrytitle>menuchoice.menu.separator</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>menuchoice.menu.separator</refname>
