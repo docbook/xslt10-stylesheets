@@ -6,7 +6,7 @@
           version="5.0" xml:id="formal.title.placement">
 <refmeta>
 <refentrytitle>formal.title.placement</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">table</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>formal.title.placement</refname>

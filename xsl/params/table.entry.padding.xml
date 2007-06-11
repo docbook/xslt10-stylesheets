@@ -6,7 +6,7 @@
           version="5.0" xml:id="table.entry.padding">
 <refmeta>
 <refentrytitle>table.entry.padding</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>table.entry.padding</refname>

@@ -6,7 +6,7 @@
           version="5.0" xml:id="ebnf.table.bgcolor">
 <refmeta>
 <refentrytitle>ebnf.table.bgcolor</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">color</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>ebnf.table.bgcolor</refname>

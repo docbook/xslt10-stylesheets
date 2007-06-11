@@ -6,7 +6,7 @@
           version="5.0" xml:id="footer.table.height">
 <refmeta>
 <refentrytitle>footer.table.height</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>footer.table.height</refname>

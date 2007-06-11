@@ -6,7 +6,7 @@
           version="5.0" xml:id="table.cell.padding">
 <refmeta>
 <refentrytitle>table.cell.padding</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>table.cell.padding</refname>

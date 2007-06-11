@@ -6,7 +6,13 @@
           version="5.0" xml:id="reference.autolabel">
 <refmeta>
 <refentrytitle>reference.autolabel</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">0<alt>none</alt></refmiscinfo>
+<refmiscinfo class="other" otherclass="value">1<alt>1,2,3...</alt></refmiscinfo>
+<refmiscinfo class="other" otherclass="value">A<alt>A,B,C...</alt></refmiscinfo>
+<refmiscinfo class="other" otherclass="value">a<alt>a,b,c...</alt></refmiscinfo>
+<refmiscinfo class="other" otherclass="value">i<alt>i,ii,iii...</alt></refmiscinfo>
+<refmiscinfo class="other" otherclass="value">I<alt>I,II,III...</alt></refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>reference.autolabel</refname>

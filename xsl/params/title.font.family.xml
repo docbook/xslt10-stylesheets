@@ -6,7 +6,11 @@
           version="5.0" xml:id="title.font.family">
 <refmeta>
 <refentrytitle>title.font.family</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="list-type">open</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">serif</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">sans-serif</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">monospace</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>title.font.family</refname>

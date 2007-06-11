@@ -6,7 +6,10 @@
           version="5.0" xml:id="collect.xref.targets"> 
 <refmeta> 
 <refentrytitle>collect.xref.targets</refentrytitle> 
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo> 
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">no</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">yes</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">only</refmiscinfo>
 </refmeta> 
 <refnamediv> 
 <refname>collect.xref.targets</refname> 

@@ -7,6 +7,14 @@
 <refmeta>
 <refentrytitle>margin.note.float.type</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">none</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">before</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">left</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">start</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">right</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">end</refmiscinfo>     
+<refmiscinfo class="other" otherclass="value">inside</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">outside</refmiscinfo> 
 </refmeta>
 <refnamediv>
 <refname>margin.note.float.type</refname>

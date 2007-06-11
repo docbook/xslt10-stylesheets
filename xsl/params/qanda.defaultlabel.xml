@@ -6,7 +6,10 @@
           version="5.0" xml:id="qanda.defaultlabel">
 <refmeta>
 <refentrytitle>qanda.defaultlabel</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">number</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">qanda</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">none</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>qanda.defaultlabel</refname>

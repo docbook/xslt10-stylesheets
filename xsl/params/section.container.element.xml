@@ -7,6 +7,8 @@
 <refmeta>
 <refentrytitle>section.container.element</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">block</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">wrapper</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>section.container.element</refname>

@@ -7,6 +7,9 @@
 <refmeta>
 <refentrytitle>glossentry.show.acronym</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">no</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">yes</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">primary</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>glossentry.show.acronym</refname>

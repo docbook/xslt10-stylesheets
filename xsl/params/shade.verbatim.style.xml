@@ -6,7 +6,7 @@
           version="5.0" xml:id="shade.verbatim.style">
 <refmeta>
 <refentrytitle>shade.verbatim.style</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>shade.verbatim.style</refname>

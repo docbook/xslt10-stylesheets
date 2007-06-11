@@ -6,7 +6,9 @@
           version="5.0" xml:id="tex.math.in.alt">
 <refmeta>
 <refentrytitle>tex.math.in.alt</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">list</refmiscinfo> 
+<refmiscinfo class="other" otherclass="value">plain</refmiscinfo>
+<refmiscinfo class="other" otherclass="value">latex</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>tex.math.in.alt</refname>

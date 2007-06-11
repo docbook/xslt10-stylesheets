@@ -6,7 +6,7 @@
           version="5.0" xml:id="header.table.properties">
 <refmeta>
 <refentrytitle>header.table.properties</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>header.table.properties</refname>

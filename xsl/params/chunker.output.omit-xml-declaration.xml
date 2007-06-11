@@ -6,7 +6,7 @@
           version="5.0" xml:id="chunker.output.omit-xml-declaration">
 <refmeta>
 <refentrytitle>chunker.output.omit-xml-declaration</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>chunker.output.omit-xml-declaration</refname>

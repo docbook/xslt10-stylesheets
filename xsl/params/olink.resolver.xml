@@ -6,7 +6,7 @@
           version="5.0" xml:id="olink.resolver">
 <refmeta>
 <refentrytitle>olink.resolver</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>olink.resolver</refname>

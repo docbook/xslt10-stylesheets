@@ -6,7 +6,7 @@
           version="5.0" xml:id="table.cell.border.color">
 <refmeta>
 <refentrytitle>table.cell.border.color</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"/>
+<refmiscinfo class="other" otherclass="datatype">color</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>table.cell.border.color</refname>

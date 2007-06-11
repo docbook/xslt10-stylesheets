@@ -6,7 +6,7 @@
           version="5.0" xml:id="footer.table.properties">
 <refmeta>
 <refentrytitle>footer.table.properties</refentrytitle>
-<refmiscinfo class="other" otherclass="datatype"></refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>footer.table.properties</refname>
