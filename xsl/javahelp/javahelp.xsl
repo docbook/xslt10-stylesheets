@@ -509,10 +509,18 @@ references. In that case you can select appropriate encoding here.</para>
   <index version="1.0">
     <xsl:choose>
       <xsl:when test="$rootid != ''">
-        <xsl:apply-templates select="key('id',$rootid)//indexterm" mode="idx"/>
+        <xsl:apply-templates select="key('id',$rootid)//indexterm" mode="idx">
+	  <xsl:sort select="primary"/>
+	  <xsl:sort select="secondary"/>
+	  <xsl:sort select="tertiary"/>
+	</xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="//indexterm" mode="idx"/>
+        <xsl:apply-templates select="//indexterm" mode="idx">
+          <xsl:sort select="primary"/>
+	  <xsl:sort select="secondary"/>
+	  <xsl:sort select="tertiary"/>
+        </xsl:apply-templates>
       </xsl:otherwise>
     </xsl:choose>
   </index>
