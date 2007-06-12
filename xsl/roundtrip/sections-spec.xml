@@ -3,6 +3,7 @@
     <group:level>
       <group:element name='part' styles='part part-title'/>
       <group:element name='article' styles='article article-title'/>
+      <group:element name='bibliography' styles='bibliography bibliography-title'/>
       <group:element name='appendix' styles='appendix appendix-title'/>
       <group:element name='chapter' styles='chapter chapter-title'/>
       <group:element name='preface' styles='preface preface-title'/>
