@@ -13,6 +13,13 @@
 
        ******************************************************************** -->
 
+  <!-- DO NOT USE THIS STYLESHEET!
+
+       This stylesheet is imported by the other dbk2* stylesheets.
+       Use one of those instead.
+
+    -->
+
   <xsl:include href='../VERSION'/>
 
   <!-- doc:docprop.author mode is for creating document metadata -->
@@ -546,7 +553,7 @@
               -->
 
             <xsl:variable name='combinedWidth'>
-              <xsl:call-template name='sum'>
+              <xsl:call-template name='doc:sum'>
                 <xsl:with-param name='nodes' select='ancestor::*[self::table|self::informaltable][1]/tgroup/colspec[not(position() &lt; $position) and position() &lt; $limit]'/>
                 <xsl:with-param name='sum' select='"0"'/>
               </xsl:call-template>
@@ -685,7 +692,7 @@
 	  <xsl:with-param name='style' select='$style'/>
 	  <xsl:with-param name='content'>
 	    <xsl:call-template name='doc:make-soft-break'/>
-            <xsl:value-of select='substring-before($text, "&#xa;")'/>
+            <xsl:value-of select='substring-before($content, "&#xa;")'/>
           </xsl:with-param>
         </xsl:call-template>
         <xsl:call-template name='doc:handle-linebreaks-aux'>
@@ -699,7 +706,7 @@
 	  <xsl:with-param name='style' select='$style'/>
 	  <xsl:with-param name='content'>
 	    <xsl:call-template name='doc:make-soft-break'/>
-            <xsl:value-of select='$text'/>
+            <xsl:value-of select='$content'/>
           </xsl:with-param>
         </xsl:call-template>
       </xsl:otherwise>
