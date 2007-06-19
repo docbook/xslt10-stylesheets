@@ -209,11 +209,110 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="notesource.number">
+    <!-- * Get the number for this notesource -->
+    <!-- * -->
+    <!-- * If this is an imagedata, audiodata, or videodata element -->
+    <!-- * OR if it's a non-empty element AND its string value is not -->
+    <!-- * equal to the value of its url or xlink:href attribute (if -->
+    <!-- * it has one) AND user wants endnotes numbered, only then -->
+    <!-- * do we output a number for it -->
+    <xsl:if test="(self::imagedata or
+      self::audiodata or
+      self::videodata or
+      (node()
+      and not(. = @url)
+      and not(. = @xlink:href))
+      )
+      and $man.endnotes.are.numbered != 0">
+      <!-- * To select the number for this notesource, we -->
+      <!-- * check the index of all earmarks for the current refentry -->
+      <!-- * and find the number of the indexed earmark which matches -->
+      <!-- * this notesource's earmark. -->
+      <!-- * Note that multiple notesources may share the same -->
+      <!-- * numbered earmark; in that case, they get the same number. -->
+      <!-- * -->
+      <xsl:choose>
+        <xsl:when test="self::ulink or
+          self::*[@xlink:href] or
+          self::imagedata or
+          self::audiodata or
+          self::videodata">
+          <xsl:value-of select="$all.earmarks.in.current.refentry/earmark[@uri = $earmark]/@number"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$all.earmarks.in.current.refentry/earmark[@id  = $earmark]/@number"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:variable>
+
   <xsl:variable name="notesource.contents">
     <xsl:choose>
       <!-- * check to see if the element is empty or not; if it's -->
       <!-- * non-empty, get the content -->
       <xsl:when test="node()">
+        <xsl:for-each select="node()">
+          <xsl:if test="local-name() != 'para' and local-name() !=''">
+            <!-- * for each node we find as a child of a notesource, if -->
+            <!-- * it's not a para element or a text node, then emit a -->
+            <!-- * warning; the reason for emitting this warning is that -->
+            <!-- * in manpages output, we can't render block-level child -->
+            <!-- * content of an endnote properly unless it is wrapped in -->
+            <!-- * a para that has some "prefatory" text  -->
+            <xsl:variable name="parent-name" select="local-name(..)"/>
+            <xsl:variable name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
+            <xsl:variable name="message-prefix">
+              <xsl:text>endnote </xsl:text>
+              <xsl:call-template name="prepend-pad">
+                <!-- * endnote number may be 2 digits, so pad it with a space -->
+                <!-- * if we have only 1 digit -->
+                <xsl:with-param name="padVar" select="concat('#',$notesource.number)"/>
+                <xsl:with-param name="length" select="3"/>
+              </xsl:call-template>
+              <xsl:text> : </xsl:text>
+            </xsl:variable>
+            <xsl:call-template name="log.message">
+              <xsl:with-param name="level">Warn</xsl:with-param>
+              <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="message">
+                <xsl:value-of select="$message-prefix"/>
+                <xsl:text>Bad: </xsl:text>
+                <xsl:value-of select="$parent-name"/> 
+                <!-- * figure out which occurance of this element type this -->
+                <!-- * instance is and output a number in square brackets so -->
+                <!-- * that end-user can know which element to fix -->
+                <xsl:text>[</xsl:text>
+                <xsl:value-of select="count(preceding::*[local-name() = $parent-name]) + 1"/>
+                <xsl:text>]</xsl:text>
+                <xsl:text> in source</xsl:text>
+              </xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="log.message">
+              <xsl:with-param name="level">Note</xsl:with-param>
+              <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="message">
+                <xsl:value-of select="$message-prefix"/>
+                <xsl:text>Has: </xsl:text>
+                <xsl:value-of select="$parent-name"/> 
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="local-name(.)"/>
+              </xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="log.message">
+              <xsl:with-param name="level">Note</xsl:with-param>
+              <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="message">
+                <xsl:value-of select="$message-prefix"/>
+                <xsl:text>Fix: </xsl:text>
+                <xsl:value-of select="$parent-name"/> 
+                <xsl:text>/</xsl:text>
+                <xsl:text>para/</xsl:text>
+                <xsl:value-of select="local-name(.)"/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:if>
+        </xsl:for-each>
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:otherwise>
@@ -252,43 +351,7 @@
     </xsl:choose>
   </xsl:if>
 
-  <!-- * Format the numbered marker for this notesource -->
-  <!-- * -->
-  <!-- * If this is an imagedata, audiodata, or videodata element -->
-  <!-- * OR if it's a non-empty element AND its string value is not -->
-  <!-- * equal to the value of its url or xlink:href attribute (if -->
-  <!-- * it has one) AND user wants endnotes numbered, only then -->
-  <!-- * do we output a number for it -->
-  <xsl:if test="(self::imagedata or
-                 self::audiodata or
-                 self::videodata or
-                  (node()
-                    and not(. = @url)
-                    and not(. = @xlink:href))
-                )
-                and $man.endnotes.are.numbered != 0">
-    <!-- * To generate the numbered marker for this notesource, we -->
-    <!-- * check the index of all earmarks for the current refentry -->
-    <!-- * and find the number of the indexed earmark which matches -->
-    <!-- * this notesource's earmark. -->
-    <!-- * Note that multiple notesources may share the same -->
-    <!-- * numbered earmark; in that case, they get the same number. -->
-    <!-- * -->
-    <xsl:variable name="notesource.number">
-      <xsl:choose>
-        <xsl:when test="self::ulink or
-                        self::*[@xlink:href] or
-                        self::imagedata or
-                        self::audiodata or
-                        self::videodata">
-          <xsl:value-of select="$all.earmarks.in.current.refentry/earmark[@uri = $earmark]/@number"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$all.earmarks.in.current.refentry/earmark[@id  = $earmark]/@number"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
+  <xsl:if test="$notesource.number != ''">
     <!-- * Format the number by placing it in square brackets. FIXME: -->
     <!-- * This formatting should probably be made user-configurable, -->
     <!-- * to allow something other than just square brackets; e.g., -->
@@ -300,7 +363,7 @@
     <!-- * is to prevent any possible linebreak from being introduced -->
     <!-- * between the opening bracket and the following text. -->
   </xsl:if>
-  </xsl:template>
+</xsl:template>
 
 <!-- ==================================================================== -->
 
