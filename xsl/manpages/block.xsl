@@ -198,7 +198,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="figure">
+<xsl:template match="figure|example">
   <xsl:variable name="param.placement"
                 select="substring-after(normalize-space($formal.title.placement),
                         concat(local-name(.), ' '))"/>
