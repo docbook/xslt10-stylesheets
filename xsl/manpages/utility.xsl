@@ -371,12 +371,14 @@
     <xsl:param name="lang"/>
     <xsl:param name="name.with.lang">
       <xsl:choose>
-        <xsl:when test="not($man.output.lang.in.name.enabled = 0)
+        <xsl:when test="$lang != 'en'
+          and not($man.output.lang.in.name.enabled = 0)
           and ($man.output.subdirs.enabled = 0 or
           $man.output.in.separate.dir = 0)">
-          <!-- * user has specified man.output.lang.in.name.enabled -->
+          <!-- * $lang is not en (English) -->
+          <!-- * AND user has specified man.output.lang.in.name.enabled -->
           <!-- * AND doesn't want output going into separate dirs, -->
-          <!-- * so we include the $lang value in the filename; e.g., -->
+          <!-- * SO... we include the $lang value in the filename; e.g., -->
           <!-- * foo.ja.1 -->
           <xsl:value-of select="concat($name, '.', $lang)"/>
         </xsl:when>
