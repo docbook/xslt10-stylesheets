@@ -398,9 +398,11 @@
         <!-- * display that content -->
         <xsl:choose>
           <xsl:when test="*/node()[name(.)!='']">
+            <!-- * if node is not text only, then process it as-is -->
             <xsl:apply-templates select="*/node()"/>
           </xsl:when>
           <xsl:otherwise>
+            <!-- * otherwise node is text-only, so normalize it -->
             <xsl:value-of select="normalize-space(*/node())"/>
           </xsl:otherwise>
         </xsl:choose>
