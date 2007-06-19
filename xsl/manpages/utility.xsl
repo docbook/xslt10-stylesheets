@@ -184,7 +184,8 @@
                         self::simplelist[@type !='inline']|
                         self::segmentedlist|
                         self::caution|self::important|
-                        self::note|self::tip|self::warning)">
+                        self::note|self::tip|self::warning|
+                        self::table|self::informaltable)">
           <xsl:call-template name="mark.up.block.start"/>
           <xsl:apply-templates select="."/>
         </xsl:when>
@@ -217,7 +218,9 @@
                     self::address or
                     self::literallayout or
                     self::programlisting or
-                    self::screen
+                    self::screen or
+                    self::table or
+                    self::informaltable
                     ]
                     )
                     ">
@@ -283,7 +286,10 @@
                       preceding-sibling::important|
                       preceding-sibling::note|
                       preceding-sibling::tip|
-                      preceding-sibling::warning)">
+                      preceding-sibling::warning|
+                      preceding-sibling::table|
+                      preceding-sibling::informaltable
+                      )">
           <xsl:text>.RS</xsl:text>
           <xsl:if test="not($list-indent = '')">
             <xsl:text> </xsl:text>
@@ -319,7 +325,9 @@
                     important|
                     note|
                     tip|
-                    warning">
+                    warning|
+                    table|
+                    informaltable">
         <xsl:text>&#10;</xsl:text>
         <xsl:text>.RE</xsl:text>
       <xsl:text>&#10;</xsl:text>
