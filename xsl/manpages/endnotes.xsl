@@ -396,7 +396,14 @@
         <!-- * its corresponding notesource is either a link or -->
         <!-- * an instance of annotative text, so we want to -->
         <!-- * display that content -->
-        <xsl:apply-templates select="*/node()"/>
+        <xsl:choose>
+          <xsl:when test="*/node()[name(.)!='']">
+            <xsl:apply-templates select="*/node()"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="normalize-space(*/node())"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <!-- * otherwise, this earmark has empty content, -->
