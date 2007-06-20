@@ -339,10 +339,12 @@
       <!-- * if user wants links underlined, underline (ital) it -->
       <xsl:when test="$man.links.are.underlined != 0">
         <xsl:variable name="link.wrapper">
-          <italic><xsl:value-of select="$notesource.contents"/></italic>
+          <xsl:value-of select="$notesource.contents"/>
         </xsl:variable>
-        <xsl:apply-templates mode="italic"
-                             select="exsl:node-set($link.wrapper)"/>
+        <xsl:call-template name="italic">
+          <xsl:with-param name="node" select="exsl:node-set($link.wrapper)"/>
+          <xsl:with-param name="context" select="."/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
         <!-- * user doesn't want links underlined, so just display content -->

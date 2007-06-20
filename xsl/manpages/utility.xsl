@@ -24,9 +24,9 @@
 <!-- ==================================================================== -->
 
   <!-- * NOTE TO DEVELOPERS: For ease of maintenance, the current -->
-  <!-- * manpages stylesheets use the mode="bold" and mode="italic" -->
-  <!-- * templates for *anything and everything* that needs to get -->
-  <!-- * boldfaced or italicized.   -->
+  <!-- * manpages stylesheets use the "bold" and "italic" named -->
+  <!-- * templates for anything and everything that needs to get -->
+  <!-- * boldfaced or italicized. -->
   <!-- * -->
   <!-- * So if you add anything that needs bold or italic character -->
   <!-- * formatting, try to apply these templates to it rather than -->
@@ -35,16 +35,27 @@
   <!-- * cases, you need to turn it into element content before applying -->
   <!-- * the template; see examples of this in the existing code. -->
 
-  <xsl:template mode="bold" match="*">
-    <xsl:for-each select="node()">
-      <xsl:text>\fB</xsl:text>
-      <xsl:apply-templates select="."/>
-      <xsl:text>\fR</xsl:text>
-    </xsl:for-each>
+  <xsl:template name="bold">
+    <xsl:param name="node"/>
+    <xsl:param name="context"/>
+    <xsl:choose>
+      <xsl:when test="not($context[ancestor::title])">
+        <xsl:for-each select="$node/node()">
+          <xsl:text>\fB</xsl:text>
+          <xsl:apply-templates select="."/>
+          <xsl:text>\fR</xsl:text>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="$node/node()"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
-  <xsl:template mode="italic" match="*">
-    <xsl:for-each select="node()">
+  <xsl:template name="italic">
+    <xsl:param name="node"/>
+    <xsl:param name="context"/>
+    <xsl:for-each select="$node/node()">
       <xsl:text>\fI</xsl:text>
       <xsl:apply-templates select="."/>
       <xsl:text>\fR</xsl:text>
@@ -55,7 +66,7 @@
 
   <!-- * NOTE TO DEVELOPERS: For ease of maintenance, the current -->
   <!-- * manpages stylesheets use the mode="prevent.line.breaking" -->
-  <!-- * templates for *anything and everything* that needs to have -->
+  <!-- * templates for anything and everything that needs to have -->
   <!-- * embedded spaces turned into no-break spaces in output - in -->
   <!-- * order to prevent that output from getting broken across lines -->
   <!-- * -->

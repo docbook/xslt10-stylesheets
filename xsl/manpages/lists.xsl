@@ -49,7 +49,10 @@
 <xsl:template match="variablelist|glosslist">
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="title"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
@@ -176,7 +179,10 @@
 <xsl:template match="itemizedlist|orderedlist|procedure">
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="title"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
   <!-- * DocBook allows just about any block content to appear in -->
@@ -199,7 +205,10 @@
                      procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="title"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
@@ -275,7 +284,10 @@
 <xsl:template match="segmentedlist">
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="title"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="title"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
   <xsl:text>.\" line length increase to cope w/ tbl weirdness&#10;</xsl:text>
@@ -312,9 +324,10 @@
 </xsl:template>
 
 <xsl:template match="segmentedlist/segtitle" mode="table-title">
-  <!-- * italic makes titles stand out more reliably than bold (because -->
-  <!-- * some consoles do not actually support rendering of bold -->
-  <xsl:apply-templates mode="italic" select="."/>
+  <xsl:call-template name="italic">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
   <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>

@@ -251,14 +251,12 @@
     <!-- * output name and email or ulink content on the same line -->
     <xsl:choose>
       <xsl:when test="not($person-name = '') or .//email or address/otheraddr/ulink">
-        <!-- * Our mode="bold" mechanism doesn't work on text nodes; so we -->
-        <!-- * need to turn the person-name into an element node first. -->
-        <xsl:variable name="person-name-node">
-          <bold><xsl:value-of select="$person-name"/></bold>
-        </xsl:variable>
         <xsl:text>.PP&#10;</xsl:text>
         <!-- * Display person name in bold -->
-        <xsl:apply-templates mode="bold" select="exsl:node-set($person-name-node)"/>
+        <xsl:call-template name="bold">
+          <xsl:with-param name="node" select="exsl:node-set($person-name)"/>
+          <xsl:with-param name="context" select="."/>
+        </xsl:call-template>
         <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
         <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
         <xsl:text>&#10;</xsl:text>
@@ -277,7 +275,10 @@
 
   <xsl:template match="collab" mode="authorsect">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="collabname"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="collabname"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
     <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
     <xsl:text>&#10;</xsl:text>
@@ -287,7 +288,10 @@
 
   <xsl:template match="corpauthor|corpcredit|orgname|publishername" mode="authorsect">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="."/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:if test="self::publishername">
       <!-- * Display localized "Publisher" gentext -->
@@ -297,7 +301,10 @@
 
   <xsl:template match="publisher" mode="authorsect">
     <xsl:text>.PP&#10;</xsl:text>
-    <xsl:apply-templates mode="bold" select="publishername"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="publishername"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <!-- * Display e-mail address(es) and ulink(s) on same line as name -->
     <xsl:apply-templates select=".//email|address/otheraddr/ulink" mode="authorsect"/>
     <!-- * Display addresses on separate lines -->

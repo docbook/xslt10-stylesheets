@@ -19,14 +19,20 @@
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="italic" select="."/>
+  <xsl:call-template name="italic">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="option|userinput|envar|errorcode|constant|markup">
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="classname">
@@ -40,7 +46,10 @@
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="type[not(ancestor::cmdsynopsis) and
@@ -48,7 +57,10 @@
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="function[not(ancestor::cmdsynopsis) and
@@ -56,7 +68,10 @@
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="bold" select="."/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="parameter[not(ancestor::cmdsynopsis) and
@@ -64,7 +79,10 @@
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="italic" select="."/>
+  <xsl:call-template name="italic">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="filename">
@@ -74,18 +92,28 @@
                 $man.break.after.slash = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:apply-templates mode="italic" select="."/>
+  <xsl:call-template name="italic">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="emphasis">
   <xsl:choose>
-    <xsl:when test="@role = 'bold' or
-                    @role = 'strong' or
-                    @remap = 'B'">
-      <xsl:apply-templates mode="bold" select="."/>
+    <xsl:when test="
+      @role = 'bold' or
+      @role = 'strong' or
+      @remap = 'B'">
+      <xsl:call-template name="bold">
+        <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="context" select="."/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates mode="italic" select="."/>
+      <xsl:call-template name="italic">
+        <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="context" select="."/>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -100,9 +128,12 @@
   <xsl:param name="refentrytitle" select="''"/>
   <xsl:param name="manvolnum" select="''"/>
   <xsl:variable name="title">
-    <bold><xsl:value-of select="$refentrytitle"/></bold>
+    <xsl:value-of select="$refentrytitle"/>
   </xsl:variable>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($title)"/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="exsl:node-set($title)"/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
   <xsl:text>(</xsl:text>
   <xsl:value-of select="$manvolnum"/>
   <xsl:text>)</xsl:text>
