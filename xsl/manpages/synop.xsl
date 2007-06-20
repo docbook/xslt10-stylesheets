@@ -32,7 +32,10 @@
   <xsl:variable name="synopfragmentref">
     <FragRefContents><xsl:value-of select="normalize-space(.)"/></FragRefContents>
   </xsl:variable>
-  <xsl:apply-templates select="exsl:node-set($synopfragmentref)" mode="italic"/>
+  <xsl:call-template name="italic">
+    <xsl:with-param name="node" select="exsl:node-set($synopfragmentref)"/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="synopfragment" mode="synopfragment.number">

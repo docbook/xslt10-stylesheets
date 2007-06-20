@@ -24,12 +24,15 @@
 
 <xsl:template match="formalpara">
   <xsl:variable name="title.wrapper">
-    <bold><xsl:value-of select="normalize-space(title[1])"/></bold>
+    <xsl:value-of select="normalize-space(title[1])"/>
   </xsl:variable>
   <xsl:text>.PP&#10;</xsl:text>
   <!-- * don't put linebreak after head; instead render it as a "run in" -->
   <!-- * head, that is, inline, with a period and space following it -->
-  <xsl:apply-templates mode="bold" select="exsl:node-set($title.wrapper)"/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="exsl:node-set($title.wrapper)"/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
   <xsl:text>. </xsl:text>
   <xsl:apply-templates/>
 </xsl:template>
@@ -275,9 +278,13 @@
 <xsl:template name="formal.object.heading">
   <xsl:param name="object" select="."/>
   <xsl:param name="title">
-    <bold><xsl:apply-templates select="$object" mode="object.title.markup.textonly"/></bold>
+    <xsl:apply-templates select="$object" mode="object.title.markup.textonly"/>
   </xsl:param>
-  <xsl:apply-templates mode="bold" select="exsl:node-set($title)"/>
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="exsl:node-set($title)"/>
+    <xsl:with-param name="context" select="."/>
+  </xsl:call-template>
+
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
