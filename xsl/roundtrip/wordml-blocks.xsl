@@ -2,11 +2,13 @@
 <axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform" xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" version="1.0">
 <!--====================================-->
 <!--=                                  =-->
-<!--=   DO NOT EDIT THIS STYLESHEET    =-->
-<!--=                                  =-->
-<!--= This stylesheet is generated     =-->
+<!--= This stylesheet is GENERATED     =-->
 <!--= by makeSections.xsl and a        =-->
 <!--= mapping specification.           =-->
+<!--=                                  =-->
+<!--=   IF YOU EDIT THIS STYLESHEET    =-->
+<!--=   YOUR CHANGES WILL GET          =-->
+<!--=   OVERWRITTEN!!                  =-->
 <!--=                                  =-->
 <!--= Revision history:                =-->
 <!--=  1.0 2005-11-08 SRB              =-->

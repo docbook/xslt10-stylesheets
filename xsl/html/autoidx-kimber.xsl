@@ -9,9 +9,7 @@
 <!-- Only one of these should be present in the entity -->
 <!ENTITY lang 'concat(/*/@lang, /*/@xml:lang)'>
 
-<!ENTITY scope 'count(ancestor::node()|$scope) = count(ancestor::node())
-                and ($role = @role or $type = @type or
-                (string-length($role) = 0 and string-length($type) = 0))'>
+<!ENTITY scope 'count(ancestor::node()|$scope) = count(ancestor::node()) and ($role = @role or $type = @type or (string-length($role) = 0 and string-length($type) = 0))'>
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:k="http://www.isogen.com/functions/com.isogen.saxoni18n.Saxoni18nService"
@@ -87,10 +85,7 @@
   </xsl:variable>
 
   <xsl:variable name="terms"
-                select="//indexterm[count(.|key('k-group',
-                   k:getIndexGroupKey(&lang;, &primary;))
-                   [&scope;][1]) = 1
-                   and not(@class = 'endofrange')]"/>
+                select="//indexterm[count(.|key('k-group', k:getIndexGroupKey(&lang;, &primary;))[&scope;][1]) = 1 and not(@class = 'endofrange')]"/>
 
   <xsl:variable name="alphabetical"
                 select="$terms[not(starts-with(
@@ -150,8 +145,7 @@
   <xsl:variable name="label"
           select="k:getIndexGroupLabel(&lang;, $key)"/>
 
-  <xsl:if test="key('k-group', $label)[&scope;]
-                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
+  <xsl:if test="key('k-group', $label)[&scope;][count(.|key('primary', &primary;)[&scope;][1]) = 1]">
     <div class="indexdiv">
       <h3>
         <xsl:value-of select="$label"/>

@@ -91,8 +91,7 @@ set of templates. This template creates an appropriate
     <xsl:text>&#xA;&#xA;</xsl:text>
     <xsl:comment>
       <xsl:text> This stylesheet was created by </xsl:text>
-      <xsl:text>template/titlepage.xsl; </xsl:text>
-      <xsl:text>do not edit it by hand. </xsl:text>
+      <xsl:text>template/titlepage.xsl</xsl:text>
     </xsl:comment>
 
     <xsl:if test="@t:base-stylesheet">
