@@ -16,7 +16,6 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-
 <doc:reference xmlns="">
   <referenceinfo>
     <releaseinfo role="meta">
@@ -50,10 +49,8 @@
 </doc:reference>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.metadata" xmlns="">
   <refpurpose>Gathers metadata from a refentry and its ancestors</refpurpose>
-
   <refdescription>
     <para>Reference documentation for particular commands, functions,
     etc., is sometimes viewed in isolation from its greater "context". For
@@ -73,7 +70,7 @@
     the <sgmltag>releaseinfo</sgmltag> element.</para>
 
     <para>Taking all that in mind, the
-    <function>get.refentry.metadata</function> function tries to gather
+    <function>get.refentry.metadata</function> template tries to gather
     metadata from a <sgmltag>refentry</sgmltag> element and its ancestor
     elements in an intelligent and user-configurable way. The basic
     mechanism used in the XPath expressions throughout this stylesheet
@@ -82,14 +79,13 @@
     <sgmltag>refentry</sgmltag> itself, or on its nearest ancestor.</para>
 
     <note>
-      <para>The <function>get.refentry.metadata</function> function is
-      actually just sort of a "driver" function; it calls other
-      functions that do the actual data collection, then returns the
-      data as a set.</para>
+      <para>The <function>get.refentry.metadata</function>
+        template is actually just sort of a "driver" template; it
+        calls other templates that do the actual data collection,
+        then returns the data as a set.</para>
     </note>
 
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -114,7 +110,6 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
   <refreturn>
     <para>Returns a node set with the following elements. The
     descriptions are verbatim from the <literal>man(7)</literal> man
@@ -156,7 +151,6 @@
     </para>
   </refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.metadata">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
@@ -195,10 +189,8 @@
 </xsl:template>
 
 <!-- ====================================================================== -->
-
 <doc:template name="get.refentry.title" xmlns="">
   <refpurpose>Gets title metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>The <literal>man(7)</literal> man page describes this as "the
     title of the man page (e.g., <literal>MAN</literal>). This differs
@@ -207,7 +199,6 @@
     otherwise, we just use first <sgmltag>refname</sgmltag> in the first
     <sgmltag>refnamediv</sgmltag> in the source.</para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -218,11 +209,9 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
   <refreturn>
   <para>Returns a <sgmltag>title</sgmltag> node.</para></refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.title">
   <xsl:param name="refname"/>
   <xsl:choose>
@@ -238,10 +227,8 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.section" xmlns="">
   <refpurpose>Gets section metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>The <literal>man(7)</literal> man page describes this as "the
     section number the man page should be placed in (e.g.,
@@ -252,7 +239,6 @@
     default to using <literal>1</literal> ["Executable programs or shell
     commands"].</para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -269,7 +255,6 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
   <refreturn>
   <para>Returns a string representing a section number.</para></refreturn>
 </doc:template>
@@ -286,9 +271,18 @@
           <xsl:call-template name="log.message">
             <xsl:with-param name="level">Note</xsl:with-param>
             <xsl:with-param name="source" select="$refname"/>
-            <xsl:with-param
-                name="message"
-                >meta manvol : No manvolnum</xsl:with-param>
+            <xsl:with-param name="context-desc">meta manvol</xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>no refentry/refmeta/manvolnum</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">Note</xsl:with-param>
+            <xsl:with-param name="source" select="$refname"/>
+            <xsl:with-param name="context-desc">meta manvol</xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>see http://docbook.sf.net/el/manvolnum</xsl:text>
+            </xsl:with-param>
           </xsl:call-template>
         </xsl:if>
       </xsl:if>
@@ -299,9 +293,10 @@
               <xsl:call-template name="log.message">
                 <xsl:with-param name="level">Note</xsl:with-param>
                 <xsl:with-param name="source" select="$refname"/>
-                <xsl:with-param
-                    name="message"
-                    >meta manvol : Setting man section to 3</xsl:with-param>
+                <xsl:with-param name="context-desc">meta manvol</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>Setting man section to 3</xsl:text>
+                </xsl:with-param>
               </xsl:call-template>
             </xsl:if>
           </xsl:if>
@@ -316,16 +311,13 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.date" xmlns="">
   <refpurpose>Gets date metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>The <literal>man(7)</literal> man page describes this as "the
     date of the last revision". If we cannot find a date in the source, we
     generate one.</para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -349,10 +341,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
-  <refreturn><para>Returns a <sgmltag>date</sgmltag> node.</para></refreturn>
+  <refreturn>
+    <para>Returns a <sgmltag>date</sgmltag> node.</para>
+  </refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.date">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
@@ -398,9 +390,18 @@
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">Note</xsl:with-param>
           <xsl:with-param name="source" select="$refname"/>
-          <xsl:with-param
-              name="message"
-              >meta date   : No date. Using generated date</xsl:with-param>
+          <xsl:with-param name="context-desc">meta date</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>no date; using generated date</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">Note</xsl:with-param>
+          <xsl:with-param name="source" select="$refname"/>
+          <xsl:with-param name="context-desc">meta date</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>see http://docbook.sf.net/el/date</xsl:text>
+          </xsl:with-param>
         </xsl:call-template>
       </xsl:if>
       <xsl:call-template name="datetime.format">
@@ -427,10 +428,8 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.source" xmlns="">
   <refpurpose>Gets source metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>The <literal>man(7)</literal> man page describes this as "the
     source of the command", and provides the following examples:
@@ -491,7 +490,6 @@
     probably will be no <replaceable>Version</replaceable>.
     </para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -516,10 +514,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
-  <refreturn><para>Returns a <sgmltag>source</sgmltag> node.</para></refreturn>
+  <refreturn>
+    <para>Returns a <sgmltag>source</sgmltag> node.</para>
+  </refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.source">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
@@ -575,9 +573,10 @@
             <xsl:call-template name="log.message">
               <xsl:with-param name="level">Warn</xsl:with-param>
               <xsl:with-param name="source" select="$refname"/>
-              <xsl:with-param
-                  name="message"
-                  >meta source : No valid fallback. Leaving empty</xsl:with-param>
+              <xsl:with-param name="context-desc">meta source</xsl:with-param>
+              <xsl:with-param name="message">
+                <xsl:text>no valid fallback for source; leaving empty</xsl:text>
+              </xsl:with-param>
             </xsl:call-template>
           </xsl:if>
         </xsl:otherwise>
@@ -588,9 +587,10 @@
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">Warn</xsl:with-param>
           <xsl:with-param name="source" select="$refname"/>
-          <xsl:with-param
-              name="message"
-              >meta source : No fallback specified; leaving empty.</xsl:with-param>
+          <xsl:with-param name="context-desc">meta source</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>no source fallback specified; leaving empty</xsl:text>
+          </xsl:with-param>
         </xsl:call-template>
       </xsl:if>
     </xsl:otherwise>
@@ -598,17 +598,14 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.source.name" xmlns="">
   <refpurpose>Gets source-name metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>A "source name" is one part of a (potentially) two-part
     <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>
     source field. For more details, see the documentation for the
     <function>get.refentry.source</function> template.</para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -633,12 +630,12 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
-  <refreturn><para>Depending on what output method is used for the
+  <refreturn>
+    <para>Depending on what output method is used for the
   current stylesheet, either returns a text node or possibly an element
-  node, containing "source name" data.</para></refreturn>
+  node, containing "source name" data.</para>
+  </refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.source.name">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
@@ -746,16 +743,34 @@
                 <xsl:call-template name="log.message">
                   <xsl:with-param name="level">Note</xsl:with-param>
                   <xsl:with-param name="source" select="$refname"/>
-                  <xsl:with-param
-                      name="message"
-                      >meta source : No productname or alternative</xsl:with-param>
+                  <xsl:with-param name="context-desc">meta source</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>no *info/productname or alternative</xsl:text>
+                  </xsl:with-param>
                 </xsl:call-template>
                 <xsl:call-template name="log.message">
                   <xsl:with-param name="level">Note</xsl:with-param>
                   <xsl:with-param name="source" select="$refname"/>
-                  <xsl:with-param
-                      name="message"
-                      >meta source : No refmiscinfo@class=source</xsl:with-param>
+                  <xsl:with-param name="context-desc">meta source</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>see http://docbook.sf.net/el/productname</xsl:text>
+                  </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="log.message">
+                  <xsl:with-param name="level">Note</xsl:with-param>
+                  <xsl:with-param name="source" select="$refname"/>
+                  <xsl:with-param name="context-desc">meta source</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>no refentry/refmeta/refmiscinfo@class=source</xsl:text>
+                  </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="log.message">
+                  <xsl:with-param name="level">Note</xsl:with-param>
+                  <xsl:with-param name="source" select="$refname"/>
+                  <xsl:with-param name="context-desc">meta source</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>see http://docbook.sf.net/el/refmiscinfo</xsl:text>
+                  </xsl:with-param>
                 </xsl:call-template>
               </xsl:if>
             </xsl:otherwise>
@@ -767,17 +782,14 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.version" xmlns="">
   <refpurpose>Gets version metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>A "version" is one part of a (potentially) two-part
     <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>
     source field. For more details, see the documentation for the
     <function>get.refentry.source</function> template.</para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -802,12 +814,12 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
-  <refreturn><para>Depending on what output method is used for the
+  <refreturn>
+    <para>Depending on what output method is used for the
   current stylesheet, either returns a text node or possibly an element
-  node, containing "version" data.</para></refreturn>
+  node, containing "version" data.</para>
+  </refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.version">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
@@ -876,16 +888,34 @@
                 <xsl:call-template name="log.message">
                   <xsl:with-param name="level">Note</xsl:with-param>
                   <xsl:with-param name="source" select="$refname"/>
-                  <xsl:with-param
-                      name="message"
-                      >meta version: No productnumber or alternative</xsl:with-param>
+                  <xsl:with-param name="context-desc">meta version</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>no *info/productnumber or alternative</xsl:text>
+                  </xsl:with-param>
                 </xsl:call-template>
                 <xsl:call-template name="log.message">
                   <xsl:with-param name="level">Note</xsl:with-param>
                   <xsl:with-param name="source" select="$refname"/>
-                  <xsl:with-param
-                      name="message"
-                      >meta version: No refmiscinfo@class=version</xsl:with-param>
+                  <xsl:with-param name="context-desc">meta version</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>see http://docbook.sf.net/el/productnumber</xsl:text>
+                  </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="log.message">
+                  <xsl:with-param name="level">Note</xsl:with-param>
+                  <xsl:with-param name="source" select="$refname"/>
+                  <xsl:with-param name="context-desc">meta version</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>no refentry/refmeta/refmiscinfo@class=version</xsl:text>
+                  </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="log.message">
+                  <xsl:with-param name="level">Note</xsl:with-param>
+                  <xsl:with-param name="source" select="$refname"/>
+                  <xsl:with-param name="context-desc">meta version</xsl:with-param>
+                  <xsl:with-param name="message">
+                    <xsl:text>see http://docbook.sf.net/el/refmiscinfo</xsl:text>
+                  </xsl:with-param>
                 </xsl:call-template>
               </xsl:if>
             </xsl:otherwise>
@@ -897,10 +927,8 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
 <doc:template name="get.refentry.manual" xmlns="">
   <refpurpose>Gets source metadata for a refentry</refpurpose>
-
   <refdescription>
     <para>The <literal>man(7)</literal> man page describes this as "the
     title of the manual (e.g., <citetitle>Linux Programmer's
@@ -948,7 +976,6 @@
     </para>
 
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -973,8 +1000,9 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-
-  <refreturn><para>Returns a <sgmltag>manual</sgmltag> node.</para></refreturn>
+  <refreturn>
+    <para>Returns a <sgmltag>manual</sgmltag> node.</para>
+  </refreturn>
 </doc:template>
 <xsl:template name="get.refentry.manual">
   <xsl:param name="refname"/>
@@ -1032,16 +1060,26 @@
                   <xsl:call-template name="log.message">
                     <xsl:with-param name="level">Note</xsl:with-param>
                     <xsl:with-param name="source" select="$refname"/>
-                    <xsl:with-param
-                        name="message"
-                        >meta manual : No ancestor with title</xsl:with-param>
+                    <xsl:with-param name="context-desc">meta manual</xsl:with-param>
+                    <xsl:with-param name="message">
+                      <xsl:text>no titled ancestor of refentry</xsl:text>
+                    </xsl:with-param>
                   </xsl:call-template>
                   <xsl:call-template name="log.message">
                     <xsl:with-param name="level">Note</xsl:with-param>
                     <xsl:with-param name="source" select="$refname"/>
-                    <xsl:with-param
-                        name="message"
-                        >meta manual : No refmiscinfo@class=manual</xsl:with-param>
+                    <xsl:with-param name="context-desc">meta manual</xsl:with-param>
+                    <xsl:with-param name="message">
+                      <xsl:text>no refentry/refmeta/refmiscinfo@class=manual</xsl:text>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                  <xsl:call-template name="log.message">
+                    <xsl:with-param name="level">Note</xsl:with-param>
+                    <xsl:with-param name="source" select="$refname"/>
+                    <xsl:with-param name="context-desc">meta manual</xsl:with-param>
+                    <xsl:with-param name="message">
+                      <xsl:text>see http://docbook.sf.net/el/refmiscinfo</xsl:text>
+                    </xsl:with-param>
                   </xsl:call-template>
                 </xsl:if>
               </xsl:otherwise>
@@ -1072,9 +1110,10 @@
             <xsl:call-template name="log.message">
               <xsl:with-param name="level">Warn</xsl:with-param>
               <xsl:with-param name="source" select="$refname"/>
-              <xsl:with-param
-                  name="message"
-                  >meta manual : No valid fallback. Leaving empty</xsl:with-param>
+              <xsl:with-param name="context-desc">meta manual</xsl:with-param>
+              <xsl:with-param name="message">
+                <xsl:text>no valid fallback for manual; leaving empty</xsl:text>
+              </xsl:with-param>
             </xsl:call-template>
           </xsl:if>
         </xsl:otherwise>
@@ -1086,9 +1125,10 @@
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">Warn</xsl:with-param>
           <xsl:with-param name="source" select="$refname"/>
-          <xsl:with-param
-              name="message"
-              >meta manual : No fallback specified; leaving empty.</xsl:with-param>
+          <xsl:with-param name="context-desc">meta manual</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>no manual fallback specified; leaving empty</xsl:text>
+          </xsl:with-param>
         </xsl:call-template>
       </xsl:if>
     </xsl:otherwise>
@@ -1096,32 +1136,31 @@
 </xsl:template>
 
 <!-- ====================================================================== -->
-
 <doc:template name="get.refentry.metadata.prefs" xmlns="">
   <refpurpose>Gets user preferences for refentry metadata gathering</refpurpose>
-
   <refdescription>
     <para>The DocBook XSL stylesheets include several user-configurable
     global stylesheet parameters for controlling <sgmltag>refentry</sgmltag>
     metadata gathering. Those parameters are not read directly by the
-    other <sgmltag>refentry</sgmltag> metadata-gathering functions. Instead, they
-    are read only by the <function>get.refentry.metadata.prefs</function>
-    function, which assembles them into a structure that is then passed to
-    the other <sgmltag>refentry</sgmltag> metadata-gathering functions.</para>
+    other <sgmltag>refentry</sgmltag> metadata-gathering
+    templates. Instead, they are read only by the
+    <function>get.refentry.metadata.prefs</function> template,
+    which assembles them into a structure that is then passed to
+    the other <sgmltag>refentry</sgmltag> metadata-gathering
+    templates.</para>
 
     <para>So the, <function>get.refentry.metadata.prefs</function>
-    function is the only interface to collecting stylesheet parameters for
+    template is the only interface to collecting stylesheet parameters for
     controlling <sgmltag>refentry</sgmltag> metadata gathering.</para>
   </refdescription>
-
   <refparameter>
-    <para>There are no local parameters for this function; however, it
+    <para>There are no local parameters for this template; however, it
     does rely on a number of global parameters.</para>
   </refparameter>
-
-  <refreturn><para>Returns a <sgmltag>manual</sgmltag> node.</para></refreturn>
+  <refreturn>
+    <para>Returns a <sgmltag>manual</sgmltag> node.</para>
+  </refreturn>
 </doc:template>
-
 <xsl:template name="get.refentry.metadata.prefs">
   <DatePrefs>
     <xsl:attribute name="profile">
@@ -1172,16 +1211,13 @@
 </xsl:template>
 
 <!-- ====================================================================== -->
-
 <doc:template name="set.refentry.metadata" xmlns="">
   <refpurpose>Sets content of a refentry metadata item</refpurpose>
-
   <refdescription>
-    <para>The <function>set.refentry.metadata</function> function is
+    <para>The <function>set.refentry.metadata</function> template is
     called each time a suitable source element is found for a certain
     metadata field.</para>
   </refdescription>
-
   <refparameter>
     <variablelist>
       <varlistentry>
@@ -1206,7 +1242,7 @@
         <term>context</term>
         <listitem>
           <para>A string describing the metadata context in which the
-          <function>set.refentry.metadata</function> function was
+          <function>set.refentry.metadata</function> template was
           called: either "date", "source", "version", or "manual".</para>
         </listitem>
       </varlistentry>
@@ -1215,7 +1251,6 @@
   <refreturn>
   <para>Returns formatted contents of a selected source element.</para></refreturn>
 </doc:template>
-
 <xsl:template name="set.refentry.metadata">
   <xsl:param name="refname"/>
   <xsl:param name="info"/>
@@ -1227,47 +1262,23 @@
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$refname"/>
-        <xsl:with-param
-            name="message"
-            >meta <xsl:value-of
-            select="$context"/><xsl:call-template
-            name="copy-string">
-        <xsl:with-param name="string" select="'&#x20;'"/>
-        <xsl:with-param
-            name="count"
-            select="7 - string-length($context)"/>
-        </xsl:call-template>: No <xsl:value-of select="$preferred"
-        /></xsl:with-param>
+        <xsl:with-param name="context-desc" select="concat('meta ', $context)"/>
+        <xsl:with-param name="message" select="concat('No ', $preferred)"/>
       </xsl:call-template>
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$refname"/>
-        <xsl:with-param
-            name="message"
-            >meta <xsl:value-of
-            select="$context"/><xsl:call-template
-            name="copy-string">
-        <xsl:with-param name="string" select="'&#x20;'"/>
-        <xsl:with-param
-            name="count"
-            select="7 - string-length($context)"/>
-        </xsl:call-template>: No refmiscinfo@class=<xsl:value-of
-        select="$context"/></xsl:with-param>
+        <xsl:with-param name="context-desc" select="concat('meta ', $context)"/>
+        <xsl:with-param name="message">
+          <xsl:text>no refentry/refmeta/refmiscinfo@class=</xsl:text>
+          <xsl:value-of select="$context"/>
+        </xsl:with-param>
       </xsl:call-template>
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$refname"/>
-        <xsl:with-param
-            name="message"
-            >meta <xsl:value-of
-            select="$context"/><xsl:call-template
-            name="copy-string">
-        <xsl:with-param name="string" select="'&#x20;'"/>
-        <xsl:with-param
-            name="count"
-            select="7 - string-length($context)"/>
-        </xsl:call-template>: Using <xsl:value-of
-        select="local-name($contents)"/></xsl:with-param>
+        <xsl:with-param name="context-desc" select="concat('meta ', $context)"/>
+        <xsl:with-param name="message" select="concat('Using ', local-name($contents))"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:if>
