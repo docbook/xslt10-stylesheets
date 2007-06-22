@@ -375,9 +375,9 @@
           <xsl:call-template name="log.message">
             <xsl:with-param name="level">Warn</xsl:with-param>
             <xsl:with-param name="source" select="$source"/>
+            <xsl:with-param name="context-desc">tbl convert</xsl:with-param>
             <xsl:with-param name="message">
-              <xsl:text
-              >tbl convert : Extracted a nested table</xsl:text>
+              <xsl:text>Extracted a nested table</xsl:text>
             </xsl:with-param>
           </xsl:call-template>
           <xsl:text>[\fInested&#x2580;table\fR]*&#10;</xsl:text>

@@ -149,13 +149,15 @@ db:manvolnum
   <!-- redefine this any way you'd like to output messages -->
   <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
   <!-- Example:
-  <xsl:if test="//footnote">
+  <xsl:if test="//foo">
     <xsl:call-template name="log.message">
       <xsl:with-param name="level">Warn</xsl:with-param>
       <xsl:with-param name="source" select="$refname"/>
-      <xsl:with-param
-          name="message"
-          >Output for footnote element is not yet supported.</xsl:with-param>
+      <xsl:with-param name="context-desc">
+        <xsl:text>limitation</xsl:text>
+      <xsl:with-param name="message">
+        <xsl:text>Output for foo element is not yet supported.</xsl:text>
+      </xsl:with-param>
     </xsl:call-template>
   </xsl:if>
   -->

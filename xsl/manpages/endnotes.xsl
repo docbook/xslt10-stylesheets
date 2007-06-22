@@ -262,21 +262,22 @@
             <!-- * a para that has some "prefatory" text  -->
             <xsl:variable name="parent-name" select="local-name(..)"/>
             <xsl:variable name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
-            <xsl:variable name="message-prefix">
-              <xsl:text>endnote </xsl:text>
-              <xsl:call-template name="prepend-pad">
+            <xsl:variable name="endnote-number">
+              <xsl:call-template name="pad-string">
                 <!-- * endnote number may be 2 digits, so pad it with a space -->
                 <!-- * if we have only 1 digit -->
                 <xsl:with-param name="padVar" select="concat('#',$notesource.number)"/>
                 <xsl:with-param name="length" select="3"/>
               </xsl:call-template>
-              <xsl:text> : </xsl:text>
             </xsl:variable>
             <xsl:call-template name="log.message">
               <xsl:with-param name="level">Warn</xsl:with-param>
               <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="context-desc">
+                <xsl:text>endnote </xsl:text>
+                <xsl:value-of select="$endnote-number"/>
+              </xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:value-of select="$message-prefix"/>
                 <xsl:text>Bad: </xsl:text>
                 <xsl:value-of select="$parent-name"/> 
                 <!-- * figure out which occurance of this element type this -->
@@ -291,8 +292,11 @@
             <xsl:call-template name="log.message">
               <xsl:with-param name="level">Note</xsl:with-param>
               <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="context-desc">
+                <xsl:text>endnote </xsl:text>
+                <xsl:value-of select="$endnote-number"/>
+              </xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:value-of select="$message-prefix"/>
                 <xsl:text>Has: </xsl:text>
                 <xsl:value-of select="$parent-name"/> 
                 <xsl:text>/</xsl:text>
@@ -302,8 +306,11 @@
             <xsl:call-template name="log.message">
               <xsl:with-param name="level">Note</xsl:with-param>
               <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="context-desc">
+                <xsl:text>endnote </xsl:text>
+                <xsl:value-of select="$endnote-number"/>
+              </xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:value-of select="$message-prefix"/>
                 <xsl:text>Fix: </xsl:text>
                 <xsl:value-of select="$parent-name"/> 
                 <xsl:text>/</xsl:text>
@@ -439,7 +446,7 @@
       <xsl:value-of select="@number"/>
       <xsl:text>.</xsl:text>
     </xsl:variable>
-    <xsl:call-template name="prepend-pad">
+    <xsl:call-template name="pad-string">
       <xsl:with-param name="padVar" select="$endnote.number"/>
       <!-- FIXME: the following assumes that $man.indent.width is in -->
       <!-- en's; also, this should probably use $list.indent instead -->
