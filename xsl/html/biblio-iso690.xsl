@@ -113,7 +113,7 @@
   <xsl:call-template name="iso690.edition">
     <xsl:with-param name="after" select="./bibliomisc[@role='issuing']"/>
   </xsl:call-template>
-  <!-- Issue designation (date and/or n°) [nonEL] -->
+  <!-- Issue designation (date and/or num) [nonEL] -->
   <xsl:if test="not(./bibliomisc[@role='medium'])">
     <xsl:call-template name="iso690.issuing"/>
   </xsl:if>
@@ -590,7 +590,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<!-- Issue designation (date and/or n°) -->
+<!-- Issue designation (date and/or num) -->
 <xsl:template name="iso690.issuing">
   <xsl:param name="issuing.div">
     <xsl:call-template name="gentext.template"><xsl:with-param name="context" select="'iso690'"/><xsl:with-param name="name" select="'issuing.div'"/></xsl:call-template>

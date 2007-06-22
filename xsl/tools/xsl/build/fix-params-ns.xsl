@@ -1,13 +1,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		version='1.0'
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                exclude-result-prefixes="fo"
+  version='1.0'
+  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:saxon="http://icl.com/saxon"
+  exclude-result-prefixes="fo"
 >
   <xsl:import href="./identity.xsl"/>
 
   <xsl:output method="xml"
-	      indent="no"/>
-  
+  encoding="ASCII"
+  saxon:character-representation="decimal"
+  indent="no"/>
+
   <!-- copy all xsl:* elements but strip the extra namespaces nodes -->
   <xsl:template match="*[namespace-uri() = 'http://www.w3.org/1999/XSL/Transform']">
     <xsl:element name="{name()}">
@@ -15,7 +18,7 @@
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>
-  
+
   <!-- copy all fo:* elements but strip the extra namespace nodes -->
   <xsl:template match="*[namespace-uri() = 'http://www.w3.org/1999/XSL/Format']">
     <xsl:element name="{name()}">
