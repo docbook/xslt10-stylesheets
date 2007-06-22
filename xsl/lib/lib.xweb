@@ -733,7 +733,7 @@ whitespace from it and returns the trimmed contents.</para>
     <xsl:param name="contents"/>
     <xsl:choose>
       <xsl:when test="starts-with($contents,'&#xA;') or
-                      starts-with($contents,'&#xA;') or
+                      starts-with($contents,'&#xD;') or
                       starts-with($contents,'&#x20;') or
                       starts-with($contents,'&#x9;')">
         <xsl:call-template name="trim-left">
