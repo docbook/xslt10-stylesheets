@@ -1186,6 +1186,10 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="person">
+  <xsl:apply-templates select="personname"/>
+</xsl:template>
+
 <xsl:template match="personname">
   <xsl:call-template name="simple.xlink">
     <xsl:with-param name="content">
