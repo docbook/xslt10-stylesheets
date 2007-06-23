@@ -14,6 +14,10 @@ DISTRIB_CHANGELOG_INCLUDES = gentext
 # targets for this distro's "distrib" target to depend on
 DISTRIB_DEPENDS = extensions doc docsrc install.sh RELEASE-NOTES.txt RELEASE-NOTES.pdf
 
+# value of RELEASE_DEPENDS is a space-separated list of any
+# targets for this distro's "release" target to depend on
+RELEASE_DEPENDS = ChangeHistory.xml.zip
+
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release

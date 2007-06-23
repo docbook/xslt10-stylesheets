@@ -86,8 +86,10 @@ install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xm
 ifeq ($(OFFLINE),yes)
 distrib: all $(DISTRIB_DEPENDS)
 else
-distrib: all $(DISTRIB_DEPENDS) $(NEWSFILE) ChangeHistory.xml.zip
+distrib: all $(DISTRIB_DEPENDS) $(NEWSFILE)
 endif
+
+release: distrib $(RELEASE_DEPENDS)
 
 #newversion:
 #ifeq ($(CVSCHECK),)
