@@ -38,6 +38,7 @@ $(MARKUP_XSL):
 
 NEWS.xml: ChangeLog.xml
 	$(XSLT) $< $(SVNLOG2DOCBOOK) $@ \
+	distro="$(DISTRO)" \
 	previous-release="$(PREVIOUS_RELEASE)" \
 	release-version="$(RELVER)" \
 	element.file="$(shell readlink -f $(DOCBOOK_ELEMENTS))" \
@@ -52,6 +53,8 @@ $(NEWSFILE): NEWS.html
 ChangeLog.xml:
 	$(SVN) $(SVN_OPTS) log --xml --verbose \
 	-r HEAD:$(PREVIOUS_REVISION) \
+	$(REPOSITORY_ROOT)/trunk \
+	$(DISTRO) $(DISTRIB_CHANGELOG_INCLUDES) \
 	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
 
 ChangeHistory.xml.zip: ChangeHistory.xml

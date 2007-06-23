@@ -10,6 +10,8 @@
 
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
+REPOSITORY_ROOT=https://docbook.svn.sourceforge.net/svnroot/docbook
+
 CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
