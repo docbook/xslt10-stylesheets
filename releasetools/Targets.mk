@@ -18,7 +18,7 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
 ifeq ($(PDF_MAKER),xep)
-	$(XSLT) RELEASE-NOTES-TMP.xml $(FO-STYLE) $(basename $<).fo $(FO_ENGINE).extensions=1 \
+	$(XSLT) RELEASE-NOTES-TMP.xml $(FO_STYLE) $(basename $<).fo $(PDF_MAKER).extensions=1 \
 	&& $(XEP) $(XEP_FLAGS) $(basename $<).fo
 	$(RM) RELEASE-NOTES-TMP.xml
 else
