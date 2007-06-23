@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
                 exclude-result-prefixes="exsl"
                 version='1.0'>
@@ -155,6 +156,7 @@ db:manvolnum
       <xsl:with-param name="source" select="$refname"/>
       <xsl:with-param name="context-desc">
         <xsl:text>limitation</xsl:text>
+      </xsl:with-param>
       <xsl:with-param name="message">
         <xsl:text>Output for foo element is not yet supported.</xsl:text>
       </xsl:with-param>
