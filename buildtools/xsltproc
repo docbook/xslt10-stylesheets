@@ -31,6 +31,7 @@ my $debug = 0;
 my $config = "~/.xmlc";
 my @opts = ();
 my $c14n = 0;
+my $redirect = "";
 
 while (@ARGV) {
     if ($ARGV[0] =~ /^-\d/) {
@@ -125,7 +126,7 @@ foreach my $param (@params) {
 # stylesheet that has exsl:document or saxon:output, xsltproc
 # tries to write the output in the /dev directory; so we need to
 # redirect the output instead of using xsltproc's -o option
-my $redirect = " > $output" if defined($output) && $output ne '-';
+$redirect = " > $output" if defined($output) && $output ne '-';
 
 if ($c14n) {
   my $xmllintpipe =  " | " . applyOpts($xp, 'xmllint') . " " . $xlintopts;
