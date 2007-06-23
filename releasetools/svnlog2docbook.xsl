@@ -22,6 +22,9 @@
   <xsl:import href="../contrib/tools/tennison/modified-markup.xsl" />
   <xsl:include href="../xsl/lib/lib.xsl" />
 
+  <!-- * name of main distro this changelog is for-->
+  <xsl:param name="distro"/>
+
   <!-- * file containing DocBook XSL stylesheet param names -->
   <xsl:param name="param.file"/>
 
@@ -70,7 +73,7 @@
   <!-- * notes, then just add a "display name" for the subdirectory -->
   <xsl:param
       name="subsections"
-      >Common Gentext Extensions FO HTML Highlighting HTMLHelp Lib Manpages Roundtrip Slides Website Params Profiling Template Tools</xsl:param>
+      >Gentext Common FO HTML HTMLHelp Lib Manpages Roundtrip Slides Website Params Highlighting Profiling Template Tools</xsl:param>
 
   <sf:users>
     <!-- * The sf:users structure associates Sourceforge usernames -->
@@ -168,7 +171,10 @@
     <xsl:if test="not($subsection = '')">
       <!-- * Output a sect2 for this subsection only if with find path names -->
       <!-- * for changed files in this subsection -->
-      <xsl:if test="logentry[paths/path[starts-with(.,concat('/trunk/xsl/',$dirname,'/'))]]">
+      <xsl:if test="logentry[paths/path[
+        starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
+        or starts-with(.,concat('/trunk/',$dirname,'/'))]]
+        ">
         <sect2>
           <!-- * the ID on each Sect2 is the release version plus the -->
           <!-- * subsection name; for example, xml:id="snapshost_FO" -->
@@ -217,7 +223,11 @@
   <xsl:template name="format.entries">
     <xsl:param name="dirname"/>
     <xsl:for-each
-        select="logentry[paths/path[starts-with(.,concat('/trunk/xsl/',$dirname,'/'))]]">
+      select="
+      logentry[paths/path[
+      starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
+      or starts-with(.,concat('/trunk/',$dirname,'/'))]]
+      ">
       <!-- * each Lisitem corresponds to a single commit -->
       <listitem>
         <xsl:text>&#xa;</xsl:text>
@@ -230,7 +240,11 @@
             <alt>
               <!-- * Only get path names for files that are in the subsection -->
               <!-- * that we are currently formatting -->
-              <xsl:for-each select="paths/path[starts-with(.,concat('/trunk/xsl/',$dirname,'/'))]">
+              <xsl:for-each select="
+                paths/path[
+                starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
+                or starts-with(.,concat('/trunk/',$dirname,'/'))]
+                ">
                 <xsl:apply-templates select="."/>
                 <xsl:if test="not(position() = last())">
                   <xsl:text>; </xsl:text>

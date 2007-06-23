@@ -5,14 +5,19 @@ include ../releasetools/Variables.mk
 
 DISTRO=xsl
 
+# value of DISTRIB_CHANGELOG_INCLUDES is a space-separated list of
+# any other top-level modules from which to log changes in the
+# NEWS and RELEASE-NOTES.* files for this distro
+DISTRIB_CHANGELOG_INCLUDES = gentext
+
 # value of DISTRIB_DEPENDS is a space-separated list of any
 # targets for this distro's "distrib" target to depend on
-DISTRIB_DEPENDS = gentext doc docsrc install.sh RELEASE-NOTES.txt RELEASE-NOTES.pdf
+DISTRIB_DEPENDS = extensions doc docsrc install.sh RELEASE-NOTES.txt RELEASE-NOTES.pdf
 
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release
-DISTRIB_EXCLUDES = gentext/$$ extensions/xsltproc doc/reference.txt$$ reference.txt.html$$ doc/reference.fo$$ doc/reference.pdf$$ tools/xsl xhtml/html2xhtml.xsl
+DISTRIB_EXCLUDES = extensions/xsltproc doc/reference.txt$$ reference.txt.html$$ doc/reference.fo$$ doc/reference.pdf$$ tools/xsl xhtml/html2xhtml.xsl
 
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
@@ -59,11 +64,8 @@ doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
 extensions:
-	make -C ../xsl-java
-	cp -pR ../xsl-java .
-
-gentext:
-	cp -pR ../gentext .
+	$(MAKE) -C ../xsl-java
+	cp -pR ../xsl-java $@
 
 clean:
 	for i in $(DIRS) __bogus__; do \
@@ -72,7 +74,6 @@ clean:
 		fi \
 	done
 	$(RM) -r extensions
-	$(RM) -r gentext
 	$(MAKE) clean -C xhtml
 	$(MAKE) clean -C doc
 	$(MAKE) clean -C docsrc
