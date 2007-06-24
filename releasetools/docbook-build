@@ -247,7 +247,7 @@ else
     echo "Building $DISTRO distribution..."
     echo
 
-    make distrib -C $DISTRO DIFFVER=$DIFFVER
+    make distrib -C $DISTRO DIFFVER=$DIFFVER XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" PDF_MAKER=xep
 
     cat <<- EOF > HEADER.txt
 The snapshot for a particular distribution is re-built automatically each time
@@ -266,7 +266,7 @@ EOF
 
     if [ "$UPLOAD" = "yes" ]; then
 
-    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP || exit 1
+    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" PDF_MAKER=xep || exit 1
 
     cat <<- EOF > $TMP/line.tmp
 
