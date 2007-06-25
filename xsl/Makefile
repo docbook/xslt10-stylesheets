@@ -83,4 +83,4 @@ clean:
 	$(MAKE) clean -C docsrc
 
 include ../releasetools/Targets.mk
-include ../releasetools/db5.mk
+include ../releasetools/xmlns.mk
