@@ -62,15 +62,15 @@
   <xslo:variable name="profiled-content">
     <xslo:choose>
       <xslo:when test="*/self::ng:* or */self::db:*">
-	<xslo:message>Stripping NS from DocBook 5/NG document.</xslo:message>
-	<xslo:variable name="stripped-content">
-	  <xslo:apply-templates select="/" mode="stripNS"/>
-	</xslo:variable>
-	<xslo:message>Processing stripped document.</xslo:message>
-	<xslo:apply-templates select="exslt:node-set($stripped-content)" mode="profile"/>
+        <xslo:message>Note: namesp. cut : stripped namespace before processing</xslo:message>
+        <xslo:variable name="stripped-content">
+          <xslo:apply-templates select="/" mode="stripNS"/>
+        </xslo:variable>
+        <xslo:message>Note: namesp. cut : processing stripped document</xslo:message>
+        <xslo:apply-templates select="exslt:node-set($stripped-content)" mode="profile"/>
       </xslo:when>
       <xslo:otherwise>
-	<xslo:apply-templates select="/" mode="profile"/>
+        <xslo:apply-templates select="/" mode="profile"/>
       </xslo:otherwise>
     </xslo:choose>
   </xslo:variable>

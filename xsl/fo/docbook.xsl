@@ -117,19 +117,43 @@
 <xsl:variable name="root.elements" select="' appendix article bibliography book chapter colophon dedication glossary index part preface qandaset refentry reference sect1 section set setindex '"/>
 
 <xsl:template match="/">
+  <!-- * Get a title for current doc so that we let the user -->
+  <!-- * know what document we are processing at this point. -->
+  <xsl:variable name="doc.title">
+    <xsl:call-template name="get.doc.title"/>
+  </xsl:variable>
   <xsl:choose>
     <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
          toss the namespace and continue.  Use the docbook5 namespaced
-	 stylesheets for DocBook5 if you don't want to use this feature.-->
+         stylesheets for DocBook5 if you don't want to use this feature.-->
     <!-- include extra test for Xalan quirk -->
     <xsl:when test="(function-available('exsl:node-set') or
                      contains(system-property('xsl:vendor'),
                        'Apache Software Foundation'))
                     and (*/self::ng:* or */self::db:*)">
-      <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">Note</xsl:with-param>
+        <xsl:with-param name="source" select="$doc.title"/>
+        <xsl:with-param name="context-desc">
+          <xsl:text>namesp. cut</xsl:text>
+        </xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>stripped namespace before processing</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">Note</xsl:with-param>
+        <xsl:with-param name="source" select="$doc.title"/>
+        <xsl:with-param name="context-desc">
+          <xsl:text>namesp. cut</xsl:text>
+        </xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>processing stripped document</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
       <xsl:apply-templates select="exsl:node-set($nons)"/>
     </xsl:when>
     <!-- Can't process unless namespace removed -->

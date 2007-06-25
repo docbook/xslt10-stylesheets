@@ -1836,7 +1836,6 @@ unchanged.</para>
 </variablelist>
 </refparameter>
 </doc:template>
-
 <xsl:template name="string.upper">
   <xsl:param name="string" select="''"/>
   <xsl:variable name="lowercase.alpha">
@@ -1878,7 +1877,6 @@ unchanged.</para>
 </variablelist>
 </refparameter>
 </doc:template>
-
 <xsl:template name="string.lower">
   <xsl:param name="string" select="''"/>
   <xsl:variable name="uppercase.alpha">
@@ -1936,7 +1934,6 @@ unchanged.</para>
     </warning>
   </refdescription>
 </doc:template>
-
 <xsl:template name="select.choice.separator">
   
   <xsl:variable name="choice">
@@ -2002,7 +1999,6 @@ unchanged.</para>
     <parameter>profile</parameter> parameter)</para>
   </refreturn>
 </doc:template>
-
   <xsl:template name="evaluate.info.profile">
     <xsl:param name="profile"/>
     <xsl:param name="info"/>
@@ -2118,7 +2114,6 @@ engine does not support it.
   <refreturn>
   <para>Outputs a message (generally, to standard error).</para></refreturn>
 </doc:template>
-
 <xsl:template name="log.message">
   <xsl:param name="level"/>
   <xsl:param name="source"/>
@@ -2188,6 +2183,94 @@ engine does not support it.
     <xsl:text>  </xsl:text>
     <xsl:value-of select="$source"/>
   </xsl:message>
+</xsl:template>
+
+<!-- ===================================== -->
+<doc:template name="get.doc.title" xmlns="">
+  <refpurpose>Get a title for the current document</refpurpose>
+  <refdescription>
+    <para>The <function>get.doc.title</function> template is a
+      utility template for returning the first title found in the
+      current document.</para>
+  </refdescription>
+  <refreturn>
+  <para>Returns a string containing some identifying title for the
+    current document .</para></refreturn>
+</doc:template>
+<xsl:template name="get.doc.title">
+  <xsl:choose>
+    <xsl:when test="//*[local-name() = 'title'
+      or local-name() = 'refname']">
+      <xsl:value-of select="//*[local-name() = 'title'
+        or local-name() = 'refname'][1]"/>
+    </xsl:when>
+    <xsl:when test="substring(local-name(*[1]),
+      string-length(local-name(*[1])-3) = 'info')
+      and *[1]/*[local-name() = 'title']">
+      <xsl:value-of select="*[1]/*[local-name() = 'title'][1]"/>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ===================================== -->
+<doc:template name="pad.string" xmlns="">
+  <refpurpose>Right-pad or left-pad a string out to a certain length</refpurpose>
+  <refdescription>
+    <para>This function takes string <parameter>padVar</parameter> and
+      pads it out in the direction <parameter>rightLeft</parameter> to
+      the string-length <parameter>length</parameter>, using string
+      <parameter>padChar</parameter> (a space character by default) as
+      the padding string (note that <parameter>padChar</parameter> can
+      be a string; it is not limited to just being a single
+      character).</para>
+
+    <note>
+      <para>This function began as a copy of Nate Austin's
+        <function>prepend-pad</function> function in the <ulink
+          url="http://www.dpawson.co.uk/xsl/sect2/padding.html" >Padding
+          Content</ulink> section of Dave Pawson's <ulink
+          url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+          FAQ</ulink>.</para>
+    </note>
+  </refdescription>
+  <refreturn>
+  <para>Returns a (padded) string.</para></refreturn>
+</doc:template>
+
+<xsl:template name="pad-string">
+  <!-- * recursive template to right/left pad the value with -->
+  <!-- * whatever padChar is passed in -->
+  <xsl:param name="padChar" select="' '"/>
+  <xsl:param name="leftRight">left</xsl:param>
+  <xsl:param name="padVar"/>
+  <xsl:param name="length"/>
+  <xsl:choose>
+    <xsl:when test="string-length($padVar) &lt; $length">
+      <xsl:call-template name="pad-string">
+        <xsl:with-param name="padChar" select="$padChar"/>
+        <xsl:with-param name="leftRight" select="$leftRight"/>
+        <xsl:with-param name="padVar">
+          <xsl:choose>
+            <!-- * determine whether string should be -->
+            <!-- * right- or left-padded -->
+            <xsl:when test="$leftRight = 'left'">
+              <!-- * pad it to left -->
+              <xsl:value-of select="concat($padChar,$padVar)"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <!-- * otherwise, right-pad the string -->
+              <xsl:value-of select="concat($padVar,$padChar)"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
+        <xsl:with-param name="length" select="$length"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of 
+        select="substring($padVar,string-length($padVar) - $length + 1)"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
