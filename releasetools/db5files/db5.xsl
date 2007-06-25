@@ -9,6 +9,8 @@
                 exclude-result-prefixes="d exsl saxon NodeInfo"
                 version='1.0'>
 
+<xsl:import href="../common/common.xsl"/>
+
 <!-- Template to add the namespace to non-db5 documents -->
 <xsl:template match="*" mode="addNS">
   <xsl:element name="{local-name()}" 
@@ -19,6 +21,11 @@
 </xsl:template>
 
 <xsl:template name="add-xml-base">
+  <!-- * Get a title for current doc so that we let the user -->
+  <!-- * know what document we are processing at this point. -->
+  <xsl:variable name="doc.title">
+    <xsl:call-template name="get.doc.title"/>
+  </xsl:variable>
   <xsl:if test="not(@xml:base)">
     <xsl:variable name="base">
       <xsl:choose>
@@ -29,11 +36,26 @@
           <xsl:value-of select="NodeInfo:systemId()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>
-            <xsl:text>WARNING: cannot add @xml:base to node </xsl:text>
-            <xsl:text>set root element.  </xsl:text>
-            <xsl:text>Relative paths may not work.</xsl:text>
-          </xsl:message>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">Warn</xsl:with-param>
+            <xsl:with-param name="source" select="$doc.title"/>
+            <xsl:with-param name="context-desc">
+              <xsl:text>no @xml:base</xsl:text>
+            </xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>cannot add @xml:base to node-set root element</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">Warn</xsl:with-param>
+            <xsl:with-param name="source" select="$doc.title"/>
+            <xsl:with-param name="context-desc">
+              <xsl:text>no @xml:base</xsl:text>
+            </xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>relative paths may not work</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
