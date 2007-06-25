@@ -25,7 +25,7 @@ zip-ns: zip
 	  unzip $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip && \
 	  $(DOCBOOK_SVN)/releasetools/xslns-build \
 	  docbook-$(DISTRO)-$(ZIPVER) \
-	  docbook-$(DISTRO)-ns--$(ZIPVER)); 
+	  docbook-$(DISTRO)-ns-$(ZIPVER)); 
 
 # change branch info
 	sed -i "s/^\(.*\)<fm:Branch>XSL Stylesheets<\/fm:Branch>$$/\1<fm:Branch>XSL NS Stylesheets<\/fm:Branch>/" \
