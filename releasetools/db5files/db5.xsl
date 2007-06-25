@@ -11,7 +11,7 @@
 
 <xsl:import href="../common/common.xsl"/>
 
-<!-- Template to add the namespace to non-db5 documents -->
+<!-- Template to add the namespace to non-namespaced documents -->
 <xsl:template match="*" mode="addNS">
   <xsl:element name="{local-name()}" 
           namespace="http://docbook.org/ns/docbook">

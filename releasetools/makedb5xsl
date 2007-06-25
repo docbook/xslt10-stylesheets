@@ -253,7 +253,7 @@ sub nsfilter {
   s|(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform"(?!>))(\s*\n?)(\s*)|$1$2$3xmlns:d="http://docbook.org/ns/docbook"\n$3|s;
   
   # Convert stripNS to addNS
-  s|href="../common/stripns.xsl"|href="../common/db5.xsl"|sg;
+  s|href="../common/stripns.xsl"|href="../common/addns.xsl"|sg;
   
   s|(\s*\n*)(\s*)(<xslo?:when)\s+test\s*=\s*"[^"]*?self::db:[^"]*?">.*?(</xslo?:when>)|$1$2$3 test="namespace-uri\(\*\[1\]\) != 'http://docbook.org/ns/docbook'">\n$2 <xsl:variable name="doc.title">\n$2 <xsl:call-template name="get.doc.title"/>\n$2 </xsl:variable>\n$2 <xsl:call-template name="log.message">\n$2 <xsl:with-param name="level">Note</xsl:with-param>\n$2 <xsl:with-param name="source" select="\$doc.title"/>\n$2 <xsl:with-param name="context-desc">\n$2 <xsl:text>namesp. add</xsl:text>\n$2 </xsl:with-param>\n$2 <xsl:with-param name="message">\n$2 <xsl:text>added namespace before processing</xsl:text>\n$2 </xsl:with-param>\n$2 </xsl:call-template>\n$2 <xsl:variable name="addns">\n$2    <xsl:apply-templates mode="addNS"/>\n$2  </xsl:variable>\n$2  <xsl:apply-templates select="exsl:node-set\(\$addns\)"/>\n$2$4|sg;
   
@@ -468,15 +468,15 @@ sub namespacefilter {
 # 
 sub addFiles {
   my $miscdir = dirname $0;
-  $miscdir .= '/db5files';
+  $miscdir .= '/xslnsfiles';
   print STDOUT "miscdir is $miscdir" . "\n";
-  copy("$miscdir/db5.xsl", "$destdir/common");
+  copy("$miscdir/addns.xsl", "$destdir/common");
   copy("$miscdir/README", "$destdir/README");
   copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
   copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
 
   # delete these obsolete files.
 
-  # Replace stripns.xsl with db5.xsl in profiling module
+  # Replace stripns.xsl with addns.xsl in profiling module
   &nsfilter("$srcdir/profiling/profile.xsl", "$destdir/profiling/profile.xsl");
 }

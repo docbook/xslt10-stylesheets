@@ -1,15 +1,17 @@
-DocBook 5 XSL stylesheets
+DocBook XSL NS (namespaced) Stylesheets
 ===========================================
 Bob Stayton
 bobs@sagehill.net
 
-This package contains a release of XSL stylesheets
-for processing DocBook 5 documents.  The stylesheets are
-the same as the concurrent stylesheet release except that
-the templates match on elements in the DocBook namespace.
+This package contains a release of XSL stylesheets for
+processing namespaced DocBook documents (DocBook 5 or
+later). The stylesheets are the same as the concurrent
+stylesheet release except that the templates match on
+elements in the DocBook namespace.
 
-Note, the stylesheets in these directories have
-not yet been converted to use the DocBook 5 namespace:
+Note, the stylesheets in the directories listed below
+have not yet been converted to use the DocBook
+namespace:
 
   slides
   website
@@ -19,25 +21,29 @@ not yet been converted to use the DocBook 5 namespace:
 Background
 -------------
 DocBook 5 differs from preceding versions of DocBook because
-its elements are in a namespace "http://docbook.org/ns/docbook".
+its elements are in a namespace, "http://docbook.org/ns/docbook".
 Because the elements are in a namespace, the regular
 DocBook XSL templates do not match on the elements.
 In XSLT, a match attribute must explicitly specify
 the namespace prefix to match an element in that namespace
 (the default namespace does not apply to pattern matches).
 
-The regular stylesheets are able to process DocBook 5
-documents now, because they preprocess a DB5 document to
-remove the namespace.  When the regular stylesheet
-detects that the root element is in the namespace, it
-processes the document with mode="stripNS" to copy all
-the nodes to a variable, but without the DocBook namespace.
+The non-namspaced DocBook XSL stylesheets (created
+originally for processing DocBook 4 and earlier documents,
+before DocBook was put into a namespace for the DocBook 5
+release) are able to process a namespaced DocBook document
+by preprocessing the document to strip the namespace.
+
+When the non-namspaced stylesheet detects that the root
+element of a document is in the DocBook namespace, it
+processes the document with mode="stripNS" to copy all the
+nodes to a variable, but without the DocBook namespace.
 Then it converts the variable to a nodeset, and processes
 the nodeset with the regular templates.
 
 The alternative approach is to create a set of templates
-that match on the native namespace of DocBook 5 documents.
-These stylesheets do that.
+that match on the native namespace of DocBook 5 and
+later documents.  These stylesheets do that.
 
 These stylesheets completely mimic the behavior of the
 existing stylesheets.  These are not XSLT 2.0 stylesheets,
@@ -88,22 +94,24 @@ now recognize DocBook 5 elements in their native namespace.
 
 How to use these stylesheets
 --------------------------------
-A DocBook 5 document has the DocBook namespace declaration
-in the root element, along with the version attribute:
+DocBook 5 and later documents hav the DocBook namespace
+declaration in the root element, along with the version
+attribute:
 
   <book xslns="http://docbook.org/ns/docbook" version="5.0">
 
-You can process a DocBook 5 document with these stylesheets
-using any XSLT processor, including xsltproc, Saxon 6 or 8,
-and Xalan.  Use these stylesheets as you would a stylesheet
-from the regular distribution (except for slides, website,
-and roundtrip).
+You can process a namespaced DocBook document with these
+stylesheets using any XSLT processor, including xsltproc,
+Saxon 6 or 8, and Xalan.  Use these stylesheets as you would
+a stylesheet from the regular distribution (except for
+slides, website, and roundtrip).
 
 If you happen to process a DocBook document whose root element
 is without the namespace declaration, the stylesheet
 does not fail.  Rather, it detects that the document
 does not have the namespace, and preprocesses it to add the
 namespace declaration to all elements in the document.
+
 In a manner similar to stripNS, it copies the elements
 to a variable while adding the namespace, converts the
 variable to a nodeset, and then processes the nodeset with
@@ -156,4 +164,3 @@ Report any problems
 These are new stylesheets and need thorough testing.
 Please report any problems to the docbook-apps
 mailing list or the SourceForge bug tracker.
-
