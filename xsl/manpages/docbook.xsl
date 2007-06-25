@@ -47,66 +47,39 @@
   <!-- ==================================================================== -->
 
   <xsl:template match="/">
-    <xsl:variable name="title">
-      <!-- * Get a title so that we let the user know what -->
-      <!-- * document we are processing at this point. -->
-      <xsl:choose>
-        <xsl:when test="//*[local-name() = 'title'
-          or local-name() = 'refname']">
-          <xsl:value-of select="//*[local-name() = 'title'
-            or local-name() = 'refname'][1]"/>
-        </xsl:when>
-        <xsl:when test="substring(local-name(*[1]),
-          string-length(local-name(*[1])-3) = 'info')
-          and *[1]/*[local-name() = 'title']">
-          <xsl:value-of select="*[1]/*[local-name() = 'title'][1]"/>
-        </xsl:when>
-      </xsl:choose>
+    <!-- * Get a title for current doc so that we let the user -->
+    <!-- * know what document we are processing at this point. -->
+    <xsl:variable name="doc.title">
+      <xsl:call-template name="get.doc.title"/>
     </xsl:variable>
     <xsl:choose>
-      <xsl:when test="(//self::ng:* or //self::db:*) and $DistroName = 'docbook-xsl'">
+      <!-- * when we find a namespaced document, strip the -->
+      <!-- * namespace and then continue processing it. -->
+      <xsl:when test="//self::db:*">
         <xsl:call-template name="log.message">
-          <xsl:with-param name="level">Erro</xsl:with-param>
-          <xsl:with-param name="source" select="$title"/>
+          <xsl:with-param name="level">Note</xsl:with-param>
+          <xsl:with-param name="source" select="$doc.title"/>
           <xsl:with-param name="context-desc">
-            <xsl:text>   namespace</xsl:text>
+            <xsl:text>namesp. cut</xsl:text>
           </xsl:with-param>
           <xsl:with-param name="message">
-            <xsl:text>Can't process namespaced DocBook document.</xsl:text>
+            <xsl:text>stripped namespace before processing</xsl:text>
           </xsl:with-param>
         </xsl:call-template>
-        <xsl:message>
-          <xsl:text>  To create man-page output from a namespaced DocBook document</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  (DocBook 5 or later), you must either use the docbook5-xsl</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  stylesheets:</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>    http://docbook.sf.net/files/docbook5-xsl/latest</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  Or you must first pre-process your document with the</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  stripns.xsl stylesheet to strip the namespace. You can strip</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  the namespace and convert the document to man-page output in</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  one pass using a pipe; for example:</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>  xsltproc \</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>   http://docbook.sf.net/release/xsl/current/common/stripns.xsl \</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>   </xsl:text>
-          <xsl:value-of select="$title"/>
-          <xsl:text>.xml \</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>   | xsltproc \</xsl:text>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>   http://docbook.sf.net/release/xsl/current/manpages/docbook.xsl -</xsl:text>
-        </xsl:message>
+        <xsl:variable name="stripns">
+          <xsl:apply-templates mode="stripNS"/>
+        </xsl:variable>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">Note</xsl:with-param>
+          <xsl:with-param name="source" select="$doc.title"/>
+          <xsl:with-param name="context-desc">
+            <xsl:text>namesp. cut</xsl:text>
+          </xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>processing stripped document</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+        <xsl:apply-templates select="exsl:node-set($stripns)"/>
       </xsl:when>
       <xsl:when test="//refentry">
         <!-- * Check to see if we have any refentry children in this -->
@@ -142,21 +115,21 @@
         <!-- * refentry elements, so log/emit message and stop. -->
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">Erro</xsl:with-param>
-          <xsl:with-param name="source" select="$title"/>
+          <xsl:with-param name="source" select="$doc.title"/>
           <xsl:with-param name="context-desc">
             <xsl:text> no refentry</xsl:text>
           </xsl:with-param>
           <xsl:with-param name="message">
             <xsl:text>No refentry elements found</xsl:text>
-            <xsl:if test="$title != ''">
+            <xsl:if test="$doc.title != ''">
             <xsl:text> in "</xsl:text>
               <xsl:choose>
-                <xsl:when test="string-length($title) &gt; 30">
-                  <xsl:value-of select="substring($title,1,30)"/>
+                <xsl:when test="string-length($doc.title) &gt; 30">
+                  <xsl:value-of select="substring($doc.title,1,30)"/>
                   <xsl:text>...</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:value-of select="$title"/>
+                  <xsl:value-of select="$doc.title"/>
                 </xsl:otherwise>
               </xsl:choose>
               <xsl:text>"</xsl:text>
