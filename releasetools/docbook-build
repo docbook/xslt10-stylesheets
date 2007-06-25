@@ -212,8 +212,6 @@ else
       DIFFVER=`cat $DISTRO/VERSION`
     fi
 
-    PREVIOUS_REVISION=`if [ -f $DISTRO/PreviousRevision ]; then cat $DISTRO/PreviousRevision; fi`
-
     if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
       cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
       sed "s/Version>.\+</Version>$RELEASEVERSION\_$REVISION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
@@ -258,11 +256,6 @@ on $DATE at $TIME $ZONE.
 These snapshots are intended for testing purposes only and otherwise come with
 no guarantees. Any of them may in fact be broken at any given time.
 EOF
-
-    if [ -n "$PREVIOUS_REVISION" ]; then
-      svn cleanup
-      svn log --verbose -r HEAD:$PREVIOUS_REVISION $DISTRO > $DISTRO/LatestChanges
-    fi
 
     if [ "$UPLOAD" = "yes" ]; then
 
@@ -315,7 +308,7 @@ EOF
     if [ -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp ]; then
       # filter raw log and copy to site
       cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp \
-      | grep -v '^cvs log: \|cvs update\|^tar: \|^tar \|^  adding: \|^find \|^cd \|rm \|^mkdir \|^touch \|cvs2log\|mergechangelogs' \
+      | grep -v '^cvs log: \|cvs update\|^tar: \|^tar \|^  adding: \|^find \|^cd \|rm \|^mkdir \|^touch \|cvs2log\|mergechangelogs\|\s*(\|^  inflating: docbook-\|^ extracting: docbook-\|^docbook-' \
         > $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
       scp $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log $SITEUSER@$SITEHOST:$SITEBASE
     fi
