@@ -20,7 +20,7 @@
 
 <doc:mode mode="collect.targets" xmlns="">
 <refpurpose>Collects information for potential cross reference targets</refpurpose>
-<refdescription>
+<refdescription id="collect.targets-desc">
 <para>Processing the root element in the
 <literal role="mode">collect.targets</literal> mode produces 
 a set of target database elements that can be used by

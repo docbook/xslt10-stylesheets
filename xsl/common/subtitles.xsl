@@ -20,7 +20,7 @@
 
 <doc:mode mode="subtitle.markup" xmlns="">
 <refpurpose>Provides access to element subtitles</refpurpose>
-<refdescription>
+<refdescription id="subtitle.markup-desc">
 <para>Processing an element in the
 <literal role="mode">subtitle.markup</literal> mode produces the
 subtitle of the element.

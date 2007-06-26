@@ -51,7 +51,7 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.metadata" xmlns="">
   <refpurpose>Gathers metadata from a refentry and its ancestors</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.metadata-desc">
     <para>Reference documentation for particular commands, functions,
     etc., is sometimes viewed in isolation from its greater "context". For
     example, users view Unix man pages as, well, individual pages, not as
@@ -86,7 +86,7 @@
     </note>
 
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.metadata-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -110,7 +110,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.metadata-returns">
     <para>Returns a node set with the following elements. The
     descriptions are verbatim from the <literal>man(7)</literal> man
     page.
@@ -191,7 +191,7 @@
 <!-- ====================================================================== -->
 <doc:template name="get.refentry.title" xmlns="">
   <refpurpose>Gets title metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.title-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     title of the man page (e.g., <literal>MAN</literal>). This differs
     from <sgmltag>refname</sgmltag> in that, if the <sgmltag>refentry</sgmltag> has a
@@ -199,7 +199,7 @@
     otherwise, we just use first <sgmltag>refname</sgmltag> in the first
     <sgmltag>refnamediv</sgmltag> in the source.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.title-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -209,7 +209,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.title-returns">
   <para>Returns a <sgmltag>title</sgmltag> node.</para></refreturn>
 </doc:template>
 <xsl:template name="get.refentry.title">
@@ -229,7 +229,7 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.section" xmlns="">
   <refpurpose>Gets section metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.section-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     section number the man page should be placed in (e.g.,
     <literal>7</literal>)". If we do not find a <sgmltag>manvolnum</sgmltag>
@@ -239,7 +239,7 @@
     default to using <literal>1</literal> ["Executable programs or shell
     commands"].</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.section-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -255,7 +255,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.section-returns">
   <para>Returns a string representing a section number.</para></refreturn>
 </doc:template>
 <xsl:template name="get.refentry.section">
@@ -313,12 +313,12 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.date" xmlns="">
   <refpurpose>Gets date metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.date-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     date of the last revision". If we cannot find a date in the source, we
     generate one.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.date-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -341,7 +341,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.date-returns">
     <para>Returns a <sgmltag>date</sgmltag> node.</para>
   </refreturn>
 </doc:template>
@@ -430,7 +430,7 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.source" xmlns="">
   <refpurpose>Gets source metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.source-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     source of the command", and provides the following examples:
     <itemizedlist>
@@ -490,7 +490,7 @@
     probably will be no <replaceable>Version</replaceable>.
     </para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.source-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -514,7 +514,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.source-returns">
     <para>Returns a <sgmltag>source</sgmltag> node.</para>
   </refreturn>
 </doc:template>
@@ -600,13 +600,13 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.source.name" xmlns="">
   <refpurpose>Gets source-name metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.source.name-desc">
     <para>A "source name" is one part of a (potentially) two-part
     <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>
     source field. For more details, see the documentation for the
     <function>get.refentry.source</function> template.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.source.name-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -630,7 +630,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.source.name-returns">
     <para>Depending on what output method is used for the
   current stylesheet, either returns a text node or possibly an element
   node, containing "source name" data.</para>
@@ -784,13 +784,13 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.version" xmlns="">
   <refpurpose>Gets version metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.version-desc">
     <para>A "version" is one part of a (potentially) two-part
     <replaceable>Name</replaceable>&#160;<replaceable>Version</replaceable>
     source field. For more details, see the documentation for the
     <function>get.refentry.source</function> template.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.version-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -814,7 +814,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.version-returns">
     <para>Depending on what output method is used for the
   current stylesheet, either returns a text node or possibly an element
   node, containing "version" data.</para>
@@ -929,7 +929,7 @@
 <!-- ==================================================================== -->
 <doc:template name="get.refentry.manual" xmlns="">
   <refpurpose>Gets source metadata for a refentry</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.manual-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     title of the manual (e.g., <citetitle>Linux Programmer's
     Manual</citetitle>)". Here are some examples from existing man pages:
@@ -976,7 +976,7 @@
     </para>
 
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.manual-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -1000,7 +1000,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.manual-returns">
     <para>Returns a <sgmltag>manual</sgmltag> node.</para>
   </refreturn>
 </doc:template>
@@ -1138,7 +1138,7 @@
 <!-- ====================================================================== -->
 <doc:template name="get.refentry.metadata.prefs" xmlns="">
   <refpurpose>Gets user preferences for refentry metadata gathering</refpurpose>
-  <refdescription>
+  <refdescription id="get.refentry.metadata.prefs-desc">
     <para>The DocBook XSL stylesheets include several user-configurable
     global stylesheet parameters for controlling <sgmltag>refentry</sgmltag>
     metadata gathering. Those parameters are not read directly by the
@@ -1153,11 +1153,11 @@
     template is the only interface to collecting stylesheet parameters for
     controlling <sgmltag>refentry</sgmltag> metadata gathering.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="get.refentry.metadata.prefs-params">
     <para>There are no local parameters for this template; however, it
     does rely on a number of global parameters.</para>
   </refparameter>
-  <refreturn>
+  <refreturn id="get.refentry.metadata.prefs-returns">
     <para>Returns a <sgmltag>manual</sgmltag> node.</para>
   </refreturn>
 </doc:template>
@@ -1213,12 +1213,12 @@
 <!-- ====================================================================== -->
 <doc:template name="set.refentry.metadata" xmlns="">
   <refpurpose>Sets content of a refentry metadata item</refpurpose>
-  <refdescription>
+  <refdescription id="set.refentry.metadata-desc">
     <para>The <function>set.refentry.metadata</function> template is
     called each time a suitable source element is found for a certain
     metadata field.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="set.refentry.metadata-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
@@ -1248,7 +1248,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="set.refentry.metadata-returns">
   <para>Returns formatted contents of a selected source element.</para></refreturn>
 </doc:template>
 <xsl:template name="set.refentry.metadata">
