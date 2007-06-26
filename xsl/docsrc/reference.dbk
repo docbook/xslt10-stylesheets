@@ -81,6 +81,11 @@
       </listitem>
       <listitem>
         <para><xi:include
+        href="./utility/utility.refsect1.xml"
+        xpointer="xpointer(/reference/title/node())"/></para>
+      </listitem>
+      <listitem>
+        <para><xi:include
         href="./fo/table.refsect1.xml"
         xpointer="xpointer(/reference/title/node())"/></para>
       </listitem>
