@@ -39,7 +39,7 @@ fi
 umask 002
 # set up some defaults
 ENGINE=xsltproc
-PDF_MAKER=xep
+PDF_MAKER=dblatex
 TAR=tar
 TARFLAGS=P
 ZIPTARG=zip
@@ -88,8 +88,9 @@ Options:
      Specifies which XSLT engine to use. Default: xsltproc
 
   -f FORMATTER
-     Specifies which formatter to use for generating PDFs.
-     Default: xep
+     Specifies which formatter to use for generating the PDF
+     version of the release notes for the distribution.
+     Default: dblatex
 
   -l LOGDIR
      Specifies the directory to which the script redirects its
