@@ -1,12 +1,15 @@
-// Verbatim.java - Xalan extensions supporting DocBook verbatim environments
+// Table.java - Xalan extensions supporting tables
 
 package com.nwalsh.xalan;
 
 import java.util.Hashtable;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.AttributesImpl;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.apache.xalan.extensions.ExpressionContext;
+import org.apache.xml.utils.DOMBuilder;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -16,17 +19,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.traversal.NodeIterator;
 
-import javax.xml.transform.TransformerException;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.AttributesImpl;
 
-import org.apache.xpath.objects.XObject;
-import org.apache.xpath.XPathContext;
-import org.apache.xalan.extensions.ExpressionContext;
-import org.apache.xml.utils.DOMBuilder;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.apache.xml.utils.QName;
-import org.apache.xml.utils.AttList;
 
 /**
  * <p>Xalan extensions supporting Tables</p>
