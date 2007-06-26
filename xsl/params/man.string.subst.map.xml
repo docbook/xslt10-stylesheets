@@ -27,7 +27,9 @@
 
   <!-- * squeeze multiple newlines before a roff request  -->
   <ss:substitution oldstring="&#10;&#10;." newstring="&#10;."/>
-  <!-- * remove any .sp occurences that directly follow a .PP  -->
+  <!-- * remove any .sp instances that directly precede a .PP  -->
+  <ss:substitution oldstring=".sp&#10;.PP" newstring=".PP"/>
+  <!-- * remove any .sp instances that directly follow a .PP  -->
   <ss:substitution oldstring=".PP&#10;.sp" newstring=".PP"/>
   <!-- * squeeze multiple newlines after start of no-fill (verbatim) env. -->
   <ss:substitution oldstring=".nf&#10;&#10;" newstring=".nf&#10;"/>

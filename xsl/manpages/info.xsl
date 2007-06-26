@@ -584,19 +584,24 @@
         <xsl:text>"&#10;</xsl:text>
         <!-- * the copyright mode="titlepage.mode" template is -->
         <!-- * imported from the HTML stylesheets -->
-        <xsl:for-each select="(($info[//copyright])[last()]//copyright)">
-          <xsl:variable name="contents">
-            <xsl:apply-templates select="." mode="titlepage.mode"/>
-          </xsl:variable>
-          <xsl:value-of select="normalize-space($contents)"/>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>.br&#10;</xsl:text>
-        </xsl:for-each>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:for-each select="(($info[//legalnotice])[last()]//legalnotice)">
-          <xsl:apply-templates select="." mode="titlepage.mode"/>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:text>.br&#10;</xsl:text>
+        <xsl:for-each select="
+          (($info[//copyright])[last()]//copyright)
+          | (($info[//legalnotice])[last()]//legalnotice)">
+          <xsl:choose>
+            <xsl:when test="local-name(.) = 'copyright'">
+              <xsl:variable name="contents">
+                <xsl:apply-templates select="." mode="titlepage.mode"/>
+              </xsl:variable>
+              <xsl:value-of select="normalize-space($contents)"/>
+              <xsl:text>&#10;</xsl:text>
+              <xsl:text>.br&#10;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="." mode="titlepage.mode"/>
+              <xsl:text>&#10;</xsl:text>
+              <xsl:text>.sp&#10;</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise/> <!-- * do nothing, no copyright or legalnotice found -->
