@@ -3,30 +3,21 @@
 package com.nwalsh.xalan;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.InputStream;
-import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.net.URL;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import java.net.MalformedURLException;
+import java.net.URL;
 
-import org.xml.sax.SAXException;
-import org.xml.sax.ContentHandler;
-
-import org.apache.xpath.objects.XObject;
-import org.apache.xpath.XPath;
-import org.apache.xpath.NodeSet;
-import org.apache.xalan.extensions.XSLProcessorContext;
-import org.apache.xalan.transformer.TransformerImpl;
-import org.apache.xalan.templates.StylesheetRoot;
-import org.apache.xalan.templates.ElemExtensionCall;
-import org.apache.xalan.templates.OutputProperties;
-import org.apache.xalan.res.XSLTErrorResources;
-
-import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
-import javax.xml.transform.Source;
+
+import org.apache.xalan.extensions.XSLProcessorContext;
+import org.apache.xalan.templates.ElemExtensionCall;
+import org.apache.xalan.transformer.TransformerImpl;
+
 
 /**
  * <p>Xalan extension element for inserting text
@@ -195,7 +186,12 @@ public class Text {
     encoding = ((ElemExtensionCall)elem).getAttribute ("encoding",
 						       context.getContextNode(),
 						       context.getTransformer());
-
-    return encoding;
+    
+    if (encoding == null) {
+      return "";
+    } else {        
+      return encoding;
+    }
   }
 }
+
