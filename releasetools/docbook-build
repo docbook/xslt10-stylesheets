@@ -38,6 +38,8 @@ fi
 
 umask 002
 # set up some defaults
+ENGINE=xsltproc
+PDF_MAKER=xep
 TAR=tar
 TARFLAGS=P
 ZIPTARG=zip
@@ -53,9 +55,10 @@ LOCK_TIMEOUT=1200
 
 usage="Usage:
 
-  `basename $0` [-b BASEDIR] [-d DOMAIN] [-l LOGDIR] [-p PATH]
-                [-r] [-s] [-t TMPDIR] [-u USER] [-v VERSION]
-                [-x ZIPTARG] [-z ZONE] DISTRO...
+  `basename $0` [-a ADDEDSUFFIX] [-b BASEDIR] [-d DOMAIN]
+                [-e ENGINENAME] [-f FORMATTER] [-l LOGDIR]
+                [-p PATH] [-r] [-s] [-t TMPDIR] [-u USER]
+                [-v VERSION] [-x ZIPTARG] [-z ZONE] DISTRO...
 
 "
 opts_admon="Type '`basename $0` -h' for details about options.
@@ -64,52 +67,74 @@ opts_admon="Type '`basename $0` -h' for details about options.
 help="
 Options:
 
-  -b BASEDIR  Specifies the location of the base directory containing the
-              SVN working directories for modules from the DocBook project
-              (directory containing 'xsl', 'dsssl', 'slides', etc. subdirs) 
-              Default: value of the DOCBOOK_SVN environment variable, if set;
-              otherwise, the directory from which the script is run.
+  -a ADDEDSUFFIX
+     Specifies a suffix for any additional packages that are built
+     along with the package for this distro. For example, in the
+     cause of the docbook-xsl package, we also build docbook-xsl-ns,
+     using \"-a ns\"
 
-  -d DOMAIN   Specifies the remote host (domain) to which the snaphost is
-              uploaded
-              Default: 'docbook.sourceforge.net'
+  -b BASEDIR
+     Specifies the location of the base directory containing the
+     SVN working directories for modules from the DocBook project
+     (directory containing 'xsl', 'dsssl', 'slides', etc. subdirs)
+     Default: value of the DOCBOOK_SVN environment variable, if
+     set; otherwise, the directory from which the script is run.
 
-  -l LOGDIR   Specifies the directory to which the script redirects its
-              standard output and standard error.
-              Default: none -- if not set, stdout and stderr are not
-              redirected to a log file.
+  -d DOMAIN
+     Specifies the remote host (domain) to which the snaphost is
+     uploaded. Default: 'docbook.sourceforge.net'
 
-  -p PATH     Specifies the upload path on the remote host
-              Default: '/home/groups/d/do/docbook/htdocs/snapshots'
+  -e ENGINENAME
+     Specifies which XSLT engine to use. Default: xsltproc
 
-  -r          If specified, read commit message from standard input.
+  -f FORMATTER
+     Specifies which formatter to use for generating PDFs.
+     Default: xep
 
-  -s          If specified, scp the distro to upload site (after tar/zipping).
+  -l LOGDIR
+     Specifies the directory to which the script redirects its
+     standard output and standard error.
+     Default: none -- if not set, stdout and stderr are not
+     redirected to a log file.
 
-  -t TMPDIR   Specifies the directory to which the script writes temporary
-              files.
-              Default: /tmp
+  -p PATH
+     Specifies the upload path on the remote host.
+     Default: '/home/groups/d/do/docbook/htdocs/snapshots'
 
-  -u USER     Specifies the (Sourceforge) username with which to upload the
-              snapshot to the target (Sourceforge) website
-              Default: Username found in SVN/Root in working directory, if
-              found; otherwise, local username.
+  -r
+     If specified, read commit message from standard input.
 
-  -v VERSION  Specifies the version name to put on the build.
-              Default: 'snapshot'
+  -s
+     If specified, scp the distro to upload site (after tar/zipping).
 
-  -x ZIPTARG  Specifies name of the target to use for building
-              compressed package file.
-              Default: 'zip'
+  -t TMPDIR
+     Specifies the directory to which the script writes temporary
+     files. Default: /tmp
 
-  -z ZONE     Specifies timezone to use for date/time stamps
-              Default: none -- if not set, 'date' uses timezone configured on
-              local machine.
+  -u USER
+     Specifies the (Sourceforge) username with which to upload the
+     snapshot to the target (Sourceforge) website.
+     Default: Username found in SVN/Root in working directory, if
+     found; otherwise, local username.
 
-  DISTRO...   Space-separated list of distros to build (e.g. 'xsl dsssl')
+  -v VERSION
+     Specifies the version name to put on the build.
+     Default: 'snapshot'
+
+  -x ZIPTARG
+     Specifies name of the target to use for building compressed
+     package file. Default: 'zip'
+
+  -z ZONE
+     Specifies timezone to use for date/time stamps.
+     Default: none -- if not set, 'date' uses timezone configured
+     on local machine.
+
+  DISTRO...
+     Space-separated list of distros to build (e.g. 'xsl dsssl')
 
 "
-while getopts ":b:d:hl:p:rst:u:v:x:z:" opt; do
+while getopts ":a:b:e:f:d:hl:p:rst:u:v:x:z:" opt; do
   case $opt in
     r  ) # parse commit message
          while read -r LINE
@@ -120,7 +145,10 @@ while getopts ":b:d:hl:p:rst:u:v:x:z:" opt; do
             break
           fi
          done ;;
+    a  ) ADDEDSUFFIX=$OPTARG ;;
     b  ) BUILDDIR=$OPTARG ;;
+    e  ) ENGINE=$OPTARG ;;
+    f  ) PDF_MAKER=$OPTARG ;;
     l  ) LOGDIR=$OPTARG ;;
     t  ) TMP=$OPTARG ;;
     v  ) RELEASEVERSION=$OPTARG ;;
@@ -245,7 +273,7 @@ else
     echo "Building $DISTRO distribution..."
     echo
 
-    make distrib -C $DISTRO DIFFVER=$DIFFVER XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" PDF_MAKER=xep
+    make distrib -C $DISTRO DIFFVER=$DIFFVER XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
 
     cat <<- EOF > HEADER.txt
 The snapshot for a particular distribution is re-built automatically each time
@@ -259,7 +287,7 @@ EOF
 
     if [ "$UPLOAD" = "yes" ]; then
 
-    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" PDF_MAKER=xep || exit 1
+    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER || exit 1
 
     cat <<- EOF > $TMP/line.tmp
 
@@ -283,12 +311,17 @@ EOF
     cd $SITEBASE; \
     rm -f docbook-$DISTRO-$RELEASEVERSION.log; \
     rm -rf $DISTRO; \
+    rm -rf $DISTRO-$ADDEDSUFFIX; \
     for tarball in docbook-$DISTRO*$RELEASEVERSION.tar.bz2; do \
     cat $tarball | bunzip2 | \
     (cd $TMP; $TAR xf$TARFLAGS -); \
     done; \
     mkdir $DISTRO; \
-    cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO;)
+    cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
+    if [-d $TMP/docbook-$DISTRO-$$RELEASEVERSION]; then \
+    cp -pR $TMP/docbook-$DISTRO-$ADDEDSUFFIX-$RELEASEVERSION/* $DISTRO-$ADDEDSUFFIX; \
+    endif; \
+    )
 
     scp \
       $TMP/docbook*-$DISTRO*$RELEASEVERSION.zip \
@@ -296,10 +329,11 @@ EOF
       LatestChanges \
       $SITEUSER@$SITEHOST:$SITEBASE
 
-    rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.tar.bz2
-    rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.tar.gz
-    rm -rf $TMP/docbook*-$DISTRO*$RELEASEVERSION.zip
-    rm -rf $TMP/docbook*-$DISTRO-$RELEASEVERSION
+    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
+    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.gz
+    rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.zip
+    rm -rf $TMP/docbook-$DISTRO-$RELEASEVERSION
+    rm -rf $TMP/docbook-$DISTRO-$ADDEDSUFFIX-$RELEASEVERSION
 
     rm -f $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
 
