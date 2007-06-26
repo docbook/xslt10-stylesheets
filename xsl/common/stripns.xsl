@@ -20,7 +20,7 @@
      versions of the DocBook stylesheets.
      ******************************************************************** -->
 
-<xsl:import href="../common/common.xsl"/>
+<xsl:import href="utility.xsl"/>
 
 <!-- * Get a title for current doc so that we let the user -->
 <!-- * know what document we are processing at this point. -->
