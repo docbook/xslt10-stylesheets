@@ -320,7 +320,7 @@ EOF
     cp -pR $TMP/docbook-$DISTRO-$RELEASEVERSION/* $DISTRO; \
     if [-d $TMP/docbook-$DISTRO-$$RELEASEVERSION]; then \
     cp -pR $TMP/docbook-$DISTRO-$ADDEDSUFFIX-$RELEASEVERSION/* $DISTRO-$ADDEDSUFFIX; \
-    endif; \
+    fi; \
     )
 
     scp \
