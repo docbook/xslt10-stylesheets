@@ -2,44 +2,31 @@
 
 package com.nwalsh.xalan;
 
+import java.util.Arrays;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.DocumentFragment;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-import org.w3c.dom.traversal.NodeIterator;
-
-import org.apache.xpath.objects.XObject;
-import org.apache.xpath.XPath;
-import org.apache.xpath.XPathContext;
-import org.apache.xpath.NodeSet;
-import org.apache.xalan.extensions.XSLProcessorContext;
-import org.apache.xalan.extensions.ExpressionContext;
-import org.apache.xalan.transformer.TransformerImpl;
-import org.apache.xalan.templates.StylesheetRoot;
-import org.apache.xalan.templates.ElemExtensionCall;
-import org.apache.xalan.templates.OutputProperties;
-import org.apache.xalan.res.XSLTErrorResources;
-import org.apache.xml.utils.DOMBuilder;
-import org.apache.xml.utils.AttList;
-import org.apache.xml.utils.QName;
-
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.TransformerException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.xalan.extensions.ExpressionContext;
+import org.apache.xml.utils.DOMBuilder;
+
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.traversal.NodeIterator;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.AttributesImpl;
+
 import com.nwalsh.xalan.Callout;
 import com.nwalsh.xalan.Params;
-import org.xml.sax.helpers.AttributesImpl;
 
 /**
  * <p>Xalan extensions supporting DocBook verbatim environments</p>
@@ -443,6 +430,8 @@ public class Verbatim {
   public DocumentFragment insertCallouts (ExpressionContext context,
 					  NodeIterator areaspecNodeSet,
 					  NodeIterator xalanNI) {
+
+    
     String type = Params.getString(context, "stylesheet.result.type");
     boolean useFO = type.equals("fo");
     int defaultColumn = Params.getInt(context, "callout.defaultcolumn");
@@ -451,19 +440,25 @@ public class Verbatim {
       String gPath = Params.getString(context, "callout.graphics.path");
       String gExt = Params.getString(context, "callout.graphics.extension");
       int gMax = Params.getInt(context, "callout.graphics.number.limit");
+    
       return insertGraphicCallouts(areaspecNodeSet, xalanNI, defaultColumn,
 				   gPath, gExt, gMax, useFO);
+
     } else if (Params.getBoolean(context, "callout.unicode")) {
       int uStart = Params.getInt(context, "callout.unicode.start.character");
       int uMax = Params.getInt(context, "callout.unicode.number.limit");
       String uFont = Params.getString(context, "callout.unicode.font");
+
       return insertUnicodeCallouts(areaspecNodeSet, xalanNI, defaultColumn,
 				   uFont, uStart, uMax, useFO);
+
     } else if (Params.getBoolean(context, "callout.dingbats")) {
       int dMax = 10;
+
       return insertDingbatCallouts(areaspecNodeSet, xalanNI, defaultColumn,
 				   dMax, useFO);
     } else {
+
       return insertTextCallouts(areaspecNodeSet, xalanNI, defaultColumn, useFO);
     }
   }

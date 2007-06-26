@@ -3,7 +3,6 @@
 package com.nwalsh.xalan;
 
 import org.apache.xpath.objects.XObject;
-import org.apache.xpath.XPathContext;
 import org.apache.xalan.extensions.ExpressionContext;
 import org.apache.xml.utils.QName;
 
