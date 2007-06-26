@@ -50,7 +50,7 @@ is controlled with following <quote>attributes</quote>.</para>
 <refpurpose>Filename for chunk</refpurpose>
 </refnamediv>
 
-<refsect1>
+<refsect1 id="dbhtml.filename-desc">
 <title>Description</title>
 
 <para>Sets the name for chunked file. PI must be child of element
@@ -62,7 +62,7 @@ role="html">use.id.as.filename</parameter> parameter.</para>
 
 </refsect1>
 
-<refsect1>
+<refsect1 id="dbhtml.filename-exampl">
 <title>Example</title>
 
 <programlisting><![CDATA[<section>
@@ -87,7 +87,7 @@ role="html">use.id.as.filename</parameter> parameter.</para>
 <refpurpose>Directory for chunk</refpurpose>
 </refnamediv>
 
-<refsect1>
+<refsect1 id="dbhtml.dir-desc">
 <title>Description</title>
 
 <para>Sets the directory for chunked file. PI must be child of element
@@ -100,7 +100,7 @@ chunk.</para>
 
 </refsect1>
 
-<refsect1>
+<refsect1 id="dbhtml.dir-example">
 <title>Example</title>
 
 <programlisting><![CDATA[<section>

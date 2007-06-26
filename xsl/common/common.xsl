@@ -25,7 +25,7 @@ $Id$
 </releaseinfo>
 <author><surname>Walsh</surname>
 <firstname>Norman</firstname></author>
-<copyright><year>1999</year><year>2007</year>
+<copyright><year>1999-2007</year>
 <holder>Norman Walsh</holder>
 </copyright>
 </referenceinfo>
@@ -98,12 +98,12 @@ manvolnum
 <doc:template name="is.component" xmlns="">
 <refpurpose>Tests if a given node is a component-level element</refpurpose>
 
-<refdescription>
+<refdescription id="is.component-desc">
 <para>This template returns '1' if the specified node is a component
 (Chapter, Appendix, etc.), and '0' otherwise.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="is.component-params">
 <variablelist>
 <varlistentry><term>node</term>
 <listitem>
@@ -113,7 +113,7 @@ manvolnum
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="is.component-returns">
 <para>This template returns '1' if the specified node is a component
 (Chapter, Appendix, etc.), and '0' otherwise.</para>
 </refreturn>
@@ -138,12 +138,12 @@ manvolnum
 <doc:template name="is.section" xmlns="">
 <refpurpose>Tests if a given node is a section-level element</refpurpose>
 
-<refdescription>
+<refdescription id="is.section-desc">
 <para>This template returns '1' if the specified node is a section
 (Section, Sect1, Sect2, etc.), and '0' otherwise.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="is.section-params">
 <variablelist>
 <varlistentry><term>node</term>
 <listitem>
@@ -153,7 +153,7 @@ manvolnum
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="is.section-returns">
 <para>This template returns '1' if the specified node is a section
 (Section, Sect1, Sect2, etc.), and '0' otherwise.</para>
 </refreturn>
@@ -181,7 +181,7 @@ manvolnum
 <doc:template name="section.level" xmlns="">
 <refpurpose>Returns the hierarchical level of a section</refpurpose>
 
-<refdescription>
+<refdescription id="section.level-desc">
 <para>This template calculates the hierarchical level of a section.
 The element <sgmltag>sect1</sgmltag> is at level 1, <sgmltag>sect2</sgmltag> is
 at level 2, etc.</para>
@@ -189,7 +189,7 @@ at level 2, etc.</para>
 <para>Recursive sections are calculated down to the fifth level.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="section.level-params">
 <variablelist>
 <varlistentry><term>node</term>
 <listitem>
@@ -200,7 +200,7 @@ Defaults to the context node.</para>
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="section.level-returns">
 <para>The section level, <quote>1</quote>, <quote>2</quote>, etc.
 </para>
 </refreturn>
@@ -258,12 +258,12 @@ Defaults to the context node.</para>
 <doc:template name="qanda.section.level" xmlns="">
 <refpurpose>Returns the hierarchical level of a QandASet</refpurpose>
 
-<refdescription>
+<refdescription id="qanda.section.level-desc">
 <para>This template calculates the hierarchical level of a QandASet.
 </para>
 </refdescription>
 
-<refreturn>
+<refreturn id="qanda.section.level-returns">
 <para>The level, <quote>1</quote>, <quote>2</quote>, etc.
 </para>
 </refreturn>
@@ -827,7 +827,7 @@ Defaults to the context node.</para>
 <doc:template name="select.mediaobject" xmlns="">
 <refpurpose>Selects and processes an appropriate media object from a list</refpurpose>
 
-<refdescription>
+<refdescription id="select.mediaobject-desc">
 <para>This template takes a list of media objects (usually the
 children of a mediaobject or inlinemediaobject) and processes
 the "right" object.</para>
@@ -839,7 +839,7 @@ in the list is appropriate.</para>
 <para>If no acceptable object is located, nothing happens.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="select.mediaobject-params">
 <variablelist>
 <varlistentry><term>olist</term>
 <listitem>
@@ -849,7 +849,7 @@ in the list is appropriate.</para>
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="select.mediaobject-returns">
 <para>Calls &lt;xsl:apply-templates&gt; on the selected object.</para>
 </refreturn>
 </doc:template>
@@ -876,7 +876,7 @@ in the list is appropriate.</para>
 <doc:template name="select.mediaobject.index" xmlns="">
 <refpurpose>Selects the position of the appropriate media object from a list</refpurpose>
 
-<refdescription>
+<refdescription id="select.mediaobject.index-desc">
 <para>This template takes a list of media objects (usually the
 children of a mediaobject or inlinemediaobject) and determines
 the "right" object. It returns the position of that object
@@ -896,7 +896,7 @@ of media objects is that the first acceptable graphic should be used.
 <para>If no acceptable object is located, no index is returned.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="select.mediaobject.index-params">
 <variablelist>
 <varlistentry><term>olist</term>
 <listitem>
@@ -912,7 +912,7 @@ recursive process.</para>
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="select.mediaobject.index-returns">
 <para>Returns the position in the original list of the selected object.</para>
 </refreturn>
 </doc:template>
@@ -1044,12 +1044,12 @@ recursive process.</para>
 <doc:template name="is.acceptable.mediaobject" xmlns="">
 <refpurpose>Returns '1' if the specified media object is recognized</refpurpose>
 
-<refdescription>
+<refdescription id="is.acceptable.mediaobject-desc">
 <para>This template examines a media object and returns '1' if the
 object is recognized as a graphic.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="is.acceptable.mediaobject-params">
 <variablelist>
 <varlistentry><term>object</term>
 <listitem>
@@ -1059,7 +1059,7 @@ object is recognized as a graphic.</para>
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="is.acceptable.mediaobject-returns">
 <para>0 or 1</para>
 </refreturn>
 </doc:template>
@@ -1190,7 +1190,7 @@ object is recognized as a graphic.</para>
 
 <doc:template name="check.id.unique" xmlns="">
 <refpurpose>Warn users about references to non-unique IDs</refpurpose>
-<refdescription>
+<refdescription id="check.id.unique-desc">
 <para>If passed an ID in <varname>linkend</varname>,
 <function>check.id.unique</function> prints
 a warning message to the user if either the ID does not exist or
@@ -1230,7 +1230,7 @@ the ID is not unique.</para>
 
 <doc:template name="check.idref.targets" xmlns="">
 <refpurpose>Warn users about incorrectly typed references</refpurpose>
-<refdescription>
+<refdescription id="check.idref.targets-desc">
 <para>If passed an ID in <varname>linkend</varname>,
 <function>check.idref.targets</function> makes sure that the element
 pointed to by the link is one of the elements listed in
@@ -1486,7 +1486,7 @@ pointed to by the link is one of the elements listed in
 <doc:template name="copyright.years" xmlns="">
 <refpurpose>Print a set of years with collapsed ranges</refpurpose>
 
-<refdescription>
+<refdescription id="copyright.years-desc">
 <para>This template prints a list of year elements with consecutive
 years printed as a range. In other words:</para>
 
@@ -1508,7 +1508,7 @@ are expressed in full <quote>century+year</quote>
 (<quote>1999</quote> not <quote>99</quote>) notation.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="copyright.years-params">
 <variablelist>
 <varlistentry><term>years</term>
 <listitem>
@@ -1532,7 +1532,7 @@ year range is <quote>1991-1992</quote> but discretely it's
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="copyright.years-returns">
 <para>This template returns the formatted list of years.</para>
 </refreturn>
 </doc:template>
@@ -1664,7 +1664,7 @@ year range is <quote>1991-1992</quote> but discretely it's
 <doc:template name="find.path.params" xmlns="">
 <refpurpose>Search in a table for the "best" match for the node</refpurpose>
 
-<refdescription>
+<refdescription id="find.path.params-desc">
 <para>This template searches in a table for the value that most-closely
 (in the typical best-match sense of XSLT) matches the current (element)
 node location.</para>
@@ -1814,7 +1814,7 @@ node location.</para>
 <doc:template name="string.upper" xmlns="">
 <refpurpose>Converts a string to all uppercase letters</refpurpose>
 
-<refdescription>
+<refdescription id="string.upper-desc">
 <para>Given a string, this template does a language-aware conversion
 of that string to all uppercase letters, based on the values of the
 <literal>lowercase.alpha</literal> and
@@ -1825,7 +1825,7 @@ locale. It affects only those characters found in the values of
 unchanged.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="string.upper-params">
 <variablelist>
 <varlistentry><term>string</term>
 <listitem>
@@ -1855,7 +1855,7 @@ unchanged.</para>
 <doc:template name="string.lower" xmlns="">
 <refpurpose>Converts a string to all lowercase letters</refpurpose>
 
-<refdescription>
+<refdescription id="string.lower-desc">
 <para>Given a string, this template does a language-aware conversion
 of that string to all lowercase letters, based on the values of the
 <literal>uppercase.alpha</literal> and
@@ -1866,7 +1866,7 @@ locale. It affects only those characters found in the values of
 unchanged.</para>
 </refdescription>
 
-<refparameter>
+<refparameter id="string.lower-params">
 <variablelist>
 <varlistentry><term>string</term>
 <listitem>
@@ -1895,7 +1895,7 @@ unchanged.</para>
 
 <doc:template name="select.choice.separator" xmlns="">
   <refpurpose>Returns localized choice separator</refpurpose>
-  <refdescription>
+  <refdescription id="select.choice.separator-desc">
     <para>This template enables auto-generation of an appropriate
     localized "choice" separator (for example, "and" or "or") before
     the final item in an inline list (though it could also be useful
@@ -1961,7 +1961,7 @@ unchanged.</para>
 
 <doc:template name="evaluate.info.profile" xmlns="">
   <refpurpose>Evaluates an info profile</refpurpose>
-  <refdescription>
+  <refdescription id="evaluate.info.profile-desc">
     <para>This template evaluates an "info profile" matching the XPath
     expression given by the <parameter>profile</parameter>
     parameter. It relies on the XSLT <function>evaluate()</function>
@@ -1976,7 +1976,7 @@ unchanged.</para>
     expression is then evaluated using the XSLT
     <function>evaluate()</function> extension function.</para>
   </refdescription>
-  <refparameter>
+  <refparameter id="evaluate.info.profile-params">
     <variablelist>
        <varlistentry>
         <term>profile</term>
@@ -1993,7 +1993,7 @@ unchanged.</para>
     </variablelist>
   </refparameter>
 
-  <refreturn>
+  <refreturn id="evaluate.info.profile-returns">
     <para>Returns a node (the result of evaluating the
     <parameter>profile</parameter> parameter)</para>
   </refreturn>

@@ -20,7 +20,7 @@
 
 <doc:mode mode="title.markup" xmlns="">
 <refpurpose>Provides access to element titles</refpurpose>
-<refdescription>
+<refdescription id="title.markup-desc">
 <para>Processing an element in the
 <literal role="mode">title.markup</literal> mode produces the
 title of the element. This does not include the label.

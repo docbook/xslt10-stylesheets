@@ -58,14 +58,14 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
 <doc:template name="log.message" xmlns="">
   <refpurpose>Logs/emits formatted notes and warnings</refpurpose>
 
-  <refdescription>
+  <refdescription id="log.message-desc">
     <para>The <function>log.message</function> template is a utility
     template for logging/emitting formatted messages&#xa0;– that is,
     notes and warnings, along with a given log “level” and an
     identifier for the “source” that the message relates to.</para>
   </refdescription>
 
-  <refparameter>
+  <refparameter id="log.message-params">
     <variablelist>
       <varlistentry>
         <term>level</term>
@@ -141,7 +141,7 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refreturn>
+  <refreturn id="log.message-returns">
   <para>Outputs a message (generally, to standard error).</para></refreturn>
 </doc:template>
 <xsl:template name="log.message">
@@ -218,12 +218,12 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
 <!-- ===================================== -->
 <doc:template name="get.doc.title" xmlns="">
   <refpurpose>Gets a title from the current document</refpurpose>
-  <refdescription>
+  <refdescription id="get.doc.title-desc">
     <para>The <function>get.doc.title</function> template is a
       utility template for returning the first title found in the
       current document.</para>
   </refdescription>
-  <refreturn>
+  <refreturn id="get.doc.title-returns">
   <para>Returns a string containing some identifying title for the
     current document .</para></refreturn>
 </doc:template>
@@ -245,7 +245,7 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
 <!-- ===================================== -->
 <doc:template name="pad-string" xmlns="">
   <refpurpose>Right-pads or left-pads a string out to a certain length</refpurpose>
-  <refdescription>
+  <refdescription id="pad-string-desc">
     <para>This function takes string <parameter>padVar</parameter> and
       pads it out in the direction <parameter>rightLeft</parameter> to
       the string-length <parameter>length</parameter>, using string
@@ -262,7 +262,7 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
           FAQ</ulink>.</para>
     </note>
   </refdescription>
-  <refreturn>
+  <refreturn id="pad-string-returns">
   <para>Returns a (padded) string.</para></refreturn>
 </doc:template>
 <xsl:template name="pad-string">

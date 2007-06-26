@@ -20,7 +20,7 @@
 
 <doc:mode mode="label.markup" xmlns="">
 <refpurpose>Provides access to element labels</refpurpose>
-<refdescription>
+<refdescription id="label.markup-desc">
 <para>Processing an element in the
 <literal role="mode">label.markup</literal> mode produces the
 element label.</para>
@@ -773,7 +773,7 @@ element label.</para>
 
 <doc:template name="label.this.section" xmlns="">
 <refpurpose>Returns true if $section should be labelled</refpurpose>
-<refdescription>
+<refdescription id="label.this.section-desc">
 <para>Returns true if the specified section should be labelled.
 By default, this template returns zero unless 
 the section level is less than or equal to the value of the
@@ -836,7 +836,7 @@ Custom stylesheets may override it to get more selective behavior.</para>
 
 <doc:template name="autolabel.format" xmlns="">
 <refpurpose>Returns format for autolabel parameters</refpurpose>
-<refdescription>
+<refdescription id="autolabel.format-desc">
 <para>Returns format passed as parameter if non zero. Supported
   format are 'arabic' or '1', 'loweralpha' or 'a', 'lowerroman' or 'i', 
   'upperlapha' or 'A', 'upperroman' or 'I', 'arabicindic' or '&#x661;'.

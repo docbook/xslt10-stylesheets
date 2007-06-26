@@ -123,14 +123,14 @@
 
 <doc:template name="entry.colnum" xmlns="">
 <refpurpose>Determine the column number in which a given entry occurs</refpurpose>
-<refdescription>
+<refdescription id="entry.colnum-desc">
 <para>If an <sgmltag>entry</sgmltag> has a
 <sgmltag class="attribute">colname</sgmltag> or
 <sgmltag class="attribute">namest</sgmltag> attribute, this template
 will determine the number of the column in which the entry should occur.
 For other <sgmltag>entry</sgmltag>s, nothing is returned.</para>
 </refdescription>
-<refparameter>
+<refparameter id="entry.colnum-params">
 <variablelist>
 <varlistentry><term>entry</term>
 <listitem>
@@ -140,7 +140,7 @@ For other <sgmltag>entry</sgmltag>s, nothing is returned.</para>
 </variablelist>
 </refparameter>
 
-<refreturn>
+<refreturn id="entry.colnum-returns">
 <para>This template returns the column number if it can be determined,
 or 0 (the empty string)</para>
 </refreturn>
