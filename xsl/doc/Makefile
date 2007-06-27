@@ -35,15 +35,15 @@ base:
 	done
 
 copyright.html: copyright.xml $(RSTYLE)
-	$(XJPARSE) $(VPATH)/$<
+	$(XJPARSE) $(XJPARSEFLAGS) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 warranty.html: warranty.xml $(RSTYLE)
-	$(XJPARSE) $(VPATH)/$<
+	$(XJPARSE) $(XJPARSEFLAGS) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 reference.html: reference.xml $(RSTYLE)
-	$(XJPARSE) $(VPATH)/$<
+	$(XJPARSE) $(XJPARSEFLAGS) $(VPATH)/$<
 	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
 
 index.html: reference.html
