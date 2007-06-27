@@ -235,25 +235,42 @@
         <!-- * get the filename(s) + revision(s) and username, and -->
         <!-- * put it into an Alt element, which will become a Title -->
         <!-- * element in HTML output, generating "tooltip text"-->
-        <literallayout><phrase role="commit-message">
+        <para>
+          <literal>
+          <xsl:variable name="commitmetadata">
+          <xsl:apply-templates select="author"/>
+          <xsl:text>: </xsl:text>
+            <!-- * Only get path names for files that are in the subsection -->
+            <!-- * that we are currently formatting -->
+            <xsl:for-each select="
+              paths/path[
+              starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
+              or starts-with(.,concat('/trunk/',$dirname,'/'))]
+              ">
+              <xsl:call-template name="string.subst">
+                <xsl:with-param name="string" select="."/>
+                <xsl:with-param name="target" select="concat('/trunk/',$distro,'/',$dirname,'/')"/>
+                <xsl:with-param name="replacement" select="''"/>
+              </xsl:call-template>
+              <xsl:if test="not(position() = last())">
+                <xsl:text>; </xsl:text>
+              </xsl:if>
+            </xsl:for-each>
+          </xsl:variable>
+          <xsl:choose>
+            <xsl:when test="string-length($commitmetadata) > 90">
+              <xsl:value-of select="substring($commitmetadata,1,90)"/>
+              <xsl:text>⋯</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$commitmetadata"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </literal>
+        </para>
+        <screen><phrase role="commit-message">
             <xsl:apply-templates select="msg"/>
-            <alt>
-              <!-- * Only get path names for files that are in the subsection -->
-              <!-- * that we are currently formatting -->
-              <xsl:for-each select="
-                paths/path[
-                starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
-                or starts-with(.,concat('/trunk/',$dirname,'/'))]
-                ">
-                <xsl:apply-templates select="."/>
-                <xsl:if test="not(position() = last())">
-                  <xsl:text>; </xsl:text>
-                </xsl:if>
-              </xsl:for-each>
-              <xsl:text> - </xsl:text>
-              <xsl:apply-templates select="author"/>
-            </alt>
-          </phrase></literallayout>
+        </phrase></screen>
         <xsl:text>&#xa;</xsl:text>
       </listitem>
       <xsl:text>&#xa;</xsl:text>
@@ -325,10 +342,6 @@
   <xsl:template match="*[parent::*[@role = 'param']]" mode="markup">
     <xsl:param name="word" />
     <parameter><xsl:value-of select="$word" /></parameter>
-  </xsl:template>
-
-  <xsl:template match="path">
-    <xsl:value-of select="@action"/>: <xsl:value-of select="."/>
   </xsl:template>
 
   <xsl:template match="author">
