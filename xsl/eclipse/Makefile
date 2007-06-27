@@ -1,10 +1,8 @@
-XSLT=../../buildtools/saxon
-XJPARSE=../../buildtools/xjparse
-
+include ../../buildtools/Makefile.incl
 all: profile-eclipse.xsl
 
 profile-eclipse.xsl: eclipse.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
-	rm -f profile-eclipse.xsl
+	$(RM) profile-eclipse.xsl
