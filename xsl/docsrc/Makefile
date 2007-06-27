@@ -1,5 +1,5 @@
 include ../../releasetools/Variables.mk
-DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template
+DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template utility
 
 DOCBOOK5_RNG=../../docbook/relaxng/docbook/docbook.rng
 PARAM_XSL_FILES=$(shell for file in $$(find .. -name "param.xsl"); do \

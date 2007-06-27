@@ -206,6 +206,20 @@
     </reference>
   </part>
 
+  <part id="utility">
+    <xi:include href="./utility/utility.refsect1.xml" xpointer="xpointer(/reference/title)" />
+
+      <xi:include href="./utility/utility.refsect1.xml"
+                  xpointer="xpointer(/reference/partintro)" />
+
+    <reference id="utilitytemplates">
+      <title>Templates</title>
+      <xi:include
+          href="./utility/utility.refsect1.xml"
+          xpointer="xpointer(/reference/refentry)" />
+    </reference>
+  </part>
+
   <part id="fo-table">
     <xi:include href="./fo/table.refsect1.xml" xpointer="xpointer(/reference/title)" />
 
