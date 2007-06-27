@@ -26,6 +26,7 @@
   <xsl:param name="latex.output.revhistory">0</xsl:param>
   <xsl:param name="show.comments">0</xsl:param>
   <xsl:param name="doc.collab.show">0</xsl:param>
+  <xsl:param name="monoseq.small">1</xsl:param>
 
   <!-- ==================================================================== -->
 
