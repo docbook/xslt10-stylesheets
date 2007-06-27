@@ -28,10 +28,10 @@ $Id$
 </abstract>
 </bookinfo>
 
-<reference id="html">
+<reference id="pi-html">
 <title>HTML PIs</title>
 
-<partintro id="partintro">
+<partintro id="pi-partintro">
 <para>Following PIs are processed only if you are generating HTML
 output. This means that you are using HTML, XHTML, HTML Help or
 JavaHelp output format.</para>
@@ -117,10 +117,10 @@ chunk.</para>
 
 </reference>
 
-<reference id="common">
+<reference id="pi-common">
 <title>Common PIs</title>
 
-<partintro id="partintro2">
+<partintro id="pi-partintro2">
 <para>Following PIs are recognized in all output formats.</para>
 </partintro>
 
