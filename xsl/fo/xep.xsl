@@ -18,7 +18,8 @@
 
 <xsl:template name="xep-document-information">
   <rx:meta-info>
-    <xsl:variable name="authors" select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
+    <xsl:variable name="authors" 
+                  select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
     <xsl:if test="$authors">
       <xsl:variable name="author">
         <xsl:choose>
