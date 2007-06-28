@@ -38,6 +38,7 @@
 <gentext key="dedication" text="题词"/>
 <gentext key="Edition" text="版"/>
 <gentext key="edition" text="版"/>
+<gentext key="Editor" text="编者"/>
 <gentext key="Equation" text="公式"/>
 <gentext key="equation" text="公式"/>
 <gentext key="Example" text="例"/>
@@ -74,19 +75,22 @@
 <gentext key="preface" text="前言"/>
 <gentext key="Procedure" text="过程"/>
 <gentext key="procedure" text="过程"/>
-<gentext key="ProductionSet" text="Production"/>
+<gentext key="ProductionSet" text="产品"/>
 <gentext key="PubDate" text="出版日期"/>
 <gentext key="pubdate" text="出版日期"/>
 <gentext key="Published" text="出版方"/>
 <gentext key="published" text="出版方"/>
+<gentext key="Publisher" text="出版者"/>
 <gentext key="Qandadiv" text="质保"/>
 <gentext key="qandadiv" text="质保"/>
+<gentext key="QandASet" text="常见问题"/>
 <gentext key="Question" text="问："/>
 <gentext key="question" text="问："/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="参考"/>
 <gentext key="reference" text="参考"/>
+<gentext key="References" text="参考"/>
 <gentext key="RefName" text="名称"/>
 <gentext key="refname" text="名称"/>
 <gentext key="RefSection" text=""/>
@@ -119,6 +123,8 @@
 <gentext key="Step" text="步骤"/>
 <gentext key="Table" text="表"/>
 <gentext key="table" text="表"/>
+<gentext key="task" text="任务"/>
+<gentext key="Task" text="任务"/>
 <gentext key="tip" text="提示"/>
 <gentext key="TIP" text="提示"/>
 <gentext key="Tip" text="提示"/>
@@ -128,7 +134,6 @@
 
 <gentext key="and" text="和"/>
 <gentext key="by" text="由"/>
-<gentext key="called" text="称为"/>
 <gentext key="Edited" text="编辑时间"/>
 <gentext key="edited" text="编辑时间"/>
 <gentext key="Editedby" text="编辑者"/>
@@ -147,10 +152,21 @@
 <gentext key="tablenotes" text="表注"/>
 <gentext key="TableofContents" text="目录"/>
 <gentext key="tableofcontents" text="目录"/>
-<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="未预期的名称"/>
 <gentext key="unsupported" text="不支持"/>
 <gentext key="xrefto" text="xref to"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="作者"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="版权编辑"/>
+<gentext key="graphicdesigner" text="美术编辑"/>
+<gentext key="productioneditor" text="产品编辑"/>
+<gentext key="technicaleditor" text="技术编辑"/>
+<gentext key="translator" text="译者"/>
 
 <gentext key="listofequations" text="公式清单"/>
 <gentext key="ListofEquations" text="公式清单"/>
@@ -174,8 +190,8 @@
 <gentext key="nav-toc" text="目录"/>
 
 <gentext key="Draft"         text="草稿"/>
-<gentext key="above"         text="above"/>
-<gentext key="below"         text="below"/>
+<gentext key="above"         text="以上"/>
+<gentext key="below"         text="以下"/>
 <gentext key="sectioncalled" text="一节"/>
 <gentext key="index symbols" text="符号"/>
 
