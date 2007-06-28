@@ -45,12 +45,10 @@ To transform documents created with the standard DocBook
 schema/DTD, use one of the following stylesheets:
 
   fo/docbook.xsl              - for XSL-FO
-  fo/profile-docbook.xsl      - for XSL-FO (single-pass profiled)
 
   html/docbook.xsl            - for HTML (as a single file)
   html/chunk.xsl              - for HTML (chunked into multiple files)
   html/onechunk.xsl           - for HTML (chunked output in single file)
-  html/profile-*              - for HTML (single-pass profiled versions)
 
   xhtml/*.xsl                 - for XHTML versions of the above
 
@@ -60,6 +58,8 @@ schema/DTD, use one of the following stylesheets:
 
   manpages/docbook.xsl        - for groff/nroff man pages[1]
   [1] more information at http://wiki.docbook.org/topic/ManPages
+
+  */profile-*                 - single-pass-profiling versions of all above
 
   roundtrip/*.xsl             - for DocBook to WordML, etc., to DocBook
 
