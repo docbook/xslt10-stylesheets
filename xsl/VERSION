@@ -1,9 +1,9 @@
 <?xml version='1.0'?> <!-- -*- nxml -*- -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fm="http://freshmeat.net/projects/freshmeat-submit/"
-		xmlns:sf="http://sourceforge.net/"
-		exclude-result-prefixes="fm sf"
-                version='1.0'>
+  xmlns:fm="http://freshmeat.net/projects/freshmeat-submit/"
+  xmlns:sf="http://sourceforge.net/"
+  exclude-result-prefixes="fm sf"
+  version='1.0'>
 
 <xsl:param name="VERSION" select="string(document('')//fm:Version[1])"/>
 <xsl:param name="DistroTitle" select="string(document('')//fm:Branch[1])"/>
@@ -11,6 +11,7 @@
 <xsl:param name="PreviousRelease">1.72.0</xsl:param>
 <xsl:param name="PreviousReleaseRevision">6553</xsl:param>
 <xsl:param name="Revision">$Revision$</xsl:param>
+<xsl:param name="VersionFileURL">$URL$</xsl:param>
 <xsl:param name="sf-relid" select="0"/>
 <xsl:strip-space elements="fm:*"/>
 
