@@ -5,7 +5,7 @@
 
 debug:
 
-.PHONY: ChangeLog.xml ChangeHistory.xml
+.PHONY: ChangeLog.xml ChangeHistory.xml $(SVN_INFO_FILE)
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
@@ -38,6 +38,8 @@ $(MARKUP_XSL):
 
 NEWS.xml: ChangeLog.xml
 	$(XSLT) $< $(SVNLOG2DOCBOOK) $@ \
+	repositoryRoot="$(REPOSITORY_ROOT)" \
+	distroParentUrl="$(DISTRO_PARENT_URL)" \
 	distro="$(DISTRO)" \
 	previous-release="$(PREVIOUS_RELEASE)" \
 	release-version="$(RELVER)" \
@@ -50,10 +52,14 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
-ChangeLog.xml:
+$(SVN_INFO_FILE):
+	$(SVN) $(SVN_OPTS) info --xml \
+	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
+
+ChangeLog.xml: $(SVN_INFO_FILE)
 	$(SVN) $(SVN_OPTS) log --xml --verbose \
 	-r HEAD:$(PREVIOUS_REVISION) \
-	$(REPOSITORY_ROOT)/trunk \
+	$(DISTRO_PARENT_URL) \
 	$(DISTRO) $(DISTRIB_CHANGELOG_INCLUDES) \
 	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
 
@@ -240,6 +246,7 @@ release-clean: clean
 	$(RM) ChangeHistory.xml
 	$(RM) ChangeHistory.xml.zip
 	$(RM) ChangeLog.xml 
+	$(RM) $(SVN_INFO_FILE)
 	$(RM) RELEASE-NOTES.txt
 	$(RM) RELEASE-NOTES.html
 	$(RM) RELEASE-NOTES.fo
