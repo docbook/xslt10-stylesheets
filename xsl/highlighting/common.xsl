@@ -10,7 +10,7 @@
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
      and other information.
 
      ******************************************************************** -->
