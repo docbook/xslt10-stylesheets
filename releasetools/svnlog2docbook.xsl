@@ -73,7 +73,7 @@
   <!-- * notes, then just add a "display name" for the subdirectory -->
   <xsl:param
       name="subsections"
-      >Gentext Common FO HTML HTMLHelp Lib Manpages Roundtrip Slides Website Params Highlighting Profiling Template Tools</xsl:param>
+      >Gentext Common FO HTML HTMLHelp Eclipse JavaHelp Lib Manpages Roundtrip Slides Website Params Highlighting Profiling Template Tools</xsl:param>
 
   <sf:users>
     <!-- * The sf:users structure associates Sourceforge usernames -->
