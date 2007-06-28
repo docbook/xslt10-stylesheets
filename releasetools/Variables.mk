@@ -10,8 +10,6 @@
 
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
-REPOSITORY_ROOT=https://docbook.svn.sourceforge.net/svnroot/docbook
-
 CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
@@ -62,7 +60,13 @@ MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
 # to generate NEWS file(s) and releases notes
 SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
+SVN_INFO_FILE=.svninfo.xml
+
 PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam param 'PreviousRelease' $(GETPARAM) VERSION)
+
+REPOSITORY_ROOT=$(shell $(XSLTPROC) --stringparam element root $(GETELEMENT) $(SVN_INFO_FILE))
+DISTRO_URL=$(shell $(XSLTPROC) --stringparam element url $(GETELEMENT) $(SVN_INFO_FILE))
+DISTRO_PARENT_URL=$(dir $(basename $(DISTRO_URL)))
 
 # stylesheet for stripping DB5 namespace
 STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
@@ -192,6 +196,7 @@ XSLTPROC=xsltproc
 XSLTPROC_OPTS=
 
 GETPARAM=$(DOCBOOK_SVN)/releasetools/get-param.xsl
+GETELEMENT=$(DOCBOOK_SVN)/releasetools/get-element.xsl
 
 XMLLINT=xmllint
 XMLLINT_OPTS=
