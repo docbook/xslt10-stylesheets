@@ -22,6 +22,15 @@
   <xsl:import href="../contrib/tools/tennison/modified-markup.xsl" />
   <xsl:include href="../xsl/lib/lib.xsl" />
 
+  <!-- * RepositoryRoot is the same as what "svn info" shows -->
+  <xsl:param name="repositoryRoot"/>
+  <!-- * distroUrl is what "svn info" shows as "url"/URL for the parent -->
+  <!-- * of the distro dir -->
+  <xsl:param name="distroParentUrl"/>
+  <xsl:param name="distroParentDir">
+    <xsl:value-of select="substring-after($distroParentUrl,$repositoryRoot)"/>
+  </xsl:param>
+
   <!-- * name of main distro this changelog is for-->
   <xsl:param name="distro"/>
 
@@ -65,16 +74,19 @@
   <xsl:param name="release-version"/>
   <xsl:param name="previous-release"/>
 
+  <!-- * a subsection can actually be either subsection of the distro or -->
+  <!-- * a sibling of the distro (whatever you want to include in the -->
+  <!-- * DocBook version of the changelog. -->
   <!-- * $subsections holds a "display name" for each subsection to -->
-  <!-- * include in the release notes. The lowercase versions of these -->
-  <!-- * display names correspond to the real subdirectories whose -->
-  <!-- * changes we to include. So if you want to include a new -->
-  <!-- * subdirectory and have its changes documented in the release -->
-  <!-- * notes, then just add a "display name" for the subdirectory -->
+  <!-- * include in DocBookified changelog . The lowercase versions of -->
+  <!-- * these display names correspond to the real subdirectories or -->
+  <!-- * sibling directory whose changes we to include. So if you want -->
+  <!-- * to include a new subdirectory or sibling directory and have its -->
+  <!-- * changes documented in the ouptut, then just add a "display name" -->
+  <!-- * for the subdirectory or sibling directory -->
   <xsl:param
       name="subsections"
-      >Gentext Common FO HTML HTMLHelp Eclipse JavaHelp Lib Manpages Roundtrip Slides Website Params Highlighting Profiling Template Tools</xsl:param>
-
+      >Gentext Common FO HTML Manpages HTMLHelp Eclipse JavaHelp Roundtrip Slides Website Params Highlighting Profiling Lib Tools Template</xsl:param>
   <sf:users>
     <!-- * The sf:users structure associates Sourceforge usernames -->
     <!-- * with the real names of the people they correspond to -->
@@ -87,6 +99,11 @@
       <sf:username>bobstayton</sf:username>
       <sf:firstname>Robert</sf:firstname>
       <sf:surname>Stayton</sf:surname>
+    </sf:user>
+    <sf:user>
+      <sf:username>dongsheng</sf:username>
+      <sf:firstname>Dongsheng</sf:firstname>
+      <sf:surname>Song</sf:surname>
     </sf:user>
     <sf:user>
       <sf:username>dcramer</sf:username>
@@ -160,7 +177,7 @@
     <xsl:param name="subsection"/>
     <xsl:param name="remaining-subsections"/>
     <!-- * dirname is a lowercase version of the "display name" for -->
-    <!-- * each subsection -->
+    <!-- * each subsection of the distro or sibling of the distro -->
     <xsl:param name="dirname"
                select="translate($subsection,
                        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -170,10 +187,11 @@
     <!-- * the template stops recursing and returns -->
     <xsl:if test="not($subsection = '')">
       <!-- * Output a sect2 for this subsection only if with find path names -->
-      <!-- * for changed files in this subsection -->
+      <!-- * for changed files in the $dirname subsection of the distro -->
+      <!-- * OR in the $dirname sibling of the distro -->
       <xsl:if test="logentry[paths/path[
-        starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
-        or starts-with(.,concat('/trunk/',$dirname,'/'))]]
+        starts-with(.,concat($distroParentDir,$distro,'/',$dirname,'/'))
+        or starts-with(.,concat($distroParentDir,$dirname,'/'))]]
         ">
         <sect2>
           <!-- * the ID on each Sect2 is the release version plus the -->
@@ -222,51 +240,73 @@
 
   <xsl:template name="format.entries">
     <xsl:param name="dirname"/>
+    <!-- * to through the "svn log" output to check for each $dirname -->
+    <!-- * subsection of the distro or $dirname sibling of the distro -->
     <xsl:for-each
       select="
       logentry[paths/path[
-      starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
-      or starts-with(.,concat('/trunk/',$dirname,'/'))]]
+      starts-with(.,concat($distroParentDir,$distro,'/',$dirname,'/'))
+      or starts-with(.,concat($distroParentDir,$dirname,'/'))]]
       ">
       <!-- * each Lisitem corresponds to a single commit -->
       <listitem>
         <xsl:text>&#xa;</xsl:text>
-        <!-- * for each entry (commit), get the commit message. Also -->
-        <!-- * get the filename(s) + revision(s) and username, and -->
-        <!-- * put it into an Alt element, which will become a Title -->
-        <!-- * element in HTML output, generating "tooltip text"-->
+        <!-- * for each entry (commit), get the author, then the list of -->
+        <!-- * changed files, then the actual commit message -->
         <para>
           <literal>
-          <xsl:variable name="commitmetadata">
-          <xsl:apply-templates select="author"/>
-          <xsl:text>: </xsl:text>
-            <!-- * Only get path names for files that are in the subsection -->
-            <!-- * that we are currently formatting -->
-            <xsl:for-each select="
-              paths/path[
-              starts-with(.,concat('/trunk/',$distro,'/',$dirname,'/'))
-              or starts-with(.,concat('/trunk/',$dirname,'/'))]
-              ">
-              <xsl:call-template name="string.subst">
-                <xsl:with-param name="string" select="."/>
-                <xsl:with-param name="target" select="concat('/trunk/',$distro,'/',$dirname,'/')"/>
-                <xsl:with-param name="replacement" select="''"/>
-              </xsl:call-template>
-              <xsl:if test="not(position() = last())">
-                <xsl:text>; </xsl:text>
-              </xsl:if>
-            </xsl:for-each>
-          </xsl:variable>
-          <xsl:choose>
-            <xsl:when test="string-length($commitmetadata) > 90">
-              <xsl:value-of select="substring($commitmetadata,1,90)"/>
-              <xsl:text>⋯</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="$commitmetadata"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </literal>
+            <!-- * commitmetadata = author+filelist -->
+            <xsl:variable name="commitmetadata">
+              <xsl:apply-templates select="author"/>
+              <xsl:text>: </xsl:text>
+              <!-- * Only get path names for files that are in the subsection -->
+              <!-- * that we are currently formatting -->
+              <xsl:for-each select="
+                paths/path[
+                starts-with(.,concat($distroParentDir,$distro,'/',$dirname,'/'))
+                or starts-with(.,concat($distroParentDir,$dirname,'/'))]
+                ">
+                <!-- * for each changed file we list, we don't want to show -->
+                <!-- * its whole repository path back to the repository -->
+                <!-- * root; instead we just want the basename of the file -->
+                <xsl:variable name="pathprefix">
+                  <xsl:choose>
+                    <!-- * first case, changed file is in a subdir of distro -->
+                    <xsl:when test="contains(.,(concat($distroParentDir,$dirname,'/')))">
+                      <xsl:value-of select="concat($distroParentDir,$dirname,'/')"/>
+                    </xsl:when>
+                    <!-- * other case, changed file is in a sibling dir of distro -->
+                    <xsl:otherwise>
+                      <xsl:value-of select="concat($distroParentDir,$distro,'/',$dirname,'/')"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
+                <!-- * call string-replacement template to strip off the -->
+                <!-- * pathname and just give us the base filename -->
+                <xsl:call-template name="string.subst">
+                  <xsl:with-param name="string" select="."/>
+                  <xsl:with-param name="target" select="$pathprefix"/>
+                  <xsl:with-param name="replacement" select="''"/>
+                </xsl:call-template>
+                <xsl:if test="not(position() = last())">
+                  <xsl:text>; </xsl:text>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:variable>
+            <xsl:choose>
+              <!-- * if we have a long file list (more that will fit on -->
+              <!-- * one line on a printed page, we just truncate it and -->
+              <!-- * append some ellipses -->
+              <xsl:when test="string-length($commitmetadata) > 90">
+                <xsl:value-of select="substring($commitmetadata,1,90)"/>
+                <xsl:text>⋯</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                <!-- * otherwise, we have a short file list, so use it as-is -->
+                <xsl:value-of select="$commitmetadata"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </literal>
         </para>
         <screen><phrase role="commit-message">
             <xsl:apply-templates select="msg"/>
@@ -283,6 +323,7 @@
     <xsl:variable name="trimmed">
       <xsl:choose>
         <xsl:when test="parent::logentry[@revision='6226']">
+          <!-- * hack to workaround a dumb mistake I made on r6226; ..Mike -->
           <xsl:text
               >Added namespace declarations to document elements for all param files.</xsl:text>
         </xsl:when>
