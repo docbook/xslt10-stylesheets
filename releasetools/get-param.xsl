@@ -11,8 +11,11 @@
   <xsl:template match="/">
     <xsl:param name="target" select="//*[@*[local-name() = 'name'] = $param]"/>
     <xsl:choose>
-      <xsl:when test="contains($target, 'Revision')">
-        <xsl:value-of select="substring-before(substring-after($target, 'Revision: '), ' ')"/>
+      <!-- * if param contains ': ', it's an RCS keyword like -->
+      <!-- * '$Revision$', we want to get the part after the -->
+      <!-- * opening ': ' and before the closing ' $' delimiters -->
+      <xsl:when test="contains($target, ': ')">
+        <xsl:value-of select="substring-before(substring-after($target, ': '), ' $')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$target"/>
