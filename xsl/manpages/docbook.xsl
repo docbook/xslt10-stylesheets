@@ -81,9 +81,15 @@
         </xsl:call-template>
         <xsl:apply-templates select="exsl:node-set($stripns)"/>
       </xsl:when>
-      <xsl:when test="//refentry">
+      <xsl:when test="//*[local-name() = 'refentry']">
         <!-- * Check to see if we have any refentry children in this -->
-        <!-- * document; if so, process them. -->
+        <!-- * document; if so, process them. The reason we use -->
+        <!-- * local-name()=refentry (instead of just //refentry) to to -->
+        <!-- * check for refentry children is because this stylsheet is -->
+        <!-- * also post-processed by the stylesheet build to create the -->
+        <!-- * manpages/profile-docbook.xsl, and the refentry child check -->
+        <!-- * in the profile-docbook.xsl stylesheet won't work if we do -->
+        <!-- * a simple //refentry check. -->
         <xsl:apply-templates select="//refentry"/>
         <!-- * if $man.output.manifest.enabled is non-zero, -->
         <!-- * generate a manifest file -->
