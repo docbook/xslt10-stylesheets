@@ -83,10 +83,25 @@
       </xsl:when>
       <!-- Special case -->
       <xsl:when test="self::legalnotice and $generate.legalnotice.link != 0">
-        <xsl:variable name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:variable>
-        <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
+        <xsl:choose>
+          <xsl:when test="(@id or @xml:id) and $use.id.as.filename != 0">
+            <!-- * if this legalnotice has an ID, then go ahead and use -->
+            <!-- * just the value of that ID as the basename for the file -->
+            <!-- * (that is, without prepending an "ln-" too it) -->
+            <xsl:value-of select="(@id|@xml:id)[1]"/>
+            <xsl:value-of select="$html.ext"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- * otherwise, if this legalnotice does not have an ID, -->
+            <!-- * then we generate one an ID... -->
+            <xsl:variable name="id">
+              <xsl:call-template name="object.id"/>
+            </xsl:variable>
+            <!-- * ...and then we take that generated ID, prepend an -->
+            <!-- * "ln-" to it, and use that as the basename for the file -->
+            <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <!-- if there's no dbhtml filename, and if we're to use IDs as -->
       <!-- filenames, then use the ID to generate the filename. -->
