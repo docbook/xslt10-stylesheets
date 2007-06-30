@@ -54,7 +54,7 @@ DOC_LINK_STYLE=$(DOCBUILD_STYLESHEETS)/doc-link-docbook.xsl
 DBX_STYLE=$(DOCBUILD_STYLESHEETS)/dblatex-release-notes.xsl
 
 # MARKUP_XSL is a modified version of Jeni Tennison's "Markup Utility"
-MARKUP_XSL=$(DOCBOOK_SVN)/contrib/tools/tennison/modified-markup.xsl
+MARKUP_XSL=$(DOCBOOK_SVN)/releasetools/modified-markup.xsl
 
 # stylesheet used in taking XML output from "svn log" and using it
 # to generate NEWS file(s) and releases notes
