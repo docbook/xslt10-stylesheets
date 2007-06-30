@@ -19,7 +19,7 @@
   <!-- * -->
   <!-- *   http://www.jenitennison.com/xslt/utilities/markup.html -->
   <!-- * -->
-  <xsl:import href="../contrib/tools/tennison/modified-markup.xsl" />
+  <xsl:import href="./modified-markup.xsl" />
   <xsl:include href="../xsl/lib/lib.xsl" />
 
   <!-- * RepositoryRoot is the same as what "svn info" shows -->
