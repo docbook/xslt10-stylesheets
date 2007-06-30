@@ -1,0 +1,231 @@
+$Id$
+
+These are how-to instructions for building release versions of the
+DocBook Project XSL Stylesheets and for performing other tasks
+related to releases.
+
+DocBook Project developers are encouraged to edit/change any part
+of this document and to add to it anything they want.
+
+FIXME: This document is only half-finished.
+
+-----------------------------------------------------------------
+Release Build Setup/Testing
+-----------------------------------------------------------------
+0. Environment and dependencies.
+   Make sure your environment is set up correctly with information
+   about some of the dependencies needed to build.
+
+   a. DocBook Project modules
+      In addition to having an up-to-date working copy of the
+      source for the "xsl" module, you also need to have
+      up-to-date working copies of the following modules:
+
+        gentext
+        litprog
+        buildtools
+        releasetools
+
+   a. Shell Environment.
+      To get my environment variables set up, I have a file that I
+      name "docbk.sh", with the following in it:
+
+        # directory that is base directory for all your DocBook modules
+        export DOCBOOK_SVN=/opt/sandbox/docbook/trunk
+        # directory containing all your jar files
+        export JARDIR=/usr/share/java
+        export CLASSPATH=$CLASSPATH:$JARDIR/xml-commons-resolver-1.1.jar
+        export CLASSPATH=$CLASSPATH:$JARDIR/xercesImpl.jar
+        export CLASSPATH=$CLASSPATH:$JARDIR/jaxp-1.3.jar
+        export CLASSPATH=$CLASSPATH:$JARDIR/xalan-2.7.0.jar
+        export CLASSPATH=$CLASSPATH:$JARDIR/saxon-6.5.5.jar
+        # directory containing CatalogManager.properties file
+        export CLASSPATH=$CLASSPATH:/etc/xml/resolver/
+        export SGML_CATALOG_FILES=/etc/sgml/catalog
+
+      I source that by putting the following in my ~/.bashrc file:
+
+        # set up some environment variables for DocBook/XML stuff
+        . ~/docbk.sh
+
+   b. .xmlrc
+
+      You need an .xmlrc file with some system-specific data for Java
+      and XML tools in your environment. I use the following:
+
+      <?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
+      <config>
+        <java classpath-separator=":" xml:id="java">
+          <system-property name="javax.xml.parsers.DocumentBuilderFactory"
+            value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+          <system-property name="javax.xml.parsers.SAXParserFactory"
+            value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+          <classpath path="/usr/share/java/xercesImpl.jar"/>
+          <classpath path="/usr/share/java/jaxp-1.3.jar"/>
+          <classpath path="/usr/share/java/xml-commons-resolver-1.1.jar"/>
+        </java>
+        <java xml:id="bigmem">
+          <java-option name="Xmx512m"/>
+        </java>
+        <saxon xml:id="saxon" extends="java">
+          <arg name="x" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+          <arg name="y" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+          <arg name="r" value="org.apache.xml.resolver.tools.CatalogResolver"/>
+          <param name="use.extensions" value="1"/>
+        </saxon>
+        <saxon xml:id="saxon-8a" extends="saxon" class="net.sf.saxon.Transform"
+          java="/usr/bin/java">
+          <classpath path="/usr/share/java/saxon8.jar"/>
+        </saxon>
+        <saxon xml:id="saxon-6" extends="saxon" class="com.icl.saxon.StyleSheet">
+          <classpath path="/usr/share/java/saxon-6.5.5.jar"/>
+          <classpath path="/opt/sandbox/docbook/trunk/xsl-java/saxon65.jar"/>
+        </saxon>
+        <xsltproc xml:id="xsltproc" exec="xsltproc"></xsltproc>
+        <xmllint xml:id="xmllint" exec="xmllint"></xmllint>
+      </config>
+
+1. Test I: make all
+   Run a test "make all" build to make sure there are no problems
+   with the non-docs/non-release "normal" part of the build (the
+   part that basically just builds the gentext and param files and
+   gives you a working set of stylesheets to use). The way I
+   usually run that is this:
+
+     . ~/docbk.sh && \
+      svn-clean && \
+     make all 2>&1 \
+       XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" \
+       | tee LOG
+
+   NOTE: If you want to build with saxon instead of xsltproc,
+   change the "-xsltproc" above to "-saxon".
+
+   NOTE: The svn-clean command is something that's not part of the
+   core subversion distribution (on my system, it's part of the
+   subversion-tools package). Its function is to "wipe out
+   unversioned files from Subversion working copy". I use it
+   because our own "clean" make target doesn't clean out
+   everything that needs to be cleaned out to get your working
+   directory back to a fresh state. But svn-clean does.
+
+2. grep the LOG file.
+   After running the above, I then grep through the LOG file to
+   see if anything looks busted, using something like:
+
+       egrep -i "error|fail|\*[^.]" LOG
+
+   FIXME: The regexp in that grep may not catch all error messages
+   emitted; probably should be refined with a more complete regexp.
+
+3. Fix and problems/commit fixes.
+   If the grep of the LOG file reveals problems, fix them, commit
+   your changes (if the fixes required changes to source files)
+   then repeat Step 1 until you don't see any more problems.
+
+4. Test II: Smoke Test
+   At this point you should have a working set of stylesheets to
+   test with, so run a test of at least each of the following
+   against a document instance:
+
+     fo/docbook.xsl
+     fo/profile-docbook.xsl
+     manpages/docbook.xsl
+     manpages/profile-docbook.xsl
+     html/docbook.xsl
+     html/chunk.xsl
+     html/onechunk.xsl
+     html/profile-docbook.xsl
+     html/profile-chunk.xsl
+     html/profile-onechunk.xsl
+     xhtml/docbook.xsl
+     xhtml/chunk.xsl
+     xhtml/onechunk.xsl
+     xhtml/profile-docbook.xsl
+     xhtml/profile-chunk.xsl
+     xhtml/profile-onechunk.xsl
+     htmlhelp/htmlhelp.xsl
+     htmlhelp/profile-htmlhelp.xsl
+     eclipse/profile-eclipse.xsl
+     eclipse/eclipse.xsl
+     javahelp/profile-javahelp.xsl
+     javahelp/javahelp.xsl
+     roundtrip/dbk2ooo.xsl
+     roundtrip/dbk2pages.xsl
+     roundtrip/dbk2wordml.xsl
+     slides/html/default.xsl
+     slides/xhtml/default.xsl
+     slides/fo/plain.xsl
+     website/website.xsl
+     website/chunk-website.xsl
+
+5. Test III: make distrib
+   If you have resolved all problems with the "make all" build, do
+   a test run of "make distrib" (to build the docs and other
+   additional stuff needed for the distribution).
+
+     make install.sh && ./install.sh --batch \
+       && . $(pwd)/.profile.incl && ./test.sh &&
+     make distrib 2>&1 \
+       XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" \
+       PDF_MAKER=dblatex \
+       | tee LOG \
+       && ./uninstall.sh --batch 2>&1
+
+   NOTE: If you want to build with saxon instead of xsltproc,
+   change the "-xsltproc" above to "-saxon".
+
+   NOTE: The engine specified in PDF_MAKER is only used to build a
+   PDF of the release notes. If you want to use xep instead of
+   dblatex, specify PDF_MAKER=xep. (There's no option to use fop
+   because last time I tested it, fop still did a miserable job of
+   formatting the release notes.)
+
+   NOTE: The "make install.sh && ./install.sh --batch &&
+   . $(pwd)/.profile.incl" parts do an "install" of XML Catalog
+   settings in your environment so xsltproc/saxon will resolve the
+   http://docbook.sourceforge.net/release/xsl/current/ canonical
+   URL to the working directory you're actually building in
+   (instead of to whatever it would normally resolve to).
+
+   The reason for that "install" step is that there is one part of
+   the doc/distrib build that relies on the litprog stylesheets,
+   and the litprog stylesheets use the http: canonical URL for the
+   stylesheets (instead of using a relative path, as the
+   stylesheets themselves do), so the "install" steps tell
+   xsltproc and saxon that when they find that http: URL in the
+   litprog stylesheets, they should resolve it to the path to the
+   working directory you are building in (instead of to any
+   installed docbook-xsl release stylesheets or whatever other
+   sets of the stylesheets you may installed on your system).
+
+   The "uninstall.sh" step at the end causes all changes made by
+   that temporary XML Catalog "install" step to reverted.
+
+6. grep the LOG file (again).
+   Repeat Step 2 above to grep the LOG file for error messages. If
+   you find problems, go back to Step 1. Otherwise, proceed to the
+   Release Preparation steps below.
+
+-----------------------------------------------------------------
+Release Preparation
+-----------------------------------------------------------------
+1. Edit the VERSION file.
+   a. Update the release number in the fm:Version element.
+   b. Uncomment the appropriate text in the fm:Release-Focus
+      element to match the type of release this is; for example,
+      "Major feature enhancements", "Minor bugfixes", etc.
+   c. If necessary, edit the fm:Changes element to describe this
+      release. Keep it at one sentence; e.g.; "This is a bug-fix
+      release with a few feature enhancements." I don't recommend
+      wasting time doing much more than that, because the dumbass
+      at Freshmeat who reviews all submissions will likely edit
+      what you submit and manage to bork it up in some way.
+
+2. Check in the VERSION file:
+
+     svn commit -m "Version 1.NN.N released" VERSION
+
+3. Open the RELEASE-NOTES.xml file and comment out the paragraphs
+   about snapshot releases, then uncomment the paragraph about
+   official releases.
