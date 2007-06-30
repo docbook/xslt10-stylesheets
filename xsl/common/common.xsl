@@ -505,6 +505,9 @@ Defaults to the context node.</para>
     </xsl:when>
 
     <!-- handle corpauthor as a special case...-->
+    <!-- * MikeSmith 2007-06: I'm wondering if the person.name template -->
+    <!-- * actually ever gets called to handle corpauthor.. maybe -->
+    <!-- * we don't actually need to check for corpauthor here. -->
     <xsl:when test="local-name($node)='corpauthor'">
       <xsl:apply-templates select="$node"/>
     </xsl:when>

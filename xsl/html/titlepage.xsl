@@ -207,7 +207,14 @@
     </xsl:if>
     <h3>
       <xsl:apply-templates select="." mode="class.attribute"/>
-      <xsl:call-template name="person.name"/>
+      <xsl:choose>
+        <xsl:when test="orgname">
+          <xsl:apply-templates/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="person.name"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </h3>
     <xsl:if test="not($contrib.inline.enabled = 0)">
       <xsl:apply-templates mode="titlepage.mode" select="contrib"/>
