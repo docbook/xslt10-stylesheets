@@ -1,6 +1,7 @@
 include ../buildtools/Makefile.incl
 
 XSLT=../buildtools/xslt -xsltproc
+XTANGLE_PARAMS=suppress.doctype.in.output=1
 
 .PHONY: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl cldocbook.xsl ldocbook.xsl
 
@@ -18,19 +19,19 @@ docbook.rng:
 	$(XSLT) $(XSLTOPT) ../docbook/relaxng/docbook/$@ $(MAKE_DOCBOOK_RNG) > $@
 
 xtangle.xsl:
-	$(MAKE) -C ../litprog
+	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
 	$(XSLT) $(XSLTOPT) ../litprog/$@ $(MAKE_LITPROG) filename=$@ > $@
 
 w2docbook.xsl:
-	$(MAKE) -C ../litprog
+	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
 	$(XSLT) $(XSLTOPT) ../litprog/$@ $(MAKE_LITPROG) filename=$@ > $@
 
 cldocbook.xsl:
-	$(MAKE) -C ../litprog
+	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
 	$(XSLT) $(XSLTOPT) ../litprog/html/$@ $(MAKE_LITPROG) filename=$@ > $@
 
 ldocbook.xsl:
-	$(MAKE) -C ../litprog
+	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
 	$(XSLT) $(XSLTOPT) ../litprog/html/$@ $(MAKE_LITPROG) filename=$@ > $@
 
 clean:
