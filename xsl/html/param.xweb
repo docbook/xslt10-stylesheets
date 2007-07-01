@@ -155,6 +155,7 @@ $Id$
 &blurb.on.titlepage.enabled;
 &contrib.inline.enabled;
 &editedby.enabled;
+&abstract.notitle.enabled;
 &othercredit.like.author.enabled;
 &generate.legalnotice.link;
 &generate.revhistory.link;
@@ -656,6 +657,7 @@ around all these parameters.</para>
 <src:fragref linkend="olink.pubid.frag"/>
 <src:fragref linkend="olink.resolver.frag"/>
 <src:fragref linkend="olink.sysid.frag"/>
+<src:fragref linkend="abstract.notitle.enabled.frag"/>
 <src:fragref linkend="othercredit.like.author.enabled.frag"/>
 <src:fragref linkend="para.propagates.style.frag"/>
 <src:fragref linkend="part.autolabel.frag"/>

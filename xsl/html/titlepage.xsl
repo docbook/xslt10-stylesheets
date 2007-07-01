@@ -129,11 +129,13 @@
   <div>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
-    <xsl:call-template name="formal.object.heading">
-      <xsl:with-param name="title">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
+    <xsl:if test="not ($abstract.notitle.enabled = 0)">
+      <xsl:call-template name="formal.object.heading">
+        <xsl:with-param name="title">
+          <xsl:apply-templates select="." mode="title.markup"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
     <xsl:apply-templates mode="titlepage.mode"/>
   </div>
 </xsl:template>
