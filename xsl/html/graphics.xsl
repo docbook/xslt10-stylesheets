@@ -1224,14 +1224,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <xsl:template name="longdesc.uri">
   <xsl:param name="mediaobject" select="."/>
-
   <xsl:if test="$html.longdesc">
     <xsl:if test="$mediaobject/textobject[not(phrase)]">
-      <xsl:variable name="image-id">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="$mediaobject"/>
-        </xsl:call-template>
-      </xsl:variable>
       <xsl:variable name="dbhtml.dir">
         <xsl:call-template name="dbhtml-dir"/>
       </xsl:variable>
@@ -1247,8 +1241,31 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:with-param>
-          <xsl:with-param name="base.name"
-                          select="concat('ld-',$image-id,$html.ext)"/>
+          <xsl:with-param name="base.name">
+            <xsl:choose>
+              <xsl:when test="
+                $mediaobject/@*[local-name() = 'id']
+                and not($use.id.as.filename = 0)">
+                <!-- * if this mediaobject has an ID, then we use the -->
+                <!-- * value of that ID as basename for the "longdesc" -->
+                <!-- * file (that is, without prepending an "ld-" too it) -->
+                <xsl:value-of select="$mediaobject/@*[local-name() = 'id']"/>
+                <xsl:value-of select="$html.ext"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <!-- * otherwise, if this mediaobject does not have an -->
+                <!-- * ID, then we generate an ID... -->
+                <xsl:variable name="image-id">
+                  <xsl:call-template name="object.id">
+                    <xsl:with-param name="object" select="$mediaobject"/>
+                  </xsl:call-template>
+                </xsl:variable>
+                <!-- * ...and then we take that generated ID, prepend an -->
+                <!-- * "ld-" to it, and use that as the basename for the file -->
+                <xsl:value-of select="concat('ld-',$image-id,$html.ext)"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
         </xsl:call-template>
       </xsl:variable>
 
