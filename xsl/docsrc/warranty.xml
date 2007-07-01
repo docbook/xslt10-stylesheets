@@ -2,7 +2,7 @@
 <!DOCTYPE legalnotice
   PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<legalnotice><title>Warranty</title>
+<legalnotice id="warranty"><title>Warranty</title>
 <para>THE SOFTWARE IS PROVIDED <quote>AS IS</quote>,
 WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
 LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
