@@ -15,9 +15,9 @@ docparam.xml: $(VPATH)/param.xweb $(PARAMS)
 	$(XSLT) $< ../../profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/w2docbook.xsl $@
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
 else
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/w2docbook.xsl $@.tmp
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
 endif

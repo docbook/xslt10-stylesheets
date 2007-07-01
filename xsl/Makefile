@@ -54,15 +54,12 @@ ifeq (,$(findstring xsltproc,$(XSLT)))
 	@echo "-----------------------------------------------------------------"
 endif
 
-base: litprog
+base:
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 		fi \
 	done
-
-litprog:
-	$(MAKE) -C ../litprog
 
 xhtml:
 	$(MAKE) -C xhtml

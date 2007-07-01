@@ -21,14 +21,17 @@ Release Build Setup/Testing
       source for the "xsl" module, you also need to have
       up-to-date working copies of the following modules:
 
-        gentext
-        litprog
         buildtools
+          tools needed for all builds
         releasetools
+          tools needed for release builds
+        gentext
+          localization source files
 
    a. Shell Environment.
-      To get my environment variables set up, I have a file that I
-      name "docbk.sh", with the following in it:
+      A good way to get your environment variables set up is to
+      create a file (name "docbk.sh" or whatever), with the
+      following in it:
 
         # directory that is base directory for all your DocBook modules
         export DOCBOOK_SVN=/opt/sandbox/docbook/trunk
@@ -43,7 +46,8 @@ Release Build Setup/Testing
         export CLASSPATH=$CLASSPATH:/etc/xml/resolver/
         export SGML_CATALOG_FILES=/etc/sgml/catalog
 
-      I source that by putting the following in my ~/.bashrc file:
+      You can then source that by putting the following in your
+      ~/.bashrc file:
 
         # set up some environment variables for DocBook/XML stuff
         . ~/docbk.sh
@@ -51,7 +55,7 @@ Release Build Setup/Testing
    b. .xmlrc
 
       You need an .xmlrc file with some system-specific data for Java
-      and XML tools in your environment. I use the following:
+      and XML tools in your environment. For example:
 
       <?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
       <config>
@@ -89,8 +93,8 @@ Release Build Setup/Testing
    Run a test "make all" build to make sure there are no problems
    with the non-docs/non-release "normal" part of the build (the
    part that basically just builds the gentext and param files and
-   gives you a working set of stylesheets to use). The way I
-   usually run that is this:
+   gives you a working set of stylesheets to use). On way to run
+   that is this:
 
      . ~/docbk.sh && \
       svn-clean && \
@@ -104,14 +108,14 @@ Release Build Setup/Testing
    NOTE: The svn-clean command is something that's not part of the
    core subversion distribution (on my system, it's part of the
    subversion-tools package). Its function is to "wipe out
-   unversioned files from Subversion working copy". I use it
-   because our own "clean" make target doesn't clean out
-   everything that needs to be cleaned out to get your working
-   directory back to a fresh state. But svn-clean does.
+   unversioned files from Subversion working copy". It is a good
+   idea to use it because our own "clean" make target doesn't
+   clean out everything that needs to be cleaned out to get your
+   working directory back to a fresh state. But svn-clean does.
 
 2. grep the LOG file.
-   After running the above, I then grep through the LOG file to
-   see if anything looks busted, using something like:
+   After running the above, grep through the LOG file to see if
+   anything looks busted, using something like:
 
        egrep -i "error|fail|\*[^.]" LOG
 
@@ -178,8 +182,8 @@ Release Build Setup/Testing
    NOTE: The engine specified in PDF_MAKER is only used to build a
    PDF of the release notes. If you want to use xep instead of
    dblatex, specify PDF_MAKER=xep. (There's no option to use fop
-   because last time I tested it, fop still did a miserable job of
-   formatting the release notes.)
+   because fop still doesn't do an adequate job of formatting the
+   release notes.)
 
    NOTE: The "make install.sh && ./install.sh --batch &&
    . $(pwd)/.profile.incl" parts do an "install" of XML Catalog
@@ -217,10 +221,10 @@ Release Preparation
       "Major feature enhancements", "Minor bugfixes", etc.
    c. If necessary, edit the fm:Changes element to describe this
       release. Keep it at one sentence; e.g.; "This is a bug-fix
-      release with a few feature enhancements." I don't recommend
-      wasting time doing much more than that, because the dumbass
-      at Freshmeat who reviews all submissions will likely edit
-      what you submit and manage to bork it up in some way.
+      release with a few feature enhancements." It's not a good
+      idea to waste time doing much more than that, because the
+      dumbass at Freshmeat who reviews all submissions will likely
+      edit what you submit and manage to bork it up in some way.
 
 2. Check in the VERSION file:
 

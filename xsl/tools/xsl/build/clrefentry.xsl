@@ -5,7 +5,7 @@
                 exclude-result-prefixes="src verb"
                 version="1.0">
 
-<xsl:import href="../../../../litprog/html/cldocbook.xsl"/>
+<xsl:import href="../../../../releasetools/cldocbook.xsl"/>
 
 <xsl:param name="use.id.as.filename" select="1"/>
 <xsl:param name="refentry.separator" select="0"/>

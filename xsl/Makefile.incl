@@ -11,7 +11,7 @@ param.xsl: param.xweb $(PARAMS)
 	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
 	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
 	$(XSLT) $(PARAMPROF) $(DOCBOOK_SVN)/xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/litprog/xtangle.xsl $(PARAMDBKNS)
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/xtangle.xsl $(PARAMDBKNS)
 ifeq ($(ADDNEWLINE),)
 	$(XSLT) $(PARAMDBKNS) $(FIXPARAMNS) $@
 else
