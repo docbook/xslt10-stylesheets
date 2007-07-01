@@ -292,7 +292,7 @@ consider <xref linkend="fig.pagemodel"/>.</para>
 
 <figure id="fig.pagemodel">
   <title>Page Model</title>
-  <mediaobject>
+  <mediaobject id="fo-pageregions-image">
     <imageobject role="html">
       <imagedata fileref="page.png"/>
     </imageobject>
