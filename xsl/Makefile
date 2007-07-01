@@ -3,6 +3,12 @@
 include ../buildtools/Makefile.incl
 include ../releasetools/Variables.mk
 
+# The -E0 switch on xjparse gets passed on to the XML Commons
+# resolver and causes all error message from the resolver to be
+# suppressed. The -w switch causes the resolver to just do a
+# well-formedness check instead of a validity check.
+XJPARSEFLAGS=-E0 -w
+
 DISTRO=xsl
 
 # value of DISTRIB_CHANGELOG_INCLUDES is a space-separated list of
