@@ -1,7 +1,7 @@
 include ../../releasetools/Variables.mk
 DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template utility
 
-DOCBOOK5_RNG=../../docbook/relaxng/docbook/docbook.rng
+DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
 PARAM_XSL_FILES=$(shell for file in $$(find .. -name "param.xsl"); do \
 	readlink -f $$file; done | grep -v xhtml)
 
@@ -21,11 +21,11 @@ clean:
 		fi \
 	done
 
-$(DOCBOOK5_RNG):
+$(DOCBOOK_RNG):
 	$(MAKE) -C $(dir $@) $(notdir $@)
 
-$(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK5_RNG)
-	$(XSLT) $(DOCBOOK5_RNG) $< $@
+$(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK_RNG)
+	$(XSLT) $(DOCBOOK_RNG) $< $@
 
 $(XSL_PARAMS): $(MAKE_PARAMS_XSL) $(PARAM_XSL_FILES)
 	$(XSLT) $< $< $@
