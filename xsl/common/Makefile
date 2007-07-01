@@ -73,7 +73,7 @@ zh_cn.xml: ../../gentext/locale/zh_cn.xml $(GENSTYLE)
 zh_tw.xml: ../../gentext/locale/zh_tw.xml $(GENSTYLE)
 
 %.xml:
-	$(XJPARSE) $(XJPARSEFLAGS) -w $<
+	$(XJPARSE) $(XJPARSEFLAGS) $<
 	$(XSLT) ../../gentext/locale/en.xml ../../gentext/xsl/xsl.xsl $@ locale.file=$@
 
 clean:
