@@ -7,14 +7,9 @@
 <!-- * copy of the file, check out that directory from the source repository -->
 <!-- * and build it. -->
 <!-- * -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-  exclude-result-prefixes="xsl src xml" version="1.1">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:src="http://nwalsh.com/xmlns/litprog/fragment" exclude-result-prefixes="xsl src xml" version="1.0">
 
-  <xsl:param name="foo"></xsl:param>
-  <xsl:param name="bar"></xsl:param>
-
-  <xsl:output method="xml" indent="no" doctype-public="{$foo}" doctype-system=""/>
+  <xsl:output method="xml" indent="no"/>
 
   <xsl:preserve-space elements="*"/>
 

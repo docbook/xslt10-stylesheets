@@ -15,6 +15,7 @@
   <xsl:key name="fragment" match="src:fragment" use="@*[local-name() = 'id']"/>
 
   <xsl:param name="top" select="'top'"/>
+  <xsl:param name="suppress.doctype.in.output" select="0"/>
 
 
   <xsl:output method="xml"/>
@@ -103,18 +104,25 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-<xsl:template match="*" mode="copy">
-  <xsl:variable name="node" select="."/>
-  <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
-      <xsl:for-each select="namespace::*">
+  <xsl:template match="*" mode="copy">
+    <xsl:variable name="node" select="."/>
+    <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+        <xsl:for-each select="namespace::*">
     <xsl:if test="string(.) != namespace-uri($node)">
       <xsl:copy/>
     </xsl:if>
   </xsl:for-each>
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="copy"/>
-  </xsl:element>
-</xsl:template>
+      <xsl:for-each select="@*">
+        <xsl:choose>
+          <xsl:when test="not($suppress.doctype.in.output = 0)           and (local-name(.) = 'doctype-public'           or local-name(.) = 'doctype-system')           "/>
+          <xsl:otherwise>
+            <xsl:copy-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      <xsl:apply-templates mode="copy"/>
+    </xsl:element>
+  </xsl:template>
   <xsl:template match="processing-instruction()" mode="copy">
   <xsl:processing-instruction name="{name(.)}">
     <xsl:value-of select="."/>
