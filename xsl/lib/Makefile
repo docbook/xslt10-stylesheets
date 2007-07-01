@@ -13,9 +13,9 @@ lib.xml: lib.xweb
 	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) ../../litprog/w2docbook.xsl $@
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
 else
-	$(XSLT) $(PARAMSTRIP) ../../litprog/w2docbook.xsl $@.tmp
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
 endif
@@ -25,9 +25,9 @@ lib.xsl: lib.xweb
 	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
 	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
 ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@
 else
-	$(XSLT) $(PARAMSTRIP) ../../litprog/xtangle.xsl $@.tmp
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@.tmp
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
 endif

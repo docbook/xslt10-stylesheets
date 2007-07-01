@@ -5,7 +5,7 @@
                 exclude-result-prefixes="src verb"
                 version="1.0">
 
-<xsl:import href="../../../../litprog/html/ldocbook.xsl"/>
+<xsl:import href="../../../../releasetools/ldocbook.xsl"/>
 
 <xsl:template match="src:fragment" mode="label.markup">
   <xsl:text>&#xA7;</xsl:text>
