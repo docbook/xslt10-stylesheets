@@ -55,6 +55,19 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> ******************************************************************** </xsl:comment>
     <xsl:text>&#10;</xsl:text>
+    <xsl:comment> In these files, % with a letter is used for a placeholder: </xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment>   %t is the current element's title </xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment>   %s is the current element's subtitle (if applicable)</xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment>   %n is the current element's number label</xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment>   %p is the current element's page number (if applicable)</xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment> ******************************************************************** </xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>&#10;</xsl:text>
 
     <xsl:apply-templates/>
 
