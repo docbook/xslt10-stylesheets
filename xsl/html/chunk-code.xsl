@@ -82,9 +82,9 @@
         <xsl:value-of select="$html.ext"/>
       </xsl:when>
       <!-- Special case -->
-      <xsl:when test="self::legalnotice and $generate.legalnotice.link != 0">
+      <xsl:when test="self::legalnotice and not($generate.legalnotice.link = 0)">
         <xsl:choose>
-          <xsl:when test="(@id or @xml:id) and $use.id.as.filename != 0">
+          <xsl:when test="(@id or @xml:id) and not($use.id.as.filename = 0)">
             <!-- * if this legalnotice has an ID, then go ahead and use -->
             <!-- * just the value of that ID as the basename for the file -->
             <!-- * (that is, without prepending an "ln-" too it) -->
@@ -93,7 +93,7 @@
           </xsl:when>
           <xsl:otherwise>
             <!-- * otherwise, if this legalnotice does not have an ID, -->
-            <!-- * then we generate one an ID... -->
+            <!-- * then we generate an ID... -->
             <xsl:variable name="id">
               <xsl:call-template name="object.id"/>
             </xsl:variable>
