@@ -1,5 +1,7 @@
 include ../buildtools/Makefile.incl
 
+XTANGLE_PARAMS=
+
 all: tangle.xsl weave.xsl w2docbook.xsl xtangle.xsl
 	$(MAKE) -C html
 	$(MAKE) -C example
@@ -27,24 +29,24 @@ html: xml tangle.html weave.html
 # it can rebuild itself.
 xtangle.xsl: tangle.xweb bootstrap-tangle.xsl
 	$(XSLT) $< bootstrap-tangle.xsl .boot.tangle.xsl
-	$(XSLT) $< .boot.tangle.xsl $@ top=xtop
+	$(XSLT) $< .boot.tangle.xsl $@ top=xtop $(XTANGLE_PARAMS)
 	rm -f .boot.tangle.xsl
 
-tangle.xsl: tangle.xweb xtangle.xsl
-	$(XSLT) $< xtangle.xsl $@
+tangle.xsl: tangle.xweb xtangle.xsl 
+	$(XSLT) $< xtangle.xsl $@ $(XTANGLE_PARAMS)
 
 tangle.xml: tangle.xweb w2docbook.xsl
 	$(XSLT) $< w2docbook.xsl $@
 
 weave.xsl: weave.xweb xtangle.xsl
-	$(XSLT)  $< xtangle.xsl $@
+	$(XSLT)  $< xtangle.xsl $@ $(XTANGLE_PARAMS)
 
 weave.xml: weave.xweb w2docbook.xsl
 	$(XSLT)  $< w2docbook.xsl $@
 	xjparse $@
 
 w2docbook.xsl: weave.xweb xtangle.xsl weave.xsl
-	$(XSLT) $< xtangle.xsl $@ top=w2docbook
+	$(XSLT) $< xtangle.xsl $@ top=w2docbook $(XTANGLE_PARAMS)
 
 realclean: clean
 	rm -f xtangle.xsl

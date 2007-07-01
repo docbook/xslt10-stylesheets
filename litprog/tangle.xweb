@@ -110,6 +110,7 @@ the IDs identified as type ID in the source document.</para>
   <xsl:key name="fragment" match="src:fragment" use="@*[local-name() = 'id']"/>
 
   <xsl:param name="top" select="'top'"/>
+  <xsl:param name="suppress.doctype.in.output" select="0"/>
 
 </src:fragment>
 
@@ -507,14 +508,24 @@ nodes automatically.</para>
 </orderedlist>
 
 <src:fragment id="copy-default">
-<xsl:template match="*" mode="copy">
-  <xsl:variable name="node" select="."/>
-  <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
-    <src:fragref linkend="copy-namespaces"/>
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates mode="copy"/>
-  </xsl:element>
-</xsl:template>
+  <xsl:template match="*" mode="copy">
+    <xsl:variable name="node" select="."/>
+    <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+      <src:fragref linkend="copy-namespaces"/>
+      <xsl:for-each select="@*">
+        <xsl:choose>
+          <xsl:when test="not($suppress.doctype.in.output = 0)
+          and (local-name(.) = 'doctype-public'
+          or local-name(.) = 'doctype-system')
+          "/>
+          <xsl:otherwise>
+            <xsl:copy-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      <xsl:apply-templates mode="copy"/>
+    </xsl:element>
+  </xsl:template>
 </src:fragment>
 
 <para>For non-XML source docuements, this template will never match
