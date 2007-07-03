@@ -1,5 +1,7 @@
 include ../../buildtools/Makefile.incl
 
+XJPARSEFLAGS= -E 0 -w
+
 SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
         de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
         gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml lt.xml \
