@@ -21,11 +21,7 @@
   </xsl:variable>
 
   <xsl:variable name="label-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="label-length">
@@ -45,11 +41,7 @@
   </xsl:variable>
   
   <xsl:variable name="toc">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'toc'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_toc"/>
   </xsl:variable>
 
   <xsl:variable name="toc.params">
@@ -156,11 +148,7 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <xsl:variable name="label-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="label-length">

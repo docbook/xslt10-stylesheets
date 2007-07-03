@@ -514,11 +514,7 @@
 <xsl:template match="revhistory" mode="titlepage.mode">
 
   <xsl:variable name="explicit.table.width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'table-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_table-width"/>
   </xsl:variable>
 
   <xsl:variable name="table.width">

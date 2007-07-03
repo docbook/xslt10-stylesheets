@@ -157,10 +157,7 @@
 
 <xsl:template match="td" mode="htmlTable">
   <xsl:variable name="bgcolor">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis" select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'bgcolor'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_bgcolor"/>
   </xsl:variable>
   <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
     <xsl:call-template name="table.cell.properties">
@@ -184,12 +181,8 @@
 
 <xsl:template match="th" mode="htmlTable">
   <xsl:variable name="bgcolor">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis" select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'bgcolor'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_bgcolor"/>
   </xsl:variable>
-
   <fo:table-cell xsl:use-attribute-sets="th.style table.cell.padding">
     <xsl:call-template name="table.cell.properties">
       <xsl:with-param name="bgcolor.pi" select="$bgcolor"/>

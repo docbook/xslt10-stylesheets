@@ -21,11 +21,7 @@
   </xsl:variable>
 
   <xsl:variable name="pi-label-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="label-width">
@@ -188,11 +184,7 @@
   </xsl:variable>
 
   <xsl:variable name="pi-label-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="label-width">
@@ -335,11 +327,7 @@
 
 <xsl:template match="variablelist">
   <xsl:variable name="presentation">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'list-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_list-presentation"/>
   </xsl:variable>
 
   <xsl:choose>
@@ -364,11 +352,7 @@
   </xsl:variable>
 
   <xsl:variable name="term-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'term-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_term-width"/>
   </xsl:variable>
 
   <xsl:variable name="termlength">
@@ -713,10 +697,10 @@
   <fo:inline><xsl:variable name="localized-choice-separator">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbchoice')">
-	<xsl:call-template name="select.choice.separator"/>
+        <xsl:call-template name="select.choice.separator"/>
       </xsl:when>
       <xsl:otherwise>
-	<!-- empty -->
+        <!-- empty -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -741,11 +725,7 @@
 <xsl:template match="simplelist[@type='horiz']">
 
   <xsl:variable name="explicit.table.width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'list-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_list-width"/>
   </xsl:variable>
 
   <xsl:variable name="table.width">
@@ -1054,11 +1034,7 @@
 
 <xsl:template match="segmentedlist">
   <xsl:variable name="presentation">
-    <xsl:call-template name="pi-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'list-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_list-presentation"/>
   </xsl:variable>
 
   <xsl:variable name="id">
