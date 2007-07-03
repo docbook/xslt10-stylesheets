@@ -192,10 +192,8 @@
   </xsl:variable>
 
   <xsl:variable name="bgcolor">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="../processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'background-color'"/>
+    <xsl:call-template name="pi.dbfo_background-color">
+      <xsl:with-param name="node" select=".."/>
     </xsl:call-template>
   </xsl:variable>
 

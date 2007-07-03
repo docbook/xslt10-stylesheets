@@ -44,19 +44,11 @@
   </xsl:variable>
 
   <xsl:variable name="presentation">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'glossary-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_glossary-presentation"/>
   </xsl:variable>
 
   <xsl:variable name="term-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'glossterm-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_glossterm-width"/>
   </xsl:variable>
 
   <xsl:variable name="width">
@@ -237,19 +229,11 @@
   &setup-language-variable;
 
   <xsl:variable name="presentation">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'glosslist-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_glosslist-presentation"/>
   </xsl:variable>
 
   <xsl:variable name="term-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'glossterm-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_glossterm-width"/>
   </xsl:variable>
 
   <xsl:variable name="width">
@@ -374,19 +358,11 @@
   </xsl:variable>
 
   <xsl:variable name="presentation">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'glossary-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_glossary-presentation"/>
   </xsl:variable>
 
   <xsl:variable name="term-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'glossterm-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_glossterm-width"/>
   </xsl:variable>
 
   <xsl:variable name="width">

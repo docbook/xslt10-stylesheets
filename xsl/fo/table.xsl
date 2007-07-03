@@ -72,11 +72,7 @@ works</quote>.</para>
 <xsl:template name="calsTable">
 
   <xsl:variable name="keep.together">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'keep-together'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
   <xsl:for-each select="tgroup">
@@ -530,24 +526,20 @@ works</quote>.</para>
   <xsl:variable name="explicit.table.width">
     <xsl:choose>
       <xsl:when test="self::entrytbl">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis" 
-                          select="processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'table-width'"/>
-        </xsl:call-template>
+        <xsl:call-template name="pi.dbfo_table-width"/>
       </xsl:when>
       <xsl:when test="self::table or self::informaltable">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis" 
-                          select="processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'table-width'"/>
-        </xsl:call-template>
+        <xsl:call-template name="pi.dbfo_table-width"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis" 
-                          select="../processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'table-width'"/>
+        <!-- * no dbfo@table-width PI as a child of this table, so check -->
+        <!-- * the parent of this table to see if the table has any -->
+        <!-- * sibling dbfo@table-width PIs (FIXME: 2007-07 MikeSmith: we -->
+        <!-- * should really instead be checking here just to see if the -->
+        <!-- * first preceding sibling of this table is a -->
+        <!-- * dbfo@table-width PI) -->
+        <xsl:call-template name="pi.dbfo_table-width">
+          <xsl:with-param name="node" select=".."/>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
@@ -749,10 +741,7 @@ works</quote>.</para>
 <!-- customize this template to add row properties -->
 <xsl:template name="table.row.properties">
   <xsl:variable name="bgcolor">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis" select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'bgcolor'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_bgcolor"/>
   </xsl:variable>
   <xsl:if test="$bgcolor != ''">
     <xsl:attribute name="background-color">
@@ -948,34 +937,26 @@ works</quote>.</para>
       </xsl:variable>
 
       <xsl:variable name="cell-orientation">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis"
-                          select="ancestor-or-self::entry/processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'orientation'"/>
+        <xsl:call-template name="pi.dbfo_orientation">
+          <xsl:with-param name="node" select="ancestor-or-self::entry"/>
         </xsl:call-template>
       </xsl:variable>
 
       <xsl:variable name="row-orientation">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis"
-                          select="ancestor-or-self::row/processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'orientation'"/>
+        <xsl:call-template name="pi.dbfo_orientation">
+          <xsl:with-param name="node" select="ancestor-or-self::row"/>
         </xsl:call-template>
       </xsl:variable>
 
       <xsl:variable name="cell-width">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis"
-                          select="ancestor-or-self::entry/processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'rotated-width'"/>
+        <xsl:call-template name="pi.dbfo_rotated-width">
+          <xsl:with-param name="node" select="ancestor-or-self::entry"/>
         </xsl:call-template>
       </xsl:variable>
 
       <xsl:variable name="row-width">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis"
-                          select="ancestor-or-self::row/processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'rotated-width'"/>
+        <xsl:call-template name="pi.dbfo_rotated-width">
+          <xsl:with-param name="node" select="ancestor-or-self::row"/>
         </xsl:call-template>
       </xsl:variable>
 
@@ -1002,10 +983,8 @@ works</quote>.</para>
       </xsl:variable>
 
       <xsl:variable name="bgcolor">
-        <xsl:call-template name="dbfo-attribute">
-          <xsl:with-param name="pis"
-                          select="ancestor-or-self::entry/processing-instruction('dbfo')"/>
-          <xsl:with-param name="attribute" select="'bgcolor'"/>
+        <xsl:call-template name="pi.dbfo_bgcolor">
+          <xsl:with-param name="node" select="ancestor-or-self::entry"/>
         </xsl:call-template>
       </xsl:variable>
 
