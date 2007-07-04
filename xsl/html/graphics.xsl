@@ -250,6 +250,7 @@
   <xsl:variable name="img.src.path.pi">
     <xsl:call-template name="pi.dbhtml_img.src.path">
       <xsl:with-param name="node" select=".."/>
+    </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="filename.for.graphicsize">
