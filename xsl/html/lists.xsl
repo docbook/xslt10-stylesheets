@@ -848,7 +848,7 @@
   </xsl:variable>
 
   <xsl:variable name="list-width">
-    <xsl:call-template name="pi.dbhtml_list-width">
+    <xsl:call-template name="pi.dbhtml_list-width"/>
   </xsl:variable>
 
   <xsl:apply-templates select="title"/>
