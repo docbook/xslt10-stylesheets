@@ -377,6 +377,39 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_linenumbering.width" xmlns="">
+<refpurpose>Specifies the width set aside for line numbers in
+  output of verbatim environments</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml linenumbering.width</tag> PI as a child
+    of a “verbatim” element – <tag>programlisting</tag>,
+    <tag>screen</tag>, <tag>synopsis</tag> — to specify
+    the width set aside for line numbers.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml linenumbering.width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>linenumbering.width="<replaceable>width</replaceable>"</term>
+      <listitem>
+        <para>FIXME: Specifies the width (in what units?)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+  <refsee role="params">
+    <para><parameter>linenumbering.width</parameter></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_linenumbering.width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'linenumbering.width'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbhtml_list-width" xmlns="">
   <refpurpose>Specifies the width of a variablelist or simplelist</refpurpose>
   <refdescription>
