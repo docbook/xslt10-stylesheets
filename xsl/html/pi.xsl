@@ -12,6 +12,99 @@
 
      ******************************************************************** -->
 
+<doc:reference xmlns="">
+<referenceinfo>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<authorgroup>
+  <author>
+    <orgname>The DocBook Project Development Team</orgname>
+  </author>
+</authorgroup>
+<copyright>
+  <year>2007</year>
+  <holder>The DocBook Project</holder>
+</copyright>
+</referenceinfo>
+<title>HTML Processing Instruction Reference</title>
+
+<partintro id="partintro">
+<title>Introduction</title>
+
+<para>This is generated reference documentation for all
+  user-specifiable processing instructions (PIs) in the DocBook
+  XSL stylesheets for HTML output.
+  <note>
+    <para>You add these PIs at particular points in a document to
+      cause specific “exceptions” to formatting/output behavior. To
+      make global changes in formatting/output behavior across an
+      entire document, it’s better to do it by setting an
+      appropriate stylesheet parameter (if there is one).</para>
+  </note>
+</para>
+</partintro>
+</doc:reference>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="pi.dbhtml_dir">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'dir'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="pi.dbhtml_filename">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'filename'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="pi.dbfunclist">
+  <xsl:variable name="funcsynopses" select="..//funcsynopsis"/>
+  <xsl:if test="count($funcsynopses)&lt;1">
+    <xsl:message><xsl:text>No funcsynopsis elements matched dbfunclist PI, perhaps it's nested too deep?</xsl:text>
+    </xsl:message>
+  </xsl:if>
+  <dl>
+    <xsl:call-template name="process.funcsynopsis.list">
+      <xsl:with-param name="funcsynopses" select="$funcsynopses"/>
+    </xsl:call-template>
+  </dl>
+</xsl:template>
+
+<xsl:template name="pi.dbcmdlist">
+  <xsl:variable name="cmdsynopses" select="..//cmdsynopsis"/>
+  <xsl:if test="count($cmdsynopses)&lt;1">
+    <xsl:message><xsl:text>No cmdsynopsis elements matched dbcmdlist PI, perhaps it's nested too deep?</xsl:text>
+    </xsl:message>
+  </xsl:if>
+  <dl>
+    <xsl:call-template name="process.cmdsynopsis.list">
+      <xsl:with-param name="cmdsynopses" select="$cmdsynopses"/>
+    </xsl:call-template>
+  </dl>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="dbhtml-attribute">
+  <!-- * dbhtml-attribute is an interal utility template for retrieving -->
+  <!-- * pseudo-attributes/parameters from PIs -->
+  <xsl:param name="pis" select="processing-instruction('dbhtml')"/>
+  <xsl:param name="attribute">filename</xsl:param>
+  <xsl:call-template name="pi-attribute">
+    <xsl:with-param name="pis" select="$pis"/>
+    <xsl:with-param name="attribute" select="$attribute"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
 <xsl:template match="processing-instruction()">
 </xsl:template>
 
@@ -20,24 +113,6 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-
-<xsl:template name="dbhtml-attribute">
-  <xsl:param name="pis" select="processing-instruction('dbhtml')"/>
-  <xsl:param name="attribute">filename</xsl:param>
-
-  <xsl:call-template name="pi-attribute">
-    <xsl:with-param name="pis" select="$pis"/>
-    <xsl:with-param name="attribute" select="$attribute"/>
-  </xsl:call-template>
-</xsl:template>
-
-<xsl:template name="dbhtml-filename">
-  <xsl:param name="pis" select="./processing-instruction('dbhtml')"/>
-  <xsl:call-template name="dbhtml-attribute">
-    <xsl:with-param name="pis" select="$pis"/>
-    <xsl:with-param name="attribute">filename</xsl:with-param>
-  </xsl:call-template>
-</xsl:template>
 
 <!--
 <xsl:template name="dbhtml-dir">
@@ -63,9 +138,8 @@
   </xsl:variable>
 
   <xsl:variable name="path">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis" select="$context/processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute">dir</xsl:with-param>
+    <xsl:call-template name="pi.dbhtml_dir">
+      <xsl:with-param name="node" select="$context"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -90,6 +164,9 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="processing-instruction('dbcmdlist')">
+  <xsl:call-template name="pi.dbcmdlist"/>
+</xsl:template>
 <xsl:template name="process.cmdsynopsis.list">
   <xsl:param name="cmdsynopses"/><!-- empty node list by default -->
   <xsl:param name="count" select="1"/>
@@ -130,23 +207,11 @@
     </xsl:choose>
 </xsl:template>
 
-<xsl:template match="processing-instruction('dbcmdlist')">
-  <xsl:variable name="cmdsynopses" select="..//cmdsynopsis"/>
-
-  <xsl:if test="count($cmdsynopses)&lt;1">
-    <xsl:message><xsl:text>No cmdsynopsis elements matched dbcmdlist PI, perhaps it's nested too deep?</xsl:text>
-    </xsl:message>
-  </xsl:if>
-
-  <dl>
-    <xsl:call-template name="process.cmdsynopsis.list">
-      <xsl:with-param name="cmdsynopses" select="$cmdsynopses"/>
-    </xsl:call-template>
-  </dl>
-</xsl:template>
-
 <!-- ==================================================================== -->
 
+<xsl:template match="processing-instruction('dbfunclist')">
+  <xsl:call-template name="pi.dbfunclist"/>
+</xsl:template>
 <xsl:template name="process.funcsynopsis.list">
   <xsl:param name="funcsynopses"/><!-- empty node list by default -->
   <xsl:param name="count" select="1"/>
@@ -185,21 +250,6 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-</xsl:template>
-
-<xsl:template match="processing-instruction('dbfunclist')">
-  <xsl:variable name="funcsynopses" select="..//funcsynopsis"/>
-
-  <xsl:if test="count($funcsynopses)&lt;1">
-    <xsl:message><xsl:text>No funcsynopsis elements matched dbfunclist PI, perhaps it's nested too deep?</xsl:text>
-    </xsl:message>
-  </xsl:if>
-
-  <dl>
-    <xsl:call-template name="process.funcsynopsis.list">
-      <xsl:with-param name="funcsynopses" select="$funcsynopses"/>
-    </xsl:call-template>
-  </dl>
 </xsl:template>
 
 <!-- ==================================================================== -->

@@ -49,8 +49,8 @@
 
   <xsl:variable name="chunk" select="$chunks//tocentry[@linkend=$id]"/>
   <xsl:variable name="filename">
-    <xsl:call-template name="dbhtml-filename">
-      <xsl:with-param name="pis" select="$chunk/processing-instruction('dbhtml')"/>
+    <xsl:call-template name="pi.dbhtml_filename">
+      <xsl:with-param name="node" select="$chunk"/>
     </xsl:call-template>
   </xsl:variable>
 
