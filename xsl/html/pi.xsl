@@ -131,6 +131,7 @@
 </xsl:template>
 
 <xsl:template name="pi.dbhtml_img.src.path">
+  <xsl:param name="node" select="."/>
   <!-- * called on parent of graphic, inlinegraphic, imagedata, or videodata -->
   <xsl:call-template name="dbhtml-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
@@ -992,6 +993,7 @@
        <dt>
        <a>
          <xsl:attribute name="href">
+           <xsl:text>#</xsl:text>
            <xsl:call-template name="object.id">
              <xsl:with-param name="object" select="$cmdsyn"/>
            </xsl:call-template>
@@ -1107,6 +1109,42 @@
         <xsl:text>ERROR: dbhtml-include processing instruction has </xsl:text>
         <xsl:text>missing or empty href value.</xsl:text>
       </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="dbhtml-dir">
+  <xsl:param name="context" select="."/>
+  <!-- directories are now inherited from previous levels -->
+  <xsl:variable name="ppath">
+    <xsl:if test="$context/parent::*">
+      <xsl:call-template name="dbhtml-dir">
+        <xsl:with-param name="context" select="$context/parent::*"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="path">
+    <xsl:call-template name="pi.dbhtml_dir">
+      <xsl:with-param name="node" select="$context"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$path = ''">
+      <xsl:if test="$ppath != ''">
+        <xsl:value-of select="$ppath"/>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="$ppath != ''">
+        <xsl:value-of select="$ppath"/>
+        <xsl:if test="substring($ppath, string-length($ppath), 1) != '/'">
+          <xsl:text>/</xsl:text>
+        </xsl:if>
+      </xsl:if>
+      <xsl:value-of select="$path"/>
+      <xsl:text>/</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
