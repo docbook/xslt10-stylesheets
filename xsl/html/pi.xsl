@@ -64,6 +64,232 @@ $Id$
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template name="pi.dbhtml_img.src.path">
+  <!-- * called on parent of graphic, inlinegraphic, imagedata, or videodata -->
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'img.src.path'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_background-color" xmlns="">
+<refpurpose>Sets background color for an image</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml background-color</tag> PI before or
+    after an image (<tag>graphic</tag>, <tag>inlinegraphic</tag>,
+    <tag>imagedata</tag>, or <tag>videodata</tag> element) as a
+    sibling to the element, to set a background color for the
+    image.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml background-color="<replaceable>color</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>background-color="<replaceable>color</replaceable>"</term>
+      <listitem>
+        <para>FIXME: A color value? [In hex, as a name, or what?]</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_background-color">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'background-color'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_list-presentation" xmlns="">
+<refpurpose>Specifies presentation style for a variablelist or
+  segmentedlist</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml list-presentation</tag> PI as a child of
+    a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
+    control the presentation style for the list (to cause it, for
+    example, to be displayed as a table).</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml list-presentation="list"|"table"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>list-presentation="list"</term>
+      <listitem>
+        <para>Displays the list as a list</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry><term>list-presentation="table"</term>
+      <listitem>
+        <para>Displays the list as a table</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_list-presentation">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'list-presentation'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_list-width" xmlns="">
+<refpurpose>Specifies the width of a variablelist or simplelist</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml list-width</tag> PI as a child of a
+    <tag>variablelist</tag> or a <tag>simplelist</tag> presented
+    as a table, to specify the output width.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml list-width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
+      <listitem>
+        <para>FIXME: Specifies the ouytput width (in what units?)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_list-width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'list-width'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_term-presentation" xmlns="">
+<refpurpose>Sets character formatting for terms in a variablelist</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml term-presentation</tag> PI as a child
+    of a <tag>variablelist</tag> to set character formatting for
+    the <tag>term</tag> output of the list.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml term-presentation="bold"|"italic"|"bold-italic"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>term-presentation="<replaceable>bold</replaceable>"</term>
+      <listitem>
+        <para>Specifies that terms are displayed in bold</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry><term>term-presentation="<replaceable>italic</replaceable>"</term>
+      <listitem>
+        <para>Specifies that terms are displayed in italic</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry><term>term-presentation="<replaceable>bold-italic</replaceable>"</term>
+      <listitem>
+        <para>Specifies that terms are displayed in bold-italic</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_term-presentation">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'term-presentation'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_term-separator" xmlns="">
+<refpurpose>Specifies the separator text shown after term
+  instances in output of variablelist</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml term-separator</tag> PI as a child
+    of a <tag>variablelist</tag> to specify the separator text
+    output after each <tag>term</tag>.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml term-separator="<replaceable>text</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>term-separator="<replaceable>text</replaceable>"</term>
+      <listitem>
+        <para>Specifies the text (zero or more characters)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_term-separator">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'term-separator'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_table-summary" xmlns="">
+<refpurpose>Specifies the text of the summary attribute for table
+  output of a variablelist or segmentedlist</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml table-summary</tag> PI as a child
+    of a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
+    specify the text for the HTML <literal>summary</literal>
+    attribute in the output HTML table.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml table-summary="<replaceable>text</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>table-summary="<replaceable>text</replaceable>"</term>
+      <listitem>
+        <para>Specifies the summary text (zero or more characters)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_table-summary">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'table-summary'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_term-width" xmlns="">
+<refpurpose>Specifies the term width for a variablelist</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml term-width</tag> PI as a child of a
+    <tag>variablelist</tag> to specify the width for
+    <tag>term</tag> output.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml term-width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>term-width="<replaceable>width</replaceable>"</term>
+      <listitem>
+        <para>FIXME: Specifies the term width (in what units?)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_term-width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'term-width'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="pi.dbfunclist">
   <xsl:variable name="funcsynopses" select="..//funcsynopsis"/>
   <xsl:if test="count($funcsynopses)&lt;1">
