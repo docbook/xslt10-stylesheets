@@ -1,4 +1,7 @@
 include ../../releasetools/Variables.mk
+
+XJPARSEFLAGS= -E 0 -w
+
 XSLTOPT=
 PROCOPT=
 
@@ -17,6 +20,9 @@ GZIPFLAGS=
 VPATH=../docsrc
 
 DIRS=common refentry lib html fo manpages roundtrip slides-html slides-fo website template utility pi
+
+%.included: %
+	$(XINCLUDE) $< >$@
 
 # build reference.pdf.gz except for snapshot releases
 ifneq (snapshot,$(findstring snapshot,$(RELVER)))
@@ -49,14 +55,14 @@ reference.html: reference.xml $(RSTYLE)
 index.html: reference.html
 	cp -p $< $@
 
-reference.fo: ../docsrc/reference.dbk $(REFERENCEFOXSL)
-	$(XSLTPROC) --xinclude $(REFERENCEFOXSL) $< > $@
+reference.fo: ../docsrc/reference.dbk.included $(REFERENCEFOXSL)
+	$(XSLT) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
 
-reference.txt.html: ../docsrc/reference.dbk $(REFERENCETXTXSL)
-	$(XSLTPROC) --xinclude $(REFERENCETXTXSL) $< > $@
+reference.txt.html: ../docsrc/reference.dbk.included $(REFERENCETXTXSL)
+	$(XSLT) $< $(REFERENCETXTXSL) > $@
 
 reference.txt: reference.txt.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) $< > $@
@@ -83,3 +89,4 @@ clean:
 	$(RM) reference.txt.html
 	$(RM) reference.pdf.gz
 	$(RM) reference.txt.gz
+	$(RM) ../docsrc/reference.dbk.included
