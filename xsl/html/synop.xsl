@@ -25,7 +25,9 @@
   <div>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <p>
-      <xsl:call-template name="anchor"/>
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
       <xsl:apply-templates/>
     </p>
   </div>
