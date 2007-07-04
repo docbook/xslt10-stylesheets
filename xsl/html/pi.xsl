@@ -102,14 +102,41 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_bgcolor" xmlns="">
+<refpurpose>Sets background color on an table row or table cell</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml bgcolor</tag> PI as child of a table row
+    or cell to set a background color for that table row or cell.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml bgcolor="<replaceable>color</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>bgcolor="<replaceable>color</replaceable>"</term>
+      <listitem>
+        <para>An HTML color value</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_bgcolor">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'bgcolor'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbhtml_cellpadding" xmlns="">
-  <refpurpose>Specifies the value of the cellpadding attribute in table
-    output of a qandaset</refpurpose>
+  <refpurpose>Specifies the value of the cellpadding attribute in
+    output of a table or qandaset</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml cellpadding</tag> PI as a child
-      of a <tag>qandaset</tag> to specify the value for the HTML
-      <literal>cellpadding</literal> attribute in the output HTML
-      table.</para>
+    <para>Use the <tag>dbhtml cellpadding</tag> PI as a child of a
+      <tag>table</tag> or <tag>qandaset</tag> to specify the value
+      for the HTML <literal>cellpadding</literal> attribute in the
+      output HTML table.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml cellpadding="<replaceable>number</replaceable>"</tag></synopsis>
@@ -136,13 +163,13 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_cellspacing" xmlns="">
-  <refpurpose>Specifies the value of the cellspacing attribute in table
-    output of a qandaset</refpurpose>
+  <refpurpose>Specifies the value of the cellspacing attribute in
+    output of a table or qandaset</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml cellspacing</tag> PI as a child
-      of a <tag>qandaset</tag> to specify the value for the HTML
-      <literal>cellspacing</literal> attribute in the output HTML
-      table.</para>
+    <para>Use the <tag>dbhtml cellspacing</tag> PI as a child of a
+      <tag>table</tag> or <tag>qandaset</tag> to specify the value
+      for the HTML <literal>cellspacing</literal> attribute in the
+      output HTML table.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml cellspacing="<replaceable>number</replaceable>"</tag></synopsis>
@@ -167,6 +194,34 @@
     <xsl:with-param name="attribute" select="'cellspacing'"/>
   </xsl:call-template>
 </xsl:template>
+
+<doc:pi name="dbhtml_class" xmlns="">
+  <refpurpose>Set value of the class attribute for a table row</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml class</tag> PI as a child of a
+      <tag>row</tag> to specify a <literal>class</literal>
+      attribute and value in the HTML output for that row.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml class="<replaceable>name</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>class="<replaceable>name</replaceable>"</term>
+        <listitem>
+          <para>Specifies the class name</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_class">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'class'"/>
+  </xsl:call-template>
+</xsl:template> 
 
 <doc:pi name="dbhtml_funcsynopsis-style" xmlns="">
   <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
@@ -393,7 +448,9 @@
   <variablelist>
     <varlistentry><term>linenumbering.width="<replaceable>width</replaceable>"</term>
       <listitem>
-        <para>FIXME: Specifies the width (in what units?)</para>
+        <para>Specifies the width, in number of characters. Line
+          numbers appear right justified in a field
+          <replaceable>width</replaceable> characters wide.</para>
       </listitem>
     </varlistentry>
   </variablelist>
@@ -438,15 +495,43 @@
   </xsl:call-template>
 </xsl:template>
 
-<doc:pi name="dbhtml_table-summary" xmlns="">
-  <refpurpose>Specifies the text of the summary attribute for table
-    output of a variablelist, segmentedlist, or qandaset</refpurpose>
+<doc:pi name="dbhtml_row-height" xmlns="">
+  <refpurpose>Specifies the height for a table row</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml table-summary</tag> PI as a child
-      of a <tag>variablelist</tag>, <tag>segmentedlist</tag>, or
-      <tag>qandaset</tag> to specify the text for the HTML
-      <literal>summary</literal> attribute in the output HTML
-      table.</para>
+    <para>Use the <tag>dbhtml row-height</tag> PI as a child of a
+      <tag>row</tag> to specify the height of the row.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml row-height="<replaceable>height</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>row-height="<replaceable>height</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies the label height (in what units?)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_row-height">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'row-height'"/>
+  </xsl:call-template>
+</xsl:template> 
+
+<doc:pi name="dbhtml_table-summary" xmlns="">
+  <refpurpose>Specifies the text of the summary attribute for
+    output of a table, variablelist, segmentedlist, or
+    qandaset</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml table-summary</tag> PI as a child of
+      a <tag>table</tag>, <tag>variablelist</tag>,
+      <tag>segmentedlist</tag>, or <tag>qandaset</tag> to specify
+      the text for the HTML <literal>summary</literal> attribute
+      in the output HTML table.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml table-summary="<replaceable>text</replaceable>"</tag></synopsis>
@@ -466,6 +551,34 @@
   <xsl:call-template name="dbhtml-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
     <xsl:with-param name="attribute" select="'table-summary'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_table-width" xmlns="">
+<refpurpose>Specifies the width for a table</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml table-width</tag> PI as a child of a
+    <tag>table</tag> to specify the width of the table in
+    output.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml table-width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>table-width="<replaceable>width</replaceable>"</term>
+      <listitem>
+        <para>FIXME: Specifies the table width (in what units?)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_table-width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'table-width'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -498,9 +611,6 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee role="params">
-    <para><parameter>variablelist.term.separator</parameter></para>
-  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-presentation">
   <xsl:param name="node" select="."/>
