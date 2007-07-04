@@ -102,6 +102,93 @@ $Id$
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_cellpadding" xmlns="">
+<refpurpose>Specifies the value of the cellpadding attribute in table
+  output of a qandaset</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml cellpadding</tag> PI as a child
+    of a <tag>qandaset</tag> to specify the value for the HTML
+    <literal>cellpadding</literal> attribute in the output HTML
+    table.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml cellpadding="<replaceable>number</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>cellpadding="<replaceable>number</replaceable>"</term>
+      <listitem>
+        <para>Specifies the cellpadding</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_cellpadding">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'cellpadding'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_cellspacing" xmlns="">
+<refpurpose>Specifies the value of the cellspacing attribute in table
+  output of a qandaset</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml cellspacing</tag> PI as a child
+    of a <tag>qandaset</tag> to specify the value for the HTML
+    <literal>cellspacing</literal> attribute in the output HTML
+    table.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml cellspacing="<replaceable>number</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>cellspacing="<replaceable>number</replaceable>"</term>
+      <listitem>
+        <para>Specifies the cellspacing</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_cellspacing">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'cellspacing'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_label-width" xmlns="">
+<refpurpose>Specifies the label width for a qandaset</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml label-width</tag> PI as a child of a
+    <tag>qandaset</tag> to specify the width of labels.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml label-width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>label-width="<replaceable>width</replaceable>"</term>
+      <listitem>
+        <para>FIXME: Specifies the label width (in what units?)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_label-width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'label-width'"/>
+  </xsl:call-template>
+</xsl:template> 
+
 <doc:pi name="dbhtml_list-presentation" xmlns="">
 <refpurpose>Specifies presentation style for a variablelist or
   segmentedlist</refpurpose>
@@ -162,6 +249,37 @@ $Id$
   <xsl:call-template name="dbhtml-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
     <xsl:with-param name="attribute" select="'list-width'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_table-summary" xmlns="">
+<refpurpose>Specifies the text of the summary attribute for table
+  output of a variablelist, segmentedlist, or qandaset</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml table-summary</tag> PI as a child
+    of a <tag>variablelist</tag>, <tag>segmentedlist</tag>, or
+    <tag>qandaset</tag> to specify the text for the HTML
+    <literal>summary</literal> attribute in the output HTML
+    table.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml table-summary="<replaceable>text</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>table-summary="<replaceable>text</replaceable>"</term>
+      <listitem>
+        <para>Specifies the summary text (zero or more characters)</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_table-summary">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'table-summary'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -232,36 +350,6 @@ $Id$
   </xsl:call-template>
 </xsl:template>
 
-<doc:pi name="dbhtml_table-summary" xmlns="">
-<refpurpose>Specifies the text of the summary attribute for table
-  output of a variablelist or segmentedlist</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml table-summary</tag> PI as a child
-    of a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
-    specify the text for the HTML <literal>summary</literal>
-    attribute in the output HTML table.</para>
-</refdescription>
-  <refsynopsisdiv>
-    <synopsis><tag class="xmlpi">dbhtml table-summary="<replaceable>text</replaceable>"</tag></synopsis>
-  </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>table-summary="<replaceable>text</replaceable>"</term>
-      <listitem>
-        <para>Specifies the summary text (zero or more characters)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
-</doc:pi>
-<xsl:template name="pi.dbhtml_table-summary">
-  <xsl:param name="node" select="."/>
-  <xsl:call-template name="dbhtml-attribute">
-    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
-    <xsl:with-param name="attribute" select="'table-summary'"/>
-  </xsl:call-template>
-</xsl:template>
-
 <doc:pi name="dbhtml_term-width" xmlns="">
 <refpurpose>Specifies the term width for a variablelist</refpurpose>
 <refdescription>
@@ -287,6 +375,40 @@ $Id$
   <xsl:call-template name="dbhtml-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
     <xsl:with-param name="attribute" select="'term-width'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_toc" xmlns="">
+<refpurpose>Species whether a TOC should be generated for a qandaset</refpurpose>
+<refdescription>
+  <para>Use the <tag>dbhtml toc</tag> PI as a child of a
+    <tag>qandaset</tag> to specify whether a table of contents
+    (TOC) is generated for the <tag>qandaset</tag>.</para>
+</refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml toc="0"|"1"</tag></synopsis>
+  </refsynopsisdiv>
+<refparameter>
+  <variablelist>
+    <varlistentry><term>toc="0"</term>
+      <listitem>
+        <para>If zero, no TOC is generated</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry><term>toc="1"</term>
+      <listitem>
+        <para>If <code>1</code> (or any non-zero value),
+          a TOC is generated</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</refparameter>
+</doc:pi>
+<xsl:template name="pi.dbhtml_toc">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'toc'"/>
   </xsl:call-template>
 </xsl:template>
 

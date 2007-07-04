@@ -23,11 +23,7 @@
                                           and local-name(.) != 'qandadiv'
                                           and local-name(.) != 'qandaentry']"/>
   <xsl:variable name="toc">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'toc'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_toc"/>
   </xsl:variable>
 
   <xsl:variable name="toc.params">
@@ -86,11 +82,7 @@
   </xsl:if>
 
   <xsl:variable name="toc">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'toc'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_toc"/>
   </xsl:variable>
 
   <xsl:variable name="toc.params">
@@ -336,35 +328,19 @@
 <xsl:template name="process.qandaset">
 
   <xsl:variable name="label-width">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-        select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="table-summary">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-        select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'table-summary'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_table-summary"/>
   </xsl:variable>
 
   <xsl:variable name="cellpadding">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-        select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'cellpadding'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_cellpadding"/>
   </xsl:variable>
 
   <xsl:variable name="cellspacing">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-        select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'cellspacing'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_cellspacing"/>
   </xsl:variable>
 
   <table border="0" summary="Q and A Set">
