@@ -67,8 +67,7 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
 
   <refparameter id="log.message-params">
     <variablelist>
-      <varlistentry>
-        <term>level</term>
+      <varlistentry><term>level</term>
         <listitem>
           <para>Text to log/emit in the message-level field to
             indicate the message level
@@ -76,8 +75,7 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
           <literal>Warning</literal>)</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>source</term>
+      <varlistentry><term>source</term>
         <listitem>
           <para>Text to log/emit in the source field to identify the
             “source” to which the notification/warning relates.
@@ -96,15 +94,13 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
             XPath expression.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>context-desc</term>
+      <varlistentry><term>context-desc</term>
         <listitem>
           <para>Text to log/emit in the context-description field to
             describe the context for the message.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>context-desc-field-length</term>
+      <varlistentry><term>context-desc-field-length</term>
         <listitem>
           <para>Specifies length of the context-description field
             (in characters); default is 12</para>
@@ -126,14 +122,12 @@ $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
           parameter.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>message</term>
+      <varlistentry><term>message</term>
         <listitem>
           <para>Text to log/emit in the actual message field</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>message-field-length</term>
+      <varlistentry><term>message-field-length</term>
         <listitem>
           <para>Specifies length of the message
             field (in characters); default is 45</para>
