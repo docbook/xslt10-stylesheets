@@ -179,10 +179,8 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 
 <xsl:template match="funcprototype">
   <xsl:variable name="html-style">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="ancestor::funcsynopsis//processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'funcsynopsis-style'"/>
+    <xsl:call-template name="pi.dbhtml_funcsynopsis-style">
+      <xsl:with-param name="node" select="ancestor::funcsynopsis/descendant-or-self::*"/>
     </xsl:call-template>
   </xsl:variable>
 
