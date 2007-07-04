@@ -13,37 +13,37 @@
      ******************************************************************** -->
 
 <doc:reference xmlns="">
-<referenceinfo>
-<releaseinfo role="meta">
-$Id$
-</releaseinfo>
-<authorgroup>
-  <author>
-    <orgname>The DocBook Project Development Team</orgname>
-  </author>
-</authorgroup>
-<copyright>
-  <year>2007</year>
-  <holder>The DocBook Project</holder>
-</copyright>
-</referenceinfo>
-<title>HTML Processing Instruction Reference</title>
+  <referenceinfo>
+    <releaseinfo role="meta">
+      $Id$
+    </releaseinfo>
+    <authorgroup>
+      <author>
+        <orgname>The DocBook Project Development Team</orgname>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2007</year>
+      <holder>The DocBook Project</holder>
+    </copyright>
+  </referenceinfo>
+  <title>HTML Processing Instruction Reference</title>
 
-<partintro id="partintro">
-<title>Introduction</title>
+  <partintro id="partintro">
+    <title>Introduction</title>
 
-<para>This is generated reference documentation for all
-  user-specifiable processing instructions (PIs) in the DocBook
-  XSL stylesheets for HTML output.
-  <note>
-    <para>You add these PIs at particular points in a document to
-      cause specific “exceptions” to formatting/output behavior. To
-      make global changes in formatting/output behavior across an
-      entire document, it’s better to do it by setting an
-      appropriate stylesheet parameter (if there is one).</para>
-  </note>
-</para>
-</partintro>
+    <para>This is generated reference documentation for all
+      user-specifiable processing instructions (PIs) in the DocBook
+      XSL stylesheets for HTML output.
+      <note>
+        <para>You add these PIs at particular points in a document to
+          cause specific “exceptions” to formatting/output behavior. To
+          make global changes in formatting/output behavior across an
+          entire document, it’s better to do it by setting an
+          appropriate stylesheet parameter (if there is one).</para>
+      </note>
+    </para>
+  </partintro>
 </doc:reference>
 
 <!-- ==================================================================== -->
@@ -73,26 +73,26 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_background-color" xmlns="">
-<refpurpose>Sets background color for an image</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml background-color</tag> PI before or
-    after an image (<tag>graphic</tag>, <tag>inlinegraphic</tag>,
-    <tag>imagedata</tag>, or <tag>videodata</tag> element) as a
-    sibling to the element, to set a background color for the
-    image.</para>
-</refdescription>
+  <refpurpose>Sets background color for an image</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml background-color</tag> PI before or
+      after an image (<tag>graphic</tag>, <tag>inlinegraphic</tag>,
+      <tag>imagedata</tag>, or <tag>videodata</tag> element) as a
+      sibling to the element, to set a background color for the
+      image.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml background-color="<replaceable>color</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>background-color="<replaceable>color</replaceable>"</term>
-      <listitem>
-        <para>FIXME: A color value? [In hex, as a name, or what?]</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>background-color="<replaceable>color</replaceable>"</term>
+        <listitem>
+          <para>An HTML color value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 </doc:pi>
 <xsl:template name="pi.dbhtml_background-color">
   <xsl:param name="node" select="."/>
@@ -103,26 +103,29 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_cellpadding" xmlns="">
-<refpurpose>Specifies the value of the cellpadding attribute in table
-  output of a qandaset</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml cellpadding</tag> PI as a child
-    of a <tag>qandaset</tag> to specify the value for the HTML
-    <literal>cellpadding</literal> attribute in the output HTML
-    table.</para>
-</refdescription>
+  <refpurpose>Specifies the value of the cellpadding attribute in table
+    output of a qandaset</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml cellpadding</tag> PI as a child
+      of a <tag>qandaset</tag> to specify the value for the HTML
+      <literal>cellpadding</literal> attribute in the output HTML
+      table.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml cellpadding="<replaceable>number</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>cellpadding="<replaceable>number</replaceable>"</term>
-      <listitem>
-        <para>Specifies the cellpadding</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>cellpadding="<replaceable>number</replaceable>"</term>
+        <listitem>
+          <para>Specifies the cellpadding</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>html.cellpadding</parameter></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_cellpadding">
   <xsl:param name="node" select="."/>
@@ -133,26 +136,29 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_cellspacing" xmlns="">
-<refpurpose>Specifies the value of the cellspacing attribute in table
-  output of a qandaset</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml cellspacing</tag> PI as a child
-    of a <tag>qandaset</tag> to specify the value for the HTML
-    <literal>cellspacing</literal> attribute in the output HTML
-    table.</para>
-</refdescription>
+  <refpurpose>Specifies the value of the cellspacing attribute in table
+    output of a qandaset</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml cellspacing</tag> PI as a child
+      of a <tag>qandaset</tag> to specify the value for the HTML
+      <literal>cellspacing</literal> attribute in the output HTML
+      table.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml cellspacing="<replaceable>number</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>cellspacing="<replaceable>number</replaceable>"</term>
-      <listitem>
-        <para>Specifies the cellspacing</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>cellspacing="<replaceable>number</replaceable>"</term>
+        <listitem>
+          <para>Specifies the cellspacing</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>html.cellspacing</parameter></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_cellspacing">
   <xsl:param name="node" select="."/>
@@ -162,24 +168,61 @@ $Id$
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_funcsynopsis-style" xmlns="">
+  <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml funcsynopsis-style</tag> PI as a child of
+      a <tag>funcprototype</tag> or anywhere within a funcprototype
+      control the presentation style for the <tag>funcsynopsis</tag>
+      in output.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml funcsynopsis-style="kr"|"ansi"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>funcsynopsis-style="kr"</term>
+        <listitem>
+          <para>Displays the <tag>funcprototype</tag> in K&R style</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>funcsynopsis-style="ansi"</term>
+        <listitem>
+          <para>Displays the <tag>funcprototype</tag> in ANSI style</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>funcsynopsis.style</parameter></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_funcsynopsis-style">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'funcsynopsis-style'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbhtml_label-width" xmlns="">
-<refpurpose>Specifies the label width for a qandaset</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml label-width</tag> PI as a child of a
-    <tag>qandaset</tag> to specify the width of labels.</para>
-</refdescription>
+  <refpurpose>Specifies the label width for a qandaset</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml label-width</tag> PI as a child of a
+      <tag>qandaset</tag> to specify the width of labels.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml label-width="<replaceable>width</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>label-width="<replaceable>width</replaceable>"</term>
-      <listitem>
-        <para>FIXME: Specifies the label width (in what units?)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>label-width="<replaceable>width</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies the label width (in what units?)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 </doc:pi>
 <xsl:template name="pi.dbhtml_label-width">
   <xsl:param name="node" select="."/>
@@ -189,32 +232,142 @@ $Id$
   </xsl:call-template>
 </xsl:template> 
 
+<doc:pi name="dbhtml_linenumbering.everyNth" xmlns="">
+  <refpurpose>Specifies the interval at which lines are numbered in
+    output of verbatim environments</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml linenumbering.everyNth</tag> PI as a child
+      of a “verbatim” element – <tag>programlisting</tag>,
+      <tag>screen</tag>, <tag>synopsis</tag> — to specify
+      the interval at which lines are numbered.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml linenumbering.everyNth="<replaceable>N</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>linenumbering.everyNth="<replaceable>N</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies numbering interval; a number is
+            output before every <replaceable>N</replaceable>th line</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>linenumbering.everyNth</parameter></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_linenumbering.everyNth">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'linenumbering.everyNth'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_linenumbering.separator" xmlns="">
+  <refpurpose>Specifies the separator text used between line numbers
+    and content in output of verbatim environments</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml linenumbering.separator</tag> PI as a child
+      of a “verbatim” element – <tag>programlisting</tag>,
+      <tag>screen</tag>, <tag>synopsis</tag> — to specify
+      the separator text output between the line numbers and content.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml linenumbering.separator="<replaceable>text</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>linenumbering.separator="<replaceable>text</replaceable>"</term>
+        <listitem>
+          <para>Specifies the text (zero or more characters)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>linenumbering.separator</parameter></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_linenumbering.separator">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'linenumbering.separator'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_linenumbering.width" xmlns="">
+  <refpurpose>Specifies the width set aside for line numbers in
+    output of verbatim environments</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml linenumbering.width</tag> PI as a child
+      of a “verbatim” element – <tag>programlisting</tag>,
+      <tag>screen</tag>, <tag>synopsis</tag> — to specify
+      the width set aside for line numbers.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml linenumbering.width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>linenumbering.width="<replaceable>width</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies the width (in what units?)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>linenumbering.width</parameter></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_linenumbering.width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'linenumbering.width'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbhtml_list-presentation" xmlns="">
-<refpurpose>Specifies presentation style for a variablelist or
-  segmentedlist</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml list-presentation</tag> PI as a child of
-    a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
-    control the presentation style for the list (to cause it, for
-    example, to be displayed as a table).</para>
-</refdescription>
+  <refpurpose>Specifies presentation style for a variablelist or
+    segmentedlist</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml list-presentation</tag> PI as a child of
+      a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
+      control the presentation style for the list (to cause it, for
+      example, to be displayed as a table).</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml list-presentation="list"|"table"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>list-presentation="list"</term>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>list-presentation="list"</term>
+        <listitem>
+          <para>Displays the list as a list</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>list-presentation="table"</term>
+        <listitem>
+          <para>Displays the list as a table</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <itemizedlist>
       <listitem>
-        <para>Displays the list as a list</para>
+        <para><parameter>variablelist.as.table</parameter></para>
       </listitem>
-    </varlistentry>
-    <varlistentry><term>list-presentation="table"</term>
       <listitem>
-        <para>Displays the list as a table</para>
+        <para><parameter>segmentedlist.as.table</parameter></para>
       </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+    </itemizedlist>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_list-presentation">
   <xsl:param name="node" select="."/>
@@ -225,24 +378,24 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_list-width" xmlns="">
-<refpurpose>Specifies the width of a variablelist or simplelist</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml list-width</tag> PI as a child of a
-    <tag>variablelist</tag> or a <tag>simplelist</tag> presented
-    as a table, to specify the output width.</para>
-</refdescription>
+  <refpurpose>Specifies the width of a variablelist or simplelist</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml list-width</tag> PI as a child of a
+      <tag>variablelist</tag> or a <tag>simplelist</tag> presented
+      as a table, to specify the output width.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml list-width="<replaceable>width</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
-      <listitem>
-        <para>FIXME: Specifies the ouytput width (in what units?)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies the ouytput width (in what units?)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 </doc:pi>
 <xsl:template name="pi.dbhtml_list-width">
   <xsl:param name="node" select="."/>
@@ -253,27 +406,27 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_table-summary" xmlns="">
-<refpurpose>Specifies the text of the summary attribute for table
-  output of a variablelist, segmentedlist, or qandaset</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml table-summary</tag> PI as a child
-    of a <tag>variablelist</tag>, <tag>segmentedlist</tag>, or
-    <tag>qandaset</tag> to specify the text for the HTML
-    <literal>summary</literal> attribute in the output HTML
-    table.</para>
-</refdescription>
+  <refpurpose>Specifies the text of the summary attribute for table
+    output of a variablelist, segmentedlist, or qandaset</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml table-summary</tag> PI as a child
+      of a <tag>variablelist</tag>, <tag>segmentedlist</tag>, or
+      <tag>qandaset</tag> to specify the text for the HTML
+      <literal>summary</literal> attribute in the output HTML
+      table.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml table-summary="<replaceable>text</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>table-summary="<replaceable>text</replaceable>"</term>
-      <listitem>
-        <para>Specifies the summary text (zero or more characters)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>table-summary="<replaceable>text</replaceable>"</term>
+        <listitem>
+          <para>Specifies the summary text (zero or more characters)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 </doc:pi>
 <xsl:template name="pi.dbhtml_table-summary">
   <xsl:param name="node" select="."/>
@@ -284,34 +437,37 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_term-presentation" xmlns="">
-<refpurpose>Sets character formatting for terms in a variablelist</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml term-presentation</tag> PI as a child
-    of a <tag>variablelist</tag> to set character formatting for
-    the <tag>term</tag> output of the list.</para>
-</refdescription>
+  <refpurpose>Sets character formatting for terms in a variablelist</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml term-presentation</tag> PI as a child
+      of a <tag>variablelist</tag> to set character formatting for
+      the <tag>term</tag> output of the list.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml term-presentation="bold"|"italic"|"bold-italic"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>term-presentation="<replaceable>bold</replaceable>"</term>
-      <listitem>
-        <para>Specifies that terms are displayed in bold</para>
-      </listitem>
-    </varlistentry>
-    <varlistentry><term>term-presentation="<replaceable>italic</replaceable>"</term>
-      <listitem>
-        <para>Specifies that terms are displayed in italic</para>
-      </listitem>
-    </varlistentry>
-    <varlistentry><term>term-presentation="<replaceable>bold-italic</replaceable>"</term>
-      <listitem>
-        <para>Specifies that terms are displayed in bold-italic</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>term-presentation="<replaceable>bold</replaceable>"</term>
+        <listitem>
+          <para>Specifies that terms are displayed in bold</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>term-presentation="<replaceable>italic</replaceable>"</term>
+        <listitem>
+          <para>Specifies that terms are displayed in italic</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>term-presentation="<replaceable>bold-italic</replaceable>"</term>
+        <listitem>
+          <para>Specifies that terms are displayed in bold-italic</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>variablelist.term.separator</parameter></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-presentation">
   <xsl:param name="node" select="."/>
@@ -322,25 +478,28 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_term-separator" xmlns="">
-<refpurpose>Specifies the separator text shown after term
-  instances in output of variablelist</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml term-separator</tag> PI as a child
-    of a <tag>variablelist</tag> to specify the separator text
-    output after each <tag>term</tag>.</para>
-</refdescription>
+  <refpurpose>Specifies the separator text shown among term
+    instances in a multi-term varlistentry</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml term-separator</tag> PI as a child
+      of a <tag>variablelist</tag> to specify the separator text
+      among <tag>term</tag> instances.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml term-separator="<replaceable>text</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>term-separator="<replaceable>text</replaceable>"</term>
-      <listitem>
-        <para>Specifies the text (zero or more characters)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>term-separator="<replaceable>text</replaceable>"</term>
+        <listitem>
+          <para>Specifies the text (zero or more characters)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>variablelist.term.separator</parameter></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-separator">
   <xsl:param name="node" select="."/>
@@ -351,24 +510,24 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_term-width" xmlns="">
-<refpurpose>Specifies the term width for a variablelist</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml term-width</tag> PI as a child of a
-    <tag>variablelist</tag> to specify the width for
-    <tag>term</tag> output.</para>
-</refdescription>
+  <refpurpose>Specifies the term width for a variablelist</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml term-width</tag> PI as a child of a
+      <tag>variablelist</tag> to specify the width for
+      <tag>term</tag> output.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml term-width="<replaceable>width</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>term-width="<replaceable>width</replaceable>"</term>
-      <listitem>
-        <para>FIXME: Specifies the term width (in what units?)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>term-width="<replaceable>width</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies the term width (in what units?)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-width">
   <xsl:param name="node" select="."/>
@@ -379,30 +538,30 @@ $Id$
 </xsl:template>
 
 <doc:pi name="dbhtml_toc" xmlns="">
-<refpurpose>Species whether a TOC should be generated for a qandaset</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml toc</tag> PI as a child of a
-    <tag>qandaset</tag> to specify whether a table of contents
-    (TOC) is generated for the <tag>qandaset</tag>.</para>
-</refdescription>
+  <refpurpose>Species whether a TOC should be generated for a qandaset</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml toc</tag> PI as a child of a
+      <tag>qandaset</tag> to specify whether a table of contents
+      (TOC) is generated for the <tag>qandaset</tag>.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml toc="0"|"1"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>toc="0"</term>
-      <listitem>
-        <para>If zero, no TOC is generated</para>
-      </listitem>
-    </varlistentry>
-    <varlistentry><term>toc="1"</term>
-      <listitem>
-        <para>If <code>1</code> (or any non-zero value),
-          a TOC is generated</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>toc="0"</term>
+        <listitem>
+          <para>If zero, no TOC is generated</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>toc="1"</term>
+        <listitem>
+          <para>If <code>1</code> (or any non-zero value),
+            a TOC is generated</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
 </doc:pi>
 <xsl:template name="pi.dbhtml_toc">
   <xsl:param name="node" select="."/>
