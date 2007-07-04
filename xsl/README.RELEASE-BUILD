@@ -99,11 +99,11 @@ Release Build Setup/Testing
      . ~/docbk.sh && \
       svn-clean && \
      make all 2>&1 \
-       XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" \
+       XSLTENGINE=xsltproc \
        | tee LOG
 
    NOTE: If you want to build with saxon instead of xsltproc,
-   change the "-xsltproc" above to "-saxon".
+   change the "xsltproc" above to "saxon".
 
    NOTE: The svn-clean command is something that's not part of the
    core subversion distribution (on my system, it's part of the
@@ -171,7 +171,7 @@ Release Build Setup/Testing
      make install.sh && ./install.sh --batch \
        && . $(pwd)/.profile.incl && ./test.sh &&
      make distrib 2>&1 \
-       XSLT="$DOCBOOK_SVN/buildtools/xslt -xsltproc" \
+       XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee LOG \
        && ./uninstall.sh --batch 2>&1
