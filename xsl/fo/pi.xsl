@@ -36,7 +36,7 @@ $Id$
 <title>Introduction</title>
 
 <para>This is generated reference documentation for all
-  user-configurable processing instructions (PIs) in the DocBook
+  user-specifiable processing instructions (PIs) in the DocBook
   XSL stylesheets for FO output.
   <note>
     <para>You add these PIs at particular points in a document to
