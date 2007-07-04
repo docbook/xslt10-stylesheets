@@ -103,7 +103,9 @@
   <xsl:variable name="content">
     <div class="{$class}">
       <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
-      <xsl:call-template name="anchor"/>
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
       <xsl:apply-templates/>
   
       <!-- HACK: This doesn't belong inside formal.object; it 
