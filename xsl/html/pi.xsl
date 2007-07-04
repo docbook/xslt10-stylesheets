@@ -928,19 +928,23 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template name="pi.dbfunclist">
-  <xsl:variable name="funcsynopses" select="..//funcsynopsis"/>
-  <xsl:if test="count($funcsynopses)&lt;1">
-    <xsl:message><xsl:text>No funcsynopsis elements matched dbfunclist PI, perhaps it's nested too deep?</xsl:text>
-    </xsl:message>
-  </xsl:if>
-  <dl>
-    <xsl:call-template name="process.funcsynopsis.list">
-      <xsl:with-param name="funcsynopses" select="$funcsynopses"/>
-    </xsl:call-template>
-  </dl>
-</xsl:template>
-
+<doc:pi name="dbcmdlist" xmlns="">
+  <refpurpose>Generates a hyperlinked list of commands</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbcmdlist</tag> PI as the child of a
+      <tag>refsynopsisdiv</tag> containing multiple
+      <tag>cmdsynopsis</tag> instances; a hyperlinked navigational
+      “command list” will be generated at the top of the
+      <tag>refsynopsisdiv</tag>, enabling users to quickly jump
+      to to each command synopsis.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbcmdlist</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <para>[No parameters]</para>
+  </refparameter>
+</doc:pi>
 <xsl:template name="pi.dbcmdlist">
   <xsl:variable name="cmdsynopses" select="..//cmdsynopsis"/>
   <xsl:if test="count($cmdsynopses)&lt;1">
@@ -950,6 +954,36 @@
   <dl>
     <xsl:call-template name="process.cmdsynopsis.list">
       <xsl:with-param name="cmdsynopses" select="$cmdsynopses"/>
+    </xsl:call-template>
+  </dl>
+</xsl:template>
+
+<doc:pi name="dbfunclist" xmlns="">
+  <refpurpose>Generates a hyperlinked list of functions</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbfunclist</tag> PI as the child of a
+      <tag>refsynopsisdiv</tag> containing multiple
+      <tag>funcsynopsis</tag> instances; a hyperlinked
+      navigational “function list” will be generated at the top of
+      the <tag>refsynopsisdiv</tag>, enabling users to quickly
+      jump to to each function synopsis.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfunclist</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <para>[No parameters]</para>
+  </refparameter>
+</doc:pi>
+<xsl:template name="pi.dbfunclist">
+  <xsl:variable name="funcsynopses" select="..//funcsynopsis"/>
+  <xsl:if test="count($funcsynopses)&lt;1">
+    <xsl:message><xsl:text>No funcsynopsis elements matched dbfunclist PI, perhaps it's nested too deep?</xsl:text>
+    </xsl:message>
+  </xsl:if>
+  <dl>
+    <xsl:call-template name="process.funcsynopsis.list">
+      <xsl:with-param name="funcsynopses" select="$funcsynopses"/>
     </xsl:call-template>
   </dl>
 </xsl:template>
@@ -1039,6 +1073,7 @@
        <dt>
        <a>
          <xsl:attribute name="href">
+           <xsl:text>#</xsl:text>
            <xsl:call-template name="object.id">
              <xsl:with-param name="object" select="$cmdsyn"/>
            </xsl:call-template>
