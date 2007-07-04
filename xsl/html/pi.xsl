@@ -1,5 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                exclude-result-prefixes="doc"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -48,6 +50,40 @@
 
 <!-- ==================================================================== -->
 
+<doc:pi name="dbhtml_dir" xmlns="">
+  <refpurpose>Specifies a directory name in which to write files</refpurpose>
+  <refdescription>
+    <para>When chunking output, use the <tag>dbhtml dir</tag> PI
+      as a child of a chunk source to cause the output of that
+      chunk to be written to the specified directory; also, use it
+      as a child of a <tag>mediaobject</tag> to specify a
+      directory into which any long-description files for that
+      <tag>mediaobject</tag> will be written.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml dir="<replaceable>path</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>dir="<replaceable>path</replaceable>"</term>
+        <listitem>
+          <para>Specifies the pathname for the directory</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>base.dir</parameter></para>
+  </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Chunking.html#dbhtmlDirPI"
+        >dbhtml dir processing instruction</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/" >DocBook XSL:
+        The Complete Guide</ulink></para>
+  </refsee>
+</doc:pi>
 <xsl:template name="pi.dbhtml_dir">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="dbhtml-attribute">
@@ -56,6 +92,36 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_dir" xmlns="">
+  <refpurpose>Specifies a filename for a chunk</refpurpose>
+  <refdescription>
+    <para>When chunking output, use the <tag>dbhtml filename</tag>
+      PI as a child of a chunk source to specify a filename for
+      the output file for that chunk.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml filename="<replaceable>filename</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>filename="<replaceable>path</replaceable>"</term>
+        <listitem>
+          <para>Specifies the filename for the file</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>use.id.as.filename</parameter></para>
+  </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Chunking.html#DbhtmlFilenames"
+        >dbhtml filenames</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
+        XSL: The Complete Guide</ulink></para>
+  </refsee>
+</doc:pi>
 <xsl:template name="pi.dbhtml_filename">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="dbhtml-attribute">
@@ -93,6 +159,13 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/BGcolor.html"
+        >Background color</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
+        XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_background-color">
   <xsl:param name="node" select="."/>
@@ -103,23 +176,30 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_bgcolor" xmlns="">
-<refpurpose>Sets background color on an table row or table cell</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml bgcolor</tag> PI as child of a table row
-    or cell to set a background color for that table row or cell.</para>
-</refdescription>
+  <refpurpose>Sets background color on an table row or table cell</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml bgcolor</tag> PI as child of a table row
+      or cell to set a background color for that table row or cell.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml bgcolor="<replaceable>color</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>bgcolor="<replaceable>color</replaceable>"</term>
-      <listitem>
-        <para>An HTML color value</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>bgcolor="<replaceable>color</replaceable>"</term>
+        <listitem>
+          <para>An HTML color value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/BGtableColor.html#CellBGColor"
+        >Cell background color</ulink> section in Bob Stayton’s
+      book <ulink url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_bgcolor">
   <xsl:param name="node" select="."/>
@@ -152,6 +232,25 @@
   </refparameter>
   <refsee role="params">
     <para><parameter>html.cellpadding</parameter></para>
+  </refsee>
+  <refsee>
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/CellSpacing.html"
+            >Cell spacing and cell padding</ulink> section in Bob
+          Stayton’s book <ulink
+            url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/QandAformat.html"
+            >Q and A formatting</ulink> section in Bob Stayton’s
+          book <ulink url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+    </itemizedlist>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_cellpadding">
@@ -186,6 +285,25 @@
   <refsee role="params">
     <para><parameter>html.cellspacing</parameter></para>
   </refsee>
+  <refsee>
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/CellSpacing.html"
+            >Cell spacing and cell padding</ulink> section in Bob
+          Stayton’s book <ulink
+            url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/QandAformat.html"
+            >Q and A formatting</ulink> section in Bob Stayton’s
+          book <ulink url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_cellspacing">
   <xsl:param name="node" select="."/>
@@ -214,6 +332,14 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/CSSTableCells.html"
+        >Table styles in HTML output</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_class">
   <xsl:param name="node" select="."/>
@@ -238,7 +364,7 @@
     <variablelist>
       <varlistentry><term>funcsynopsis-style="kr"</term>
         <listitem>
-          <para>Displays the <tag>funcprototype</tag> in K&R style</para>
+          <para>Displays the <tag>funcprototype</tag> in K&amp;R style</para>
         </listitem>
       </varlistentry>
       <varlistentry><term>funcsynopsis-style="ansi"</term>
@@ -278,6 +404,13 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/QandAformat.html"
+        >Q and A formatting</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_label-width">
   <xsl:param name="node" select="."/>
@@ -312,6 +445,13 @@
   <refsee role="params">
     <para><parameter>linenumbering.everyNth</parameter></para>
   </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#LineNumbering"
+        >Line numbering</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
+        XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_linenumbering.everyNth">
   <xsl:param name="node" select="."/>
@@ -345,6 +485,13 @@
   <refsee role="params">
     <para><parameter>linenumbering.separator</parameter></para>
   </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#LineNumbering"
+        >Line numbering</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
+        XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_linenumbering.separator">
   <xsl:param name="node" select="."/>
@@ -377,6 +524,13 @@
   </refparameter>
   <refsee role="params">
     <para><parameter>linenumbering.width</parameter></para>
+  </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#LineNumbering"
+        >Line numbering</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
+        XSL: The Complete Guide</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_linenumbering.width">
@@ -422,6 +576,14 @@
         <para><parameter>segmentedlist.as.table</parameter></para>
       </listitem>
     </itemizedlist>
+  </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_list-presentation">
@@ -486,6 +648,14 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_list-width">
   <xsl:param name="node" select="."/>
@@ -513,6 +683,13 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/RowHeight.html"
+        >Row height</ulink> section in Bob Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_row-height">
   <xsl:param name="node" select="."/>
@@ -545,6 +722,26 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
+            >Variable list formatting in HTML</ulink> section in Bob
+          Stayton’s book <ulink
+            url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/TableSummary.html"
+            >Table summary text</ulink> section in Bob
+          Stayton’s book <ulink
+            url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_table-summary">
   <xsl:param name="node" select="."/>
@@ -555,24 +752,32 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_table-width" xmlns="">
-<refpurpose>Specifies the width for a table</refpurpose>
-<refdescription>
-  <para>Use the <tag>dbhtml table-width</tag> PI as a child of a
-    <tag>table</tag> to specify the width of the table in
-    output.</para>
-</refdescription>
+  <refpurpose>Specifies the width for a table</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml table-width</tag> PI as a child of a
+      <tag>table</tag> to specify the width of the table in
+      output.</para>
+  </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml table-width="<replaceable>width</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
-<refparameter>
-  <variablelist>
-    <varlistentry><term>table-width="<replaceable>width</replaceable>"</term>
-      <listitem>
-        <para>FIXME: Specifies the table width (in what units?)</para>
-      </listitem>
-    </varlistentry>
-  </variablelist>
-</refparameter>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>table-width="<replaceable>width</replaceable>"</term>
+        <listitem>
+          <para>FIXME: Specifies the table width (in what units?)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Tables.html#TableWidth"
+        >Table width</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/" >DocBook XSL:
+        The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_table-width">
   <xsl:param name="node" select="."/>
@@ -611,6 +816,14 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-presentation">
   <xsl:param name="node" select="."/>
@@ -643,6 +856,14 @@
   <refsee role="params">
     <para><parameter>variablelist.term.separator</parameter></para>
   </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-separator">
   <xsl:param name="node" select="."/>
@@ -671,6 +892,14 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink> section in Bob
+      Stayton’s book <ulink
+        url="http://www.sagehill.net/docbookxsl/"
+        >DocBook XSL: The Complete Guide</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-width">
   <xsl:param name="node" select="."/>
@@ -705,6 +934,25 @@
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee>
+    <itemizedlist>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/QandAtoc.html"
+            >Q and A list of questions</ulink> section in Bob
+          Stayton’s book <ulink
+            url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+      <listitem>
+        <para><ulink
+            url="http://www.sagehill.net/docbookxsl/QandAformat.html"
+            >Q and A formatting</ulink> section in Bob Stayton’s
+          book <ulink url="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_toc">
   <xsl:param name="node" select="."/>
@@ -760,56 +1008,6 @@
 
 <xsl:template match="processing-instruction('dbhtml')">
   <!-- nop -->
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<!--
-<xsl:template name="dbhtml-dir">
-  <xsl:param name="pis" select="./processing-instruction('dbhtml')"/>
-  <xsl:call-template name="dbhtml-attribute">
-    <xsl:with-param name="pis" select="$pis"/>
-    <xsl:with-param name="attribute">dir</xsl:with-param>
-  </xsl:call-template>
-</xsl:template>
--->
-
-<xsl:template name="dbhtml-dir">
-  <xsl:param name="context" select="."/>
-
-  <!-- directories are now inherited from previous levels -->
-
-  <xsl:variable name="ppath">
-    <xsl:if test="$context/parent::*">
-      <xsl:call-template name="dbhtml-dir">
-        <xsl:with-param name="context" select="$context/parent::*"/>
-      </xsl:call-template>
-    </xsl:if>
-  </xsl:variable>
-
-  <xsl:variable name="path">
-    <xsl:call-template name="pi.dbhtml_dir">
-      <xsl:with-param name="node" select="$context"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$path = ''">
-      <xsl:if test="$ppath != ''">
-        <xsl:value-of select="$ppath"/>
-      </xsl:if>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:if test="$ppath != ''">
-        <xsl:value-of select="$ppath"/>
-        <xsl:if test="substring($ppath, string-length($ppath), 1) != '/'">
-          <xsl:text>/</xsl:text>
-        </xsl:if>
-      </xsl:if>
-      <xsl:value-of select="$path"/>
-      <xsl:text>/</xsl:text>
-    </xsl:otherwise>
-  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
