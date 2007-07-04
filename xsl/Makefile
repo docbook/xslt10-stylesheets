@@ -7,7 +7,7 @@ include ../releasetools/Variables.mk
 # resolver and causes all error message from the resolver to be
 # suppressed. The -w switch causes the resolver to just do a
 # well-formedness check instead of a validity check.
-XJPARSEFLAGS=-E0 -w
+XJPARSEFLAGS=-E 0 -w
 
 DISTRO=xsl
 
