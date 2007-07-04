@@ -1,5 +1,5 @@
 include ../../releasetools/Variables.mk
-DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template utility
+DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template utility pi-fo
 
 DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
 PARAM_XSL_FILES=$(shell for file in $$(find .. -name "param.xsl"); do \
@@ -20,9 +20,6 @@ clean:
 			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 		fi \
 	done
-
-$(DOCBOOK_RNG):
-	$(MAKE) -C $(dir $@) $(notdir $@)
 
 $(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK_RNG)
 	$(XSLT) $(DOCBOOK_RNG) $< $@
