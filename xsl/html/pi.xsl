@@ -92,7 +92,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<doc:pi name="dbhtml_dir" xmlns="">
+<doc:pi name="dbhtml_filename" xmlns="">
   <refpurpose>Specifies a filename for a chunk</refpurpose>
   <refdescription>
     <para>When chunking output, use the <tag>dbhtml filename</tag>
@@ -130,9 +130,43 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_img.src.path" xmlns="">
+  <refpurpose>Specifies a path to the location of an image file</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml img.src.path</tag> PI before or
+      after an image (<tag>graphic</tag>,
+      <tag>inlinegraphic</tag>, <tag>imagedata</tag>, or
+      <tag>videodata</tag> element) as a sibling to the element,
+      to specify a path to the location of the image; in HTML
+      output, the value specified for the
+      <code>img.src.path</code> attribute is prepended to the
+      filename.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml img.src.path="<replaceable>path</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>img.src.path="<replaceable>path</replaceable>"</term>
+        <listitem>
+          <para>Specifies the pathname to prepend to the name of the image file</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>img.src.path</parameter></para>
+  </refsee>
+  <refsee>
+    <para><ulink
+        url="http://www.sagehill.net/docbookxsl/GraphicsLocations.html#UsingFileref"
+        >Using fileref</ulink> section in Bob Stayton’s book
+      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
+        XSL: The Complete Guide</ulink></para>
+  </refsee>
+</doc:pi>
 <xsl:template name="pi.dbhtml_img.src.path">
   <xsl:param name="node" select="."/>
-  <!-- * called on parent of graphic, inlinegraphic, imagedata, or videodata -->
   <xsl:call-template name="dbhtml-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
     <xsl:with-param name="attribute" select="'img.src.path'"/>
