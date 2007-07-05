@@ -75,13 +75,10 @@
   <refsee role="params">
     <para><parameter>base.dir</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Chunking.html#dbhtmlDirPI"
-        >dbhtml dir processing instruction</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/" >DocBook XSL:
-        The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Chunking.html#dbhtmlDirPI"
+        >dbhtml dir processing instruction</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_dir">
@@ -114,12 +111,10 @@
   <refsee role="params">
     <para><parameter>use.id.as.filename</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Chunking.html#DbhtmlFilenames"
-        >dbhtml filenames</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
-        XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Chunking.html#DbhtmlFilenames"
+        >dbhtml filenames</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_filename">
@@ -157,12 +152,10 @@
   <refsee role="params">
     <para><parameter>img.src.path</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/GraphicsLocations.html#UsingFileref"
-        >Using fileref</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
-        XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="GraphicsLocations.html#UsingFileref"
+        >Using fileref</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_img.src.path">
@@ -194,12 +187,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/BGcolor.html"
-        >Background color</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
-        XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="BGcolor.html"
+        >Background color</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_background-color">
@@ -228,12 +219,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/BGtableColor.html#CellBGColor"
-        >Cell background color</ulink> section in Bob Stayton’s
-      book <ulink url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="BGtableColor.html#CellBGColor"
+        >Cell background color</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_bgcolor">
@@ -268,24 +257,12 @@
   <refsee role="params">
     <para><parameter>html.cellpadding</parameter></para>
   </refsee>
-  <refsee>
-    <itemizedlist>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/CellSpacing.html"
-            >Cell spacing and cell padding</ulink> section in Bob
-          Stayton’s book <ulink
-            url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/QandAformat.html"
-            >Q and A formatting</ulink> section in Bob Stayton’s
-          book <ulink url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-    </itemizedlist>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="CellSpacing.html"
+        >Cell spacing and cell padding</ulink>,
+      <ulink role="tcg" url="QandAformat.html"
+        >Q and A formatting</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_cellpadding">
@@ -320,25 +297,14 @@
   <refsee role="params">
     <para><parameter>html.cellspacing</parameter></para>
   </refsee>
-  <refsee>
-    <itemizedlist>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/CellSpacing.html"
-            >Cell spacing and cell padding</ulink> section in Bob
-          Stayton’s book <ulink
-            url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/QandAformat.html"
-            >Q and A formatting</ulink> section in Bob Stayton’s
-          book <ulink url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-    </itemizedlist>
-  </refsee>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="CellSpacing.html"
+        >Cell spacing and cell padding</ulink>,
+      <ulink role="tcg"
+        url="QandAformat.html"
+        >Q and A formatting</ulink></para>
+    </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_cellspacing">
   <xsl:param name="node" select="."/>
@@ -367,13 +333,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/CSSTableCells.html"
-        >Table styles in HTML output</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="CSSTableCells.html"
+        >Table styles in HTML output</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_class">
@@ -439,12 +402,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/QandAformat.html"
-        >Q and A formatting</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="QandAformat.html"
+        >Q and A formatting</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_label-width">
@@ -480,12 +441,10 @@
   <refsee role="params">
     <para><parameter>linenumbering.everyNth</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#LineNumbering"
-        >Line numbering</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
-        XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="AnnotateListing.html#LineNumbering"
+        >Line numbering</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_linenumbering.everyNth">
@@ -520,12 +479,10 @@
   <refsee role="params">
     <para><parameter>linenumbering.separator</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#LineNumbering"
-        >Line numbering</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
-        XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="AnnotateListing.html#LineNumbering"
+        >Line numbering</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_linenumbering.separator">
@@ -560,12 +517,10 @@
   <refsee role="params">
     <para><parameter>linenumbering.width</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#LineNumbering"
-        >Line numbering</ulink> section in Bob Stayton’s book
-      <ulink url="http://www.sagehill.net/docbookxsl/" >DocBook
-        XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="AnnotateListing.html#LineNumbering"
+        >Line numbering</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_linenumbering.width">
@@ -612,13 +567,10 @@
       </listitem>
     </itemizedlist>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
-        >Variable list formatting in HTML</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_list-presentation">
@@ -648,13 +600,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
-        >Variable list formatting in HTML</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_list-width">
@@ -683,12 +632,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/RowHeight.html"
-        >Row height</ulink> section in Bob Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="RowHeight.html"
+        >Row height</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_row-height">
@@ -722,25 +669,12 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <itemizedlist>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
-            >Variable list formatting in HTML</ulink> section in Bob
-          Stayton’s book <ulink
-            url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/TableSummary.html"
-            >Table summary text</ulink> section in Bob
-          Stayton’s book <ulink
-            url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-    </itemizedlist>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink>,
+      <ulink role="tcg" url="TableSummary.html"
+        >Table summary text</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_table-summary">
@@ -770,13 +704,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Tables.html#TableWidth"
-        >Table width</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/" >DocBook XSL:
-        The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Tables.html#TableWidth"
+        >Table width</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_table-width">
@@ -816,13 +747,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
-        >Variable list formatting in HTML</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-presentation">
@@ -856,13 +784,10 @@
   <refsee role="params">
     <para><parameter>variablelist.term.separator</parameter></para>
   </refsee>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
-        >Variable list formatting in HTML</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-separator">
@@ -892,13 +817,10 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <para><ulink
-        url="http://www.sagehill.net/docbookxsl/Variablelists.html#VarListFormatting"
-        >Variable list formatting in HTML</ulink> section in Bob
-      Stayton’s book <ulink
-        url="http://www.sagehill.net/docbookxsl/"
-        >DocBook XSL: The Complete Guide</ulink></para>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#VarListFormatting"
+        >Variable list formatting in HTML</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_term-width">
@@ -934,24 +856,13 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-  <refsee>
-    <itemizedlist>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/QandAtoc.html"
-            >Q and A list of questions</ulink> section in Bob
-          Stayton’s book <ulink
-            url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-      <listitem>
-        <para><ulink
-            url="http://www.sagehill.net/docbookxsl/QandAformat.html"
-            >Q and A formatting</ulink> section in Bob Stayton’s
-          book <ulink url="http://www.sagehill.net/docbookxsl/"
-            >DocBook XSL: The Complete Guide</ulink></para>
-      </listitem>
-    </itemizedlist>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="QandAtoc.html"
+        >Q and A list of questions</ulink>,
+      <ulink role="tcg"
+        url="QandAformat.html"
+        >Q and A formatting</ulink></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbhtml_toc">
@@ -1020,6 +931,102 @@
       <xsl:with-param name="funcsynopses" select="$funcsynopses"/>
     </xsl:call-template>
   </dl>
+</xsl:template>
+
+<doc:pi name="dbhtml-include_href" xmlns="">
+  <refpurpose>Copies an external well-formed HTML/XML file into current doc</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml-include href</tag> PI anywhere in a
+      document to cause the contents of the file referenced by the
+      <code>href</code> pseudo-attribute to be copied/inserted “as
+      is” into your HTML output at the point in document order
+      where the PI occurs in the source.</para>
+    <note>
+      <para>The referenced file may contain plain text (as long as
+        it is “wrapped” in an <tag>html</tag> element — see the
+        note below) or markup in any arbitrary vocabulary,
+        including HTML — but it must conform to XML
+        well-formedness constraints (because the feature in XSLT
+        1.0 for opening external files, the
+        <function>document()</function> function, can only handle
+        files that meet XML well-formedness constraints).</para>
+      <para>Among other things, XML well-formedness constraints
+        require a document to have <emphasis>a single root
+          element</emphasis>. So if the content you want to
+        include is plain text or is markup that does
+        <emphasis>not</emphasis> have a single root element,
+        <emphasis role="strong">wrap the content in an
+          <tag>html</tag> element</emphasis>. The stylesheets will
+        strip out that surrounding <tag>html</tag> “wrapper” when
+        they find it, leaving just the content you want to
+        insert.</para>
+    </note>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml href="<replaceable>URI</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>href="<replaceable>URI</replaceable>"</term>
+        <listitem>
+          <para>Specifies the URI for the file to include; the URI
+            can be, for example, a remote <literal>http:</literal>
+            URI, or a local filesystem <literal>file:</literal>
+            URI</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>textinsert.extension</parameter></para>
+  </refsee>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="InsertExtHtml.html"
+        >Inserting external HTML code</ulink>,
+      <ulink
+        url="ExternalCode.html"
+        >External code files</ulink></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml-include">
+  <xsl:param name="href">
+    <xsl:call-template name="dbhtml-attribute">
+      <xsl:with-param name="pis" select="."/>
+      <xsl:with-param name="attribute">href</xsl:with-param>
+    </xsl:call-template>
+  </xsl:param>
+
+  <xsl:choose>
+    <xsl:when test="$href != ''">
+      <xsl:variable name="content" select="document($href,/)"/>
+      <xsl:choose>
+        <xsl:when test="$content/*">
+          <xsl:choose>
+            <xsl:when test="$content/*[1][self::html]">
+              <!-- include just the children of html wrapper -->
+              <xsl:copy-of select="$content/*[1]/node()"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:copy-of select="$content"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>ERROR: dbhtml-include processing instruction </xsl:text>
+            <xsl:text>href has no content.</xsl:text>
+          </xsl:message>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>ERROR: dbhtml-include processing instruction has </xsl:text>
+        <xsl:text>missing or empty href value.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -1138,48 +1145,8 @@
 
 <!-- ==================================================================== -->
 
-<!-- Copy well-formed external HTML content to the output. -->
-<!-- An optional <html> wrapper will be removed before content is copied 
-     to support multiple elements in output without a wrapper.
-     No other processing is done to the content. -->
 <xsl:template match="processing-instruction('dbhtml-include')">
-  <xsl:param name="href">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis" select="."/>
-      <xsl:with-param name="attribute">href</xsl:with-param>
-    </xsl:call-template>
-  </xsl:param>
-
-  <xsl:choose>
-    <xsl:when test="$href != ''">
-      <xsl:variable name="content" select="document($href,/)"/>
-      <xsl:choose>
-        <xsl:when test="$content/*">
-          <xsl:choose>
-            <xsl:when test="$content/*[1][self::html]">
-              <!-- include just the children of html wrapper -->
-              <xsl:copy-of select="$content/*[1]/node()"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:copy-of select="$content"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:message>
-            <xsl:text>ERROR: dbhtml-include processing instruction </xsl:text>
-            <xsl:text>href has no content.</xsl:text>
-          </xsl:message>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:message>
-        <xsl:text>ERROR: dbhtml-include processing instruction has </xsl:text>
-        <xsl:text>missing or empty href value.</xsl:text>
-      </xsl:message>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="pi.dbhtml-include"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
