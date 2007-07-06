@@ -293,6 +293,31 @@
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
+<xsl:template match="doc:pi">
+  <xsl:variable name="name" select="@name"/>
+
+  <xsl:text>&#10;</xsl:text>
+  <refentry id="template.{$name}">
+    <xsl:text>&#10;</xsl:text>
+    <refnamediv>
+      <xsl:text>&#10;</xsl:text>
+      <refname><xsl:value-of select="$name"/></refname>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:apply-templates select="refpurpose"/>
+      <xsl:text>&#10;</xsl:text>
+    </refnamediv>
+    <xsl:text>&#10;</xsl:text>
+    <refsynopsisdiv>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:apply-templates select="refsynopsisdiv/node()"/>
+      <xsl:text>&#10;</xsl:text>
+    </refsynopsisdiv>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:apply-templates select="*[name(.)!='refpurpose' and name(.)!='refsynopsisdiv']"/>
+  </refentry>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
 <xsl:template match="doc:mode">
   <xsl:variable name="name" select="@mode"/>
 

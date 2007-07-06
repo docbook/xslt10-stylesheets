@@ -74,7 +74,14 @@
 
 <xsl:template match="refsee">
   <refsect1>
-    <title>See</title>
+    <xsl:choose>
+      <xsl:when test="@role = 'params'">
+        <title>Related Global Parameters</title>
+      </xsl:when>
+      <xsl:otherwise>
+        <title>See</title>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:apply-templates/>
   </refsect1>
 </xsl:template>
