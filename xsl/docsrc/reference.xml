@@ -14,7 +14,6 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
 <!ENTITY slides-fo-param.xml SYSTEM "slides-fo/docparam.xml" NDATA SGML>
 <!ENTITY website-param.xml SYSTEM "website/docparam.xml" NDATA SGML>
 <!ENTITY titlepage.xml SYSTEM "template/titlepage.xml" NDATA SGML>
-<!ENTITY pi.xml SYSTEM "pi/pi.xml" NDATA SGML>
 ]>
 <book>
   <bookinfo>
@@ -75,8 +74,6 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
       <listitem><para><olink type="title" localinfo="website/index.html"
       targetdocent="website-param.xml"/></para>
       </listitem>
-      <listitem><para><olink type="title" localinfo="pi/index.html"
-      targetdocent="pi.xml"/></para>
       </listitem>
     </itemizedlist>
 
