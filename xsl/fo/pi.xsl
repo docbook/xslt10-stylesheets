@@ -332,7 +332,7 @@
     <variablelist>
       <varlistentry><term>label-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the label width (in what units?)</para>
+          <para>Specifies the label width (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -466,35 +466,6 @@
   </xsl:call-template>
 </xsl:template>
 
-<doc:pi name="dbfo_list-width" xmlns="">
-  <refpurpose>Specifies the width of a horizontal simplelist</refpurpose>
-  <refdescription>
-    <para>Use the <tag>dbfo list-width</tag> PI as a child of a
-      <tag>simplelist</tag> whose <tag class="attribute">class</tag>
-      value is <literal>horizontal</literal>, to specify the width
-      of the <tag>simplelist</tag>.</para>
-  </refdescription>
-  <refsynopsisdiv>
-    <synopsis><tag class="xmlpi">dbfo list-width="<replaceable>width</replaceable>"</tag></synopsis>
-  </refsynopsisdiv>
-  <refparameter>
-    <variablelist>
-      <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
-        <listitem>
-          <para>Specifies the <tag>simplelist</tag> width (including units)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refparameter>
-</doc:pi>
-<xsl:template name="pi.dbfo_list-width">
-  <xsl:param name="node" select="."/>
-  <xsl:call-template name="dbfo-attribute">
-    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
-    <xsl:with-param name="attribute" select="'list-width'"/>
-  </xsl:call-template>
-</xsl:template>
-
 <doc:pi name="dbfo_list-presentation" xmlns="">
   <refpurpose>Specifies presentation style for a variablelist or
     segmentedlist</refpurpose>
@@ -525,28 +496,57 @@
         </listitem>
       </varlistentry>
     </variablelist>
-    <refsee role="params">
-      <itemizedlist>
-        <listitem>
-          <para><parameter>variablelist.as.blocks</parameter></para>
-        </listitem>
-        <listitem>
-          <para><parameter>variablelist.as.table</parameter></para>
-        </listitem>
-      </itemizedlist>
-    </refsee>
-    <refsee role="tcg">
-      <para><ulink role="tcg"
-          url="Variablelists.html#ListIndents"
-          >Variable list formatting in print</ulink></para>
-    </refsee>
   </refparameter>
+  <refsee role="params">
+    <itemizedlist>
+      <listitem>
+        <para><parameter>variablelist.as.blocks</parameter></para>
+      </listitem>
+      <listitem>
+        <para><parameter>variablelist.as.table</parameter></para>
+      </listitem>
+    </itemizedlist>
+  </refsee>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Variablelists.html#ListIndents"
+        >Variable list formatting in print</ulink></para>
+  </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_list-presentation">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="dbfo-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
     <xsl:with-param name="attribute" select="'list-presentation'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbfo_list-width" xmlns="">
+  <refpurpose>Specifies the width of a horizontal simplelist</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbfo list-width</tag> PI as a child of a
+      <tag>simplelist</tag> whose <tag class="attribute">class</tag>
+      value is <literal>horizontal</literal>, to specify the width
+      of the <tag>simplelist</tag>.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfo list-width="<replaceable>width</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
+        <listitem>
+          <para>Specifies the <tag>simplelist</tag> width (including units)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+</doc:pi>
+<xsl:template name="pi.dbfo_list-width">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbfo-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
+    <xsl:with-param name="attribute" select="'list-width'"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -738,7 +738,7 @@
     <variablelist>
       <varlistentry><term>term-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the term width (in what units?)</para>
+          <para>Specifies the term width (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>

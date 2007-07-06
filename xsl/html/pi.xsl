@@ -50,122 +50,6 @@
 
 <!-- ==================================================================== -->
 
-<doc:pi name="dbhtml_dir" xmlns="">
-  <refpurpose>Specifies a directory name in which to write files</refpurpose>
-  <refdescription>
-    <para>When chunking output, use the <tag>dbhtml dir</tag> PI
-      as a child of a chunk source to cause the output of that
-      chunk to be written to the specified directory; also, use it
-      as a child of a <tag>mediaobject</tag> to specify a
-      directory into which any long-description files for that
-      <tag>mediaobject</tag> will be written.</para>
-  </refdescription>
-  <refsynopsisdiv>
-    <synopsis><tag class="xmlpi">dbhtml dir="<replaceable>path</replaceable>"</tag></synopsis>
-  </refsynopsisdiv>
-  <refparameter>
-    <variablelist>
-      <varlistentry><term>dir="<replaceable>path</replaceable>"</term>
-        <listitem>
-          <para>Specifies the pathname for the directory</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refparameter>
-  <refsee role="params">
-    <para><parameter>base.dir</parameter></para>
-  </refsee>
-  <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="Chunking.html#dbhtmlDirPI"
-        >dbhtml dir processing instruction</ulink></para>
-  </refsee>
-</doc:pi>
-<xsl:template name="pi.dbhtml_dir">
-  <xsl:param name="node" select="."/>
-  <xsl:call-template name="dbhtml-attribute">
-    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
-    <xsl:with-param name="attribute" select="'dir'"/>
-  </xsl:call-template>
-</xsl:template>
-
-<doc:pi name="dbhtml_filename" xmlns="">
-  <refpurpose>Specifies a filename for a chunk</refpurpose>
-  <refdescription>
-    <para>When chunking output, use the <tag>dbhtml filename</tag>
-      PI as a child of a chunk source to specify a filename for
-      the output file for that chunk.</para>
-  </refdescription>
-  <refsynopsisdiv>
-    <synopsis><tag class="xmlpi">dbhtml filename="<replaceable>filename</replaceable>"</tag></synopsis>
-  </refsynopsisdiv>
-  <refparameter>
-    <variablelist>
-      <varlistentry><term>filename="<replaceable>path</replaceable>"</term>
-        <listitem>
-          <para>Specifies the filename for the file</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refparameter>
-  <refsee role="params">
-    <para><parameter>use.id.as.filename</parameter></para>
-  </refsee>
-  <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="Chunking.html#DbhtmlFilenames"
-        >dbhtml filenames</ulink></para>
-  </refsee>
-</doc:pi>
-<xsl:template name="pi.dbhtml_filename">
-  <xsl:param name="node" select="."/>
-  <xsl:call-template name="dbhtml-attribute">
-    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
-    <xsl:with-param name="attribute" select="'filename'"/>
-  </xsl:call-template>
-</xsl:template>
-
-<doc:pi name="dbhtml_img.src.path" xmlns="">
-  <refpurpose>Specifies a path to the location of an image file</refpurpose>
-  <refdescription>
-    <para>Use the <tag>dbhtml img.src.path</tag> PI before or
-      after an image (<tag>graphic</tag>,
-      <tag>inlinegraphic</tag>, <tag>imagedata</tag>, or
-      <tag>videodata</tag> element) as a sibling to the element,
-      to specify a path to the location of the image; in HTML
-      output, the value specified for the
-      <code>img.src.path</code> attribute is prepended to the
-      filename.</para>
-  </refdescription>
-  <refsynopsisdiv>
-    <synopsis><tag class="xmlpi">dbhtml img.src.path="<replaceable>path</replaceable>"</tag></synopsis>
-  </refsynopsisdiv>
-  <refparameter>
-    <variablelist>
-      <varlistentry><term>img.src.path="<replaceable>path</replaceable>"</term>
-        <listitem>
-          <para>Specifies the pathname to prepend to the name of the image file</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refparameter>
-  <refsee role="params">
-    <para><parameter>img.src.path</parameter></para>
-  </refsee>
-  <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="GraphicsLocations.html#UsingFileref"
-        >Using fileref</ulink></para>
-  </refsee>
-</doc:pi>
-<xsl:template name="pi.dbhtml_img.src.path">
-  <xsl:param name="node" select="."/>
-  <xsl:call-template name="dbhtml-attribute">
-    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
-    <xsl:with-param name="attribute" select="'img.src.path'"/>
-  </xsl:call-template>
-</xsl:template>
-
 <doc:pi name="dbhtml_background-color" xmlns="">
   <refpurpose>Sets background color for an image</refpurpose>
   <refdescription>
@@ -202,7 +86,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_bgcolor" xmlns="">
-  <refpurpose>Sets background color on an table row or table cell</refpurpose>
+  <refpurpose>Sets background color on a table row or table cell</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml bgcolor</tag> PI as child of a table row
       or cell to set a background color for that table row or cell.</para>
@@ -347,6 +231,81 @@
   </xsl:call-template>
 </xsl:template> 
 
+<doc:pi name="dbhtml_dir" xmlns="">
+  <refpurpose>Specifies a directory name in which to write files</refpurpose>
+  <refdescription>
+    <para>When chunking output, use the <tag>dbhtml dir</tag> PI
+      as a child of a chunk source to cause the output of that
+      chunk to be written to the specified directory; also, use it
+      as a child of a <tag>mediaobject</tag> to specify a
+      directory into which any long-description files for that
+      <tag>mediaobject</tag> will be written.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml dir="<replaceable>path</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>dir="<replaceable>path</replaceable>"</term>
+        <listitem>
+          <para>Specifies the pathname for the directory</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>base.dir</parameter></para>
+  </refsee>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Chunking.html#dbhtmlDirPI"
+        >dbhtml dir processing instruction</ulink></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_dir">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'dir'"/>
+  </xsl:call-template>
+</xsl:template>
+
+<doc:pi name="dbhtml_filename" xmlns="">
+  <refpurpose>Specifies a filename for a chunk</refpurpose>
+  <refdescription>
+    <para>When chunking output, use the <tag>dbhtml filename</tag>
+      PI as a child of a chunk source to specify a filename for
+      the output file for that chunk.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml filename="<replaceable>filename</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>filename="<replaceable>path</replaceable>"</term>
+        <listitem>
+          <para>Specifies the filename for the file</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>use.id.as.filename</parameter></para>
+  </refsee>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Chunking.html#DbhtmlFilenames"
+        >dbhtml filenames</ulink></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_filename">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'filename'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbhtml_funcsynopsis-style" xmlns="">
   <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
   <refdescription>
@@ -384,6 +343,47 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbhtml_img.src.path" xmlns="">
+  <refpurpose>Specifies a path to the location of an image file</refpurpose>
+  <refdescription>
+    <para>Use the <tag>dbhtml img.src.path</tag> PI before or
+      after an image (<tag>graphic</tag>,
+      <tag>inlinegraphic</tag>, <tag>imagedata</tag>, or
+      <tag>videodata</tag> element) as a sibling to the element,
+      to specify a path to the location of the image; in HTML
+      output, the value specified for the
+      <code>img.src.path</code> attribute is prepended to the
+      filename.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml img.src.path="<replaceable>path</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>img.src.path="<replaceable>path</replaceable>"</term>
+        <listitem>
+          <para>Specifies the pathname to prepend to the name of the image file</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>img.src.path</parameter></para>
+  </refsee>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="GraphicsLocations.html#UsingFileref"
+        >Using fileref</ulink></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbhtml_img.src.path">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbhtml-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbhtml')"/>
+    <xsl:with-param name="attribute" select="'img.src.path'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbhtml_label-width" xmlns="">
   <refpurpose>Specifies the label width for a qandaset</refpurpose>
   <refdescription>
@@ -397,7 +397,7 @@
     <variablelist>
       <varlistentry><term>label-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the label width (in what units?)</para>
+          <para>Specifies the label width (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -432,8 +432,8 @@
     <variablelist>
       <varlistentry><term>linenumbering.everyNth="<replaceable>N</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies numbering interval; a number is
-            output before every <replaceable>N</replaceable>th line</para>
+          <para>Specifies numbering interval; a number is output
+            before every <replaceable>N</replaceable>th line</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -509,7 +509,7 @@
     <variablelist>
       <varlistentry><term>linenumbering.width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the width (in what units?)</para>
+          <para>Specifies the width (inluding units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -595,7 +595,7 @@
     <variablelist>
       <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the ouytput width (in what units?)</para>
+          <para>Specifies the ouytput width (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -627,7 +627,7 @@
     <variablelist>
       <varlistentry><term>row-height="<replaceable>height</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the label height (in what units?)</para>
+          <para>Specifies the label height (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -699,11 +699,14 @@
     <variablelist>
       <varlistentry><term>table-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the table width (in what units?)</para>
+          <para>Specifies the table width (including units or as a percentage)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refparameter>
+  <refsee role="params">
+    <para><parameter>default.table.width</parameter></para>
+  </refsee>
   <refsee role="tcg">
     <para><ulink role="tcg"
         url="Tables.html#TableWidth"
@@ -812,7 +815,7 @@
     <variablelist>
       <varlistentry><term>term-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>FIXME: Specifies the term width (in what units?)</para>
+          <para>Specifies the term width (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
