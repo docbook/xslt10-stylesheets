@@ -1,7 +1,7 @@
 include ../../releasetools/Variables.mk
 
 XJPARSEFLAGS= -E 0 -w
-
+FO_BUILDER=saxon
 XSLTOPT=
 PROCOPT=
 
@@ -56,7 +56,7 @@ index.html: reference.html
 	cp -p $< $@
 
 reference.fo: ../docsrc/reference.dbk.included $(REFERENCEFOXSL)
-	$(XSLT) $< $(REFERENCEFOXSL) > $@
+	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
