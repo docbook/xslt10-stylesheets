@@ -1,3 +1,4 @@
+XJPARSEFLAGS=-E 0 -w
 all: $(XMLFILES)
 
 clean:
@@ -6,7 +7,7 @@ clean:
 %.refsect1.xml: %.xml $(JREF2REFSECT1)
 	$(XSLT) $< $(JREF2REFSECT1) $@
 
-%.xml : %.xsl $(XSL2JREF) ../legalnotice.xml
+%.xml : %.xsl $(XSL2JREF)
 	$(XSLT) $< $(XSL2JREF) /dev/null output-file=$@
 	$(XJPARSE) $(XJPARSEFLAGS) $@
 

@@ -11,7 +11,7 @@
   <info><releaseinfo role="meta">$Id$ </releaseinfo>
     <xi:include href="./authors.xml"/>
     <xi:include href="./copyright.xml" xpointer="xpointer(//*[local-name() = 'copyright'])"/>
-    <xi:include href="./legalnotice.xml"/>
+    <xi:include href="./license.xml"/>
     <xi:include href="./warranty.xml"/>
     <abstract xml:id="about">
       <title>About this document</title>
@@ -30,12 +30,12 @@
               >http://www.sagehill.net/docbookxsl/index.html</link>
           </para>
         </note>
-        This document is divided into two sets of references:
-        the first set provides user documentation; the second,
+        This document is divided into three sets of references:
+        the first two sets provides user documentation; the third,
         developer documentation.</para>
     </abstract>
   </info>
-  <book xml:id="user"><title>DocBook XSL Stylesheets: User Reference</title>
+  <book xml:id="param"><title>DocBook XSL Stylesheets User Reference: Parameters</title>
     <info>
       <abstract>
         <para>This is generated reference documentation for all
@@ -120,7 +120,52 @@
       <xi:include href="./website/docparam.xml" xpointer="xpointer(/book/reference)" />
     </part>
   </book>
-  <book xml:id="developer"><title>DocBook XSL Stylesheets: Developer Reference</title>
+  <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
+    <info>
+      <abstract>
+        <para>This is generated reference documentation for all
+          user-specifiable processing instructions in the DocBook
+          XSL stylesheets.
+          <note>
+            <para>You add these PIs at particular points in a document to
+              cause specific “exceptions” to formatting/output behavior. To
+              make global changes in formatting/output behavior across an
+              entire document, it’s better to do it by setting an
+              appropriate stylesheet parameter (if there is one).</para>
+          </note>
+        </para>
+      </abstract>
+    </info>
+    <part xml:id="pi-html">
+      <?dbhtml dir="pi/fo"?>
+      <xi:include href="./pi-html/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
+
+      <xi:include href="./pi-html/pi.refsect1.xml"
+        xpointer="xpointer(/reference/partintro)" />
+
+      <reference xml:id="pi-html-ref">
+        <title>Templates</title>
+        <xi:include
+          href="./pi-html/pi.refsect1.xml"
+          xpointer="xpointer(/reference/refentry)" />
+      </reference>
+    </part>
+    <part xml:id="pi-fo">
+      <?dbhtml dir="pi/fo"?>
+      <xi:include href="./pi-fo/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
+
+      <xi:include href="./pi-fo/pi.refsect1.xml"
+        xpointer="xpointer(/reference/partintro)" />
+
+      <reference xml:id="pi-fo-ref">
+        <title>Templates</title>
+        <xi:include
+          href="./pi-fo/pi.refsect1.xml"
+          xpointer="xpointer(/reference/refentry)" />
+      </reference>
+    </part>
+  </book>
+  <book xml:id="developer"><title>DocBook XSL Stylesheets Developer Reference</title>
     <info>
       <abstract>
         <para>This is technical reference documentation for
@@ -130,15 +175,6 @@
           the stylesheets.</para>
       </abstract>
     </info>
-    <part xml:id="pi">
-      <?dbhtml dir="pi"?>
-      <xi:include href="./pi/pi.xml" xpointer="xpointer(/book/bookinfo/title)" />
-      <partintro xml:id="piintro">
-        <xi:include href="./pi/pi.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
-      </partintro>
-      <xi:include href="./pi/pi.xml" xpointer="xpointer(/book/reference)" />
-    </part>
     <part xml:id="lib">
       <?dbhtml dir="lib"?>
       <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/bookinfo/title)" />
