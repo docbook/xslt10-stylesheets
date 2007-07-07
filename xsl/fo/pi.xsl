@@ -688,6 +688,44 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbfo_start" xmlns="">
+  <refpurpose>(obsolete) Sets the starting number on an ordered list</refpurpose>
+  <refdescription>
+    <para><emphasis>This PI is obsolete</emphasis>. The intent of
+      it was to provide a means for setting a specific starting
+      number for an ordered list. Instead of this PI, set a value
+      for the <literal>override</literal> attribute on the first
+      <tag>listitem</tag> in the list; that will have the same
+      effect as what this PI was intended for.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfo start="<replaceable>character</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>start="<replaceable>character</replaceable>"</term>
+        <listitem>
+          <para>Specifies the character to use as the starting
+            number; use 0-9, a-z, A-Z, or lowercase or uppercase
+            Roman numerals</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="tcg">
+    <para><ulink role="tcg"
+        url="Orderedlists.html#ListStartNum"
+        >List starting number</ulink></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbfo_start">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="pi-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
+    <xsl:with-param name="attribute" select="'start'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbfo_table-width" xmlns="">
   <refpurpose>Specifies the width for a table or for revhistory
     output</refpurpose>

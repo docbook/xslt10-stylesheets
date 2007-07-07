@@ -59,5 +59,25 @@ passivetex.extensions=1.</para>
 dvi2bitmap program on result DVI file. You will get images for
 equations in your document.</para>
 
+<warning>
+  <para>This feature is useful for print/PDF output only if you
+    use the obsolete and now unsupported PassiveTeX XSL-FO
+    engine.</para>
+</warning>
+
+</refsection>
+
+<refsection><info><title>Related Parameters</title></info>
+  <para><parameter>tex.math.delims</parameter>,
+    <parameter>passivetex.extensions</parameter>,
+    <parameter>tex.math.file</parameter></para>
+</refsection>
+<refsection><info><title>More information</title></info>
+  <para>For how-to documentation on embedding TeX equations and
+    generating output from them, see
+    <link
+      role="tcg"
+      xlink:href="TexMath.html"
+      >DBTeXMath</link>.</para>
 </refsection>
 </refentry>

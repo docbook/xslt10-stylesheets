@@ -253,9 +253,8 @@
 
 <xsl:template name="tex.math.output.delims">
   <xsl:variable name="pi.delims">
-    <xsl:call-template name="pi-attribute">
-      <xsl:with-param name="pis" select=".//processing-instruction('dbtex')"/>
-      <xsl:with-param name="attribute" select="'delims'"/>
+    <xsl:call-template name="pi.dbtex_delims">
+      <xsl:with-param name="node" select="descendant-or-self::*"/>
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="result">

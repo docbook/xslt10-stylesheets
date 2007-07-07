@@ -10,8 +10,8 @@
 </refmeta>
 <refnamediv>
 <refname>tex.math.delims</refname>
-<refpurpose>Should be equations outputed for processing by TeX
-automatically surrounded by math mode delimiters</refpurpose>
+<refpurpose>Should equations be output for processing by TeX
+automatically surrounded by math mode delimiters?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,5 +25,23 @@ automatically surrounded by math mode delimiters</refpurpose>
 <para>For compatibility with DSSSL based DBTeXMath from Allin Cottrell
 you should set this parameter to 0.</para>
 
+</refsection>
+<refsection><info><title>Related Parameters</title></info>
+  <para><parameter>tex.math.in.alt</parameter>,
+    <parameter>passivetex.extensions</parameter></para>
+</refsection>
+
+<refsection><info><title>See Also</title></info>
+  <para>You can also use the <tag
+      class="xmlpi">dbtex delims</tag> processing
+    instruction to control whether delimiters are output.</para>
+</refsection>
+<refsection><info><title>More information</title></info>
+  <para>For how-to documentation on embedding TeX equations and
+    generating output from them, see
+    <link
+      role="tcg"
+      xlink:href="TexMath.html"
+      >DBTeXMath</link>.</para>
 </refsection>
 </refentry>
