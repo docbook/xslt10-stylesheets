@@ -26,4 +26,17 @@ processed by dvi2bitmap to get bitmap versions of equations for HTML
 output.</para>
 
 </refsection>
+<refsection><info><title>Related Parameters</title></info>
+  <para><parameter>tex.math.in.alt.xml</parameter>,
+    <parameter>tex.math.delims</parameter>,
+  </para>
+</refsection>
+<refsection><info><title>More information</title></info>
+  <para>For how-to documentation on embedding TeX equations and
+    generating output from them, see
+    <link
+      role="tcg"
+      xlink:href="TexMath.html"
+      >DBTeXMath</link>.</para>
+</refsection>
 </refentry>
