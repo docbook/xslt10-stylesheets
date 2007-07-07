@@ -19,7 +19,7 @@ GZIPFLAGS=
 
 VPATH=../docsrc
 
-DIRS=common refentry lib html fo manpages roundtrip slides-html slides-fo website template utility pi
+DIRS=common refentry lib html fo manpages roundtrip slides-html slides-fo website template utility
 
 %.included: %
 	$(XINCLUDE) $< >$@
