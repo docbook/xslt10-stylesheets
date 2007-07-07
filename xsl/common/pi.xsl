@@ -16,9 +16,85 @@
      See ../README or http://docbook.sf.net/release/xsl/current/ for
      copyright and other information.
 
-     This file contains general templates for processing processing
-     instructions common to multiple output formats.
      ******************************************************************** -->
+
+<doc:reference xmlns="">
+  <referenceinfo>
+    <releaseinfo role="meta">
+      $Id$
+    </releaseinfo>
+    <authorgroup>
+      <author>
+        <orgname>The DocBook Project Development Team</orgname>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2007</year>
+      <holder>The DocBook Project</holder>
+    </copyright>
+  </referenceinfo>
+  <title>Common Processing Instruction Reference</title>
+  <partintro id="partintro">
+    <title>Introduction</title>
+    <para>This is generated reference documentation for all
+      user-specifiable processing instructions (PIs) in the
+      “common” part of the DocBook XSL stylesheets.
+      <note>
+        <para>You add these PIs at particular points in a document to
+          cause specific “exceptions” to formatting/output behavior. To
+          make global changes in formatting/output behavior across an
+          entire document, it’s better to do it by setting an
+          appropriate stylesheet parameter (if there is one).</para>
+      </note>
+    </para>
+  </partintro>
+</doc:reference>
+
+<!-- ==================================================================== -->
+<doc:template name="dbchoice_choice" xmlns="">
+  <refpurpose>Generates a localized choice separator</refpurpose>
+  <refdescription id="select.choice.separator-desc">
+    <para>Use the <tag class="xmlpi">dbchoice choice</tag> PI to
+      generate an appropriate localized “choice” separator (for
+      example, <literal>and</literal> or <literal>or</literal>)
+      before the final item in an inline <tag>simplelist</tag></para>
+    <warning>
+      <para>This PI is a less-than-ideal hack; support for it may
+        disappear in the future (particularly if and when a more
+        appropriate means for marking up "choice" lists becomes
+        available in DocBook).</para>
+    </warning>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbchoice choice="and"|"or"|<replaceable>string</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>choice="and"</term>
+        <listitem>
+          <para>generates a localized <literal>and</literal> separator</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>choice="or"</term>
+        <listitem>
+          <para>generates a localized <literal>or</literal> separator</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>choice="<replaceable>string</replaceable>"</term>
+        <listitem>
+          <para>generates a literal <replaceable>string</replaceable> separator</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+</doc:template>
+<xsl:template name="pi.dbchoice_choice">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="pi-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbchoice')"/>
+    <xsl:with-param name="attribute">choice</xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
 
 <doc:pi name="dbtimestamp" xmlns="">
   <refpurpose>Inserts a date timestamp</refpurpose>
@@ -46,7 +122,7 @@
       </varlistentry>
       <varlistentry><term>padding="0"|"1"</term>
         <listitem>
-          <para>Specifies padding behavior; if non-zer, padding is is added</para>
+          <para>Specifies padding behavior; if non-zero, padding is is added</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -145,6 +221,7 @@
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbtex_delims">
+  <xsl:param name="node" select="."/>
   <xsl:call-template name="pi-attribute">
     <xsl:with-param name="pis" select="$node/processing-instruction('dbtex')"/>
     <xsl:with-param name="attribute" select="'delims'"/>

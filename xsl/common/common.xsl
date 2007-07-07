@@ -1324,38 +1324,24 @@ pointed to by the link is one of the elements listed in
 
 <!-- ====================================================================== -->
 <!-- OrderedList Numeration -->
-
-<xsl:template name="orderedlist-starting-number">
-  <xsl:param name="list" select="."/>
-  <!-- Need a neutral dbxxx -->
-  <xsl:variable name="pi-html-start">
-    <xsl:call-template name="pi.dbhtml_start">
-      <xsl:with-param name="node" select="$list"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="pi-fo-start">
-    <xsl:call-template name="pi.dbfo_start">
-      <xsl:with-param name="node" select="$list"/>
-    </xsl:call-template>
-  </xsl:variable>
+<xsl:template name="output-orderedlist-starting-number">
+  <xsl:param name="list"/>
+  <xsl:param name="pi-start"/>
   <xsl:choose>
     <xsl:when test="not($list/@continuation = 'continues')">
       <xsl:choose>
         <xsl:when test="@startingnumber">
           <xsl:value-of select="@startingnumber"/>
         </xsl:when>
-        <xsl:when test="$pi-html-start != ''">
-          <xsl:value-of select="$pi-html-start"/>
-        </xsl:when>
-        <xsl:when test="$pi-fo-start != ''">
-          <xsl:value-of select="$pi-fo-start"/>
+        <xsl:when test="$pi-start != ''">
+          <xsl:value-of select="$pi-start"/>
         </xsl:when>
         <xsl:otherwise>1</xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="prevlist"
-                    select="$list/preceding::orderedlist[1]"/>
+        select="$list/preceding::orderedlist[1]"/>
       <xsl:choose>
         <xsl:when test="count($prevlist) = 0">2</xsl:when>
         <xsl:otherwise>
@@ -1375,7 +1361,6 @@ pointed to by the link is one of the elements listed in
 <xsl:template name="orderedlist-item-number">
   <!-- context node must be a listitem in an orderedlist -->
   <xsl:param name="node" select="."/>
-
   <xsl:choose>
     <xsl:when test="$node/@override">
       <xsl:value-of select="$node/@override"/>
@@ -1896,10 +1881,8 @@ unchanged.</para>
     localized "choice" separator (for example, "and" or "or") before
     the final item in an inline list (though it could also be useful
     for generating choice separators for non-inline lists).</para>
-
     <para>It currently works by evaluating a processing instruction
     (PI) of the form &lt;?dbchoice&#xa0;choice="foo"?> :
-
     <itemizedlist>
       <listitem>
         <simpara>if the value of the <sgmltag>choice</sgmltag>
@@ -1911,16 +1894,13 @@ unchanged.</para>
         <sgmltag>choice</sgmltag> pseudo-attribute</simpara>
       </listitem>
     </itemizedlist>
-
     The latter is provided only as a temporary workaround because the
     locale files do not currently have translations for the word
     <wordasword>or</wordasword>. So if you want to generate a a
     logical "or" separator in French (for example), you currently need
     to do this:
-
     <literallayout>&lt;?dbchoice choice="ou"?></literallayout>
     </para>
-
     <warning>
       <para>The <sgmltag>dbchoice</sgmltag> processing instruction is
       an unfortunate hack; support for it may disappear in the future
@@ -1930,14 +1910,9 @@ unchanged.</para>
   </refdescription>
 </doc:template>
 <xsl:template name="select.choice.separator">
-  
   <xsl:variable name="choice">
-    <xsl:call-template name="pi-attribute">
-      <xsl:with-param name="pis" select="processing-instruction('dbchoice')"/>
-      <xsl:with-param name="attribute">choice</xsl:with-param>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbchoice_choice"/>
   </xsl:variable>
-  
   <xsl:choose>
     <!-- if value of $choice is "and" or "or", translate to equivalent in -->
     <!-- current locale -->
@@ -2017,5 +1992,4 @@ engine does not support it.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-
 </xsl:stylesheet>
