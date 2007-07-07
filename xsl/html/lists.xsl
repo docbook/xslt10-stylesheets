@@ -480,10 +480,10 @@
   <xsl:variable name="localized-choice-separator">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbchoice')">
-	<xsl:call-template name="select.choice.separator"/>
+        <xsl:call-template name="select.choice.separator"/>
       </xsl:when>
       <xsl:otherwise>
-	<!-- empty -->
+        <!-- empty -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -1087,5 +1087,17 @@
 
 <!-- ==================================================================== -->
 
-</xsl:stylesheet>
+<xsl:template name="orderedlist-starting-number">
+  <xsl:param name="list" select="."/>
+  <xsl:variable name="pi-start">
+    <xsl:call-template name="pi.dbhtml_start">
+      <xsl:with-param name="node" select="$list"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:call-template name="output-orderedlist-starting-number">
+    <xsl:with-param name="list" select="$list"/>
+    <xsl:with-param name="pi-start" select="$pi-start"/>
+  </xsl:call-template>
+</xsl:template>
 
+</xsl:stylesheet>
