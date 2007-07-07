@@ -1,0 +1,25 @@
+XJPARSEFLAGS=-E 0 -w
+all: $(XMLFILES)
+
+clean:
+	$(RM) $(XMLFILES)
+
+%.refsect1.xml: %.xml $(JREF2REFSECT1)
+	$(XSLT) $< $(JREF2REFSECT1) $@
+
+%.xml : %.xsl $(XSL2JREF)
+	$(XSLT) $< $(XSL2JREF) /dev/null output-file=$@
+	$(XJPARSE) $(XJPARSEFLAGS) $@
+
+docparam.xml: $(VPATH)/param.xweb $(PARAMS)
+	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
+	$(XSLT) $< ../../profiling/profile.xsl $(PARAMPROF) profile.condition=html
+	$(XSLT) $(PARAMPROF) ../../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
+ifeq ($(ADDNEWLINE),)
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
+else
+	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
+	$(XSLT) $@.tmp $(ADDNEWLINE) $@
+	$(RM) $@.tmp
+endif
+	$(RM) $(PARAMPROF) $(PARAMSTRIP)

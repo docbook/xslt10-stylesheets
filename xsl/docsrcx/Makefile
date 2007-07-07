@@ -1,0 +1,32 @@
+include ../../releasetools/Variables.mk
+DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template utility pi-fo pi-html pi-common
+
+DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
+PARAM_XSL_FILES=$(shell for file in $$(find .. -name "param.xsl"); do \
+	readlink -f $$file; done | grep -v xhtml)
+
+all: base $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
+
+base:
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
+		fi \
+	done
+
+clean:
+	for i in $(DIRS) __bogus__; do \
+		if [ $$i != __bogus__ ] ; then \
+			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
+		fi \
+	done
+
+$(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK_RNG)
+	$(XSLT) $(DOCBOOK_RNG) $< $@
+
+$(XSL_PARAMS): $(MAKE_PARAMS_XSL) $(PARAM_XSL_FILES)
+	$(XSLT) $< $< $@
+
+release-clean: clean
+	$(RM) $(DOCBOOK_ELEMENTS)
+	$(RM) $(XSL_PARAMS)
