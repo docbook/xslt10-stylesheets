@@ -137,12 +137,10 @@
       </abstract>
     </info>
     <part xml:id="pi-html">
-      <?dbhtml dir="pi/fo"?>
+      <?dbhtml dir="pi"?>
       <xi:include href="./pi-html/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
       <xi:include href="./pi-html/pi.refsect1.xml"
         xpointer="xpointer(/reference/partintro)" />
-
       <reference xml:id="pi-html-ref">
         <title>Templates</title>
         <xi:include
@@ -151,16 +149,26 @@
       </reference>
     </part>
     <part xml:id="pi-fo">
-      <?dbhtml dir="pi/fo"?>
+      <?dbhtml dir="pi"?>
       <xi:include href="./pi-fo/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
       <xi:include href="./pi-fo/pi.refsect1.xml"
         xpointer="xpointer(/reference/partintro)" />
-
       <reference xml:id="pi-fo-ref">
         <title>Templates</title>
         <xi:include
           href="./pi-fo/pi.refsect1.xml"
+          xpointer="xpointer(/reference/refentry)" />
+      </reference>
+    </part>
+    <part xml:id="pi-common">
+      <?dbhtml dir="pi"?>
+      <xi:include href="./pi-common/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="./pi-common/pi.refsect1.xml"
+        xpointer="xpointer(/reference/partintro)" />
+      <reference xml:id="pi-common-ref">
+        <title>Templates</title>
+        <xi:include
+          href="./pi-common/pi.refsect1.xml"
           xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
