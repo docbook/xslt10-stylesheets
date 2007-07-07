@@ -74,7 +74,6 @@ PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
       <listitem><para><olink type="title" localinfo="website/index.html"
       targetdocent="website-param.xml"/></para>
       </listitem>
-      </listitem>
     </itemizedlist>
 
     <itemizedlist>
