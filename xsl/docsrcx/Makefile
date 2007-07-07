@@ -1,25 +1,27 @@
 include ../../releasetools/Variables.mk
-DIRS=common refentry html fo manpages roundtrip slides-html slides-fo website template utility pi-fo pi-html pi-common
+
+PARAM_DIRS=html fo manpages roundtrip slides/fo slides/html website
+
+PARAM_XML_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xml)
+OTHER_XML_FILES=common.xml template.xml utility.xml pi-fo.xml pi-html.xml
 
 DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
-PARAM_XSL_FILES=$(shell for file in $$(find .. -name "param.xsl"); do \
-	readlink -f $$file; done | grep -v xhtml)
+PARAM_XSL_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xsl)
 
-all: base $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
+all: $(PARAM_XML_FILES) $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
 
-base:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
-		fi \
-	done
+debug:
+	@echo $(PARAM_XML_FILES)
+	@echo $(PARAM_XSL_FILES)
+
+#$(foreach param,$(shell grep "<xsl:param name" %/param.xsl | sed -r "s;^<xsl:param name=\"([^\"]+)\".+$$;\1;"),../$(param).xml)
+
+../%/param.xml:
+	$(MAKE) -C $(dir $@) param.xml
 
 clean:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
-		fi \
-	done
+	$(RM) $(PARAM_XML_FILES)
+	$(RM) $(OTHER_XML_FILES)
 
 $(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK_RNG)
 	$(XSLT) $(DOCBOOK_RNG) $< $@
