@@ -1,22 +1,27 @@
 include ../../releasetools/Variables.mk
 
+XJPARSEFLAGS= -E 0 -w
+
 PARAM_DIRS=html fo manpages roundtrip slides/fo slides/html website
 PI_DIRS=html fo common
 
 PARAM_XML_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xml)
 PI_XML_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xml)
-OTHER_XML_FILES=common.xml template.xml utility.xml pi-fo.xml pi-html.xml pi-common.xml
+OTHER_XML_FILES=../common/common.xml ../common/utility.xml ../common/refentry.xml ../template/titlepage.xml ../fo/table.xml
 
 DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
 PARAM_XSL_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xsl)
 
-all: $(PARAM_XML_FILES) $(PI_XML_FILES) $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
+all: $(PARAM_XML_FILES) $(PI_XML_FILES) $(OTHER_XML_FILES) $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
 
 ../%/param.xml:
 	$(MAKE) -C $(dir $@) param.xml
 
-../%/pi.xml:
-	$(MAKE) -C $(dir $@) pi.xml
+%.xml: %.xsl
+	$(XSLT) $< $(XSL2JREF) /dev/null output-file=.$@.tmp
+	$(XJPARSE) $(XJPARSEFLAGS) .$@.tmp
+	$(XSLT) .$@.tmp $(JREF2REFSECT1) $@
+	$(RM) .$@.tmp
 
 clean:
 	$(RM) $(PARAM_XML_FILES)
