@@ -12,7 +12,13 @@ then
   then
     exit 0
   else
+    echo
+    echo "Possible build errors found:"
+    echo
     $grep -i "error|fail|\*[^.]" $LOGFILENAME
+    echo
+    echo "Stopping."
+    echo
     exit 1
   fi
 else
