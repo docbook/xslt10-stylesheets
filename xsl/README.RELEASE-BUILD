@@ -97,7 +97,7 @@ Release Build Setup/Testing
    that is this:
 
      . ~/docbk.sh && \
-      svn-clean && \
+     $DOCBOOK_SVN/releasetools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee LOG
@@ -105,26 +105,30 @@ Release Build Setup/Testing
    NOTE: If you want to build with saxon instead of xsltproc,
    change the "xsltproc" above to "saxon".
 
-   NOTE: The svn-clean command is something that's not part of the
-   core subversion distribution (on my system, it's part of the
-   subversion-tools package). Its function is to "wipe out
+   NOTE: The build-clean script is just a "safe" wrapper around
+   the svn-clean command; svn-clean is a perl script that's not
+   part of the core subversion distribution (on my system, it's
+   in the subversion-tools package). Its function is to "wipe out
    unversioned files from Subversion working copy". It is a good
    idea to use it because our own "clean" make target doesn't
    clean out everything that needs to be cleaned out to get your
-   working directory back to a fresh state. But svn-clean does.
+   working directory back to a fresh state, and also doesn't
+   prevent cruft in your workspace from accidentally getting
+   packaged into a release build. So running build-clean
+   (svn-clean) gives you a clean build environment and alerts you
+   to cruft that needs to be deleted and also to any new files
+   that you make have created but forgotten to actually check in.
 
-2. grep the LOG file.
-   After running the above, grep through the LOG file to see if
-   anything looks busted, using something like:
+2. check for errors (grep the LOG file)
+   After running the above, running the following script, which is
+   just a wrapper for egrep'ing through the LOG file to see if
+   anything looks busted.
 
-       egrep -i "error|fail|\*[^.]" LOG
+     $DOCBOOK_SVN/releasetools/build-check
 
-   FIXME: The regexp in that grep may not catch all error messages
-   emitted; probably should be refined with a more complete regexp.
-
-3. Fix and problems/commit fixes.
+3. Fix any problems, and commit fixes.
    If the grep of the LOG file reveals problems, fix them, commit
-   your changes (if the fixes required changes to source files)
+   your changes (if the fixes required changes to source files),
    then repeat Step 1 until you don't see any more problems.
 
 4. Test II: Smoke Test
@@ -168,13 +172,12 @@ Release Build Setup/Testing
    a test run of "make distrib" (to build the docs and other
    additional stuff needed for the distribution).
 
-     make install.sh && ./install.sh --batch \
-       && . $(pwd)/.profile.incl && ./test.sh &&
+     $DOCBOOK_SVN/releasetools/catalog-install
      make distrib 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee LOG \
-       && ./uninstall.sh --batch 2>&1
+     $DOCBOOK_SVN/releasetools/catalog-install uninstall
 
    NOTE: If you want to build with saxon instead of xsltproc,
    change the "-xsltproc" above to "-saxon".
@@ -185,8 +188,7 @@ Release Build Setup/Testing
    because fop still doesn't do an adequate job of formatting the
    release notes.)
 
-   NOTE: The "make install.sh && ./install.sh --batch &&
-   . $(pwd)/.profile.incl" parts do an "install" of XML Catalog
+   NOTE: The catalog-install script "installs" some XML Catalog
    settings in your environment so xsltproc/saxon will resolve the
    http://docbook.sourceforge.net/release/xsl/current/ canonical
    URL to the working directory you're actually building in
@@ -196,17 +198,17 @@ Release Build Setup/Testing
    the doc/distrib build that relies on the litprog stylesheets,
    and the litprog stylesheets use the http: canonical URL for the
    stylesheets (instead of using a relative path, as the
-   stylesheets themselves do), so the "install" steps tell
+   stylesheets themselves do), so the "install" step tells
    xsltproc and saxon that when they find that http: URL in the
    litprog stylesheets, they should resolve it to the path to the
    working directory you are building in (instead of to any
    installed docbook-xsl release stylesheets or whatever other
    sets of the stylesheets you may installed on your system).
 
-   The "uninstall.sh" step at the end causes all changes made by
-   that temporary XML Catalog "install" step to reverted.
+   The "uninstall" step at the end causes all changes made by
+   that temporary XML Catalog "install" step to be reverted.
 
-6. grep the LOG file (again).
+6. Check for errors (again)
    Repeat Step 2 above to grep the LOG file for error messages. If
    you find problems, go back to Step 1. Otherwise, proceed to the
    Release Preparation steps below.
