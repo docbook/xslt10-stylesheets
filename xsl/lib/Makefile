@@ -1,37 +1,9 @@
 include ../../buildtools/Makefile.incl
 
-PARAMPROF=.lib.profiled
-PARAMSTRIP=.lib.stripped
-LREFENTRY=../tools/xsl/build/lrefentry.xsl
+PARAMBASE=lib
+XSLFILES=lib.xsl
+ALLTARGETS=$(XSLFILES)
+PROFILECONDITION=lib
+NO_MAKEFILE_PARAM=yes
 
-all: lib.xsl lib.xml
-
-lib.html: lib.xml lib.xsl
-	$(XSLT) $< $(LREFENTRY) $@
-
-lib.xml: lib.xweb
-	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
-	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
-else
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
-	$(XSLT) $@.tmp $(ADDNEWLINE) $@
-	$(RM) $@.tmp
-endif
-	$(RM) $(PARAMPROF) $(PARAMSTRIP)
-
-lib.xsl: lib.xweb
-	$(XSLT) $< ../profiling/profile.xsl $(PARAMPROF) profile.condition=html
-	$(XSLT) $(PARAMPROF) ../profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@
-else
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@.tmp
-	$(XSLT) $@.tmp $(ADDNEWLINE) $@
-	$(RM) $@.tmp
-endif
-	$(RM) $(PARAMPROF) $(PARAMSTRIP)
-
-clean:
-	rm -f lib.html lib.xml lib.xsl
+include ../Makefile.incl
