@@ -58,66 +58,66 @@
     </info>
     <part xml:id="html">
       <?dbhtml dir="html"?>
-      <xi:include href="./html/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="htmlintro">
-        <xi:include href="./html/docparam.xml"
+        <xi:include href="../html/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./html/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../html/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="fo">
       <?dbhtml dir="fo"?>
-      <xi:include href="./fo/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="fointro">
-        <xi:include href="./fo/docparam.xml"
+        <xi:include href="../fo/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./fo/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../fo/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="manpages">
       <?dbhtml dir="manpages"?>
-      <xi:include href="./manpages/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="manintro">
-        <xi:include href="./manpages/docparam.xml"
+        <xi:include href="../manpages/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./manpages/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="roundtrip">
       <?dbhtml dir="roundtrip"?>
-      <xi:include href="./roundtrip/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="roundtripintro">
-        <xi:include href="./roundtrip/docparam.xml"
+        <xi:include href="../roundtrip/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./roundtrip/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="slides-html">
       <?dbhtml dir="slides-html"?>
-      <xi:include href="./slides-html/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="slideshtmlintro">
-        <xi:include href="./slides-html/docparam.xml"
+        <xi:include href="../slides/html/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./slides-html/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="slides-fo">
       <?dbhtml dir="slides-fo"?>
-      <xi:include href="./slides-fo/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../slides/fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="slidesfointro">
-        <xi:include href="./slides-fo/docparam.xml"
+        <xi:include href="../slides/fo/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./slides-fo/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../slides/fo/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="website">
       <?dbhtml dir="website"?>
-      <xi:include href="./website/docparam.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../website/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="websiteintro">
-        <xi:include href="./website/docparam.xml"
+        <xi:include href="../website/param.xml"
           xpointer="xpointer(/book/bookinfo/abstract/node())" />
       </partintro>
-      <xi:include href="./website/docparam.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
   </book>
   <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
@@ -138,37 +138,37 @@
     </info>
     <part xml:id="pi-html">
       <?dbhtml dir="pi"?>
-      <xi:include href="./pi-html/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="./pi-html/pi.refsect1.xml"
+      <xi:include href="../html/pi.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../html/pi.xml"
         xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="pi-html-ref">
         <title>Templates</title>
         <xi:include
-          href="./pi-html/pi.refsect1.xml"
+          href="../html/pi.xml"
           xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
     <part xml:id="pi-fo">
       <?dbhtml dir="pi"?>
-      <xi:include href="./pi-fo/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="./pi-fo/pi.refsect1.xml"
+      <xi:include href="../fo/pi.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../fo/pi.xml"
         xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="pi-fo-ref">
         <title>Templates</title>
         <xi:include
-          href="./pi-fo/pi.refsect1.xml"
+          href="../fo/pi.xml"
           xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
     <part xml:id="pi-common">
       <?dbhtml dir="pi"?>
-      <xi:include href="./pi-common/pi.refsect1.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="./pi-common/pi.refsect1.xml"
+      <xi:include href="../common/pi.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../common/pi.xml"
         xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="pi-common-ref">
         <title>Templates</title>
         <xi:include
-          href="./pi-common/pi.refsect1.xml"
+          href="../common/pi.xml"
           xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
