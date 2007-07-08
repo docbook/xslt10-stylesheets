@@ -926,6 +926,7 @@ EOF
           else
             emit_message "  Result: FAILED"
           fi
+          echo
         fi
       done < $mydir/.urilist
     fi
