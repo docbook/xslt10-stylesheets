@@ -923,7 +923,7 @@ to the DocBook V5.0 DTD.</para>
 
 <tip>
 <para>Steps 2 and 5 from previous procedure can be automated using the
-<link xl:href="http://docbook.sourceforge.net/outgoing/cloak">cloak
+<link xl:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/contrib/tools/cloak">cloak
 script</link> written by Michael Smith.</para>
 </tip>
 
