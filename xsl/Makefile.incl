@@ -1,25 +1,44 @@
-PARAMPROF=.param.profiled
-PARAMSTRIP=.param.stripped
-PARAMDBKNS=.param.dbkns
+XJPARSEFLAGS= -E 0 -w
+PARAMPROF=.$(PARAMBASE).profiled
+PARAMSTRIP=.$(PARAMBASE).stripped
+PARAMDBKNS=.$(PARAMBASE).dbkns
 FIXPARAMNS=$(DOCBOOK_SVN)/xsl/tools/xsl/build/fix-params-ns.xsl
 
+ifeq (,$(NO_MAKEFILE_PARAM))
 include Makefile.param
+endif
 
 all: $(ALLTARGETS)
 
-param.xsl: param.xweb $(PARAMS)
-	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
-	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
-	$(XSLT) $(PARAMPROF) $(DOCBOOK_SVN)/xsl/profiling/strip-attributes.xsl $(PARAMSTRIP) attributes=condition
-	$(XSLT) $(PARAMSTRIP) $(DOCBOOK_SVN)/releasetools/xtangle.xsl $(PARAMDBKNS)
+$(PARAMBASE).xsl: $(PARAMDBKNS)
 ifeq ($(ADDNEWLINE),)
-	$(XSLT) $(PARAMDBKNS) $(FIXPARAMNS) $@
+	$(XSLT) $< $(FIXPARAMNS) $@
 else
-	$(XSLT) $(PARAMDBKNS) $(FIXPARAMNS) $@.tmp
+	$(XSLT) $< $(FIXPARAMNS) $@.tmp
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
 endif
 	$(RM) $(PARAMPROF) $(PARAMSTRIP) $(PARAMDBKNS)
+
+$(PARAMBASE).xml: $(PARAMSTRIP)
+ifeq ($(ADDNEWLINE),)
+	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
+else
+	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
+	$(XSLT) $@.tmp $(ADDNEWLINE) $@
+	$(RM) $@.tmp
+endif
+
+$(PARAMSTRIP): $(PARAMBASE).xweb $(PARAMS)
+ifeq (,$(NO_MAKEFILE_PARAM))
+	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
+endif
+	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
+	$(XSLT) $(PARAMPROF) $(DOCBOOK_SVN)/xsl/profiling/strip-attributes.xsl $@ attributes=condition
+	$(RM) $(PARAMPROF)
+
+$(PARAMDBKNS): $(PARAMSTRIP)
+	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@
 
 titlepage.templates.xsl: titlepage.templates.xml $(DOCBOOK_SVN)/xsl/template/titlepage.xsl
 	$(XSLT) $< $(DOCBOOK_SVN)/xsl/template/titlepage.xsl $@
@@ -33,5 +52,9 @@ profile-docbook.xsl: docbook.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl
 
 clean: $(CLEANTARGETS)
 	$(RM) $(XSLFILES)
+	$(RM) $(PARAMSTRIP)
+	$(RM) $(PARAMDBKNS)
+ifeq (,$(NO_MAKEFILE_PARAM))
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
+endif
