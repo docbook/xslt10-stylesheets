@@ -187,79 +187,55 @@
       <?dbhtml dir="lib"?>
       <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro id="libintro">
-        <xi:include href="../lib/lib.xml"
-          xpointer="xpointer(/book/preface/node())" />
+        <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/preface/node())" />
       </partintro>
       <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="common">
       <?dbhtml dir="common"?>
-      <xi:include href="./common/common.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
-      <xi:include href="./common/common.refsect1.xml"
-        xpointer="xpointer(/reference/partintro)" />
-
+      <xi:include href="../common/common.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../common/common.xml" xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="commontemplates">
         <title>Templates</title>
         <xi:include
-          href="./common/common.refsect1.xml"
-          xpointer="xpointer(/reference/refentry)" />
+          href="../common/common.xml" xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
     <part xml:id="refentry">
-      <?dbhtml dir="refentry"?>
-      <xi:include href="./refentry/refentry.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
-      <xi:include href="./refentry/refentry.refsect1.xml"
-        xpointer="xpointer(/reference/partintro)" />
-
+      <?dbhtml dir="common"?>
+      <xi:include href="../common/refentry.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../common/refentry.xml" xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="refmetatemplates">
         <title>Templates</title>
-        <xi:include
-          href="./refentry/refentry.refsect1.xml"
-          xpointer="xpointer(/reference/refentry)" />
+        <xi:include href="../common/refentry.xml" xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
     <part xml:id="utility">
-      <?dbhtml dir="utility"?>
-      <xi:include href="./utility/utility.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
-      <xi:include href="./utility/utility.refsect1.xml"
-        xpointer="xpointer(/reference/partintro)" />
-
+      <?dbhtml dir="common"?>
+      <xi:include href="../common/utility.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../common/utility.xml" xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="utilitytemplates">
         <title>Templates</title>
-        <xi:include
-          href="./utility/utility.refsect1.xml"
-          xpointer="xpointer(/reference/refentry)" />
+        <xi:include href="../common/utility.xml" xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
     <part xml:id="fo-table">
       <?dbhtml dir="fo"?>
-      <xi:include href="./fo/table.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
-      <xi:include href="./fo/table.refsect1.xml"
+      <xi:include href="../fo/table.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../fo/table.xml"
         xpointer="xpointer(/reference/partintro)" />
-
       <reference xml:id="fotabletemplates">
         <title>Templates</title>
-        <xi:include
-          href="./fo/table.refsect1.xml"
-          xpointer="xpointer(/reference/refentry)" />
+        <xi:include href="../fo/table.xml" xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
     <part xml:id="template">
       <?dbhtml dir="template"?>
-      <xi:include href="./template/titlepage.refsect1.xml" xpointer="xpointer(/reference/title)" />
-
-      <xi:include href="./template/titlepage.refsect1.xml"
-        xpointer="xpointer(/reference/partintro)" />
-
+      <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/title)" />
+      <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/partintro)" />
       <reference xml:id="titlepagetemplates">
         <title>Templates</title>
-        <xi:include
-          href="./template/titlepage.refsect1.xml"
-          xpointer="xpointer(/reference/refentry)" />
+        <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/refentry)" />
       </reference>
     </part>
   </book>
