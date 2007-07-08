@@ -1,6 +1,8 @@
 titlepage.templates.xsl
+.param.stripped
 param.xsl
 param.xml
-param.html
+pi.xml
+table.xml
 Makefile.param
 profile-docbook.xsl

@@ -1,5 +1,6 @@
 include ../../buildtools/Makefile.incl
 
+PARAMBASE=param
 XSLFILES=param.xsl profile-docbook.xsl titlepage.templates.xsl \
   profile-chunk-code.xsl
 ALLTARGETS=$(XSLFILES)
