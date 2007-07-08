@@ -1,0 +1,15 @@
+#!/bin/sh
+# $Id$
+LOGFILENAME=LOG
+if [ -f $LOGFILENAME ]
+then
+  egrep -i "error|fail|\*[^.]" $LOGFILENAME
+else
+  echo
+  echo "No $LOGFILENAME file found."
+  echo "To generate a $LOGFILENAME file, run 'make' like this:"
+  echo
+  echo "  make all 2>&1 | tee $LOGFILENAME"
+  echo
+  exit 1
+fi

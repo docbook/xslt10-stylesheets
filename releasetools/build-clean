@@ -1,0 +1,14 @@
+#!/bin/sh
+# $Id$
+if [ -z "$(svn status | egrep '^\?|^X')" ]
+then
+  svn-clean
+else
+  echo
+  echo "Unversioned files found. Before building, either delete the"
+  echo "following files, add them to the repository, or add them to"
+  echo "the svn:ignore properties for their parent directories."
+  echo
+  svn status | egrep '^\?|^X' | cut -c2-
+  exit 1
+fi
