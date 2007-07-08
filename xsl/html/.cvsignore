@@ -1,5 +1,6 @@
 titlepage.templates.xsl
 .param.stripped
+.param.dbkns
 param.xsl
 param.xml
 pi.xml
