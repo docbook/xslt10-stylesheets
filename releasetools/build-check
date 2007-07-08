@@ -1,11 +1,20 @@
 #!/bin/sh
 # $Id$
+grep=egrep
 LOGFILENAME=LOG
-if [ -f $LOGFILENAME ]
-then
 # FIXME: This regexp may not catch all error messages emitted;
 # probably should be refined with a more complete regexp.
-  egrep -i "error|fail|\*[^.]" $LOGFILENAME
+errorRegexp="error|fail|\*[^.]"
+if [ -f $LOGFILENAME ]
+then
+  errors=$($grep -i $errorRegexp $LOGFILENAME)
+  if [ -z "$errors" ]
+  then
+    exit 0
+  else
+    $grep -i "error|fail|\*[^.]" $LOGFILENAME
+    exit 1
+  fi
 else
   echo
   echo "No $LOGFILENAME file found."
