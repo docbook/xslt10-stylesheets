@@ -3,6 +3,8 @@
 LOGFILENAME=LOG
 if [ -f $LOGFILENAME ]
 then
+# FIXME: This regexp may not catch all error messages emitted;
+# probably should be refined with a more complete regexp.
   egrep -i "error|fail|\*[^.]" $LOGFILENAME
 else
   echo
