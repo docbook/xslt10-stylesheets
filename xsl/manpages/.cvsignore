@@ -1,4 +1,5 @@
 Makefile.param
+.param.stripped
 param.xml
 param.xsl
 profile-docbook.xsl

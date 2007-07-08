@@ -1,4 +1,5 @@
 plain-titlepage.xsl
-ChangeLog
+.param.stripped
 param.xsl
+param.xml
 Makefile.param

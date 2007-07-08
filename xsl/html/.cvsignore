@@ -1,7 +1,8 @@
 titlepage.templates.xsl
+.param.stripped
 param.xsl
 param.xml
-param.html
+pi.xml
 Makefile.param
 profile-chunk.xsl
 profile-chunk-code.xsl

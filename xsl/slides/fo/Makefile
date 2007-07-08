@@ -1,5 +1,6 @@
 include ../../../buildtools/Makefile.incl
 
+PARAMBASE=param
 XSLFILES=param.xsl plain-titlepage.xsl
 ALLTARGETS=$(XSLFILES)
 PROFILECONDITION=slides-fo
