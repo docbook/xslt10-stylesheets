@@ -18,7 +18,7 @@ else
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
 endif
-	$(RM) $(PARAMPROF) $(PARAMSTRIP) $(PARAMDBKNS)
+	$(RM) $(PARAMPROF)
 
 $(PARAMBASE).xml: $(PARAMSTRIP)
 ifeq ($(ADDNEWLINE),)

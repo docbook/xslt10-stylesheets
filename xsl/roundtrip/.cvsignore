@@ -1,5 +1,6 @@
 Makefile.param
 .param.stripped
+.param.dbkns
 param.xml
 param.xsl
 profile-docbook.xsl

@@ -1,4 +1,5 @@
 .param.stripped
+.param.dbkns
 param.xsl
 param.xml
 Makefile.param
