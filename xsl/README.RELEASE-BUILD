@@ -96,11 +96,13 @@ Release Build Setup/Testing
    gives you a working set of stylesheets to use). On way to run
    that is this:
 
+     rm -i LOG && \
      . ~/docbk.sh && \
      $DOCBOOK_SVN/releasetools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
-       | tee LOG
+       | tee LOG && \
+     $DOCBOOK_SVN/releasetools/build-check
 
    NOTE: If you want to build with saxon instead of xsltproc,
    change the "xsltproc" above to "saxon".
@@ -119,19 +121,16 @@ Release Build Setup/Testing
    to cruft that needs to be deleted and also to any new files
    that you make have created but forgotten to actually check in.
 
-2. check for errors (grep the LOG file)
-   After running the above, running the following script, which is
-   just a wrapper for egrep'ing through the LOG file to see if
-   anything looks busted.
+   NOTE: The build-check script that is called at the end above
+   just does a simple check for errors (by grep'ing the LOG file
+   you dump all the stdin and stderror output to).
 
-     $DOCBOOK_SVN/releasetools/build-check
+2. Fix any problems, and commit fixes.
+   If buildcheck reports any problems, fix them, commit your
+   changes (if the fixes required changes to source files), then
+   repeat Step 1 until you don't see any more problems.
 
-3. Fix any problems, and commit fixes.
-   If the grep of the LOG file reveals problems, fix them, commit
-   your changes (if the fixes required changes to source files),
-   then repeat Step 1 until you don't see any more problems.
-
-4. Test II: Smoke Test
+3. Test II: Smoke Test
    At this point you should have a working set of stylesheets to
    test with, so run a test of at least each of the following
    against a document instance:
@@ -167,18 +166,30 @@ Release Build Setup/Testing
      website/website.xsl
      website/chunk-website.xsl
 
-5. Test III: make distrib
+4. Test III: make distrib
    If you have resolved all problems with the "make all" build, do
    a test run of "make distrib" (to build the docs and other
    additional stuff needed for the distribution).
 
+   To run the distrib build from a clean workspace, do this:
+
+     rm -i LOG && \
+     . ~/docbk.sh && \
+     $DOCBOOK_SVN/releasetools/build-clean && \
+     make all 2>&1 \
+       XSLTENGINE=xsltproc \
+       | tee LOG
      $DOCBOOK_SVN/releasetools/build-check && \
      $DOCBOOK_SVN/releasetools/catalog-install && \
      make distrib 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee LOG && \
-     $DOCBOOK_SVN/releasetools/catalog-install uninstall
+     $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
+     $DOCBOOK_SVN/releasetools/build-check
+
+   That will first do a "make all" build, and if that succeeds
+   without any errors, will then do a "make distrib" build.
 
    NOTE: If you want to build with saxon instead of xsltproc,
    change the "-xsltproc" above to "-saxon".
@@ -209,10 +220,10 @@ Release Build Setup/Testing
    The "uninstall" step at the end causes all changes made by
    that temporary XML Catalog "install" step to be reverted.
 
-6. Check for errors (again)
-   Repeat Step 2 above to grep the LOG file for error messages. If
-   you find problems, go back to Step 1. Otherwise, proceed to the
-   Release Preparation steps below.
+5. Fix any problems, and commit fixes.
+   If buildcheck reports any problems, fix them, commit your
+   changes (if the fixes required changes to source files), then
+   repeat Step 4 until you don't see any more problems.
 
 -----------------------------------------------------------------
 Release Preparation
