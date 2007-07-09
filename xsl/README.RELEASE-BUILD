@@ -172,11 +172,12 @@ Release Build Setup/Testing
    a test run of "make distrib" (to build the docs and other
    additional stuff needed for the distribution).
 
-     $DOCBOOK_SVN/releasetools/catalog-install
+     $DOCBOOK_SVN/releasetools/build-check && \
+     $DOCBOOK_SVN/releasetools/catalog-install && \
      make distrib 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
-       | tee LOG \
+       | tee LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install uninstall
 
    NOTE: If you want to build with saxon instead of xsltproc,
