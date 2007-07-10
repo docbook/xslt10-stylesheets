@@ -26,9 +26,9 @@ DIRS=common fo html lib manpages pi refentry roundtrip slides/fo slides/html tem
 
 # build reference.pdf.gz except for snapshot releases
 ifneq (snapshot,$(findstring snapshot,$(RELVER)))
-all: reference.txt.gz reference.css reference.pdf.gz
+all: reference.html reference.css reference.txt.gz reference.pdf.gz
 else
-all: reference.txt.gz reference.css
+all: reference.html reference.css reference.txt.gz
 endif
 
 #reference.html: ../docsrcx/reference.xml.included $(REFERENCETXTXSL)
@@ -47,13 +47,16 @@ reference.css: ../docsrcx/reference.css
 debug:
 	@echo $(DIRS)
 
-reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL)
+reference.fo: ../docsrcx/reference.xml.included $(REFERENCEFOXSL)
 	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
 
-reference.txt: reference.html
+reference.txt.html: ../docsrcx/reference.xml.included $(REFERENCETXTXSL)
+	$(XSLT) $< $(REFERENCETXTXSL) > $@
+
+reference.txt: reference.txt.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) $< > $@
 
 reference.pdf.gz: reference.pdf
