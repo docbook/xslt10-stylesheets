@@ -5,9 +5,9 @@
   xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  xml:base="../docsrc/"
+  xml:base="../docsrcx/"
   >
-  <title>DocBook XSL Stylesheets: Reference Documentation</title>
+  <title>DocBook XSL Stylesheets: Reference Documentation</title>
   <info><releaseinfo role="meta">$Id: reference.dbk 6970 2007-07-08 20:15:09Z xmldoc $ </releaseinfo>
     <xi:include href="./authors.xml"/>
     <xi:include href="./copyright.xml" xpointer="xpointer(//*[local-name() = 'copyright'])"/>
@@ -35,7 +35,7 @@
         developer documentation.</para>
     </abstract>
   </info>
-  <book xml:id="param"><title>DocBook XSL Stylesheets User Reference: Parameters</title>
+  <book xml:id="param"><title>DocBook XSL Stylesheets User Reference: Parameters</title>
     <info>
       <abstract>
         <para>This is generated reference documentation for all
@@ -120,7 +120,7 @@
       <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
   </book>
-  <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
+  <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
     <info>
       <abstract>
         <para>This is generated reference documentation for all
@@ -173,7 +173,7 @@
       </reference>
     </part>
   </book>
-  <book xml:id="developer"><title>DocBook XSL Stylesheets Developer Reference</title>
+  <book xml:id="developer"><title>DocBook XSL Stylesheets Developer Reference</title>
     <info>
       <abstract>
         <para>This is technical reference documentation for
