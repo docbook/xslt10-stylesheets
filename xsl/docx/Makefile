@@ -15,56 +15,45 @@ W3MMEECONFIG = ../../releasetools/w3mmee_config
 GZIP=gzip
 GZIPFLAGS=
 
+HTMLMANIFEST=HTML.manifest
+
+DIRS=common fo html lib manpages pi refentry roundtrip slides/fo slides/html template utility website
+
 .PHONY : clean
-
-VPATH=../docsrc
-
-DIRS=common refentry lib html fo manpages roundtrip slides-html slides-fo website template utility
 
 %.included: %
 	$(XINCLUDE) $< >$@
 
 # build reference.pdf.gz except for snapshot releases
 ifneq (snapshot,$(findstring snapshot,$(RELVER)))
-all: reference.txt.gz reference.pdf.gz html
+all: reference.txt.gz reference.css reference.pdf.gz
 else
-all: reference.txt.gz html
+all: reference.txt.gz reference.css
 endif
 
-html: base copyright.html warranty.html reference.html index.html
+#reference.html: ../docsrcx/reference.xml.included $(REFERENCETXTXSL)
+#	$(XSLT) $< $(REFERENCETXTXSL) > $@
 
-base:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
-		fi \
-	done
+index.html: ../docsrcx/reference.xml.included $(RSTYLE)
+	$(XSLT) $< $(RSTYLE) > $@
 
-copyright.html: copyright.xml $(RSTYLE)
-	$(XJPARSE) $(XJPARSEFLAGS) $(VPATH)/$<
-	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
-
-warranty.html: warranty.xml $(RSTYLE)
-	$(XJPARSE) $(XJPARSEFLAGS) $(VPATH)/$<
-	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
-
-reference.html: reference.xml $(RSTYLE)
-	$(XJPARSE) $(XJPARSEFLAGS) $(VPATH)/$<
-	$(XSLT) $(PROCOPT) $< $(RSTYLE) $@ $(XSLTOPT)
-
-index.html: reference.html
+reference.html: index.html
 	cp -p $< $@
 
-reference.fo: ../docsrc/reference.dbk.included $(REFERENCEFOXSL)
+reference.css: ../docsrcx/reference.css
+	cp -p $< .
+	for dir in $(DIRS); do cp -p $< $$dir; done
+
+debug:
+	@echo $(DIRS)
+
+reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL)
 	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
 
-reference.txt.html: ../docsrc/reference.dbk.included $(REFERENCETXTXSL)
-	$(XSLT) $< $(REFERENCETXTXSL) > $@
-
-reference.txt: reference.txt.html
+reference.txt: reference.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) $< > $@
 
 reference.pdf.gz: reference.pdf
@@ -74,19 +63,14 @@ reference.txt.gz: reference.txt
 	cat $< | $(GZIP) $(GZIPFLAGS) > $@
 
 clean:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
-		fi \
-	done
-	$(RM) copyright.html
-	$(RM) index.html
+	$(RM) reference.css
+	for dir in $(DIRS); do $(RM) $$dir/reference.css; done
 	$(RM) reference.html
-	$(RM) warranty.html
 	$(RM) reference.fo
 	$(RM) reference.pdf
-	$(RM) reference.txt
-	$(RM) reference.txt.html
 	$(RM) reference.pdf.gz
 	$(RM) reference.txt.gz
-	$(RM) ../docsrc/reference.dbk.included
+	$(RM) reference.txt
+	$(RM) ../docsrc/reference.xml.included
+	for file in $$(cat $(HTMLMANIFEST)); do $(RM) $$file; done
+	$(RM) $(HTMLMANIFEST)
