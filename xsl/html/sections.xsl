@@ -465,11 +465,14 @@
         <xsl:attribute name="style">clear: both</xsl:attribute>
       </xsl:if>
     </xsl:if>
-    <xsl:if test="$allow-anchors != 0">
+    <xsl:if test="$allow-anchors != 0 and $generate.id.attributes = 0">
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select="$section"/>
         <xsl:with-param name="conditional" select="0"/>
       </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="$generate.id.attributes != 0 and not(local-name(.) = 'appendix')">
+      <xsl:attribute name="id"><xsl:value-of select="$id"/></xsl:attribute>
     </xsl:if>
     <xsl:copy-of select="$title"/>
   </xsl:element>
