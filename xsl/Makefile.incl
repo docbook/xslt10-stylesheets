@@ -4,6 +4,8 @@ PARAMSTRIP=.$(PARAMBASE).stripped
 PARAMDBKNS=.$(PARAMBASE).dbkns
 FIXPARAMNS=$(DOCBOOK_SVN)/xsl/tools/xsl/build/fix-params-ns.xsl
 
+XMLFILES=$(foreach file,$(XSLFILES),$(basename $(file)).xml)
+
 ifeq (,$(NO_MAKEFILE_PARAM))
 include Makefile.param
 endif
@@ -52,6 +54,7 @@ profile-docbook.xsl: docbook.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl
 
 clean: $(CLEANTARGETS)
 	$(RM) $(XSLFILES)
+	$(RM) $(XMLFILES)
 	$(RM) $(PARAMSTRIP)
 	$(RM) $(PARAMDBKNS)
 ifeq (,$(NO_MAKEFILE_PARAM))
