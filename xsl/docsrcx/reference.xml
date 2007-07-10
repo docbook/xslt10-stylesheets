@@ -8,7 +8,7 @@
   xml:base="../docsrc/"
   >
   <title>DocBook XSL Stylesheets: Reference Documentation</title>
-  <info><releaseinfo role="meta">$Id$ </releaseinfo>
+  <info><releaseinfo role="meta">$Id: reference.dbk 6970 2007-07-08 20:15:09Z xmldoc $ </releaseinfo>
     <xi:include href="./authors.xml"/>
     <xi:include href="./copyright.xml" xpointer="xpointer(//*[local-name() = 'copyright'])"/>
     <xi:include href="./license.xml"/>
@@ -93,7 +93,7 @@
       <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="slides-html">
-      <?dbhtml dir="slides-html"?>
+      <?dbhtml dir="slides/html"?>
       <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="slideshtmlintro">
         <xi:include href="../slides/html/param.xml"
@@ -102,7 +102,7 @@
       <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="slides-fo">
-      <?dbhtml dir="slides-fo"?>
+      <?dbhtml dir="slides/fo"?>
       <xi:include href="../slides/fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="slidesfointro">
         <xi:include href="../slides/fo/param.xml"
