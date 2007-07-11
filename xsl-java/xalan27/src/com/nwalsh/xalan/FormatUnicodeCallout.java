@@ -45,6 +45,7 @@ public class FormatUnicodeCallout extends FormatCallout {
     Element area = callout.getArea();
     int num = callout.getCallout();
     String label = areaLabel(area);
+    String id = areaID(area);
 
     try {
       if (label == null && num <= unicodeMax) {
@@ -59,16 +60,18 @@ public class FormatUnicodeCallout extends FormatCallout {
 	    prefix = "fo:";
 	    inName = "inline";
 	    inAttr.addAttribute("", "", "font-family", "CDATA", unicodeFont);
+	    inAttr.addAttribute("", "", "id", "ID", id);
 	  } else {
 	    inName = "font";
 	    inAttr.addAttribute("", "", "face", "CDATA", unicodeFont);
+	    inAttr.addAttribute("", "", "id", "ID", id);
 	  }
 	}
 
 	char chars[] = new char[1];
 	chars[0] = (char) (unicodeStart + num - 1);
 
-	startSpan(rtf);
+	startSpan(rtf, id);
 	if (!unicodeFont.equals("")) {
 	  rtf.startElement(ns, inName, prefix+inName, inAttr);
 	}

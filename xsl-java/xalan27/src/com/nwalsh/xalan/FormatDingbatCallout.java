@@ -63,7 +63,7 @@ public class FormatDingbatCallout extends FormatCallout {
 			       "ZapfDingbats");
 	}
 
-	startSpan(rtf);
+	startSpan(rtf, "");  // empty dummy id
 	rtf.startElement(ns, imgName, prefix+imgName, imgAttr);
 
 	char chars[] = new char[1];

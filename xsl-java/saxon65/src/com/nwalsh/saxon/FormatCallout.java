@@ -62,21 +62,45 @@ public abstract class FormatCallout {
     return label;
   }
 
-  public void startSpan(Emitter rtf)
+  // Get ID (used for xrefs)
+  public String areaID(Element area) {
+    String id = null;
+    
+    if (area.hasAttribute("id")) {
+      id = area.getAttribute("id");
+    }
+
+    else {
+      if (area.hasAttribute("xml:id")) {
+	id = area.getAttribute("xml:id");
+      } 
+    
+      else {
+	id = "";
+      }
+    }
+    //System.out.println(id);
+    return id;
+  }
+  
+
+  public void startSpan(Emitter rtf, String id)
     throws TransformerException {
-    // no point in doing this for FO, right?
+
     if (!foStylesheet && namePool != null) {
       int spanName = namePool.allocate("", "", "span");
       AttributeCollection spanAttr = new AttributeCollection(namePool);
       int namespaces[] = new int[1];
       spanAttr.addAttribute("", "", "class", "CDATA", "co");
+      spanAttr.addAttribute("", "", "id", "CDATA", id);
       rtf.startElement(spanName, spanAttr, namespaces, 0);
     }
+   
   }
 
   public void endSpan(Emitter rtf)
     throws TransformerException {
-    // no point in doing this for FO, right?
+
     if (!foStylesheet && namePool != null) {
       int spanName = namePool.allocate("", "", "span");
       rtf.endElement(spanName);
@@ -88,6 +112,7 @@ public abstract class FormatCallout {
     Element area = callout.getArea();
     int num = callout.getCallout();
     String userLabel = areaLabel(area);
+    String id = areaID(area);
     String label = "(" + num + ")";
 
     if (userLabel != null) {
@@ -97,14 +122,28 @@ public abstract class FormatCallout {
     char chars[] = label.toCharArray();
 
     try {
-      startSpan(rtfEmitter);
+      startSpan(rtfEmitter, id);
+      
+      if (foStylesheet) {
+	int inlineName = namePool.allocate("fo", foURI, "inline");
+	AttributeCollection inlineAttr = new AttributeCollection(namePool);
+	int namespaces[] = new int[1];
+	inlineAttr.addAttribute("", "", "id", "CDATA", id);
+	rtfEmitter.startElement(inlineName, inlineAttr, namespaces, 0);
+    }
       rtfEmitter.characters(chars, 0, label.length());
       endSpan(rtfEmitter);
+      
+      if (foStylesheet) {
+	int inlineName = namePool.allocate("fo", foURI, "inline");
+	rtfEmitter.endElement(inlineName);
+      }
+      
     } catch (TransformerException e) {
       System.out.println("Transformer Exception in formatTextCallout");
     }
   }
-
+  
   public abstract void formatCallout(Emitter rtfEmitter,
 				     Callout callout);
 }

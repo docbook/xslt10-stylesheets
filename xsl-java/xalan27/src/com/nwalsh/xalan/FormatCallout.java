@@ -55,19 +55,43 @@ public abstract class FormatCallout {
     return label;
   }
 
-  public void startSpan(DOMBuilder rtf)
+
+// Get area ID (used for xrefs to callouts)
+  public String areaID(Element area) {
+    String id = null;
+    
+    if (area.hasAttribute("id")) {
+      id = area.getAttribute("id");
+    }
+
+    else {
+      if (area.hasAttribute("xml:id")) {
+	id = area.getAttribute("xml:id");
+      } 
+    
+      else {
+	id = "";
+      }
+    }
+    //System.out.println(id);
+    return id;
+  }
+
+
+  public void startSpan(DOMBuilder rtf, String id)
     throws SAXException {
-    // no point in doing this for FO, right?
+  
     if (!stylesheetFO) {
       AttributesImpl spanAttr = new AttributesImpl();
       spanAttr.addAttribute("", "class", "class", "CDATA", "co");
+      spanAttr.addAttribute("", "id", "id", "ID", id);
       rtf.startElement("", "span", "span", spanAttr);
     }
   }
-
+  
   public void endSpan(DOMBuilder rtf) 
     throws SAXException {
-    // no point in doing this for FO, right?
+  
     if (!stylesheetFO) {
       rtf.endElement("", "span", "span");
     }
@@ -84,11 +108,21 @@ public abstract class FormatCallout {
       label = userLabel;
     }
 
+    String id = areaID(area);
     char chars[] = label.toCharArray();
 
     try {
-      startSpan(rtf);
+      startSpan(rtf, id);
+      if (stylesheetFO) {
+	AttributesImpl spanAttr = new AttributesImpl();
+	spanAttr.addAttribute("", "id", "id", "ID", id);
+	rtf.startElement(foURI, "inline", "fo:inline", spanAttr);
+      }
+
       rtf.characters(chars, 0, label.length());
+      if (stylesheetFO) {
+	rtf.endElement(foURI, "inline", "fo:inline");
+      }
       endSpan(rtf);
     } catch (SAXException e) {
       System.out.println("SAX Exception in text formatCallout");
