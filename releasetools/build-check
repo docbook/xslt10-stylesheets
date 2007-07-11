@@ -1,7 +1,7 @@
 #!/bin/sh
 # $Id$
 grep=egrep
-LOGFILENAME=LOG
+LOGFILENAME=$1
 # FIXME: This regexp may not catch all error messages emitted;
 # probably should be refined with a more complete regexp.
 errorRegexp="error|fail|\*[^.]"
