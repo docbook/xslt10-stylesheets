@@ -31,6 +31,7 @@ clean:
 	$(RM) ../lib/lib.xml
 	$(RM) $(PI_XML_FILES)
 	$(RM) $(OTHER_XML_FILES)
+	$(RM) reference.xml.included
 
 $(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK_RNG)
 	$(XSLT) $(DOCBOOK_RNG) $< $@
