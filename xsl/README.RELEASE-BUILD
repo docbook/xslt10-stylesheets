@@ -96,13 +96,13 @@ Release Build Setup/Testing
    gives you a working set of stylesheets to use). On way to run
    that is this:
 
-     rm -i LOG && \
+     rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
      $DOCBOOK_SVN/releasetools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
-       | tee LOG && \
-     $DOCBOOK_SVN/releasetools/build-check
+       | tee DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG
 
    NOTE: If you want to build with saxon instead of xsltproc,
    change the "xsltproc" above to "saxon".
@@ -121,12 +121,12 @@ Release Build Setup/Testing
    to cruft that needs to be deleted and also to any new files
    that you make have created but forgotten to actually check in.
 
-   NOTE: The build-check script that is called at the end above
-   just does a simple check for errors (by grep'ing the LOG file
-   you dump all the stdin and stderror output to).
+   NOTE: The build-check script called at the end above just does
+   a simple check for errors (by grep'ing the DOCBOOK-BUILD.LOG
+   file you dump all the stdin and stderror output to).
 
 2. Fix any problems, and commit fixes.
-   If buildcheck reports any problems, fix them, commit your
+   If build-check reports any problems, fix them, commit your
    changes (if the fixes required changes to source files), then
    repeat Step 1 until you don't see any more problems.
 
@@ -173,20 +173,20 @@ Release Build Setup/Testing
 
    To run the distrib build from a clean workspace, do this:
 
-     rm -i LOG && \
+     rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
      $DOCBOOK_SVN/releasetools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
-       | tee LOG
-     $DOCBOOK_SVN/releasetools/build-check && \
+       | tee DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install && \
      make distrib 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
-       | tee LOG && \
+       | tee DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
-     $DOCBOOK_SVN/releasetools/build-check
+     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG
 
    That will first do a "make all" build, and if that succeeds
    without any errors, will then do a "make distrib" build.
@@ -221,7 +221,7 @@ Release Build Setup/Testing
    that temporary XML Catalog "install" step to be reverted.
 
 5. Fix any problems, and commit fixes.
-   If buildcheck reports any problems, fix them, commit your
+   If build-check reports any problems, fix them, commit your
    changes (if the fixes required changes to source files), then
    repeat Step 4 until you don't see any more problems.
 
@@ -247,3 +247,11 @@ Release Preparation
 3. Open the RELEASE-NOTES.xml file and comment out the paragraphs
    about snapshot releases, then uncomment the paragraph about
    official releases.
+
+-----------------------------------------------------------------
+NOTES
+-----------------------------------------------------------------
+
+  - all previous releases are permanently archived here:
+
+     ftp://upload.sourceforge.net/pub/sourceforge/d/do/docbook/
