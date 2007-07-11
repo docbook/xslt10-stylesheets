@@ -718,6 +718,17 @@
   <xsl:apply-templates select="." mode="callout-bug"/>
 </xsl:template>
 
+<xsl:template match="area|areaset" mode="xref-to">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+
+  <xsl:call-template name="callout-bug">
+    <xsl:with-param name="conum">
+      <xsl:apply-templates select="." mode="conumber"/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template match="book" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
