@@ -199,7 +199,7 @@ GETPARAM=$(DOCBOOK_SVN)/releasetools/get-param.xsl
 GETELEMENT=$(DOCBOOK_SVN)/releasetools/get-element.xsl
 
 XMLLINT=xmllint
-XMLLINT_OPTS=
+XMLLINT_OPTS=--noent
 XINCLUDE=$(XMLLINT) $(XMLLINT_OPTS) --xinclude
 
 SVN=svn
