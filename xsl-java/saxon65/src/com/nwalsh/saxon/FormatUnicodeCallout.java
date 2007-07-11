@@ -54,7 +54,8 @@ public class FormatUnicodeCallout extends FormatCallout {
     int num = callout.getCallout();
     String userLabel = areaLabel(area);
     String label = "";
-
+    String id = areaID(area);
+    
     if (userLabel != null) {
       label = userLabel;
     }
@@ -70,13 +71,16 @@ public class FormatUnicodeCallout extends FormatCallout {
 	    inName = namePool.allocate("fo", foURI, "inline");
 	    inAttr = new AttributeCollection(namePool);
 	    inAttr.addAttribute("", "", "font-family", "CDATA", unicodeFont);
+	    inAttr.addAttribute("", "", "id", "ID", id);
+
 	  } else {
 	    inName = namePool.allocate("", "", "font");
 	    inAttr = new AttributeCollection(namePool);
 	    inAttr.addAttribute("", "", "face", "CDATA", unicodeFont);
+	    inAttr.addAttribute("", "", "id", "ID", id);
 	  }
 
-	  startSpan(rtfEmitter);
+	  startSpan(rtfEmitter, id);  
 	  rtfEmitter.startElement(inName, inAttr, namespaces, 0);
 	}
 

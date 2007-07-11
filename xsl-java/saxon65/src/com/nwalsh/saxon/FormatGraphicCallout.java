@@ -50,6 +50,7 @@ public class FormatGraphicCallout extends FormatCallout {
     int num = callout.getCallout();
     String userLabel = areaLabel(area);
     String label = "(" + num + ")";
+    String id = areaID(area);
 
     if (userLabel != null) {
       label = userLabel;
@@ -66,16 +67,19 @@ public class FormatGraphicCallout extends FormatCallout {
 	  imgAttr = new AttributeCollection(namePool);
 	  imgAttr.addAttribute("", "", "src", "CDATA", "url(" +          
 			       graphicsPath + num + graphicsExt + ")"); 
+	  imgAttr.addAttribute("", "", "id", "CDATA", id);
 	  
+	  // HTML
 	} else {
 	  imgName = namePool.allocate("", "", "img");
 	  imgAttr = new AttributeCollection(namePool);
 	  imgAttr.addAttribute("", "", "src", "CDATA",
 			       graphicsPath + num + graphicsExt);
 	  imgAttr.addAttribute("", "", "alt", "CDATA", label);
+
 	}
 
-	startSpan(rtfEmitter);
+	startSpan(rtfEmitter, id);
 	rtfEmitter.startElement(imgName, imgAttr, namespaces, 0);
 	rtfEmitter.endElement(imgName);
 	endSpan(rtfEmitter);

@@ -45,6 +45,7 @@ public class FormatGraphicCallout extends FormatCallout {
     Element area = callout.getArea();
     int num = callout.getCallout();
     String label = areaLabel(area);
+    String id = areaID(area);
 
     try {
       if (label == null && num <= graphicsMax) {
@@ -59,6 +60,7 @@ public class FormatGraphicCallout extends FormatCallout {
 	  imgName = "external-graphic";
 	  imgAttr.addAttribute("", "src", "src", "CDATA", "url(" +
 			       graphicsPath + num + graphicsExt + ")");
+	  imgAttr.addAttribute("", "id", "id", "ID", id);
 
 	} else {
 	  ns = "";
@@ -67,9 +69,10 @@ public class FormatGraphicCallout extends FormatCallout {
 	  imgAttr.addAttribute("", "src", "src", "CDATA",
 			       graphicsPath + num + graphicsExt);
 	  imgAttr.addAttribute("", "alt", "alt", "CDATA", label);
+	  imgAttr.addAttribute("", "id", "id", "ID", id);
 	}
 
-	startSpan(rtf);
+	startSpan(rtf, id);
 	rtf.startElement(ns, imgName, prefix+imgName, imgAttr);
 	rtf.endElement(ns, imgName, prefix+imgName);
 	endSpan(rtf);
