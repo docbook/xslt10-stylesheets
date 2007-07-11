@@ -6,7 +6,7 @@
   <xsl:param name="xep.extensions">1</xsl:param>
   <xsl:param name="paper.type">A4</xsl:param>
   <xsl:param name="draft.watermark.image"></xsl:param>
-  <xsl:param name="hyphenation">false</xsl:param>
+  <xsl:param name="hyphenate">false</xsl:param>
   <xsl:param name="hyphenate.verbatim">1</xsl:param>
   <xsl:param name="alignment">left</xsl:param>
   <xsl:param name="refentry.generate.name">1</xsl:param>
