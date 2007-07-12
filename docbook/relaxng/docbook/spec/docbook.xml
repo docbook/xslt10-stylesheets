@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0CR4</productnumber>
+<!-- productVersion --> <productnumber>5.0CR5</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2007-05-18</pubdate>
+<pubdate>2007-07-12</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -162,6 +162,14 @@ DocBook is also available from the mirror on
 </para>
 </listitem>
 -->
+
+<section xml:id="s.50CR5">
+<title>Changes in DocBook V5.0CR5</title>
+
+<para>There are no user-visible changes in DocBook V5.0CR5. If no bug reports
+are received before the August, 2007 DocBook TC meeting, this version will
+become the offiical DocBook V5.0 release.</para>
+</section>
 
 <section xml:id="s.50CR4">
 <title>Changes in DocBook V5.0CR4</title>
