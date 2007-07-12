@@ -344,7 +344,6 @@ db.common.base.attributes =
  & db.revisionflag.attribute?
  & db.dir.attribute?
  & db.effectivity.attributes
- & db.common.extension.attributes
 
 db.common.attributes =
    db.xml.id.attribute?
