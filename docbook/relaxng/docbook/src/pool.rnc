@@ -335,31 +335,24 @@ db.dir.attribute =
    ]
    attribute dir { db.dir.enumeration }
 
-db.common.extension.attributes = empty
+db.common.base.attributes =
+   db.version.attribute?
+ & db.xml.lang.attribute?
+ & db.xml.base.attribute?
+ & db.remap.attribute?
+ & db.xreflabel.attribute?
+ & db.revisionflag.attribute?
+ & db.dir.attribute?
+ & db.effectivity.attributes
+ & db.common.extension.attributes
 
 db.common.attributes =
    db.xml.id.attribute?
- & db.version.attribute?
- & db.xml.lang.attribute?
- & db.xml.base.attribute?
- & db.remap.attribute?
- & db.xreflabel.attribute?
- & db.revisionflag.attribute?
- & db.dir.attribute?
- & db.effectivity.attributes
- & db.common.extension.attributes
+ & db.common.base.attributes
 
 db.common.idreq.attributes =
    db.xml.id.attribute
- & db.version.attribute?
- & db.xml.lang.attribute?
- & db.xml.base.attribute?
- & db.remap.attribute?
- & db.xreflabel.attribute?
- & db.revisionflag.attribute?
- & db.dir.attribute?
- & db.effectivity.attributes
- & db.common.extension.attributes
+ & db.common.base.attributes
 
 db.common.linking.attributes =
    (db.linkend.attribute | db.href.attributes)?
