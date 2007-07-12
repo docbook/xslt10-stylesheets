@@ -2,21 +2,28 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="../../../html/docbook.xsl"/>
-
-<xsl:param name="html.stylesheet" select="'css/reference.css'"/>
-<xsl:param name="admon.graphics" select="1"></xsl:param>
-<xsl:param name="admon.textlabel" select="0"></xsl:param>
-<xsl:param name="admon.graphics.path">./images/</xsl:param>
+<xsl:import href="../../../html/chunk.xsl"/>
+<!-- * params -->
 <xsl:param name="admon.graphics.extension" select="'.png'"></xsl:param>
-<xsl:param name="admon.style"/>
-<xsl:param name="generate.toc"/>
-<xsl:param name="html.append"><xsl:text>&#x0a;</xsl:text></xsl:param>
-
-<xsl:template match="/legalnotice">
-  <xsl:apply-templates select="." mode="titlepage.mode"/>
-</xsl:template>
-
+<xsl:param name="admon.graphics.path">./images/</xsl:param>
+<xsl:param name="admon.graphics" select="1"/>
+<xsl:param name="admon.textlabel" select="0"></xsl:param>
+<xsl:param name="chunk.quietly" select="1"></xsl:param>
+<xsl:param name="generate.legalnotice.link" select="1"></xsl:param>
+<xsl:param name="generate.manifest" select="1"></xsl:param>
+<!-- * <xsl:param name="html.append"><xsl:text>&#x0a;</xsl:text></xsl:param> -->
+<xsl:param name="graphicsize.extension" select="0"></xsl:param>
+<xsl:param name="html.longdesc" select="1"/>
+<xsl:param name="html.stylesheet" select="'reference.css'"/>
+<xsl:param name="index.on.type" select="1"/>
+<xsl:param name="keep.relative.image.uris" select="1"/>
+<xsl:param name="refentry.generate.name" select="0"/>
+<xsl:param name="refentry.generate.title" select="1"/>
+<xsl:param name="reference.autolabel">1</xsl:param>
+<xsl:param name="toc.max.depth">2</xsl:param>
+<xsl:param name="use.extensions" select="0"></xsl:param>
+<xsl:param name="use.id.as.filename" select="1"></xsl:param>
+<xsl:param name="variablelist.as.table" select="0"/>
 <xsl:template match="olink[@type='title']">
   <xsl:variable name="xml"
                 select="document(unparsed-entity-uri(@targetdocent),.)"/>
@@ -29,34 +36,4 @@
     </a>
   </i>
 </xsl:template>
-
-<xsl:template match="copyright" mode="titlepage.mode">
-  <xsl:variable name="years" select="year"/>
-  <xsl:variable name="holders" select="holder"/>
-
-  <p class="{name(.)}">
-    <a href="copyright.html">
-      <xsl:call-template name="gentext.element.name"/>
-    </a>
-    <xsl:call-template name="gentext.space"/>
-    <xsl:call-template name="dingbat">
-      <xsl:with-param name="dingbat">copyright</xsl:with-param>
-    </xsl:call-template>
-    <xsl:call-template name="gentext.space"/>
-    <xsl:call-template name="copyright.years">
-      <xsl:with-param name="years" select="year"/>
-      <xsl:with-param name="print.ranges" select="1"/>
-      <xsl:with-param name="single.year.ranges"
-                      select="$make.single.year.ranges"/>
-    </xsl:call-template>
-    <xsl:call-template name="gentext.space"/>
-    <xsl:call-template name="gentext.by"/>
-    <xsl:call-template name="gentext.space"/>
-    <xsl:apply-templates select="$holders" mode="titlepage.mode"/>
-    <xsl:text>. </xsl:text>
-    <a href="warranty.html">No Warranty</a>
-    <xsl:text>.</xsl:text>
-  </p>
-</xsl:template>
-
 </xsl:stylesheet>
