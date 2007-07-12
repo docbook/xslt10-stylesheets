@@ -22,7 +22,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zeor, relative URIs (in, for example fileref attributes) will
+<para>If non-zero, relative URIs (in, for example fileref attributes) will
 be used in the generated output. Otherwise, the URIs will be made absolute
 with respect to the base URI.</para>
 
