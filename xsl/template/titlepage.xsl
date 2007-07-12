@@ -26,32 +26,23 @@
   <xsl:text>&#x0a;</xsl:text>
 </xsl:template>
 
-<doc:reference xmlns="">
-<referenceinfo>
-<releaseinfo role="meta">
-$Id$
-</releaseinfo>
-<author><surname>Walsh</surname>
-<firstname>Norman</firstname></author>
-<copyright><year>1999</year><year>2000</year>
-<holder>Norman Walsh</holder>
-</copyright>
-</referenceinfo>
-<title>Template Stylesheet Reference</title>
-
-<partintro id="intro_partintro">
-<title>Introduction</title>
-
-<para>This is technical reference documentation for the
-“titlepage” templates in the DocBook XSL Stylesheets.</para>
-
-<para>This is not intended to be <quote>user</quote> documentation.
-It is provided for developers writing customization layers for the
-stylesheets, and for anyone who's interested in <quote>how it
-works</quote>.</para>
-
-</partintro>
-
+<doc:reference xmlns="" xml:id="template">
+  <?dbhtml dir="template"?>
+  <?dbhtml filename="index.html"?>
+  <info>
+    <releaseinfo role="meta">
+      $Id$
+    </releaseinfo>
+  </info>
+  <title>Titlepage Template Stylesheet Reference</title>
+  <partintro xml:id="intro_partintro">
+    <title>Introduction</title>
+    <para>This is technical reference documentation for the
+      “titlepage” templates in the DocBook XSL Stylesheets.</para>
+    <para>This is not intended to be user documentation.  It is
+      provided for developers writing customization layers for the
+      stylesheets.</para>
+  </partintro>
 </doc:reference>
 
 <!-- ==================================================================== -->

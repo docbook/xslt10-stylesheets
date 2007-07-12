@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-      xmlns:dyn="http://exslt.org/dynamic"
-      xmlns:saxon="http://icl.com/saxon">
-<bookinfo>
-<title>XSL Library Template Reference</title>
-<releaseinfo role="cvs">$Id$
-</releaseinfo>
-<corpauthor>The DocBook Project</corpauthor>
-<copyright>
-  <year>1999</year>
-  <year>2000</year>
-  <year>2001</year>
-  <year>2002</year>
-  <year>2005</year>
-  <year>2006</year>
-  <holder>Norman Walsh</holder>
-</copyright>
-</bookinfo>
+<book xml:id="lib.xml"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:dyn="http://exslt.org/dynamic"
+  xmlns:saxon="http://icl.com/saxon">
+  <info>
+    <title>XSL Library Template Reference</title>
+    <releaseinfo role="cvs">$Id$</releaseinfo>
+    <author>
+      <personname>
+        <surname>Walsh</surname><firstname>Norman</firstname>
+      </personname>
+    </author>
+    <author>
+      <orgname>The DocBook Project</orgname>
+    </author>
+    <copyright>
+      <year>1999-2007</year>
+      <holder>Norman Walsh</holder>
+    </copyright>
+    <copyright>
+      <year>2001-2007</year>
+      <holder>The DocBook Project</holder>
+    </copyright>
+  </info>
+  <preface id="intro"><title>Introduction</title>
+    <para>This is technical reference documentation for the
+      vocabulary-independent “library” templates in the DocBook XSL
+      Stylesheets.</para>
+    <para>This is not intended to be user documentation.  It is
+      provided for developers writing customization layers for the
+      stylesheets.</para>
+  </preface>
 
-<preface id="intro"><title>Introduction</title>
+<!-- ================================================================== -->
 
-<para>This is technical reference documentation for the
-vocabulary-independent “library” templates in the DocBook XSL
-Stylesheets.</para>
-
-<para>This is not intended to be <quote>user</quote> documentation.
-It is provided for developers writing customization layers for the
-stylesheets, and for anyone who's interested in <quote>how it
-works</quote>.</para>
-
-</preface>
-
-<reference id="generallibrary">
-<title>General Library Templates</title>
+  <reference id="generallibrary">
+    <title>General Library Templates</title>
 
 <refentry id="dot.count">
 <refnamediv>
