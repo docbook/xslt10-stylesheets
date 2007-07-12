@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>index.on.role</refname>
-<refpurpose>Select indexterms based on role value</refpurpose>
+<refpurpose>Select indexterms based on <tag class="attribute">role</tag> value</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,21 +24,21 @@
 <para>
 If non-zero, 
 then an <tag>index</tag> element that has a
-<tag>role</tag> attribute
+<tag class="attribute">role</tag> attribute
 value will contain only those <tag>indexterm</tag>
 elements with a matching role value.
-If an <tag>index</tag> has no <tag>role</tag>
+If an <tag>index</tag> has no <tag class="attribute">role</tag>
 attribute or it is blank, then the index will contain
 all <tag>indexterm</tag>s in the current scope.
 </para>
 <para>
 If <literal>index.on.role</literal> is zero, then the
-<tag>role</tag> attribute has no effect
+<tag class="attribute">role</tag> attribute has no effect
 on selecting indexterms for an index.
 </para>
 
 <para>If you are using DocBook version 4.3 or later, you should
-use the <tag>type</tag> attribute instead of <tag>role</tag>
+use the <tag class="attribute">type</tag> attribute instead of <tag class="attribute">role</tag>
 on <tag>indexterm</tag> and <tag>index</tag>,
 and set the <parameter>index.on.type</parameter> to a nonzero
 value.
