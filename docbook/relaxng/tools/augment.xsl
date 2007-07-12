@@ -52,7 +52,7 @@
 
       <xsl:text>&#10;</xsl:text>
       <xsl:text>&#10;</xsl:text>
-      <xsl:comment> DocBook V5.0CR3</xsl:comment>
+      <xsl:comment> DocBook V5.0CR5</xsl:comment>
       <xsl:text>&#10;</xsl:text>
       <xsl:comment> See http://docbook.org/ns/docbook </xsl:comment>
       <xsl:text>&#10;</xsl:text>
