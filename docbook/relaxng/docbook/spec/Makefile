@@ -5,6 +5,8 @@ XSLT=$(SAXON)
 HTMLSTYLE=html.xsl
 FOSTYLE=fo.xsl
 XML2RFC=/share/doctypes/ietf/xml2rfc/xml2rfc.tcl
+RFCBASE=draft-walsh-app-docbook-xml-
+RFCVERSION=00
 
 XSLPARAM=
 
@@ -33,10 +35,12 @@ showdiff.html: showdiff.xml elemdiff.xml cmdiff.xml
 	$(SAXON) ,$< /sourceforge/docbook/xsl/html/docbook.xsl $@
 	rm -f ,$<
 
-rfc.html: rfc.xml
+rfc: $(RFCBASE)$(RFCVERSION).html $(RFCBASE)$(RFCVERSION).txt
+
+$(RFCBASE)$(RFCVERSION).html: rfc.xml
 	$(XML2RFC) $< $@
 
-rfc.txt: rfc.xml
+$(RFCBASE)$(RFCVERSION).txt: rfc.xml
 	$(XML2RFC) $< $@
 
 clean:

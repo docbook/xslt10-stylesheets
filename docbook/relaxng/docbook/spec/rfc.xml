@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rfc ipr="full3978"> <!-- ??? -->
+<rfc ipr="full3978" category="bcp">
 <front>
 <title>The 'application/docbook+xml' Media Type</title>
 <author initials="N" surname="Walsh" fullname="Norman Walsh">
 <organization>Sun Microsystems</organization>
+<address><postal><street>1 Network Drive</street>
+<street>Building #2 MS UBUR02-201</street>
+<city>Burlington</city><region>MA</region><code>01803</code>
+<country>US</country>
+</postal>
+<email>Norman.Walsh@Sun.COM</email>
+</address>
 </author>
-<date month="March" year="2007"/>
+<date month="July" year="2007"/>
 <area>General</area>
 <keyword>RFC</keyword>
 <keyword>Request for Comments</keyword>
@@ -73,7 +80,7 @@ DocBook documents.</t>
 </list>
 </t>
 <t hangText="Person &amp; email address to contact for further information:"/>
-<t>Norman Walsh, ndw@nwalsh.com</t>
+<t>Norman Walsh, Norman.Walsh@Sun.COM</t>
 <t hangText="Intended usage:"/>
 <t>COMMON</t>
 <t hangText="Author/Change controller:"/>
