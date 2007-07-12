@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>show.comments</refname>
-<refpurpose>Display <tag>comment</tag> elements?</refpurpose>
+<refpurpose>Display <tag>remark</tag> elements?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -20,9 +20,8 @@
 <refsection><info><title>Description</title></info>
 
 <para>If true (non-zero), comments will be displayed, otherwise they are suppressed.
-Comments here refers to the <tag>comment</tag> element,
-which will be renamed <tag>remark</tag> in DocBook V4.0,
-not XML comments (&lt;-- like this --&gt;) which are unavailable.
+Comments here refers to the <tag>remark</tag> element (which was called <tag role="obsolete">comment</tag> prior to
+DocBook 4.0), not XML comments (&lt;-- like this --&gt;) which are unavailable.
 </para>
 
 </refsection>
