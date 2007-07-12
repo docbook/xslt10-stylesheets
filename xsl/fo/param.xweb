@@ -297,7 +297,7 @@ consider <xref linkend="fig.pagemodel"/>.</para>
       <imagedata fileref="page.png"/>
     </imageobject>
     <imageobject role="fo">
-      <imagedata fileref="../../doc/fo/page.png"/>
+      <imagedata fileref="fo/page.png"/>
     </imageobject>
     <textobject><phrase>Figure showing page margins</phrase></textobject>
     <textobject>
