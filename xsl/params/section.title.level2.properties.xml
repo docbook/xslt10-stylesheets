@@ -1,3 +1,4 @@
+
 <refentry xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -10,7 +11,7 @@
 </refmeta>
 <refnamediv>
 <refname>section.title.level2.properties</refname>
-<refpurpose>Properties for level-1 section titles</refpurpose>
+<refpurpose>Properties for level-2 section titles</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
