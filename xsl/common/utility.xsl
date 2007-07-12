@@ -7,7 +7,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
+     $Id$
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -15,42 +15,33 @@
      copyright and other information.
 
      ******************************************************************** -->
-
-<doc:reference xmlns="">
-<referenceinfo>
-<releaseinfo role="meta">
-$Id: common.xsl 6867 2007-06-25 04:36:37Z xmldoc $
-</releaseinfo>
-<corpauthor>The DocBook Project Development Team</corpauthor>
-<copyright><year>2007</year>
-<holder>The DocBook Project</holder>
-</copyright>
-</referenceinfo>
-<title>Utility Template Reference</title>
-
-<partintro id="partintro">
-<title>Introduction</title>
-
-<para>This is technical reference documentation for the
-  miscellaneous utility templates in the DocBook XSL
-  Stylesheets.</para>
-
-<note>
-<para>These templates are defined in a separate file from the set
-  of “common” templates because some of the comment templates
-  reference DocBook XSL stylesheet parameters, requiring the
-  entire set of parameters to be imported/included in any
-  stylesheet that imports/includes the common templates.</para>
-<para>The utility templates don’t import or include any DocBook
-  XSL stylesheet parameters, so the utility templates can be used
-  without importing the whole set of parameters.</para>
-</note>
-
-<para>The following documentation is not intended to be
-  <quote>user</quote> documentation.  It is provided for developers
-  writing customization layers for the stylesheets, and for anyone
-  who's interested in <quote>how it works</quote>.</para>
-</partintro>
+<doc:reference xmlns="" xml:id="utility">
+  <info>
+    <releaseinfo role="meta">
+      $Id$
+    </releaseinfo>
+  </info>
+  <title>Common » Utility Template Reference</title>
+  <!-- * yes, partintro is a valid child of a reference... -->
+  <partintro xml:id="partintro">
+    <title>Introduction</title>
+    <para>This is technical reference documentation for the
+      miscellaneous utility templates in the DocBook XSL
+      Stylesheets.</para>
+    <note>
+      <para>These templates are defined in a separate file from the set
+        of “common” templates because some of the comment templates
+        reference DocBook XSL stylesheet parameters, requiring the
+        entire set of parameters to be imported/included in any
+        stylesheet that imports/includes the common templates.</para>
+      <para>The utility templates don’t import or include any DocBook
+        XSL stylesheet parameters, so the utility templates can be used
+        without importing the whole set of parameters.</para>
+    </note>
+    <para>This is not intended to be user documentation. It is
+      provided for developers writing customization layers for the
+      stylesheets.</para>
+  </partintro>
 </doc:reference>
 
 <!-- ====================================================================== -->

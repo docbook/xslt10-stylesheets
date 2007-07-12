@@ -7,6 +7,15 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xml:base="../docsrcx/"
   >
+  <!-- * WARNING WARNING WARNING -->
+  <!-- * WARNING WARNING WARNING -->
+  <!-- * -->
+  <!-- * This document has duplicate IDs in it and is intended for -->
+  <!-- * processing using the chunk.xsl stylesheet to generate chunked -->
+  <!-- * output from it (not for generating a single HTML output file) -->
+  <!-- * -->
+  <!-- * WARNING WARNING WARNING -->
+  <!-- * WARNING WARNING WARNING -->
   <title>DocBook XSL Stylesheets: Reference Documentation</title>
   <info><releaseinfo role="meta">$Id: reference.dbk 6970 2007-07-08 20:15:09Z xmldoc $ </releaseinfo>
     <xi:include href="./authors.xml"/>
@@ -58,6 +67,7 @@
     </info>
     <part xml:id="html">
       <?dbhtml dir="html"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="htmlintro">
         <xi:include href="../html/param.xml"
@@ -67,6 +77,7 @@
     </part>
     <part xml:id="fo">
       <?dbhtml dir="fo"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="fointro">
         <xi:include href="../fo/param.xml"
@@ -76,6 +87,7 @@
     </part>
     <part xml:id="manpages">
       <?dbhtml dir="manpages"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="manintro">
         <xi:include href="../manpages/param.xml"
@@ -85,6 +97,7 @@
     </part>
     <part xml:id="roundtrip">
       <?dbhtml dir="roundtrip"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="roundtripintro">
         <xi:include href="../roundtrip/param.xml"
@@ -94,6 +107,7 @@
     </part>
     <part xml:id="slides-html">
       <?dbhtml dir="slides/html"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="slideshtmlintro">
         <xi:include href="../slides/html/param.xml"
@@ -103,6 +117,7 @@
     </part>
     <part xml:id="slides-fo">
       <?dbhtml dir="slides/fo"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../slides/fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="slidesfointro">
         <xi:include href="../slides/fo/param.xml"
@@ -112,6 +127,7 @@
     </part>
     <part xml:id="website">
       <?dbhtml dir="website"?>
+      <?dbhtml filename="index.html"?>
       <xi:include href="../website/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
       <partintro xml:id="websiteintro">
         <xi:include href="../website/param.xml"
@@ -121,6 +137,8 @@
     </part>
   </book>
   <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
+    <?dbhtml dir="pi"?>
+    <?dbhtml filename="index.html"?>
     <info>
       <abstract>
         <para>This is generated reference documentation for all
@@ -137,7 +155,6 @@
       </abstract>
     </info>
     <part xml:id="pi-html">
-      <?dbhtml dir="pi"?>
       <xi:include href="../html/pi.xml" xpointer="xpointer(/reference/title)" />
       <xi:include href="../html/pi.xml"
         xpointer="xpointer(/reference/partintro)" />
@@ -149,7 +166,6 @@
       </reference>
     </part>
     <part xml:id="pi-fo">
-      <?dbhtml dir="pi"?>
       <xi:include href="../fo/pi.xml" xpointer="xpointer(/reference/title)" />
       <xi:include href="../fo/pi.xml"
         xpointer="xpointer(/reference/partintro)" />
@@ -161,7 +177,6 @@
       </reference>
     </part>
     <part xml:id="pi-common">
-      <?dbhtml dir="pi"?>
       <xi:include href="../common/pi.xml" xpointer="xpointer(/reference/title)" />
       <xi:include href="../common/pi.xml"
         xpointer="xpointer(/reference/partintro)" />
@@ -183,60 +198,32 @@
           the stylesheets.</para>
       </abstract>
     </info>
-    <part xml:id="lib">
+    <reference xml:id="lib">
       <?dbhtml dir="lib"?>
-      <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/bookinfo/title)" />
-      <partintro id="libintro">
-        <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/preface/node())" />
-      </partintro>
-      <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/reference)" />
-    </part>
-    <part xml:id="common">
+      <?dbhtml filename="index.html"?>
+      <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/node())"/>
+    </reference>
+    <part xml:id="common-part"><title>Common Template Reference</title>
       <?dbhtml dir="common"?>
-      <xi:include href="../common/common.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../common/common.xml" xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="commontemplates">
-        <title>Templates</title>
-        <xi:include
-          href="../common/common.xml" xpointer="xpointer(/reference/refentry)" />
-      </reference>
+      <?dbhtml filename="index.html"?>
+      <info>
+        <abstract>
+          <para>This is technical reference documentation for the
+            “base”, “refentry”, and “utility” sets of common
+            templates in the DocBook XSL Stylesheets. These
+            templates are “common” in that they are shared across
+            output formats (that is, they’re not
+            output-format-dependent)</para>
+          <para>This documentation is not intended to be user
+            documentation. It is provided for developers writing
+            customization layers for the stylesheets.</para>
+        </abstract>
+      </info>
+        <xi:include href="../common/common.xml"/>
+        <xi:include href="../common/refentry.xml"/>
+        <xi:include href="../common/utility.xml"/>
     </part>
-    <part xml:id="refentry">
-      <?dbhtml dir="common"?>
-      <xi:include href="../common/refentry.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../common/refentry.xml" xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="refmetatemplates">
-        <title>Templates</title>
-        <xi:include href="../common/refentry.xml" xpointer="xpointer(/reference/refentry)" />
-      </reference>
-    </part>
-    <part xml:id="utility">
-      <?dbhtml dir="common"?>
-      <xi:include href="../common/utility.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../common/utility.xml" xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="utilitytemplates">
-        <title>Templates</title>
-        <xi:include href="../common/utility.xml" xpointer="xpointer(/reference/refentry)" />
-      </reference>
-    </part>
-    <part xml:id="fo-table">
-      <?dbhtml dir="fo"?>
-      <xi:include href="../fo/table.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../fo/table.xml"
-        xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="fotabletemplates">
-        <title>Templates</title>
-        <xi:include href="../fo/table.xml" xpointer="xpointer(/reference/refentry)" />
-      </reference>
-    </part>
-    <part xml:id="template">
-      <?dbhtml dir="template"?>
-      <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="titlepagetemplates">
-        <title>Templates</title>
-        <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/refentry)" />
-      </reference>
-    </part>
+    <xi:include href="../fo/table.xml"/>
+    <xi:include href="../template/titlepage.xml"/>
   </book>
 </set>

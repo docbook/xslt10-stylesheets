@@ -16,36 +16,25 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-<doc:reference xmlns="">
-  <referenceinfo>
+<doc:reference xmlns="" xml:id="refentry">
+  <info>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
-    <corpauthor>The DocBook Project</corpauthor>
-    <copyright>
-      <year>2005-2007</year>
-      <holder>The DocBook Project</holder>
-    </copyright>
-  </referenceinfo>
-  <title>Refentry Metadata-Gathering Template Reference</title>
-
-  <partintro id="partintro">
+  </info>
+  <title>Common » Refentry Metadata Template Reference</title>
+  <!-- * yes, partintro is a valid child of a reference... -->
+  <partintro xml:id="partintro">
     <title>Introduction</title>
-
-    <para>This is technical reference documentation for the "refentry
-    metadata gathering" templates in the DocBook XSL Stylesheets.</para>
-
+    <para>This is technical reference documentation for the “refentry
+    metadata” templates in the DocBook XSL Stylesheets.</para>
     <para>This is not intended to be user documentation. It is provided
-    for developers writing customization layers for the
-    stylesheets.</para>
-
+    for developers writing customization layers for the stylesheets.</para>
     <note>
       <para>Currently, only the manpages stylesheets make use of these
       templates. They are, however, potentially useful elsewhere.</para>
     </note>
-
   </partintro>
-
 </doc:reference>
 
 <!-- ==================================================================== -->
