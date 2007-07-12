@@ -94,6 +94,8 @@
   <xsl:choose>
     <xsl:when test="doc:reference">
       <reference>
+        <xsl:copy-of select="doc:reference/@*"/>
+        <xsl:copy-of select="doc:reference/processing-instruction()"/>
         <xsl:apply-templates/>
       </reference>
       <xsl:text>&#10;</xsl:text>
