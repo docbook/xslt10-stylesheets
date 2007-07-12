@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>callout.graphics.extension</refname>
-<refpurpose>Extension for callout graphics</refpurpose>
+<refpurpose>File name extension for callout graphics</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,7 +22,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Sets the extension to use on callout graphics.</para>
+<para>Sets the file name extension to use on callout graphics.</para>
 
 </refsection>
 </refentry>
