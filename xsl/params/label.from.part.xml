@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>label.from.part</refname>
-<refpurpose>Renumber chapters in each part?</refpurpose>
+<refpurpose>Renumber components in each part?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -19,12 +19,18 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If <parameter>label.from.part</parameter> is non-zero, components
-(<tag>chapter</tag>s, <tag>appendixe</tag>s, etc.)
-will be numbered from 1 in each <tag>part</tag>. Otherwise,
-they will be numbered monotonically throughout each
-<tag>book</tag>.
-</para>
+<para>If <parameter>label.from.part</parameter> is non-zero, then
+  numbering of components — <tag>preface</tag>,
+  <tag>chapter</tag>, <tag>appendix</tag>, and
+  <tag>reference</tag> (when <tag>reference</tag> occurs at the
+  component level) — is re-started within each
+  <tag>part</tag>.</para>
+<para>If <parameter>label.from.part</parameter> is zero (the
+  default), numbering of components is <emphasis>not</emphasis>
+  re-started within each <tag>part</tag>; instead, components are
+  numbered sequentially throughout each <tag>book</tag>,
+  regardless of whether or not they occur within <tag>part</tag>
+  instances.</para>
 
 </refsection>
 </refentry>
