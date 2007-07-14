@@ -1,9 +1,8 @@
 include ../../buildtools/Makefile.incl
 
 PARAMBASE=param
-XSLFILES=param.xsl profile-docbook.xsl titlepage.templates.xsl \
-  profile-chunk-code.xsl
-ALLTARGETS=$(XSLFILES)
+XSLFILES=param.xsl profile-docbook.xsl profile-chunk-code.xsl
+ALLTARGETS=$(XSLFILES) titlepage.templates.xsl
 PROFILECONDITION=html
 
 include ../Makefile.incl
