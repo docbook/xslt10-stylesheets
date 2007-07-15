@@ -713,31 +713,46 @@
   </xsl:param>
   <xsl:param name="element" select="local-name(.)"/>
   <xsl:param name="gentext-key" select="local-name(.)"/>
+  <xsl:param name="language">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:param>
+
+  <xsl:param name="format">
+    <xsl:call-template name="page.number.format">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+      <xsl:with-param name="element" select="$element"/>
+    </xsl:call-template>
+  </xsl:param>
+
+  <xsl:param name="initial-page-number">
+    <xsl:call-template name="initial.page.number">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+      <xsl:with-param name="element" select="$element"/>
+    </xsl:call-template>
+  </xsl:param>
+
+  <xsl:param name="force-page-count">
+    <xsl:call-template name="force.page.count">
+      <xsl:with-param name="master-reference" select="$master-reference"/>
+      <xsl:with-param name="element" select="$element"/>
+    </xsl:call-template>
+  </xsl:param>
 
   <fo:page-sequence hyphenate="{$hyphenate}"
                     master-reference="{$master-reference}">
     <xsl:attribute name="language">
-      <xsl:call-template name="l10n.language"/>
+      <xsl:value-of select="$language"/>
     </xsl:attribute>
     <xsl:attribute name="format">
-      <xsl:call-template name="page.number.format">
-        <xsl:with-param name="master-reference" select="$master-reference"/>
-        <xsl:with-param name="element" select="$element"/>
-      </xsl:call-template>
+      <xsl:value-of select="$format"/>
     </xsl:attribute>
 
     <xsl:attribute name="initial-page-number">
-      <xsl:call-template name="initial.page.number">
-        <xsl:with-param name="master-reference" select="$master-reference"/>
-        <xsl:with-param name="element" select="$element"/>
-      </xsl:call-template>
+      <xsl:value-of select="$initial-page-number"/>
     </xsl:attribute>
 
     <xsl:attribute name="force-page-count">
-      <xsl:call-template name="force.page.count">
-        <xsl:with-param name="master-reference" select="$master-reference"/>
-        <xsl:with-param name="element" select="$element"/>
-      </xsl:call-template>
+      <xsl:value-of select="$force-page-count"/>
     </xsl:attribute>
 
     <xsl:attribute name="hyphenation-character">
