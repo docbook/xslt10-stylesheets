@@ -299,7 +299,7 @@
   <xsl:variable name="name" select="@name"/>
 
   <xsl:text>&#10;</xsl:text>
-  <refentry id="template.{$name}">
+  <refentry id="{$name}">
     <xsl:text>&#10;</xsl:text>
     <refnamediv>
       <xsl:text>&#10;</xsl:text>
