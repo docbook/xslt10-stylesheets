@@ -19,7 +19,7 @@ GZIPFLAGS=
 
 HTMLMANIFEST=HTML.manifest
 
-DIRS=common fo html lib manpages pi refentry roundtrip slides/fo slides/html template utility website
+DIRS=common fo html lib manpages pi refentry roundtrip slides template utility website
 
 .PHONY : clean
 
