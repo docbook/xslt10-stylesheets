@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>use.embed.for.svg</refname>
-<refpurpose>Use HTML <tag role="html">embed</tag> for SVG?</refpurpose>
+<refpurpose>Use HTML <tag>embed</tag> for SVG?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,10 +21,10 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, an <tag role="html">embed</tag> element will be created for
-SVG figures. An <tag role="html">object</tag> is <emphasis>always</emphasis> created,
-this parameter merely controls whether or not an additional <tag role="html">embed</tag>
-is generated inside the <tag role="html">object</tag>.</para>
+<para>If non-zero, an <tag>embed</tag> element will be created for
+SVG figures. An <tag>object</tag> is <emphasis>always</emphasis> created,
+this parameter merely controls whether or not an additional <tag>embed</tag>
+is generated inside the <tag>object</tag>.</para>
 
 <para>On the plus side, this may be more portable among browsers and plug-ins.
 On the minus side, it isn't valid HTML.</para>

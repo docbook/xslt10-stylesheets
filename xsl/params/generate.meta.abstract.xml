@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.meta.abstract</refname>
-<refpurpose>Generate HTML <tag role="html">META</tag> element from <tag>abstract</tag>?</refpurpose>
+<refpurpose>Generate HTML <tag>META</tag> element from <tag>abstract</tag>?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,7 +22,7 @@
 <refsection><info><title>Description</title></info>
 
 <para>If non-zero, document abstracts will be reproduced in the HTML
-<tag role="html">HEAD</tag> with <tag class="starttag">meta name="description" content="..."</tag>.</para>
+<tag>HEAD</tag> with <tag class="starttag">meta name="description" content="..."</tag>.</para>
 
 </refsection>
 </refentry>
