@@ -2,10 +2,12 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-  <bookinfo>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+  <info>
     <title>Manpages Parameter Reference</title>
     <releaseinfo role="meta">
       $Id$
@@ -22,15 +24,13 @@
       parameters in the DocBook XSL "manpages" stylesheet (for
       generating groff/nroff output). Note that the manpages
       stylesheet is a customization layer of the DocBook XSL HTML
-      stylesheet. Therefore, you can also use a number of <ulink
-      url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
-      >HTML stylesheet parameters</ulink> to control manpages output
-      (in addition to the manpages-specific parameters listed in this
-      section).</para>
+      stylesheet. Therefore, you can also use a number of <link
+        xlink:href="../html/" >HTML stylesheet parameters</link>
+      to control manpages output (in addition to the
+      manpages-specific parameters listed in this section).</para>
     </abstract>
-  </bookinfo>
-
-  <reference id="general">
+  </info>
+  <reference xml:id="general">
   <title>Hyphenation, justification, and breaking</title>
 &man.hyphenate;
 &man.hyphenate.urls;
@@ -39,7 +39,7 @@
 &man.justify;
 &man.break.after.slash;
   </reference>
-  <reference id="indent">
+  <reference xml:id="indent">
   <title>Indentation</title>
 &man.indent.width;
 &man.indent.refsect;
@@ -47,25 +47,25 @@
 &man.indent.lists;
 &man.indent.verbatims;
   </reference>
-  <reference id="fonts">
+  <reference xml:id="fonts">
   <title>Fonts</title>
 &man.font.funcprototype;
 &man.font.funcsynopsisinfo;
 &man.font.table.headings;
 &man.font.table.title;
   </reference>
-  <reference id="endnotes">
+  <reference xml:id="endnotes">
   <title>Endnotes and link handling</title>
 &man.endnotes.list.enabled;
 &man.endnotes.list.heading;
 &man.endnotes.are.numbered;
 &man.links.are.underlined;
   </reference>
-  <reference id="lists">
+  <reference xml:id="lists">
   <title>Lists</title>
 &man.segtitle.suppress;
   </reference>
-  <reference id="charmap">
+  <reference xml:id="charmap">
   <title>Character/string substitution</title>
 &man.charmap.enabled;
 &man.charmap.uri;
@@ -75,7 +75,7 @@
 &man.string.subst.map;
 &man.string.subst.map.local.post;
   </reference>
-  <reference id="refmeta">
+  <reference xml:id="refmeta">
   <title>Refentry metadata gathering</title>
 &refentry.meta.get.quietly;
 &refentry.date.profile;
@@ -91,7 +91,7 @@
 &refentry.manual.fallback.profile;
 &refentry.source.fallback.profile;
   </reference>
-  <reference id="th">
+  <reference xml:id="th">
   <title>Page header/footer</title>
 &man.th.extra1.suppress;
 &man.th.extra2.suppress;
@@ -100,7 +100,7 @@
 &man.th.extra2.max.length;
 &man.th.extra3.max.length;
   </reference>
-  <reference id="output">
+  <reference xml:id="output">
   <title>Output</title>
 &man.output.manifest.enabled;
 &man.output.manifest.filename;
@@ -111,22 +111,22 @@
 &man.output.quietly;
 &man.output.encoding;
   </reference>
-  <reference id="other">
+  <reference xml:id="other">
   <title>Other</title>
 &man.table.footnotes.divider;
 &man.subheading.divider.enabled;
 &man.subheading.divider;
   </reference>
-  <appendix id="stylesheet">
+  <appendix xml:id="stylesheet">
     <title>The Stylesheet</title>
 
     <para>The <filename>param.xsl</filename> stylesheet is just a
     wrapper around all of these parameters.</para>
 
-    <src:fragment id='top' mundane-result-prefixes='xsl'>
+    <src:fragment xml:id='top' mundane-result-prefixes='xsl'>
 <xsl:stylesheet xmlns='http://www.w3.org/1999/XSL/Transform'
-		exclude-result-prefixes='src'
-		version='1.0'>
+  exclude-result-prefixes='src'
+  version='1.0'>
 
 <!-- This file is generated from param.xweb -->
 

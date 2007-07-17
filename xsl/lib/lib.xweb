@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<book xml:id="lib.xml"
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xml:id="lib.xml"
   xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:dyn="http://exslt.org/dynamic"
+  xmlns:ssb="http://sideshowbarker.net/ns"
   xmlns:saxon="http://icl.com/saxon">
   <info>
     <title>XSL Library Template Reference</title>
@@ -24,7 +27,7 @@
       <holder>The DocBook Project</holder>
     </copyright>
   </info>
-  <preface id="intro"><title>Introduction</title>
+  <preface xml:id="intro"><title>Introduction</title>
     <para>This is technical reference documentation for the
       vocabulary-independent “library” templates in the DocBook XSL
       Stylesheets.</para>
@@ -35,10 +38,10 @@
 
 <!-- ================================================================== -->
 
-  <reference id="generallibrary">
+  <reference xml:id="generallibrary">
     <title>General Library Templates</title>
 
-<refentry id="dot.count">
+<refentry xml:id="dot.count">
 <refnamediv>
 <refname>dot.count</refname>
 <refpurpose>Returns the number of <quote>.</quote> characters in a string</refpurpose>
@@ -46,7 +49,7 @@
 
 <refsect1><title>Description</title>
 
-<programlisting><src:fragment id='dot.count.frag'>
+<programlisting><src:fragment xml:id='dot.count.frag'>
 <xsl:template name="dot.count">
   <!-- Returns the number of "." characters in a string -->
   <xsl:param name="string"></xsl:param>
@@ -70,7 +73,7 @@
 
 <!-- ================================================================== -->
 
-<refentry id="copy-string">
+<refentry xml:id="copy-string">
 <refnamediv>
 <refname>copy-string</refname>
 <refpurpose>Returns <quote>count</quote> copies of a string</refpurpose>
@@ -78,7 +81,7 @@
 
 <refsect1><title>Description</title>
 
-<programlisting><src:fragment id='copy-string.frag'>
+<programlisting><src:fragment xml:id='copy-string.frag'>
 <xsl:template name="copy-string">
   <!-- returns 'count' copies of 'string' -->
   <xsl:param name="string"></xsl:param>
@@ -108,7 +111,7 @@
 
 <!-- ====================================================================== -->
 
-<refentry id="string.subst">
+<refentry xml:id="string.subst">
 <refnamediv>
 <refname>string.subst</refname>
 <refpurpose>Substitute one text string for another in a string</refpurpose>
@@ -121,7 +124,7 @@ occurances of <parameter>target</parameter> in <parameter>string</parameter>
 with <parameter>replacement</parameter> and returns the result.
 </para>
 
-<programlisting><src:fragment id='string.subst.frag'>
+<programlisting><src:fragment xml:id='string.subst.frag'>
 <xsl:template name="string.subst">
   <xsl:param name="string"></xsl:param>
   <xsl:param name="target"></xsl:param>
@@ -153,7 +156,7 @@ with <parameter>replacement</parameter> and returns the result.
 
 <!-- ================================================================== -->
 
-<refentry id="xpointer.idref">
+<refentry xml:id="xpointer.idref">
 <refnamediv>
 <refname>xpointer.idref</refname>
 <refpurpose>Extract IDREF from an XPointer</refpurpose>
@@ -169,7 +172,7 @@ document, or the empty string if it is not.</para>
 or <literal>#xpointer(id('foo'))</literal>, otherwise it returns
 the empty string.</para>
 
-<programlisting><src:fragment id='xpointer.idref.frag'>
+<programlisting><src:fragment xml:id='xpointer.idref.frag'>
 <xsl:template name="xpointer.idref">
   <xsl:param name="xpointer">http://...</xsl:param>
   <xsl:choose>
@@ -192,7 +195,7 @@ the empty string.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="length-magnitude">
+<refentry xml:id="length-magnitude">
 <refnamediv>
 <refname>length-magnitude</refname>
 <refpurpose>Return the unqualified dimension from a length specification</refpurpose>
@@ -204,7 +207,7 @@ the empty string.</para>
 unqualified length ("20" for "20pt") from a dimension.
 </para>
 
-<programlisting><src:fragment id='length-magnitude.frag'>
+<programlisting><src:fragment xml:id='length-magnitude.frag'>
 <xsl:template name="length-magnitude">
   <xsl:param name="length" select="'0pt'"/>
 
@@ -235,7 +238,7 @@ unqualified length ("20" for "20pt") from a dimension.
 
 <!-- ================================================================== -->
 
-<refentry id="length-units">
+<refentry xml:id="length-units">
 <refnamediv>
 <refname>length-units</refname>
 <refpurpose>Return the units from a length specification</refpurpose>
@@ -247,7 +250,7 @@ unqualified length ("20" for "20pt") from a dimension.
 units ("pt" for "20pt") from a length. If no units are supplied on the
 length, the <parameter>defauilt.units</parameter> are returned.</para>
 
-<programlisting><src:fragment id='length-units.frag'>
+<programlisting><src:fragment xml:id='length-units.frag'>
 <xsl:template name="length-units">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="default.units" select="'px'"/>
@@ -277,7 +280,7 @@ length, the <parameter>defauilt.units</parameter> are returned.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="length-spec">
+<refentry xml:id="length-spec">
 <refnamediv>
 <refname>length-spec</refname>
 <refpurpose>Return a fully qualified length specification</refpurpose>
@@ -290,7 +293,7 @@ qualified length from a dimension. If an unqualified length is given,
 the <parameter>default.units</parameter> will be added to it.
 </para>
 
-<programlisting><src:fragment id='length-spec.frag'>
+<programlisting><src:fragment xml:id='length-spec.frag'>
 <xsl:template name="length-spec">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="default.units" select="'px'"/>
@@ -335,7 +338,7 @@ the <parameter>default.units</parameter> will be added to it.
 
 <!-- ================================================================== -->
 
-<refentry id="length-in-points">
+<refentry xml:id="length-in-points">
 <refnamediv>
 <refname>length-in-points</refname>
 <refpurpose>Returns the size, in points, of a specified length</refpurpose>
@@ -359,7 +362,7 @@ which is initially <literal>10</literal> (for 10pt).</para>
 </para>
 </caution>
 
-<programlisting><src:fragment id='length-in-points.frag'>
+<programlisting><src:fragment xml:id='length-in-points.frag'>
 <xsl:template name="length-in-points">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="em.size" select="10"/>
@@ -413,7 +416,7 @@ which is initially <literal>10</literal> (for 10pt).</para>
 
 <!-- ================================================================== -->
 
-<refentry id="pi-attribute">
+<refentry xml:id="pi-attribute">
 <refnamediv>
 <refname>pi-attribute</refname>
 <refpurpose>Extract a pseudo-attribute from a PI</refpurpose>
@@ -433,7 +436,7 @@ attribute that it finds. Presented with processing instructions that
 contain badly formed pseudo-attributes (missing or unbalanced quotes,
 for example), the template may silently return erroneous results.</para>
 
-<programlisting><src:fragment id='pi-attribute.frag'>
+<programlisting><src:fragment xml:id='pi-attribute.frag'>
 <xsl:template name="pi-attribute">
   <xsl:param name="pis" select="processing-instruction('BOGUS_PI')"/>
   <xsl:param name="attribute">filename</xsl:param>
@@ -474,7 +477,7 @@ for example), the template may silently return erroneous results.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="lookup.key">
+<refentry xml:id="lookup.key">
 <refnamediv>
 <refname>lookup.key</refname>
 <refpurpose>Retrieve the value associated with a particular key in a table</refpurpose>
@@ -486,7 +489,7 @@ for example), the template may silently return erroneous results.</para>
 the <function>lookup.key</function> template extracts the value associated
 with a particular key.</para>
 
-<programlisting><src:fragment id='lookup.key.frag'>
+<programlisting><src:fragment xml:id='lookup.key.frag'>
 <xsl:template name="lookup.key">
   <xsl:param name="key" select="''"/>
   <xsl:param name="table" select="''"/>
@@ -521,7 +524,7 @@ with a particular key.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="xpath.location">
+<refentry xml:id="xpath.location">
 <refnamediv>
 <refname>xpath.location</refname>
 <refpurpose>Calculate the XPath child-sequence to the current node</refpurpose>
@@ -533,7 +536,7 @@ with a particular key.</para>
 absolute path from the root of the tree to the current element node.
 </para>
 
-<programlisting><src:fragment id='xpath.location.frag'>
+<programlisting><src:fragment xml:id='xpath.location.frag'>
 <xsl:template name="xpath.location">
   <xsl:param name="node" select="."/>
   <xsl:param name="path" select="''"/>
@@ -564,7 +567,7 @@ absolute path from the root of the tree to the current element node.
 
 <!-- ================================================================== -->
 
-<refentry id="comment-escape-string">
+<refentry xml:id="comment-escape-string">
 <refnamediv>
 <refname>comment-escape-string</refname>
 <refpurpose>Prepare a string for inclusion in an XML comment</refpurpose>
@@ -577,7 +580,7 @@ that has been transformed so that it can safely be output as an XML comment.
 Internal occurrences of "--" will be replaced with "- -" and a leading and/or
 trailing space will be added to the string, if necessary.</para>
 
-<programlisting><src:fragment id='comment-escape-string.frag'>
+<programlisting><src:fragment xml:id='comment-escape-string.frag'>
 <xsl:template name="comment-escape-string">
   <xsl:param name="string" select="''"/>
 
@@ -600,7 +603,7 @@ trailing space will be added to the string, if necessary.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="comment-escape-string.recursive">
+<refentry xml:id="comment-escape-string.recursive">
 <refnamediv>
 <refname>comment-escape-string.recursive</refname>
 <refpurpose>Internal function used by comment-escape-string</refpurpose>
@@ -611,7 +614,7 @@ trailing space will be added to the string, if necessary.</para>
 <para>The <function>comment-escape-string.recursive</function> template is used
 by <function>comment-escape-string</function>.</para>
 
-<programlisting><src:fragment id="comment-escape-string.recursive.frag">
+<programlisting><src:fragment xml:id="comment-escape-string.recursive.frag">
 <xsl:template name="comment-escape-string.recursive">
   <xsl:param name="string" select="''"/>
   <xsl:choose>
@@ -633,7 +636,7 @@ by <function>comment-escape-string</function>.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="trim.text">
+<refentry xml:id="trim.text">
 <refnamediv>
 <refname>trim.text</refname>
 <refpurpose>Trim leading and trailing whitespace from a text node</refpurpose>
@@ -644,7 +647,7 @@ by <function>comment-escape-string</function>.</para>
 <para>Given a text node, this function trims leading and trailing
 whitespace from it and returns the trimmed contents.</para>
 
-<programlisting><src:fragment id='trim.text.frag'>
+<programlisting><src:fragment xml:id='trim.text.frag'>
 
   <xsl:template name="trim.text">
     <xsl:param name="contents" select="."/>
@@ -705,100 +708,93 @@ whitespace from it and returns the trimmed contents.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="str.tokenize.keep.delimiters">
+<refentry xml:id="str.tokenize.keep.delimiters">
 <refnamediv>
 <refname>str.tokenize.keep.delimiters</refname>
 <refpurpose>Tokenize a string while preserving any delimiters</refpurpose>
 </refnamediv>
-
 <refsect1><title>Description</title>
-
 <para>Based on the occurrence of one or more delimiter characters,
 this function breaks a string into a list of tokens and delimiters,
-marking up each of the tokens with a <sgmltag>token</sgmltag> element
+marking up each of the tokens with a <tag>token</tag> element
 and preserving the delimiters as text nodes between the tokens.</para>
-
 <note>
   <para>This function is a very slightly modified version of a
-  function from the <ulink url="http://www.exslt.org/">EXSLT
-  site</ulink>. The original is available at:
+  function from the <link xlink:href="http://www.exslt.org/">EXSLT
+  site</link>. The original is available at:
 
-  <blockquote><para><ulink url="http://www.exslt.org/str/functions/tokenize/str.tokenize.template.xsl"/></para></blockquote>
+<blockquote><para><link
+      xlink:href="http://www.exslt.org/str/functions/tokenize/str.tokenize.template.xsl"/></para></blockquote>
 
   The <function>str.tokenize.keep.delimiters</function> function
   differs only in that it preserves the delimiters instead of
   discarding them.</para>
 </note>
-
-<programlisting><src:fragment id='str.tokenize.keep.delimiters.frag'>
-
+<programlisting><src:fragment xml:id='str.tokenize.keep.delimiters.frag'>
   <xsl:template name="str.tokenize.keep.delimiters">
     <xsl:param name="string" select="''" />
     <xsl:param name="delimiters" select="' '" />
     <xsl:choose>
       <xsl:when test="not($string)" />
       <xsl:when test="not($delimiters)">
-	<xsl:call-template name="str.tokenize.keep.delimiters-characters">
-	  <xsl:with-param name="string" select="$string" />
-	</xsl:call-template>
+        <xsl:call-template name="str.tokenize.keep.delimiters-characters">
+          <xsl:with-param name="string" select="$string" />
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
-	  <xsl:with-param name="string" select="$string" />
-	  <xsl:with-param name="delimiters" select="$delimiters" />
-	</xsl:call-template>
+        <xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+          <xsl:with-param name="string" select="$string" />
+          <xsl:with-param name="delimiters" select="$delimiters" />
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  
   <xsl:template name="str.tokenize.keep.delimiters-characters">
     <xsl:param name="string" />
     <xsl:if test="$string">
-      <token><xsl:value-of select="substring($string, 1, 1)" /></token>
+      <ssb:token><xsl:value-of select="substring($string, 1, 1)" /></ssb:token>
       <xsl:call-template name="str.tokenize.keep.delimiters-characters">
-	<xsl:with-param name="string" select="substring($string, 2)" />
+        <xsl:with-param name="string" select="substring($string, 2)" />
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
-  
   <xsl:template name="str.tokenize.keep.delimiters-delimiters">
     <xsl:param name="string" />
     <xsl:param name="delimiters" />
     <xsl:variable name="delimiter" select="substring($delimiters, 1, 1)" />
     <xsl:choose>
       <xsl:when test="not($delimiter)">
-	<token><xsl:value-of select="$string" /></token>
+        <ssb:token><xsl:value-of select="$string" /></ssb:token>
       </xsl:when>
       <xsl:when test="contains($string, $delimiter)">
-	<xsl:if test="not(starts-with($string, $delimiter))">
-	  <xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
-	    <xsl:with-param name="string" select="substring-before($string, $delimiter)" />
-	    <xsl:with-param name="delimiters" select="substring($delimiters, 2)" />
-	  </xsl:call-template>
-	</xsl:if>
-	<!-- output each delimiter -->
-	<xsl:value-of select="$delimiter"/>
-	<xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
-	  <xsl:with-param name="string" select="substring-after($string, $delimiter)" />
-	  <xsl:with-param name="delimiters" select="$delimiters" />
-	</xsl:call-template>
+        <xsl:if test="not(starts-with($string, $delimiter))">
+          <xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+            <xsl:with-param name="string" select="substring-before($string, $delimiter)" />
+            <xsl:with-param name="delimiters" select="substring($delimiters, 2)" />
+          </xsl:call-template>
+        </xsl:if>
+        <!-- output each delimiter -->
+        <xsl:value-of select="$delimiter"/>
+        <xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+          <xsl:with-param name="string" select="substring-after($string, $delimiter)" />
+          <xsl:with-param name="delimiters" select="$delimiters" />
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
-	  <xsl:with-param name="string" select="$string" />
-	  <xsl:with-param name="delimiters" select="substring($delimiters, 2)" />
-	</xsl:call-template>
+        <xsl:call-template name="str.tokenize.keep.delimiters-delimiters">
+          <xsl:with-param name="string" select="$string" />
+          <xsl:with-param name="delimiters" select="substring($delimiters, 2)" />
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 </src:fragment></programlisting>
-
 </refsect1>
 </refentry>
 
 <!-- ================================================================== -->
 
-<refentry id="apply-string-subst-map">
+<refentry xml:id="apply-string-subst-map">
   <refnamediv>
     <refname>apply-string-subst-map</refname>
     <refpurpose>Apply a string-substitution map</refpurpose>
@@ -830,11 +826,11 @@ and preserving the delimiters as text nodes between the tokens.</para>
   <note>
     <para>This function is a very slightly modified version of Jeni
     Tennison's <function>replace_strings</function> function in the
-    <ulink
-    url="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
-    >multiple string replacements</ulink> section of Dave Pawson's
-    <ulink url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
-    FAQ</ulink>.</para>
+    <link
+      xlink:href="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
+    >multiple string replacements</link> section of Dave Pawson’s
+    <link xlink:href="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+    FAQ</link>.</para>
 
     <para>The <function>apply-string-subst-map</function> function is
     essentially the same function as the
@@ -847,7 +843,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
     class="attribute">string</tag> attributes.</para>
   </note>
 
-  <programlisting><src:fragment id='apply-string-subst-map.frag'>
+  <programlisting><src:fragment xml:id='apply-string-subst-map.frag'>
     <xsl:template name="apply-string-subst-map">
       <xsl:param name="content"/>
       <xsl:param name="map.contents"/>
@@ -880,7 +876,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="apply-character-map">
+<refentry xml:id="apply-character-map">
   <refnamediv>
     <refname>apply-character-map</refname>
     <refpurpose>Apply an XSLT character map</refpurpose>
@@ -888,11 +884,11 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
   <refsect1><title>Description</title>
 
-  <para>This function applies an <ulink
-  url="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
-  map</ulink>; that is, it cause certain individual characters to be
+  <para>This function applies an <link
+  xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
+  map</link>; that is, it cause certain individual characters to be
   substituted with strings of one or more characters. It is useful
-  mainly for replacing multiple "special" chararacters or symbols in
+  mainly for replacing multiple "special" characters or symbols in
   the same target content. It reads in two things:
   <parameter>content</parameter>, the content on which to perform the
   substitution, and <parameter>map.contents</parameter>, a
@@ -914,12 +910,12 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
   <note>
     <para>This function is a very slightly modified version of Jeni
-    Tennison's <function>replace_strings</function> function in the
-    <ulink
-        url="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
-        >multiple string replacements</ulink> section of Dave Pawson's
-    <ulink url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
-    FAQ</ulink>.</para>
+    Tennison’s <function>replace_strings</function> function in the
+    <link
+        xlink:href="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
+        >multiple string replacements</link> section of Dave Pawson’s
+    <link xlink:href="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+    FAQ</link>.</para>
 
     <para>The <function>apply-string-subst-map</function> function is
     essentially the same function as the
@@ -932,7 +928,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
     class="attribute">string</tag> attributes.</para>
   </note>
 
-  <programlisting><src:fragment id='apply-character-map.frag'>
+  <programlisting><src:fragment xml:id='apply-character-map.frag'>
     <xsl:template name="apply-character-map">
       <xsl:param name="content"/>
       <xsl:param name="map.contents"/>
@@ -965,7 +961,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="read-character-map">
+<refentry xml:id="read-character-map">
 <refnamediv>
 <refname>read-character-map</refname>
 <refpurpose>Read in all or part of an XSLT character map</refpurpose>
@@ -973,9 +969,9 @@ and preserving the delimiters as text nodes between the tokens.</para>
 
 <refsect1><title>Description</title>
 
-<para>The XSLT 2.0 specification describes <ulink
-url="http://www.w3.org/TR/xslt20/#character-maps">character
-maps</ulink> and explains how they may be used to allow a specific
+<para>The XSLT 2.0 specification describes <link
+xlink:href="http://www.w3.org/TR/xslt20/#character-maps">character
+maps</link> and explains how they may be used to allow a specific
 character appearing in a text or attribute node in a final results
 tree to be substituted by a specified string of characters during
 serialization. The <function>read-character-map</function> function
@@ -995,7 +991,7 @@ given in the value of the <parameter>subset.profile</parameter>
 parameter. The current implementation of that capability here relies
 on the <function>evaluate</function> extension XSLT function.</para>
 
-<programlisting><src:fragment id='read-character-map.frag'>
+<programlisting><src:fragment xml:id='read-character-map.frag'>
   <xsl:template name="read-character-map">
     <xsl:param name="use.subset"/>
     <xsl:param name="subset.profile"/>
@@ -1038,10 +1034,10 @@ does not support it.
 
 <!-- ==================================================================  -->
 
-<reference id="relativeuri">
+<reference xml:id="relativeuri">
 <title>Relative URI Functions</title>
 
-<partintro id="partintro"><title>Introduction</title>
+<partintro xml:id="partintro"><title>Introduction</title>
 
 <para>These functions manipulate relative URI references.</para>
 
@@ -1063,7 +1059,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="count.uri.path.depth">
+<refentry xml:id="count.uri.path.depth">
 <refnamediv>
 <refname>count.uri.path.depth</refname>
 <refpurpose>Count the number of path components in a relative URI</refpurpose>
@@ -1073,7 +1069,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <para>This function counts the number of path components in a relative URI.</para>
 
-<programlisting><src:fragment id='count.uri.path.depth.frag'>
+<programlisting><src:fragment xml:id='count.uri.path.depth.frag'>
 <xsl:template name="count.uri.path.depth">
   <xsl:param name="filename" select="''"/>
   <xsl:param name="count" select="0"/>
@@ -1097,7 +1093,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <!-- ================================================================== -->
 
-<refentry id="trim.common.uri.paths">
+<refentry xml:id="trim.common.uri.paths">
 <refnamediv>
 <refname>trim.common.uri.paths</refname>
 <refpurpose>Trim common leading path components from a relative URI</refpurpose>
@@ -1107,7 +1103,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <para>This function trims common leading path components from a relative URI.</para>
 
-<programlisting><src:fragment id='trim.common.uri.paths.frag'>
+<programlisting><src:fragment xml:id='trim.common.uri.paths.frag'>
 <xsl:template name="trim.common.uri.paths">
   <xsl:param name="uriA" select="''"/>
   <xsl:param name="uriB" select="''"/>
@@ -1143,12 +1139,12 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <!-- ================================================================== -->
 
-<appendix id="stylesheet"><title>The Stylesheet</title>
+<appendix xml:id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>lib.xsl</filename> stylesheet is just a wrapper
 around these functions.</para>
 
-<src:fragment id="top" mundane-result-prefixes="xsl">
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
 
 <!-- ********************************************************************
      $Id$
