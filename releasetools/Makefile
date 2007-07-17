@@ -26,14 +26,6 @@ w2docbook.xsl:
 	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
 	$(XSLT) $(XSLTOPT) ../litprog/$@ $(MAKE_LITPROG) filename=$@ > $@
 
-cldocbook.xsl:
-	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
-	$(XSLT) $(XSLTOPT) ../litprog/html/$@ $(MAKE_LITPROG) filename=$@ > $@
-
-ldocbook.xsl:
-	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
-	$(XSLT) $(XSLTOPT) ../litprog/html/$@ $(MAKE_LITPROG) filename=$@ > $@
-
 clean:
 	$(RM) modified-markup.xsl
 	$(RM) docbook.rng
