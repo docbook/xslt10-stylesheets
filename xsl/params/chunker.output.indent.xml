@@ -13,7 +13,8 @@
 <refpurpose>Specification of indentation on generated pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.indent" select="'no'"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="chunker.output.indent"><xsl:param name="chunker.output.indent" select="'no'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

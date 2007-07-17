@@ -13,7 +13,8 @@
 <refpurpose>Omit-xml-declaration for generated pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.omit-xml-declaration" select="'no'"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="chunker.output.omit-xml-declaration"><xsl:param name="chunker.output.omit-xml-declaration" select="'no'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

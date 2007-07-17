@@ -13,7 +13,8 @@
 <refpurpose>List of elements to escape with CDATA sections</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.cdata-section-elements" select="''"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="chunker.output.cdata-section-elements"><xsl:param name="chunker.output.cdata-section-elements" select="''"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

@@ -13,7 +13,8 @@
 <refpurpose>Saxon character representation used in generated HTML pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="saxon.character.representation" select="'entity;decimal'"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="saxon.character.representation"><xsl:param name="saxon.character.representation" select="'entity;decimal'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

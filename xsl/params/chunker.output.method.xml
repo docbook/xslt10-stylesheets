@@ -15,7 +15,8 @@
 <refpurpose>Method used in generated pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.method" select="'html'"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="chunker.output.method"><xsl:param name="chunker.output.method" select="'html'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

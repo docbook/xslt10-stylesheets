@@ -13,7 +13,8 @@
 <refpurpose>Encoding used in generated pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.encoding" select="'ISO-8859-1'"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="chunker.output.encoding"><xsl:param name="chunker.output.encoding" select="'ISO-8858-1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
