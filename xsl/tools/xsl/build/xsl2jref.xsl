@@ -3,6 +3,7 @@
                 version='1.0'
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:lxslt="http://xml.apache.org/xslt"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="doc xsl lxslt">
 
 <xsl:include href="../../../html/param.xsl"/>
@@ -10,8 +11,6 @@
 
 <xsl:output
      method="xml"
-     doctype-public="-//Norman Walsh//DTD JRefEntry V1.1//EN"
-     doctype-system="http://docbook.sourceforge.net/release/jrefentry/1.1/jrefentry.dtd"
 />
 
 <xsl:preserve-space elements="xsl:variable"/>
@@ -52,12 +51,6 @@
         <xsl:with-param name="filename" select="$output-file"/>
         <xsl:with-param name="method" select="'xml'"/>
         <xsl:with-param name="encoding" select="'utf-8'"/>
-        <xsl:with-param
-            name="doctype-public"
-            >-//Norman Walsh//DTD JRefEntry V1.1//EN</xsl:with-param>
-        <xsl:with-param
-            name="doctype-system"
-            >http://docbook.sourceforge.net/release/jrefentry/1.1/jrefentry.dtd</xsl:with-param>
         <xsl:with-param name="content">
           <xsl:apply-templates/>
         </xsl:with-param>
@@ -93,6 +86,7 @@
 <xsl:template match="xsl:stylesheet">
   <xsl:choose>
     <xsl:when test="doc:reference">
+      <xsl:text>&#10;</xsl:text>
       <reference>
         <xsl:copy-of select="doc:reference/@*"/>
         <xsl:copy-of select="doc:reference/processing-instruction()"/>
