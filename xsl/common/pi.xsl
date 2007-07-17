@@ -4,6 +4,7 @@
   xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
   xmlns:date="http://exslt.org/dates-and-times"
   xmlns:exsl="http://exslt.org/common"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
   exclude-result-prefixes="doc date exsl"
   extension-element-prefixes="date exsl"
   version='1.0'>
@@ -18,13 +19,11 @@
 
      ******************************************************************** -->
 
-<doc:reference xmlns="">
-  <info>
+<doc:reference xmlns=""><info><title>Common Processing Instruction Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>Common Processing Instruction Reference</title>
   <partintro id="partintro">
     <title>Introduction</title>
     <para>This is generated reference documentation for all
@@ -42,7 +41,7 @@
 </doc:reference>
 
 <!-- ==================================================================== -->
-<doc:template name="dbchoice_choice" xmlns="">
+<doc:pi name="dbchoice_choice" xmlns="">
   <refpurpose>Generates a localized choice separator</refpurpose>
   <refdescription id="select.choice.separator-desc">
     <para>Use the <tag class="xmlpi">dbchoice choice</tag> PI to
@@ -78,7 +77,7 @@
       </varlistentry>
     </variablelist>
   </refparameter>
-</doc:template>
+</doc:pi>
 <xsl:template name="pi.dbchoice_choice">
   <xsl:param name="node" select="."/>
   <xsl:call-template name="pi-attribute">
@@ -106,8 +105,8 @@
             output</para>
         <note>
           <para>For details of the content of the format string,
-            see <ulink role="tcg" url="Datetime.html"
-              >Date and time</ulink>.</para>
+            see <link role="tcg" xlink:href="Datetime.html"
+              >Date and time</link>.</para>
         </note>
         </listitem>
       </varlistentry>
@@ -206,9 +205,9 @@
     <para><parameter>tex.math.delims</parameter></para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="TexMath.html"
-        >DBTeXMath</ulink></para>
+    <para><link role="tcg"
+        xlink:href="TexMath.html"
+        >DBTeXMath</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbtex_delims">
