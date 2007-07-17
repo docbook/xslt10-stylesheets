@@ -28,6 +28,19 @@ include "../docbook/docbookxi/docbookxi.rnc" {
       fragment
     }
 
+  db.refsect1 =
+    element refsect1 {
+      db.refsect1.attlist,
+      db.refsect1.info,
+      (
+       (
+        (db.all.blocks+ & fragment),
+        db.refsect1.sections?
+       )
+       | db.refsect1.sections
+      )
+    }
+
   db.programlisting =
     element programlisting {
       db.programlisting.attlist,
