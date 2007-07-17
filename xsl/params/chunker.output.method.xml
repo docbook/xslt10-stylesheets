@@ -16,7 +16,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.method"><xsl:param name="chunker.output.method" select="'html'"/></src:fragment>
+  <src:fragment xml:id="chunker.output.method.frag"><xsl:param name="chunker.output.method" select="'html'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

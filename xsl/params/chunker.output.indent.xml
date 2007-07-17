@@ -14,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.indent"><xsl:param name="chunker.output.indent" select="'no'"/></src:fragment>
+  <src:fragment xml:id="chunker.output.indent.frag"><xsl:param name="chunker.output.indent" select="'no'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

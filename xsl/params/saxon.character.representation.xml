@@ -14,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="saxon.character.representation"><xsl:param name="saxon.character.representation" select="'entity;decimal'"/></src:fragment>
+  <src:fragment xml:id="saxon.character.representation.frag"><xsl:param name="saxon.character.representation" select="'entity;decimal'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
