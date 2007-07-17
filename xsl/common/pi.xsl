@@ -19,20 +19,11 @@
      ******************************************************************** -->
 
 <doc:reference xmlns="">
-  <referenceinfo>
+  <info>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
-    <authorgroup>
-      <author>
-        <orgname>The DocBook Project Development Team</orgname>
-      </author>
-    </authorgroup>
-    <copyright>
-      <year>2007</year>
-      <holder>The DocBook Project</holder>
-    </copyright>
-  </referenceinfo>
+  </info>
   <title>Common Processing Instruction Reference</title>
   <partintro id="partintro">
     <title>Introduction</title>

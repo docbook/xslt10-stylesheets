@@ -14,26 +14,13 @@
 
      ******************************************************************** -->
 
-<doc:reference xmlns="">
-  <referenceinfo>
+<doc:reference xmlns=""><info><title>HTML Processing Instruction Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
-    <authorgroup>
-      <author>
-        <orgname>The DocBook Project Development Team</orgname>
-      </author>
-    </authorgroup>
-    <copyright>
-      <year>2007</year>
-      <holder>The DocBook Project</holder>
-    </copyright>
-  </referenceinfo>
-  <title>HTML Processing Instruction Reference</title>
-
-  <partintro id="partintro">
+  </info>
+  <partintro xml:id="partintro">
     <title>Introduction</title>
-
     <para>This is generated reference documentation for all
       user-specifiable processing instructions (PIs) in the DocBook
       XSL stylesheets for HTML output.
