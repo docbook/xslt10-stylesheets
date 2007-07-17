@@ -28,6 +28,14 @@ include "../docbook/docbookxi/docbookxi.rnc" {
       fragment
     }
 
+  db.programlisting =
+    element programlisting {
+      db.programlisting.attlist,
+      (db.verbatim.contentmodel
+       | fragment
+       | text)
+    }
+
   db._any =
     element * - (db:* | html:* | src:*) {
       (db._any.attribute | text | db._any | fragref)*
