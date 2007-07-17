@@ -14,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.media-type"><xsl:param name="chunker.output.media-type" select="''"/></src:fragment>
+  <src:fragment xml:id="chunker.output.media-type.frag"><xsl:param name="chunker.output.media-type" select="''"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

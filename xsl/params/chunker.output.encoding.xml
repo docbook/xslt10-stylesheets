@@ -14,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.encoding"><xsl:param name="chunker.output.encoding" select="'ISO-8858-1'"/></src:fragment>
+  <src:fragment xml:id="chunker.output.encoding.frag"><xsl:param name="chunker.output.encoding" select="'ISO-8858-1'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
