@@ -9,7 +9,8 @@ debug:
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
-	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@
+	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@ \
+	doc-baseuri="http://docbook.sourceforge.net/release/xsl/current/doc/"
 	$(RM) RELEASE-NOTES-TMP.xml
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
