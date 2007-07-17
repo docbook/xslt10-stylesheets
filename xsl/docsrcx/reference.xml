@@ -1,6 +1,4 @@
-<!-- * vim: set ft=docbk foldlevel=2: -->
-<set
-  xmlns="http://docbook.org/ns/docbook" version="5.0"
+<set xmlns="http://docbook.org/ns/docbook" version="5.0"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -68,70 +66,70 @@
     <part xml:id="html">
       <?dbhtml dir="html"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../html/param.xml" xpointer="xpointer(/book/info/title)" />
       <partintro xml:id="htmlintro">
-        <xi:include href="../html/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
+        <xi:include href="../html/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
       <xi:include href="../html/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="fo">
       <?dbhtml dir="fo"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../fo/param.xml" xpointer="xpointer(/book/info/title)" />
       <partintro xml:id="fointro">
-        <xi:include href="../fo/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
+        <xi:include href="../fo/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
       <xi:include href="../fo/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="manpages">
       <?dbhtml dir="manpages"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/info/title)" />
       <partintro xml:id="manintro">
-        <xi:include href="../manpages/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
+        <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
       <xi:include href="../manpages/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="roundtrip">
       <?dbhtml dir="roundtrip"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/info/title)" />
       <partintro xml:id="roundtripintro">
-        <xi:include href="../roundtrip/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
+        <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
       <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
-    <part xml:id="slides-html">
-      <?dbhtml dir="slides/html"?>
+    <part xml:id="slides"><title>Slides Parameter Reference</title>
+      <?dbhtml dir="slides"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
-      <partintro xml:id="slideshtmlintro">
-        <xi:include href="../slides/html/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
+      <partintro xml:id="slidesintro">
+        <para>This is reference documentation for all
+          user-configurable parameters in the DocBook XSL Slides
+          stylesheets (for generating HTML and PDF slide
+          presentations).</para>
+        <note>
+          <para>The Slides stylesheet for HTML output is a
+            customization layer of the DocBook XSL HTML
+            stylesheet; the Slides stylesheet for FO output is a
+            customization layer of the DocBook XSL FO stylesheet.
+            Therefore, in addition to the slides-specific
+            parameters listed in this section, you can also use a
+            number of <link xlink:href="../html">HTML stylesheet
+              parameters</link> and <link xlink:href="../fo">FO
+              stylesheet parameters</link> to control Slides
+            output.</para>
+        </note>
       </partintro>
       <xi:include href="../slides/html/param.xml" xpointer="xpointer(/book/reference)" />
-    </part>
-    <part xml:id="slides-fo">
-      <?dbhtml dir="slides/fo"?>
-      <?dbhtml filename="index.html"?>
-      <xi:include href="../slides/fo/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
-      <partintro xml:id="slidesfointro">
-        <xi:include href="../slides/fo/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
-      </partintro>
       <xi:include href="../slides/fo/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="website">
       <?dbhtml dir="website"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../website/param.xml" xpointer="xpointer(/book/bookinfo/title)" />
+      <xi:include href="../website/param.xml" xpointer="xpointer(/book/info/title)" />
       <partintro xml:id="websiteintro">
         <xi:include href="../website/param.xml"
-          xpointer="xpointer(/book/bookinfo/abstract/node())" />
+          xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
       <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
@@ -155,37 +153,13 @@
       </abstract>
     </info>
     <part xml:id="pi-html">
-      <xi:include href="../html/pi.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../html/pi.xml"
-        xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="pi-html-ref">
-        <title>Templates</title>
-        <xi:include
-          href="../html/pi.xml"
-          xpointer="xpointer(/reference/refentry)" />
-      </reference>
+      <xi:include href="../html/pi.xml" xpointer="xpointer(/reference/node())" />
     </part>
     <part xml:id="pi-fo">
-      <xi:include href="../fo/pi.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../fo/pi.xml"
-        xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="pi-fo-ref">
-        <title>Templates</title>
-        <xi:include
-          href="../fo/pi.xml"
-          xpointer="xpointer(/reference/refentry)" />
-      </reference>
+      <xi:include href="../fo/pi.xml" xpointer="xpointer(/reference/node())" />
     </part>
     <part xml:id="pi-common">
-      <xi:include href="../common/pi.xml" xpointer="xpointer(/reference/title)" />
-      <xi:include href="../common/pi.xml"
-        xpointer="xpointer(/reference/partintro)" />
-      <reference xml:id="pi-common-ref">
-        <title>Templates</title>
-        <xi:include
-          href="../common/pi.xml"
-          xpointer="xpointer(/reference/refentry)" />
-      </reference>
+      <xi:include href="../common/pi.xml" xpointer="xpointer(/reference/node())" />
     </part>
   </book>
   <book xml:id="developer"><title>DocBook XSL Stylesheets Developer Reference</title>
@@ -198,11 +172,11 @@
           the stylesheets.</para>
       </abstract>
     </info>
-    <reference xml:id="lib">
+    <part xml:id="lib">
       <?dbhtml dir="lib"?>
       <?dbhtml filename="index.html"?>
       <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/node())"/>
-    </reference>
+    </part>
     <part xml:id="common-part"><title>Common Template Reference</title>
       <?dbhtml dir="common"?>
       <?dbhtml filename="index.html"?>
@@ -223,7 +197,12 @@
         <xi:include href="../common/refentry.xml"/>
         <xi:include href="../common/utility.xml"/>
     </part>
-    <xi:include href="../fo/table.xml"/>
-    <xi:include href="../template/titlepage.xml"/>
+    <part xml:id="table-templates">
+      <xi:include href="../fo/table.xml" xpointer="xpointer(/reference/node())"/>
+    </part>
+    <part xml:id="template"> 
+      <xi:include href="../template/titlepage.xml" xpointer="xpointer(/reference/node())"/>
+    </part>
   </book>
 </set>
+<!-- * vim: set ft=docbk foldlevel=2: -->
