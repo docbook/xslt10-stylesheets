@@ -18,11 +18,11 @@
 <!-- ==================================================================== -->
 <doc:reference xmlns="" xml:id="refentry">
   <info>
+    <title>Common » Refentry Metadata Template Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>Common » Refentry Metadata Template Reference</title>
   <!-- * yes, partintro is a valid child of a reference... -->
   <partintro xml:id="partintro">
     <title>Introduction</title>
@@ -45,27 +45,27 @@
     etc., is sometimes viewed in isolation from its greater "context". For
     example, users view Unix man pages as, well, individual pages, not as
     part of a "book" of some kind. Therefore, it is sometimes necessary to
-    embed "context" information in output for each <sgmltag>refentry</sgmltag>.</para>
+    embed "context" information in output for each <tag>refentry</tag>.</para>
 
     <para>However, one problem is that different users mark up that
     context information in different ways. Often (usually), the
     context information is not actually part of the content of the
-    <sgmltag>refentry</sgmltag> itself, but instead part of the content of a
-    parent or ancestor element to the the <sgmltag>refentry</sgmltag>. And
+    <tag>refentry</tag> itself, but instead part of the content of a
+    parent or ancestor element to the the <tag>refentry</tag>. And
     even then, DocBook provides a variety of elements that users might
     potentially use to mark up the same kind of information. One user
-    might use the <sgmltag>productnumber</sgmltag> element to mark up version
+    might use the <tag>productnumber</tag> element to mark up version
     information about a particular product, while another might use
-    the <sgmltag>releaseinfo</sgmltag> element.</para>
+    the <tag>releaseinfo</tag> element.</para>
 
     <para>Taking all that in mind, the
     <function>get.refentry.metadata</function> template tries to gather
-    metadata from a <sgmltag>refentry</sgmltag> element and its ancestor
+    metadata from a <tag>refentry</tag> element and its ancestor
     elements in an intelligent and user-configurable way. The basic
     mechanism used in the XPath expressions throughout this stylesheet
     is to select the relevant metadata from the *info element that is
-    closest to the actual <sgmltag>refentry</sgmltag>&#160;– either on the
-    <sgmltag>refentry</sgmltag> itself, or on its nearest ancestor.</para>
+    closest to the actual <tag>refentry</tag>&#160;– either on the
+    <tag>refentry</tag> itself, or on its nearest ancestor.</para>
 
     <note>
       <para>The <function>get.refentry.metadata</function>
@@ -80,13 +80,13 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A set of info nodes (from a <sgmltag>refentry</sgmltag>
+          <para>A set of info nodes (from a <tag>refentry</tag>
           element and its ancestors)</para>
         </listitem>
       </varlistentry>
@@ -183,23 +183,23 @@
   <refdescription id="get.refentry.title-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     title of the man page (e.g., <literal>MAN</literal>). This differs
-    from <sgmltag>refname</sgmltag> in that, if the <sgmltag>refentry</sgmltag> has a
-    <sgmltag>refentrytitle</sgmltag>, we use that as the <sgmltag>title</sgmltag>;
-    otherwise, we just use first <sgmltag>refname</sgmltag> in the first
-    <sgmltag>refnamediv</sgmltag> in the source.</para>
+    from <tag>refname</tag> in that, if the <tag>refentry</tag> has a
+    <tag>refentrytitle</tag>, we use that as the <tag>title</tag>;
+    otherwise, we just use first <tag>refname</tag> in the first
+    <tag>refnamediv</tag> in the source.</para>
   </refdescription>
   <refparameter id="get.refentry.title-params">
     <variablelist>
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refparameter>
   <refreturn id="get.refentry.title-returns">
-  <para>Returns a <sgmltag>title</sgmltag> node.</para></refreturn>
+  <para>Returns a <tag>title</tag> node.</para></refreturn>
 </doc:template>
 <xsl:template name="get.refentry.title">
   <xsl:param name="refname"/>
@@ -221,8 +221,8 @@
   <refdescription id="get.refentry.section-desc">
     <para>The <literal>man(7)</literal> man page describes this as "the
     section number the man page should be placed in (e.g.,
-    <literal>7</literal>)". If we do not find a <sgmltag>manvolnum</sgmltag>
-    specified in the source, and we find that the <sgmltag>refentry</sgmltag> is
+    <literal>7</literal>)". If we do not find a <tag>manvolnum</tag>
+    specified in the source, and we find that the <tag>refentry</tag> is
     for a function, we use the section number <literal>3</literal>
     ["Library calls (functions within program libraries)"]; otherwise, we
     default to using <literal>1</literal> ["Executable programs or shell
@@ -233,7 +233,7 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -312,13 +312,13 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A set of info nodes (from a <sgmltag>refentry</sgmltag>
+          <para>A set of info nodes (from a <tag>refentry</tag>
           element and its ancestors)</para>
         </listitem>
       </varlistentry>
@@ -331,7 +331,7 @@
     </variablelist>
   </refparameter>
   <refreturn id="get.refentry.date-returns">
-    <para>Returns a <sgmltag>date</sgmltag> node.</para>
+    <para>Returns a <tag>date</tag> node.</para>
   </refreturn>
 </doc:template>
 <xsl:template name="get.refentry.date">
@@ -484,13 +484,13 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A set of info nodes (from a <sgmltag>refentry</sgmltag>
+          <para>A set of info nodes (from a <tag>refentry</tag>
           element and its ancestors)</para>
         </listitem>
       </varlistentry>
@@ -504,7 +504,7 @@
     </variablelist>
   </refparameter>
   <refreturn id="get.refentry.source-returns">
-    <para>Returns a <sgmltag>source</sgmltag> node.</para>
+    <para>Returns a <tag>source</tag> node.</para>
   </refreturn>
 </doc:template>
 <xsl:template name="get.refentry.source">
@@ -600,13 +600,13 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A set of info nodes (from a <sgmltag>refentry</sgmltag>
+          <para>A set of info nodes (from a <tag>refentry</tag>
           element and its ancestors)</para>
         </listitem>
       </varlistentry>
@@ -784,13 +784,13 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A set of info nodes (from a <sgmltag>refentry</sgmltag>
+          <para>A set of info nodes (from a <tag>refentry</tag>
           element and its ancestors)</para>
         </listitem>
       </varlistentry>
@@ -970,13 +970,13 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>info</term>
         <listitem>
-          <para>A set of info nodes (from a <sgmltag>refentry</sgmltag>
+          <para>A set of info nodes (from a <tag>refentry</tag>
           element and its ancestors)</para>
         </listitem>
       </varlistentry>
@@ -990,7 +990,7 @@
     </variablelist>
   </refparameter>
   <refreturn id="get.refentry.manual-returns">
-    <para>Returns a <sgmltag>manual</sgmltag> node.</para>
+    <para>Returns a <tag>manual</tag> node.</para>
   </refreturn>
 </doc:template>
 <xsl:template name="get.refentry.manual">
@@ -1129,25 +1129,25 @@
   <refpurpose>Gets user preferences for refentry metadata gathering</refpurpose>
   <refdescription id="get.refentry.metadata.prefs-desc">
     <para>The DocBook XSL stylesheets include several user-configurable
-    global stylesheet parameters for controlling <sgmltag>refentry</sgmltag>
+    global stylesheet parameters for controlling <tag>refentry</tag>
     metadata gathering. Those parameters are not read directly by the
-    other <sgmltag>refentry</sgmltag> metadata-gathering
+    other <tag>refentry</tag> metadata-gathering
     templates. Instead, they are read only by the
     <function>get.refentry.metadata.prefs</function> template,
     which assembles them into a structure that is then passed to
-    the other <sgmltag>refentry</sgmltag> metadata-gathering
+    the other <tag>refentry</tag> metadata-gathering
     templates.</para>
 
     <para>So the, <function>get.refentry.metadata.prefs</function>
     template is the only interface to collecting stylesheet parameters for
-    controlling <sgmltag>refentry</sgmltag> metadata gathering.</para>
+    controlling <tag>refentry</tag> metadata gathering.</para>
   </refdescription>
   <refparameter id="get.refentry.metadata.prefs-params">
     <para>There are no local parameters for this template; however, it
     does rely on a number of global parameters.</para>
   </refparameter>
   <refreturn id="get.refentry.metadata.prefs-returns">
-    <para>Returns a <sgmltag>manual</sgmltag> node.</para>
+    <para>Returns a <tag>manual</tag> node.</para>
   </refreturn>
 </doc:template>
 <xsl:template name="get.refentry.metadata.prefs">
@@ -1212,7 +1212,7 @@
       <varlistentry>
         <term>refname</term>
         <listitem>
-          <para>The first <sgmltag>refname</sgmltag> in the refentry</para>
+          <para>The first <tag>refname</tag> in the refentry</para>
         </listitem>
       </varlistentry>
       <varlistentry>

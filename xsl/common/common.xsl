@@ -18,11 +18,11 @@
 
 <doc:reference xmlns="" xml:id="base">
   <info>
+    <title>Common » Base Template Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>Common » Base Template Reference</title>
   <!-- * yes, partintro is a valid child of a reference... -->
   <partintro xml:id="partintro">
     <title>Introduction</title>
@@ -169,7 +169,7 @@ manvolnum
 
 <refdescription id="section.level-desc">
 <para>This template calculates the hierarchical level of a section.
-The element <sgmltag>sect1</sgmltag> is at level 1, <sgmltag>sect2</sgmltag> is
+The element <tag>sect1</tag> is at level 1, <tag>sect2</tag> is
 at level 2, etc.</para>
 
 <para>Recursive sections are calculated down to the fifth level.</para>
@@ -1871,13 +1871,13 @@ unchanged.</para>
     (PI) of the form &lt;?dbchoice&#xa0;choice="foo"?> :
     <itemizedlist>
       <listitem>
-        <simpara>if the value of the <sgmltag>choice</sgmltag>
+        <simpara>if the value of the <tag>choice</tag>
         pseudo-attribute is "and" or "or", returns a localized "and"
         or "or"</simpara>
       </listitem>
       <listitem>
         <simpara>otherwise returns the literal value of the
-        <sgmltag>choice</sgmltag> pseudo-attribute</simpara>
+        <tag>choice</tag> pseudo-attribute</simpara>
       </listitem>
     </itemizedlist>
     The latter is provided only as a temporary workaround because the
@@ -1888,7 +1888,7 @@ unchanged.</para>
     <literallayout>&lt;?dbchoice choice="ou"?></literallayout>
     </para>
     <warning>
-      <para>The <sgmltag>dbchoice</sgmltag> processing instruction is
+      <para>The <tag>dbchoice</tag> processing instruction is
       an unfortunate hack; support for it may disappear in the future
       (particularly if and when a more appropriate means for marking
       up "choice" lists becomes available in DocBook).</para>

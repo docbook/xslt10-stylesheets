@@ -124,17 +124,17 @@
 <doc:template name="entry.colnum" xmlns="">
 <refpurpose>Determine the column number in which a given entry occurs</refpurpose>
 <refdescription id="entry.colnum-desc">
-<para>If an <sgmltag>entry</sgmltag> has a
-<sgmltag class="attribute">colname</sgmltag> or
-<sgmltag class="attribute">namest</sgmltag> attribute, this template
+<para>If an <tag>entry</tag> has a
+<tag class="attribute">colname</tag> or
+<tag class="attribute">namest</tag> attribute, this template
 will determine the number of the column in which the entry should occur.
-For other <sgmltag>entry</sgmltag>s, nothing is returned.</para>
+For other <tag>entry</tag>s, nothing is returned.</para>
 </refdescription>
 <refparameter id="entry.colnum-params">
 <variablelist>
 <varlistentry><term>entry</term>
 <listitem>
-<para>The <sgmltag>entry</sgmltag>-element which is to be tested.</para>
+<para>The <tag>entry</tag>-element which is to be tested.</para>
 </listitem>
 </varlistentry>
 </variablelist>
