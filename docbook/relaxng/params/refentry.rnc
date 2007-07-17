@@ -13,15 +13,34 @@ include "../docbook/docbookxi/docbookxi.rnc" {
          fragment+
       }
 
+  db.appendix =
+    element appendix {
+      db.appendix.attlist,
+      db.appendix.info,
+      db.para+,
+      fragment
+    }
+
    db._any =
       element * - (db:* | html:* | src:*) {
-         (db._any.attribute | text | db._any)*
+         (db._any.attribute | text | db._any | fragref)*
       }
 }
 
+fragref.attlist =
+attribute linkend { text }
+
+fragref = element src:fragref {
+  fragref.attlist
+}
+
+fragment.attlist =
+   attribute xml:id { xsd:ID }
+   & attribute mundane-result-prefixes { text }?
+
 fragment = element src:fragment {
-   attribute xml:id { xsd:ID },
-   db._any*
+  fragment.attlist,
+  db._any*
 }
 
 ## The following patterns are here just to enable autocompletition in some editors
@@ -47,4 +66,3 @@ db.refmiscinfo |=
      attribute otherclass { "list-type" },
      ( "open" | "closed" )
   }
-     
