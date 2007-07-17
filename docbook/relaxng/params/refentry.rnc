@@ -5,13 +5,20 @@ namespace src = "http://nwalsh.com/xmlns/litprog/fragment"
 namespace html = "http://www.w3.org/1999/xhtml"
 default namespace = "http://docbook.org/ns/docbook"
 
+## This grammar models valid instances of code files (such as the
+## params/foo.xml and foo.xweb files in the source for the docbook-xsl
+## distribution) containing embedded documentation that is designed
+## to be processed using the DocBook Project "litprog" system:
+##
+##  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/litprog
+
 include "../docbook/docbookxi/docbookxi.rnc" {
-   db.refsynopsisdiv =
-      element refsynopsisdiv {
-         db.refsynopsisdiv.attlist,
-         db.refsynopsisdiv.info,
-         fragment+
-      }
+  db.refsynopsisdiv =
+    element refsynopsisdiv {
+      db.refsynopsisdiv.attlist,
+      db.refsynopsisdiv.info,
+      fragment+
+    }
 
   db.appendix =
     element appendix {
@@ -21,48 +28,51 @@ include "../docbook/docbookxi/docbookxi.rnc" {
       fragment
     }
 
-   db._any =
-      element * - (db:* | html:* | src:*) {
-         (db._any.attribute | text | db._any | fragref)*
-      }
+  db._any =
+    element * - (db:* | html:* | src:*) {
+      (db._any.attribute | text | db._any | fragref)*
+    }
 }
 
 fragref.attlist =
-attribute linkend { text }
+  attribute linkend { text }
 
-fragref = element src:fragref {
-  fragref.attlist
-}
+fragref =
+  element src:fragref {
+    fragref.attlist
+  }
 
 fragment.attlist =
-   attribute xml:id { xsd:ID }
-   & attribute mundane-result-prefixes { text }?
+  attribute xml:id { xsd:ID }
+  & attribute mundane-result-prefixes { text }?
 
-fragment = element src:fragment {
-  fragment.attlist,
-  db._any*
-}
+fragment =
+  element src:fragment {
+    fragment.attlist,
+    db._any*
+  }
 
-## The following patterns are here just to enable autocompletition in some editors
+## The following patterns are here just to enable autocompletion
+## in some editors
 
 db.refmiscinfo |=
   element refmiscinfo {
-     attribute class { "other" },
-     attribute otherclass { "datatype" },
-     ("attribute set" | "boolean" | "string" | "filename" | "list" | "color" | "integer" 
-      | "uri" | "length" | "rtf" | "table" | "number" | "float" )
+    attribute class { "other" },
+    attribute otherclass { "datatype" },
+    ("attribute set" | "boolean" | "string" | "filename" | "list" | "color" | "integer" 
+     | "uri" | "length" | "rtf" | "table" | "number" | "float" )
   }
 
 db.refmiscinfo |=
   element refmiscinfo {
-     attribute class { "other" },
-     attribute otherclass { "value" },
-     db._text
+    attribute class { "other" },
+    attribute otherclass { "value" },
+    db._text
   }
 
 db.refmiscinfo |=
   element refmiscinfo {
-     attribute class { "other" },
-     attribute otherclass { "list-type" },
-     ( "open" | "closed" )
+    attribute class { "other" },
+    attribute otherclass { "list-type" },
+    ( "open" | "closed" )
   }
