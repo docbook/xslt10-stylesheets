@@ -13,7 +13,8 @@
 <refpurpose>Standalone declaration for generated pages</refpurpose>
 </refnamediv>
 
-<refsynopsisdiv>&lt;xsl:param name="chunker.output.standalone" select="'no'"/&gt;
+<refsynopsisdiv>
+  <src:fragment xml:id="chunker.output.standalone.frag"><xsl:param name="chunker.output.standalone" select="'no'"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
