@@ -30,11 +30,11 @@
   <?dbhtml dir="template"?>
   <?dbhtml filename="index.html"?>
   <info>
+    <title>Titlepage Template Stylesheet Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>Titlepage Template Stylesheet Reference</title>
   <partintro xml:id="intro_partintro">
     <title>Introduction</title>
     <para>This is technical reference documentation for the
@@ -131,8 +131,8 @@ template that should be called to generate the title page.
 <varlistentry><term>element</term>
 <listitem><para>The name of the source document element for which
 these templates apply. In other words, to make a title page for the
-<sgmltag>article</sgmltag> element, set the
-<sgmltag class="attribute">element</sgmltag> attribute to
+<tag>article</tag> element, set the
+<tag class="attribute">element</tag> attribute to
 <quote><literal>article</literal></quote>. This attribute is required.
 </para></listitem>
 </varlistentry>
@@ -142,8 +142,8 @@ This attribute identifies that element.
 </para></listitem>
 </varlistentry>
 <varlistentry><term>class</term>
-<listitem><para>If the <sgmltag class="attribute">class</sgmltag> attribute
-is set, a <sgmltag class="attribute">class</sgmltag> attribute with this
+<listitem><para>If the <tag class="attribute">class</tag> attribute
+is set, a <tag class="attribute">class</tag> attribute with this
 value will be added to the wrapper element that surrounds the entire
 title page.
 </para></listitem>
@@ -478,7 +478,7 @@ for the recto and verso sides of the title page.</para>
 <varlistentry><term>side</term>
 <listitem><para>Identifies the side of the page to which this title
 page content applies. The
-<sgmltag class="attribute">side</sgmltag> attribute is required and
+<tag class="attribute">side</tag> attribute is required and
 must be set to either 
 <quote><literal>recto</literal></quote> or
 <quote><literal>verso</literal></quote>. In addition, you must specify
@@ -489,10 +489,10 @@ within each <literal>t:titlepage</literal>.</para>
 <varlistentry><term>order</term>
 <listitem><para>Indicates how the order of the elements presented on
 the title page is determined. If the
-<sgmltag class="attribute">order</sgmltag> is
+<tag class="attribute">order</tag> is
 <quote><literal>document</literal></quote>, the elements are presented
 in document order. Otherwise (if the
-<sgmltag class="attribute">order</sgmltag> is
+<tag class="attribute">order</tag> is
 <quote><literal>stylesheet</literal></quote>), the elements are presented
 in the order that they appear in the template (and consequently in
 the stylesheet).</para>
@@ -507,7 +507,7 @@ the elements in the source document that should appear on the title page.
 </para>
 
 <para>Each element may have a single attribute:
-<sgmltag class="attribute">predicate</sgmltag>. The value of this
+<tag class="attribute">predicate</tag>. The value of this
 attribute is used as a predicate for the expression that matches
 the element on which it occurs.</para>
 
