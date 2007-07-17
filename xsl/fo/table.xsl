@@ -25,11 +25,11 @@
 <doc:reference xmlns="" xml:id="table-templates">
   <?dbhtml dir="fo"?>
   <info>
+    <title>Formatting Object Table Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>Formatting Object Table Reference</title>
   <partintro xml:id="partintro">
     <title>Introduction</title>
     <para>This is technical reference documentation for the FO
