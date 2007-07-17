@@ -1,4 +1,5 @@
 .lib.stripped
 .lib.dbkns
+.lib.xmlid
 lib.xml
 lib.xsl
