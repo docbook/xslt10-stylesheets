@@ -21,7 +21,7 @@
   </xsl:template>
 
   <xsl:template match="src:fragment" priority="2">
-    <programlisting xml:id="{@*[local-name() = 'id']}">
+    <programlisting id="{@*[local-name() = 'id']}">
       <xsl:apply-templates mode="escaped"/>
     </programlisting>
   </xsl:template>
