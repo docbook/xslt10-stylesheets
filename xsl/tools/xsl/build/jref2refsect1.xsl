@@ -30,6 +30,12 @@
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="@id">
+  <xsl:attribute name="xml:id">
+    <xsl:value-of select="."/>
+  </xsl:attribute>
+</xsl:template>
+
 <xsl:template match="refdescription">
   <refsect1>
     <title></title>
