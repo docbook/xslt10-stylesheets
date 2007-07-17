@@ -2,16 +2,21 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<bookinfo>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+<info>
 <title>HTML Parameter Reference</title>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
 <author>
-  <surname>Walsh</surname>
-  <firstname>Norman</firstname>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
 </author>
 <copyright>
   <year>1999</year>
@@ -30,17 +35,15 @@ $Id$
   parameters in the DocBook XSL HTML stylesheets (for generating
   HTML output).</para>
 </abstract>
-</bookinfo>
-
-<reference id="admons"><title>Admonitions</title>
+</info>
+<reference xml:id="admons"><title>Admonitions</title>
 &admon.graphics.extension;
 &admon.graphics.path;
 &admon.graphics;
 &admon.textlabel;
 &admon.style;
 </reference>
-
-<reference id="callouts"><title>Callouts</title>
+<reference xml:id="callouts"><title>Callouts</title>
 &callout.defaultcolumn;
 &callout.graphics.extension;
 &callout.graphics.number.limit;
@@ -52,15 +55,13 @@ $Id$
 &callout.unicode;
 &callouts.extension;
 </reference>
-
-<reference id="ebnf"><title>EBNF</title>
+<reference xml:id="ebnf"><title>EBNF</title>
 &ebnf.table.bgcolor;
 &ebnf.table.border;
 &ebnf.assignment;
 &ebnf.statement.terminator;
 </reference>
-
-<reference id="toc_index"><title>ToC/LoT/Index Generation</title>
+<reference xml:id="toc_index"><title>ToC/LoT/Index Generation</title>
 &annotate.toc;
 &autotoc.label.separator;
 &autotoc.label.in.hyperlink;
@@ -83,8 +84,7 @@ $Id$
 &index.number.separator;
 &index.range.separator;
 </reference>
-
-<reference id="dbk_ext"><title>Stylesheet Extensions</title>
+<reference xml:id="dbk_ext"><title>Stylesheet Extensions</title>
 &linenumbering.everyNth;
 &linenumbering.extension;
 &linenumbering.separator;
@@ -96,8 +96,7 @@ $Id$
 &graphicsize.use.img.src.path;
 &use.extensions;
 </reference>
-
-<reference id="labels"><title>Automatic labelling</title>
+<reference xml:id="labels"><title>Automatic labelling</title>
 &chapter.autolabel;
 &appendix.autolabel;
 &part.autolabel;
@@ -110,13 +109,11 @@ $Id$
 &label.from.part;
 &component.label.includes.part.label;
 </reference>
-
 <!--
 <reference><title></title>
 </reference>
 -->
-
-<reference id="html"><title>HTML</title>
+<reference xml:id="html"><title>HTML</title>
 &html.base;
 &html.stylesheet.type;
 &html.stylesheet;
@@ -136,8 +133,7 @@ $Id$
 &generate.id.attributes;
 &generate.meta.abstract;
 </reference>
-
-<reference id="xslt"><title>XSLT Processing</title>
+<reference xml:id="xslt"><title>XSLT Processing</title>
 &rootid;
 &suppress.navigation;
 &suppress.header.navigation;
@@ -146,8 +142,7 @@ $Id$
 &footer.rule;
 &id.warnings;
 </reference>
-
-<reference id="meta"><title>Meta/*Info and Titlepages</title>
+<reference xml:id="meta"><title>Meta/*Info and Titlepages</title>
 &inherit.keywords;
 &make.single.year.ranges;
 &make.year.ranges;
@@ -162,8 +157,7 @@ $Id$
 &html.head.legalnotice.link.types;
 &html.head.legalnotice.link.multiple;
 </reference>
-
-<reference id="refentry"><title>Reference Pages</title>
+<reference xml:id="refentry"><title>Reference Pages</title>
 &funcsynopsis.decoration;
 &funcsynopsis.style;
 &funcsynopsis.tabular.threshold;
@@ -175,8 +169,7 @@ $Id$
 &refentry.separator;
 &refclass.suppress;
 </reference>
-
-<reference id="tables"><title>Tables</title>
+<reference xml:id="tables"><title>Tables</title>
 &default.table.width;
 &nominal.table.width;
 &table.borders.with.css;
@@ -190,15 +183,13 @@ $Id$
 &html.cellspacing;
 &html.cellpadding;
 </reference>
-
-<reference id="qa"><title>QAndASet</title>
+<reference xml:id="qa"><title>QAndASet</title>
 &qanda.defaultlabel;
 &qanda.inherit.numeration;
 &qanda.in.toc;
 &qanda.nested.in.toc;
 </reference>
-
-<reference id="links"><title>Linking</title>
+<reference xml:id="links"><title>Linking</title>
 &target.database.document;
 &targets.filename;
 &olink.base.uri;
@@ -219,8 +210,7 @@ $Id$
 &olink.sysid;
 &olink.resolver;
 </reference>
-
-<reference id="xrefs"><title>Cross References</title>
+<reference xml:id="xrefs"><title>Cross References</title>
 &collect.xref.targets;
 &insert.xref.page.number;
 &use.role.as.xrefstyle;
@@ -229,30 +219,26 @@ $Id$
 &xref.label-title.separator;
 &xref.title-page.separator;
 </reference>
-
-<reference id="lists"><title>Lists</title>
+<reference xml:id="lists"><title>Lists</title>
 &segmentedlist.as.table;
 &variablelist.as.table;
 &variablelist.term.separator;
 &variablelist.term.break.after;
 </reference>
-
-<reference id="biblio"><title>Bibliography</title>
+<reference xml:id="biblio"><title>Bibliography</title>
 &bibliography.style;
 &biblioentry.item.separator;
 &bibliography.collection;
 &bibliography.numbered;
 </reference>
-
-<reference id="glossary"><title>Glossary</title>
+<reference xml:id="glossary"><title>Glossary</title>
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
 &glossary.sort;
 &glossentry.show.acronym;
 </reference>
-
-<reference id="misc"><title>Miscellaneous</title>
+<reference xml:id="misc"><title>Miscellaneous</title>
 &formal.procedures;
 &formal.title.placement;
 &runinhead.default.title.end.punct;
@@ -279,16 +265,14 @@ $Id$
 &highlight.default.language;
 &email.delimiters.enabled;
 </reference>
-
-<reference id="annos"><title>Annotations</title>
+<reference xml:id="annos"><title>Annotations</title>
 &annotation.support;
 &annotation.js;
 &annotation.css;
 &annotation.graphic.open;
 &annotation.graphic.close;
 </reference>
-
-<reference id="graphics"><title>Graphics</title>
+<reference xml:id="graphics"><title>Graphics</title>
 &img.src.path;
 &keep.relative.image.uris;
 &graphic.default.extension;
@@ -301,8 +285,7 @@ $Id$
 &use.role.for.mediaobject;
 &ignore.image.scaling;
 </reference>
-
-<reference id="chunking"><title>Chunking</title>
+<reference xml:id="chunking"><title>Chunking</title>
 &chunker.output.cdata-section-elements;
 &chunker.output.doctype-public;
 &chunker.output.doctype-system;
@@ -334,13 +317,10 @@ $Id$
 &navig.graphics.path;
 &navig.showtitles;
 </reference>
-
-<reference id="profiling"><title>Profiling</title>
-<partintro id="partintro">
-<para>Following parameters can be used for attribute value based
-profiling of your document. For more info about profiling look at
-<ulink
-url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html</ulink>.</para>
+<reference xml:id="profiling"><title>Profiling</title>
+<partintro xml:id="partintro">
+<para>The following parameters can be used for attribute-based
+profiling of your document. FIXME: Add link to Bob’s book.</para>
 </partintro>
 &profile.arch;
 &profile.audience;
@@ -360,8 +340,7 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &profile.value;
 &profile.separator;
 </reference>
-
-<reference id="htmlhelp"><title>HTML Help</title>
+<reference xml:id="htmlhelp"><title>HTML Help</title>
 &htmlhelp.encoding;
 &htmlhelp.autolabel;
 &htmlhelp.chm;
@@ -412,27 +391,24 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &htmlhelp.use.hhk;
 &htmlhelp.only;
 </reference>
-
-<reference id="eclipse_help"><title>Eclipse Help Platform</title>
+<reference xml:id="eclipse_help"><title>Eclipse Help Platform</title>
 &eclipse.autolabel;
 &eclipse.plugin.name;
 &eclipse.plugin.id;
 &eclipse.plugin.provider;
 </reference>
-
-<reference id="l10n"><title>Localization</title>
+<reference xml:id="l10n"><title>Localization</title>
 &l10n.gentext.language;
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
 &l10n.lang.value.rfc.compliant;
 </reference>
-
-<appendix id="stylesheet"><title>The Stylesheet</title>
+<appendix xml:id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
 
-<src:fragment id="top" mundane-result-prefixes="xsl">
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
 
 <!-- This file is generated from param.xweb -->
 
@@ -754,5 +730,4 @@ around all these parameters.</para>
 </src:fragment>
 
 </appendix>
-
 </book>

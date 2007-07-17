@@ -2,16 +2,21 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<bookinfo>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+<info>
 <title>FO Parameter Reference</title>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
 <author>
-  <surname>Walsh</surname>
-  <firstname>Norman</firstname>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
 </author>
 <copyright>
   <year>1999</year>
@@ -30,9 +35,8 @@ $Id$
   parameters in the DocBook XSL FO stylesheets (for generating
   XSL-FO output destined for final print/PDF output).</para>
 </abstract>
-</bookinfo>
-
-<reference id="admons"><title>Admonitions</title>
+</info>
+<reference xml:id="admons"><title>Admonitions</title>
 &admon.graphics;
 &admon.graphics.extension;
 &admon.graphics.path;
@@ -42,8 +46,7 @@ $Id$
 &graphical.admonition.properties;
 &nongraphical.admonition.properties;
 </reference>
-
-<reference id="callouts"><title>Callouts</title>
+<reference xml:id="callouts"><title>Callouts</title>
 &callout.defaultcolumn;
 &callout.graphics;
 &callout.graphics.extension;
@@ -56,8 +59,7 @@ $Id$
 &callout.unicode.start.character;
 &callouts.extension;
 </reference>
-
-<reference id="toc_index"><title>ToC/LoT/Index Generation</title>
+<reference xml:id="toc_index"><title>ToC/LoT/Index Generation</title>
 &autotoc.label.separator;
 &process.empty.source.toc;
 &process.source.toc;
@@ -91,8 +93,7 @@ generate.section.toc.level;
 -->
 
 </reference>
-
-<reference id="fo_ext"><title>Processor Extensions</title>
+<reference xml:id="fo_ext"><title>Processor Extensions</title>
 &arbortext.extensions;
 &axf.extensions;
 &fop.extensions;
@@ -102,8 +103,7 @@ generate.section.toc.level;
 &tex.math.delims;
 &xep.extensions;
 </reference>
-
-<reference id="dbk_ext"><title>Stylesheet Extensions</title>
+<reference xml:id="dbk_ext"><title>Stylesheet Extensions</title>
 &linenumbering.everyNth;
 &linenumbering.extension;
 &linenumbering.separator;
@@ -113,8 +113,7 @@ generate.section.toc.level;
 &textdata.default.encoding;
 &use.extensions;
 </reference>
-
-<reference id="labels"><title>Automatic labelling</title>
+<reference xml:id="labels"><title>Automatic labelling</title>
 &appendix.autolabel;
 &chapter.autolabel;
 &part.autolabel;
@@ -126,18 +125,15 @@ generate.section.toc.level;
 &label.from.part;
 &component.label.includes.part.label;
 </reference>
-
-<reference id="xslt"><title>XSLT Processing</title>
+<reference xml:id="xslt"><title>XSLT Processing</title>
 &rootid;
 </reference>
-
-<reference id="meta"><title>Meta/*Info</title>
+<reference xml:id="meta"><title>Meta/*Info</title>
 &make.single.year.ranges;
 &make.year.ranges;
 &author.othername.in.middle;
 </reference>
-
-<reference id="refentry"><title>Reference Pages</title>
+<reference xml:id="refentry"><title>Reference Pages</title>
 &funcsynopsis.decoration;
 &funcsynopsis.style;
 &function.parens;
@@ -148,8 +144,7 @@ generate.section.toc.level;
 &refentry.xref.manvolnum;
 &refclass.suppress;
 </reference>
-
-<reference id="tables"><title>Tables</title>
+<reference xml:id="tables"><title>Tables</title>
 &default.table.width;
 &nominal.table.width;
 &default.table.frame;
@@ -162,8 +157,7 @@ generate.section.toc.level;
 &table.cell.border.color;
 &table.table.properties;
 </reference>
-
-<reference id="links"><title>Linking</title>
+<reference xml:id="links"><title>Linking</title>
 &current.docid;
 &collect.xref.targets;
 &insert.olink.page.number;
@@ -178,8 +172,7 @@ generate.section.toc.level;
 &targets.filename;
 &use.local.olink.style;
 </reference>
-
-<reference id="xrefs"><title>Cross References</title>
+<reference xml:id="xrefs"><title>Cross References</title>
 &insert.xref.page.number;
 &xref.properties;
 &xref.label-title.separator;
@@ -187,8 +180,7 @@ generate.section.toc.level;
 &xref.title-page.separator;
 &insert.link.page.number;
 </reference>
-
-<reference id="lists"><title>Lists</title>
+<reference xml:id="lists"><title>Lists</title>
 &compact.list.item.spacing;
 &itemizedlist.properties;
 &itemizedlist.label.properties;
@@ -203,24 +195,21 @@ generate.section.toc.level;
 &variablelist.term.separator;
 &variablelist.term.break.after;
 </reference>
-
-<reference id="qa"><title>QAndASet</title>
+<reference xml:id="qa"><title>QAndASet</title>
 &qandadiv.autolabel;
 &qanda.inherit.numeration;
 &qanda.defaultlabel;
 &qanda.in.toc;
 &qanda.nested.in.toc;
 </reference>
-
-<reference id="biblio"><title>Bibliography</title>
+<reference xml:id="biblio"><title>Bibliography</title>
 &bibliography.style;
 &biblioentry.item.separator;
 &bibliography.collection;
 &bibliography.numbered;
 &biblioentry.properties;
 </reference>
-
-<reference id="glossary"><title>Glossary</title>
+<reference xml:id="glossary"><title>Glossary</title>
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
@@ -231,8 +220,7 @@ generate.section.toc.level;
 &glossentry.show.acronym;
 &glossary.sort;
 </reference>
-
-<reference id="misc"><title>Miscellaneous</title>
+<reference xml:id="misc"><title>Miscellaneous</title>
 &formal.procedures;
 &formal.title.placement;
 &runinhead.default.title.end.punct;
@@ -272,8 +260,7 @@ generate.section.toc.level;
 &email.delimiters.enabled;
 &section.container.element;
 </reference>
-
-<reference id="graphics"><title>Graphics</title>
+<reference xml:id="graphics"><title>Graphics</title>
 &graphic.default.extension;
 &default.image.width;
 &preferred.mediaobject.role;
@@ -282,17 +269,16 @@ generate.section.toc.level;
 &img.src.path;
 &keep.relative.image.uris;
 </reference>
-
-<reference id="general"><title>Pagination and General Styles</title>
-<partintro id="margins_partintro">
-<section id="margins_intro"><title>Understanding XSL FO Margins</title>
+<reference xml:id="general"><title>Pagination and General Styles</title>
+<partintro xml:id="margins_partintro">
+<section xml:id="margins_intro"><title>Understanding XSL FO Margins</title>
 
 <para>To make sense of the parameters in this section, it's useful to
 consider <xref linkend="fig.pagemodel"/>.</para>
 
-<figure id="fig.pagemodel">
+<figure xml:id="fig.pagemodel">
   <title>Page Model</title>
-  <mediaobject id="fo-pageregions-image">
+  <mediaobject xml:id="fo-pageregions-image">
     <imageobject role="html">
       <imagedata fileref="page.png"/>
     </imageobject>
@@ -411,8 +397,7 @@ zero by default, so this is simply the page-master region-left.
 &footer.content.properties;
 &marker.section.level;
 </reference>
-
-<reference id="fonts"><title>Font Families</title>
+<reference xml:id="fonts"><title>Font Families</title>
 &body.font.family;
 &dingbat.font.family;
 &monospace.font.family;
@@ -420,8 +405,7 @@ zero by default, so this is simply the page-master region-left.
 &title.font.family;
 &symbol.font.family;
 </reference>
-
-<reference id="propsets"><title>Property Sets</title>
+<reference xml:id="propsets"><title>Property Sets</title>
 &formal.object.properties;
 &formal.title.properties;
 &informal.object.properties;
@@ -477,13 +461,11 @@ zero by default, so this is simply the page-master region-left.
 &revhistory.table.cell.properties;
 &revhistory.title.properties;
 </reference>
-
-<reference id="profiling"><title>Profiling</title>
-<partintro id="profiling_partintro">
-<para>Following parameters can be used for attribute value based
-profiling of your document. For more info about profiling look at
-<ulink
-url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html</ulink>.</para>
+<reference xml:id="profiling"><title>Profiling</title>
+<partintro xml:id="profiling_partintro">
+<para>The following parameters can be used for attribute-based
+profiling of your document. FIXME: add link to profiling section
+in Bob’s book.</para>
 </partintro>
 &profile.arch;
 &profile.audience;
@@ -503,37 +485,32 @@ url="http://docbook.sourceforge.net/projects/xsl/doc/tools/profiling.html">http:
 &profile.value;
 &profile.separator;
 </reference>
-
-<reference id="l10n"><title>Localization</title>
+<reference xml:id="l10n"><title>Localization</title>
 &l10n.gentext.language;
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
 &l10n.lang.value.rfc.compliant;
 </reference>
-
-<reference id="ebnf"><title>EBNF</title>
+<reference xml:id="ebnf"><title>EBNF</title>
 &ebnf.assignment;
 &ebnf.statement.terminator;
 </reference>
-
-<reference id="prepress"><title>Prepress</title>
+<reference xml:id="prepress"><title>Prepress</title>
 &crop.marks;
 &crop.mark.width;
 &crop.mark.offset;
 &crop.mark.bleed;
 </reference>
-
 <!--
 <reference><title></title>
 </reference>
 -->
-
-<appendix id="stylesheet"><title>The Stylesheet</title>
+<appendix xml:id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
 
-<src:fragment id="top" mundane-result-prefixes="xsl">
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 exclude-result-prefixes="src"
                 version='1.0'>
@@ -884,5 +861,4 @@ around all these parameters.</para>
 </src:fragment>
 
 </appendix>
-
 </book>

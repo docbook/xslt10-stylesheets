@@ -2,17 +2,21 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-  <bookinfo>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+  <info>
     <title>Roundtrip Parameter Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
     <author>
+      <personname>
       <surname>Ball</surname>
       <firstname>Steve</firstname>
+      </personname>
     </author>
     <copyright>
       <year>2007</year>
@@ -27,22 +31,20 @@
       transforming DocBook to WordML, OpenDocument, and Apple Pages,
       and for converting from those formats back to DocBook).</para>
     </abstract>
-  </bookinfo>
-
-  <reference id="params">
+  </info>
+  <reference xml:id="params">
   <title>Parameters</title>
 &wordml.template;
 &pages.template;
   </reference>
-  <appendix id="stylesheet">
+  <appendix xml:id="stylesheet">
     <title>The Stylesheet</title>
-
-    <para>The <filename>param.xsl</filename> stylesheet is just a wrapper around all of these parameters.</para>
-
-    <src:fragment id='top' mundane-result-prefixes='xsl'>
+    <para>The <filename>param.xsl</filename> stylesheet is just a
+      wrapper around all of these parameters.</para>
+    <src:fragment xml:id='top' mundane-result-prefixes='xsl'>
 <xsl:stylesheet xmlns='http://www.w3.org/1999/XSL/Transform'
-		exclude-result-prefixes='src'
-		version='1.0'>
+  exclude-result-prefixes='src'
+  version='1.0'>
 
 <!-- This file is generated from param.xweb -->
 
@@ -60,6 +62,5 @@
 <src:fragref linkend="pages.template.frag"/>
 </xsl:stylesheet>
     </src:fragment>
-
   </appendix>
 </book>

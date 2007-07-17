@@ -2,17 +2,21 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
    xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<bookinfo>
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   >
+<info>
 <title>Website Parameter Reference</title>
 <releaseinfo role="meta">
 $Id$
 </releaseinfo>
 <author>
-  <surname>Walsh</surname>
-  <firstname>Norman</firstname>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
 </author>
 <copyright>
   <year>2002-2005</year>
@@ -20,18 +24,16 @@ $Id$
 </copyright>
 <abstract>
   <para>This is reference documentation for all user-configurable
-  parameters in the DocBook XSL Website stylesheet (for generating
-  websites from DocBook XML sources). Note that the Website stylesheet
-  is a customization layer of the DocBook XSL HTML stylesheet.
-  Therefore, in addition to the Website-specific parameters listed in
-  this section, you can also use a number of <ulink
-  url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
-  >HTML stylesheet parameters</ulink> to control Website
-  output.</para>
+    parameters in the DocBook XSL Website stylesheet (for
+    generating websites from DocBook XML sources). Note that the
+    Website stylesheet is a customization layer of the DocBook XSL
+    HTML stylesheet.  Therefore, in addition to the
+    Website-specific parameters listed in this section, you can
+    also use a number of <link xlink:href="../html/" >HTML
+     stylesheet parameters</link> to control Website output.</para>
 </abstract>
-</bookinfo>
-
-<reference id="params">
+</info>
+<reference xml:id="params">
 <title>Parameters</title>
 &header.hr;
 &footer.hr;
@@ -64,13 +66,12 @@ $Id$
 &banner.before.navigation;
 &table.spacer.image;
 </reference>
-
-<appendix id="stylesheet"><title>The Stylesheet</title>
+<appendix xml:id="stylesheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
 
-<src:fragment id="top" mundane-result-prefixes="xsl">
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
 
 <!-- This file is generated from param.xweb -->
 
@@ -121,5 +122,4 @@ around all these parameters.</para>
 </src:fragment>
 
 </appendix>
-
 </book>

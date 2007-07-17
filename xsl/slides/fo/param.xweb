@@ -2,15 +2,21 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="slides_fo_doc">
-<bookinfo>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xml:id="slides_fo_doc">
+<info>
 <title>Slides FO Parameter Reference</title>
 <releaseinfo role="meta">
 $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </releaseinfo>
 <author>
-  <surname>Walsh</surname>
-  <firstname>Norman</firstname>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
 </author>
 <copyright>
   <year>2002</year>
@@ -18,26 +24,24 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </copyright>
 <abstract>
   <para>This is reference documentation for all user-configurable
-  parameters in the DocBook XSL Slides FO stylesheet (for generating
-  PDF slide presentations). Note that qthe Slides stylesheet for FO
-  output is a customization layer of the DocBook XSL FO
-  stylesheet. Therefore, in addition to the slides-specific parameters
-  listed in this section, you can also use a number of <ulink
-  url="http://docbook.sourceforge.net/release/xsl/current/doc/fo/index.html"
-  >FO stylesheet parameters</ulink> to control Slides FO output.</para>
+    parameters in the DocBook XSL Slides FO stylesheet (for
+    generating PDF slide presentations). Note that the Slides
+    stylesheet for FO output is a customization layer of the
+    DocBook XSL FO stylesheet. Therefore, in addition to the
+    slides-specific parameters listed in this section, you can
+    also use a number of <link xlink:href="../fo/" >FO stylesheet
+    parameters</link> to control Slides FO output.</para>
 </abstract>
-</bookinfo>
-
-<reference id="slides_fo_general_params">
-  <title>General Params</title>
+</info>
+<reference xml:id="slides_fo_general_params">
+  <title>FO: General Params</title>
 &slide.title.font.family;
 &slide.font.family;
 &foil.title.master;
 &foil.title.size;
 </reference>
-
-<reference id="slides_fo_property_sets">
-  <title>Property Sets</title>
+<reference xml:id="slides_fo_property_sets">
+  <title>FO: Property Sets</title>
 &slides.properties;
 &foilgroup.properties;
 &foil.subtitle.properties;
@@ -45,9 +49,8 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &speakernote.properties;
 &running.foot.properties;
 </reference>
-
 <!--
-<refentry id="">
+<refentry xml:id="">
 <refmeta>
 <refentrytitle></refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -58,7 +61,7 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='.frag'>
+<src:fragment xml:id='.frag'>
 <xsl:param name="" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
@@ -70,13 +73,12 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </refsect1>
 </refentry>
 -->
-
-<appendix id="styleheet"><title>The Stylesheet</title>
+<appendix xml:id="styleheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
 
-<src:fragment id="top" mundane-result-prefixes="xsl">
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
 
 <!-- This file is generated from param.xweb -->
 
@@ -107,5 +109,4 @@ around all these parameters.</para>
 </src:fragment>
 
 </appendix>
-
 </book>

@@ -2,15 +2,21 @@
 <!ENTITY % param.ent SYSTEM "param.ent">
 %param.ent;
 ]>
-<book xmlns:src="http://nwalsh.com/xmlns/litprog/fragment" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" id="slides_html_doc">
-<bookinfo>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xml:id="slides_html_doc">
+<info>
 <title>Slides HTML Parameter Reference</title>
 <releaseinfo role="meta">
 $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </releaseinfo>
 <author>
-  <surname>Walsh</surname>
-  <firstname>Norman</firstname>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
 </author>
 <copyright>
   <year>2002</year>
@@ -18,18 +24,18 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </copyright>
 <abstract>
   <para>This is reference documentation for all user-configurable
-  parameters in the DocBook XSL Slides HTML stylesheet (for generating
-  HTML slide presentations). Note that the Slides stylesheet for HTML
-  output is a customization layer of the DocBook XSL HTML
-  stylesheet. Therefore, in addition to the slides-specific parameters
-  listed in this section, you can also use a number of <ulink
-  url="http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html"
-  >HTML stylesheet parameters</ulink> to control Slides HTML output.</para>
+    parameters in the DocBook XSL Slides HTML stylesheet (for
+    generating HTML slide presentations). Note that the Slides
+    stylesheet for HTML output is a customization layer of the
+    DocBook XSL HTML stylesheet. Therefore, in addition to the
+    slides-specific parameters listed in this section, you can
+    also use a number of <link xlink:href="../html/" >HTML
+    stylesheet parameters</link> to control Slides HTML
+    output.</para>
 </abstract>
-</bookinfo>
-
-<reference id="html_general_params">
-<title>General Parameters</title>
+</info>
+<reference xml:id="html_general_params">
+<title>HTML: General Parameters</title>
 &keyboard.nav;
 &css.stylesheet;
 &css.stylesheet.dir;
@@ -40,9 +46,8 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &overlay;
 &show.foil.number;
 </reference>
-
-<reference id="html_frame_params">
-<title>Frame Parameters</title>
+<reference xml:id="html_frame_params">
+<title>HTML: Frame Parameters</title>
 &nav.separator;
 &toc.row.height;
 &toc.bg.color;
@@ -57,9 +62,8 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &multiframe.bottom.bgcolor;
 &multiframe.navigation.height;
 </reference>
-
-<reference id="html_graphic_parms">
-<title>Graphics Parameters</title>
+<reference xml:id="html_graphic_parms">
+<title>HTML: Graphics Parameters</title>
 &graphics.dir;
 &bullet.image;
 &next.image;
@@ -79,9 +83,8 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &hidetoc.image;
 &showtoc.image;
 </reference>
-
-<reference id="html_javascript_params">
-<title>JavaScript Parameters</title>
+<reference xml:id="html_javascript_params">
+<title>HTML: JavaScript Parameters</title>
 &script.dir;
 &ua.js;
 &xbDOM.js;
@@ -91,16 +94,15 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &overlay.js;
 &slides.js;
 </reference>
-
-<reference id="html_l10n_params">
-<title>Localization Parameters</title>
+<reference xml:id="html_l10n_params">
+<title>HTML: Localization Parameters</title>
 &text.home;
 &text.toc;
 &text.prev;
 &text.up;
 &text.next;
 <!--
-<refentry id="">
+<refentry xml:id="">
 <refmeta>
 <refentrytitle></refentrytitle>
 <refmiscinfo role="type">string</refmiscinfo>
@@ -111,7 +113,7 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='.frag'>
+<src:fragment xml:id='.frag'>
 <xsl:param name="" select="''"/>
 </src:fragment>
 </refsynopsisdiv>
@@ -125,13 +127,12 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 -->
 
 </reference>
-
-<appendix id="styleheet"><title>The Stylesheet</title>
+<appendix xml:id="styleheet"><title>The Stylesheet</title>
 
 <para>The <filename>param.xsl</filename> stylesheet is just a wrapper
 around all these parameters.</para>
 
-<src:fragment id="top" mundane-result-prefixes="xsl">
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
 
 <!-- This file is generated from param.xweb -->
 
@@ -203,5 +204,4 @@ around all these parameters.</para>
 </src:fragment>
 
 </appendix>
-
 </book>
