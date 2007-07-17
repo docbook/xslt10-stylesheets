@@ -3,6 +3,7 @@
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:dyn="http://exslt.org/dynamic"
                 xmlns:saxon="http://icl.com/saxon"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="doc dyn saxon"
                 version='1.0'>
 
@@ -17,11 +18,11 @@
      ******************************************************************** -->
 <doc:reference xmlns="" xml:id="utility">
   <info>
+    <title>Common » Utility Template Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>Common » Utility Template Reference</title>
   <!-- * yes, partintro is a valid child of a reference... -->
   <partintro xml:id="partintro">
     <title>Introduction</title>
@@ -240,11 +241,11 @@
       character).</para>
     <note>
       <para>This function began as a copy of Nate Austin's
-        <function>prepend-pad</function> function in the <ulink
-          url="http://www.dpawson.co.uk/xsl/sect2/padding.html" >Padding
-          Content</ulink> section of Dave Pawson's <ulink
-          url="http://www.dpawson.co.uk/xsl/index.html" >XSLT
-          FAQ</ulink>.</para>
+        <function>prepend-pad</function> function in the <link
+          xlink:href="http://www.dpawson.co.uk/xsl/sect2/padding.html" >Padding
+          Content</link> section of Dave Pawson's <link
+          xlink:href="http://www.dpawson.co.uk/xsl/index.html" >XSLT
+          FAQ</link>.</para>
     </note>
   </refdescription>
   <refreturn id="pad-string-returns">
