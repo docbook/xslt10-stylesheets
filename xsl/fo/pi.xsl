@@ -1,7 +1,9 @@
 <?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
   exclude-result-prefixes="doc"
   version='1.0'>
 
@@ -15,13 +17,11 @@
 
      ******************************************************************** -->
 
-<doc:reference xmlns="">
-  <info>
+<doc:reference xmlns=""><info><title>FO Processing Instruction Reference</title>
     <releaseinfo role="meta">
       $Id$
     </releaseinfo>
   </info>
-  <title>FO Processing Instruction Reference</title>
 
   <partintro id="partintro">
     <title>Introduction</title>
@@ -64,9 +64,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="BGcolor.html"
-        >Background color</ulink></para>
+    <para><link role="tcg"
+        xlink:href="BGcolor.html"
+        >Background color</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_background-color">
@@ -96,9 +96,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="BGtableColor.html#CellBGColor"
-        >Cell background color</ulink></para>
+    <para><link role="tcg"
+        xlink:href="BGtableColor.html#CellBGColor"
+        >Cell background color</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_bgcolor">
@@ -137,8 +137,8 @@
     </para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink url="SideFloats.html#SidebarFloats" >A sidebar as
-        side float</ulink></para>
+    <para><link xlink:href="SideFloats.html#SidebarFloats" >A sidebar as
+        side float</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_float-type">
@@ -176,8 +176,8 @@
     <para><parameter>glossary.as.blocks</parameter></para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink url="Glossaries.html#GlossaryFormatPrint" >Glossary
-        formatting in print</ulink></para>
+    <para><link xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
+        formatting in print</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_glossary-presentation">
@@ -215,8 +215,8 @@
     <para><parameter>glosslist.as.blocks</parameter> </para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink url="Glossaries.html#GlossaryFormatPrint" >Glossary
-        formatting in print</ulink></para>
+    <para><link xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
+        formatting in print</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_glosslist-presentation">
@@ -254,8 +254,8 @@
     </para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink url="Glossaries.html#GlossaryFormatPrint" >Glossary
-        formatting in print</ulink></para>
+    <para><link xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
+        formatting in print</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_glossterm-width">
@@ -298,8 +298,8 @@
     <para>formal.object.properties</para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink url="PageBreaking.html#KeepTogetherPI"
-        >Keep-together processing instruction</ulink></para>
+    <para><link xlink:href="PageBreaking.html#KeepTogetherPI"
+        >Keep-together processing instruction</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_keep-together">
@@ -329,9 +329,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="QandAformat.html"
-        >Q and A formatting</ulink></para>
+    <para><link role="tcg"
+        xlink:href="QandAformat.html"
+        >Q and A formatting</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_label-width">
@@ -368,9 +368,9 @@
     <para><parameter>linenumbering.everyNth</parameter></para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="AnnotateListing.html#LineNumbering"
-        >Line numbering</ulink></para>
+    <para><link role="tcg"
+        xlink:href="AnnotateListing.html#LineNumbering"
+        >Line numbering</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_linenumbering.everyNth">
@@ -406,9 +406,9 @@
     <para><parameter>linenumbering.separator</parameter></para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="AnnotateListing.html#LineNumbering"
-        >Line numbering</ulink></para>
+    <para><link role="tcg"
+        xlink:href="AnnotateListing.html#LineNumbering"
+        >Line numbering</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_linenumbering.separator">
@@ -444,9 +444,9 @@
     <para><parameter>linenumbering.width</parameter></para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="AnnotateListing.html#LineNumbering"
-        >Line numbering</ulink></para>
+    <para><link role="tcg"
+        xlink:href="AnnotateListing.html#LineNumbering"
+        >Line numbering</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_linenumbering.width">
@@ -499,9 +499,9 @@
     </itemizedlist>
   </refsee>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="Variablelists.html#ListIndents"
-        >Variable list formatting in print</ulink></para>
+    <para><link role="tcg"
+        xlink:href="Variablelists.html#ListIndents"
+        >Variable list formatting in print</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_list-presentation">
@@ -667,8 +667,8 @@
     </para>
   </refsee>
   <refsee role="tcg">
-    <para><ulink url="SideFloats.html#SidebarFloats" >A sidebar as
-        side float</ulink></para>
+    <para><link xlink:href="SideFloats.html#SidebarFloats" >A sidebar as
+        side float</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_sidebar-width">
@@ -704,9 +704,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="Orderedlists.html#ListStartNum"
-        >List starting number</ulink></para>
+    <para><link role="tcg"
+        xlink:href="Orderedlists.html#ListStartNum"
+        >List starting number</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_start">
@@ -740,9 +740,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="Tables.html#TableWidth"
-        >Table width</ulink></para>
+    <para><link role="tcg"
+        xlink:href="Tables.html#TableWidth"
+        >Table width</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_table-width">
@@ -773,9 +773,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="Variablelists.html#ListIndents"
-        >Variable list formatting in print</ulink></para>
+    <para><link role="tcg"
+        xlink:href="Variablelists.html#ListIndents"
+        >Variable list formatting in print</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_term-width">
@@ -812,12 +812,12 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="QandAtoc.html"
-        >Q and A list of questions</ulink>,
-      <ulink role="tcg"
-        url="QandAformat.html"
-        >Q and A formatting</ulink></para>
+    <para><link role="tcg"
+        xlink:href="QandAtoc.html"
+        >Q and A list of questions</link>,
+      <link role="tcg"
+        xlink:href="QandAformat.html"
+        >Q and A formatting</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo_toc">
@@ -855,9 +855,9 @@
     </variablelist>
   </refparameter>
   <refsee role="tcg">
-    <para><ulink role="tcg"
-        url="PageBreaking.html#SoftPageBreaks"
-        >Soft page breaks</ulink></para>
+    <para><link role="tcg"
+        xlink:href="PageBreaking.html#SoftPageBreaks"
+        >Soft page breaks</link></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbfo-need">
