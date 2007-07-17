@@ -97,7 +97,7 @@
       <partintro xml:id="roundtripintro">
         <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
-      <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../roundtrip/param.xml" xpointer="xpointer(/book/reference/node()[not(self::title)])" />
     </part>
     <part xml:id="slides"><title>Slides Parameter Reference</title>
       <?dbhtml dir="slides"?>
@@ -128,10 +128,9 @@
       <?dbhtml filename="index.html"?>
       <xi:include href="../website/param.xml" xpointer="xpointer(/book/info/title)" />
       <partintro xml:id="websiteintro">
-        <xi:include href="../website/param.xml"
-          xpointer="xpointer(/book/info/abstract/node())" />
+        <xi:include href="../website/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
-      <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference)" />
+      <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference/node()[not(self::title)])" />
     </part>
   </book>
   <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
