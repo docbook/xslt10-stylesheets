@@ -38,26 +38,23 @@ else
 all: fo/page.png reference.html reference.css reference.txt.gz
 endif
 
-#reference.html: ../docsrcx/reference.xml.included $(REFERENCETXTXSL)
-#	$(XSLT) $< $(REFERENCETXTXSL) > $@
-
-index.html: ../docsrcx/reference.xml.included $(RSTYLE)
+index.html: ../docsrc/reference.xml.included $(RSTYLE)
 	$(XSLT) $< $(RSTYLE)
 
 reference.html: index.html
 	cp -p $< $@
 
-reference.css: ../docsrcx/reference.css
+reference.css: ../docsrc/reference.css
 	cp -p $< .
 	for dir in $(DIRS); do cp -p $< $$dir; done
 
-reference.fo: ../docsrcx/reference.xml.included $(REFERENCEFOXSL) fo/page.png
+reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL) fo/page.png
 	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
 
-reference.txt.html: ../docsrcx/reference.xml.included $(REFERENCETXTXSL)
+reference.txt.html: ../docsrc/reference.xml.included $(REFERENCETXTXSL)
 	$(XSLT) $< $(REFERENCETXTXSL) > $@
 
 reference.txt: reference.txt.html
@@ -69,7 +66,7 @@ reference.pdf.gz: reference.pdf
 reference.txt.gz: reference.txt
 	cat $< | $(GZIP) $(GZIPFLAGS) > $@
 
-fo/page.png: ../docsrcx/page.png
+fo/page.png: ../docsrc/page.png
 	cp -p $< $@
 
 clean:
