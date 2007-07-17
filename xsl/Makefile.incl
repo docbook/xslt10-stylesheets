@@ -2,7 +2,9 @@ XJPARSEFLAGS= -E 0 -w
 PARAMPROF=.$(PARAMBASE).profiled
 PARAMSTRIP=.$(PARAMBASE).stripped
 PARAMDBKNS=.$(PARAMBASE).dbkns
+PARAMXMLID=.$(PARAMBASE).xmlid
 FIXPARAMNS=$(DOCBOOK_SVN)/xsl/tools/xsl/build/fix-params-ns.xsl
+IDTOXMLID=$(DOCBOOK_SVN)/xsl/tools/xsl/build/id-to-xmlid.xsl
 
 XMLFILES=$(foreach file,$(XSLFILES),$(basename $(file)).xml)
 
@@ -22,7 +24,10 @@ else
 endif
 	$(RM) $(PARAMPROF)
 
-$(PARAMBASE).xml: $(PARAMSTRIP)
+$(PARAMBASE).xml: $(PARAMXMLID)
+	$(XSLT) $< $(IDTOXMLID) > $@
+
+$(PARAMXMLID): $(PARAMSTRIP)
 ifeq ($(ADDNEWLINE),)
 	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
 else
@@ -57,6 +62,7 @@ clean: $(CLEANTARGETS)
 	$(RM) $(XMLFILES)
 	$(RM) $(PARAMSTRIP)
 	$(RM) $(PARAMDBKNS)
+	$(RM) $(PARAMXMLID)
 ifeq (,$(NO_MAKEFILE_PARAM))
 	$(RM) Makefile.param
 	echo "# foo" > Makefile.param
