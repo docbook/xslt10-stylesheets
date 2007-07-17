@@ -1,5 +1,5 @@
-<?xml version='1.0'?>
-<legalnotice id="warranty"><title>Warranty</title>
+<legalnotice xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xml:id="warranty"><title>Warranty</title>
 <para>THE SOFTWARE IS PROVIDED <quote>AS IS</quote>,
 WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
 LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
