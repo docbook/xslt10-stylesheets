@@ -49,7 +49,13 @@
 
 <refsect1><title>Description</title>
 
-<programlisting><src:fragment xml:id='dot.count.frag'>
+  <para>Given a string, the <function>dot.count</function>
+    template returns the number of dot/period characters in the
+    string. This template is useful, for example, when testing the
+    nesting level of nested inline markup (for nested emphasis,
+    quotations, etc.).</para>
+
+<src:fragment xml:id='dot.count.frag'>
 <xsl:template name="dot.count">
   <!-- Returns the number of "." characters in a string -->
   <xsl:param name="string"></xsl:param>
@@ -66,7 +72,7 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -81,7 +87,12 @@
 
 <refsect1><title>Description</title>
 
-<programlisting><src:fragment xml:id='copy-string.frag'>
+  <para>Given a string, the <function>copy-string</function>
+    template creates <replaceable>n</replaceable> copies of the
+    string, when the value of <replaceable>n</replaceable> is
+    given by the <parameter>count</parameter> parameter.</para>
+
+<src:fragment xml:id='copy-string.frag'>
 <xsl:template name="copy-string">
   <!-- returns 'count' copies of 'string' -->
   <xsl:param name="string"></xsl:param>
@@ -104,7 +115,7 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -124,7 +135,7 @@ occurances of <parameter>target</parameter> in <parameter>string</parameter>
 with <parameter>replacement</parameter> and returns the result.
 </para>
 
-<programlisting><src:fragment xml:id='string.subst.frag'>
+<src:fragment xml:id='string.subst.frag'>
 <xsl:template name="string.subst">
   <xsl:param name="string"></xsl:param>
   <xsl:param name="target"></xsl:param>
@@ -149,7 +160,7 @@ with <parameter>replacement</parameter> and returns the result.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -172,7 +183,7 @@ document, or the empty string if it is not.</para>
 or <literal>#xpointer(id('foo'))</literal>, otherwise it returns
 the empty string.</para>
 
-<programlisting><src:fragment xml:id='xpointer.idref.frag'>
+<src:fragment xml:id='xpointer.idref.frag'>
 <xsl:template name="xpointer.idref">
   <xsl:param name="xpointer">http://...</xsl:param>
   <xsl:choose>
@@ -187,7 +198,7 @@ the empty string.</para>
     <!-- otherwise it's a pointer to some other document -->
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -207,7 +218,7 @@ the empty string.</para>
 unqualified length ("20" for "20pt") from a dimension.
 </para>
 
-<programlisting><src:fragment xml:id='length-magnitude.frag'>
+<src:fragment xml:id='length-magnitude.frag'>
 <xsl:template name="length-magnitude">
   <xsl:param name="length" select="'0pt'"/>
 
@@ -231,7 +242,7 @@ unqualified length ("20" for "20pt") from a dimension.
     </xsl:when>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -250,7 +261,7 @@ unqualified length ("20" for "20pt") from a dimension.
 units ("pt" for "20pt") from a length. If no units are supplied on the
 length, the <parameter>defauilt.units</parameter> are returned.</para>
 
-<programlisting><src:fragment xml:id='length-units.frag'>
+<src:fragment xml:id='length-units.frag'>
 <xsl:template name="length-units">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="default.units" select="'px'"/>
@@ -273,7 +284,7 @@ length, the <parameter>defauilt.units</parameter> are returned.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -293,7 +304,7 @@ qualified length from a dimension. If an unqualified length is given,
 the <parameter>default.units</parameter> will be added to it.
 </para>
 
-<programlisting><src:fragment xml:id='length-spec.frag'>
+<src:fragment xml:id='length-spec.frag'>
 <xsl:template name="length-spec">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="default.units" select="'px'"/>
@@ -331,7 +342,7 @@ the <parameter>default.units</parameter> will be added to it.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -362,7 +373,7 @@ which is initially <literal>10</literal> (for 10pt).</para>
 </para>
 </caution>
 
-<programlisting><src:fragment xml:id='length-in-points.frag'>
+<src:fragment xml:id='length-in-points.frag'>
 <xsl:template name="length-in-points">
   <xsl:param name="length" select="'0pt'"/>
   <xsl:param name="em.size" select="10"/>
@@ -409,7 +420,7 @@ which is initially <literal>10</literal> (for 10pt).</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -436,7 +447,7 @@ attribute that it finds. Presented with processing instructions that
 contain badly formed pseudo-attributes (missing or unbalanced quotes,
 for example), the template may silently return erroneous results.</para>
 
-<programlisting><src:fragment xml:id='pi-attribute.frag'>
+<src:fragment xml:id='pi-attribute.frag'>
 <xsl:template name="pi-attribute">
   <xsl:param name="pis" select="processing-instruction('BOGUS_PI')"/>
   <xsl:param name="attribute">filename</xsl:param>
@@ -470,7 +481,7 @@ for example), the template may silently return erroneous results.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -489,7 +500,7 @@ for example), the template may silently return erroneous results.</para>
 the <function>lookup.key</function> template extracts the value associated
 with a particular key.</para>
 
-<programlisting><src:fragment xml:id='lookup.key.frag'>
+<src:fragment xml:id='lookup.key.frag'>
 <xsl:template name="lookup.key">
   <xsl:param name="key" select="''"/>
   <xsl:param name="table" select="''"/>
@@ -517,7 +528,7 @@ with a particular key.</para>
     </xsl:choose>
   </xsl:if>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -536,7 +547,7 @@ with a particular key.</para>
 absolute path from the root of the tree to the current element node.
 </para>
 
-<programlisting><src:fragment xml:id='xpath.location.frag'>
+<src:fragment xml:id='xpath.location.frag'>
 <xsl:template name="xpath.location">
   <xsl:param name="node" select="."/>
   <xsl:param name="path" select="''"/>
@@ -560,7 +571,7 @@ absolute path from the root of the tree to the current element node.
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -580,7 +591,7 @@ that has been transformed so that it can safely be output as an XML comment.
 Internal occurrences of "--" will be replaced with "- -" and a leading and/or
 trailing space will be added to the string, if necessary.</para>
 
-<programlisting><src:fragment xml:id='comment-escape-string.frag'>
+<src:fragment xml:id='comment-escape-string.frag'>
 <xsl:template name="comment-escape-string">
   <xsl:param name="string" select="''"/>
 
@@ -596,7 +607,7 @@ trailing space will be added to the string, if necessary.</para>
     <xsl:text> </xsl:text>
   </xsl:if>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -614,7 +625,7 @@ trailing space will be added to the string, if necessary.</para>
 <para>The <function>comment-escape-string.recursive</function> template is used
 by <function>comment-escape-string</function>.</para>
 
-<programlisting><src:fragment xml:id="comment-escape-string.recursive.frag">
+<src:fragment xml:id="comment-escape-string.recursive.frag">
 <xsl:template name="comment-escape-string.recursive">
   <xsl:param name="string" select="''"/>
   <xsl:choose>
@@ -630,7 +641,7 @@ by <function>comment-escape-string</function>.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 </refsect1>
 </refentry>
 
@@ -647,7 +658,7 @@ by <function>comment-escape-string</function>.</para>
 <para>Given a text node, this function trims leading and trailing
 whitespace from it and returns the trimmed contents.</para>
 
-<programlisting><src:fragment xml:id='trim.text.frag'>
+<src:fragment xml:id='trim.text.frag'>
 
   <xsl:template name="trim.text">
     <xsl:param name="contents" select="."/>
@@ -701,7 +712,7 @@ whitespace from it and returns the trimmed contents.</para>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -730,7 +741,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
   differs only in that it preserves the delimiters instead of
   discarding them.</para>
 </note>
-<programlisting><src:fragment xml:id='str.tokenize.keep.delimiters.frag'>
+<src:fragment xml:id='str.tokenize.keep.delimiters.frag'>
   <xsl:template name="str.tokenize.keep.delimiters">
     <xsl:param name="string" select="''" />
     <xsl:param name="delimiters" select="' '" />
@@ -788,7 +799,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 </refsect1>
 </refentry>
 
@@ -843,7 +854,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
     class="attribute">string</tag> attributes.</para>
   </note>
 
-  <programlisting><src:fragment xml:id='apply-string-subst-map.frag'>
+  <src:fragment xml:id='apply-string-subst-map.frag'>
     <xsl:template name="apply-string-subst-map">
       <xsl:param name="content"/>
       <xsl:param name="map.contents"/>
@@ -870,7 +881,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
       </xsl:choose>
     </xsl:template>
 
-  </src:fragment></programlisting>
+  </src:fragment>
   </refsect1>
 </refentry>
 
@@ -928,7 +939,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
     class="attribute">string</tag> attributes.</para>
   </note>
 
-  <programlisting><src:fragment xml:id='apply-character-map.frag'>
+  <src:fragment xml:id='apply-character-map.frag'>
     <xsl:template name="apply-character-map">
       <xsl:param name="content"/>
       <xsl:param name="map.contents"/>
@@ -955,7 +966,7 @@ and preserving the delimiters as text nodes between the tokens.</para>
       </xsl:choose>
     </xsl:template>
 
-  </src:fragment></programlisting>
+  </src:fragment>
   </refsect1>
 </refentry>
 
@@ -991,7 +1002,7 @@ given in the value of the <parameter>subset.profile</parameter>
 parameter. The current implementation of that capability here relies
 on the <function>evaluate</function> extension XSLT function.</para>
 
-<programlisting><src:fragment xml:id='read-character-map.frag'>
+<src:fragment xml:id='read-character-map.frag'>
   <xsl:template name="read-character-map">
     <xsl:param name="use.subset"/>
     <xsl:param name="subset.profile"/>
@@ -1026,7 +1037,7 @@ does not support it.
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 </refsect1>
 </refentry>
 
@@ -1069,7 +1080,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <para>This function counts the number of path components in a relative URI.</para>
 
-<programlisting><src:fragment xml:id='count.uri.path.depth.frag'>
+<src:fragment xml:id='count.uri.path.depth.frag'>
 <xsl:template name="count.uri.path.depth">
   <xsl:param name="filename" select="''"/>
   <xsl:param name="count" select="0"/>
@@ -1086,7 +1097,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
@@ -1103,7 +1114,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
 <para>This function trims common leading path components from a relative URI.</para>
 
-<programlisting><src:fragment xml:id='trim.common.uri.paths.frag'>
+<src:fragment xml:id='trim.common.uri.paths.frag'>
 <xsl:template name="trim.common.uri.paths">
   <xsl:param name="uriA" select="''"/>
   <xsl:param name="uriB" select="''"/>
@@ -1130,7 +1141,7 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-</src:fragment></programlisting>
+</src:fragment>
 
 </refsect1>
 </refentry>
