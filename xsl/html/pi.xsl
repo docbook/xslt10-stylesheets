@@ -106,8 +106,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_cellpadding" xmlns="">
-  <refpurpose>Specifies the value of the cellpadding attribute in
-    output of a table or qandaset</refpurpose>
+  <refpurpose>Specifies cellpadding in table or qandaset output</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml cellpadding</tag> PI as a child of a
       <tag>table</tag> or <tag>qandaset</tag> to specify the value
@@ -146,8 +145,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_cellspacing" xmlns="">
-  <refpurpose>Specifies the value of the cellspacing attribute in
-    output of a table or qandaset</refpurpose>
+  <refpurpose>Specifies cellspacing in table or qandaset output</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml cellspacing</tag> PI as a child of a
       <tag>table</tag> or <tag>qandaset</tag> to specify the value
@@ -405,8 +403,7 @@
 </xsl:template> 
 
 <doc:pi name="dbhtml_linenumbering.everyNth" xmlns="">
-  <refpurpose>Specifies the interval at which lines are numbered in
-    output of verbatim environments</refpurpose>
+  <refpurpose>Specifies interval for lines numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml linenumbering.everyNth</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
@@ -444,8 +441,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_linenumbering.separator" xmlns="">
-  <refpurpose>Specifies the separator text used between line numbers
-    and content in output of verbatim environments</refpurpose>
+  <refpurpose>Specifies separator text for line numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml linenumbering.separator</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
@@ -482,8 +478,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_linenumbering.width" xmlns="">
-  <refpurpose>Specifies the width set aside for line numbers in
-    output of verbatim environments</refpurpose>
+  <refpurpose>Specifies width for line numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml linenumbering.width</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
@@ -583,7 +578,7 @@
     <variablelist>
       <varlistentry><term>list-width="<replaceable>width</replaceable>"</term>
         <listitem>
-          <para>Specifies the ouytput width (including units)</para>
+          <para>Specifies the output width (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -673,9 +668,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_table-summary" xmlns="">
-  <refpurpose>Specifies the text of the summary attribute for
-    output of a table, variablelist, segmentedlist, or
-    qandaset</refpurpose>
+  <refpurpose>Specifies summary for table, variablelist, segmentedlist, or qandaset output</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml table-summary</tag> PI as a child of
       a <tag>table</tag>, <tag>variablelist</tag>,
@@ -791,8 +784,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_term-separator" xmlns="">
-  <refpurpose>Specifies the separator text shown among term
-    instances in a multi-term varlistentry</refpurpose>
+  <refpurpose>Specifies separator text among terms in a varlistentry</refpurpose>
   <refdescription>
     <para>Use the <tag>dbhtml term-separator</tag> PI as a child
       of a <tag>variablelist</tag> to specify the separator text
