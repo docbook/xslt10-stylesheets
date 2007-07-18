@@ -6,7 +6,7 @@
   xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  xml:id="slides_html_doc">
+  xml:id="slides">
 <info>
 <title>Slides HTML Parameter Reference</title>
 <releaseinfo role="meta">
@@ -34,7 +34,7 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
     output.</para>
 </abstract>
 </info>
-<reference xml:id="html_general_params">
+<reference xml:id="html">
 <title>HTML: General Parameters</title>
 &keyboard.nav;
 &css.stylesheet;
@@ -46,8 +46,8 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &overlay;
 &show.foil.number;
 </reference>
-<reference xml:id="html_frame_params">
-<title>HTML: Frame Parameters</title>
+<reference xml:id="frames">
+<title>HTML: Frames Parameters</title>
 &nav.separator;
 &toc.row.height;
 &toc.bg.color;
@@ -62,7 +62,7 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &multiframe.bottom.bgcolor;
 &multiframe.navigation.height;
 </reference>
-<reference xml:id="html_graphic_parms">
+<reference xml:id="graphics">
 <title>HTML: Graphics Parameters</title>
 &graphics.dir;
 &bullet.image;
@@ -83,7 +83,7 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &hidetoc.image;
 &showtoc.image;
 </reference>
-<reference xml:id="html_javascript_params">
+<reference xml:id="javascript">
 <title>HTML: JavaScript Parameters</title>
 &script.dir;
 &ua.js;
@@ -94,7 +94,7 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 &overlay.js;
 &slides.js;
 </reference>
-<reference xml:id="html_l10n_params">
+<reference xml:id="l10n">
 <title>HTML: Localization Parameters</title>
 &text.home;
 &text.toc;

@@ -33,14 +33,14 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
     parameters</link> to control Slides FO output.</para>
 </abstract>
 </info>
-<reference xml:id="slides_fo_general_params">
+<reference xml:id="fo">
   <title>FO: General Params</title>
 &slide.title.font.family;
 &slide.font.family;
 &foil.title.master;
 &foil.title.size;
 </reference>
-<reference xml:id="slides_fo_property_sets">
+<reference xml:id="propsets">
   <title>FO: Property Sets</title>
 &slides.properties;
 &foilgroup.properties;
