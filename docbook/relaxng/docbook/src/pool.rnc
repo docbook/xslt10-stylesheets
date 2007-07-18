@@ -198,7 +198,15 @@ db.xlink.role.attribute =
          db:para [
             "DocBook uses the XLink role value "
             db:uri [ "http://docbook.org/xlink/role/olink" ]
-            " to identify linking elements with OLink semantics."
+            " to identify linking elements with OLink semantics." ~
+            " That means the part of "
+            db:tag [ class="attribute" "xlink:href" ]
+            " before the number sign (#) is to be interpreted" ~
+            " as equivalent to the olink "
+            db:tag [ class="attribute" "targetdoc" ]
+            " attribute value, and the part after the number sign as the olink "
+            db:tag [ class="attribute" "targetptr" ]
+            " attribute value."
          ]
       ]
    ]
