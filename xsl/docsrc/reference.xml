@@ -130,7 +130,7 @@
       <partintro xml:id="websiteintro">
         <xi:include href="../website/param.xml" xpointer="xpointer(/book/info/abstract/node())" />
       </partintro>
-      <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference/node()[not(self::title)])" />
+      <xi:include href="../website/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
   </book>
   <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
