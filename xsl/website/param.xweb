@@ -33,38 +33,44 @@ $Id$
      stylesheet parameters</link> to control Website output.</para>
 </abstract>
 </info>
-<reference xml:id="params">
-<title>Parameters</title>
-&header.hr;
-&footer.hr;
-&feedback.href;
-&feedback.with.ids;
-&feedback.link.text;
-&filename-prefix;
+<reference xml:id="general">
+<title>General Parameters</title>
 &autolayout-file;
-&output-root;
+&body.attributes;
+&currentpage.marker;
 &dry-run;
+&feedback.href;
+&feedback.link.text;
+&feedback.with.ids;
+&filename-prefix;
+&footer.hr;
+&header.hr;
+&output-root;
 &rebuild-all;
+&sequential.links;
+&suppress.homepage.title;
+&table.spacer.image;
+</reference>
+<reference xml:id="nav">
+<title>Navigation Parameters</title>
+&banner.before.navigation;
+&navbgcolor;
+&navbodywidth;
 &nav.table.summary;
 &navtocwidth;
-&navbodywidth;
 &textbgcolor;
-&navbgcolor;
-&toc.spacer.graphic;
-&toc.spacer.text;
-&toc.spacer.image;
-&toc.pointer.graphic;
-&toc.pointer.text;
-&toc.pointer.image;
+</reference>
+<reference xml:id="toc">
+<title>ToC Parameters</title>
 &toc.blank.graphic;
-&toc.blank.text;
 &toc.blank.image;
-&suppress.homepage.title;
-&body.attributes;
-&sequential.links;
-&currentpage.marker;
-&banner.before.navigation;
-&table.spacer.image;
+&toc.blank.text;
+&toc.pointer.graphic;
+&toc.pointer.image;
+&toc.pointer.text;
+&toc.spacer.graphic;
+&toc.spacer.image;
+&toc.spacer.text;
 </reference>
 <appendix xml:id="stylesheet"><title>The Stylesheet</title>
 
