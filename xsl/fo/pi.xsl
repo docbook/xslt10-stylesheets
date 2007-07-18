@@ -343,8 +343,7 @@
 </xsl:template> 
 
 <doc:pi name="dbfo_linenumbering.everyNth" xmlns="">
-  <refpurpose>Specifies the interval at which lines are numbered in
-    output of verbatim environments</refpurpose>
+  <refpurpose>Specifies interval for lines numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag>dbfo linenumbering.everyNth</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
@@ -382,8 +381,7 @@
 </xsl:template>
 
 <doc:pi name="dbfo_linenumbering.separator" xmlns="">
-  <refpurpose>Specifies the separator text used between line numbers
-    and content in output of verbatim environments</refpurpose>
+  <refpurpose>Specifies separator text for line numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag>dbfo linenumbering.separator</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
@@ -420,8 +418,7 @@
 </xsl:template>
 
 <doc:pi name="dbfo_linenumbering.width" xmlns="">
-  <refpurpose>Specifies the width set aside for line numbers in
-    output of verbatim environments</refpurpose>
+  <refpurpose>Specifies width for line numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag>dbfo linenumbering.width</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
@@ -571,9 +568,7 @@
 </xsl:template>
 
 <doc:pi name="dbfo_pgwide" xmlns="">
-  <refpurpose>Species whether an <tag>equation</tag> or
-    <tag>example</tag> should rendered across the full width of a
-    page</refpurpose>
+  <refpurpose>Specifies if an <tag>equation</tag> or <tag>example</tag> goes across full page width</refpurpose>
   <refdescription>
     <para>Use the <tag>dbfo pgwide</tag> PI as a child of an
       <tag>equation</tag> or <tag>example</tag> to specify that the
