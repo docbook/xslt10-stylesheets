@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>generate.id.attributes</refname>
-<refpurpose/>
+<refpurpose>Generate ID attributes on container elements?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
