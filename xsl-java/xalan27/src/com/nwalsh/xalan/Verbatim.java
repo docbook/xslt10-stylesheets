@@ -94,6 +94,8 @@ public class Verbatim {
   private String graphicsExt = null;
   /** The largest callout number that can be represented graphically. */
   private int graphicsMax = 10;
+ /** The size of the callout icon. */
+  private static String iconSize = null;
   /** Should graphic callouts use fo:external-graphics or imgs. */
   private boolean graphicsFO = false;
 
@@ -440,9 +442,10 @@ public class Verbatim {
       String gPath = Params.getString(context, "callout.graphics.path");
       String gExt = Params.getString(context, "callout.graphics.extension");
       int gMax = Params.getInt(context, "callout.graphics.number.limit");
+      String gSize = Params.getString(context, "callout.icon.size");
     
       return insertGraphicCallouts(areaspecNodeSet, xalanNI, defaultColumn,
-				   gPath, gExt, gMax, useFO);
+				   gPath, gExt, gMax, gSize, useFO);
 
     } else if (Params.getBoolean(context, "callout.unicode")) {
       int uStart = Params.getInt(context, "callout.unicode.start.character");
@@ -469,8 +472,9 @@ public class Verbatim {
 						 String gPath,
 						 String gExt,
 						 int gMax,
+						 String gSize,
 						 boolean useFO) {
-    FormatGraphicCallout fgc = new FormatGraphicCallout(gPath,gExt,gMax,useFO);
+    FormatGraphicCallout fgc = new FormatGraphicCallout(gPath,gExt,gMax, gSize, useFO);
     return insertCallouts(areaspecNodeSet, xalanNI, defaultColumn, fgc);
   }
 
