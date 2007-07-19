@@ -36,12 +36,14 @@ public class FormatGraphicCallout extends FormatCallout {
   String graphicsPath = "";
   String graphicsExt = "";
   int graphicsMax = 0;
+  String iconSize = "";
 
-  public FormatGraphicCallout(NamePool nPool, String path, String ext, int max, boolean fo) {
+  public FormatGraphicCallout(NamePool nPool, String path, String ext, int max, String size, boolean fo) {
     super(nPool, fo);
     graphicsPath = path;
     graphicsExt = ext;
     graphicsMax = max;
+    iconSize = size;
   }
 
   public void formatCallout(Emitter rtfEmitter,
@@ -68,6 +70,8 @@ public class FormatGraphicCallout extends FormatCallout {
 	  imgAttr.addAttribute("", "", "src", "CDATA", "url(" +          
 			       graphicsPath + num + graphicsExt + ")"); 
 	  imgAttr.addAttribute("", "", "id", "CDATA", id);
+	  imgAttr.addAttribute("", "", "content-width", "CDATA", iconSize);
+	  imgAttr.addAttribute("", "", "width", "CDATA", iconSize);
 	  
 	  // HTML
 	} else {

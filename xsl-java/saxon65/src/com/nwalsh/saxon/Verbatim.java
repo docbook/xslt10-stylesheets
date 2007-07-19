@@ -78,6 +78,8 @@ public class Verbatim {
   private static String graphicsExt = null;
   /** The largest callout number that can be represented graphically. */
   private static int graphicsMax = 10;
+  /** The size of the callout icon. */
+  private static String iconSize = null;
 
   /** The FormatCallout object to use for formatting callouts. */
   private static FormatCallout fCallout = null;
@@ -317,7 +319,7 @@ public class Verbatim {
 
     int unicodeStart = 49;
     int unicodeMax = 0;
-
+   
     String unicodeFont = "";
 
     // Hardcoded defaults
@@ -325,6 +327,7 @@ public class Verbatim {
     graphicsPath = null;
     graphicsExt = null;
     graphicsMax = 0;
+    iconSize = "7pt";
     foStylesheet = false;
     calloutsSetup = true;
 
@@ -371,10 +374,15 @@ public class Verbatim {
 	graphicsMax = 0;
       }
 
+      // Get the callout icon size
+      varString = getVariable(context, "callout.icon.size");
+      iconSize = varString;
+      
       fCallout = new FormatGraphicCallout(namePool,
 					  graphicsPath,
 					  graphicsExt,
 					  graphicsMax,
+					  iconSize,
 					  foStylesheet);
     } else if (useUnicode) {
       // Get the starting character
