@@ -21,7 +21,8 @@
 <xsl:param name="admon.graphics" select="0"/>
 <xsl:param name="admon.textlabel" select="0"></xsl:param>
 <xsl:param name="chunk.append"><xsl:text>&#x0a;</xsl:text></xsl:param>
-<xsl:param name="chunk.quietly" select="1"></xsl:param>
+<xsl:param name="chunk.quietly" select="0"></xsl:param>
+<xsl:param name="component.label.includes.part.label" select="1"/>
 <xsl:param name="generate.legalnotice.link" select="1"></xsl:param>
 <xsl:param name="generate.manifest" select="1"></xsl:param>
 <xsl:param name="generate.toc">
@@ -50,7 +51,7 @@ set       toc,title
 <xsl:param name="index.on.type" select="1"/>
 <xsl:param name="keep.relative.image.uris" select="1"/>
 <xsl:param name="label.from.part" select="'1'"></xsl:param>
-<xsl:param name="part.autolabel" select="0"/>
+<xsl:param name="part.autolabel" select="1"/>
 <xsl:param name="refentry.generate.name" select="0"/>
 <xsl:param name="refentry.generate.title" select="1"/>
 <xsl:param name="refentry.separator" select="0"/>
