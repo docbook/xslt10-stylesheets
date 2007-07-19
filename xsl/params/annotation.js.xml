@@ -10,12 +10,12 @@
 </refmeta>
 <refnamediv>
 <refname>annotation.js</refname>
-<refpurpose>Enable annotations?</refpurpose>
+<refpurpose>URIs identifying JavaScript files with support for annotation popups</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 <src:fragment xml:id="annotation.js.frag">
-<xsl:param name="annotation.js" select="'http://docbook.sourceforge.net/release/script/AnchorPosition.js             http://docbook.sourceforge.net/release/script/PopupWindow.js'"/>
+<xsl:param name="annotation.js" select="'http://docbook.sourceforge.net/release/script/AnchorPosition.js http://docbook.sourceforge.net/release/script/PopupWindow.js'"/>
 </src:fragment>
 </refsynopsisdiv>
 
