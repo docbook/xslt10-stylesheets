@@ -35,7 +35,7 @@
   <!-- * About the $info param used in this stylesheet -->
   <!-- * -->
   <!-- * The $info param is a "master info" node set that contains -->
-  <!-- * the entires contents of the *info child of the current -->
+  <!-- * the entire contents of the *info child of the current -->
   <!-- * Refentry, plus the entire contents of the *info children of -->
   <!-- * all ancestors of the current Refentry, in document order. -->
   <!-- * -->
