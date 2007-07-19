@@ -174,7 +174,11 @@
     <part xml:id="lib">
       <?dbhtml dir="lib"?>
       <?dbhtml filename="index.html"?>
-      <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/node())"/>
+      <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/info/title)" />
+      <partintro xml:id="libintro">
+        <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/info/abstract/node())" />
+      </partintro>
+      <xi:include href="../lib/lib.xml" xpointer="xpointer(/book/reference)" />
     </part>
     <part xml:id="common-part"><title>Common Template Reference</title>
       <?dbhtml dir="common"?>
