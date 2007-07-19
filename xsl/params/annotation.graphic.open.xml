@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>annotation.graphic.open</refname>
-<refpurpose>Enable annotations?</refpurpose>
+<refpurpose>Image for identifying a link that opens an annotation popup</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
