@@ -199,6 +199,7 @@
         <xi:include href="../common/common.xml"/>
         <xi:include href="../common/refentry.xml"/>
         <xi:include href="../common/utility.xml"/>
+        <xi:include href="../common/charmap.xml"/>
     </part>
     <part xml:id="table-templates">
       <xi:include href="../fo/table.xml" xpointer="xpointer(/reference/node())"/>
