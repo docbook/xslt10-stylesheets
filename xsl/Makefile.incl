@@ -4,6 +4,7 @@ PARAMSTRIP=.$(PARAMBASE).stripped
 PARAMDBKNS=.$(PARAMBASE).dbkns
 PARAMXMLID=.$(PARAMBASE).xmlid
 FIXPARAMNS=$(DOCBOOK_SVN)/xsl/tools/xsl/build/fix-params-ns.xsl
+ADDNEWLINE=$(DOCBOOK_SVN)/xsl/tools/xsl/build/addnewline.xsl
 IDTOXMLID=$(DOCBOOK_SVN)/xsl/tools/xsl/build/id-to-xmlid.xsl
 
 XMLFILES=$(foreach file,$(XSLFILES),$(basename $(file)).xml)
@@ -15,7 +16,7 @@ endif
 all: $(ALLTARGETS)
 
 $(PARAMBASE).xsl: $(PARAMDBKNS)
-ifeq ($(ADDNEWLINE),)
+ifneq ($(XSLTENGINE),saxon)
 	$(XSLT) $< $(FIXPARAMNS) $@
 else
 	$(XSLT) $< $(FIXPARAMNS) $@.tmp
@@ -28,7 +29,7 @@ $(PARAMBASE).xml: $(PARAMXMLID)
 	$(XSLT) $< $(IDTOXMLID) > $@
 
 $(PARAMXMLID): $(PARAMSTRIP)
-ifeq ($(ADDNEWLINE),)
+ifneq ($(XSLTENGINE),saxon)
 	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
 else
 	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
