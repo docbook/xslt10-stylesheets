@@ -7,7 +7,7 @@ PI_DIRS=html fo common
 
 PARAM_XML_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xml)
 PI_XML_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xml)
-OTHER_XML_FILES=../common/common.xml ../common/utility.xml ../common/refentry.xml ../template/titlepage.xml ../fo/table.xml
+OTHER_XML_FILES=../common/common.xml ../common/utility.xml ../common/refentry.xml ../common/charmap.xml ../template/titlepage.xml ../fo/table.xml
 
 DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
 PARAM_XSL_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xsl)

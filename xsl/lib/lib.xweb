@@ -810,10 +810,8 @@ and preserving the delimiters as text nodes between the tokens.</para>
     <refname>apply-string-subst-map</refname>
     <refpurpose>Apply a string-substitution map</refpurpose>
   </refnamediv>
-
   <refsect1><title>Description</title>
-
-  <para>This function applies a "string substitution" map. Use it when
+  <para>This function applies a “string substitution” map. Use it when
   you want to do multiple string substitutions on the same target
   content. It reads in two things: <parameter>content</parameter>, the
   content on which to perform the substitution, and
@@ -833,16 +831,14 @@ and preserving the delimiters as text nodes between the tokens.</para>
   The function uses <parameter>map.contents</parameter> to
   do substitution on <parameter>content</parameter>, and then
   returns the modified contents.</para>
-
   <note>
     <para>This function is a very slightly modified version of Jeni
-    Tennison's <function>replace_strings</function> function in the
+    Tennison’s <function>replace_strings</function> function in the
     <link
       xlink:href="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
     >multiple string replacements</link> section of Dave Pawson’s
     <link xlink:href="http://www.dpawson.co.uk/xsl/index.html" >XSLT
     FAQ</link>.</para>
-
     <para>The <function>apply-string-subst-map</function> function is
     essentially the same function as the
     <function>apply-character-map</function> function; the only
@@ -853,7 +849,6 @@ and preserving the delimiters as text nodes between the tokens.</para>
     <tag class="attribute">character</tag> and <tag
     class="attribute">string</tag> attributes.</para>
   </note>
-
   <src:fragment xml:id='apply-string-subst-map.frag'>
     <xsl:template name="apply-string-subst-map">
       <xsl:param name="content"/>
@@ -880,167 +875,9 @@ and preserving the delimiters as text nodes between the tokens.</para>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:template>
-
   </src:fragment>
   </refsect1>
 </refentry>
-
-<!-- ================================================================== -->
-
-<refentry xml:id="apply-character-map">
-  <refnamediv>
-    <refname>apply-character-map</refname>
-    <refpurpose>Apply an XSLT character map</refpurpose>
-  </refnamediv>
-
-  <refsect1><title>Description</title>
-
-  <para>This function applies an <link
-  xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
-  map</link>; that is, it cause certain individual characters to be
-  substituted with strings of one or more characters. It is useful
-  mainly for replacing multiple "special" characters or symbols in
-  the same target content. It reads in two things:
-  <parameter>content</parameter>, the content on which to perform the
-  substitution, and <parameter>map.contents</parameter>, a
-  node set of elements (the names of the elements don't matter), with
-  each element having the following attributes:
-  <itemizedlist>
-    <listitem>
-      <simpara><tag class="attribute">character</tag>, a character to
-      be replaced</simpara>
-    </listitem>
-    <listitem>
-      <simpara><tag class="attribute">string</tag>, a string with
-      which to replace <tag class="attribute">character</tag></simpara>
-    </listitem>
-  </itemizedlist>
-  This function uses <parameter>map.contents</parameter> to
-  do substitution on <parameter>content</parameter>, and then returns
-  the modified contents.</para>
-
-  <note>
-    <para>This function is a very slightly modified version of Jeni
-    Tennison’s <function>replace_strings</function> function in the
-    <link
-        xlink:href="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
-        >multiple string replacements</link> section of Dave Pawson’s
-    <link xlink:href="http://www.dpawson.co.uk/xsl/index.html" >XSLT
-    FAQ</link>.</para>
-
-    <para>The <function>apply-string-subst-map</function> function is
-    essentially the same function as the
-    <function>apply-character-map</function> function; the only
-    difference is that in the map that
-    <function>apply-string-subst-map</function> expects, <tag
-    class="attribute">oldstring</tag> and <tag
-    class="attribute">newstring</tag> attributes are used instead of
-    <tag class="attribute">character</tag> and <tag
-    class="attribute">string</tag> attributes.</para>
-  </note>
-
-  <src:fragment xml:id='apply-character-map.frag'>
-    <xsl:template name="apply-character-map">
-      <xsl:param name="content"/>
-      <xsl:param name="map.contents"/>
-      <xsl:variable name="replaced_text">
-        <xsl:call-template name="string.subst">
-          <xsl:with-param name="string" select="$content" />
-          <xsl:with-param name="target" 
-                          select="$map.contents[1]/@character" />
-          <xsl:with-param name="replacement" 
-                          select="$map.contents[1]/@string" />
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:choose>
-        <xsl:when test="$map.contents[2]">
-          <xsl:call-template name="apply-character-map">
-            <xsl:with-param name="content" select="$replaced_text" />
-            <xsl:with-param name="map.contents"
-                            select="$map.contents[position() > 1]" />
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$replaced_text" />
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:template>
-
-  </src:fragment>
-  </refsect1>
-</refentry>
-
-<!-- ================================================================== -->
-
-<refentry xml:id="read-character-map">
-<refnamediv>
-<refname>read-character-map</refname>
-<refpurpose>Read in all or part of an XSLT character map</refpurpose>
-</refnamediv>
-
-<refsect1><title>Description</title>
-
-<para>The XSLT 2.0 specification describes <link
-xlink:href="http://www.w3.org/TR/xslt20/#character-maps">character
-maps</link> and explains how they may be used to allow a specific
-character appearing in a text or attribute node in a final results
-tree to be substituted by a specified string of characters during
-serialization. The <function>read-character-map</function> function
-provides a means for reading and using character maps with XSLT
-1.0-based tools.</para>
-
-<para>It reads the character-map contents from
-<parameter>uri</parameter> (in full or in part, depending on the value
-of the <parameter>use.subset</parameter> parameter), then passes those
-contents to the <function>apply-character-map</function> function,
-along with <parameter>content</parameter>, the data on which to
-perform the character substition.</para>
-
-<para>Using the character map "in part" means that it uses only those
-<tag>output-character</tag> elements that match the XPATH expression
-given in the value of the <parameter>subset.profile</parameter>
-parameter. The current implementation of that capability here relies
-on the <function>evaluate</function> extension XSLT function.</para>
-
-<src:fragment xml:id='read-character-map.frag'>
-  <xsl:template name="read-character-map">
-    <xsl:param name="use.subset"/>
-    <xsl:param name="subset.profile"/>
-    <xsl:param name="uri"/>
-    <xsl:choose>
-      <xsl:when test="$use.subset != 0">
-        <!-- use a subset of the character map instead of the full map -->
-        <xsl:choose>
-          <!-- xsltproc and Xalan both support dyn:evaluate() -->
-          <xsl:when test="function-available('dyn:evaluate')">
-            <xsl:copy-of select="document($uri)//*[local-name()='output-character']
-                                 [dyn:evaluate($subset.profile)]"/>
-          </xsl:when>
-          <!-- Saxon has its own evaluate() & doesn't support dyn:evaluate() -->
-          <xsl:when test="function-available('saxon:evaluate')">
-            <xsl:copy-of select="document($uri)//*[local-name()='output-character']
-                                 [saxon:evaluate($subset.profile)]"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:message terminate="yes"
->
-Error: To process character-map subsets, you must use an XSLT engine
-that supports the evaluate() XSLT extension function. Your XSLT engine
-does not support it.
-</xsl:message>
-          </xsl:otherwise>
-        </xsl:choose>
-        </xsl:when>
-        <xsl:otherwise>
-          <!-- value of $use.subset is non-zero, so use the full map -->
-        <xsl:copy-of select="document($uri)//*[local-name()='output-character']"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-</src:fragment>
-</refsect1>
-</refentry>
-
 </reference>
 
 <!-- ==================================================================  -->
@@ -1189,8 +1026,6 @@ around these functions.</para>
 <src:fragref linkend="comment-escape-string.recursive.frag"/>
 <src:fragref linkend="str.tokenize.keep.delimiters.frag"/>
 <src:fragref linkend="apply-string-subst-map.frag"/>
-<src:fragref linkend="apply-character-map.frag"/>
-<src:fragref linkend="read-character-map.frag"/>
 <src:fragref linkend="count.uri.path.depth.frag"/>
 <src:fragref linkend="trim.common.uri.paths.frag"/>
 <src:fragref linkend="trim.text.frag"/>
