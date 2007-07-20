@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.force.map.and.alias</refname>
-<refpurpose>Should be [MAP] and [ALIAS] section added to project file unconditionaly?</refpurpose>
+<refpurpose>Should [MAP] and [ALIAS] sections be added to the project file unconditionally?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,9 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>You should turn on this flag, if you have your own
-<filename>alias.h</filename> and <filename>contex.h</filename> files
-and you want include reference to them in project file.</para>
+<para>You should turn on this flag if you have your own
+<filename>alias.h</filename> and <filename>context.h</filename> files
+and you want to include references to them in the project file.</para>
 
 </refsection>
 </refentry>

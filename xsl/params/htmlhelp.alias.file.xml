@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.alias.file</refname>
-<refpurpose>Filename of map file.</refpurpose>
+<refpurpose>Filename of alias file.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,8 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Change this parameter if you want different name of map file
-than <filename>alias.h</filename>.</para>
+<para>Specifies the filename of the alias file (used for context-sensitive help).</para>
 
 </refsection>
 </refentry>
