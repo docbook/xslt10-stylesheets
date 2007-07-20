@@ -20,16 +20,6 @@
 
      ******************************************************************** -->
 
-<!-- ==================================================================== -->
-<xsl:param name="javahelp.encoding" select="'ISO-8859-1'"/>
-
-<doc:param name="javahelp.encoding" xmlns="">
-<refpurpose>Character encoding to use in control files for Java Help.</refpurpose>
-<refdescription>
-<para>Java Help crashes on some characters when written as character
-references. In that case you can select appropriate encoding here.</para>
-</refdescription>
-</doc:param>
 
 <!-- ==================================================================== -->
 
