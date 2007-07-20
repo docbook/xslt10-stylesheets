@@ -5,7 +5,7 @@ XJPARSEFLAGS= -E 0 -w
 SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
         de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
         gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml lt.xml \
-        mn.xml nl.xml nn.xml no.xml pa.xml pl.xml hr.xml la.xml or.xml pt.xml \
+        lv.xml mn.xml nl.xml nn.xml no.xml pa.xml pl.xml hr.xml la.xml or.xml pt.xml \
         pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
         ta.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
 
@@ -47,6 +47,7 @@ kn.xml: ../../gentext/locale/kn.xml $(GENSTYLE)
 ko.xml: ../../gentext/locale/ko.xml $(GENSTYLE)
 la.xml: ../../gentext/locale/la.xml $(GENSTYLE)
 lt.xml: ../../gentext/locale/lt.xml $(GENSTYLE)
+lv.xml: ../../gentext/locale/lv.xml $(GENSTYLE)
 mn.xml: ../../gentext/locale/mn.xml $(GENSTYLE)
 nl.xml: ../../gentext/locale/nl.xml $(GENSTYLE)
 nn.xml: ../../gentext/locale/nn.xml $(GENSTYLE)
