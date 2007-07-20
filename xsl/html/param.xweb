@@ -397,6 +397,9 @@ profiling of your document. FIXME: Add link to Bob’s book.</para>
 &eclipse.plugin.id;
 &eclipse.plugin.provider;
 </reference>
+<reference xml:id="javahelp"><title>JavaHelp</title>
+&javahelp.encoding;
+</reference>
 <reference xml:id="l10n"><title>Localization</title>
 &l10n.gentext.language;
 &l10n.gentext.default.language;
@@ -593,6 +596,7 @@ around all these parameters.</para>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
+<src:fragref linkend="javahelp.encoding.frag"/>
 <src:fragref linkend="keep.relative.image.uris.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>
 <src:fragref linkend="l10n.gentext.language.frag"/>
