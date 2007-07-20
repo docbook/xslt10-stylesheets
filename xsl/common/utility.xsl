@@ -31,7 +31,7 @@
       Stylesheets.</para>
     <note>
       <para>These templates are defined in a separate file from the set
-        of “common” templates because some of the comment templates
+        of “common” templates because some of the common templates
         reference DocBook XSL stylesheet parameters, requiring the
         entire set of parameters to be imported/included in any
         stylesheet that imports/includes the common templates.</para>
