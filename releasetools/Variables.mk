@@ -36,9 +36,12 @@ JREF2REFSECT1=$(DOCBUILD_STYLESHEETS)/jref2refsect1.xsl
 MAKE_ELEMENTS_XSL=$(DOCBUILD_STYLESHEETS)/make-elements.xsl
 # XSL params files to params list
 MAKE_PARAMS_XSL=$(DOCBUILD_STYLESHEETS)/make-xsl-params.xsl
+# XSL PI files to PI list
+MAKE_PI_XSL=$(DOCBUILD_STYLESHEETS)/make-xsl-pi.xsl
 # generated elements list
 DOCBOOK_ELEMENTS=$(DOCBUILD_STYLESHEETS)/docbook-elements.xsl
 XSL_PARAMS=$(DOCBUILD_STYLESHEETS)/xsl-params.xsl
+XSL_PI=$(DOCBUILD_STYLESHEETS)/xsl-pi.xsl
 DOCPARAM2TXT=$(DOCBUILD_STYLESHEETS)/docparam2txt.xsl
 
 # reference.xml to reference.html

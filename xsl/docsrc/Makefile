@@ -11,8 +11,9 @@ OTHER_XML_FILES=../common/common.xml ../common/utility.xml ../common/refentry.xm
 
 DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
 PARAM_XSL_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xsl)
+PI_XSL_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xsl)
 
-all: $(PARAM_XML_FILES) ../lib/lib.xml $(PI_XML_FILES) $(OTHER_XML_FILES) $(DOCBOOK_ELEMENTS) $(XSL_PARAMS)
+all: $(PARAM_XML_FILES) ../lib/lib.xml $(PI_XML_FILES) $(OTHER_XML_FILES) $(DOCBOOK_ELEMENTS) $(XSL_PARAMS) $(XSL_PI)
 
 ../%/param.xml:
 	$(MAKE) -C $(dir $@) param.xml
@@ -37,6 +38,9 @@ $(DOCBOOK_ELEMENTS): $(MAKE_ELEMENTS_XSL) $(DOCBOOK_RNG)
 	$(XSLT) $(DOCBOOK_RNG) $< $@
 
 $(XSL_PARAMS): $(MAKE_PARAMS_XSL) $(PARAM_XSL_FILES)
+	$(XSLT) $< $< $@
+
+$(XSL_PI): $(MAKE_PI_XSL) $(PI_XSL_FILES)
 	$(XSLT) $< $< $@
 
 release-clean: clean
