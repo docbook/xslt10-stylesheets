@@ -64,8 +64,7 @@
         Jeni Tennison’s <function>replace_strings</function>
         template in the <link
           xlink:href="http://www.dpawson.co.uk/xsl/sect2/StringReplace.html#d9351e13"
-          >multiple string replacements</link> section of Dave
-        >Pawson’s
+          >multiple string replacements</link> section of Dave Pawson’s
         <link xlink:href="http://www.dpawson.co.uk/xsl/index.html"
           >XSLT FAQ</link>.</para>
       <para>The <function>apply-string-subst-map</function>
