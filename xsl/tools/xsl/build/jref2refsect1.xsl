@@ -1,9 +1,10 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xi="http://www.w3.org/2001/XInclude"
-                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
-                exclude-result-prefixes="xsl xi src"
-                version='1.0'>
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  exclude-result-prefixes="xsl xi src"
+  version='1.0'>
 
 <xsl:output method="xml" indent="no"/>
 
@@ -80,9 +81,15 @@
 
 <xsl:template match="refsee">
   <refsect1>
+    <xsl:copy-of select="@*"/>
     <xsl:choose>
       <xsl:when test="@role = 'params'">
         <title>Related Global Parameters</title>
+      </xsl:when>
+      <xsl:when test="@role = 'tcg'">
+        <title>Related Information in <link
+            xlink:href="http://www.sagehill.net/docbookxsl/"
+            >DocBook XSL: The Complete Guide</link></title>
       </xsl:when>
       <xsl:otherwise>
         <title>See</title>
