@@ -8,7 +8,7 @@
 <xsl:param name="VERSION" select="string(document('')//fm:Version[1])"/>
 <xsl:param name="DistroTitle" select="string(document('')//fm:Branch[1])"/>
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
-<xsl:param name="PreviousRelease">1.72.1</xsl:param>
+<xsl:param name="PreviousRelease">1.72.0</xsl:param>
 <xsl:param name="PreviousReleaseRevision">6553</xsl:param>
 <xsl:param name="Revision">$Revision$</xsl:param>
 <xsl:param name="VersionFileURL">$URL$</xsl:param>
