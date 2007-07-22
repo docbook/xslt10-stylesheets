@@ -27,7 +27,7 @@ output.</para>
 
 </refsection>
 <refsection><info><title>Related Parameters</title></info>
-  <para><parameter>tex.math.in.alt.xml</parameter>,
+  <para><parameter>tex.math.in.alt</parameter>,
     <parameter>tex.math.delims</parameter>,
   </para>
 </refsection>
