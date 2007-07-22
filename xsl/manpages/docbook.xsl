@@ -233,15 +233,19 @@
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * AUTHOR section -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <xsl:call-template name="author.section">
-        <xsl:with-param name="info" select="$info"/>
-      </xsl:call-template>
+      <xsl:if test="not($man.authors.section.enabled = 0)">
+        <xsl:call-template name="author.section">
+          <xsl:with-param name="info" select="$info"/>
+        </xsl:call-template>
+      </xsl:if>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * COPYRIGHT section -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-      <xsl:call-template name="copyright.section">
-        <xsl:with-param name="info" select="$info"/>
-      </xsl:call-template>
+      <xsl:if test="not($man.copyright.section.enabled = 0)">
+        <xsl:call-template name="copyright.section">
+          <xsl:with-param name="info" select="$info"/>
+        </xsl:call-template>
+      </xsl:if>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * NOTES list (only if user wants endnotes numbered and/or listed) -->
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

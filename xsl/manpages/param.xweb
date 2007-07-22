@@ -54,6 +54,11 @@
 &man.font.table.headings;
 &man.font.table.title;
   </reference>
+  <reference xml:id="authors">
+  <title>AUTHORS and COPYRIGHT sections</title>
+  &man.authors.section.enabled;
+  &man.copyright.section.enabled;
+  </reference>
   <reference xml:id="endnotes">
   <title>Endnotes and link handling</title>
 &man.endnotes.list.enabled;
@@ -140,63 +145,65 @@
 
      ******************************************************************** -->
 
+<src:fragref linkend="man.authors.section.enabled.frag"/>
 <src:fragref linkend="man.break.after.slash.frag"/>
-<src:fragref linkend="man.hyphenate.frag"/>
-<src:fragref linkend="man.hyphenate.urls.frag"/>
-<src:fragref linkend="man.hyphenate.filenames.frag"/>
-<src:fragref linkend="man.hyphenate.computer.inlines.frag"/>
-<src:fragref linkend="man.justify.frag"/>
-<src:fragref linkend="man.indent.width.frag"/>
-<src:fragref linkend="man.indent.refsect.frag"/>
-<src:fragref linkend="man.indent.blurbs.frag"/>
-<src:fragref linkend="man.indent.lists.frag"/>
-<src:fragref linkend="man.indent.verbatims.frag"/>
+<src:fragref linkend="man.charmap.enabled.frag"/>
+<src:fragref linkend="man.charmap.subset.profile.frag"/>
+<src:fragref linkend="man.charmap.uri.frag"/>
+<src:fragref linkend="man.charmap.use.subset.frag"/>
+<src:fragref linkend="man.copyright.section.enabled.frag"/>
+<src:fragref linkend="man.endnotes.are.numbered.frag"/>
+<src:fragref linkend="man.endnotes.list.enabled.frag"/>
+<src:fragref linkend="man.endnotes.list.heading.frag"/>
 <src:fragref linkend="man.font.funcprototype.frag"/>
 <src:fragref linkend="man.font.funcsynopsisinfo.frag"/>
 <src:fragref linkend="man.font.table.headings.frag"/>
 <src:fragref linkend="man.font.table.title.frag"/>
-<src:fragref linkend="man.output.manifest.enabled.frag"/>
-<src:fragref linkend="man.output.manifest.filename.frag"/>
-<src:fragref linkend="man.output.quietly.frag"/>
+<src:fragref linkend="man.hyphenate.computer.inlines.frag"/>
+<src:fragref linkend="man.hyphenate.filenames.frag"/>
+<src:fragref linkend="man.hyphenate.frag"/>
+<src:fragref linkend="man.hyphenate.urls.frag"/>
+<src:fragref linkend="man.indent.blurbs.frag"/>
+<src:fragref linkend="man.indent.lists.frag"/>
+<src:fragref linkend="man.indent.refsect.frag"/>
+<src:fragref linkend="man.indent.verbatims.frag"/>
+<src:fragref linkend="man.indent.width.frag"/>
+<src:fragref linkend="man.justify.frag"/>
+<src:fragref linkend="man.links.are.underlined.frag"/>
+<src:fragref linkend="man.output.base.dir.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
 <src:fragref linkend="man.output.in.separate.dir.frag"/>
 <src:fragref linkend="man.output.lang.in.name.enabled.frag"/>
-<src:fragref linkend="man.output.base.dir.frag"/>
+<src:fragref linkend="man.output.manifest.enabled.frag"/>
+<src:fragref linkend="man.output.manifest.filename.frag"/>
+<src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.subdirs.enabled.frag"/>
-<src:fragref linkend="man.string.subst.map.local.pre.frag"/>
+<src:fragref linkend="man.segtitle.suppress.frag"/>
 <src:fragref linkend="man.string.subst.map.frag"/>
 <src:fragref linkend="man.string.subst.map.local.post.frag"/>
-<src:fragref linkend="man.endnotes.list.enabled.frag"/>
-<src:fragref linkend="man.endnotes.list.heading.frag"/>
-<src:fragref linkend="man.endnotes.are.numbered.frag"/>
-<src:fragref linkend="man.links.are.underlined.frag"/>
-<src:fragref linkend="man.charmap.enabled.frag"/>
-<src:fragref linkend="man.charmap.uri.frag"/>
-<src:fragref linkend="man.charmap.use.subset.frag"/>
-<src:fragref linkend="man.charmap.subset.profile.frag"/>
-<src:fragref linkend="man.segtitle.suppress.frag"/>
-<src:fragref linkend="man.table.footnotes.divider.frag"/>
-<src:fragref linkend="man.subheading.divider.frag"/>
+<src:fragref linkend="man.string.subst.map.local.pre.frag"/>
 <src:fragref linkend="man.subheading.divider.enabled.frag"/>
+<src:fragref linkend="man.subheading.divider.frag"/>
+<src:fragref linkend="man.table.footnotes.divider.frag"/>
+<src:fragref linkend="man.th.extra1.suppress.frag"/>
+<src:fragref linkend="man.th.extra2.max.length.frag"/>
+<src:fragref linkend="man.th.extra2.suppress.frag"/>
+<src:fragref linkend="man.th.extra3.max.length.frag"/>
+<src:fragref linkend="man.th.extra3.suppress.frag"/>
+<src:fragref linkend="man.th.title.max.length.frag"/>
 <src:fragref linkend="refentry.date.profile.enabled.frag"/>
-<src:fragref linkend="refentry.meta.get.quietly.frag"/>
-<src:fragref linkend="refentry.manual.profile.enabled.frag"/>
-<src:fragref linkend="refentry.source.name.profile.enabled.frag"/>
-<src:fragref linkend="refentry.version.profile.enabled.frag"/>
-<src:fragref linkend="refentry.source.name.suppress.frag"/>
-<src:fragref linkend="refentry.version.suppress.frag"/>
 <src:fragref linkend="refentry.date.profile.frag"/>
 <src:fragref linkend="refentry.manual.fallback.profile.frag"/>
+<src:fragref linkend="refentry.manual.profile.enabled.frag"/>
 <src:fragref linkend="refentry.manual.profile.frag"/>
+<src:fragref linkend="refentry.meta.get.quietly.frag"/>
 <src:fragref linkend="refentry.source.fallback.profile.frag"/>
+<src:fragref linkend="refentry.source.name.profile.enabled.frag"/>
 <src:fragref linkend="refentry.source.name.profile.frag"/>
+<src:fragref linkend="refentry.source.name.suppress.frag"/>
+<src:fragref linkend="refentry.version.profile.enabled.frag"/>
 <src:fragref linkend="refentry.version.profile.frag"/>
-<src:fragref linkend="man.th.title.max.length.frag"/>
-<src:fragref linkend="man.th.extra2.max.length.frag"/>
-<src:fragref linkend="man.th.extra3.max.length.frag"/>
-<src:fragref linkend="man.th.extra1.suppress.frag"/>
-<src:fragref linkend="man.th.extra2.suppress.frag"/>
-<src:fragref linkend="man.th.extra3.suppress.frag"/>
+<src:fragref linkend="refentry.version.suppress.frag"/>
 </xsl:stylesheet>
     </src:fragment>
 
