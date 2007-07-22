@@ -29,13 +29,13 @@ unattractive lists. By setting this parameter, you can force the stylesheets
 to produce block markup instead of proper lists.</para>
 
 <para>You can override this setting with a processing instruction as the
-child of <tag>variablelist</tag>: <tag class="pi">dbfo
-list-presentation="blocks"</tag> or <tag class="pi">dbfo
+child of <tag>variablelist</tag>: <tag class="xmlpi">dbfo
+list-presentation="blocks"</tag> or <tag class="xmlpi">dbfo
 list-presentation="list"</tag>.</para>
 
 <para>When using <literal>list-presentation="list"</literal>,
 you can also control the amount of space used for the <tag>term</tag>s with 
-the <tag class="pi">dbfo term-width=".25in"</tag> processing instruction,
+the <tag class="xmlpi">dbfo term-width=".25in"</tag> processing instruction,
 the <tag class="attribute">termlength</tag> attribute on <tag>variablelist</tag>,
 or allow the stylesheets to attempt to calculate the amount of space to leave based on the 
 number of letters in the longest term.  

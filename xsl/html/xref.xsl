@@ -903,6 +903,7 @@
 <xsl:template match="link" name="link">
   <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="a.target"/>
+  <xsl:param name="xhref" select="@xlink:href"/>
 
   <xsl:variable name="content">
     <xsl:call-template name="anchor"/>
@@ -949,6 +950,7 @@
     <xsl:with-param name="linkend" select="$linkend"/>
     <xsl:with-param name="content" select="$content"/>
     <xsl:with-param name="a.target" select="$a.target"/>
+    <xsl:with-param name="xhref" select="$xhref"/>
   </xsl:call-template>
 
 </xsl:template>

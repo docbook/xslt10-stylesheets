@@ -89,7 +89,7 @@
 <doc:pi name="dbtimestamp" xmlns="">
   <refpurpose>Inserts a date timestamp</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbtimestamp</tag> PI at any point in a
+    <para>Use the <tag class="xmlpi">dbtimestamp</tag> PI at any point in a
       source document to cause a date timestamp (a formatted
       string representing the current date and time) to be
       inserted in output of the document.</para>

@@ -21,11 +21,13 @@
     <note>
       <para>To use the textinsert extension element, you must use
         either Saxon or Xalan as your XSLT processor (it doesn’t
-        work with xsltproc), along with either the <link
+        work with xsltproc), along with either the DocBook Saxon
+        extensions or DocBook Xalan extensions (for more
+        information about those extensions, see <link
           role="tcg" xlink:href="InstallingAProcessor.html#SaxonExtensions"
-          >DocBook Saxon Extensions</link> or <link
+          >DocBook Saxon Extensions</link> and <link
           role="tcg" xlink:href="InstallingAProcessor.html#XalanExtensions"
-          >DocBook Xalan Extensions</link>, and you must set both
+          >DocBook Xalan Extensions</link>), and you must set both
         the <parameter>use.extensions</parameter> and
         <parameter>textinsert.extension</parameter> parameters to
         <literal>1</literal>.</para>
