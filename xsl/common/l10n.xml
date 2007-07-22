@@ -34,6 +34,7 @@
 <!ENTITY ko SYSTEM "ko.xml">
 <!ENTITY la SYSTEM "la.xml">
 <!ENTITY lit SYSTEM "lt.xml">
+<!ENTITY lv SYSTEM "lv.xml">
 <!ENTITY mn SYSTEM "mn.xml">
 <!ENTITY nl SYSTEM "nl.xml">
 <!ENTITY nn SYSTEM "nn.xml">
@@ -41,15 +42,15 @@
 <!ENTITY or SYSTEM "or.xml">
 <!ENTITY pa SYSTEM "pa.xml">
 <!ENTITY pl SYSTEM "pl.xml">
-<!ENTITY pt SYSTEM "pt.xml">
 <!ENTITY pt_br SYSTEM "pt_br.xml">
+<!ENTITY pt SYSTEM "pt.xml">
 <!ENTITY ro SYSTEM "ro.xml">
 <!ENTITY ru SYSTEM "ru.xml">
 <!ENTITY sk SYSTEM "sk.xml">
 <!ENTITY sl SYSTEM "sl.xml">
 <!ENTITY sq SYSTEM "sq.xml">
-<!ENTITY sr SYSTEM "sr.xml">
 <!ENTITY sr_Latn SYSTEM "sr_Latn.xml">
+<!ENTITY sr SYSTEM "sr.xml">
 <!ENTITY sv SYSTEM "sv.xml">
 <!ENTITY ta SYSTEM "ta.xml">
 <!ENTITY th SYSTEM "th.xml">
@@ -96,6 +97,7 @@
 &ko;
 &la;
 &lit;
+&lv;
 &mn;
 &nl;
 &nn;
