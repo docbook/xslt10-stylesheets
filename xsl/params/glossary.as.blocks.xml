@@ -30,8 +30,8 @@ parameter, you can force the stylesheets to produce block markup
 instead of proper lists.</para>
 
 <para>You can override this setting with a processing instruction as the
-child of <tag>glossary</tag>: <tag class="pi">dbfo
-glossary-presentation="blocks"</tag> or <tag class="pi">dbfo
+child of <tag>glossary</tag>: <tag class="xmlpi">dbfo
+glossary-presentation="blocks"</tag> or <tag class="xmlpi">dbfo
 glossary-presentation="list"</tag></para>
 
 </refsection>

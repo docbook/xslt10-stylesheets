@@ -45,7 +45,7 @@
 <doc:pi name="dbfo_background-color" xmlns="">
   <refpurpose>Sets background color for an image</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo background-color</tag> PI before or
+    <para>Use the <tag class="xmlpi">dbfo background-color</tag> PI before or
       after an image (<tag>graphic</tag>, <tag>inlinegraphic</tag>,
       <tag>imagedata</tag>, or <tag>videodata</tag> element) as a
       sibling to the element, to set a background color for the
@@ -80,7 +80,7 @@
 <doc:pi name="dbfo_bgcolor" xmlns="">
   <refpurpose>Sets background color on a table row or table cell</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo bgcolor</tag> PI as child of a table row
+    <para>Use the <tag class="xmlpi">dbfo bgcolor</tag> PI as child of a table row
       or cell to set a background color for that table row or cell.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -112,7 +112,7 @@
 <doc:pi name="dbfo_float-type" xmlns="">
   <refpurpose>Specifies float behavior for a sidebar</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo float-type</tag> PI to specify the float
+    <para>Use the <tag class="xmlpi">dbfo float-type</tag> PI to specify the float
       behavior for a <tag>sidebar</tag> (to cause the sidebar to be
       displayed as a marginal note).</para>
   </refdescription>
@@ -152,7 +152,7 @@
 <doc:pi name="dbfo_glossary-presentation" xmlns="">
   <refpurpose>Specifies presentation style for a glossary</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo glossary-presentation</tag> PI as a child of
+    <para>Use the <tag class="xmlpi">dbfo glossary-presentation</tag> PI as a child of
       a <tag>glossary</tag> to control its presentation style.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -191,7 +191,7 @@
 <doc:pi name="dbfo_glosslist-presentation" xmlns="">
   <refpurpose>Specifies presentation style for a glosslist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo glosslist-presentation</tag> PI as a child of
+    <para>Use the <tag class="xmlpi">dbfo glosslist-presentation</tag> PI as a child of
       a <tag>glosslist</tag> to control its presentation style.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -231,7 +231,7 @@
   <refpurpose>Specifies the glossterm width for a glossary or
     glosslist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo glossterm-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo glossterm-width</tag> PI as a child of a
       <tag>glossary</tag> or <tag>glosslist</tag> to specify the
       width for output of <tag>glossterm</tag> instances in the
       output.</para>
@@ -270,7 +270,7 @@
   <refpurpose>Specifies “keep” behavior for a table, example,
     figure, or equation</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo keep-together</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo keep-together</tag> PI as a child of a
       formal object (<tag>table</tag>, <tag>example</tag>,
       <tag>figure</tag>, or <tag>equation</tag>) or their informal
       equivalents) to specify “keep” behavior for the object (to
@@ -313,7 +313,7 @@
 <doc:pi name="dbfo_label-width" xmlns="">
   <refpurpose>Specifies the label width for a qandaset</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo label-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo label-width</tag> PI as a child of a
       <tag>qandaset</tag> to specify the width of labels.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -345,7 +345,7 @@
 <doc:pi name="dbfo_linenumbering.everyNth" xmlns="">
   <refpurpose>Specifies interval for lines numbers in verbatims</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo linenumbering.everyNth</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbfo linenumbering.everyNth</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
       <tag>screen</tag>, <tag>synopsis</tag> — to specify
       the interval at which lines are numbered.</para>
@@ -383,7 +383,7 @@
 <doc:pi name="dbfo_linenumbering.separator" xmlns="">
   <refpurpose>Specifies separator text for line numbers in verbatims</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo linenumbering.separator</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbfo linenumbering.separator</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
       <tag>screen</tag>, <tag>synopsis</tag> — to specify
       the separator text output between the line numbers and content.</para>
@@ -420,7 +420,7 @@
 <doc:pi name="dbfo_linenumbering.width" xmlns="">
   <refpurpose>Specifies width for line numbers in verbatims</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo linenumbering.width</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbfo linenumbering.width</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
       <tag>screen</tag>, <tag>synopsis</tag> — to specify
       the width set aside for line numbers.</para>
@@ -458,7 +458,7 @@
   <refpurpose>Specifies presentation style for a variablelist or
     segmentedlist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo list-presentation</tag> PI as a child of
+    <para>Use the <tag class="xmlpi">dbfo list-presentation</tag> PI as a child of
       a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
       control the presentation style for the list (to cause it, for
       example, to be displayed as a table).</para>
@@ -512,7 +512,7 @@
 <doc:pi name="dbfo_list-width" xmlns="">
   <refpurpose>Specifies the width of a horizontal simplelist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo list-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo list-width</tag> PI as a child of a
       <tag>simplelist</tag> whose <tag class="attribute">class</tag>
       value is <literal>horizontal</literal>, to specify the width
       of the <tag>simplelist</tag>.</para>
@@ -541,7 +541,7 @@
 <doc:pi name="dbfo_orientation" xmlns="">
   <refpurpose>Specifies the orientation for table row or cell</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo orientation</tag> PI as a child of an
+    <para>Use the <tag class="xmlpi">dbfo orientation</tag> PI as a child of an
       <tag>table</tag> row or cell to specify the orientation
       (rotation) for the row or cell.</para>
   </refdescription>
@@ -570,7 +570,7 @@
 <doc:pi name="dbfo_pgwide" xmlns="">
   <refpurpose>Specifies if an <tag>equation</tag> or <tag>example</tag> goes across full page width</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo pgwide</tag> PI as a child of an
+    <para>Use the <tag class="xmlpi">dbfo pgwide</tag> PI as a child of an
       <tag>equation</tag> or <tag>example</tag> to specify that the
       content should rendered across the full width of the page.</para>
   </refdescription>
@@ -609,7 +609,7 @@
   <refpurpose>Specifies the width for a table <tag>entry</tag> or
     <tag>row</tag></refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo rotated-width</tag> PI as a child of an
+    <para>Use the <tag class="xmlpi">dbfo rotated-width</tag> PI as a child of an
       <tag>entry</tag> or <tag>row</tag> instance to specify the
       width of that the <tag>entry</tag> or <tag>row</tag>; or
       use it higher up in table to cause the width to be inherited
@@ -639,7 +639,7 @@
 <doc:pi name="dbfo_sidebar-width" xmlns="">
   <refpurpose>Specifies the width of a sidebar</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo sidebar-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo sidebar-width</tag> PI as a child of a
       <tag>sidebar</tag> to specify the width of the sidebar.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -716,7 +716,7 @@
   <refpurpose>Specifies the width for a table or for revhistory
     output</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo table-width</tag> PI as a child or
+    <para>Use the <tag class="xmlpi">dbfo table-width</tag> PI as a child or
       sibling of a <tag>table</tag>, or as a child of an
       <tag>informaltable</tag>, <tag>entrybl</tag>, or
       <tag>revhistory</tag> instance (which is rendered as a table
@@ -751,7 +751,7 @@
 <doc:pi name="dbfo_term-width" xmlns="">
   <refpurpose>Specifies the term width for a variablelist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo term-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo term-width</tag> PI as a child of a
       <tag>variablelist</tag> to specify the width for
       <tag>term</tag> output.</para>
   </refdescription>
@@ -784,7 +784,7 @@
 <doc:pi name="dbfo_toc" xmlns="">
   <refpurpose>Species whether a TOC should be generated for a qandaset</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfo toc</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbfo toc</tag> PI as a child of a
       <tag>qandaset</tag> to specify whether a table of contents
       (TOC) is generated for the <tag>qandaset</tag>.</para>
   </refdescription>

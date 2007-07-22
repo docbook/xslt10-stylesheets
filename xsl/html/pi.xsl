@@ -41,7 +41,7 @@
 <doc:pi name="dbhtml_background-color" xmlns="">
   <refpurpose>Sets background color for an image</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml background-color</tag> PI before or
+    <para>Use the <tag class="xmlpi">dbhtml background-color</tag> PI before or
       after an image (<tag>graphic</tag>, <tag>inlinegraphic</tag>,
       <tag>imagedata</tag>, or <tag>videodata</tag> element) as a
       sibling to the element, to set a background color for the
@@ -76,7 +76,7 @@
 <doc:pi name="dbhtml_bgcolor" xmlns="">
   <refpurpose>Sets background color on a table row or table cell</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml bgcolor</tag> PI as child of a table row
+    <para>Use the <tag class="xmlpi">dbhtml bgcolor</tag> PI as child of a table row
       or cell to set a background color for that table row or cell.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -108,7 +108,7 @@
 <doc:pi name="dbhtml_cellpadding" xmlns="">
   <refpurpose>Specifies cellpadding in table or qandaset output</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml cellpadding</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml cellpadding</tag> PI as a child of a
       <tag>table</tag> or <tag>qandaset</tag> to specify the value
       for the HTML <literal>cellpadding</literal> attribute in the
       output HTML table.</para>
@@ -147,7 +147,7 @@
 <doc:pi name="dbhtml_cellspacing" xmlns="">
   <refpurpose>Specifies cellspacing in table or qandaset output</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml cellspacing</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml cellspacing</tag> PI as a child of a
       <tag>table</tag> or <tag>qandaset</tag> to specify the value
       for the HTML <literal>cellspacing</literal> attribute in the
       output HTML table.</para>
@@ -187,7 +187,7 @@
 <doc:pi name="dbhtml_class" xmlns="">
   <refpurpose>Set value of the class attribute for a table row</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml class</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml class</tag> PI as a child of a
       <tag>row</tag> to specify a <literal>class</literal>
       attribute and value in the HTML output for that row.</para>
   </refdescription>
@@ -220,7 +220,7 @@
 <doc:pi name="dbhtml_dir" xmlns="">
   <refpurpose>Specifies a directory name in which to write files</refpurpose>
   <refdescription>
-    <para>When chunking output, use the <tag>dbhtml dir</tag> PI
+    <para>When chunking output, use the <tag class="xmlpi">dbhtml dir</tag> PI
       as a child of a chunk source to cause the output of that
       chunk to be written to the specified directory; also, use it
       as a child of a <tag>mediaobject</tag> to specify a
@@ -259,7 +259,7 @@
 <doc:pi name="dbhtml_filename" xmlns="">
   <refpurpose>Specifies a filename for a chunk</refpurpose>
   <refdescription>
-    <para>When chunking output, use the <tag>dbhtml filename</tag>
+    <para>When chunking output, use the <tag class="xmlpi">dbhtml filename</tag>
       PI as a child of a chunk source to specify a filename for
       the output file for that chunk.</para>
   </refdescription>
@@ -295,7 +295,7 @@
 <doc:pi name="dbhtml_funcsynopsis-style" xmlns="">
   <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml funcsynopsis-style</tag> PI as a child of
+    <para>Use the <tag class="xmlpi">dbhtml funcsynopsis-style</tag> PI as a child of
       a <tag>funcprototype</tag> or anywhere within a funcprototype
       control the presentation style for the <tag>funcsynopsis</tag>
       in output.</para>
@@ -332,7 +332,7 @@
 <doc:pi name="dbhtml_img.src.path" xmlns="">
   <refpurpose>Specifies a path to the location of an image file</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml img.src.path</tag> PI before or
+    <para>Use the <tag class="xmlpi">dbhtml img.src.path</tag> PI before or
       after an image (<tag>graphic</tag>,
       <tag>inlinegraphic</tag>, <tag>imagedata</tag>, or
       <tag>videodata</tag> element) as a sibling to the element,
@@ -373,7 +373,7 @@
 <doc:pi name="dbhtml_label-width" xmlns="">
   <refpurpose>Specifies the label width for a qandaset</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml label-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml label-width</tag> PI as a child of a
       <tag>qandaset</tag> to specify the width of labels.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -405,7 +405,7 @@
 <doc:pi name="dbhtml_linenumbering.everyNth" xmlns="">
   <refpurpose>Specifies interval for lines numbers in verbatims</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml linenumbering.everyNth</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbhtml linenumbering.everyNth</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
       <tag>screen</tag>, <tag>synopsis</tag> — to specify
       the interval at which lines are numbered.</para>
@@ -443,7 +443,7 @@
 <doc:pi name="dbhtml_linenumbering.separator" xmlns="">
   <refpurpose>Specifies separator text for line numbers in verbatims</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml linenumbering.separator</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbhtml linenumbering.separator</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
       <tag>screen</tag>, <tag>synopsis</tag> — to specify
       the separator text output between the line numbers and content.</para>
@@ -480,7 +480,7 @@
 <doc:pi name="dbhtml_linenumbering.width" xmlns="">
   <refpurpose>Specifies width for line numbers in verbatims</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml linenumbering.width</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbhtml linenumbering.width</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
       <tag>screen</tag>, <tag>synopsis</tag> — to specify
       the width set aside for line numbers.</para>
@@ -518,7 +518,7 @@
   <refpurpose>Specifies presentation style for a variablelist or
     segmentedlist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml list-presentation</tag> PI as a child of
+    <para>Use the <tag class="xmlpi">dbhtml list-presentation</tag> PI as a child of
       a <tag>variablelist</tag> or <tag>segmentedlist</tag> to
       control the presentation style for the list (to cause it, for
       example, to be displayed as a table).</para>
@@ -567,7 +567,7 @@
 <doc:pi name="dbhtml_list-width" xmlns="">
   <refpurpose>Specifies the width of a variablelist or simplelist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml list-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml list-width</tag> PI as a child of a
       <tag>variablelist</tag> or a <tag>simplelist</tag> presented
       as a table, to specify the output width.</para>
   </refdescription>
@@ -600,7 +600,7 @@
 <doc:pi name="dbhtml_row-height" xmlns="">
   <refpurpose>Specifies the height for a table row</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml row-height</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml row-height</tag> PI as a child of a
       <tag>row</tag> to specify the height of the row.</para>
   </refdescription>
   <refsynopsisdiv>
@@ -670,7 +670,7 @@
 <doc:pi name="dbhtml_table-summary" xmlns="">
   <refpurpose>Specifies summary for table, variablelist, segmentedlist, or qandaset output</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml table-summary</tag> PI as a child of
+    <para>Use the <tag class="xmlpi">dbhtml table-summary</tag> PI as a child of
       a <tag>table</tag>, <tag>variablelist</tag>,
       <tag>segmentedlist</tag>, or <tag>qandaset</tag> to specify
       the text for the HTML <literal>summary</literal> attribute
@@ -707,7 +707,7 @@
 <doc:pi name="dbhtml_table-width" xmlns="">
   <refpurpose>Specifies the width for a table</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml table-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml table-width</tag> PI as a child of a
       <tag>table</tag> to specify the width of the table in
       output.</para>
   </refdescription>
@@ -743,7 +743,7 @@
 <doc:pi name="dbhtml_term-presentation" xmlns="">
   <refpurpose>Sets character formatting for terms in a variablelist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml term-presentation</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbhtml term-presentation</tag> PI as a child
       of a <tag>variablelist</tag> to set character formatting for
       the <tag>term</tag> output of the list.</para>
   </refdescription>
@@ -786,7 +786,7 @@
 <doc:pi name="dbhtml_term-separator" xmlns="">
   <refpurpose>Specifies separator text among terms in a varlistentry</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml term-separator</tag> PI as a child
+    <para>Use the <tag class="xmlpi">dbhtml term-separator</tag> PI as a child
       of a <tag>variablelist</tag> to specify the separator text
       among <tag>term</tag> instances.</para>
   </refdescription>
@@ -822,7 +822,7 @@
 <doc:pi name="dbhtml_term-width" xmlns="">
   <refpurpose>Specifies the term width for a variablelist</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml term-width</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml term-width</tag> PI as a child of a
       <tag>variablelist</tag> to specify the width for
       <tag>term</tag> output.</para>
   </refdescription>
@@ -855,7 +855,7 @@
 <doc:pi name="dbhtml_toc" xmlns="">
   <refpurpose>Species whether a TOC should be generated for a qandaset</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml toc</tag> PI as a child of a
+    <para>Use the <tag class="xmlpi">dbhtml toc</tag> PI as a child of a
       <tag>qandaset</tag> to specify whether a table of contents
       (TOC) is generated for the <tag>qandaset</tag>.</para>
   </refdescription>
@@ -897,7 +897,7 @@
 <doc:pi name="dbcmdlist" xmlns="">
   <refpurpose>Generates a hyperlinked list of commands</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbcmdlist</tag> PI as the child of a
+    <para>Use the <tag class="xmlpi">dbcmdlist</tag> PI as the child of a
       <tag>refsynopsisdiv</tag> containing multiple
       <tag>cmdsynopsis</tag> instances; a hyperlinked navigational
       “command list” will be generated at the top of the
@@ -927,7 +927,7 @@
 <doc:pi name="dbfunclist" xmlns="">
   <refpurpose>Generates a hyperlinked list of functions</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbfunclist</tag> PI as the child of a
+    <para>Use the <tag class="xmlpi">dbfunclist</tag> PI as the child of a
       <tag>refsynopsisdiv</tag> containing multiple
       <tag>funcsynopsis</tag> instances; a hyperlinked
       navigational “function list” will be generated at the top of
@@ -957,7 +957,7 @@
 <doc:pi name="dbhtml-include_href" xmlns="">
   <refpurpose>Copies an external well-formed HTML/XML file into current doc</refpurpose>
   <refdescription>
-    <para>Use the <tag>dbhtml-include href</tag> PI anywhere in a
+    <para>Use the <tag class="xmlpi">dbhtml-include href</tag> PI anywhere in a
       document to cause the contents of the file referenced by the
       <code>href</code> pseudo-attribute to be copied/inserted “as
       is” into your HTML output at the point in document order
