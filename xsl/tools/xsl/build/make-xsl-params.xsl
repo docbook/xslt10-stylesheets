@@ -24,9 +24,17 @@
     <xslt:stylesheet version="1.0"> 
       <xsl:text>&#xa;</xsl:text>
       <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
       <xsl:comment> * This stylesheet was generated automatically. </xsl:comment>
       <xsl:text>&#xa;</xsl:text>
       <xsl:comment> * Edit the make-xsl-params.xsl file to rebuild this. </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
 
       <!-- * Process params for each output format listed in $param.dirs -->
       <!-- * by splitting the value of $param.dirs into two parts: the part -->

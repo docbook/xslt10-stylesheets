@@ -26,9 +26,17 @@
     <xslt:stylesheet version="1.0">
       <xsl:text>&#xa;</xsl:text>
       <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
       <xsl:comment> * This stylesheet is automatically generated. </xsl:comment>
       <xsl:text>&#xa;</xsl:text>
       <xsl:comment> * Edit the make-elements.xsl file to re-generate this. </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:comment> * WARNING WARNING WARNING </xsl:comment>
       <xslt:variable name="docbook-element-list">
         <simplelist role="element"> 
           <xsl:for-each
@@ -40,13 +48,10 @@
           </xsl:for-each>
         </simplelist>
       </xslt:variable>
-
       <xslt:variable name="docbook-elements"
                     select="exsl:node-set($docbook-element-list)/simplelist"/>
-
       <xslt:template name="is-docbook-element">
         <xslt:param name="element" select="''"/>
-
         <xslt:choose>
           <xslt:when test="$docbook-elements/member[. = $element]">1</xslt:when>
           <xslt:otherwise>0</xslt:otherwise>
