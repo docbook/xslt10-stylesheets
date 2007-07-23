@@ -1,0 +1,70 @@
+#!/bin/sh
+# $Id$
+
+# release-announce VERSION RECIPIENTS
+# e.g., release-announce 1.73.0 docbook-apps@lists.oasis-open.org
+
+version=$1
+recipients=$2
+
+rm -f /tmp/HEADER.txt
+rm -f /tmp/HEADER-NS.txt
+rm -f /tmp/BODY-DOCS.txt
+
+cat <<- EOF > /tmp/HEADER.txt
+From: DocBook Project <docbook-dev@xml-doc.org>
+To: $recipients
+Subject: ANNOUNCE: DocBook XSL $version released
+
+The DocBook Project wishes to announce that version $version of the
+DocBook XSL Stylesheets is now available for download from the
+project website:
+
+  http://docbook.sf.net/files/xsl/latest
+  http://sourceforge.net/projects/docbook
+
+The DocBook XSL Stylesheets are designed for processing
+non-namespaced (DocBook 4 or earlier) documents.
+
+EOF
+
+cat <<- EOF > /tmp/HEADER-NS.txt
+From: DocBook Project <docbook-dev@xml-doc.org>
+To: $recipients
+Subject: ANNOUNCE: DocBook XSL-NS $version released
+
+The DocBook Project wishes to announce that version $version of the
+DocBook XSL-NS Stylesheets is now available for download from the
+project website:
+
+  http://docbook.sf.net/files/xsl-ns/latest
+  http://sourceforge.net/projects/docbook
+
+The DocBook XSL-NS Stylesheets are designed for processing
+namespaced (DocBook 5) documents.
+
+EOF
+
+cat <<- EOF > /tmp/BODY-DOCS.txt
+The reference docs are packaged separately and downloadable from:
+
+  http://docbook.sf.net/files/xsl-doc/latest
+
+The docs are also available online:
+
+  http://docbook.sf.net/release/xsl/current/doc/reference.html
+  http://docbook.sf.net/release/xsl/current/doc/reference.pdf
+  http://docbook.sf.net/release/xsl/current/doc/reference.txt
+
+The release notes are included below. HTML and PDF versions of the
+release notes are also available:
+
+  http://docbook.sf.net/release/xsl/current/RELEASE-NOTES.html
+  http://docbook.sf.net/release/xsl/current/RELEASE-NOTES.pdf
+
+EOF
+
+cat  /tmp/HEADER.txt /tmp/BODY-DOCS.txt RELEASE-NOTES-PARTIAL.txt \
+  | sendmail -v -f docbook-dev@xml-doc.org $recipients
+cat /tmp/HEADER-NS.txt /tmp/BODY-DOCS.txt RELEASE-NOTES-PARTIAL.txt \
+  | sendmail -v -f docbook-dev@xml-doc.org $recipients
