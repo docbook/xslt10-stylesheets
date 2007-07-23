@@ -1,0 +1,273 @@
+#!/usr/bin/env python
+#
+# freshmeat-submit -- script transactions with the Freshmeat server
+
+# This is how we sanity-check against the XML-RPC API version.
+required_major = "1"
+required_minor = "02"
+
+import sys
+
+def error(m):
+    sys.stderr.write("freshmeat-submit: %s\n" % m)
+    sys.stderr.flush()
+    sys.exit(1)
+
+if sys.version[:6] < '2.2.0':
+    error("You must upgrade to Python 2.2.0 or better to use this code.")
+
+import xmlrpclib, netrc, email.Parser, optparse, commands
+
+class FreshmeatSessionException:
+    def __init__(self, msg):
+        self.msg = msg
+
+class FreshmeatSession:
+    "Encapsulate the state of a Freshmeat session."
+    freshmeat_xmlrpc = "http://freshmeat.net/xmlrpc/"
+
+    def __init__(self, login=None, password=None, verbose=0):
+        "Initialize an XML-RPC session to Freshmeat by logging in."
+        self.verbose = verbose
+        # If user didn't supply credentials, fetch from ~/.netrc
+        if not login:
+            try:
+                credentials = netrc.netrc()
+            except netrc.NetrcParseError, e:
+                raise FreshmeatSessionException("ill-formed .netrc: %s:%s %s" \
+                                               % (e.filename, e.lineno, e.msg))
+            except IOError, e:
+                raise FreshmeatSessionException(("missing .netrc file %s" % \
+                                                 str(e).split()[-1]))
+            ret = credentials.authenticators("freshmeat")
+            if not ret:
+                raise FreshmeatSessionException("no credentials for Freshmeat")
+            login, account, password = ret
+        # Open xml-rpc connection to Freshmeat
+        self.session = xmlrpclib.Server(FreshmeatSession.freshmeat_xmlrpc,
+                                     verbose=verbose)
+        # Log in to Freshmeat
+        response = self.session.login( \
+            {"username":login, "password":password})
+        self.sid = response['SID']
+        self.lifetime = response['Lifetime']
+        api_version = response['API Version']
+        # Sanity-check against the version
+        (major, minor) = api_version.split(".")
+        if major != required_major or minor < required_minor:
+            FreshmeatSessionException("this version is out of date; get a replacement from Freshmeat.")
+        if self.verbose:
+            print "Session ID = %s, lifetime = %s" % (self.sid, self.lifetime)
+
+    def get_branch_list(self, name):
+        "Get the branch list for the current project."
+        if self.verbose:
+            print "About to look up project"
+        self.branch_list = self.session.fetch_branch_list({'SID':self.sid,'project_name':name})
+        if self.verbose:
+            print "Project branch list is:", self.branch_list
+
+    def publish_release(self, data):
+        "Add a new release to the current project."
+        response = self.session.publish_release(data)
+        if "OK" not in response:
+            raise FreshmeatSessionException(response)
+
+    def withdraw_release(self, release):
+        response = self.session.withdraw_release(release)
+        if "OK" not in response:
+            raise FreshmeatSessionException(response)
+  
+    def logout(self):
+        "End the session."
+        return self.session.logout({"SID":self.sid})
+
+freshmeat_field_map = (
+    ("Project",          "p", "project_name"),
+    ("Branch",           "b", "branch_name"),
+    ("Version",          "v", "version"),
+    ("Changes",          "c", "changes"),
+    ("Release-Focus",    "r", "release_focus"),
+    ("Hide",             "x", "hide_from_frontpage"),
+    ("License",          "l", "license"),
+    ("Home-Page-URL",    "H", "url_homepage"),
+    ("Gzipped-Tar-URL",  "G", "url_tgz"),
+    ("Bzipped-Tar-URL",  "B", "url_bz2"),
+    ("Zipped-Tar-URL",   "Z", "url_zip"),
+    ("Changelog-URL",    "C", "url_changelog"),
+    ("RPM-URL",	         "R", "url_rpm"),
+    ("Debian-URL",	 "D", "url_deb"),
+    ("OSX-URL",	         "O", "url_osx"),
+    ("BSD-Port-URL",     "P", "url_bsdport"),
+    ("Purchase-URL",     "U", "url_purchase"),
+    ("CVS-URL",	         "S", "url_cvs"),
+    ("Mailing-List-URL", "L", "url_list"),
+    ("Mirror-Site-URL",  "M", "url_mirror"),
+    ("Demo-URL",	 "E", "url_demo"),
+    )
+
+def get_rpm_field(fld, rpm):
+    cmd = "rpm --queryformat='%%{%s}' -qp %s" % (fld, rpm)
+    (status, output) = commands.getstatusoutput(cmd)
+    if status != 0:
+        raise ValueError
+    return output
+
+def crack_rpm(rpm, dict):
+    "Extract freshmeat metadata from an RPM."
+    try:
+        # Some fields can be copied literally if present.
+        if not "project_name" in dict:
+            dict["project_name"] = get_rpm_field("name", rpm)
+        if not "version" in dict:
+            dict["version"] = get_rpm_field("version", rpm)
+        # This doesn't work.  The values don't map over.
+        #if not "license" in dict:
+        #    dict["license"] = get_rpm_field("license", rpm)
+        if not "url_homepage" in dict:
+            dict["url_homepage"] = get_rpm_field("url", rpm)
+        if not "changes" in dict:
+            # Querying gets you the first entry, apparently
+            # blank-line-delimited.
+            changes = get_rpm_field("changelogtext", rpm)
+            # Canonicalize, stripping leading spaces.
+            changes = map(lambda x: x.strip(), changes.split('\n'))
+            # There's a 600-char-limit on Freshmeat changes fields.
+            changes = "\n".join(changes)[:599] + "\n"
+            dict["changes"] = changes 
+        # RPMs have a source field; figure out which Freshmeat field it maps to
+        source = get_rpm_field("source", rpm)
+        if source.endswith(".tar.gz") or source.endswith(".tgz"):
+            if "url_tgz" not in dict:
+                dict["url_tgz"] = source
+        if source.endswith(".tar.bz2"):
+            if "url_bz2" not in dict:
+                dict["url_bz2"] = source
+    except ValueError:
+        pass
+
+class FreshmeatMetadataFactory:
+    "Factory class for producing Metadata records"
+
+    def __init__(self):
+        self.message_parser = email.Parser.Parser()
+        self.argument_parser = optparse.OptionParser( \
+            usage="usage: %prog [options]")
+        for (msg_field, shortopt, rpc_field) in freshmeat_field_map:
+            self.argument_parser.add_option("-" + shortopt,
+                                            "--" + msg_field.lower(),
+                                            dest=rpc_field,
+                                            help="Set the %s field"%msg_field)
+        self.argument_parser.add_option('-d', '--delete', dest='delete',
+                          default=False, action='store_true',
+                          help='Suppress reading fields from stdin.')
+        self.argument_parser.add_option('-n', '--no-stdin', dest='read',
+                          default=True, action='store_false',
+                          help='Suppress reading fields from stdin.')
+        self.argument_parser.add_option('-N', '--noemit', dest='noemit',
+                          default=False, action='store_true',
+                          help='Suppress reading fields from stdin.')
+        self.argument_parser.add_option('-V', '--verbose', dest='verbose',
+                          default=False, action='store_true',
+                          help='Enable verbose debugging.')
+        
+    def header_to_field(self, hdr):
+        lhdr = hdr.lower().replace("-", "_")
+        for (alias, shortopt, field) in freshmeat_field_map:
+            if lhdr == alias.lower().replace("-", "_"):
+                return field
+        raise FreshmeatSessionException("Illegal field name %s" % hdr)
+
+    def getMetadata(self, stream):
+        "Make a Metadata object."
+        data = {}
+        (options, args) = self.argument_parser.parse_args()
+        # First stuff from rpms if present.
+        for file in args:
+            if file.endswith(".rpm"):
+                crack_rpm(file, data)
+        # Second. stuff fropm stdin if present
+        if options.read:
+            message = self.message_parser.parse(stream)
+            for (key, value) in message.items():
+                data.update({self.header_to_field(key) : value})
+            if not 'changes' in data:
+                data['changes'] = message.get_payload()
+        # Merge in options from the command line;
+        # they override what's on stdin.
+        data['verbose'] = False
+        for (key, value) in options.__dict__.items():
+            if key != 'read' and value != None:
+                data[key] = value
+        # Release-Focus field may have to be validated later.
+        if "release_focus" in data:
+            val = data["release_focus"].lower()
+            if val in '123456789':
+                data["release_focus"] = int(val)
+        return data
+
+    def validate(self, session, verbose="1"):
+        "Validate a metadata object using the Freshmeat server"
+        # Validate Release-Focus field if present
+        focus = data.get('release_focus')
+        if focus and type(focus) != type(0):
+            if not session:
+                session = FreshmeatSession(verbose=int(verbose))
+            freshmeat_foci = session.session.fetch_available_release_foci()
+            if focus in freshmeat_foci:
+                data["release_focus"] = freshmeat_foci[focus]
+            else:
+                raise FreshmeatSessionException("focus type error: needs one of" + `freshmeat_foci.keys()`)
+        # Validate License field if present
+        license = data.get('license')
+        if license:
+            if not session:
+                session = FreshmeatSession(verbose=int(verbose))
+            freshmeat_licenses = session.session.fetch_available_licenses()
+            freshmeat_licenses = map(lambda x: x.lower(), freshmeat_licenses)
+            if license.lower() not in freshmeat_licenses:
+                raise FreshmeatSessionException("license error: needs one of " + `freshmeat_foci`)
+        # All OK
+        return session
+
+if __name__ == "__main__":
+    try:
+        session = None
+        # First, gather update data from stdin and command-line switches
+        factory = FreshmeatMetadataFactory()
+        data = factory.getMetadata(sys.stdin)
+        # Some switches shouldn't be passed to the server
+        verbose = data['verbose']; del data['verbose']
+        delete = data['delete']; del data['delete']
+        noemit = data['noemit']; del data['noemit']
+        # Validate any fields we can check with the server
+        session = factory.validate(session, verbose)
+        # Maybe we just want to sanity-check the send
+        if noemit or verbose:
+            for (field, shortopt, key) in freshmeat_field_map:
+                if key in data and key != 'changes':
+                    print "%s: %s" % (field, data[key])
+            if 'changes' in data:
+                sys.stdout.write("\n" + data['changes'])
+        # Time to ship the update.
+        if not noemit:
+            # Establish session
+            if not session:
+                session = FreshmeatSession(verbose=int(verbose))
+            # OK, now actually add the release.
+            data['SID'] = session.sid
+            if delete:
+                session.withdraw_release(data)
+            else:
+                session.publish_release(data)
+            # Log out
+            session.logout()
+    except FreshmeatSessionException, e:
+        print >>sys.stderr,"freshmeat-submit:", e.msg
+        sys.exit(1)
+    except xmlrpclib.Fault, f:
+        print >>sys.stderr,"freshmeat-submit: %d %s" %  (f.faultCode, f.faultString)
+        sys.exit(1)
+
+# end
+
