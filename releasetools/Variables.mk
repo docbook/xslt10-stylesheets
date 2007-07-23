@@ -10,6 +10,10 @@
 
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
+RELEASE_ANNOUNCE=$(DOCBOOK_SVN)/releasetools/release-announce
+ANNOUNCE_RECIPIENTS=docbook-apps@lists.oasis-open.org
+FRESHMEAT_SUBMIT=$(DOCBOOK_SVN)/releasetools/freshmeat-submit
+
 CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
 MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl

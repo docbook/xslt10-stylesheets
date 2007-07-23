@@ -16,6 +16,17 @@ RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
 
+RELEASE-NOTES-PARTIAL.html: RELEASE-NOTES.xml NEWS.xml
+	$(XINCLUDE) $< > RELEASE-NOTES-PARTIAL-TMP.xml
+	$(XSLT) RELEASE-NOTES-PARTIAL-TMP.xml $(DOC_LINK_STYLE) $@ \
+	doc-baseuri="http://docbook.sourceforge.net/release/xsl/current/doc/" \
+	rootid="V$(RELVER)"
+	$(RM) RELEASE-NOTES-PARTIAL-TMP.xml
+
+RELEASE-NOTES-PARTIAL.txt: RELEASE-NOTES-PARTIAL.html
+	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
+	$(RM) $<
+
 RELEASE-NOTES.pdf: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
 ifeq ($(PDF_MAKER),xep)
@@ -132,7 +143,7 @@ ifeq ($(SFRELID),)
 	exit 1
 else
 	$(XSLT) VERSION VERSION $(TMP)/fm-docbook-$(DISTRO) sf-relid=$(SFRELID)
-	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | freshmeat-submit $(FMGO)
+	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | $(FRESHMEAT_SUBMIT) $(FMGO)
 endif
 
 ifeq ($(OFFLINE),yes)
@@ -211,31 +222,45 @@ ifneq ($(DISTRIB_PACKAGES),)
 endif
 endif
 
-install: zip
+upload-to-sf-incoming: zip
 ifeq ($(SF_USERNAME),)
 	$(error You must specify a value for $$SF_USERNAME)
 else
-	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
-	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
+	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST) && \
+	$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
+endif
+
+upload-to-project-webspace: zip
+ifeq ($(SF_USERNAME),)
+	$(error You must specify a value for $$SF_USERNAME)
+else
 	-$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2 $(SF_USERNAME)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
-	-$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2 $(SF_USERNAME)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
+	-$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2 $(SF_USERNAME)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
 	-$(SSH) $(SSH_OPTS)-l $(SF_USERNAME) $(PROJECT_HOST) \
 	  "(\
-	   umask 002; \
 	   cd $(RELEASE_DIR)/$(DISTRO); \
 	   rm -rf $(ZIPVER); \
 	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
-	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
+	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2; \
 	   mv docbook-$(DISTRO)-$(ZIPVER) $(ZIPVER); \
 	   gunzip $(ZIPVER)/doc/reference.pdf.gz; \
 	   gunzip $(ZIPVER)/doc/reference.txt.gz; \
-	   rm -rf docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
-	   rm -rf docbook-$(DISTRO)-*-$(ZIPVER).tar.bz2; \
 	   chmod -R g+w $(ZIPVER); \
 	   $(RM) current; \
 	   ln -s $(ZIPVER) current; \
+	   rm -f docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
+	   rm -f docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2; \
 	   )"
 endif
+
+install: upload-to-sf-incoming upload-to-project-webspace
+	@echo "The docbook-$(DISTRO) and docbook-$(DISTRO)-doc packages have been uploaded to the SF incoming area."
+	@echo "Use the following form to move the uploaded files to the project release area."
+	@echo
+	@echo "  http://sourceforge.net/project/admin/editpackages.php?group_id=21935"
+
+announce: RELEASE-NOTES-PARTIAL.txt
+	$(RELEASE_ANNOUNCE) $(RELVER) $(ANNOUNCE_RECIPIENTS)
 
 release-clean: clean
 	$(MAKE) -C docsrc release-clean
