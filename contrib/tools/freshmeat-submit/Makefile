@@ -1,4 +1,4 @@
-# $Id: Makefile 5723 2006-03-27 05:10:40Z xmldoc $
+# $Id$
 
 DOWNLOAD_URL ?= http://www.catb.org/~esr/freshmeat-submit
 DOWNLOAD_FILENAME ?= freshmeat-submit-1.6.tar.gz
