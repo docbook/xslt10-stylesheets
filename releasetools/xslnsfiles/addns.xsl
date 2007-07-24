@@ -9,7 +9,7 @@
                 exclude-result-prefixes="d exsl saxon NodeInfo"
                 version='1.0'>
 
-<xsl:import href="../common/common.xsl"/>
+<xsl:import href="../common/utility.xsl"/>
 
 <!-- Template to add the namespace to non-namespaced documents -->
 <xsl:template match="*" mode="addNS">
