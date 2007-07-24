@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="home.image.frag">
-<xsl:param name="home.image" select="'active/nav-home.png'"/>
+<xsl:param name="home.image">active/nav-home.png</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -18,7 +18,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="glossentry.show.acronym.frag">
-<xsl:param name="glossentry.show.acronym" select="'no'"/>
+<xsl:param name="glossentry.show.acronym">no</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

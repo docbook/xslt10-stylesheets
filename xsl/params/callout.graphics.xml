@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="callout.graphics.frag">
-<xsl:param name="callout.graphics" select="'1'"/>
+<xsl:param name="callout.graphics" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 

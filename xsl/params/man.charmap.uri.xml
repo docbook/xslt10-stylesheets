@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="man.charmap.uri.frag">
-<xsl:param name="man.charmap.uri" select="''"/>
+<xsl:param name="man.charmap.uri"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

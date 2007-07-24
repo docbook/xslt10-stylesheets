@@ -22,7 +22,7 @@
 <refsection><info><title>Description</title></info>
 
 <para>The <parameter>generate.section.toc.level</parameter> parameter
-controls the depth of section in which TOCs will be generated. Note
+controls the depth of <tag>section</tag> in which TOCs will be generated. Note
 that this is related to, but not the same as
 <parameter>toc.section.depth</parameter>, which controls the depth to
 which TOC entries will be generated in a given TOC.</para>

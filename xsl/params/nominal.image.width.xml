@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="nominal.image.width.frag">
-<xsl:param name="nominal.image.width" select="6 * $pixels.per.inch"/>
+<xsl:param name="nominal.image.width">6 * $pixels.per.inch</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

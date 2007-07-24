@@ -14,16 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="refentry.generate.name.frag"><xsl:param name="refentry.generate.name" select="1"/></src:fragment>
+<src:fragment xml:id="refentry.generate.name.frag">
+<xsl:param name="refentry.generate.name" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), a "NAME" section title is output before the list
+<para>If non-zero, a "NAME" section title is output before the list
 of 'RefName's. This parameter and
 <parameter>refentry.generate.title</parameter> are mutually
 exclusive. This means that if you change this parameter to zero, you
-should set <parameter>refentry.generate.title</parameter> to 1 unless
+should set <parameter>refentry.generate.title</parameter> to non-zero unless
 you want get quite strange output.
 </para>
 

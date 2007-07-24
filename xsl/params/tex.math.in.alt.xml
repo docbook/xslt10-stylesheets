@@ -17,7 +17,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="tex.math.in.alt.frag">
-<xsl:param name="tex.math.in.alt" select="''"/>
+<xsl:param name="tex.math.in.alt"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

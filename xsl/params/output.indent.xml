@@ -17,15 +17,16 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="output.indent.frag">
-<xsl:param name="output.indent" select="'no'"/>
+<xsl:param name="output.indent" >no</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Specifies the setting of the <parameter>indent</parameter> parameter
-on the HTML slides. For more information, see the discussion of the
-<tag>xsl:output</tag> element in the XSLT specification.</para>
+<para>Specifies the setting of the <parameter>indent</parameter>
+parameter on the HTML slides. For more information, see the discussion
+of the <tag>xsl:output</tag> element in the XSLT specification.</para>
+<para>Select from <literal>yes</literal> or <literal>no</literal>.</para>
 
 </refsection>
 </refentry>

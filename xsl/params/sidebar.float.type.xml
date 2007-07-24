@@ -23,7 +23,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="sidebar.float.type.frag">
-<xsl:param name="sidebar.float.type" select="'none'"/>
+<xsl:param name="sidebar.float.type">none</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

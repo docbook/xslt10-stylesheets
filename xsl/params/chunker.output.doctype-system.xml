@@ -13,8 +13,12 @@
 <refpurpose>System identifier to use for the document type in generated pages</refpurpose>
 </refnamediv>
 
+
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.doctype-system.frag"><xsl:param name="chunker.output.doctype-system" select="''"/></src:fragment>
+<src:fragment xml:id="chunker.output.doctype-system">
+<xsl:param name="chunker.output.doctype-system"></xsl:param>
+</src:fragment>
+
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

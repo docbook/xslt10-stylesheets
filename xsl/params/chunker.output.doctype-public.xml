@@ -14,7 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.doctype-public.frag"><xsl:param name="chunker.output.doctype-public" select="''"/></src:fragment>
+<src:fragment xml:id="chunker.output.doctype-public">
+<xsl:param name="chunker.output.doctype-public"></xsl:param>
+</src:fragment>
+
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

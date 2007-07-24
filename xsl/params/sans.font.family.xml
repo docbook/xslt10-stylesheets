@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="sans.font.family.frag">
-<xsl:param name="sans.font.family" select="'sans-serif'"/>
+<xsl:param name="sans.font.family" >sans-serif</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

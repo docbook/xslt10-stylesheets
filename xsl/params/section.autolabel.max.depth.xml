@@ -14,17 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="section.autolabel.max.depth.frag"><xsl:param name="section.autolabel.max.depth" select="8"/></src:fragment>
+<src:fragment xml:id="section.autolabel.max.depth.frag">
+<xsl:param name="section.autolabel.max.depth">8</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
 <para>When section numbering is turned on by the
-<literal>section.autolabel</literal> parameter,
-then this parameter controls the depth of section nesting
-that is numbered.
-Sections nested to a level deeper than this value will
-not be numbered.
+<parameter>section.autolabel</parameter> parameter, then this
+parameter controls the depth of <tag>section</tag> nesting that is
+numbered.  Sections nested to a level deeper than this value will not
+be numbered.
 </para>
 
 </refsection>

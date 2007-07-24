@@ -14,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="suppress.header.navigation.frag"><xsl:param name="suppress.header.navigation">0</xsl:param></src:fragment>
+<src:fragment xml:id="suppress.header.navigation.frag">
+<xsl:param name="suppress.header.navigation" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>
-If <literal>suppress.header.navigation</literal> is turned on, header
-navigation will be suppressed.</para>
+<para>If non-zero, header navigation will be suppressed.</para>
 
 </refsection>
 </refentry>

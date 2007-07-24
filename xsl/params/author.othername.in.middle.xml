@@ -15,12 +15,13 @@ middle name?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="author.othername.in.middle.frag"><xsl:param name="author.othername.in.middle" select="1"/></src:fragment>
+<src:fragment xml:id="author.othername.in.middle.frag">
+<xsl:param name="author.othername.in.middle" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), the <tag>othername</tag> of an <tag>author</tag>
+<para>If non-zero, the <tag>othername</tag> of an <tag>author</tag>
 appears between the <tag>firstname</tag> and
 <tag>surname</tag>.  Otherwise, <tag>othername</tag>
 is suppressed.

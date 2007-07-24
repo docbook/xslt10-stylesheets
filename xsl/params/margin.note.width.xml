@@ -15,15 +15,15 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="margin.note.width.frag">
-<xsl:param name="margin.note.width" select="'1in'"/>
+<xsl:param name="margin.note.width" >1in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Sets the default width for margin notes when used as a side float.
-The width determines the degree to which the margin note block intrudes into
-the text area.
+<para>Sets the default width for margin notes when used as a side
+float.  The width determines the degree to which the margin note block
+intrudes into the text area.
 </para>
 <para>If <parameter>margin.note.float.type</parameter> is
 <quote><literal>before</literal></quote> or 

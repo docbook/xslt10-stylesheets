@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="body.margin.bottom.frag">
-<xsl:param name="body.margin.bottom" select="'0.5in'"/>
+<xsl:param name="body.margin.bottom">0.5in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

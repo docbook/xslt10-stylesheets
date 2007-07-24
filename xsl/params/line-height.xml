@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="line-height.frag">
-<xsl:param name="line-height" select="'normal'"/>
+<xsl:param name="line-height">normal</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -14,13 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="runinhead.default.title.end.punct.frag"><xsl:param name="runinhead.default.title.end.punct" select="'.'"/></src:fragment>
+<src:fragment xml:id="runinhead.default.title.end.punct.frag"><xsl:param name="runinhead.default.title.end.punct">.</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:
-</para>
+<para>If non-zero, For a <tag>formalpara</tag>, use the specified
+string as the separator between the title and following text. The period is the default value.</para>
 
 </refsection>
 </refentry>

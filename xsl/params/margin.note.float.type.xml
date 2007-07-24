@@ -23,7 +23,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="margin.note.float.type.frag">
-<xsl:param name="margin.note.float.type" select="'none'"/>
+<xsl:param name="margin.note.float.type">none</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -18,7 +18,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="draft.mode.frag">
-<xsl:param name="draft.mode" select="'maybe'"/>
+<xsl:param name="draft.mode">maybe</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -29,7 +29,7 @@
 as a draft. If it is <quote><literal>no</literal></quote>, the entire document
 will be treated as a final copy. If it is <quote><literal>maybe</literal></quote>,
 individual sections will be treated as draft or final independently, depending
-on how their <tag class="attribute">status</tag> attribute is set.
+on how their <literal>status</literal> attribute is set.
 </para>
 
 </refsection>

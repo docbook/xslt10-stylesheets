@@ -15,13 +15,13 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="profile.separator.frag">
-<xsl:param name="profile.separator" select="';'"/>
+<xsl:param name="profile.separator">;</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Separator character for compound profile values.</para>
+<para>Separator character used for compound profile values. See <parameter>profile.arch</parameter></para>
 
 </refsection>
 </refentry>

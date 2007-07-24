@@ -25,7 +25,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="table.cell.border.style.frag">
-<xsl:param name="table.cell.border.style" select="'solid'"/>
+<xsl:param name="table.cell.border.style">solid</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="suppress.homepage.title.frag">
-<xsl:param name="suppress.homepage.title" select="'1'"/>
+<xsl:param name="suppress.homepage.title" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 

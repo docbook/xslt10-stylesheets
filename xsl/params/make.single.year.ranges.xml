@@ -14,7 +14,8 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="make.single.year.ranges.frag"><xsl:param name="make.single.year.ranges" select="0"/></src:fragment>
+<src:fragment xml:id="make.single.year.ranges.frag">
+<xsl:param name="make.single.year.ranges" select="0"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

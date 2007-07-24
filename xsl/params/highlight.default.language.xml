@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="highlight.default.language.frag">
-<xsl:param name="highlight.default.language" select="''"/>
+<xsl:param name="highlight.default.language"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

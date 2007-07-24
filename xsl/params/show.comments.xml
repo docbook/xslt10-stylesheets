@@ -14,14 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="show.comments.frag"><xsl:param name="show.comments">1</xsl:param></src:fragment>
+<src:fragment xml:id="show.comments.frag">
+<xsl:param name="show.comments" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), comments will be displayed, otherwise they are suppressed.
-Comments here refers to the <tag>remark</tag> element (which was called <tag role="obsolete">comment</tag> prior to
-DocBook 4.0), not XML comments (&lt;-- like this --&gt;) which are unavailable.
+<para>If non-zero, comments will be displayed, otherwise they
+are suppressed.  Comments here refers to the <tag>remark</tag> element
+(which was called <literal>comment</literal> prior to DocBook
+4.0), not XML comments (&lt;-- like this --&gt;) which are
+unavailable.
 </para>
 
 </refsection>

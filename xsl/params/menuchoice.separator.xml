@@ -17,7 +17,7 @@ other than <tag>guimenuitem</tag> and
 
 <refsynopsisdiv>
 <src:fragment xml:id="menuchoice.separator.frag">
-<xsl:param name="menuchoice.separator" select="'+'"/>
+<xsl:param name="menuchoice.separator">+</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

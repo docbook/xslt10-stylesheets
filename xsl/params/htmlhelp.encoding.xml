@@ -15,14 +15,14 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.encoding.frag">
-<xsl:param name="htmlhelp.encoding" select="'iso-8859-1'"/>
+<xsl:param name="htmlhelp.encoding">iso-8859-1</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>HTML Help Compiler is not UTF-8 aware, so you should always use
-apropriate single-byte encoding here.</para>
+<para>HTML Help Compiler is not UTF-8 aware, so you should always use an
+appropriate single-byte encoding here. Use one from <link xlink:href="ftp://ftp.isi.edu/in-notes/iana/assignments/character-sets">iana</link>, the  registered charset values.</para>
 
 </refsection>
 </refentry>

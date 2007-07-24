@@ -24,13 +24,14 @@ this value of an object's <tag class="attribute">role</tag> attribute.
 <refsection><info><title>Description</title></info>
 
 <para>A mediaobject may contain several objects such as imageobjects.
-If the parameter <parameter>use.role.for.mediaobject</parameter>
-is non-zero, then the <tag class="attribute">role</tag> attribute on
-<tag>imageobject</tag>s and other objects within a <tag>mediaobject</tag> container will be used to select which object will be
-used.  If one of the objects has a role value that matches the
-preferred.mediaobject.role parameter, then it has first
-priority for selection.  If more than one has such a
-role value, the first one is used.
+If the parameter <parameter>use.role.for.mediaobject</parameter> is
+non-zero, then the <literal>role</literal> attribute on
+<tag>imageobject</tag>s and other objects within a
+<tag>mediaobject</tag> container will be used to select which object
+will be used.  If one of the objects has a role value that matches the
+<parameter>preferred.mediaobject.role</parameter> parameter, then it
+has first priority for selection.  If more than one has such a role
+value, the first one is used.
 </para>
 <para>
 See the <parameter>use.role.for.mediaobject</parameter> parameter

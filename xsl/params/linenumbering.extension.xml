@@ -14,15 +14,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="linenumbering.extension.frag"><xsl:param name="linenumbering.extension" select="'1'"/></src:fragment>
+<src:fragment xml:id="linenumbering.extension.frag">
+<xsl:param name="linenumbering.extension" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true, verbatim environments (elements that have the
+<para>If non-zero, verbatim environments (elements that have the
 format='linespecific' notation attribute: address, literallayout,
 programlisting, screen, synopsis) that specify line numbering will
-have, surprise, line numbers.
+have, line numbers.
 </para>
 
 </refsection>

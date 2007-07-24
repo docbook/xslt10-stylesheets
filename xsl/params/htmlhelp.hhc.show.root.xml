@@ -21,9 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If set to 0, there will be no entry for root element in
-ToC. This is useful when you want provide user with expanded ToC as
-a default.</para>
+<para>If set to zero, there will be no entry for the root element in
+ToC. This is useful when you want provide the user with an expanded
+ToC as a default.</para>
 
 </refsection>
 </refentry>

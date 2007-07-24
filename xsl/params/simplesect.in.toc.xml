@@ -19,7 +19,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, <tag>simplesect</tag>s appear in the TOC.
+<para>If non-zero, <tag>simplesect</tag>s will be included in the TOC.
 </para>
 
 </refsection>

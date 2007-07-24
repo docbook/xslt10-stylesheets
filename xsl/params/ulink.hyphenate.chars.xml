@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="ulink.hyphenate.chars.frag">
-<xsl:param name="ulink.hyphenate.chars" select="'/'"/>
+<xsl:param name="ulink.hyphenate.chars">/</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

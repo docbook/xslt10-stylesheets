@@ -21,9 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>You should turn on this flag if you have your own
-<filename>alias.h</filename> and <filename>context.h</filename> files
-and you want to include references to them in the project file.</para>
+<para>Set to non-zero if you have your own alias.h and contex.h files and
+you want to include reference to them in project file.</para>
+
 
 </refsection>
 </refentry>

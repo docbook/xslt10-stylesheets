@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="tex.math.file.frag">
-<xsl:param name="tex.math.file" select="'tex-math-equations.tex'"/>
+<xsl:param name="tex.math.file">tex-math-equations.tex</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

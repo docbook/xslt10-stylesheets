@@ -15,13 +15,14 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="toc.width.frag">
-<xsl:param name="toc.width" select="250"/>
+<xsl:param name="toc.width" >250</xsl:param>
+<!-- Presumably in pixels? -->
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Specifies the width of the ToC frame.</para>
+<para>Specifies the width of the ToC frame in pixels.</para>
 
 </refsection>
 </refentry>

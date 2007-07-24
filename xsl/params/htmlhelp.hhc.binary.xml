@@ -21,9 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>This parametr controls whether binary TOC will be generated. You
-must create binary TOC if you want to add Prev/Next buttons to toolbar
-(which is default behaviour). Files with binary TOC can't be merged.</para>
+<para>Set to non-zero to generate a binary TOC. You must create a binary TOC
+if you want to add Prev/Next buttons to toolbar (which is default
+behaviour). Files with binary TOC can't be merged.</para>
 
 </refsection>
 </refentry>

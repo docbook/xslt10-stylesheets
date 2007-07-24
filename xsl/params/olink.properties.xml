@@ -24,10 +24,10 @@ text of an olink.</refpurpose>
 
 <refsection><info><title>Description</title></info>
 
-<para>This attribute set is applied to the <tag>fo:basic-link</tag>
-element of an olink. It is not applied to the
-optional page number or 
-optional title of the external document.</para>
+<para>This <literal>attribute set</literal> is applied to the
+<literal>fo:basic-link</literal> element of an olink. It is not applied to the
+optional page number or optional title of the external
+document.</para>
 
 </refsection>
 </refentry>

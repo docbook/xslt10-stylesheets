@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="table.entry.padding.frag">
-<xsl:param name="table.entry.padding" select="'2pt'"/>
+<xsl:param name="table.entry.padding">2pt</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

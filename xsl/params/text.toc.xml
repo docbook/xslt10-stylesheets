@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="text.toc.frag">
-<xsl:param name="text.toc" select="'ToC'"/>
+<xsl:param name="text.toc">ToC</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

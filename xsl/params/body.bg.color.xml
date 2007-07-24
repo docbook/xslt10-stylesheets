@@ -15,13 +15,14 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="body.bg.color.frag">
-<xsl:param name="body.bg.color" select="'#FFFFFF'"/>
+<xsl:param name="body.bg.color">#FFFFFF</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Specifies the background color used in the body column of tabular slides.</para>
+<para>Specifies the background color used in the body column of
+tabular slides.</para>
 
 </refsection>
 </refentry>

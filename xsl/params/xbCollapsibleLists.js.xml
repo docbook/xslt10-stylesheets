@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="xbCollapsibleLists.js.frag">
-<xsl:param name="xbCollapsibleLists.js" select="'xbCollapsibleLists.js'"/>
+<xsl:param name="xbCollapsibleLists.js">xbCollapsibleLists.js</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

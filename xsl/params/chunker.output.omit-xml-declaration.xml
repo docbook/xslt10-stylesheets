@@ -14,7 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-  <src:fragment xml:id="chunker.output.omit-xml-declaration.frag"><xsl:param name="chunker.output.omit-xml-declaration" select="'no'"/></src:fragment>
+<src:fragment xml:id="chunker.output.omit-xml-declaration">
+<xsl:param name="chunker.output.omit-xml-declaration">no</xsl:param>
+</src:fragment>
+
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

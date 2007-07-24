@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="crop.mark.bleed.frag"><xsl:param name="crop.mark.bleed" select="'6pt'"/></src:fragment>
+<src:fragment xml:id="crop.mark.bleed.frag">
+<xsl:param name="crop.mark.bleed">6pt</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

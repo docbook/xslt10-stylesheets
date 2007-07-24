@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="next.image.frag">
-<xsl:param name="next.image" select="'active/nav-next.png'"/>
+<xsl:param name="next.image" >active/nav-next.png</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

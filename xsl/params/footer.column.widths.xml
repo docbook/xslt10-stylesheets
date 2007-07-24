@@ -14,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv><src:fragment xml:id="footer.column.widths.frag">
-<xsl:param name="footer.column.widths" select="'1 1 1'"/>
+<xsl:param name="footer.column.widths">1 1 1</xsl:param>
 </src:fragment></refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

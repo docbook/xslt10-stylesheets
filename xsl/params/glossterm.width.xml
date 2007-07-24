@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="glossterm.width.frag">
-<xsl:param name="glossterm.width" select="'2in'"/>
+<xsl:param name="glossterm.width" >2in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

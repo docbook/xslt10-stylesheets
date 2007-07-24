@@ -21,8 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>You should turn on this flag, if you insert images into your documents 
-as external binary entities or if you are using absolute path in image names.</para>
+<para>Set to non-zero if you insert images into your documents as
+external binary entities or if you are using absolute path in image
+names.</para>
 
 </refsection>
 </refentry>

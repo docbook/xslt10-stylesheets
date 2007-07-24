@@ -21,9 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, the stylesheet will issue a warning for
-any element (other than the root element) which
-has a title but does not have an ID.</para>
+<para>If non-zero, the stylesheet will issue a warning for any element
+(other than the root element) which has a <tag>title</tag> but does not have an
+ID. The default is to issue such warnings.</para>
 
 </refsection>
 </refentry>

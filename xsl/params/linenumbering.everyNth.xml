@@ -14,12 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="linenumbering.everyNth.frag"><xsl:param name="linenumbering.everyNth" select="'5'"/></src:fragment>
+<src:fragment xml:id="linenumbering.everyNth.frag">
+<xsl:param name="linenumbering.everyNth">5</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If line numbering is enabled, everyNth line will be numbered.
+<para>If line numbering is enabled, everyNth line will be
+numbered. Note that numbering is one based, not zero based.
 </para>
 
 </refsection>

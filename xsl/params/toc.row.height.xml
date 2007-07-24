@@ -15,17 +15,19 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="toc.row.height.frag">
-<xsl:param name="toc.row.height" select="22"/>
+<xsl:param name="toc.row.height">22</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
 <para>This parameter specifies the height of each row in the table of
-contents. This is only applicable if a <link linkend="dynamic.toc">dynamic ToC</link> is used. You may want to
-adjust this parameter for optimal appearance with the font and image sizes
-selected by your <link linkend="css.stylesheet">CSS stylesheet</link>.
+contents. This is only applicable if a <link
+linkend="dynamic.toc">dynamic ToC</link> is used. You may want to
+adjust this parameter for optimal appearance with the font and image
+sizes selected by your <link linkend="css.stylesheet">CSS
+stylesheet</link>.
 </para>
-
+<!-- This uses link for cross param linking, unlike most others -->
 </refsection>
 </refentry>

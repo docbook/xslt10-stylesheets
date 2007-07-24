@@ -22,11 +22,11 @@
 <refsection><info><title>Description</title></info>
 
 <para>
-If <literal>css.decoration</literal> is turned on, then HTML elements
-produced by the
-stylesheet may be decorated with STYLE attributes.  For example, the
-LI tags produced for list items may include a fragment of CSS in the
-STYLE attribute which sets the CSS property "list-style-type".
+If non-zero, then html elements produced by the stylesheet may be
+decorated with <literal>style</literal> attributes.  For example, the
+<literal>li</literal> tags produced for list items may include a
+fragment of CSS in the <literal>style</literal> attribute which sets
+the CSS property "list-style-type".
 </para>
 
 </refsection>

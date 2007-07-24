@@ -39,8 +39,8 @@ to serve that purpose.</para>
 
 <refsection><info><title>Example</title></info>
 
-<para>The following small stylesheet shows how to configure the stylesheets to make
-use of the cross reference style:</para>
+<para>The following small stylesheet shows how to configure the
+stylesheets to make use of the cross reference style:</para>
 
 <programlisting>&lt;?xml version="1.0"?&gt;
 &lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

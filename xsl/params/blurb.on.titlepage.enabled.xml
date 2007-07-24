@@ -14,16 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="blurb.on.titlepage.enabled.frag"><xsl:param name="blurb.on.titlepage.enabled">0</xsl:param></src:fragment>
+<src:fragment xml:id="blurb.on.titlepage.enabled.frag">
+<xsl:param name="blurb.on.titlepage.enabled" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
 <para>If non-zero, output from <tag>authorblurb</tag> and
-<tag>personblurb</tag> elements is displayed on title
-pages. If zero (the default), output from those elements is suppressed
-on title pages (unless you are using a titlepage customization that
-causes them to be included).</para>
+<tag>personblurb</tag> elements is displayed on title pages. If zero
+(the default), output from those elements is suppressed on title pages
+(unless you are using a <literal>titlepage</literal> customization
+that causes them to be included).</para>
 
 </refsection>
 </refentry>

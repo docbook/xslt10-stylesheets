@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="chunk.toc.frag">
-<xsl:param name="chunk.toc" select="''"/>
+<xsl:param name="chunk.toc"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

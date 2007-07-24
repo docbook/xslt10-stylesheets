@@ -16,7 +16,7 @@ from its list of page references in an index</refpurpose>
 
 <refsynopsisdiv>
 <src:fragment xml:id="index.term.separator.frag">
-<xsl:param name="index.term.separator" select="''"/>
+<xsl:param name="index.term.separator"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

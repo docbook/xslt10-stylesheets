@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="filename-prefix.frag">
-<xsl:param name="filename-prefix" select="''"/>
+<xsl:param name="filename-prefix"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

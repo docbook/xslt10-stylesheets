@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="css.stylesheet.frag">
-<xsl:param name="css.stylesheet" select="'slides.css'"/>
+<xsl:param name="css.stylesheet">slides.css</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

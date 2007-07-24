@@ -20,14 +20,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="part.autolabel.frag"><xsl:param name="part.autolabel" select="'I'"/></src:fragment>
+<src:fragment xml:id="part.autolabel.frag">
+<xsl:param name="part.autolabel">I</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If zero, then parts will not be numbered.
-Otherwise parts will be numbered, using the parameter value
-as the number format if the value matches one of the following:
+<para>If non-zero, then parts will be numbered using the parameter
+value as the number format if the value matches one of the following:
 </para>
 
 <variablelist>

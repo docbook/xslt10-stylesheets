@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="html.head.legalnotice.link.multiple.frag"><xsl:param name="html.head.legalnotice.link.multiple" select="1"/></src:fragment>
+<src:fragment xml:id="html.head.legalnotice.link.multiple.frag">
+<xsl:param name="html.head.legalnotice.link.multiple" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

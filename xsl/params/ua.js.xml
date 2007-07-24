@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="ua.js.frag">
-<xsl:param name="ua.js" select="'ua.js'"/>
+<xsl:param name="ua.js">ua.js</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

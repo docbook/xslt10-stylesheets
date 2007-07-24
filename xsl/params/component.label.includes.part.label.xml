@@ -19,18 +19,18 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), number labels for chapters, appendices, and other component
-elements are prefixed with the label of the
-part element that contains them.
-So you might see Chapter II.3 instead of Chapter 3.
-Also, the labels for formal elements such as table and figure will
-include the part label.
-If there is no part element container, then no prefix is generated.
+<para>If non-zero, number labels for <tag>chapter</tag>,
+<tag>appendix</tag>, and other component elements are prefixed with
+the label of the part element that contains them.  So you might see
+Chapter II.3 instead of Chapter 3.  Also, the labels for formal
+elements such as <tag>table</tag> and <tag>figure</tag> will include
+the part label.  If there is no part element container, then no prefix
+is generated.
 </para>
 <para>
 This feature is most useful when the
-<literal>label.from.part</literal> parameter is turned on.
-In that case, there would be more than one chapter
+<parameter>label.from.part</parameter> parameter is turned on.
+In that case, there would be more than one <tag>chapter</tag>
 <quote>1</quote>, and the extra part label prefix will identify
 each chapter unambiguously.
 </para>

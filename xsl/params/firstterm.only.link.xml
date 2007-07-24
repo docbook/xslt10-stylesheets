@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true, only <tag>firstterm</tag>s will be automatically linked
+<para>If non-zero, only <tag>firstterm</tag>s will be automatically linked
 to the glossary. If glossary linking is not enabled, this parameter
 has no effect.</para>
 

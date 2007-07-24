@@ -27,7 +27,10 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>Properties that specify the style of shaded verbatim listings. The
+parameters specified (the border and background color) are added to
+the styling of the xsl-fo output. A border might be specified as "thin
+black solid" for example. See <link xlink:href="http://www.w3.org/TR/2004/WD-xsl11-20041216/#border">xsl-fo</link></para>
 
 </refsection>
 </refentry>

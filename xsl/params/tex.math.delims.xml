@@ -16,7 +16,7 @@ automatically surrounded by math mode delimiters?</refpurpose>
 
 <refsynopsisdiv>
 <src:fragment xml:id="tex.math.delims.frag">
-<xsl:param name="tex.math.delims" select="'1'"/>
+<xsl:param name="tex.math.delims" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 

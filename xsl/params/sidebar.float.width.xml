@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="sidebar.float.width.frag">
-<xsl:param name="sidebar.float.width" select="'1in'"/>
+<xsl:param name="sidebar.float.width">1in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

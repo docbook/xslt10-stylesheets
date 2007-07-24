@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), CSS will be used to draw table borders.
+<para>If non-zero, CSS will be used to draw table borders.
 </para>
 
 </refsection>

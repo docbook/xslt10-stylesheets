@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="l10n.gentext.language.frag">
-<xsl:param name="l10n.gentext.language" select="''"/>
+<xsl:param name="l10n.gentext.language"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -20,7 +20,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="symbol.font.family.frag">
-<xsl:param name="symbol.font.family" select="'Symbol,ZapfDingbats'"/>
+<xsl:param name="symbol.font.family">Symbol,ZapfDingbats</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

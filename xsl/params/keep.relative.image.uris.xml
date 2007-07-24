@@ -22,9 +22,10 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, relative URIs (in, for example fileref attributes) will
-be used in the generated output. Otherwise, the URIs will be made absolute
-with respect to the base URI.</para>
+<para>If non-zero, relative URIs (in, for example
+<literal>fileref</literal> attributes) will be used in the generated
+output. Otherwise, the URIs will be made absolute with respect to the
+base URI.</para>
 
 <para>Note that the stylesheets calculate (and use) the absolute form
 for some purposes, this only applies to the resulting output.</para>

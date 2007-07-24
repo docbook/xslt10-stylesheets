@@ -9,14 +9,14 @@
 <refmiscinfo class="other" otherclass="datatype">length</refmiscinfo>
 </refmeta>
 <refnamediv>
-<refname>itemizedlist.label.width</refname>
+  <refname>itemizedlist.label.width</refname>
 <refpurpose>The default width of the label (bullet) in an itemized list.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="itemizedlist.label.width.frag">
-<xsl:param name="itemizedlist.label.width" select="'1.0em'"/>
-</src:fragment>
+  <src:fragment xml:id="itemizedlist.label.width.frag">
+    <xsl:param name="itemizedlist.label.width">1.0em</xsl:param>
+  </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

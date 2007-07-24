@@ -14,12 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="olink.fragid.frag"><xsl:param name="olink.fragid" select="'fragid='"/></src:fragment>
+<src:fragment xml:id="olink.fragid.frag">
+<xsl:param name="olink.fragid">fragid</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>The fragment identifier portion of an <tag>olink</tag> target.</para>
 
 </refsection>
 </refentry>

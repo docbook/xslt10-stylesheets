@@ -14,9 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="dry-run.frag">
-<xsl:param name="dry-run" select="'0'"/>
-</src:fragment>
+  <src:fragment xml:id="dry-run">
+    <xsl:param name="dry-run" select="0"/>
+  </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

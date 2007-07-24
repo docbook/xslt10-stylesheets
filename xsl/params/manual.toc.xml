@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="manual.toc.frag">
-<xsl:param name="manual.toc" select="''"/>
+<xsl:param name="manual.toc"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

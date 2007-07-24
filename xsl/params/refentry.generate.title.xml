@@ -21,11 +21,11 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), the reference page title or first name is
+<para>If non-zero, the reference page title or first name is
 output before the list of 'RefName's. This parameter and
 <parameter>refentry.generate.name</parameter> are mutually exclusive.
-This means that if you change this parameter to 1, you
-should set <parameter>refentry.generate.name</parameter> to 0 unless
+This means that if you change this parameter to non-zero, you
+should set <parameter>refentry.generate.name</parameter> to zero unless
 you want get quite strange output.</para>
 
 

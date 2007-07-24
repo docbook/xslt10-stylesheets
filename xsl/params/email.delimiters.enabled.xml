@@ -14,14 +14,20 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="email.delimiters.enabled.frag"><xsl:param name="email.delimiters.enabled">1</xsl:param></src:fragment>
+<src:fragment xml:id="email.delimiters.enabled.frag">
+<xsl:param name="email.delimiters.enabled" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, delimiters<footnote><para>For delimiters, the
+<para>If non-zero, delimiters
+
+<footnote><para>For delimiters, the
 stylesheets are currently hard-coded to output angle
-brackets.</para></footnote> are generated around e-mail addresses
+brackets.</para></footnote> 
+
+are generated around e-mail addresses
 (the output of the <tag>email</tag> element).</para>
 
 </refsection>

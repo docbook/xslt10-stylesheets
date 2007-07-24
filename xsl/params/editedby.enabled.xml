@@ -19,8 +19,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero (the default), a localized <emphasis role="bold">Edited by</emphasis> heading is displayed above editor
-names in output of the <tag>editor</tag> element.</para>
+<para>If non-zero, a localized <emphasis role="bold">Edited
+by</emphasis> heading is displayed above editor names in output of the
+<tag>editor</tag> element.</para>
 
 </refsection>
 </refentry>

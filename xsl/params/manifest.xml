@@ -14,7 +14,9 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <src:fragment xml:id="manifest.frag"><xsl:param name="manifest" select="'HTML.manifest'"/></src:fragment>
+    <src:fragment xml:id="manifest.frag">
+    <xsl:param name="manifest" >HTML.manifest</xsl:param>
+    </src:fragment>
   </refsynopsisdiv>
 
   <refsection><info><title>Description</title></info>

@@ -15,15 +15,14 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="body.margin.top.frag">
-<xsl:param name="body.margin.top" select="'0.5in'"/>
+<xsl:param name="body.margin.top">0.5in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>The body top margin is the distance from the top of the region-before
-to the first line of text in the page body.
-</para>
+<para>The body top margin is the distance from the top of the
+region-before to the first line of text in the page body.</para>
 
 </refsection>
 </refentry>

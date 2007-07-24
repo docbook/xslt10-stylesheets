@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="marker.section.level.frag">
-<xsl:param name="marker.section.level" select="2"/>
+<xsl:param name="marker.section.level" >2</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

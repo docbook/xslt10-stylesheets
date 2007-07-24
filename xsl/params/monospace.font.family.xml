@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="monospace.font.family.frag">
-<xsl:param name="monospace.font.family" select="'monospace'"/>
+<xsl:param name="monospace.font.family">monospace</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

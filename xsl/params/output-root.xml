@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="output-root.frag">
-<xsl:param name="output-root" select="'.'"/>
+<xsl:param name="output-root">.</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

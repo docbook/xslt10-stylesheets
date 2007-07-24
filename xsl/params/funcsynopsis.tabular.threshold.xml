@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="funcsynopsis.tabular.threshold.frag">
-<xsl:param name="funcsynopsis.tabular.threshold" select="40"/>
+<xsl:param name="funcsynopsis.tabular.threshold" >40</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

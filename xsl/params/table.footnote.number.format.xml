@@ -20,7 +20,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="table.footnote.number.format.frag">
-<xsl:param name="table.footnote.number.format" select="'a'"/>
+<xsl:param name="table.footnote.number.format">a</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

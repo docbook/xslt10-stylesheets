@@ -14,15 +14,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="html.base.frag"><xsl:param name="html.base"/></src:fragment>
+<src:fragment xml:id="html.base.frag">
+<xsl:param name="html.base"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If html.base is set, it is used for the <tag>BASE</tag>
-element in the <tag>HEAD</tag> of the HTML documents.
-This is useful for dynamically served HTML where the base URI needs
-to be shifted.</para>
+<para>If html.base is set, it is used for the <tag>base</tag> element
+in the <tag>head</tag> of the html documents.  The parameter specifies
+the base URL for all relative URLs in the document.  This is useful
+for dynamically served html where the base URI needs to be
+shifted.</para>
 
 </refsection>
 </refentry>

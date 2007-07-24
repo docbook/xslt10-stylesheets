@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.default.topic.frag">
-<xsl:param name="htmlhelp.default.topic" select="''"/>
+<xsl:param name="htmlhelp.default.topic"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -30,7 +30,8 @@ your document and you also hide root element in ToC. E.g.:</para>
 
 <programlisting>&lt;xsl:param name="generate.book.toc" select="0"/&gt;
 &lt;xsl:param name="htmlhelp.hhc.show.root" select="0"/&gt;
-&lt;xsl:param name="htmlhelp.default.topic" select="'pr01.html'"/&gt;</programlisting>
+&lt;xsl:param name="htmlhelp.default.topic">pr01.html&lt;/xsl:param>
+</programlisting>
 
 </refsection>
 </refentry>
