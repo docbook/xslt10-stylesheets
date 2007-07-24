@@ -28,7 +28,7 @@
 
 <!-- * standard params -->
 <xsl:param name="abstract.notitle.enabled" select="1"/>
-<xsl:param name="admon.graphics" select="0"/>
+<xsl:param name="admon.graphics" select="1"/>
 <xsl:param name="admon.textlabel" select="0"></xsl:param>
 <xsl:param name="chunk.append"><xsl:text>&#x0a;</xsl:text></xsl:param>
 <xsl:param name="chunk.quietly" select="0"></xsl:param>
