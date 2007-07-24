@@ -129,7 +129,7 @@
   <div>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
-    <xsl:if test="not ($abstract.notitle.enabled = 0)">
+    <xsl:if test="$abstract.notitle.enabled = 0">
       <xsl:call-template name="formal.object.heading">
         <xsl:with-param name="title">
           <xsl:apply-templates select="." mode="title.markup"/>
