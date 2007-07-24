@@ -19,7 +19,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero),
+<para>If non-zero,
 the headers and footers of chunked HTML
 display the titles of the next and previous chunks,
 along with the words 'Next' and 'Previous' (or the

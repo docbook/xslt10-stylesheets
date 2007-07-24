@@ -15,19 +15,20 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="html.stylesheet.frag">
-<xsl:param name="html.stylesheet" select="''"/>
+<xsl:param name="html.stylesheet" ></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>The <parameter>html.stylesheet</parameter> parameter is either empty,
-indicating that no stylesheet <tag>LINK</tag> tag should be generated
-in the HTML output, or it is a list of one or more stylesheets.</para>
+<para>The <parameter>html.stylesheet</parameter> parameter is either
+empty, indicating that no stylesheet <tag>link</tag> tag should be
+generated in the html output, or it is a list of one or more
+stylesheet files.</para>
 
 <para>Multiple stylesheets are space-delimited. If you need to
 reference a stylesheet URI that includes a space, encode it with
-<literal>%20</literal>. A seprate HTML <tag>LINK</tag> element will
+<literal>%20</literal>. A separate html <literal>link</literal> element will
 be generated for each stylesheet in the order they are listed in the
 parameter.</para>
 

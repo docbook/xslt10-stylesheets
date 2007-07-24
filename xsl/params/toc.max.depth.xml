@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>toc.max.depth</refname>
-<refpurpose>How maximaly deep should be each TOC?</refpurpose>
+<refpurpose>How many levels should be created for each TOC?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>

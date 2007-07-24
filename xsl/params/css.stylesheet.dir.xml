@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="css.stylesheet.dir.frag">
-<xsl:param name="css.stylesheet.dir" select="''"/>
+<xsl:param name="css.stylesheet.dir"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

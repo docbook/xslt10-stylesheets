@@ -15,14 +15,13 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.chm.frag">
-<xsl:param name="htmlhelp.chm" select="'htmlhelp.chm'"/>
+<xsl:param name="htmlhelp.chm">htmlhelp.chm</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Change this parameter if you want different name of result
-CHM file than htmlhelp.chm.</para>
+<para>Set the  name of resulting CHM file</para>
 
 </refsection>
 </refentry>

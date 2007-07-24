@@ -19,7 +19,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), section labels are prefixed with the label of the
+<para>If non-zero, section labels are prefixed with the label of the
 component that contains them.
 </para>
 

@@ -10,10 +10,12 @@
   </refmeta>
   <refnamediv>
     <refname>textinsert.extension</refname>
-    <refpurpose>Enable the textinsert extension element</refpurpose>
+    <refpurpose>Insert the contents of a file</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <src:fragment xml:id="textinsert.extension.frag"><xsl:param name="textinsert.extension" select="'1'"/></src:fragment>
+    <src:fragment xml:id="textinsert.extension.frag">
+  <xsl:param name="textinsert.extension" select="1"/>
+</src:fragment>
   </refsynopsisdiv>
   <refsection><info><title>Description</title></info>
     <para>The textinsert extension element inserts the contents of

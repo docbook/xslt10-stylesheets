@@ -21,8 +21,8 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If you want to include chapter and section numbers into ToC in
-the left panel, set this parameter to 1.</para>
+<para>Set this to non-zero to include chapter and section numbers into ToC
+in the left panel.</para>
 
 </refsection>
 </refentry>

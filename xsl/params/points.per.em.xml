@@ -15,13 +15,15 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="points.per.em.frag">
-<xsl:param name="points.per.em" select="10"/>
+<xsl:param name="points.per.em">10</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>The fixed value used for calculations based upon the size of a
+character. The assumption made is that ten point font is in use. This
+assumption may not be valid.</para>
 
 </refsection>
 </refentry>

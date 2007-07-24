@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="multiframe.bottom.bgcolor.frag">
-<xsl:param name="multiframe.bottom.bgcolor" select="'white'"/>
+<xsl:param name="multiframe.bottom.bgcolor">white</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

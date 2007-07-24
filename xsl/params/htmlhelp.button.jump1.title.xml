@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.button.jump1.title.frag">
-<xsl:param name="htmlhelp.button.jump1.title" select="'User1'"/>
+<xsl:param name="htmlhelp.button.jump1.title">User1</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

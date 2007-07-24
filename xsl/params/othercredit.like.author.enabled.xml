@@ -22,7 +22,7 @@
 <para>If non-zero, output of the
 <tag>othercredit</tag> element on titlepages is displayed in
 the same style as <tag>author</tag> and
-<tag>editor</tag> output. If zero (the default),
+<tag>editor</tag> output. If zero then
 <tag>othercredit</tag> output is displayed using a style
 different than that of <tag>author</tag> and
 <tag>editor</tag>.</para>

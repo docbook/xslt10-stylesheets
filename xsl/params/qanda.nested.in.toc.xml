@@ -14,12 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="qanda.nested.in.toc.frag"><xsl:param name="qanda.nested.in.toc" select="0"/></src:fragment>
+<src:fragment xml:id="qanda.nested.in.toc.frag">
+<xsl:param name="qanda.nested.in.toc" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), instances of <tag>qandaentry</tag>
+<para>If non-zero, instances of <tag>qandaentry</tag>
 that are children of <tag>answer</tag> elements are shown in
 the TOC.</para>
 

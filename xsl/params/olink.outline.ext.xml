@@ -14,12 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="olink.outline.ext.frag"><xsl:param name="olink.outline.ext" select="'.olink'"/></src:fragment>
+<src:fragment xml:id="olink.outline.ext.frag">
+<xsl:param name="olink.outline.ext">.olink</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>The extension to be expected for  OLink outline files</para>
+<para>Bob has this parameter as dead. Please don't use</para>
 
 </refsection>
 </refentry>

@@ -22,7 +22,8 @@
 <refsection><info><title>Description</title></info>
 
 <para>If non-zero, document abstracts will be reproduced in the HTML
-<tag>HEAD</tag> with <tag class="starttag">meta name="description" content="..."</tag>.</para>
+<literal>head</literal>, with <literal>>meta name="description" content="..."</literal></para>
+
 
 </refsection>
 </refentry>

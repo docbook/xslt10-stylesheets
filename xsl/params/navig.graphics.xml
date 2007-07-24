@@ -14,15 +14,17 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="navig.graphics.frag"><xsl:param name="navig.graphics" select="0"/></src:fragment>
+<src:fragment xml:id="navig.graphics.frag">
+<xsl:param name="navig.graphics" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), the navigational headers and footers in chunked
-HTML are presented in an alternate style that uses
-graphical icons for Next, Previous, Up, and Home.
-Default graphics are provided in the distribution.
+<para>If non-zero, the navigational headers and footers in chunked
+HTML are presented in an alternate style that uses graphical icons for
+Next, Previous, Up, and Home.  Default graphics are provided in the
+distribution. If zero, text is used instead of graphics.
 </para>
 
 </refsection>

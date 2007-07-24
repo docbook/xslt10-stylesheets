@@ -15,14 +15,13 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.hhk.frag">
-<xsl:param name="htmlhelp.hhk" select="'index.hhk'"/>
+<xsl:param name="htmlhelp.hhk">index.hhk</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Change this parameter if you want different name of index file
-than index.hhk.</para>
+<para>set the name of the index file. The default is <filename>index.hhk</filename>.</para>
 
 </refsection>
 </refentry>

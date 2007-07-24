@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="refentry.separator.frag"><xsl:param name="refentry.separator" select="'1'"/></src:fragment>
+<src:fragment xml:id="refentry.separator.frag">
+<xsl:param name="refentry.separator" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

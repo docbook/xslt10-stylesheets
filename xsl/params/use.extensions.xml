@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="use.extensions.frag"><xsl:param name="use.extensions" select="'0'"/></src:fragment>
+<src:fragment xml:id="use.extensions.frag">
+<xsl:param name="use.extensions" select="0"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

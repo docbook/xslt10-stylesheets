@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="xbStyle.js.frag">
-<xsl:param name="xbStyle.js" select="'xbStyle.js'"/>
+<xsl:param name="xbStyle.js">xbStyle.js</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

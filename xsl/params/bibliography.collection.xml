@@ -14,7 +14,10 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="bibliography.collection.frag"><xsl:param name="bibliography.collection" select="'http://docbook.sourceforge.net/release/bibliography/bibliography.xml'"/></src:fragment>
+<src:fragment xml:id="bibliography.collection.frag">
+<xsl:param name="bibliography.collection">http://docbook.sourceforge.net/release/bibliography/bibliography.xml</xsl:param>
+
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

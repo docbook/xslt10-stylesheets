@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="body.end.indent.frag">
-<xsl:param name="body.end.indent" select="'0pt'"/>
+<xsl:param name="body.end.indent">0pt</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

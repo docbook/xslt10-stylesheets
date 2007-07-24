@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="overlay.js.frag">
-<xsl:param name="overlay.js" select="'overlay.js'"/>
+<xsl:param name="overlay.js">overlay.js</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

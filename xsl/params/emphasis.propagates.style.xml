@@ -21,9 +21,10 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true, the role attribute of <tag>emphasis</tag> elements
-will be passed through to the HTML as a class attribute on a
-<tag>span</tag> that surrounds the emphasis.</para>
+<para>If non-zero, the <literal>role</literal> attribute of
+<literal>emphasis</literal> elements will be passed through to the HTML as a
+class attribute on a <literal>span</literal> that surrounds the
+emphasis.</para>
 
 </refsection>
 </refentry>

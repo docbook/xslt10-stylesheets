@@ -15,21 +15,19 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="callout.graphics.number.limit.frag">
-<xsl:param condition="html" name="callout.graphics.number.limit" select="'15'"/>
-<xsl:param condition="fo" name="callout.graphics.number.limit" select="'30'"/>
+<xsl:param condition="html" name="callout.graphics.number.limit">15</xsl:param>
+<xsl:param condition="fo" name="callout.graphics.number.limit">30</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If <parameter>callout.graphics</parameter>
-is non-zero, graphics are used to represent
-callout numbers. The value of
-<parameter>callout.graphics.number.limit</parameter>
-is
-the largest number for which a graphic exists. If the callout number
-exceeds this limit, the default presentation "(nnn)" will always
-be used.
+<para>If <parameter>callout.graphics</parameter> is non-zero, graphics
+are used to represent callout numbers instead of plain text. The value
+of <parameter>callout.graphics.number.limit</parameter> is the largest
+number for which a graphic exists. If the callout number exceeds this
+limit, the default presentation "(plain text instead of a graphic)"
+will  be used.
 </para>
 
 </refsection>

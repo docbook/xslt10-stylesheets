@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="toc.bg.color.frag">
-<xsl:param name="toc.bg.color" select="'#FFFFFF'"/>
+<xsl:param name="toc.bg.color">#FFFFFF</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

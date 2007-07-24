@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="hidetoc.image.frag">
-<xsl:param name="hidetoc.image" select="'hidetoc.gif'"/>
+<xsl:param name="hidetoc.image">hidetoc.gif</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

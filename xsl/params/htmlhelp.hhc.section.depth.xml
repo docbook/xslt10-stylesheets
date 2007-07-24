@@ -15,14 +15,13 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.hhc.section.depth.frag">
-<xsl:param name="htmlhelp.hhc.section.depth" select="5"/>
+<xsl:param name="htmlhelp.hhc.section.depth">5</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Change this parameter if you want shallower ToC in a left pane
-of HTML Help viewer.</para>
+<para>Set the section depth in the left pane of HTML Help viewer. </para>
 
 </refsection>
 </refentry>

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="sequential.links.frag">
-<xsl:param name="sequential.links" select="'0'"/>
+<xsl:param name="sequential.links" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 

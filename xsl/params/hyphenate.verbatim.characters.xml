@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="hyphenate.verbatim.characters.frag"><xsl:param name="hyphenate.verbatim.characters" select="''"/></src:fragment>
+<src:fragment xml:id="hyphenate.verbatim.characters.frag">
+<xsl:param name="hyphenate.verbatim.characters"></xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

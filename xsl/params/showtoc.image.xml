@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="showtoc.image.frag">
-<xsl:param name="showtoc.image" select="'showtoc.gif'"/>
+<xsl:param name="showtoc.image">showtoc.gif</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

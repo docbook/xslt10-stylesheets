@@ -10,7 +10,8 @@
 </refmeta>
 <refnamediv>
 <refname>admon.style</refname>
-<refpurpose>CSS style attributes for admonitions</refpurpose>
+<refpurpose>Specifies the CSS style attribute that should be added to
+admonitions.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,7 +22,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Specifies the value of the <tag class="attribute">STYLE</tag>
+<para>Specifies the value of the CSS <tag class="attribute">style</tag>
 attribute that should be added to admonitions.
 </para>
 

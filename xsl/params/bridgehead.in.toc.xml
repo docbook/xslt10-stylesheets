@@ -19,9 +19,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, bridgeheads appear in the TOC. Note that this option
-is not fully supported and may be removed in a future version of the
-stylesheets.
+<para>If non-zero, <tag>bridgehead</tag>s appear in the TOC. Note that
+this option is not fully supported and may be removed in a future
+version of the stylesheets.
 </para>
 
 </refsection>

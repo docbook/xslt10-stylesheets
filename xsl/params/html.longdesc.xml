@@ -22,8 +22,8 @@
 <refsection><info><title>Description</title></info>
 
 <para>If non-zero, HTML files will be created for the
-<tag class="attribute">longdesc</tag> attribute. These files
-are created from the <tag>textobject</tag>s in
+<literal>longdesc</literal> attribute. These files
+are created from the <literal>textobject</literal>s in
 <tag>mediaobject</tag>s and
 <tag>inlinemediaobject</tag>.
 </para>

@@ -14,12 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="olink.sysid.frag"><xsl:param name="olink.sysid" select="'sysid='"/></src:fragment>
+<src:fragment xml:id="olink.sysid.frag">
+<xsl:param name="olink.sysid">sysid</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>FIXME</para>
 
 </refsection>
 </refentry>

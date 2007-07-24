@@ -14,14 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="phrase.propagates.style.frag"><xsl:param name="phrase.propagates.style" select="1"/></src:fragment>
+<src:fragment xml:id="phrase.propagates.style.frag">
+<xsl:param name="phrase.propagates.style" select="1"/></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true, the role attribute of <tag>phrase</tag> elements
-will be passed through to the HTML as a class attribute on a
-<tag>span</tag> that surrounds the phrase.</para>
+<para>If non-zero, the role attribute of <tag>phrase</tag> elements
+will be passed through to the HTML as a <literal>class</literal>
+attribute on a <literal>span</literal> that surrounds the
+phrase.</para>
 
 </refsection>
 </refentry>

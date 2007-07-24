@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="crop.mark.width.frag"><xsl:param name="crop.mark.width" select="'0.5pt'"/></src:fragment>
+<src:fragment xml:id="crop.mark.width.frag">
+<xsl:param name="crop.mark.width">0.5pt</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

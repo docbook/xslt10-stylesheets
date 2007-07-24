@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>When set to 1 this parameter enables enhanced decompilation of CHM.</para>
+<para>When non-zero this parameter enables enhanced decompilation of CHM.</para>
 
 </refsection>
 </refentry>

@@ -16,7 +16,7 @@ in a page range in index</refpurpose>
 
 <refsynopsisdiv>
 <src:fragment xml:id="index.range.separator.frag">
-<xsl:param name="index.range.separator" select="''"/>
+<xsl:param name="index.range.separator"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

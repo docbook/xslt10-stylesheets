@@ -19,8 +19,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Specifies that if an empty <tag>toc</tag> element is
-found in a source document, an automated TOC is generated.
+<para>Specifies that if an empty <tag>toc</tag> element is found in a
+source document, an automated TOC is generated at this point in the
+document.
 <note>
   <para>Depending on what the value of the
   <parameter>generate.toc</parameter> parameter is, setting this

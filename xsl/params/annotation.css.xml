@@ -63,7 +63,7 @@ div.annotation-close { position: absolute;
 
 <refsection><info><title>Description</title></info>
 
-<para>If <property>annotation.support</property> is enabled and the
+<para>If <parameter>annotation.support</parameter> is enabled and the
 document contains <tag>annotation</tag>s, then the CSS in this
 parameter will be included in the document.</para>
 

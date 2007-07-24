@@ -19,7 +19,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), unlabeled qandadivs will be enumerated.
+<para>If non-zero, unlabeled qandadivs will be enumerated.
 </para>
 
 </refsection>

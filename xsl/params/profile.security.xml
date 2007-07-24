@@ -16,13 +16,13 @@ attribute</refpurpose>
 
 <refsynopsisdiv>
 <src:fragment xml:id="profile.security.frag">
-<xsl:param name="profile.security" select="''"/>
+<xsl:param name="profile.security"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Value of this parameter specifies profiles which should be
+<para>The value of this parameter specifies profiles which should be
 included in the output. You can specify multiple profiles by
 separating them by semicolon. You can change separator character by
 <parameter>profile.separator</parameter>

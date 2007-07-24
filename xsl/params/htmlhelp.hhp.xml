@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.hhp.frag">
-<xsl:param name="htmlhelp.hhp" select="'htmlhelp.hhp'"/>
+<xsl:param name="htmlhelp.hhp">htmlhelp.hhp</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

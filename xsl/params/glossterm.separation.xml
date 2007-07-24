@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="glossterm.separation.frag">
-<xsl:param name="glossterm.separation" select="'0.25in'"/>
+<xsl:param name="glossterm.separation" >0.25in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -15,15 +15,15 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="html.ext.frag">
-<xsl:param name="html.ext" select="'.html'"/>
+<xsl:param name="html.ext">.html</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
 <para>The extension identified by <parameter>html.ext</parameter> will
-be used as the filename extension for chunks created by this stylesheet.
-</para>
+be used as the filename extension for chunks created by this
+stylesheet. </para>
 
 </refsection>
 </refentry>

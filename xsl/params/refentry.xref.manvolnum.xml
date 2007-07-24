@@ -15,12 +15,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="refentry.xref.manvolnum.frag"><xsl:param name="refentry.xref.manvolnum" select="1"/></src:fragment>
+<src:fragment xml:id="refentry.xref.manvolnum.frag">
+<xsl:param name="refentry.xref.manvolnum" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>if true (non-zero), the <tag>manvolnum</tag> is used when cross-referencing
+<para>if non-zero, the <tag>manvolnum</tag> is used when cross-referencing
 <tag>refentry</tag>s, either with <tag>xref</tag>
 or <tag>citerefentry</tag>.
 </para>

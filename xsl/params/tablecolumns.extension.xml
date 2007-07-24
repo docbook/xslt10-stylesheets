@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="tablecolumns.extension.frag"><xsl:param name="tablecolumns.extension" select="'1'"/></src:fragment>
+<src:fragment xml:id="tablecolumns.extension.frag">
+<xsl:param name="tablecolumns.extension" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

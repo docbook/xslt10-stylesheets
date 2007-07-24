@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="default.image.width.frag">
-<xsl:param name="default.image.width" select="''"/>
+<xsl:param name="default.image.width"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

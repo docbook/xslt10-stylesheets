@@ -15,11 +15,11 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="currentpage.marker.frag">
-<xsl:param name="currentpage.marker" select="'@'"/>
+<xsl:param name="currentpage.marker">@</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
-<para>FIXME</para>
+<para>Character to use as identifying the current page in </para>
 </refsection>
 </refentry>

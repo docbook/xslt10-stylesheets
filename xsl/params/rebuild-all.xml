@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="rebuild-all.frag">
-<xsl:param name="rebuild-all" select="'0'"/>
+<xsl:param name="rebuild-all" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 

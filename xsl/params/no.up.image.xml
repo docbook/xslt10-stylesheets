@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="no.up.image.frag">
-<xsl:param name="no.up.image" select="'inactive/nav-up.png'"/>
+<xsl:param name="no.up.image" >inactive/nav-up.png</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

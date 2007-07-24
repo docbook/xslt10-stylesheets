@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="column.count.index.frag">
-<xsl:param name="column.count.index" select="2"/>
+<xsl:param name="column.count.index">2</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

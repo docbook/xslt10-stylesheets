@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="bullet.image.frag">
-<xsl:param name="bullet.image" select="'toc/bullet.png'"/>
+<xsl:param name="bullet.image">toc/bullet.png</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

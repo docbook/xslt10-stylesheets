@@ -13,7 +13,7 @@
 <refpurpose>Name of cross reference targets data file</refpurpose> 
 </refnamediv> 
 <refsynopsisdiv> <src:fragment xml:id="targets.filename.frag">
-<xsl:param name="targets.filename" select="'target.db'"/>
+<xsl:param name="targets.filename">target.db</xsl:param>
 </src:fragment> 
 </refsynopsisdiv> 
 <refsection><info><title>Description</title></info>

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="orderedlist.label.width.frag">
-<xsl:param name="orderedlist.label.width" select="'1.2em'"/>
+<xsl:param name="orderedlist.label.width">1.2em</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

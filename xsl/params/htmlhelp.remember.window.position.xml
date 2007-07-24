@@ -21,8 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>To remember help window position between starts set this
-parameter to 1.</para>
+<para>Set to non-zero to remember help window position between starts.</para>
 
 </refsection>
 </refentry>

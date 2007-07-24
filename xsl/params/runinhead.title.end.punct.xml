@@ -14,12 +14,18 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="runinhead.title.end.punct.frag"><xsl:param name="runinhead.title.end.punct" select="'.!?:'"/></src:fragment>
+<src:fragment xml:id="runinhead.title.end.punct.frag">
+<xsl:param name="runinhead.title.end.punct">.!?:</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:
+<para>Specify which characters are to be counted as punctuation. These
+characters are checked for a match with the last character of the
+title. If no match is found, the
+<parameter>runinhead.default.title.end.punct</parameter> contents are
+inserted. This is to avoid duplicated punctuation in the output.
 </para>
 
 </refsection>

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="profile.attribute.frag">
-<xsl:param name="profile.attribute" select="''"/>
+<xsl:param name="profile.attribute"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

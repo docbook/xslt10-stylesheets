@@ -3,7 +3,7 @@
           xmlns:xi="http://www.w3.org/2001/XInclude"
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          version="5.0" xml:id="sidebar.title.Properties">
+          version="5.0" xml:id="sidebar.title.properties">
 <refmeta>
 <refentrytitle>sidebar.title.properties</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>

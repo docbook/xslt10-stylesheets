@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="man.endnotes.list.heading.frag">
-<xsl:param name="man.endnotes.list.heading" select="''"/>
+<xsl:param name="man.endnotes.list.heading"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

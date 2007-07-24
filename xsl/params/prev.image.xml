@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="prev.image.frag">
-<xsl:param name="prev.image" select="'active/nav-prev.png'"/>
+<xsl:param name="prev.image">active/nav-prev.png</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

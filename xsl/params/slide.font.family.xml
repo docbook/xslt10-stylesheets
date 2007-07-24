@@ -19,7 +19,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="slide.font.family.frag">
-<xsl:param name="slide.font.family" select="'Helvetica'"/>
+<xsl:param name="slide.font.family" >Helvetica</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

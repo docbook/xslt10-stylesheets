@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="crop.mark.offset.frag"><xsl:param name="crop.mark.offset" select="'24pt'"/></src:fragment>
+<src:fragment xml:id="crop.mark.offset.frag">
+<xsl:param name="crop.mark.offset">24pt</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If <varname>funcsynopsis.style</varname> is <literal>ansi</literal>,
+<para>If <parameter>funcsynopsis.style</parameter> is <literal>ansi</literal>,
 ANSI-style function synopses are generated for a
 <tag>funcsynopsis</tag>, otherwise K&amp;R-style
 function synopses are generated.

@@ -17,7 +17,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id='bibliography.style.frag'>
-<xsl:param name="bibliography.style" select="'normal'"/>
+<xsl:param name="bibliography.style">normal</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

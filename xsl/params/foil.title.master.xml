@@ -15,7 +15,8 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="foil.title.master.frag">
-<xsl:param name="foil.title.master" select="36"/>
+<xsl:param name="foil.title.master">36</xsl:param>
+<!-- Inconsistant use of point size? -->
 </src:fragment>
 </refsynopsisdiv>
 

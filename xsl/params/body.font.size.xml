@@ -14,7 +14,8 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="body.font.size.frag"><xsl:param name="body.font.size">
+<src:fragment xml:id="body.font.size.frag">
+<xsl:param name="body.font.size">
  <xsl:value-of select="$body.font.master"/><xsl:text>pt</xsl:text>
 </xsl:param></src:fragment>
 </refsynopsisdiv>

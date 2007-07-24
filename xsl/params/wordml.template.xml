@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="wordml.template.frag">
-<xsl:param name="wordml.template" select="''"/>
+<xsl:param name="wordml.template"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

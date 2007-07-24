@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="column.gap.body.frag">
-<xsl:param name="column.gap.body" select="'12pt'"/>
+<xsl:param name="column.gap.body">12pt</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

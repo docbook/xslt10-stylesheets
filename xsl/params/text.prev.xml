@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="text.prev.frag">
-<xsl:param name="text.prev" select="'Prev'"/>
+<xsl:param name="text.prev">Prev</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

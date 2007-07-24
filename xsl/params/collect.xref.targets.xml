@@ -17,7 +17,7 @@
 collected</refpurpose> 
 </refnamediv> 
 <refsynopsisdiv> <src:fragment xml:id="collect.xref.targets.frag">
-<xsl:param name="collect.xref.targets" select="'no'"/>
+<xsl:param name="collect.xref.targets">no</xsl:param>
 </src:fragment> 
 </refsynopsisdiv> 
 <refsection><info><title>Description</title></info> 

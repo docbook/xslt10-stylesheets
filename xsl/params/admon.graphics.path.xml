@@ -19,9 +19,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Sets the path, probably relative to the directory where the HTML
-files are created, to the admonition graphics.
-</para>
+<para>Sets the path to the directory containing the admonition graphics
+(caution.png, important.png etc). This location is normally relative
+to the output html directory. See <parameter>base.dir</parameter></para>
 
 </refsection>
 </refentry>

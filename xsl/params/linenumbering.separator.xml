@@ -14,13 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="linenumbering.separator.frag"><xsl:param name="linenumbering.separator" select="' '"/></src:fragment>
+<src:fragment xml:id="linenumbering.separator.frag">
+<xsl:param name="linenumbering.separator"><xsl:text> </xsl:text></xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>The separator is inserted between line numbers and lines in
-the verbatim environment.
+<para>The separator is inserted between line numbers and lines in the
+verbatim environment. The default value is a single white space.
+ Note the interaction with <parameter>linenumbering.width</parameter>
 </para>
 
 </refsection>

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.hhp.window.frag">
-<xsl:param name="htmlhelp.hhp.window" select="'Main'"/>
+<xsl:param name="htmlhelp.hhp.window">Main</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

@@ -15,7 +15,8 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="man.output.encoding.frag">
-<xsl:param name="man.output.encoding" select="'UTF-8'"/></src:fragment>
+<xsl:param name="man.output.encoding">UTF-8</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

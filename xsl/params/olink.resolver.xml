@@ -14,7 +14,9 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="olink.resolver.frag"><xsl:param name="olink.resolver" select="'/cgi-bin/olink'"/></src:fragment>
+<src:fragment xml:id="olink.resolver.frag">
+<xsl:param name="olink.resolver" >cgi-bin/olink</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>

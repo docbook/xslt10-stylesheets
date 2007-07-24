@@ -15,7 +15,10 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="annotation.js.frag">
-<xsl:param name="annotation.js" select="'http://docbook.sourceforge.net/release/script/AnchorPosition.js http://docbook.sourceforge.net/release/script/PopupWindow.js'"/>
+
+<xsl:param name="annotation.js">
+<xsl:text>http://docbook.sourceforge.net/release/script/AnchorPosition.js http://docbook.sourceforge.net/release/script/PopupWindow.js</xsl:text></xsl:param>
+
 </src:fragment>
 </refsynopsisdiv>
 

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="xbLibrary.js.frag">
-<xsl:param name="xbLibrary.js" select="'xbLibrary.js'"/>
+<xsl:param name="xbLibrary.js">xbLibrary.js</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

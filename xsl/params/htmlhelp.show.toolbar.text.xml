@@ -21,8 +21,8 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>You can switch off display of texts under toolbar buttons by
-setting this parameter to 0.</para>
+<para>Set to non-zero to display texts under toolbar buttons, zero to switch
+off displays.</para>
 
 </refsection>
 </refentry>

@@ -15,13 +15,14 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.map.file.frag">
-<xsl:param name="htmlhelp.map.file" select="'context.h'"/>
+<xsl:param name="htmlhelp.map.file">context.h</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Specifies the filename of the map file (used for context-sensitive help).</para>
+
+<para>Set the name of map file. The default is <filename>alias.h</filename>. (used for context-sensitive help).</para>
 
 </refsection>
 </refentry>

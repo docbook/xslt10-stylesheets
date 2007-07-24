@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="region.after.extent.frag">
-<xsl:param name="region.after.extent" select="'0.4in'"/>
+<xsl:param name="region.after.extent">0.4in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

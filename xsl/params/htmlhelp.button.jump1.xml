@@ -21,8 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If you want Jump1 button shown on toolbar, turn this
-parameter to 1.</para>
+<para>Set to non-zero to include the Jump2 button  on the toolbar.</para>
 
 </refsection>
 </refentry>

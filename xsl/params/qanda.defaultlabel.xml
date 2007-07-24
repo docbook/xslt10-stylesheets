@@ -17,15 +17,28 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="qanda.defaultlabel.frag"><xsl:param name="qanda.defaultlabel">number</xsl:param></src:fragment>
+<src:fragment xml:id="qanda.defaultlabel.frag">
+<xsl:param name="qanda.defaultlabel">number</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If no defaultlabel attribute is specified on a QandASet, this
-value is used. It must be one of the legal values for the defaultlabel
-attribute.
+<para>If no <literal>defaultlabel</literal> attribute is specified on
+a <tag>qandaset</tag>, this value is used. It must be one of the legal
+values for the defaultlabel attribute, one from none, number or
+qanda. The default value is 'number'.
 </para>
+<para>Meaning</para>
+<para>qanda -   <tag>question</tag>s are labeled “Q:” and <tag>answer</tag>s are labeled “A:”. </para>
+<para>number -    The entries are enumerated. </para>
+<para>none -    No distinguishing label precedes Questions or Answers. 
+
+</para>
+
+
+
+
 
 </refsection>
 </refentry>

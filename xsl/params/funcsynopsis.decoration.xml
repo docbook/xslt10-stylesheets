@@ -14,14 +14,16 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="funcsynopsis.decoration.frag"><xsl:param name="funcsynopsis.decoration" select="1"/></src:fragment>
+<src:fragment xml:id="funcsynopsis.decoration.frag">
+<xsl:param name="funcsynopsis.decoration" select="1"/>
+</src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If true (non-zero), elements of the FuncSynopsis will be decorated (e.g. bold or
-italic).  The decoration is controlled by functions that can be redefined
-in a customization layer.
+<para>If non-zero, elements of the <tag>funcsynopsis</tag> will be
+decorated (e.g. bold or italic).  The decoration is controlled by
+functions that can be redefined in a customization layer.
 </para>
 
 </refsection>

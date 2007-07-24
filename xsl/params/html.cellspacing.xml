@@ -15,14 +15,15 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="html.cellspacing.frag">
-<xsl:param name="html.cellspacing" select="''"/>
+<xsl:param name="html.cellspacing"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>If specified, this value will be used as the default cellspacing value
-in HTML tables.</para>
+<para>If non-zero, this value will be used as the default cellspacing
+value in HTML tables. nn for pixels or nn% for percentage
+length. E.g. 5 or 5%</para>
 
 </refsection>
 </refentry>

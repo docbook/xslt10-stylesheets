@@ -21,7 +21,10 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>A cross reference may include the number (for example, the number of
+an example or figure) and the <tag>title</tag> which is a required child of some
+targets. This parameter inserts both the relevant number as well as
+the title into the link. </para>
 
 </refsection>
 </refentry>

@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="glossary.collection.frag">
-<xsl:param name="glossary.collection" select="''"/>
+<xsl:param name="glossary.collection"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

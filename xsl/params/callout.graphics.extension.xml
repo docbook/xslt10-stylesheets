@@ -15,14 +15,16 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="callout.graphics.extension.frag">
-<xsl:param condition="html" name="callout.graphics.extension" select="'.png'"/>
-<xsl:param condition="fo" name="callout.graphics.extension" select="'.svg'"/>
+<xsl:param condition="html" name="callout.graphics.extension">.png</xsl:param>
+<xsl:param condition="fo" name="callout.graphics.extension">.svg</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
 
-<para>Sets the file name extension to use on callout graphics.</para>
+<para>Sets the extension to use on callout graphics, hence the callout
+graphic format. The appropriate format (and range used) should be
+available. svg, png and gif are provided.</para>
 
 </refsection>
 </refentry>
