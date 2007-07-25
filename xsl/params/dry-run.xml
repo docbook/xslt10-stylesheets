@@ -12,13 +12,11 @@
 <refname>dry-run</refname>
 <refpurpose>Indicates that no files should be produced</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
-  <src:fragment xml:id="dry-run">
+  <src:fragment xml:id="dry-run.frag">
     <xsl:param name="dry-run" select="0"/>
   </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
 <para>When using the XSLT processor to manage dependencies and construct
 the website, this parameter can be used to suppress the generation of
