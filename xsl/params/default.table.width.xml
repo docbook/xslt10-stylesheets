@@ -12,18 +12,14 @@
 <refname>default.table.width</refname>
 <refpurpose>The default width of tables</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="default.table.width.frag">
 <xsl:param name="default.table.width"></xsl:param>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
 <para>If non-zero, this value will be used for the
 <literal>width</literal> attribute on <tag>table</tag>s that do not specify an
-alternate <width>width</width> (with the dbhtml processing instruction).</para>
-
+alternate width (with the dbhtml processing instruction).</para>
 </refsection>
 </refentry>
