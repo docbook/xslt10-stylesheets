@@ -18,20 +18,16 @@
 <refname>reference.autolabel</refname>
 <refpurpose>Specifies the labeling format for Reference titles</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="reference.autolabel.frag">
   <xsl:param name="reference.autolabel">I</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
-<para>If non-zero, then references will not be numbered.
-Otherwise references will be numbered, using the parameter value
-as the number format if the value matches one of the following:
+<para>If non-zero, references will be numbered using the parameter
+  value as the number format if the value matches one of the
+  following:
 </para>
-
 <variablelist>
   <varlistentry>
     <term>1 or arabic</term>
@@ -64,11 +60,8 @@ as the number format if the value matches one of the following:
     </listitem>
   </varlistentry>
 </variablelist>
-
-<para>Any nonzero value other than the above will generate
+<para>Any non-zero value other than the above will generate
 the default number format (upperroman).
 </para>
-
-
 </refsection>
 </refentry>
