@@ -12,27 +12,20 @@
 <refname>chunker.output.doctype-system</refname>
 <refpurpose>System identifier to use for the document type in generated pages</refpurpose>
 </refnamediv>
-
-
 <refsynopsisdiv>
-<src:fragment xml:id="chunker.output.doctype-system">
+<src:fragment xml:id="chunker.output.doctype-system.frag">
 <xsl:param name="chunker.output.doctype-system"></xsl:param>
 </src:fragment>
-
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
 <para>This parameter specifies the system identifier that should be used by
 the chunking stylesheet in the document type declaration of chunked pages.
 Not all processors support specification of
 this parameter.
 </para>
-
 <note>
 <para>This parameter is documented here, but the declaration is actually
 in the <filename>chunker.xsl</filename> stylesheet module.</para>
 </note>
-
 </refsection>
 </refentry>
