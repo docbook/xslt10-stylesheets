@@ -12,18 +12,14 @@
 <refname>id.warnings</refname>
 <refpurpose>Should warnings be generated for titled elements without IDs?</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="id.warnings.frag">
 <xsl:param name="id.warnings" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
 <para>If non-zero, the stylesheet will issue a warning for any element
 (other than the root element) which has a <tag>title</tag> but does not have an
-ID. The default is to issue such warnings.</para>
-
+ID.</para>
 </refsection>
 </refentry>
