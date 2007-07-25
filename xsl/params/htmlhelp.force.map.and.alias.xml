@@ -12,18 +12,15 @@
 <refname>htmlhelp.force.map.and.alias</refname>
 <refpurpose>Should [MAP] and [ALIAS] sections be added to the project file unconditionally?</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.force.map.and.alias.frag">
 <xsl:param name="htmlhelp.force.map.and.alias" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
-<para>Set to non-zero if you have your own alias.h and contex.h files and
-you want to include reference to them in project file.</para>
-
-
+  <para>Set to non-zero if you have your own
+    <literal>alias.h</literal> and <literal>context.h</literal>
+    files and you want to include references to them in the project
+    file.</para>
 </refsection>
 </refentry>
