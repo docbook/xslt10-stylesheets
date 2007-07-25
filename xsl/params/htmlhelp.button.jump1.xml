@@ -12,16 +12,12 @@
 <refname>htmlhelp.button.jump1</refname>
 <refpurpose>Should the Jump1 button be shown?</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="htmlhelp.button.jump1.frag">
 <xsl:param name="htmlhelp.button.jump1" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
-<para>Set to non-zero to include the Jump2 button  on the toolbar.</para>
-
+  <para>Set to non-zero to include the <literal>Jump1</literal> button on the toolbar.</para>
 </refsection>
 </refentry>
