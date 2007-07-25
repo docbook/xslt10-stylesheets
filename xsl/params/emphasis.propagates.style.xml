@@ -12,19 +12,15 @@
 <refname>emphasis.propagates.style</refname>
 <refpurpose>Pass emphasis role attribute through to HTML?</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="emphasis.propagates.style.frag">
 <xsl:param name="emphasis.propagates.style" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
 <para>If non-zero, the <literal>role</literal> attribute of
-<literal>emphasis</literal> elements will be passed through to the HTML as a
+<tag>emphasis</tag> elements will be passed through to the HTML as a
 class attribute on a <literal>span</literal> that surrounds the
 emphasis.</para>
-
 </refsection>
 </refentry>
