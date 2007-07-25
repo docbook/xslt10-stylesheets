@@ -12,21 +12,17 @@
 <refname>html.longdesc</refname>
 <refpurpose>Should longdesc URIs be created?</refpurpose>
 </refnamediv>
-
 <refsynopsisdiv>
 <src:fragment xml:id="html.longdesc.frag">
 <xsl:param name="html.longdesc" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
 <para>If non-zero, HTML files will be created for the
 <literal>longdesc</literal> attribute. These files
-are created from the <literal>textobject</literal>s in
+are created from the <tag>textobject</tag>s in
 <tag>mediaobject</tag>s and
 <tag>inlinemediaobject</tag>.
 </para>
-
 </refsection>
 </refentry>
