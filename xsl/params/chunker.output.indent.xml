@@ -12,26 +12,19 @@
 <refname>chunker.output.indent</refname>
 <refpurpose>Specification of indentation on generated pages</refpurpose>
 </refnamediv>
-
-
 <refsynopsisdiv>
-<src:fragment xml:id="chunker.output.indent">
+<src:fragment xml:id="chunker.output.indent.frag">
 <xsl:param name="chunker.output.indent">no</xsl:param>
 </src:fragment>
-
 </refsynopsisdiv>
-
 <refsection><info><title>Description</title></info>
-
 <para>This parameter specifies the value of the indent
 specification for generated pages. Not all processors support
 specification of this parameter.
 </para>
-
 <note>
 <para>This parameter is documented here, but the declaration is actually
 in the <filename>chunker.xsl</filename> stylesheet module.</para>
 </note>
-
 </refsection>
 </refentry>
