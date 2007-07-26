@@ -26,6 +26,7 @@
   <!-- ==================================================================== -->
 
   <xsl:include href="../common/refentry.xsl"/>
+  <xsl:include href="../common/charmap.xsl"/>
   <xsl:include href="param.xsl"/>
   <xsl:include href="utility.xsl"/>
   <xsl:include href="info.xsl"/>
