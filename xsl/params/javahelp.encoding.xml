@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="javahelp.encoding.frag">
-<xsl:param name="javahelp.encoding" select="'iso-8859-1'"/>
+<xsl:param name="javahelp.encoding">iso-8859-1</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
