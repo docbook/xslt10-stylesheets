@@ -27,7 +27,20 @@ RELEASE_DEPENDS = ChangeHistory.xml.zip extensions
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release
-DISTRIB_EXCLUDES = extensions/xsltproc doc/reference.txt$$ reference.txt.html$$ doc/reference.fo$$ doc/reference.pdf$$ doc/HTML.manifest$$ tools/xsl xhtml/html2xhtml.xsl README.RELEASE-BUILD
+DISTRIB_EXCLUDES = \
+  reference.txt.html$$ \
+  doc/reference.txt$$ \
+  doc/reference.fo$$ \
+  doc/reference.pdf$$ \
+  doc/HTML.manifest$$ \
+  tools/xsl \
+  xhtml/html2xhtml.xsl$$ \
+  README.RELEASE-BUILD \
+  .param.dbkns \
+  .param.stripped \
+  .param.xmlid \
+  .lib.dbkns \
+  .lib.stripped
 
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
