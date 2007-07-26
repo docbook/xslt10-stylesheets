@@ -1,63 +1,12 @@
-<!DOCTYPE xsl:stylesheet [
-  <!ENTITY components "dbk:appendix |
-    dbk:article |
-    dbk:book |
-    dbk:chapter |
-    dbk:part |
-    dbk:preface |
-    dbk:section |
-    dbk:sect1 |
-    dbk:sect2 |
-    dbk:sect3 |
-    dbk:sect4 |
-    dbk:sect5">
-
-  <!ENTITY blocks "dbk:bibliography |
-    dbk:bibliodiv |
-    dbk:glossary |
-    dbk:glossdiv |
-    dbk:qandaset |
-    dbk:qandadiv">
-
-  <!ENTITY metadata-content '@rnd:style = "abstract" or
-			     @rnd:style = "abstract-title" or
-			     @rnd:style = "author" or
-			     @rnd:style = "editor" or
-			     @rnd:style = "othercredit" or
-			     @rnd:style = "revhistory" or
-			     @rnd:style = "revision" or
-			     @rnd:style = "date" or
-			     @rnd:style = "pubdate" or
-			     @rnd:style = "personblurb" or
-			     @rnd:style = "address" or
-			     @rnd:style = "affiliation" or
-			     @rnd:style = "contrib" or
-			     @rnd:style = "email" or
-			     @rnd:style = "pagenums" or
-			     @rnd:style = "issuenum" or
-			     @rnd:style = "volumenum" or
-			     @rnd:style = "biblioid" or
-			     @rnd:style = "bibliosource" or
-			     @rnd:style = "releaseinfo"'>
-
-  <!ENTITY author-content '@rnd:style = "author" or
-			   @rnd:style = "personblurb" or
-			   @rnd:style = "address" or
-			   @rnd:style = "affiliation" or
-			   @rnd:style = "contrib" or
-			   @rnd:style = "email"'>
-
-  <!ENTITY admonition '@rnd:style = "caution" or
-    @rnd:style = "important" or
-    @rnd:style = "note" or
-    @rnd:style = "tip" or
-    @rnd:style = "warning"'>
-  <!ENTITY admonition-title '@rnd:style = "caution-title" or
-    @rnd:style = "important-title" or
-    @rnd:style = "note-title" or
-    @rnd:style = "tip-title" or
-    @rnd:style = "warning-title"'>
-]>
+<!DOCTYPE xsl:stylesheet SYSTEM "blocks2dbk.dtd">
+<!-- External DTD defines entities:
+     components :- QNames of component-level elements
+     blocks :- QNames of block-level elements
+     metadata-content :- XPath expression matching metadata styles
+     author-content :- XPath expression matching author styles
+     admonition :- XPath expression matching admonition styles
+     admonition-title :- XPath expression matching admonition title styles
+-->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:dbk='http://docbook.org/ns/docbook'
@@ -325,10 +274,15 @@
 	  <xsl:apply-templates/>
 	</dbk:bibliomixed>
       </xsl:when>
-      <xsl:when test='@rnd:style = "biblioentry"'>
-        <!-- TODO: handle titles, metadata, etc -->
+      <xsl:when test='@rnd:style = "biblioentry-title"'>
 	<dbk:biblioentry>
-	  <xsl:apply-templates/>
+          <dbk:title>
+            <xsl:apply-templates/>
+          </dbk:title>
+          <xsl:if test='following-sibling::*[1][&metadata-content;]'>
+            <xsl:apply-templates select='following-sibling::*[1]'
+              mode='rnd:metadata'/>
+          </xsl:if>
 	</dbk:biblioentry>
       </xsl:when>
 
@@ -379,7 +333,8 @@
       </xsl:when>
 
       <xsl:when test='@rnd:style = "bridgehead"'>
-        <xsl:element name='{@rnd:style}'>
+        <xsl:element name='{@rnd:style}'
+          namespace='http://docbook.org/ns/docbook'>
           <xsl:call-template name='rnd:attributes'/>
           <xsl:apply-templates/>
         </xsl:element>
@@ -411,6 +366,16 @@
           <xsl:with-param name='code'>formalpara-notitle</xsl:with-param>
           <xsl:with-param name='message'>formalpara used without a title</xsl:with-param>
         </xsl:call-template>
+      </xsl:when>
+
+      <xsl:when test='@rnd:style = "informalfigure-imagedata"'>
+        <dbk:informalfigure>
+          <dbk:mediaobject>
+            <dbk:imageobject>
+              <dbk:imagedata fileref='{.}'/>
+            </dbk:imageobject>
+          </dbk:mediaobject>
+        </dbk:informalfigure>
       </xsl:when>
 
       <xsl:when test='(contains(@rnd:style, "-title") or
@@ -449,8 +414,11 @@
 
       <xsl:when test='@rnd:style = preceding-sibling::node()[self::dbk:emphasis]/@rnd:style'/>
 
-      <xsl:when test='@rnd:style = "citetitle"'>
-        <xsl:element name='{@rnd:style}'>
+      <xsl:when test='@rnd:style = "citetitle" or
+                      @rnd:style = "literal" or
+                      @rnd:style = "sgmltag"'>
+        <xsl:element name='{@rnd:style}'
+          namespace='http://docbook.org/ns/docbook'>
           <xsl:call-template name='rnd:attributes'/>
           <xsl:apply-templates/>
           <xsl:apply-templates select='following-sibling::node()[1]'
@@ -658,6 +626,12 @@
 
   <xsl:template match='dbk:para' mode='rnd:metadata'>
     <xsl:choose>
+      <xsl:when test='@rnd:style = "biblioentry-title"'>
+        <xsl:call-template name='rnd:error'>
+          <xsl:with-param name='code'>bad-metadata</xsl:with-param>
+          <xsl:with-param name='message'>style "<xsl:value-of select='@rnd:style'/>" must not be metadata for parent "<xsl:value-of select='local-name(..)'/>"</xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
       <xsl:when test='@rnd:style = "abstract-title" or
                       @rnd:style = "abstract"'>
         <xsl:variable name='stop.node'
@@ -708,6 +682,7 @@
                       @rnd:style = "othercredit" or
                       @rnd:style = "biblioid" or
                       @rnd:style = "bibliosource" or
+                      @rnd:style = "bibliomisc" or
                       @rnd:style = "revhistory" or
                       @rnd:style = "revision"'>
         <xsl:element name='{@rnd:style}'
@@ -759,6 +734,17 @@
         <xsl:apply-templates select='following-sibling::*[1]'
           mode='rnd:metadata'/>
       </xsl:when>
+
+      <!-- Exception to normal subtitle handling is biblioentry-subtitle -->
+      <xsl:when test='@rnd:style = "biblioentry-subtitle"'>
+        <!-- TODO: check that this is in a biblioentry -->
+        <dbk:subtitle>
+          <xsl:apply-templates mode='rnd:metadata'/>
+        </dbk:subtitle>
+
+        <xsl:apply-templates select='following-sibling::*[1]'
+          mode='rnd:metadata'/>
+      </xsl:when>
       <xsl:when test='contains(@rnd:style, "-subtitle")'>
         <xsl:variable name='parent'
           select='substring-before(@rnd:style, "-subtitle")'/>
@@ -780,6 +766,25 @@
         <xsl:apply-templates select='following-sibling::*[1]'
           mode='rnd:metadata'/>
       </xsl:when>
+
+      <xsl:when test='@rnd:style = "publisher-address"'>
+        <xsl:apply-templates select='following-sibling::*[1]'
+          mode='rnd:metadata'/>
+      </xsl:when>
+      <xsl:when test='@rnd:style = "publisher"'>
+        <dbk:publisher>
+          <dbk:publishername>
+            <xsl:apply-templates/>
+          </dbk:publishername>
+          <xsl:if test='following-sibling::*[1][@rnd:style = "publisher-address"]'>
+            <xsl:apply-templates select='following-sibling::*[1]'
+              mode='rnd:publisher'/>
+          </xsl:if>
+        </dbk:publisher>
+
+        <xsl:apply-templates select='following-sibling::*[1]'
+          mode='rnd:metadata'/>
+      </xsl:when>
     </xsl:choose>
   </xsl:template>
   <xsl:template match='dbk:emphasis' mode='rnd:metadata'>
@@ -790,7 +795,8 @@
         </xsl:copy>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:element name='{@rnd:style}'>
+        <xsl:element name='{@rnd:style}'
+          namespace='http://docbook.org/ns/docbook'>
           <xsl:apply-templates mode='rnd:metadata'/>
         </xsl:element>
       </xsl:otherwise>
@@ -961,6 +967,14 @@
       </dbk:para>
       <xsl:apply-templates select='following-sibling::*[1]'
         mode='rnd:personblurb'/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match='dbk:para' mode='rnd:publisher'>
+    <xsl:if test='@rnd:style = "publisher-address"'>
+      <dbk:address>
+        <xsl:apply-templates/>
+      </dbk:address>
     </xsl:if>
   </xsl:template>
 
