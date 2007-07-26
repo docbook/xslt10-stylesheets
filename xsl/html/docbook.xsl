@@ -98,7 +98,7 @@
     <xsl:text>, but no template matches.</xsl:text>
   </xsl:message>
 
-  <font color="red">
+  <span style="color: red">
     <xsl:text>&lt;</xsl:text>
     <xsl:value-of select="name(.)"/>
     <xsl:text>&gt;</xsl:text>
@@ -106,7 +106,7 @@
     <xsl:text>&lt;/</xsl:text>
     <xsl:value-of select="name(.)"/>
     <xsl:text>&gt;</xsl:text>
-  </font>
+  </span>
 </xsl:template>
 
 <xsl:template match="text()">
