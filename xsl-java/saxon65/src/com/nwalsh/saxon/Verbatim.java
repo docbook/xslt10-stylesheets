@@ -374,10 +374,12 @@ public class Verbatim {
 	graphicsMax = 0;
       }
 
-      // Get the callout icon size
-      varString = getVariable(context, "callout.icon.size");
-      iconSize = varString;
-      
+      // Get the callout icon size (used for FO)
+      if (foStylesheet) {
+	varString = getVariable(context, "callout.icon.size");
+	iconSize = varString;
+      }
+           
       fCallout = new FormatGraphicCallout(namePool,
 					  graphicsPath,
 					  graphicsExt,
