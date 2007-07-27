@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.show.menu</refname>
-<refpurpose>Should be menu shown?</refpurpose>
+<refpurpose>Should the menu bar be shown?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Set to non-zero to have an application menu in your HTML Help file.
+<para>Set to non-zero to have an application menu bar in your HTML Help window.
 </para>
 
 </refsection>
