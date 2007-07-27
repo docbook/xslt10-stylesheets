@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.enumerate.images</refname>
-<refpurpose>Should be paths to all used images added to project file?</refpurpose>
+<refpurpose>Should the paths to all used images be added to the project file?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,8 +22,7 @@
 <refsection><info><title>Description</title></info>
 
 <para>Set to non-zero if you insert images into your documents as
-external binary entities or if you are using absolute path in image
-names.</para>
+external binary entities or if you are using absolute image paths.</para>
 
 </refsection>
 </refentry>
