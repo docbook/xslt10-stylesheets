@@ -69,10 +69,11 @@ SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
 SVN_INFO_FILE=.svninfo.xml
 
-PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam param 'PreviousRelease' $(GETPARAM) VERSION)
+PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION VERSION)
 
-REPOSITORY_ROOT=$(shell $(XSLTPROC) --stringparam element root $(GETELEMENT) $(SVN_INFO_FILE))
-DISTRO_URL=$(shell $(XSLTPROC) --stringparam element url $(GETELEMENT) $(SVN_INFO_FILE))
+REPOSITORY_ROOT=$(shell $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE))
+DISTRO_URL=$(shell $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE))
+REVISION=$(shell $(XSLTPROC) --stringparam expression //commit@revision $(EVALXPATH) $(SVN_INFO_FILE))
 DISTRO_PARENT_URL=$(dir $(basename $(DISTRO_URL)))
 
 # stylesheet for stripping DB5 namespace
@@ -99,7 +100,9 @@ DBLATEX_FLAGS = -b pdftex
 # file containing "What's New" info generated from Subversion log
 NEWSFILE=NEWS
 
-PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam param 'PreviousReleaseRevision' $(GETPARAM) VERSION)
+PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision VERSION VERSION)
+
+TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION VERSION)
 
 # determine RELVER automatically by:
 #
@@ -202,8 +205,7 @@ GZIPFLAGS=
 XSLTPROC=xsltproc
 XSLTPROC_OPTS=
 
-GETPARAM=$(DOCBOOK_SVN)/releasetools/get-param.xsl
-GETELEMENT=$(DOCBOOK_SVN)/releasetools/get-element.xsl
+EVALXPATH=$(DOCBOOK_SVN)/releasetools/eval-xpath.xsl
 
 XMLLINT=xmllint
 XMLLINT_OPTS=--noent

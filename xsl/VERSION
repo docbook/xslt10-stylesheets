@@ -2,10 +2,16 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:fm="http://freshmeat.net/projects/freshmeat-submit/"
   xmlns:sf="http://sourceforge.net/"
+  xmlns:dyn="http://exslt.org/dynamic"
+  xmlns:saxon="http://icl.com/saxon"
   exclude-result-prefixes="fm sf"
   version='1.0'>
 
+<xsl:output omit-xml-declaration="yes"/>
+
+<xsl:param name="get"/>
 <xsl:param name="VERSION" select="string(document('')//fm:Version[1])"/>
+<xsl:param name="Tag" select="concat('V',translate(string(document('')//fm:Version[1]),'.',''))"/>
 <xsl:param name="DistroTitle" select="string(document('')//fm:Branch[1])"/>
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
 <xsl:param name="PreviousRelease">1.72.0</xsl:param>
@@ -45,13 +51,25 @@ Major feature enhancements
 </fm:project>
 
 <xsl:template match="/" priority="-100">
-  <xsl:if test="$sf-relid = 0">
-    <xsl:message terminate="yes">
-      <xsl:text>You must specify the sf-relid as a parameter.</xsl:text>
-    </xsl:message>
-  </xsl:if>
-
-  <xsl:apply-templates select="//fm:project"/>
+  <xsl:choose>
+    <xsl:when test="$get = 'Tag'">
+      <xsl:value-of select="$Tag"/>
+    </xsl:when>
+    <xsl:when test="$get = 'PreviousRelease'">
+      <xsl:value-of select="$PreviousRelease"/>
+    </xsl:when>
+    <xsl:when test="$get = 'PreviousReleaseRevision'">
+      <xsl:value-of select="$PreviousReleaseRevision"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="$sf-relid = 0">
+        <xsl:message terminate="yes">
+         <xsl:text>You must specify the sf-relid as a parameter.</xsl:text>
+        </xsl:message>
+      </xsl:if>
+      <xsl:apply-templates select="//fm:project"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="fm:project">

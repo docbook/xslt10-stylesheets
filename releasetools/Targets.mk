@@ -107,7 +107,7 @@ else
 distrib: all $(DISTRIB_DEPENDS) $(NEWSFILE)
 endif
 
-release: distrib $(RELEASE_DEPENDS)
+release: distrib $(RELEASE_DEPENDS) tag
 
 #newversion:
 #ifeq ($(CVSCHECK),)
@@ -147,7 +147,7 @@ else
 endif
 
 ifeq ($(OFFLINE),yes)
-zip:
+zip: tag
 else
 zip: ChangeHistory.xml.zip
 endif
@@ -261,6 +261,17 @@ install: upload-to-sf-incoming upload-to-project-webspace
 
 announce: RELEASE-NOTES-PARTIAL.txt
 	$(RELEASE_ANNOUNCE) $(RELVER) $(ANNOUNCE_RECIPIENTS)
+
+tag:
+	if [ -z "$(svn status)" ]; \
+	  then echo "$(SVN) $(SVN_OPTS) delete $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)"; \
+	  echo "$(SVN) $(SVN_OPTS) copy -r $(REVISION) $(DISTRO_URL) $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)"; \
+	  else \
+	  echo "Unversioned or uncommitted files found. Before making the"; \
+	  echo "zip target, either delete the following files, add them to"; \
+	  echo "the repository, or add them to the svn:ignore properties for"; \
+	  echo "their parent directories."; \
+	  fi
 
 release-clean: clean
 	$(MAKE) -C docsrc release-clean
