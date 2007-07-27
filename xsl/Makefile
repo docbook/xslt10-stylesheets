@@ -40,7 +40,8 @@ DISTRIB_EXCLUDES = \
   .param.stripped \
   .param.xmlid \
   .lib.dbkns \
-  .lib.stripped
+  .lib.stripped \
+  .lib.xmlid
 
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
