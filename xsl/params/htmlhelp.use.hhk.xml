@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.use.hhk</refname>
-<refpurpose>Should be index built using HHK file?</refpurpose>
+<refpurpose>Should the index be built using the HHK file?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,8 +21,8 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, index is created using HHK file. This provides some
-new features.</para>
-
+<para>If non-zero, the index is created using the HHK file (instead of using <tag role="html">object</tag>
+elements in the HTML files). For more information, see <link 
+role="tcg" xlink:href="HtmlHelp.html#HHGenIndex">Generating an index</link>.</para>
 </refsection>
 </refentry>
