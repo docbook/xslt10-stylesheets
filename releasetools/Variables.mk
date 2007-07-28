@@ -73,7 +73,7 @@ PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION V
 
 REPOSITORY_ROOT=$(shell $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE))
 DISTRO_URL=$(shell $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE))
-REVISION=$(shell $(XSLTPROC) --stringparam expression //commit@revision $(EVALXPATH) $(SVN_INFO_FILE))
+REVISION=$(shell $(XSLTPROC) --stringparam expression //commit/@revision $(EVALXPATH) $(SVN_INFO_FILE))
 DISTRO_PARENT_URL=$(dir $(basename $(DISTRO_URL)))
 
 # stylesheet for stripping DB5 namespace
