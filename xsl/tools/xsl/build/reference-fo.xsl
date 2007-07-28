@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="1.0">
   <xsl:import href="../../../fo/docbook.xsl"/>
   <!-- * params -->
@@ -68,4 +69,35 @@
       <xsl:text>pt</xsl:text>
     </xsl:attribute>
   </xsl:attribute-set>
+
+<xsl:param name="tcg.base.url">http://www.sagehill.net/docbookxsl/</xsl:param>
+
+<xsl:template match="link[@role = 'tcg']|ulink[@role = 'tcg']">
+  <!-- * Preface this TCG page link with a "DocBook XSL: TCG" direct link -->
+  <!-- * - unless this link has an ancestor with @role=tcg, which means -->
+  <!-- * it's in a section of the docbook-xsl docs that already has a -->
+  <!-- * title indicating the links in it are to TCG. -->
+
+  <xsl:if test="not(ancestor::*[@role = 'tcg'])">
+    <fo:basic-link xsl:use-attribute-sets="xref.properties" 
+		   external-destination="url({$tcg.base.url})">DocBook XSL: TCG</fo:basic-link>
+    <xsl:text>, </xsl:text>
+  </xsl:if>
+
+ <xsl:choose>
+    <xsl:when test="@xlink:href">
+      <xsl:call-template name="ulink">
+	<xsl:with-param name="url" select="concat($tcg.base.url,@xlink:href)"/>
+      </xsl:call-template>link"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="ulink">
+	<xsl:with-param name="url" select="concat($tcg.base.url,@url)"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+
+</xsl:template>
+
+
 </xsl:stylesheet>
