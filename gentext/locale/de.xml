@@ -34,6 +34,7 @@
 <gentext key="Article" text="Artikel"/>
 <gentext key="article" text="Artikel"/>
 <gentext key="Author" text="Autor"/>
+<gentext key="Authors" text="Autoren"/>
 <gentext key="Bibliography" text="Literaturverzeichnis"/>
 <gentext key="bibliography" text="Literaturverzeichnis"/>
 <gentext key="Book" text="Buch"/>
