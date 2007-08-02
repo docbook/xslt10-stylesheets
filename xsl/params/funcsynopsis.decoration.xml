@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>funcsynopsis.decoration</refname>
-<refpurpose>Decorate elements of a FuncSynopsis?</refpurpose>
+<refpurpose>Decorate elements of a <tag>funcsynopsis</tag>?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,8 +22,8 @@
 <refsection><info><title>Description</title></info>
 
 <para>If non-zero, elements of the <tag>funcsynopsis</tag> will be
-decorated (e.g. bold or italic).  The decoration is controlled by
-functions that can be redefined in a customization layer.
+decorated (e.g. rendered as bold or italic text). The decoration is controlled by
+templates that can be redefined in a customization layer.
 </para>
 
 </refsection>
