@@ -10,8 +10,8 @@
 </refmeta>
 <refnamediv>
 <refname>highlight.source</refname>
-<refpurpose>Should be content of <tag>programlisting</tag>
-syntactically highlighted?</refpurpose>
+<refpurpose>Should the content of <tag>programlisting</tag>
+be syntactically highlighted?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,27 +23,25 @@ syntactically highlighted?</refpurpose>
 <refsection><info><title>Description</title></info>
 
 <para>When this parameter is non-zero, the stylesheets will try to do
-syntax highlighting in content of programlisting element.</para>
+syntax highlighting of the content of the <tag>programlisting</tag> element. The highlighting is done by the 
+XSLTHL extension module. This is an external Java library which is not part of the DocBook XSL distribution.</para>
 
 <para>In order to use this extension, you must add
-<filename>xslthl.jar</filename> into your Java classpath. You can
-download this software from <uri xlink:href="http://sourceforge.net/projects/xslthl">http://sourceforge.net/projects/xslthl</uri>.</para>
+<filename>xslthl.jar</filename> to your Java classpath. You can
+download this software from <uri xlink:href="http://sourceforge.net/projects/xslthl">The XSLT syntax highlighting project</uri> at SourceForge.</para>
 
-<para>Configuration of syntax highlighting is stored inside
-<filename>highlighting/xslthl-config.xml</filename> file. Java
-property <literal>xslthl.config</literal> must be pointing to this
-file using URL.</para>
+<para>The configuration of syntax highlighting is stored in 
+<filename>highlighting/xslthl-config.xml</filename>. The Java
+property <literal>xslthl.config</literal> must point to this
+file (using URL syntax).</para>
 
-<para>This extension is known to work with Saxon 6.5.x. When using
-syntax highlighting, do not forget to modify your classpath and point
-to the configuration file using property. Modified Saxon command can look
-like:</para>
+<para>This extension is known to work with Saxon 6.5.x. Here is an example of a modified Saxon command:</para>
 
 <programlisting>java -cp c:\batch\;…;c:\path\to\xslthl.jar -Dxslthl.config=file:///c:/docbook-xsl/highlighting/xslthl-config.xml … com.icl.saxon.StyleSheet …</programlisting>
 
-<para>You can specify language for each programlisting using <tag class="attribute">language</tag> attribute. Parameter
-<parameter>highlighting.default.language</parameter> can be used for specifying
-language to be used for programlistings without <tag class="attribute">language</tag> attribute.</para>
+<para>You can specify the language for each programlisting by using the <tag class="attribute">language</tag> attribute. The
+<parameter>highlighting.default.language</parameter> parameter can be used for specifying the
+language to be used for programlistings without a <tag class="attribute">language</tag> attribute.</para>
 
 </refsection>
 </refentry>
