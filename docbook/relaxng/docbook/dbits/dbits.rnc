@@ -55,8 +55,7 @@ db.its.attributes =
    & its-att.version.attributes?
 
 # Add local ITS attributes to all DocBook elements
-db.common.attributes &= db.its.attributes
-db.common.idreq.attributes &= db.its.attributes
+db.common.base.attributes &= db.its.attributes
 
 # Allow its:rules inside info element
 db.info.extension |= its-rules
