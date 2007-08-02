@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>index.prefer.titleabbrev</refname>
-<refpurpose>Should  abbreviated titles be used as back references</refpurpose>
+<refpurpose>Should abbreviated titles be used as back references?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,7 +21,8 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:
+<para>If non-zero, and if a <tag>titleabbrev</tag> is defined, the abbreviated title
+is used as the link text of a back reference in the index.
 </para>
 
 </refsection>
