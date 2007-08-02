@@ -12,7 +12,7 @@
 </refmeta>
 <refnamediv>
 <refname>funcsynopsis.style</refname>
-<refpurpose>What style of 'FuncSynopsis' should be generated?</refpurpose>
+<refpurpose>What style of <tag>funcsynopsis</tag> should be generated?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
