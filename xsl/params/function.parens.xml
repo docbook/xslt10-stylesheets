@@ -21,8 +21,8 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If nono-zero, the formatting of a <tag>function</tag> element
-will include generated parenthesis.
+<para>If non-zero, the formatting of a <tag>function</tag> element
+will include generated parentheses.
 </para>
 
 </refsection>
