@@ -20,12 +20,18 @@
 <refsection><info><title>Description</title></info>
 
 <para>If non-zero,
-<link xlink:href="http://users.ox.ac.uk/~rahtz/passivetex/">PassiveTeX</link>
+<link xlink:href="http://www.tei-c.org.uk/Software/passivetex/">PassiveTeX</link>
 extensions will be used. At present, this consists of PDF bookmarks
 and sorted index terms.
 </para>
 
 <para>This parameter can also affect which graphics file formats
 are supported</para>
+
+<note>
+  <para>PassiveTeX is incomplete and development has ceased. In most cases, 
+another XSL-FO engine is probably a better choice.</para>
+</note>
+
 </refsection>
 </refentry>
