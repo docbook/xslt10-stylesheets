@@ -22,9 +22,7 @@
 <refsection><info><title>Description</title></info>
 
 <para>This image is used inline to identify the location of
-annotations. The default image is on the docbook site. Users may
-utilise other images. size should be approximately 10x10
-pixels.</para>
+annotations. It may be replaced by a user provided graphic. The size should be approximately 10x10 pixels.</para>
 
 </refsection>
 </refentry>

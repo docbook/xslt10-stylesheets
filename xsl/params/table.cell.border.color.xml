@@ -26,7 +26,7 @@
 for the border coloration. See <link
 xlink:href="http://www.w3.org/TR/CSS21/syndata.html#value-def-color">CSS</link>. A
 <literal>color</literal> is either a keyword or a numerical RGB specification.
-keywords are aqua, black, blue, fuchsia, gray, green, lime, maroon,
+Keywords are aqua, black, blue, fuchsia, gray, green, lime, maroon,
 navy, olive, orange, purple, red, silver, teal, white, and
 yellow.</para>
 
