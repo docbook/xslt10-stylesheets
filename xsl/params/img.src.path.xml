@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>img.src.path</refname>
-<refpurpose>Path to HTML image files</refpurpose>
+<refpurpose>Path to HTML/FO image files</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,9 +21,9 @@
 
 <para>Add a path prefix to each HTML
 <tag class="element">img</tag> or FO 
-<tag class="element">fo:external-graphics</tag> element's
+<tag class="element">fo:external-graphic</tag> element's
 <tag class="attribute">src</tag> attribute.
-This path could relative to the directory where the HTML/FO
+This path could be relative to the directory where the HTML/FO
 files are created, or it could be an absolute URI.
 The default value is empty.
 Be sure to include a trailing slash if needed.
