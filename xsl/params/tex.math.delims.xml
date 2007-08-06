@@ -10,9 +10,9 @@
 </refmeta>
 <refnamediv>
 <refname>tex.math.delims</refname>
-<refpurpose>Should equations be output for processing by TeX
-automatically surrounded by math mode delimiters?</refpurpose>
-</refnamediv>
+<refpurpose>Should equations output for processing by TeX be
+surrounded by math mode delimiters?</refpurpose>
+</refnamediv> 
 
 <refsynopsisdiv>
 <src:fragment xml:id="tex.math.delims.frag">
