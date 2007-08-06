@@ -28,7 +28,7 @@ XSLTHL extension module. This is an external Java library which is not part of t
 
 <para>In order to use this extension, you must add
 <filename>xslthl.jar</filename> to your Java classpath. You can
-download this software from <uri xlink:href="http://sourceforge.net/projects/xslthl">the XSLT syntax highlighting project</uri> at SourceForge.</para>
+download this software from <link xlink:href="http://sourceforge.net/projects/xslthl">the XSLT syntax highlighting project</link> at SourceForge.</para>
 
 <para>The configuration of syntax highlighting is stored in 
 <filename>highlighting/xslthl-config.xml</filename>. The Java
