@@ -1432,7 +1432,7 @@
   <!-- returns the filename of a chunk -->
   <xsl:variable name="ischunk"><xsl:call-template name="chunk"/></xsl:variable>
   <xsl:variable name="filename">
-    <xsl:call-template name="dbhtml-filename"/>
+    <xsl:call-template name="pi.dbhtml_filename"/>
   </xsl:variable>
   <xsl:variable name="dir">
     <xsl:call-template name="dbhtml-dir"/>
