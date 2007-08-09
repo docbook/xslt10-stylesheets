@@ -984,7 +984,7 @@
     </note>
   </refdescription>
   <refsynopsisdiv>
-    <synopsis><tag class="xmlpi">dbhtml href="<replaceable>URI</replaceable>"</tag></synopsis>
+    <synopsis><tag class="xmlpi">dbhtml-include href="<replaceable>URI</replaceable>"</tag></synopsis>
   </refsynopsisdiv>
   <refparameter>
     <variablelist>
