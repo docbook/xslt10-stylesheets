@@ -842,7 +842,7 @@
           <para>The amount of height needed (including units)</para>
         </listitem>
       </varlistentry>
-      <varlistentry><term>space-before"<replaceable>n</replaceable>"</term>
+      <varlistentry><term>space-before="<replaceable>n</replaceable>"</term>
         <listitem>
           <para>The amount of extra vertical space to add (including units)</para>
         </listitem>
