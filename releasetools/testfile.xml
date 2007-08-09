@@ -4,7 +4,7 @@
 <book>
 <bookinfo>
 <title>Unit Test: refentry.007</title>
-<releaseinfo role="CVS">$Id: refentry.007.xml 6135 2006-08-05 12:11:18Z xmldoc $</releaseinfo>
+<releaseinfo role="CVS">$Id: refentry.007.xml 7220 2007-08-09 09:02:56Z xmldoc $</releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>
@@ -211,12 +211,6 @@ that starts with a line of space. [break here]
 And ends with a line of space and is followed by a line of space.
 </screen>
 </para>
-
-<literallayout><?dbhtml-include href="foo.xml"?></literallayout>
-
-<para><?dbhtml-include href="foo.xml"?></para>
-
-<para><?dbhtml-include href="bar.xml"?></para>
 
 <para>This is another  normal paragraph that contains a screen.
 <screen>
