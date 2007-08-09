@@ -36,6 +36,7 @@ DISTRIB_EXCLUDES = \
   tools/xsl \
   xhtml/html2xhtml.xsl$$ \
   README.RELEASE-BUILD \
+  RELEASE-NOTES-PARTIAL.txt \
   .param.dbkns \
   .param.stripped \
   .param.xmlid \
