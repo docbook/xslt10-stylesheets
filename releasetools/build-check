@@ -4,7 +4,7 @@ grep=egrep
 LOGFILENAME=$1
 # FIXME: This regexp may not catch all error messages emitted;
 # probably should be refined with a more complete regexp.
-errorRegexp="error|fail|\*[^.]"
+errorRegexp="error|fail|\*\*[^.]"
 if [ -f $LOGFILENAME ]
 then
   errors=$($grep -i $errorRegexp $LOGFILENAME)
@@ -15,7 +15,7 @@ then
     echo
     echo "Possible build errors found:"
     echo
-    $grep -i "error|fail|\*[^.]" $LOGFILENAME
+    $grep -i "$errorRegexp" $LOGFILENAME
     echo
     echo "Stopping."
     echo
