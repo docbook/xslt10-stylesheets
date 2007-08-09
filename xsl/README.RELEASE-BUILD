@@ -128,46 +128,10 @@ Release Build Setup/Testing
    changes (if the fixes required changes to source files), then
    repeat Step 1 until you don't see any more problems.
 
-3. Test II: Smoke Test
-   At this point you should have a working set of stylesheets to
-   test with, so run a test of at least each of the following
-   against a document instance:
-
-     fo/docbook.xsl
-     fo/profile-docbook.xsl
-     manpages/docbook.xsl
-     manpages/profile-docbook.xsl
-     html/docbook.xsl
-     html/chunk.xsl
-     html/onechunk.xsl
-     html/profile-docbook.xsl
-     html/profile-chunk.xsl
-     html/profile-onechunk.xsl
-     xhtml/docbook.xsl
-     xhtml/chunk.xsl
-     xhtml/onechunk.xsl
-     xhtml/profile-docbook.xsl
-     xhtml/profile-chunk.xsl
-     xhtml/profile-onechunk.xsl
-     htmlhelp/htmlhelp.xsl
-     htmlhelp/profile-htmlhelp.xsl
-     eclipse/profile-eclipse.xsl
-     eclipse/eclipse.xsl
-     javahelp/profile-javahelp.xsl
-     javahelp/javahelp.xsl
-     roundtrip/dbk2ooo.xsl
-     roundtrip/dbk2pages.xsl
-     roundtrip/dbk2wordml.xsl
-     slides/html/default.xsl
-     slides/xhtml/default.xsl
-     slides/fo/plain.xsl
-     website/website.xsl
-     website/chunk-website.xsl
-
-4. Test III: make distrib
+3. Test III: make distrib
    If you have resolved all problems with the "make all" build, do
-   a test run of "make distrib" (to build the docs and other
-   additional stuff needed for the distribution).
+   a test run of "make distrib" (to smoke-test the build and to
+   build the docs and additional stuff needed for the distribution).
 
    To run the distrib build from a clean workspace, do this:
 
@@ -218,7 +182,7 @@ Release Build Setup/Testing
    The "uninstall" step at the end causes all changes made by
    that temporary XML Catalog "install" step to be reverted.
 
-5. Fix any problems, and commit fixes.
+4. Fix any problems, and commit fixes.
    If build-check reports any problems, fix them, commit your
    changes (if the fixes required changes to source files), then
    repeat Step 4 until you don't see any more problems.
@@ -340,19 +304,19 @@ Release Install Preparation
    - ssh
    - scp
 
------------------------------------------------------------------
+=================================================================
                     WARNING WARNING WARNING
                     WARNING WARNING WARNING
                     WARNING WARNING WARNING
-
+   ---------------------------------------------------------
    All steps from here forward are "unreversible" steps that
    you should not run unless you're doing an actual release
    (instead of just testing).
-
+   ---------------------------------------------------------
                     WARNING WARNING WARNING
                     WARNING WARNING WARNING
                     WARNING WARNING WARNING
------------------------------------------------------------------
+=================================================================
 
 -----------------------------------------------------------------
 Release Tag and Install
