@@ -3,12 +3,12 @@ include ../buildtools/Makefile.incl
 XSLT=../buildtools/xslt -xsltproc
 XTANGLE_PARAMS=suppress.doctype.in.output=1
 
-.PHONY: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl cldocbook.xsl ldocbook.xsl
+.PHONY: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl
 
 MAKE_DOCBOOK_RNG=.make-docbook-rng.xsl
 MAKE_LITPROG=.make-litprog.xsl
 
-all: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl freshmeat-submit
+all: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl freshmeat-submit testfile.xml
 
 modified-markup.xsl:
 	$(MAKE) -C ../contrib/tools/tennison $@
@@ -29,6 +29,9 @@ w2docbook.xsl:
 freshmeat-submit:
 	$(MAKE) -C ../contrib/tools/freshmeat-submit
 	cp ../contrib/tools/freshmeat-submit/freshmeat-submit-1.6/$@ .
+
+testfile.xml: ../testdocs/tests/refentry.007.xml
+	cp $< $@
 
 clean:
 	$(RM) modified-markup.xsl
