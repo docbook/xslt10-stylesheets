@@ -111,6 +111,11 @@
       <sf:surname>Cramer</sf:surname>
     </sf:user>
     <sf:user>
+      <sf:username>dpawson</sf:username>
+      <sf:firstname>Dave</sf:firstname>
+      <sf:surname>Pawson</sf:surname>
+    </sf:user>
+    <sf:user>
       <sf:username>kosek</sf:username>
       <sf:firstname>Jirka</sf:firstname>
       <sf:surname>Kosek</sf:surname>
@@ -386,15 +391,24 @@
   </xsl:template>
 
   <xsl:template match="author">
+    <!-- * based on Sourceforge cvs username, get a real name (if one has been defined) 
+	 * and use that in the result document, instead of the username -->
     <xsl:variable name="username" select="."/>
-    <!-- * based on Sourceforge cvs username, get a real name and use -->
-    <!-- * that in the result document, instead of the username -->
-    <xsl:value-of
-      select="document('')//sf:users/sf:user[sf:username = $username]/sf:firstname"/>
-    <xsl:text> </xsl:text>
-    <xsl:value-of
-      select="document('')//sf:users/sf:user[sf:username = $username]/sf:surname"/>
+    <xsl:variable name="users" select="document('')//sf:users"/>
+    <xsl:variable name="realname" select="concat($users/sf:user[sf:username = $username]/sf:firstname, 
+					  ' ',
+					  $users/sf:user[sf:username = $username]/sf:surname)"/>
+    
+    <xsl:choose>
+      <xsl:when test="string-length($realname) > 1">
+	<xsl:value-of select="$realname"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$username"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
+
 
   <!-- * ============================================================== -->
   <!-- *    Kludges for dealing with dots in/after names                -->
