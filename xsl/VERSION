@@ -24,7 +24,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
-  <fm:Version>1.73.1+pre</fm:Version>
+  <fm:Version>1.73.1-pre</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
