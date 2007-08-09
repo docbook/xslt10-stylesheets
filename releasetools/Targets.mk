@@ -107,35 +107,7 @@ else
 distrib: all $(DISTRIB_DEPENDS) $(NEWSFILE)
 endif
 
-release: distrib $(RELEASE_DEPENDS) tag
-
-#newversion:
-#ifeq ($(CVSCHECK),)
-#ifeq ($(DIFFVER),)
-#	@echo "DIFFVER must be specified."
-#	exit 1
-#else
-#ifeq ($(NEXTVER),$(RELVER))
-#	read -s -n1 -p "OK to create cvs tag $(TAGVER)? [No] "; \
-#	    echo "$$REPLY"; \
-#	    case $$REPLY in \
-#	      [yY]) \
-#	      cvs tag $(TAGVER); \
-#	      $(MAKE) DIFFVER=$(DIFFVER) distrib; \
-#	      ;; \
-#	      *) echo "OK, exiting without making creating tag."; \
-#	      exit \
-#	      ;; \
-#	    esac
-#else
-#	@echo "VERSION $(RELVER) doesn't match specified version $(NEXTVER)."
-#	exit 1
-#endif
-#endif
-#else
-#	@echo "CVS is not up-to-date! ($(CVSCHECK))"
-#	exit 1
-#endif
+release: distrib $(RELEASE_DEPENDS)
 
 freshmeat:
 ifeq ($(SFRELID),)
@@ -253,9 +225,9 @@ else
 	   )"
 endif
 
-install: upload-to-sf-incoming upload-to-project-webspace
+install: tag upload-to-sf-incoming upload-to-project-webspace
 	@echo "The docbook-$(DISTRO) and docbook-$(DISTRO)-doc packages have been uploaded to the SF incoming area."
-	@echo "Use the following form to move the uploaded files to the project release area."
+	@echo "Use the form at the following URL to move files to the project release area."
 	@echo
 	@echo "  http://sourceforge.net/project/admin/editpackages.php?group_id=21935"
 
@@ -263,15 +235,22 @@ announce: RELEASE-NOTES-PARTIAL.txt
 	$(RELEASE_ANNOUNCE) $(RELVER) $(ANNOUNCE_RECIPIENTS)
 
 tag:
-	if [ -z "$(svn status)" ]; \
-	  then echo "$(SVN) $(SVN_OPTS) delete $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)"; \
-	  echo "$(SVN) $(SVN_OPTS) copy -r $(REVISION) $(DISTRO_URL) $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)"; \
-	  else \
-	  echo "Unversioned or uncommitted files found. Before making the"; \
-	  echo "zip target, either delete the following files, add them to"; \
-	  echo "the repository, or add them to the svn:ignore properties for"; \
-	  echo "their parent directories."; \
-	  fi
+ifeq (,$(shell svn status))
+ifneq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG) 2>/dev/null))
+	  $(SVN) $(SVN_OPTS) delete -m "deleting the docbook-$(DISTRO) $(ZIPVER) tag" \
+	    $(REPOSITORY_ROOT)/tags/$(TAG)
+endif
+	  $(SVN) $(SVN_OPTS) mkdir -m "creating the $(ZIPVER) tag" $(REPOSITORY_ROOT)/tags/$(TAG) \
+	  && $(SVN) $(SVN_OPTS) copy -m "tagging the docbook-$(DISTRO) $(ZIPVER) release" \
+	    -r $(REVISION) $(DISTRO_URL) $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)
+else
+	  @echo "Unversioned or uncommitted files found. Before tagging/uploading"
+	  @echo "the release, either delete the following files, add them to the"
+	  @echo "repository, or add them to the svn:ignore properties for their"
+	  @echo "parent directories."
+	  @echo
+	  @svn status | egrep '^\?|^X' | cut -c2-
+endif
 
 release-clean: clean
 	$(MAKE) -C docsrc release-clean
