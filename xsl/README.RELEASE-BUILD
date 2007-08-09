@@ -7,8 +7,6 @@ related to releases.
 DocBook Project developers are encouraged to edit/change any part
 of this document and to add to it anything they want.
 
-FIXME: This document is only half-finished.
-
 -----------------------------------------------------------------
 Release Build Setup/Testing
 -----------------------------------------------------------------
@@ -244,9 +242,383 @@ Release Preparation
 
      svn commit -m "Version 1.NN.N released" VERSION
 
-3. Open the RELEASE-NOTES.xml file and comment out the paragraphs
-   about snapshot releases, then uncomment the paragraph about
-   official releases.
+3. Re-make the NEWS.xml file:
+
+     make NEWS.xml
+
+3. Open the RELEASE-NOTES.xml file and:
+
+   - comment out the paragraphs about snapshot releases
+   - comment out the following line:
+
+       <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
+
+   - uncomment the paragraphs about official releases
+
+4. Open the NEWS.xml file in your text/XML editor, select the
+   sect1 section and all its child content, and paste that into
+   the RELEASE-NOTES.xml file, as the first sect1 child of the
+   RELEASE-NOTES.xml file's root article element.
+
+5. Add an variablelist with a varlistentry instance for each major
+   significant change made in this release that merits special
+   mention in the release notes; generally, that means every major
+   enhancement.
+
+6. In the content you have just pasted in, go through each sect2
+   section  and manually remove any listitem instances that have
+   content which doesn't need to be included in the final release
+   notes. In general, that means removing most bug fixes and
+   "housekeeping" changes that do not need to be exposed to users,
+   but changes for feature enhancements or changes to public APIs.
+
+7. After making all changes/additions to the RELEASE-NOTES.xml
+   file, check it back in with 
+
+     svn commit -m "Update for version 1.NN.N" RELEASE-NOTES.xml
+
+-----------------------------------------------------------------
+Release Build
+-----------------------------------------------------------------
+1. To build the actual release packages, run a "make release"
+   build from a clean workspace:
+
+     rm -f DOCBOOK-BUILD.LOG && \
+     . ~/docbk.sh && \
+     $DOCBOOK_SVN/releasetools/build-clean && \
+     make all 2>&1 \
+       XSLTENGINE=xsltproc \
+       | tee DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/releasetools/catalog-install && \
+     make release 2>&1 \
+       XSLTENGINE=xsltproc \
+       PDF_MAKER=dblatex \
+       | tee DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
+     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG; \
+     rm -f DOCBOOK-BUILD.LOG
+
+2. If there are no errors, run a "make zip-ns" build:
+
+     make zip-ns
+
+   The "zip-ns" target builds both the docbook-xsl zip/gz/bz2
+   packages and the corresponding docbook-xsl-ns (namespaced
+   DocBook stylesheets) packages.
+
+3. Inspect your $TEMP directory to make sure that all the packages
+   have been built. What you should see is something like this:
+
+     drwxr-xr-x 22 mike mike 4.0K Jul 23 02:40 docbook-xsl-1.73.0
+     -rw-r--r--  1 mike mike 2.0M Jul 23 02:39 docbook-xsl-1.73.0.tar.bz2
+     -rw-r--r--  1 mike mike 2.9M Jul 23 02:39 docbook-xsl-1.73.0.tar.gz
+     -rw-r--r--  1 mike mike 3.6M Jul 23 02:39 docbook-xsl-1.73.0.zip
+     -rw-r--r--  1 mike mike 1.6M Jul 23 02:40 docbook-xsl-doc-1.73.0.tar.bz2
+     -rw-r--r--  1 mike mike 1.7M Jul 23 02:40 docbook-xsl-doc-1.73.0.tar.gz
+     -rw-r--r--  1 mike mike 2.6M Jul 23 02:40 docbook-xsl-doc-1.73.0.zip
+     drwxrwxr-x 22 mike mike 4.0K Jul 23 02:40 docbook-xsl-ns-1.73.0
+     -rw-r--r--  1 mike mike 2.0M Jul 23 02:40 docbook-xsl-ns-1.73.0.tar.bz2
+     -rw-r--r--  1 mike mike 2.9M Jul 23 02:40 docbook-xsl-ns-1.73.0.tar.gz
+     -rw-r--r--  1 mike mike 3.6M Jul 23 02:40 docbook-xsl-ns-1.73.0.zip
+
+  That is, you should see:
+
+    - docbook-xsl-1.NN.N.* packages
+    - docbook-xsl-doc-1.NN.N.* packages
+    - docbook-xsl-ns-1.NN.N.* packages
+
+  Note that there will not be separate docbook-xsl-ns-doc packages
+  (the docs are the same for both docbook-xsl and docbook-xsl-ns).
+
+-----------------------------------------------------------------
+Release Install Preparation
+-----------------------------------------------------------------
+1. Make sure that you have the following programs installed:
+
+   - lftp
+   - ssh
+   - scp
+
+-----------------------------------------------------------------
+Release Tag and Install
+-----------------------------------------------------------------
+1. To tag the release and upload all the release packages
+   (including all docbook-xsl, docbook-xsl-ns, and docbook-xsl-doc
+   packages) to the Sourceforge "incoming" area and to the DocBook
+   Project webspace, run "make install-ns":
+
+     make install-ns
+
+-----------------------------------------------------------------
+Release File Management
+-----------------------------------------------------------------
+Unfortunately, Sourceforge provides no automated way to manage
+file releases, so you must complete all the following steps using
+the SF file-management Web interface.
+
+NOTE: Try hard to make sure you've got everything prepared OK,
+because the SF file-management system is extremely unwieldy, and
+it makes unwinding an upload mistake a major PITA. If you do make
+a mistake, see the next section for details on how to fix it.
+
+ 1. Go to the DocBook Project master File Release System page:
+
+    http://sourceforge.net/project/admin/editpackages.php?group_id=21935
+
+ 2. Click the "Add Release" link for the docbook-xsl package.
+    The "Create a File Release" form appears.
+
+ 3. In the "New Release Name" input box, type just the version
+    number of this release.
+
+ 4. Click "Create This Release".
+
+    Another form appears.
+
+ 5. Under "Step 1. Edit Existing Release", click the Choose button
+    next to the "Upload Release Notes" input box, and browse for
+    the location of the generated RELEASE-NOTES-PARTIAL.txt file
+    on your system.
+
+ 6. Under "Step 1. Edit Existing Release", click the Choose button
+    next to the "Upload Change Log" input box, and browse for the
+    location of the generated NEWS file on your system.
+
+ 7. Click the "Preserve my pre-formatted text." checkbox.
+
+ 8. Click the "Submit/Refresh" button.
+
+ 9. In the "Step 2: Add Files To This Release" section, scroll
+    down and find the docbook-xsl-1.NN.N packages (just the
+    docbook-xsl packages -- not the docbook-xsl-doc or
+    docbook-xsl-ns ones), and click the checkboxes next to them,
+    then click the "Add Files and/or Refresh View" button.
+
+10. In the "Step 3: Edit Files In This Release" area, for each of
+    the packages, select the appropriate values from the
+    Processor and File Type select boxes, and click the
+    corresponding "Update/Refresh" button.
+
+    For Processor, just choose "Any".
+
+    For File Type, just choose either .bz2, .gz, or .zip -- don't
+    choose the "Source" versions of those (these are not source
+    packages).
+
+11. In the "Step 4: Email Release Notice" area, click the "I'm
+    sure" checkbox, then click the "Send Notice" button.
+
+12. Repeat steps 1 through 11 above for the docbook-xsl-ns and
+    docbook-xsl-doc packages.
+
+13. Go to the project "Latest File Releases" page and confirm
+    that releases you have created appear there.
+
+      http://sourceforge.net/project/showfiles.php?group_id=21935
+
+-----------------------------------------------------------------
+Release File Management - Fixing upload mistakes
+-----------------------------------------------------------------
+If you make a mistake and need to upload new/replacement packages
+to the SF incoming area, complete the following steps to upload
+the new packages.
+
+1. Go to the DocBook Project master File Release System page:
+
+   http://sourceforge.net/project/admin/editpackages.php?group_id=21935
+
+2. Click the "Edit Releases" link next to whatever package(s) you
+   want to delete and/or re-upload files for.
+
+   The list of active releases for that package appears.
+
+3. Click the "Edit this Release" link next to the whatever version
+   you have uploaded.
+
+   Another form appears.
+
+4. Scroll down to "Step 3: Edit Files In This Release" section and
+   for each of the items there, click the "I'm Sure" checkbox and
+   then the "Delete File" button, and repeat until all the items
+   have been deleted.
+
+5. If the "bad" packages that you want to replace are
+   still/already in the incoming area, then:
+
+     a. Scroll back up to the "Step 2: Add Files To This Release"
+        section
+     b. Click the checkboxes next to the "bad" packages
+     c. Click the "Add Files and/or Refresh View" button.
+     d. Scroll back down to the "Step 3: Edit Files In This Release"
+        section and immediately repeat step 4 to delete them.
+
+6. Re-run the "Release Install" step above, after you have built
+   the new packages.
+
+7. Scroll back up to the "Step 2: Add Files To This Release"
+   section, and click the "Add Files and/or Refresh View" button.
+
+   The packages you uploaded in step 6 will now appear in the list
+   of files in the "Step 2: Add Files To This Release" section.
+
+8. Click the checkboxes next to the updated packages you uploaded
+   in step 6, and click the "Add Files and/or Refresh View" button.
+
+9. Scroll back down to the "Step 3: Edit Files In This Release"
+   section and for each of the packages, select the appropriate
+   values from the Processor and File Type select boxes, and click
+   the corresponding "Update/Refresh" button.
+
+   For Processor, just choose "Any".
+
+   For File Type, just choose either .bz2, .gz, or .zip -- don't
+   choose the "Source" versions of those (these are not source
+   packages).
+
+-----------------------------------------------------------------
+Release Announcements, Part I: docbook-apps announcements
+-----------------------------------------------------------------
+To automatically post release announcements for the docbook-xsl
+and docbook-xsl-ns packages to the docbook-apps mailing list, run
+"make announce":
+
+  make announce
+
+-----------------------------------------------------------------
+Release Announcements, Part II: Sourceforge announcements
+-----------------------------------------------------------------
+Just as it lacks an automated way to manage file releases,
+Sourceforge also lacks any automated way to post release
+announcements at its site, so you must complete all the following
+steps using the SF News submission interface.
+
+1. Go to the project news admin page:
+
+    http://sourceforge.net/news/admin/?group_id=21935
+
+2. Click Submit.
+
+   The News submission form appears.
+
+3. In the Subject field, enter the following:
+
+     "DocBook XSL 1.NN.N released"
+
+   Where 1.NN.N is the version number for this release.
+
+4. In the Details area, enter something like the following:
+
+     This release includes bug fixes and a few feature changes.
+
+     http://sourceforge.net/project/showfiles.php?group_id=21935
+
+5. Click the Submit button.
+   The News submission form re-appears.
+
+6. In the Subject field, enter the following:
+
+     "DocBook XSL-NS 1.NN.N released"
+
+   Where 1.NN.N is the version number for this release.
+
+7. In the Details area, enter something like the following.
+
+     The DocBook XSL-NS stylesheets are namespaced versions of the
+     DocBook XSL stylesheets, intended for use with DocBook 5
+     documents.
+
+     This release includes bug fixes and a few feature changes.
+
+     http://sourceforge.net/project/showfiles.php?group_id=21935
+
+8. Go to the project News page and confirm that the announcements
+   appear:
+
+     http://sourceforge.net/news/?group_id=21935
+
+-----------------------------------------------------------------
+Freshmeat Update Preparation
+-----------------------------------------------------------------
+You can send release updates to Freshmeat automatically, using the
+freshmeat-submit script. But to use freshmeat-submit, you will
+need to have a .netrc file in your home directory.
+
+The contents of ~/.netrc file should look like this:
+
+  machine freshmeat
+    login userName
+    password ********
+
+Where "userName" is your Freshmeat username, and "********" is
+your freshmeat password.
+
+-----------------------------------------------------------------
+Freshmeat Update
+-----------------------------------------------------------------
+To send release updates to Freshmeat automatically (without
+needing to use the Freshmeat Web interface), complete the
+following steps.
+
+1. Go to the Latest File Releases page:
+
+   http://sourceforge.net/project/showfiles.php?group_id=21935
+
+   In the Release column, mouse over the "N.NN.N" link for the
+   docbook-xsl package you have released. The URL for that link
+   will look something like this
+
+     http://sourceforge.net/project/showfiles.php?group_id=21935&package_id=16608&release_id=525619
+
+2. Copy the value of the "release_id" parameter from that URL.
+
+3. Run "make freshmeat" to send a release update to Freshmeat.
+
+     make freshmeat SFRELID=NNNNNN FMGO=
+
+   As the value of SFRELID, is the release_id value from step 2.
+
+4. Repeat steps 1 and 2 to locate the release_id for the
+   docbook-xsl-ns package.
+
+5. Run "make freshmeat-ns" to send a release update to Freshmeat.
+
+     make freshmeat-ns SFRELID=NNNNNN FMGO=
+
+-----------------------------------------------------------------
+Post-release wrap-up: The VERSION and RELEASE-NOTES.xml files
+-----------------------------------------------------------------
+1. Open the VERSION file.
+
+2. Change the content of the PreviousRelease element to the
+   version number you have just released.
+
+3. Change the content of the PreviousReleaseRevision element to
+   the number of the repository revision from which you built the
+   release.
+
+4. Change the content of the fm:Version element to the version
+   number of the next anticipated release, with the string "+pre"
+   appended; for example:
+
+     <fm:Version>1.73.1+pre</fm:Version>
+
+5. Open the RELEASE-NOTES.xml file and:
+
+6. Comment out the "These are the release notes for the DocBook
+   XSL Stylesheets..." paragraph.
+
+7. Uncomment the paragraphs about "snapshot" releases.
+
+8. Uncomment the following line:
+
+     <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
+
+9. Check the VERSION and RELEASE-NOTES.xml files back in.
+
+    svn commit \
+      -m "Restored VERSION and RELEASE-NOTES.xml files to snapshot state" \
+      VERSION RELEASE-NOTES.xml
 
 -----------------------------------------------------------------
 NOTES
