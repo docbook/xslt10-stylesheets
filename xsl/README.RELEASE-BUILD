@@ -341,6 +341,20 @@ Release Install Preparation
    - scp
 
 -----------------------------------------------------------------
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+
+   All steps from here forward are "unreversible" steps that
+   you should not run unless you're doing an actual release
+   (instead of just testing).
+
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
 Release Tag and Install
 -----------------------------------------------------------------
 1. To tag the release and upload all the release packages
