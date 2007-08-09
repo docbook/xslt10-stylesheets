@@ -1205,4 +1205,36 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- There are two templates matching this PI in htmlhelp-common.xsl -->
+<doc:pi name="dbhh" xmlns="">
+  <refpurpose>Sets topic name and topic id for context-sensitive HTML Help</refpurpose>
+  <refdescription>
+    <para>Use the <tag class="xmlpi">dbhh</tag> PI as a child of components
+      that should be used as targets for context-sensitive help requests.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhh topicname="<replaceable>name</replaceable>" topicid="<replaceable>id</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>topicname="<replaceable>name</replaceable>"</term>
+        <listitem>
+          <para>Specifies a unique string constant that identifies a help topic</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>topicid="<replaceable>id</replaceable>"</term>
+        <listitem>
+          <para>Specifies a unique integer value for the <literal>topicname</literal> string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="tcg">
+    <para><link role="tcg"
+        xlink:href="HtmlHelp.html#HHContextHelp"
+        >Context-sensitive help</link></para>
+  </refsee>
+</doc:pi>
+
+
 </xsl:stylesheet>
