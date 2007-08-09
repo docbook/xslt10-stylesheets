@@ -3,6 +3,7 @@ LatestTag
 RELEASE-NOTES-*.xml
 RELEASE-NOTES.html
 RELEASE-NOTES.txt
+RELEASE-NOTES-PARTIAL.txt
 RELEASE-NOTES.pdf
 RELEASE-NOTES.fo
 ChangeLog.xml
@@ -22,5 +23,4 @@ install.sh
 uninstall.sh
 test.sh
 catalog.xml
-slides
-website
+extensions
