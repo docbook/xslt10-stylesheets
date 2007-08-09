@@ -54,6 +54,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
+  <?dbfunclist ?>
   <funcsynopsis>
     <!-- * Yes, friend, Funcsynopsis is a verbatim -->
     <funcsynopsisinfo
