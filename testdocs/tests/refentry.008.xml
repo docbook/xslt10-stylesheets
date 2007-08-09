@@ -21,6 +21,13 @@
 <refsect1>
 <title>Description</title>
 <para>This is a minimal RefEntry.</para>
+
+<literallayout><?dbhtml-include href="foo.xml"?></literallayout>
+
+<para><?dbhtml-include href="foo.xml"?></para>
+
+<para><?dbhtml-include href="bar.xml"?></para>
+
 </refsect1>
 </refentry>
 
