@@ -1,0 +1,33 @@
+# $Id$
+
+smoketest: smoketest-normal smoketest-normal-profile smoketest-chunk smoketest-chunk-profile
+
+smoketest-normal:
+	for file in $(NORMAL_STYLES); do \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null"; \
+	$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null; \
+	done
+
+smoketest-normal-profile:
+	for file in $(NORMAL_PROFILE_STYLES); do \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null"; \
+	$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null; \
+	done
+
+smoketest-chunk:
+	$(RM) -r /tmp/docbook-xsl-smoketest
+	mkdir '/tmp/docbook-xsl-smoketest'
+	for file in $(CHUNK_STYLES) $(HELP_STYLES) $(MAN_STYLES) ; do \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file" ; \
+	(cd /tmp/docbook-xsl-smoketest && $(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file); \
+	done;
+	$(RM) -r /tmp/docbook-xsl-smoketest
+
+smoketest-chunk-profile:
+	$(RM) -r /tmp/docbook-xsl-smoketest
+	mkdir '/tmp/docbook-xsl-smoketest'
+	for file in $(CHUNK_PROFILE_STYLES) $(HELP_PROFILE_STYLES) $(MAN_PROFILE_STYLES) ; do \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file" ; \
+	(cd /tmp/docbook-xsl-smoketest && $(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file); \
+	done;
+	$(RM) -r /tmp/docbook-xsl-smoketest
