@@ -237,7 +237,7 @@ announce: RELEASE-NOTES-PARTIAL.txt
 tag:
 ifeq (,$(shell svn status))
 ifneq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG) 2>/dev/null))
-	  $(SVN) $(SVN_OPTS) delete -m "deleting the docbook-$(DISTRO) $(ZIPVER) tag" \
+	  $(SVN) $(SVN_OPTS) delete -m "deleting the $(ZIPVER) tag" \
 	    $(REPOSITORY_ROOT)/tags/$(TAG)
 endif
 	  $(SVN) $(SVN_OPTS) mkdir -m "creating the $(ZIPVER) tag" $(REPOSITORY_ROOT)/tags/$(TAG) \
