@@ -92,7 +92,7 @@
                   </xsl:attribute>
 
                   <xsl:choose>
-                    <xsl:when test="$node/@xlink.title">
+                    <xsl:when test="$node/@xlink:title">
                       <xsl:attribute name="title">
                         <xsl:value-of select="$node/@xlink:title"/>
                       </xsl:attribute>
@@ -129,7 +129,7 @@
               <xsl:attribute name="href">
                 <xsl:value-of select="$xhref"/>
               </xsl:attribute>
-              <xsl:if test="$node/@xlink.title">
+              <xsl:if test="$node/@xlink:title">
                 <xsl:attribute name="title">
                   <xsl:value-of select="$node/@xlink:title"/>
                 </xsl:attribute>
