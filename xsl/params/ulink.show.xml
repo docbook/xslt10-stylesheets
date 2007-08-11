@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, the URL of each <tag>ULink</tag> will
+<para>If non-zero, the URL of each <tag>ulink</tag> will
 appear after the text of the link. If the text of the link and the URL
 are identical, the URL is suppressed.</para>
 

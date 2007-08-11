@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>callout.unicode.number.limit</refname>
-<refpurpose>Number of the largest callout graphic</refpurpose>
+<refpurpose>Number of the largest unicode callout character</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
