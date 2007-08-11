@@ -10,7 +10,7 @@
 </refmeta>  
 <refnamediv>
 <refname>compact.list.item.spacing</refname>
-<refpurpose>What space do you want between list items (when spacing=compact)?</refpurpose>
+<refpurpose>What space do you want between list items (when spacing="compact")?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
