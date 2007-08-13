@@ -29,11 +29,8 @@
   <xsl:value-of select="$snum"/>
   <xsl:text>)</xsl:text>
   <xsl:text>&#x2580;</xsl:text>
-  <xsl:variable name="synopfragmentref">
-    <FragRefContents><xsl:value-of select="normalize-space(.)"/></FragRefContents>
-  </xsl:variable>
   <xsl:call-template name="italic">
-    <xsl:with-param name="node" select="exsl:node-set($synopfragmentref)"/>
+    <xsl:with-param name="node" select="exsl:node-set(normalize-space(.))"/>
     <xsl:with-param name="context" select="."/>
   </xsl:call-template>
 </xsl:template>
