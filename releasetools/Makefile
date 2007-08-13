@@ -8,7 +8,7 @@ XTANGLE_PARAMS=suppress.doctype.in.output=1
 MAKE_DOCBOOK_RNG=.make-docbook-rng.xsl
 MAKE_LITPROG=.make-litprog.xsl
 
-all: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl freshmeat-submit testfile.xml
+all: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl freshmeat-submit testfile.xml testfile-ns.xml
 
 modified-markup.xsl:
 	$(MAKE) -C ../contrib/tools/tennison $@
@@ -32,6 +32,9 @@ freshmeat-submit:
 
 testfile.xml: ../testdocs/tests/refentry.007.xml
 	cp $< $@
+
+%-ns.xml: %.xml
+	$(XSLT) $< ../docbook/relaxng/tools/db4-upgrade.xsl > $@
 
 clean:
 	$(RM) modified-markup.xsl
