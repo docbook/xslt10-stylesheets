@@ -18,10 +18,10 @@
   <s:ns prefix="s" uri="http://www.ascc.net/xml/schematron"/>
   <s:ns prefix="svg" uri="http://www.w3.org/2000/svg"/>
   <s:ns prefix="xlink" uri="http://www.w3.org/1999/xlink"/>
-  <!-- DocBook V5.0CR2-->
+  <!-- DocBook V5.0CR5-->
   <!-- See http://docbook.org/ns/docbook -->
   <!--
-    This file is part of DocBook V5.0CR4
+    This file is part of DocBook V5.0CR5
     
     Copyright 1992-2005 HaL Computer Systems, Inc.,
     O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
@@ -29,7 +29,7 @@
     Organization for the Advancement of Structured Information
     Standards (OASIS).
     
-    Release: $Id: docbook.rnc 6811 2007-05-18 17:58:04Z nwalsh $
+    Release: $Id: docbook.rnc 7023 2007-07-12 12:46:00Z nwalsh $
     
     Permission to use, copy, modify and distribute the DocBook schema
     and its accompanying documentation for any purpose and without fee
@@ -374,14 +374,8 @@
       <ref name="db.dir.enumeration"/>
     </attribute>
   </define>
-  <define name="db.common.extension.attributes">
-    <empty/>
-  </define>
-  <define name="db.common.attributes">
+  <define name="db.common.base.attributes">
     <interleave>
-      <optional>
-        <ref name="db.xml.id.attribute"/>
-      </optional>
       <optional>
         <ref name="db.version.attribute"/>
       </optional>
@@ -404,7 +398,14 @@
         <ref name="db.dir.attribute"/>
       </optional>
       <ref name="db.effectivity.attributes"/>
-      <ref name="db.common.extension.attributes"/>
+    </interleave>
+  </define>
+  <define name="db.common.attributes">
+    <interleave>
+      <optional>
+        <ref name="db.xml.id.attribute"/>
+      </optional>
+      <ref name="db.common.base.attributes"/>
       <optional>
         <ref name="db.annotations.attribute"/>
       </optional>
@@ -413,29 +414,7 @@
   <define name="db.common.idreq.attributes">
     <interleave>
       <ref name="db.xml.id.attribute"/>
-      <optional>
-        <ref name="db.version.attribute"/>
-      </optional>
-      <optional>
-        <ref name="db.xml.lang.attribute"/>
-      </optional>
-      <optional>
-        <ref name="db.xml.base.attribute"/>
-      </optional>
-      <optional>
-        <ref name="db.remap.attribute"/>
-      </optional>
-      <optional>
-        <ref name="db.xreflabel.attribute"/>
-      </optional>
-      <optional>
-        <ref name="db.revisionflag.attribute"/>
-      </optional>
-      <optional>
-        <ref name="db.dir.attribute"/>
-      </optional>
-      <ref name="db.effectivity.attributes"/>
-      <ref name="db.common.extension.attributes"/>
+      <ref name="db.common.base.attributes"/>
       <optional>
         <ref name="db.annotations.attribute"/>
       </optional>
