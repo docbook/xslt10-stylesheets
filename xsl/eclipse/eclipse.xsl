@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		version="1.0">
+  xmlns:ng="http://docbook.org/docbook-ng"
+  xmlns:db="http://docbook.org/ns/docbook"
+  xmlns:exsl="http://exslt.org/common"
+  version="1.0"
+  exclude-result-prefixes="exsl">
   
 <xsl:import href="../html/chunk.xsl"/>
 
@@ -15,6 +19,46 @@
      ******************************************************************** -->
 
 <xsl:template match="/">
+  <!-- * Get a title for current doc so that we let the user -->
+  <!-- * know what document we are processing at this point. -->
+  <xsl:variable name="doc.title">
+    <xsl:call-template name="get.doc.title"/>
+  </xsl:variable>
+  <xsl:choose>
+    <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
+         toss the namespace and continue.  Use the docbook5 namespaced
+         stylesheets for DocBook5 if you don't want to use this feature.-->
+    <!-- include extra test for Xalan quirk -->
+    <xsl:when test="(function-available('exsl:node-set') or
+                     contains(system-property('xsl:vendor'),
+                       'Apache Software Foundation'))
+                    and (*/self::ng:* or */self::db:*)">
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">Note</xsl:with-param>
+        <xsl:with-param name="source" select="$doc.title"/>
+        <xsl:with-param name="context-desc">
+          <xsl:text>namesp. cut</xsl:text>
+        </xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>stripped namespace before processing</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:variable name="nons">
+        <xsl:apply-templates mode="stripNS"/>
+      </xsl:variable>
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">Note</xsl:with-param>
+        <xsl:with-param name="source" select="$doc.title"/>
+        <xsl:with-param name="context-desc">
+          <xsl:text>namesp. cut</xsl:text>
+        </xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>processing stripped document</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:apply-templates select="exsl:node-set($nons)"/>
+    </xsl:when>
+    <xsl:otherwise>
   <xsl:choose>
     <xsl:when test="$rootid != ''">
       <xsl:choose>
@@ -54,8 +98,8 @@
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
-
-
+</xsl:otherwise>
+</xsl:choose>
 </xsl:template>
 
 <xsl:template name="etoc">
