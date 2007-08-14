@@ -1138,15 +1138,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 </xsl:template>
 
 <xsl:template match="imageobject">
-  <xsl:choose>
-    <xsl:when xmlns:svg="http://www.w3.org/2000/svg"
-              test="svg:*">
-      <xsl:apply-templates/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates select="imagedata"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates select="imagedata"/>
 </xsl:template>
 
 <xsl:template match="imagedata">
@@ -1157,6 +1149,15 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   </xsl:variable>
 
   <xsl:choose>
+    <!-- Handle MathML and SVG markup in imagedata -->
+    <xsl:when test="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+      <xsl:apply-templates/>
+    </xsl:when>
+    
+    <xsl:when test="svg:*" xmlns:svg="http://www.w3.org/2000/svg">
+      <xsl:apply-templates/>
+    </xsl:when>
+
     <xsl:when test="@format='linespecific'">
       <xsl:choose>
         <xsl:when test="$use.extensions != '0'
