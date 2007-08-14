@@ -853,7 +853,7 @@
 </xsl:template>
 
 <doc:pi name="dbhtml_toc" xmlns="">
-  <refpurpose>Species whether a TOC should be generated for a qandaset</refpurpose>
+  <refpurpose>Specifies whether a TOC should be generated for a qandaset</refpurpose>
   <refdescription>
     <para>Use the <tag class="xmlpi">dbhtml toc</tag> PI as a child of a
       <tag>qandaset</tag> to specify whether a table of contents
