@@ -6,12 +6,16 @@ smoketest-normal:
 	for file in $(NORMAL_STYLES); do \
 	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null"; \
 	$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null; \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $$file > /dev/null"; \
+	$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $$file > /dev/null; \
 	done
 
 smoketest-normal-profile:
 	for file in $(NORMAL_PROFILE_STYLES); do \
 	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null"; \
 	$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $$file > /dev/null; \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $$file > /dev/null"; \
+	$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $$file > /dev/null; \
 	done
 
 smoketest-chunk:
@@ -20,6 +24,8 @@ smoketest-chunk:
 	for file in $(CHUNK_STYLES) $(HELP_STYLES) $(MAN_STYLES) ; do \
 	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file" ; \
 	(cd /tmp/docbook-xsl-smoketest && $(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file); \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $(DOCBOOK_SVN)/xsl/$$file" ; \
+	(cd /tmp/docbook-xsl-smoketest && $(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $(DOCBOOK_SVN)/xsl/$$file); \
 	done;
 	$(RM) -r /tmp/docbook-xsl-smoketest
 
@@ -29,5 +35,7 @@ smoketest-chunk-profile:
 	for file in $(CHUNK_PROFILE_STYLES) $(HELP_PROFILE_STYLES) $(MAN_PROFILE_STYLES) ; do \
 	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file" ; \
 	(cd /tmp/docbook-xsl-smoketest && $(XSLT) $(DOCBOOK_SVN)/releasetools/testfile.xml $(DOCBOOK_SVN)/xsl/$$file); \
+	echo "$(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $(DOCBOOK_SVN)/xsl/$$file" ; \
+	(cd /tmp/docbook-xsl-smoketest && $(XSLT) $(DOCBOOK_SVN)/releasetools/testfile-ns.xml $(DOCBOOK_SVN)/xsl/$$file); \
 	done;
 	$(RM) -r /tmp/docbook-xsl-smoketest
