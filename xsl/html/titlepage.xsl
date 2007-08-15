@@ -532,9 +532,7 @@
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
           <xsl:with-param name="base.dir" select="$base.dir"/>
-	  <xsl:with-param name="base.name">
-            <xsl:apply-templates mode="chunk-filename" select="."/>
-	  </xsl:with-param>
+	  <xsl:with-param name="base.name" select="concat($id,$html.ext)"/>
         </xsl:call-template>
       </xsl:variable>
 
