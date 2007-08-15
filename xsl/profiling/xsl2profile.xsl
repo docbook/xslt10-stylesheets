@@ -81,7 +81,7 @@
   </xsl:copy>
 </xsl:template>
 
-<xsl:template match="xsl:template[@name='hhc-main' or @name='hhp-main'] | xsl:variable[@name='raw.help.title']">
+<xsl:template match="xsl:template[@name='hhc-main' or @name='hhp-main' or @name='etoc'] | xsl:variable[@name='raw.help.title']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="correct"/>
