@@ -27,34 +27,15 @@
 
 <!-- ==================================================================== -->
 
-<xsl:param name="htmlhelp.generate.index" select="//indexterm[1]"/>
-
+<xsl:param name="htmlhelp.generate.index" select="//indexterm[1]|//db:indexterm[1]|//ng:indexterm[1]"/>
+  
 <!-- Set up HTML Help flag -->
 <xsl:variable name="htmlhelp.output" select="1"/>
 
-<xsl:variable name="raw.help.title">
-  <xsl:choose>
-    <xsl:when test="$htmlhelp.title = ''">
-      <xsl:choose>
-        <xsl:when test="$rootid != ''">
-          <xsl:apply-templates select="key('id',$rootid)" mode="title.markup"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="/*" mode="title.markup"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$htmlhelp.title"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:variable>
-
-<xsl:variable name="help.title" select="normalize-space($raw.help.title)"/>
-  
 <!-- ==================================================================== -->
 
 <xsl:template match="/">
+
   <!-- * Get a title for current doc so that we let the user -->
   <!-- * know what document we are processing at this point. -->
   <xsl:variable name="doc.title">
@@ -152,6 +133,27 @@
 
 <!-- ==================================================================== -->
 <xsl:template name="hhp-main">
+
+  <xsl:variable name="raw.help.title">
+    <xsl:choose>
+      <xsl:when test="$htmlhelp.title = ''">
+	<xsl:choose>
+	  <xsl:when test="$rootid != ''">
+	    <xsl:apply-templates select="key('id',$rootid)" mode="title.markup"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:apply-templates select="/*" mode="title.markup"/>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$htmlhelp.title"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="help.title" select="normalize-space($raw.help.title)"/>
+  
 <xsl:variable name="default.topic">
   <xsl:choose>
     <xsl:when test="$htmlhelp.default.topic != ''">
