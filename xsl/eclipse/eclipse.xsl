@@ -4,7 +4,7 @@
   xmlns:db="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   version="1.0"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl db ng">
   
 <xsl:import href="../html/chunk.xsl"/>
 
