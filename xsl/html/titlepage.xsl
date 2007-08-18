@@ -137,6 +137,7 @@
       </xsl:call-template>
     </xsl:if>
     <xsl:apply-templates mode="titlepage.mode"/>
+    <xsl:call-template name="process.footnotes"/>
   </div>
 </xsl:template>
 
