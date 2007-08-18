@@ -897,12 +897,12 @@
 <doc:pi name="dbcmdlist" xmlns="">
   <refpurpose>Generates a hyperlinked list of commands</refpurpose>
   <refdescription>
-    <para>Use the <tag class="xmlpi">dbcmdlist</tag> PI as the child of a
-      <tag>refsynopsisdiv</tag> containing multiple
+    <para>Use the <tag class="xmlpi">dbcmdlist</tag> PI as the child of any
+      element (for example, <tag>refsynopsisdiv</tag>) containing multiple
       <tag>cmdsynopsis</tag> instances; a hyperlinked navigational
-      “command list” will be generated at the top of the
-      <tag>refsynopsisdiv</tag>, enabling users to quickly jump
-      to to each command synopsis.</para>
+      “command list” will be generated at the top of output for that
+      element, enabling users to quickly jump
+      to each command synopsis.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbcmdlist</tag></synopsis>
@@ -927,11 +927,11 @@
 <doc:pi name="dbfunclist" xmlns="">
   <refpurpose>Generates a hyperlinked list of functions</refpurpose>
   <refdescription>
-    <para>Use the <tag class="xmlpi">dbfunclist</tag> PI as the child of a
-      <tag>refsynopsisdiv</tag> containing multiple
+    <para>Use the <tag class="xmlpi">dbfunclist</tag> PI as the child of any
+      element (for example, <tag>refsynopsisdiv</tag>) containing multiple
       <tag>funcsynopsis</tag> instances; a hyperlinked
       navigational “function list” will be generated at the top of
-      the <tag>refsynopsisdiv</tag>, enabling users to quickly
+      output for that element, enabling users to quickly
       jump to to each function synopsis.</para>
   </refdescription>
   <refsynopsisdiv>
