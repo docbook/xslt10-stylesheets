@@ -249,17 +249,21 @@
 
   <xsl:variable name="notesource.contents">
     <xsl:choose>
-      <!-- * check to see if the element is empty or not; if it's -->
-      <!-- * non-empty, get the content -->
+      <!-- * check to see if the element is empty or not -->
       <xsl:when test="node()">
+        <!-- * this is a non-empty node, so process its contents -->
+        <xsl:apply-templates/>
+        <xsl:if test="../footnote or ../annotation">
+          <!-- * if this element is a footnote or annotation, we need to -->
+          <!-- * do some further checking on it, so we can emit warnings -->
+          <!-- * about potential problems -->
         <xsl:for-each select="node()">
           <xsl:if test="local-name() != 'para' and local-name() !=''">
-            <!-- * for each node we find as a child of a notesource, if -->
-            <!-- * it's not a para element or a text node, then emit a -->
-            <!-- * warning; the reason for emitting this warning is that -->
-            <!-- * in manpages output, we can't render block-level child -->
-            <!-- * content of an endnote properly unless it is wrapped in -->
-            <!-- * a para that has some "prefatory" text  -->
+            <!-- * for each node we find as a child of a footnote or -->
+            <!-- * annotation, if it's not a para or a text node, emit a -->
+            <!-- * warning... because in manpages output, we can't render -->
+            <!-- * block-level child content of an endnote properly unless -->
+            <!-- * it's wrapped in a para that has some "prefatory" text -->
             <xsl:variable name="parent-name" select="local-name(..)"/>
             <xsl:variable name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
             <xsl:variable name="endnote-number">
@@ -320,17 +324,16 @@
             </xsl:call-template>
           </xsl:if>
         </xsl:for-each>
-        <xsl:apply-templates/>
+      </xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <!-- * Otherwise this is an empty link or an empty imagedata, -->
         <!-- * audiodata, or videodata element, so we just get the -->
         <!-- * value of its url, xlink:href, or fileref attribute. -->
-        <!-- * -->
-        <!-- * Add hyphenation suppression in URL output only if -->
-        <!-- * break.after.slash is also non-zero -->
-        <xsl:if test="$man.hyphenate.urls = 0 and
-                      $man.break.after.slash = 0">
+        <xsl:if test="$man.hyphenate.urls = 0
+          and $man.break.after.slash = 0">
+          <!-- * Add hyphenation suppression in URL output only if -->
+          <!-- * break.after.slash is also non-zero -->
           <xsl:call-template name="suppress.hyphenation"/>
           <xsl:text>\%</xsl:text>
         </xsl:if>
