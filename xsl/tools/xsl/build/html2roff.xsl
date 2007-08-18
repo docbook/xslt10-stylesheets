@@ -45,13 +45,13 @@
   </xsl:template>
 
   <xsl:template match="pre">
-    <xsl:element name="xsl:text">&#x2302;sp&#10;</xsl:element>
-    <xsl:element name="xsl:text">&#x2302;nf&#10;</xsl:element>
+    <xsl:element name="xsl:text">.sp&#10;</xsl:element>
+    <xsl:element name="xsl:text">.nf&#10;</xsl:element>
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
     </xsl:copy>
     <xsl:element name="xsl:text">&#10;</xsl:element>
-    <xsl:element name="xsl:text">&#x2302;fi&#10;</xsl:element>
+    <xsl:element name="xsl:text">.fi&#10;</xsl:element>
   </xsl:template>
 
 </xsl:stylesheet>
