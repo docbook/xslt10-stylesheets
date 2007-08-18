@@ -25,9 +25,17 @@
   <div>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <p>
-      <xsl:call-template name="anchor">
-        <xsl:with-param name="conditional" select="0"/>
-      </xsl:call-template>
+      <xsl:if test="..//processing-instruction('dbcmdlist')">
+        <!-- * Placing a dbcmdlist PI as a child of a particular element -->
+        <!-- * creates a hyperlinked list of all cmdsynopsis instances -->
+        <!-- * that are descendants of that element; so for any -->
+        <!-- * cmdsynopsis that is a descendant of an element containing -->
+        <!-- * a dbcmdlist PI, we need to output an a@id instance so that -->
+        <!-- * we will have something to link to -->
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="conditional" select="0"/>
+        </xsl:call-template>
+      </xsl:if>
       <xsl:apply-templates/>
     </p>
   </div>
@@ -157,6 +165,17 @@
 </xsl:template>
 
 <xsl:template match="funcsynopsis">
+  <xsl:if test="..//processing-instruction('dbfunclist')">
+    <!-- * Placing a dbfunclist PI as a child of a particular element -->
+    <!-- * creates a hyperlinked list of all funcsynopsis instances that -->
+    <!-- * are descendants of that element; so for any funcsynopsis that is -->
+    <!-- * a descendant of an element containing a dbfunclist PI, we need -->
+    <!-- * to output an a@id instance so that we will have something to -->
+    <!-- * link to -->
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+  </xsl:if>
   <xsl:call-template name="informal.object"/>
 </xsl:template>
 
