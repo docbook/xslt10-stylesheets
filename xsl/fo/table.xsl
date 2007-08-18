@@ -464,16 +464,11 @@
                 $passivetex.extensions != 0">
     <xsl:attribute name="table-layout">fixed</xsl:attribute>
   </xsl:if>
-
-  <xsl:if test="count(preceding-sibling::tgroup) = 0">
-    <!-- If this is the first tgroup, output the width attribute for the -->
-    <!-- surrounding fo:table. (If this isn't the first tgroup, trying   -->
-    <!-- to output the attribute will cause an error.)                   -->
+ 
     <xsl:attribute name="width">
       <xsl:value-of select="$table.width"/>
     </xsl:attribute>
-  </xsl:if>
-
+ 
   <xsl:choose>
     <xsl:when test="$use.extensions != 0
                     and $tablecolumns.extension != 0">
