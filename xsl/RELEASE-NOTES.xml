@@ -11,34 +11,202 @@
   <author><orgname>DocBook Project Development Team</orgname></author>
 </info>
 
-<!-- * <para>These are the release notes for the DocBook XSL Stylesheets -->
-<!-- * distribution. This document provides an (incomplete) per-release list -->
-<!-- * of enhancements and changes to the stylesheets’ public APIs -->
-<!-- * (user-configurable parameters) and generally excludes descriptions of -->
-<!-- * bug fixes. For a complete list of all changes (including all bug -->
-<!-- * fixes) that have been made since the previous release, see the -->
-<!-- * separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link -->
-<!-- * xlink:href="NEWS.html">NEWS.html</link> files.</para> -->
+<para>These are the release notes for the DocBook XSL Stylesheets
+distribution. This document provides an (incomplete) per-release list
+of enhancements and changes to the stylesheets’ public APIs
+(user-configurable parameters) and generally excludes descriptions of
+bug fixes. For a complete list of all changes (including all bug
+fixes) that have been made since the previous release, see the
+separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link
+xlink:href="NEWS.html">NEWS.html</link> files.</para>
 <!-- *  -->
 <!-- * <para>As with all DocBook Project <link linkend="dot0">dot-zero</link> -->
 <!-- * releases, this is an experimental release. It will be followed shortly -->
 <!-- * by a stable release.</para> -->
+<!-- *  -->
+<!-- * <para>This is a pre-release “snapshot” of the DocBook XSL -->
+<!-- * Stylesheets. The change information in the first section of this -->
+<!-- * file (for “<xi:include href="NEWS.xml" -->
+<!-- * xpointer="xpointer(/article/sect1/title/text())"/>”) is -->
+<!-- * auto-generated from change descriptions stored in the project -->
+<!-- * source-code repository.</para> -->
+<!-- *  -->
+<!-- * <para>That means the first section contains descriptions both of bug -->
+<!-- * fixes and of feature changes. The remaning sections are manually -->
+<!-- * edited changelog subsets that exclude bug-fix descriptions – that -->
+<!-- * is, trimmed down to just those those descriptions that document -->
+<!-- * enhancements and changes to the public APIs (user-configurable -->
+<!-- * parameters).</para> -->
 
-<para>This is a pre-release “snapshot” of the DocBook XSL
-Stylesheets. The change information in the first section of this
-file (for “<xi:include href="NEWS.xml"
-xpointer="xpointer(/article/sect1/title/text())"/>”) is
-auto-generated from change descriptions stored in the project
-source-code repository.</para>
+<sect1 xml:id="V1.73.1">
+<title>Release: 1.73.1</title>
+<para>This is mostly a bug-fix update to the 1.73.0 release.</para>
 
-<para>That means the first section contains descriptions both of bug
-fixes and of feature changes. The remaning sections are manually
-edited changelog subsets that exclude bug-fix descriptions – that
-is, trimmed down to just those those descriptions that document
-enhancements and changes to the public APIs (user-configurable
-parameters).</para>
+<sect2 xml:id="V1.73.1_Gentext">
+<title>Gentext</title>
+<para>The following changes have been made to the
+            <filename>gentext</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: locale/de.xml</literal></para><screen><phrase role="commit-message">Applied patch #1766009.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/lv.xml</literal></para><screen><phrase role="commit-message">Added localization for <tag>ProductionSet</tag>.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Gentext changes for 1.73.1-->
 
-<xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
+<sect2 xml:id="V1.73.1_FO">
+<title>FO</title>
+<para>The following changes have been made to the
+            <filename>fo</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: table.xsl</literal></para><screen><phrase role="commit-message">Modified the <tag>tgroup</tag> template so that, for tables with multiple tgroups, 
+a width attribute is output on all corresponding fo:tables. Previously, 
+there was a test prohibiting this (and a comment saying that outputting more
+than one width attribute will cause an error). But this seems to be no longer 
+relevant; it is not a problem with FOP 0.93 or XEP 4.10. Closes bug #1760559.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: graphics.xsl</literal></para><screen><phrase role="commit-message">Replaced useless &lt;a&gt; elements with warning messages (textinsert extension).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: admon.xsl</literal></para><screen><phrase role="commit-message">Enabled generation of ids (on fo:wrapper) for indexterms in admonition titles, so that page
+references in the <tag>index</tag> can be created. Closes bug #1775086.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the
+            <filename>html</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl</literal></para><screen><phrase role="commit-message">Added &lt;xsl:call-template name="process.footnotes"/&gt; to <tag>abstract</tag> template
+so that footnotes in <tag>info</tag>/<tag>abstract</tag> are processed. Closes bug #1760907.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: pi.xsl; synop.xsl</literal></para><screen><phrase role="commit-message">Changed handling of HTML output for the <tag>cmdsynopsis</tag> and
+<tag>funcsynopsis</tag> elements, such that a@id instances are generated for
+them if they are descendants of any element containing a dbcmdlist
+or dbfunclist PI. Also, update the embedded <tag>reference</tag> docs for the
+dbcmdlist and dbfunclist PIs to make it clear that they can be
+used within any element for which <tag>cmdsynopsis</tag> or <tag>funcsynopsis</tag> are
+valid children.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: formal.xsl</literal></para><screen><phrase role="commit-message">Reverted the part of <tag>revision</tag> 6952 that caused a@id anchors to be
+generated for output of informal objects. Thanks to Sam Steingold
+for reporting.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: glossary.xsl</literal></para><screen><phrase role="commit-message">Account for a <tag>glossary</tag> with no <tag>glossdiv</tag> or <tag>glossentry</tag> children.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl</literal></para><screen><phrase role="commit-message">Modified <tag>legalnotice</tag> template so that the base.name parameter is calculated 
+in the same way as for <tag>revhistory</tag> chunks. Using &lt;xsl:apply-templates 
+mode="chunk-filename" select="."/&gt; did not work for single-page output since
+the template with that mode is in chunk-code.xsl.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: graphics.xsl</literal></para><screen><phrase role="commit-message">Updated support for SVG (must be a child of <tag>imagedata</tag> in DB 5).
+Added support for MathML in <tag>imagedata</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Added documentation for the dbhh PI (used for context-sensitive HTML Help).
+(The two templates matching 'dbhh' are still in htmlhelp-common.xsl).</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_Manpages">
+<title>Manpages</title>
+<para>The following changes have been made to the
+            <filename>manpages</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: endnotes.xsl</literal></para><screen><phrase role="commit-message">In manpages output, generate warnings about notesources with
+non-para children only if the notesource is a <tag>footnote</tag> or
+<tag>annotation</tag>. Thanks to Sam Steingold for reporting problems with
+the existing handling.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Manpages changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_HTMLHelp">
+<title>HTMLHelp</title>
+<para>The following changes have been made to the
+            <filename>htmlhelp</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: htmlhelp-common.xsl</literal></para><screen><phrase role="commit-message">Added single-pass namespace-stripping support to the htmlhelp,
+eclipse, and javahelp stylesheets.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTMLHelp changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_Eclipse">
+<title>Eclipse</title>
+<para>The following changes have been made to the
+            <filename>eclipse</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: eclipse.xsl</literal></para><screen><phrase role="commit-message">Added single-pass namespace-stripping support to the htmlhelp,
+eclipse, and javahelp stylesheets.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Eclipse changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_JavaHelp">
+<title>JavaHelp</title>
+<para>The following changes have been made to the
+            <filename>javahelp</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: javahelp.xsl</literal></para><screen><phrase role="commit-message">Added single-pass namespace-stripping support to the htmlhelp,
+eclipse, and javahelp stylesheets.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of JavaHelp changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_Roundtrip">
+<title>Roundtrip</title>
+<para>The following changes have been made to the
+            <filename>roundtrip</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; blocks2dbk.dtd; pages2normalise.xsl</literal></para><screen><phrase role="commit-message">Modularised blocks2dbk to allow customisation,
+Added support for tables to pages2normalise</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Roundtrip changes for 1.73.1-->
+
+<sect2 xml:id="V1.73.1_Params">
+<title>Params</title>
+<para>The following changes have been made to the
+            <filename>params</filename> code
+            since the 1.73.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: procedure.properties.xml</literal></para><screen><phrase role="commit-message"><tag>procedure</tag> was inheriting keep-together from formal.object.properties, but
+a <tag>procedure</tag> does not need to be kept together by default.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Dave Pawson: title.font.family.xml; component.label.includes.part.label.xml; table.frame.b⋯</literal></para><screen><phrase role="commit-message">Regular formatting re-org.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.73.1-->
+</sect1>
 
 <sect1 xml:id="V1.73.0">
 <title>Release: 1.73.0</title>
