@@ -34,6 +34,13 @@ zip-ns: zip
 	sed -i "s/^\(.*\)<xsl:param name=\"DistroName\">docbook-xsl<\/xsl:param>$$/\1<xsl:param name=\"DistroName\">docbook-xsl-ns<\/xsl:param>/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/VERSION
 
+# fix catalog.xml file
+	$(XSLT) .make-catalog.xsl .make-catalog.xsl \
+	  DISTRO="$(DISTRO)-ns" BRANCH="XSL-NS" \
+	  | $(XMLLINT) $(XMLLINT_OPTS) --format - \
+	  | grep -v "<?xml" \
+	  > $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/catalog.xml
+
 # repair perms
 	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/fo/pdf2index
 	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/install.sh
