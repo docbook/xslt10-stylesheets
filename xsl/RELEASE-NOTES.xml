@@ -11,32 +11,34 @@
   <author><orgname>DocBook Project Development Team</orgname></author>
 </info>
 
-<para>These are the release notes for the DocBook XSL Stylesheets
-distribution. This document provides an (incomplete) per-release list
-of enhancements and changes to the stylesheets’ public APIs
-(user-configurable parameters) and generally excludes descriptions of
-bug fixes. For a complete list of all changes (including all bug
-fixes) that have been made since the previous release, see the
-separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link
-xlink:href="NEWS.html">NEWS.html</link> files.</para>
+<!-- * <para>These are the release notes for the DocBook XSL Stylesheets -->
+<!-- * distribution. This document provides an (incomplete) per-release list -->
+<!-- * of enhancements and changes to the stylesheets’ public APIs -->
+<!-- * (user-configurable parameters) and generally excludes descriptions of -->
+<!-- * bug fixes. For a complete list of all changes (including all bug -->
+<!-- * fixes) that have been made since the previous release, see the -->
+<!-- * separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link -->
+<!-- * xlink:href="NEWS.html">NEWS.html</link> files.</para> -->
 <!-- *  -->
 <!-- * <para>As with all DocBook Project <link linkend="dot0">dot-zero</link> -->
 <!-- * releases, this is an experimental release. It will be followed shortly -->
 <!-- * by a stable release.</para> -->
 <!-- *  -->
-<!-- * <para>This is a pre-release “snapshot” of the DocBook XSL -->
-<!-- * Stylesheets. The change information in the first section of this -->
-<!-- * file (for “<xi:include href="NEWS.xml" -->
-<!-- * xpointer="xpointer(/article/sect1/title/text())"/>”) is -->
-<!-- * auto-generated from change descriptions stored in the project -->
-<!-- * source-code repository.</para> -->
-<!-- *  -->
-<!-- * <para>That means the first section contains descriptions both of bug -->
-<!-- * fixes and of feature changes. The remaning sections are manually -->
-<!-- * edited changelog subsets that exclude bug-fix descriptions – that -->
-<!-- * is, trimmed down to just those those descriptions that document -->
-<!-- * enhancements and changes to the public APIs (user-configurable -->
-<!-- * parameters).</para> -->
+<para>This is a pre-release “snapshot” of the DocBook XSL
+Stylesheets. The change information in the first section of this
+file (for “<xi:include href="NEWS.xml"
+xpointer="xpointer(/article/sect1/title/text())"/>”) is
+auto-generated from change descriptions stored in the project
+source-code repository.</para>
+
+<para>That means the first section contains descriptions both of bug
+fixes and of feature changes. The remaning sections are manually
+edited changelog subsets that exclude bug-fix descriptions – that
+is, trimmed down to just those those descriptions that document
+enhancements and changes to the public APIs (user-configurable
+parameters).</para>
+
+<xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
 
 <sect1 xml:id="V1.73.1">
 <title>Release: 1.73.1</title>
