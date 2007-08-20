@@ -14,8 +14,8 @@
 <xsl:param name="Tag" select="concat('V',translate(string(document('')//fm:Version[1]),'.',''))"/>
 <xsl:param name="DistroTitle" select="string(document('')//fm:Branch[1])"/>
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
-<xsl:param name="PreviousRelease">1.72.0</xsl:param>
-<xsl:param name="PreviousReleaseRevision">6553</xsl:param>
+<xsl:param name="PreviousRelease">1.73.1</xsl:param>
+<xsl:param name="PreviousReleaseRevision">7257</xsl:param>
 <xsl:param name="Revision">$Revision$</xsl:param>
 <xsl:param name="VersionFileURL">$URL$</xsl:param>
 <xsl:param name="sf-relid" select="0"/>
@@ -24,7 +24,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
-  <fm:Version>1.73.1</fm:Version>
+  <fm:Version>1.73.2-pre</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -73,7 +73,6 @@ Major bugfixes
 </xsl:template>
 
 <xsl:template match="fm:project">
-  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates select="fm:Changes" mode="text"/>
