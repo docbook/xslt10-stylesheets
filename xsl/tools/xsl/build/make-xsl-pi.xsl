@@ -7,7 +7,7 @@
   <xsl:output indent="yes"/>
   <xsl:namespace-alias stylesheet-prefix="xslt" result-prefix="xsl"/>
   <!-- ********************************************************************
-       $Id: make-xsl-params.xsl 6853 2007-06-22 10:35:45Z xmldoc $
+       $Id$
        ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
