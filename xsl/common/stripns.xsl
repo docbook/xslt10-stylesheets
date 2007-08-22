@@ -16,17 +16,7 @@
      See ../README or http://docbook.sf.net/release/xsl/current/ for
      copyright and other information.
 
-     This file contains general templates common to both the HTML and FO
-     versions of the DocBook stylesheets.
      ******************************************************************** -->
-
-<xsl:import href="utility.xsl"/>
-
-<!-- * Get a title for current doc so that we let the user -->
-<!-- * know what document we are processing at this point. -->
-<xsl:variable name="doc.title">
-  <xsl:call-template name="get.doc.title"/>
-</xsl:variable>
 
 <!-- put an xml:base attribute on the root element -->
 <xsl:template match="/*" mode="stripNS">
@@ -267,26 +257,11 @@
           <xsl:value-of select="NodeInfo:systemId()"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="log.message">
-            <xsl:with-param name="level">Warn</xsl:with-param>
-            <xsl:with-param name="source" select="$doc.title"/>
-            <xsl:with-param name="context-desc">
-              <xsl:text>no @xml:base</xsl:text>
-            </xsl:with-param>
-            <xsl:with-param name="message">
-              <xsl:text>cannot add @xml:base to node-set root element</xsl:text>
-            </xsl:with-param>
-          </xsl:call-template>
-          <xsl:call-template name="log.message">
-            <xsl:with-param name="level">Warn</xsl:with-param>
-            <xsl:with-param name="source" select="$doc.title"/>
-            <xsl:with-param name="context-desc">
-              <xsl:text>no @xml:base</xsl:text>
-            </xsl:with-param>
-            <xsl:with-param name="message">
-              <xsl:text>relative paths may not work</xsl:text>
-            </xsl:with-param>
-          </xsl:call-template>
+          <xsl:message>
+            <xsl:text>WARNING: cannot add @xml:base to node </xsl:text>
+            <xsl:text>set root element.  </xsl:text>
+            <xsl:text>Relative paths may not work.</xsl:text>
+          </xsl:message>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
