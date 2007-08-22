@@ -14,7 +14,7 @@
 <!--=  1.0 2005-11-08 SRB              =-->
 <!--=   Initial version.               =-->
 <!--=                                  =-->
-<!--= $Id: makeSubsections.xsl,v 1.1 2007/01/10 02:04:54 steve Exp steve $ =-->
+<!--= $Id$ =-->
 <!--=                                  =-->
 <!--====================================-->
   <axsl:output indent="yes"/>
