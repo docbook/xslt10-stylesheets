@@ -327,6 +327,12 @@ paragraph. The next part of this same paragraph is an
 </important>
 </para>
 
+<para>This is a para with a footnote
+  <footnote
+    ><para>Stuff here <programlisting>This is a program listing
+that's two lines long.</programlisting></para>
+    and stuff after the
+footnote</footnote></para>
 </refsect1>
 
 </refentry>
