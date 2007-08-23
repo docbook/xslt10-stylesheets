@@ -18,10 +18,10 @@ import com.icl.saxon.charcode.PluggableCharacterSet;
  * Western European Languages.
  *
  * To use this class for generating HTML Help output with the
- * DocBook XSL stylesheets, complete the following steps;
- *              
+ * DocBook XSL stylesheets, complete the following steps:
+ *
  * 1. Make sure that the Saxon 6.5.x jar file and the jar file for
- *    the DocBook XSL Java extensions are in your CLASSPATH
+ *    the DocBook Saxon extensions are in your CLASSPATH
  *
  * 2. Create a DocBook XSL customization layer -- a file named
  *    "mystylesheet.xsl" or whatever -- that, at a minimum,
@@ -63,8 +63,6 @@ import com.icl.saxon.charcode.PluggableCharacterSet;
  *   customization layer containing the parameters show in step 2.
  *
  */
-
-
 
 public class Windows1252 implements PluggableCharacterSet {
 
