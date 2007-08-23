@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------
               README file for the DocBook Saxon Extensions
 ----------------------------------------------------------------------
-$Id: README 6672 2007-03-05 17:01:58Z xmldoc $
+$Id$
 
 These are Java extensions for use with the DocBook XML stylesheets
 and the Saxon XSLT engine.
