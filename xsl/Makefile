@@ -22,7 +22,11 @@ DISTRIB_DEPENDS = smoketest doc docsrc install.sh RELEASE-NOTES.txt RELEASE-NOTE
 
 # value of RELEASE_DEPENDS is a space-separated list of any
 # targets for this distro's "release" target to depend on
-RELEASE_DEPENDS = ChangeHistory.xml.zip extensions
+RELEASE_DEPENDS = extensions
+
+# value of ZIP_DEPENDS is a space-separated list of any targets
+# for this distro's "zip" target to depend on
+ZIP_DEPENDS = tag release
 
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
@@ -99,9 +103,15 @@ docsrc: base
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
-extensions:
-	$(MAKE) -C ../xsl-java
-	cp -pR ../xsl-java $@
+extensions: ../xsl-saxon/saxon65.jar ../xsl-xalan/xalan27.jar
+	if [ ! -d $@ ]; then mkdir $@; fi
+	cp -p $^ $@
+
+../xsl-saxon/saxon65.jar: $(wildcard ../xsl-saxon/src/com/nwalsh/saxon/*.java) 
+	$(MAKE) -C $(dir $@)
+
+../xsl-xalan/xalan27.jar: $(wildcard ../xsl-xalan/src/com/nwalsh/xalan/*.java) 
+	$(MAKE) -C $(dir $@)
 
 clean:
 	for i in $(DIRS) __bogus__; do \
