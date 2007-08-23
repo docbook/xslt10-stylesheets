@@ -564,7 +564,8 @@ is divided into following sections:
     <target name="deps-clean" depends="init" unless="no.deps"/>
     <target name="-do-clean" depends="init">
         <delete dir="${build.dir}"/>
-        <delete dir="${dist.dir}"/>
+        <delete file="${dist.dir}/saxon65.jar"/>
+        <delete dir="${dist.dir}/javadoc"/>
     </target>
     <target name="-post-clean">
         <!-- Empty placeholder for easier customization. -->
