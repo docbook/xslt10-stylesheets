@@ -118,11 +118,7 @@ else
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | $(FRESHMEAT_SUBMIT) $(FMGO)
 endif
 
-ifeq ($(OFFLINE),yes)
-zip: tag
-else
-zip: ChangeHistory.xml.zip
-endif
+zip: $(ZIP_DEPENDS)
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
 	exit 1
