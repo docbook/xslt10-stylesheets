@@ -1,4 +1,4 @@
-// Website.java - Saxon extensions supporting Website2
+// Website.java - Xalan extensions supporting Website2
 
 package com.nwalsh.xalan;
 
