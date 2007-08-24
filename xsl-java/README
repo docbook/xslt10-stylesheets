@@ -1,5 +1,0 @@
-$Id$
-The code for the Saxon extensions, Xalan extensions, and xsltproc
-extensions has been moved up a level to create separate modules or
-each of those engines. That change makes it possible to package
-and release them separately.
