@@ -4,39 +4,53 @@
   xml:lang="en" xml:id="releasenotes"
   version="5.0">
 <info>
-  <title>Release Notes</title>
-  <subtitle>DocBook Project XSL Stylesheets</subtitle>
+  <title>Release Notes for the DocBook XSL Stylesheets</title>
   <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
   <releaseinfo role="cvs">$Revision$ $Date$</releaseinfo>
-  <author><orgname>DocBook Project Development Team</orgname></author>
-</info>
+  <!-- * <author><orgname>DocBook Project Development Team</orgname></author> -->
 
-<!-- * <para>These are the release notes for the DocBook XSL Stylesheets -->
-<!-- * distribution. This document provides an (incomplete) per-release list -->
-<!-- * of enhancements and changes to the stylesheets’ public APIs -->
-<!-- * (user-configurable parameters) and generally excludes descriptions of -->
-<!-- * bug fixes. For a complete list of all changes (including all bug -->
-<!-- * fixes) that have been made since the previous release, see the -->
-<!-- * separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link -->
-<!-- * xlink:href="NEWS.html">NEWS.html</link> files.</para> -->
-<!-- *  -->
+<abstract>
+<para>These release notes for the DocBook XSL Stylesheets
+  distribution are available in the following formats:
+  <link
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.html"
+    >HTML</link>,
+  <link
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.pdf"
+    >PDF</link>,
+  <link
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.txt"
+    >plain text</link>. This document provides a per-release list
+of enhancements and changes to the stylesheets’ public APIs
+(user-configurable parameters) and excludes descriptions of most
+bug fixes. For a complete list of all changes (including all bug
+fixes) that have been made since the previous release, see the
+separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link
+  xlink:href="NEWS.html">NEWS.html</link> files. Also available:
+An online <link
+  xlink:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log"
+  >hyperlinked change history</link> (warning: big file) of all
+changes made over the entire history of the codebase.</para>
+
 <!-- * <para>As with all DocBook Project <link linkend="dot0">dot-zero</link> -->
 <!-- * releases, this is an experimental release. It will be followed shortly -->
 <!-- * by a stable release.</para> -->
 <!-- *  -->
-<para>This is a pre-release “snapshot” of the DocBook XSL
-Stylesheets. The change information in the first section of this
-file (for “<xi:include href="NEWS.xml"
-xpointer="xpointer(/article/sect1/title/text())"/>”) is
-auto-generated from change descriptions stored in the project
-source-code repository.</para>
-
-<para>That means the first section contains descriptions both of bug
-fixes and of feature changes. The remaning sections are manually
-edited changelog subsets that exclude bug-fix descriptions – that
-is, trimmed down to just those those descriptions that document
-enhancements and changes to the public APIs (user-configurable
-parameters).</para>
+<!-- * <para>This is a pre-release “snapshot” of the DocBook XSL -->
+<!-- * Stylesheets. The change information in the first section of this -->
+<!-- * file (for “<xi:include href="NEWS.xml" -->
+<!-- * xpointer="xpointer(/article/sect1/title/text())"/>”) is -->
+<!-- * auto-generated from change descriptions stored in the project -->
+<!-- * source-code repository.</para> -->
+<!-- *  -->
+<!-- * <para>That means the first section contains descriptions both of bug -->
+<!-- * fixes and of feature changes. The remaning sections are manually -->
+<!-- * edited changelog subsets that exclude bug-fix descriptions – that -->
+<!-- * is, trimmed down to just those those descriptions that document -->
+<!-- * enhancements and changes to the public APIs (user-configurable -->
+<!-- * parameters).</para> -->
+</abstract>
+</info>
 
 <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
 

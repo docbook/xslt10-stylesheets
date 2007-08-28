@@ -125,12 +125,26 @@ xhtml/        for producing XHTML
 ----------------------------------------------------------------------
 Changes
 ----------------------------------------------------------------------
-See the ChangeHistory.xml.zip file for a cumulative list of all changes.
-
 See the NEWS file for changes made since the previous release.
 
-See the RELEASE-NOTES.html or RELEASE-NOTES.txt or RELEASE-NOTES.pdf files
-for per-release cumulative summaries of significant user-visible changes.
+See the RELEASE-NOTES.html or RELEASE-NOTES.txt or RELEASE-NOTES.pdf
+files for per-release cumulative summaries of significant
+user-visible changes.
+
+For online access to a hyperlinked view of all changes made over
+the entire history of the codebase, see the following:
+
+  http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log
+
+WARNING: That above change history is a very long list and may
+take a long time to load/download.
+
+You can also create an XML-formatted "ChangeHistory.xml" copy of
+the complete change history for the codebase by running the
+following commands:
+
+  svn checkout https://docbook.svn.sf.net/svnroot/docbook/trunk/xsl
+  svn log --xml --verbose xsl > ChangeHistory.xml
 
 ----------------------------------------------------------------------
 Copyright information
