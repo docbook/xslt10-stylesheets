@@ -13,12 +13,14 @@
 <xsl:param name="VERSION" select="string(document('')//fm:Version[1])"/>
 <xsl:param name="Tag" select="concat('V',translate(string(document('')//fm:Version[1]),'.',''))"/>
 <xsl:param name="DistroTitle" select="string(document('')//fm:Branch[1])"/>
+<xsl:param name="sf-relid" select="0"/>
+
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
-<xsl:param name="PreviousRelease">1.73.1</xsl:param>
-<xsl:param name="PreviousReleaseRevision">7257</xsl:param>
+<xsl:param name="PreviousRelease">1.72.0</xsl:param>
+<xsl:param name="PreviousReleaseRevision">6553</xsl:param>
 <xsl:param name="Revision">$Revision$</xsl:param>
 <xsl:param name="VersionFileURL">$URL$</xsl:param>
-<xsl:param name="sf-relid" select="0"/>
+
 <xsl:strip-space elements="fm:*"/>
 
 <fm:project>
@@ -60,6 +62,9 @@ Major bugfixes
     </xsl:when>
     <xsl:when test="$get = 'PreviousReleaseRevision'">
       <xsl:value-of select="$PreviousReleaseRevision"/>
+    </xsl:when>
+    <xsl:when test="$get = 'DistroTitle'">
+      <xsl:value-of select="$DistroTitle"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:if test="$sf-relid = 0">
