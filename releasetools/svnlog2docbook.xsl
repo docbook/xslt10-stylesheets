@@ -24,7 +24,7 @@
 
   <!-- * RepositoryRoot is the same as what "svn info" shows -->
   <xsl:param name="repositoryRoot"/>
-  <!-- * distroUrl is what "svn info" shows as "url"/URL for the parent -->
+  <!-- * distroParentUrl is what "svn info" shows as "url"/URL for the parent -->
   <!-- * of the distro dir -->
   <xsl:param name="distroParentUrl"/>
   <xsl:param name="distroParentDir">
@@ -141,10 +141,30 @@
     <xsl:text>&#xa;</xsl:text>
     <article>
       <xsl:text>&#xa;</xsl:text>
+        <info>
+        <xsl:text>&#xa;</xsl:text>
+        <abstract>
+          <xsl:text>&#xa;</xsl:text>
+          <para><emphasis role="strong">Note:</emphasis> This
+            document list changes only since the <xsl:value-of
+              select="$previous-release"/> release.
+            If you instead want a record of the complete list of
+            changes for the codebase over its entire history, you
+            can obtain one by running the following commands:
+            <xsl:text>&#xa;</xsl:text>
+<screen
+><xsl:text>  </xsl:text><code>svn checkout <xsl:value-of select="concat($distroParentUrl,$distro)"/></code>
+<xsl:text>&#xa;</xsl:text>
+<xsl:text>  </xsl:text><code>svn log --xml --verbose <xsl:value-of select="$distro"/> > ChangeHistory.xml</code></screen></para>
+            <xsl:text>&#xa;</xsl:text>
+        </abstract>
+        <xsl:text>&#xa;</xsl:text>
+      </info>
       <title
           >Changes since the <xsl:value-of
           select="$previous-release"/> release</title>
       <xsl:text>&#xa;</xsl:text> 
+      <xsl:text>&#xa;</xsl:text>
       <sect1>
         <xsl:attribute
             name="xml:id">V<xsl:value-of
