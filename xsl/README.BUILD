@@ -265,7 +265,7 @@ the stylesheets -- then you can ignore this "Part 2" section; the
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/releasetools/build-clean && \
+     $DOCBOOK_SVN/buildtools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
@@ -385,7 +385,7 @@ you're not a project member, you can safely ignore this part.
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/releasetools/build-clean && \
+     $DOCBOOK_SVN/buildtools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
