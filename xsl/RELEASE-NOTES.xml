@@ -43,7 +43,7 @@ changes made over the entire history of the codebase.</para>
 <!-- * source-code repository.</para> -->
 <!-- *  -->
 <!-- * <para>That means the first section contains descriptions both of bug -->
-<!-- * fixes and of feature changes. The remaning sections are manually -->
+<!-- * fixes and of feature changes. The remaining sections are manually -->
 <!-- * edited changelog subsets that exclude bug-fix descriptions – that -->
 <!-- * is, trimmed down to just those those descriptions that document -->
 <!-- * enhancements and changes to the public APIs (user-configurable -->
