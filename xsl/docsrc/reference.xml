@@ -23,8 +23,22 @@
     <abstract xml:id="about">
       <title>About this document</title>
       <para>This is generated reference documentation for the DocBook
-        XSL stylesheets, primarily documentation on the parameters you
-        can adjust to control the behavior of the stylesheets.
+        XSL stylesheets. It is available in the following formats:
+        <itemizedlist>
+          <listitem>
+            <para><link
+                xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.html"
+                >HTML</link>,
+              <link
+                xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.pdf"
+                >PDF</link>,
+              <link
+                xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.txt"
+                >plain text</link></para>
+          </listitem>
+        </itemizedlist>
+        This is primarily documentation on the parameters you can adjust
+        to control the behavior of the stylesheets.
         <note>
           <para>This is purely reference documentation&#xa0;– not how-to
             documentation. For a thorough step-by-step how-to guide to
