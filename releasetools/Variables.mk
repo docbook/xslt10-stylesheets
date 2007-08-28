@@ -70,6 +70,7 @@ SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 SVN_INFO_FILE=.svninfo.xml
 
 PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION VERSION)
+DISTRO_TITLE=$(shell $(XSLTPROC) --stringparam get DistroTitle VERSION VERSION)
 
 REPOSITORY_ROOT=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE); fi)
 DISTRO_URL=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE); fi)
