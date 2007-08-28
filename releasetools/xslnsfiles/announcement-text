@@ -1,0 +1,11 @@
+Version @@version@@ of the DocBook XSL-NS Stylesheets, for processing
+namespaced (DocBook 5) documents, is now available:
+
+  http://docbook.sf.net/files/xsl-ns/latest
+
+The release notes are included below, and also available online.
+The reference docs are available as a separate package, and online.
+
+  http://docbook.sf.net/files/xsl-doc/latest
+  http://docbook.sf.net/release/xsl-ns/current/doc/
+  http://docbook.sf.net/release/xsl-ns/current/RELEASE-NOTES.html
