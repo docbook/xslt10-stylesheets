@@ -4,19 +4,21 @@
 # release-announce - send DocBook Project release announcements
 
 # Usage:
-# release-announce TITLE VERSION RECIPIENTS < messageBodyFile
-#   or
-# cat messageBodyFile | release-announce TITLE VERSION RECIPIENTS 
+# release-announce TITLE VERSION MESSAGE CHANGES RECIPIENTS
 #
 # e.g.,
-#   release-announce XSL Stylesheets 1.73.0 docbook-apps@lists.oasis-open.org < .announcement-text
+#  release-announce "XSL Stylesheets" 1.73.0 \
+#    .announcement-text \
+#    RELEASE-NOTES-PARTIAL.txt \
+#    docbook-apps@lists.oasis-open.org
 
 title=$1
 version=$2
-recipients=$3
+message=$3
+changesfile=$4
+recipients=$5
 sender=docbook-dev@xml-doc.org
 tempfile=/tmp/announcement-message-body.txt
-releasenotesfilename=RELEASE-NOTES-PARTIAL.txt
 
 rm -f $tempfile
 
@@ -27,15 +29,16 @@ Subject: ANNOUNCE: DocBook $title $version released
 
 EOF
 
-# read in annoucement text
-while read line
-do
-  # substitute actual version no. where needed, append to message body
-  echo $line | sed "s/@@version@@/$version/" >> $tempfile
-done
+# append announcement boilerplate text, substituting actual version
+# number where needed
+sed "s/@@version@@/$version/" < $message >> $tempfile
 
 # add a blank line to separate announcement header and text from
 # appended release-notes content
 echo >> $tempfile
 
-cat $tempfile $releasenotesfilename | sendmail -v -f $sender $recipients
+# append the current list of changes
+cat $changesfile >> $tempfile
+
+# e-mail the actual announcement
+cat $tempfile | sendmail -v -f $sender $recipients

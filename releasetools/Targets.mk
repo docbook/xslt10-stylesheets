@@ -227,8 +227,8 @@ install: tag upload-to-sf-incoming upload-to-project-webspace
 	@echo
 	@echo "  http://sourceforge.net/project/admin/editpackages.php?group_id=21935"
 
-announce: RELEASE-NOTES-PARTIAL.txt .announcement-text distrib
-	$(RELEASE_ANNOUNCE) "$(DISTRO_TITLE)" "$(RELVER)" "$(ANNOUNCE_RECIPIENTS)" < .announcement-text
+announce: $(ANNOUNCE_CHANGES) .announcement-text distrib
+	$(RELEASE_ANNOUNCE) "$(DISTRO_TITLE)" "$(RELVER)" .announcement-text $< "$(ANNOUNCE_RECIPIENTS)"
 
 tag:
 ifeq (,$(shell svn status))
