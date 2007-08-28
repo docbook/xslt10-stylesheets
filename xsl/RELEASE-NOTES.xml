@@ -10,17 +10,16 @@
   <!-- * <author><orgname>DocBook Project Development Team</orgname></author> -->
 
 <abstract>
-<para>These release notes for the DocBook XSL Stylesheets
-  distribution are available in the following formats:
+<para>This release-notes document is available in the following formats:
   <link
-    xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.html"
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.html"
     >HTML</link>,
   <link
-    xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.pdf"
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.pdf"
     >PDF</link>,
   <link
-    xlink:href="http://docbook.sourceforge.net/release/xsl/current/doc/reference.txt"
-    >plain text</link>. This document provides a per-release list
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.txt"
+    >plain text</link>; it provides a per-release list
 of enhancements and changes to the stylesheets’ public APIs
 (user-configurable parameters) and excludes descriptions of most
 bug fixes. For a complete list of all changes (including all bug
