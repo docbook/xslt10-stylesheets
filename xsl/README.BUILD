@@ -433,7 +433,7 @@ you're not a project member, you can safely ignore this part.
     - docbook-xsl-doc-1.NN.N.* packages
     - docbook-xsl-ns-1.NN.N.* packages
 
-  Note that there will not be separate docbook-xsl-ns-doc packages
+  Note that you will not see separate docbook-xsl-ns-doc packages
   (the docs are the same for both docbook-xsl and docbook-xsl-ns).
 
 =================================================================
@@ -611,7 +611,7 @@ This section explains how to announce a release.
 1. Announcing to docbook-apps.
    To automatically post release announcements for the
    docbook-xsl and docbook-xsl-ns packages to the docbook-apps
-   mailing list, run "make announce":
+   mailing list, run "make announce-ns":
  
      make announce-ns
 
