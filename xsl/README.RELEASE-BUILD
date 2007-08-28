@@ -1,109 +1,160 @@
 $Id$
 
-These are how-to instructions for building release versions of the
-DocBook Project XSL Stylesheets and for performing other tasks
-related to releases.
+Parts 0 and 1 of this document provide how-to instructions for
+building the DocBook XSL Stylesheets.
 
-DocBook Project developers are encouraged to edit/change any part
-of this document and to add to it anything they want.
+Corrections and improvements from anyone to Parts 0 and 1 are
+very welcome (preferably submitted in the form of patches against
+this file, if you are not a DocBook Project member and
+can't submit them directly).
+
+Part 2 and the Parts following it provide how-instructions for
+performing tasks related to DocBook XSL Stylesheets releases.
+Those parts are basically relevant only to DocBook Project
+members who conduct official DocBook Project releases.
+
+DocBook Project developers are encouraged to edit/change/improve
+any of the Parts in this file, and to add anything to them.
 
 -----------------------------------------------------------------
-Release Build Setup/Testing
+Part 0: Build Setup
 -----------------------------------------------------------------
-0. Environment and dependencies.
-   Make sure your environment is set up correctly with information
-   about some of the dependencies needed to build.
+Before building, make sure your environment is set up correctly
+with information about some of the dependencies needed to build.
 
-   a. DocBook Project modules
-      In addition to having an up-to-date working copy of the
-      source for the "xsl" module, you also need to have
-      up-to-date working copies of the following modules:
+1. DocBook Project modules (stylesheets build)
+   If you want to build and test the stylesheets (or
+   changes/customizations you have made to the stylesheets),
+   then: In addition to having an up-to-date working copy of
+   the source for the "xsl" module, you also need to have
+   up-to-date working copies of the following modules:
 
-        buildtools
-          tools needed for all builds
-        releasetools
-          tools needed for release builds
-        gentext
-          localization source files
+     buildtools
+       tools needed for all builds
+     gentext
+       localization source files
 
-   a. Shell Environment.
-      A good way to get your environment variables set up is to
-      create a file (name "docbk.sh" or whatever), with the
-      following in it:
+   Optionally, to have a set of variety of simple DocBook XML
+   document instances on hand to test your changes against, make
+   sure to have an up-to-date working copy of the following:
 
-        # directory that is base directory for all your DocBook modules
-        export DOCBOOK_SVN=/opt/sandbox/docbook/trunk
-        # directory containing all your jar files
-        export JARDIR=/usr/share/java
-        export CLASSPATH=$CLASSPATH:$JARDIR/xml-commons-resolver-1.1.jar
-        export CLASSPATH=$CLASSPATH:$JARDIR/xercesImpl.jar
-        export CLASSPATH=$CLASSPATH:$JARDIR/jaxp-1.3.jar
-        export CLASSPATH=$CLASSPATH:$JARDIR/xalan-2.7.0.jar
-        export CLASSPATH=$CLASSPATH:$JARDIR/saxon-6.5.5.jar
-        # directory containing CatalogManager.properties file
-        export CLASSPATH=$CLASSPATH:/etc/xml/resolver/
-        export SGML_CATALOG_FILES=/etc/sgml/catalog
+     testdocs
+       a variety of DocBook XML document instances
 
-      You can then source that by putting the following in your
-      ~/.bashrc file:
+2. If you are a DocBook Project developer and, in addition to
+   building just the stylesheets, want to be able to also build
+   a release package of the stylesheets (including the
+   documentation and all other files in the package), then you
+   also need to have up-to-date working copies of the following
+   modules:
 
-        # set up some environment variables for DocBook/XML stuff
-        . ~/docbk.sh
+     releasetools
+       tools needed for release builds
+     xsl-saxon
+       DocBook Saxon extensions (bundled with docbook-xsl releases)
+     xsl-xalan
+       DocBook Xalan extensions (bundled with docbook-xsl releases)
 
-   b. .xmlrc
+3. Shell Environment.
+   A good way to get your environment variables set up is to
+   create a file (name "docbk.sh" or whatever), with the
+   following in it:
 
-      You need an .xmlrc file with some system-specific data for Java
-      and XML tools in your environment. For example:
+     # directory that is base directory for all your DocBook modules
+     export DOCBOOK_SVN=/opt/sandbox/docbook/trunk
+     # directory containing all your jar files
+     export JARDIR=/usr/share/java
+     export CLASSPATH=$CLASSPATH:$JARDIR/xml-commons-resolver-1.1.jar
+     export CLASSPATH=$CLASSPATH:$JARDIR/xercesImpl.jar
+     export CLASSPATH=$CLASSPATH:$JARDIR/jaxp-1.3.jar
+     export CLASSPATH=$CLASSPATH:$JARDIR/xalan-2.7.0.jar
+     export CLASSPATH=$CLASSPATH:$JARDIR/saxon-6.5.5.jar
+     # directory containing CatalogManager.properties file
+     export CLASSPATH=$CLASSPATH:/etc/xml/resolver/
+     export SGML_CATALOG_FILES=/etc/sgml/catalog
 
-      <?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
-      <config>
-        <java classpath-separator=":" xml:id="java">
-          <system-property name="javax.xml.parsers.DocumentBuilderFactory"
-            value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
-          <system-property name="javax.xml.parsers.SAXParserFactory"
-            value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
-          <classpath path="/usr/share/java/xercesImpl.jar"/>
-          <classpath path="/usr/share/java/jaxp-1.3.jar"/>
-          <classpath path="/usr/share/java/xml-commons-resolver-1.1.jar"/>
-        </java>
-        <java xml:id="bigmem">
-          <java-option name="Xmx512m"/>
-        </java>
-        <saxon xml:id="saxon" extends="java">
-          <arg name="x" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
-          <arg name="y" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
-          <arg name="r" value="org.apache.xml.resolver.tools.CatalogResolver"/>
-          <param name="use.extensions" value="1"/>
-        </saxon>
-        <saxon xml:id="saxon-8a" extends="saxon" class="net.sf.saxon.Transform"
-          java="/usr/bin/java">
-          <classpath path="/usr/share/java/saxon8.jar"/>
-        </saxon>
-        <saxon xml:id="saxon-6" extends="saxon" class="com.icl.saxon.StyleSheet">
-          <classpath path="/usr/share/java/saxon-6.5.5.jar"/>
-          <classpath path="/opt/sandbox/docbook/trunk/xsl-java/saxon65.jar"/>
-        </saxon>
-        <xsltproc xml:id="xsltproc" exec="xsltproc"></xsltproc>
-        <xmllint xml:id="xmllint" exec="xmllint"></xmllint>
-      </config>
+   You can then source that by putting the following in your
+   ~/.bashrc file:
 
-1. Test I: make all
-   Run a test "make all" build to make sure there are no problems
-   with the non-docs/non-release "normal" part of the build (the
-   part that basically just builds the gentext and param files and
-   gives you a working set of stylesheets to use). On way to run
-   that is this:
+     # set up some environment variables for DocBook/XML stuff
+     . ~/docbk.sh
+
+4. .xmlrc
+
+   You need an .xmlrc file with some system-specific data for Java
+   and XML tools in your environment. For example:
+
+   <?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
+   <config>
+     <java classpath-separator=":" xml:id="java">
+       <system-property name="javax.xml.parsers.DocumentBuilderFactory"
+         value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+       <system-property name="javax.xml.parsers.SAXParserFactory"
+         value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+       <classpath path="/usr/share/java/xercesImpl.jar"/>
+       <classpath path="/usr/share/java/jaxp-1.3.jar"/>
+       <classpath path="/usr/share/java/xml-commons-resolver-1.1.jar"/>
+     </java>
+     <java xml:id="bigmem">
+       <java-option name="Xmx512m"/>
+     </java>
+     <saxon xml:id="saxon" extends="java">
+       <arg name="x" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+       <arg name="y" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+       <arg name="r" value="org.apache.xml.resolver.tools.CatalogResolver"/>
+       <param name="use.extensions" value="1"/>
+     </saxon>
+     <saxon xml:id="saxon-8a" extends="saxon" class="net.sf.saxon.Transform"
+       java="/usr/bin/java">
+       <classpath path="/usr/share/java/saxon8.jar"/>
+     </saxon>
+     <saxon xml:id="saxon-6" extends="saxon" class="com.icl.saxon.StyleSheet">
+       <classpath path="/usr/share/java/saxon-6.5.5.jar"/>
+       <classpath path="/opt/sandbox/docbook/trunk/xsl-saxon/saxon65.jar"/>
+     </saxon>
+     <xsltproc xml:id="xsltproc" exec="xsltproc"></xsltproc>
+     <xmllint xml:id="xmllint" exec="xmllint"></xmllint>
+   </config>
+
+-----------------------------------------------------------------
+Part 1: Build and test the stylesheets
+-----------------------------------------------------------------
+This section explains how to do a developer/contributor build of
+the stylesheets.
+
+If you are not a member of the DocBook Project and/or are not
+building a docbook-xsl release package -- if, for example, you
+just want to be able to build and test your own changes or
+customizations to the stylesheets -- then this "Part 1" section
+describes the only build you need to do (you can ignore Part 2
+and all other Parts following it).
+
+1. make all
+   Run "make all" to build just the stylesheets (without the docs
+   or other "extras" contained in release packages). Essentially,
+   all that "make all" does it to build the gentext and param
+   files and gives you a working set of stylesheets to use.
+
+   One recommended way to invoke "make all" is the following:
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/releasetools/build-clean && \
+     $DOCBOOK_SVN/buildtools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
 
-   NOTE: If you want to build with saxon instead of xsltproc,
-   change the "xsltproc" above to "saxon".
+   The preceding will cause the following:
+
+     - runs the build using xsltproc, which is generally faster at
+       building the stylesheets that Saxon is; to build with saxon
+       instead of xsltproc, change the "xsltproc" above to "saxon".
+     - safely cleans your workspace before the build is actually
+       run (see below for details)
+     - writes any error and warning messages to the
+       DOCBOOK-BUILD.LOG log file
+     - checks the DOCBOOK-BUILD.LOG file for errors & reports them
 
    NOTE: The build-clean script is just a "safe" wrapper around
    the svn-clean command; svn-clean is a perl script that's not
@@ -119,21 +170,90 @@ Release Build Setup/Testing
    to cruft that needs to be deleted and also to any new files
    that you make have created but forgotten to actually check in.
 
-   NOTE: The build-check script called at the end above just does
-   a simple check for errors (by grep'ing the DOCBOOK-BUILD.LOG
-   file you dump all the stdin and stderror output to).
+3. make smoketest (optional step)
+   As an optional step to check for any major brokenness, run
+   "make smoketest", which will run a test transformation against
+   the driver stylesheets for each output format (e.g.,
+   html/docbook.xsl, fo/docbook.xsl, etc.).
 
-2. Fix any problems, and commit fixes.
-   If build-check reports any problems, fix them, commit your
-   changes (if the fixes required changes to source files), then
-   repeat Step 1 until you don't see any more problems.
+   One recommended way to invoke "make smoketest" is the following:
 
-3. Test III: make distrib
-   If you have resolved all problems with the "make all" build, do
-   a test run of "make distrib" (to smoke-test the build and to
-   build the docs and additional stuff needed for the distribution).
+     rm -f DOCBOOK-BUILD.LOG && \
+     . ~/docbk.sh && \
+     $DOCBOOK_SVN/buildtools/build-clean && \
+     make smoketest 2>&1 \
+       XSLTENGINE=xsltproc \
+       | tee DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
 
-   To run the distrib build from a clean workspace, do this:
+4. Fix any obvious problems.
+   If build-check and/or "make smoketest" report any problems, fix
+   them. Then repeat Step 1 until you don't see any more problems.
+
+5. Further testing.
+   Once you have any obvious problems fixed (that is, the kind
+   that build-check and "make smoketest" can catch, you should
+   do further testing of the changes (if any) that you have made
+   to the stylesheet code. Try to test with a variety of test
+   files, not just with DocBook XML source files you've created
+   yourself. Consider using the files in the "testdocs" module
+   (see step 1 of the "Build Setup" section above).
+
+   In addition to just running a transformation step ensuring it
+   executes successfully, visually examine the output and make
+   sure that it is what you would expect. In particular, make sure
+   that any changes you have made have not broken the formatting
+   anywhere, and that your changes have not had other unintended
+   side effects.
+
+6. Commit fixes or send patches.
+   If you have built and smoke-tested the stylesheets successfully
+   with and at done further testing and visual examination of
+   output to ensure you haven't broken anything, then it's time to
+   contribute your changes.
+
+   If you are a DocBook Project developer, commit your changes to
+   the DocBook Project source repository. If you are not a DocBook
+   Project developer, then create a patch and either send that to
+   the project by posting it using the DocBook Project tracker at
+   Sourceforge, or by posting it to the docbook-apps mailing list.
+
+==================================================================
+
+-----------------------------------------------------------------
+Part 2: Build a distribution (including reference documentation)
+-----------------------------------------------------------------
+This section explains how to build a full distribution of the
+stylesheets, which includes the reference documentation and
+accompanying files.
+
+If you are not a member of the DocBook Project and/or have no
+interest in building the reference documentation or in building a
+docbook-xsl release package -- if, for example, you just want to
+be able to build and test your own changes or customizations to
+the stylesheets -- then you can ignore this "Part 2" section; the
+"Part 1" build is all you need to do.
+
+  Note: What's a "distribution"?
+  -----------------------------------------------------------
+  In the case of the DocBook XSL Stylesheets, creating a
+  "distribution" of the stylesheets means that in addition
+  to the stylesheet files themselves, the following occurs:
+
+    - build of the reference docs
+    - build of the release-notes files
+    - preparation of any additional items bundled along with
+      the stylesheets (currently, that means the DocBook
+      Saxon Extensions and the DocBook Xalan extensions)
+  -----------------------------------------------------------
+
+1. make distrib
+   If you have followed the steps in Part 1 above to successfully
+   run a "make all" build, then to build a full distribution,
+   "make distrib" (to smoke-test the build and to build the docs
+   and additional stuff needed for the distribution).
+
+   One recommended way to run "make distrib" is the following:
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
@@ -141,20 +261,17 @@ Release Build Setup/Testing
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install && \
      make distrib 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
-     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
 
-   That will first do a "make all" build, and if that succeeds
-   without any errors, will then do a "make distrib" build.
-
-   NOTE: If you want to build with saxon instead of xsltproc,
-   change the "-xsltproc" above to "-saxon".
+   The above first runs a "make all" build, and if that succeeds
+   without any errors, then runs a "make distrib" build.
 
    NOTE: The engine specified in PDF_MAKER is only used to build a
    PDF of the release notes. If you want to use xep instead of
@@ -182,14 +299,19 @@ Release Build Setup/Testing
    The "uninstall" step at the end causes all changes made by
    that temporary XML Catalog "install" step to be reverted.
 
-4. Fix any problems, and commit fixes.
+2. Fix any problems, and commit fixes.
    If build-check reports any problems, fix them, commit your
    changes (if the fixes required changes to source files), then
-   repeat Step 4 until you don't see any more problems.
+   repeat Step 1 until you don't see any more problems.
 
 -----------------------------------------------------------------
-Release Preparation
+Part 3: Prepare a release
 -----------------------------------------------------------------
+This section explains how to prepare for an actual docbook-xsl
+release. It's probably relevant only to DocBook Project
+developers; so if you're not a member of the project, you can
+safely ignore this part.
+
 1. Edit the VERSION file.
    a. Update the release number in the fm:Version element.
    b. Uncomment the appropriate text in the fm:Release-Focus
@@ -210,7 +332,7 @@ Release Preparation
 
      make NEWS.xml
 
-3. Open the RELEASE-NOTES.xml file and:
+4. Open the RELEASE-NOTES.xml file and:
 
    - comment out the paragraphs about snapshot releases
    - comment out the following line:
@@ -219,33 +341,39 @@ Release Preparation
 
    - uncomment the paragraphs about official releases
 
-4. Open the NEWS.xml file in your text/XML editor, select the
+5. Open the NEWS.xml file in your text/XML editor, select the
    sect1 section and all its child content, and paste that into
    the RELEASE-NOTES.xml file, as the first sect1 child of the
    RELEASE-NOTES.xml file's root article element.
 
-5. Add an variablelist with a varlistentry instance for each major
+6. Add a variablelist with a varlistentry instance for each major
    significant change made in this release that merits special
    mention in the release notes; generally, that means every major
    enhancement.
 
-6. In the content you have just pasted in, go through each sect2
+7. In the content you have just pasted in, go through each sect2
    section  and manually remove any listitem instances that have
    content which doesn't need to be included in the final release
    notes. In general, that means removing most bug fixes and
    "housekeeping" changes that do not need to be exposed to users,
    but changes for feature enhancements or changes to public APIs.
 
-7. After making all changes/additions to the RELEASE-NOTES.xml
+8. After making all changes/additions to the RELEASE-NOTES.xml
    file, check it back in with 
 
      svn commit -m "Update for version 1.NN.N" RELEASE-NOTES.xml
 
 -----------------------------------------------------------------
-Release Build
+Part 4: Build a release
 -----------------------------------------------------------------
+This section explains how to build an actual docbook-xsl release.
+It's probably relevant only to DocBook Project developers; so if
+you're not a project member, you can safely ignore this part.
+
 1. To build the actual release packages, run a "make release"
-   build from a clean workspace:
+   build from a clean workspace.
+
+   One recommended way to run "make distrib" is the following:
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
@@ -253,17 +381,22 @@ Release Build
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install && \
      make release 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
-     $DOCBOOK_SVN/releasetools/build-check DOCBOOK-BUILD.LOG; \
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG; \
      rm -f DOCBOOK-BUILD.LOG
 
-2. If there are no errors, run a "make zip-ns" build:
+   In addition to the normal error-checking that build-check
+   does, running "make release" will also automatically case
+   the "make smoketest" step to run.
+
+2. If there are no errors reported from build-check or "make
+   release", run a "make zip-ns" build:
 
      make zip-ns
 
@@ -295,32 +428,33 @@ Release Build
   Note that there will not be separate docbook-xsl-ns-doc packages
   (the docs are the same for both docbook-xsl and docbook-xsl-ns).
 
+=================================================================
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+   ---------------------------------------------------------
+   All steps in Part 5 and from here forward are relevant
+   only to DocBook Project developers and are "unreversible"
+   steps that you should not run unless you're doing an
+   actual release (instead of just testing).
+   ---------------------------------------------------------
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+                    WARNING WARNING WARNING
+=================================================================
+
 -----------------------------------------------------------------
-Release Install Preparation
+Part 5: Tag and install a release
 -----------------------------------------------------------------
-1. Make sure that you have the following programs installed:
+This section explains how to install/upload an actual docbook-xsl
+release.
+
+0. Make sure that you have the following programs installed:
 
    - lftp
    - ssh
    - scp
 
-=================================================================
-                    WARNING WARNING WARNING
-                    WARNING WARNING WARNING
-                    WARNING WARNING WARNING
-   ---------------------------------------------------------
-   All steps from here forward are "unreversible" steps that
-   you should not run unless you're doing an actual release
-   (instead of just testing).
-   ---------------------------------------------------------
-                    WARNING WARNING WARNING
-                    WARNING WARNING WARNING
-                    WARNING WARNING WARNING
-=================================================================
-
------------------------------------------------------------------
-Release Tag and Install
------------------------------------------------------------------
 1. To tag the release and upload all the release packages
    (including all docbook-xsl, docbook-xsl-ns, and docbook-xsl-doc
    packages) to the Sourceforge "incoming" area and to the DocBook
@@ -329,8 +463,11 @@ Release Tag and Install
      make install-ns
 
 -----------------------------------------------------------------
-Release File Management
+Part 6: Manage release files
 -----------------------------------------------------------------
+This section explains how to manage release files using the
+file-management interface at Sourceforge.
+
 Unfortunately, Sourceforge provides no automated way to manage
 file releases, so you must complete all the following steps using
 the SF file-management Web interface.
@@ -340,34 +477,34 @@ because the SF file-management system is extremely unwieldy, and
 it makes unwinding an upload mistake a major PITA. If you do make
 a mistake, see the next section for details on how to fix it.
 
- 1. Go to the DocBook Project master File Release System page:
+01. Go to the DocBook Project master File Release System page:
 
     http://sourceforge.net/project/admin/editpackages.php?group_id=21935
 
- 2. Click the "Add Release" link for the docbook-xsl package.
+02. Click the "Add Release" link for the docbook-xsl package.
     The "Create a File Release" form appears.
 
- 3. In the "New Release Name" input box, type just the version
+03. In the "New Release Name" input box, type just the version
     number of this release.
 
- 4. Click "Create This Release".
+04. Click "Create This Release".
 
     Another form appears.
 
- 5. Under "Step 1. Edit Existing Release", click the Choose button
+05. Under "Step 1. Edit Existing Release", click the Choose button
     next to the "Upload Release Notes" input box, and browse for
     the location of the generated RELEASE-NOTES-PARTIAL.txt file
     on your system.
 
- 6. Under "Step 1. Edit Existing Release", click the Choose button
+06. Under "Step 1. Edit Existing Release", click the Choose button
     next to the "Upload Change Log" input box, and browse for the
     location of the generated NEWS file on your system.
 
- 7. Click the "Preserve my pre-formatted text." checkbox.
+07. Click the "Preserve my pre-formatted text." checkbox.
 
- 8. Click the "Submit/Refresh" button.
+08. Click the "Submit/Refresh" button.
 
- 9. In the "Step 2: Add Files To This Release" section, scroll
+09. In the "Step 2: Add Files To This Release" section, scroll
     down and find the docbook-xsl-1.NN.N packages (just the
     docbook-xsl packages -- not the docbook-xsl-doc or
     docbook-xsl-ns ones), and click the checkboxes next to them,
@@ -396,8 +533,12 @@ a mistake, see the next section for details on how to fix it.
       http://sourceforge.net/project/showfiles.php?group_id=21935
 
 -----------------------------------------------------------------
-Release File Management - Fixing upload mistakes
+Part 7: Fix upload mistakes
 -----------------------------------------------------------------
+This section explains what to do in case you've made a mistake
+and need to upload replacements for packages you've uploaded
+previously.
+
 If you make a mistake and need to upload new/replacement packages
 to the SF incoming area, complete the following steps to upload
 the new packages.
@@ -455,72 +596,77 @@ the new packages.
    packages).
 
 -----------------------------------------------------------------
-Release Announcements, Part I: docbook-apps announcements
+Part 8: Announce a release
 -----------------------------------------------------------------
-To automatically post release announcements for the docbook-xsl
-and docbook-xsl-ns packages to the docbook-apps mailing list, run
-"make announce":
+This section explains how to announce a release.
 
-  make announce
+1. Announcing to docbook-apps.
+   To automatically post release announcements for the
+   docbook-xsl and docbook-xsl-ns packages to the docbook-apps
+   mailing list, run "make announce":
+ 
+     make announce-ns
+
+2. Announcing at Sourceforge.
+
+   Just as it lacks an automated way to manage file releases,
+   Sourceforge also lacks any automated way to post release
+   announcements at its site, so you must complete all the
+   following steps using the SF News submission interface.
+
+   A. Go to the project news admin page:
+
+        http://sourceforge.net/news/admin/?group_id=21935
+
+   B. Click Submit.
+
+      The News submission form appears.
+
+   C. In the Subject field, enter the following:
+
+        "DocBook XSL 1.NN.N released"
+
+      Where 1.NN.N is the version number for this release.
+
+   D. In the Details area, enter something like the following:
+
+        This release includes bug fixes and a few feature changes.
+
+        http://sourceforge.net/project/showfiles.php?group_id=21935
+
+   E. Click the Submit button.
+      The News submission form re-appears.
+
+   F. In the Subject field, enter the following:
+
+        "DocBook XSL-NS 1.NN.N released"
+
+      Where 1.NN.N is the version number for this release.
+
+   G. In the Details area, enter something like the following.
+
+        The DocBook XSL-NS stylesheets are namespaced versions of the
+        DocBook XSL stylesheets, intended for use with DocBook 5
+        documents.
+
+        This release includes bug fixes and a few feature changes.
+
+        http://sourceforge.net/project/showfiles.php?group_id=21935
+
+   H. Go to the project News page and confirm that the announcements
+      appear:
+
+        http://sourceforge.net/news/?group_id=21935
 
 -----------------------------------------------------------------
-Release Announcements, Part II: Sourceforge announcements
+Part 9: Prepare for Freshmeat update
 -----------------------------------------------------------------
-Just as it lacks an automated way to manage file releases,
-Sourceforge also lacks any automated way to post release
-announcements at its site, so you must complete all the following
-steps using the SF News submission interface.
+This section explains how to prepare for updating Freshmeat with
+information about a release.
 
-1. Go to the project news admin page:
-
-    http://sourceforge.net/news/admin/?group_id=21935
-
-2. Click Submit.
-
-   The News submission form appears.
-
-3. In the Subject field, enter the following:
-
-     "DocBook XSL 1.NN.N released"
-
-   Where 1.NN.N is the version number for this release.
-
-4. In the Details area, enter something like the following:
-
-     This release includes bug fixes and a few feature changes.
-
-     http://sourceforge.net/project/showfiles.php?group_id=21935
-
-5. Click the Submit button.
-   The News submission form re-appears.
-
-6. In the Subject field, enter the following:
-
-     "DocBook XSL-NS 1.NN.N released"
-
-   Where 1.NN.N is the version number for this release.
-
-7. In the Details area, enter something like the following.
-
-     The DocBook XSL-NS stylesheets are namespaced versions of the
-     DocBook XSL stylesheets, intended for use with DocBook 5
-     documents.
-
-     This release includes bug fixes and a few feature changes.
-
-     http://sourceforge.net/project/showfiles.php?group_id=21935
-
-8. Go to the project News page and confirm that the announcements
-   appear:
-
-     http://sourceforge.net/news/?group_id=21935
-
------------------------------------------------------------------
-Freshmeat Update Preparation
------------------------------------------------------------------
-You can send release updates to Freshmeat automatically, using the
-freshmeat-submit script. But to use freshmeat-submit, you will
-need to have a .netrc file in your home directory.
+You can send release updates to Freshmeat automatically, using
+the freshmeat-submit script. But to use freshmeat-submit, you
+will need to have a .netrc file in your home directory.
 
 The contents of ~/.netrc file should look like this:
 
@@ -532,8 +678,11 @@ Where "userName" is your Freshmeat username, and "********" is
 your freshmeat password.
 
 -----------------------------------------------------------------
-Freshmeat Update
+Part 10: Update Freshmeat
 -----------------------------------------------------------------
+This section explains how to update Freshmeat with information
+about a release.
+
 To send release updates to Freshmeat automatically (without
 needing to use the Freshmeat Web interface), complete the
 following steps.
@@ -564,8 +713,11 @@ following steps.
      make freshmeat-ns SFRELID=NNNNNN FMGO=
 
 -----------------------------------------------------------------
-Post-release wrap-up: The VERSION and RELEASE-NOTES.xml files
+Part 11: Do post-release wrap-up
 -----------------------------------------------------------------
+This section explains the "wrap up" steps you need to do
+following an official release.
+
 1. Open the VERSION file.
 
 2. Change the content of the PreviousRelease element to the
