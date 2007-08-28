@@ -3,7 +3,7 @@ include ../buildtools/Makefile.incl
 XSLT=../buildtools/xslt -xsltproc
 XTANGLE_PARAMS=suppress.doctype.in.output=1
 
-.PHONY: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl
+.PHONY: modified-markup.xsl docbook.rng xtangle.xsl w2docbook.xsl freshmeat-submit
 
 MAKE_DOCBOOK_RNG=.make-docbook-rng.xsl
 MAKE_LITPROG=.make-litprog.xsl
@@ -26,7 +26,7 @@ w2docbook.xsl:
 	$(MAKE) -C ../litprog XTANGLE_PARAMS=$(XTANGLE_PARAMS)
 	$(XSLT) $(XSLTOPT) ../litprog/$@ $(MAKE_LITPROG) filename=$@ > $@
 
-freshmeat-submit:
+freshmeat-submit: ../contrib/tools/freshmeat-submit
 	$(MAKE) -C ../contrib/tools/freshmeat-submit
 	cp ../contrib/tools/freshmeat-submit/freshmeat-submit-1.6/$@ .
 
