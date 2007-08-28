@@ -101,4 +101,7 @@ install-ns: upload-to-sf-incoming upload-to-project-webspace-ns
 	@echo "  http://sourceforge.net/project/admin/editpackages.php?group_id=21935"
 
 announce-ns: announce
-	$(RELEASE_ANNOUNCE) "XSL-NS Stylesheets" "$(RELVER)" "$(ANNOUNCE_RECIPIENTS)" < $(DOCBOOK_SVN)/releasetools/xslnsfiles/announcement-text
+	$(RELEASE_ANNOUNCE) "XSL-NS Stylesheets" "$(RELVER)" \
+	  $(DOCBOOK_SVN)/releasetools/xslnsfiles/announcement-text
+	  $(ANNOUNCE_CHANGES) \
+	 "$(ANNOUNCE_RECIPIENTS)"
