@@ -364,9 +364,8 @@ EOF
       # the buildbot message accordingly
       echo "Subject: snapshot build is broken (r$REVISION)" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "The snapshot build appears to be broken at r$REVISION or before. the following problems occurred:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "The snapshot build appears to be broken at r$REVISION or before." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "During the r$REVISION snapshot build, the following problems were found:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # run buildcheck again and copy the output to the beginning
       # of the buildbot message
       $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
