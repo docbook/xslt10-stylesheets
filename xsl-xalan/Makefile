@@ -1,3 +1,5 @@
+# $Id: Makefile 7296 2007-08-28 09:16:40Z xmldoc $
+
 include ../buildtools/Makefile.incl
 include ../releasetools/Variables.mk
 
@@ -7,10 +9,16 @@ DISTRO=xsl-xalan
 # targets for this distro's "distrib" target to depend on
 DISTRIB_DEPENDS =
 
+# value of ZIP_DEPENDS is a space-separated list of any targets
+# for this distro's "zip" target to depend on
+ZIP_DEPENDS = tag release
+
 # value of ZIP_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release
-DISTRIB_EXCLUDES =
+DISTRIB_EXCLUDES = \
+  NEWS \
+  RELEASE-NOTES-PARTIAL.txt \
 
 ANT = ant
 ANT_OPTS =

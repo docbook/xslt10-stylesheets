@@ -1,0 +1,27 @@
+Version @@version@@ of the DocBook Xalan Extensions is now available:
+
+  http://docbook.sf.net/files/xsl-xalan/latest
+
+The DocBook Xalan Extensions are a set of Java functions you can
+use when processing documents with the DocBook XSL Stylesheets and
+the Xalan-Java XSLT engine; for more details, see the "DocBook
+Xalan extensions" section of DocBook XSL: The Complete Guide -
+
+  http://www.sagehill.net/docbookxsl/InstallingAProcessor.html#XalanExtensions
+
+Note that for the convenience of end users, jar files containing
+Java classes for these extensions are also bundled with all
+DocBook Stylesheets releases -- so downloading this package
+separately is not a necessity for most end users.
+
+This separate package is instead provided as a convenience for
+downstream packagers for various Linux distributions and other
+platforms. Note that in addition to including the same jar files
+that are bundled with the DocBook Stylesheets, this package also
+includes the Java sources for the extensions, as well generated
+Javadoc documentation for them, along with an Apache Ant build.xml
+file that enables you to build the extensions from their sources.
+
+This @@version@@ release is the initial release of the extensions as a
+standalone package; therefore, no release-notes document or
+changelog is included in this release.
