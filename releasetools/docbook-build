@@ -362,7 +362,7 @@ EOF
     else
       # build-check did not complete successfully, so prepare
       # the buildbot message accordingly
-      echo "Subject: snapshot build is broken (r$REVISION)" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "Subject: snapshot build is broken at r$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "The snapshot build appears to be broken at r$REVISION or before." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # run buildcheck again and copy the output to the beginning
