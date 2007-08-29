@@ -172,7 +172,6 @@ ZIP_EXCLUDES = \
  Makefile.tests \
  Makefile.param \
  ChangeLog\.xml \
- README\.SVN \
  RELEASE-NOTES\.fo \
  \.make-catalog\.xsl \
  param\.ent$$ \
