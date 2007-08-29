@@ -343,6 +343,25 @@ EOF
     ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.zip *.log; touch $DISTRO)"
     fi
 
+    # set up the e-mail message headers for buildbot message
+    cat <<- EOF > $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+From: snapshot buildbot <smith@sideshowbarker.net>
+To: Michael(tm) Smith <smith@sideshowbarker.net>
+Subject: snapshot $REVISION
+
+EOF
+
+    # copy the entire log file to the buildbot message
+    cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    echo "buildcheck output:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    # run buildcheck and copy the output to the buildbot message
+    $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+
+    # send the buildbot message
+    /usr/sbin/sendmail -f smith@sideshowbarker.net smith@sideshowbarker.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+
     rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
     rm -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock
 
