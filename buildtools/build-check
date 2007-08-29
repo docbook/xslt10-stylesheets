@@ -15,7 +15,7 @@ then
     exit 0
   else
     echo
-    echo "Possible build errors found:"
+    echo "Possible build problems found:"
     echo
     $grep -i "$errorRegexp" $LOGFILENAME
     echo
