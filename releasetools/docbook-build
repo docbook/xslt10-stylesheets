@@ -345,7 +345,7 @@ EOF
 
     # set up the e-mail From and To headers for buildbot message
     cat <<- EOF > $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-From: DocBook buildbot <buildbot@sideshowbarker.net>
+From: docbook buildbot <buildbot@sideshowbarker.net>
 To: docbook-snapshots@lists.sourceforge.net
 EOF
 
