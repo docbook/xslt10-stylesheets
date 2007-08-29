@@ -369,6 +369,8 @@ EOF
       # of the buildbot message
       $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "The complete log file for the r$REVISION build follows." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "-----------------------------------------------------------------" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # copy the entire log file to the buildbot message
       cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
