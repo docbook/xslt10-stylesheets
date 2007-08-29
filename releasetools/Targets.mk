@@ -221,7 +221,7 @@ else
 	   )"
 endif
 
-install: release tag upload-to-sf-incoming upload-to-project-webspace
+install: $(INSTALL_DEPENDS) upload-to-sf-incoming upload-to-project-webspace
 	@echo "The docbook-$(DISTRO) and docbook-$(DISTRO)-doc packages have been uploaded to the SF incoming area."
 	@echo "Use the form at the following URL to move files to the project release area."
 	@echo
