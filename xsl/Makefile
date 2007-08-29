@@ -18,11 +18,11 @@ DISTRIB_CHANGELOG_INCLUDES = gentext xsl-saxon xsl-xalan
 
 # value of DISTRIB_DEPENDS is a space-separated list of any
 # targets for this distro's "distrib" target to depend on
-DISTRIB_DEPENDS = doc docsrc install.sh RELEASE-NOTES.txt RELEASE-NOTES.pdf extensions
+DISTRIB_DEPENDS = doc docsrc install.sh RELEASE-NOTES.txt extensions
 
 # value of RELEASE_DEPENDS is a space-separated list of any
 # targets for this distro's "release" target to depend on
-RELEASE_DEPENDS = smoketest
+RELEASE_DEPENDS = smoketest RELEASE-NOTES.pdf
 
 # value of ZIP_DEPENDS is a space-separated list of any targets
 # for this distro's "zip" target to depend on
