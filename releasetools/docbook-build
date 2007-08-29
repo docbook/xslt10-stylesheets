@@ -345,7 +345,7 @@ EOF
 
     # set up the e-mail From and To headers for buildbot message
     cat <<- EOF > $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-From: snapshot buildbot <smith@sideshowbarker.net>
+From: DocBook buildbot <buildbot@sideshowbarker.net>
 To: Michael(tm) Smith <smith@sideshowbarker.net>
 EOF
 
@@ -385,7 +385,7 @@ EOF
     fi
 
     # send the buildbot message
-    /usr/sbin/sendmail -f smith@sideshowbarker.net smith@sideshowbarker.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    /usr/sbin/sendmail -f buildbot@sideshowbarker.net smith@sideshowbarker.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
 
     rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
     rm -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock
