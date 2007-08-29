@@ -245,7 +245,7 @@ else
 	  @echo "repository, or add them to the svn:ignore properties for their"
 	  @echo "parent directories."
 	  @echo
-	  @svn status | egrep '^\?|^X' | cut -c2-
+	  @svn status
 endif
 
 release-clean: clean
