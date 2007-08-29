@@ -96,7 +96,8 @@ ChangeHistory.xml:
 	cp $< $@
 
 catalog.xml: .make-catalog.xsl
-	$(XSLT) $< $< $@ DISTRO="$(DISTRO)"
+	$(XSLT) $< $< DISTRO="$(DISTRO)" \
+	  | $(XMLLINT) $(XMLLINT_OPTS) --format --encode utf-8 - > $@
 
 install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
 	cp $< $@
