@@ -358,6 +358,10 @@ EOF
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "snapshot $REVISION appears to have been built successfully" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "For details about the code changes in this snapshot, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "You can download the snapshot here:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "http://docbook.sourceforge.net/snapshots/" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     else
       # build-check did not complete successfully, so prepare
@@ -368,9 +372,13 @@ EOF
       # run buildcheck again and copy the output to the beginning
       # of the buildbot message
       $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "For details about the code changes that may have caused the build to break, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "The complete log file for the r$REVISION build follows." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "-----------------------------------------------------------------" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # copy the entire log file to the buildbot message
       cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
