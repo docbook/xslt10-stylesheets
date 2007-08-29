@@ -39,7 +39,7 @@ DISTRIB_EXCLUDES = \
   doc/HTML.manifest$$ \
   tools/xsl \
   xhtml/html2xhtml.xsl$$ \
-  README.RELEASE-BUILD \
+  README.BUILD \
   RELEASE-NOTES-PARTIAL.txt \
   .param.dbkns \
   .param.stripped \
