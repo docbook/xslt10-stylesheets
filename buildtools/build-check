@@ -4,7 +4,9 @@ grep=egrep
 LOGFILENAME=$1
 # FIXME: This regexp may not catch all error messages emitted;
 # probably should be refined with a more complete regexp.
-errorRegexp="error|fail|\*\*[^.]"
+# The [^-]fail part is to prevent it from interpreting the
+# tar "ignore-failed-read" switch as an error message.
+errorRegexp="error|[^-]fail|\*\*[^.]"
 if [ -f $LOGFILENAME ]
 then
   errors=$($grep -i $errorRegexp $LOGFILENAME)
