@@ -351,12 +351,13 @@ Subject: snapshot $REVISION
 
 EOF
 
+    # run buildcheck and copy the output to the beginning of the
+    # buildbot message
+    $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     # copy the entire log file to the buildbot message
     cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     echo "buildcheck output:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-    # run buildcheck and copy the output to the buildbot message
-    $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
 
     # send the buildbot message
     /usr/sbin/sendmail -f smith@sideshowbarker.net smith@sideshowbarker.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
