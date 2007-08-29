@@ -232,12 +232,15 @@ announce: $(ANNOUNCE_CHANGES) .announcement-text distrib
 
 tag:
 ifeq (,$(shell svn status))
-ifneq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG) 2>/dev/null))
-	  $(SVN) $(SVN_OPTS) delete -m "deleting the $(ZIPVER) tag" \
+ifneq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO) 2>/dev/null))
+	  $(SVN) $(SVN_OPTS) delete -m "deleting the $(DISTRO) $(ZIPVER) tag" \
+	    $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)
+endif
+ifeq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG) 2>/dev/null))
+	  $(SVN) $(SVN_OPTS) mkdir -m "creating the $(ZIPVER) tag" \
 	    $(REPOSITORY_ROOT)/tags/$(TAG)
 endif
-	  $(SVN) $(SVN_OPTS) mkdir -m "creating the $(ZIPVER) tag" $(REPOSITORY_ROOT)/tags/$(TAG) \
-	  && $(SVN) $(SVN_OPTS) copy -m "tagging the docbook-$(DISTRO) $(ZIPVER) release" \
+	  $(SVN) $(SVN_OPTS) copy -m "tagging the $(DISTRO) $(ZIPVER) release" \
 	    -r $(REVISION) $(DISTRO_URL) $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)
 else
 	  @echo "Unversioned or uncommitted files found. Before tagging/uploading"
