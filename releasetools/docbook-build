@@ -234,22 +234,15 @@ else
     svn update $DISTRO/VERSION 1>/dev/null 2>&1
 
     printf "." 1>&2
-    if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then 
-      DIFFVER=`grep "Version>.\+<" $DISTRO/VERSION \
-        | sed "s/^[^<]*<fm:Version>\(.\+\)<\/fm:Version>$/\1/" | tr -d "\n"`
-    else
-      DIFFVER=`cat $DISTRO/VERSION`
-    fi
 
-    if grep "<xsl:stylesheet" $DISTRO/VERSION >/dev/null; then
-      cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
-      sed "s/Version>.\+</Version>$RELEASEVERSION\_$REVISION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
-      rm $DISTRO/VERSION.tmp
-    else
-      echo "$RELEASEVERSION_$REVISION" > $DISTRO/VERSION
-    fi
-
+    # replace the current fm:Version value with the snapshot number
+    cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
+    # FIXME: we really should be doing this using a modifiled XSLT identity
+    # transform, but anyway, this works OK for now...
+    sed "s/Version>.\+</Version>$RELEASEVERSION\_$REVISION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+    rm $DISTRO/VERSION.tmp
     printf "Done.\n" 1>&2
+
     # start re-directing stout and stderr to log file (if logging enabled)
     if [ $LOGDIR ]; then
       echo "Logging all further output to $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp"
@@ -274,7 +267,7 @@ else
     echo "Building $DISTRO distribution..."
     echo
 
-    make distrib -C $DISTRO DIFFVER=$DIFFVER XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+    make distrib -C $DISTRO XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
 
     cat <<- EOF > HEADER.txt
 The snapshot for a particular distribution is re-built automatically each time
