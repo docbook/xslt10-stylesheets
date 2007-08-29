@@ -354,9 +354,9 @@ EOF
     then
       # build-check completed successfully, so prepare the
       # buildbot message accordingly
-      echo "Subject: snapshot $REVISION now available" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "Subject: $DISTRO snapshot $REVISION now available" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "snapshot $REVISION appears to have been built successfully" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "$DISTRO snapshot $REVISION appears to have been built successfully" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "For details about the code changes in this snapshot, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
@@ -366,9 +366,9 @@ EOF
     else
       # build-check did not complete successfully, so prepare
       # the buildbot message accordingly
-      echo "Subject: snapshot build is broken at r$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "Subject: $DISTRO snapshot build is broken at r$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "The snapshot build appears to be broken at r$REVISION or before." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "The $DISTRO snapshot build appears to be broken at r$REVISION or before." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # run buildcheck again and copy the output to the beginning
       # of the buildbot message
       $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
