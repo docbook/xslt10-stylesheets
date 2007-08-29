@@ -385,7 +385,7 @@ EOF
     fi
 
     # send the buildbot message
-    /usr/sbin/sendmail -f buildbot@sideshowbarker.net smith@sideshowbarker.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    /usr/sbin/sendmail -f buildbot@sideshowbarker.net docbook-snapshots@lists.sourceforge.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
 
     rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
     rm -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock
