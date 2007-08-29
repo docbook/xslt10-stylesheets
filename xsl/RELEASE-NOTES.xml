@@ -10,44 +10,44 @@
   <!-- * <author><orgname>DocBook Project Development Team</orgname></author> -->
 
 <abstract>
-<para>This release-notes document is available in the following formats:
-  <link
-    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.html"
-    >HTML</link>,
-  <link
-    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.pdf"
-    >PDF</link>,
-  <link
-    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.txt"
-    >plain text</link>; it provides a per-release list
-of enhancements and changes to the stylesheets’ public APIs
-(user-configurable parameters) and excludes descriptions of most
-bug fixes. For a complete list of all changes (including all bug
-fixes) that have been made since the previous release, see the
-separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link
-  xlink:href="NEWS.html">NEWS.html</link> files. Also available:
-An online <link
-  xlink:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log"
-  >hyperlinked change history</link> (warning: big file) of all
-changes made over the entire history of the codebase.</para>
+<!-- * <para>This release-notes document is available in the following formats: -->
+  <!-- * <link -->
+    <!-- * xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.html" -->
+    <!-- * >HTML</link>, -->
+  <!-- * <link -->
+    <!-- * xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.pdf" -->
+    <!-- * >PDF</link>, -->
+  <!-- * <link -->
+    <!-- * xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.txt" -->
+    <!-- * >plain text</link>; it provides a per-release list -->
+<!-- * of enhancements and changes to the stylesheets’ public APIs -->
+<!-- * (user-configurable parameters) and excludes descriptions of most -->
+<!-- * bug fixes. For a complete list of all changes (including all bug -->
+<!-- * fixes) that have been made since the previous release, see the -->
+<!-- * separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link -->
+  <!-- * xlink:href="NEWS.html">NEWS.html</link> files. Also available: -->
+<!-- * An online <link -->
+  <!-- * xlink:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log" -->
+  <!-- * >hyperlinked change history</link> (warning: big file) of all -->
+<!-- * changes made over the entire history of the codebase.</para> -->
 
 <!-- * <para>As with all DocBook Project <link linkend="dot0">dot-zero</link> -->
 <!-- * releases, this is an experimental release. It will be followed shortly -->
 <!-- * by a stable release.</para> -->
 <!-- *  -->
-<!-- * <para>This is a pre-release “snapshot” of the DocBook XSL -->
-<!-- * Stylesheets. The change information in the first section of this -->
-<!-- * file (for “<xi:include href="NEWS.xml" -->
-<!-- * xpointer="xpointer(/article/sect1/title/text())"/>”) is -->
-<!-- * auto-generated from change descriptions stored in the project -->
-<!-- * source-code repository.</para> -->
-<!-- *  -->
-<!-- * <para>That means the first section contains descriptions both of bug -->
-<!-- * fixes and of feature changes. The remaining sections are manually -->
-<!-- * edited changelog subsets that exclude bug-fix descriptions – that -->
-<!-- * is, trimmed down to just those those descriptions that document -->
-<!-- * enhancements and changes to the public APIs (user-configurable -->
-<!-- * parameters).</para> -->
+<para>This is a pre-release “snapshot” of the DocBook XSL
+Stylesheets. The change information in the first section of this
+file (for “<xi:include href="NEWS.xml"
+xpointer="xpointer(/article/sect1/title/text())"/>”) is
+auto-generated from change descriptions stored in the project
+source-code repository.</para>
+
+<para>That means the first section contains descriptions both of bug
+fixes and of feature changes. The remaining sections are manually
+edited changelog subsets that exclude bug-fix descriptions – that
+is, trimmed down to just those those descriptions that document
+enhancements and changes to the public APIs (user-configurable
+parameters).</para>
 </abstract>
 </info>
 
@@ -926,6 +926,55 @@ snapshot (by means of rsync).</phrase></screen>
 </listitem>
 </itemizedlist>
 </sect2><!--end of Tools changes for 1.73.0-->
+<sect2 xml:id="V1.73.0_XSL-Saxon">
+<title>XSL-Saxon</title>
+<para>The following changes have been made to the
+            <filename>xsl-saxon</filename> code
+            since the 1.72.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: xalan27/src/com/nwalsh/xalan/Verbatim.java; xalan27/src/com/nwalsh/xalan/⋯</literal></para><screen><phrase role="commit-message">Added modifications so that the new <parameter>callout.icon.size</parameter> parameter is taken into account. This 
+parameter is used for FO output (where SVG now is the default graphics format for callouts).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: saxon65/src/com/nwalsh/saxon/FormatCallout.java; xalan27/src/com/nwalsh/x⋯</literal></para><screen><phrase role="commit-message">Added code for generating id attributes on callouts in HTML and FO output.
+These patches enable cross-references to callouts placed by <tag>area</tag> coordinates.
+It works for graphic, unicode and text callouts. 
+Part of fix for bug #1675513 (<tag>xref</tag> to <tag>area</tag> broken).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: saxon65/src/com/nwalsh/saxon/Website.java; xalan27/src/com/nwalsh/xalan⋯</literal></para><screen><phrase role="commit-message">Copied over Website XSL Java extensions.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-Saxon changes for 1.73.0-->
+<sect2 xml:id="V1.73.0_XSL-Xalan">
+<title>XSL-Xalan</title>
+<para>The following changes have been made to the
+            <filename>xsl-xalan</filename> code
+            since the 1.72.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile; xalan2</literal></para><screen><phrase role="commit-message">Turned off xalan2.jar build. This removes DocBook XSL
+Java extensions support for versions of Xalan prior to
+Xalan 2.7. If you are currently using the extensions
+with an earlier version of Xalan, you need to upgrade
+to Xalan 2.7.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: xalan27/src/com/nwalsh/xalan/Verbatim.java; xalan27/src/com/nwalsh/xalan/⋯</literal></para><screen><phrase role="commit-message">Added modifications so that the new <parameter>callout.icon.size</parameter> parameter is taken into account. This 
+parameter is used for FO output (where SVG now is the default graphics format for callouts).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: saxon65/src/com/nwalsh/saxon/FormatCallout.java; xalan27/src/com/nwalsh/x⋯</literal></para><screen><phrase role="commit-message">Added code for generating id attributes on callouts in HTML and FO output.
+These patches enable cross-references to callouts placed by <tag>area</tag> coordinates.
+It works for graphic, unicode and text callouts. 
+Part of fix for bug #1675513 (<tag>xref</tag> to <tag>area</tag> broken).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: saxon65/src/com/nwalsh/saxon/Website.java; xalan27/src/com/nwalsh/xalan⋯</literal></para><screen><phrase role="commit-message">Copied over Website XSL Java extensions.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-Saxon changes for 1.73.0-->
 </sect1><!--end of changes for the 1.73.0 release-->
 
 <sect1 xml:id="V1.72.0">
