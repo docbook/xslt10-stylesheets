@@ -343,21 +343,38 @@ EOF
     ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.zip *.log; touch $DISTRO)"
     fi
 
-    # set up the e-mail message headers for buildbot message
+    # set up the e-mail From and To headers for buildbot message
     cat <<- EOF > $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
 From: snapshot buildbot <smith@sideshowbarker.net>
 To: Michael(tm) Smith <smith@sideshowbarker.net>
-Subject: snapshot $REVISION
-
 EOF
 
-    # run buildcheck and copy the output to the beginning of the
-    # buildbot message
-    $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-    # copy the entire log file to the buildbot message
-    cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-    echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-    echo "buildcheck output:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    # Run build-check and determine if it exits without any errors
+    if $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp
+    then
+      # build-check completed successfully, so prepare the
+      # buildbot message accordingly
+      echo "Subject: snapshot $REVISION now available" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "snapshot $REVISION appears to have been built successfully" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "http://docbook.sourceforge.net/snapshots/" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    else
+      # build-check did not complete successfully, so prepare
+      # the buildbot message accordingly
+      echo "Subject: snapshot build is broken (r$REVISION)" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "The snapshot build appears to be broken at r$REVISION or before. the following problems occurred:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "During the r$REVISION snapshot build, the following problems were found:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      # run buildcheck again and copy the output to the beginning
+      # of the buildbot message
+      $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      # copy the entire log file to the buildbot message
+      cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+    fi
 
     # send the buildbot message
     /usr/sbin/sendmail -f smith@sideshowbarker.net smith@sideshowbarker.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
