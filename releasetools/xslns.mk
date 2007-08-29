@@ -37,13 +37,13 @@ zip-ns: zip
 # fix catalog.xml file
 	$(XSLT) .make-catalog.xsl .make-catalog.xsl \
 	  DISTRO="$(DISTRO)-ns" BRANCH="XSL-NS" \
-	  | $(XMLLINT) $(XMLLINT_OPTS) --format - \
-	  | grep -v "<?xml" \
+	  | $(XMLLINT) $(XMLLINT_OPTS) --format --encode utf-8 - \
 	  > $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/catalog.xml
 
 # repair perms
 	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/fo/pdf2index
 	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/install.sh
+	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/tools/bin/docbook-xsl-update
 
 # gzip/bzip/zip it
 	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-ns-$(ZIPVER) \
