@@ -160,7 +160,6 @@ ZIP_EXCLUDES = \
  /CVS/ \
  .*/\.svn \
  /debian \
- \.classes \
  ~$$ \
  \..*\.pyc \
  \\\#.* \
@@ -178,7 +177,8 @@ ZIP_EXCLUDES = \
  \.make-catalog\.xsl \
  param\.ent$$ \
  .*\.xweb$$ \
- lib/lib\.xml$$
+ lib/lib\.xml$$ \
+ \.announcement-text
 
 # specifies options to feed to "freshmeat-submit"
 FMGO=-N
