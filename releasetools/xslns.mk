@@ -93,7 +93,7 @@ else
 	   )"
 endif
 
-install-ns: upload-to-sf-incoming upload-to-project-webspace-ns
+install-ns: install upload-to-project-webspace-ns
 	@echo "The docbook-$(DISTRO), docbook-$(DISTRO)-ns, docbook-$(DISTRO)-ns packages have been uploaded to"
 	@echo "the SF incoming area."
 	@echo "Use the following form to move the uploaded files to the project release area."
