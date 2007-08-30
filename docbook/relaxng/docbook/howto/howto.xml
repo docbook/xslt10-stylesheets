@@ -18,8 +18,16 @@
 <author><personname>Dick Hamilton</personname>
         <email>rlhamilton@frii.com</email>
         <contrib>§changes-removed, customization, proofreading</contrib></author>
+<othercredit
+  class="other"
+  otherclass="contributor"
+  ><personname>Michael(tm) Smith</personname>
+  <email>smith@sideshowbarker.net</email>
+  <contrib>§dbxsl-ns</contrib>
+</othercredit>
 </authorgroup>
 
+<pubdate>2007-12-25</pubdate> <!-- dummy placeholder data for dev version -->
 <pubdate>2006-10-22</pubdate>
 <pubdate>2006-05-16</pubdate>
 <pubdate>2006-03-01</pubdate>
@@ -510,13 +518,8 @@ additional message:</para>
 Processing stripped document.</screen>
 
 <para>Although you can successfully use the existing stylesheets to
-process DocBook V5.0, there are some limitations. To support some of
-the new features of DocBook V5.0, the existing stylesheets would
-require a significant rewrite.
-A rewrite is unlikely because a new version of stylesheets is currently
-under development.</para>
-
-<para>The unsupported features include:</para>
+process DocBook V5.0, there are some limitations and unsupported
+features. The unsupported features include:</para>
 
 <itemizedlist>
 <listitem><para>general annotations;</para></listitem>
@@ -534,15 +537,26 @@ possible that there are corner cases where they will fail.</para>
 with DocBook V5.0 you have to use profiling variants of those
 stylesheets (their name is starting with
 <literal>profile-</literal>).</para>
-
-<para>As you can see namespace stripping could cause troubles in some
-situations. To overcome those limitations Bob Stayton created
-a special version of the DocBook XSL stylesheets which doesn't use
-namespace stripping and supports only DocBook V5.0. You can get those
-experimental stylesheets from <link
-xl:href="http://sagehill.net/xml/docbook5ns/"/>.</para>
 </note>
+</section>
 
+<section xml:id="dbxsl-ns">
+<title>DocBook XSL-NS Stylesheets</title>
+<para>As you can see from reading the previous section, namespace
+  stripping has limitations that will cause trouble in some
+  situations. To overcome those limitations, Bob Stayton created a
+  build system for taking the non-namespace-aware DocBook XSL
+  stylesheets and generating namespace-aware versions from them.
+  The DocBook <link
+    xl:href="http://docbook.sourceforge.net/release/xsl-ns/current/"
+  >XSL-NS stylesheets</link> are the result.</para>
+
+<para>The DocBook XSL-NS stylesheets are released side-by-side
+  with the DocBook XSL stylesheets, as a separate <link
+  xl:href="https://sourceforge.net/project/showfiles.php?group_id=21935&amp;package_id=219178"
+  ><package>docbook-xsl-ns</package></link> package. They are the
+recommended XSLT 1.0 stylesheets to use for transforming
+namespaced (DocBook 5) documents.</para>
 </section>
 
 <section xml:id="dbxsl2">
