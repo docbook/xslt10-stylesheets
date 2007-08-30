@@ -369,7 +369,7 @@ safely ignore this part.
 8. After making all changes/additions to the RELEASE-NOTES.xml
    file, check it back in with 
 
-     svn commit -m "Updated 1.NN.N release" RELEASE-NOTES.xml
+     svn commit -m "Updated for 1.NN.N release" RELEASE-NOTES.xml
 
 -----------------------------------------------------------------
 Part 4: Build a release
