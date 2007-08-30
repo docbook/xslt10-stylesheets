@@ -68,7 +68,7 @@ changes made over the entire history of the codebase.</para>
   <!-- * <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/> -->
 <!-- * </sect1> -->
 
-<sect1 xml:id="V1.73.2-pre">
+<sect1 xml:id="V1.73.2">
 <title>Release Notes: 1.73.2</title>
 <para>This is solely a minor bug-fix update to the 1.73.1 release.
   It fixes a packaging error in the 1.73.1 package, as well as a
