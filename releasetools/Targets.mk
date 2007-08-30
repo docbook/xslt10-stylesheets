@@ -228,7 +228,7 @@ install: $(INSTALL_DEPENDS) upload-to-sf-incoming upload-to-project-webspace
 	@echo
 	@echo "  http://sourceforge.net/project/admin/editpackages.php?group_id=21935"
 
-announce: $(ANNOUNCE_CHANGES) .announcement-text release
+announce: $(ANNOUNCE_CHANGES) .announcement-text
 	$(RELEASE_ANNOUNCE) "$(DISTRO_TITLE)" "$(RELVER)" .announcement-text $< "$(ANNOUNCE_RECIPIENTS)"
 
 tag:
