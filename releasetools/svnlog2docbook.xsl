@@ -146,7 +146,7 @@
         <abstract>
           <xsl:text>&#xa;</xsl:text>
           <para><emphasis role="strong">Note:</emphasis> This
-            document list changes only since the <xsl:value-of
+            document lists changes only since the <xsl:value-of
               select="$previous-release"/> release.
             If you instead want a record of the complete list of
             changes for the codebase over its entire history, you
