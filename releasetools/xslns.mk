@@ -102,6 +102,6 @@ install-ns: upload-to-sf-incoming upload-to-project-webspace-ns
 
 announce-ns: announce
 	$(RELEASE_ANNOUNCE) "XSL-NS Stylesheets" "$(RELVER)" \
-	  $(DOCBOOK_SVN)/releasetools/xslnsfiles/announcement-text
+	  $(DOCBOOK_SVN)/releasetools/xslnsfiles/announcement-text \
 	  $(ANNOUNCE_CHANGES) \
 	 "$(ANNOUNCE_RECIPIENTS)"
