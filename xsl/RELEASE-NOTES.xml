@@ -10,48 +10,70 @@
   <!-- * <author><orgname>DocBook Project Development Team</orgname></author> -->
 
 <abstract>
-<!-- * <para>This release-notes document is available in the following formats: -->
-  <!-- * <link -->
-    <!-- * xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.html" -->
-    <!-- * >HTML</link>, -->
-  <!-- * <link -->
-    <!-- * xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.pdf" -->
-    <!-- * >PDF</link>, -->
-  <!-- * <link -->
-    <!-- * xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.txt" -->
-    <!-- * >plain text</link>; it provides a per-release list -->
-<!-- * of enhancements and changes to the stylesheets’ public APIs -->
-<!-- * (user-configurable parameters) and excludes descriptions of most -->
-<!-- * bug fixes. For a complete list of all changes (including all bug -->
-<!-- * fixes) that have been made since the previous release, see the -->
-<!-- * separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link -->
-  <!-- * xlink:href="NEWS.html">NEWS.html</link> files. Also available: -->
-<!-- * An online <link -->
-  <!-- * xlink:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log" -->
-  <!-- * >hyperlinked change history</link> (warning: big file) of all -->
-<!-- * changes made over the entire history of the codebase.</para> -->
+  <!-- * FIXME: It's really a PITA to do this thing of toggling of -->
+  <!-- * commenting of various para instances in this intro depending of -->
+  <!-- * what type of release it is (snapshot, dot-zero, dot-one-plus). -->
+  <!-- * So I've now added profiling attributes where we need them. But -->
+  <!-- * I've not yet tweaked the release-notes build to actually do -->
+  <!-- * anything with them. It can wait until after the 1.73.2 release). -->
+<para condition="dot-zero;dot-one-plus">This release-notes
+  document is available in the following formats:
+  <link
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.html"
+    >HTML</link>,
+  <link
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.pdf"
+    >PDF</link>,
+  <link
+    xlink:href="http://docbook.sourceforge.net/release/xsl/current/RELEASE-NOTES.txt"
+    >plain text</link>; it provides a per-release list
+of enhancements and changes to the stylesheets’ public APIs
+(user-configurable parameters) and excludes descriptions of most
+bug fixes. For a complete list of all changes (including all bug
+fixes) that have been made since the previous release, see the
+separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link
+  xlink:href="NEWS.html">NEWS.html</link> files. Also available:
+An online <link
+  xlink:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log"
+  >hyperlinked change history</link> (warning: big file) of all
+changes made over the entire history of the codebase.</para>
 
-<!-- * <para>As with all DocBook Project <link linkend="dot0">dot-zero</link> -->
-<!-- * releases, this is an experimental release. It will be followed shortly -->
-<!-- * by a stable release.</para> -->
+<!-- * <para condition="dot-zero">As with all DocBook Project <link -->
+    <!-- * linkend="dot0">dot-zero</link> releases, this is an -->
+  <!-- * experimental release. It will be followed shortly by a stable -->
+  <!-- * release.</para> -->
+
+<para condition="dot-one-plus">As with all DocBook Project “dot
+  one plus” releases, this release aspires to be stable (in
+  contrast to <link linkend="dot0">dot-zero</link> releases, which
+  are experimental).</para>
+
+<!-- * <para condition="snapshot">This is a pre-release “snapshot” of the -->
+<!-- * DocBook XSL Stylesheets. The change information in the first -->
+<!-- * section of this file (for “<xi:include href="NEWS.xml" -->
+  <!-- * xpointer="xpointer(/article/sect1/title/text())"/>”) is -->
+<!-- * auto-generated from change descriptions stored in the project -->
+<!-- * source-code repository.</para> -->
 <!-- *  -->
-<para>This is a pre-release “snapshot” of the DocBook XSL
-Stylesheets. The change information in the first section of this
-file (for “<xi:include href="NEWS.xml"
-xpointer="xpointer(/article/sect1/title/text())"/>”) is
-auto-generated from change descriptions stored in the project
-source-code repository.</para>
-
-<para>That means the first section contains descriptions both of bug
-fixes and of feature changes. The remaining sections are manually
-edited changelog subsets that exclude bug-fix descriptions – that
-is, trimmed down to just those those descriptions that document
-enhancements and changes to the public APIs (user-configurable
-parameters).</para>
+<!-- * <para condition="snapshot">That means the first section contains -->
+<!-- * descriptions both of bug fixes and of feature changes. The -->
+<!-- * remaining sections are manually edited changelog subsets that -->
+<!-- * exclude bug-fix descriptions – that is, trimmed down to just those -->
+<!-- * those descriptions that document enhancements and changes to the -->
+<!-- * public APIs (user-configurable parameters).</para> -->
 </abstract>
 </info>
 
-<xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
+<!-- * <sect1 condition="snapshot"> -->
+  <!-- * <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/> -->
+<!-- * </sect1> -->
+
+<sect1 xml:id="V1.73.2-pre">
+<title>Release Notes: 1.73.2</title>
+<para>This is solely a minor bug-fix update to the 1.73.1 release.
+  It fixes a packaging error in the 1.73.1 package, as well as a
+  bug in footnote handling in FO output.</para>
+</sect1>
 
 <sect1 xml:id="V1.73.1">
 <title>Release: 1.73.1</title>
@@ -6592,16 +6614,15 @@ XHTML chunker to output HTML instead of XHTML.
 </sect1>
 <sect1 xml:id="dot0">
   <title>About dot-zero releases</title>
-    <para>DocBook Project <quote>dot zero</quote> releases should be
+    <para>DocBook Project “dot zero” releases should be
     considered <emphasis>experimental</emphasis> and are always
-    followed by stable <quote>dot one</quote> releases, usually within
+    followed by stable “dot one plus” releases, usually within
     two or three weeks. Please help to ensure the stability of
-    <quote>dot one</quote> releases by carefully testing each
-    <quote>dot zero</quote> release and reporting back about any
+    “dot one plus” releases by carefully testing each
+    “dot zero” release and reporting back about any
     problems you find. </para>
-    <para>It is not recommended that you use a <quote>dot zero</quote>
-    release in a production system, or package it for an OS
-    distro. Instead, you should wait for the <quote>dot one</quote>
-    version.</para>
+    <para>It is not recommended that you use a “dot zero”
+    release in a production system. Instead, you should wait for
+    the “dot one” or greater versions.</para>
   </sect1>
 </article>
