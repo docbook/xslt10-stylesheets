@@ -125,19 +125,27 @@
   <h4>
     <xsl:text>Author</xsl:text>
     <xsl:if test="count(author) &gt; 1">s</xsl:if>
+    <xsl:if test="othercredit">
+      <xsl:text> and other credited contributors</xsl:text>
+    </xsl:if>
     <xsl:text>:</xsl:text>
   </h4>
   <dl class="authorlist">
-    <xsl:apply-templates select="author" mode="howto-titlepage"/>
+    <xsl:apply-templates select="author|othercredit" mode="howto-titlepage"/>
   </dl>
 </xsl:template>
 
-<xsl:template match="author" mode="howto-titlepage">
+<xsl:template match="author|othercredit" mode="howto-titlepage">
   <dt>
     <xsl:apply-templates select="personname"/>
     <xsl:if test="email">
       <xsl:text>, </xsl:text>
       <xsl:apply-templates select="email"/>
+    </xsl:if>
+    <xsl:if test="@otherclass">
+      <xsl:text> (</xsl:text>
+      <xsl:value-of select="normalize-space(@otherclass)"/>
+      <xsl:text>)</xsl:text>
     </xsl:if>
   </dt>
 </xsl:template>

@@ -107,19 +107,27 @@
   <fo:block font-size="12pt" font-family="sans-serif">
     <xsl:text>Author</xsl:text>
     <xsl:if test="count(author) &gt; 1">s</xsl:if>
+    <xsl:if test="othercredit">
+      <xsl:text> and other credited contributors</xsl:text>
+    </xsl:if>
     <xsl:text>:</xsl:text>
   </fo:block>
-  <xsl:apply-templates select="author" mode="howto-titlepage"/>
+  <xsl:apply-templates select="author|othercredit" mode="howto-titlepage"/>
 </xsl:template>
 
-<xsl:template match="author" mode="howto-titlepage">
+<xsl:template match="author|othercredit" mode="howto-titlepage">
   <fo:block xsl:use-attribute-sets="urilist">
     <xsl:apply-templates select="personname"/>
     <xsl:if test="email">
       <xsl:text>, </xsl:text>
       <xsl:apply-templates select="email"/>
     </xsl:if>
-  </fo:block>
+    <xsl:if test="@otherclass">
+      <xsl:text> (</xsl:text>
+      <xsl:value-of select="normalize-space(@otherclass)"/>
+      <xsl:text>)</xsl:text>
+    </xsl:if>
+ </fo:block>
 </xsl:template>
 
 <xsl:attribute-set name="monospace.properties">
