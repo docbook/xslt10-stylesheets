@@ -170,7 +170,7 @@
             name="xml:id">V<xsl:value-of
             select="$release-version"/></xsl:attribute>
         <xsl:text>&#xa;</xsl:text>
-        <title>Release: <xsl:value-of select="$release-version"/></title>
+        <title>Release Notes: <xsl:value-of select="$release-version"/></title>
         <xsl:text>&#xa;</xsl:text>
         <para>The following is a list of changes that have been made
         since the <xsl:value-of select="$previous-release"/> release.</para>
