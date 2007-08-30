@@ -188,7 +188,6 @@ and all other Parts following it).
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/buildtools/build-clean && \
      make smoketest 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
