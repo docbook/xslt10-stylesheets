@@ -380,7 +380,7 @@ you're not a project member, you can safely ignore this part.
 1. To build the actual release packages, run a "make release"
    build from a clean workspace.
 
-   One recommended way to run "make distrib" is the following:
+   One recommended way to run "make release" is the following:
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
@@ -399,8 +399,8 @@ you're not a project member, you can safely ignore this part.
      rm -f DOCBOOK-BUILD.LOG
 
    In addition to the normal error-checking that build-check
-   does, running "make release" will also automatically case
-   the "make smoketest" step to run.
+   does, running "make release" will also automatically run
+   the "make smoketest" step.
 
 2. If there are no errors reported from build-check or "make
    release", run a "make zip-ns" build:
