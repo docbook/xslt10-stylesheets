@@ -9,7 +9,7 @@ debug:
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
-	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@ \
+	$(XSLT) profile.condition $(RELEASE_TYPE) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@ \
 	doc-baseuri="$(DOC_BASEURI)"
 	$(RM) RELEASE-NOTES-TMP.xml
 
