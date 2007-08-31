@@ -1,4 +1,4 @@
-<!DOCTYPE xsl:stylesheet SYSTEM "blocks2dbk.dtd">
+<!DOCTYPE xsl:stylesheet [
 <!-- External DTD defines entities:
      components :- QNames of component-level elements
      blocks :- QNames of block-level elements
@@ -7,6 +7,9 @@
      admonition :- XPath expression matching admonition styles
      admonition-title :- XPath expression matching admonition title styles
 -->
+<!ENTITY % ext SYSTEM "blocks2dbk.dtd">
+%ext;
+]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:dbk='http://docbook.org/ns/docbook'

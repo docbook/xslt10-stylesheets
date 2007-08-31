@@ -100,6 +100,8 @@
         <w:zoom w:percent="100"/>
         <w:doNotEmbedSystemFonts/>
         <w:attachedTemplate w:val=""/>
+        <w:documentProtection w:formatting='on' w:enforcement='on'
+          w:unprotectPassword='CAA7FF77'/>
         <w:defaultTabStop w:val="720"/>
         <w:autoHyphenation/>
         <w:hyphenationZone w:val="357"/>
