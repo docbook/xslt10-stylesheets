@@ -383,6 +383,10 @@ EOF
       # copy the entire log file to the buildbot message
       cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "The log message for this revision follows." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      # append the commit message for this revision
+      /usr/bin/svn log -r$REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     fi
 
     # send the buildbot message
