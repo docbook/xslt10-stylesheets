@@ -10,7 +10,7 @@ debug:
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
 	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@ \
-	doc-baseuri="http://docbook.sourceforge.net/release/xsl/current/doc/"
+	doc-baseuri="$(DOC_BASEURI)"
 	$(RM) RELEASE-NOTES-TMP.xml
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
@@ -19,7 +19,7 @@ RELEASE-NOTES.txt: RELEASE-NOTES.html
 RELEASE-NOTES-PARTIAL.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-PARTIAL-TMP.xml
 	$(XSLT) RELEASE-NOTES-PARTIAL-TMP.xml $(DOC_LINK_STYLE) $@ \
-	doc-baseuri="http://docbook.sourceforge.net/release/xsl/current/doc/" \
+	doc-baseuri="$(DOC_BASEURI)" \
 	rootid="V$(RELVER)"
 	$(RM) RELEASE-NOTES-PARTIAL-TMP.xml
 
@@ -59,7 +59,8 @@ NEWS.xml: ChangeLog.xml
 	param.file="$(shell readlink -f $(XSL_PARAMS))"
 
 NEWS.html: NEWS.xml
-	$(XSLT) $< $(DOC_LINK_STYLE) $@
+	$(XSLT) $< $(DOC_LINK_STYLE) $@ \
+	doc-baseuri="$(DOC_BASEURI)"
 
 $(NEWSFILE): NEWS.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
