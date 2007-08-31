@@ -339,33 +339,25 @@ safely ignore this part.
 
      make NEWS.xml
 
-4. Open the RELEASE-NOTES.xml file and:
-
-   - comment out the paragraphs about snapshot releases
-   - comment out the following line:
-
-       <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
-
-   - uncomment the paragraphs about official releases
-
-5. Open the NEWS.xml file in your text/XML editor, select the
+4. Open the NEWS.xml file in your text/XML editor, select the
    sect1 section and all its child content, and paste that into
    the RELEASE-NOTES.xml file, as the first sect1 child of the
    RELEASE-NOTES.xml file's root article element.
 
-6. Add a variablelist with a varlistentry instance for each major
-   significant change made in this release that merits special
-   mention in the release notes; generally, that means every major
-   enhancement.
+5. In the RELEASE-NOTES.xml file, add a variablelist with a
+   varlistentry instance for each major significant change made in
+   this release that merits special mention in the release notes;
+   generally, that means every major enhancement.
 
-7. In the content you have just pasted in, go through each sect2
-   section  and manually remove any listitem instances that have
-   content which doesn't need to be included in the final release
-   notes. In general, that means removing most bug fixes and
-   "housekeeping" changes that do not need to be exposed to users,
-   but changes for feature enhancements or changes to public APIs.
+6. In the RELEASE-NOTES.xml, in the content you have just pasted
+   in, go through each sect2 section and manually remove any
+   listitem instances that have content which doesn't need to be
+   included in the final release notes. In general, that means
+   removing most bug fixes and "housekeeping" changes that do not
+   need to be exposed to users, but changes for feature
+   enhancements or changes to public APIs.
 
-8. After making all changes/additions to the RELEASE-NOTES.xml
+7. After making all changes/additions to the RELEASE-NOTES.xml
    file, check it back in with 
 
      svn commit -m "Updated for 1.NN.N release" RELEASE-NOTES.xml
@@ -740,22 +732,10 @@ following an official release.
 
      <fm:Version>1.73.1-pre</fm:Version>
 
-5. Open the RELEASE-NOTES.xml file and:
-
-6. Comment out the "These are the release notes for the DocBook
-   XSL Stylesheets..." paragraph.
-
-7. Uncomment the paragraphs about "snapshot" releases.
-
-8. Uncomment the following line:
-
-     <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1)"/>
-
-9. Check the VERSION and RELEASE-NOTES.xml files back in.
+9. Check the VERSION file back in.
 
     svn commit \
-      -m "Restored VERSION and RELEASE-NOTES.xml files to snapshot state" \
-      VERSION RELEASE-NOTES.xml
+      -m "Restored VERSION file to snapshot state" VERSION
 
 -----------------------------------------------------------------
 NOTES
