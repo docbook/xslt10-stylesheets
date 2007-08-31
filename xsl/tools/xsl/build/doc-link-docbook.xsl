@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
 
-<xsl:import href="../../../html/docbook.xsl"/>
+<xsl:import href="../../../html/profile-docbook.xsl"/>
 <xsl:include href="tdg-link.xsl"/>
 <xsl:include href="xsl-param-link.xsl"/>
 <xsl:param name="abstract.notitle.enabled" select="1"/>
