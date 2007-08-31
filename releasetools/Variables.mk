@@ -58,6 +58,8 @@ REFERENCETXTXSL=$(DOCBUILD_STYLESHEETS)/reference-txt.xsl
 
 # RELEASE-NOTES.xml to RELEASE-NOTES.html
 DOC_LINK_STYLE=$(DOCBUILD_STYLESHEETS)/doc-link-docbook.xsl
+DOC_BASEURI=http://docbook.sourceforge.net/release/xsl/current/doc/
+
 # RELEASE-NOTES.xml to RELEASE-NOTES.pdf
 DBX_STYLE=$(DOCBUILD_STYLESHEETS)/dblatex-release-notes.xsl
 
