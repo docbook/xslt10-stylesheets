@@ -19,15 +19,19 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Add a path prefix to each HTML
-<tag class="element">img</tag> or FO 
-<tag class="element">fo:external-graphic</tag> element's
-<tag class="attribute">src</tag> attribute.
-This path could be relative to the directory where the HTML/FO
+<para>Add a path prefix to the value of the <tag class="attribute">fileref</tag> 
+attribute of <tag>graphic</tag> and <tag>imagedata</tag> elements. The resulting 
+compound path is used in the output as the value of the <tag class="attribute">src</tag> 
+attribute of <tag class="element">img</tag> (HTML) or <tag class="element">external-graphic</tag> (FO).
+</para>
+
+<para>
+The path given by <literal>img.src.path</literal> could be relative to the directory where the HTML/FO
 files are created, or it could be an absolute URI.
 The default value is empty.
 Be sure to include a trailing slash if needed.
 </para>
+
 <para>This prefix is not applied to any filerefs that start
 with "/" or contain "//:".
 </para>
