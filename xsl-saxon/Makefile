@@ -21,7 +21,6 @@ INSTALL_DEPENDS = release tag
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release
 DISTRIB_EXCLUDES = \
-  NEWS \
   RELEASE-NOTES-PARTIAL.txt \
 
 ANT = ant
