@@ -128,6 +128,7 @@
       <xsl:call-template name="hhp-main"/>
     </xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -534,6 +535,7 @@ Enhanced decompilation=</xsl:text>
       <xsl:call-template name="hhc-main"/>
     </xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -869,6 +871,7 @@ Enhanced decompilation=</xsl:text>
 </BODY></HTML>]]>
 </xsl:text></xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -982,6 +985,7 @@ Enhanced decompilation=</xsl:text>
      </xsl:choose>
     </xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -1031,6 +1035,7 @@ Enhanced decompilation=</xsl:text>
      </xsl:choose>
     </xsl:with-param>
     <xsl:with-param name="encoding" select="$htmlhelp.encoding"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
