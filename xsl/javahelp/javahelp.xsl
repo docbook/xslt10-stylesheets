@@ -112,6 +112,7 @@
     <xsl:with-param name="content">
       <xsl:call-template name="helpset.content"/>
     </xsl:with-param>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -168,6 +169,7 @@
     <xsl:with-param name="content">
       <xsl:call-template name="helptoc.content"/>
     </xsl:with-param>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -385,6 +387,7 @@
     <xsl:with-param name="content">
       <xsl:call-template name="helpmap.content"/>
     </xsl:with-param>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -531,6 +534,7 @@
     <xsl:with-param name="content">
       <xsl:call-template name="helpidx.content"/>
     </xsl:with-param>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
   </xsl:call-template>
 </xsl:template>
 
