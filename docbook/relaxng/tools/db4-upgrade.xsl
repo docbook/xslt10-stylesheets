@@ -1102,6 +1102,15 @@
   </acknowledgements>
 </xsl:template>
 
+<xsl:template match="lot|lotentry|tocback|tocchap|tocfront|toclevel1|
+		     toclevel2|toclevel3|toclevel4|toclevel5|tocpart" priority="200">
+  <tocdiv>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+  </tocdiv>
+</xsl:template>
+
+
 <!-- ====================================================================== -->
 
 <xsl:template match="ulink" priority="200" mode="copy">
