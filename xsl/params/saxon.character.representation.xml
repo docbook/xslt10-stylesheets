@@ -25,10 +25,14 @@ If you want to suppress entity references for characters with direct representat
 <parameter>chunker.output.encoding</parameter>, set the parameter value to <literal>native</literal>. 
 </para>
 
+<para> For more information, see <link 
+role="tcg" xlink:href="OutputEncoding.html#SaxonCharacter">Saxon output character representation</link>.</para>
+
 <note>
 <para>This parameter is documented here, but the declaration is actually
 in the <filename>chunker.xsl</filename> stylesheet module.</para>
 </note>
 
 </refsection>
+
 </refentry>
