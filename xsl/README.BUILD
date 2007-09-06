@@ -178,28 +178,28 @@ and all other Parts following it).
    to cruft that needs to be deleted and also to any new files
    that you make have created but forgotten to actually check in.
 
-3. make smoketest (optional step)
+3. make check (optional step)
    As an optional step to check for any major brokenness, run
-   "make smoketest", which will run a test transformation against
+   "make check", which will run a test transformation against
    the driver stylesheets for each output format (e.g.,
    html/docbook.xsl, fo/docbook.xsl, etc.).
 
-   One recommended way to invoke "make smoketest" is the following:
+   One recommended way to invoke "make check" is the following:
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     make smoketest 2>&1 \
+     make check 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
 
 4. Fix any obvious problems.
-   If build-check and/or "make smoketest" report any problems, fix
+   If build-check and/or "make check" report any problems, fix
    them. Then repeat Step 1 until you don't see any more problems.
 
 5. Further testing.
    Once you have any obvious problems fixed (that is, the kind
-   that build-check and "make smoketest" can catch, you should
+   that build-check and "make check" can catch, you should
    do further testing of the changes (if any) that you have made
    to the stylesheet code. Try to test with a variety of test
    files, not just with DocBook XML source files you've created
@@ -392,7 +392,7 @@ you're not a project member, you can safely ignore this part.
 
    In addition to the normal error-checking that build-check
    does, running "make release" will also automatically run
-   the "make smoketest" step.
+   the "make check" step.
 
 2. If there are no errors reported from build-check or "make
    release", run a "make zip-ns" build:
