@@ -1,6 +1,6 @@
 # $Id$
 
-smoketest: smoketest-normal smoketest-normal-profile smoketest-chunk smoketest-chunk-profile
+check: smoketest-normal smoketest-normal-profile smoketest-chunk smoketest-chunk-profile
 
 smoketest-normal:
 	for file in $(NORMAL_STYLES); do \
