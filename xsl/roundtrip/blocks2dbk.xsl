@@ -805,6 +805,9 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  <xsl:template match='dbk:inlinemediaobject' mode='rnd:metadata'>
+    <xsl:call-template name='rnd:copy'/>
+  </xsl:template>
   <xsl:template match='*' mode='rnd:metadata'/>
 
   <xsl:template name='rnd:resume-metadata'>
