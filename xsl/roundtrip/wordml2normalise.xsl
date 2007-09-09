@@ -107,11 +107,10 @@
           </xsl:choose>
         </xsl:variable>
 
-        <xsl:if test='element-available("exsl:document")'>
-          <exsl:document href='{$filename}.b64' method='text'>
-            <xsl:value-of select='w:pict/w:binData'/>
-          </exsl:document>
-        </xsl:if>
+        <xsl:call-template name='rnd:handle-image-data'>
+          <xsl:with-param name='filename' select='$filename'/>
+          <xsl:with-param name='data' select='w:pict/w:binData'/>
+        </xsl:call-template>
 
         <dbk:inlinemediaobject>
           <dbk:imageobject>
@@ -171,6 +170,17 @@
         <xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+  <!-- An application may wish to override this template -->
+  <xsl:template name='rnd:handle-image-data'>
+    <xsl:param name='filename'/>
+    <xsl:param name='data'/>
+
+    <xsl:if test='element-available("exsl:document")'>
+      <exsl:document href='{$filename}.b64' method='text'>
+        <xsl:value-of select='w:pict/w:binData'/>
+      </exsl:document>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match='w:hlink'>
