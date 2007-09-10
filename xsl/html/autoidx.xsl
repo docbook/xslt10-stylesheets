@@ -507,7 +507,7 @@
   <xsl:choose>
     <xsl:when test="contains($zones, ' ')">
       <xsl:variable name="zone" select="substring-before($zones, ' ')"/>
-      <xsl:variable name="target" select="key('sections', $zone)[&scope;]"/>
+      <xsl:variable name="target" select="key('sections', $zone)"/>
 
       <a>
         <xsl:apply-templates select="." mode="class.attribute"/>
@@ -530,7 +530,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="zone" select="$zones"/>
-      <xsl:variable name="target" select="key('sections', $zone)[&scope;]"/>
+      <xsl:variable name="target" select="key('sections', $zone)"/>
 
       <a>
         <xsl:apply-templates select="." mode="class.attribute"/>
