@@ -200,7 +200,7 @@
                 $wordsize.ok and 
                 $attribute.ok">
     <xsl:copy>
-      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates mode="profile" select="@*"/>
 
       <!-- Entity references must be replaced with filereferences for temporary tree -->
       <xsl:if test="@entityref and $profile.baseuri.fixup">
