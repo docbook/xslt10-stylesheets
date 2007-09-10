@@ -890,13 +890,38 @@
       </xsl:otherwise>
     </xsl:choose>
   </fo:basic-link>
+  <!-- * Call the template for determining whether the URL for this -->
+  <!-- * hyperlink is displayed, and how to display it (either inline or -->
+  <!-- * as a numbered footnote). -->
+  <xsl:call-template name="hyperlink.url.display">
+    <xsl:with-param name="url" select="$url"/>
+    <xsl:with-param name="ulink.url" select="$ulink.url"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="hyperlink.url.display">
+  <!-- * This template is called for all external hyperlinks (ulinks and -->
+  <!-- * for all simple xlinks); it determines whether the URL for the -->
+  <!-- * hyperlink is displayed, and how to display it (either inline or -->
+  <!-- * as a numbered footnote). -->
+  <xsl:param name="url" select="$url"/>
+  <xsl:param name="ulink.url">
+    <!-- * ulink.url is just the value of the URL wrapped in 'url(...)' -->
+    <xsl:call-template name="fo-external-image">
+      <xsl:with-param name="filename" select="$url"/>
+    </xsl:call-template>
+  </xsl:param>
 
   <xsl:if test="count(child::node()) != 0
                 and string(.) != $url
                 and $ulink.show != 0">
-    <!-- yes, show the URI -->
+    <!-- * Display the URL for this hyperlink only if it is non-empty, -->
+    <!-- * and the value of its content is not a URL that is the same as -->
+    <!-- * URL it links to, and if ulink.show is non-zero. -->
     <xsl:choose>
       <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
+        <!-- * ulink.show and ulink.footnote are both non-zero; that -->
+        <!-- * means we display the URL as a footnote (instead of inline) -->
         <fo:footnote>
           <xsl:call-template name="ulink.footnote.number"/>
           <fo:footnote-body xsl:use-attribute-sets="footnote.properties">
@@ -911,7 +936,10 @@
         </fo:footnote>
       </xsl:when>
       <xsl:otherwise>
+        <!-- * ulink.show is non-zero, but ulink.footnote is not; that -->
+        <!-- * means we display the URL inline -->
         <fo:inline hyphenate="false">
+          <!-- * put square brackets around the URL -->
           <xsl:text> [</xsl:text>
           <fo:basic-link external-destination="{$ulink.url}">
             <xsl:call-template name="hyphenate-url">
@@ -937,10 +965,28 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:variable name="fnum">
+      <!-- * Determine the footnote number to display for this hyperlink, -->
+      <!-- * by counting all foonotes, ulinks, and any elements that have -->
+      <!-- * an xlink:href attribute that meets the following criteria: -->
+      <!-- * -->
+      <!-- * - the content of the element is not a URI that is the same -->
+      <!-- *   URI as the value of the href attribute -->
+      <!-- * - the href attribute is not an internal ID reference (does -->
+      <!-- *   not start with a hash sign) -->
+      <!-- * - the href is not part of an olink reference (the element -->
+      <!-- * - does not have an xlink:role attribute that indicates it is -->
+      <!-- *   an olink, and the href does not contain a hash sign) -->
+      <!-- * - the element either has no xlink:type attribute or has -->
+      <!-- *   an xlink:type attribute whose value is 'simple' -->
       <!-- FIXME: list in @from is probably not complete -->
       <xsl:number level="any" 
-                  from="chapter|appendix|preface|article|refentry|bibliography[not(parent::article)]" 
-                  count="footnote[not(@label)][not(ancestor::tgroup)]|ulink[node()][@url != .][not(ancestor::footnote)]" 
+                  from="chapter|appendix|preface|article|refentry|bibliography[not(parent::article)]"
+                  count="footnote[not(@label)][not(ancestor::tgroup)]
+                  |ulink[node()][@url != .][not(ancestor::footnote)]
+                  |*[node()][@xlink:href][not(@xlink:href = .)][not(starts-with(@xlink:href,'#'))]
+                    [not(contains(@xlink:href,'#') and @xlink:role = $xolink.role)]
+                    [not(@xlink:type) or @xlink:type='simple']
+                    [not(ancestor::footnote)]"
                   format="1"/>
     </xsl:variable>
     <xsl:choose>

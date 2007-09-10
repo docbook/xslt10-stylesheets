@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="exsl"
                 version='1.0'>
@@ -87,10 +88,33 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="fnum">
+        <!-- * Determine the footnote number to display for this footnote, -->
+        <!-- * by counting all foonotes, ulinks, and any elements that have -->
+        <!-- * an xlink:href attribute that meets the following criteria: -->
+        <!-- * -->
+        <!-- * - the content of the element is not a URI that is the same -->
+        <!-- *   URI as the value of the href attribute -->
+        <!-- * - the href attribute is not an internal ID reference (does -->
+        <!-- *   not start with a hash sign) -->
+        <!-- * - the href is not part of an olink reference (the element -->
+        <!-- * - does not have an xlink:role attribute that indicates it is -->
+        <!-- *   an olink, and the hrf does not contain a hash sign) -->
+        <!-- * - the element either has no xlink:type attribute or has -->
+        <!-- *   an xlink:type attribute whose value is 'simple' -->
+        <!-- *  -->
+        <!-- * Note that hyperlinks are counted only if both the value of -->
+        <!-- * ulink.footnotes is non-zero and the value of ulink.show is -->
+        <!-- * non-zero -->
         <!-- FIXME: list in @from is probably not complete -->
         <xsl:number level="any" 
                     from="chapter|appendix|preface|article|refentry|bibliography" 
-                    count="footnote[not(@label)][not(ancestor::table) and not(ancestor::informaltable)]|ulink[$ulink.footnotes != 0][node()][@url != .][not(ancestor::footnote)][$ulink.show != 0]" 
+                    count="footnote[not(@label)][not(ancestor::table) and not(ancestor::informaltable)]
+                    |ulink[$ulink.footnotes != 0][node()][@url != .][not(ancestor::footnote)][$ulink.show != 0]
+                    |*[node()][@xlink:href][not(@xlink:href = .)][not(starts-with(@xlink:href,'#'))]
+                      [not(contains(@xlink:href,'#') and @xlink:role = $xolink.role)]
+                      [not(@xlink:type) or @xlink:type='simple']
+                      [not(ancestor::footnote)][$ulink.footnotes != 0][$ulink.show != 0]
+                    "
                     format="1"/>
       </xsl:variable>
       <xsl:choose>
