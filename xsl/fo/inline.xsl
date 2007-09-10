@@ -109,6 +109,12 @@
           <fo:basic-link external-destination="url({$xhref})">
             <xsl:copy-of select="$content"/>
           </fo:basic-link>
+          <!-- * Call the template for determining whether the URL for this -->
+          <!-- * hyperlink is displayed, and how to display it (either inline or -->
+          <!-- * as a numbered footnote). -->
+          <xsl:call-template name="hyperlink.url.display">
+            <xsl:with-param name="url" select="$xhref"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
