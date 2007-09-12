@@ -530,9 +530,9 @@ is divided into following sections:
     -->
     <target name="deps-clean" depends="init" unless="no.deps"/>
     <target name="-do-clean" depends="init">
-        <delete file="${dist.dir}/xalan27.jar"/>
-        <delete dir="${dist.dir}/javadoc"/>
-        <delete dir="${dist.dir}/classes"/>
+      <delete file="${dist.jar}"/>
+      <delete dir="${dist.javadoc.dir}"/>
+      <delete dir="${build.classes.dir}"/>
     </target>
     <target name="-post-clean">
         <!-- Empty placeholder for easier customization. -->
