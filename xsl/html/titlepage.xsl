@@ -528,12 +528,25 @@
 
 <xsl:template match="legalnotice" mode="titlepage.mode">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <!-- Use 'ln-' prefix if there is no @id/@xml:id -->
+  <xsl:variable name="file">
+    <xsl:choose>
+      <xsl:when test="@id or @xml:id">
+	<xsl:value-of select="concat($id,$html.ext)"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="concat('ln-',$id,$html.ext)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$generate.legalnotice.link != 0">
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
           <xsl:with-param name="base.dir" select="$base.dir"/>
-	  <xsl:with-param name="base.name" select="concat('ln-',$id,$html.ext)"/>
+	  <xsl:with-param name="base.name" select="$file"/>
         </xsl:call-template>
       </xsl:variable>
 
@@ -541,7 +554,7 @@
         <xsl:apply-templates select="." mode="title.markup"/>
       </xsl:variable>
 
-      <a href="{concat('ln-',$id,$html.ext)}">
+      <a href="{$file}">
         <xsl:copy-of select="$title"/>
       </a>
 
@@ -745,6 +758,18 @@
 
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
+ <!-- Use 'rh-' prefix if there is no @id/@xml:id -->
+  <xsl:variable name="file">
+    <xsl:choose>
+      <xsl:when test="@id or @xml:id">
+	<xsl:value-of select="concat($id,$html.ext)"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="concat('rh-',$id,$html.ext)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="title">
     <xsl:call-template name="gentext">
       <xsl:with-param name="key">RevHistory</xsl:with-param>
@@ -776,11 +801,11 @@
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
           <xsl:with-param name="base.dir" select="$base.dir"/>
-          <xsl:with-param name="base.name" select="concat($id,$html.ext)"/>
+          <xsl:with-param name="base.name" select="$file"/>
         </xsl:call-template>
       </xsl:variable>
 
-      <a href="{concat($id,$html.ext)}">
+      <a href="{$file}">
         <xsl:copy-of select="$title"/>
       </a>
 
