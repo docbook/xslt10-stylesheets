@@ -529,20 +529,14 @@
 <xsl:template match="legalnotice" mode="titlepage.mode">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
-  <!-- Use 'ln-' prefix if there is no @id/@xml:id -->
-  <xsl:variable name="file">
-    <xsl:choose>
-      <xsl:when test="@id or @xml:id">
-	<xsl:value-of select="concat($id,$html.ext)"/>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:value-of select="concat('ln-',$id,$html.ext)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="$generate.legalnotice.link != 0">
+      
+      <!-- Compute name of legalnotice file -->
+      <xsl:variable name="file">
+	<xsl:call-template name="ln.or.rh.filename"/>
+      </xsl:variable>
+
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
           <xsl:with-param name="base.dir" select="$base.dir"/>
@@ -758,18 +752,6 @@
 
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
- <!-- Use 'rh-' prefix if there is no @id/@xml:id -->
-  <xsl:variable name="file">
-    <xsl:choose>
-      <xsl:when test="@id or @xml:id">
-	<xsl:value-of select="concat($id,$html.ext)"/>
-      </xsl:when>
-      <xsl:otherwise>
-	<xsl:value-of select="concat('rh-',$id,$html.ext)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <xsl:variable name="title">
     <xsl:call-template name="gentext">
       <xsl:with-param name="key">RevHistory</xsl:with-param>
@@ -798,6 +780,14 @@
   
   <xsl:choose>
     <xsl:when test="$generate.revhistory.link != 0">
+      
+      <!-- Compute name of revhistory file -->
+      <xsl:variable name="file">
+	<xsl:call-template name="ln.or.rh.filename">
+	  <xsl:with-param name="is.ln" select="false()"/>
+	</xsl:call-template>
+      </xsl:variable>
+
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
           <xsl:with-param name="base.dir" select="$base.dir"/>
@@ -992,6 +982,50 @@
   </span>
 </xsl:template>
 
+<!-- This template computes the filename for legalnotice and revhistory chunks -->
+<xsl:template name="ln.or.rh.filename">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="is.ln" select="true()"/>
+
+  <xsl:variable name="dbhtml-filename">
+    <xsl:call-template name="pi.dbhtml_filename">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+  </xsl:variable>
+ 
+  <xsl:choose>
+    <!--  1. If there is a dbhtml_filename PI, use that -->
+    <xsl:when test="$dbhtml-filename != ''">
+      <xsl:value-of select="$dbhtml-filename"/>
+    </xsl:when>
+    <xsl:when test="($node/@id or $node/@xml:id) and not($use.id.as.filename = 0)">
+      <!-- * 2. If this legalnotice/revhistory has an ID, then go ahead and use -->
+      <!-- * just the value of that ID as the basename for the file -->
+      <!-- * (that is, without prepending an "ln-" or "rh-" to it) -->
+      <xsl:value-of select="($node/@id|$node/@xml:id)[1]"/>
+      <xsl:value-of select="$html.ext"/>
+    </xsl:when>
+    <xsl:when test="not ($node/@id or $node/@xml:id) or $use.id.as.filename = 0">
+      <!-- * 3. Otherwise, if this legalnotice/revhistory does not have an ID, or -->
+      <!-- * if $use.id.as.filename = 0 -->
+      <!-- * then we generate an ID... -->
+      <xsl:variable name="id">
+	<xsl:value-of select="generate-id($node)"/>
+      </xsl:variable>
+      <!-- * ...and then we take that generated ID, prepend a -->
+      <!-- * prefix to it, and use that as the basename for the file -->
+      <xsl:choose>
+	<xsl:when test="$is.ln">
+	  <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of select="concat('rh-',$id,$html.ext)"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+    
 <!-- ==================================================================== -->
 
 </xsl:stylesheet>

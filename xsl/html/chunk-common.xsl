@@ -1734,13 +1734,8 @@
   <!-- * we need it in order to construct the filename for use in the -->
   <!-- * value of the href attribute on the link -->
 
-<xsl:param name="ln-node" select="(//legalnotice)[1]"/>
-
-  <xsl:param name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="$ln-node"/>
-    </xsl:call-template>
-  </xsl:param>
+  <xsl:param name="ln-node" select="(//legalnotice)[1]"/>
+  
   <xsl:param name="linktype">
     <xsl:choose>
       <xsl:when test="contains($html.head.legalnotice.link.types, ' ')">
@@ -1760,18 +1755,13 @@
               substring-after($html.head.legalnotice.link.types, ' ')),' ')"/>
   <xsl:if test="not($linktype = '')">
 
-    <!-- Use 'ln-' prefix if there is no @id/@xml:id -->
+    <!-- Compute name of legalnotice file (see titlepage.xsl) -->
     <xsl:variable name="file">
-      <xsl:choose>
-	<xsl:when test="$ln-node/@id or $ln-node/@xml:id">
-	  <xsl:value-of select="concat($id,$html.ext)"/>
-	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:value-of select="concat('ln-',$id,$html.ext)"/>
-	</xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="ln.or.rh.filename">
+	<xsl:with-param name="node" select="$ln-node"/>
+      </xsl:call-template>
     </xsl:variable>
-
+   
     <link rel="{$linktype}">
       <xsl:attribute name="href">
         <xsl:value-of select="$file"/>
