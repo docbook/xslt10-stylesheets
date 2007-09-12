@@ -830,16 +830,17 @@
       <xsl:variable name="term">
         <xsl:choose>
           <xsl:when test="@baseform">
-            <xsl:value-of select="@baseform"/>
+            <xsl:value-of select="normalize-space(@baseform)"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space(.)"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
 
       <xsl:variable name="targets"
-                    select="//glossentry[glossterm=$term or glossterm/@baseform=$term]"/>
+                    select="//glossentry[normalize-space(glossterm)=$term
+			    or normalize-space(glossterm/@baseform)=$term]"/>
 
       <xsl:variable name="target" select="$targets[1]"/>
 
