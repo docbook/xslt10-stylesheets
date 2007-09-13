@@ -1005,7 +1005,7 @@
     <para><link role="tcg"
         xlink:href="InsertExtHtml.html"
         >Inserting external HTML code</link>,
-      <link
+      <link role="tcg"
         xlink:href="ExternalCode.html"
         >External code files</link></para>
   </refsee>
