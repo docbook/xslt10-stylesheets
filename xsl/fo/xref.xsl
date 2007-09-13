@@ -904,7 +904,7 @@
   <!-- * for all simple xlinks); it determines whether the URL for the -->
   <!-- * hyperlink is displayed, and how to display it (either inline or -->
   <!-- * as a numbered footnote). -->
-  <xsl:param name="url" select="$url"/>
+  <xsl:param name="url"/>
   <xsl:param name="ulink.url">
     <!-- * ulink.url is just the value of the URL wrapped in 'url(...)' -->
     <xsl:call-template name="fo-external-image">
