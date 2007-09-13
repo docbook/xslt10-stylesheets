@@ -137,7 +137,7 @@
     </para>
   </refsee>
   <refsee role="tcg">
-    <para><link xlink:href="SideFloats.html#SidebarFloats" >A sidebar as
+    <para><link role="tcg" xlink:href="SideFloats.html#SidebarFloats" >A sidebar as
         side float</link></para>
   </refsee>
 </doc:pi>
@@ -176,7 +176,7 @@
     <para><parameter>glossary.as.blocks</parameter></para>
   </refsee>
   <refsee role="tcg">
-    <para><link xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
+    <para><link role="tcg" xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
         formatting in print</link></para>
   </refsee>
 </doc:pi>
@@ -215,7 +215,7 @@
     <para><parameter>glosslist.as.blocks</parameter> </para>
   </refsee>
   <refsee role="tcg">
-    <para><link xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
+    <para><link role="tcg" xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
         formatting in print</link></para>
   </refsee>
 </doc:pi>
@@ -254,7 +254,7 @@
     </para>
   </refsee>
   <refsee role="tcg">
-    <para><link xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
+    <para><link role="tcg" xlink:href="Glossaries.html#GlossaryFormatPrint" >Glossary
         formatting in print</link></para>
   </refsee>
 </doc:pi>
@@ -298,7 +298,7 @@
     <para>formal.object.properties</para>
   </refsee>
   <refsee role="tcg">
-    <para><link xlink:href="PageBreaking.html#KeepTogetherPI"
+    <para><link role="tcg" xlink:href="PageBreaking.html#KeepTogetherPI"
         >Keep-together processing instruction</link></para>
   </refsee>
 </doc:pi>
@@ -662,7 +662,7 @@
     </para>
   </refsee>
   <refsee role="tcg">
-    <para><link xlink:href="SideFloats.html#SidebarFloats" >A sidebar as
+    <para><link role="tcg" xlink:href="SideFloats.html#SidebarFloats" >A sidebar as
         side float</link></para>
   </refsee>
 </doc:pi>
