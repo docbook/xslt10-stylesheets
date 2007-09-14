@@ -417,6 +417,27 @@
 
       <xsl:when test='@rnd:style = preceding-sibling::node()[self::dbk:emphasis]/@rnd:style'/>
 
+      <xsl:when test='@rnd:style = "emphasis"'>
+        <xsl:copy>
+          <xsl:call-template name='rnd:attributes'/>
+          <xsl:apply-templates mode='rnd:copy'/>
+        </xsl:copy>
+      </xsl:when>
+      <xsl:when test='@rnd:style = "emphasis-bold"'>
+        <xsl:copy>
+          <xsl:attribute name='role'>bold</xsl:attribute>
+          <xsl:call-template name='rnd:attributes'/>
+          <xsl:apply-templates mode='rnd:copy'/>
+        </xsl:copy>
+      </xsl:when>
+      <xsl:when test='@rnd:style = "emphasis-underline"'>
+        <xsl:copy>
+          <xsl:attribute name='role'>underline</xsl:attribute>
+          <xsl:call-template name='rnd:attributes'/>
+          <xsl:apply-templates mode='rnd:copy'/>
+        </xsl:copy>
+      </xsl:when>
+
       <xsl:when test='@rnd:style = "citetitle" or
                       @rnd:style = "literal" or
                       @rnd:style = "sgmltag"'>
