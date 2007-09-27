@@ -543,11 +543,14 @@
 
 <xsl:template match="rng:optional" mode="trim">
   <!-- optional with multiple children needs a group? -->
+  <!-- ndw: 27 Sep 2007; even if optional has only a single child, it -->
+  <!--      needs a group because if you strip off the group, the optional -->
+  <!--      part sometimes gets lost (refsect2 inside refsect1, for example) -->
   <xsl:copy>
     <xsl:copy-of select="@*"/>
 
     <xsl:choose>
-      <xsl:when test="count(*) &gt; 1">
+      <xsl:when test="count(*) &gt;= 1">
 	<rng:group>
 	  <xsl:apply-templates mode="trim"/>
 	</rng:group>
