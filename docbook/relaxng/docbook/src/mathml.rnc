@@ -35,6 +35,7 @@ namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
 db.equation.content |= db._any.mml+
+db.inlineequation.content |= db._any.mml+
 db.imageobject.content |= db.imagedata.mathml
 
 # ============================================================
