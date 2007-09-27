@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0CR5</productnumber>
+<!-- productVersion --> <productnumber>5.0CR6</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,7 +40,7 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2007-07-12</pubdate>
+<pubdate>2007-09-27</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -163,12 +163,42 @@ DocBook is also available from the mirror on
 </listitem>
 -->
 
+<section xml:id="s.50CR6">
+<title>Changes in DocBook V5.0CR6</title>
+
+<para>This release contains a few bug fixes and improvements over V5.0CR5.</para>
+
+<orderedlist>
+<listitem xml:id="rfe.1759782">
+<para>Fixed <link xlink:href="&RFE;aid=1759782">RFE 1759782</link>:
+Allow <tag>uri</tag> anywhere <tag>email</tag> occurs.</para>
+</listitem>
+<listitem xml:id="rfe.1784312">
+<para>Fixed <link xlink:href="&RFE;aid=1784312">RFE 1784312</link>:
+Allow <tag>book</tag> to be completely empty; allow <tag>personblurb</tag>
+and <tag>titleabbrev</tag> in bibliographic contexts.</para>
+</listitem>
+<listitem xml:id="rfe.1795884">
+<para>Fixed <link xlink:href="&RFE;aid=1795884">RFE 1795884</link>:
+Allow MathML in <tag>inlineequation</tag>.</para>
+</listitem>
+<listitem xml:id="rfe.1800916">
+<para>Fixed <link xlink:href="&RFE;aid=1800916">RFE 1800916</link>:
+Allow <tag>keycap</tag> (and friends) in <tag>userinput</tag>.</para>
+</listitem>
+</orderedlist>
+
+<para>If no bug reports are received before the November 7, 2007
+DocBook TC meeting, this version will become the official DocBook V5.0
+release.</para>
+</section>
+
 <section xml:id="s.50CR5">
 <title>Changes in DocBook V5.0CR5</title>
 
 <para>There are no user-visible changes in DocBook V5.0CR5. If no bug reports
 are received before the August, 2007 DocBook TC meeting, this version will
-become the offiical DocBook V5.0 release.</para>
+become the official DocBook V5.0 release.</para>
 </section>
 
 <section xml:id="s.50CR4">
