@@ -311,10 +311,12 @@
 </xsl:template>
 
 <doc:pi name="dbfo_label-width" xmlns="">
-  <refpurpose>Specifies the label width for a qandaset</refpurpose>
+  <refpurpose>Specifies the label width for a qandaset, itemizedlist, orderedlist
+  or calloutlist</refpurpose>
   <refdescription>
     <para>Use the <tag class="xmlpi">dbfo label-width</tag> PI as a child of a
-      <tag>qandaset</tag> to specify the width of labels.</para>
+      <tag>qandaset</tag>, <tag>itemizedlist</tag>, <tag>orderedlist</tag>, 
+      or <tag>calloutlist</tag> to specify the width of labels.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbfo label-width="<replaceable>width</replaceable>"</tag></synopsis>
