@@ -330,9 +330,9 @@ paragraph. The next part of this same paragraph is an
 <para>This is a para with a footnote
   <footnote
     ><para>Stuff here <programlisting>This is a program listing
-that's two lines long.</programlisting></para>
+that's two lines long.</programlisting></para></footnote>
     and stuff after the
-footnote</footnote></para>
+footnote.</para>
 </refsect1>
 
 </refentry>
