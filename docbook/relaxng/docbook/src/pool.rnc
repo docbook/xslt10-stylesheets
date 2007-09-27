@@ -621,7 +621,7 @@ db._title.only    = db.title? & db.titleabbrev?
 db._title.onlyreq = db.title  & db.titleabbrev?
 
 db._info =
-   (db._title.req?, db.titleforbidden.info?) | db.info?
+   (db._title, db.titleforbidden.info?) | db.info?
 
 db._info.title.req =
    (db._title.req, db.titleforbidden.info?) | db.titlereq.info

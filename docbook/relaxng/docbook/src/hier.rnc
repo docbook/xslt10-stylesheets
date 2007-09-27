@@ -129,13 +129,13 @@ div {
     & db.label.attribute?
     & db.book.status.attribute?
 
-   db.book.info = db._info.title.req
+   db.book.info = db._info
 
    db.book =
       element book {
          db.book.attlist,
          db.book.info,
-         (db.navigation.components | db.components | db.divisions)+
+         (db.navigation.components | db.components | db.divisions)*
       }
 }
 
