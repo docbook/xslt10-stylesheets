@@ -6840,6 +6840,8 @@ db.userinput.inlines =
  | db.os.inlines
  | db.technical.inlines
  | db.markup.inlines
+ | db.keyboard.inlines
+ | db.gui.inlines
 
 # ======================================================================
 
