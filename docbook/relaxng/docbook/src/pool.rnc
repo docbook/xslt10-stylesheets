@@ -3664,6 +3664,7 @@ div {
           | db.phone
           | db.fax
           | db.email
+          | db.uri
           | db.otheraddr)*
       }
 }
@@ -4071,6 +4072,7 @@ db.person.author.contentmodel =
    (db.personblurb
     | db.affiliation
     | db.email
+    | db.uri
     | db.address
     | db.contrib)*
 
@@ -4079,6 +4081,7 @@ db.org.author.contentmodel =
    (db.orgdiv
     | db.affiliation
     | db.email
+    | db.uri
     | db.address
     | db.contrib)*
 
@@ -4192,7 +4195,7 @@ div {
       element person {
          db.person.attlist,
          db.personname,
-         (db.address|db.affiliation|db.email|db.personblurb)*
+         (db.address|db.affiliation|db.email|db.uri|db.personblurb)*
       }
 }
 
@@ -4215,7 +4218,7 @@ div {
       element org {
          db.org.attlist,
          db.orgname,
-         (db.address|db.affiliation|db.email|db.orgdiv)*
+         (db.address|db.affiliation|db.email|db.uri|db.orgdiv)*
       }
 }
 
