@@ -95,7 +95,7 @@
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
-      <xsl:variable name="entry" select="$bib/bibliography/
+      <xsl:variable name="entry" select="$bib/bibliography//
                                          *[@id=$id or @xml:id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
@@ -165,7 +165,7 @@
   <xsl:choose>
     <xsl:when test="string(.) = ''">
       <xsl:variable name="bib" select="document($bibliography.collection,.)"/>
-      <xsl:variable name="entry" select="$bib/bibliography/
+      <xsl:variable name="entry" select="$bib/bibliography//
                                          *[@id=$id or @xml:id=$id][1]"/>
       <xsl:choose>
         <xsl:when test="$entry">
