@@ -1445,6 +1445,10 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/docbook-5.0CR6-spec-wd-01.html">
+  <revnumber>Working Draft “Candidate Release 6”</revnumber>
+  <date>27 September 2007</date>
+</revision>
 <revision role="&root;specs/docbook-5.0CR1-spec-wd-01.html">
   <revnumber>Working Draft “Candidate Release 1”</revnumber>
   <date>21 December 2006</date>
