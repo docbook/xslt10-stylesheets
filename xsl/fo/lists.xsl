@@ -1154,6 +1154,10 @@
   <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="pi-label-width">
+    <xsl:call-template name="pi.dbfo_label-width"/>
+  </xsl:variable>
+
   <fo:block id="{$id}"
             text-align="{$alignment}">
     <!-- The above restores alignment altered by image align attribute -->
@@ -1173,6 +1177,13 @@
                    space-before.maximum="1.2em"
                    provisional-distance-between-starts="2.2em"
                    provisional-label-separation="0.2em">
+
+      <xsl:if test="$pi-label-width != ''">
+      	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:value-of select="$pi-label-width"/>
+	</xsl:attribute>
+      </xsl:if>
+      
       <xsl:apply-templates select="callout
                                 |comment()[preceding-sibling::callout]
                                 |processing-instruction()[preceding-sibling::callout]"/>
