@@ -915,9 +915,11 @@ db.bibliographic.elements =
  | db.citetitle
  | db.citebiblioid
  | db.person
+ | db.personblurb
  | db.personname
  | db.subtitle
  | db.title
+ | db.titleabbrev
 
 # ======================================================================
 
