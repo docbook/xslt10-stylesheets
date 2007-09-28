@@ -1,0 +1,294 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+
+db.domain.inlines |= db.keyboard.inlines
+
+db.userinput.inlines |= db.keyboard.inlines
+
+db.keyboard.inlines =
+   db.keycombo
+ | db.keycap
+ | db.keycode
+ | db.keysym
+ | db.shortcut
+ | db.accel
+
+# ======================================================================
+
+[
+   db:refname [ "keycap" ]
+   db:refpurpose [ "The text printed on a key on a keyboard" ]
+]
+div {
+
+   ctrl:other-attribute [ name="db.keycap.function.attrib"
+                          enum-name="db.keycap.function-enum.attribute"
+                          other-name="db.keycap.function-other.attributes" ]
+
+   db.keycap.function.enumeration =
+      ## The "Alt" key
+      "alt"
+    | ## The "Backspace" key
+      "backspace"
+    | ## The "Command" key
+      "command"
+    | ## The "Control" key
+      "control"
+    | ## The "Delete" key
+      "delete"
+    | ## The down arrow
+      "down"
+    | ## The "End" key
+      "end"
+    | ## The "Enter" or "Return" key
+      "enter"
+    | ## The "Escape" key
+      "escape"
+    | ## The "Home" key
+      "home"
+    | ## The "Insert" key
+      "insert"
+    | ## The left arrow
+      "left"
+    | ## The "Meta" key
+      "meta"
+    | ## The "Option" key
+      "option"
+    | ## The page down key
+      "pagedown"
+    | ## The page up key
+      "pageup"
+    | ## The right arrow
+      "right"
+    | ## The "Shift" key
+      "shift"
+    | ## The spacebar
+      "space"
+    | ## The "Tab" key
+      "tab"
+    | ## The up arrow
+      "up"
+
+   db.keycap.function-enum.attribute =
+      [
+         db:refpurpose [ "Identifies the function key" ]
+      ]
+      attribute function { db.keycap.function.enumeration }?
+
+   db.keycap.function-other.attributes =
+      [
+         db:refpurpose [ "Identifies the function key" ]
+      ]
+      attribute function {
+         ## Indicates a non-standard function key
+         "other"
+      }?,
+      [
+         db:refpurpose [ "Specifies a keyword that identifies the non-standard key" ]
+      ]
+      attribute otherfunction { text }
+
+   db.keycap.function.attrib =
+      (db.keycap.function-enum.attribute | db.keycap.function-other.attributes)
+
+   db.keycap.role.attribute = attribute role { text }
+
+   db.keycap.attlist =
+      db.keycap.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.keycap.function.attrib
+
+   db.keycap =
+      element keycap {
+         db.keycap.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keycode" ]
+   db:refpurpose [ "The internal, frequently numeric, identifier for a key on a keyboard" ]
+]
+div {
+
+   db.keycode.role.attribute = attribute role { text }
+
+   db.keycode.attlist =
+      db.keycode.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.keycode =
+      element keycode {
+         db.keycode.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+db.keycombination.contentmodel = db.keycap|db.keycombo|db.keysym
+
+[
+   db:refname [ "keycombo" ]
+   db:refpurpose [ "A combination of input actions" ]
+]
+div {
+
+   ctrl:other-attribute [ name="db.keycombo.action.attrib"
+                          enum-name="db.keycombo.action-enum.attribute"
+                          other-name="db.keycombo.action-other.attributes" ]
+
+   db.keycombo.action.enumeration =
+      ## A (single) mouse click.
+      "click"
+    | ## A double mouse click.
+      "double-click"
+    | ## A mouse or key press.
+      "press"
+    | ## Sequential clicks or presses.
+      "seq"
+    | ## Simultaneous clicks or presses.
+      "simul"
+
+   db.keycombo.action-enum.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the action taken. If " db:tag [ "keycombo" ] " contains more than one element, " db:tag [ class="attvalue" "simul" ] " is the default, otherwise there is no default." ]
+      ]
+      attribute action { db.keycombo.action.enumeration }?
+
+   db.keycombo.action-other.attributes =
+      [
+         db:refpurpose [ "Identifies the nature of the action taken" ]
+      ]
+      attribute action {
+         ## Indicates a non-standard action
+         "other"
+      }?,
+      [
+         db:refpurpose [ "Identifies the non-standard action in some unspecified way." ]
+      ]
+      attribute otheraction { text }
+
+   db.keycombo.action.attrib =
+      (db.keycombo.action-enum.attribute | db.keycombo.action-other.attributes)
+
+   db.keycombo.role.attribute = attribute role { text }
+
+   db.keycombo.attlist =
+      db.keycombo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.keycombo.action.attrib
+
+   db.keycombo =
+      element keycombo {
+         db.keycombo.attlist,
+         (db.keycombination.contentmodel)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "keysym" ]
+   db:refpurpose [ "The symbolic name of a key on a keyboard" ]
+]
+div {
+
+   db.keysym.role.attribute = attribute role { text }
+
+   db.keysym.attlist =
+      db.keysym.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.keysym =
+      element keysym {
+         db.keysym.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "accel" ]
+   db:refpurpose [ "A graphical user interface (GUI) keyboard shortcut" ]
+]
+div {
+
+   db.accel.role.attribute = attribute role { text }
+
+   db.accel.attlist =
+      db.accel.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.accel  =
+      element accel {
+         db.accel.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "shortcut" ]
+   db:refpurpose [ "A key combination for an action that is also accessible through a menu" ]
+]
+div {
+
+   db.shortcut.action.attrib = db.keycombo.action.attrib
+
+   db.shortcut.role.attribute = attribute role { text }
+
+   db.shortcut.attlist =
+      db.shortcut.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.shortcut.action.attrib
+
+   db.shortcut =
+      element shortcut {
+         db.shortcut.attlist,
+         (db.keycombination.contentmodel)+
+      }
+}
+

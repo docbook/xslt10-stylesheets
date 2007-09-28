@@ -1,0 +1,162 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+
+db.nopara.blocks |= db.admonition.blocks
+
+# ======================================================================
+
+ctrl:exclude [ from="db.formal.blocks" exclude="db.admonition.blocks" ]
+ctrl:exclude [ from="db.admonition.blocks" exclude="db.admonition.blocks" ]
+ctrl:exclude [ from="db.footnote" exclude="db.admonition.blocks" ]
+ctrl:exclude [ from="db.caption" exclude="db.admonition.blocks" ]
+
+db.admonition.blocks =
+   db.caution
+ | db.important
+ | db.note
+ | db.tip
+ | db.warning
+
+db.admonition.contentmodel = db._info.title.only, db.all.blocks+
+
+# ======================================================================
+
+[
+   db:refname [ "caution" ]
+   db:refpurpose [ "A note of caution" ]
+]
+div {
+
+   db.caution.role.attribute = attribute role { text }
+
+   db.caution.attlist =
+      db.caution.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.caution =
+      element caution {
+         db.caution.attlist,
+         db.admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "important" ]
+   db:refpurpose [ "An admonition set off from the text" ]
+]
+div {
+
+   db.important.role.attribute = attribute role { text }
+
+   db.important.attlist =
+      db.important.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.important =
+      element important {
+         db.important.attlist,
+         db.admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "note" ]
+   db:refpurpose [ "A message set off from the text" ]
+]
+div {
+
+   db.note.role.attribute = attribute role { text }
+
+   db.note.attlist =
+      db.note.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.note =
+      element note {
+         db.note.attlist,
+         db.admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tip" ]
+   db:refpurpose [ "A suggestion to the user, set off from the text" ]
+]
+div {
+
+   db.tip.role.attribute = attribute role { text }
+
+   db.tip.attlist =
+      db.tip.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.tip =
+      element tip {
+         db.tip.attlist,
+         db.admonition.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "warning" ]
+   db:refpurpose [ "An admonition set off from the text" ]
+]
+div {
+
+   db.warning.role.attribute = attribute role { text }
+
+   db.warning.attlist =
+      db.warning.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.warning =
+      element warning {
+         db.warning.attlist,
+         db.admonition.contentmodel
+      }
+}

@@ -1,0 +1,228 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+
+db.domain.inlines |= db.gui.inlines
+
+db.userinput.inlines |= db.gui.inlines
+
+db.keycombination.contentmodel |= db.mousebutton
+
+db.gui.inlines =
+   db.guiicon
+ | db.guibutton
+ | db.guimenuitem
+ | db.guimenu
+ | db.guisubmenu
+ | db.guilabel
+ | db.menuchoice
+ | db.mousebutton
+
+# ======================================================================
+
+[
+   db:refname [ "guibutton" ]
+   db:refpurpose [ "The text on a button in a GUI" ]
+]
+div {
+
+   db.guibutton.role.attribute = attribute role { text }
+
+   db.guibutton.attlist =
+      db.guibutton.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.guibutton =
+      element guibutton {
+         db.guibutton.attlist,
+         (db._text | db.accel | db.superscript | db.subscript)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guiicon" ]
+   db:refpurpose [ "Graphic and/or text appearing as a icon in a GUI" ]
+]
+div {
+
+   db.guiicon.role.attribute = attribute role { text }
+
+   db.guiicon.attlist =
+      db.guiicon.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.guiicon =
+      element guiicon {
+         db.guiicon.attlist,
+         (db._text | db.accel | db.superscript | db.subscript)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guilabel" ]
+   db:refpurpose [ "The text of a label in a GUI" ]
+]
+div {
+
+   db.guilabel.role.attribute = attribute role { text }
+
+   db.guilabel.attlist =
+      db.guilabel.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.guilabel =
+      element guilabel {
+         db.guilabel.attlist,
+         (db._text | db.accel | db.superscript | db.subscript)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guimenu" ]
+   db:refpurpose [ "The name of a menu in a GUI" ]
+]
+div {
+
+   db.guimenu.role.attribute = attribute role { text }
+
+   db.guimenu.attlist =
+      db.guimenu.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.guimenu =
+      element guimenu {
+         db.guimenu.attlist,
+         (db._text | db.accel | db.superscript | db.subscript)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guimenuitem" ]
+   db:refpurpose [ "The name of a terminal menu item in a GUI" ]
+]
+div {
+
+   db.guimenuitem.role.attribute = attribute role { text }
+
+   db.guimenuitem.attlist =
+      db.guimenuitem.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.guimenuitem =
+      element guimenuitem {
+         db.guimenuitem.attlist,
+         (db._text | db.accel | db.superscript | db.subscript)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "guisubmenu" ]
+   db:refpurpose [ "The name of a submenu in a GUI" ]
+]
+div {
+
+   db.guisubmenu.role.attribute = attribute role { text }
+
+   db.guisubmenu.attlist =
+      db.guisubmenu.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.guisubmenu =
+      element guisubmenu {
+         db.guisubmenu.attlist,
+         (db._text | db.accel | db.superscript | db.subscript)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "menuchoice" ]
+   db:refpurpose [ "A selection or series of selections from a menu" ]
+]
+div {
+
+   db.menuchoice.role.attribute = attribute role { text }
+
+   db.menuchoice.attlist =
+      db.menuchoice.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.menuchoice =
+      element menuchoice {
+         db.menuchoice.attlist,
+         db.shortcut?,
+         (db.guibutton|db.guiicon|db.guilabel|db.guimenu|db.guimenuitem|db.guisubmenu)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "mousebutton" ]
+   db:refpurpose [ "The conventional name of a mouse button" ]
+]
+div {
+
+   db.mousebutton.role.attribute = attribute role { text }
+
+   db.mousebutton.attlist =
+      db.mousebutton.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.mousebutton =
+      element mousebutton {
+         db.mousebutton.attlist,
+         db._text
+      }
+}
+

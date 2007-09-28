@@ -1,0 +1,832 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+db.domain.inlines |= db.programming.inlines
+
+db.nopara.blocks |= db.synopsis.blocks
+
+db.cover.contentmodel |= db.synopsis.blocks
+
+db.verbatim.blocks |=
+   db.programlisting
+ | db.synopsis
+
+db.programming.inlines =
+   db.function
+ | db.parameter
+ | db.varname
+ | db.returnvalue
+ | db.type
+ | db.classname
+ | db.exceptionname
+ | db.interfacename
+ | db.methodname
+ | db.modifier
+ | db.initializer
+ | db.oo.inlines
+
+db.oo.inlines =
+   db.ooclass
+ | db.ooexception
+ | db.oointerface
+
+db.synopsis.blocks =
+   db.funcsynopsis
+ | db.classsynopsis
+ | db.methodsynopsis
+ | db.constructorsynopsis
+ | db.destructorsynopsis
+ | db.fieldsynopsis
+
+# ======================================================================
+
+[
+   db:refname [ "synopsis" ]
+   db:refpurpose [ "A general-purpose element for representing the syntax of commands or functions" ]
+]
+div {
+
+   db.synopsis.role.attribute = attribute role { text }
+   db.synopsis.label.attribute = db.label.attribute
+
+   db.synopsis.attlist =
+      db.synopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.verbatim.attributes
+    & db.synopsis.label.attribute?
+
+   db.synopsis =
+      element synopsis {
+         db.synopsis.attlist,
+         db.verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcsynopsis" ]
+   db:refpurpose [ "The syntax summary for a function definition" ]
+]
+div {
+
+   db.funcsynopsis.role.attribute = attribute role { text }
+
+   db.funcsynopsis.attlist =
+      db.funcsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.language.attribute?
+
+   db.funcsynopsis.info = db._info.title.forbidden
+
+   db.funcsynopsis =
+      element funcsynopsis {
+         db.funcsynopsis.attlist,
+         db.funcsynopsis.info,
+         (db.funcsynopsisinfo | db.funcprototype)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcsynopsisinfo" ]
+   db:refpurpose [ "Information supplementing the FuncDefs of a FuncSynopsis" ]
+]
+div {
+
+   db.funcsynopsisinfo.role.attribute = attribute role { text }
+
+   db.funcsynopsisinfo.attlist =
+      db.funcsynopsisinfo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.verbatim.attributes
+
+   db.funcsynopsisinfo =
+      element funcsynopsisinfo {
+         db.funcsynopsisinfo.attlist,
+         db.verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcprototype" ]
+   db:refpurpose [ "The prototype of a function" ]
+]
+div {
+
+   db.funcprototype.role.attribute = attribute role { text }
+
+   db.funcprototype.attlist =
+      db.funcprototype.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.funcprototype =
+      element funcprototype {
+         db.funcprototype.attlist,
+         db.modifier*,
+         db.funcdef,
+         (db.void | db.varargs | (db.paramdef+, db.varargs?)),
+         db.modifier*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcdef" ]
+   db:refpurpose [ "A function (subroutine) name and its return type" ]
+]
+div {
+
+   db.funcdef.role.attribute = attribute role { text }
+
+   db.funcdef.attlist =
+      db.funcdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.funcdef =
+      element funcdef {
+         db.funcdef.attlist,
+         (db._text | db.type | db.function)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "function" ]
+   db:refpurpose [ "The name of a function or subroutine, as in a programming language" ]
+]
+div {
+
+   db.function.role.attribute = attribute role { text }
+
+   db.function.attlist =
+      db.function.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.function =
+      element function {
+         db.function.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "void" ]
+   db:refpurpose [ "An empty element in a function synopsis indicating that the function in question takes no arguments" ]
+]
+div {
+
+   db.void.role.attribute = attribute role { text }
+
+   db.void.attlist =
+      db.void.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.void =
+      element void {
+         db.void.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "varargs" ]
+   db:refpurpose [ "An empty element in a function synopsis indicating a variable number of arguments" ]
+]
+div {
+
+   db.varargs.role.attribute = attribute role { text }
+
+   db.varargs.attlist =
+      db.varargs.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.varargs =
+      element varargs {
+         db.varargs.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "paramdef" ]
+   db:refpurpose [ "Information about a function parameter in a programming language" ]
+]
+div {
+
+   db.paramdef.role.attribute = attribute role { text }
+
+   db.paramdef.choice.enumeration =
+      ## Formatted to indicate that it is optional.
+      "opt"
+    | ## Formatted to indicate that it is required.
+      "req"
+
+   db.paramdef.choice.attribute =
+      [
+         a:defaultValue="opt"
+         db:refpurpose [ "Indicates optionality." ]
+      ]
+      attribute choice { db.paramdef.choice.enumeration }
+
+
+   db.paramdef.attlist =
+      db.paramdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.paramdef.choice.attribute?
+
+   db.paramdef =
+      element paramdef {
+         db.paramdef.attlist,
+         (db._text | db.initializer | db.type | db.parameter | db.funcparams)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "funcparams" ]
+   db:refpurpose [ "Parameters for a function referenced through a function pointer in a synopsis" ]
+]
+div {
+
+   db.funcparams.role.attribute = attribute role { text }
+
+   db.funcparams.attlist =
+      db.funcparams.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.funcparams =
+      element funcparams {
+         db.funcparams.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "classsynopsis" ]
+   db:refpurpose [ "The syntax summary for a class definition" ]
+]
+div {
+
+   db.classsynopsis.role.attribute = attribute role { text }
+
+   db.classsynopsis.class.enumeration =
+      ## This is the synopsis of a class
+      "class"
+    | ## This is the synopsis of an interface
+      "interface"
+
+   db.classsynopsis.class.attribute =
+      [
+         db:refpurpose [ "Specifies the nature of the synopsis" ]
+      ]
+      attribute class { db.classsynopsis.class.enumeration }
+
+   db.classsynopsis.attlist =
+      db.classsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.language.attribute?
+    & db.classsynopsis.class.attribute?
+
+   db.classsynopsis =
+      element classsynopsis {
+         db.classsynopsis.attlist,
+         db.oo.inlines+,
+         (db.classsynopsisinfo
+          | db.methodsynopsis
+          | db.constructorsynopsis
+          | db.destructorsynopsis
+          | db.fieldsynopsis)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "classsynopsisinfo" ]
+   db:refpurpose [ "Information supplementing the contents of a ClassSynopsis" ]
+]
+div {
+
+   db.classsynopsisinfo.role.attribute = attribute role { text }
+
+   db.classsynopsisinfo.attlist =
+      db.classsynopsisinfo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.verbatim.attributes
+
+   db.classsynopsisinfo =
+      element classsynopsisinfo {
+         db.classsynopsisinfo.attlist,
+         db.verbatim.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ooclass" ]
+   db:refpurpose [ "A class in an object-oriented programming language" ]
+]
+div {
+
+   db.ooclass.role.attribute = attribute role { text }
+
+   db.ooclass.attlist =
+      db.ooclass.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.ooclass =
+      element ooclass {
+         db.ooclass.attlist,
+         (db.package|db.modifier)*,
+         db.classname
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "oointerface" ]
+   db:refpurpose [ "An interface in an object-oriented programming language" ]
+]
+div {
+
+   db.oointerface.role.attribute = attribute role { text }
+
+   db.oointerface.attlist =
+      db.oointerface.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.oointerface =
+      element oointerface {
+         db.oointerface.attlist,
+         (db.package|db.modifier)*,
+         db.interfacename
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "ooexception" ]
+   db:refpurpose [ "An exception in an object-oriented programming language" ]
+]
+div {
+
+   db.ooexception.role.attribute = attribute role { text }
+
+   db.ooexception.attlist =
+      db.ooexception.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.ooexception =
+      element ooexception {
+         db.ooexception.attlist,
+         (db.package|db.modifier)*,
+         db.exceptionname
+      }
+}
+
+# ======================================================================
+
+db.modifier.xml.space.attribute =
+   [
+      db:refpurpose [ "Can be used to indicate that whitespace in the modifier should be preserved (for multi-line annotations, for example)." ]
+   ]
+   attribute xml:space {
+      ## Extra whitespace and line breaks must be preserved.
+      "preserve"
+# Ideally the definition of xml:space used on modifier would be
+# different from the definition used on the verbatim elements. The
+# verbatim elements forbid the use of xml:space="default" which
+# wouldn't be a problem on modifier. But doing that causes the
+# generated XSD schemas to be broken so I'm just reusing the existing
+# definition for now. It won't be backwards incompatible to fix this
+# problem in the future.
+#    | ## Extra whitespace and line breaks are not preserved.
+#      "default"
+   }
+
+[
+   db:refname [ "modifier" ]
+   db:refpurpose [ "Modifiers in a synopsis" ]
+]
+div {
+
+   db.modifier.role.attribute = attribute role { text }
+
+
+   db.modifier.attlist =
+      db.modifier.xml.space.attribute?
+    & db.modifier.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.modifier =
+      element modifier {
+         db.modifier.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "interfacename" ]
+   db:refpurpose [ "The name of an interface" ]
+]
+div {
+
+   db.interfacename.role.attribute = attribute role { text }
+
+   db.interfacename.attlist =
+      db.interfacename.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.interfacename =
+      element interfacename {
+         db.interfacename.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "exceptionname" ]
+   db:refpurpose [ "The name of an exception" ]
+]
+div {
+
+   db.exceptionname.role.attribute = attribute role { text }
+
+   db.exceptionname.attlist =
+      db.exceptionname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.exceptionname =
+      element exceptionname {
+         db.exceptionname.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "fieldsynopsis" ]
+   db:refpurpose [ "The name of a field in a class definition" ]
+]
+div {
+
+   db.fieldsynopsis.role.attribute = attribute role { text }
+
+   db.fieldsynopsis.attlist =
+      db.fieldsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.language.attribute?
+
+   db.fieldsynopsis =
+      element fieldsynopsis {
+         db.fieldsynopsis.attlist,
+         db.modifier*,
+         db.type?,
+         db.varname,
+         db.initializer?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "initializer" ]
+   db:refpurpose [ "The initializer for a FieldSynopsis" ]
+]
+div {
+
+   db.initializer.role.attribute = attribute role { text }
+
+   db.initializer.attlist =
+      db.initializer.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.initializer =
+      element initializer {
+         db.initializer.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constructorsynopsis" ]
+   db:refpurpose [ "A syntax summary for a constructor" ]
+]
+div {
+
+   db.constructorsynopsis.role.attribute = attribute role { text }
+
+   db.constructorsynopsis.attlist =
+      db.constructorsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.language.attribute?
+
+   db.constructorsynopsis =
+      element constructorsynopsis {
+         db.constructorsynopsis.attlist,
+         db.modifier*,
+         db.methodname?,
+         (db.methodparam+ | db.void?),
+         db.exceptionname*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "destructorsynopsis" ]
+   db:refpurpose [ "A syntax summary for a destructor" ]
+]
+div {
+
+   db.destructorsynopsis.role.attribute = attribute role { text }
+
+   db.destructorsynopsis.attlist =
+      db.destructorsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.language.attribute?
+
+   db.destructorsynopsis =
+      element destructorsynopsis {
+         db.destructorsynopsis.attlist,
+         db.modifier*,
+         db.methodname?,
+         (db.methodparam+ | db.void?),
+         db.exceptionname*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "methodsynopsis" ]
+   db:refpurpose [ "A syntax summary for a method" ]
+]
+div {
+
+   db.methodsynopsis.role.attribute = attribute role { text }
+
+   db.methodsynopsis.attlist =
+      db.methodsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.language.attribute?
+
+   db.methodsynopsis =
+      element methodsynopsis {
+         db.methodsynopsis.attlist,
+         db.modifier*,
+         (db.type | db.void)?,
+         db.methodname,
+         (db.methodparam+ | db.void),
+         db.exceptionname*,
+         db.modifier*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "methodname" ]
+   db:refpurpose [ "The name of a method" ]
+]
+div {
+
+   db.methodname.role.attribute = attribute role { text }
+
+   db.methodname.attlist =
+      db.methodname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.methodname =
+      element methodname {
+         db.methodname.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "methodparam" ]
+   db:refpurpose [ "Parameters to a method" ]
+]
+div {
+
+   db.methodparam.role.attribute = attribute role { text }
+   db.methodparam.rep.attribute = db.rep.attribute
+   db.methodparam.choice.attribute = db.choice.req.attribute
+
+   db.methodparam.attlist =
+      db.methodparam.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.methodparam.rep.attribute?
+    & db.methodparam.choice.attribute?
+
+   db.methodparam =
+      element methodparam {
+         db.methodparam.attlist,
+         db.modifier*,
+         db.type?,
+         ((db.modifier*, db.parameter, db.initializer?)
+          | db.funcparams),
+         db.modifier*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "varname" ]
+   db:refpurpose [ "The name of a variable" ]
+]
+div {
+
+   db.varname.role.attribute = attribute role { text }
+
+   db.varname.attlist =
+      db.varname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.varname =
+      element varname {
+         db.varname.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "returnvalue" ]
+   db:refpurpose [ "The value returned by a function" ]
+]
+div {
+
+   db.returnvalue.role.attribute = attribute role { text }
+
+   db.returnvalue.attlist =
+      db.returnvalue.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.returnvalue =
+      element returnvalue {
+         db.returnvalue.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "type" ]
+   db:refpurpose [ "The classification of a value" ]
+]
+div {
+
+   db.type.role.attribute = attribute role { text }
+
+   db.type.attlist =
+      db.type.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.type =
+      element type {
+         db.type.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "classname" ]
+   db:refpurpose [ "The name of a class, in the object-oriented programming sense" ]
+]
+div {
+
+   db.classname.role.attribute = attribute role { text }
+
+   db.classname.attlist =
+      db.classname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.classname =
+      element classname {
+         db.classname.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "programlisting" ]
+   db:refpurpose [ "A literal listing of all or part of a program" ]
+]
+div {
+
+   db.programlisting.role.attribute = attribute role { text }
+
+   db.programlisting.width.attribute = db.width.characters.attribute
+
+   db.programlisting.attlist =
+      db.programlisting.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.verbatim.attributes
+    & db.programlisting.width.attribute?
+
+   db.programlisting =
+      element programlisting {
+         db.programlisting.attlist,
+         db.verbatim.contentmodel
+      }
+}
+

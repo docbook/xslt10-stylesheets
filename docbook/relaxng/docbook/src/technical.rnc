@@ -1,0 +1,184 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+
+db.technical.inlines |=
+   db.systemitem
+ | db.option
+ | db.optional
+ | db.property
+
+# ======================================================================
+
+db.systemitem.inlines = db._text
+
+# ======================================================================
+
+[
+   db:refname [ "systemitem" ]
+   db:refpurpose [ "A system-related item or term" ]
+]
+div {
+
+   db.systemitem.class.enumeration =
+      ## A daemon or other system process (syslogd)
+      "daemon"
+    | ## A domain name (example.com)
+      "domainname"
+    | ## An ethernet address (00:05:4E:49:FD:8E)
+      "etheraddress"
+    | ## An event of some sort (SIGHUP)
+      "event"
+    | ## An event handler of some sort (hangup)
+      "eventhandler"
+    | ## A filesystem (ext3)
+      "filesystem"
+    | ## A fully qualified domain name (my.example.com)
+      "fqdomainname"
+    | ## A group name (wheel)
+      "groupname"
+    | ## An IP address (127.0.0.1)
+      "ipaddress"
+    | ## A library (libncurses)
+      "library"
+    | ## A macro
+      "macro"
+    | ## A netmask (255.255.255.192)
+      "netmask"
+    | ## A newsgroup (comp.text.xml)
+      "newsgroup"
+    | ## An operating system name (Hurd)
+      "osname"
+    | ## A process (gnome-cups-icon)
+      "process"
+    | ## A protocol (ftp)
+      "protocol"
+    | ## A resource
+      "resource"
+    | ## A server (mail.example.com)
+      "server"
+    | ## A service (ppp)
+      "service"
+    | ## A system name (hephaistos)
+      "systemname"
+    | ## A user name (ndw)
+      "username"
+
+   db.systemitem.class.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the system item" ]
+      ]
+      attribute class { db.systemitem.class.enumeration }
+
+   db.systemitem.role.attribute = attribute role { text }
+
+   db.systemitem.attlist =
+      db.systemitem.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.systemitem.class.attribute?
+
+   db.systemitem =
+      element systemitem {
+         db.systemitem.attlist,
+         db.systemitem.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "option" ]
+   db:refpurpose [ "An option for a software command" ]
+]
+div {
+
+   db.option.role.attribute = attribute role { text }
+
+   db.option.attlist =
+      db.option.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.option =
+      element option {
+         db.option.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "optional" ]
+   db:refpurpose [ "Optional information" ]
+]
+div {
+
+   db.optional.role.attribute = attribute role { text }
+
+   db.optional.attlist =
+      db.optional.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.optional =
+      element optional {
+         db.optional.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "property" ]
+   db:refpurpose [ "A unit of data associated with some part of a computer system" ]
+]
+div {
+
+   db.property.role.attribute = attribute role { text }
+
+   db.property.attlist =
+      db.property.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.property =
+      element property {
+         db.property.attlist,
+         db._text
+      }
+}
+

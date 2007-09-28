@@ -1,0 +1,278 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+
+db.domain.inlines |= db.markup.inlines
+
+db.userinput.inlines |= db.markup.inlines
+
+db.computeroutput.inlines |= db.markup.inlines
+
+db.markup.inlines =
+   db.tag
+ | db.markup
+ | db.token
+ | db.symbol
+ | db.literal
+ | db.code
+ | db.constant
+ | db.email
+ | db.uri
+
+# ======================================================================
+
+[
+   db:refname [ "markup" ]
+   db:refpurpose [ "A string of formatting markup in text that is to be represented literally" ]
+]
+div {
+
+   db.markup.role.attribute = attribute role { text }
+
+   db.markup.attlist =
+      db.markup.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.markup =
+      element markup {
+         db.markup.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tag" ]
+   db:refpurpose [ "A component of XML (or SGML) markup" ]
+]
+div {
+
+   db.tag.role.attribute = attribute role { text }
+
+   db.tag.class.enumeration =
+      ## An attribute
+      "attribute"
+    | ## An attribute value
+      "attvalue"
+    | ## An element
+      "element"
+    | ## An empty element tag
+      "emptytag"
+    | ## An end tag
+      "endtag"
+    | ## A general entity
+      "genentity"
+    | ## The local name part of a qualified name
+      "localname"
+    | ## A namespace
+      "namespace"
+    | ## A numeric character reference
+      "numcharref"
+    | ## A parameter entity
+      "paramentity"
+    | ## A processing instruction
+      "pi"
+    | ## The prefix part of a qualified name
+      "prefix"
+    | ## An SGML comment
+      "comment"
+    | ## A start tag
+      "starttag"
+    | ## An XML processing instruction
+      "xmlpi"
+
+   db.tag.class.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the tag content" ]
+      ]
+      attribute class { db.tag.class.enumeration }
+
+   db.tag.namespace.attribute =
+      [
+         db:refpurpose [ "Identifies the namespace of the tag content" ]
+      ]
+      attribute namespace { xsd:anyURI }
+
+   db.tag.attlist =
+      db.tag.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.tag.class.attribute?
+    & db.tag.namespace.attribute?
+
+   db.tag =
+      element tag {
+         db.tag.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "symbol" ]
+   db:refpurpose [ "A name that is replaced by a value before processing" ]
+]
+div {
+
+   db.symbol.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of symbol" ]
+      ]
+      attribute class {
+         ## The value is a limit of some kind
+         "limit"
+      }
+
+   db.symbol.role.attribute = attribute role { text }
+
+   db.symbol.attlist =
+      db.symbol.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.symbol.class.attribute?
+
+   db.symbol =
+      element symbol {
+         db.symbol.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "token" ]
+   db:refpurpose [ "A unit of information" ]
+]
+div {
+
+   db.token.role.attribute = attribute role { text }
+
+   db.token.attlist =
+      db.token.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.token =
+      element token {
+         db.token.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "literal" ]
+   db:refpurpose [ "Inline text that is some literal value" ]
+]
+div {
+
+   db.literal.role.attribute = attribute role { text }
+
+   db.literal.attlist =
+      db.literal.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.literal =
+      element literal {
+         db.literal.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "code" ]
+   db:refpurpose [ "An inline code fragment" ]
+]
+div {
+
+   code.language.attribute =
+      [
+         db:refpurpose [ "Identifies the (computer) language of the code fragment" ]
+      ]
+      attribute language { text }
+
+   db.code.role.attribute = attribute role { text }
+
+   db.code.attlist =
+      db.code.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & code.language.attribute?
+
+   db.code =
+      element code {
+         db.code.attlist,
+         (db.programming.inlines | db._text)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constant" ]
+   db:refpurpose [ "A programming or system constant" ]
+]
+div {
+
+   db.constant.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of constant" ]
+      ]
+      attribute class {
+         ## The value is a limit of some kind
+         "limit"
+      }
+
+   db.constant.role.attribute = attribute role { text }
+
+   db.constant.attlist =
+      db.constant.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.constant.class.attribute?
+
+   db.constant =
+      element constant {
+         db.constant.attlist,
+         db._text
+      }
+}

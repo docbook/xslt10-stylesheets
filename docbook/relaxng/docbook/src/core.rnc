@@ -6,7 +6,7 @@
 # Organization for the Advancement of Structured Information
 # Standards (OASIS).
 #
-# Release: $Id$
+# Release: $Id: docbook.rnc 7466 2007-09-27 14:03:55Z nwalsh $
 #
 # Permission to use, copy, modify and distribute the DocBook schema
 # and its accompanying documentation for any purpose and without fee
@@ -33,32 +33,13 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-include "core.rnc"
-include "annotations.rnc"
-include "xlink.rnc"
-include "sect1.rnc"
-include "refentry.rnc"
-include "refsect1.rnc"
-include "glossary.rnc"
-include "bibliography.rnc"
-include "index.rnc"
-include "toc.rnc"
-include "tasks.rnc"
-include "callouts.rnc"
-include "ebnf.rnc"
-include "calstbl.rnc"
-include "htmltbl.rnc"
-include "msgset.rnc"
-include "qandaset.rnc"
-include "math.rnc"
-include "mathml.rnc"
-include "svg.rnc"
-include "markup.rnc"
-include "product.rnc"
-include "gui.rnc"
-include "keyboard.rnc"
-include "os.rnc"
-include "programming.rnc"
-include "admonitions.rnc"
-include "error.rnc"
-include "technical.rnc"
+start = db.set
+        | db.book
+	| db.divisions
+	| db.components
+	| db.navigation.components
+	| db.section
+	| db.para
+
+include "pool.rnc"
+include "hier.rnc"

@@ -1,0 +1,233 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+
+db.info.elements |=
+   db.productname
+ | db.productnumber
+
+
+db.product.inlines |=
+   db.productnumber
+ | db.productname
+ | db.database
+ | db.application
+ | db.hardware
+
+# ======================================================================
+
+[
+   db:refname [ "productname" ]
+   db:refpurpose [ "The formal name of a product" ]
+]
+div {
+
+   db.productname.role.attribute = attribute role { text }
+
+   db.productname.class.enumeration =
+      ## A name with a copyright
+      "copyright"
+    | ## A name with a registered copyright
+      "registered"
+    | ## A name of a service
+      "service"
+    | ## A name which is trademarked
+      "trade"
+
+   db.productname.class.attribute =
+      [
+         db:refpurpose [ "Specifies the class of product name" ]
+      ]
+      attribute class { db.productname.class.enumeration }
+
+   db.productname.attlist =
+      db.productname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.productname.class.attribute?
+
+   db.productname =
+      element productname {
+         db.productname.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "productnumber" ]
+   db:refpurpose [ "A number assigned to a product" ]
+]
+div {
+
+   db.productnumber.role.attribute = attribute role { text }
+
+   db.productnumber.attlist =
+      db.productnumber.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.productnumber =
+      element productnumber {
+         db.productnumber.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "database" ]
+   db:refpurpose [ "The name of a database, or part of a database" ]
+]
+div {
+
+   db.database.class.enumeration =
+      ## An alternate or secondary key
+      "altkey"
+    | ## A constraint
+      "constraint"
+    | ## A data type
+      "datatype"
+    | ## A field
+      "field"
+    | ## A foreign key
+      "foreignkey"
+    | ## A group
+      "group"
+    | ## An index
+      "index"
+    | ## The first or primary key
+      "key1"
+    | ## An alternate or secondary key
+      "key2"
+    | ## A name
+      "name"
+    | ## The primary key
+      "primarykey"
+    | ## A (stored) procedure
+      "procedure"
+    | ## A record
+      "record"
+    | ## A rule
+      "rule"
+    | ## The secondary key
+      "secondarykey"
+    | ## A table
+      "table"
+    | ## A user
+      "user"
+    | ## A view
+      "view"
+
+   db.database.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of database artifact" ]
+      ]
+      attribute class { db.database.class.enumeration }
+
+   db.database.role.attribute = attribute role { text }
+
+   db.database.attlist =
+      db.database.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.database.class.attribute?
+
+   db.database =
+      element database {
+         db.database.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "application" ]
+   db:refpurpose [ "The name of a software program" ]
+]
+div {
+
+   db.application.class.enumeration =
+      ## A hardware application
+      "hardware"
+    | ## A software application
+      "software"
+
+   db.application.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of application" ]
+      ]
+      attribute class { db.application.class.enumeration }
+
+   db.application.role.attribute = attribute role { text }
+
+   db.application.attlist =
+      db.application.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.application.class.attribute?
+
+   db.application =
+      element application {
+         db.application.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "hardware" ]
+   db:refpurpose [ "A physical part of a computer system" ]
+]
+div {
+
+   db.hardware.role.attribute = attribute role { text }
+
+   db.hardware.attlist =
+      db.hardware.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.hardware =
+      element hardware {
+         db.hardware.attlist,
+         db._text
+      }
+}
+
+

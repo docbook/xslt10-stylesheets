@@ -1,0 +1,446 @@
+# This file is part of DocBook V5.0CR6
+#
+# Copyright 1992-2005 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: pool.rnc 7466 2007-09-27 14:03:55Z nwalsh $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+default namespace = "http://docbook.org/ns/docbook"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+db.domain.inlines |= db.os.inlines
+
+db.synopsis.blocks |= db.cmdsynopsis
+
+db.os.inlines =
+   db.prompt
+ | db.envar
+ | db.filename
+ | db.command
+ | db.computeroutput
+ | db.userinput
+
+db.computeroutput.inlines =
+   text
+ | db.ubiq.inlines
+ | db.os.inlines
+ | db.technical.inlines
+
+db.userinput.inlines =
+   text
+ | db.ubiq.inlines
+ | db.os.inlines
+ | db.technical.inlines
+
+# ======================================================================
+
+db.prompt.inlines = db._text
+
+# ======================================================================
+
+[
+   db:refname [ "prompt" ]
+   db:refpurpose [ "A character or string indicating the start of an input field in a  computer display" ]
+]
+div {
+
+
+   db.prompt.role.attribute = attribute role { text }
+
+   db.prompt.attlist =
+      db.prompt.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.prompt =
+      element prompt {
+         db.prompt.attlist,
+         db.prompt.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "envar" ]
+   db:refpurpose [ "A software environment variable" ]
+]
+div {
+
+   db.envar.role.attribute = attribute role { text }
+
+   db.envar.attlist =
+      db.envar.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.envar =
+      element envar {
+         db.envar.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "filename" ]
+   db:refpurpose [ "The name of a file" ]
+]
+div {
+
+   db.filename.class.enumeration =
+      ## A device
+      "devicefile"
+    | ## A directory
+      "directory"
+    | ## A filename extension
+      "extension"
+    | ## A header file (as for a programming language)
+      "headerfile"
+    | ## A library file
+      "libraryfile"
+    | ## A partition (as of a hard disk)
+      "partition"
+    | ## A symbolic link
+      "symlink"
+
+   db.filename.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of filename" ]
+      ]
+      attribute class { db.filename.class.enumeration }
+
+   db.filename.path.attribute =
+      [
+         db:refpurpose [ "Specifies the path of the filename" ]
+      ]
+      attribute path { text }
+
+   db.filename.role.attribute = attribute role { text }
+
+   db.filename.attlist =
+      db.filename.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.filename.path.attribute?
+    & db.filename.class.attribute?
+
+   db.filename =
+      element filename {
+         db.filename.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "command" ]
+   db:refpurpose [ "The name of an executable program or other software command" ]
+]
+div {
+
+   db.command.role.attribute = attribute role { text }
+
+   db.command.attlist =
+      db.command.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.command =
+      element command {
+         db.command.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "computeroutput" ]
+   db:refpurpose [ "Data, generally text, displayed or presented by a computer" ]
+]
+div {
+
+   db.computeroutput.role.attribute = attribute role { text }
+
+   db.computeroutput.attlist =
+      db.computeroutput.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.computeroutput =
+      element computeroutput {
+         db.computeroutput.attlist,
+         db.computeroutput.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "userinput" ]
+   db:refpurpose [ "Data entered by the user" ]
+]
+div {
+
+   db.userinput.role.attribute = attribute role { text }
+
+   db.userinput.attlist =
+      db.userinput.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.userinput =
+      element userinput {
+         db.userinput.attlist,
+         db.userinput.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "cmdsynopsis" ]
+   db:refpurpose [ "A syntax summary for a software command" ]
+]
+div {
+
+   db.cmdsynopsis.role.attribute = attribute role { text }
+
+   db.cmdsynopsis.sepchar.attribute =
+      [
+         db:refpurpose [ "Specifies the character that should separate the command and its top-level arguments" ]
+      ]
+      attribute sepchar { text }
+
+   db.cmdsynopsis.cmdlength.attribute =
+      [
+         db:refpurpose [ "Indicates the displayed length of the command; this information may be used to intelligently indent command synopses which extend beyond one line" ]
+      ]
+      attribute cmdlength { text }
+
+   db.cmdsynopsis.label.attribute = db.label.attribute
+
+   db.cmdsynopsis.attlist =
+      db.cmdsynopsis.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.cmdsynopsis.sepchar.attribute?
+    & db.cmdsynopsis.cmdlength.attribute?
+    & db.cmdsynopsis.label.attribute?
+
+   db.cmdsynopsis.info = db._info.title.forbidden
+
+   db.cmdsynopsis =
+      element cmdsynopsis {
+         db.cmdsynopsis.attlist,
+         db.cmdsynopsis.info,
+         (db.command | db.arg | db.group | db.sbr)+,
+         db.synopfragment*
+      }
+}
+
+# ======================================================================
+
+db.rep.enumeration =
+   ## Can not be repeated.
+   "norepeat"
+ | ## Can be repeated.
+   "repeat"
+
+db.rep.attribute =
+   [
+      a:defaultValue="norepeat"
+      db:refpurpose [ "Indicates whether or not repetition is possible." ]
+   ]
+   attribute rep { db.rep.enumeration }
+
+db.choice.enumeration =
+   ## Formatted to indicate that it is optional.
+   "opt"
+ | ## Formatted without indication.
+   "plain"
+ | ## Formatted to indicate that it is required.
+   "req"
+
+db.choice.opt.attribute =
+   [
+      a:defaultValue="opt"
+      db:refpurpose [ "Indicates optionality." ]
+   ]
+   attribute choice { db.choice.enumeration }
+
+db.choice.req.attribute =
+   [
+      a:defaultValue="req"
+      db:refpurpose [ "Indicates optionality." ]
+   ]
+   attribute choice { db.choice.enumeration }
+
+# ======================================================================
+
+[
+   db:refname [ "arg" ]
+   db:refpurpose [ "An argument in a CmdSynopsis" ]
+]
+div {
+
+   db.arg.role.attribute = attribute role { text }
+   db.arg.rep.attribute = db.rep.attribute
+   db.arg.choice.attribute = db.choice.opt.attribute
+
+   db.arg.attlist =
+      db.arg.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.arg.rep.attribute?
+    & db.arg.choice.attribute?
+
+   db.arg =
+      element arg {
+         db.arg.attlist,
+         (db._text
+          | db.arg
+          | db.group
+          | db.option
+          | db.synopfragmentref
+          | db.sbr)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "group" ]
+   db:refpurpose [ "A group of elements in a CmdSynopsis" ]
+]
+div {
+
+   db.group.role.attribute = attribute role { text }
+   db.group.rep.attribute = db.rep.attribute
+   db.group.choice.attribute = db.choice.opt.attribute
+
+   db.group.attlist =
+      db.group.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.group.rep.attribute?
+    & db.group.choice.attribute?
+
+   db.group =
+      element group {
+         db.group.attlist,
+         (db.arg
+          | db.group
+          | db.option
+          | db.synopfragmentref
+          | db.replaceable
+          | db.sbr)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "sbr" ]
+   db:refpurpose [ "An explicit line break in a command synopsis" ]
+]
+div {
+
+   db.sbr.role.attribute = attribute role { text }
+
+   db.sbr.attlist =
+      db.sbr.role.attribute?
+    & db.common.attributes
+
+   db.sbr =
+      element sbr {
+         db.sbr.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "synopfragment" ]
+   db:refpurpose [ "A portion of a CmdSynopsis broken out from the main body of the synopsis" ]
+]
+div {
+
+   db.synopfragment.role.attribute = attribute role { text }
+
+   db.synopfragment.attlist =
+      db.synopfragment.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.synopfragment =
+      element synopfragment {
+         db.synopfragment.attlist,
+         (db.arg | db.group)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "synopfragmentref" ]
+   db:refpurpose [ "A reference to a fragment of a command synopsis" ]
+]
+div {
+
+   db.synopfragmentref.role.attribute = attribute role { text }
+
+   db.synopfragmentref.attlist =
+      db.synopfragmentref.role.attribute?
+    & db.common.attributes
+    & db.linkend.attribute
+
+   db.synopfragmentref =
+      [
+         s:pattern [
+            name = "Synopsis fragment type constraint"
+            s:rule [
+               context = "db:synopfragmentref"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'synopfragment' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on synopfragmentref must point to a synopfragment."
+               ]
+            ]
+         ]
+      ]
+      element synopfragmentref {
+         db.synopfragmentref.attlist,
+         text
+      }
+}
+
