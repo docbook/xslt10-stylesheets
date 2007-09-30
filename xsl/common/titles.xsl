@@ -636,7 +636,8 @@ title of the element. This does not include the label.
                     descendant-or-self::link or
                     descendant-or-self::olink or
                     descendant-or-self::xref or
-                    descendant-or-self::indexterm">
+                    descendant-or-self::indexterm or
+                    ancestor::title">
 
       <xsl:apply-templates mode="no.anchor.mode"/>
     </xsl:when>
