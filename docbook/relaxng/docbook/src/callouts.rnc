@@ -63,7 +63,7 @@ db.area.units.enumeration =
 
 db.area.units-enum.attribute =
    [
-      db:refpurpose [ "Identifies the units used in the coords attribute The default units vary according to the type of callout specified: " db:tag [ class="attavlue" "calspair" ] " for graphics and " db:tag [ class="attavlue" "linecolumn" ] " for line-oriented elements." ]
+      db:refpurpose [ "Identifies the units used in the coords attribute The default units vary according to the type of callout specified: " db:tag [ class="attvalue" "calspair" ] " for graphics and " db:tag [ class="attvalue" "linecolumn" ] " for line-oriented elements." ]
    ]
    attribute units { db.area.units.enumeration }?
 
