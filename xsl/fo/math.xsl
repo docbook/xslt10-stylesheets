@@ -42,12 +42,26 @@
 <!-- "Support" for MathML -->
 
 <xsl:template match="mml:math" xmlns:mml="http://www.w3.org/1998/Math/MathML">
-  <fo:instream-foreign-object>
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
-      <xsl:apply-templates/>
-    </xsl:copy>
-  </fo:instream-foreign-object>
+  <xsl:choose>
+    <!-- * If user is using passivetex, we don't wrap the output in -->
+    <!-- * fo:instream-foreign-object (which passivetex doesn't support). -->
+    <!-- * The text expression below came from Justus Piater; see bug 1806899; -->
+    <!-- * http://docbook.sf.net/tracker/id/1806899 -->
+    <xsl:when test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
+      <xsl:copy>
+        <xsl:copy-of select="@*"/>
+        <xsl:apply-templates/>
+      </xsl:copy>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:instream-foreign-object>
+        <xsl:copy>
+          <xsl:copy-of select="@*"/>
+          <xsl:apply-templates/>
+        </xsl:copy>
+      </fo:instream-foreign-object>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
