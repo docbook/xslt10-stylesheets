@@ -141,7 +141,7 @@ while getopts ":a:b:e:f:d:hl:p:rst:u:v:x:z:" opt; do
          while read -r LINE
          do
           if echo $LINE | grep "^Revision: " >/dev/null; then
-            REVISION=$(echo $LINE | sed -r '^s/Revision: (.+)$/\1/')
+            REVISION=$(echo $LINE | sed -r 's/^Revision: (.+)$/\1/')
             break
           fi
           if echo $LINE | grep "^Modified: " >/dev/null; then
