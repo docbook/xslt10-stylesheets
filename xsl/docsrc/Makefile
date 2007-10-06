@@ -15,11 +15,11 @@ PI_XSL_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xsl)
 
 all: $(PARAM_XML_FILES) ../lib/lib.xml $(PI_XML_FILES) $(OTHER_XML_FILES) $(DOCBOOK_ELEMENTS) $(XSL_PARAMS) $(XSL_PI)
 
-../%/param.xml:
+../%/param.xml: ../%/param.xsl
 	$(MAKE) -C $(dir $@) param.xml
 
-../lib/lib.xml:
-	$(MAKE) -C $(dir $@) lib.xml
+../lib/lib.xml: ../lib/lib.xsl
+	$(MAKE) -C ../lib lib.xml
 
 %.xml: %.xsl
 	$(XSLT) $< $(XSL2JREF) /dev/null output-file=$@.tmp

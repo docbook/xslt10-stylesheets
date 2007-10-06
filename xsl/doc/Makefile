@@ -19,6 +19,15 @@ GZIPFLAGS=
 
 HTMLMANIFEST=HTML.manifest
 
+PARAM_DIRS=html fo manpages roundtrip slides/fo slides/html website
+PI_DIRS=html fo common
+
+PARAM_XML_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xml)
+PI_XML_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xml)
+OTHER_XML_FILES=../common/common.xml ../common/utility.xml ../common/refentry.xml ../common/charmap.xml ../template/titlepage.xml ../fo/table.xml
+
+DOC_SOURCE_XML_FILES=$(PARAM_XML_FILES) $(PI_XML_FILES) $(OTHER_XML_FILES)
+
 DIRS=common fo html lib manpages pi refentry roundtrip slides template utility website
 
 .PHONY : clean
@@ -38,7 +47,7 @@ else
 all: fo/page.png reference.html reference.css reference.txt.gz
 endif
 
-index.html: ../docsrc/reference.xml.included $(RSTYLE)
+index.html: ../docsrc/reference.xml.included $(RSTYLE) $(DOC_SOURCE_XML_FILES)
 	$(XSLT) $< $(RSTYLE)
 
 reference.html: index.html
@@ -48,13 +57,13 @@ reference.css: ../docsrc/reference.css
 	cp -p $< .
 	for dir in $(DIRS); do cp -p $< $$dir; done
 
-reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL) fo/page.png
+reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL) fo/page.png $(DOC_SOURCE_XML_FILES)
 	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 	$(XEP) $(XEPFLAGS) $<
 
-reference.txt.html: ../docsrc/reference.xml.included $(REFERENCETXTXSL)
+reference.txt.html: ../docsrc/reference.xml.included $(REFERENCETXTXSL) $(DOC_SOURCE_XML_FILES)
 	$(XSLT) $< $(REFERENCETXTXSL) > $@
 
 reference.txt: reference.txt.html
