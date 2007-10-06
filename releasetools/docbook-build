@@ -140,9 +140,12 @@ while getopts ":a:b:e:f:d:hl:p:rst:u:v:x:z:" opt; do
     r  ) # parse commit message
          while read -r LINE
          do
-          if echo $LINE | grep "^Subject: " >/dev/null; then
-            CHANGEPATH=$(echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \[[^\]\+\]\(.\+\)$/\1/')
-            REVISION=$(echo $LINE | sed 's/^Subject: SF.net SVN: docbook: \[\([^\]\+\)\].\+$/\1/')
+          if echo $LINE | grep "^Revision: " >/dev/null; then
+            REVISION=$(echo $LINE | sed '^s/Revision: \[\([^\]\+\)\]$/\1/')
+            break
+          fi
+          if echo $LINE | grep "^Modified: " >/dev/null; then
+            CHANGEPATH=$(echo $LINE | sed 's/^Modified: \(.+\)$/\1/')
             break
           fi
          done ;;
