@@ -141,11 +141,11 @@ while getopts ":a:b:e:f:d:hl:p:rst:u:v:x:z:" opt; do
          while read -r LINE
          do
           if echo $LINE | grep "^Revision: " >/dev/null; then
-            REVISION=$(echo $LINE | sed '^s/Revision: \(.+\)$/\1/')
+            REVISION=$(echo $LINE | sed -r '^s/Revision: (.+)$/\1/')
             break
           fi
           if echo $LINE | grep "^Modified: " >/dev/null; then
-            CHANGEPATH=$(echo $LINE | sed 's/^Modified: \(.+\)$/\1/')
+            CHANGEPATH=$(echo $LINE | sed -r 's/^Modified: (.+)$/\1/')
             break
           fi
          done ;;
@@ -362,11 +362,14 @@ EOF
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "$DISTRO snapshot $REVISION appears to have been built successfully" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "For details about the code changes in this snapshot, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      # append the commit message for this revision
+      /usr/bin/svn log -r$REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "For further details about the code changes in this revision, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "http://docbook.svn.sf.net/docbook/?rev=$REVISION&view=rev" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "You can download the snapshot here:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "http://docbook.sourceforge.net/snapshots/" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "http://docbook.sf.net/snapshots/" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     else
       # build-check did not complete successfully, so prepare
       # the buildbot message accordingly
@@ -376,8 +379,13 @@ EOF
       # run buildcheck again and copy the output to the beginning
       # of the buildbot message
       $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "For details about the code changes that may have caused the build to break, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=$REVISION" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      # append the commit message for this revision
+      /usr/bin/svn log -r$REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "For further details about the code changes in this revision, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      echo "http://docbook.svn.sf.net/docbook/?rev=$REVISION&view=rev" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "The complete log file for the r$REVISION build follows." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
@@ -386,10 +394,6 @@ EOF
       # copy the entire log file to the buildbot message
       cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo "The log message for this revision follows." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
-      # append the commit message for this revision
-      /usr/bin/svn log -r$REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
     fi
 
     # send the buildbot message
