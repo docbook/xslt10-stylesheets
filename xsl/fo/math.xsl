@@ -45,9 +45,7 @@
   <xsl:choose>
     <!-- * If user is using passivetex, we don't wrap the output in -->
     <!-- * fo:instream-foreign-object (which passivetex doesn't support). -->
-    <!-- * The text expression below came from Justus Piater; see bug 1806899; -->
-    <!-- * http://docbook.sf.net/tracker/id/1806899 -->
-    <xsl:when test="$passivetex.extensions != 0 and $tex.math.in.alt != ''">
+    <xsl:when test="not($passivetex.extensions = 0)">
       <xsl:copy>
         <xsl:copy-of select="@*"/>
         <xsl:apply-templates/>
