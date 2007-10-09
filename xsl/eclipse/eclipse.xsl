@@ -82,6 +82,7 @@
                         mode="process.root"/>
             <xsl:call-template name="etoc"/>
             <xsl:call-template name="plugin.xml"/>
+				<xsl:call-template name="helpidx"/>
           </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
@@ -95,6 +96,7 @@
         <xsl:apply-templates select="/" mode="process.root"/>
         <xsl:call-template name="etoc"/>
         <xsl:call-template name="plugin.xml"/>
+		  <xsl:call-template name="helpidx"/>
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
@@ -213,13 +215,88 @@
         version="1.0"
         provider-name="{$eclipse.plugin.provider}">
 
-        <extension point="org.eclipse.help.toc">
-          <toc file="toc.xml" primary="true"/>
-        </extension>
-          
+		  <extension point="org.eclipse.help.toc">
+			<toc file="toc.xml" primary="true"/>
+		  </extension>
+		  <extension point="org.eclipse.help.index">
+			<index file="index.xml"/>
+		  </extension>
       </plugin>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
+
+<!-- ==================================================================== -->
+<!-- The following templates come from the javahelp xsls with modifications needed to make them generate and ecilpse index.xml file -->
+
+<xsl:template name="helpidx">
+  <xsl:call-template name="write.chunk.with.doctype">
+    <xsl:with-param name="filename" select="concat($base.dir, 'index.xml')"/>
+    <xsl:with-param name="method" select="'xml'"/>
+    <xsl:with-param name="indent" select="'yes'"/>
+    <xsl:with-param name="doctype-public" select="''"/>
+    <xsl:with-param name="doctype-system" select="''"/>
+    <xsl:with-param name="encoding" select="'utf-8'"/>
+    <xsl:with-param name="content">
+      <xsl:call-template name="helpidx.content"/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+  <xsl:template name="helpidx.content">
+	<index>
+	  <xsl:choose>
+		<xsl:when test="$rootid != ''">
+		  <xsl:apply-templates select="key('id',$rootid)//indexterm" mode="idx">
+			<xsl:sort select="primary"/>
+			<xsl:sort select="secondary"/>
+			<xsl:sort select="tertiary"/>
+		  </xsl:apply-templates>
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:apply-templates select="//indexterm" mode="idx">
+			<xsl:sort select="primary"/>
+			<xsl:sort select="secondary"/>
+			<xsl:sort select="tertiary"/>
+		  </xsl:apply-templates>
+		</xsl:otherwise>
+	  </xsl:choose>
+	</index>
+  </xsl:template>
+  
+  <xsl:template match="indexterm[@class='endofrange']" mode="idx"/>
+  
+  <xsl:template match="indexterm|primary|secondary|tertiary" mode="idx">
+
+	<xsl:variable name="href">
+	  <xsl:call-template name="href.target.with.base.dir">
+		<xsl:with-param name="context" select="/"/>        <!-- Generate links relative to the location of root file/toc.xml file -->
+	  </xsl:call-template>
+	</xsl:variable>
+
+	<xsl:variable name="text">
+	  <xsl:value-of select="normalize-space(.)"/>
+	</xsl:variable>
+	
+	<xsl:choose>
+	  <xsl:when test="self::indexterm">
+		<xsl:apply-templates select="primary" mode="idx"/>
+	  </xsl:when>
+	  <xsl:when test="self::primary">
+		<entry keyword="{$text}">
+		  <topic href="{$href}"/>
+		  <xsl:apply-templates select="following-sibling::secondary"  mode="idx"/>
+		</entry>
+	  </xsl:when>
+	  <xsl:otherwise>
+		<entry keyword="{$text}">
+		  <topic href="{$href}"/>
+		  <xsl:apply-templates select="following-sibling::tertiary"  mode="idx"/>
+		</entry>
+	  </xsl:otherwise>
+	</xsl:choose>
+  </xsl:template>
+
+  <!-- ==================================================================== -->
 
 </xsl:stylesheet>
