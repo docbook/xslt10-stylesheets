@@ -1,4 +1,12 @@
 # $Id$
+#
+# This makefile does a "smoketest" of stylesheets for various
+# output formats in the DocBook XSL Stylesheets release package.
+# It doesn't actually check the output -- it's just useful for
+# confirming whether each XSLT transformation actually executes
+# successfully without any errors.
+#
+# To use it, run "make check" or just "make"
 
 XSLTPROC=xsltproc
 XSLTPROC_FLAGS=
