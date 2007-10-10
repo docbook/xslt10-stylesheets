@@ -43,6 +43,7 @@ DISTRIB_EXCLUDES = \
   doc/HTML.manifest$$ \
   tools/xsl \
   xhtml/html2xhtml.xsl$$ \
+  Makefile.tests \
   README.BUILD \
   RELEASE-NOTES-PARTIAL.txt \
   .param.dbkns \

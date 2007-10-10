@@ -152,6 +152,12 @@ ifneq ($(DISTRIB_PACKAGES),)
 	  find . -print  | grep "^./$$part/" | cut -c3- >> $(TMP)/tar.exclude; \
 	done
 endif
+# if we find a Makefile.tests file, rename it to Makefile, and
+# update the tar.exclude contents so that it doesn't get excluded
+	if [ -f Makefile.tests ]; then \
+	  cp -p Makefile.tests $(TMP)/docbook-$(DISTRO)-$(ZIPVER)/Makefile; \
+	  sed -i -r 's/^Makefile\$$$$//' $(TMP)/tar.exclude; \
+	fi
 # tar up distro, then gzip/bzip/zip it
 	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude * .[^.]* | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -)
 	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
@@ -253,8 +259,7 @@ else
 	  @svn status
 endif
 
-release-clean: clean
-	$(MAKE) -C docsrc release-clean
+release-clean: clean $(RELEASE_CLEAN_TARGETS)
 	$(RM) TERMS.xml
 	$(RM) $(NEWSFILE)
 	$(RM) NEWS.html
