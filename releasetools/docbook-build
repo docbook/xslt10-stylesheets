@@ -145,7 +145,7 @@ while getopts ":a:b:e:f:d:hl:p:rst:u:v:x:z:" opt; do
             break
           fi
           if echo $LINE | grep "^Modified: " >/dev/null; then
-            CHANGEPATH=$(echo $LINE | sed -r 's/^Modified: (.+)$/\1/')
+            CHANGEPATH=$(echo $LINE | sed -r 's/^Modified:|Added:|Deleted: (.+)$/\1/')
             break
           fi
          done ;;
