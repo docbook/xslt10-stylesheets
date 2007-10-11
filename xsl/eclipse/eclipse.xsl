@@ -277,6 +277,11 @@
 
 	<xsl:variable name="text">
 	  <xsl:value-of select="normalize-space(.)"/>
+	  <xsl:if test="following-sibling::*[1][self::see]">
+		<xsl:text> (</xsl:text><xsl:call-template name="gentext">
+		  <xsl:with-param name="key" select="'see'"/>
+		</xsl:call-template><xsl:text> </xsl:text>
+		<xsl:value-of select="following-sibling::*[1][self::see]"/>)</xsl:if>
 	</xsl:variable>
 	
 	<xsl:choose>
