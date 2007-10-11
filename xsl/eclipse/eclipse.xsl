@@ -237,6 +237,7 @@
     <xsl:with-param name="doctype-public" select="''"/>
     <xsl:with-param name="doctype-system" select="''"/>
     <xsl:with-param name="encoding" select="'utf-8'"/>
+    <xsl:with-param name="quiet" select="$chunk.quietly"/>
     <xsl:with-param name="content">
       <xsl:call-template name="helpidx.content"/>
     </xsl:with-param>
