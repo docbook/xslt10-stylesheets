@@ -659,10 +659,6 @@ title of the element. This does not include the label.
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="link" mode="no.anchor.mode">
-  <xsl:apply-templates/>
-</xsl:template>
-
 <xsl:template match="olink" mode="no.anchor.mode">
   <xsl:apply-templates/>
 </xsl:template>
