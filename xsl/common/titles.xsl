@@ -710,25 +710,39 @@ title of the element. This does not include the label.
     </xsl:when>
 
     <xsl:otherwise>
-      <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
-
-      <xsl:apply-templates select="$target" mode="xref-to">
-        <xsl:with-param name="referrer" select="."/>
-        <xsl:with-param name="xrefstyle">
-          <xsl:choose>
-            <xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
-              <xsl:value-of select="@role"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="@xrefstyle"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
-      </xsl:apply-templates>
-
-      <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+      
+      <xsl:choose>
+	<!-- Watch out for the case when there is a xref or link inside 
+	     a title. See bug #1811721. -->
+	<xsl:when test="not(ancestor::title)">
+	  <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+	  
+	  <xsl:apply-templates select="$target" mode="xref-to">
+	    
+	    <xsl:with-param name="referrer" select="."/>
+	    <xsl:with-param name="xrefstyle">
+	      <xsl:choose>
+		<xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
+		  <xsl:value-of select="@role"/>
+		</xsl:when>
+		<xsl:otherwise>
+		  <xsl:value-of select="@xrefstyle"/>
+		</xsl:otherwise>
+	      </xsl:choose>
+	    </xsl:with-param>
+	  </xsl:apply-templates>
+	  
+	  <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+	</xsl:when>
+	
+	<xsl:otherwise>
+	  <xsl:apply-templates/>
+	</xsl:otherwise>
+      
+      </xsl:choose>
     </xsl:otherwise>
   </xsl:choose>
+
 </xsl:template>
 
 <!-- ============================================================ -->
