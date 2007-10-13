@@ -476,6 +476,10 @@
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when test="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
+      <xsl:apply-templates/>
+    </xsl:when>
+  
     <xsl:when test="@format='linespecific'">
       <xsl:choose>
         <xsl:when test="$use.extensions != '0'
