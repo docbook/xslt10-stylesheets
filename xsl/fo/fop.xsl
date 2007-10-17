@@ -48,6 +48,7 @@ translates characters with code>255 back to ASCII.
   <!-- If the object is a set or book, generate a bookmark for the toc -->
 
   <xsl:choose>
+    <xsl:when test="self::index and $generate.index = 0"/>	
     <xsl:when test="parent::*">
       <fox:outline internal-destination="{$id}">
         <fox:label>

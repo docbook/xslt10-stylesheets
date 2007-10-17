@@ -36,6 +36,7 @@
   <!-- If the object is a set or book, generate a bookmark for the toc -->
 
   <xsl:choose>
+    <xsl:when test="self::index and $generate.index = 0"/>	
     <xsl:when test="parent::*">
       <fo:bookmark internal-destination="{$id}">
         <fo:bookmark-title>
