@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>ulink.footnotes</refname>
-<refpurpose>Generate footnotes for <tag>ULink</tag>s?</refpurpose>
+<refpurpose>Generate footnotes for <tag>ulink</tag>s?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,9 +21,14 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, the URL of each <tag>ULink</tag> will
-appear as a footnote.
-</para>
+<para>If non-zero, and if <parameter>ulink.show</parameter> also is non-zero,
+the URL of each <tag>ulink</tag> will appear as a footnote.</para>
+
+<note><para>DocBook 5 does not have an <tag>ulink</tag> element. When processing 
+DocBoook 5 documents, <parameter>ulink.footnotes</parameter> applies to all inline 
+elements that are marked up with <tag class="attribute">xlink:href</tag> attributes 
+that point to external resources.</para>
+</note>
 
 </refsection>
 </refentry>
