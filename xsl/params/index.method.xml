@@ -24,24 +24,24 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>This parameter lets you select which method should be
-used to sort and group index entries in an index.
-Indexes in latin-based languages that have accented characters typically
+<para>This parameter lets you select which method to use for sorting and grouping
+ index entries in an index.
+Indexes in Latin-based languages that have accented characters typically
 sort together accented words and unaccented words.
-Thus <quote>Á</quote> (A acute) would sort together
-with <quote>A</quote>, so both would appear in the <quote>A</quote>
+Thus <quote>Á</quote> (U+00C1 LATIN CAPITAL LETTER A WITH ACUTE) would sort together
+with <quote>A</quote> (U+0041 LATIN CAPITAL LETTER A), so both would appear in the <quote>A</quote>
 section of the index.
-Languages using other alphabets (such as Russian cyrillic)
+Languages using other alphabets (such as Russian,  which is written in the Cyrillic alphabet)
 and languages using ideographic chararacters (such as Japanese)
 require grouping specific to the languages and alphabets.
 </para>
 
 <para>The default indexing method is limited.
-It can group accented characters in latin-based languages only.
-It cannot handle non-latin alphabets or ideographic languages.
+It can group accented characters in Latin-based languages only.
+It cannot handle non-Latin alphabets or ideographic languages.
 The other indexing methods require extensions of one type or
 another, and do not work with
-all XSLT processors, which is why there are not used by default.</para>
+all XSLT processors, which is why they are not used by default.</para>
 
 <para>The three choices for indexing method are:</para>
 <variablelist>
@@ -50,7 +50,7 @@ all XSLT processors, which is why there are not used by default.</para>
 <listitem>
 <para>
 (default)  Sort and groups words based only on the Latin alphabet.
-Words with accented latin letters will group and sort with
+Words with accented Latin letters will group and sort with
 their respective primary letter, but
 words in non-Latin alphabets will be
 put in the <quote>Symbols</quote> section of the index.
@@ -61,11 +61,11 @@ put in the <quote>Symbols</quote> section of the index.
 <term><literal>kosek</literal></term>
 <listitem>
 <para>
-Sort and groups words based on letter groups configured in
+This method sorts and groups words based on letter groups configured in
 the DocBook locale file for the given language.
 See, for example, the French locale file <filename>common/fr.xml</filename>.
 This method requires that the XSLT processor
-support the EXSLT extensions (most do).
+supports the EXSLT extensions (most do).
 It also requires support for using 
 user-defined functions in xsl:key (xsltproc does not).
 </para>
@@ -104,10 +104,10 @@ customization.
 <listitem>
 <para>
 This method uses extensions to the Saxon processor to implement
-sophisticated indexing processes.  It uses its own 
+sophisticated indexing processes. It uses its own 
 configuration file, which can include information for any number of
-languages.  Each language's configuration can group
-words using one of two processes.  In the
+languages. Each language's configuration can group
+words using one of two processes. In the
 enumerated process similar to that used in the kosek method,
 you indicate the groupings character-by-character.
 In the between-key process, you specify the
@@ -119,12 +119,12 @@ want mixed Latin-alphabet words sorted.</para>
 <itemizedlist>
 <listitem>
 <para>For a whitepaper describing the extensions, see:
-<uri xlink:href="http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf">http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf</uri>.
+<link xlink:href="http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf">http://www.innodata-isogen.com/knowledge_center/white_papers/back_of_book_for_xsl_fo.pdf</link>.
 </para>
 </listitem>
 <listitem>
 <para>To download the extension library, see
-<uri xlink:href="http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport">http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport</uri>.
+<link xlink:href="http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport">http://www.innodata-isogen.com/knowledge_center/tools_downloads/i18nsupport</link>.
 </para>
 </listitem>
 </itemizedlist>

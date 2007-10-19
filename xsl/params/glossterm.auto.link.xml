@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>glossterm.auto.link</refname>
-<refpurpose>Generate links from glossterm to glossentry automaticaly?</refpurpose>
+<refpurpose>Generate links from glossterm to glossentry automatically?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,13 +21,13 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If true, a link will be automatically created from glossterm 
-to glossentry for that glossary term. This is usefull when your
-glossterm names are consistent and you don't want to add links
-manually.</para>
-<para>If there is <tag class="attribute">linkend</tag> on
-<tag>glossterm</tag> then is used instead of autogeneration of
-link.</para>
+<para>If non-zero, links from inline <tag>glossterm</tag>s to the corresponding 
+<tag>glossentry</tag> elements in a <tag>glossary</tag> or <tag>glosslist</tag> 
+will be automatically generated. This is useful when your glossterms are consistent 
+and you don't want to add links manually.</para>
+
+<para>The automatic link generation feature is not used on <tag>glossterm</tag> elements
+that have a <tag class="attribute">linkend</tag> attribute.</para>
 
 </refsection>
 </refentry>
