@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>callout.graphics.extension</refname>
-<refpurpose>File name extension for callout graphics</refpurpose>
+<refpurpose>Filename extension for callout graphics</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,10 +21,13 @@
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
+<para>Sets the filename extension to use on callout graphics. </para>
 
-<para>Sets the extension to use on callout graphics, hence the callout
-graphic format. The appropriate format (and range used) should be
-available. svg, png and gif are provided.</para>
-
+<itemizedlist>
+<para>The Docbook XSL distribution provides callout graphics in the following formats:</para>
+<listitem><para>SVG (extension: <filename class="extension">.svg</filename>)</para></listitem>
+<listitem><para>PNG (extension: <filename class="extension">.png</filename>)</para></listitem>
+<listitem><para>GIF (extension: <filename class="extension">.gif</filename>)</para></listitem>
+</itemizedlist>
 </refsection>
 </refentry>
