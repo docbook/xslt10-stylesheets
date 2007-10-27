@@ -1,0 +1,29 @@
+# -*- org -*- 
+* TODO Add information about referencing schemas used in customizations
+Hi,
+
+I am wondering if there is an "official URI" for DocBook 5, especially for 
+using it inside an include element.
+
+Consider someone is customizing DocBook 5 and want to include the RELAX NG 
+Schema:
+
+  include "docbook.rnc" { ... }
+           ^^^^^^^^^^^
+
+Sometimes I see a path here which I consider bad style because it is 
+platform dependend. How can I reference to the DocBook 5 Schema 
+officially? Are there any plans on this? Or is the DocBook TC consider 
+this out of scope? I couldn't find anything in this regard in the DocBook 
+V5.0 Howto. 
+
+
+Thanks,
+Tom
+
+-- Thomas Schraitle
+* DONE Update links to CR4
+* TODO Add link to DocBook+ITS section in ITS BP document
+  
+...and to other existing DB5 customizations
+* TODO Add more references (NVDL, ...)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>  <!-- -*- nxml -*- -->
 <!DOCTYPE article [
-<!ENTITY version "5.0b8">
+<!ENTITY version "5.0CR7">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
@@ -27,7 +27,7 @@
 </othercredit>
 </authorgroup>
 
-<pubdate>2007-12-25</pubdate> <!-- dummy placeholder data for dev version -->
+<pubdate>2007-10-28</pubdate>
 <pubdate>2006-10-22</pubdate>
 <pubdate>2006-05-16</pubdate>
 <pubdate>2006-03-01</pubdate>
@@ -221,6 +221,12 @@ that don't support RELAX NG. Authors are encouraged to switch to RELAX
 NG based tools as soon as possible, or at least to validate documents
 against the RELAX NG schema before further processing.</para>
 
+<para>Some document constrainst can't be expressed in schema languages
+like RELAX NG or W3C XML Schema. To check for these additional
+constraints DocBook V5.0 uses Schematron. It is recommended to
+validate your document not only against RELAX NG schema but also
+against Schematron schema.</para>
+
 <section xml:id="schemas">
 <title>Where to get the schemas</title>
 
@@ -245,6 +251,10 @@ available at the following locations:</para>
 <varlistentry>
 <term>W3C XML Schema</term>
 <listitem><para><link xl:href="http://docbook.org/xml/&version;/xsd/docbook.xsd"/></para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Schematron schema with additional checks</term>
+<listitem><para><link xl:href="http://docbook.org/xml/&version;/sch/docbook.sch"/></para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -436,9 +446,17 @@ documents.</para>
 
 <para>If you are not using a RELAX NG based validating editor when you
 create documents, we strongly recommend that you validate your
-documents before processing them. Only after successful validation you can be
-sure that your document is really DocBook V5.0 and that processing
-tools will be able to process it correctly.</para>
+documents against RELAX NG and Schematron schemas before processing
+them. Only after successful validation you can be sure that your
+document is really DocBook V5.0 and that processing tools will be able
+to process it correctly.</para>
+
+<para>For validation you can use tools that support simultaneous RELAX NG and
+Schematon validation or you can use NVDL to orchestrate validation to
+those two schemas.</para>
+
+<section xml:id="validators-rng-sch">
+<title>Using RELAX NG and Schematron</title>
 
 <para>You can find a list of RELAX NG validators at <link
 xl:href="http://relaxng.org/#validators"/>. It is best to use
@@ -483,6 +501,38 @@ RELAX NG schema with embedded Schematron rules.</para>
 
 </section>
 
+<section>
+<title>Using NVDL</title>
+
+<para>NVDL is a metaschema language which can send one document to
+validation against several schemas. DocBook V5.0 comes with NVDL
+schema which defines that DocBook documents should be validated
+against both RELAX NG and Schematron schema.</para>
+
+<para>You can find a list of NVDL validators at <link
+xl:href="http://nvdl.org/"/>. The following procedure shows how to
+install and use <application
+xl:href="http://www.oxygenxml.com/onvdl.html">oNVDL</application>
+validator.</para>
+
+<procedure>
+<step>
+<para>Download <filename
+xl:href="http://www.oxygenxml.com/InstData/onvdl/onvdl-20070517.zip">onvdl-20070517.zip</filename>.</para>
+</step>
+<step>
+<para>Unpack the downloaded file into an arbitrary directory.</para>
+</step>
+<step>
+<para>Validate your document using the following command:</para>
+<screen><command>java</command> -jar <replaceable>/path/to/oNVDL/</replaceable>bin/onvdl.jar <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
+</step>
+</procedure>
+
+</section>
+
+</section>
+
 <section xml:id="processing">
 <title>Processing DocBook V5.0</title>
 
@@ -514,8 +564,8 @@ completely transparent to the user. If you are processing DocBook V5.0
 documents, the only difference is that you will see the following
 additional message:</para>
 
-<screen>Stripping NS from DocBook 5/NG document.
-Processing stripped document.</screen>
+<screen>Note: namesp. cut : stripped namespace before processing
+Note: namesp. cut : processing stripped document</screen>
 
 <para>Although you can successfully use the existing stylesheets to
 process DocBook V5.0, there are some limitations and unsupported
