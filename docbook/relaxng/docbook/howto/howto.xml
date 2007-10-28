@@ -1248,7 +1248,17 @@ linkend="convert4to5"/>.
     except define the name spaces and include the standard DocBook schema.
     The <tag class="attribute">href</tag> attribute of the
     <tag condition="nolink">include</tag> element points to
-    the location of the standard DocBook V5.0 schema.
+    the location of the standard DocBook V5.0
+    schema.<footnote><para>Examples below use
+    <filename>docbook.rng</filename> as schema location. If you want
+    to create portable schema customization you should use standard
+    web-accessible location like
+    <uri>http://docbook.org/xml/&version;/rng/docbook.rng</uri> and
+    then use <link
+    xl:href="http://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html">XML
+    catalogs</link> to resolve this location to your local copy of the
+    schema for improved perfomance. Unfortunatelly at the time of
+    this writing not all RELAX NG validators support XML catalogs.</para></footnote>
     All of the examples are given in both RNG and RNC form.
 <example xml:id="ex-empty"><title>Empty customization file</title>
 <programlisting language="rng"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
