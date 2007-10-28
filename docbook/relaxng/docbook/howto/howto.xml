@@ -27,6 +27,7 @@
 </othercredit>
 </authorgroup>
 
+<pubdate>2007-MM-DD</pubdate> <!-- dummy before next official release -->
 <pubdate>2007-10-28</pubdate>
 <pubdate>2006-10-22</pubdate>
 <pubdate>2006-05-16</pubdate>
@@ -144,9 +145,10 @@ attribute instead.</para>
 </example>
 
 <para>As you can see, DocBook V5.0 is built on top of existing XML
-standards as much as possible, for example the
-<tag class="attribute">lang</tag> attribute is superseded by the
-standard <tag class="attribute">xml:lang</tag> attribute.</para>
+standards as much as possible, for example the <tag
+class="attribute">lang</tag> attribute is superseded by the standard
+<tag xl:href="http://www.w3.org/TR/REC-xml/#sec-lang-tag"
+class="attribute">xml:lang</tag> attribute.</para>
 
 <para>Another fundamental change is that there is no direct indication
 of the schema used. Later in this document, you will learn how you can
@@ -1813,6 +1815,20 @@ happy. This schema can be found in files that end with letters <quote>xi</quote>
 </answer>
 </qandaentry>
 
+<qandaentry xml:id="faq-authoring-validating-xincludes">
+<question>
+<para>How to validate documents which are composed by XInclude?</para>
+</question>
+<answer>
+<para>If you are using XIncludes you should make sure that the final
+document after resolving all inclusions is valid DocBook V5.0
+instance. This means that all XIncludes should be processed before
+validation takes place. The following command can be used to enable
+XInclude processing in oNVDL.</para>
+<screen><command>java</command> -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar <replaceable>/path/to/oNVDL/</replaceable>bin/onvdl.jar <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
+</answer>
+</qandaentry>
+
 </qandadiv>
 
 <qandadiv>
@@ -2065,6 +2081,9 @@ available?</para>
 <listitem><para><link
 xl:href="http://www.w3.org/TR/xml-i18n-bp/#docbook-plus-its">Sample
 customization of ITS and DocBook</link></para></listitem>
+<listitem><para><link
+xl:href="http://wiki.docbook.org/topic/DocbookSchemas">Examples on
+DocBook WiKi</link></para></listitem>
 </itemizedlist>
 </answer>
 </qandaentry>
