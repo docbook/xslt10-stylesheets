@@ -1,3 +1,7 @@
+.figure .title,
+.note .title,
+.example .title,
+.toc b,       /* ToC label */
 div.titlepage { font-family: Arial, sans-serif;
               }
 

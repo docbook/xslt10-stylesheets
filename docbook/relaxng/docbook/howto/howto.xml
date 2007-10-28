@@ -2054,6 +2054,21 @@ include "/path/to/docbook.rnc" {
 </answer>
 </qandaentry>
 
+<qandaentry xml:id="faq-customization-links">
+<question>
+<para>Are there any other examples of schema customization
+available?</para>
+</question>
+<answer>
+<para>Sure. Some of the are listed bellow:</para>
+<itemizedlist>
+<listitem><para><link
+xl:href="http://www.w3.org/TR/xml-i18n-bp/#docbook-plus-its">Sample
+customization of ITS and DocBook</link></para></listitem>
+</itemizedlist>
+</answer>
+</qandaentry>
+
 </qandadiv>
 
 <qandadiv>
@@ -2087,6 +2102,13 @@ to version 2006 SP1.</para>
 <abbrev>RNCTUT</abbrev>
 Clark, James – Cowan, John – MURATA, Makoto: <title>RELAX NG Compact Syntax Tutorial</title>.
 Working Draft, 26 March 2003. OASIS. <bibliomisc><link xl:href="http://relaxng.org/compact-tutorial-20030326.html"/></bibliomisc>
+</bibliomixed>
+
+<bibliomixed>
+<abbrev>NVDLTUT</abbrev>
+Nálevka, Petr:
+<title>NVDL Tutorial</title>.
+<bibliomisc><link xl:href="http://jnvdl.sourceforge.net/tutorial.html"/></bibliomisc>
 </bibliomixed>
 
 <bibliomixed>

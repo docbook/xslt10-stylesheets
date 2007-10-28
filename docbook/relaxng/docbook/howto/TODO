@@ -1,5 +1,5 @@
 # -*- org -*- 
-* TODO Add information about referencing schemas used in customizations
+* DONE Add information about referencing schemas used in customizations
 Hi,
 
 I am wondering if there is an "official URI" for DocBook 5, especially for 
@@ -23,7 +23,7 @@ Tom
 
 -- Thomas Schraitle
 * DONE Update links to CR4
-* TODO Add link to DocBook+ITS section in ITS BP document
+* DONE Add link to DocBook+ITS section in ITS BP document
   
 ...and to other existing DB5 customizations
-* TODO Add more references (NVDL, ...)
+* DONE Add more references (NVDL, ...)
