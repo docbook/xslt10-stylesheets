@@ -4,14 +4,26 @@
         english-language-name="Chinese Simplified"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
-<doc:localeinfo xmlns="">
+<doc:localeinfo>
 <authorgroup>
+  <author><firstname>Dongsheng</firstname><surname>Song</surname>
+          <affiliation><address><email>dongsheng.song@gmail.com</email></address>
+          </affiliation>
+  </author>
   <author><firstname>Funda</firstname><surname>Wang</surname>
           <affiliation><address><email>fundawang@linux.net.cn</email></address>
           </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
+
+<!-- ******************************************************************** -->
+<!-- In these files, % with a letter is used for a placeholder: -->
+<!--   %t is the current element's title -->
+<!--   %s is the current element's subtitle (if applicable)-->
+<!--   %n is the current element's number label-->
+<!--   %p is the current element's page number (if applicable)-->
+<!-- ******************************************************************** -->
 
 <gentext key="Abstract" text="摘要"/>
 <gentext key="abstract" text="摘要"/>
@@ -21,6 +33,7 @@
 <gentext key="appendix" text="附录"/>
 <gentext key="Article" text="文章"/>
 <gentext key="article" text="文章"/>
+<gentext key="Author" text="作者"/>
 <gentext key="Bibliography" text="参考书目"/>
 <gentext key="bibliography" text="参考书目"/>
 <gentext key="Book" text="书"/>
@@ -198,6 +211,9 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
+<gentext key="normalize.sort.input" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="normalize.sort.output" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
 <dingbat key="startquote" text="“"/>
 <dingbat key="endquote" text="”"/>
 <dingbat key="nestedstartquote" text="‘"/>
@@ -241,6 +257,8 @@
 <template name="equation"><Equation/>&#160;%n.&#160;%t</template>
 <template name="example"><Example/>&#160;%n.&#160;%t</template>
 <template name="figure"><Figure/>&#160;%n.&#160;%t</template>
+<template name="foil">%t</template> <!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -287,6 +305,9 @@
 <template name="step">%t</template>
 <template name="table"><Table/>&#160;%n.&#160;%t</template>
 <template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -308,6 +329,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="part">%t</template>
 
 </context>
 
@@ -392,6 +414,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template> <!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -426,13 +450,18 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> in %o</template>
+<template name="olink.page.citation"> (page %p)</template>
 <template name="page.citation"> [%p]</template>
 <template name="page">(第 %p 页)</template>
+<template name="docname"> 在 %o</template>
+<template name="docnamelong"> 在文档标题 %o</template>
 <template name="pageabbrev">(第 %p 页)</template>
 <template name="Page">第 %p 页</template>
 
@@ -524,6 +553,11 @@
 <template name="format">Y-m-d</template>
 </context>
 
+<context name="termdef">
+<template name="prefix">[定义：</template>
+<template name="suffix">]</template>
+</context>
+
 <context name="datetime-full">
 <template name="January">一月</template>
 <template name="February">二月</template>
@@ -572,61 +606,161 @@
   <template name="langcode">0x0804 Chinese (CHINA)</template>
 </context>
 
+<context name="index">
+<template name="term-separator">，</template>
+<template name="number-separator">，</template>
+<template name="range-separator">－</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">，</template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> 和 </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> 和 </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep">，</template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor">(主编)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">等。</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">。</template> <!-- end -->
+
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">：</template> <!-- separator between title and subtitle -->
+  <template name="title.sep">。</template> <!-- end -->
+  <template name="othertitle.sep">，</template> <!-- end of title of serial, when citing article -->
+
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">；</template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">。</template> <!-- end -->
+
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">。</template> <!-- end -->
+
+  <!-- Edition -->
+  <template name="edition.sep">。</template> <!-- end -->
+  <template name="edition.serial.sep">，</template> <!-- end after serial, when followed by issue designation -->
+
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">，</template> <!-- separator of values -->
+  <template name="issuing.sep">。</template> <!-- end -->
+
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">。</template> <!-- end -->
+
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">：</template> <!-- between place and publisher -->
+  <template name="publyear.sep">，</template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">。</template> <!-- end -->
+  <template name="spec.pubinfo.sep">，</template> <!-- end of contribution in monograph -->
+
+  <!-- Date of update/revision -->
+  <template name="upd.sep">，</template> <!-- BEFORE date of update/revision -->
+
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+
+  <!-- Extent -->
+  <template name="extent.sep">。</template>
+
+  <!-- Location within host -->
+  <template name="locs.sep">，</template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">。</template>
+
+  <!-- Series -->
+  <template name="serie.sep">。</template>
+
+  <!-- Notes -->
+  <template name="notice.sep">。</template>
+
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">可用</template>
+  <template name="acctoo">也可用</template>
+  <template name="onwww">从万维网</template>
+  <template name="oninet">从互联网</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">。</template> <!-- end -->
+
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">。</template> <!-- after country or issuing office -->
+  <template name="pattype.sep">，</template> <!-- after kind of patent document -->
+  <template name="patnum.sep">。</template> <!-- after number -->
+  <template name="patdate.sep">。</template> <!-- after date of publication -->
+</context>
+
 <letters>
   <l i="-1"/>
-  <l i="0">其它</l>
-  <l i="10">A</l>
-  <l i="10">a</l>
-  <l i="20">B</l>
-  <l i="20">b</l>
-  <l i="30">C</l>
-  <l i="30">c</l>
-  <l i="40">D</l>
-  <l i="40">d</l>
-  <l i="50">E</l>
-  <l i="50">e</l>
-  <l i="60">F</l>
-  <l i="60">f</l>
-  <l i="70">G</l>
-  <l i="70">g</l>
-  <l i="80">H</l>
-  <l i="80">h</l>
-  <l i="90">I</l>
-  <l i="90">i</l>
-  <l i="100">J</l>
-  <l i="100">j</l>
-  <l i="110">K</l>
-  <l i="110">k</l>
-  <l i="120">L</l>
-  <l i="120">l</l>
-  <l i="130">M</l>
-  <l i="130">m</l>
-  <l i="140">N</l>
-  <l i="140">n</l>
-  <l i="150">O</l>
-  <l i="150">o</l>
-  <l i="160">P</l>
-  <l i="160">p</l>
-  <l i="170">Q</l>
-  <l i="170">q</l>
-  <l i="180">R</l>
-  <l i="180">r</l>
-  <l i="190">S</l>
-  <l i="190">s</l>
-  <l i="200">T</l>
-  <l i="200">t</l>
-  <l i="210">U</l>
-  <l i="210">u</l>
-  <l i="220">V</l>
-  <l i="220">v</l>
-  <l i="230">W</l>
-  <l i="230">w</l>
-  <l i="240">X</l>
-  <l i="240">x</l>
-  <l i="250">Y</l>
-  <l i="250">y</l>
-  <l i="260">Z</l>
-  <l i="260">z</l>
+  <l i="0">符号</l>
+  <l i="1">A</l>
+  <l i="1">a</l>
+  <l i="2">B</l>
+  <l i="2">b</l>
+  <l i="3">C</l>
+  <l i="3">c</l>
+  <l i="4">D</l>
+  <l i="4">d</l>
+  <l i="5">E</l>
+  <l i="5">e</l>
+  <l i="6">F</l>
+  <l i="6">f</l>
+  <l i="7">G</l>
+  <l i="7">g</l>
+  <l i="8">H</l>
+  <l i="8">h</l>
+  <l i="9">I</l>
+  <l i="9">i</l>
+  <l i="10">J</l>
+  <l i="10">j</l>
+  <l i="11">K</l>
+  <l i="11">k</l>
+  <l i="12">L</l>
+  <l i="12">l</l>
+  <l i="13">M</l>
+  <l i="13">m</l>
+  <l i="14">N</l>
+  <l i="14">n</l>
+  <l i="15">O</l>
+  <l i="15">o</l>
+  <l i="16">P</l>
+  <l i="16">p</l>
+  <l i="17">Q</l>
+  <l i="17">q</l>
+  <l i="18">R</l>
+  <l i="18">r</l>
+  <l i="19">S</l>
+  <l i="19">s</l>
+  <l i="20">T</l>
+  <l i="20">t</l>
+  <l i="21">U</l>
+  <l i="21">u</l>
+  <l i="22">V</l>
+  <l i="22">v</l>
+  <l i="23">W</l>
+  <l i="23">w</l>
+  <l i="24">X</l>
+  <l i="24">x</l>
+  <l i="25">Y</l>
+  <l i="25">y</l>
+  <l i="26">Z</l>
+  <l i="26">z</l>
 </letters>
 
 </locale>
