@@ -46,7 +46,8 @@
 			     @rnd:style = "biblioid" or
 			     @rnd:style = "bibliosource" or
 			     @rnd:style = "bibliomisc" or
-			     @rnd:style = "releaseinfo"
+			     @rnd:style = "releaseinfo" or
+			     @rnd:style = "keyword"
 			     &metadata-extra;'>
 
   <!ENTITY author-extra ""> <!-- for customisation -->

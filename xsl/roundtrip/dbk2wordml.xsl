@@ -28,6 +28,10 @@
   <xsl:include href='../VERSION'/>
   <xsl:include href='param.xsl'/>
 
+  <xsl:strip-space elements='*'/>
+  <xsl:preserve-space elements='literallayout doc:literallayout
+                                programlisting doc:programlisting'/>
+
   <xsl:variable name='templatedoc' select='document($wordml.template)'/>
 
   <xsl:template match="/" name='wordml.top'>
@@ -248,7 +252,8 @@
   <xsl:template name='doc:make-table'>
     <xsl:param name='columns'/>
     <xsl:param name='content'>
-      <xsl:apply-templates mode='doc:body'/>
+      <xsl:apply-templates select='*[not(self::caption|self::doc:caption|self::textobject|self::doc:textobject)]'
+        mode='doc:body'/>
     </xsl:param>
 
     <w:tbl>

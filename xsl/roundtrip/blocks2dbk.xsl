@@ -650,6 +650,8 @@
 
   <xsl:template match='dbk:para' mode='rnd:metadata'>
     <xsl:choose>
+      <xsl:when test='@rnd:style = "biblioentry-title" and
+                      parent::dbk:bibliography|parent::dbk:bibliodiv'/>
       <xsl:when test='@rnd:style = "biblioentry-title"'>
         <xsl:call-template name='rnd:error'>
           <xsl:with-param name='code'>bad-metadata</xsl:with-param>
@@ -675,6 +677,28 @@
         </dbk:abstract>
         <xsl:apply-templates select='$stop.node'
           mode='rnd:metadata'/>
+      </xsl:when>
+
+      <xsl:when test='@rnd:style = "keyword"'>
+        <xsl:variable name='stop.node'
+          select='following-sibling::*[not(self::dbk:para) or
+                  (self::dbk:para and @rnd:style != "keyword")][1]'/>
+        <dbk:keywordset>
+          <xsl:choose>
+            <xsl:when test='$stop.node'>
+              <xsl:call-template name='rnd:keyword'>
+                <xsl:with-param name='nodes'
+                  select='.|following-sibling::dbk:para[@rnd:style = "keyword"][following-sibling::*[generate-id() = generate-id($stop.node)]]'/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name='rnd:keyword'>
+                <xsl:with-param name='nodes'
+                  select='.|following-sibling::dbk:para[@rnd:style = "keyword"]'/>
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
+        </dbk:keywordset>
       </xsl:when>
 
       <xsl:when test='@rnd:style = "author"'>
@@ -742,6 +766,12 @@
           select='substring-before(@rnd:style, "-title")'/>
 
         <xsl:choose>
+          <xsl:when test='$parent = "table" or
+                          $parent = "figure"'>
+            <dbk:title>
+              <xsl:apply-templates mode='rnd:metadata'/>
+            </dbk:title>
+          </xsl:when>
           <xsl:when test='$parent = local-name(..)'>
             <dbk:title>
               <xsl:apply-templates mode='rnd:metadata'/>
@@ -811,6 +841,43 @@
       </xsl:when>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template name='rnd:keyword'>
+    <xsl:param name='nodes' select='/..'/>
+
+    <xsl:choose>
+      <xsl:when test='not($nodes)'/>
+      <xsl:otherwise>
+        <xsl:call-template name='rnd:keyword-phrases'>
+          <xsl:with-param name='text' select='$nodes[1]'/>
+        </xsl:call-template>
+        <xsl:call-template name='rnd:keyword'>
+          <xsl:with-param name='nodes' select='$nodes[position() != 1]'/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template name='rnd:keyword-phrases'>
+    <xsl:param name='text'/>
+
+    <xsl:choose>
+      <xsl:when test='not($text)'/>
+      <xsl:when test='contains($text, ",")'>
+        <dbk:keyword>
+          <xsl:value-of select='normalize-space(substring-before($text, ","))'/>
+        </dbk:keyword>
+        <xsl:call-template name='rnd:keyword-phrases'>
+          <xsl:with-param name='text' select='substring-after($text, ",")'/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <dbk:keyword>
+          <xsl:value-of select='normalize-space($text)'/>
+        </dbk:keyword>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template match='dbk:emphasis' mode='rnd:metadata'>
     <xsl:choose>
       <xsl:when test='not(@rnd:style)'>
