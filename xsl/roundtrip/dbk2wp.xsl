@@ -375,6 +375,7 @@
 	<xsl:with-param name='style' select='"informalfigure-imagedata"'/>
 	<xsl:with-param name='content'>
 	  <xsl:call-template name='doc:make-phrase'>
+            <xsl:with-param name='style'/>
 	    <xsl:with-param name='content'>
 	      <xsl:apply-templates select='mediaobject/imageobject/imagedata/@fileref |
                                            doc:mediaobject/doc:imageobject/doc:imagedata/@fileref'
@@ -698,7 +699,9 @@
           <xsl:when test='not(para|doc:para)'>
             <!-- TODO: check for any block elements -->
 	    <xsl:call-template name='doc:make-paragraph'>
+              <xsl:with-param name='style'/>
               <xsl:with-param name='attributes.node' select='/..'/>
+              <xsl:with-param name='content'/>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
