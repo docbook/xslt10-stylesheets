@@ -143,10 +143,13 @@
           </xsl:apply-templates>
         </dbk:superscript>
       </xsl:when>
+      <xsl:when test='w:endnoteRef and
+                      parent::w:p/parent::w:endnote and
+                      count(w:rPr|w:endnoteRef) = count(*)'/>
       <xsl:when test='w:footnoteRef'/> <!-- is a label supplied? -->
-      <xsl:when test='w:footnote'>
+      <xsl:when test='w:footnote|w:endnote'>
         <dbk:footnote>
-          <xsl:apply-templates/>
+          <xsl:apply-templates select='w:footnote|w:endnote'/>
         </dbk:footnote>
       </xsl:when>
       <xsl:when test='$role != "" or $style != ""'>
@@ -318,7 +321,11 @@
     </dbk:entry>
   </xsl:template>
 
-  <xsl:template match='w:pStyle|w:rStyle|w:proofErr'/>
+  <xsl:template match='w:pStyle |
+                       w:rStyle |
+                       w:proofErr |
+                       w:fldData |
+                       w:instrText'/>
 
   <xsl:template name='rnd:count-rowspan'>
     <xsl:param name='row' select='/..'/>

@@ -384,7 +384,9 @@
 	</xsl:with-param>
       </xsl:call-template>
     </xsl:if>
-    <xsl:for-each select='*[not(self::mediaobject|self::doc:mediaobject)]'>
+    <xsl:apply-templates select='caption|doc:caption'
+      mode='doc:body'/>
+    <xsl:for-each select='*[not(self::mediaobject|self::doc:mediaobject|self::caption|self::doc:caption)]'>
       <xsl:call-template name='doc:nomatch'/>
     </xsl:for-each>
   </xsl:template>
@@ -462,10 +464,19 @@
     <xsl:choose>
       <xsl:when test='objectinfo/title|objectinfo|subtitle |
                       doc:objectinfo/doc:title|doc:objectinfo|doc:subtitle'>
-	<xsl:apply-templates select='objectinfo/title|doc:objectinfo/doc:title'/>
-	<xsl:apply-templates select='objectinfo/subtitle|doc:objectinfo/doc:subtitle'/>
+	<xsl:apply-templates select='objectinfo/title|doc:objectinfo/doc:title'
+          mode='doc:body'/>
+	<xsl:apply-templates select='objectinfo/subtitle|doc:objectinfo/doc:subtitle'
+          mode='doc:body'/>
 	<!-- TODO: indicate error for other children of objectinfo -->
       </xsl:when>
+
+      <!-- In a table, the table itself and the caption delimit the textobject -->
+      <xsl:when test='ancestor::table |
+                      ancestor::doc:table |
+                      ancestor::informaltable |
+                      ancestor::doc:informaltable'/>
+
       <xsl:otherwise>
 	<!-- synthesize a title so that the parent textobject
 	     can be recreated.
@@ -484,20 +495,31 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:apply-templates select='*[not(self::objectinfo|self::doc:objectinfo)]'/>
+    <xsl:apply-templates select='*[not(self::objectinfo|self::doc:objectinfo)]'
+      mode='doc:body'/>
   </xsl:template>
 
   <xsl:template match='caption|doc:caption'
     mode='doc:body'>
     <xsl:call-template name='doc:make-paragraph'>
-      <xsl:with-param name='style' select='"caption"'/>
+      <xsl:with-param name='style' select='"Caption"'/>
       <xsl:with-param name='content'>
 	<xsl:choose>
 	  <xsl:when test='not(*)'>
 	    <xsl:apply-templates/>
 	  </xsl:when>
+          <xsl:when test='not(text()) and
+                          count(*) = count(para|doc:para) and
+                          count(*) = 1'>
+            <xsl:apply-templates select='*/node()' mode='doc:body'/>
+          </xsl:when>
+          <xsl:when test='text()'>
+            <!-- Not valid DocBook -->
+            <xsl:call-template name='doc:nomatch'/>
+          </xsl:when>
 	  <xsl:otherwise>
-	    <xsl:apply-templates select='*[self::para|self::doc:para][1]/node()'/>
+	    <xsl:apply-templates select='*[self::para|self::doc:para][1]/node()'
+              mode='doc:body'/>
 	    <xsl:for-each select='text()|*[not(self::para|self::doc:para)]|*[self::para|self::doc:para][position() != 1]'>
 	      <xsl:call-template name='doc:nomatch'/>
 	    </xsl:for-each>
@@ -550,11 +572,39 @@
           mode='doc:column'/>
       </xsl:with-param>
     </xsl:call-template>
+    <xsl:apply-templates select='textobject|doc:textobject'
+      mode='doc:body'/>
+    <xsl:choose>
+      <xsl:when test='caption|doc:caption'>
+        <xsl:apply-templates select='caption|doc:caption'
+          mode='doc:body'/>
+      </xsl:when>
+      <xsl:when test='textobject|doc:textobject'>
+        <!-- Synthesize a caption to delimit the textobject -->
+        <xsl:call-template name='doc:make-paragraph'>
+          <xsl:with-param name='style'>Caption</xsl:with-param>
+          <xsl:with-param name='content'/>
+          <xsl:with-param name='attributes.node' select='/..'/>
+        </xsl:call-template>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match='colspec|doc:colspec' mode='doc:column'>
+    <xsl:variable name='width'>
+      <xsl:choose>
+        <xsl:when test='contains(@colwidth, "*")'>
+          <!-- May need to resolve proportional width with other columns -->
+          <xsl:value-of select='substring-before(@colwidth, "*")'/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select='@colwidth'/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <xsl:call-template name='doc:make-column'>
-      <xsl:with-param name='width' select='@colwidth'/>
+      <xsl:with-param name='width' select='$width'/>
     </xsl:call-template>
   </xsl:template>
 
@@ -575,7 +625,7 @@
   <xsl:template match='tgroup|tbody|thead |
                        doc:tgroup|doc:tbody|doc:thead'
     mode='doc:body'>
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode='doc:body'/>
   </xsl:template>
   <xsl:template match='row|doc:row' mode='doc:body'>
     <xsl:call-template name='doc:make-table-row'>
@@ -598,26 +648,43 @@
 
     <xsl:variable name='limit' select='$position + @colspan'/>
 
+    <xsl:variable name='width.raw'>
+      <xsl:choose>
+        <xsl:when test='@colspan != ""'>
+
+          <!-- Select all the colspec nodes which correspond to the
+               column. That is all the nodes between the current 
+               column number and the column number plus the span.
+            -->
+
+          <xsl:variable name='combinedWidth'>
+            <xsl:call-template name='doc:sum'>
+              <xsl:with-param name='nodes' select='ancestor::*[self::table|self::doc:table|self::informaltable|self::doc:informaltable][1]/*[self::tgroup|self::doc:tgroup]/*[self::colspec|self::doc:colspec][not(position() &lt; $position) and position() &lt; $limit]'/>
+              <xsl:with-param name='sum' select='"0"'/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:value-of select='$combinedWidth'/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select='ancestor::*[self::table|self::doc:table|self::informaltable|self::doc:informaltable][1]/*[self::tgroup|self::doc:tgroup]/*[self::colspec|self::doc:colspec][position() = $position]/@colwidth'/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <xsl:call-template name='doc:make-table-cell'>
       <xsl:with-param name='width'>
         <xsl:choose>
-          <xsl:when test='@colspan != ""'>
+          <xsl:when test='contains($width.raw, "*")'>
 
             <!-- Select all the colspec nodes which correspond to the
                  column. That is all the nodes between the current 
                  column number and the column number plus the span.
               -->
 
-            <xsl:variable name='combinedWidth'>
-              <xsl:call-template name='doc:sum'>
-                <xsl:with-param name='nodes' select='ancestor::*[self::table|self::doc:table|self::informaltable|self::doc:informaltable][1]/*[self::tgroup|self::doc:tgroup]/*[self::colspec|self::doc:colspec][not(position() &lt; $position) and position() &lt; $limit]'/>
-                <xsl:with-param name='sum' select='"0"'/>
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:value-of select='$combinedWidth'/>
+            <xsl:value-of select='substring-before($width.raw, "*")'/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select='ancestor::*[self::table|self::doc:table|self::informaltable|self::doc:informaltable][1]/*[self::tgroup|self::doc:tgroup]/*[self::colspec|self::doc:colspec][position() = $position]/@colwidth'/>
+            <xsl:value-of select='$width.raw'/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:with-param>
@@ -630,10 +697,12 @@
 	<xsl:choose>
           <xsl:when test='not(para|doc:para)'>
             <!-- TODO: check for any block elements -->
-	    <xsl:call-template name='doc:make-paragraph'/>
+	    <xsl:call-template name='doc:make-paragraph'>
+              <xsl:with-param name='attributes.node' select='/..'/>
+            </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode='doc:body'/>
           </xsl:otherwise>
 	</xsl:choose>
       </xsl:with-param>
@@ -835,7 +904,7 @@
       <xsl:with-param name='content'>
 	<!-- Normally a para would be the first child of a listitem -->
 	<xsl:apply-templates select='*[1][self::para|self::doc:para]/node()'
-          mode='list'/>
+          mode='doc:body'/>
       </xsl:with-param>
     </xsl:call-template>
 
@@ -843,14 +912,15 @@
        - We may not be able to represent this properly.
       -->
     <xsl:apply-templates select='*[1][not(self::para|self::doc:para)]'
-      mode='doc:list'/>
+      mode='doc:list-continue'/>
 
     <xsl:apply-templates select='*[position() != 1]'
       mode='doc:list'/>
   </xsl:template>  
 
-  <xsl:template match='*' mode='doc:list'>
-    <xsl:apply-templates select='.'>
+  <xsl:template match='*' mode='doc:list-continue'>
+    <xsl:apply-templates select='.'
+      mode='doc:body'>
       <xsl:with-param name='class' select='"para-continue"'/>
     </xsl:apply-templates>
   </xsl:template>
@@ -921,291 +991,305 @@
     mode='doc:body'/>
 
   <xsl:template match='*' name='doc:nomatch'>
+    <xsl:param name='node' select='.'/>
+
     <xsl:message>
-      <xsl:value-of select='local-name()'/>
+      <xsl:value-of select='local-name($node)'/>
+      <xsl:if test='namespace-uri($node) != ""'>
+        <xsl:text> [</xsl:text>
+        <xsl:value-of select='namespace-uri($node)'/>
+        <xsl:text>]</xsl:text>
+      </xsl:if>
       <xsl:text> encountered</xsl:text>
-      <xsl:if test='parent::*'>
+      <xsl:if test='$node/parent::*'>
         <xsl:text> in </xsl:text>
-        <xsl:value-of select='local-name(parent::*)'/>
+        <xsl:value-of select='local-name($node/parent::*)'/>
       </xsl:if>
       <xsl:text>, but no template matches.</xsl:text>
     </xsl:message>
 
-    <xsl:choose>
-      <xsl:when test='self::abstract |
-                      self::ackno |
-                      self::address |
-                      self::answer |
-                      self::appendix |
-                      self::artheader |
-                      self::authorgroup |
-                      self::bibliodiv |
-                      self::biblioentry |
-                      self::bibliography |
-                      self::bibliomixed |
-                      self::bibliomset |
-                      self::biblioset |
-                      self::bridgehead |
-                      self::calloutlist |
-                      self::caption |
-                      self::classsynopsis |
-                      self::colophon |
-                      self::constraintdef |
-                      self::copyright |
-                      self::dedication |
-                      self::epigraph |
-                      self::equation |
-                      self::example |
-                      self::figure |
-                      self::funcsynopsis |
-                      self::glossary |
-                      self::glossdef |
-                      self::glossdiv |
-                      self::glossentry |
-                      self::glosslist |
-                      self::graphic |
-                      self::highlights |
-                      self::imageobject |
-                      self::imageobjectco |
-                      self::index |
-                      self::indexdiv |
-                      self::indexentry |
-                      self::informalequation |
-                      self::informalexample |
-                      self::informalfigure |
-                      self::lot |
-                      self::lotentry |
-                      self::mediaobject |
-                      self::mediaobjectco |
-                      self::member |
-                      self::msgentry |
-                      self::msgset |
-                      self::part |
-                      self::partintro |
-                      self::personblurb |
-                      self::preface |
-                      self::printhistory |
-                      self::procedure |
-                      self::programlisting |
-                      self::programlistingco |
-                      self::publisher |
-                      self::qandadiv |
-                      self::qandaentry |
-                      self::qandaset |
-                      self::question |
-                      self::refdescriptor |
-                      self::refentry |
-                      self::refentrytitle |
-                      self::reference |
-                      self::refmeta |
-                      self::refname |
-                      self::refnamediv |
-                      self::refpurpose |
-                      self::refsect1 |
-                      self::refsect2 |
-                      self::refsect3 |
-                      self::refsection |
-                      self::refsynopsisdiv |
-                      self::screen |
-                      self::screenco |
-                      self::screenshot |
-                      self::seg |
-                      self::seglistitem |
-                      self::segmentedlist |
-                      self::segtitle |
-                      self::set |
-                      self::setindex |
-                      self::sidebar |
-                      self::simplelist |
-                      self::simplemsgentry |
-                      self::step |
-                      self::stepalternatives |
-                      self::subjectset |
-                      self::substeps |
-                      self::task |
-                      self::textobject |
-                      self::toc |
-                      self::videodata |
-                      self::videoobject |
+    <xsl:for-each select='$node'>
+      <xsl:choose>
+        <xsl:when test='self::abstract |
+                        self::ackno |
+                        self::address |
+                        self::answer |
+                        self::appendix |
+                        self::artheader |
+                        self::authorgroup |
+                        self::bibliodiv |
+                        self::biblioentry |
+                        self::bibliography |
+                        self::bibliomixed |
+                        self::bibliomset |
+                        self::biblioset |
+                        self::bridgehead |
+                        self::calloutlist |
+                        self::caption |
+                        self::classsynopsis |
+                        self::colophon |
+                        self::constraintdef |
+                        self::copyright |
+                        self::dedication |
+                        self::epigraph |
+                        self::equation |
+                        self::example |
+                        self::figure |
+                        self::funcsynopsis |
+                        self::glossary |
+                        self::glossdef |
+                        self::glossdiv |
+                        self::glossentry |
+                        self::glosslist |
+                        self::graphic |
+                        self::highlights |
+                        self::imageobject |
+                        self::imageobjectco |
+                        self::index |
+                        self::indexdiv |
+                        self::indexentry |
+                        self::informalequation |
+                        self::informalexample |
+                        self::informalfigure |
+                        self::lot |
+                        self::lotentry |
+                        self::mediaobject |
+                        self::mediaobjectco |
+                        self::member |
+                        self::msgentry |
+                        self::msgset |
+                        self::part |
+                        self::partintro |
+                        self::personblurb |
+                        self::preface |
+                        self::printhistory |
+                        self::procedure |
+                        self::programlisting |
+                        self::programlistingco |
+                        self::publisher |
+                        self::qandadiv |
+                        self::qandaentry |
+                        self::qandaset |
+                        self::question |
+                        self::refdescriptor |
+                        self::refentry |
+                        self::refentrytitle |
+                        self::reference |
+                        self::refmeta |
+                        self::refname |
+                        self::refnamediv |
+                        self::refpurpose |
+                        self::refsect1 |
+                        self::refsect2 |
+                        self::refsect3 |
+                        self::refsection |
+                        self::refsynopsisdiv |
+                        self::screen |
+                        self::screenco |
+                        self::screenshot |
+                        self::seg |
+                        self::seglistitem |
+                        self::segmentedlist |
+                        self::segtitle |
+                        self::set |
+                        self::setindex |
+                        self::sidebar |
+                        self::simplelist |
+                        self::simplemsgentry |
+                        self::step |
+                        self::stepalternatives |
+                        self::subjectset |
+                        self::substeps |
+                        self::task |
+                        self::textobject |
+                        self::toc |
+                        self::videodata |
+                        self::videoobject |
 
-                      self::doc:abstract |
-                      self::doc:ackno |
-                      self::doc:address |
-                      self::doc:answer |
-                      self::doc:appendix |
-                      self::doc:artheader |
-                      self::doc:authorgroup |
-                      self::doc:bibliodiv |
-                      self::doc:biblioentry |
-                      self::doc:bibliography |
-                      self::doc:bibliomixed |
-                      self::doc:bibliomset |
-                      self::doc:biblioset |
-                      self::doc:bridgehead |
-                      self::doc:calloutlist |
-                      self::doc:caption |
-                      self::doc:classsynopsis |
-                      self::doc:colophon |
-                      self::doc:constraintdef |
-                      self::doc:copyright |
-                      self::doc:dedication |
-                      self::doc:epigraph |
-                      self::doc:equation |
-                      self::doc:example |
-                      self::doc:figure |
-                      self::doc:funcsynopsis |
-                      self::doc:glossary |
-                      self::doc:glossdef |
-                      self::doc:glossdiv |
-                      self::doc:glossentry |
-                      self::doc:glosslist |
-                      self::doc:graphic |
-                      self::doc:highlights |
-                      self::doc:imageobject |
-                      self::doc:imageobjectco |
-                      self::doc:index |
-                      self::doc:indexdiv |
-                      self::doc:indexentry |
-                      self::doc:informalequation |
-                      self::doc:informalexample |
-                      self::doc:informalfigure |
-                      self::doc:lot |
-                      self::doc:lotentry |
-                      self::doc:mediaobject |
-                      self::doc:mediaobjectco |
-                      self::doc:member |
-                      self::doc:msgentry |
-                      self::doc:msgset |
-                      self::doc:part |
-                      self::doc:partintro |
-                      self::doc:personblurb |
-                      self::doc:preface |
-                      self::doc:printhistory |
-                      self::doc:procedure |
-                      self::doc:programlisting |
-                      self::doc:programlistingco |
-                      self::doc:publisher |
-                      self::doc:qandadiv |
-                      self::doc:qandaentry |
-                      self::doc:qandaset |
-                      self::doc:question |
-                      self::doc:refdescriptor |
-                      self::doc:refentry |
-                      self::doc:refentrytitle |
-                      self::doc:reference |
-                      self::doc:refmeta |
-                      self::doc:refname |
-                      self::doc:refnamediv |
-                      self::doc:refpurpose |
-                      self::doc:refsect1 |
-                      self::doc:refsect2 |
-                      self::doc:refsect3 |
-                      self::doc:refsection |
-                      self::doc:refsynopsisdiv |
-                      self::doc:screen |
-                      self::doc:screenco |
-                      self::doc:screenshot |
-                      self::doc:seg |
-                      self::doc:seglistitem |
-                      self::doc:segmentedlist |
-                      self::doc:segtitle |
-                      self::doc:set |
-                      self::doc:setindex |
-                      self::doc:sidebar |
-                      self::doc:simplelist |
-                      self::doc:simplemsgentry |
-                      self::doc:step |
-                      self::doc:stepalternatives |
-                      self::doc:subjectset |
-                      self::doc:substeps |
-                      self::doc:task |
-                      self::doc:textobject |
-                      self::doc:toc |
-                      self::doc:videodata |
-                      self::doc:videoobject |
+                        self::doc:abstract |
+                        self::doc:ackno |
+                        self::doc:address |
+                        self::doc:answer |
+                        self::doc:appendix |
+                        self::doc:artheader |
+                        self::doc:authorgroup |
+                        self::doc:bibliodiv |
+                        self::doc:biblioentry |
+                        self::doc:bibliography |
+                        self::doc:bibliomixed |
+                        self::doc:bibliomset |
+                        self::doc:biblioset |
+                        self::doc:bridgehead |
+                        self::doc:calloutlist |
+                        self::doc:caption |
+                        self::doc:classsynopsis |
+                        self::doc:colophon |
+                        self::doc:constraintdef |
+                        self::doc:copyright |
+                        self::doc:dedication |
+                        self::doc:epigraph |
+                        self::doc:equation |
+                        self::doc:example |
+                        self::doc:figure |
+                        self::doc:funcsynopsis |
+                        self::doc:glossary |
+                        self::doc:glossdef |
+                        self::doc:glossdiv |
+                        self::doc:glossentry |
+                        self::doc:glosslist |
+                        self::doc:graphic |
+                        self::doc:highlights |
+                        self::doc:imageobject |
+                        self::doc:imageobjectco |
+                        self::doc:index |
+                        self::doc:indexdiv |
+                        self::doc:indexentry |
+                        self::doc:informalequation |
+                        self::doc:informalexample |
+                        self::doc:informalfigure |
+                        self::doc:lot |
+                        self::doc:lotentry |
+                        self::doc:mediaobject |
+                        self::doc:mediaobjectco |
+                        self::doc:member |
+                        self::doc:msgentry |
+                        self::doc:msgset |
+                        self::doc:part |
+                        self::doc:partintro |
+                        self::doc:personblurb |
+                        self::doc:preface |
+                        self::doc:printhistory |
+                        self::doc:procedure |
+                        self::doc:programlisting |
+                        self::doc:programlistingco |
+                        self::doc:publisher |
+                        self::doc:qandadiv |
+                        self::doc:qandaentry |
+                        self::doc:qandaset |
+                        self::doc:question |
+                        self::doc:refdescriptor |
+                        self::doc:refentry |
+                        self::doc:refentrytitle |
+                        self::doc:reference |
+                        self::doc:refmeta |
+                        self::doc:refname |
+                        self::doc:refnamediv |
+                        self::doc:refpurpose |
+                        self::doc:refsect1 |
+                        self::doc:refsect2 |
+                        self::doc:refsect3 |
+                        self::doc:refsection |
+                        self::doc:refsynopsisdiv |
+                        self::doc:screen |
+                        self::doc:screenco |
+                        self::doc:screenshot |
+                        self::doc:seg |
+                        self::doc:seglistitem |
+                        self::doc:segmentedlist |
+                        self::doc:segtitle |
+                        self::doc:set |
+                        self::doc:setindex |
+                        self::doc:sidebar |
+                        self::doc:simplelist |
+                        self::doc:simplemsgentry |
+                        self::doc:step |
+                        self::doc:stepalternatives |
+                        self::doc:subjectset |
+                        self::doc:substeps |
+                        self::doc:task |
+                        self::doc:textobject |
+                        self::doc:toc |
+                        self::doc:videodata |
+                        self::doc:videoobject |
 
-                      self::*[not(starts-with(local-name(), "informal")) and contains(local-name(), "info")]'>
-	<xsl:call-template name='doc:make-paragraph'>
-	  <xsl:with-param name='style' select='"blockerror"'/>
-	  <xsl:with-param name='content'>
-	    <xsl:call-template name='doc:make-phrase'>
-	      <xsl:with-param name='content'>
-		<xsl:value-of select='local-name()'/>
-		<xsl:text> encountered</xsl:text>
-		<xsl:if test='parent::*'>
-                  <xsl:text> in </xsl:text>
-                  <xsl:value-of select='local-name(parent::*)'/>
-		</xsl:if>
-		<xsl:text>, but no template matches.</xsl:text>
-              </xsl:with-param>
-            </xsl:call-template>
-          </xsl:with-param>
-	</xsl:call-template>
-      </xsl:when>
-      <!-- Some elements are sometimes blocks, sometimes inline
-      <xsl:when test='self::affiliation |
-                      self::alt |
-                      self::attribution |
-                      self::collab |
-                      self::collabname |
-                      self::confdates |
-                      self::confgroup |
-                      self::confnum |
-                      self::confsponsor |
-                      self::conftitle |
-                      self::contractnum |
-                      self::contractsponsor |
-                      self::contrib |
-                      self::corpauthor |
-                      self::corpcredit |
-                      self::corpname |
-                      self::edition |
-                      self::editor |
-                      self::jobtitle |
-                      self::personname |
-                      self::publishername |
-                      self::remark |
+                        self::*[not(starts-with(local-name(), "informal")) and contains(local-name(), "info")]'>
+          <xsl:call-template name='doc:make-paragraph'>
+            <xsl:with-param name='style' select='"blockerror"'/>
+            <xsl:with-param name='content'>
+              <xsl:call-template name='doc:make-phrase'>
+                <xsl:with-param name='content'>
+                  <xsl:value-of select='local-name()'/>
+                  <xsl:if test='namespace-uri() != ""'>
+                    <xsl:text> [</xsl:text>
+                    <xsl:value-of select='namespace-uri()'/>
+                    <xsl:text>]</xsl:text>
+                  </xsl:if>
+                  <xsl:text> encountered</xsl:text>
+                  <xsl:if test='parent::*'>
+                    <xsl:text> in </xsl:text>
+                    <xsl:value-of select='local-name(parent::*)'/>
+                  </xsl:if>
+                  <xsl:text>, but no template matches.</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <!-- Some elements are sometimes blocks, sometimes inline
+             <xsl:when test='self::affiliation |
+                             self::alt |
+                             self::attribution |
+                             self::collab |
+                             self::collabname |
+                             self::confdates |
+                             self::confgroup |
+                             self::confnum |
+                             self::confsponsor |
+                             self::conftitle |
+                             self::contractnum |
+                             self::contractsponsor |
+                             self::contrib |
+                             self::corpauthor |
+                             self::corpcredit |
+                             self::corpname |
+                             self::edition |
+                             self::editor |
+                             self::jobtitle |
+                             self::personname |
+                             self::publishername |
+                             self::remark |
 
-                      self::doc:affiliation |
-                      self::doc:alt |
-                      self::doc:attribution |
-                      self::doc:collab |
-                      self::doc:collabname |
-                      self::doc:confdates |
-                      self::doc:confgroup |
-                      self::doc:confnum |
-                      self::doc:confsponsor |
-                      self::doc:conftitle |
-                      self::doc:contractnum |
-                      self::doc:contractsponsor |
-                      self::doc:contrib |
-                      self::doc:corpauthor |
-                      self::doc:corpcredit |
-                      self::doc:corpname |
-                      self::doc:edition |
-                      self::doc:editor |
-                      self::doc:jobtitle |
-                      self::doc:personname |
-                      self::doc:publishername |
-                      self::doc:remark'>
+                             self::doc:affiliation |
+                             self::doc:alt |
+                             self::doc:attribution |
+                             self::doc:collab |
+                             self::doc:collabname |
+                             self::doc:confdates |
+                             self::doc:confgroup |
+                             self::doc:confnum |
+                             self::doc:confsponsor |
+                             self::doc:conftitle |
+                             self::doc:contractnum |
+                             self::doc:contractsponsor |
+                             self::doc:contrib |
+                             self::doc:corpauthor |
+                             self::doc:corpcredit |
+                             self::doc:corpname |
+                             self::doc:edition |
+                             self::doc:editor |
+                             self::doc:jobtitle |
+                             self::doc:personname |
+                             self::doc:publishername |
+                             self::doc:remark'>
 
-      </xsl:when>
-      -->
-      <xsl:otherwise>
-        <xsl:call-template name='doc:make-phrase'>
-          <xsl:with-param name='style' select='"inlineerror"'/>
-	  <xsl:with-param name='content'>
-            <xsl:value-of select='local-name()'/>
-            <xsl:text> encountered</xsl:text>
-            <xsl:if test='parent::*'>
-              <xsl:text> in </xsl:text>
-              <xsl:value-of select='local-name(parent::*)'/>
-            </xsl:if>
-            <xsl:text>, but no template matches.</xsl:text>
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+             </xsl:when>
+             -->
+        <xsl:otherwise>
+          <xsl:call-template name='doc:make-phrase'>
+            <xsl:with-param name='style' select='"inlineerror"'/>
+            <xsl:with-param name='content'>
+              <xsl:value-of select='local-name()'/>
+              <xsl:text> encountered</xsl:text>
+              <xsl:if test='parent::*'>
+                <xsl:text> in </xsl:text>
+                <xsl:value-of select='local-name(parent::*)'/>
+              </xsl:if>
+              <xsl:text>, but no template matches.</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match='*' mode='doc:copy'>

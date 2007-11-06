@@ -18,6 +18,12 @@
     </author>
     <revhistory>
       <revision>
+	<revnumber>1.6</revnumber>
+	<date>2007-10-19</date>
+	<authorinitials>SRB</authorinitials>
+	<revremark>Added keyword.</revremark>
+      </revision>
+      <revision>
 	<revnumber>1.5</revnumber>
 	<date>2007-01-05</date>
 	<authorinitials>SRB</authorinitials>
@@ -681,6 +687,11 @@ variablelist4</literallayout>
             <entry colname="col1">orgname</entry>
             <entry colname="col2">orgname</entry>
             <entry colname="col3"/>
+          </row>
+          <row>
+            <entry colname="col1">keyword</entry>
+            <entry colname="col2">keywordset/kyword</entry>
+            <entry colname="col3">Paragraph style.  Consecutive <sgmltag>keyword</sgmltag> elements are merged into a single <sgmltag>keywordset</sgmltag> parent element.  Words (phrases) within a paragraph separated by commas become individual <sgmltag>keyword</sgmltag> elements.</entry>
           </row>
         </tbody>
       </tgroup>
