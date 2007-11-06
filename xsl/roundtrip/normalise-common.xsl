@@ -20,7 +20,12 @@
        The idea is to map custom names back to standard names. -->
   <xsl:template name='rnd:map-paragraph-style'>
     <xsl:param name='style'/>
-    <xsl:value-of select='$style'/>
+    <xsl:choose>
+      <xsl:when test='starts-with($style, "Normal")'/>
+      <xsl:otherwise>
+        <xsl:value-of select='$style'/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
   <xsl:template name='rnd:map-character-style'>
     <xsl:param name='style'/>

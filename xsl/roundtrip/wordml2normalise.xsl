@@ -61,8 +61,22 @@
           <xsl:value-of select='w:pPr/w:pStyle/@w:val'/>
         </xsl:attribute>
       </xsl:if>
+
+      <xsl:if test='w:r[1][w:rPr/w:rStyle/@w:val = "attributes"] and
+                    w:r[2][w:rPr/w:rStyle/@w:val = "CommentReference"]'>
+        <xsl:apply-templates select='w:r[2]//w:r[w:rPr/w:rStyle/@w:val = "attribute-name"]'
+          mode='rnd:attributes'/>
+      </xsl:if>
+
       <xsl:apply-templates/>
     </dbk:para>
+  </xsl:template>
+
+  <xsl:template match='*' mode='rnd:attributes'>
+    <xsl:attribute name='{w:t}'>
+      <xsl:apply-templates select='following-sibling::w:r[w:rPr/w:rStyle/@w:val = "attribute-value"][1]'
+        mode='rnd:attribute-value'/>
+    </xsl:attribute>
   </xsl:template>
 
   <xsl:template match='w:r'>
@@ -93,6 +107,8 @@
     </xsl:variable>
 
     <xsl:choose>
+      <xsl:when test='w:rPr/w:rStyle/@w:val = "attributes"'/>
+      <xsl:when test='w:rPr/w:rStyle/@w:val = "CommentReference"'/>
       <xsl:when test='w:pict'>
         <xsl:variable name='filename'>
           <xsl:choose>

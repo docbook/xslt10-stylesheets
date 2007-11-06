@@ -124,6 +124,7 @@
                       @rnd:style = "" or
                       @rnd:style = "para-continue"'>
         <dbk:para>
+          <xsl:call-template name='rnd:attributes'/>
           <xsl:apply-templates/>
         </dbk:para>
       </xsl:when>
@@ -142,6 +143,7 @@
       <xsl:when test='&admonition-title;'>
         <xsl:element name='{substring-before(@rnd:style, "-title")}'
           namespace='http://docbook.org/ns/docbook'>
+          <xsl:call-template name='rnd:attributes'/>
           <dbk:title>
             <xsl:apply-templates/>
           </dbk:title>
@@ -223,6 +225,7 @@
       <xsl:when test='@rnd:style = "example-title"'>
         <xsl:element name='{substring-before(@rnd:style, "-title")}'
           namespace='http://docbook.org/ns/docbook'>
+          <xsl:call-template name='rnd:attributes'/>
           <dbk:title>
             <xsl:apply-templates/>
           </dbk:title>
@@ -239,6 +242,7 @@
 			      normalize-space(.) = ""][1]'/>
 
 	<dbk:sidebar>
+          <xsl:call-template name='rnd:attributes'/>
 	  <dbk:info>
 	    <dbk:title>
 	      <xsl:apply-templates/>
@@ -261,6 +265,7 @@
       <xsl:when test='&admonition;'>
         <xsl:element name='{@rnd:style}'
           namespace='http://docbook.org/ns/docbook'>
+          <xsl:call-template name='rnd:attributes'/>
           <dbk:para>
             <xsl:apply-templates/>
           </dbk:para>
@@ -274,11 +279,13 @@
 	-->
       <xsl:when test='@rnd:style = "bibliomixed"'>
 	<dbk:bibliomixed>
+          <xsl:call-template name='rnd:attributes'/>
 	  <xsl:apply-templates/>
 	</dbk:bibliomixed>
       </xsl:when>
       <xsl:when test='@rnd:style = "biblioentry-title"'>
 	<dbk:biblioentry>
+          <xsl:call-template name='rnd:attributes'/>
           <dbk:title>
             <xsl:apply-templates/>
           </dbk:title>
@@ -309,6 +316,7 @@
                       @rnd:style = "blockquote-attribution")][1]'/>
 
             <dbk:blockquote>
+              <xsl:call-template name='rnd:attributes'/>
 	      <xsl:if test='@rnd:style = "blockquote-title"'>
 		<dbk:info>
 		  <dbk:title>
@@ -373,12 +381,24 @@
 
       <xsl:when test='@rnd:style = "informalfigure-imagedata"'>
         <dbk:informalfigure>
+          <xsl:call-template name='rnd:attributes'/>
           <dbk:mediaobject>
             <dbk:imageobject>
               <dbk:imagedata fileref='{.}'/>
             </dbk:imageobject>
           </dbk:mediaobject>
+          <xsl:apply-templates select='following-sibling::*[1][self::dbk:para][@rnd:style = "Caption"]'
+            mode='rnd:caption'/>
         </dbk:informalfigure>
+      </xsl:when>
+
+      <xsl:when test='@rnd:style = "Caption" and
+                      preceding-sibling::*[(self::dbk:para and contains(@rnd:style, "imagedata")) or self::dbk:informaltable]'/>
+      <xsl:when test='@rnd:style = "Caption"'>
+        <xsl:call-template name='rnd:error'>
+          <xsl:with-param name='code'>bad-caption</xsl:with-param>
+          <xsl:with-param name='message'>caption does not follow table or figure</xsl:with-param>
+        </xsl:call-template>
       </xsl:when>
 
       <xsl:when test='(contains(@rnd:style, "-title") or
@@ -399,6 +419,13 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='dbk:para' mode='rnd:caption'>
+    <dbk:caption>
+      <xsl:call-template name='rnd:attributes'/>
+      <xsl:apply-templates/>
+    </dbk:caption>
   </xsl:template>
 
   <xsl:template match='dbk:emphasis'>
