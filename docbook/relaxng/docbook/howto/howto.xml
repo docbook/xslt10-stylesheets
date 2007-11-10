@@ -512,12 +512,14 @@ schema which defines that DocBook documents should be validated
 against both RELAX NG and Schematron schema.</para>
 
 <para>You can find a list of NVDL validators at <link
-xl:href="http://nvdl.org/"/>. The following procedure shows how to
+xl:href="http://nvdl.org/"/>. The following procedures show how to
 install and use <application
-xl:href="http://www.oxygenxml.com/onvdl.html">oNVDL</application>
-validator.</para>
+xl:href="http://www.oxygenxml.com/onvdl.html">oNVDL</application> and
+<application xl:href="http://jnvdl.sourceforge.net">JNVDL</application>
+validators.</para>
 
 <procedure>
+<title>oNVDL installation and usage</title>
 <step>
 <para>Download <filename
 xl:href="http://www.oxygenxml.com/InstData/onvdl/onvdl-20070517.zip">onvdl-20070517.zip</filename>.</para>
@@ -528,6 +530,26 @@ xl:href="http://www.oxygenxml.com/InstData/onvdl/onvdl-20070517.zip">onvdl-20070
 <step>
 <para>Validate your document using the following command:</para>
 <screen><command>java</command> -jar <replaceable>/path/to/oNVDL/</replaceable>bin/onvdl.jar <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
+</step>
+</procedure>
+
+<procedure>
+<title>JNVDL installation and usage</title>
+<step>
+<para>Download the latest release of JNVDL from <link
+xl:href="http://sourceforge.net/project/showfiles.php?group_id=164464"/>.</para>
+</step>
+<step>
+<para>Unpack the downloaded file into an arbitrary directory.</para>
+</step>
+<step>
+<para>Modify file <filename>jnvdl.bat</filename> (or <filename>jnvdl.sh</filename> on Unix based systems) to include <option>-Xss512K</option> switch directly after <command>java</command> command.</para>
+</step>
+<step>
+<para>On Windows systems validate your document using the following command:</para>
+<screen><replaceable>/path/to/jnvdl/</replaceable><command>jnvdl</command> -nt -s <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
+<para>On Unix systems validate your document using the following command:</para>
+<screen><replaceable>/path/to/jnvdl/</replaceable><command>jnvdl.sh</command> -nt -s <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
 </step>
 </procedure>
 
@@ -1826,6 +1848,7 @@ instance. This means that all XIncludes should be processed before
 validation takes place. The following command can be used to enable
 XInclude processing in oNVDL.</para>
 <screen><command>java</command> -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XIncludeParserConfiguration -jar <replaceable>/path/to/oNVDL/</replaceable>bin/onvdl.jar <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
+<para>For JNVDL you can use switch <option>-xi</option> to enable XInclude processing.</para>
 </answer>
 </qandaentry>
 
