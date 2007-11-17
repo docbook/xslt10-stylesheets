@@ -577,7 +577,8 @@ with some limitations.</para>
 <para>You can process DocBook V5.0 documents with the DocBook XSL
 stylesheets exactly the same way as you process DocBook V4.x documents.
 You do not need special software, you can stick to your preferred
-XSLT processor, be it Saxon, xsltproc, Xalan or whatever else.</para>
+XSLT processor, be it Saxon, xsltproc, Xalan or whatever else (but see
+the note about the lost base URI below).</para>
 
 <para>During document processing, the stylesheets strip
 namespaces from DocBook V5.0 to get a document which will be
@@ -604,13 +605,13 @@ features. The unsupported features include:</para>
 <para>During namespace stripping, the base URI of the document is
 lost. This means that in rare situations, relatively referenced
 resources like images or programlistings can be processed incorrectly.
-The stylesheets attempt to compensate for this problem, but it is
-possible that there are corner cases where they will fail.</para>
+The stylesheets attempt to compensate for this problem, but that is not always 
+possible. When an XSLT processor other than Saxon or Xalan is used, a warning 
+message is generated:
 
-<para>If you want to use HTML Help, JavaHelp or Eclipse stylesheets
-with DocBook V5.0 you have to use profiling variants of those
-stylesheets (their name is starting with
-<literal>profile-</literal>).</para>
+<screen>WARNING: cannot add @xml:base to node set root element. Relative paths may not work.</screen>
+</para>
+
 </note>
 </section>
 
@@ -665,16 +666,16 @@ have, there's no specific schedule.</para>
 But, if you want to try the new stylesheets, grab a snapshot of
 the development version from <link
 xl:href="http://docbook.sourceforge.net/snapshots/docbook-xsl2-snapshot.zip"/>
-and unpack it somewhere. Then download and install Saxon 8 from <link
+and unpack it somewhere. Then download and install Saxon 9 from <link
 xl:href="http://saxon.sf.net"/>.</para>
 
 <para>To transform a DocBook V5.0 document to a single HTML page use the command:</para>
 
-<screen><command>java</command> -jar <replaceable>/path/to/</replaceable>saxon8.jar -o output.html document.xml <replaceable>/path/to/</replaceable>docbook-xsl2-snapshot/html/docbook.xsl</screen>
+<screen><command>java</command> -jar <replaceable>/path/to/</replaceable>saxon9.jar -o output.html document.xml <replaceable>/path/to/</replaceable>docbook-xsl2-snapshot/html/docbook.xsl</screen>
 
 <para>To transform a DocBook V5.0 document to a set of chunked HTML pages use the command:</para>
 
-<screen><command>java</command> -jar <replaceable>/path/to/</replaceable>saxon8.jar document.xml <replaceable>/path/to/</replaceable>docbook-xsl2-snapshot/html/chunk.xsl</screen>
+<screen><command>java</command> -jar <replaceable>/path/to/</replaceable>saxon9.jar document.xml <replaceable>/path/to/</replaceable>docbook-xsl2-snapshot/html/chunk.xsl</screen>
 
 </section>
 
