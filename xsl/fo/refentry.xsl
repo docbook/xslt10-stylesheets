@@ -563,7 +563,7 @@
 <!--     </xsl:call-template> -->
 <!-- -->
   <xsl:param name="section" 
-             select="(ancestor::refsynopsysdiv 
+             select="(ancestor::refsynopsisdiv 
                      |ancestor::refsection
                      |ancestor::refsect1
                      |ancestor::refsect2
