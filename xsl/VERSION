@@ -7,8 +7,6 @@
   exclude-result-prefixes="fm sf"
   version='1.0'>
 
-<xsl:output omit-xml-declaration="yes"/>
-
 <xsl:param name="get"/>
 <xsl:param name="VERSION" select="string(document('')//fm:Version[1])"/>
 <xsl:param name="Tag" select="concat('V',translate(string(document('')//fm:Version[1]),'.',''))"/>
