@@ -45,7 +45,7 @@ also section devoted to conversion of legacy documents from DocBook
 4.x to DocBook V5.0.</para>
 
 <para>At the time of this writing the current version of DocBook V5.0
-was &version;. However almost all information in this document is
+was &version;. However, almost all information in this document is
 general and it is applicable to any newer version in DocBook V5.0
 series.</para>
 
@@ -296,7 +296,7 @@ process content stored in DocBook V5.0.</para>
 
 <para>Because DocBook is an XML based format and XML is a text based
 format, you can use any text editor to create and edit DocBook V5.0
-documents. However using <quote>dumb</quote> editors like Notepad is
+documents. However, using <quote>dumb</quote> editors like Notepad is
 not very productive. You will do better if you use an editor that
 supports XML. Although there are DTD and W3C XML Schemas available for
 DocBook V5.0, which means you can use any editor that works with DTDs
@@ -454,7 +454,7 @@ document is really DocBook V5.0 and that processing tools will be able
 to process it correctly.</para>
 
 <para>For validation you can use tools that support simultaneous RELAX NG and
-Schematon validation or you can use NVDL to orchestrate validation to
+Schematron validation, or you can use NVDL to orchestrate validation using
 those two schemas.</para>
 
 <section xml:id="validators-rng-sch">
@@ -465,7 +465,8 @@ xl:href="http://relaxng.org/#validators"/>. It is best to use
 validators with support for embedded Schematron rules inside RELAX NG
 schemas. Schematron is a rule-based validation language which is used
 to impose additional constraints on DocBook documents. Schematron rules
-assert conditions which cannot be expressed in a pure RELAX NG schema.</para>
+assert conditions which are impossible or difficult to express 
+in a pure RELAX NG schema.</para>
 
 <para><application xl:href="https://msv.dev.java.net/">Sun 
 Multi-Schema XML Validator (MSV)</application> is able to validate an XML
@@ -506,10 +507,10 @@ RELAX NG schema with embedded Schematron rules.</para>
 <section>
 <title>Using NVDL</title>
 
-<para>NVDL is a metaschema language which can send one document to
-validation against several schemas. DocBook V5.0 comes with NVDL
+<para>NVDL is a metaschema language which can send a document to
+validation against several schemas. DocBook V5.0 comes with a NVDL
 schema which defines that DocBook documents should be validated
-against both RELAX NG and Schematron schema.</para>
+against both RELAX NG and Schematron schemas.</para>
 
 <para>You can find a list of NVDL validators at <link
 xl:href="http://nvdl.org/"/>. The following procedures show how to
@@ -546,9 +547,9 @@ xl:href="http://sourceforge.net/project/showfiles.php?group_id=164464"/>.</para>
 <para>Modify file <filename>jnvdl.bat</filename> (or <filename>jnvdl.sh</filename> on Unix based systems) to include <option>-Xss512K</option> switch directly after <command>java</command> command.</para>
 </step>
 <step>
-<para>On Windows systems validate your document using the following command:</para>
+<para>On Windows systems, validate your document using the following command:</para>
 <screen><replaceable>/path/to/jnvdl/</replaceable><command>jnvdl</command> -nt -s <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
-<para>On Unix systems validate your document using the following command:</para>
+<para>On Unix systems, validate your document using the following command:</para>
 <screen><replaceable>/path/to/jnvdl/</replaceable><command>jnvdl.sh</command> -nt -s <replaceable>/path/to/</replaceable>docbook.nvdl document.xml</screen>
 </step>
 </procedure>
@@ -575,7 +576,7 @@ versions of the stylesheets are also able to process DocBook V5.0
 with some limitations.</para>
 
 <para>You can process DocBook V5.0 documents with the DocBook XSL
-stylesheets exactly the same way as you process DocBook V4.x documents.
+stylesheets in exactly the same way as you process DocBook V4.x documents.
 You do not need special software, you can stick to your preferred
 XSLT processor, be it Saxon, xsltproc, Xalan or whatever else (but see
 the note about the lost base URI below).</para>
@@ -583,8 +584,8 @@ the note about the lost base URI below).</para>
 <para>During document processing, the stylesheets strip
 namespaces from DocBook V5.0 to get a document which will be
 very similar to DocBook V4.x. This is necessary because from the XSLT
-point of view elements from different namespaces are distinct and can
-not be easily processed by the same set of templates. This process is
+point of view, elements from different namespaces are distinct and cannot 
+be easily processed by the same set of templates. This process is
 completely transparent to the user. If you are processing DocBook V5.0
 documents, the only difference is that you will see the following
 additional message:</para>
@@ -637,7 +638,7 @@ namespaced (DocBook 5) documents.</para>
 <section xml:id="dbxsl2">
 <title>XSLT 2.0 based re-implementation</title>
 
-<para>XSLT 1.0 is missing some important features.  To work around
+<para>XSLT 1.0 is missing some important features. To work around
 these missing features, the current DocBook XSL stylesheets use some
 implementation-specific extensions.
 XSLT 2.0 adds many new and previously missing features into the language.
@@ -975,7 +976,7 @@ that allows you to edit markup “in the raw”.</para>
 to preserve with some unique string. For example, if you want to preserve
 “<literal>&amp;Product;</literal>” references, you could replace them
 all with “<literal>[[[Product]]]</literal>” (assuming that the string
-“[[[Product]]]” doesn't occur anywhere else in your document).</para>
+“<literal>[[[Product]]]</literal>” doesn't occur anywhere else in your document).</para>
 </step>
 <step>
 <para>Copy the document type declaration off of your document and save
@@ -1108,7 +1109,7 @@ linkend="convert4to5"/>.
       <itemizedlist spacing="compact">
         <listitem>
           <para>
-            Names have two or more parts, separated dots <quote>.</quote>
+            Names have two or more parts, separated by dots <quote>.</quote>
           </para>
         </listitem>
         <listitem>
@@ -1274,15 +1275,15 @@ linkend="convert4to5"/>.
     The <tag class="attribute">href</tag> attribute of the
     <tag condition="nolink">include</tag> element points to
     the location of the standard DocBook V5.0
-    schema.<footnote><para>Examples below use
-    <filename>docbook.rng</filename> as schema location. If you want
-    to create portable schema customization you should use standard
+    schema.<footnote><para>The examples in this section use
+    <filename>docbook.rng</filename> as the schema location. If you want
+    to create a portable schema customization you should use a standard
     web-accessible location like
     <uri>http://docbook.org/xml/&version;/rng/docbook.rng</uri> and
     then use <link
     xl:href="http://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html">XML
     catalogs</link> to resolve this location to your local copy of the
-    schema for improved perfomance. Unfortunately at the time of
+    schema for improved perfomance. Unfortunately, at the time of
     this writing not all RELAX NG validators support XML catalogs.</para></footnote>
     All of the examples are given in both RNG and RNC form.
 <example xml:id="ex-empty"><title>Empty customization file</title>
