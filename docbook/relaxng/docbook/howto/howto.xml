@@ -1283,7 +1283,7 @@ linkend="convert4to5"/>.
     then use <link
     xl:href="http://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html">XML
     catalogs</link> to resolve this location to your local copy of the
-    schema for improved perfomance. Unfortunately, at the time of
+    schema for improved performance. Unfortunately, at the time of
     this writing not all RELAX NG validators support XML catalogs.</para></footnote>
     All of the examples are given in both RNG and RNC form.
 <example xml:id="ex-empty"><title>Empty customization file</title>
