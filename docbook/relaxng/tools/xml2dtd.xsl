@@ -136,6 +136,8 @@
 	    <xsl:when test="@type = 'positiveInteger'">NMTOKEN</xsl:when>
 	    <xsl:when test="@type = 'decimal'">CDATA</xsl:when>
 	    <xsl:when test="@type = 'token'">NMTOKEN</xsl:when>
+	    <xsl:when test="@type = 'string'">CDATA</xsl:when>
+	    <xsl:when test="@type = 'float'">NMTOKEN</xsl:when>
 	    <xsl:otherwise>
 	      <xsl:value-of select="@type"/>
 	    </xsl:otherwise>
