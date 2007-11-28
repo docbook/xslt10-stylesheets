@@ -67,6 +67,9 @@
   <xsl:template match="*" mode="include">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
+      <xsl:if test="self::rng:element">
+        <xsl:copy-of select="ancestor::*[@ns][1]/@ns[. != 'http://docbook.org/ns/docbook']"/>
+      </xsl:if>      
       <xsl:apply-templates mode="include"/>
     </xsl:copy>
   </xsl:template>
