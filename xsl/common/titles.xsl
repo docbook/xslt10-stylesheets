@@ -710,11 +710,12 @@ title of the element. This does not include the label.
     </xsl:when>
 
     <xsl:otherwise>
-      
+   
       <xsl:choose>
 	<!-- Watch out for the case when there is a xref or link inside 
-	     a title. See bug #1811721. -->
-	<xsl:when test="not(ancestor::title)">
+	     a title. See bugs #1811721 and #1838136. -->
+	<xsl:when test="not(ancestor::*[@id = $target/@id] or ancestor::*[@xml:id = $target/@xml:id])">
+
 	  <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
 	  
 	  <xsl:apply-templates select="$target" mode="xref-to">
