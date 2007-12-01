@@ -72,12 +72,12 @@ SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
 
 SVN_INFO_FILE=.svninfo.xml
 
-PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION VERSION)
-DISTRO_TITLE=$(shell $(XSLTPROC) --stringparam get DistroTitle VERSION VERSION)
+PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
+DISTRO_TITLE=$(shell $(XSLTPROC) --stringparam get DistroTitle VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
 
-REPOSITORY_ROOT=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE); fi)
-DISTRO_URL=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE); fi)
-REVISION=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //commit/@revision $(EVALXPATH) $(SVN_INFO_FILE); fi)
+REPOSITORY_ROOT=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
+DISTRO_URL=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
+REVISION=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //commit/@revision $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
 DISTRO_PARENT_URL=$(dir $(basename $(DISTRO_URL)))
 
 # stylesheet for stripping DB5 namespace
@@ -104,9 +104,9 @@ DBLATEX_FLAGS = -b pdftex
 # file containing "What's New" info generated from Subversion log
 NEWSFILE=NEWS
 
-PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision VERSION VERSION)
+PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
 
-TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION VERSION)
+TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
 
 # determine RELVER automatically by:
 #
@@ -229,3 +229,6 @@ SVN_OPTS=
 
 SED=sed
 SED_OPTS=
+
+GREP=egrep
+GREPFLAGS=
