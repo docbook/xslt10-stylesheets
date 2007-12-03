@@ -249,16 +249,16 @@
 	  <xsl:choose>
 		<xsl:when test="$rootid != ''">
 		  <xsl:apply-templates select="key('id',$rootid)//indexterm" mode="idx">
-			<xsl:sort select="primary"/>
-			<xsl:sort select="secondary"/>
-			<xsl:sort select="tertiary"/>
+			<xsl:sort select="normalize-space(concat(primary/@sortas, primary[not(@sortas) or @sortas = '']))"/>
+			<xsl:sort select="normalize-space(concat(secondary/@sortas, secondary[not(@sortas) or @sortas = '']))"/>
+			<xsl:sort select="normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas) or @sortas = '']))"/>
 		  </xsl:apply-templates>
 		</xsl:when>
 		<xsl:otherwise>
 		  <xsl:apply-templates select="//indexterm" mode="idx">
-			<xsl:sort select="primary"/>
-			<xsl:sort select="secondary"/>
-			<xsl:sort select="tertiary"/>
+			<xsl:sort select="normalize-space(concat(primary/@sortas, primary[not(@sortas) or @sortas = '']))"/>
+			<xsl:sort select="normalize-space(concat(secondary/@sortas, secondary[not(@sortas) or @sortas = '']))"/>
+			<xsl:sort select="normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas) or @sortas = '']))"/>
 		  </xsl:apply-templates>
 		</xsl:otherwise>
 	  </xsl:choose>
