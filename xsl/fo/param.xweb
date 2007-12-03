@@ -464,8 +464,8 @@ zero by default, so this is simply the page-master region-left.
 <reference xml:id="profiling"><title>Profiling</title>
 <partintro xml:id="profiling_partintro">
 <para>The following parameters can be used for attribute-based
-profiling of your document. FIXME: add link to profiling section
-in Bob’s book.</para>
+profiling of your document. For more information about profiling, see 
+<link role="tcg" xlink:href="Profiling.html">Profiling (conditional text)</link>.</para>
 </partintro>
 &profile.arch;
 &profile.audience;
