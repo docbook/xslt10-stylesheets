@@ -95,14 +95,18 @@
 
 <xsl:template match="*">
   <xsl:message>
-    <xsl:value-of select="name(.)"/>
-    <xsl:text> encountered</xsl:text>
+    <xsl:text>Element </xsl:text>
+    <xsl:value-of select="local-name(.)"/>
+    <xsl:text> in namespace '</xsl:text>
+    <xsl:value-of select="namespace-uri(.)"/>
+    <xsl:text>' encountered</xsl:text>
     <xsl:if test="parent::*">
       <xsl:text> in </xsl:text>
       <xsl:value-of select="name(parent::*)"/>
     </xsl:if>
     <xsl:text>, but no template matches.</xsl:text>
   </xsl:message>
+  
   <fo:block color="red">
     <xsl:text>&lt;</xsl:text>
     <xsl:value-of select="name(.)"/>
