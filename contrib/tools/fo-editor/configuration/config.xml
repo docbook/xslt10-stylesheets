@@ -1,0 +1,574 @@
+<?xml version='1.0' encoding='utf-8'?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <section name="Page Layout">
+    <subsection name="Paper Format">
+      <group> 
+        <parameter>paper.type</parameter>
+        <parameter>page.orientation</parameter>
+        <parameter>double.sided</parameter>
+        <parameter>toc.html</parameter>
+      </group>
+      <group name="Paper size" graphics="page-format">
+        <parameter>page.width</parameter>
+        <parameter>page.height</parameter>
+        <parameter>page.width.portrait</parameter>
+        <parameter>page.height.portrait</parameter>
+      </group>
+      <group name="Margins">
+        <parameter>page.margin.inner</parameter>
+        <parameter>page.margin.outer</parameter> 
+        <parameter>page.margin.top</parameter> 
+        <parameter>page.margin.bottom</parameter>          
+        <parameter>body.margin.top</parameter>        
+        <parameter>body.margin.bottom</parameter>    
+        <parameter>region.before.extent</parameter>        
+        <parameter>region.after.extent</parameter>           
+      </group>                                         
+    </subsection>
+    <subsection name="Page Body">
+      <group name="Body indent">
+        <parameter>body.start.indent</parameter>
+        <parameter>body.end.indent</parameter>
+      </group>  
+      <group name ="Paragraph">
+        <parameter>line-height</parameter>
+        <parameter>alignment</parameter>
+        <parameter>hyphenate</parameter>
+        <attribute-set>normal.para.spacing</attribute-set>
+      </group> 
+      <group name ="Characters">
+        <attribute-set>superscript.properties</attribute-set>
+        <attribute-set>subscript.properties</attribute-set>  
+      </group>           
+    </subsection>
+    <subsection name="Header/Footer">
+      <group>
+        <parameter>marker.section.level</parameter>
+      </group> 
+      <group name ="Header">
+        <parameter>headers.on.blank.pages</parameter>
+        <parameter>header.rule</parameter>
+        <parameter>header.column.widths</parameter>
+        <parameter>header.table.height</parameter>   
+        <attribute-set>header.content.properties</attribute-set>
+      </group>
+      <group name ="Footer">         
+        <parameter>footers.on.blank.pages</parameter>                 
+        <parameter>footer.rule</parameter>      
+        <parameter>footer.column.widths</parameter> 
+        <parameter>footer.table.height</parameter>      
+        <attribute-set>footer.content.properties</attribute-set>
+      </group>    
+    </subsection>            
+    <subsection name="Fonts">
+      <group name ="Font family">
+        <parameter>body.font.family</parameter>
+        <parameter>title.font.family</parameter>
+        <parameter>monospace.font.family</parameter>
+        <parameter>dingbat.font.family</parameter>
+        <parameter>sans.font.family</parameter>
+        <parameter>symbol.font.family</parameter>
+      </group>
+      <group name ="Font size">       
+        <parameter>body.font.master</parameter>
+        <parameter>body.font.size</parameter>
+        <parameter>footnote.font.size</parameter>  
+      </group>
+      <group name ="Font properties">       
+        <attribute-set>monospace.properties</attribute-set>
+        <attribute-set>verbatim.properties</attribute-set>      
+      </group>      
+    </subsection>    
+    <subsection name="Lists">
+      <group>
+        <attribute-set>list.block.properties</attribute-set> 
+      </group>      
+      <group name ="List spacing">
+        <attribute-set>list.block.spacing</attribute-set> 
+        <attribute-set>list.item.spacing</attribute-set>
+        <attribute-set>compact.list.item.spacing</attribute-set>       
+      </group>       
+      <group name ="Variablelist">
+        <parameter>variablelist.max.termlength</parameter>
+        <parameter>variablelist.as.blocks</parameter>
+        <parameter>variablelist.term.separator</parameter>
+        <parameter>variablelist.term.break.after</parameter>
+      </group>        
+      <group name ="Itemizedlist">
+        <parameter>itemizedlist.label.width</parameter>
+        <attribute-set>itemizedlist.properties</attribute-set> 
+        <attribute-set>itemizedlist.label.properties</attribute-set>     
+      </group>       
+      <group name ="Orderedlist">
+        <parameter>orderedlist.label.width</parameter>
+        <attribute-set>orderedlist.properties</attribute-set> 
+        <attribute-set>orderedlist.label.properties</attribute-set>        
+      </group>       
+      <group name ="Segmentedlist">
+        <parameter>segmentedlist.as.table</parameter>
+      </group>
+    </subsection>   
+    <subsection name="Columns">
+      <group name ="Column count">
+        <parameter>column.count.back</parameter>
+        <parameter>column.count.body</parameter>
+        <parameter>column.count.front</parameter>
+        <parameter>column.count.index</parameter>
+        <parameter>column.count.lot</parameter>
+        <parameter>column.count.titlepage</parameter>
+      </group>
+      <group name ="Column gap">
+        <parameter>column.gap.back</parameter>
+        <parameter>column.gap.body</parameter>
+        <parameter>column.gap.front</parameter>
+        <parameter>column.gap.index</parameter>
+        <parameter>column.gap.lot</parameter>
+        <parameter>column.gap.titlepage</parameter>
+      </group>      
+    </subsection>        
+    <subsection name="Chapter and Section Numbering">
+      <group>
+        <parameter>chapter.autolabel</parameter>
+        <parameter>appendix.autolabel</parameter>
+        <parameter>preface.autolabel</parameter>
+        <parameter>reference.autolabel</parameter>
+      </group>
+      <group name ="Part numbering">      
+        <parameter>part.autolabel</parameter>
+        <parameter>label.from.part</parameter>
+        <parameter>component.label.includes.part.label</parameter>        
+      </group>
+      <group name ="Section numbering">
+        <parameter>section.autolabel</parameter>
+        <parameter>section.label.includes.component.label</parameter>               
+        <parameter>section.autolabel.max.depth</parameter>    
+      </group>      
+    </subsection>
+    <subsection name="Titles">   
+      <group>
+        <parameter>title.margin.left</parameter>
+      </group>         
+      <group name ="Title placement">           
+        <parameter>formal.title.placement</parameter>      
+      </group>     
+      <group name ="Title properties">       
+        <attribute-set>component.title.properties</attribute-set>
+        <attribute-set>formal.title.properties</attribute-set>
+        <attribute-set>article.appendix.title.properties</attribute-set>
+      </group>                             
+    </subsection>     
+  </section>
+  
+  <section name="Document Segments">
+    <subsection name="Page Objects">
+      <group>
+        <attribute-set>pgwide.properties</attribute-set>  
+      </group>         
+      <group name ="Object">
+        <attribute-set>formal.object.properties</attribute-set>
+        <attribute-set>informal.object.properties</attribute-set>  
+      </group>       
+      <group name ="Figure">
+        <attribute-set>figure.properties</attribute-set> 
+        <attribute-set>informalfigure.properties</attribute-set>
+      </group>
+      <group name ="Example">      
+        <attribute-set>example.properties</attribute-set>  
+        <attribute-set>informalexample.properties</attribute-set>
+      </group>
+      <group name ="Abstract">
+        <attribute-set>abstract.properties</attribute-set>
+        <attribute-set>abstract.title.properties</attribute-set>
+      </group>
+      <group name ="Block quotations">
+        <attribute-set>blockquote.properties</attribute-set> 
+      </group>     
+      <group name ="Revhistory">
+        <attribute-set>revhistory.table.properties</attribute-set>
+        <attribute-set>revhistory.table.cell.properties</attribute-set> 
+        <attribute-set>revhistory.title.properties</attribute-set>  
+      </group>                    
+    </subsection>     
+    <subsection name ="Admonition">
+      <group name ="Text admonition">
+        <parameter>admon.textlabel</parameter>
+        <attribute-set>admonition.title.properties</attribute-set>
+        <attribute-set>admonition.properties</attribute-set>
+        <attribute-set>nongraphical.admonition.properties</attribute-set>
+      </group>
+      <group name ="Graphics admonition">
+        <parameter>admon.graphics</parameter>
+        <parameter>admon.graphics.path</parameter>
+        <parameter>admon.graphics.extension</parameter>
+        <attribute-set>graphical.admonition.properties</attribute-set>
+      </group>    
+    </subsection> 
+    <subsection name ="Callouts">
+      <group>
+        <parameter>callout.defaultcolumn</parameter>
+        <parameter>callouts.extension</parameter>
+      </group>     
+      <group name ="Callout icons">
+        <parameter>callout.graphics</parameter>  
+        <parameter>callout.graphics.path</parameter>
+        <parameter>callout.graphics.extension</parameter>
+        <parameter>callout.graphics.number.limit</parameter>
+      </group>
+      <group name ="Unicode characters">
+        <parameter>callout.unicode</parameter>  
+        <parameter>callout.unicode.font</parameter>
+        <parameter>callout.unicode.number.limit</parameter>
+        <parameter>callout.unicode.start.character</parameter>
+      </group>         
+    </subsection>
+    <subsection name ="Side Floats">
+      <group name ="Sidebars">
+        <attribute-set>sidebar.properties</attribute-set>
+        <attribute-set>sidebar.title.properties</attribute-set> 
+        <parameter>sidebar.float.type</parameter>
+        <parameter>sidebar.float.width</parameter> 
+      </group> 
+      <group name ="Margin notes">
+        <attribute-set>margin.note.properties</attribute-set>
+        <attribute-set>margin.note.title.properties</attribute-set> 
+        <parameter>margin.note.float.type</parameter>
+        <parameter>margin.note.width</parameter> 
+      </group> 
+    </subsection> 
+    <subsection name ="Sections">   
+      <group name ="Section title">
+        <attribute-set>section.title.properties</attribute-set>
+        <attribute-set>section.title.level1.properties</attribute-set> 
+        <attribute-set>section.title.level2.properties</attribute-set>
+        <attribute-set>section.title.level3.properties</attribute-set>  
+        <attribute-set>section.title.level4.properties</attribute-set>
+        <attribute-set>section.title.level5.properties</attribute-set>
+        <attribute-set>section.title.level6.properties</attribute-set>
+      </group>
+      <group name ="Section">  
+        <attribute-set>section.properties</attribute-set>
+        <attribute-set>section.level1.properties</attribute-set>
+        <attribute-set>section.level2.properties</attribute-set>
+        <attribute-set>section.level3.properties</attribute-set>
+        <attribute-set>section.level4.properties</attribute-set>
+        <attribute-set>section.level5.properties</attribute-set>
+        <attribute-set>section.level6.properties</attribute-set>
+      </group>
+    </subsection>
+   <subsection name="Tables">
+      <group>      
+        <attribute-set>table.table.properties</attribute-set> 
+        <attribute-set>table.properties</attribute-set>
+        <attribute-set>informaltable.properties</attribute-set>  
+      </group>    
+      <group name ="Table width">
+        <parameter>default.table.width</parameter>
+        <parameter>nominal.table.width</parameter>
+      </group>
+      <group name ="Table frame borders">
+        <parameter>table.frame.border.thickness</parameter>
+        <parameter>table.frame.border.style</parameter>
+        <parameter>table.frame.border.color</parameter>
+      </group>
+      <group name ="Table cells">
+        <parameter>table.cell.border.thickness</parameter>
+        <parameter>table.cell.border.style</parameter>   
+        <parameter>table.cell.border.color</parameter>  
+        <attribute-set>table.cell.padding</attribute-set>         
+      </group>     
+    </subsection>      
+    <subsection name ="Tables of Contents">
+      <group>
+        <parameter>generate.toc</parameter>
+        <parameter>autotoc.label.separator</parameter>
+        <attribute-set>toc.line.properties</attribute-set>
+      </group>
+      <group name ="Depth of ToC">          
+        <parameter>toc.max.depth</parameter>
+        <parameter>toc.section.depth</parameter>
+        <parameter>generate.section.toc.level</parameter>
+      </group>
+      <group name ="Process ToC">
+        <parameter>process.empty.source.toc</parameter>
+        <parameter>process.source.toc</parameter>
+      </group>
+      <group name ="Include in ToC">
+        <parameter>bridgehead.in.toc</parameter>
+        <parameter>simplesect.in.toc</parameter>      
+      </group>    
+      <group name ="ToC surrounding">  
+        <parameter>toc.indent.width</parameter>
+        <attribute-set>toc.margin.properties</attribute-set>      
+      </group>        
+    </subsection>   
+    <subsection name="Q and A Sets">
+      <group name ="Q and A labeling">
+        <parameter>qandadiv.autolabel</parameter>
+        <parameter>qanda.inherit.numeration</parameter>
+        <parameter>qanda.defaultlabel</parameter>
+      </group> 
+      <group name ="Q and A title">
+        <attribute-set>qanda.title.properties</attribute-set>
+        <attribute-set>qanda.title.level1.properties</attribute-set>
+        <attribute-set>qanda.title.level2.properties</attribute-set>
+        <attribute-set>qanda.title.level3.properties</attribute-set>
+        <attribute-set>qanda.title.level4.properties</attribute-set>
+        <attribute-set>qanda.title.level5.properties</attribute-set>
+        <attribute-set>qanda.title.level6.properties</attribute-set>
+      </group>      
+    </subsection>     
+    <subsection name="Bibliography">
+      <group>
+        <parameter>bibliography.numbered</parameter>  
+        <parameter>bibliography.collection</parameter>  
+      </group>
+      <group name="Bibliography entries">
+        <parameter>biblioentry.item.separator</parameter>
+        <attribute-set>biblioentry.properties</attribute-set>
+      </group>      
+    </subsection>       
+    <subsection name="Glossary">
+      <group name="Glossary formatting"> 
+        <parameter>glossentry.show.acronym</parameter>      
+        <parameter>glossary.as.blocks</parameter>
+        <parameter>glosslist.as.blocks</parameter>
+        <parameter>glossterm.separation</parameter>
+        <parameter>glossterm.width</parameter>
+      </group>    
+      <group name="Glossary database">
+        <parameter>glossary.collection</parameter> 
+        <parameter>glossterm.auto.link</parameter>
+        <parameter>firstterm.only.link</parameter>        
+      </group>
+    </subsection>    
+     <subsection name="Footnotes">
+      <group>
+        <attribute-set>footnote.properties</attribute-set>
+        <attribute-set>footnote.mark.properties</attribute-set>
+        <attribute-set>footnote.sep.leader.properties</attribute-set>
+      </group>
+      <group name ="Footnote numbers">
+        <parameter>footnote.number.format</parameter>  
+        <parameter>footnote.number.symbols</parameter>
+      </group>
+      <group name ="Table footnote">
+        <parameter>table.footnote.number.format</parameter>  
+        <parameter>table.footnote.number.symbols</parameter>
+        <attribute-set>table.footnote.properties</attribute-set>
+      </group>    
+    </subsection>           
+    <subsection name="Reference Pages">
+      <group name ="Refentry">
+        <parameter>refentry.generate.name</parameter>
+        <parameter>refentry.generate.title</parameter>
+        <attribute-set>refentry.title.properties</attribute-set>
+        <parameter>refentry.pagebreak</parameter>
+        <parameter>refentry.xref.manvolnum</parameter>
+        <parameter>refclass.suppress</parameter>
+      </group>    
+     <group name ="Function">
+        <parameter>function.parens</parameter>
+      </group>
+     <group name ="Funcsynopsis">
+        <parameter>funcsynopsis.decoration</parameter>
+        <parameter>funcsynopsis.style</parameter>
+      </group>    
+    </subsection>  
+    <subsection name="Program Listings">
+      <group>
+        <parameter>default.float.class</parameter>
+        <parameter>formal.procedures</parameter>
+        <attribute-set>procedure.properties</attribute-set>
+      </group>
+      <group name ="Highlight">
+        <parameter>highlight.default.language</parameter>
+        <parameter>highlight.source</parameter>
+      </group>      
+      <group name ="Menuchoice">
+        <parameter>menuchoice.separator</parameter>
+        <parameter>menuchoice.menu.separator</parameter>
+      </group>
+      <group name ="Verbatim text">  
+        <parameter>shade.verbatim</parameter> 
+        <parameter>hyphenate.verbatim</parameter>
+        <parameter>hyphenate.verbatim.characters</parameter>
+        <attribute-set>shade.verbatim.style</attribute-set>
+        <attribute-set>monospace.verbatim.properties</attribute-set> 
+      </group>
+      <group name ="Linenumbering">      
+        <parameter>linenumbering.everyNth</parameter>
+        <parameter>linenumbering.extension</parameter>
+        <parameter>linenumbering.separator</parameter>
+        <parameter>linenumbering.width</parameter>
+      </group>    
+    </subsection>              
+  </section>
+  
+  <section name="Document Properties">    
+    <subsection name ="General">
+      <group>
+        <parameter>show.comments</parameter> 
+      </group>    
+      <group name ="Root">
+        <parameter>rootid</parameter>
+        <attribute-set>root.properties</attribute-set> 
+      </group>
+      <group name ="Draft">
+        <parameter>draft.watermark.image</parameter>  
+        <parameter>draft.mode</parameter>  
+      </group>   
+      <group name ="EBNF">
+        <parameter>ebnf.assignment</parameter>  
+        <parameter>ebnf.statement.terminator</parameter>  
+      </group>    
+      <group name ="Crops">
+        <parameter>crop.marks</parameter>  
+        <parameter>crop.mark.width</parameter>
+        <parameter>crop.mark.offset</parameter>
+        <parameter>crop.mark.bleed</parameter>  
+      </group>          
+      <group name ="Others">
+        <parameter>runinhead.default.title.end.punct</parameter>
+        <parameter>runinhead.title.end.punct</parameter>
+        <parameter>email.delimiters.enabled</parameter>  
+      </group>             
+    </subsection>   
+    <subsection name ="Localization">
+      <group>
+        <parameter>l10n.gentext.default.language</parameter>  
+        <parameter>l10n.gentext.language</parameter>
+        <parameter>l10n.gentext.use.xref.language</parameter>
+        <parameter>l10n.lang.value.rfc.compliant</parameter>  
+      </group>  
+    </subsection>  
+    <subsection name ="Meta / Info">
+      <group>
+        <parameter>make.single.year.ranges</parameter>
+        <parameter>make.year.ranges</parameter>
+        <parameter>author.othername.in.middle</parameter>  
+        <parameter>punct.honorific</parameter>
+      </group>  
+    </subsection>        
+    <subsection name="Cross References">
+      <group name="Xrefs">
+        <parameter>insert.xref.page.number</parameter>
+        <parameter>insert.link.page.number</parameter>
+        <parameter>xref.with.number.and.title</parameter> 
+        <parameter>use.role.as.xrefstyle</parameter> 
+        <attribute-set>xref.properties</attribute-set> 
+      </group> 
+      <group name ="Xref labels">
+        <parameter>xref.label-title.separator</parameter>
+        <parameter>xref.label-page.separator</parameter>
+        <parameter>xref.title-page.separator</parameter>
+      </group>       
+      <group name="Ulinks">
+        <parameter>ulink.show</parameter>
+        <parameter>ulink.hyphenate</parameter>
+        <parameter>ulink.hyphenate.chars</parameter>
+        <parameter>ulink.footnotes</parameter>
+      </group>        
+    </subsection>      
+    <subsection name="Extensions">
+      <group name ="Processor Extensions">      
+        <parameter>arbortext.extensions</parameter>
+        <parameter>axf.extensions</parameter>
+        <parameter>fop.extensions</parameter>   
+        <parameter>fop1.extensions</parameter>   
+        <parameter>xep.extensions</parameter>    
+      </group>            
+      <group name ="Stylesheet Extensions">
+        <parameter>use.extensions</parameter>
+        <parameter>tablecolumns.extension</parameter> 
+      </group>        
+      <group name ="Text File Extensions">
+        <parameter>textinsert.extension</parameter>
+        <parameter>textdata.default.encoding</parameter>
+      </group> 
+    </subsection>    
+    <subsection name="Math">
+      <group name ="Tex extensions">
+        <parameter>passivetex.extensions</parameter>
+        <parameter>tex.math.in.alt</parameter>
+        <parameter>tex.math.delims</parameter> 
+      </group>   
+      <group name ="Equation">
+        <attribute-set>equation.properties</attribute-set>
+        <attribute-set>informalequation.properties</attribute-set>
+      </group>          
+    </subsection>        
+    <subsection name="Index Generation">
+      <group name ="Generate index">
+        <parameter>generate.index</parameter>
+        <parameter>make.index.markup</parameter>
+        <parameter>index.on.type</parameter>
+        <parameter>index.on.role</parameter>
+        <parameter>index.method</parameter>
+      </group>
+      <group name ="Separators">        
+        <parameter>index.number.separator</parameter>
+        <parameter>index.range.separator</parameter>
+        <parameter>index.term.separator</parameter>
+      </group>
+      <group name ="Index properties">
+        <attribute-set>index.preferred.page.properties</attribute-set>  
+        <attribute-set>index.entry.properties</attribute-set>
+        <attribute-set>index.div.title.properties</attribute-set>
+        <attribute-set>xep.index.item.properties</attribute-set>
+      </group>
+    </subsection>      
+    <subsection name="Graphics">
+      <group>
+        <parameter>use.svg</parameter>
+        <parameter>graphic.default.extension</parameter>
+        <parameter>img.src.path</parameter>
+        <parameter>keep.relative.image.uris</parameter>
+      </group>
+      <group name ="Graphics size">
+        <parameter>default.image.width</parameter>  
+        <parameter>ignore.image.scaling</parameter>
+      </group>
+      <group name ="Parameter role">
+        <parameter>preferred.mediaobject.role</parameter>  
+        <parameter>use.role.for.mediaobject</parameter>
+      </group>    
+    </subsection>  
+   <subsection name="Linking">
+      <group>
+        <parameter>current.docid</parameter>
+        <parameter>collect.xref.targets</parameter>
+        <parameter>insert.olink.page.number</parameter>
+        <parameter>insert.olink.pdf.frag</parameter>
+        <parameter>olink.base.uri</parameter>
+        <parameter>olink.debug</parameter>
+        <parameter>olink.doctitle</parameter>
+        <parameter>olink.lang.fallback.sequence</parameter>
+        <attribute-set>olink.properties</attribute-set>
+        <parameter>prefer.internal.olink</parameter>
+        <parameter>target.database.document</parameter>
+        <parameter>targets.filename</parameter>
+        <parameter>use.local.olink.style</parameter>
+      </group>  
+    </subsection>  
+    <subsection name="Profiling">
+      <group>
+        <parameter>profile.arch</parameter>
+        <parameter>profile.condition</parameter>
+        <parameter>profile.conformance</parameter>
+        <parameter>profile.lang</parameter>
+        <parameter>profile.os</parameter>
+        <parameter>profile.revision</parameter>
+        <parameter>profile.revisionflag</parameter> 
+        <parameter>profile.role</parameter>
+        <parameter>profile.security</parameter>
+        <parameter>profile.userlevel</parameter>
+        <parameter>profile.vendor</parameter>
+        <parameter>profile.attribute</parameter>
+        <parameter>profile.value</parameter>
+        <parameter>profile.separator</parameter>
+      </group>  
+    </subsection>                           
+  </section>
+ 
+</config>
+
