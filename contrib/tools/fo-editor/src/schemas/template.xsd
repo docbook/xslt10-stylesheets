@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="stringtype">
+ <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:complexType name="attributetype">
+  <xs:simpleContent>
+    <xs:extension base="stringtype">
+      <xs:attribute name="default" type="stringtype"/>
+    </xs:extension>
+  </xs:simpleContent>    
+</xs:complexType>
+
+<xs:complexType name="propertytype">
+  <xs:sequence>
+   <xs:element name="attribute" type="attributetype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="name" type="stringtype" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="parametertype">
+  <xs:simpleContent>
+    <xs:extension base="stringtype">
+      <xs:attribute name="default" type="stringtype"/>
+    </xs:extension>
+  </xs:simpleContent>    
+</xs:complexType>
+
+<xs:complexType name="propertiestype">
+  <xs:sequence>
+   <xs:element name="attribute-set" type="propertytype" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="parameterstype">
+  <xs:sequence>
+   <xs:element name="parameter" type="parametertype" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="templatetype">
+  <xs:sequence>
+   <xs:element name="attribute-sets" type="propertiestype" maxOccurs="1"/>
+   <xs:element name="parameters" type="parameterstype" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="template" type="templatetype"/>
+
+</xs:schema>
