@@ -38,6 +38,10 @@ Installing FO Parameter Editor
   After that, you may want to add a shortcut to "C:\FOeditor\run.bat" or 
   "C:\FOeditor\FOEditor.jar" on your desktop. 
   Errors occuring during the editor run are written down in a log file error.log.
+
+  4. Specify path to params directory in your DocBook XSL Stylesheets distribution using
+  Options -> Editor Options... -> FO parameter XML specification. It is necessary to restart
+  application after this.
   
 
   ------------------
@@ -65,4 +69,8 @@ Installing FO Parameter Editor
   After that, you may want to add a shortcut to "..\FOeditor\run.sh" or 
   "..\FOeditor\FOEditor.jar" on your desktop. 
   Errors occuring during the editor run are written down in a log file error.log.
+
+  4. Specify path to params directory in your DocBook XSL Stylesheets distribution using
+  Options -> Editor Options... -> FO parameter XML specification. It is necessary to restart
+  application after this.
   
