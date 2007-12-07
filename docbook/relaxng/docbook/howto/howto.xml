@@ -1821,6 +1821,16 @@ imported entities. For example:</para>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
 <title>DocBook V5.0 &ndash; the superb documentation format</title>]]>
 …</programlisting>
+<para>For your convenience there is also flattened entity definition
+file which contains all entity definitions.</para>
+<programlisting><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article [
+<!ENTITY % allent SYSTEM "http://www.w3.org/2003/entities/2007/w3centities-f.ent">
+%allent;
+]>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+<title>DocBook V5.0 &ndash; the superb documentation format</title>]]>
+…</programlisting>
 </answer>
 </qandaentry>
 
