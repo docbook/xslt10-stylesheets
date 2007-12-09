@@ -89,8 +89,6 @@ public class ParameterParser {
         Iterator<Map.Entry<String, Parameter>> iter = parameterList.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<String, Parameter> param = iter.next();
-            //inform about file loading
-            ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + param.getValue().getName()+".xml"));                   
             parseParameter(param.getValue());
         }   
     }
@@ -115,6 +113,7 @@ public class ParameterParser {
                 else
                     unparsedParameterList.put(element.getName(), element);
             }
+            ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + element.getName()+".xml"));                   
         } catch (IOException ex) {
             MessageWriter.writeWarning(ResourceController.getMessage(
                     "parser.xml_definition_file.missing_file", element.getName(),
