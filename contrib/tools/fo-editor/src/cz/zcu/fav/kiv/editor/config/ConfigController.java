@@ -45,7 +45,7 @@ public class ConfigController {
         data = new ConfigData();
         MessageWriter.writeTitle(ResourceController.getMessage("parser.config_file.title"));
         File directory = new File(OptionItems.XML_DEFINITION_PATH);
-        if (!directory.exists())
+        if (!directory.exists() || directory.listFiles().length == 0)
             MessageWriter.writeError(ResourceController
                     .getMessage("parser.xml_definition_file.invalid_directory"));
 
