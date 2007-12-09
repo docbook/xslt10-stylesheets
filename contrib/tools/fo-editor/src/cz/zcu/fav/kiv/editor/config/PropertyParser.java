@@ -69,7 +69,6 @@ public class PropertyParser {
         Iterator<Map.Entry<String, Property>> iter = propertyList.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<String, Property> prop = iter.next();
-            ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + prop.getValue().getName()+".xml"));
             parseProperty(prop.getValue());
         }   
     }
@@ -92,6 +91,7 @@ public class PropertyParser {
             //unparsed attributes
             if (handler.getUnparsedAttributeList().size() > 0)
                 unparsedAttributeList.putAll(handler.getUnparsedAttributeList());
+            ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + element.getName()+".xml"));
         } catch (IOException ex) {
             MessageWriter.writeWarning(ResourceController.getMessage(
                     "parser.xml_definition_file.missing_file", element.getName(),
