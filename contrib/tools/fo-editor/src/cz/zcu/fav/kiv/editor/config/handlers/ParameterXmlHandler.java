@@ -148,6 +148,9 @@ public class ParameterXmlHandler extends DefaultHandler {
             break;
         case XSL_PARAM:
             insideXslParamBuffer.setLength(0);
+            //has parameter defined type?
+            if (parameter.getType().getName() == null)
+            	valid = false;
             // parse select
             if (valid)
                 insideXslParam = parseXslParamSelect(atts);
