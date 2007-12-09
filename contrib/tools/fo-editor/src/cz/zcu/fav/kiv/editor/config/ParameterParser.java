@@ -112,9 +112,9 @@ public class ParameterParser {
                     parsedParameterList.put(element.getName(), element);
                 else
                     unparsedParameterList.put(element.getName(), element);
+                ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + element.getName()+".xml"));                   
             }
-            ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + element.getName()+".xml"));                   
-        } catch (IOException ex) {
+         } catch (IOException ex) {
             MessageWriter.writeWarning(ResourceController.getMessage(
                     "parser.xml_definition_file.missing_file", element.getName(),
                     OptionItems.XML_DEFINITION_PATH));
