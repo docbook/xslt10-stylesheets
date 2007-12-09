@@ -87,11 +87,11 @@ public class PropertyParser {
                     + ".xml");
             if (handler.isValid()) {
                 parsedPropertyList.put(element.getName(), element);
+                ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + element.getName()+".xml"));
             }
             //unparsed attributes
             if (handler.getUnparsedAttributeList().size() > 0)
                 unparsedAttributeList.putAll(handler.getUnparsedAttributeList());
-            ProgressControl.addStatMessage(ResourceController.getMessage("frame.intro.progress.read_file", OptionItems.XML_DEFINITION_PATH + File.separator + element.getName()+".xml"));
         } catch (IOException ex) {
             MessageWriter.writeWarning(ResourceController.getMessage(
                     "parser.xml_definition_file.missing_file", element.getName(),

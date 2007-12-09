@@ -93,6 +93,13 @@ public class PropertyXmlHandler extends DefaultHandler {
             purposeBuffer.setLength(0);
             break;
         case REFMISCINFO:
+        	if (atts.getType(ParameterTags.OTHERCLASS) == null) {
+                MessageWriter.writeWarning(ResourceController.getMessage(
+                        "parser.property.invalid_type", FileConst.CONF_FILE_CONFIG, property
+                                .getName(), property.getLineNumber()));
+                valid = false;
+                return;
+        	}
             if (atts.getType(ParameterTags.OTHERCLASS).equals(ParameterTags.DATATYPE.toString())) {
                 insideRefmiscinfoDatatype = true;
                 refmiscinfoDatatypeBuffer.setLength(0);
