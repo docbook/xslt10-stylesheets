@@ -7,6 +7,7 @@ Installing FO Parameter Editor
   ------------
 
   * Sun or Apple Java[tm] runtime 1.5.0 or above.
+  * Runs with Docbook XSL parameters of version 1.73.2 or above.
 
   FO Parameter Editor is officially supported on Windows XP and Linux.
   
