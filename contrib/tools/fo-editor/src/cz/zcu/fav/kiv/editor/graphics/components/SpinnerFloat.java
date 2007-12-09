@@ -1,8 +1,10 @@
 package cz.zcu.fav.kiv.editor.graphics.components;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Locale;
 
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -32,7 +34,7 @@ public class SpinnerFloat extends JSpinner implements Observer, ChangeListener {
     private static final int SPINNER_SIZE = 4;
 
     /** The number format used for converting a decimal value to the string */
-    private static final DecimalFormat formatDouble = new DecimalFormat("0.##");
+    private static final DecimalFormat formatDouble = (DecimalFormat) NumberFormat.getInstance(Locale.ENGLISH);
 
     /** The parameter type which values the component displays */
     private Type type;
@@ -48,6 +50,9 @@ public class SpinnerFloat extends JSpinner implements Observer, ChangeListener {
         SpinnerNumberModel spinnerModel = new SpinnerNumberModel();
         spinnerModel.setValue(convertDouble(type.getValue()));
         spinnerModel.setStepSize(STEP);
+        
+        formatDouble.applyPattern("0.##");
+        
         return new SpinnerFloat(spinnerModel, type);
     }
 
