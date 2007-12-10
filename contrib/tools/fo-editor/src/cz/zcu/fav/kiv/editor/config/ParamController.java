@@ -116,6 +116,9 @@ public class ParamController {
                 }
             }
         }
+        //set new parameter and property list
+        configData.setParameterList(parameterParserXML.getParsedParameterList());
+        configData.setPropertyList(propertyParserXML.getParsedPropertyList());
     }
 
     public Map<String, Parameter> getParsedParameterList() {
