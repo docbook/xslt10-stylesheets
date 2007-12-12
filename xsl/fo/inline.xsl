@@ -1,16 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE xsl:stylesheet [
-  <!ENTITY comment.block.parents "parent::answer|parent::appendix|parent::article|parent::bibliodiv|
-                                  parent::bibliography|parent::blockquote|parent::caution|parent::chapter|
-                                  parent::glossary|parent::glossdiv|parent::important|parent::index|
-                                  parent::indexdiv|parent::listitem|parent::note|parent::orderedlist|
-                                  parent::partintro|parent::preface|parent::procedure|parent::qandadiv|
-                                  parent::qandaset|parent::question|parent::refentry|parent::refnamediv|
-                                  parent::refsect1|parent::refsect2|parent::refsect3|parent::refsection|
-                                  parent::refsynopsisdiv|parent::sect1|parent::sect2|parent::sect3|parent::sect4|
-                                  parent::sect5|parent::section|parent::setindex|parent::sidebar|
-                                  parent::simplesect|parent::taskprerequisites|parent::taskrelated|
-                                  parent::tasksummary|parent::warning">
+<!ENTITY % common.entities SYSTEM "../common/entities.ent">
+%common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
