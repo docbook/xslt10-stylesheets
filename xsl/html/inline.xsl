@@ -23,9 +23,17 @@
   <xsl:param name="content">
     <xsl:apply-templates/>
   </xsl:param>
-  <xsl:param name="a.target"/>
   <xsl:param name="linkend" select="$node/@linkend"/>
   <xsl:param name="xhref" select="$node/@xlink:href"/>
+
+  <!-- Support for @xlink:show -->
+  <xsl:variable name="target.show">
+    <xsl:choose>
+      <xsl:when test="$node/@xlink:show = 'new'">_blank</xsl:when>
+      <xsl:when test="$node/@xlink:show = 'replace'">_top</xsl:when>
+      <xsl:otherwise></xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <xsl:variable name="link">
     <xsl:choose>
@@ -104,9 +112,9 @@
                     </xsl:otherwise>
                   </xsl:choose>
 
-                  <xsl:if test="$a.target">
+                  <xsl:if test="$target.show !=''">
                     <xsl:attribute name="target">
-                      <xsl:value-of select="$a.target"/>
+                      <xsl:value-of select="$target.show"/>
                     </xsl:attribute>
                   </xsl:if>
 
@@ -135,6 +143,19 @@
                   <xsl:value-of select="$node/@xlink:title"/>
                 </xsl:attribute>
               </xsl:if>
+
+	      <!-- For URIs, use @xlink:show if defined, otherwise use ulink.target -->
+	      <xsl:attribute name="target">
+		<xsl:choose>
+		  <xsl:when test="$target.show !=''">
+		    <xsl:value-of select="$target.show"/>
+		  </xsl:when>
+		  <xsl:otherwise>
+		  <xsl:value-of select="$ulink.target"/>
+		  </xsl:otherwise>
+		</xsl:choose>
+	      </xsl:attribute>
+	      
               <xsl:copy-of select="$content"/>
             </a>
           </xsl:otherwise>
