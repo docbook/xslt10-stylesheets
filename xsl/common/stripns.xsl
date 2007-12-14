@@ -159,59 +159,6 @@
 
 </xsl:template>
 
-<xsl:template match="ng:link|db:link" mode="stripNS">
-  <xsl:variable xmlns:xlink="http://www.w3.org/1999/xlink"
-                name="href" select="@xlink:href|@href"/>
-  <xsl:choose>
-    <xsl:when test="$href != '' and not(starts-with($href,'#'))">
-      <ulink url="{$href}">
-        <xsl:for-each select="@*">
-          <xsl:if test="local-name(.) != 'href'
-                        and name(.) != 'version'
-                        and name(.) != 'xml:id'">
-            <xsl:copy/>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:if test="@xml:id">
-          <xsl:attribute name="id">
-            <xsl:value-of select="@xml:id"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates mode="stripNS"/>
-      </ulink>
-    </xsl:when>
-    <xsl:when test="$href != '' and starts-with($href,'#')">
-      <link linkend="{substring-after($href,'#')}">
-        <xsl:for-each select="@*">
-          <xsl:if test="local-name(.) != 'href'
-                        and name(.) != 'version'
-                        and name(.) != 'xml:id'">
-            <xsl:copy/>
-          </xsl:if>
-        </xsl:for-each>
-        <xsl:if test="@xml:id">
-          <xsl:attribute name="id">
-            <xsl:value-of select="@xml:id"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates mode="stripNS"/>
-      </link>
-    </xsl:when>
-    <xsl:otherwise>
-      <link>
-        <xsl:copy-of select="@*[not(name(.) = 'xml:id')
-                             and not(name(.) = 'version')]"/>
-        <xsl:if test="@xml:id">
-          <xsl:attribute name="id">
-            <xsl:value-of select="@xml:id"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates mode="stripNS"/>
-      </link>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xsl:template match="ng:tag|db:tag" mode="stripNS">
   <sgmltag>
     <xsl:copy-of select="@*[not(name(.) = 'xml:id')
