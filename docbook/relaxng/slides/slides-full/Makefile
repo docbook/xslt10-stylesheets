@@ -26,7 +26,7 @@ slides-full.dtd: $(basename $(slides-full_BINARY)).dtx slides-full.rnc
 	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
 
 slides-full.sch: $(basename $(slides-full_BINARY)).rnx
-	$(XSLTPROC) --output $@ $(TOOLS)/schematron.xsl $<
+	saxon $< $(TOOLS)/schematron.xsl $@
 
 slides-full.xsd: slides-full.dtd
 	$(RUNTRANG) $< $@
