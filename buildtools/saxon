@@ -11,6 +11,8 @@
 #    -8...     Specifies Saxon 8 or some specific version of Saxon 8
 #    -8...sa   Specifies "Schema Aware" Saxon. Requires a license.
 #    -8...b    Specifies basic Saxon.
+#    -9...sa   Specifies "Schema Aware" Saxon. Requires a license.
+#    -9...b    Specifies basic Saxon.
 #    -debug    Debugging
 #    -config   Where is the config file? Defaults to ~/.xmlc
 #    -opts id  Use additional options 'id' from the config file.
@@ -19,7 +21,7 @@
 # Any other options are passed to Saxon unchanged
 #
 # Default version is calculated by looking at the stylesheet. So the
-# -6/-8 option is usually unnecessary.
+# -6/-8/-9 option is usually unnecessary.
 
 use strict;
 use English;
@@ -39,6 +41,10 @@ while (@ARGV) {
 	$version = substr($ARGV[0],1);
 	shift @ARGV;
     } elsif ($ARGV[0] =~ /^\-(8.*?)-?(sa|b)?$/) {
+	$version = $1;
+	$saxonsa = $2 if defined($2);
+	shift @ARGV;
+    } elsif ($ARGV[0] =~ /^\-(9.*?)-?(sa|b)?$/) {
 	$version = $1;
 	$saxonsa = $2 if defined($2);
 	shift @ARGV;
@@ -108,12 +114,12 @@ if (!defined($version)) {
 	close (F);
 
 	if (/<\S+:?import-schema/s) {
-	    $version = "8" if !defined($version);
+	    $version = "9" if !defined($version);
 	    $saxonsa = "sa" if !defined($saxonsa);
 	} elsif (/<\S+:?stylesheet[^>]*\sversion=.2\.0/s
 		 || /<\S+:?transform[^>]*\sversion=.2\.0/s) {
-	    $version = "8" if !defined($version);
-	    $saxonsa = "b" if !defined($saxonsa) && $version =~ /^8/;
+	    $version = "9" if !defined($version);
+	    $saxonsa = "b" if !defined($saxonsa) && $version =~ /^9/;
 	} else {
 	    $version = "6" if !defined($version);
 	}
@@ -125,7 +131,7 @@ if (!defined($version)) {
 
 my $optsname = "saxon";
 $optsname .= "-$version";
-$optsname .= "a" if defined($saxonsa);
+$optsname .= "a" if defined($saxonsa) && $saxonsa eq 'sa';
 
 # Inelegantly, these are used as globals by several functions
 my %seenopts = ();
