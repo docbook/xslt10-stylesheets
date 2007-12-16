@@ -4,5 +4,27 @@
 <chapter>
 <title>Chapter Title</title>
 <para/>
+
+<!--
+<refentry>
+<refnamediv>
+<refname>Test Refentry</refname>
+<refpurpose>Foo</refpurpose>
+</refnamediv>
+<refsect1>
+<title>Section</title>
+<para/>
+<refsect2>
+<title>Section</title>
+<para/>
+<refsect3>
+<title>Section</title>
+<para/>
+</refsect3>
+</refsect2>
+</refsect1>
+</refentry>
+-->
+
 </chapter>
 </book>
