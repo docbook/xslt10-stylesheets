@@ -19,7 +19,7 @@ public class OptionItems {
     public static final String OPTION_PATH = "options.xml";
 
     /** The version of the application */
-    public static final String APPLICATION_VERSION = "1.0";
+    public static final String APPLICATION_VERSION = "1.0.1";
 
     /** The stylesheet XSL namespace */
     public static final String XSL_NAMESPACE = "http://www.w3.org/1999/XSL/Transform";
