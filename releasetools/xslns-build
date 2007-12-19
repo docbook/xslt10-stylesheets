@@ -375,7 +375,7 @@ sub indexentitydecl {
 
   my $newstring = '';
 
-  while ( $string =~ m@^(.*?)(<!ENTITY\s+($w)\s+('|"))(.*?)(\4\s*>)@sg  ) {
+  while ( $string =~ m@^(.*?)(<!ENTITY\s+([\w.]+)\s+('|"))(.*?)(\4\s*>)@sg  ) {
     my $before = $1;
     my $entitystart = $2;
     my $entityname = $3;
