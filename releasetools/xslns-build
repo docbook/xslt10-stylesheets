@@ -46,7 +46,7 @@ my $ns = "[A-Za-z]+";
 # other names
 my $n = "[A-Za-z][A-Za-z0-9]+";
 # xml names
-my $w = "[A-Za-z][-A-Za-z0-9._]+";
+my $w = "[A-Za-z][-A-Za-z0-9._#]+";
 # docbook element names (lowercase and numbers)
 my $dbname = "[a-z][a-z0-9]+";
 
@@ -294,7 +294,7 @@ sub nsfilter {
       $attvalue = '';
     }
 
-    while ( $attvalue =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
+    while ( $attvalue =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|&#$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
   
       # process the leading content which is not pass through
       &addnamespace($1, $Output);
