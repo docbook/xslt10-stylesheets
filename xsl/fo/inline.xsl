@@ -1129,6 +1129,36 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="citebiblioid">
+  <xsl:variable name="targets" select="//*[biblioid = string(current())]"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+
+  <xsl:choose>
+    <!-- try automatic linking based on match to parent of biblioid -->
+    <xsl:when test="$target and not(xref) and not(link)">
+
+      <xsl:text>[</xsl:text>
+      <fo:basic-link>
+        <xsl:attribute name="internal-destination">
+          <xsl:call-template name="object.id">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+
+	<xsl:call-template name="inline.charseq"/>
+	    
+      </fo:basic-link>
+      <xsl:text>]</xsl:text>
+    </xsl:when>
+
+    <xsl:otherwise>
+      <xsl:text>[</xsl:text>
+      <xsl:call-template name="inline.charseq"/>
+      <xsl:text>]</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="biblioentry|bibliomixed" mode="citation">
   <xsl:number from="bibliography" count="biblioentry|bibliomixed"
 	      level="any" format="1"/>
