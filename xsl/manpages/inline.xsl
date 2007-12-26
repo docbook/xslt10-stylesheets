@@ -15,7 +15,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="replaceable|varname">
+<xsl:template match="replaceable|varname|structfield">
   <xsl:if test="$man.hyphenate.computer.inlines = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
