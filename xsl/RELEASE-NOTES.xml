@@ -54,7 +54,7 @@ public APIs (user-configurable parameters).</para>
 </abstract>
 </info>
 
-<sect1 condition="snapshot">
+<sect1 condition="snapshot" id="current">
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
 </sect1>
 
