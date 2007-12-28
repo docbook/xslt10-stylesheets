@@ -130,10 +130,14 @@ ZIPVER=$(RELVER)
 ifeq (snapshot,$(findstring snapshot,$(RELVER)))
   RELEASE_TYPE=snapshot
 else
+ifeq (-pre,$(findstring -pre,$(RELVER)))
+  RELEASE_TYPE=snapshot
+else
 ifeq (.0,$(findstring .0,$(RELVER)))
   RELEASE_TYPE=dot-zero
 else
   RELEASE_TYPE=dot-one-plus
+endif
 endif
 endif
 
