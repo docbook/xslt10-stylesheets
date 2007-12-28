@@ -341,21 +341,23 @@ safely ignore this part.
 
 4. Open the NEWS.xml file in your text/XML editor, select the
    sect1 section and all its child content, and paste that into
-   the RELEASE-NOTES.xml file, as the first sect1 child of the
-   RELEASE-NOTES.xml file's root article element.
+   the RELEASE-NOTES.xml file, as the second sect1 child of the
+   RELEASE-NOTES.xml file's root article element (just after the
+   <sect1 condition="snapshot" id="current"> section).
 
-5. In the RELEASE-NOTES.xml file, add a variablelist with a
-   varlistentry instance for each major significant change made in
-   this release that merits special mention in the release notes;
-   generally, that means every major enhancement.
+5. In the section you just pasted from the NEWS.xml file into the
+   RELEASE-NOTES.xml file, add a variablelist with a varlistentry
+   instance for each major significant change made in this release
+   that merits special mention in the release notes; generally,
+   that means every major enhancement.
 
-6. In the RELEASE-NOTES.xml, in the content you have just pasted
-   in, go through each sect2 section and manually remove any
-   listitem instances that have content which doesn't need to be
-   included in the final release notes. In general, that means
-   removing most bug fixes and "housekeeping" changes that do not
-   need to be exposed to users, but changes for feature
-   enhancements or changes to public APIs.
+6. In the section you just pasted from the NEWS.xml file into the
+   RELEASE-NOTES.xml file, go through each sect2 section and
+   manually remove any listitem instances that have content which
+   doesn't need to be included in the final release notes. In
+   general, that means removing most bug fixes and "housekeeping"
+   changes that do not need to be exposed to users, but changes
+   for feature enhancements or changes to public APIs.
 
 7. After making all changes/additions to the RELEASE-NOTES.xml
    file, check it back in with 
