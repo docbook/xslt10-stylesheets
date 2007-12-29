@@ -598,9 +598,7 @@ db:manvolnum
         <xsl:call-template name="write.text.chunk">
           <xsl:with-param name="filename">
             <xsl:call-template name="make.adjusted.man.filename">
-              <xsl:with-param name="name">
-                <xsl:apply-templates/>
-              </xsl:with-param>
+              <xsl:with-param name="name" select="."/>
               <xsl:with-param name="section" select="$section"/>
               <xsl:with-param name="lang" select="$lang"/>
             </xsl:call-template>
