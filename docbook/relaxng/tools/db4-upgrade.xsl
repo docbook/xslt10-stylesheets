@@ -1110,6 +1110,28 @@
   </tocdiv>
 </xsl:template>
 
+<xsl:template match="action" priority="200">
+  <phrase remap="action">
+    <xsl:call-template name="copy.attributes"/>
+    <xsl:apply-templates/>
+  </phrase>
+</xsl:template>
+
+<xsl:template match="beginpage" priority="200">
+  <xsl:comment> beginpage pagenum=<xsl:value-of select="@pagenum"/> </xsl:comment>
+  <xsl:call-template name="emit-message">
+    <xsl:with-param name="message">
+      <xsl:text>Replacing beginpage with comment</xsl:text>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="structname|structfield" priority="200">
+  <varname remap="{local-name(.)}">
+    <xsl:call-template name="copy.attributes"/>
+    <xsl:apply-templates/>
+  </varname>
+</xsl:template>
 
 <!-- ====================================================================== -->
 
