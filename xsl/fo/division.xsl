@@ -63,9 +63,9 @@
   </xsl:variable>
 
   <xsl:variable name="preamble"
-                select="*[not(self::book or self::setindex)]"/>
+                select="*[not(self::book or self::set or self::setindex)]"/>
 
-  <xsl:variable name="content" select="book|setindex"/>
+  <xsl:variable name="content" select="book|set|setindex"/>
 
   <xsl:variable name="titlepage-master-reference">
     <xsl:call-template name="select.pagemaster">
