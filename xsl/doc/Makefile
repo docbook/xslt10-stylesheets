@@ -40,11 +40,15 @@ DIRS=common fo html lib manpages pi refentry roundtrip slides template utility w
 	$(DOCBOOK_SVN)/buildtools/saxon $@.tmp $(XMLID_TO_ID) > $@
 	$(RM) $@.tmp
 
-# build reference.pdf.gz except for snapshot releases
-ifneq (snapshot,$(findstring snapshot,$(RELVER)))
-all: fo/page.png reference.html reference.css reference.txt.gz reference.pdf.gz
-else
+# build reference.pdf.gz except for snapshot and "-pre" releases
+ifeq (snapshot,$(findstring snapshot,$(RELVER)))
 all: fo/page.png reference.html reference.css reference.txt.gz
+else
+ifeq (-pre,$(findstring -pre,$(RELVER)))
+all: fo/page.png reference.html reference.css reference.txt.gz
+else
+all: fo/page.png reference.html reference.css reference.txt.gz reference.pdf.gz
+endif
 endif
 
 index.html: ../docsrc/reference.xml.included $(RSTYLE) $(DOC_SOURCE_XML_FILES)
