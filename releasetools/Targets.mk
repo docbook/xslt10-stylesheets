@@ -12,6 +12,7 @@ RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XSLT) RELEASE-NOTES-TMP.xml $(DOC_LINK_STYLE) $@ \
 	doc-baseuri="$(DOC_BASEURI)" \
 	profile.condition="$(RELEASE_TYPE)"
+	$(RM) RELEASE-NOTES-TMP.xml
 
 RELEASE-NOTES.txt: RELEASE-NOTES.html
 	LANG=C $(BROWSER) $(BROWSER_OPTS) $< > $@
@@ -98,7 +99,7 @@ ChangeHistory.xml:
 
 catalog.xml: .make-catalog.xsl
 	$(XSLT) $< $< DISTRO="$(DISTRO)" \
-	  | $(XMLLINT) $(XMLLINT_OPTS) --format --encode utf-8 - > $@
+	  | $(XMLLINT) $(XMLLINT_OPTS) --format --encode utf-8 --output $@ -
 
 install.sh: $(INSTALL_SH) .CatalogManager.properties.example .urilist catalog.xml
 	cp $< $@
