@@ -24,6 +24,8 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>XSL Stylesheets</fm:Branch>
+  <!-- * set/keep fm:version as N.NN.N-pre except for official releases, -->
+  <!-- * then after the release, revert it to N.NN.N-pre & check back in -->
   <fm:Version>1.74.0-pre</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
