@@ -259,11 +259,20 @@
   <xsl:template name='doc:lookup-paragraph-style'>
     <xsl:param name='style'/>
 
-    <xsl:if test='not($paragraph-styles[@sf:name = $style])'>
-      <xsl:message>unable to find paragraph style "<xsl:value-of select='$style'/>"</xsl:message>
+    <xsl:variable name='style.cooked'>
+      <xsl:choose>
+        <xsl:when test='$style = "Normal"'>para</xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select='$style'/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:if test='not($paragraph-styles[@sf:name = $style.cooked])'>
+      <xsl:message>unable to find paragraph style "<xsl:value-of select='$style.cooked'/>"</xsl:message>
     </xsl:if>
 
-    <xsl:value-of select='$paragraph-styles[@sf:name = $style]/@sf:ident'/>
+    <xsl:value-of select='$paragraph-styles[@sf:name = $style.cooked]/@sf:ident'/>
   </xsl:template>
   <xsl:template name='doc:lookup-character-style'>
     <xsl:param name='style'/>

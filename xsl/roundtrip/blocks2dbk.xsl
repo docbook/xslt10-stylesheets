@@ -68,7 +68,7 @@
     <xsl:variable name='figure'
 		  select='preceding-sibling::dbk:para[dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""][1]'/>
     <xsl:variable name='caption'
-		  select='following-sibling::dbk:para[@rnd:style = "Caption"]'/>
+		  select='following-sibling::dbk:para[@rnd:style = "caption"]'/>
 
     <xsl:choose>
       <!-- continue style paragraphs are handled in context -->
@@ -93,7 +93,7 @@
 		      @rnd:style = "figure-title" and
 		      following-sibling::*[1][self::dbk:para][dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""]'/>
       <xsl:when test='$suppress and
-		      @rnd:style = "Caption" and
+		      @rnd:style = "caption" and
 		      (preceding-sibling::*[self::dbk:informaltable] or
 		      preceding-sibling::*[self::dbk:para][dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""])'/>
 
@@ -387,14 +387,14 @@
               <dbk:imagedata fileref='{.}'/>
             </dbk:imageobject>
           </dbk:mediaobject>
-          <xsl:apply-templates select='following-sibling::*[1][self::dbk:para][@rnd:style = "Caption"]'
+          <xsl:apply-templates select='following-sibling::*[1][self::dbk:para][@rnd:style = "caption"]'
             mode='rnd:caption'/>
         </dbk:informalfigure>
       </xsl:when>
 
-      <xsl:when test='@rnd:style = "Caption" and
+      <xsl:when test='@rnd:style = "caption" and
                       preceding-sibling::*[(self::dbk:para and contains(@rnd:style, "imagedata")) or self::dbk:informaltable]'/>
-      <xsl:when test='@rnd:style = "Caption"'>
+      <xsl:when test='@rnd:style = "caption"'>
         <xsl:call-template name='rnd:error'>
           <xsl:with-param name='code'>bad-caption</xsl:with-param>
           <xsl:with-param name='message'>caption does not follow table or figure</xsl:with-param>
@@ -522,7 +522,7 @@
 		      select='ancestor::dbk:para/following-sibling::*[self::dbk:informaltable or self::dbk:para[dbk:inlinemediaobject and count(*) = 1 and normalize-space() = ""]][1]'/>
 
 	<xsl:variable name='caption'
-		      select='ancestor::dbk:para/following-sibling::dbk:para[@rnd:style = "Caption"]'/>
+		      select='ancestor::dbk:para/following-sibling::dbk:para[@rnd:style = "caption"]'/>
 
 	<xsl:variable name='metadata'>
 	  <xsl:apply-templates select='ancestor::dbk:para/following-sibling::*[1]'
@@ -573,7 +573,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match='dbk:para[@rnd:style = "Caption"]' mode='rnd:caption'>
+  <xsl:template match='dbk:para[@rnd:style = "caption"]' mode='rnd:caption'>
     <dbk:caption>
       <dbk:para>
 	<xsl:apply-templates/>
@@ -1151,7 +1151,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <xsl:template match='dbk:tgroup|dbk:tbody|dbk:row|dbk:colspec'>
+  <xsl:template match='dbk:tgroup|dbk:tbody|dbk:thead|dbk:tfoot|dbk:row|dbk:colspec'>
     <xsl:copy>
       <xsl:apply-templates select='@*' mode='rnd:copy'/>
       <xsl:apply-templates/>
@@ -1173,7 +1173,7 @@
   <!-- Find the caption associated with this table -->
   <xsl:template name='rnd:table-caption'>
     <xsl:variable name='candidate'
-		  select='following-sibling::dbk:para[@rnd:style = "Caption"][1]'/>
+		  select='following-sibling::dbk:para[@rnd:style = "caption"][1]'/>
 
     <xsl:if test='$candidate != "" and
 		  generate-id($candidate/preceding-sibling::dbk:informaltable[1]) = generate-id(.)'>
@@ -1188,7 +1188,7 @@
   <!-- Find table associated text -->
   <xsl:template name='rnd:table-textobject'>
     <xsl:variable name='caption'
-		  select='following-sibling::dbk:para[@rnd:style = "Caption"][1]'/>
+		  select='following-sibling::dbk:para[@rnd:style = "caption"][1]'/>
 
     <xsl:if test='generate-id($caption/preceding-sibling::dbk:informaltable[1]) = generate-id(.)'>
       <xsl:variable name='content'
