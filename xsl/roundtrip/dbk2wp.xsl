@@ -936,6 +936,8 @@
       <xsl:with-param name='columns'>
 	<xsl:call-template name='doc:make-column'>
 	  <xsl:with-param name='width' select='"1"'/>
+	</xsl:call-template>
+	<xsl:call-template name='doc:make-column'>
 	  <xsl:with-param name='width' select='"3"'/>
 	</xsl:call-template>
       </xsl:with-param>

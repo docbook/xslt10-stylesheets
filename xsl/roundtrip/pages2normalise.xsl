@@ -45,7 +45,7 @@
   <xsl:template match='sf:p'>
     <xsl:choose>
       <xsl:when test='sf:attachment-ref and
-                      count(*) = count(sf:attachment-ref|sf:br)'>
+                      count(*) = count(sf:attachment-ref|sf:br|sf:selection-start|sf:selection-end)'>
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:otherwise>
@@ -140,93 +140,163 @@
   </xsl:template>
 
   <xsl:template match='sf:attachment-ref'>
-    <xsl:if test='@sf:kind = "table-attachment"'>
+    <xsl:if test='@sf:kind = "tabular-attachment"'>
       <xsl:apply-templates select='key("ids", @sfa:IDREF)'/>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match='sf:attachment[@sf:kind = "table-attachment"]'>
-    <!-- Assumes: (1) table has a header row, (2) cell style is not redefined, (3) no column spans -->
-    <xsl:variable name='hdr-cells'
-      select='.//sf:table-cell[key("ids", sf:tableCellStyle-ref/@sfa:IDREF)/@sf:parent-ident = "table-header-row-cell-style-default"]'/>
+  <xsl:template match='sf:attachment[@sf:kind = "tabular-attachment"]'>
+    <xsl:variable name='model'
+      select='key("ids", sf:tabular-info/sf:tabular-model-ref/@sfa:IDREF)'/>
 
-    <xsl:variable name='num-cols' select='count($hdr-cells)'/>
+    <xsl:variable name='num-cols' select='$model/sf:grid/@sf:numcols'/>
+    <xsl:variable name='num-rows' select='$model/sf:grid/@sf:numrows'/>
 
-    <!-- This is unreliable... must account for row/column spans -->
-    <xsl:variable name='num-rows'
-      select='floor(count(sf:tableAttachmentTable/sf:tableModelCells/sf:tableCellArrayCellsByRow/sf:table-cell) div $num-cols)'/>
+    <xsl:variable name='border.top'
+      select='count($model/sf:grid/sf:horizontal-gridline-styles/*) = 0 or
+              not($model/sf:grid/sf:horizontal-gridline-styles/sf:style-run[@sf:gridline-index = "0"])'/>
+    <xsl:variable name='border.bottom'
+      select='count($model/sf:grid/sf:horizontal-gridline-styles/*) = 0 or
+              not($model/sf:grid/sf:horizontal-gridline-styles/sf:style-run[@sf:gridline-index = $num-rows - 1])'/>
+    <xsl:variable name='border.left'
+      select='count($model/sf:grid/sf:vertical-gridline-styles/*) = 0 or
+              not($model/sf:grid/sf:vertical-gridline-styles/sf:style-run[@sf:gridline-index = "0"])'/>
+    <xsl:variable name='border.right'
+      select='count($model/sf:grid/sf:vertical-gridline-styles/*) = 0 or
+              not($model/sf:grid/sf:vertical-gridline-styles/sf:style-run[@sf:gridline-index = $num-cols])'/>
 
     <xsl:choose>
       <xsl:when test='not($num-rows) or $num-rows = ""'>
-        <xsl:message> cannot determine num-rows </xsl:message>
-        <xsl:comment> cannot determine num-rows </xsl:comment>
+        <xsl:message> cannot determine number of rows in table</xsl:message>
+        <xsl:comment> cannot determine number of rows in table </xsl:comment>
+      </xsl:when>
+      <xsl:when test='not($num-cols) or $num-cols = ""'>
+        <xsl:message> cannot determine number of columns in table</xsl:message>
+        <xsl:comment> cannot determine number of columns in table </xsl:comment>
       </xsl:when>
 
       <xsl:otherwise>
-        <!-- TODO: borders, column widths -->
         <dbk:informaltable>
+          <xsl:choose>
+            <xsl:when test='$border.top and $border.bottom and
+                            $border.left and $border.right'>
+              <xsl:attribute name='frame'>all</xsl:attribute>
+            </xsl:when>
+            <xsl:when test='$border.top and $border.bottom'>
+              <xsl:attribute name='frame'>topbot</xsl:attribute>
+            </xsl:when>
+            <xsl:when test='$border.left and $border.right'>
+              <xsl:attribute name='frame'>sides</xsl:attribute>
+            </xsl:when>
+            <xsl:when test='$border.top'>
+              <xsl:attribute name='frame'>top</xsl:attribute>
+            </xsl:when>
+            <xsl:when test='$border.bottom'>
+              <xsl:attribute name='frame'>bottom</xsl:attribute>
+            </xsl:when>
+          </xsl:choose>
           <dbk:tgroup cols='{$num-cols}'>
-            <xsl:call-template name='rnd:make-colspecs'>
-              <xsl:with-param name='num-cols' select='$num-cols'/>
-            </xsl:call-template>
+            <xsl:apply-templates select='$model/sf:grid/sf:columns/sf:grid-column'
+              mode='rnd:colspec'/>
+            <xsl:if test='$model/@sf:num-header-rows != 0'>
+              <dbk:thead>
+                <xsl:call-template name='rnd:make-table-rows'>
+                  <xsl:with-param name='nodes'
+                    select='$model/sf:grid/sf:datasource/sf:text-cell[@sf:row &lt; $model/@sf:num-header-rows]'/>
+                  <xsl:with-param name='num-rows'
+                    select='$model/@sf:num-header-rows'/>
+                </xsl:call-template>
+              </dbk:thead>
+            </xsl:if>
             <dbk:tbody>
-              <xsl:apply-templates/>
+              <xsl:call-template name='rnd:make-table-rows'>
+                <xsl:with-param name='nodes'
+                  select='$model/sf:grid/sf:datasource/sf:text-cell[@sf:row >= $model/@sf:num-header-rows and
+                  @sf:row &lt; $num-rows - $model/@sf:num-footer-rows]'/>
+                <xsl:with-param name='num-rows' select='$num-rows - $model/@sf:num-header-rows - $model/@sf:num-footer-rows'/>
+                <xsl:with-param name='row' select='$model/@sf:num-header-rows'/>
+              </xsl:call-template>
             </dbk:tbody>
+            <xsl:if test='$model/@sf:num-footer-rows != 0'>
+              <dbk:tfoot>
+                <xsl:call-template name='rnd:make-table-rows'>
+                  <xsl:with-param name='nodes'
+                    select='$model/sf:grid/sf:datasource/sf:text-cell[@sf:row &gt;= $num-rows - $model/@sf:num-footer-rows]'/>
+                  <xsl:with-param name='num-rows'
+                    select='$model/@sf:num-footer-rows'/>
+                  <xsl:with-param name='row'
+                    select='$num-rows - $model/@sf:num-footer-rows'/>
+                </xsl:call-template>
+              </dbk:tfoot>
+            </xsl:if>
           </dbk:tgroup>
         </dbk:informaltable>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <xsl:template name='rnd:make-colspecs'>
-    <xsl:param name='num-cols' select='0'/>
+  <xsl:template match='sf:grid-column' mode='rnd:colspec'>
+    <dbk:colspec colwidth='{@sf:width}'
+      colname='column-{count(preceding-sibling::sf:grid-column) + 1}'/>
+  </xsl:template>
+  <xsl:template name='rnd:make-table-rows'>
+    <xsl:param name='num-rows' select='0'/>
+    <xsl:param name='nodes' select='/..'/>
+    <xsl:param name='row' select='0'/>
 
     <xsl:choose>
-      <xsl:when test='$num-cols &lt;= 0 or
-                      $num-cols = ""'/>
-      <xsl:otherwise>
-        <dbk:colspec/>
-        <xsl:call-template name='rnd:make-colspecs'>
-          <xsl:with-param name='num-cols' select='$num-cols - 1'/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-  <xsl:template match='sf:tableCellArrayCellsByRow'>
-    <xsl:variable name='hdr-cells'
-      select='sf:table-cell[key("ids", sf:tableCellStyle-ref/@sfa:IDREF)/@sf:parent-ident = "table-header-row-cell-style-default"]'/>
+      <xsl:when test='not($nodes) and $num-rows != 0'>
+        <xsl:message>WARNING: insufficient table cells</xsl:message>
+        <xsl:comment> WARNING: insufficient table cells (num-rows <xsl:value-of select='$num-rows'/>, row <xsl:value-of select='$row'/>) </xsl:comment>
+      </xsl:when>
+      <xsl:when test='$nodes and $num-rows = 0'>
+        <xsl:message>WARNING: excess table cells</xsl:message>
+        <xsl:comment> WARNING: excess table cells (num-rows <xsl:value-of select='$num-rows'/>, row <xsl:value-of select='$row'/>) </xsl:comment>
+      </xsl:when>
+      <xsl:when test='not($nodes)'/>
+      <xsl:when test='$num-rows = 0'/>
 
-    <xsl:variable name='num-cols' select='count($hdr-cells)'/>
-
-    <xsl:variable name='num-rows'
-      select='floor(count(sf:table-cell) div $num-cols)'/>
-
-    <xsl:call-template name='rnd:table-rows'>
-      <xsl:with-param name='num-cols' select='$num-cols'/>
-      <xsl:with-param name='cells' select='sf:table-cell'/>
-    </xsl:call-template>
-  </xsl:template>
-  <xsl:template name='rnd:table-rows'>
-    <xsl:param name='num-cols' select='0'/>
-    <xsl:param name='cells' select='/..'/>
-
-    <xsl:choose>
-      <xsl:when test='count($cells) = 0'/>
       <xsl:otherwise>
         <dbk:row>
-          <xsl:apply-templates select='$cells[position() &lt;= $num-cols]'/>
+          <xsl:apply-templates select='$nodes[@sf:row = $row]'/>
         </dbk:row>
-        <xsl:call-template name='rnd:table-rows'>
-          <xsl:with-param name='num-cols'
-            select='$num-cols'/>
-          <xsl:with-param name='cells'
-            select='$cells[position() > $num-cols]'/>
+        <xsl:call-template name='rnd:make-table-rows'>
+          <xsl:with-param name='num-rows'
+            select='$num-rows - 1'/>
+          <xsl:with-param name='row'
+            select='$row + 1'/>
+          <xsl:with-param name='nodes'
+            select='$nodes[@sf:row != $row]'/>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <xsl:template match='sf:table-cell'>
+  <xsl:template match='sf:text-cell'>
     <dbk:entry>
-      <xsl:apply-templates select='sf:tableCellContent/sf:text-storage/sf:text-body/sf:layout'/>
+      <!-- Does this cell have no bottom border? -->
+      <xsl:variable name='horiz'
+        select='ancestor::sf:grid/sf:horizontal-gridline-styles'/>
+      <xsl:if test='not($horiz/*) or
+                    not($horiz/sf:style-run[@sf:gridline-index = current()/@sf:row + 1]/sf:vector-style-ref[@sf:start-index &lt;= current()/@sf:col and @sf:stop-index >= current()/@sf:col])'>
+        <xsl:attribute name='rowsep'>1</xsl:attribute>
+      </xsl:if>
+      <!-- Does this cell have no right border? -->
+      <xsl:variable name='vert'
+        select='ancestor::sf:grid/sf:vertical-gridline-styles'/>
+      <xsl:if test='not($vert/*) or
+                    not($vert/sf:style-run[@sf:gridline-index = current()/@sf:col + 1]/sf:vector-style-ref[@sf:start-index &lt;= current()/@sf:row and @sf:stop-index >= current()/@sf:row])'>
+        <xsl:attribute name='colsep'>1</xsl:attribute>
+      </xsl:if>
+
+      <xsl:choose>
+        <xsl:when test='sf:cell-text/@sfa:string'>
+          <dbk:para>
+            <xsl:apply-templates select='sf:cell-text/@sfa:string'/>
+          </dbk:para>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select='sf:cell-text/sf:cell-storage/sf:text-body/*'/>
+        </xsl:otherwise>
+      </xsl:choose>
     </dbk:entry>
   </xsl:template>
   <xsl:template match='sf:tableAttachmentTable |

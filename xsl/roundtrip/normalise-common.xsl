@@ -22,6 +22,10 @@
     <xsl:param name='style'/>
     <xsl:choose>
       <xsl:when test='starts-with($style, "Normal")'/>
+
+      <!-- Probably should fold all style names to lower-case -->
+      <xsl:when test='$style = "Caption"'>caption</xsl:when>
+
       <xsl:otherwise>
         <xsl:value-of select='$style'/>
       </xsl:otherwise>
