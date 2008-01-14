@@ -1237,7 +1237,7 @@
 </doc:pi>
 
   <!-- The code that handles the stop-chunking pi is in chunk-common.xsl -->
-  <doc:pi name="stop-chunking" xmlns="">
+  <doc:pi name="dbhtml_stop-chunking" xmlns="">
 	<refpurpose>Do not chunk any descendents of this element.</refpurpose>
 	<refdescription>
     <para>When generating chunked html output, adding this as the child of an element that contains elements that would normally be generated on separate pages if generating chunked output causes chunking to stop at this point. No descendants of the current element will be split into new html pages:
