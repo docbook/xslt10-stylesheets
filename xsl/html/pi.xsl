@@ -1236,5 +1236,28 @@
   </refsee>
 </doc:pi>
 
+  <!-- The code that handles the stop-chunking pi is in chunk-common.xsl -->
+  <doc:pi name="stop-chunking" xmlns="">
+	<refpurpose>Do not chunk any descendents of this element.</refpurpose>
+	<refdescription>
+    <para>When generating chunked html output, adding this as the child of an element that contains elements that would normally be generated on separate pages if generating chunked output causes chunking to stop at this point. No descendants of the current element will be split into new html pages:
+<programlisting><![CDATA[<section>
+<title>Configuring pencil</title>
+<?dbhtml stop-chunking?>
 
+...
+
+</section>]]></programlisting>
+</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbhtml stop-chunking</tag></synopsis>
+  </refsynopsisdiv>	
+  <refsee role="tcg">
+    <para><link role="tcg"
+        xlink:href="Chunking.html"
+        >Background color</link></para>
+  </refsee>
+  </doc:pi>
+  
 </xsl:stylesheet>
