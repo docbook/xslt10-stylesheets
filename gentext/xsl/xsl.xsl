@@ -32,7 +32,7 @@
     <xsl:comment> * </xsl:comment>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> *  <xsl:value-of
-    select="concat('https://svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/',$locale.file, ' ')"/> </xsl:comment>
+    select="concat('https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/',$locale.file, ' ')"/> </xsl:comment>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> * </xsl:comment>
     <xsl:text>&#10;</xsl:text>
