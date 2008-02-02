@@ -233,7 +233,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="chapter/title" mode="titlepage.mode" priority="2">
+<xsl:template match="chapter/title|chapter/chapterinfo/title"
+	      mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::chapter[1]"/>
   </xsl:call-template>
@@ -312,7 +313,8 @@
   </div>
 </xsl:template>
 
-<xsl:template match="appendix/title" mode="titlepage.mode" priority="2">
+<xsl:template match="appendix/title|appendix/appendixinfo/title"
+	      mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::appendix[1]"/>
   </xsl:call-template>
