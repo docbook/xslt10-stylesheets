@@ -24,7 +24,7 @@
 <para>If non-zero, links will be created to the
 HTML files created for the
 <literal>longdesc</literal> attribute. It makes no
-sense to turn enable this option without also enabling the
+sense to enable this option without also enabling the
 <parameter>html.longdesc</parameter> parameter.</para>
 
 <!--

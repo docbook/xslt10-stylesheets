@@ -21,10 +21,9 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If non-zero, verbatim environments (elements that have the
-format='linespecific' notation attribute: address, literallayout,
-programlisting, screen, synopsis) that specify line numbering will
-have, line numbers.
+<para>If non-zero, verbatim environments (<tag>address</tag>, <tag>literallayout</tag>,
+<tag>programlisting</tag>, <tag>screen</tag>, <tag>synopsis</tag>) that specify line numbering will
+have line numbers.
 </para>
 
 </refsection>

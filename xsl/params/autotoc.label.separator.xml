@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>String to use to seperate labels and title in a table of contents.</para>
+<para>String used to separate labels and titles in a table of contents.</para>
 
 </refsection>
 </refentry>

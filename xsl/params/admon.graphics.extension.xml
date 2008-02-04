@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>admon.graphics.extension</refname>
-<refpurpose>Extension for admonition graphics</refpurpose>
+<refpurpose>Filename extension for admonition graphics</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Sets the extension to use on admonition graphics.</para>
+<para>Sets the filename extension to use on admonition graphics.</para>
 
 </refsection>
 </refentry>
