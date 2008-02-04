@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>informal.object.properties</refname>
-<refpurpose>Properties associated with a formal object such as a figure, or other component that has a title</refpurpose>
+<refpurpose>Properties associated with an informal (untitled) object, such as an informalfigure</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
