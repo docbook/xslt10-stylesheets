@@ -15,7 +15,7 @@ $Id$
 </releaseinfo>
 
 <!-- product -->        <productname>docbook</productname>
-<!-- productVersion --> <productnumber>5.0CR7</productnumber>
+<!-- productVersion --> <productnumber>5.0</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
@@ -40,12 +40,12 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2007-09-28</pubdate>
+<pubdate>2008-01-11</pubdate>
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
 <year>2004</year><year>2005</year><year>2006</year>
-<year>2007</year>
+<year>2007</year><year>2008</year>
 <holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved. </holder></copyright>
 
@@ -162,6 +162,17 @@ DocBook is also available from the mirror on
 </para>
 </listitem>
 -->
+
+<section xml:id="s.50">
+<title>Changes in DocBook V5.0</title>
+
+<para>There are no user-visible changes in 5.0 (Public Review Draft 1).
+</para>
+
+<para>This version of DocBook V5.0 will become the official Committee
+Specification version of DocBook V5.0 as soon as the Technical Committee
+balloting process is finished.</para>
+</section>
 
 <section xml:id="s.50CR7">
 <title>Changes in DocBook V5.0CR7</title>
@@ -1450,6 +1461,14 @@ of the DocBook web page
 
 <para>
 <revhistory>
+<revision role="&root;specs/docbook-5.0-spec-wd-01.html">
+  <revnumber>Working Draft “Public Review Draft 1”</revnumber>
+  <date>6 February 2008</date>
+</revision>
+<revision role="&root;specs/docbook-5.0CR7-spec-wd-01.html">
+  <revnumber>Working Draft “Candidate Release 7”</revnumber>
+  <date>28 September 2007</date>
+</revision>
 <revision role="&root;specs/docbook-5.0CR6-spec-wd-01.html">
   <revnumber>Working Draft “Candidate Release 6”</revnumber>
   <date>27 September 2007</date>
