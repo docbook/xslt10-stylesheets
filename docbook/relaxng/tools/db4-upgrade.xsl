@@ -1155,6 +1155,11 @@
 
 <!-- ====================================================================== -->
 
+<!-- 6 Feb 2008, ndw changed mode=copy so that it only copies the first level,
+     then it switches back to "normal" mode so that other rewriting templates
+     catch embedded fixes -->
+
+<!--
 <xsl:template match="ulink" priority="200" mode="copy">
   <xsl:choose>
     <xsl:when test="node()">
@@ -1194,17 +1199,20 @@
     <xsl:apply-templates/>
   </tag>
 </xsl:template>
+-->
 
 <xsl:template match="*" mode="copy">
   <xsl:copy>
     <xsl:call-template name="copy.attributes"/>
-    <xsl:apply-templates mode="copy"/>
+    <xsl:apply-templates/>
   </xsl:copy>
 </xsl:template>
 
+<!--
 <xsl:template match="comment()|processing-instruction()|text()" mode="copy">
   <xsl:copy/>
 </xsl:template>
+-->
 
 <!-- ====================================================================== -->
 
