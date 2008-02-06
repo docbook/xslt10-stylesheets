@@ -1,5 +1,5 @@
 <!DOCTYPE article [
-<!ENTITY standard "Working Draft">
+<!ENTITY standard "Committee Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://www.oasis-open.org/docbook/">
@@ -17,7 +17,7 @@ $Id$
 <!-- product -->        <productname>docbook</productname>
 <!-- productVersion --> <productnumber>5.0</productnumber>
 <!-- artifactType       spec; what else? :-) -->
-<!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
+<!-- stage -->          <releaseinfo role="stage">cd</releaseinfo>
 <!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
@@ -1461,8 +1461,8 @@ of the DocBook web page
 
 <para>
 <revhistory>
-<revision role="&root;specs/docbook-5.0-spec-wd-01.html">
-  <revnumber>Working Draft “Public Review Draft 1”</revnumber>
+<revision role="&root;specs/docbook-5.0-spec-cd-01.html">
+  <revnumber>Committee Draft “Public Review Draft 1”</revnumber>
   <date>6 February 2008</date>
 </revision>
 <revision role="&root;specs/docbook-5.0CR7-spec-wd-01.html">
