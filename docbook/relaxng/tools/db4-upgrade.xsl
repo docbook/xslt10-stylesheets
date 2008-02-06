@@ -31,7 +31,10 @@
 # ======================================================================
 -->
 
+<xsl:variable name="version" select="'1.0'"/>
+
 <xsl:output method="xml" encoding="utf-8" indent="no" omit-xml-declaration="yes"/>
+
 <xsl:preserve-space elements="*"/>
 <xsl:param name="rootid">
   <xsl:choose>
@@ -50,6 +53,12 @@
   <xsl:variable name="converted">
     <xsl:apply-templates/>
   </xsl:variable>
+  <xsl:comment>
+    <xsl:text> Converted by db4-upgrade version </xsl:text>
+    <xsl:value-of select="$version"/>
+    <xsl:text> </xsl:text>
+  </xsl:comment>
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates select="exsl:node-set($converted)/*" mode="addNS"/>
 </xsl:template>
 
@@ -352,6 +361,7 @@
             <xsl:apply-templates select="title" mode="copy"/>
             <xsl:apply-templates select="titleabbrev" mode="copy"/>
             <xsl:apply-templates select="subtitle" mode="copy"/>
+            <xsl:apply-templates select="abstract" mode="copy"/>
           </info>
         </xsl:if>
         <xsl:apply-templates/>
@@ -441,6 +451,7 @@
         <xsl:apply-templates select="title" mode="copy"/>
         <xsl:apply-templates select="titleabbrev" mode="copy"/>
         <xsl:apply-templates select="subtitle" mode="copy"/>
+        <xsl:apply-templates select="abstract" mode="copy"/>
       </info>
     </xsl:if>
     <xsl:apply-templates/>
@@ -451,14 +462,12 @@
 	      priority="200">
   <simplesect>
     <xsl:call-template name="copy.attributes"/>
-
-    <xsl:if test="not(sect1info|sect2info|sect3info|sect4info|sect5info|sectioninfo)">
-      <info>
-        <xsl:apply-templates select="title" mode="copy"/>
-        <xsl:apply-templates select="titleabbrev" mode="copy"/>
-        <xsl:apply-templates select="subtitle" mode="copy"/>
-      </info>
-    </xsl:if>
+    <info>
+      <xsl:apply-templates select="title" mode="copy"/>
+      <xsl:apply-templates select="titleabbrev" mode="copy"/>
+      <xsl:apply-templates select="subtitle" mode="copy"/>
+      <xsl:apply-templates select="abstract" mode="copy"/>
+    </info>
     <xsl:apply-templates/>
   </simplesect>
 </xsl:template>
@@ -472,6 +481,7 @@
         <xsl:apply-templates select="title" mode="copy"/>
         <xsl:apply-templates select="titleabbrev" mode="copy"/>
         <xsl:apply-templates select="subtitle" mode="copy"/>
+        <xsl:apply-templates select="abstract" mode="copy"/>
       </info>
     </xsl:if>
     <xsl:apply-templates/>
@@ -1079,6 +1089,16 @@
 
 <xsl:template match="title|subtitle|titleabbrev" priority="300">
   <!-- nop -->
+</xsl:template>
+
+<xsl:template match="abstract" priority="300">
+  <xsl:if test="not(contains(name(parent::*),'info'))">
+    <xsl:call-template name="emit-message">
+      <xsl:with-param name="message">
+	<xsl:text>Check abstract; moved into info correctly?</xsl:text>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="indexterm">
