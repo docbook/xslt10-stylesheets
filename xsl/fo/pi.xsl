@@ -130,10 +130,10 @@
     </variablelist>
   </refparameter>
   <refsee role="params">
-    <para><parameter>sidebar.float.type parameter</parameter>,
-      <parameter>sidebar.float.width parameter</parameter>, 
-      <parameter>sidebar.properties attribute-set</parameter>,
-      <parameter>sidebar.title.properties</parameter>
+    <para><parameter>sidebar.float.type</parameter> (parameter),
+      <parameter>sidebar.float.width</parameter> (parameter), 
+      <parameter>sidebar.properties</parameter> (attribute-set),
+      <parameter>sidebar.title.properties</parameter> (attribute-set)
     </para>
   </refsee>
   <refsee role="tcg">
