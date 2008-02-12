@@ -1,45 +1,45 @@
 <?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="no"
-        english-language-name="Norwegian"
+        english-language-name="Norwegian Bokmål"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo>
 <!-- FIXME: list the real contributors
 <authorgroup>
-  <author><firstname>Norman</firstname><surname>Walsh</surname>
-          <affiliation><address><email>ndw@nwalsh.com</email></address>
+  <author><firstname>Hans Fredrik</firstname><surname>Nordhaug</surname>
+          <affiliation><address><email>hans@nordhaug.priv.no</email></address>
           </affiliation>
   </author>
 </authorgroup>
 -->
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Abstract"/>
-<gentext key="abstract" text="Abstract"/>
-<gentext key="Answer" text="A:"/>
-<gentext key="answer" text="A:"/> <!-- en -->
+<gentext key="Abstract" text="Sammendrag"/>
+<gentext key="abstract" text="Sammendrag"/>
+<gentext key="Answer" text="Svar"/>
+<gentext key="answer" text="svar"/>
 <gentext key="Appendix" text="Tillegg"/>
 <gentext key="appendix" text="Tillegg"/>
-<gentext key="Article" text=""/>
-<gentext key="article" text=""/>
+<gentext key="Article" text="Artikkel"/>
+<gentext key="article" text="artikkel"/>
 <gentext key="Bibliography" text="Bibliografi"/>
 <gentext key="bibliography" text="Bibliografi"/>
-<gentext key="Book" text=""/>
-<gentext key="book" text=""/>
+<gentext key="Book" text="Bok"/>
+<gentext key="book" text="bok"/>
 <gentext key="CAUTION" text="OBS"/>
 <gentext key="Caution" text="Obs"/>
-<gentext key="caution" text="Obs"/>
+<gentext key="caution" text="obs"/>
 <gentext key="Chapter" text="Kapittel"/>
 <gentext key="chapter" text="Kapittel"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/> <!-- en -->
-<gentext key="Copyright" text="Copyright"/>
-<gentext key="copyright" text="Copyright"/>
+<gentext key="Colophon" text="Kolofon"/>
+<gentext key="colophon" text="kolofon"/>
+<gentext key="Copyright" text="Opphavsrett"/>
+<gentext key="copyright" text="opphavsrett"/>
 <gentext key="Dedication" text="Dedikasjon"/>
 <gentext key="dedication" text="Dedikasjon"/>
-<gentext key="Edition" text=""/>
-<gentext key="edition" text=""/>
+<gentext key="Edition" text="Utgave"/>
+<gentext key="edition" text="utgave"/>
 <gentext key="Equation" text="Formel"/>
 <gentext key="equation" text="Formel"/>
 <gentext key="Example" text="Eksempel"/>
@@ -50,17 +50,17 @@
 <gentext key="glossary" text="Ordliste"/>
 <gentext key="GlossSee" text="Se"/>
 <gentext key="glosssee" text="Se"/>
-<gentext key="GlossSeeAlso" text="Se Også"/>
-<gentext key="glossseealso" text="Se Også"/>
+<gentext key="GlossSeeAlso" text="Se også"/>
+<gentext key="glossseealso" text="se også"/>
 <gentext key="IMPORTANT" text="VIKTIG"/>
 <gentext key="Important" text="Viktig"/>
-<gentext key="important" text="Viktig"/>
+<gentext key="important" text="viktig"/>
 <gentext key="Index" text="Indeks"/>
 <gentext key="index" text="Indeks"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text=""/>
-<gentext key="legalnotice" text=""/>
+<gentext key="LegalNotice" text="Rettslig merknad"/>
+<gentext key="legalnotice" text="rettslig merknad"/>
 <gentext key="MsgAud" text="Publikum"/>
 <gentext key="msgaud" text="Publikum"/>
 <gentext key="MsgLevel" text="Nivå"/>
@@ -69,119 +69,123 @@
 <gentext key="msgorig" text="Opphav"/>
 <gentext key="NOTE" text="NOTAT"/>
 <gentext key="Note" text="Notat"/>
-<gentext key="note" text="Notat"/>
+<gentext key="note" text="notat"/>
 <gentext key="Part" text="Del"/>
-<gentext key="part" text="Del"/>
+<gentext key="part" text="del"/>
 <gentext key="Preface" text="Forord"/>
-<gentext key="preface" text="Forord"/>
+<gentext key="preface" text="forord"/>
 <gentext key="Procedure" text="Prosedyre"/>
-<gentext key="procedure" text="Prosedyre"/>
-<gentext key="ProductionSet" text="Production"/> <!-- en -->
-<gentext key="Published" text=""/>
-<gentext key="published" text=""/>
-<gentext key="Qandadiv" text="Q &amp; A"/> <!-- en -->
-<gentext key="qandadiv" text="Q &amp; A"/> <!-- en -->
-<gentext key="Question" text="Q:"/>
-<gentext key="question" text="Q:"/> <!-- en -->
+<gentext key="procedure" text="prosedyre"/>
+<gentext key="ProductionSet" text="Produksjon"/>
+<gentext key="Published" text="Publisert"/>
+<gentext key="published" text="publisert"/>
+<gentext key="Qandadiv" text="Spørsmål og svar"/>
+<gentext key="qandadiv" text="spørsmål og svar"/>
+<gentext key="Question" text="Spørsmål"/>
+<gentext key="question" text="spørsmål"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Referanse"/>
-<gentext key="reference" text="Referanse"/>
+<gentext key="reference" text="referanse"/>
 <gentext key="RefName" text="Navn"/>
-<gentext key="refname" text="Navn"/>
+<gentext key="refname" text="navn"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
 <gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/> <!-- en -->
+<gentext key="refsynopsisdiv" text="Synopsis"/>
 <gentext key="RevHistory" text="Revisjonshistorie"/>
-<gentext key="revhistory" text="Revisjonshistorie"/>
+<gentext key="revhistory" text="revisjonshistorie"/>
 <gentext key="Revision" text="Revisjon"/>
-<gentext key="revision" text="Revisjon"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="revision" text="revisjon"/>
+<gentext key="sect1" text="Seksjon"/>
+<gentext key="sect2" text="Seksjon"/>
+<gentext key="sect3" text="Seksjon"/>
+<gentext key="sect4" text="Seksjon"/>
+<gentext key="sect5" text="Seksjon"/>
 <gentext key="Section" text="Seksjon"/>
 <gentext key="section" text="seksjon"/>
 <gentext key="See" text="Se"/>
 <gentext key="see" text="Se"/>
-<gentext key="SeeAlso" text="Se Også"/>
+<gentext key="SeeAlso" text="Se også"/>
 <gentext key="Seealso" text="Se også"/>
-<gentext key="seealso" text="Se Også"/>
-<gentext key="Set" text=""/>
-<gentext key="set" text=""/>
-<gentext key="SetIndex" text="Indeks"/>
-<gentext key="setindex" text="Indeks"/>
+<gentext key="seealso" text="se også"/>
+<gentext key="Set" text="Sett"/>
+<gentext key="set" text="sett"/>
+<gentext key="SetIndex" text="Settindeks"/>
+<gentext key="setindex" text="settindeks"/>
 <gentext key="Sidebar" text=""/>
 <gentext key="sidebar" text=""/>
 <gentext key="Step" text="Steg"/>
 <gentext key="step" text="steg"/>
 <gentext key="Table" text="Tabell"/>
-<gentext key="table" text="Tabell"/>
+<gentext key="table" text="tabell"/>
 <gentext key="TIP" text="TIPS"/>
 <gentext key="Tip" text="Tips"/>
 <gentext key="tip" text="Tips"/>
 <gentext key="WARNING" text="ADVARSEL"/>
 <gentext key="Warning" text="Advarsel"/>
-<gentext key="warning" text="Advarsel"/>
+<gentext key="warning" text="advarsel"/>
 
 <gentext key="and" text="og"/>
 <gentext key="by" text="av"/>
 <gentext key="Edited" text="Redigert"/>
-<gentext key="edited" text="Redigert"/>
+<gentext key="edited" text="redigert"/>
 <gentext key="Editedby" text="Redigert av"/>
-<gentext key="editedby" text="Redigert av"/>
+<gentext key="editedby" text="redigert av"/>
 <gentext key="in" text="i"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="ikke-eksisterende element"/>
 <gentext key="notes" text="Sluttnotater"/>
-<gentext key="Notes" text="Sluttnotater"/>
-<gentext key="Pgs" text="Sdr."/>
-<gentext key="pgs" text="Sdr."/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Notes" text="sluttnotater"/>
+<gentext key="Pgs" text="Sider"/>
+<gentext key="pgs" text="sider"/>
+<gentext key="Revisedby" text="Gjennomgått av: "/>
+<gentext key="revisedby" text="gjennomgått av: "/>
 <gentext key="TableNotes" text="Notater"/>
-<gentext key="tablenotes" text="Notater"/>
+<gentext key="tablenotes" text="notater"/>
 <gentext key="TableofContents" text="Innholdsfortegnelse"/>
-<gentext key="tableofcontents" text="Innholdsfortegnelse"/>
+<gentext key="tableofcontents" text="innholdsfortegnelse"/>
 <gentext key="unexpectedelementname" text="UVENTET-ELEMENTNAVN"/>
 <gentext key="unsupported" text="ikke støttet"/>
 <gentext key="xrefto" text="xref til"/>
 
 <gentext key="listofequations" text="Formeloversikt"/>
-<gentext key="ListofEquations" text="Formeloversikt"/>
+<gentext key="ListofEquations" text="formeloversikt"/>
 <gentext key="ListofExamples" text="Eksempeloversikt"/>
-<gentext key="listofexamples" text="Eksempeloversikt"/>
+<gentext key="listofexamples" text="eksempeloversikt"/>
 <gentext key="ListofFigures" text="Figuroversikt"/>
-<gentext key="listoffigures" text="Figuroversikt"/>
+<gentext key="listoffigures" text="figuroversikt"/>
 <gentext key="listoftables" text="Tabelloversikt"/>
-<gentext key="ListofTables" text="Tabelloversikt"/>
+<gentext key="ListofTables" text="tabelloversikt"/>
 <gentext key="ListofUnknown" text="???-oversikt"/>
 <gentext key="listofunknown" text="???-oversikt"/>
 
 <gentext key="nav-home" text="Hjem"/>
 <gentext key="nav-next" text="Neste"/>
-<gentext key="nav-next-sibling" text="Raskt Fremover"/>
+<gentext key="nav-next-sibling" text="Raskt fremover"/>
 <gentext key="nav-prev" text="Forrige"/>
-<gentext key="nav-prev-sibling" text="Raskt Bakover"/>
+<gentext key="nav-prev-sibling" text="Raskt bakover"/>
 <gentext key="nav-up" text="Opp"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft" text="Draft"/> <!-- en -->
-<gentext key="above" text="above"/> <!-- en -->
-<gentext key="below" text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="sectioncalled" text="Seksjonen kalt"/>
+<gentext key="Draft" text="Utkast"/>
+<gentext key="above" text="over"/>
+<gentext key="below" text="under"/>
+<gentext key="index symbols" text="Symboler"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzæøå"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"/>
 
-<dingbat key="startquote" text="“"/>
 <dingbat key="endquote" text="”"/>
 <dingbat key="nestedstartquote" text="‘"/>
 <dingbat key="nestedendquote" text="’"/>
+<dingbat key="singlestartquote" text="‘" lang="en"/>
+<dingbat key="singleendquote" text="’" lang="en"/>
 <dingbat key="bullet" text="•"/>
+<gentext key="hyphenation-character" text="-" lang="en"/>
+<gentext key="hyphenation-push-character-count" text="2" lang="en"/>
+<gentext key="hyphenation-remain-character-count" text="2" lang="en"/>
 
 <context name="styles">
 
@@ -483,7 +487,7 @@
 </context>
 
 <context name="htmlhelp">
-<template name="langcode">0x0414 Norwegian</template>
+<template name="langcode">0x0414 Norwegian Bokmål</template>
 </context>
 
 </locale>
