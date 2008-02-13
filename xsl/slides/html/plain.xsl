@@ -31,13 +31,16 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0"
            summary="Navigation">
       <tr>
-        <td align="left" width="50%">
+        <td align="left" width="45%">
           <span class="slidestitle">
             <xsl:value-of select="(/slides/slidesinfo/title)[1]"/>
           </span>
           <xsl:text>&#160;</xsl:text>
         </td>
-        <td align="right" width="50%">
+	<td width="10%" align="center" valign="bottom">
+          <xsl:call-template name="foil.number"/>
+        </td>
+        <td align="right" width="45%">
           <xsl:choose>
             <xsl:when test="$home">
               <a>
