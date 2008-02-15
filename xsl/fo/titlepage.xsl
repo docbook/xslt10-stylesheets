@@ -534,7 +534,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:table table-layout="fixed" width="{$table.width}" xsl:use-attribute-sets="revhistory.table.properties">
+ <fo:table table-layout="fixed" width="{$table.width}" xsl:use-attribute-sets="revhistory.table.properties">
     <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
@@ -542,16 +542,25 @@
       <fo:table-row>
         <fo:table-cell number-columns-spanned="3" xsl:use-attribute-sets="revhistory.table.cell.properties">
           <fo:block xsl:use-attribute-sets="revhistory.title.properties">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'RevHistory'"/>
-            </xsl:call-template>
-          </fo:block>
+	    <xsl:choose>
+	      <xsl:when test="title|info/title">
+		<xsl:apply-templates select="title|info/title" mode="titlepage.mode"/>
+	      </xsl:when>
+	      <xsl:otherwise>
+		<xsl:call-template name="gentext">
+		  <xsl:with-param name="key" select="'RevHistory'"/>
+		</xsl:call-template>
+	      </xsl:otherwise>
+	    </xsl:choose>
+	  </fo:block>
         </fo:table-cell>
       </fo:table-row>
-      <xsl:apply-templates mode="titlepage.mode"/>
+      <xsl:apply-templates select="*[not(self::title)]" mode="titlepage.mode"/>
     </fo:table-body>
   </fo:table>
+
 </xsl:template>
+
 
 <xsl:template match="revhistory/revision" mode="titlepage.mode">
   <xsl:variable name="revnumber" select="revnumber"/>
