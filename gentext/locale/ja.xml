@@ -6,6 +6,10 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
+  <author><firstname>Akagi</firstname><surname>Kobayashi</surname>
+          <affiliation><address><email>akobayashi@valista.com</email></address>
+          </affiliation>
+  </author>
   <author><firstname>Karl</firstname><surname>Critz</surname>
           <affiliation><address><email>kcritz@mathworks.com</email></address>
           </affiliation>
@@ -402,18 +406,18 @@
 <template name="warning">%t</template>
 <template name="page.citation"> [%p]</template>
 
-<template name="bridgehead">%t</template> 
-<template name="refsection">%t</template>
-<template name="refsect1">%t</template>
-<template name="refsect2">%t</template>
-<template name="refsect3">%t</template>
-<template name="sect1">%t</template>
-<template name="sect2">%t</template>
-<template name="sect3">%t</template>
-<template name="sect4">%t</template>
-<template name="sect5">%t</template>
-<template name="section">%t</template>
-<template name="simplesect">%t</template>
+<template name="bridgehead"><startquote/>%t<endquote/></template> 
+<template name="refsection"><startquote/>%t<endquote/></template>
+<template name="refsect1"><startquote/>%t<endquote/></template>
+<template name="refsect2"><startquote/>%t<endquote/>t</template>
+<template name="refsect3"><startquote/>%t<endquote/></template>
+<template name="sect1"><startquote/>%t<endquote/></template>
+<template name="sect2"><startquote/>%t<endquote/></template>
+<template name="sect3"><startquote/>%t<endquote/></template>
+<template name="sect4"><startquote/>%t<endquote/></template>
+<template name="sect5"><startquote/>%t<endquote/></template>
+<template name="section"><startquote/>%t<endquote/></template>
+<template name="simplesect"><startquote/>%t<endquote/></template>
 
 </context>
 
@@ -446,26 +450,26 @@
 
 <template name="appendix"><Appendix/>%n %t</template>  
 <template name="bridgehead">%n<Section/><startquote/>%t<endquote/></template> 
-<template name="chapter">%n<Chapter2/></template> 
-<template name="equation"><Equation/>%n <startquote/>%t<endquote/></template>  
-<template name="example"><Example/>%n <startquote/>%t<endquote/></template>   
-<template name="figure"><Figure/>%n <startquote/>%t<endquote/></template>
-<template name="part"><Part/>%n <startquote/>%t<endquote/></template>
-<template name="procedure"><Procedure/>%n <startquote/>%t<endquote/></template>
-<template name="productionset"><ProductionSet/>%n <startquote/>%t<endquote/></template>
-<template name="qandadiv"><Qandadiv/>%n <startquote/>%t<endquote/></template>
+<template name="chapter">%n<Chapter2/>%t</template> 
+<template name="equation"><Equation/>%n<startquote/>%t<endquote/></template>  
+<template name="example"><Example/>%n<startquote/>%t<endquote/></template>   
+<template name="figure"><Figure/>%n<startquote/>%t<endquote/></template>
+<template name="part"><Part/>%n<startquote/>%t<endquote/></template>
+<template name="procedure"><Procedure/>%n<startquote/>%t<endquote/></template>
+<template name="productionset"><ProductionSet/>%n<startquote/>%t<endquote/></template>
+<template name="qandadiv"><Qandadiv/>%n<startquote/>%t<endquote/></template>
 <template name="refsect1"><startquote/>%t<endquote/></template>
 <template name="refsect2"><startquote/>%t<endquote/></template>
 <template name="refsect3"><startquote/>%t<endquote/></template>
 <template name="refsection"><startquote/>%t<endquote/></template>
-<template name="sect1"><Section/>%n. <startquote/>%t<endquote/></template>
-<template name="sect2"><Section/>%n. <startquote/>%t<endquote/></template>
-<template name="sect3"><Section/>%n. <startquote/>%t<endquote/></template>
-<template name="sect4"><Section/>%n. <startquote/>%t<endquote/></template>
-<template name="sect5"><Section/>%n. <startquote/>%t<endquote/></template>
-<template name="section"><Section/>%n. <startquote/>%t<endquote/></template>
+<template name="sect1"><startquote/>%t<endquote/></template>
+<template name="sect2"><startquote/>%t<endquote/></template>
+<template name="sect3"><startquote/>%t<endquote/></template>
+<template name="sect4"><startquote/>%t<endquote/></template>
+<template name="sect5"><startquote/>%t<endquote/></template>
+<template name="section"><startquote/>%t<endquote/></template>
 <template name="simplesect"><startquote/>%t<endquote/></template>
-<template name="table"><Table/>%n <startquote/>%t<endquote/></template> 
+<template name="table"><Table/>%n<startquote/>%t<endquote/></template> 
 
 </context>
 
