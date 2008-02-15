@@ -53,11 +53,8 @@
     <!-- *   command descriptions for the whatis(1) and apropos(1) -->
     <!-- *   commands. -->
     <!-- * -->
-    <!-- * So why don't we precede the hyphen with a backslash here? -->
-    <!-- * Well, because it's added later, by the apply-string-subst-map -->
-    <!-- * template, before we generate final output -->
     <xsl:if test="refpurpose/node()">
-      <xsl:text> - </xsl:text>
+      <xsl:text> \- </xsl:text>
       <xsl:value-of select="normalize-space(refpurpose)"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
