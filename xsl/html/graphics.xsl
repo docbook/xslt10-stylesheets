@@ -525,8 +525,19 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:variable name="img">
     <xsl:choose>
       <xsl:when test="@format = 'SVG'">
-        <object data="{$output_filename}" type="image/svg+xml">
-          <xsl:call-template name="process.image.attributes">
+        <object type="image/svg+xml">
+	  <xsl:attribute name="data">
+	    <xsl:choose>
+	      <xsl:when test="$img.src.path != '' and
+                           $tag = 'img' and
+			   not(starts-with($output_filename, '/')) and
+			   not(contains($output_filename, '://'))">
+		<xsl:value-of select="$img.src.path"/>
+	      </xsl:when>
+           </xsl:choose>
+	   <xsl:value-of select="$output_filename"/>
+	  </xsl:attribute>
+	  <xsl:call-template name="process.image.attributes">
             <!--xsl:with-param name="alt" select="$alt"/ there's no alt here-->
             <xsl:with-param name="html.depth" select="$html.depth"/>
             <xsl:with-param name="html.width" select="$html.width"/>
@@ -548,7 +559,18 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             </xsl:attribute>
           </xsl:if>
           <xsl:if test="$use.embed.for.svg != 0">
-            <embed src="{$output_filename}" type="image/svg+xml">
+	    <embed type="image/svg+xml">
+	      <xsl:attribute name="src">
+		<xsl:choose>
+                  <xsl:when test="$img.src.path != '' and
+				  $tag = 'img' and
+				  not(starts-with($output_filename, '/')) and
+				  not(contains($output_filename, '://'))">
+		    <xsl:value-of select="$img.src.path"/>
+                  </xsl:when>
+		</xsl:choose>
+		<xsl:value-of select="$output_filename"/>
+              </xsl:attribute>
               <xsl:call-template name="process.image.attributes">
                 <!--xsl:with-param name="alt" select="$alt"/ there's no alt here -->
                 <xsl:with-param name="html.depth" select="$html.depth"/>
