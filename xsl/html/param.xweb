@@ -160,7 +160,6 @@ $Id$
 <reference xml:id="refentry"><title>Reference Pages</title>
 &funcsynopsis.decoration;
 &funcsynopsis.style;
-&funcsynopsis.tabular.threshold;
 &function.parens;
 &refentry.generate.name;
 &refentry.generate.title;
@@ -503,7 +502,6 @@ around all these parameters.</para>
 <src:fragref linkend="formal.title.placement.frag"/>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
-<src:fragref linkend="funcsynopsis.tabular.threshold.frag"/>
 <src:fragref linkend="function.parens.frag"/>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
