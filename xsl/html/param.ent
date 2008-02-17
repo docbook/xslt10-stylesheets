@@ -269,7 +269,6 @@
 <!ENTITY l10n.lang.value.rfc.compliant SYSTEM "../params/l10n.lang.value.rfc.compliant.xml">
 <!ENTITY default.image.width SYSTEM "../params/default.image.width.xml">
 <!ENTITY default.float.class SYSTEM "../params/default.float.class.xml">
-<!ENTITY funcsynopsis.tabular.threshold SYSTEM "../params/funcsynopsis.tabular.threshold.xml">
 <!ENTITY table.cell.border.color SYSTEM "../params/table.cell.border.color.xml">
 <!ENTITY table.cell.border.style SYSTEM "../params/table.cell.border.style.xml">
 <!ENTITY table.cell.border.thickness SYSTEM "../params/table.cell.border.thickness.xml">

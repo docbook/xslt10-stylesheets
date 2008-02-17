@@ -216,6 +216,10 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     </xsl:choose>
   </xsl:variable>
 
+<!-- * 2008-02-17. the code no longer relies on the funcsynopsis.tabular.threshold -->
+<!-- * param at all (the stuff below has been commented out since mid -->
+<!-- * 2006), so I completely removed the funcsynopsis.tabular.threshold param -->
+<!-- * .. MikeSmith -->
 <!--
   <xsl:variable name="tabular-p"
                 select="$funcsynopsis.tabular.threshold &gt; 0
