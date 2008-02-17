@@ -1078,7 +1078,7 @@
       </xsl:if>
 
       <xsl:if test="$colsep.inherit &gt; 0 and 
-                      $col &lt; ancestor::tgroup/@cols">
+                      $col &lt; (ancestor::tgroup/@cols|ancestor::entrytbl/@cols)[last()]">
         <xsl:call-template name="border">
           <xsl:with-param name="side" select="'right'"/>
         </xsl:call-template>
