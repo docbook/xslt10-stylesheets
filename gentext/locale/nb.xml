@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
-<locale language="no"
+<locale language="nb"
         english-language-name="Norwegian Bokmål"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
@@ -177,6 +177,7 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzæøå"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"/>
 
+<dingbat key="startquote" text="“"/>
 <dingbat key="endquote" text="”"/>
 <dingbat key="nestedstartquote" text="‘"/>
 <dingbat key="nestedendquote" text="’"/>
