@@ -38,7 +38,7 @@
 <!ENTITY mn SYSTEM "mn.xml">
 <!ENTITY nl SYSTEM "nl.xml">
 <!ENTITY nn SYSTEM "nn.xml">
-<!ENTITY no SYSTEM "no.xml">
+<!ENTITY nb SYSTEM "nb.xml">
 <!ENTITY or SYSTEM "or.xml">
 <!ENTITY pa SYSTEM "pa.xml">
 <!ENTITY pl SYSTEM "pl.xml">
@@ -101,7 +101,7 @@
 &mn;
 &nl;
 &nn;
-&no;
+&nb;
 &or;
 &pa;
 &pl;
