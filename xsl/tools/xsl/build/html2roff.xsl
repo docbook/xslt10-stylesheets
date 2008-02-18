@@ -147,12 +147,23 @@
     <!-- * wrap all content in these cells in no-fill sections, to -->
     <!-- * prevent groff from adding undesirable line breaks -->
     <xsl:element name="text">.nf&#10;</xsl:element>
+    <xsl:element name="text">.</xsl:element>
+    <xsl:element name="xsl:value-of">
+      <xsl:attribute name="select">$man.font.funcprototype</xsl:attribute>
+    </xsl:element>
+    <!-- * The following quotation mark (and the one further below) are -->
+    <!-- * needed to properly delimit the parts of the Funcprototype that -->
+    <!-- * should be rendered in the prevailing font (either Bold or Roman) -->
+    <!-- * from Parameter output that needs to be alternately rendered in -->
+    <!-- * italic. -->
+    <xsl:element name="text"> "</xsl:element>
     <xsl:if test="not($horizontal-adjust = 0)">
       <xsl:element name="text">\h'-<xsl:value-of select="$horizontal-adjust"/>'</xsl:element>
     </xsl:if>
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
     </xsl:copy>
+    <xsl:element name="text">"</xsl:element>
     <xsl:element name="text">&#10;.fi</xsl:element>
     <xsl:choose>
       <xsl:when test="not($is-closing-cell = 0)">
