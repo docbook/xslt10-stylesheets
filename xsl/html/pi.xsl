@@ -296,9 +296,9 @@
   <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
   <refdescription>
     <para>Use the <tag class="xmlpi">dbhtml funcsynopsis-style</tag> PI as a child of
-      a <tag>funcprototype</tag> or anywhere within a funcprototype
-      control the presentation style for the <tag>funcsynopsis</tag>
-      in output.</para>
+      a <tag>funcsynopsis</tag> or anywhere within a funcsynopsis
+      to control the presentation style for output of all
+      <tag>funcprototype</tag> instances within that funcsynopsis.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbhtml funcsynopsis-style="kr"|"ansi"</tag></synopsis>
@@ -307,12 +307,12 @@
     <variablelist>
       <varlistentry><term>funcsynopsis-style="kr"</term>
         <listitem>
-          <para>Displays the <tag>funcprototype</tag> in K&amp;R style</para>
+          <para>Displays <tag>funcprototype</tag> output in K&amp;R style</para>
         </listitem>
       </varlistentry>
       <varlistentry><term>funcsynopsis-style="ansi"</term>
         <listitem>
-          <para>Displays the <tag>funcprototype</tag> in ANSI style</para>
+          <para>Displays <tag>funcprototype</tag> output in ANSI style</para>
         </listitem>
       </varlistentry>
     </variablelist>
