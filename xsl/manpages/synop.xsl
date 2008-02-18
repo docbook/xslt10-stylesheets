@@ -208,7 +208,17 @@
   </xsl:if>
 </xsl:template>
 
-<!-- * All Funcprototype content is by default rendered in bold, -->
+<!-- * In HTML output, placing a dbfunclist PI as a child of a particular -->
+<!-- * element creates a hyperlinked list of all funcsynopsis instances -->
+<!-- * that are descendants of that element. But we can’t really do this -->
+<!-- * kind of hyperlinked list in manpages output, so we just need to -->
+<!-- * suppress it instead. -->
+<xsl:template match="processing-instruction('dbfunclist')"/>
+
+<!-- * ***************************************************************** -->
+<!-- *           Note about boldface in funcprototype output -->
+<!-- * ***************************************************************** -->
+<!-- * All funcprototype content is by default rendered in bold, -->
 <!-- * because the man(7) man page says this: -->
 <!-- * -->
 <!-- *   For functions, the arguments are always specified using -->
@@ -225,7 +235,62 @@
 <!-- * default to be non-bold - because it's a convention that's -->
 <!-- * followed is the vast majority of existing man pages that document -->
 <!-- * functions, and we need to follow it by default, like it or no. -->
+<!-- * ***************************************************************** -->
+
+<!-- * Based on the value of the funcsynopsis.style variable, the -->
+<!-- * following funcprototype template simply dispatches handling to -->
+<!-- * either a mode for generating ANSI-style output, or a mode for -->
+<!-- * generating K&R-style output. -->
 <xsl:template match="funcprototype">
+  <xsl:variable name="man-style">
+    <xsl:call-template name="pi.dbman_funcsynopsis-style">
+      <xsl:with-param name="node" select="ancestor::funcsynopsis/descendant-or-self::*"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="style">
+    <xsl:choose>
+      <xsl:when test="$man-style != ''">
+        <xsl:value-of select="$man-style"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$funcsynopsis.style"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:choose>
+    <xsl:when test="$style = 'kr'">
+      <xsl:apply-templates select="." mode="kr-tabular"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="." mode="ansi"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- * With the exception of the following two templates for formatting -->
+<!-- * of parameter output, the mode templates for handling K&R output -->
+<!-- * are currently all in the html-synop.xsl file. That file is a -->
+<!-- * modified version of the html/synop.xsl file that’s automatically -->
+<!-- * generated from the html/synop.xsl file as part of the build. The -->
+<!-- * following two templates override the handling of same mode -->
+<!-- * templates for the parameter element in the html-synop.xsl file. -->
+<xsl:template match="parameter" mode="kr-tabular">
+  <xsl:text>"&#x2591;"</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>"&#x2591;"</xsl:text>
+</xsl:template>
+
+<xsl:template match="parameter" mode="kr-tabular-funcsynopsis-mode">
+  <xsl:text>"&#x2591;"</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>"&#x2591;"</xsl:text>
+</xsl:template>
+
+<!-- * The remaining templates here currently just handle ANSI-style -->
+<!-- * funcprototype output; for K&R style output, see the html-synop.xsl -->
+<!-- * file. -->
+
+<xsl:template match="funcprototype" mode="ansi">
   <xsl:variable name="funcprototype.string.value">
     <xsl:value-of select="funcdef"/>
   </xsl:variable>
