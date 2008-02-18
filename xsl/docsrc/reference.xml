@@ -171,6 +171,9 @@
     <part xml:id="pi-fo">
       <xi:include href="../fo/pi.xml" xpointer="xpointer(/reference/node())" />
     </part>
+    <part xml:id="pi-man">
+      <xi:include href="../manpages/pi.xml" xpointer="xpointer(/reference/node())" />
+    </part>
     <part xml:id="pi-common">
       <xi:include href="../common/pi.xml" xpointer="xpointer(/reference/node())" />
     </part>

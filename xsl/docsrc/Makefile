@@ -3,7 +3,7 @@ include ../../releasetools/Variables.mk
 XJPARSEFLAGS= -E 0 -w
 
 PARAM_DIRS=html fo manpages roundtrip slides/fo slides/html website
-PI_DIRS=html fo common
+PI_DIRS=html fo manpages common
 
 PARAM_XML_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xml)
 PI_XML_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xml)
