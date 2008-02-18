@@ -38,6 +38,7 @@
   <xsl:include href="lists.xsl"/>
   <xsl:include href="endnotes.xsl"/>
   <xsl:include href="table.xsl"/>
+  <xsl:include href="pi.xsl"/>
 
   <!-- * we rename the following just to avoid using params with "man" -->
   <!-- * prefixes in the table.xsl stylesheet (because that stylesheet -->
