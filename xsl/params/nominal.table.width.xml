@@ -24,7 +24,7 @@
 <para>In order to convert CALS column widths into HTML column widths, it
 is sometimes necessary to have an absolute table width to use for conversion
 of mixed absolute and relative widths. This value must be an absolute
-length (not a percentag).</para>
+length (not a percentage).</para>
 
 </refsection>
 </refentry>

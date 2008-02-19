@@ -26,7 +26,7 @@
 
 <para>The styling for tables. This parameter should really
 have been called <literal>table.properties</literal>, but that parameter
-name was inadvertantly established for the block-level properties
+name was inadvertently established for the block-level properties
 of the table as a whole.
 </para>
 
