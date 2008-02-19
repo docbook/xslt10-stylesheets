@@ -97,7 +97,7 @@
       <xsl:variable name="param.xsl" select="concat('../../../', $dir, '/', 'param.xsl')"/>
       <xslt:variable name="xsl-{$adjusted-dir}-parameters-list">
         <simplelist role="param">
-          <xsl:for-each select="document($param.xsl)//*[local-name() = 'param']">
+          <xsl:for-each select="document($param.xsl)//*[local-name() = 'param' or local-name() = 'attribute-set']">
             <xsl:sort select="@name"/>
             <member><xsl:value-of select="@name"/></member>
           </xsl:for-each>
