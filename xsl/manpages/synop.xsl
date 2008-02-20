@@ -237,60 +237,22 @@
 <!-- * functions, and we need to follow it by default, like it or no. -->
 <!-- * ***************************************************************** -->
 
-<!-- * Based on the value of the funcsynopsis.style variable, the -->
-<!-- * following funcprototype template simply dispatches handling to -->
-<!-- * either a mode for generating ANSI-style output, or a mode for -->
-<!-- * generating K&R-style output. -->
 <xsl:template match="funcprototype">
-  <xsl:variable name="man-style">
+  <xsl:variable name="man-funcprototype-style">
     <xsl:call-template name="pi.dbman_funcsynopsis-style">
       <xsl:with-param name="node" select="ancestor::funcsynopsis/descendant-or-self::*"/>
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="style">
     <xsl:choose>
-      <xsl:when test="$man-style != ''">
-        <xsl:value-of select="$man-style"/>
+      <xsl:when test="not($man-funcprototype-style = '')">
+        <xsl:value-of select="$man-funcprototype-style"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$funcsynopsis.style"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$style = 'kr'">
-      <xsl:apply-templates select="." mode="kr-tabular"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates select="." mode="ansi"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
-<!-- * With the exception of the following two templates for formatting -->
-<!-- * of parameter output, the mode templates for handling K&R output -->
-<!-- * are currently all in the html-synop.xsl file. That file is a -->
-<!-- * modified version of the html/synop.xsl file that’s automatically -->
-<!-- * generated from the html/synop.xsl file as part of the build. The -->
-<!-- * following two templates override the handling of same mode -->
-<!-- * templates for the parameter element in the html-synop.xsl file. -->
-<xsl:template match="parameter" mode="kr-tabular">
-  <xsl:text>"&#x2591;"</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>"&#x2591;"</xsl:text>
-</xsl:template>
-
-<xsl:template match="parameter" mode="kr-tabular-funcsynopsis-mode">
-  <xsl:text>"&#x2591;"</xsl:text>
-  <xsl:apply-templates/>
-  <xsl:text>"&#x2591;"</xsl:text>
-</xsl:template>
-
-<!-- * The remaining templates here currently just handle ANSI-style -->
-<!-- * funcprototype output; for K&R style output, see the html-synop.xsl -->
-<!-- * file. -->
-
-<xsl:template match="funcprototype" mode="ansi">
   <xsl:variable name="funcprototype.string.value">
     <xsl:value-of select="funcdef"/>
   </xsl:variable>
@@ -313,9 +275,35 @@
   <xsl:text>"</xsl:text>
   <xsl:value-of select="normalize-space($funcprototype)"/>
   <xsl:text>(</xsl:text>
-  <xsl:apply-templates select="*[local-name() != 'funcdef']"/>
+  <xsl:choose>
+    <xsl:when test="not($style = 'ansi')">
+      <xsl:apply-templates select="*[local-name() != 'funcdef']" mode="kr"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates select="*[local-name() != 'funcdef']" mode="ansi"/>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>"</xsl:text>
   <xsl:text>&#10;</xsl:text>
+  <xsl:if test="paramdef and not($style = 'ansi')">
+    <!-- * if we have any paramdef instances in this funcprototype and -->
+    <!-- * the user has chosen K&R style output (by specifying some style -->
+    <!-- * value other than the default 'ansi'), then we need to generate -->
+    <!-- * the separate list of param definitions for this funcprototype -->
+    <!-- * -->
+    <!-- * we put a blank line after the prototype and before the list, -->
+    <!-- * and we indent the list by whatever width $list-indent is set -->
+    <!-- * to (4 spaces by default) -->
+    <xsl:text>.sp&#10;</xsl:text>
+    <xsl:text>.RS</xsl:text> 
+    <xsl:if test="not($list-indent = '')">
+      <xsl:text> </xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:apply-templates select="paramdef" mode="kr-paramdef-list"/>
+    <xsl:text>.RE&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="funcdef">
@@ -326,15 +314,47 @@
   <xsl:apply-templates/>
 </xsl:template>
 
-<xsl:template match="void">
-  <xsl:text>void);</xsl:text>
+<xsl:template match="void" mode="kr">
+  <xsl:text>);</xsl:text>
 </xsl:template>
 
-<xsl:template match="varargs">
+<xsl:template match="varargs" mode="kr">
   <xsl:text>...);</xsl:text>
 </xsl:template>
 
-<xsl:template match="paramdef">
+<xsl:template match="void" mode="ansi">
+  <xsl:text>void);</xsl:text>
+</xsl:template>
+
+<xsl:template match="varargs" mode="ansi">
+  <xsl:text>...);</xsl:text>
+</xsl:template>
+
+<xsl:template match="paramdef" mode="kr">
+  <!-- * in K&R-style output, the prototype just contains the parameter -->
+  <!-- * names - because the parameter definitions for each parameter -->
+  <!-- * (including the type information) are displayed in a separate -->
+  <!-- * list following the prototype; so in this mode (which is for the -->
+  <!-- * prototype, not the separate list), we first just want to grab -->
+  <!-- * the parameter for each paramdef -->
+  <xsl:variable name="contents">
+    <xsl:apply-templates select="parameter"/>
+  </xsl:variable>
+  <xsl:apply-templates mode="prevent.line.breaking" select="exsl:node-set($contents)"/>
+  <xsl:choose>
+    <xsl:when test="following-sibling::*">
+      <xsl:text>, </xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>);</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="paramdef" mode="ansi">
+  <!-- * in ANSI-style output, the prototype contains the complete -->
+  <!-- * parameter definitions for each parameter (there is no separate -->
+  <!-- * list of parameter definitions like the one for K&R style -->
   <xsl:apply-templates mode="prevent.line.breaking" select="."/>
   <xsl:choose>
     <xsl:when test="following-sibling::*">
@@ -344,6 +364,28 @@
       <xsl:text>);</xsl:text>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="paramdef" mode="kr-paramdef-list">
+  <!-- * this mode is for generating the separate list of parameter -->
+  <!-- * definitions in K&R-style output -->
+  <xsl:text>.br&#10;</xsl:text>
+  <xsl:text>.</xsl:text>
+  <xsl:value-of select="$man.font.funcprototype"/>
+  <xsl:text> </xsl:text>
+  <!-- * The following quotation mark (and the one further below) are -->
+  <!-- * needed to properly delimit the parts of the Funcprototype that -->
+  <!-- * should be rendered in the prevailing font (either Bold or Roman) -->
+  <!-- * from Parameter output that needs to be alternately rendered in -->
+  <!-- * italic. -->
+  <xsl:text>"</xsl:text>
+  <xsl:variable name="contents">
+    <xsl:apply-templates/>
+  </xsl:variable>
+  <xsl:value-of select="normalize-space($contents)"/>
+  <xsl:text>;</xsl:text>
+  <xsl:text>"</xsl:text>
+  <xsl:text>&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="paramdef/parameter">
