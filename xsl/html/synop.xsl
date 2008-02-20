@@ -349,7 +349,8 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 
 <xsl:template match="funcprototype" mode="kr-tabular">
   <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0"
-         style="padding-bottom: 1em">
+    class="funcprototype-table"
+    >
     <tr>
       <td>
         <xsl:apply-templates select="funcdef" mode="kr-tabular"/>
@@ -364,14 +365,11 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     </xsl:for-each>
   </table>
   <xsl:if test="paramdef">
-    <table border="0" summary="Function argument synopsis"
-           cellspacing="0" cellpadding="0">
-      <xsl:if test="following-sibling::funcprototype">
-        <xsl:attribute name="style">padding-bottom: 1em</xsl:attribute>
-      </xsl:if>
-      <xsl:apply-templates select="paramdef" mode="kr-tabular-funcsynopsis-mode"/>
-    </table>
+    <blockquote class="paramdef-list">
+      <xsl:apply-templates select="paramdef" mode="kr-funcsynopsis-mode"/>
+    </blockquote>
   </xsl:if>
+  <div class="paramdef-list-spacer">&#160;</div> <!-- hACk: blank div for vertical spacing -->
 </xsl:template>
 
 <xsl:template match="funcdef" mode="kr-tabular">
