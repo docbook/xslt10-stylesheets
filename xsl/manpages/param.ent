@@ -12,6 +12,7 @@
 <!ENTITY man.font.funcsynopsisinfo SYSTEM "../params/man.font.funcsynopsisinfo.xml">
 <!ENTITY man.font.table.headings SYSTEM "../params/man.font.table.headings.xml">
 <!ENTITY man.font.table.title SYSTEM "../params/man.font.table.title.xml">
+<!ENTITY man.funcsynopsis.style SYSTEM "../params/man.funcsynopsis.style.xml">
 <!ENTITY man.hyphenate.computer.inlines SYSTEM "../params/man.hyphenate.computer.inlines.xml">
 <!ENTITY man.hyphenate.filenames SYSTEM "../params/man.hyphenate.filenames.xml">
 <!ENTITY man.hyphenate SYSTEM "../params/man.hyphenate.xml">

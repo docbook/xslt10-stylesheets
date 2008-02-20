@@ -54,6 +54,10 @@
 &man.font.table.headings;
 &man.font.table.title;
   </reference>
+  <reference xml:id="synopsis">
+  <title>SYNOPSIS section</title>
+&man.funcsynopsis.style;
+  </reference>
   <reference xml:id="authors">
   <title>AUTHORS and COPYRIGHT sections</title>
   &man.authors.section.enabled;
@@ -159,6 +163,7 @@
 <src:fragref linkend="man.font.funcsynopsisinfo.frag"/>
 <src:fragref linkend="man.font.table.headings.frag"/>
 <src:fragref linkend="man.font.table.title.frag"/>
+<src:fragref linkend="man.funcsynopsis.style.frag"/>
 <src:fragref linkend="man.hyphenate.computer.inlines.frag"/>
 <src:fragref linkend="man.hyphenate.filenames.frag"/>
 <src:fragref linkend="man.hyphenate.frag"/>

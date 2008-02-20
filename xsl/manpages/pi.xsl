@@ -65,7 +65,7 @@
     </variablelist>
   </refparameter>
   <refsee role="params">
-    <para><parameter>funcsynopsis.style</parameter></para>
+    <para><parameter>man.funcsynopsis.style</parameter></para>
   </refsee>
 </doc:pi>
 <xsl:template name="pi.dbman_funcsynopsis-style">
