@@ -249,7 +249,7 @@
         <xsl:value-of select="$man-funcprototype-style"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$funcsynopsis.style"/>
+        <xsl:value-of select="$man.funcsynopsis.style"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
