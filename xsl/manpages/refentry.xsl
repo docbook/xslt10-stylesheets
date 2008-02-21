@@ -55,7 +55,10 @@
     <!-- * -->
     <xsl:if test="refpurpose/node()">
       <xsl:text> \- </xsl:text>
-      <xsl:value-of select="normalize-space(refpurpose)"/>
+      <xsl:variable name="refpurpose">
+        <xsl:apply-templates select="refpurpose/node()"/>
+      </xsl:variable>
+      <xsl:value-of select="normalize-space($refpurpose)"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
