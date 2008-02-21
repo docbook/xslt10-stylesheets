@@ -692,7 +692,8 @@
     <xsl:choose>
       <!-- If this is the last row, rowsep never applies. -->
       <xsl:when test="ancestor::entrytbl
-                      and not (ancestor-or-self::row[1]/following-sibling::row)">
+                      and not (ancestor-or-self::row[1]/following-sibling::row)
+		      and not (ancestor::thead)">
         <xsl:value-of select="0"/>
       </xsl:when>
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
