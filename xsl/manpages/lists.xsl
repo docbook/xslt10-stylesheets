@@ -190,7 +190,7 @@
   <xsl:text>\h'+</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
-    <xsl:value-of select="$list-indent - 2"/>
+    <xsl:value-of select="$list-indent - 3"/>
   <xsl:text>'</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
