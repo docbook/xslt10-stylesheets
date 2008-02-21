@@ -369,7 +369,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       <xsl:apply-templates select="paramdef" mode="kr-funcsynopsis-mode"/>
     </blockquote>
   </xsl:if>
-  <div class="paramdef-list-spacer">&#160;</div> <!-- hACk: blank div for vertical spacing -->
+  <div class="funcprototype-spacer">&#160;</div> <!-- hACk: blank div for vertical spacing -->
 </xsl:template>
 
 <xsl:template match="funcdef" mode="kr-tabular">
@@ -606,10 +606,9 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- funcprototype: ansi, tabular -->
 
 <xsl:template match="funcprototype" mode="ansi-tabular">
-  <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0">
-    <xsl:if test="following-sibling::funcprototype">
-      <xsl:attribute name="style">padding-bottom: 1em</xsl:attribute>
-    </xsl:if>
+  <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0"
+    class="funcprototype-table"
+    >
     <tr>
       <td>
         <xsl:apply-templates select="funcdef" mode="ansi-tabular"/>
@@ -623,6 +622,7 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
       </tr>
     </xsl:for-each>
   </table>
+  <div class="funcprototype-spacer">&#160;</div> <!-- hACk: blank div for vertical spacing -->
 </xsl:template>
 
 <xsl:template match="funcdef" mode="ansi-tabular">
@@ -662,35 +662,8 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 </xsl:template>
 
 <xsl:template match="paramdef" mode="ansi-tabular">
-  <xsl:variable name="type">
-    <xsl:choose>
-      <xsl:when test="type">
-	<xsl:apply-templates select="type"
-			     mode="ansi-tabular"/>
-      </xsl:when>
-      <xsl:when test="normalize-space(parameter/preceding-sibling::node()[not(self::parameter)]) != ''">
-	<xsl:copy-of select="parameter/preceding-sibling::node()[not(self::parameter)]"/>
-      </xsl:when>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$type != '' and funcparams">
       <td>
-	<xsl:copy-of select="$type"/>
-        <xsl:text>&#160;</xsl:text>
-      </td>
-      <td>
-	<xsl:choose>
-	  <xsl:when test="type">
-	    <xsl:apply-templates select="type/following-sibling::*"
-				 mode="ansi-tabular"/>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:apply-templates select="*"
-				 mode="ansi-tabular"/>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:apply-templates mode="ansi-tabular"/>
         <xsl:choose>
           <xsl:when test="following-sibling::*">
             <xsl:text>, </xsl:text>
@@ -701,30 +674,6 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
           </xsl:otherwise>
         </xsl:choose>
       </td>
-    </xsl:when>
-    <xsl:otherwise>
-      <td>
-        <xsl:apply-templates select="parameter/preceding-sibling::node()[not(self::parameter)]"
-                             mode="ansi-tabular"/>
-        <xsl:text>&#160;</xsl:text>
-      </td>
-      <td>
-        <xsl:apply-templates select="parameter"
-                             mode="ansi-tabular"/>
-        <xsl:apply-templates select="parameter/following-sibling::*[not(self::parameter)]"
-                             mode="ansi-tabular"/>
-        <xsl:choose>
-          <xsl:when test="following-sibling::*">
-            <xsl:text>, </xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <code>)</code>
-            <xsl:text>;</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-      </td>
-    </xsl:otherwise>
-  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="paramdef/parameter" mode="ansi-tabular">
