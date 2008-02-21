@@ -128,6 +128,11 @@
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
+  <!-- * if "n" then we are using "nroff", which means the output is for -->
+  <!-- * TTY; so we do some fixed-width-font hackery with \h to make a -->
+  <!-- * hanging indents (instead of using .IP, which has some -->
+  <!-- * undesirable side effects under certain circumstances) -->
+  <xsl:text>.ie n \{\&#10;</xsl:text>
   <xsl:text>\h'-</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
@@ -142,6 +147,18 @@
   <xsl:text>'</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
+  <xsl:text>.\}&#10;</xsl:text>
+  <!-- * else, we are not using for "nroff", but instead "troff" - which -->
+  <!-- * means not for TTY, but for PS or whatever; so we’re not using a -->
+  <!-- * fixed-width font, so use a real .IP instead -->
+  <xsl:text>.el \{\&#10;</xsl:text>
+  <!-- * .IP generates a blank like of space, so let’s go backwards one -->
+  <!-- * line up to compensate for that -->
+  <xsl:text>.sp -1&#10;</xsl:text>
+  <!-- * the value 2 is the amount of indentation -->
+  <xsl:text>.IP \(bu 2&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>.\}&#10;</xsl:text>
   <xsl:text>.RE&#10;</xsl:text>
 </xsl:template>
 
@@ -155,6 +172,11 @@
     <xsl:value-of select="$list-indent"/>
   </xsl:if>
   <xsl:text>&#10;</xsl:text>
+  <!-- * if "n" then we are using "nroff", which means the output is for -->
+  <!-- * TTY; so we do some fixed-width-font hackery with \h to make a -->
+  <!-- * hanging indents (instead of using .IP, which has some -->
+  <!-- * undesirabel side effects under certain circumstances) -->
+  <xsl:text>.ie n \{\&#10;</xsl:text>
   <xsl:text>\h'-</xsl:text>
     <xsl:if test="not($list-indent = '')">
     <xsl:text>0</xsl:text>
@@ -172,6 +194,23 @@
   <xsl:text>'</xsl:text>
   </xsl:if>
   <xsl:apply-templates/>
+  <xsl:text>.\}&#10;</xsl:text>
+  <!-- * else, we are not using for "nroff", but instead "troff" - which -->
+  <!-- * means not for TTY, but for PS or whatever; so we’re not using a -->
+  <!-- * fixed-width font, so use a real .IP instead -->
+  <xsl:text>.el \{\&#10;</xsl:text>
+  <!-- * .IP generates a blank like of space, so let’s go backwards one -->
+  <!-- * line up to compensate for that -->
+  <xsl:text>.sp -1&#10;</xsl:text>
+  <xsl:text>.IP "</xsl:text>
+  <xsl:if test="count(preceding-sibling::listitem) &lt; 9">
+    <xsl:text>  </xsl:text>
+  </xsl:if>
+  <xsl:number format="1."/>
+  <xsl:text>" 4&#10;</xsl:text>
+  <!-- * the value 4 is the amount of indentation -->
+  <xsl:apply-templates/>
+  <xsl:text>.\}&#10;</xsl:text>
   <xsl:text>.RE&#10;</xsl:text>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
