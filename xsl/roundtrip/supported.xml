@@ -1699,10 +1699,10 @@
 	    <para><literal>edition</literal></para>
 	  </entry>
 	  <entry>
-	    <para>dbk:no</para>
+	    <para>dbk:yes</para>
 	  </entry>
 	  <entry>
-	    <para>Character</para>
+	    <para>Paragraph</para>
 	  </entry>
 	  <entry>
 	    <para><!-- Comments --></para>
