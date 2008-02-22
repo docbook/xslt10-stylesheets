@@ -1,19 +1,28 @@
 <xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:office="http://openoffice.org/2000/office"
-  xmlns:style="http://openoffice.org/2000/style"
-  xmlns:text="http://openoffice.org/2000/text"
-  xmlns:table="http://openoffice.org/2000/table"
-  xmlns:draw="http://openoffice.org/2000/drawing"
-  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+  xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+  xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+  xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+  xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
+  xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0"
+  xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:number="http://openoffice.org/2000/datastyle"
-  xmlns:svg="http://www.w3.org/2000/svg"
-  xmlns:chart="http://openoffice.org/2000/chart"
-  xmlns:dr3d="http://openoffice.org/2000/dr3d"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0"
+  xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0"
+  xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
+  xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0"
+  xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0"
   xmlns:math="http://www.w3.org/1998/Math/MathML"
-  xmlns:form="http://openoffice.org/2000/form"
-  xmlns:script="http://openoffice.org/2000/script"
+  xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0"
+  xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0"
+  xmlns:ooo="http://openoffice.org/2004/office"
+  xmlns:ooow="http://openoffice.org/2004/writer"
+  xmlns:oooc="http://openoffice.org/2004/calc"
+  xmlns:dom="http://www.w3.org/2001/xml-events"
+  xmlns:xforms="http://www.w3.org/2002/xforms"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:doc='http://docbook.org/ns/docbook'
   exclude-result-prefixes='doc'>
 
@@ -36,24 +45,29 @@
   <xsl:template match="/" name='ooo.top'>
     <xsl:param name='doc' select='/'/>
 
-    <office:document
-      office:class='text'
+    <office:document-content
       office:version='1.0'>
 
       <office:script/>
-      <office:font-decls>
-        <style:font-decl style:name="Lucida Grande1" fo:font-family="'Lucida Grande'"/>
-        <style:font-decl style:name="Arial1" fo:font-family="Arial" style:font-pitch="variable"/>
-        <style:font-decl style:name="Hiragino Mincho Pro W3" fo:font-family="'Hiragino Mincho Pro W3'" style:font-pitch="variable"/>
-        <style:font-decl style:name="Lucida Grande" fo:font-family="'Lucida Grande'" style:font-pitch="variable"/>
-        <style:font-decl style:name="Times New Roman" fo:font-family="'Times New Roman'" style:font-family-generic="roman" style:font-pitch="variable"/>
-        <style:font-decl style:name="Arial" fo:font-family="Arial" style:font-family-generic="swiss" style:font-pitch="variable"/>
-      </office:font-decls>
+      <office:font-face-decls>
+        <style:font-face style:name="Nimbus Roman No9 L"
+          svg:font-family="'Nimbus Roman No9 L'"
+          style:font-family-generic="roman"
+          style:font-pitch="variable"/>
+        <style:font-face style:name="Nimbus Sans L"
+          svg:font-family="'Nimbus Sans L'"
+          style:font-family-generic="swiss"
+          style:font-pitch="variable"/>
+        <style:font-face style:name="DejaVu LGC Sans"
+          svg:font-family="'DejaVu LGC Sans'"
+          style:font-family-generic="system"
+          style:font-pitch="variable"/>
+      </office:font-face-decls>
       <office:automatic-styles/>
 
       <xsl:apply-templates select='$doc/*'
         mode='doc:toplevel'/>
-    </office:document>
+    </office:document-content>
   </xsl:template>
 
   <xsl:template name='doc:make-body'>
@@ -62,14 +76,18 @@
     </xsl:param>
 
     <office:body>
-      <text:sequence-decls>
-        <text:sequence-decl text:display-outline-level="0" text:name="Illustration"/>
-        <text:sequence-decl text:display-outline-level="0" text:name="Table"/>
-        <text:sequence-decl text:display-outline-level="0" text:name="Text"/>
-        <text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
-      </text:sequence-decls>
+      <office:text>
+        <office-forms form:automatic-focus='false'
+          form:apply-design-mode='false'/>
+        <text:sequence-decls>
+          <text:sequence-decl text:display-outline-level="0" text:name="Illustration"/>
+          <text:sequence-decl text:display-outline-level="0" text:name="Table"/>
+          <text:sequence-decl text:display-outline-level="0" text:name="Text"/>
+          <text:sequence-decl text:display-outline-level="0" text:name="Drawing"/>
+        </text:sequence-decls>
 
-      <xsl:copy-of select='$content'/>
+        <xsl:copy-of select='$content'/>
+      </office:text>
     </office:body>
   </xsl:template>
 

@@ -18,6 +18,12 @@
     </author>
     <revhistory>
       <revision>
+	<revnumber>1.7</revnumber>
+	<date>2008-02-22</date>
+	<authorinitials>SRB</authorinitials>
+	<revremark>Added edition.</revremark>
+      </revision>
+      <revision>
 	<revnumber>1.6</revnumber>
 	<date>2007-10-19</date>
 	<authorinitials>SRB</authorinitials>
@@ -333,6 +339,16 @@
             <entry colname="col1">section</entry>
             <entry colname="col2">sectN-title</entry>
             <entry colname="col3">Unnumbered sections are mapped to their numbered equivalent.  A parameter (named?) may be set to map numbered sections (<literal>sect1</literal>, etc) back to unnumbered sections.</entry>
+          </row>
+          <row>
+            <entry namest="col1" nameend="col3">
+              <emphasis role="bold">Metadata elements</emphasis>
+            </entry>
+          </row>
+          <row>
+            <entry colname="col1">edition</entry>
+            <entry colname="col2">edition</entry>
+            <entry colname="col3"/>
           </row>
           <row>
             <entry namest="col1" nameend="col3">
