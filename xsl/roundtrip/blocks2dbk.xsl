@@ -159,7 +159,8 @@
                       starts-with(@rnd:style, "orderedlist")'>
 
         <xsl:variable name='stop.node'
-          select='following-sibling::dbk:para[not(starts-with(@rnd:style, "itemizedlist") or starts-with(@rnd:style, "orderedlist")) and @rnd:style != "para-continue"][1]'/>
+          select='following-sibling::dbk:para[not(@rnd:style) or
+                  (not(starts-with(@rnd:style, "itemizedlist") or starts-with(@rnd:style, "orderedlist")) and @rnd:style != "para-continue")][1]'/>
 
         <xsl:choose>
           <xsl:when test='translate(substring-after(@rnd:style, "list"), "0123456789", "") != "" or
@@ -753,6 +754,7 @@
                       @rnd:style = "pagenums" or
                       @rnd:style = "issuenum" or
                       @rnd:style = "volumenum" or
+                      @rnd:style = "edition" or
                       @rnd:style = "editor" or
                       @rnd:style = "othercredit" or
                       @rnd:style = "biblioid" or

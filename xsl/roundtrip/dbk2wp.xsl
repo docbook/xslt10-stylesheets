@@ -33,9 +33,11 @@
                                  personname/surname|doc:personname/doc:surname'
       mode='doc:docprop.author'/>
   </xsl:template>
-  <xsl:template match='authorinitials|doc:authorinitials'
+
+  <xsl:template match='firstname|doc:firstname |
+                       surname|doc:surname'
     mode='doc:docprop.author'>
-    <xsl:value-of select='.'/>
+    <xsl:apply-templates select='.' mode='doc:body'/>
   </xsl:template>
 
   <!-- doc:toplevel mode is for processing whole documents -->
@@ -55,6 +57,7 @@
   <xsl:template match='articleinfo |
 		       chapterinfo |
 		       bookinfo |
+                       doc:info |
                        doc:articleinfo |
 		       doc:chapterinfo |
 		       doc:bookinfo'
@@ -62,11 +65,12 @@
     <xsl:apply-templates select='title|subtitle|titleabbrev |
                                  doc:title|doc:subtitle|doc:titleabbrev'
       mode='doc:body'/>
-    <xsl:apply-templates select='author|releaseinfo |
-                                 doc:author|doc:releaseinfo'
+    <xsl:apply-templates select='author|releaseinfo|abstract |
+                                 doc:author|doc:releaseinfo|doc:abstract'
       mode='doc:body'/>
     <!-- current implementation ignores all other metadata -->
-    <xsl:for-each select='*[not(self::title|self::subtitle|self::titleabbrev|self::author|self::releaseinfo | self::doc:title|self::doc:subtitle|self::doc:titleabbrev|self::doc:author|self::doc:releaseinfo)]'>
+    <xsl:for-each select='*[not(self::title|self::subtitle|self::titleabbrev|self::author|self::releaseinfo|self::abstract |
+                          self::doc:title|self::doc:subtitle|self::doc:titleabbrev|self::doc:author|self::doc:releaseinfo|self::doc:abstract)]'>
       <xsl:call-template name='doc:nomatch'/>
     </xsl:for-each>
   </xsl:template>
@@ -158,7 +162,7 @@
                        doc:address[parent::doc:author|parent::doc:editor|parent::doc:othercredit]'
 		mode='doc:body'>
     <xsl:call-template name='doc:make-paragraph'>
-      <xsl:with-param name='style' select='"para-continue"'/>
+      <xsl:with-param name='style' select='"address"'/>
       <xsl:with-param name='content'>
 	<xsl:apply-templates mode='doc:body'/>
       </xsl:with-param>
@@ -169,6 +173,23 @@
                        doc:address[not(parent::doc:author|parent::doc:editor|parent::doc:othercredit)]'
     mode='doc:body'>
     <xsl:apply-templates select='node()[not(self::affiliation|self::authorblurb|self::doc:affiliation|self::doc:authorblurb)]'/>
+  </xsl:template>
+  <xsl:template match='abstract|doc:abstract'
+    mode='doc:body'>
+    <xsl:if test='title|doc:title'>
+      <xsl:call-template name='doc:make-paragraph'>
+        <xsl:with-param name='style' select='"abstract-title"'/>
+        <xsl:with-param name='content'>
+          <xsl:apply-templates select='title/node()|doc:title/node()'
+            mode='doc:body'/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
+
+    <xsl:apply-templates select='*[not(self::title|self::doc:title)]'
+      mode='doc:body'>
+      <xsl:with-param name='class'>abstract</xsl:with-param>
+    </xsl:apply-templates>
   </xsl:template>
   <!-- TODO -->
   <xsl:template match='authorblurb|personblurb |
@@ -188,6 +209,7 @@
     </xsl:if>
     <xsl:call-template name='doc:handle-linebreaks'>
       <xsl:with-param name='style' select='local-name()'/>
+      <xsl:with-param name='content' select='node()'/>
     </xsl:call-template>
   </xsl:template>
   <xsl:template match='email|doc:email'
@@ -268,7 +290,7 @@
   <!-- Cannot round-trip this element -->
   <xsl:template match='personname|doc:personname'
     mode='doc:body'>
-    <xsl:apply-templates/>
+    <xsl:apply-templates mode='doc:body'/>
   </xsl:template>
 
   <xsl:template match='releaseinfo|doc:releaseinfo'
@@ -502,32 +524,42 @@
 
   <xsl:template match='caption|doc:caption'
     mode='doc:body'>
-    <xsl:call-template name='doc:make-paragraph'>
-      <xsl:with-param name='style' select='"Caption"'/>
-      <xsl:with-param name='content'>
-	<xsl:choose>
-	  <xsl:when test='not(*)'>
-	    <xsl:apply-templates/>
-	  </xsl:when>
-          <xsl:when test='not(text()) and
-                          count(*) = count(para|doc:para) and
-                          count(*) = 1'>
+    <xsl:choose>
+      <xsl:when test='not(*)'>
+        <xsl:call-template name='doc:make-paragraph'>
+          <xsl:with-param name='style' select='"Caption"'/>
+          <xsl:with-param name='content'>
+            <xsl:apply-templates/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test='not(text()) and
+                      count(*) = count(para|doc:para) and
+                      count(*) = 1'>
+        <xsl:call-template name='doc:make-paragraph'>
+          <xsl:with-param name='style' select='"caption"'/>
+          <xsl:with-param name='content'>
             <xsl:apply-templates select='*/node()' mode='doc:body'/>
-          </xsl:when>
-          <xsl:when test='text()'>
-            <!-- Not valid DocBook -->
-            <xsl:call-template name='doc:nomatch'/>
-          </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:apply-templates select='*[self::para|self::doc:para][1]/node()'
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test='text()'>
+        <!-- Not valid DocBook -->
+        <xsl:call-template name='doc:nomatch'/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name='doc:make-paragraph'>
+          <xsl:with-param name='style' select='"Caption"'/>
+          <xsl:with-param name='content'>
+            <xsl:apply-templates select='*[self::para|self::doc:para][1]/node()'
               mode='doc:body'/>
-	    <xsl:for-each select='text()|*[not(self::para|self::doc:para)]|*[self::para|self::doc:para][position() != 1]'>
-	      <xsl:call-template name='doc:nomatch'/>
-	    </xsl:for-each>
-	  </xsl:otherwise>
-	</xsl:choose>
-      </xsl:with-param>
-    </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+        <xsl:for-each select='text()|*[not(self::para|self::doc:para)]|*[self::para|self::doc:para][position() != 1]'>
+          <xsl:call-template name='doc:nomatch'/>
+        </xsl:for-each>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match='area|areaspec|doc:area|doc:areaspec'
@@ -855,12 +887,13 @@
 
   <xsl:template match='blockquote|doc:blockquote'
     mode='doc:body'>
-    <xsl:apply-templates select='blockinfo|title|doc:blockinfo|doc:title'>
+    <xsl:apply-templates select='blockinfo|title|doc:info|doc:title'>
       <xsl:with-param name='class'>
         <xsl:value-of select='local-name()'/>
       </xsl:with-param>
     </xsl:apply-templates>
-    <xsl:apply-templates select='*[not(self::blockinfo|self::title|self::attribution|self::doc:blockinfo|self::doc:title|self::doc:attribution)]'>
+    <xsl:apply-templates select='*[not(self::blockinfo|self::title|self::attribution|self::doc:info|self::doc:title|self::doc:attribution)]'
+      mode='doc:body'>
       <xsl:with-param name='class' select='"blockquote"'/>
     </xsl:apply-templates>
     <xsl:if test='attribution|doc:attribution'>
@@ -918,7 +951,7 @@
       mode='doc:list-continue'/>
 
     <xsl:apply-templates select='*[position() != 1]'
-      mode='doc:list'/>
+      mode='doc:body'/>
   </xsl:template>  
 
   <xsl:template match='*' mode='doc:list-continue'>
@@ -955,7 +988,8 @@
 	    <xsl:call-template name='doc:make-paragraph'>
 	      <xsl:with-param name='style' select='"variablelist-term"'/>
 	      <xsl:with-param name='content'>
-		<xsl:apply-templates select='*[self::term|self::doc:term][1]/node()'/>
+		<xsl:apply-templates select='*[self::term|self::doc:term][1]/node()'
+                  mode='doc:body'/>
 		<xsl:for-each select='*[self::term|self::doc:term][position() != 1]'>
 		  <xsl:call-template name='doc:make-phrase'>
 		    <xsl:with-param name='content'>
@@ -970,7 +1004,8 @@
 	</xsl:call-template>
 	<xsl:call-template name='doc:make-table-cell'>
 	  <xsl:with-param name='content'>
-            <xsl:apply-templates select='listitem/node()|doc:listitem/node()'/>
+            <xsl:apply-templates select='listitem/node()|doc:listitem/node()'
+              mode='doc:body'/>
 	  </xsl:with-param>
 	</xsl:call-template>
       </xsl:with-param>

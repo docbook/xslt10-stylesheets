@@ -43,6 +43,7 @@
 			     @rnd:style = "pagenums" or
 			     @rnd:style = "issuenum" or
 			     @rnd:style = "volumenum" or
+			     @rnd:style = "edition" or
 			     @rnd:style = "biblioid" or
 			     @rnd:style = "bibliosource" or
 			     @rnd:style = "bibliomisc" or
