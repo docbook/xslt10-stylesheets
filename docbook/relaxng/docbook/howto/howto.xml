@@ -665,7 +665,7 @@ have, there's no specific schedule.</para>
 <para>There are not very many XSLT 2.0 implementations available.
 But, if you want to try the new stylesheets, grab a snapshot of
 the development version from <link
-xl:href="http://docbook.sourceforge.net/snapshots/docbook-xsl2-snapshot.tar.bz2"/>
+xl:href="http://docbook.sourceforge.net/snapshots/docbook-xsl2-snapshot.zip"/>
 and unpack it somewhere. Then download and install Saxon 9 from <link
 xl:href="http://saxon.sf.net"/>.</para>
 
