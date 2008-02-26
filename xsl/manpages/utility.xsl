@@ -64,6 +64,29 @@
 
   <!-- ================================================================== -->
 
+  <xsl:template name="verbatim-block-start">
+    <xsl:call-template name="store-current-font-family"/>
+    <xsl:text>.fam C&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="verbatim-block-end">
+    <xsl:text>.fam \*(ZX&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="code-inline-start">
+    <xsl:text>\FC</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="code-inline-end">
+    <xsl:text>\F[\*(ZX]</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="store-current-font-family">
+    <xsl:text>.ds ZX \n[.fam]&#10;</xsl:text>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+
   <!-- * NOTE TO DEVELOPERS: For ease of maintenance, the current -->
   <!-- * manpages stylesheets use the mode="prevent.line.breaking" -->
   <!-- * templates for anything and everything that needs to have -->
@@ -436,8 +459,37 @@
       <xsl:with-param name="replacement" select="'_'"/>
     </xsl:call-template>
   </xsl:template>
-  
+
   <!-- ================================================================== -->
+
+  <xsl:template name="make.subheading">
+    <xsl:param name="title"/>
+    <xsl:call-template name="mark.subheading"/>
+    <xsl:text>.SH</xsl:text>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="$title"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="mark.subheading"/>
+  </xsl:template>
+
+  <xsl:template name="make.title.pair">
+    <xsl:param name="title"/>
+    <!-- * Use uppercase to render first version of title. -->
+    <xsl:text>"</xsl:text>
+    <xsl:call-template name="string.upper">
+      <xsl:with-param name="string">
+        <xsl:value-of select="normalize-space($title)"/>
+      </xsl:with-param>
+    </xsl:call-template>
+    <xsl:text>"</xsl:text>
+    <!-- * end of uppercase title -->
+    <xsl:text> </xsl:text>
+    <!-- * Use lowercase to render second version of title. -->
+    <xsl:text>"</xsl:text>
+    <xsl:value-of select="normalize-space($title)"/>
+    <xsl:text>"</xsl:text>
+    <!-- * end of lowercase title -->
+  </xsl:template>
 
   <!-- * Put a horizontal rule or other divider around section titles -->
   <!-- * in roff source (just to make things easier to read). -->
@@ -447,6 +499,31 @@
       <xsl:value-of select="$man.subheading.divider"/>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
+  </xsl:template>
+
+  <!-- ================================================================== -->
+
+  <xsl:template name="roff-if-else-start">
+    <xsl:param name="condition">n</xsl:param>
+    <xsl:text>.ie </xsl:text>
+    <xsl:value-of select="$condition"/>
+    <xsl:text> \{\&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="roff-if-start">
+    <xsl:param name="condition">n</xsl:param>
+    <xsl:text>.if </xsl:text>
+    <xsl:value-of select="$condition"/>
+    <xsl:text> \{\&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="roff-else">
+    <xsl:text>.\}&#10;</xsl:text>
+    <xsl:text>.el \{\&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="roff-if-end">
+    <xsl:text>.\}&#10;</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>
