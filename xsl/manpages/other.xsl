@@ -669,4 +669,98 @@ db:manvolnum
     </xsl:if>
   </xsl:template>
 
+  <!-- ============================================================== -->
+
+  <xsl:template name="define.macros">
+    <xsl:text>.\" define a macro for condtionally upper-casing SH x-refs&#10;</xsl:text>
+    <xsl:text>.de SH-xref
+.ie n \{\
+.tr aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
+\\$*
+.tr aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
+.\}
+.el \{\
+\\$*
+.\}
+..&#10;</xsl:text>
+    <xsl:text>.\" define a level-one heading that works better for non-TTY output&#10;</xsl:text>
+    <xsl:text>.de1 SH
+.sp 1
+.sp \\n[PD]u
+.nr an-level 1
+.set-an-margin
+.nr an-prevailing-indent \\n[IN]
+.fi
+.in \\n[an-margin]u
+.ti 0
+.HTML-TAG ".NH \\n[an-level]"
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.ps +3
+.ft B
+.ne (2v + 1u)
+.\" if we have only one arg, just use that
+.ie (\\n[.$] == 1) \{\
+.ie n \{\
+\&amp;\\$1
+.\}
+.el \{\
+.nr an-break-flag 0
+.\" if this is troff/non-TTY output, show the second arg only
+\&amp;\\$1
+.in \\n[an-margin]u
+.ti 0
+.\" draw a border/line under subheading
+.sp -.7
+\l'\n(.lu'
+.\}
+.\}
+.\" we have more that one arg, so we decide which to use
+.el \{\
+.ie n \{\
+.if \\n[.$] \&amp;\\$1
+.\" if this is nroff/TTY output, show the first arg only
+.\}
+.el \{\
+.nr an-break-flag 0
+.\" if this is troff/non-TTY output, show the second arg only
+.if \\n[.$] \&amp;\\$2
+.in \\n[an-margin]u
+.ti 0
+.\" draw a border/line under subheading
+.sp -.7
+\l'\n(.lu'
+.\}
+.\}
+..&#10;</xsl:text>
+    <xsl:text>\" define BB/BE macros for putting a background/screen&#10;</xsl:text>
+    <xsl:text>\" (filled box) around a block of text in non-TTY output&#10;</xsl:text>
+    <xsl:text>.de BB
+.br
+.in +2n
+.ll -2n
+.gcolor red
+.di BX
+..
+.de EB
+.br
+.di
+.in
+.ll
+.gcolor
+.nr BW \\n(.lu-\\n(.i
+.nr BH \\n(dn+.5v
+.ne \\n(BHu+.5v
+\M[lightgray]\h'1n'\v'-.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
+.in 0
+.sp -.5v
+.nf
+.BX
+.in
+.sp .5v
+.fi
+..&#10;</xsl:text>
+</xsl:template>
+
 </xsl:stylesheet>
