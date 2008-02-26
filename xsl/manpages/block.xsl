@@ -157,18 +157,36 @@
       <xsl:text>.ft </xsl:text>
       <xsl:value-of select="$man.font.funcsynopsisinfo"/>
       <xsl:text>&#10;</xsl:text>
+      <xsl:call-template name="verbatim-block-start"/>
       <xsl:text>.nf&#10;</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>&#10;</xsl:text>
       <xsl:text>.fi&#10;</xsl:text>
+      <xsl:call-template name="verbatim-block-end"/>
       <xsl:text>.ft&#10;</xsl:text>
     </xsl:when>
     <xsl:otherwise>
       <!-- * Other verbatims do not need to get bolded -->
+      <xsl:call-template name="verbatim-block-start"/>
       <xsl:text>.nf&#10;</xsl:text>
-      <xsl:apply-templates/>
-      <xsl:text>&#10;</xsl:text>
+      <xsl:choose>
+        <xsl:when test="self::literallayout|self::programlisting|self::screen">
+          <!-- * if this is a literallayout|programlisting|screen, then we -->
+          <!-- * put a background behind it in non-TTY output -->
+          <xsl:text>.BB&#10;</xsl:text>
+          <xsl:apply-templates/>
+          <xsl:text>&#10;</xsl:text>
+          <xsl:text>.EB&#10;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- * otherwise this is not a literallayout|programlisting|screen, -->
+          <!-- * so we don’t put a background behind -->
+          <xsl:apply-templates/>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text>.fi&#10;</xsl:text>
+      <xsl:call-template name="verbatim-block-end"/>
     </xsl:otherwise>
   </xsl:choose>
   <xsl:if test="$indent = 'Yes'">
