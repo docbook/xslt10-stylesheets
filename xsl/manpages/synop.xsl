@@ -264,6 +264,7 @@
   <!-- * (because funcdef is always followed by one open paren char) -->
   <xsl:value-of select="string-length (normalize-space ($funcprototype.string.value)) + 1"/>
   <xsl:text>&#10;</xsl:text>
+  <xsl:call-template name="verbatim-block-start"/>
   <xsl:text>.</xsl:text>
   <xsl:value-of select="$man.font.funcprototype"/>
   <xsl:text> </xsl:text>
@@ -304,6 +305,7 @@
     <xsl:apply-templates select="paramdef" mode="kr-paramdef-list"/>
     <xsl:text>.RE&#10;</xsl:text>
   </xsl:if>
+  <xsl:call-template name="verbatim-block-end"/>
 </xsl:template>
 
 <xsl:template match="funcdef">
