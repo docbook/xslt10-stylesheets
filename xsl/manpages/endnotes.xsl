@@ -416,12 +416,10 @@
 
 <xsl:template name="format.endnotes.list">
   <xsl:param name="endnotes"/>
-  <xsl:call-template name="mark.subheading"/>
 
   <!-- * ======= make the endnotes-list section heading ============= -->
-  <xsl:text>.SH "</xsl:text>
-  <xsl:call-template name="string.upper">
-    <xsl:with-param name="string">
+  <xsl:call-template name="make.subheading">
+    <xsl:with-param name="title">
       <xsl:choose>
         <!-- * if user has specified a heading, use that -->
         <xsl:when test="$man.endnotes.list.heading != ''">
@@ -437,7 +435,6 @@
       </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
-  <xsl:text>"&#10;</xsl:text>
 
   <!-- * ================ process each earmark ====================== -->
   <xsl:for-each select="$endnotes/earmark">
