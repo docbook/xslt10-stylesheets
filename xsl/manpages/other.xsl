@@ -230,7 +230,7 @@ db:manvolnum
   <xsl:call-template name="string.subst">
     <xsl:with-param name="string" select="$content"/>
     <xsl:with-param name="target">.</xsl:with-param>
-    <xsl:with-param name="replacement">\.</xsl:with-param>
+    <xsl:with-param name="replacement">\&amp;.</xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 

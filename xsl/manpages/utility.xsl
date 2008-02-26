@@ -146,7 +146,7 @@
     <xsl:variable name="dot-content">
       <xsl:call-template name="string.subst">
         <xsl:with-param name="string" select="$content"/>
-        <xsl:with-param name="target" select="'\.'"/>
+        <xsl:with-param name="target" select="'\&amp;.'"/>
         <xsl:with-param name="replacement" select="'.'"/>
       </xsl:call-template>
     </xsl:variable>
