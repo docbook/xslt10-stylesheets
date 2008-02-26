@@ -202,16 +202,19 @@
                       $info//othercredit)">
           </xsl:value-of>
         </xsl:variable>
-        <xsl:text>.SH "</xsl:text>
-        <xsl:call-template name="make.authorsecttitle">
-          <xsl:with-param name="authorcount" select="$authorcount"/>
+        <xsl:call-template name="make.subheading">
+          <xsl:with-param name="title">
+            <xsl:call-template name="make.authorsecttitle">
+              <xsl:with-param name="authorcount" select="$authorcount"/>
+            </xsl:call-template>
+          </xsl:with-param>
         </xsl:call-template>
         <!-- * Now output all the actual author, editor, etc. content -->
         <xsl:for-each
-            select="$info//author|$info//editor|$info//collab|
-                    $info//corpauthor|$info//corpcredit|
-                    $info//othercredit|$info/orgname|
-                    $info/publishername|$info/publisher">
+          select="$info//author|$info//editor|$info//collab|
+          $info//corpauthor|$info//corpcredit|
+          $info//othercredit|$info/orgname|
+          $info/publishername|$info/publisher">
           <xsl:apply-templates select="." mode="authorsect"/>
         </xsl:for-each>
       </xsl:when>
@@ -233,16 +236,11 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:param>
-    <xsl:call-template name="string.upper">
-      <xsl:with-param name="string">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="$authorsecttitle"/>
-        </xsl:call-template>
-      </xsl:with-param>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="$authorsecttitle"/>
     </xsl:call-template>
-    <xsl:text>"&#10;</xsl:text>
   </xsl:template>
-  
+
   <xsl:template match="author|editor|othercredit" mode="authorsect">
     <xsl:variable name="person-name">
       <xsl:call-template name="person.name.normalized"/>
@@ -573,15 +571,13 @@
     <xsl:param name="info"/>
     <xsl:choose>
       <xsl:when test="$info//copyright|$info//legalnotice">
-        <xsl:text>.SH "</xsl:text>
-        <xsl:call-template name="string.upper">
-          <xsl:with-param name="string">
+        <xsl:call-template name="make.subheading">
+          <xsl:with-param name="title">
             <xsl:call-template name="gentext">
               <xsl:with-param name="key">Copyright</xsl:with-param>
             </xsl:call-template>
           </xsl:with-param>
         </xsl:call-template>
-        <xsl:text>"&#10;</xsl:text>
         <!-- * the copyright mode="titlepage.mode" template is -->
         <!-- * imported from the HTML stylesheets -->
         <xsl:for-each select="
