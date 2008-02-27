@@ -937,6 +937,34 @@
    u:block="Latin Extended-A"
    />
   <xsl:output-character
+   character="&#x160;"
+   u:name="LATIN CAPITAL LETTER S WITH CARON"
+   u:entity="Scaron"
+   string="\(vS"
+   u:block="Latin Extended-A"
+   />
+  <xsl:output-character
+   character="&#x161;"
+   u:name="LATIN SMALL LETTER S WITH CARON"
+   u:entity="scaron"
+   string="\(vs"
+   u:block="Latin Extended-A"
+   />
+  <xsl:output-character
+   character="&#x17D;"
+   u:name="LATIN CAPITAL LETTER Z WITH CARON"
+   u:entity="Zcaron"
+   string="\(vZ"
+   u:block="Latin Extended-A"
+   />
+  <xsl:output-character
+   character="&#x17E;"
+   u:name="LATIN SMALL LETTER Z WITH CARON"
+   u:entity="zcaron"
+   string="\(vz"
+   u:block="Latin Extended-A"
+   />
+  <xsl:output-character
    character="&#x0192;"
    u:name="LATIN SMALL LETTER F WITH HOOK"
    u:entity="fnof"
