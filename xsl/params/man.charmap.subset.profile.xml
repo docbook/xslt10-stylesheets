@@ -18,8 +18,11 @@
 <xsl:param name="man.charmap.subset.profile">
 @*[local-name() = 'block'] = 'Miscellaneous Technical' or
 (@*[local-name() = 'block'] = 'C1 Controls And Latin-1 Supplement (Latin-1 Supplement)' and
- @*[local-name() = 'class'] = 'symbols'
+ (@*[local-name() = 'class'] = 'symbols' or
+  @*[local-name() = 'class'] = 'letters')
 ) or
+@*[local-name() = 'block'] = 'Latin Extended-A'
+or
 (@*[local-name() = 'block'] = 'General Punctuation' and
  (@*[local-name() = 'class'] = 'spaces' or
   @*[local-name() = 'class'] = 'dashes' or
