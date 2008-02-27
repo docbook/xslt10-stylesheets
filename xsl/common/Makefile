@@ -4,9 +4,9 @@ XJPARSEFLAGS= -E 0 -w
 
 SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
         de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
-        gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml lt.xml \
-        lv.xml mn.xml nl.xml nn.xml nb.xml pa.xml pl.xml hr.xml la.xml or.xml pt.xml \
-        pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
+        gl.xml gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml \
+        lt.xml lv.xml mn.xml nl.xml nn.xml nb.xml pa.xml pl.xml hr.xml la.xml or.xml \
+        pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
         ta.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
 
 GENSTYLE=../../gentext/xsl/xsl.xsl ../../gentext/locale/en.xml
@@ -35,6 +35,7 @@ fa.xml: ../../gentext/locale/fa.xml $(GENSTYLE)
 fi.xml: ../../gentext/locale/fi.xml $(GENSTYLE)
 fr.xml: ../../gentext/locale/fr.xml $(GENSTYLE)
 ga.xml: ../../gentext/locale/ga.xml $(GENSTYLE)
+gl.xml: ../../gentext/locale/gl.xml $(GENSTYLE)
 gu.xml: ../../gentext/locale/gu.xml $(GENSTYLE)
 he.xml: ../../gentext/locale/he.xml $(GENSTYLE)
 hi.xml: ../../gentext/locale/hi.xml $(GENSTYLE)
