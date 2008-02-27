@@ -173,7 +173,7 @@
 <gentext key="below" text="lent"/>
 <gentext key="index symbols" text="szimbólummutató"/>
 
-<gentext key="lowercase.alpha" text="aábcdeéfghiíjklmnoóöőpqrstuúü«vwxyz"/>
+<gentext key="lowercase.alpha" text="aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz"/>
 <gentext key="uppercase.alpha" text="AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ"/>
 
 <dingbat key="startquote" text="„"/>
