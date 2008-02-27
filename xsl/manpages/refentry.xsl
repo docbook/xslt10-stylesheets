@@ -22,11 +22,11 @@
         <xsl:text>.br&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:call-template name="mark.subheading"/>
-        <xsl:text>.SH "</xsl:text>
-        <xsl:apply-templates select="." mode="subheading.markup"/>
-        <xsl:text>"</xsl:text>
-        <xsl:text>&#10;</xsl:text>
+        <xsl:call-template name="make.subheading">
+          <xsl:with-param name="title">
+            <xsl:apply-templates select="." mode="subheading.markup"/>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:call-template name="mark.subheading"/>
@@ -181,12 +181,7 @@
       |refsectioninfo/title
       |refsect1info/title
       |title)[1]"/>
-    <xsl:variable name="string">
-      <xsl:apply-templates select="$title" mode="title.markup"/>
-    </xsl:variable>
-    <xsl:call-template name="make.title.pair">
-      <xsl:with-param name="title" select="$string"/>
-    </xsl:call-template>
+    <xsl:apply-templates select="$title" mode="title.markup"/>
   </xsl:template>
 
   <xsl:template match="refsect1|refentry/refsection"
@@ -224,9 +219,7 @@
         <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:call-template name="make.title.pair">
-      <xsl:with-param name="title" select="$title"/>
-    </xsl:call-template>
+    <xsl:value-of select="$title"/>
   </xsl:template>
 
   <xsl:template match="refsynopsisdiv" mode="title.markup">
