@@ -22,6 +22,7 @@
 <!ENTITY fi SYSTEM "fi.xml">
 <!ENTITY fr SYSTEM "fr.xml">
 <!ENTITY ga SYSTEM "ga.xml">
+<!ENTITY gl SYSTEM "gl.xml">
 <!ENTITY gu SYSTEM "gu.xml">
 <!ENTITY he SYSTEM "he.xml">
 <!ENTITY hi SYSTEM "hi.xml">
@@ -85,6 +86,7 @@
 &fi;
 &fr;
 &ga;
+&gl;
 &gu;
 &he;
 &hi;
