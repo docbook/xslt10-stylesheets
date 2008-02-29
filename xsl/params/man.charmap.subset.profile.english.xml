@@ -42,11 +42,12 @@ or
   <parameter>man.charmap.use.subset</parameter> parameter is
   non-zero, and your DocBook source is written in English (that
   is, if its <tag class="attribute">lang</tag> or <tag
-    class="attribute">xml:lang</tag> attribute has the value
-  <literal>en</literal> or if it has no <tag
-    class="attribute">lang</tag> or <tag
-    class="attribute">xml:lang</tag> attribute), then the character-map
-  subset specified by the
+    class="attribute">xml:lang</tag> attribute on the root element
+  in your DocBook source or on the first <tag>refentry</tag>
+  element in your source has the value <literal>en</literal> or if
+  it has no <tag class="attribute">lang</tag> or <tag
+    class="attribute">xml:lang</tag> attribute), then the
+  character-map subset specified by the
   <parameter>man.charmap.subset.profile.english</parameter>
   parameter is used instead of the full roff character map.</para>
 
