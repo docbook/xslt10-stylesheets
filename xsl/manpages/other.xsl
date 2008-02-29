@@ -754,7 +754,7 @@ db:manvolnum
 .in \\n[an-margin]u
 .ti 0
 .\" if not n (not TTY), put a border/line under subheading
-.sp -.7
+.sp -.6
 \l'\n(.lu'
 .\}
 ..&#10;</xsl:text>
