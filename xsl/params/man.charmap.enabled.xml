@@ -44,9 +44,11 @@ parameter to specify a URI for the location for an alternate roff
 character map to use in place of the standard roff character map
 provided in the distribution.</para>
 
-<para>You can also use a subset of a character map. For details, see
-the <parameter>man.charmap.use.subset</parameter> and
-<parameter>man.charmap.subset.profile</parameter> parameters.</para>
+<para>You can also use a subset of a character map. For details,
+see the <parameter>man.charmap.use.subset</parameter>,
+<parameter>man.charmap.subset.profile</parameter>
+<parameter>man.charmap.subset.profile.english</parameter>
+parameters.</para>
 
 </refsection>
 </refsection>

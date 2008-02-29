@@ -2,6 +2,7 @@
 <!ENTITY man.break.after.slash SYSTEM "../params/man.break.after.slash.xml">
 <!ENTITY man.charmap.enabled SYSTEM "../params/man.charmap.enabled.xml">
 <!ENTITY man.charmap.subset.profile SYSTEM "../params/man.charmap.subset.profile.xml">
+<!ENTITY man.charmap.subset.profile.english SYSTEM "../params/man.charmap.subset.profile.english.xml">
 <!ENTITY man.charmap.uri SYSTEM "../params/man.charmap.uri.xml">
 <!ENTITY man.charmap.use.subset SYSTEM "../params/man.charmap.use.subset.xml">
 <!ENTITY man.copyright.section.enabled SYSTEM "../params/man.copyright.section.enabled.xml">
