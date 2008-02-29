@@ -3,6 +3,7 @@
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
                 exclude-result-prefixes="exsl"
                 version='1.0'>
 
@@ -324,6 +325,12 @@ db:manvolnum
       <xsl:with-param name="content" select="$source"/>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
+    <xsl:text>.\"  Language: </xsl:text>
+    <xsl:variable name="lang">
+      <xsl:call-template name="l10n.language"/>
+    </xsl:variable>
+    <xsl:value-of select="$l10n.xml/l:i18n/l:l10n[@language=$lang]/@english-language-name"/>
+    <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"</xsl:text>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
@@ -434,6 +441,9 @@ db:manvolnum
     <!-- * -->
     <!-- * If the value of man.hypenate is zero (the default), then -->
     <!-- * disable hyphenation (".nh" = "no hyphenation") -->
+    <xsl:text>.\" -----------------------------------------------------------------&#10;</xsl:text>
+    <xsl:text>.\" * set default formatting&#10;</xsl:text>
+    <xsl:text>.\" -----------------------------------------------------------------&#10;</xsl:text>
     <xsl:if test="$man.hyphenate = 0">
       <xsl:text>.\" disable hyphenation&#10;</xsl:text>
       <xsl:text>.nh&#10;</xsl:text>
@@ -672,19 +682,37 @@ db:manvolnum
   <!-- ============================================================== -->
 
   <xsl:template name="define.macros">
-    <xsl:text>.\" define a macro for condtionally upper-casing SH x-refs&#10;</xsl:text>
+    <xsl:text>.\" -----------------------------------------------------------------&#10;</xsl:text>
+    <xsl:text>.\" * (re)Define some macros&#10;</xsl:text>
+    <xsl:text>.\" -----------------------------------------------------------------&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.\" toupper - uppercase a string (locale-aware)&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.de toupper&#10;</xsl:text>
+    <xsl:text>.tr</xsl:text>
+    <xsl:text> </xsl:text>
+    <xsl:call-template name="make.tr.uppercase.arg"/>
+    <xsl:text>\\$*&#10;</xsl:text>
+    <xsl:text>.tr</xsl:text>
+    <xsl:text> </xsl:text>
+    <xsl:call-template name="make.tr.normalcase.arg"/>
+    <xsl:text>..&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.\" SH-xref - format a cross-reference to an SH section&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
     <xsl:text>.de SH-xref
 .ie n \{\
-.tr aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
-\\$*
-.tr aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
 .\}
+.toupper \\$*
 .el \{\
 \\$*
 .\}
 ..&#10;</xsl:text>
-    <xsl:text>.\" define a level-one heading that works better for non-TTY output&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.\" SH - level-one heading that works better for non-TTY output&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
     <xsl:text>.de1 SH
+.\" put an extra blank line of space above the head
 .sp 1
 .sp \\n[PD]u
 .nr an-level 1
@@ -697,53 +725,40 @@ db:manvolnum
 .it 1 an-trap
 .nr an-no-space-flag 1
 .nr an-break-flag 1
+\." make the size of the head bigger
 .ps +3
 .ft B
 .ne (2v + 1u)
-.\" if we have only one arg, just use that
-.ie (\\n[.$] == 1) \{\
 .ie n \{\
-\&amp;\\$1
+.\" if n (TTY output), use uppercase
+.toupper \\$*
 .\}
 .el \{\
 .nr an-break-flag 0
-.\" if this is troff/non-TTY output, show the second arg only
-\&amp;\\$1
+.\" if not n (not TTY), use normal case (not uppercase)
+\\$1
 .in \\n[an-margin]u
 .ti 0
-.\" draw a border/line under subheading
+.\" if not n (not TTY), put a border/line under subheading
 .sp -.7
 \l'\n(.lu'
-.\}
-.\}
-.\" we have more that one arg, so we decide which to use
-.el \{\
-.ie n \{\
-.if \\n[.$] \&amp;\\$1
-.\" if this is nroff/TTY output, show the first arg only
-.\}
-.el \{\
-.nr an-break-flag 0
-.\" if this is troff/non-TTY output, show the second arg only
-.if \\n[.$] \&amp;\\$2
-.in \\n[an-margin]u
-.ti 0
-.\" draw a border/line under subheading
-.sp -.7
-\l'\n(.lu'
-.\}
 .\}
 ..&#10;</xsl:text>
-    <xsl:text>\" define BB/BE macros for putting a background/screen&#10;</xsl:text>
-    <xsl:text>\" (filled box) around a block of text in non-TTY output&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.\" BB/BE - put background/screen (filled box) around block of text&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
     <xsl:text>.de BB
+.if t \{\
+.sp -.5
 .br
 .in +2n
 .ll -2n
 .gcolor red
 .di BX
+.\}
 ..
 .de EB
+.if t \{\
 .br
 .di
 .in
@@ -760,7 +775,58 @@ db:manvolnum
 .in
 .sp .5v
 .fi
+.\}
 ..&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template name="make.tr.uppercase.arg">
+  <xsl:call-template name="string.shuffle">
+    <xsl:with-param name="string1">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'lowercase.alpha'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+    <xsl:with-param name="string2">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'uppercase.alpha'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template name="make.tr.normalcase.arg">
+  <xsl:call-template name="string.shuffle">
+    <xsl:with-param name="string1">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'lowercase.alpha'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+    <xsl:with-param name="string2">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'lowercase.alpha'"/>
+      </xsl:call-template>
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template name="string.shuffle">
+  <!-- * given two strings, "shuffle" them together into one -->
+  <xsl:param name="string1"/>
+  <xsl:param name="string2"/>
+  <xsl:value-of select="substring($string1, 1, 1)"/>
+  <xsl:value-of select="substring($string2, 1, 1)"/>
+  <xsl:if test="string-length($string1) > 1">
+    <xsl:call-template name="string.shuffle">
+      <xsl:with-param name="string1">
+        <xsl:value-of select="substring($string1, 2)"/>
+      </xsl:with-param>
+      <xsl:with-param name="string2">
+        <xsl:value-of select="substring($string2, 2)"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
