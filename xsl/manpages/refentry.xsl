@@ -36,7 +36,15 @@
       <xsl:if test="position()>1">
         <xsl:text>, </xsl:text>
       </xsl:if>
-      <xsl:value-of select="."/>
+      <xsl:call-template name="string.subst">
+        <!-- * To create the name(s) for this man page, replace any -->
+        <!-- * spaces in the refname(s) with underscores. This ensures -->
+        <!-- * that tools like lexgrog(1) will be able to parse the name -->
+        <!-- * (lexgrog won’t parse names that contain spaces). -->
+        <xsl:with-param name="string" select="."/>
+        <xsl:with-param name="target" select="' '"/>
+        <xsl:with-param name="replacement" select="'_'"/>
+      </xsl:call-template>
     </xsl:for-each>
     <!-- * The man(7) man pages says: -->
     <!-- * -->
