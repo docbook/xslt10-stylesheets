@@ -46,7 +46,7 @@ provided in the distribution.</para>
 
 <para>You can also use a subset of a character map. For details,
 see the <parameter>man.charmap.use.subset</parameter>,
-<parameter>man.charmap.subset.profile</parameter>
+<parameter>man.charmap.subset.profile</parameter>, and
 <parameter>man.charmap.subset.profile.english</parameter>
 parameters.</para>
 

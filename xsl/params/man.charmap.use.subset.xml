@@ -28,8 +28,8 @@ character map. The profile of the subset used is determined either
 by the value of the
 <parameter>man.charmap.subset.profile</parameter>
 parameter (if the source is not in English) or the
-<parameter>man.charmap.subset.profile</parameter> parameter (if
-the source is in English).</para>
+<parameter>man.charmap.subset.profile.english</parameter>
+parameter (if the source is in English).</para>
 
 <note>
   <para>You may want to experiment with setting a non-zero value of
