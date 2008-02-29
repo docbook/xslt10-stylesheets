@@ -52,8 +52,7 @@
 			     &metadata-extra;'>
 
   <!ENTITY author-extra ""> <!-- for customisation -->
-  <!ENTITY author-content '@rnd:style = "author" or
-			   @rnd:style = "personblurb" or
+  <!ENTITY author-content '@rnd:style = "personblurb" or
 			   @rnd:style = "address" or
 			   @rnd:style = "affiliation" or
 			   @rnd:style = "contrib" or
