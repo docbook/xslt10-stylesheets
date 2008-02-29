@@ -80,6 +80,7 @@
 &man.charmap.uri;
 &man.charmap.use.subset;
 &man.charmap.subset.profile;
+&man.charmap.subset.profile.english;
 &man.string.subst.map.local.pre;
 &man.string.subst.map;
 &man.string.subst.map.local.post;
@@ -153,6 +154,7 @@
 <src:fragref linkend="man.break.after.slash.frag"/>
 <src:fragref linkend="man.charmap.enabled.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
+<src:fragref linkend="man.charmap.subset.profile.english.frag"/>
 <src:fragref linkend="man.charmap.uri.frag"/>
 <src:fragref linkend="man.charmap.use.subset.frag"/>
 <src:fragref linkend="man.copyright.section.enabled.frag"/>

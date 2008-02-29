@@ -127,9 +127,23 @@ db:manvolnum
 
   <xsl:variable name="man.charmap.contents">
     <xsl:if test="$man.charmap.enabled != 0">
+      <xsl:variable name="lang">
+        <xsl:call-template name="l10n.language">
+          <xsl:with-param name="target" select="//refentry[1]"/>
+        </xsl:call-template>
+      </xsl:variable>
       <xsl:call-template name="read-character-map">
         <xsl:with-param name="use.subset" select="$man.charmap.use.subset"/>
-        <xsl:with-param name="subset.profile" select="$man.charmap.subset.profile"/>
+        <xsl:with-param name="subset.profile">
+          <xsl:choose>
+            <xsl:when test="$lang = 'en'">
+              <xsl:value-of select="$man.charmap.subset.profile.english"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$man.charmap.subset.profile"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:with-param>
         <xsl:with-param name="uri">
           <xsl:choose>
             <xsl:when test="$man.charmap.uri != ''">

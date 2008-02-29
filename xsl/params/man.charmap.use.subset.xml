@@ -24,8 +24,12 @@
 <para>If the value of the
 <parameter>man.charmap.use.subset</parameter> parameter is non-zero,
 a subset of the roff character map is used instead of the full roff
-character map. The profile of the subset used is specified by the
-<parameter>man.charmap.subset.profile</parameter> parameter.</para>
+character map. The profile of the subset used is determined either
+by the value of the
+<parameter>man.charmap.subset.profile</parameter>
+parameter (if the source is not in English) or the
+<parameter>man.charmap.subset.profile</parameter> parameter (if
+the source is in English).</para>
 
 <note>
   <para>You may want to experiment with setting a non-zero value of
@@ -67,8 +71,9 @@ provided in the distribution.</para>
 never necessary to use it in full -- the DocBook XSL Stylesheets
 support a mechanism for using, within any given character map, a
 subset of character mappings instead of the full set. You can use the
-<parameter>man.charmap.subset.profile</parameter> parameter to tune
-the profile of that subset to use.</para>
+<parameter>man.charmap.subset.profile</parameter> or
+<parameter>man.charmap.subset.profile.english</parameter>
+parameter to tune the profile of that subset to use.</para>
 
 </refsection>
 </refsection>
