@@ -169,20 +169,24 @@
     <xsl:text>.nr an-no-space-flag 1&#10;</xsl:text>
     <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
     <xsl:text>.br&#10;</xsl:text>
-    <!-- * make title wrapper so that we can use mode="bold" template to -->
-    <!-- * apply character formatting to it -->
+    <xsl:text>.ps +1&#10;</xsl:text>
+    <!-- * make title wrapper so that we can use "bold" template to apply -->
+    <!-- * character formatting to it -->
     <xsl:variable name="title.wrapper">
-      <bold><xsl:choose>
+      <xsl:choose>
         <xsl:when test="title">
           <xsl:value-of select="normalize-space(title[1])"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
         </xsl:otherwise>
-      </xsl:choose></bold>
+      </xsl:choose>
     </xsl:variable>
     <xsl:call-template name="mark.subheading"/>
-    <xsl:apply-templates mode="bold" select="exsl:node-set($title.wrapper)"/>
+    <xsl:call-template name="bold">
+      <xsl:with-param name="node" select="exsl:node-set($title.wrapper)"/>
+      <xsl:with-param name="context" select="."/>
+    </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
   </xsl:template>

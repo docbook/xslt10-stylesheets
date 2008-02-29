@@ -115,7 +115,7 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- * If default-indentation adjustment is on, then do not -->
-        <!-- * indent the child content of thie Refsect2, because -->
+        <!-- * indent the child content of this Refsect2, because -->
         <!-- * the title is already "sticking out to the left" -->
         <!-- * (as the groff_man(7) man page describes it), which -->
         <!-- * actually means the title is indented by the value of -->
@@ -144,7 +144,7 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- * If default-indentation adjustment is on, then do not -->
-        <!-- * indent the child content of thie Refsect2, because -->
+        <!-- * indent the child content of this Refsect2, because -->
         <!-- * the title is already "sticking out to the left" -->
         <!-- * (as the groff_man(7) man page describes it), which -->
         <!-- * actually means the title is indented by the value of -->
