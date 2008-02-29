@@ -467,28 +467,11 @@
     <xsl:call-template name="mark.subheading"/>
     <xsl:text>.SH</xsl:text>
     <xsl:text> </xsl:text>
+    <xsl:text>"</xsl:text>
     <xsl:value-of select="$title"/>
+    <xsl:text>"</xsl:text>
     <xsl:text>&#10;</xsl:text>
     <xsl:call-template name="mark.subheading"/>
-  </xsl:template>
-
-  <xsl:template name="make.title.pair">
-    <xsl:param name="title"/>
-    <!-- * Use uppercase to render first version of title. -->
-    <xsl:text>"</xsl:text>
-    <xsl:call-template name="string.upper">
-      <xsl:with-param name="string">
-        <xsl:value-of select="normalize-space($title)"/>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:text>"</xsl:text>
-    <!-- * end of uppercase title -->
-    <xsl:text> </xsl:text>
-    <!-- * Use lowercase to render second version of title. -->
-    <xsl:text>"</xsl:text>
-    <xsl:value-of select="normalize-space($title)"/>
-    <xsl:text>"</xsl:text>
-    <!-- * end of lowercase title -->
   </xsl:template>
 
   <!-- * Put a horizontal rule or other divider around section titles -->
