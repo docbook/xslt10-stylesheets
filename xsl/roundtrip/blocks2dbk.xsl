@@ -13,7 +13,8 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:dbk='http://docbook.org/ns/docbook'
-  xmlns:rnd='http://docbook.org/ns/docbook/roundtrip'>
+  xmlns:rnd='http://docbook.org/ns/docbook/roundtrip'
+  xmlns:xlink='http://www.w3.org/1999/xlink'>
 
   <!-- $Id$ -->
   <!-- Stylesheet to convert word processing docs to DocBook -->
@@ -483,6 +484,12 @@
 	<!-- This occurs in a hyperlink; parent should be dbk:link -->
 	<xsl:apply-templates/>
       </xsl:when>
+      <xsl:when test='@rnd:style = "Hyperlink"'>
+        <!-- dbk:link is missing -->
+        <dbk:link xlink:href='{.}'>
+          <xsl:apply-templates/>
+        </dbk:link>
+      </xsl:when>
 
       <xsl:otherwise>
         <xsl:call-template name='rnd:error'>
@@ -914,6 +921,15 @@
           <xsl:apply-templates mode='rnd:metadata'/>
         </xsl:copy>
       </xsl:when>
+      <xsl:when test='@rnd:style = "Hyperlink" and
+                      parent::dbk:link'>
+        <xsl:apply-templates mode='rnd:metadata'/>
+      </xsl:when>
+      <xsl:when test='@rnd:style = "Hyperlink"'>
+        <dbk:link xlink:href='{.}'>
+          <xsl:apply-templates mode='rnd:metadata'/>
+        </dbk:link>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:element name='{@rnd:style}'
           namespace='http://docbook.org/ns/docbook'>
@@ -921,6 +937,12 @@
         </xsl:element>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+  <xsl:template match='dbk:link' mode='rnd:metadata'>
+    <xsl:copy>
+      <xsl:apply-templates select='@*' mode='rnd:copy'/>
+      <xsl:apply-templates mode='rnd:metadata'/>
+    </xsl:copy>
   </xsl:template>
   <xsl:template match='dbk:inlinemediaobject' mode='rnd:metadata'>
     <xsl:call-template name='rnd:copy'/>
