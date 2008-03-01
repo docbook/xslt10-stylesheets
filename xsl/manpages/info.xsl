@@ -578,6 +578,7 @@
             </xsl:call-template>
           </xsl:with-param>
         </xsl:call-template>
+        <xsl:text>.br&#10;</xsl:text>
         <!-- * the copyright mode="titlepage.mode" template is -->
         <!-- * imported from the HTML stylesheets -->
         <xsl:for-each select="
