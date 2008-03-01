@@ -25,17 +25,18 @@ be installed before you start using the extensions:
 ----------------------------------------------------------------------
 Installation of the extensions
 ----------------------------------------------------------------------
-Place xslt.py and docbook.py in a directory of your choice.
+No special installation step is needed.
 
 ----------------------------------------------------------------------
 How to use the extensions
 ----------------------------------------------------------------------
-The transformation command has this general form:
+Instead of using xsltproc, you run a Python program (xslt.py). The 
+command has this general form:
 
 python xslt.py xmlfile xslfile [outputfile] [param1=val1 [param2=val]...]
 
 Modify paths, filenames, and parameters as needed. Make sure to set 
-use.extensions=1 and tablecolumns.extension=1.
+the "use.extensions" and "tablecolumns.extension" parameters to 1.
 
 ----------------------------------------------------------------------
 Manifest
