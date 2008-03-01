@@ -17,9 +17,23 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="caution|important|note|tip|warning">
-  <xsl:call-template name="nested-section-title"/>
+  <xsl:call-template name="roff-if-start">
+    <xsl:with-param name="condition">n</xsl:with-param>
+  </xsl:call-template>
+  <xsl:call-template name="roff-if-end"/>
+  <xsl:text>.RS 4&#10;</xsl:text>
+  <xsl:text>.BM yellow&#10;</xsl:text>
+  <xsl:text>.PP&#10;</xsl:text>
+  <xsl:text>.sp -1&#10;</xsl:text>
+  <xsl:text>.ps +1&#10;</xsl:text>
+  <xsl:call-template name="make.bold.title"/>
+  <xsl:text>&#10;</xsl:text>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
+  <xsl:text>.sp .5v&#10;</xsl:text>
+  <xsl:text>.EM yellow&#10;</xsl:text>
+  <xsl:text>.RE -4n&#10;</xsl:text>
+  <xsl:text>.sp .5v&#10;</xsl:text>
 </xsl:template> 
 
 <xsl:template match="formalpara">
@@ -173,10 +187,10 @@
         <xsl:when test="self::literallayout|self::programlisting|self::screen">
           <!-- * if this is a literallayout|programlisting|screen, then we -->
           <!-- * put a background behind it in non-TTY output -->
-          <xsl:text>.BB&#10;</xsl:text>
+          <xsl:text>.BB lightgray&#10;</xsl:text>
           <xsl:apply-templates/>
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>.EB&#10;</xsl:text>
+          <xsl:text>.EB lightgray&#10;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- * otherwise this is not a literallayout|programlisting|screen, -->
