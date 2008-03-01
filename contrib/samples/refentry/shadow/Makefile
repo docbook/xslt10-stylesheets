@@ -1,21 +1,17 @@
-HOST=anoncvs.pld.org.pl
-USER=cvs
-BASE=/cvsroot
-MODULE=shadow
+URL=svn://svn.debian.org/svn/pkg-shadow/upstream/trunk/man
 SUBMODULE=man
 
 MAKEFILE_DOCBOOK = ../../../../xsl/tools/make/Makefile.DocBook
 
 TMP ?= /tmp
 
-CVS=cvs
-CVSFLAGS=
+SVN=svn
+SVNFLAGS=
 
 all: $(SUBMODULE) $(SUBMODULE)/Makefile
 
 $(SUBMODULE):
-	(cd $(TMP) && $(CVS) $(CVSFLAGS) -d:pserver:$(USER)@$(HOST):$(BASE) co $(MODULE)/$(SUBMODULE))
-	cp -pR $(TMP)/$(MODULE)/$(SUBMODULE) .
+	$(SVN) co $(SVNFLAGS) $(URL)
 
 $(SUBMODULE)/Makefile:
 	cp $(MAKEFILE_DOCBOOK) $(SUBMODULE)/Makefile
