@@ -1,6 +1,6 @@
-HOST=https://svn.sourceforge.net
-BASE=svnroot/scmxx/trunk
-MODULE=scmxx/docs
+HOST=https://www.hendrik-sattler.de
+BASE=svn/scmxx/trunk
+MODULE=docs
 TMP_SUBDIR=scmxx
 FILES=scmxx.de.xml scmxx.en.xml scmxx.it.xml scmxx.ru.xml docbook-man-utf8.xsl
 SCMXX_MAKEFILE=Makefile.in
