@@ -17,8 +17,8 @@ all: man
 
 $(FILE):
 ifeq ($(VERSION),)
-	@echo 'See http://ftp.isc.org/isc/bind9/'
-	@echo 'Specify a VERSION; e.g., "make VERSION=9.4.0b2" to download 9.4.0b2'
+	$(warning See http://ftp.isc.org/isc/bind9/)
+	$(error Specify a VERSION; e.g., "make VERSION=9.4.0b2" to download 9.4.0b2)
 	@echo
 endif
 	(cd $(TMP); $(WGET) $(WGETFLAGS) $(BASEURL)/$(SUBDIR)/$(DOWNLOAD_FILENAME))
