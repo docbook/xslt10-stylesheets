@@ -725,10 +725,14 @@ db:manvolnum
     <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
     <xsl:text>.\" SH - level-one heading that works better for non-TTY output&#10;</xsl:text>
     <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
-    <xsl:text>.de1 SH
-.\" put an extra blank line of space above the head
-.sp 1
-.sp \\n[PD]u
+    <xsl:text>.de1 SH&#10;</xsl:text>
+    <xsl:text>.\" put an extra blank line of space above the head in non-TTY output&#10;</xsl:text>
+    <xsl:call-template name="roff-if-start">
+      <xsl:with-param name="condition">t</xsl:with-param>
+    </xsl:call-template>
+    <xsl:text>.sp 1&#10;</xsl:text>
+    <xsl:call-template name="roff-if-end"/>
+    <xsl:text>.sp \\n[PD]u
 .nr an-level 1
 .set-an-margin
 .nr an-prevailing-indent \\n[IN]
