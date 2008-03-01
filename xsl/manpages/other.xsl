@@ -802,13 +802,42 @@ db:manvolnum
 .nr BW \\n(.lu-\\n(.i
 .nr BH \\n(dn+.5v
 .ne \\n(BHu+.5v
-\M[lightgray]\h'1n'\v'-.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
+\M[\\$1]\h'1n'\v'-.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
 .in 0
 .sp -.5v
 .nf
 .BX
 .in
 .sp .5v
+.fi
+.\}
+..&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.\" BM/EM - put colored marker in margin next to block of text&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.de BM
+.if t \{\
+.br
+.in +2n
+.ll -2n
+.gcolor red
+.di BX
+.\}
+..
+.de EM
+.if t \{\
+.br
+.di
+.in
+.ll
+.gcolor
+.nr BH \\n(dn+.4v
+.ne \\n(BHu+.4v
+\M[\\$1]\D'P -1n 0 0 \\n(BHu -3n 0 0 -\\n(BHu'\M[]
+.in 0
+.nf
+.BX
+.in
 .fi
 .\}
 ..&#10;</xsl:text>
