@@ -95,8 +95,9 @@ doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
 extensions: ../xsl-saxon/saxon65.jar ../xsl-xalan/xalan27.jar
-	if [ ! -d $@ ]; then mkdir $@; fi
+	if [ ! -d $@/libxslt/python ]; then mkdirhier $@/libxslt/python; fi
 	cp -p $^ $@
+	cp -p ../xsl-libxslt/python/* $@/libxslt/python
 
 ../xsl-saxon/saxon65.jar: $(wildcard ../xsl-saxon/src/com/nwalsh/saxon/*.java) 
 	$(MAKE) -C $(dir $@)
