@@ -170,6 +170,10 @@
     <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
     <xsl:text>.br&#10;</xsl:text>
     <xsl:text>.ps +1&#10;</xsl:text>
+    <xsl:call-template name="make.bold.title"/>
+  </xsl:template>
+
+  <xsl:template name="make.bold.title">
     <!-- * make title wrapper so that we can use "bold" template to apply -->
     <!-- * character formatting to it -->
     <xsl:variable name="title.wrapper">
