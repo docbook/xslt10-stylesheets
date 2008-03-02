@@ -50,7 +50,7 @@
   <!-- * up one line vertically to negate the line of vertical space -->
   <!-- * that's added by the .HP macro -->
   <xsl:if test="preceding-sibling::*[1][self::synopfragment]">
-    <xsl:text>.sp -1n&#10;</xsl:text>
+    <xsl:text>.sp -1&#10;</xsl:text>
   </xsl:if>
   <xsl:text>.HP </xsl:text>
   <!-- * For each Synopfragment, make a hanging paragraph, with the -->

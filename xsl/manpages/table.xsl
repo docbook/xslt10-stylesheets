@@ -134,7 +134,7 @@
         </xsl:if>
         <xsl:value-of select="normalize-space($title)"/>
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>.sp -1n&#10;</xsl:text>
+        <xsl:text>.sp -1&#10;</xsl:text>
       </xsl:if>
       
       <!-- * mark the start of the table -->
