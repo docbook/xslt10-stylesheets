@@ -130,7 +130,7 @@
   <xsl:text>&#10;</xsl:text>
   <!-- * if "n" then we are using "nroff", which means the output is for -->
   <!-- * TTY; so we do some fixed-width-font hackery with \h to make a -->
-  <!-- * hanging indents (instead of using .IP, which has some -->
+  <!-- * hanging indent (instead of using .IP, which has some -->
   <!-- * undesirable side effects under certain circumstances) -->
   <xsl:call-template name="roff-if-else-start"/>
   <xsl:text>\h'-</xsl:text>
@@ -177,7 +177,7 @@
   <!-- * if "n" then we are using "nroff", which means the output is for -->
   <!-- * TTY; so we do some fixed-width-font hackery with \h to make a -->
   <!-- * hanging indents (instead of using .IP, which has some -->
-  <!-- * undesirabel side effects under certain circumstances) -->
+  <!-- * undesirable side effects under certain circumstances) -->
   <xsl:call-template name="roff-if-else-start"/>
   <xsl:text>\h'-</xsl:text>
     <xsl:if test="not($list-indent = '')">
@@ -200,7 +200,7 @@
   <!-- * means not for TTY, but for PS or whatever; so we’re not using a -->
   <!-- * fixed-width font, so use a real .IP instead -->
   <xsl:call-template name="roff-else"/>
-  <!-- * .IP generates a blank like of space, so let’s go backwards one -->
+  <!-- * .IP generates a blank line of space, so let’s go backwards one -->
   <!-- * line up to compensate for that -->
   <xsl:text>.sp -1&#10;</xsl:text>
   <xsl:text>.IP "</xsl:text>
@@ -258,7 +258,7 @@
                 parent::para[following-sibling::node()] or
                 parent::simpara[following-sibling::node()] or
                 parent::remark[following-sibling::node()]">
-    <xsl:text>.IP ""</xsl:text> 
+    <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($list-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$list-indent"/>
@@ -308,7 +308,7 @@
 <!-- * list (ignoring the values of the type and columns attributes) -->
 <xsl:template match="simplelist">
   <xsl:for-each select="member">
-    <xsl:text>.IP ""</xsl:text> 
+    <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($list-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$list-indent"/>
@@ -316,6 +316,7 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>&#10;</xsl:text>
+    <xsl:text>.RE&#10;</xsl:text>
   </xsl:for-each>
 </xsl:template>
 
@@ -387,7 +388,7 @@
 </xsl:template>
 
 <xsl:template match="segmentedlist/seglistitem/seg">
-  <!-- * the “T{" and “T}” stuff are delimiters to tell tbl(1) that -->
+  <!-- * the T{ and T} stuff are delimiters to tell tbl(1) that -->
   <!-- * the delimited contents are "text blocks" that groff(1) -->
   <!-- * needs to process -->
   <xsl:text>T{&#10;</xsl:text>
