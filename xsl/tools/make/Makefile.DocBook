@@ -50,7 +50,7 @@ RMDIR_FLAGS = --ignore-fail-on-non-empty -p
 
 # possible values for PDF_MAKER are:
 #   dblatex|fop|xep|xmlroff|passivetex
-PDF_MAKER = fop
+PDF_MAKER = dblatex
 
 # possible values for TXT_MAKER are:
 #   links|lynx|w3m|w3mmee
