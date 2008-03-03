@@ -1,4 +1,4 @@
-#suppress  $Id$
+# $Id$
 
 include ../buildtools/Makefile.incl
 include ../releasetools/Variables.mk
