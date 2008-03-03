@@ -162,12 +162,12 @@
   <!-- * The nested-section-title template is called for refsect3, and any -->
   <!-- * refsection nested more than 2 levels deep. -->
   <xsl:template name="nested-section-title">
-    <xsl:call-template name="title-preamble"/>
+    <xsl:call-template name="pinch.together"/>
     <xsl:text>.ps +1&#10;</xsl:text>
     <xsl:call-template name="make.bold.title"/>
   </xsl:template>
 
-  <xsl:template name="title-preamble">
+  <xsl:template name="pinch.together">
     <!-- * arcane roff code to suppress line spacing after headings -->
     <xsl:text>.sp&#10;</xsl:text>
     <xsl:text>.it 1 an-trap&#10;</xsl:text>
