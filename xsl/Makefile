@@ -94,7 +94,7 @@ docsrc: base
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
-extensions: extensions/saxon65.jar extensions/xalan27.jar extensions/libxslt.py extensions/docbook.py
+extensions: extensions/saxon65.jar extensions/xalan27.jar extensions/xslt.py extensions/docbook.py
 	mkdir $@
 
 extensions/saxon65.jar: ../xsl-saxon/saxon65.jar
@@ -109,7 +109,7 @@ extensions/xalan27.jar: ../xsl-xalan/xalan27.jar
 ../xsl-xalan/xalan27.jar: $(wildcard ../xsl-xalan/src/com/nwalsh/xalan/*.java) 
 	$(MAKE) -C $(dir $@)
 
-extensions/libxslt.py: ../xsl-libxslt/python/xslt.py
+extensions/xslt.py: ../xsl-libxslt/python/xslt.py
 	cp -p $^ $@
 
 extensions/docbook.py: ../xsl-libxslt/python/docbook.py
