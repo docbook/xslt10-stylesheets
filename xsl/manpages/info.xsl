@@ -313,7 +313,6 @@
 
   <xsl:template name="publisher.attribution">
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>.sp -1&#10;</xsl:text>
     <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
