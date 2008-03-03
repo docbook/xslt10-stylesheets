@@ -1,4 +1,4 @@
-# $Id$
+#suppress  $Id$
 
 include ../buildtools/Makefile.incl
 include ../releasetools/Variables.mk
@@ -94,16 +94,26 @@ docsrc: base
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
-extensions: ../xsl-saxon/saxon65.jar ../xsl-xalan/xalan27.jar ../xsl-libxslt/python/xslt.py ../xsl-libxslt/python/docbook.py
-	if [ ! -d $@/libxslt/python ]; then mkdirhier $@/libxslt/python; fi
+extensions: extensions/saxon65.jar extensions/xalan27.jar extensions/libxslt.py extensions/docbook.py
+	mkdir $@
+
+extensions/saxon65.jar: ../xsl-saxon/saxon65.jar
 	cp -p $^ $@
-	cp -p ../xsl-libxslt/python/* $@/libxslt/python
+
+extensions/xalan27.jar: ../xsl-xalan/xalan27.jar
+	cp -p $^ $@
 
 ../xsl-saxon/saxon65.jar: $(wildcard ../xsl-saxon/src/com/nwalsh/saxon/*.java) 
 	$(MAKE) -C $(dir $@)
 
 ../xsl-xalan/xalan27.jar: $(wildcard ../xsl-xalan/src/com/nwalsh/xalan/*.java) 
 	$(MAKE) -C $(dir $@)
+
+extensions/libxslt.py: ../xsl-libxslt/python/xslt.py
+	cp -p $^ $@
+
+extensions/docbook.py: ../xsl-libxslt/python/docbook.py
+	cp -p $^ $@
 
 clean:
 	for i in $(DIRS) __bogus__; do \
