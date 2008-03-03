@@ -835,8 +835,8 @@ db:manvolnum
 .in
 .ll
 .gcolor
-.nr BH \\n(dn+.4v
-.ne \\n(BHu+.4v
+.nr BH \\n(dn
+.ne \\n(BHu
 \M[\\$1]\D'P -1n 0 0 \\n(BHu -3n 0 0 -\\n(BHu'\M[]
 .in 0
 .nf
