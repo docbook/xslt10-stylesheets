@@ -125,7 +125,7 @@
       <!-- *   Output table title                                           -->
       <!-- * ============================================================== -->
       <xsl:if test="$title != '' or parent::td">
-        <xsl:text>.PP&#10;</xsl:text>
+        <xsl:call-template name="title-preamble"/>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="$tbl.font.title"/>
         <xsl:text> </xsl:text>
@@ -134,7 +134,6 @@
         </xsl:if>
         <xsl:value-of select="normalize-space($title)"/>
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>.sp -1&#10;</xsl:text>
       </xsl:if>
       
       <!-- * mark the start of the table -->
@@ -210,7 +209,7 @@
       <!-- * .TE = "Table End" -->
       <xsl:text>.TE&#10;</xsl:text>
       <!-- * put a blank line of space below the table -->
-      <xsl:text>.sp&#10;</xsl:text>
+      <xsl:text>.sp 1&#10;</xsl:text>
     </xsl:for-each>
   </xsl:template>
 
