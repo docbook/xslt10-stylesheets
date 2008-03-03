@@ -94,7 +94,7 @@ docsrc: base
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
-extensions: ../xsl-saxon/saxon65.jar ../xsl-xalan/xalan27.jar
+extensions: ../xsl-saxon/saxon65.jar ../xsl-xalan/xalan27.jar ../xsl-libxslt/python/xslt.py ../xsl-libxslt/python/docbook.py
 	if [ ! -d $@/libxslt/python ]; then mkdirhier $@/libxslt/python; fi
 	cp -p $^ $@
 	cp -p ../xsl-libxslt/python/* $@/libxslt/python
