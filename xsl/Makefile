@@ -94,8 +94,7 @@ docsrc: base
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
-extensions: extensions/saxon65.jar extensions/xalan27.jar extensions/xslt.py extensions/docbook.py
-	mkdir $@
+extensions: extensions/saxon65.jar extensions/xalan27.jar extensions/xslt.py extensions/docbook.py extensions/README.LIBXSLT 
 
 extensions/saxon65.jar: ../xsl-saxon/saxon65.jar
 	cp -p $^ $@
@@ -115,13 +114,16 @@ extensions/xslt.py: ../xsl-libxslt/python/xslt.py
 extensions/docbook.py: ../xsl-libxslt/python/docbook.py
 	cp -p $^ $@
 
+extensions/README.LIBXSLT: ../xsl-libxslt/python/README
+	cp -p $^ $@
+
 clean:
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) clean -C $$i"; $(MAKE) clean -C $$i; \
 		fi \
 	done
-	$(RM) -r extensions
+	$(RM) -r extensions/*
 	$(MAKE) clean -C xhtml
 	$(MAKE) clean -C doc
 	$(MAKE) clean -C docsrc
