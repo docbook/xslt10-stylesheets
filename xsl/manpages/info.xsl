@@ -314,7 +314,7 @@
   <xsl:template name="publisher.attribution">
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.sp -1&#10;</xsl:text>
-    <xsl:text>.IP ""</xsl:text> 
+    <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($blurb-indent = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$blurb-indent"/>
@@ -324,6 +324,7 @@
       <xsl:with-param name="key" select="'Publisher'"/>
     </xsl:call-template>
     <xsl:text>.&#10;</xsl:text>
+    <xsl:text>.RE&#10;</xsl:text> 
   </xsl:template>
 
   <xsl:template match="email|address/otheraddr/ulink" mode="authorsect">
@@ -437,8 +438,7 @@
       <!-- * Editor, then render the corresponding localized gentext -->
       <xsl:when test="self::author">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>.sp -1&#10;</xsl:text>
-        <xsl:text>.IP ""</xsl:text> 
+        <xsl:text>.RS</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
           <xsl:value-of select="$blurb-indent"/>
@@ -448,11 +448,11 @@
           <xsl:with-param name="key" select="'Author'"/>
         </xsl:call-template>
         <xsl:text>.&#10;</xsl:text>
+        <xsl:text>.RE&#10;</xsl:text> 
       </xsl:when>
       <xsl:when test="self::editor">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>.sp -1&#10;</xsl:text>
-        <xsl:text>.IP ""</xsl:text> 
+        <xsl:text>.RS</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
           <xsl:value-of select="$blurb-indent"/>
@@ -462,6 +462,7 @@
           <xsl:with-param name="key" select="'Editor'"/>
         </xsl:call-template>
         <xsl:text>.&#10;</xsl:text>
+        <xsl:text>.RE&#10;</xsl:text> 
       </xsl:when>
       <!-- * If we have no *blurb or contrib, but this is an Othercredit, -->
       <!-- * check value of Class attribute and use corresponding gentext. -->
@@ -469,8 +470,7 @@
         <xsl:choose>
           <xsl:when test="@class and @class != 'other'">
             <xsl:text>&#10;</xsl:text>
-            <xsl:text>.sp -1&#10;</xsl:text>
-            <xsl:text>.IP ""</xsl:text> 
+            <xsl:text>.RS</xsl:text> 
             <xsl:if test="not($blurb-indent = '')">
               <xsl:text> </xsl:text>
               <xsl:value-of select="$blurb-indent"/>
@@ -480,6 +480,7 @@
               <xsl:with-param name="key" select="@class"/>
             </xsl:call-template>
             <xsl:text>.&#10;</xsl:text>
+            <xsl:text>.RE&#10;</xsl:text> 
           </xsl:when>
           <xsl:otherwise>
             <!-- * We have an Othercredit, but not usable value for the Class -->
@@ -499,6 +500,15 @@
     <!-- * yeah, it's possible for a *blurb to have a "title" -->
     <xsl:apply-templates select="title"/>
     <xsl:apply-templates select="*[not(self::title)]"/>
+    <!-- * If this *blurb has a sibling "name" element of some kind, then -->
+    <!-- * the mark.up.blurb.or.contrib template will generated an "RS" -->
+    <!-- * call that will cause it to be indented; so we need to call -->
+    <!-- * "RE" to restore the previous indent level -->
+    <xsl:if test="../personname|../surname|../firstname
+      |../othername|../lineage|../honorific
+      |../affiliation|../email|../address">
+      <xsl:text>.RE&#10;</xsl:text> 
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="personblurb/title|authorblurb/title">
@@ -534,8 +544,7 @@
                 |../othername|../lineage|../honorific
                 |../affiliation|../email|../address">
         <xsl:text>&#10;</xsl:text>
-        <xsl:text>.sp -1&#10;</xsl:text>
-        <xsl:text>.IP ""</xsl:text> 
+        <xsl:text>.RS</xsl:text> 
         <xsl:if test="not($blurb-indent = '')">
           <xsl:text> </xsl:text>
           <xsl:value-of select="$blurb-indent"/>
