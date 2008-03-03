@@ -44,7 +44,7 @@
     <xsl:apply-templates select="." mode="synopfragment.number"/>
   </xsl:variable>
   <xsl:text>&#10;</xsl:text>
-  <!-- * If we have a group of Synopgfragments, we only want to output a -->
+  <!-- * If we have a group of Synopfragments, we only want to output a -->
   <!-- * line of space before the first; so when we find a Synopfragment -->
   <!-- * whose first preceding sibling is another Synopfragment, we back -->
   <!-- * up one line vertically to negate the line of vertical space -->
