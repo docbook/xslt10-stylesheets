@@ -162,15 +162,18 @@
   <!-- * The nested-section-title template is called for refsect3, and any -->
   <!-- * refsection nested more than 2 levels deep. -->
   <xsl:template name="nested-section-title">
-    <!-- * The next few lines are some arcane roff code to control line -->
-    <!-- * spacing after headings. -->
+    <xsl:call-template name="title-preamble"/>
+    <xsl:text>.ps +1&#10;</xsl:text>
+    <xsl:call-template name="make.bold.title"/>
+  </xsl:template>
+
+  <xsl:template name="title-preamble">
+    <!-- * arcane roff code to suppress line spacing after headings -->
     <xsl:text>.sp&#10;</xsl:text>
     <xsl:text>.it 1 an-trap&#10;</xsl:text>
     <xsl:text>.nr an-no-space-flag 1&#10;</xsl:text>
     <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
     <xsl:text>.br&#10;</xsl:text>
-    <xsl:text>.ps +1&#10;</xsl:text>
-    <xsl:call-template name="make.bold.title"/>
   </xsl:template>
 
   <xsl:template name="make.bold.title">
