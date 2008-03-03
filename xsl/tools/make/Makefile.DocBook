@@ -30,7 +30,7 @@
 #
 # That would generate just HTML (unchunked) and plain-text output.
 #
-DOCBOOK_OUTPUT_FORMATS ?= man chunk txt pdf
+DOCBOOK_OUTPUT_FORMATS ?= xml man man-pdf chunk txt pdf
 
 # If you want XHTML output instead of HTML, set HTML_OR_XHTML to
 # 'xhtml' or just specify 'xhtml" in DOCBOOK_OUTPUT_FORMATS.
@@ -39,6 +39,10 @@ HTML_OR_XHTML ?= html
 else
 HTML_OR_XHTML ?= xhtml
 endif
+
+# if your source is in asciidoc instead of DocBook, set
+# ASCII_OR_DOCBOOK to "ascii"
+ASCII_OR_DOCBOOK ?= docbook
 
 # -----------------------------------------------------------------
 #                *** TOOLS and other DEPENDENCIES ***
@@ -101,6 +105,15 @@ MAN_FLAGS =
 # Where, for example: $outfile = foo.pdf and $infile = foo.1
 PS2PDF = ps2pdf
 PS2PDF_FLAGS =
+
+# asciidoc is used to generate DocBook XML from asciidoc source
+ASCIIDOC=asciidoc
+ASCIIDOCFLAGS=
+
+# asciidoc source seems to have DOS line endings, so we use
+# DOS2UNIX to be able to grep them correctly
+DOS2UNIX=dos2unix
+DOS2UNIXFLAGS=
 
 # The "col" command is needed for stripping backspaces and
 # underscores from man(1) output to get pure plain-text
@@ -175,10 +188,14 @@ DOCBOOK_FILE_EXTENSION = .xml
 #    the values of the following are used for determing what needs
 #    to be built and/or cleaned up
 
+ifeq ($(ASCII_OR_DOCBOOK),docbook)
 SOURCE_FILES_DBK = $(wildcard *$(DOCBOOK_FILE_EXTENSION))
+else
+SOURCE_FILES_DBK = $(foreach base,$(basename $(wildcard *.txt)),$(base)$(DOCBOOK_FILE_EXTENSION))
+endif
 
 FILES_FO   = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).fo)
-FILES_TXT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).txt)
+FILES_TXT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out.txt)
 FILES_PDF  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).pdf)
 FILES_LOG  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).log)
 FILES_OUT  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).out)
@@ -190,8 +207,8 @@ LISTS_HTML = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(HTML_MANIF
 LISTS_MAN  = $(foreach base,$(basename $(SOURCE_FILES_DBK)),$(base).$(MAN_MANIFEST_EXT))
 FILES_CHNK = $(shell for manifest in $(LISTS_HTML); do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
 FILES_MAN  = $(shell for manifest in $(LISTS_MAN);  do if [ -f "$$manifest" ]; then cat $$manifest; fi done)
-FILES_MANP = $(foreach base,$(FILES_MAN),$(base).pdf)
-FILES_MANT = $(foreach base,$(FILES_MAN),$(base).txt)
+FILES_MANP = $(foreach base,$(FILES_MAN),$(base).man.pdf)
+FILES_MANT = $(foreach base,$(FILES_MAN),$(base).out.txt)
 DIRS_MAN   = $(shell for file in $(FILES_MAN); do dirname $$file; done | uniq)
 
 # -----------------------------------------------------------------
@@ -366,6 +383,8 @@ MAN_CUSTOM := <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" \
 
 docbook: $(DOCBOOK_OUTPUT_FORMATS)
 
+xml: $(SOURCE_FILES_DBK)
+
 man: $(LISTS_MAN)
 
 # we can generate PDFs from man pages
@@ -389,7 +408,51 @@ info: $(FILES_INFO)
 # use the "debug" target to echo variables, etc., to
 # test/troubleshoot changes you make to this makefile
 debug:
-	@echo $(DIRS_MAN)
+	echo $(wildcard *$(DOCBOOK_FILE_EXTENSION))
+	echo $(ASCII_OR_DOCBOOK)
+	echo $(SOURCE_FILES_DBK)
+
+# -----------------------------------------------------------------
+#     pattern rule to make DocBook refentry from asciidoc source
+# -----------------------------------------------------------------
+%.1$(DOCBOOK_FILE_EXTENSION): %.1.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.2$(DOCBOOK_FILE_EXTENSION): %.2.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.3$(DOCBOOK_FILE_EXTENSION): %.3.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.4$(DOCBOOK_FILE_EXTENSION): %.4.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.5$(DOCBOOK_FILE_EXTENSION): %.5.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.6$(DOCBOOK_FILE_EXTENSION): %.6.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.7$(DOCBOOK_FILE_EXTENSION): %.7.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.8$(DOCBOOK_FILE_EXTENSION): %.8.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+%.9$(DOCBOOK_FILE_EXTENSION): %.9.txt
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d manpage -b docbook $<
+
+# -----------------------------------------------------------------
+#     pattern rule to make DocBook article from asciidoc source
+# -----------------------------------------------------------------
+%$(DOCBOOK_FILE_EXTENSION): %.txt
+	export LINECOUNT1=$$(cat $< | $(DOS2UNIX) $(DOS2UNIXFLAGS) | egrep "^=+$$" | wc -l); \
+	export LINECOUNT2=$$(cat $< | $(DOS2UNIX) $(DOS2UNIXFLAGS) | egrep "^= $$" | wc -l); \
+	if [[ $$LINECOUNT1 > 1 || $$LINECOUNT2 > 1 ]]; then \
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -d book -b docbook $<; \
+	else \
+	$(ASCIIDOC) $(ASCIIDOCFLAGS) -b docbook $<; \
+	fi
 
 # -----------------------------------------------------------------
 #     pattern rule for making (X)HTML and plain-text output
@@ -397,7 +460,7 @@ debug:
 %.html: %$(DOCBOOK_FILE_EXTENSION)
 	@echo '$(HTML_CUSTOM)' | $(XSLT) $(XSLT_FLAGS) $(HTML_PARAMS) - $< > $@
 
-%.txt: %.html
+%.out.txt: %.html
 	$(TXT_MAKER) $(TXT_MAKER_FLAGS) ./$< \
 	  | sed "s/^\(\s\+[0-9]\+\. \)file:\/\/.\+$$/\\1(local)/g" \
 	  | egrep -v '^	file:///.+$$' \
@@ -505,31 +568,31 @@ endif
 # -----------------------------------------------------------------
 #  pattern rules for making Postscript/PDF output from man pages
 # -----------------------------------------------------------------
-%.1.ps: %.1
+%.1.man.ps: %.1
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.2.ps: %.2
+%.2.man.ps: %.2
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.3.ps: %.3
+%.3.man.ps: %.3
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.4.ps: %.4
+%.4.man.ps: %.4
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.5.ps: %.5
+%.5.man.ps: %.5
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.6.ps: %.6
+%.6.man.ps: %.6
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.7.ps: %.7
+%.7.man.ps: %.7
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.8.ps: %.8
+%.8.man.ps: %.8
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
-%.9.ps: %.9
+%.9.man.ps: %.9
 	$(MAN) -l $(MAN_FLAGS) -Tps $< > $@
 
 # -----------------------------------------------------------------
@@ -541,31 +604,31 @@ endif
 # -----------------------------------------------------------------
 #  pattern rules for making plain-text output from man pages
 # -----------------------------------------------------------------
-%.1.txt: %.1
+%.1.out.txt: %.1
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.2.txt: %.2
+%.2.out.txt: %.2
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.3.txt: %.3
+%.3.out.txt: %.3
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.4.txt: %.4
+%.4.out.txt: %.4
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.5.txt: %.5
+%.5.out.txt: %.5
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.6.txt: %.6
+%.6.out.txt: %.6
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.7.txt: %.7
+%.7.out.txt: %.7
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.8.txt: %.8
+%.8.out.txt: %.8
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
-%.9.txt: %.9
+%.9.out.txt: %.9
 	$(MAN) -l $(MAN_FLAGS) -Tascii $< | $(COL) -b $(COL_FLAGS) | $(EXPAND) $(EXPAND_FLAGS) > $@
 
 # -----------------------------------------------------------------
@@ -629,4 +692,7 @@ ifneq ($(LISTS_MAN),)
 endif
 ifneq ($(LISTS_HTML),)
 	$(RM) $(LISTS_HTML)
+endif
+ifneq ($(ASCII_OR_DOCBOOK),docbook)
+	$(RM) -i $(SOURCE_FILES_DBK)
 endif
