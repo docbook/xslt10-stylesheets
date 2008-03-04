@@ -121,6 +121,17 @@
     </xsl:if>
   </xsl:param>
 
+  <!-- * if this verbatim environment starts with a newline/linebreak -->
+  <!-- * (that is, if there is a linebreak after the opening tag), that -->
+  <!-- * break would otherwise show up in output; that does not seem to -->
+  <!-- * be what most users would expect, so we check to see if it does -->
+  <!-- * indeed start with a leading newline. if so, later in this -->
+  <!-- * template, we adjust for the leading new line by doing some -->
+  <!-- * monkeyshines with "sp -1" vertical spacing -->
+  <xsl:variable name="adjust-for-leading-newline">
+    <xsl:if test="substring(., 1, 1) = '&#10;'">Yes</xsl:if>
+  </xsl:variable>
+
   <xsl:choose>
     <!-- * Check to see if this verbatim item is within a parent element that -->
     <!-- * allows mixed content. -->
@@ -185,10 +196,48 @@
         <xsl:when test="self::literallayout|self::programlisting|self::screen">
           <!-- * if this is a literallayout|programlisting|screen, then we -->
           <!-- * put a background behind it in non-TTY output -->
-          <xsl:text>.BB lightgray&#10;</xsl:text>
+          <xsl:choose>
+            <!-- * if content has a leading newline, we need to back up -->
+            <!-- * one line vertically to get it boxed correctly -->
+            <xsl:when test="not($adjust-for-leading-newline = '')">
+              <xsl:call-template name="roff-if-start">
+                <xsl:with-param name="condition">t</xsl:with-param>
+              </xsl:call-template>
+              <xsl:text>.sp -1&#10;</xsl:text>
+              <xsl:call-template name="roff-if-end"/>
+              <xsl:text>.BB lightgray</xsl:text>
+              <xsl:text> </xsl:text>
+              <xsl:text>adjust-for-leading-newline&#10;</xsl:text>
+              <!-- * in non-TTY output, for the case where we have a -->
+              <!-- * leading newline, we need to also back up one line -->
+              <!-- * vertically inside the background box -->
+              <xsl:text>.sp -1&#10;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>.BB lightgray&#10;</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:apply-templates/>
           <xsl:text>&#10;</xsl:text>
-          <xsl:text>.EB lightgray&#10;</xsl:text>
+          <xsl:choose>
+            <xsl:when test="not($adjust-for-leading-newline = '')">
+              <xsl:text>.EB lightgray</xsl:text>
+              <xsl:text> </xsl:text>
+              <xsl:text>adjust-for-leading-newline&#10;</xsl:text>
+              <xsl:call-template name="roff-if-start">
+                <xsl:with-param name="condition">t</xsl:with-param>
+              </xsl:call-template>
+              <!-- * in non-TTY output, for the case where we have a -->
+              <!-- * leading newline, we need to add back at the end of -->
+              <!-- * the content some of the vertical space we chopped -->
+              <!-- * off at the beginning -->
+              <xsl:text>.sp 1&#10;</xsl:text>
+              <xsl:call-template name="roff-if-end"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>.EB lightgray&#10;</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
           <!-- * otherwise this is not a literallayout|programlisting|screen, -->
