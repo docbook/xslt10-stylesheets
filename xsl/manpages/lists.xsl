@@ -134,19 +134,28 @@
   <!-- * undesirable side effects under certain circumstances) -->
   <xsl:call-template name="roff-if-else-start"/>
   <xsl:text>\h'-</xsl:text>
-    <xsl:if test="not($list-indent = '')">
-    <xsl:text>0</xsl:text>
-    <xsl:value-of select="$list-indent"/>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="not($list-indent = '')">
+      <xsl:text>0</xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\n(INu</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>'</xsl:text>
   <xsl:text>&#x2022;</xsl:text>
   <xsl:text>\h'+</xsl:text>
-    <xsl:if test="not($list-indent = '')">
-    <xsl:text>0</xsl:text>
-    <xsl:value-of select="$list-indent - 1"/>
-  <xsl:text>'</xsl:text>
-  </xsl:if>
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="not($list-indent = '')">
+      <xsl:text>0</xsl:text>
+      <xsl:value-of select="$list-indent - 1"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\n(INu-1</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>'\c&#10;</xsl:text>
   <!-- * else, we are not using for "nroff", but instead "troff" - which -->
   <!-- * means not for TTY, but for PS or whatever; so we’re not using a -->
   <!-- * fixed-width font, so use a real .IP instead -->
@@ -158,9 +167,8 @@
   <!-- * The value 2.3 is the amount of indentation; we use 2.3 instead -->
   <!-- * of 2 because when the font family is New Century Schoolbook it -->
   <!-- * seems to require the extra space. -->
-  <xsl:apply-templates/>
   <xsl:call-template name="roff-if-end"/>
-  <xsl:text>.\}&#10;</xsl:text>
+  <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
 </xsl:template>
 
@@ -180,22 +188,31 @@
   <!-- * undesirable side effects under certain circumstances) -->
   <xsl:call-template name="roff-if-else-start"/>
   <xsl:text>\h'-</xsl:text>
-    <xsl:if test="not($list-indent = '')">
-    <xsl:text>0</xsl:text>
-    <xsl:value-of select="$list-indent"/>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="not($list-indent = '')">
+      <xsl:text>0</xsl:text>
+      <xsl:value-of select="$list-indent"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>\n(INu+3n</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>'</xsl:text>
   <xsl:if test="count(preceding-sibling::listitem) &lt; 9">
     <xsl:text> </xsl:text>
   </xsl:if>
   <xsl:number format="1."/>
   <xsl:text>\h'+</xsl:text>
-    <xsl:if test="not($list-indent = '')">
-    <xsl:text>0</xsl:text>
-    <xsl:value-of select="$list-indent - 3"/>
-  <xsl:text>'</xsl:text>
-  </xsl:if>
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="not($list-indent = '')">
+      <xsl:text>0</xsl:text>
+      <xsl:value-of select="$list-indent - 3"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>1n</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:text>'\c&#10;</xsl:text>
   <!-- * else, we are not using for "nroff", but instead "troff" - which -->
   <!-- * means not for TTY, but for PS or whatever; so we’re not using a -->
   <!-- * fixed-width font, so use a real .IP instead -->
@@ -212,8 +229,8 @@
   <!-- * The value 4.2 is the amount of indentation; we use 4.2 instead -->
   <!-- * of 4 because when the font family is Bookman it seems to require -->
   <!-- * the extra space. -->
-  <xsl:apply-templates/>
   <xsl:call-template name="roff-if-end"/>
+  <xsl:apply-templates/>
   <xsl:text>.RE&#10;</xsl:text>
   <xsl:text>&#10;</xsl:text>
 </xsl:template>
