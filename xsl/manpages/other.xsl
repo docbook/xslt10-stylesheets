@@ -802,6 +802,9 @@ db:manvolnum
 ..
 .de EB
 .if t \{\
+.if "\\$2"adjust-for-leading-newline" \{\
+.sp -1
+.\}
 .br
 .di
 .in
@@ -810,7 +813,12 @@ db:manvolnum
 .nr BW \\n(.lu-\\n(.i
 .nr BH \\n(dn+.5v
 .ne \\n(BHu+.5v
+.ie "\\$2"adjust-for-leading-newline" \{\
+\M[\\$1]\h'1n'\v'+.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
+.\}
+.el \{\
 \M[\\$1]\h'1n'\v'-.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
+.\}
 .in 0
 .sp -.5v
 .nf
