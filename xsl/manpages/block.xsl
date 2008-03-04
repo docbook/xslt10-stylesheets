@@ -256,7 +256,9 @@
   </xsl:if>
   <!-- * if this verbatim environment has a following sibling node, -->
   <!-- * output a line of space to separate the content -->
-  <xsl:if test="following-sibling::node()">
+  <xsl:if test="following-sibling::text()
+    |following-sibling::para
+    |following-sibling::simpara">
     <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
