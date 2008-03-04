@@ -26,9 +26,9 @@
   <xsl:text>.BM yellow&#10;</xsl:text>
   <xsl:text>.ps +1&#10;</xsl:text>
   <xsl:call-template name="make.bold.title"/>
-  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.ps -1&#10;</xsl:text>
+  <xsl:text>.br&#10;</xsl:text>
   <xsl:apply-templates/>
-  <xsl:text>&#10;</xsl:text>
   <xsl:text>.sp .5v&#10;</xsl:text>
   <xsl:text>.EM yellow&#10;</xsl:text>
   <xsl:text>.RE&#10;</xsl:text>
