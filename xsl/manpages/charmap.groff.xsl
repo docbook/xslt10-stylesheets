@@ -99,7 +99,7 @@
    character="&#x00a0;"
    u:name="NO-BREAK SPACE"
    u:entity="nbsp"
-   string="\ "
+   string="\ \&amp;"
    u:block="C1 Controls And Latin-1 Supplement (Latin-1 Supplement)"
    u:class="symbols"
    />
