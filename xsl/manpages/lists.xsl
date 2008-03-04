@@ -31,15 +31,15 @@
 <!-- ================================================================== -->
 
 <xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-	             simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-		     remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
+  remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:if test="following-sibling::*[1][
-                self::para or
-                self::simpara or
-                self::remark
-                ]">
+    self::para or
+    self::simpara or
+    self::remark
+    ]">
     <!-- * Make sure multiple paragraphs within a list item don't -->
     <!-- * merge together.                                        -->
     <xsl:text>.sp&#10;</xsl:text>
@@ -99,12 +99,12 @@
 <xsl:template match="glossentry/glossterm"/>
 
 <xsl:template match="variablelist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-                     glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  glosslist[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:apply-templates/>
   <xsl:if test="following-sibling::node() or
-                parent::para[following-sibling::node()] or
-                parent::simpara[following-sibling::node()] or
-                parent::remark[following-sibling::node()]">
+    parent::para[following-sibling::node()] or
+    parent::simpara[following-sibling::node()] or
+    parent::remark[following-sibling::node()]">
     <xsl:text>.sp</xsl:text> 
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
@@ -248,7 +248,7 @@
   <!-- * lists before the actual list items, so we need to get that -->
   <!-- * content (if any) before getting the list items -->
   <xsl:apply-templates
-      select="*[not(self::listitem) and not(self::title)]"/>
+    select="*[not(self::listitem) and not(self::title)]"/>
   <xsl:apply-templates select="listitem"/>
   <!-- * If this list is a child of para and has content following -->
   <!-- * it, within the same para, then add a blank line and move -->
@@ -260,8 +260,8 @@
 </xsl:template>
 
 <xsl:template match="itemizedlist[ancestor::listitem or ancestor::step  or ancestor::glossdef]|
-	             orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-                     procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  orderedlist[ancestor::listitem or ancestor::step or ancestor::glossdef]|
+  procedure[ancestor::listitem or ancestor::step or ancestor::glossdef]">
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:call-template name="bold">
@@ -272,9 +272,9 @@
   </xsl:if>
   <xsl:apply-templates/>
   <xsl:if test="following-sibling::node() or
-                parent::para[following-sibling::node()] or
-                parent::simpara[following-sibling::node()] or
-                parent::remark[following-sibling::node()]">
+    parent::para[following-sibling::node()] or
+    parent::simpara[following-sibling::node()] or
+    parent::remark[following-sibling::node()]">
     <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($list-indent = '')">
       <xsl:text> </xsl:text>
@@ -288,17 +288,16 @@
   
 <!-- * for simplelist type="inline", render it as a comma-separated list -->
 <xsl:template match="simplelist[@type='inline']">
-
   <!-- * if dbchoice PI exists, use that to determine the choice separator -->
   <!-- * (that is, equivalent of "and" or "or" in current locale), or literal -->
   <!-- * value of "choice" otherwise -->
   <xsl:variable name="localized-choice-separator">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbchoice')">
-	<xsl:call-template name="select.choice.separator"/>
+        <xsl:call-template name="select.choice.separator"/>
       </xsl:when>
       <xsl:otherwise>
-	<!-- * empty -->
+        <!-- * empty -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -308,13 +307,13 @@
     <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>
-	<xsl:text>, </xsl:text>
-	<xsl:if test="position() = last() - 1">
-	  <xsl:if test="$localized-choice-separator != ''">
-	    <xsl:value-of select="$localized-choice-separator"/>
-	    <xsl:text> </xsl:text>
-	  </xsl:if>
-	</xsl:if>
+        <xsl:text>, </xsl:text>
+        <xsl:if test="position() = last() - 1">
+          <xsl:if test="$localized-choice-separator != ''">
+            <xsl:value-of select="$localized-choice-separator"/>
+            <xsl:text> </xsl:text>
+          </xsl:if>
+        </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
@@ -354,8 +353,8 @@
   <xsl:text>.ll +(\n(LLu * 62u / 100u)&#10;</xsl:text>
   <!-- * .TS = "Table Start" -->
   <xsl:text>.TS&#10;</xsl:text>
-    <!-- * first output the table "format" spec, which tells tbl(1) how -->
-    <!-- * how to format each row and column. -->
+  <!-- * first output the table "format" spec, which tells tbl(1) how -->
+  <!-- * how to format each row and column. -->
   <xsl:for-each select=".//segtitle">
     <!-- * l = "left", which hard-codes left-alignment for tabular -->
     <!-- * output of all segmentedlist content -->
@@ -389,13 +388,13 @@
     <xsl:with-param name="context" select="."/>
   </xsl:call-template>
   <xsl:choose>
-      <xsl:when test="position() = last()"/> <!-- do nothing -->
-      <xsl:otherwise>
-        <!-- * tbl(1) treats tab characters as delimiters between -->
-        <!-- * cells; so we need to output a tab after each except -->
-        <!-- * segtitle except the last one -->
-        <xsl:text>&#09;</xsl:text>
-      </xsl:otherwise>
+    <xsl:when test="position() = last()"/> <!-- do nothing -->
+    <xsl:otherwise>
+      <!-- * tbl(1) treats tab characters as delimiters between -->
+      <!-- * cells; so we need to output a tab after each except -->
+      <!-- * segtitle except the last one -->
+      <xsl:text>&#09;</xsl:text>
+    </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
