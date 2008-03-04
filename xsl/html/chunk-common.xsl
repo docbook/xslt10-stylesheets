@@ -1347,7 +1347,7 @@
     <xsl:call-template name="head.content"/>
 
     <xsl:if test="$home">
-      <link rel="start">
+      <link rel="home">
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$home"/>
