@@ -67,10 +67,12 @@
   <xsl:template name="verbatim-block-start">
     <xsl:call-template name="store-current-font-family"/>
     <xsl:text>.fam C&#10;</xsl:text>
+    <xsl:text>.ps -1&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template name="verbatim-block-end">
     <xsl:text>.fam \*(ZX&#10;</xsl:text>
+    <xsl:text>.ps +1&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template name="code-inline-start">
