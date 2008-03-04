@@ -375,24 +375,38 @@
     <!-- * We couldn't find a date, so we generate a date. -->
     <!-- * And we make it an appropriately localized date. -->
     <xsl:otherwise>
-      <xsl:if test="$refentry.meta.get.quietly = 0">
-        <xsl:call-template name="log.message">
-          <xsl:with-param name="level">Note</xsl:with-param>
-          <xsl:with-param name="source" select="$refname"/>
-          <xsl:with-param name="context-desc">meta date</xsl:with-param>
-          <xsl:with-param name="message">
-            <xsl:text>no date; using generated date</xsl:text>
-          </xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="log.message">
-          <xsl:with-param name="level">Note</xsl:with-param>
-          <xsl:with-param name="source" select="$refname"/>
-          <xsl:with-param name="context-desc">meta date</xsl:with-param>
-          <xsl:with-param name="message">
-            <xsl:text>see http://docbook.sf.net/el/date</xsl:text>
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:if>
+      <!-- * The following block is commented out because: -->
+      <!-- *  -->
+      <!-- * - having a missing date in the source doesn’t result in -->
+      <!-- *   any information being missing from the generated man -->
+      <!-- *   page (since we generate the needed date) -->
+      <!-- *  -->
+      <!-- * - experience has shown the many users omit the date -->
+      <!-- *   intentionally, because they want to be it generated -->
+      <!-- *  -->
+      <!-- * - in practice it’s not really a condition that most users -->
+      <!-- *   want reported to them -->
+      <!-- *  -->
+      <!-- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <!-- * <xsl:if test="$refentry.meta.get.quietly = 0"> -->
+        <!-- * <xsl:call-template name="log.message"> -->
+          <!-- * <xsl:with-param name="level">Note</xsl:with-param> -->
+          <!-- * <xsl:with-param name="source" select="$refname"/> -->
+          <!-- * <xsl:with-param name="context-desc">meta date</xsl:with-param> -->
+          <!-- * <xsl:with-param name="message"> -->
+            <!-- * <xsl:text>no date; using generated date</xsl:text> -->
+          <!-- * </xsl:with-param> -->
+        <!-- * </xsl:call-template> -->
+        <!-- * <xsl:call-template name="log.message"> -->
+          <!-- * <xsl:with-param name="level">Note</xsl:with-param> -->
+          <!-- * <xsl:with-param name="source" select="$refname"/> -->
+          <!-- * <xsl:with-param name="context-desc">meta date</xsl:with-param> -->
+          <!-- * <xsl:with-param name="message"> -->
+            <!-- * <xsl:text>see http://docbook.sf.net/el/date</xsl:text> -->
+          <!-- * </xsl:with-param> -->
+        <!-- * </xsl:call-template> -->
+      <!-- * </xsl:if> -->
+      <!-- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
       <xsl:call-template name="datetime.format">
         <xsl:with-param name="date">
           <xsl:choose>
