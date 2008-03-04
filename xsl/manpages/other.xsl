@@ -287,7 +287,11 @@ db:manvolnum
     <!-- * Unfortunately, roff seems to do some weird things with -->
     <!-- * long lines that only have words separated by "\~" -->
     <!-- * spaces, so it's safer just to stick with the "\ " space -->
-    <xsl:with-param name="replacement">\ </xsl:with-param>
+    <!-- *  -->
+    <!-- * We append a "\&" to handle the case of a no-break space that -->
+    <!-- * appears at the end of a line - because later processing will -->
+    <!-- * cause that space to get eaten otherwise. -->
+    <xsl:with-param name="replacement">\ \&amp;</xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
