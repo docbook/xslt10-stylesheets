@@ -254,9 +254,9 @@
     <!-- * end indented section -->
     <xsl:text>.RE&#10;</xsl:text> 
   </xsl:if>
-  <!-- * if first following sibling node of this verbatim -->
-  <!-- * environment is a text node, output a line of space before it -->
-  <xsl:if test="following-sibling::node()[1][name(.) = '']">
+  <!-- * if this verbatim environment has a following sibling node, -->
+  <!-- * output a line of space to separate the content -->
+  <xsl:if test="following-sibling::node()">
     <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
