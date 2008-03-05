@@ -391,7 +391,7 @@
     <xsl:when test="position() = last()"/> <!-- do nothing -->
     <xsl:otherwise>
       <!-- * tbl(1) treats tab characters as delimiters between -->
-      <!-- * cells; so we need to output a tab after each except -->
+      <!-- * cells; so we need to output a tab after each -->
       <!-- * segtitle except the last one -->
       <xsl:text>&#09;</xsl:text>
     </xsl:otherwise>
@@ -417,7 +417,7 @@
     <xsl:when test="position() = last()"/> <!-- do nothing -->
     <xsl:otherwise>
       <!-- * tbl(1) treats tab characters as delimiters between -->
-      <!-- * cells; so we need to output a tab after each except -->
+      <!-- * cells; so we need to output a tab after each -->
       <!-- * segtitle except the last one -->
       <xsl:text>&#09;</xsl:text>
     </xsl:otherwise>
