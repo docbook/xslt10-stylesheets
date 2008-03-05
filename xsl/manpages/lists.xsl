@@ -424,4 +424,180 @@
   </xsl:choose>
 </xsl:template>
 
+<!-- ==================================================================== -->
+
+<xsl:template match="calloutlist">
+  <xsl:if test="title|info/title">
+    <xsl:call-template name="formal.object.heading"/>
+  </xsl:if>
+  <!-- * This template was originally copied over from the HTML -->
+  <!-- * calloutlist template, which precedes the following -->
+  <!-- * apply-templates with the comment "Preserve order of PIs and -->
+  <!-- * comments"; I'm not certain that it will actually have that -->
+  <!-- * effect for all cases, and it seems like there is probably a -->
+  <!-- * better way to do it, but anyway, I’m preserving it here for -->
+  <!-- * consistency. -->
+  <xsl:apply-templates 
+    select="*[not(self::callout or self::title or self::titleabbrev)]
+    |comment()[not(preceding-sibling::callout)]
+    |processing-instruction()[not(preceding-sibling::callout)]"/>
+  <!-- * put callout list into a table -->
+  <xsl:text>.TS&#10;</xsl:text>
+  <xsl:text>tab(:);&#10;</xsl:text>
+  <!-- * the following defines the row layout for the table: two columns, -->
+  <!-- * with the first cell in each row right-aligned, and the second -->
+  <!-- * cell left aligned with a width of 75% of the line length -->
+  <xsl:text>r lw(\n(.lu*75u/100u).&#10;</xsl:text>
+  <xsl:apply-templates select="callout
+    |comment()[preceding-sibling::callout]
+    |processing-instruction()[preceding-sibling::callout]"/>
+  <xsl:text>.TE&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="calloutlist/title"/>
+
+<xsl:template match="callout">
+  <!-- * first cell of each row is the set of callout numbers for this -->
+  <!-- * particular callout -->
+  <xsl:call-template name="callout.arearefs">
+    <xsl:with-param name="arearefs" select="@arearefs"/>
+  </xsl:call-template>
+  <!-- * end of the first cell in the row; the \h hackery is to correct -->
+  <!-- * for the excessive horizontal whitespace that tbl(1) adds between -->
+  <!-- * cells in the same row -->
+  <xsl:text>\h'-2n':</xsl:text>
+  <!-- * start the next cell in the row, which has the prose contents -->
+  <!-- * (description/explanation) for the callout -->
+  <xsl:text>T{&#10;</xsl:text>
+  <xsl:apply-templates/>
+  <xsl:text>T}&#10;</xsl:text>
+  <!-- * end of the last cell and end of the row -->
+</xsl:template>
+
+<xsl:template name="callout.arearefs">
+  <xsl:param name="arearefs"></xsl:param>
+  <!-- * callout can have multiple values in its arearefs attribute, so -->
+  <!-- * we use the position param to track the postion of each value -->
+  <xsl:param name="position">1</xsl:param>
+  <xsl:if test="$arearefs!=''">
+    <xsl:choose>
+      <xsl:when test="substring-before($arearefs,' ')=''">
+        <xsl:call-template name="callout.arearef">
+          <xsl:with-param name="arearef" select="$arearefs"/>
+          <xsl:with-param name="position" select="$position"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="callout.arearef">
+          <xsl:with-param name="arearef"
+            select="substring-before($arearefs,' ')"/>
+          <xsl:with-param name="position" select="$position"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:call-template name="callout.arearefs">
+      <xsl:with-param name="arearefs"
+        select="substring-after($arearefs,' ')"/>
+      <xsl:with-param name="position" select="$position + 1"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="callout.arearef">
+  <xsl:param name="arearef"></xsl:param>
+  <!-- * callout can have multiple values in its arearefs attribute, so -->
+  <!-- * we use the position param to track the postion of each value -->
+  <xsl:param name="position"></xsl:param>
+  <xsl:variable name="targets" select="key('id',$arearef)"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+
+  <xsl:call-template name="check.id.unique">
+    <xsl:with-param name="linkend" select="$arearef"/>
+  </xsl:call-template>
+
+  <xsl:choose>
+    <xsl:when test="count($target)=0">
+      <xsl:text>???</xsl:text>
+    </xsl:when>
+    <xsl:when test="local-name($target)='co'">
+      <!-- * if this is not the first value in the set of values in the -->
+      <!-- * arearef attribute for this callout, then we prepend a groff -->
+      <!-- * non-breaking space to it, to prevent groff from injecting -->
+      <!-- * linebreaks into the output. For callout instances with -->
+      <!-- * multiple values in their arearefs attributes, that results -->
+      <!-- * in all of callout numbers beings listed on the same line. -->
+      <xsl:if test="not($position = 1)">
+        <xsl:text>\ </xsl:text>
+      </xsl:if>
+      <xsl:apply-templates select="$target"
+        mode="calloutlist-callout-number"/>
+    </xsl:when>
+    <!-- * the manpages stylesheet does not really support areaset and -->
+    <!-- * area (because we can't/don't actually render the callout bugs -->
+    <!-- * at the specified coordinates); however, the following (for -->
+    <!-- * what it's worth) might cause the callout numbers in the -->
+    <!-- * calloutlist to be render at least (then again, maybe it won't; -->
+    <!-- * it's not actually been tested... -->
+    <xsl:when test="local-name($target)='areaset'">
+      <xsl:call-template name="callout-bug">
+        <xsl:with-param name="conum">
+          <xsl:apply-templates select="$target" mode="conumber"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="local-name($target)='area'">
+      <xsl:choose>
+        <xsl:when test="$target/parent::areaset">
+          <xsl:call-template name="callout-bug">
+            <xsl:with-param name="conum">
+              <xsl:apply-templates
+                select="$target/parent::areaset" mode="conumber"/>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="callout-bug">
+            <xsl:with-param name="conum">
+              <xsl:apply-templates select="$target"
+                mode="conumber"/>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:text>???</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<!-- * we bold the actual callout bugs and put -->
+<!-- * parenthesis around them -->
+<xsl:template name="callout-bug">
+  <xsl:param name="conum" select='1'/>
+  <xsl:text>\fB(</xsl:text>
+  <xsl:value-of select="$conum"/>
+  <xsl:text>)\fR</xsl:text>
+</xsl:template>
+
+<!-- * we bold the callout numbers and follow each -->
+<!-- * with a period -->
+<xsl:template name="calloutlist-callout-number">
+  <xsl:param name="conum" select='1'/>
+  <xsl:text>\fB</xsl:text>
+  <xsl:value-of select="$conum"/>
+  <xsl:text>.\fR</xsl:text>
+</xsl:template>
+
+<xsl:template match="co" mode="calloutlist-callout-number">
+  <xsl:call-template name="calloutlist-callout-number">
+    <xsl:with-param name="conum">
+      <xsl:number count="co"
+        level="any"
+        from="programlisting|screen|literallayout|synopsis"
+        format="1"/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 </xsl:stylesheet>
