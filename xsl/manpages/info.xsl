@@ -531,6 +531,11 @@
     </xsl:variable>
     <xsl:value-of select="normalize-space($contents)"/>
     <xsl:text>&#10;</xsl:text>
+    <xsl:if test="../personname|../surname|../firstname
+      |../othername|../lineage|../honorific
+      |../affiliation|../email|../address">
+      <xsl:text>.RE&#10;</xsl:text> 
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="mark.up.blurb.or.contrib">
