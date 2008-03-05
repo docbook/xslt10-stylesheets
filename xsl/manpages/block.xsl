@@ -67,7 +67,8 @@
     <xsl:when test="ancestor::footnote or
                     ancestor::annotation or
                     ancestor::authorblurb or
-                    ancestor::personblurb">
+                    ancestor::personblurb or
+                    ancestor::callout">
       <xsl:if test="preceding-sibling::*[not(name() ='')]">
         <xsl:text>.sp</xsl:text>
         <xsl:text>&#10;</xsl:text>
@@ -95,8 +96,10 @@
 </xsl:template>
 
 <xsl:template match="simpara">
-  <xsl:if test="not(ancestor::authorblurb) and
-                not(ancestor::personblurb)">
+  <xsl:if test="not(ancestor::authorblurb)
+    and not(ancestor::personblurb)
+    and not(ancestor::callout)"
+    >
     <xsl:text>.sp&#10;</xsl:text>
   </xsl:if>
   <xsl:variable name="content">
