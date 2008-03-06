@@ -3027,7 +3027,7 @@ div {
 
 [
    db:refname [ "authorgroup" ]
-   db:refpurpose [ "Wrapper for author information when a document has multiple authors or collabarators" ]
+   db:refpurpose [ "Wrapper for author information when a document has multiple authors or collaborators" ]
 ]
 div {
 
@@ -3935,7 +3935,7 @@ div {
 
 [
    db:refname [ "othername" ]
-   db:refpurpose [ "A component of a persons name that is not a first name, surname, or lineage" ]
+   db:refpurpose [ "A component of a person's name that is not a first name, surname, or lineage" ]
 ]
 div {
 
