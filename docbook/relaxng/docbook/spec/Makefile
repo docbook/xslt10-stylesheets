@@ -7,6 +7,7 @@ FOSTYLE=fo.xsl
 XML2RFC=/share/doctypes/ietf/xml2rfc/xml2rfc.tcl
 RFCBASE=draft-walsh-app-docbook-xml-
 RFCVERSION=00
+TIDY=tidy
 
 XSLPARAM=
 
@@ -15,7 +16,7 @@ all: docbook.html docbook.pdf
 docbook.html: docbook.xml html.xsl
 	jing ../docbook.rng $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
-	tidy -q -utf8 -mn -asxml $@
+	$(TIDY) -q -utf8 -mn -asxml $@
 
 docbook.fo: docbook.xml fo.xsl
 	jing ../docbook.rng $<
