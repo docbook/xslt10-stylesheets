@@ -51,7 +51,7 @@
     context information in different ways. Often (usually), the
     context information is not actually part of the content of the
     <tag>refentry</tag> itself, but instead part of the content of a
-    parent or ancestor element to the the <tag>refentry</tag>. And
+    parent or ancestor element to the <tag>refentry</tag>. And
     even then, DocBook provides a variety of elements that users might
     potentially use to mark up the same kind of information. One user
     might use the <tag>productnumber</tag> element to mark up version
@@ -1111,7 +1111,7 @@
         </xsl:call-template>
       </xsl:variable>
       <!-- * At this point, we know that we don't have properly marked-up -->
-      <!-- * mnual metadata, so even if we do have manul fallback -->
+      <!-- * manual metadata, so even if we do have manual fallback -->
       <!-- * content, we still report to the user that it should be -->
       <!-- * marked up properly instead. -->
       <xsl:if test="$refentry.meta.get.quietly = 0">
