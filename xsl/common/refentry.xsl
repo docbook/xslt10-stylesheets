@@ -1141,6 +1141,7 @@
           <!-- * we have nothing appropriate to use for manual, and no fallback -->
           <!-- * content, so report insert a fixme -->
           <xsl:text>[FIXME: manual]</xsl:text>
+          <xsl:if test="$refentry.meta.get.quietly = 0">
             <xsl:call-template name="log.message">
               <xsl:with-param name="level">Warn</xsl:with-param>
               <xsl:with-param name="source" select="$refname"/>
@@ -1157,6 +1158,7 @@
       <!-- * we have nothing appropriate to use for manual, and no fallback -->
       <!-- * given, so insert a fixme -->
       <xsl:text>[FIXME: manual]</xsl:text>
+      <xsl:if test="$refentry.meta.get.quietly = 0">
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">Warn</xsl:with-param>
           <xsl:with-param name="source" select="$refname"/>
