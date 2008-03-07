@@ -199,6 +199,7 @@
         <xsl:with-param name="title"      select="$refentry.metadata/title"/>
         <xsl:with-param name="manual"     select="$refentry.metadata/manual"/>
         <xsl:with-param name="source"     select="$refentry.metadata/source"/>
+        <xsl:with-param name="refname"    select="$first.refname"/>
       </xsl:call-template>
       <!-- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
       <!-- * TH.title.line = title line in header/footer of man page -->
