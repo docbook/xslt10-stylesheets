@@ -379,7 +379,9 @@
     <!-- * Display direct-child addresses on separate lines -->
     <xsl:apply-templates select="address" mode="authorsect"/>
     <!-- * Call template for handling various attribution possibilities -->
-    <xsl:call-template name="attribution"/>
+    <xsl:call-template name="attribution">
+      <xsl:with-param name="person-name" select="$person-name"/>
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="collab" mode="authorsect">
@@ -537,6 +539,8 @@
   </xsl:template>
 
   <xsl:template name="attribution">
+    <xsl:param name="person-name"/>
+    <xsl:param name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
     <!-- * Determine appropriate attribution for a particular person's role. -->
     <xsl:choose>
       <!-- * if we have a *blurb or contrib, just use that -->
@@ -544,41 +548,29 @@
         <xsl:apply-templates select="contrib|personblurb|authorblurb" mode="authorsect"/>
         <xsl:text>&#10;</xsl:text>
       </xsl:when>
-      <!-- * If we have no *blurb or contrib, but this is an Author or -->
-      <!-- * Editor, then render the corresponding localized gentext -->
-      <xsl:when test="self::author">
-        <xsl:text>&#10;</xsl:text>
-        <xsl:text>.RS</xsl:text> 
-        <xsl:if test="not($blurb-indent = '')">
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="$blurb-indent"/>
+      <xsl:otherwise>
+        <!-- * otherwise we have no attribution information to use... -->
+        <xsl:if test="not($person-name = '')">
+          <!-- * if we have a person name or organization name -->
+          <!-- * ($person-name can actually be an orgname, not just a -->
+          <!-- * person name), then report to the user that we are -->
+          <!-- * lacking attribution information for that person -->
+          <xsl:if test="$refentry.meta.get.quietly = 0">
+            <xsl:call-template name="log.message">
+              <xsl:with-param name="level">Warn</xsl:with-param>
+              <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
+              <xsl:with-param name="message">
+                <xsl:text>no personblurb|contrib for </xsl:text>
+                <xsl:value-of select="$person-name"/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:if>
         </xsl:if>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'Author'"/>
-        </xsl:call-template>
-        <xsl:text>.&#10;</xsl:text>
-        <xsl:text>.RE&#10;</xsl:text> 
-      </xsl:when>
-      <xsl:when test="self::editor">
-        <xsl:text>&#10;</xsl:text>
-        <xsl:text>.RS</xsl:text> 
-        <xsl:if test="not($blurb-indent = '')">
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="$blurb-indent"/>
-        </xsl:if>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'Editor'"/>
-        </xsl:call-template>
-        <xsl:text>.&#10;</xsl:text>
-        <xsl:text>.RE&#10;</xsl:text> 
-      </xsl:when>
-      <!-- * If we have no *blurb or contrib, but this is an Othercredit, -->
-      <!-- * check value of Class attribute and use corresponding gentext. -->
-      <xsl:when test="self::othercredit">
         <xsl:choose>
-          <xsl:when test="@class and @class != 'other'">
+          <!-- * If we have no *blurb or contrib, but this is an Author or -->
+          <!-- * Editor, then render the corresponding localized gentext -->
+          <xsl:when test="self::author">
             <xsl:text>&#10;</xsl:text>
             <xsl:text>.RS</xsl:text> 
             <xsl:if test="not($blurb-indent = '')">
@@ -587,20 +579,54 @@
             </xsl:if>
             <xsl:text>&#10;</xsl:text>
             <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="@class"/>
+              <xsl:with-param name="key" select="'Author'"/>
             </xsl:call-template>
             <xsl:text>.&#10;</xsl:text>
             <xsl:text>.RE&#10;</xsl:text> 
           </xsl:when>
+          <xsl:when test="self::editor">
+            <xsl:text>&#10;</xsl:text>
+            <xsl:text>.RS</xsl:text> 
+            <xsl:if test="not($blurb-indent = '')">
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="$blurb-indent"/>
+            </xsl:if>
+            <xsl:text>&#10;</xsl:text>
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'Editor'"/>
+            </xsl:call-template>
+            <xsl:text>.&#10;</xsl:text>
+            <xsl:text>.RE&#10;</xsl:text> 
+          </xsl:when>
+          <!-- * If we have no *blurb or contrib, but this is an Othercredit, -->
+          <!-- * check value of Class attribute and use corresponding gentext. -->
+          <xsl:when test="self::othercredit">
+            <xsl:choose>
+              <xsl:when test="@class and @class != 'other'">
+                <xsl:text>&#10;</xsl:text>
+                <xsl:text>.RS</xsl:text> 
+                <xsl:if test="not($blurb-indent = '')">
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="$blurb-indent"/>
+                </xsl:if>
+                <xsl:text>&#10;</xsl:text>
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key" select="@class"/>
+                </xsl:call-template>
+                <xsl:text>.&#10;</xsl:text>
+                <xsl:text>.RE&#10;</xsl:text> 
+              </xsl:when>
+              <xsl:otherwise>
+                <!-- * We have an Othercredit, but no usable value for the Class -->
+                <!-- * attribute, so nothing to show, do nothing -->
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
           <xsl:otherwise>
-            <!-- * We have an Othercredit, but not usable value for the Class -->
-            <!-- * attribute, so nothing to show, do nothing -->
+            <!-- * We have no *blurb or contrib or anything else we can use to -->
+            <!-- * display appropriate attribution for this person, so do nothing -->
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- * We have no *blurb or contrib or anything else we can use to -->
-        <!-- * display appropriate attribution for this person, so do nothing -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
