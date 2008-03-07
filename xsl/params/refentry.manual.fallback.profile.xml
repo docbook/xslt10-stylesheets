@@ -16,7 +16,7 @@
 <refsynopsisdiv>
 <src:fragment xml:id="refentry.manual.fallback.profile.frag">
 <xsl:param name="refentry.manual.fallback.profile">
-refmeta/refmiscinfo[1]/node()</xsl:param>
+refmeta/refmiscinfo[not(@class = 'date')][1]/node()</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
