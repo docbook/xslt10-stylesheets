@@ -306,6 +306,7 @@ db:manvolnum
     <xsl:param name="title"/>
     <xsl:param name="manual"/>
     <xsl:param name="source"/>
+    <xsl:param name="refname"/>
     <xsl:text>.\"     Title: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$title"/>
@@ -316,6 +317,7 @@ db:manvolnum
       <xsl:with-param name="content">
         <xsl:call-template name="make.roff.metadata.author">
           <xsl:with-param name="info" select="$info"/>
+          <xsl:with-param name="refname" select="$refname"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>

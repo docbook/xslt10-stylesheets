@@ -79,9 +79,9 @@
   <!-- * The make.roff.metatada.author template and metadata.author -->
   <!-- * mode are used only for populating the Author field in the -->
   <!-- * metadata "top comment" we embed in roff source of each page. -->
-
   <xsl:template name="make.roff.metadata.author">
     <xsl:param name="info"/>
+    <xsl:param name="refname"/>
     <xsl:choose>
       <xsl:when test="$info//author">
         <xsl:apply-templates
@@ -123,7 +123,118 @@
             select="(($info[//publishername])[last()]//publishername)[1]"
             mode="metadata.author"/>
       </xsl:when>
-      <xsl:otherwise/> <!-- * do nothing, no author info found -->
+      <xsl:otherwise>
+        <!-- * otherwise, we need to check to see if we have an "Author" -->
+        <!-- * or "Authors" section in the refentry -->
+        <xsl:variable name="gentext.author">
+          <xsl:text>"</xsl:text>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Author'"/>
+          </xsl:call-template>
+          <xsl:text>"</xsl:text>
+        </xsl:variable>
+        <xsl:variable name="gentext.AUTHOR">
+          <xsl:if test="not($gentext.author = '')">
+            <xsl:call-template name="string.upper">
+              <xsl:with-param name="string" select="$gentext.author"/>
+            </xsl:call-template>
+          </xsl:if>
+        </xsl:variable>
+        <xsl:variable name="gentext.authors">
+          <xsl:text>"</xsl:text>
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'Authors'"/>
+          </xsl:call-template>
+          <xsl:text>"</xsl:text>
+        </xsl:variable>
+        <xsl:variable name="gentext.AUTHORS">
+          <xsl:if test="not($gentext.authors = '')">
+            <xsl:call-template name="string.upper">
+              <xsl:with-param name="string" select="$gentext.authors"/>
+            </xsl:call-template>
+          </xsl:if>
+        </xsl:variable>
+        <!-- * get all refentry/refsect1/title & refentry/refsection/title -->
+        <!-- * instances, delimit each with double quotes, and put them -->
+        <!-- * into a single refsect1.titles string -->
+        <xsl:variable name="refsect1.titles">
+          <xsl:for-each select="refsect1/title">
+            <xsl:text>"</xsl:text>
+            <xsl:value-of select="normalize-space(.)"/>
+            <xsl:text>"</xsl:text>
+            <xsl:text> </xsl:text>
+          </xsl:for-each>
+          <xsl:for-each select="refsection/title">
+            <xsl:text>"</xsl:text>
+            <xsl:value-of select="normalize-space(.)"/>
+            <xsl:text>"</xsl:text>
+            <xsl:text> </xsl:text>
+          </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="author.section.title">
+          <xsl:choose>
+            <xsl:when test="not($gentext.authors = '') and
+              contains($refsect1.titles,$gentext.authors)">
+              <xsl:value-of select="$gentext.authors"/>
+            </xsl:when>
+            <xsl:when test="not($gentext.AUTHORS = '') and
+              contains($refsect1.titles,$gentext.AUTHORS)">
+              <xsl:value-of select="$gentext.AUTHORS"/>
+            </xsl:when>
+            <xsl:when test="not($gentext.author = '') and
+              contains($refsect1.titles,$gentext.author)">
+              <xsl:value-of select="$gentext.authors"/>
+            </xsl:when>
+            <xsl:when test="not($gentext.AUTHOR = '') and
+              contains($refsect1.titles,$gentext.AUTHOR)">
+              <xsl:value-of select="$gentext.AUTHOR"/>
+            </xsl:when>
+            <xsl:otherwise/> <!-- * otherwise, leave empty -->
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="not($author.section.title = '')">
+            <!-- * if we have a non-empty $author.section.title value, -->
+            <!-- * then reference that title (instead of putting a -->
+            <!-- * specific author name) -->
+            <xsl:text>[see the </xsl:text>
+            <xsl:value-of select="$author.section.title"/>
+            <xsl:text> section]</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- * otherwise we have no info/author content and no Author -->
+            <!-- * or Authors section, so we insert a fixme and report -->
+            <!-- * the problem to the user -->
+            <xsl:text>[FIXME: author] [see http://docbook.sf.net/el/author]</xsl:text>
+            <xsl:if test="$refentry.meta.get.quietly = 0">
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">Warn</xsl:with-param>
+                <xsl:with-param name="source" select="$refname"/>
+                <xsl:with-param name="context-desc">meta author</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>no refentry/info/author</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">Note</xsl:with-param>
+                <xsl:with-param name="source" select="$refname"/>
+                <xsl:with-param name="context-desc">meta author</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>see http://docbook.sf.net/el/author</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">Warn</xsl:with-param>
+                <xsl:with-param name="source" select="$refname"/>
+                <xsl:with-param name="context-desc">meta author</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>no author data, so inserted a fixme</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+            </xsl:if>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
