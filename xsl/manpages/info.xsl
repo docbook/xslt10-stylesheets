@@ -183,7 +183,7 @@
             </xsl:when>
             <xsl:when test="not($gentext.author = '') and
               contains($refsect1.titles,$gentext.author)">
-              <xsl:value-of select="$gentext.authors"/>
+              <xsl:value-of select="$gentext.author"/>
             </xsl:when>
             <xsl:when test="not($gentext.AUTHOR = '') and
               contains($refsect1.titles,$gentext.AUTHOR)">
