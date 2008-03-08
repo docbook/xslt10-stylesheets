@@ -68,6 +68,7 @@
 &man.endnotes.list.enabled;
 &man.endnotes.list.heading;
 &man.endnotes.are.numbered;
+&man.base.url.for.relative.links;
 &man.links.are.underlined;
   </reference>
   <reference xml:id="lists">
@@ -152,6 +153,7 @@
 
 <src:fragref linkend="man.authors.section.enabled.frag"/>
 <src:fragref linkend="man.break.after.slash.frag"/>
+<src:fragref linkend="man.base.url.for.relative.links.frag"/>
 <src:fragref linkend="man.charmap.enabled.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.frag"/>
 <src:fragref linkend="man.charmap.subset.profile.english.frag"/>

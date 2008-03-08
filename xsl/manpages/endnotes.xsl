@@ -42,8 +42,8 @@
 <!-- *    Notesources with the same earmark are assigned the same -->
 <!-- *    number. -->
 <!-- * -->
-<!-- *    By design, that index excludes any element whose whose string -->
-<!-- *    value is identical to value of its url xlink:href attribute). -->
+<!-- *    By design, that index excludes any element whose string value -->
+<!-- *    is identical to the value of its url xlink:href attribute). -->
 <!-- * -->
 <!-- * 2. Puts a numbered marker inline to mark the place where the -->
 <!-- *    notesource occurs in the main text flow. -->
@@ -68,8 +68,8 @@
 <!-- * earmarks is that we need to get and check the sets of -->
 <!-- * earmarks for uniqueness per-Refentry (not per-document). -->
 <!-- * -->
-<!-- * FIXME: as -->
-<!-- * with "repeat" URLS, alt instances that have the same string value -->
+<!-- * FIXME: -->
+<!-- * as with "repeat" URLS, alt instances that have the same string value -->
 <!-- * as preceding ones (likely to occur for repeat acroynyms and -->
 <!-- * abbreviations) should be listed only once in the endnotes list, -->
 <!-- * and numbered accordingly inline; split man.indent.width into -->
@@ -481,13 +481,15 @@
       </xsl:when>
       <xsl:otherwise>
         <!-- * otherwise, this earmark has empty content, -->
-        <!-- * which means its corresponding notesources is an -->
+        <!-- * which means its corresponding notesource is an -->
         <!-- * imagedata, audiodata, or videodata instance; in -->
-        <!-- * that case, we use the value of the notesoures's -->
+        <!-- * that case, we use the value of the notesource's -->
         <!-- * @fileref attribute (which is stored in the -->
         <!-- * earmark uri attribute) as the "contents" for -->
         <!-- * this endnote/notesource -->
-        <xsl:value-of select="@uri"/>
+        <xsl:call-template name="display.uri">
+          <xsl:with-param name="uri" select="@uri"/>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text>&#10;</xsl:text>
@@ -520,13 +522,33 @@
         <xsl:call-template name="suppress.hyphenation"/>
         <xsl:text>\%</xsl:text>
       </xsl:if>
-      <xsl:value-of select="@uri"/>
+      <xsl:call-template name="display.uri">
+        <xsl:with-param name="uri" select="@uri"/>
+      </xsl:call-template>
       <xsl:text>&#10;</xsl:text>
       <xsl:text>.RE</xsl:text>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
 
   </xsl:for-each>
+</xsl:template>
+
+<xsl:template name="display.uri">
+  <xsl:param name="uri"/>
+  <xsl:choose>
+    <xsl:when test="contains($uri, ':')">
+      <!-- * if this URI contains a colon character, it’s probably -->
+      <!-- * an absolute URI with a scheme, so we output it as-is -->
+      <xsl:value-of select="$uri"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- * otherwise this is probably not an absolute URI, so we -->
+      <!-- * need to prepend $man.base.url.for.relative.links to -->
+      <!-- * give the URI some "context" in man-page output -->
+      <xsl:value-of
+        select="concat($man.base.url.for.relative.links, $uri)"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
