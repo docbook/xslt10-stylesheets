@@ -114,7 +114,7 @@ extensions/xslt.py: ../xsl-libxslt/python/xslt.py
 extensions/docbook.py: ../xsl-libxslt/python/docbook.py
 	cp -p $^ $@
 
-extensions/README.LIBXSLT: ../xsl-libxslt/python/README
+extensions/README.LIBXSLT: ../xsl-libxslt/python/README.LIBXSLT
 	cp -p $^ $@
 
 clean:
