@@ -62,7 +62,7 @@ DISTRIB_PACKAGES = doc
 URILIST = \
 .\ http://docbook.sourceforge.net/release/xsl/current/
 
-DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website
+DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website extensions
 
 .PHONY: distrib clean doc docsrc xhtml
 
@@ -94,36 +94,12 @@ docsrc: base
 doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
-extensions: extensions/saxon65.jar extensions/xalan27.jar extensions/xslt.py extensions/docbook.py extensions/README.LIBXSLT 
-
-extensions/saxon65.jar: ../xsl-saxon/saxon65.jar
-	cp -p $^ $@
-
-extensions/xalan27.jar: ../xsl-xalan/xalan27.jar
-	cp -p $^ $@
-
-../xsl-saxon/saxon65.jar: $(wildcard ../xsl-saxon/src/com/nwalsh/saxon/*.java) 
-	$(MAKE) -C $(dir $@)
-
-../xsl-xalan/xalan27.jar: $(wildcard ../xsl-xalan/src/com/nwalsh/xalan/*.java) 
-	$(MAKE) -C $(dir $@)
-
-extensions/xslt.py: ../xsl-libxslt/python/xslt.py
-	cp -p $^ $@
-
-extensions/docbook.py: ../xsl-libxslt/python/docbook.py
-	cp -p $^ $@
-
-extensions/README.LIBXSLT: ../xsl-libxslt/python/README.LIBXSLT
-	cp -p $^ $@
-
 clean:
 	for i in $(DIRS) __bogus__; do \
 		if [ $$i != __bogus__ ] ; then \
 			echo "$(MAKE) clean -C $$i"; $(MAKE) clean -C $$i; \
 		fi \
 	done
-	$(RM) -r extensions/*
 	$(MAKE) clean -C xhtml
 	$(MAKE) clean -C doc
 	$(MAKE) clean -C docsrc
