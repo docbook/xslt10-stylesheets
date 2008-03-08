@@ -41,9 +41,9 @@ the "use.extensions" and "tablecolumns.extension" parameters to 1.
 ----------------------------------------------------------------------
 Manifest
 ----------------------------------------------------------------------
-README        This file
-xslt.py	      Executable script file
-docbook.py    Module that implements extensions
+README.LIBXSLT   This file
+xslt.py          Executable script file
+docbook.py       Module that implements extensions
 
 ----------------------------------------------------------------------
 [1] http://xmlsoft.org/XSLT
