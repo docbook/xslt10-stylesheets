@@ -54,7 +54,7 @@ if a (numbered) list of endnotes is also generated.</para>
     recognizing URLs and can, for example, present users with
     an options to open a URL in a browser with the user clicks on
     the URL is a terminal window. And short of those, users with X
-    terminals can always manualy cut and paste the URLs into a web
+    terminals can always manually cut and paste the URLs into a web
     browser.</para>
   <para>Also, note that various “man to html” tools, such as the
     widely used <command><link xlink:href="http://users.actrix.gen.nz/michael/vhman2html.html">man2html</link></command> (<literal>VH-Man2html</literal>)
