@@ -1,5 +1,6 @@
 <!ENTITY man.authors.section.enabled SYSTEM "../params/man.authors.section.enabled.xml">
 <!ENTITY man.break.after.slash SYSTEM "../params/man.break.after.slash.xml">
+<!ENTITY man.base.url.for.relative.links SYSTEM "../params/man.base.url.for.relative.links.xml">
 <!ENTITY man.charmap.enabled SYSTEM "../params/man.charmap.enabled.xml">
 <!ENTITY man.charmap.subset.profile SYSTEM "../params/man.charmap.subset.profile.xml">
 <!ENTITY man.charmap.subset.profile.english SYSTEM "../params/man.charmap.subset.profile.english.xml">
