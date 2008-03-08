@@ -189,6 +189,13 @@
               contains($refsect1.titles,$gentext.AUTHOR)">
               <xsl:value-of select="$gentext.AUTHOR"/>
             </xsl:when>
+            <!-- * git docs (for one) use "DOCUMENTATION" for their authors section -->
+            <xsl:when test="contains($refsect1.titles,'Documentation')">
+              <xsl:text>Documentation</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains($refsect1.titles,'DOCUMENTATION')">
+              <xsl:text>DOCUMENTATION</xsl:text>
+            </xsl:when>
             <xsl:otherwise/> <!-- * otherwise, leave empty -->
           </xsl:choose>
         </xsl:variable>
@@ -563,6 +570,22 @@
               <xsl:with-param name="message">
                 <xsl:text>no personblurb|contrib for </xsl:text>
                 <xsl:value-of select="$person-name"/>
+              </xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="log.message">
+              <xsl:with-param name="level">Note</xsl:with-param>
+              <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
+              <xsl:with-param name="message">
+                <xsl:text>see see http://docbook.sf.net/el/contrib</xsl:text>
+              </xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="log.message">
+              <xsl:with-param name="level">Note</xsl:with-param>
+              <xsl:with-param name="source" select="$refname"/>
+              <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
+              <xsl:with-param name="message">
+                <xsl:text>see see http://docbook.sf.net/el/personblurb</xsl:text>
               </xsl:with-param>
             </xsl:call-template>
           </xsl:if>
