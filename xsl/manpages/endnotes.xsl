@@ -175,9 +175,10 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="*[@xlink:href]|ulink
-                     |imagedata|audiodata|videodata
-                     |footnote[not(ancestor::table)]
-                     |annotation|alt">
+  |imagedata|audiodata|videodata
+  |footnote[not(ancestor::table)]
+  |annotation|alt">
+  <xsl:variable name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
   <xsl:variable name="all.earmark.indexes.in.current.document.rtf">
     <xsl:call-template name="get.all.earmark.indexes.in.current.document"/>
   </xsl:variable>
@@ -265,7 +266,6 @@
             <!-- * block-level child content of an endnote properly unless -->
             <!-- * it's wrapped in a para that has some "prefatory" text -->
             <xsl:variable name="parent-name" select="local-name(..)"/>
-            <xsl:variable name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
             <xsl:variable name="endnote-number">
               <xsl:call-template name="pad-string">
                 <!-- * endnote number may be 2 digits, so pad it with a space -->
@@ -343,21 +343,48 @@
   </xsl:variable>
 
   <xsl:if test="self::ulink or self::*[@xlink:href]">
-    <!-- * This is a hyperlink, so we need to decide how to format -->
-    <!-- * the inline contents of the link (to underline or not). -->
+    <xsl:variable name="link.wrapper">
+      <xsl:value-of select="$notesource.contents"/>
+    </xsl:variable>
+    <!-- * This is a hyperlink, so we need to determine if the user wants -->
+    <!-- * font formatting applied to it, and if so, what font -->
     <xsl:choose>
-      <!-- * if user wants links underlined, underline (ital) it -->
-      <xsl:when test="$man.links.are.underlined != 0">
-        <xsl:variable name="link.wrapper">
-          <xsl:value-of select="$notesource.contents"/>
-        </xsl:variable>
+      <xsl:when test="$man.font.links = 'B'">
+        <xsl:call-template name="bold">
+          <xsl:with-param name="node" select="exsl:node-set($link.wrapper)"/>
+          <xsl:with-param name="context" select="."/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$man.font.links = 'I'">
         <xsl:call-template name="italic">
           <xsl:with-param name="node" select="exsl:node-set($link.wrapper)"/>
           <xsl:with-param name="context" select="."/>
         </xsl:call-template>
       </xsl:when>
+      <xsl:when test="$man.font.links = ''">
+        <!-- * if man.font.links is empty, user doesn't want links -->
+        <!-- * underlined, so just display content -->
+        <xsl:value-of select="$notesource.contents"/>
+      </xsl:when>
       <xsl:otherwise>
-        <!-- * user doesn't want links underlined, so just display content -->
+        <!-- * otherwise the user has specified an unsupported value for -->
+        <!-- * man.font.links, so emit a warning and don't apply any font -->
+        <!-- * formatting -->
+        <xsl:message>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">Warn</xsl:with-param>
+            <xsl:with-param name="source" select="$refname"/>
+            <xsl:with-param name="context-desc">
+              <xsl:text>link font</xsl:text>
+            </xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>invalid $man.font.links value: </xsl:text>
+              <xsl:text>'</xsl:text>
+              <xsl:value-of select="$man.font.links"/>
+              <xsl:text>'</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:message>
         <xsl:value-of select="$notesource.contents"/>
       </xsl:otherwise>
     </xsl:choose>

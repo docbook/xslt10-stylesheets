@@ -43,13 +43,13 @@ an “empty” notesource is on that looks like this:<literallayout class="monos
 </itemizedlist>
 The default heading for the list of endnotes is
 <literal>NOTES</literal>. To output a different heading, set a value
-for the <parameter>man.links.section.heading</parameter>
+for the <parameter>man.endnotes.section.heading</parameter>
 parameter.</para>
 
 <note>
   <para>The endnotes list is also displayed (but without
     numbers) if the value of
-    <parameter>man.links.list.enabled</parameter> is
+    <parameter>man.endnotes.list.enabled</parameter> is
     non-zero.</para>
 </note>
 
@@ -95,7 +95,12 @@ parameter. Empty links are handled simply by displaying their URLs
 inline. Empty links are never auto-numbered.</para>
 
 <para>If you disable endnotes numbering, you should probably also set
-<parameter>man.links.are.underlined</parameter> to zero (to disable
-link underlining).</para>
+<parameter>man.font.links</parameter> to an empty value (to
+disable font formatting for links.</para>
+</refsection>
+
+<refsection><info><title>Related Parameters</title></info>
+  <para><parameter>man.endnotes.list.enabled</parameter>,
+    <parameter>man.font.links</parameter></para>
 </refsection>
 </refentry>

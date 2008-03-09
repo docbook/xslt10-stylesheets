@@ -51,6 +51,7 @@
   <title>Fonts</title>
 &man.font.funcprototype;
 &man.font.funcsynopsisinfo;
+&man.font.links;
 &man.font.table.headings;
 &man.font.table.title;
   </reference>
@@ -69,7 +70,6 @@
 &man.endnotes.list.heading;
 &man.endnotes.are.numbered;
 &man.base.url.for.relative.links;
-&man.links.are.underlined;
   </reference>
   <reference xml:id="lists">
   <title>Lists</title>
@@ -165,6 +165,7 @@
 <src:fragref linkend="man.endnotes.list.heading.frag"/>
 <src:fragref linkend="man.font.funcprototype.frag"/>
 <src:fragref linkend="man.font.funcsynopsisinfo.frag"/>
+<src:fragref linkend="man.font.links.frag"/>
 <src:fragref linkend="man.font.table.headings.frag"/>
 <src:fragref linkend="man.font.table.title.frag"/>
 <src:fragref linkend="man.funcsynopsis.style.frag"/>
@@ -178,7 +179,6 @@
 <src:fragref linkend="man.indent.verbatims.frag"/>
 <src:fragref linkend="man.indent.width.frag"/>
 <src:fragref linkend="man.justify.frag"/>
-<src:fragref linkend="man.links.are.underlined.frag"/>
 <src:fragref linkend="man.output.base.dir.frag"/>
 <src:fragref linkend="man.output.encoding.frag"/>
 <src:fragref linkend="man.output.in.separate.dir.frag"/>
