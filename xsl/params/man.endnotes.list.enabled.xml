@@ -58,7 +58,7 @@ if a (numbered) list of endnotes is also generated.</para>
     browser.</para>
   <para>Also, note that various “man to html” tools, such as the
     widely used <command><link xlink:href="http://users.actrix.gen.nz/michael/vhman2html.html">man2html</link></command> (<literal>VH-Man2html</literal>)
-  application, automatically mark up URLs with into a@href markup
+    application, automatically mark up URLs with <literal>a@href</literal> markup
   during conversion — resulting in “real” hyperlinks in HTML
   output from those tools.</para>
 </note>
