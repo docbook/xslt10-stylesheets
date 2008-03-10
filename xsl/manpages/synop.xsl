@@ -165,8 +165,10 @@
   <xsl:text>.HP </xsl:text>
   <xsl:value-of select="string-length (normalize-space (command)) + 1"/>
   <xsl:text>&#10;</xsl:text>
+  <xsl:call-template name="verbatim-block-start"/>
   <xsl:apply-templates/>
   <xsl:text>&#10;</xsl:text>
+  <xsl:call-template name="verbatim-block-end"/>
   <!-- * if justification is enabled by default, turn it back on -->
   <xsl:if test="$man.justify != 0">
     <xsl:text>.ad&#10;</xsl:text>
