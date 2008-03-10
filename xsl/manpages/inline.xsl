@@ -92,10 +92,7 @@
                 $man.break.after.slash = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
-  <xsl:call-template name="italic">
-    <xsl:with-param name="node" select="."/>
-    <xsl:with-param name="context" select="."/>
-  </xsl:call-template>
+  <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
 <xsl:template match="emphasis">
