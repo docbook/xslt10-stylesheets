@@ -215,4 +215,8 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="literal">
+  <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
 </xsl:stylesheet>
