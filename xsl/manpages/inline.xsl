@@ -92,6 +92,11 @@
                 $man.break.after.slash = 0">
     <xsl:call-template name="suppress.hyphenation"/>
   </xsl:if>
+  <!-- * part of the old man(7) man page, now man-pages(7), says, -->
+  <!-- * "Filenames (whether pathnames, or references to files in the -->
+  <!-- * /usr/include directory) are always in italics". But that's dumb, -->
+  <!-- * and looks like crap in PS/printed/PDF output, and there's no -->
+  <!-- * sound rationale for it, so we don't do it. -->
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
