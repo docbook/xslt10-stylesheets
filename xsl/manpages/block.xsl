@@ -116,10 +116,13 @@
                      address|synopsis|funcsynopsisinfo">
   <xsl:param name="indent">
     <!-- * Only indent this verbatim if $man.indent.verbatims is -->
-    <!-- * non-zero and it is not a child of a *synopsis element -->
-    <xsl:if test="not($man.indent.verbatims = 0) and
-                  not(substring(local-name(..),
-                  string-length(local-name(..))-7) = 'synopsis')">
+    <!-- * non-zero and it is not a child of a *synopsis element or a -->
+    <!-- * descendant of a refsynopsisdiv -->
+    <xsl:if test="not($man.indent.verbatims = 0)
+      and not(substring(local-name(..),
+      string-length(local-name(..))-7) = 'synopsis')
+      and not(ancestor::*[local-name() = 'refsynopsisdiv'])
+      ">
       <xsl:text>Yes</xsl:text>
     </xsl:if>
   </xsl:param>
@@ -196,9 +199,13 @@
       <xsl:call-template name="verbatim-block-start"/>
       <xsl:text>.nf&#10;</xsl:text>
       <xsl:choose>
-        <xsl:when test="self::literallayout|self::programlisting|self::screen">
-          <!-- * if this is a literallayout|programlisting|screen, then we -->
-          <!-- * put a background behind it in non-TTY output -->
+        <xsl:when test="self::literallayout|self::programlisting|self::screen
+          and not(ancestor::*[local-name() = 'refsynopsisdiv'])
+          ">
+          <!-- * if this is a literallayout|programlisting|screen, then -->
+          <!-- * we put a background behind it in non-TTY output; except -->
+          <!-- * if it’s a descendant of a refsynopsisdiv (as can be -->
+          <!-- * found in the git docs) -->
           <xsl:choose>
             <!-- * if content has a leading newline, we need to back up -->
             <!-- * one line vertically to get it boxed correctly -->
