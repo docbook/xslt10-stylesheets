@@ -346,6 +346,7 @@
     <xsl:variable name="link.wrapper">
       <xsl:value-of select="$notesource.contents"/>
     </xsl:variable>
+    <xsl:text>\m[blue]</xsl:text>
     <!-- * This is a hyperlink, so we need to determine if the user wants -->
     <!-- * font formatting applied to it, and if so, what font -->
     <xsl:choose>
@@ -388,6 +389,7 @@
         <xsl:value-of select="$notesource.contents"/>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:text>\m[]</xsl:text>
   </xsl:if>
 
   <xsl:if test="$notesource.number != ''">
