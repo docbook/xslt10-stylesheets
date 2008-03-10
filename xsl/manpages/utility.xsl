@@ -62,6 +62,20 @@
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template name="inline.monoseq">
+    <xsl:call-template name="code-inline-start"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="code-inline-end"/>
+  </xsl:template>
+
+  <xsl:template name="code-inline-start">
+    <xsl:text>\FC</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="code-inline-end">
+    <xsl:text>\F[]</xsl:text>
+  </xsl:template>
+
   <!-- ================================================================== -->
 
   <xsl:template name="verbatim-block-start">
@@ -72,14 +86,6 @@
   <xsl:template name="verbatim-block-end">
     <xsl:text>.fam&#10;</xsl:text>
     <xsl:text>.ps +1&#10;</xsl:text>
-  </xsl:template>
-
-  <xsl:template name="code-inline-start">
-    <xsl:text>\FC</xsl:text>
-  </xsl:template>
-
-  <xsl:template name="code-inline-end">
-    <xsl:text>\F[]</xsl:text>
   </xsl:template>
 
   <!-- ================================================================== -->
