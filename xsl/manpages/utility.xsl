@@ -65,13 +65,12 @@
   <!-- ================================================================== -->
 
   <xsl:template name="verbatim-block-start">
-    <xsl:call-template name="store-current-font-family"/>
     <xsl:text>.fam C&#10;</xsl:text>
     <xsl:text>.ps -1&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template name="verbatim-block-end">
-    <xsl:text>.fam \*(ZX&#10;</xsl:text>
+    <xsl:text>.fam&#10;</xsl:text>
     <xsl:text>.ps +1&#10;</xsl:text>
   </xsl:template>
 
@@ -80,11 +79,7 @@
   </xsl:template>
 
   <xsl:template name="code-inline-end">
-    <xsl:text>\F[\*(ZX]</xsl:text>
-  </xsl:template>
-
-  <xsl:template name="store-current-font-family">
-    <xsl:text>.ds ZX \n[.fam]&#10;</xsl:text>
+    <xsl:text>\F[]</xsl:text>
   </xsl:template>
 
   <!-- ================================================================== -->
