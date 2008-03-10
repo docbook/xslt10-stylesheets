@@ -188,7 +188,6 @@
 </xsl:template>
 
 <!-- * indexterm instances produce groff comments like this: -->
-<!-- *  -->
 <!-- * .\" primary: secondary: tertiary -->
 <xsl:template match="indexterm">
   <xsl:text>.\" </xsl:text>
@@ -213,10 +212,6 @@
     <xsl:value-of select="$content"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
-</xsl:template>
-
-<xsl:template match="literal">
-  <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
 </xsl:stylesheet>
