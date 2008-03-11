@@ -472,6 +472,7 @@
 
   <xsl:choose>
     <xsl:when test="contains($block.parents, $parent)">fo:block</xsl:when>
+    <xsl:when test="$fop1.extensions != 0">fo:wrapper</xsl:when>
     <xsl:otherwise>fo:inline</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
