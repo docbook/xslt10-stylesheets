@@ -80,7 +80,11 @@ else
   fi
 fi
 
-osName=$(uname -o)
+osName="Unidentified"
+if uname -s | grep -qi "cygwin"; then
+  osName="Cygwin"
+fi
+
 classPathSeparator=":"
 if [ "$osName" = "Cygwin" ]; then
   thisJavaXmlCatalog=$(cygpath -m $thisXmlCatalog)
