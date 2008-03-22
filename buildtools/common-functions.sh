@@ -52,6 +52,7 @@ findresolver () {
   if [ ! "$RESOLVER" ]; then
     for path in "/projects/apache/xml-commons/java/build/classes" \
                 "/projects/sun/resolver/.classes" \
+                "/opt/local/share/java/resolver.jar" \
                 "/usr/local/share/java/sun-resolver.jar" \
                 "/usr/local/java/sun-resolver.jar" \
                 "/usr/share/java/sun-resolver.jar"; do
