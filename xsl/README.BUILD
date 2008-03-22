@@ -87,7 +87,7 @@ configuration to prepare for builds. Contributions welcome...
      # set up some environment variables for DocBook/XML stuff
      . ~/docbk.sh
 
-4. .xmlrc
+4. ~/.xmlrc
 
    You need an .xmlrc file with some system-specific data for Java
    and XML tools in your environment. For example:
@@ -123,6 +123,25 @@ configuration to prepare for builds. Contributions welcome...
      <xsltproc xml:id="xsltproc" exec="xsltproc"></xsltproc>
      <xmllint xml:id="xmllint" exec="xmllint"></xmllint>
    </config>
+
+5. ~/.antrc
+
+   You need an .antrc file with some system-specific data for your
+   environment.
+
+   Example for Debian with Sun JDK:
+
+     ANT_OPTS="$ANT_OPTS \
+      -Dfile.reference.saxon.jar=/usr/share/java/saxon-6.5.5.jar \
+      -Dfile.reference.xalan.jar=/usr/share/java/xalan2.jar \
+      -Dplatform.home=/usr/lib/jvm/java-6-sun"
+
+   Example for OSX with MacPorts:
+
+     ANT_OPTS="$ANT_OPTS \
+      -Dfile.reference.saxon.jar=/opt/local/share/java/saxon-6.5.5.jar \
+      -Dfile.reference.xalan.jar=/opt/local/share/java/xalan.jar \
+      -Dplatform.home=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home"
 
 -----------------------------------------------------------------
 Part 1: Build and test the stylesheets
