@@ -3,7 +3,8 @@
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="db ng exsl"
+                xmlns:exslt="http://exslt.org/common"
+                exclude-result-prefixes="db ng exsl exslt"
                 version='1.0'>
 
 <xsl:output method="html"
