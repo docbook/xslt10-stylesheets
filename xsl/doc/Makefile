@@ -8,9 +8,12 @@ PROCOPT=
 XEP=xep
 XEPFLAGS=
 
-TXT_MAKER = LANG=C w3mmee
-TXT_MAKER_FLAGS = -dump -config $(W3MMEECONFIG)
-W3MMEECONFIG = ../../releasetools/w3mmee_config
+# TXT_MAKER is the Web browser to use for dumping a text version
+# of the reference docs; text output from w3m looks better than
+# that from elinks or lynx; but w3m sometimes hangs unexpectedly
+# under OSX; setting GC_NPROCS=1 prevents it from hanging
+TXT_MAKER = GC_NPROCS=1 w3m
+TXT_MAKER_FLAGS = -dump
 
 XMLID_TO_ID=../tools/xsl/build/xmlid-to-id.xsl
 

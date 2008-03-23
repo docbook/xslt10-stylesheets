@@ -66,6 +66,9 @@ Major feature enhancements
     <xsl:when test="$get = 'DistroTitle'">
       <xsl:value-of select="$DistroTitle"/>
     </xsl:when>
+    <xsl:when test="$get = 'VERSION'">
+      <xsl:value-of select="$VERSION"/>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:if test="$sf-relid = 0">
         <xsl:message terminate="yes">
