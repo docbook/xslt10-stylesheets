@@ -86,12 +86,12 @@ STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
 # stylesheet for generating FO version of release notes
 FO_STYLE=$(DOCBOOK_SVN)/xsl/fo/docbook.xsl
 
-# browser to use for making text version of release notes
-# w3mmee is a fork of w3m; it provides a lot more options for
-# charset handling; other possible values for BROWSER include
-# "w3m" and "lynx" and "links" and "elinks"
-BROWSER=w3mmee
-BROWSER_OPTS=-dump
+# BROWSER is the Web browser to use for dumpin a text version of
+# release notes; text output from w3m looks better than that from
+# elinks or lynx; but w3m sometimes hangs unexpectedly under OSX;
+# setting GC_NPROCS=1 prevents it from hanging
+BROWSER = GC_NPROCS=1 w3m
+BROWSER_OPTS = -dump
 
 PDF_MAKER=dblatex
 
@@ -108,23 +108,7 @@ PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision 
 
 TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
 
-# determine RELVER automatically by:
-#
-#   - figuring out if VERSION file exists
-#   - checking to see if VERSION is an XSL stylesheet or not
-#   - grabbing the version number from VERSION file based on
-#     whether or not it is a stylesheet
-#
-RELVER := $(shell \
- if [ -f VERSION ]; then \
-   if grep "<xsl:stylesheet" VERSION >/dev/null; then \
-     grep "Version>.\+<" VERSION \
-     | sed 's/^[^<]*<fm:Version>\(.\+\)<\/fm:Version>$$/\1/' \
-     | tr -d "\n"; \
-   else cat VERSION; \
-   fi \
- fi \
-)
+RELVER=$(shell if [ -f VERSION ]; then xsltproc --stringparam get VERSION VERSION VERSION | grep -v "xml version="; fi)
 ZIPVER=$(RELVER)
 
 ifeq (snapshot,$(findstring snapshot,$(RELVER)))
