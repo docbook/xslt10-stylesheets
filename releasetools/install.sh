@@ -718,9 +718,7 @@ EOF
           ;;
           *)
           dotEmacsBackup=$myEmacsFile.$$.bak
-          mv $myEmacsFile $dotEmacsBackup       || exit 1
-          cp $dotEmacsBackup $myEmacsFile       || exit 1
-          sed -i "/$revertLine/d" $myEmacsFile  || exit 1
+          sed -e "/$revertLine/d" -i .$$.bak $myEmacsFile  || exit 1
           cat 1>&2 <<EOF
 NOTE: successfully reverted the following file:
       $myEmacsFile
@@ -771,9 +769,7 @@ EOF
           ;;
           *)
           dotFileBackup=$HOME/$file.$$.bak
-          mv $HOME/$file $dotFileBackup           || exit 1
-          cp $dotFileBackup $HOME/$file           || exit 1
-          sed -i "/$revertLineEsc/d" $HOME/$file  || exit 1
+          sed -e "/$revertLineEsc/d" -i .$$.bak $HOME/$file  || exit 1
           cat 1>&2 <<EOF
 NOTE: Successfully updated the following file:
       $HOME/$file
