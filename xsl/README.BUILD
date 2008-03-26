@@ -1,5 +1,15 @@
 $Id$
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The DocBook XSL Stylesheets release build has been tested on
+Linux, Darwin/OSX with MacPorts, and Cygwin. You should be able to
+build successfully on those platforms -- if you have the necessary
+build dependencies installed (see Part 0.0 below) and have your
+user environment set up correctly (with environment variables set,
+and for doc/release builds, with properly configured ~/.xmlc and
+~/.antrc files -- see sections 0.3, 0.4, and 0.5 below).
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Parts 0 and 1 of this document provide how-to instructions for
 building the DocBook XSL Stylesheets.
 
@@ -25,10 +35,36 @@ Part 0: Build Setup
 Before building, make sure your environment is set up correctly
 with information about some of the dependencies needed to build.
 
-FIXME: Ideally, this Part 0 section should also provide more
-details about what the third-party build dependencies are, not
-just what other DocBook Project modules are needed or how to do
-configuration to prepare for builds. Contributions welcome...
+FIXME: The 0.0 section is probably not complete and should provide
+more details about other the third-party build dependencies. Doc
+contributions welcome...
+
+0. Third-party build dependencies.
+   The following is an incomplete list of some of the third-party
+   tools and libraries you need to have installed before building.
+
+   - xsltproc and xmllint
+   - egrep and sed
+   - Perl and the XML::Path module
+   - Java and Apache ant (for building the extension jar files)
+
+   And if you want to build with Saxon instead of xsltproc:
+
+   - Java
+   - Saxon 6 jar file
+   - Xerces-J jar files
+   - Apache XML Commons Resolver jar file
+
+   You probably should also have the Xalan 2 jar file installed.
+
+   In addition to the above, the doc/distrib/release build requires:
+
+   - tar, gzip, bzip2, and zip
+   - openssh
+   - lftp (for uploads to the Sourceforge FTP site)
+   - w3m browser (default) or optionally lynx or elinks
+     (for generating the plain-text release notes)
+   - dblatex, xep, or fop (for building doc PDFs)
 
 1. Core DocBook Project modules (stylesheets build)
    If you want to build and test the stylesheets (or
@@ -81,8 +117,18 @@ configuration to prepare for builds. Contributions welcome...
      export CLASSPATH=$CLASSPATH:/etc/xml/resolver/
      export SGML_CATALOG_FILES=/etc/sgml/catalog
 
-   You can then source that by putting the following in your
-   ~/.bashrc file:
+   For Darwin/OSX with MacPorts, you should use these values instead:
+
+     export JARDIR=/opt/local/share/java
+     export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+
+   And for Cygwin, something like:
+
+     export JAVA_HOME="c:/Java/jdk1.6.0_05" (or wherever Java is)
+     export JARDIR="c:/cygwin/usr/share/java"
+
+   You can then source that ~/docbk.sh by putting the following in
+   your ~/.bashrc file:
 
      # set up some environment variables for DocBook/XML stuff
      . ~/docbk.sh
@@ -124,10 +170,14 @@ configuration to prepare for builds. Contributions welcome...
      <xmllint xml:id="xmllint" exec="xmllint"></xmllint>
    </config>
 
+   For Darwin/OSX with MacPorts, use /opt/local/share/java/ in
+   place of /usr/share/java//opt/local/share/ja in place of
+   /usr/share/java/
+
 5. ~/.antrc
 
-   You need an .antrc file with some system-specific data for your
-   environment.
+   To build the Saxon and Xalan XSLT extensions, you need an
+   ~/.antrc file with system-specific data for your environment.
 
    Example for Debian with Sun JDK:
 
@@ -136,12 +186,19 @@ configuration to prepare for builds. Contributions welcome...
       -Dfile.reference.xalan.jar=/usr/share/java/xalan2.jar \
       -Dplatform.home=/usr/lib/jvm/java-6-sun"
 
-   Example for OSX with MacPorts:
+   Example for Darwin/OSX with MacPorts:
 
      ANT_OPTS="$ANT_OPTS \
       -Dfile.reference.saxon.jar=/opt/local/share/java/saxon-6.5.5.jar \
       -Dfile.reference.xalan.jar=/opt/local/share/java/xalan.jar \
       -Dplatform.home=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home"
+
+   Example for Cygwin:
+
+     ANT_OPTS="$ANT_OPTS \
+      -Dfile.reference.saxon.jar=c:/cygwin/usr/share/java/saxon-6.5.5.jar \
+      -Dfile.reference.xalan.jar=c:/cygwin/usr/share/java/xalan2.jar \
+      -Dplatform.home=’c:/Java/jdk1.6.0_05’"
 
 -----------------------------------------------------------------
 Part 1: Build and test the stylesheets
@@ -182,20 +239,6 @@ and all other Parts following it).
      - writes any error and warning messages to the
        DOCBOOK-BUILD.LOG log file
      - checks the DOCBOOK-BUILD.LOG file for errors & reports them
-
-   NOTE: The build-clean script is just a "safe" wrapper around
-   the svn-clean command; svn-clean is a perl script that's not
-   part of the core subversion distribution (on my system, it's
-   in the subversion-tools package). Its function is to "wipe out
-   unversioned files from Subversion working copy". It is a good
-   idea to use it because our own "clean" make target doesn't
-   clean out everything that needs to be cleaned out to get your
-   working directory back to a fresh state, and also doesn't
-   prevent cruft in your workspace from accidentally getting
-   packaged into a release build. So running build-clean
-   (svn-clean) gives you a clean build environment and alerts you
-   to cruft that needs to be deleted and also to any new files
-   that you make have created but forgotten to actually check in.
 
 3. make check (optional step)
    As an optional step to check for any major brokenness, run
