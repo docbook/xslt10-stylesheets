@@ -36,6 +36,7 @@ DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
 RELEASEDOC_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
 endif
 else
+DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
 RELEASEDOC_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
 endif
 
