@@ -2,7 +2,8 @@
 # $Id$
 if [ -z "$(svn status | egrep '^\?|^X')" ]
 then
-  make clean
+  # remove all files ignored by Subversion
+  rm -rf $(svn status --no-ignore | grep '^I' | cut -c8- | cat -s)
 else
   echo
   echo "Unversioned files found. Before building, either delete the"
