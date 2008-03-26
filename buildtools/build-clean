@@ -2,7 +2,7 @@
 # $Id$
 if [ -z "$(svn status | egrep '^\?|^X')" ]
 then
-  svn-clean
+  make clean
 else
   echo
   echo "Unversioned files found. Before building, either delete the"
