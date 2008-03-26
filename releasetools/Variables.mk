@@ -17,9 +17,27 @@ FRESHMEAT_SUBMIT=$(DOCBOOK_SVN)/releasetools/freshmeat-submit
 
 CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+MAKECATALOG=../releasetools/make-catalog.xsl
+else
 MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
+endif
+else
+MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
+endif
 
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+DOCBUILD_STYLESHEETS=../../xsl/tools/xsl/build
+RELEASEDOC_STYLESHEETS=../xsl/tools/xsl/build
+else
 DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
+RELEASEDOC_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
+endif
+else
+RELEASEDOC_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
+endif
 
 PARAMPROF=$(VPATH)/.param.profiled
 PARAMSTRIP=$(VPATH)/.param.stripped
@@ -44,10 +62,10 @@ MAKE_PARAMS_XSL=$(DOCBUILD_STYLESHEETS)/make-xsl-params.xsl
 # XSL PI files to PI list
 MAKE_PI_XSL=$(DOCBUILD_STYLESHEETS)/make-xsl-pi.xsl
 # generated elements list
-DOCBOOK_ELEMENTS=$(DOCBUILD_STYLESHEETS)/docbook-elements.xsl
-XSL_PARAMS=$(DOCBUILD_STYLESHEETS)/xsl-params.xsl
-XSL_PI=$(DOCBUILD_STYLESHEETS)/xsl-pi.xsl
-DOCPARAM2TXT=$(DOCBUILD_STYLESHEETS)/docparam2txt.xsl
+DOCBOOK_ELEMENTS=$(RELEASEDOC_STYLESHEETS)/docbook-elements.xsl
+XSL_PARAMS=$(RELEASEDOC_STYLESHEETS)/xsl-params.xsl
+XSL_PI=$(RELEASEDOC_STYLESHEETS)/xsl-pi.xsl
+DOCPARAM2TXT=$(RELEASEDOC_STYLESHEETS)/docparam2txt.xsl
 
 # reference.xml to reference.html
 RSTYLE=$(DOCBUILD_STYLESHEETS)/reference.xsl
@@ -57,18 +75,34 @@ REFERENCEFOXSL=$(DOCBUILD_STYLESHEETS)/reference-fo.xsl
 REFERENCETXTXSL=$(DOCBUILD_STYLESHEETS)/reference-txt.xsl
 
 # RELEASE-NOTES.xml to RELEASE-NOTES.html
-DOC_LINK_STYLE=$(DOCBUILD_STYLESHEETS)/doc-link-docbook.xsl
+DOC_LINK_STYLE=$(RELEASEDOC_STYLESHEETS)/doc-link-docbook.xsl
 DOC_BASEURI=http://docbook.sourceforge.net/release/xsl/current/doc/
 
 # RELEASE-NOTES.xml to RELEASE-NOTES.pdf
-DBX_STYLE=$(DOCBUILD_STYLESHEETS)/dblatex-release-notes.xsl
+DBX_STYLE=$(RELEASEDOC_STYLESHEETS)/dblatex-release-notes.xsl
 
 # MARKUP_XSL is a modified version of Jeni Tennison's "Markup Utility"
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
 MARKUP_XSL=$(DOCBOOK_SVN)/releasetools/modified-markup.xsl
+else
+MARKUP_XSL=../releasetools/modified-markup.xsl
+endif
+else
+MARKUP_XSL=$(DOCBOOK_SVN)/releasetools/modified-markup.xsl
+endif
 
 # stylesheet used in taking XML output from "svn log" and using it
 # to generate NEWS file(s) and releases notes
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+SVNLOG2DOCBOOK=../releasetools/svnlog2docbook.xsl
+else
 SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
+endif
+else
+SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
+endif
 
 SVN_INFO_FILE=.svninfo.xml
 
@@ -81,10 +115,10 @@ REVISION=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expr
 DISTRO_PARENT_URL=$(dir $(basename $(DISTRO_URL)))
 
 # stylesheet for stripping DB5 namespace
-STRIP_NS=$(DOCBOOK_SVN)/xsl/common/stripns.xsl
+STRIP_NS=common/stripns.xsl
 
 # stylesheet for generating FO version of release notes
-FO_STYLE=$(DOCBOOK_SVN)/xsl/fo/docbook.xsl
+FO_STYLE=fo/docbook.xsl
 
 # BROWSER is the Web browser to use for dumpin a text version of
 # release notes; text output from w3m looks better than that from
@@ -206,7 +240,15 @@ GZIPFLAGS=
 XSLTPROC=xsltproc
 XSLTPROC_OPTS=
 
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+EVALXPATH=../releasetools/eval-xpath.xsl
+else
 EVALXPATH=$(DOCBOOK_SVN)/releasetools/eval-xpath.xsl
+endif
+else
+EVALXPATH=$(DOCBOOK_SVN)/releasetools/eval-xpath.xsl
+endif
 
 XMLLINT=xmllint
 XMLLINT_OPTS=--noent
