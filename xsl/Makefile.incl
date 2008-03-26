@@ -1,11 +1,18 @@
+# NOTE: the conditional checks for combination of Cygwin and Saxon
+# are used in a few places in this makefile to make it possible to
+# build with Saxon. (Java under Cygwin doesn't grok Cygwin
+# absolute paths, so use instead use relative paths.)
+# The NESTLEVEL variable is to compensate for the fact that the
+# slides/fo and slides/html stylesheets are in a subdirectory
+# nested one additional level lower than the other stylesheets.
 XJPARSEFLAGS= -E 0 -w
 PARAMPROF=.$(PARAMBASE).profiled
 PARAMSTRIP=.$(PARAMBASE).stripped
 PARAMDBKNS=.$(PARAMBASE).dbkns
 PARAMXMLID=.$(PARAMBASE).xmlid
-FIXPARAMNS=$(DOCBOOK_SVN)/xsl/tools/xsl/build/fix-params-ns.xsl
-ADDNEWLINE=$(DOCBOOK_SVN)/xsl/tools/xsl/build/addnewline.xsl
-IDTOXMLID=$(DOCBOOK_SVN)/xsl/tools/xsl/build/id-to-xmlid.xsl
+FIXPARAMNS=$(NESTLEVEL)../tools/xsl/build/fix-params-ns.xsl
+ADDNEWLINE=$(NESTLEVEL)../tools/xsl/build/addnewline.xsl
+IDTOXMLID=$(NESTLEVEL)../tools/xsl/build/id-to-xmlid.xsl
 
 XMLFILES=$(foreach file,$(XSLFILES),$(basename $(file)).xml)
 
@@ -32,31 +39,60 @@ $(PARAMXMLID): $(PARAMSTRIP)
 ifneq ($(XSLTENGINE),saxon)
 	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
 else
-	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
+ifneq ($(shell uname -s | grep -i cygwin),)
+	$(XSLT) $< $(NESTLEVEL)../../releasetools/w2docbook.xsl $@.tmp
+else
+	$(XSLT) $< $(DOCBOOK_SVN)/../releasetools/w2docbook.xsl $@.tmp
+endif
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
 endif
 
 $(PARAMSTRIP): $(PARAMBASE).xweb $(PARAMS)
 ifeq (,$(NO_MAKEFILE_PARAM))
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+	$(NESTLEVEL)../../buildtools/paramchk -m Makefile.param $<
+else
 	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
 endif
-	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
-	$(XSLT) $(PARAMPROF) $(DOCBOOK_SVN)/xsl/profiling/strip-attributes.xsl $@ attributes=condition
+else
+	$(DOCBOOK_SVN)/buildtools/paramchk -m Makefile.param $<
+endif
+endif
+	$(XSLT) $< $(NESTLEVEL)../profiling/profile.xsl $(PARAMPROF) profile.condition=$(PROFILECONDITION)
+	$(XSLT) $(PARAMPROF) $(NESTLEVEL)../profiling/strip-attributes.xsl $@ attributes=condition
 	$(RM) $(PARAMPROF)
 
 $(PARAMDBKNS): $(PARAMSTRIP)
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+	$(XSLT) $< $(NESTLEVEL)../../releasetools/xtangle.xsl $@
+else
 	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@
+endif
+else
+	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/xtangle.xsl $@
+endif
 
-titlepage.templates.xsl: titlepage.templates.xml $(DOCBOOK_SVN)/xsl/template/titlepage.xsl
-	$(XSLT) $< $(DOCBOOK_SVN)/xsl/template/titlepage.xsl $@
+
+titlepage.templates.xsl: titlepage.templates.xml $(NESTLEVEL)../template/titlepage.xsl
+	$(XSLT) $< $(NESTLEVEL)../template/titlepage.xsl $@
 
 Makefile.param:
+ifneq ($(shell uname -s | grep -i cygwin),)
+ifeq ($(XSLTENGINE),saxon)
+	$(NESTLEVEL)../../buildtools/paramchk -m $@ param.xweb
+else
 	$(DOCBOOK_SVN)/buildtools/paramchk -m $@ param.xweb
+endif
+else
+	$(DOCBOOK_SVN)/buildtools/paramchk -m $@ param.xweb
+endif
 	$(MAKE)
 
-profile-docbook.xsl: docbook.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl
-	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl $@
+profile-docbook.xsl: docbook.xsl $(NESTLEVEL)../profiling/xsl2profile.xsl
+	$(XSLT) $< $(NESTLEVEL)../profiling/xsl2profile.xsl $@
 
 clean: $(CLEANTARGETS)
 	$(RM) $(XSLFILES)

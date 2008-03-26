@@ -56,8 +56,8 @@ NEWS.xml: ChangeLog.xml
 	distro="$(DISTRO)" \
 	previous-release="$(PREVIOUS_RELEASE)" \
 	release-version="$(RELVER)" \
-	element.file="$(shell $(cd -P $(dirname $(DOCBOOK_ELEMENTS)) && pwd -P))" \
-	param.file="$(shell $(cd -P $(dirname $(XSL_PARAMS)) && pwd -P))"
+	element.file="$(DOCBOOK_ELEMENTS)" \
+	param.file="$(XSL_PARAMS)"
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC_LINK_STYLE) $@ \
