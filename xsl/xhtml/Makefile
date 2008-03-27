@@ -7,14 +7,19 @@ remove-old:
 
 add-new:
 	for f in ../html/*.xsl; do if [ ! -f `basename $$f` ]; then \
-          echo $$f; \
+          echo "copying $$f"; \
           cp $$f .; \
           touch -t 197001010000 `basename $$f`; fi; done
 
 # Oh, come on! It must be possible to do this in Make, but I can't figure out how (ndw)
 
 xsl-files: remove-old add-new
-	for f in *.xsl; do if [ ../html/$$f -nt $$f ]; then $(XSLT) ../html/$$f html2xhtml.xsl $$f; fi; done
+	for f in *.xsl; do \
+	  if [ ../html/$$f -nt $$f ]; then \
+	    echo "transforming $$f"; \
+	    $(XSLT) ../html/$$f html2xhtml.xsl $$f; \
+	 fi; \
+	done
 
 profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
