@@ -346,10 +346,7 @@ db:manvolnum
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"  Language: </xsl:text>
-    <xsl:variable name="lang">
-      <xsl:call-template name="l10n.language"/>
-    </xsl:variable>
-    <xsl:value-of select="$l10n.xml/l:i18n/l:l10n[@language=$lang]/@english-language-name"/>
+    <xsl:call-template name="l10.language.name"/>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"</xsl:text>
     <xsl:text>&#10;</xsl:text>
