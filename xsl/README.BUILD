@@ -1,13 +1,14 @@
 $Id$
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The DocBook XSL Stylesheets release build has been tested on
-Linux, Darwin/OSX with MacPorts, and Cygwin. You should be able to
-build successfully on those platforms -- if you have the necessary
-build dependencies installed (see Part 0.0 below) and have your
-user environment set up correctly (with environment variables set,
-and for doc/release builds, with properly configured ~/.xmlc and
-~/.antrc files -- see sections 0.3, 0.4, and 0.5 below).
+The DocBook XSL Stylesheets release build has been tested under
+the bash shell on Linux, Darwin/OSX with MacPorts, and Cygwin. You
+should be able to build successfully on those platforms -- if you
+run the build under bash and have the necessary build dependencies
+installed (see Part 0.0 below) and have your user environment set
+up correctly (with environment variables set, and for doc/release
+builds, with properly configured ~/.xmlc and ~/.antrc files -- see
+sections 0.3, 0.4, and 0.5 below).
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Parts 0 and 1 of this document provide how-to instructions for
