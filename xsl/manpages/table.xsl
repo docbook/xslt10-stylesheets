@@ -125,6 +125,7 @@
       <!-- *   Output table title                                           -->
       <!-- * ============================================================== -->
       <xsl:if test="$title != '' or parent::td">
+        <xsl:text>.sp&#10;</xsl:text>
         <xsl:call-template name="pinch.together"/>
         <xsl:text>.</xsl:text>
         <xsl:value-of select="$tbl.font.title"/>

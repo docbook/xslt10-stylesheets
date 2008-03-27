@@ -88,6 +88,14 @@
     <xsl:text>.ps +1&#10;</xsl:text>
   </xsl:template>
 
+  <xsl:template name="synopsis-block-start">
+    <xsl:text>.fam C&#10;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="synopsis-block-end">
+    <xsl:text>.fam&#10;</xsl:text>
+  </xsl:template>
+
   <!-- ================================================================== -->
 
   <!-- * NOTE TO DEVELOPERS: For ease of maintenance, the current -->
@@ -172,7 +180,6 @@
 
   <xsl:template name="pinch.together">
     <!-- * arcane roff code to suppress line spacing after headings -->
-    <xsl:text>.sp&#10;</xsl:text>
     <xsl:text>.it 1 an-trap&#10;</xsl:text>
     <xsl:text>.nr an-no-space-flag 1&#10;</xsl:text>
     <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
