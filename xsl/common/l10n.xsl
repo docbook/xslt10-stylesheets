@@ -106,6 +106,14 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="l10.language.name">
+  <xsl:param name="lang">
+    <xsl:call-template name="l10n.language"/>
+  </xsl:param>
+  <xsl:value-of
+    select="$l10n.xml/l:i18n/l:l10n[@language=$lang]/@english-language-name"/>
+</xsl:template>
+
 <xsl:template name="language.attribute">
   <xsl:param name="node" select="."/>
 
