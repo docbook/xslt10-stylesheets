@@ -393,13 +393,14 @@
   </xsl:if>
 
   <xsl:if test="$notesource.number != ''">
-    <!-- * Format the number by placing it in square brackets. FIXME: -->
-    <!-- * This formatting should probably be made user-configurable, -->
-    <!-- * to allow something other than just square brackets; e.g., -->
-    <!-- * Angle brackets<10> or Braces{10}  -->
-    <xsl:text>\&amp;[</xsl:text>
+    <!-- * Format the number by placing it in square brackets. -->
+    <!-- * Also, set the number in font-size -2, and superscripted (\u -->
+    <!-- * means to move up half a line vertically) -->
+    <xsl:text>\&amp;\s-2\u[</xsl:text>
     <xsl:value-of select="$notesource.number"/>
-    <xsl:text>]</xsl:text>
+    <xsl:text>]\d\s+2</xsl:text>
+    <!-- * Revert superscripting (\d means to move down half a line), and -->
+    <!-- * move the font-size back to what it was before. -->
     <!-- * Note that the reason for the \& before the opening bracket -->
     <!-- * is to prevent any possible linebreak from being introduced -->
     <!-- * between the opening bracket and the following text. -->
