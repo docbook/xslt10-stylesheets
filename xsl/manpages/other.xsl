@@ -833,7 +833,6 @@ db:manvolnum
     <xsl:text>.de BM
 .if t \{\
 .br
-.in +2n
 .ll -2n
 .gcolor red
 .di BX
@@ -843,12 +842,11 @@ db:manvolnum
 .if t \{\
 .br
 .di
-.in
 .ll
 .gcolor
 .nr BH \\n(dn
 .ne \\n(BHu
-\M[\\$1]\D'P -1n 0 0 \\n(BHu -3n 0 0 -\\n(BHu'\M[]
+\M[\\$1]\D'P -.5n 0 0 \\n(BHu -(\\n[.i]u - \\n(INu - .5n) 0 0 -\\n(BHu'\M[]
 .in 0
 .nf
 .BX
