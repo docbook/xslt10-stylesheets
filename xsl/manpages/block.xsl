@@ -17,12 +17,15 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="caution|important|note|tip|warning">
+  <xsl:call-template name="roff-if-start">
+    <xsl:with-param name="condition">n</xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>.sp&#10;</xsl:text>
   <xsl:call-template name="roff-if-end"/>
   <xsl:text>.RS 4&#10;</xsl:text>
   <xsl:text>.BM yellow&#10;</xsl:text>
   <xsl:call-template name="pinch.together"/>
   <xsl:text>.ps +1&#10;</xsl:text>
-  <xsl:text>.PP&#10;</xsl:text>
   <xsl:call-template name="make.bold.title"/>
   <xsl:text>.ps -1&#10;</xsl:text>
   <xsl:text>.br&#10;</xsl:text>
