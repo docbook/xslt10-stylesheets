@@ -158,12 +158,15 @@
   </xsl:choose>
   <xsl:if test="$indent = 'Yes'">
     <!-- * start indented section -->
+    <xsl:call-template name="roff-if-start"/>
+    <!-- * only indent in TTY output, not in non-TTY/PS -->
     <xsl:text>.RS</xsl:text> 
     <xsl:if test="not($man.indent.width = '')">
       <xsl:text> </xsl:text>
       <xsl:value-of select="$man.indent.width"/>
     </xsl:if>
     <xsl:text>&#10;</xsl:text>
+    <xsl:call-template name="roff-if-end"/>
   </xsl:if>
   <xsl:choose>
     <xsl:when test="self::funcsynopsisinfo">
@@ -263,7 +266,9 @@
   </xsl:choose>
   <xsl:if test="$indent = 'Yes'">
     <!-- * end indented section -->
+    <xsl:call-template name="roff-if-start"/>
     <xsl:text>.RE&#10;</xsl:text> 
+    <xsl:call-template name="roff-if-end"/>
   </xsl:if>
   <!-- * if this verbatim environment has a following sibling node, -->
   <!-- * output a line of space to separate the content -->
