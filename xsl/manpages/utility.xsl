@@ -173,6 +173,7 @@
   <!-- * The nested-section-title template is called for refsect3, and any -->
   <!-- * refsection nested more than 2 levels deep. -->
   <xsl:template name="nested-section-title">
+    <xsl:text>.sp&#10;</xsl:text>
     <xsl:call-template name="pinch.together"/>
     <xsl:text>.ps +1&#10;</xsl:text>
     <xsl:call-template name="make.bold.title"/>

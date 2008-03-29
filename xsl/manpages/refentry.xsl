@@ -138,7 +138,12 @@
       <!-- * child content of this Refsect3 or Refsection. -->
       <xsl:when test="not($man.indent.refsect != 0)">
         <xsl:call-template name="nested-section-title"/>
-        <xsl:text>.RS&#10;</xsl:text>
+        <xsl:text>.RS</xsl:text>
+        <xsl:if test="not($man.indent.width = '')">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="$man.indent.width"/>
+        </xsl:if>
+        <xsl:text>&#10;</xsl:text>
         <xsl:apply-templates/>
         <xsl:text>.RE&#10;</xsl:text>
       </xsl:when>
