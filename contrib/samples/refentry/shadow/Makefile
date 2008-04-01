@@ -20,7 +20,8 @@ $(TMP)/shadow/man:
 	  && make
 	
 $(SUBMODULE): $(TMP)/shadow/man
-	mv $< $@
+	cp -pR $< $@
 
 clean:
 	$(RM) -r $(SUBMODULE)
+	$(RM) -r $(TMP)/shadow
