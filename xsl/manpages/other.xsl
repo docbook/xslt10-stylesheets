@@ -846,7 +846,7 @@ db:manvolnum
 .gcolor
 .nr BH \\n(dn
 .ne \\n(BHu
-\M[\\$1]\D'P -.5n 0 0 \\n(BHu -(\\n[.i]u - \\n(INu - .5n) 0 0 -\\n(BHu'\M[]
+\M[\\$1]\D'P -.75n 0 0 \\n(BHu -(\\n[.i]u - \\n(INu - .75n) 0 0 -\\n(BHu'\M[]
 .in 0
 .nf
 .BX
