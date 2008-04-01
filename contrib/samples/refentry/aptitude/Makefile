@@ -6,7 +6,7 @@ TMP ?= /tmp
 HG=hg
 HGFLAGS=
 
-PATCHFILE=patch.smith.manpage.xml.1
+PATCHFILE=patch.smith.manpage.xml.2
 
 all: $(SUBMODULE)
 
