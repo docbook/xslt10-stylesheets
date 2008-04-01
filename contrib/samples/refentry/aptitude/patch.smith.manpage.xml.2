@@ -1,0 +1,83 @@
+diff -r 9050a3ecc8ec doc/en/manpage.xml
+--- a/doc/en/manpage.xml	Sun Mar 30 13:23:49 2008 -0700
++++ b/doc/en/manpage.xml	Tue Apr 01 19:22:22 2008 +0900
+@@ -952,14 +952,14 @@ i A texlive-latex-extra Conflicts textop
+ 	<term><literal>--allow-new-upgrades</literal></term>
+ 
+ 	<listitem>
+-	  When the safe resolver is being used (i.e., <link
++	  <simpara>When the safe resolver is being used (i.e., <link
+ 	  linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></link>
+ 	  was passed or <link
+ 	  linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::Always-Use-Safe-Resolver</literal></link>
+ 	  is set to <literal>true</literal>), allow the dependency
+ 	  resolver to install upgrades for packages even if <link
+ 	  linkend='configSafe-Resolver-No-New-Upgrades'><literal>Aptitude::Safe-Resolver::No-New-Upgrades</literal></link>
+-	  is set.
++	  is set.</simpara>
+ 	</listitem>
+       </varlistentry>
+ 
+@@ -967,7 +967,7 @@ i A texlive-latex-extra Conflicts textop
+ 	<term><literal>--allow-new-installs</literal></term>
+ 
+ 	<listitem>
+-	  Allow the <link
++	  <simpara>Allow the <link
+ 	  linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link>
+ 	  command to install new packages; when the safe resolver is
+ 	  being used (i.e., <link
+@@ -978,7 +978,7 @@ i A texlive-latex-extra Conflicts textop
+ 	  resolver to install new packages.  This option takes effect
+ 	  even if <link
+ 	  linkend='configSafe-Resolver-No-New-Installs'><literal>Aptitude::Safe-Resolver::No-New-Installs</literal></link>
+-	  is true.
++	  is true.</simpara>
+ 	</listitem>
+       </varlistentry>
+ 
+@@ -986,9 +986,9 @@ i A texlive-latex-extra Conflicts textop
+ 	<term><literal>--allow-untrusted</literal></term>
+ 
+ 	<listitem>
+-	  Install packages from untrusted sources without prompting.
++	  <simpara>Install packages from untrusted sources without prompting.
+ 	  You should only use this if you know what you are doing, as
+-	  it could easily compromise your system's security.
++	  it could easily compromise your system's security.</simpara>
+ 	</listitem>
+       </varlistentry>
+ 
+@@ -1108,14 +1108,14 @@ i A texlive-latex-extra Conflicts textop
+ 	<term><literal>--no-new-upgrades</literal></term>
+ 
+ 	<listitem>
+-	  When the safe resolver is being used (i.e., <link
++	  <simpara>When the safe resolver is being used (i.e., <link
+ 	  linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></link>
+ 	  was passed or <link
+ 	  linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::Always-Use-Safe-Resolver</literal></link>
+ 	  is set to <literal>true</literal>), allow the dependency
+ 	  resolver to install new packages even if <link
+ 	  linkend='configSafe-Resolver-No-New-Upgrades'><literal>Aptitude::Safe-Resolver::No-New-Installs</literal></link>
+-	  is set.
++	  is set.</simpara>
+ 	</listitem>
+       </varlistentry>
+ 
+@@ -1452,7 +1452,7 @@ The following NEW packages will be insta
+           <para>
+ 	    When combined with <literal>-v</literal> or a non-zero
+ 	    value for <link
+-	    linkend='configCmdLineVerbose'><literal>Aptitude::CmdLine::Verbose</literal></link>,
++	    linkend='configCmdLine-Verbose'><literal>Aptitude::CmdLine::Verbose</literal></link>,
+ 	    this displays the entire chain of dependencies that lead
+ 	    each package to be installed.  For instance:
+ 	  </para>
+@@ -2131,4 +2131,4 @@ The following packages will be REMOVED:
+       <citerefentry><refentrytitle>apt</refentrytitle><manvolnum>8</manvolnum></citerefentry>
+     </para>
+   </refsect1>
+-</refentry>
+\ No newline at end of file
++</refentry>
