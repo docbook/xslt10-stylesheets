@@ -1,0 +1,39 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+use LWP::UserAgent;
+use URI::Escape;
+use Data::Dumper;
+use SVN::Log;
+
+# usage: svn2twitter REPOSITORY SUBJECT TWITTER_USER TWITTER_PASS
+# example:
+#   svn2twitter https://docbook.svn.sourceforge.net/svnroot/docbook/ "SF.net SVN: docbook: [7978] trunk/xsl/roundtrip" codpeace foobar
+
+my $repository  = shift @ARGV;
+my $subject     = shift @ARGV;
+my $twitteruser = shift @ARGV;
+my $twitterpass = shift @ARGV;
+my $revision    = $subject;
+
+# parse out just the [NNNN] revision number from the Subject
+$revision =~ s/^[^\[]+\[([0-9]+)\] .+$/$1/;
+
+my $revs = SVN::Log::retrieve ($repository, $revision);
+
+my $author = $revs->[0]{author};
+# use only first 6 chars of author username
+if (length($author) > 6) {
+  $author = substr($author, 0, 6);
+}
+my $message = $revs->[0]{message};
+chomp $message;
+my @paths = keys %{$revs->[0]{paths}};
+
+my $twitter = $author . ": " . $message . "; " . join (", ", @paths);
+
+if (length($twitter) > 140) {
+  $twitter = substr($twitter, 0, 140-1) . '…';
+}
+#print "Twittering '$twitter'\n";
+my $status = uri_escape($twitter);
+my $result = LWP::UserAgent->new->post('http://' . $twitteruser . ':' . $twitterpass . '@twitter.com/statuses/update.xml?status=' . $status);
+die "Failed to update Twitter\n" . Dumper($result) if $result->code ne '200';
