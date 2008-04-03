@@ -216,43 +216,38 @@
   </xsl:template>
 
   <xsl:template match='w:tbl'>
+    <xsl:variable name='tbl.style'
+      select='key("style", w:tblPr/w:tblStyle/@w:val) | .'/>
+
     <xsl:variable name='border.top'>
       <xsl:choose>
-        <xsl:when test='w:tblPr/w:tblBorders/w:top[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblBorders/w:top[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:top[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:top[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
         <xsl:when test='w:tr[1]/w:tc[w:tcPr/w:tcBorders/w:top[not(@w:val = "nil" or @w:val = "none")]]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblStyle and
-                        key("style", w:tblPr/w:tblStyle/@w:val)/w:tblPr/w:tblBorders/w:top'>1</xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name='border.bottom'>
       <xsl:choose>
-        <xsl:when test='w:tblPr/w:tblBorders/w:bottom[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblBorders/w:bottom[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:bottom[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:bottom[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
         <xsl:when test='w:tr[1]/w:tc[w:tcPr/w:tcBorders/w:bottom[not(@w:val = "nil" or @w:val = "none")]]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblStyle and
-                        key("style", w:tblPr/w:tblStyle/@w:val)/w:tblPr/w:tblBorders/w:bottom'>1</xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name='border.left'>
       <xsl:choose>
-        <xsl:when test='w:tblPr/w:tblBorders/w:left[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblBorders/w:left[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:left[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:left[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
         <xsl:when test='w:tr[1]/w:tc[w:tcPr/w:tcBorders/w:left[not(@w:val = "nil" or @w:val = "none")]]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblStyle and
-                        key("style", w:tblPr/w:tblStyle/@w:val)/w:tblPr/w:tblBorders/w:left'>1</xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name='border.right'>
       <xsl:choose>
-        <xsl:when test='w:tblPr/w:tblBorders/w:right[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblBorders/w:right[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:right[not(@w:val = "nil" or @w:val = "none")]'>1</xsl:when>
+        <xsl:when test='$tbl.style/w:tblPr/w:tblBorders/w:right[@w:val = "nil" or @w:val = "none"]'>0</xsl:when>
         <xsl:when test='w:tr[1]/w:tc[w:tcPr/w:tcBorders/w:rightt[not(@w:val = "nil" or @w:val = "none")]]'>1</xsl:when>
-        <xsl:when test='w:tblPr/w:tblStyle and
-                        key("style", w:tblPr/w:tblStyle/@w:val)/w:tblPr/w:tblBorders/w:rightt'>1</xsl:when>
         <xsl:otherwise>0</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -298,12 +293,16 @@
     </dbk:row>
   </xsl:template>
   <xsl:template match='w:tc'>
+    <xsl:variable name='tbl.style'
+      select='ancestor::w:tbl[1] |
+              key("style", ancestor::w:tbl[1]/w:tblPr/w:tblStyle/@w:val)'/>
+
     <dbk:entry>
-      <xsl:if test='ancestor::w:tbl[1]/w:tblPr/w:tblBorders/w:insideH[not(@w:val = "nil" or @w:val = "none")] |
+      <xsl:if test='$tbl.style/w:tblPr/w:tblBorders/w:insideH[not(@w:val = "nil" or @w:val = "none")] |
                     w:tcPr/w:tcBorders/w:bottom[not(@w:val = "nil" or @w:val = "none")]'>
         <xsl:attribute name='rowsep'>1</xsl:attribute>
       </xsl:if>
-      <xsl:if test='ancestor::w:tbl[1]/w:tblPr/w:tblBorders/w:insideV[not(@w:val = "nil" or @w:val = "none")] |
+      <xsl:if test='$tbl.style/w:tblPr/w:tblBorders/w:insideV[not(@w:val = "nil" or @w:val = "none")] |
                     w:tcPr/w:tcBorders/w:right[not(@w:val = "nil" or @w:val = "none")]'>
         <xsl:attribute name='colsep'>1</xsl:attribute>
       </xsl:if>
