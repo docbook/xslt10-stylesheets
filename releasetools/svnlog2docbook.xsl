@@ -76,17 +76,17 @@
 
   <!-- * a subsection can actually be either subsection of the distro or -->
   <!-- * a sibling of the distro (whatever you want to include in the -->
-  <!-- * DocBook version of the changelog. -->
+  <!-- * DocBook version of the changelog). -->
   <!-- * $subsections holds a "display name" for each subsection to -->
-  <!-- * include in DocBookified changelog . The lowercase versions of -->
+  <!-- * include in DocBookified changelog. The lowercase versions of -->
   <!-- * these display names correspond to the real subdirectories or -->
-  <!-- * sibling directory whose changes we to include. So if you want -->
+  <!-- * sibling directories whose changes we want to include. So if you want -->
   <!-- * to include a new subdirectory or sibling directory and have its -->
-  <!-- * changes documented in the ouptut, then just add a "display name" -->
-  <!-- * for the subdirectory or sibling directory -->
+  <!-- * changes documented in the output, then just add a "display name" -->
+  <!-- * for the subdirectory or sibling directory. -->
   <xsl:param
       name="subsections"
-      >Gentext Common FO HTML Manpages HTMLHelp Eclipse JavaHelp Roundtrip Slides Website Params Highlighting Profiling Lib Tools Template Extensions XSL-Java XSL-Saxon XSL-Xalan</xsl:param>
+      >Gentext Common FO HTML Manpages HTMLHelp Eclipse JavaHelp Roundtrip Slides Website Params Highlighting Profiling Lib Tools Template XSL-Saxon XSL-Xalan XSL-libxslt</xsl:param>
   <sf:users>
     <!-- * The sf:users structure associates Sourceforge usernames -->
     <!-- * with the real names of the people they correspond to -->
