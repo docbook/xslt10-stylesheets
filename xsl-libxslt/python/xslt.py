@@ -1,15 +1,11 @@
 #!/usr/bin/python -u
 
-# THIS IS ALPHA CODE AND MAY NOT WORK CORRECTLY!
-
 import sys
-import string
 import libxml2
 import libxslt
 from docbook import adjustColumnWidths
 
 # Check the arguments
-
 usage = "Usage: %s xmlfile.xml xslfile.xsl [outputfile] [param1=val [param2=val]...]" % sys.argv[0]
 
 xmlfile = None
@@ -24,19 +20,25 @@ except IndexError:
     print usage;
     sys.exit(1)
 
+def quote(astring):
+    if astring.find("'") < 0:
+        return "'" + astring + "'"
+    else:
+        return '"' + astring + '"'
+
 try:
     outfile = sys.argv[3]
-    if string.find(outfile, "=") > 0:
-        name, value = string.split(outfile, "=", 2);
+    if outfile.find("=") > 0:
+        name, value = outfile.split("=", 2);
         params[name] = value
 
     count = 4;
     while (sys.argv[count]):
         try:
-            name, value = string.split(sys.argv[count], "=", 2);
+            name, value = sys.argv[count].split("=", 2);
             if params.has_key(name):
                 print "Warning: '%s' re-specified; replacing value" % name
-            params[name] = value
+            params[name] = quote(value)
         except ValueError:
             print "Invalid parameter specification: '" + sys.argv[count] + "'"
             print usage
