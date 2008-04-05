@@ -23,10 +23,13 @@ my $webvcsurl   = shift @ARGV;
 my $subject     = shift @ARGV;
 my $twitteruser = shift @ARGV;
 my $twitterpass = shift @ARGV;
+
+$subject =~ tr/\n/ /;
 my $revision    = $subject;
 
 # parse out just the [NNNN] revision number from the Subject
-$revision =~ s/^.+\[([0-9]+)\] .+$/$1/;
+$revision =~ s/^.+\[([0-9]+)\].*$/$1/;
+#print "$revision\n";
 
 my $revs = SVN::Log::retrieve ($repository, $revision);
 
