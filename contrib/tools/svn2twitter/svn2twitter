@@ -34,6 +34,8 @@ $revision =~ s/^.+\[([0-9]+)\].*$/$1/;
 my $revs = SVN::Log::retrieve ($repository, $revision);
 
 my $author = $revs->[0]{author};
+$author =~ s/^([^@]+)@.+$/$1/;
+
 # use only first 6 chars of author username
 if (length($author) > 6) {
   $author = substr($author, 0, 6);
