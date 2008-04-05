@@ -3,19 +3,30 @@ use LWP::UserAgent;
 use URI::Escape;
 use Data::Dumper;
 use SVN::Log;
+use WWW::Shorten;
 
-# usage: svn2twitter REPOSITORY SUBJECT TWITTER_USER TWITTER_PASS
-# example:
-#   svn2twitter https://docbook.svn.sourceforge.net/svnroot/docbook/ "SF.net SVN: docbook: [7978] trunk/xsl/roundtrip" codpeace foobar
+# usage: svn2twitter REPOSITORY WEBVCSURL SUBJECT TWITTER_USER TWITTER_PASS
+# examples:
+#
+#   svn2twitter https://docbook.svn.sourceforge.net/svnroot/docbook/ \
+#     "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=" \
+#     "SF.net SVN: docbook: [7978] trunk/xsl/roundtrip" \
+#     codpeace foobar
+#
+#   svn2twitter http://svn.webkit.org/repository/webkit/trunk/ \
+#     "http://trac.webkit.org/projects/webkit/changeset/" \
+#     "[webkit-changes] [31430] trunk/WebCore" \
+#     codpeace foobar
 
 my $repository  = shift @ARGV;
+my $webvcsurl   = shift @ARGV;
 my $subject     = shift @ARGV;
 my $twitteruser = shift @ARGV;
 my $twitterpass = shift @ARGV;
 my $revision    = $subject;
 
 # parse out just the [NNNN] revision number from the Subject
-$revision =~ s/^[^\[]+\[([0-9]+)\] .+$/$1/;
+$revision =~ s/^.+\[([0-9]+)\] .+$/$1/;
 
 my $revs = SVN::Log::retrieve ($repository, $revision);
 
@@ -26,14 +37,27 @@ if (length($author) > 6) {
 }
 my $message = $revs->[0]{message};
 chomp $message;
-my @paths = keys %{$revs->[0]{paths}};
 
-my $twitter = $author . ": " . $message . "; " . join (", ", @paths);
+#my @paths = keys %{$revs->[0]{paths}};
 
-if (length($twitter) > 140) {
-  $twitter = substr($twitter, 0, 140-1) . '…';
+#my $twitter = $author . ": " . $message . "; " . join (", ", @paths);
+my $twitter = $author . ": " . $message;
+
+$twitter =~ tr/\n/ /;
+$twitter =~ s/\s+/ /g;
+
+if (length($twitter) > 118) {
+  $twitter = substr($twitter, 0, 118-1) . '…';
 }
-#print "Twittering '$twitter'\n";
+
+my $tinyurl = makeashorterlink($webvcsurl . $revision);
+$twitter = $tinyurl . " " . $twitter;
+
+#print "$twitter\n";
+
 my $status = uri_escape($twitter);
-my $result = LWP::UserAgent->new->post('http://' . $twitteruser . ':' . $twitterpass . '@twitter.com/statuses/update.xml?status=' . $status);
+my $twitterurl = 'http://' . $twitteruser . ':' . $twitterpass;
+$twitterurl .= '@twitter.com/statuses/update.xml?status=' . $status;
+#print $twitterurl;
+my $result = LWP::UserAgent->new->post($twitterurl);
 die "Failed to update Twitter\n" . Dumper($result) if $result->code ne '200';
