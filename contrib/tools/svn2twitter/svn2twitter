@@ -43,6 +43,8 @@ chomp $message;
 #my $twitter = $author . ": " . $message . "; " . join (", ", @paths);
 my $twitter = $author . ": " . $message;
 
+# strip out <foo@bar.org> e-mail addresses (replace with dot)
+$twitter =~ s/\s+<[^@]+@.[^>]+>/./g;
 $twitter =~ tr/\n/ /;
 $twitter =~ s/\s+/ /g;
 
