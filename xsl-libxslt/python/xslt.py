@@ -17,7 +17,7 @@ try:
     xmlfile = sys.argv[1]
     xslfile = sys.argv[2]
 except IndexError:
-    print usage;
+    print usage
     sys.exit(1)
 
 def quote(astring):
@@ -29,8 +29,9 @@ def quote(astring):
 try:
     outfile = sys.argv[3]
     if outfile.find("=") > 0:
-        name, value = outfile.split("=", 2);
-        params[name] = value
+        name, value = outfile.split("=", 2)
+        params[name] = quote(value)
+        outfile = None
 
     count = 4;
     while (sys.argv[count]):
@@ -42,8 +43,8 @@ try:
         except ValueError:
             print "Invalid parameter specification: '" + sys.argv[count] + "'"
             print usage
-            sys.exit(1);
-        count = count+1;
+            sys.exit(1)
+        count = count+1
 except IndexError:
     pass
 
@@ -65,7 +66,10 @@ doc = libxml2.parseFile(xmlfile)
 result = style.applyStylesheet(doc, params)
 
 # Save the result
-style.saveResultToFilename(outfile, result, 0)
+if outfile:
+    style.saveResultToFilename(outfile, result, 0)
+else:
+    print result
 
 # Free things up
 style.freeStylesheet()
