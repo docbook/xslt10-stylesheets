@@ -37,11 +37,13 @@ my $author = $revs->[0]{author};
 $author =~ s/^([^@]+)@.+$/$1/;
 
 # use only first 6 chars of author username
-if (length($author) > 6) {
-  $author = substr($author, 0, 6);
-}
+#if (length($author) > 6) {
+#  $author = substr($author, 0, 6);
+#}
 my $message = $revs->[0]{message};
 chomp $message;
+# strip out dates at the beginning of messsage
+$message =~ s/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] //g;
 
 #my @paths = keys %{$revs->[0]{paths}};
 
