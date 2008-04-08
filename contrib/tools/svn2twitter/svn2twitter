@@ -42,8 +42,8 @@ $author =~ s/^([^@]+)@.+$/$1/;
 #}
 my $message = $revs->[0]{message};
 chomp $message;
-# strip out dates at the beginning of messsage
-$message =~ s/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] //g;
+# strip out any date at the beginning of a line
+$message =~ s/\n[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] //g;
 
 #my @paths = keys %{$revs->[0]{paths}};
 
