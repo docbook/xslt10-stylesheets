@@ -34,6 +34,8 @@
 <ln path="epigraph/literallayout" everyNth="0"/>
 </xsl:param>
 
+<xsl:param name="profile.condition" select="'online'"/>
+
 <!-- ============================================================ -->
 
 <xsl:template name="t:user-head-content">
@@ -114,16 +116,15 @@ div.toc p b {
       <h3>Specification URIs:</h3>
       <dl>
 	<dt>This Version:</dt>
-	<dd>
-	  <xsl:text>http://docs.oasis-open.org/docbook/specs/</xsl:text>
-	  <xsl:value-of select="$odnRoot"/>
-	  <xsl:text>.html</xsl:text>
-	</dd>
-	<dd>
-	  <xsl:text>http://docs.oasis-open.org/docbook/specs/</xsl:text>
-	  <xsl:value-of select="$odnRoot"/>
-	  <xsl:text>.pdf</xsl:text>
-	</dd>
+	<xsl:for-each select="('.html','.pdf','.xml')">
+	  <dd>
+	    <a href="{$odnRoot}{.}">
+	      <xsl:text>http://docs.oasis-open.org/docbook/specs/</xsl:text>
+	      <xsl:value-of select="$odnRoot"/>
+	      <xsl:value-of select="."/>
+	    </a>
+	  </dd>
+	</xsl:for-each>
       </dl>
     </div>
 
@@ -132,7 +133,7 @@ div.toc p b {
 	<dt>Technical Committee:</dt>
 	<xsl:for-each select="db:org/db:orgdiv">
 	  <dd>
-	    <a href="@xlink:href">
+	    <a href="{@xlink:href}">
 	      <xsl:value-of select="."/>
 	    </a>
 	  </dd>

@@ -2,7 +2,7 @@
 <!ENTITY standard "Committee Draft">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
-<!ENTITY root "http://www.oasis-open.org/docbook/">
+<!ENTITY root "http://docs.oasis-open.org/docbook/">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,7 +18,7 @@ $Id$
 <!-- productVersion --> <productnumber>5.0</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">cd</releaseinfo>
-<!-- revision -->       <biblioid class="pubsnumber">02</biblioid>
+<!-- revision -->       <biblioid class="pubsnumber">04</biblioid>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
 
@@ -57,15 +57,26 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2008-02-06</pubdate>
+<pubdate>2008-04-09</pubdate>
 
 <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
 
-<bibliorelation type="replaces"
+<bibliorelation type="replaces" condition="online"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
+<bibliorelation type="replaces" condition="online"
     xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.html"/>
 
-<bibliorelation type="references"
-    xlink:href="http://www.oasis-open.org/docbook/specs/docbook-4.5-spec.html"/>
+<bibliorelation type="replaces" condition="print"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
+<bibliorelation type="replaces" condition="print"
+    xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.pdf"/>
+
+<bibliorelation type="references" condition="online"
+    xlink:href="http://docs.oasis-open.org/docbook/specs/docbook-4.5-spec.html"/>
+
+<bibliorelation type="references" condition="print"
+    xlink:href="http://docs.oasis-open.org/docbook/specs/docbook-4.5-spec.pdf"/>
+
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -94,8 +105,7 @@ XML DTD, but the RELAX NG Schema is now the normative schema.</para>
 
 <legalnotice role="status">
 <para>This &standard; was
-[FIXME: URI]
-<link xlink:href="???">approved</link>
+<link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200711/msg00007.html">approved</link>
 for publication by the
 OASIS DocBook Technical Committee. It represents the
 consensus of the committee.

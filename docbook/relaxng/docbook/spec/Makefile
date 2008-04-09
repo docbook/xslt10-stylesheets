@@ -23,7 +23,7 @@ docbook.fo: docbook.xml fo.xsl
 	$(XSLT) $< $(FOSTYLE) docbook.fo $(XSLPARAM)
 
 docbook.pdf: docbook.fo
-	xep $<
+	xep -q $<
 
 elemdiff.xml: elemdiff.pl 44-50-elements.diff
 	perl elemdiff.pl > $@
