@@ -563,7 +563,7 @@ ctrl:other-attribute [ name="db.biblio.class.attribute"
                        other-name="db.biblio.class-other.attributes" ]
 
 db.biblio.class.enumeration =
-   ## A document object identifier.
+   ## A digital object identifier.
    "doi"
  | ## An international standard book number.
    "isbn"
