@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>fop.extensions</refname>
-<refpurpose>Enable FOP extensions for version 0.20.5 and earlier</refpurpose>
+<refpurpose>Enable extensions for FOP version 0.20.5 and earlier</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -26,10 +26,10 @@ At present, this consists of PDF bookmarks.
 </para>
 
 <para>This parameter can also affect which graphics file formats
-are supported</para>
+are supported.</para>
 
 <para>If you are using a version of FOP beyond
-version 0.20.5, then use the <parameter>fop1.extensions</parameter>
+version 0.20.5, then use the <parameter>fop1.extensions</parameter> parameter
 instead.
 </para>
 </refsection>

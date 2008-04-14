@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>fop1.extensions</refname>
-<refpurpose>Enable extensions for FOP version 1 and later</refpurpose>
+<refpurpose>Enable extensions for FOP version 0.90 and later</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,13 +21,13 @@
 
 <para>If non-zero, extensions for 
 <link xlink:href="http://xml.apache.org/fop/">FOP</link>
-version 1 and later will be used.
+version 0.90 and later will be used.
 </para>
 
 <para>This parameter can also affect which graphics file formats
-are supported</para>
+are supported.</para>
 
-<para>The original <parameter>fop.extensions</parameter>
+<para>The original <parameter>fop.extensions</parameter> parameter
 should still be used for FOP version 0.20.5 and earlier.
 </para>
 </refsection>
