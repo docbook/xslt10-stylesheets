@@ -806,6 +806,15 @@
   </span>
 </xsl:template>
 
+<!-- See FR #1934434 and http://doi.org -->
+<xsl:template match="biblioid[@class='doi']"
+              mode="bibliography.mode">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
+    <a href="{concat('http://dx.doi.org/', .)}">doi:<xsl:value-of select="."/></a>
+  </span>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="bibliomixed.mode">
@@ -1220,6 +1229,15 @@
   <span>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates mode="bibliomixed.mode"/>
+  </span>
+</xsl:template>
+
+<!-- See FR #1934434 and http://doi.org -->
+<xsl:template match="biblioid[@class='doi']"
+              mode="bibliomixed.mode">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
+    <a href="{concat('http://dx.doi.org/', .)}">doi:<xsl:value-of select="."/></a>
   </span>
 </xsl:template>
 
