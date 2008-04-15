@@ -185,6 +185,7 @@
       <xsl:call-template name="calsTable"/>
     </xsl:when>
     <xsl:otherwise>
+      <!-- do not use xsl:copy because of XHTML's needs -->
       <table>
         <xsl:copy-of select="@*[not(local-name()='id')]"/>
         <xsl:attribute name="id">

@@ -1,7 +1,7 @@
 # $Id$
 
-include ../buildtools/Makefile.incl
-include ../releasetools/Variables.mk
+include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include $(DOCBOOK_SVN)/releasetools/Variables.mk
 
 # The -E0 switch on xjparse gets passed on to the XML Commons
 # resolver and causes all error message from the resolver to be
@@ -10,7 +10,6 @@ include ../releasetools/Variables.mk
 XJPARSEFLAGS=-E 0 -w
 
 DISTRO=xsl
-
 # value of DISTRIB_CHANGELOG_INCLUDES is a space-separated list of
 # any other top-level modules from which to log changes in the
 # NEWS and RELEASE-NOTES.* files for this distro
@@ -43,6 +42,7 @@ DISTRIB_EXCLUDES = \
   doc/HTML.manifest$$ \
   tools/xsl \
   xhtml/html2xhtml.xsl$$ \
+  xhtml-1_1/html2xhtml.xsl$$ \
   Makefile.tests \
   README.BUILD \
   RELEASE-NOTES-PARTIAL.txt \
@@ -87,6 +87,7 @@ base:
 
 xhtml:
 	$(MAKE) -C xhtml
+	$(MAKE) -C xhtml-1_1
 
 docsrc: base 
 	$(MAKE) -C docsrc
@@ -101,6 +102,7 @@ clean:
 		fi \
 	done
 	$(MAKE) clean -C xhtml
+	$(MAKE) clean -C xhtml-1_1
 	$(MAKE) clean -C doc
 	$(MAKE) clean -C docsrc
 	$(MAKE) clean -C tests
@@ -109,5 +111,5 @@ docsrc-clean:
 	$(MAKE) -C docsrc release-clean
 
 include Makefile.tests
-include ../releasetools/Targets.mk
-include ../releasetools/xslns.mk
+include $(DOCBOOK_SVN)/releasetools/Targets.mk
+include $(DOCBOOK_SVN)/releasetools/xslns.mk

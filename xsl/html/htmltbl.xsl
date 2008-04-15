@@ -28,28 +28,29 @@
 </xsl:template>
 
 <xsl:template match="caption" mode="htmlTable">
-  <xsl:copy>
+  <!-- do not use xsl:copy because of XHTML's needs -->
+  <caption>  
     <xsl:copy-of select="@*"/>
 
     <xsl:apply-templates select=".." mode="object.title.markup">
       <xsl:with-param name="allow-anchors" select="1"/>
     </xsl:apply-templates>
 
-  </xsl:copy>
+  </caption>
 </xsl:template>
 
 <xsl:template match="thead|tbody|tgroup|tr" mode="htmlTable">
-  <xsl:copy>
+  <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="htmlTable"/>
-  </xsl:copy>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="th|td" mode="htmlTable">
-  <xsl:copy>
+  <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates/> <!-- *not* mode=htmlTable -->
-  </xsl:copy>
+  </xsl:element>
 </xsl:template>
 
 </xsl:stylesheet>
