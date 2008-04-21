@@ -152,27 +152,43 @@
                 |comment()[not(preceding-sibling::listitem)]
                 |processing-instruction()[not(preceding-sibling::listitem)]"/>
 
-    <ol>
-      <xsl:if test="$start != '1'">
-        <xsl:attribute name="start">
-          <xsl:value-of select="$start"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:if test="$numeration != ''">
-        <xsl:attribute name="type">
-          <xsl:value-of select="$type"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:if test="@spacing='compact'">
-        <xsl:attribute name="compact">
-          <xsl:value-of select="@spacing"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:apply-templates 
-            select="listitem
-                    |comment()[preceding-sibling::listitem]
-                    |processing-instruction()[preceding-sibling::listitem]"/>
-    </ol>
+    <xsl:choose>
+      <xsl:when test="@inheritnum='inherit' and ancestor::listitem[parent::orderedlist]">
+	<table border="0">
+	  <col align="left" valign="top"/>
+          <tbody>
+	    <xsl:apply-templates 
+		mode="orderedlist-table"
+		select="listitem
+			|comment()[preceding-sibling::listitem]
+			|processing-instruction()[preceding-sibling::listitem]"/>
+          </tbody>
+        </table>
+      </xsl:when>
+      <xsl:otherwise>
+	<ol>
+	  <xsl:if test="$start != '1'">
+	    <xsl:attribute name="start">
+	      <xsl:value-of select="$start"/>
+	    </xsl:attribute>
+	  </xsl:if>
+	  <xsl:if test="$numeration != ''">
+	    <xsl:attribute name="type">
+	      <xsl:value-of select="$type"/>
+	    </xsl:attribute>
+	  </xsl:if>
+	  <xsl:if test="@spacing='compact'">
+	    <xsl:attribute name="compact">
+	      <xsl:value-of select="@spacing"/>
+	    </xsl:attribute>
+	  </xsl:if>
+	  <xsl:apply-templates 
+		select="listitem
+			|comment()[preceding-sibling::listitem]
+			|processing-instruction()[preceding-sibling::listitem]"/>
+	</ol>
+      </xsl:otherwise>
+    </xsl:choose>
   </div>
 </xsl:template>
 
@@ -207,6 +223,30 @@
       </xsl:otherwise>
     </xsl:choose>
   </li>
+</xsl:template>
+
+<xsl:template match="orderedlist/listitem" mode="orderedlist-table">
+  <tr>
+    <td>
+      <xsl:apply-templates select="." mode="item-number"/>
+    </td>
+    <td>
+      <xsl:if test="local-name(child::*[1]) != 'para'">
+	<xsl:call-template name="anchor"/>
+      </xsl:if>
+
+      <xsl:choose>
+	<xsl:when test="$show.revisionflag != 0 and @revisionflag">
+	  <div class="{@revisionflag}">
+	    <xsl:apply-templates/>
+	  </div>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:apply-templates/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </td>
+  </tr>
 </xsl:template>
 
 <xsl:template match="variablelist">
