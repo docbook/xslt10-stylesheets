@@ -20,7 +20,7 @@
 </refmeta>
 <refnamediv>
 <refname>table.cell.border.style</refname>
-<refpurpose/>
+<refpurpose>Specifies the border style of table cells</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -31,7 +31,12 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>Specifies the border style of table cells.</para>
+
+<note>
+  <para>To control properties of cell borders in HTML output, you must also turn on the 
+  <parameter>table.borders.with.css</parameter> parameter.</para>
+</note>
 
 </refsection>
 </refentry>

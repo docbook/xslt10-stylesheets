@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>table.cell.padding</refname>
-<refpurpose/>
+<refpurpose>Specifies the padding of table cells</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -26,7 +26,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>Specifies the padding of table cells.</para>
 
 </refsection>
 </refentry>
