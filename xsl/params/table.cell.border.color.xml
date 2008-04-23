@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>table.cell.border.color</refname>
-<refpurpose/>
+<refpurpose>Specifies the border color of table cells</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,13 +22,18 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>Set the color of table borders. If non-zero, the value is used
+<para>Set the color of table cell borders. If non-zero, the value is used
 for the border coloration. See <link
 xlink:href="http://www.w3.org/TR/CSS21/syndata.html#value-def-color">CSS</link>. A
 <literal>color</literal> is either a keyword or a numerical RGB specification.
 Keywords are aqua, black, blue, fuchsia, gray, green, lime, maroon,
 navy, olive, orange, purple, red, silver, teal, white, and
 yellow.</para>
+
+<note>
+  <para>To control properties of cell borders in HTML output, you must also turn on the 
+  <parameter>table.borders.with.css</parameter> parameter.</para>
+</note>
 
 </refsection>
 </refentry>

@@ -20,7 +20,7 @@
 </refmeta>
 <refnamediv>
 <refname>table.frame.border.style</refname>
-<refpurpose/>
+<refpurpose>Specifies the border style of table frames</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -31,7 +31,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>FIXME:</para>
+<para>Specifies the border style of table frames.</para>
 
 </refsection>
 </refentry>
