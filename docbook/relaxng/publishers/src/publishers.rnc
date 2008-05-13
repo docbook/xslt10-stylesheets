@@ -1,0 +1,103 @@
+# This file is a customization of DocBook V5.0 created by the 
+# OASIS DocBook Publishers Subcommittee.
+#
+# Copyright 1992-2007 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: publishers.rnc 7466 2007-09-27 14:03:55Z shudson310 $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start = db.set
+        | db.book
+	| db.divisions
+	| db.components
+	| db.navigation.components
+	| db.section
+	| db.para
+
+include "core.rnc" {
+  db.sidebar |= notAllowed
+  db.person |= notAllowed
+  db.org |= notAllowed
+  db.parameter = notAllowed
+}
+
+   db.sidebar =
+      element sidebar {
+         db.sidebar.attlist,
+         db.sidebar.info,
+         db.all.blocks+, db.recursive.sections*
+      }
+
+db.person =
+      element person {
+         db.person.attlist,
+         db.personname,
+         (db.address|db.affiliation|db.email|db.uri|db.personblurb|db.mediaobject)*
+      }
+      
+db.org =
+      element org {
+         db.org.attlist,
+         db.orgname,
+         (db.address|db.affiliation|db.email|db.uri|db.orgdiv|db.mediaobject)*
+      }
+      
+db.poetry =
+      element poetry {
+        db.poetry.info,
+        (db.mediaobject|db.linegroup|db.line)+
+      }
+      
+ db.dialogue =
+      element dialogue {
+      db.dialogue.info,
+      (db.mediaobject | db.linegroup | db.line)+
+      }
+      
+  db.dialogue.info =
+     db._info.title.only
+ 
+ db.poetry.info =
+     db._info.title.only
+     
+ db.linegroup =
+   db.speaker?,(db.line)+
+   
+ db.speaker = 
+       element speaker {
+       text |
+       db.person
+       }
+       
+ db.line =
+       element line {
+       db.all.inlines
+       }
