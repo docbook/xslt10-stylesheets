@@ -562,7 +562,7 @@
               </xsl:call-template>
             </xsl:attribute>
             <xsl:attribute name="type">toc</xsl:attribute>
-            <xsl:attribute name="title">toc</xsl:attribute>
+            <xsl:attribute name="title">Table of Contents</xsl:attribute>
           </xsl:element>
         </xsl:if>  
       </xsl:element>  
