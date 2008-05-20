@@ -34,8 +34,8 @@
   <xsl:param name="epub.container.filename" select="'container.xml'"/> 
   <xsl:param name="epub.opf.filename" select="concat($epub.oebps.dir, 'content.opf')"/> 
   <xsl:param name="epub.cover.filename" select="concat($epub.oebps.dir, 'cover', $html.ext)"/> 
-  <xsl:param name="epub.cover.image.id" select="'cover-image'"/> 
   <xsl:param name="epub.cover.id" select="'cover'"/> 
+  <xsl:param name="epub.cover.image.id" select="'cover-image'"/> 
 
   <xsl:param name="epub.ncx.toc.id">ncxtoc</xsl:param>
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
@@ -227,7 +227,7 @@
               <xsl:element name="meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
-                  <xsl:value-of select="$epub.cover.image.id"/>
+                  <xsl:value-of select="$epub.cover.id"/>
                 </xsl:attribute>
               </xsl:element>
             </xsl:if>
@@ -305,7 +305,7 @@
               <xsl:element name="meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
-                  <xsl:value-of select="$epub.cover.image.id"/>
+                  <xsl:value-of select="$epub.cover.id"/>
                 </xsl:attribute>
               </xsl:element>
             </xsl:if>
