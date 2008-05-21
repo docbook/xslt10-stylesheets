@@ -179,6 +179,7 @@
       <!-- Otherwise, if there's a title, use that -->
       <xsl:when test="../title">
         <xsl:attribute name="summary">
+          <!-- This screws up on inline markup and footnotes, oh well... -->
           <xsl:value-of select="string(../title)"/>
         </xsl:attribute>
       </xsl:when>
@@ -413,11 +414,11 @@
     <xsl:apply-templates select="tfoot"/>
     <xsl:apply-templates select="tbody"/>
 
-    <xsl:if test=".//footnote">
+    <xsl:if test=".//footnote|../title//footnote">
       <tbody class="footnotes">
         <tr>
           <td colspan="{@cols}">
-            <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+            <xsl:apply-templates select=".//footnote|../title//footnote" mode="table.footnote.mode"/>
           </td>
         </tr>
       </tbody>
