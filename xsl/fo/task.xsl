@@ -40,8 +40,18 @@
                 select="*[not(self::title
                               or self::titleabbrev)]"/>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+
   <fo:block id="{$id}"
             xsl:use-attribute-sets="formal.object.properties">
+
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
+
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title and $placement = 'before'">
