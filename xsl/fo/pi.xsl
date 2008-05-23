@@ -268,13 +268,17 @@
 
 <doc:pi name="dbfo_keep-together" xmlns="">
   <refpurpose>Specifies “keep” behavior for a table, example,
-    figure, or equation</refpurpose>
+    figure, equation, procedure, or task</refpurpose>
   <refdescription>
     <para>Use the <tag class="xmlpi">dbfo keep-together</tag> PI as a child of a
       formal object (<tag>table</tag>, <tag>example</tag>,
-      <tag>figure</tag>, or <tag>equation</tag>) or their informal
-      equivalents) to specify “keep” behavior for the object (to
-      allow the object to “break” across a page).</para>
+      <tag>figure</tag>, <tag>equation</tag>, <tag>procedure</tag>, or
+      <tag>task</tag>) to specify “keep” behavior (to allow the object to 
+    “break” across a page).</para>
+    <para>The PI also works with <tag>informaltable</tag>, <tag>informalexample</tag>,
+      <tag>informalfigure</tag> and <tag>informalequation</tag>.
+    </para>
+
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbfo keep-together="auto"|"always"</tag></synopsis>
