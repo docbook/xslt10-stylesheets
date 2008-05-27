@@ -738,7 +738,10 @@
 <xsl:template match="emphasis">
   <span>
     <xsl:choose>
-      <xsl:when test="@role and $emphasis.propagates.style != 0">
+      <!-- We don't want empty @class values, so do not propagate empty @roles -->
+      <xsl:when test="@role  and
+                      normalize-space(@role) != '' and
+                      $emphasis.propagates.style != 0">
         <xsl:apply-templates select="." mode="class.attribute">
           <xsl:with-param name="class" select="@role"/>
         </xsl:apply-templates>
@@ -799,7 +802,10 @@
     <xsl:if test="@lang or @xml:lang">
       <xsl:call-template name="language.attribute"/>
     </xsl:if>
-    <xsl:if test="@role and $phrase.propagates.style != 0">
+    <!-- We don't want empty @class values, so do not propagate empty @roles -->
+    <xsl:if test="@role and 
+                  normalize-space(@role) != '' and
+                  $phrase.propagates.style != 0">
       <xsl:apply-templates select="." mode="class.attribute">
         <xsl:with-param name="class" select="@role"/>
       </xsl:apply-templates>
