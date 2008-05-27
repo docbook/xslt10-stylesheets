@@ -150,7 +150,9 @@
   <xsl:variable name="snum">
     <xsl:apply-templates select="." mode="synopfragment.number"/>
   </xsl:variable>
-  <p>
+  <!-- You can't introduce another <p> here, because you're 
+       already in a <p> from cmdsynopsis-->
+  <span>
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -161,7 +163,7 @@
     </a>
     <xsl:text> </xsl:text>
     <xsl:apply-templates/>
-  </p>
+  </span>
 </xsl:template>
 
 <xsl:template match="funcsynopsis">
@@ -365,9 +367,9 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
     </xsl:for-each>
   </table>
   <xsl:if test="paramdef">
-    <blockquote class="paramdef-list">
+    <div class="paramdef-list">
       <xsl:apply-templates select="paramdef" mode="kr-funcsynopsis-mode"/>
-    </blockquote>
+    </div>
   </xsl:if>
   <div class="funcprototype-spacer">&#160;</div> <!-- hACk: blank div for vertical spacing -->
 </xsl:template>
