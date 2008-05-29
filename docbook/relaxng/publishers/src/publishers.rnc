@@ -152,21 +152,21 @@ db.org =
        
 db.linegroup =
    element linegroup {
-   db.speaker*, (db.line|db.para.blocks)+
+   db.speaker*, (db.line|db.all.blocks)+
    }
        
  db.poetry =
       element poetry {
       db.poetry.attlist,
       db.poetry.info?,
-      (db.mediaobject|db.linegroup|db.line|db.para.blocks)+
+      (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
       }
       
  db.dialogue =
       element dialogue {
       db.dialogue.attlist,
       db.dialogue.info?,
-      (db.mediaobject|db.linegroup|db.line|db.para.blocks)+
+      (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
       }
       
   db.dialogue.info =
