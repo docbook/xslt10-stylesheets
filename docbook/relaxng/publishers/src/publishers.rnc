@@ -43,11 +43,77 @@ start = db.set
 	| db.para
 
 include "core.rnc" {
+  start |= notAllowed
   db.sidebar |= notAllowed
   db.person |= notAllowed
   db.org |= notAllowed
   db.parameter = notAllowed
+  db.info.extension |= notAllowed
+  db.extension.blocks |= notAllowed
 }
+include "dc.rnc" {start |= notAllowed}
+include "dcterms.rnc" {start |= notAllowed}
+include "dcmitype.rnc"
+
+db.info.extension = 
+db._any 
+| dc.title
+| dc.creator 
+| dc.subject
+| dc.description
+| dc.publisher
+| dc.contributor
+| dc.date
+| dc.type
+| dc.format
+| dc.identifier
+| dc.source
+| dc.language
+| dc.relation
+| dc.coverage
+| dc.rights
+| dcterms.alternative
+| dcterms.tableOfContents
+| dcterms.abstract
+| dcterms.created
+| dcterms.valid
+| dcterms.available
+| dcterms.issued
+| dcterms.modified
+| dcterms.dateAccepted
+| dcterms.dateCopyrighted
+| dcterms.dateSubmitted
+| dcterms.extent
+| dcterms.medium
+| dcterms.isVersionOf
+| dcterms.hasVersion
+| dcterms.isReplacedBy
+| dcterms.replaces
+| dcterms.isRequiredBy
+| dcterms.requires
+| dcterms.isPartOf
+| dcterms.hasPart
+| dcterms.isReferencedBy
+| dcterms.references
+| dcterms.isFormatOf
+| dcterms.hasFormat
+| dcterms.conformsTo
+| dcterms.spatial
+| dcterms.temporal
+| dcterms.audience
+| dcterms.accrualMethod
+| dcterms.accrualPeriodicity
+| dcterms.accrualPolicy
+| dcterms.instructionalMethod
+| dcterms.provenance
+| dcterms.rightsHolder
+| dcterms.mediator
+| dcterms.educationLevel
+| dcterms.accessRights
+| dcterms.license
+| dcterms.bibliographicCitation
+
+db.extension.blocks = db.dialogue | db.poetry
 
    db.sidebar =
       element sidebar {
@@ -69,35 +135,56 @@ db.org =
          db.orgname,
          (db.address|db.affiliation|db.email|db.uri|db.orgdiv|db.mediaobject)*
       }
-      
-db.poetry =
-      element poetry {
-        db.poetry.info,
-        (db.mediaobject|db.linegroup|db.line)+
-      }
-      
- db.dialogue =
-      element dialogue {
-      db.dialogue.info,
-      (db.mediaobject | db.linegroup | db.line)+
-      }
-      
-  db.dialogue.info =
-     db._info.title.only
- 
- db.poetry.info =
-     db._info.title.only
-     
- db.linegroup =
-   db.speaker?,(db.line)+
    
+ db.speaker.role.attribute = attribute role { text }
+ 
  db.speaker = 
        element speaker {
-       text |
-       db.person
+       (db.speaker.role.attribute?
+       | db.person
+       | text)*
        }
        
  db.line =
        element line {
-       db.all.inlines
+       (db.all.inlines | text)+
        }
+       
+db.linegroup =
+   element linegroup {
+   db.speaker*, (db.line|db.para.blocks)+
+   }
+       
+ db.poetry =
+      element poetry {
+      db.poetry.attlist,
+      db.poetry.info?,
+      (db.mediaobject|db.linegroup|db.line|db.para.blocks)+
+      }
+      
+ db.dialogue =
+      element dialogue {
+      db.dialogue.attlist,
+      db.dialogue.info?,
+      (db.mediaobject|db.linegroup|db.line|db.para.blocks)+
+      }
+      
+  db.dialogue.info =
+     db._info.title.only
+     
+  db.dialogue.role.attribute = attribute role { text }
+     
+  db.dialogue.attlist =
+    db.dialogue.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+ 
+ db.poetry.info =
+     db._info.title.only
+     
+  db.poetry.role.attribute = attribute role { text }
+  
+  db.poetry.attlist =
+    db.poetry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
