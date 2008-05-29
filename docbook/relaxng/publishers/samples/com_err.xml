@@ -1,0 +1,4434 @@
+<?xml version="1.0" encoding="utf-8"?><?oxygen RNGSchema="publishers.rnc" type="compact"?><book xmlns="http://docbook.org/ns/docbook" version="5.0" role="play">
+<title>The Comedy of Errors</title>
+
+<info><author><personname><firstname>William</firstname><surname>Shakespeare</surname></personname></author><legalnotice>
+<para>ASCII text placed in the public domain by Moby Lexical Tools, 1992.</para>
+<para>SGML markup by Jon Bosak, 1992-1994.</para>
+<para>XML version by Jon Bosak, 1996-1999.</para>
+<para>The XML markup in this version is Copyright © 1999 Jon Bosak.
+This work may freely be distributed on condition that it not be
+modified or altered in any way.</para>
+</legalnotice>     <copyright><year>2008</year><holder>Scott Hudson</holder></copyright></info>
+
+<preface>
+<title>Dramatis Personae</title>
+
+<para><personname role="persona">SOLINUS, Duke of Ephesus. </personname></para>
+<para><personname role="persona">AEGEON, a merchant of Syracuse.</personname></para>
+
+<simplelist columns="2"><member><personname role="persona">ANTIPHOLUS OF EPHESUS</personname><personname role="persona">ANTIPHOLUS OF SYRACUSE</personname></member><member>twin brothers, and sons to Aegeon and Aemilia.</member></simplelist>
+
+<simplelist columns="2"><member><personname role="persona">DROMIO OF EPHESUS</personname><personname role="persona">DROMIO OF SYRACUSE</personname></member><member>twin brothers, and attendants on the two Antipholuses.</member></simplelist>
+
+<para><personname role="persona">BALTHAZAR, a merchant</personname></para>
+<para><personname role="persona">ANGELO, a goldsmith.</personname></para>
+<para><personname role="persona">First Merchant, friend to Antipholus of Syracuse.</personname></para>
+<para><personname role="persona">Second Merchant, to whom Angelo is a debtor.</personname></para>
+<para><personname role="persona">PINCH, a schoolmaster.</personname></para>
+<para><personname role="persona">AEMILIA, wife to Aegeon, an abbess at Ephesus.</personname></para>
+<para><personname role="persona">ADRIANA, wife to Antipholus of Ephesus.</personname></para>
+<para><personname role="persona">LUCIANA, her sister.</personname></para>
+<para><personname role="persona">LUCE, servant to Adriana.</personname></para>
+<para><personname role="persona">A Courtezan.</personname></para>
+<para><personname role="persona">Gaoler, Officers, and other Attendants</personname></para>
+    <para role="scndescr">SCENE  Ephesus.</para>
+</preface>
+
+
+
+
+<chapter role="act"><title>ACT I</title>
+
+<section role="scene"><title>SCENE I.  A hall in DUKE SOLINUS'S palace.</title>
+<para role="stagedir">Enter DUKE SOLINUS, AEGEON, Gaoler, Officers, and other
+Attendants</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Proceed, Solinus, to procure my fall</line>
+<line>And by the doom of death end woes and all.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Merchant of Syracuse, plead no more;</line>
+<line>I am not partial to infringe our laws:</line>
+<line>The enmity and discord which of late</line>
+<line>Sprung from the rancorous outrage of your duke</line>
+<line>To merchants, our well-dealing countrymen,</line>
+<line>Who wanting guilders to redeem their lives</line>
+<line>Have seal'd his rigorous statutes with their bloods,</line>
+<line>Excludes all pity from our threatening looks.</line>
+<line>For, since the mortal and intestine jars</line>
+<line>'Twixt thy seditious countrymen and us,</line>
+<line>It hath in solemn synods been decreed</line>
+<line>Both by the Syracusians and ourselves,</line>
+<line>To admit no traffic to our adverse towns Nay, more,</line>
+<line>If any born at Ephesus be seen</line>
+<line>At any Syracusian marts and fairs;</line>
+<line>Again: if any Syracusian born</line>
+<line>Come to the bay of Ephesus, he dies,</line>
+<line>His goods confiscate to the duke's dispose,</line>
+<line>Unless a thousand marks be levied,</line>
+<line>To quit the penalty and to ransom him.</line>
+<line>Thy substance, valued at the highest rate,</line>
+<line>Cannot amount unto a hundred marks;</line>
+<line>Therefore by law thou art condemned to die.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Yet this my comfort: when your words are done,</line>
+<line>My woes end likewise with the evening sun.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Well, Syracusian, say in brief the cause</line>
+<line>Why thou departed'st from thy native home</line>
+<line>And for what cause thou camest to Ephesus.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>A heavier task could not have been imposed</line>
+<line>Than I to speak my griefs unspeakable:</line>
+<line>Yet, that the world may witness that my end</line>
+<line>Was wrought by nature, not by vile offence,</line>
+<line>I'll utter what my sorrows give me leave.</line>
+<line>In Syracusa was I born, and wed</line>
+<line>Unto a woman, happy but for me,</line>
+<line>And by me, had not our hap been bad.</line>
+<line>With her I lived in joy; our wealth increased</line>
+<line>By prosperous voyages I often made</line>
+<line>To Epidamnum; till my factor's death</line>
+<line>And the great care of goods at random left</line>
+<line>Drew me from kind embracements of my spouse:</line>
+<line>From whom my absence was not six months old</line>
+<line>Before herself, almost at fainting under</line>
+<line>The pleasing punishment that women bear,</line>
+<line>Had made provision for her following me</line>
+<line>And soon and safe arrived where I was.</line>
+<line>There had she not been long, but she became</line>
+<line>A joyful mother of two goodly sons;</line>
+<line>And, which was strange, the one so like the other,</line>
+<line>As could not be distinguish'd but by names.</line>
+<line>That very hour, and in the self-same inn,</line>
+<line>A meaner woman was delivered</line>
+<line>Of such a burden, male twins, both alike:</line>
+<line>Those,--for their parents were exceeding poor,--</line>
+<line>I bought and brought up to attend my sons.</line>
+<line>My wife, not meanly proud of two such boys,</line>
+<line>Made daily motions for our home return:</line>
+<line>Unwilling I agreed. Alas! too soon,</line>
+<line>We came aboard.</line>
+<line>A league from Epidamnum had we sail'd,</line>
+<line>Before the always wind-obeying deep</line>
+<line>Gave any tragic instance of our harm:</line>
+<line>But longer did we not retain much hope;</line>
+<line>For what obscured light the heavens did grant</line>
+<line>Did but convey unto our fearful minds</line>
+<line>A doubtful warrant of immediate death;</line>
+<line>Which though myself would gladly have embraced,</line>
+<line>Yet the incessant weepings of my wife,</line>
+<line>Weeping before for what she saw must come,</line>
+<line>And piteous plainings of the pretty babes,</line>
+<line>That mourn'd for fashion, ignorant what to fear,</line>
+<line>Forced me to seek delays for them and me.</line>
+<line>And this it was, for other means was none:</line>
+<line>The sailors sought for safety by our boat,</line>
+<line>And left the ship, then sinking-ripe, to us:</line>
+<line>My wife, more careful for the latter-born,</line>
+<line>Had fasten'd him unto a small spare mast,</line>
+<line>Such as seafaring men provide for storms;</line>
+<line>To him one of the other twins was bound,</line>
+<line>Whilst I had been like heedful of the other:</line>
+<line>The children thus disposed, my wife and I,</line>
+<line>Fixing our eyes on whom our care was fix'd,</line>
+<line>Fasten'd ourselves at either end the mast;</line>
+<line>And floating straight, obedient to the stream,</line>
+<line>Was carried towards Corinth, as we thought.</line>
+<line>At length the sun, gazing upon the earth,</line>
+<line>Dispersed those vapours that offended us;</line>
+<line>And by the benefit of his wished light,</line>
+<line>The seas wax'd calm, and we discovered</line>
+<line>Two ships from far making amain to us,</line>
+<line>Of Corinth that, of Epidaurus this:</line>
+<line>But ere they came,--O, let me say no more!</line>
+<line>Gather the sequel by that went before.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Nay, forward, old man; do not break off so;</line>
+<line>For we may pity, though not pardon thee.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>O, had the gods done so, I had not now</line>
+<line>Worthily term'd them merciless to us!</line>
+<line>For, ere the ships could meet by twice five leagues,</line>
+<line>We were encounterd by a mighty rock;</line>
+<line>Which being violently borne upon,</line>
+<line>Our helpful ship was splitted in the midst;</line>
+<line>So that, in this unjust divorce of us,</line>
+<line>Fortune had left to both of us alike</line>
+<line>What to delight in, what to sorrow for.</line>
+<line>Her part, poor soul! seeming as burdened</line>
+<line>With lesser weight but not with lesser woe,</line>
+<line>Was carried with more speed before the wind;</line>
+<line>And in our sight they three were taken up</line>
+<line>By fishermen of Corinth, as we thought.</line>
+<line>At length, another ship had seized on us;</line>
+<line>And, knowing whom it was their hap to save,</line>
+<line>Gave healthful welcome to their shipwreck'd guests;</line>
+<line>And would have reft the fishers of their prey,</line>
+<line>Had not their bark been very slow of sail;</line>
+<line>And therefore homeward did they bend their course.</line>
+<line>Thus have you heard me sever'd from my bliss;</line>
+<line>That by misfortunes was my life prolong'd,</line>
+<line>To tell sad stories of my own mishaps.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>And for the sake of them thou sorrowest for,</line>
+<line>Do me the favour to dilate at full</line>
+<line>What hath befall'n of them and thee till now.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>My youngest boy, and yet my eldest care,</line>
+<line>At eighteen years became inquisitive</line>
+<line>After his brother: and importuned me</line>
+<line>That his attendant--so his case was like,</line>
+<line>Reft of his brother, but retain'd his name--</line>
+<line>Might bear him company in the quest of him:</line>
+<line>Whom whilst I labour'd of a love to see,</line>
+<line>I hazarded the loss of whom I loved.</line>
+<line>Five summers have I spent in furthest Greece,</line>
+<line>Roaming clean through the bounds of Asia,</line>
+<line>And, coasting homeward, came to Ephesus;</line>
+<line>Hopeless to find, yet loath to leave unsought</line>
+<line>Or that or any place that harbours men.</line>
+<line>But here must end the story of my life;</line>
+<line>And happy were I in my timely death,</line>
+<line>Could all my travels warrant me they live.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Hapless AEgeon, whom the fates have mark'd</line>
+<line>To bear the extremity of dire mishap!</line>
+<line>Now, trust me, were it not against our laws,</line>
+<line>Against my crown, my oath, my dignity,</line>
+<line>Which princes, would they, may not disannul,</line>
+<line>My soul would sue as advocate for thee.</line>
+<line>But, though thou art adjudged to the death</line>
+<line>And passed sentence may not be recall'd</line>
+<line>But to our honour's great disparagement,</line>
+<line>Yet I will favour thee in what I can.</line>
+<line>Therefore, merchant, I'll limit thee this day</line>
+<line>To seek thy life by beneficial help:</line>
+<line>Try all the friends thou hast in Ephesus;</line>
+<line>Beg thou, or borrow, to make up the sum,</line>
+<line>And live; if no, then thou art doom'd to die.</line>
+<line>Gaoler, take him to thy custody.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Gaoler</speaker>
+<line>I will, my lord.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Hopeless and helpless doth AEgeon wend,</line>
+<line>But to procrastinate his lifeless end.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+
+<section role="scene"><title>SCENE II.  The Mart.</title>
+<para role="stagedir">Enter ANTIPHOLUS of Syracuse, DROMIO of Syracuse,
+and First Merchant</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">First Merchant</speaker>
+<line>Therefore give out you are of Epidamnum,</line>
+<line>Lest that your goods too soon be confiscate.</line>
+<line>This very day a Syracusian merchant</line>
+<line>Is apprehended for arrival here;</line>
+<line>And not being able to buy out his life</line>
+<line>According to the statute of the town,</line>
+<line>Dies ere the weary sun set in the west.</line>
+<line>There is your money that I had to keep.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Go bear it to the Centaur, where we host,</line>
+<line>And stay there, Dromio, till I come to thee.</line>
+<line>Within this hour it will be dinner-time:</line>
+<line>Till that, I'll view the manners of the town,</line>
+<line>Peruse the traders, gaze upon the buildings,</line>
+<line>And then return and sleep within mine inn,</line>
+<line>For with long travel I am stiff and weary.</line>
+<line>Get thee away.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Many a man would take you at your word,</line>
+<line>And go indeed, having so good a mean.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>A trusty villain, sir, that very oft,</line>
+<line>When I am dull with care and melancholy,</line>
+<line>Lightens my humour with his merry jests.</line>
+<line>What, will you walk with me about the town,</line>
+<line>And then go to my inn and dine with me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">First Merchant</speaker>
+<line>I am invited, sir, to certain merchants,</line>
+<line>Of whom I hope to make much benefit;</line>
+<line>I crave your pardon. Soon at five o'clock,</line>
+<line>Please you, I'll meet with you upon the mart</line>
+<line>And afterward consort you till bed-time:</line>
+<line>My present business calls me from you now.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Farewell till then: I will go lose myself</line>
+<line>And wander up and down to view the city.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">First Merchant</speaker>
+<line>Sir, I commend you to your own content.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>He that commends me to mine own content</line>
+<line>Commends me to the thing I cannot get.</line>
+<line>I to the world am like a drop of water</line>
+<line>That in the ocean seeks another drop,</line>
+<line>Who, falling there to find his fellow forth,</line>
+<line>Unseen, inquisitive, confounds himself:</line>
+<line>So I, to find a mother and a brother,</line>
+<line>In quest of them, unhappy, lose myself.</line>
+<para role="stagedir">Enter DROMIO of Ephesus</para>
+<line>Here comes the almanac of my true date.</line>
+<line>What now? how chance thou art return'd so soon?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Return'd so soon! rather approach'd too late:</line>
+<line>The capon burns, the pig falls from the spit,</line>
+<line>The clock hath strucken twelve upon the bell;</line>
+<line>My mistress made it one upon my cheek:</line>
+<line>She is so hot because the meat is cold;</line>
+<line>The meat is cold because you come not home;</line>
+<line>You come not home because you have no stomach;</line>
+<line>You have no stomach having broke your fast;</line>
+<line>But we that know what 'tis to fast and pray</line>
+<line>Are penitent for your default to-day.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Stop in your wind, sir: tell me this, I pray:</line>
+<line>Where have you left the money that I gave you?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>O,--sixpence, that I had o' Wednesday last</line>
+<line>To pay the saddler for my mistress' crupper?</line>
+<line>The saddler had it, sir; I kept it not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I am not in a sportive humour now:</line>
+<line>Tell me, and dally not, where is the money?</line>
+<line>We being strangers here, how darest thou trust</line>
+<line>So great a charge from thine own custody?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I pray you, air, as you sit at dinner:</line>
+<line>I from my mistress come to you in post;</line>
+<line>If I return, I shall be post indeed,</line>
+<line>For she will score your fault upon my pate.</line>
+<line>Methinks your maw, like mine, should be your clock,</line>
+<line>And strike you home without a messenger.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Come, Dromio, come, these jests are out of season;</line>
+<line>Reserve them till a merrier hour than this.</line>
+<line>Where is the gold I gave in charge to thee?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>To me, sir? why, you gave no gold to me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Come on, sir knave, have done your foolishness,</line>
+<line>And tell me how thou hast disposed thy charge.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>My charge was but to fetch you from the mart</line>
+<line>Home to your house, the Phoenix, sir, to dinner:</line>
+<line>My mistress and her sister stays for you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>In what safe place you have bestow'd my money,</line>
+<line>Or I shall break that merry sconce of yours</line>
+<line>That stands on tricks when I am undisposed:</line>
+<line>Where is the thousand marks thou hadst of me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I have some marks of yours upon my pate,</line>
+<line>Some of my mistress' marks upon my shoulders,</line>
+<line>But not a thousand marks between you both.</line>
+<line>If I should pay your worship those again,</line>
+<line>Perchance you will not bear them patiently.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Thy mistress' marks? what mistress, slave, hast thou?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Your worship's wife, my mistress at the Phoenix;</line>
+<line>She that doth fast till you come home to dinner,</line>
+<line>And prays that you will hie you home to dinner.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What, wilt thou flout me thus unto my face,</line>
+<line>Being forbid? There, take you that, sir knave.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>What mean you, sir? for God's sake, hold your hands!</line>
+<line>Nay, and you will not, sir, I'll take my heels.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Upon my life, by some device or other</line>
+<line>The villain is o'er-raught of all my money.</line>
+<line>They say this town is full of cozenage,</line>
+<line>As, nimble jugglers that deceive the eye,</line>
+<line>Dark-working sorcerers that change the mind,</line>
+<line>Soul-killing witches that deform the body,</line>
+<line>Disguised cheaters, prating mountebanks,</line>
+<line>And many such-like liberties of sin:</line>
+<line>If it prove so, I will be gone the sooner.</line>
+<line>I'll to the Centaur, to go seek this slave:</line>
+<line>I greatly fear my money is not safe.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+</section>
+
+</chapter>
+
+<chapter role="act"><title>ACT II</title>
+
+<section role="scene"><title>SCENE I.  The house of ANTIPHOLUS of Ephesus.</title>
+<para role="stagedir">Enter ADRIANA and LUCIANA</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Neither my husband nor the slave return'd,</line>
+<line>That in such haste I sent to seek his master!</line>
+<line>Sure, Luciana, it is two o'clock.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Perhaps some merchant hath invited him,</line>
+<line>And from the mart he's somewhere gone to dinner.</line>
+<line>Good sister, let us dine and never fret:</line>
+<line>A man is master of his liberty:</line>
+<line>Time is their master, and, when they see time,</line>
+<line>They'll go or come: if so, be patient, sister.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Why should their liberty than ours be more?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Because their business still lies out o' door.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Look, when I serve him so, he takes it ill.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>O, know he is the bridle of your will.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>There's none but asses will be bridled so.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Why, headstrong liberty is lash'd with woe.</line>
+<line>There's nothing situate under heaven's eye</line>
+<line>But hath his bound, in earth, in sea, in sky:</line>
+<line>The beasts, the fishes, and the winged fowls,</line>
+<line>Are their males' subjects and at their controls:</line>
+<line>Men, more divine, the masters of all these,</line>
+<line>Lords of the wide world and wild watery seas,</line>
+<line>Indued with intellectual sense and souls,</line>
+<line>Of more preeminence than fish and fowls,</line>
+<line>Are masters to their females, and their lords:</line>
+<line>Then let your will attend on their accords.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>This servitude makes you to keep unwed.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Not this, but troubles of the marriage-bed.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>But, were you wedded, you would bear some sway.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Ere I learn love, I'll practise to obey.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>How if your husband start some other where?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Till he come home again, I would forbear.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Patience unmoved! no marvel though she pause;</line>
+<line>They can be meek that have no other cause.</line>
+<line>A wretched soul, bruised with adversity,</line>
+<line>We bid be quiet when we hear it cry;</line>
+<line>But were we burdened with like weight of pain,</line>
+<line>As much or more would we ourselves complain:</line>
+<line>So thou, that hast no unkind mate to grieve thee,</line>
+<line>With urging helpless patience wouldst relieve me,</line>
+<line>But, if thou live to see like right bereft,</line>
+<line>This fool-begg'd patience in thee will be left.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Well, I will marry one day, but to try.</line>
+<line>Here comes your man; now is your husband nigh.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter DROMIO of Ephesus</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Say, is your tardy master now at hand?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Nay, he's at two hands with me, and that my two ears</line>
+<line>can witness.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Say, didst thou speak with him? know'st thou his mind?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Ay, ay, he told his mind upon mine ear:</line>
+<line>Beshrew his hand, I scarce could understand it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Spake he so doubtfully, thou couldst not feel his meaning?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Nay, he struck so plainly, I could too well feel his</line>
+<line>blows; and withal so doubtfully that I could scarce</line>
+<line>understand them.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>But say, I prithee, is he coming home? It seems he</line>
+<line>hath great care to please his wife.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Why, mistress, sure my master is horn-mad.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Horn-mad, thou villain!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I mean not cuckold-mad;</line>
+<line>But, sure, he is stark mad.</line>
+<line>When I desired him to come home to dinner,</line>
+<line>He ask'd me for a thousand marks in gold:</line>
+<line>''Tis dinner-time,' quoth I; 'My gold!' quoth he;</line>
+<line>'Your meat doth burn,' quoth I; 'My gold!' quoth he:</line>
+<line>'Will you come home?' quoth I; 'My gold!' quoth he.</line>
+<line>'Where is the thousand marks I gave thee, villain?'</line>
+<line>'The pig,' quoth I, 'is burn'd;' 'My gold!' quoth he:</line>
+<line>'My mistress, sir' quoth I; 'Hang up thy mistress!</line>
+<line>I know not thy mistress; out on thy mistress!'</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Quoth who?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Quoth my master:</line>
+<line>'I know,' quoth he, 'no house, no wife, no mistress.'</line>
+<line>So that my errand, due unto my tongue,</line>
+<line>I thank him, I bare home upon my shoulders;</line>
+<line>For, in conclusion, he did beat me there.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Go back again, thou slave, and fetch him home.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Go back again, and be new beaten home?</line>
+<line>For God's sake, send some other messenger.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Back, slave, or I will break thy pate across.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>And he will bless that cross with other beating:</line>
+<line>Between you I shall have a holy head.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Hence, prating peasant! fetch thy master home.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Am I so round with you as you with me,</line>
+<line>That like a football you do spurn me thus?</line>
+<line>You spurn me hence, and he will spurn me hither:</line>
+<line>If I last in this service, you must case me in leather.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Fie, how impatience loureth in your face!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>His company must do his minions grace,</line>
+<line>Whilst I at home starve for a merry look.</line>
+<line>Hath homely age the alluring beauty took</line>
+<line>From my poor cheek? then he hath wasted it:</line>
+<line>Are my discourses dull? barren my wit?</line>
+<line>If voluble and sharp discourse be marr'd,</line>
+<line>Unkindness blunts it more than marble hard:</line>
+<line>Do their gay vestments his affections bait?</line>
+<line>That's not my fault: he's master of my state:</line>
+<line>What ruins are in me that can be found,</line>
+<line>By him not ruin'd? then is he the ground</line>
+<line>Of my defeatures. My decayed fair</line>
+<line>A sunny look of his would soon repair</line>
+<line>But, too unruly deer, he breaks the pale</line>
+<line>And feeds from home; poor I am but his stale.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Self-harming jealousy! fie, beat it hence!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Unfeeling fools can with such wrongs dispense.</line>
+<line>I know his eye doth homage otherwhere,</line>
+<line>Or else what lets it but he would be here?</line>
+<line>Sister, you know he promised me a chain;</line>
+<line>Would that alone, alone he would detain,</line>
+<line>So he would keep fair quarter with his bed!</line>
+<line>I see the jewel best enamelled</line>
+<line>Will lose his beauty; yet the gold bides still,</line>
+<line>That others touch, and often touching will</line>
+<line>Wear gold: and no man that hath a name,</line>
+<line>By falsehood and corruption doth it shame.</line>
+<line>Since that my beauty cannot please his eye,</line>
+<line>I'll weep what's left away, and weeping die.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>How many fond fools serve mad jealousy!</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+
+<section role="scene"><title>SCENE II.  A public place.</title>
+<para role="stagedir">Enter ANTIPHOLUS of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>The gold I gave to Dromio is laid up</line>
+<line>Safe at the Centaur; and the heedful slave</line>
+<line>Is wander'd forth, in care to seek me out</line>
+<line>By computation and mine host's report.</line>
+<line>I could not speak with Dromio since at first</line>
+<line>I sent him from the mart. See, here he comes.</line>
+<para role="stagedir">Enter DROMIO of Syracuse</para>
+<line>How now sir! is your merry humour alter'd?</line>
+<line>As you love strokes, so jest with me again.</line>
+<line>You know no Centaur? you received no gold?</line>
+<line>Your mistress sent to have me home to dinner?</line>
+<line>My house was at the Phoenix? Wast thou mad,</line>
+<line>That thus so madly thou didst answer me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>What answer, sir? when spake I such a word?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Even now, even here, not half an hour since.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I did not see you since you sent me hence,</line>
+<line>Home to the Centaur, with the gold you gave me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Villain, thou didst deny the gold's receipt,</line>
+<line>And told'st me of a mistress and a dinner;</line>
+<line>For which, I hope, thou felt'st I was displeased.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I am glad to see you in this merry vein:</line>
+<line>What means this jest? I pray you, master, tell me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Yea, dost thou jeer and flout me in the teeth?</line>
+<line>Think'st thou I jest? Hold, take thou that, and that.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Beating him</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Hold, sir, for God's sake! now your jest is earnest:</line>
+<line>Upon what bargain do you give it me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Because that I familiarly sometimes</line>
+<line>Do use you for my fool and chat with you,</line>
+<line>Your sauciness will jest upon my love</line>
+<line>And make a common of my serious hours.</line>
+<line>When the sun shines let foolish gnats make sport,</line>
+<line>But creep in crannies when he hides his beams.</line>
+<line>If you will jest with me, know my aspect,</line>
+<line>And fashion your demeanor to my looks,</line>
+<line>Or I will beat this method in your sconce.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Sconce call you it? so you would leave battering, I</line>
+<line>had rather have it a head: an you use these blows</line>
+<line>long, I must get a sconce for my head and ensconce</line>
+<line>it too; or else I shall seek my wit in my shoulders.</line>
+<line>But, I pray, sir why am I beaten?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Dost thou not know?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Nothing, sir, but that I am beaten.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Shall I tell you why?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Ay, sir, and wherefore; for they say every why hath</line>
+<line>a wherefore.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Why, first,--for flouting me; and then, wherefore--</line>
+<line>For urging it the second time to me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Was there ever any man thus beaten out of season,</line>
+<line>When in the why and the wherefore is neither rhyme</line>
+<line>nor reason?</line>
+<line>Well, sir, I thank you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Thank me, sir, for what?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, sir, for this something that you gave me for nothing.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I'll make you amends next, to give you nothing for</line>
+<line>something. But say, sir, is it dinner-time?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No, sir; I think the meat wants that I have.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>In good time, sir; what's that?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Basting.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Well, sir, then 'twill be dry.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>If it be, sir, I pray you, eat none of it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Your reason?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Lest it make you choleric and purchase me another</line>
+<line>dry basting.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Well, sir, learn to jest in good time: there's a</line>
+<line>time for all things.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I durst have denied that, before you were so choleric.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>By what rule, sir?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, sir, by a rule as plain as the plain bald</line>
+<line>pate of father Time himself.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Let's hear it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>There's no time for a man to recover his hair that</line>
+<line>grows bald by nature.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>May he not do it by fine and recovery?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Yes, to pay a fine for a periwig and recover the</line>
+<line>lost hair of another man.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Why is Time such a niggard of hair, being, as it is,</line>
+<line>so plentiful an excrement?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Because it is a blessing that he bestows on beasts;</line>
+<line>and what he hath scanted men in hair he hath given them in wit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Why, but there's many a man hath more hair than wit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Not a man of those but he hath the wit to lose his hair.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Why, thou didst conclude hairy men plain dealers without wit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>The plainer dealer, the sooner lost: yet he loseth</line>
+<line>it in a kind of jollity.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>For what reason?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>For two; and sound ones too.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Nay, not sound, I pray you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Sure ones, then.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Nay, not sure, in a thing falsing.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Certain ones then.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Name them.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>The one, to save the money that he spends in</line>
+<line>trimming; the other, that at dinner they should not</line>
+<line>drop in his porridge.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>You would all this time have proved there is no</line>
+<line>time for all things.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, and did, sir; namely, no time to recover hair</line>
+<line>lost by nature.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>But your reason was not substantial, why there is no</line>
+<line>time to recover.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Thus I mend it: Time himself is bald and therefore</line>
+<line>to the world's end will have bald followers.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I knew 'twould be a bald conclusion:</line>
+<line>But, soft! who wafts us yonder?</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ADRIANA and LUCIANA</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Ay, ay, Antipholus, look strange and frown:</line>
+<line>Some other mistress hath thy sweet aspects;</line>
+<line>I am not Adriana nor thy wife.</line>
+<line>The time was once when thou unurged wouldst vow</line>
+<line>That never words were music to thine ear,</line>
+<line>That never object pleasing in thine eye,</line>
+<line>That never touch well welcome to thy hand,</line>
+<line>That never meat sweet-savor'd in thy taste,</line>
+<line>Unless I spake, or look'd, or touch'd, or carved to thee.</line>
+<line>How comes it now, my husband, O, how comes it,</line>
+<line>That thou art thus estranged from thyself?</line>
+<line>Thyself I call it, being strange to me,</line>
+<line>That, undividable, incorporate,</line>
+<line>Am better than thy dear self's better part.</line>
+<line>Ah, do not tear away thyself from me!</line>
+<line>For know, my love, as easy mayest thou fall</line>
+<line>A drop of water in the breaking gulf,</line>
+<line>And take unmingled that same drop again,</line>
+<line>Without addition or diminishing,</line>
+<line>As take from me thyself and not me too.</line>
+<line>How dearly would it touch me to the quick,</line>
+<line>Shouldst thou but hear I were licentious</line>
+<line>And that this body, consecrate to thee,</line>
+<line>By ruffian lust should be contaminate!</line>
+<line>Wouldst thou not spit at me and spurn at me</line>
+<line>And hurl the name of husband in my face</line>
+<line>And tear the stain'd skin off my harlot-brow</line>
+<line>And from my false hand cut the wedding-ring</line>
+<line>And break it with a deep-divorcing vow?</line>
+<line>I know thou canst; and therefore see thou do it.</line>
+<line>I am possess'd with an adulterate blot;</line>
+<line>My blood is mingled with the crime of lust:</line>
+<line>For if we too be one and thou play false,</line>
+<line>I do digest the poison of thy flesh,</line>
+<line>Being strumpeted by thy contagion.</line>
+<line>Keep then far league and truce with thy true bed;</line>
+<line>I live unstain'd, thou undishonoured.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Plead you to me, fair dame? I know you not:</line>
+<line>In Ephesus I am but two hours old,</line>
+<line>As strange unto your town as to your talk;</line>
+<line>Who, every word by all my wit being scann'd,</line>
+<line>Want wit in all one word to understand.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Fie, brother! how the world is changed with you!</line>
+<line>When were you wont to use my sister thus?</line>
+<line>She sent for you by Dromio home to dinner.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>By Dromio?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>By me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>By thee; and this thou didst return from him,</line>
+<line>That he did buffet thee, and, in his blows,</line>
+<line>Denied my house for his, me for his wife.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Did you converse, sir, with this gentlewoman?</line>
+<line>What is the course and drift of your compact?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I, sir? I never saw her till this time.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Villain, thou liest; for even her very words</line>
+<line>Didst thou deliver to me on the mart.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I never spake with her in all my life.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>How can she thus then call us by our names,</line>
+<line>Unless it be by inspiration.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>How ill agrees it with your gravity</line>
+<line>To counterfeit thus grossly with your slave,</line>
+<line>Abetting him to thwart me in my mood!</line>
+<line>Be it my wrong you are from me exempt,</line>
+<line>But wrong not that wrong with a more contempt.</line>
+<line>Come, I will fasten on this sleeve of thine:</line>
+<line>Thou art an elm, my husband, I a vine,</line>
+<line>Whose weakness, married to thy stronger state,</line>
+<line>Makes me with thy strength to communicate:</line>
+<line>If aught possess thee from me, it is dross,</line>
+<line>Usurping ivy, brier, or idle moss;</line>
+<line>Who, all for want of pruning, with intrusion</line>
+<line>Infect thy sap and live on thy confusion.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>To me she speaks; she moves me for her theme:</line>
+<line>What, was I married to her in my dream?</line>
+<line>Or sleep I now and think I hear all this?</line>
+<line>What error drives our eyes and ears amiss?</line>
+<line>Until I know this sure uncertainty,</line>
+<line>I'll entertain the offer'd fallacy.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Dromio, go bid the servants spread for dinner.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>O, for my beads! I cross me for a sinner.</line>
+<line>This is the fairy land: O spite of spites!</line>
+<line>We talk with goblins, owls and sprites:</line>
+<line>If we obey them not, this will ensue,</line>
+<line>They'll suck our breath, or pinch us black and blue.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Why pratest thou to thyself and answer'st not?</line>
+<line>Dromio, thou drone, thou snail, thou slug, thou sot!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I am transformed, master, am I not?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I think thou art in mind, and so am I.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Nay, master, both in mind and in my shape.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Thou hast thine own form.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No, I am an ape.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>If thou art changed to aught, 'tis to an ass.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>'Tis true; she rides me and I long for grass.</line>
+<line>'Tis so, I am an ass; else it could never be</line>
+<line>But I should know her as well as she knows me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Come, come, no longer will I be a fool,</line>
+<line>To put the finger in the eye and weep,</line>
+<line>Whilst man and master laugh my woes to scorn.</line>
+<line>Come, sir, to dinner. Dromio, keep the gate.</line>
+<line>Husband, I'll dine above with you to-day</line>
+<line>And shrive you of a thousand idle pranks.</line>
+<line>Sirrah, if any ask you for your master,</line>
+<line>Say he dines forth, and let no creature enter.</line>
+<line>Come, sister. Dromio, play the porter well.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Am I in earth, in heaven, or in hell?</line>
+<line>Sleeping or waking? mad or well-advised?</line>
+<line>Known unto these, and to myself disguised!</line>
+<line>I'll say as they say and persever so,</line>
+<line>And in this mist at all adventures go.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Master, shall I be porter at the gate?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Ay; and let none enter, lest I break your pate.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Come, come, Antipholus, we dine too late.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+
+</chapter>
+
+<chapter role="act"><title>ACT III</title>
+
+<section role="scene"><title>SCENE I.  Before the house of ANTIPHOLUS of Ephesus.</title>
+<para role="stagedir">Enter ANTIPHOLUS of Ephesus, DROMIO of Ephesus,
+ANGELO, and BALTHAZAR</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">OF EPHESUS</speaker>
+<line>Good Signior Angelo, you must excuse us all;</line>
+<line>My wife is shrewish when I keep not hours:</line>
+<line>Say that I linger'd with you at your shop</line>
+<line>To see the making of her carcanet,</line>
+<line>And that to-morrow you will bring it home.</line>
+<line>But here's a villain that would face me down</line>
+<line>He met me on the mart, and that I beat him,</line>
+<line>And charged him with a thousand marks in gold,</line>
+<line>And that I did deny my wife and house.</line>
+<line>Thou drunkard, thou, what didst thou mean by this?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Say what you will, sir, but I know what I know;</line>
+<line>That you beat me at the mart, I have your hand to show:</line>
+<line>If the skin were parchment, and the blows you gave were ink,</line>
+<line>Your own handwriting would tell you what I think.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I think thou art an ass.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Marry, so it doth appear</line>
+<line>By the wrongs I suffer and the blows I bear.</line>
+<line>I should kick, being kick'd; and, being at that pass,</line>
+<line>You would keep from my heels and beware of an ass.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>You're sad, Signior Balthazar: pray God our cheer</line>
+<line>May answer my good will and your good welcome here.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">BALTHAZAR</speaker>
+<line>I hold your dainties cheap, sir, and your</line>
+<line>welcome dear.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>O, Signior Balthazar, either at flesh or fish,</line>
+<line>A table full of welcome make scarce one dainty dish.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">BALTHAZAR</speaker>
+<line>Good meat, sir, is common; that every churl affords.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>And welcome more common; for that's nothing but words.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">BALTHAZAR</speaker>
+<line>Small cheer and great welcome makes a merry feast.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Ay, to a niggardly host, and more sparing guest:</line>
+<line>But though my cates be mean, take them in good part;</line>
+<line>Better cheer may you have, but not with better heart.</line>
+<line>But, soft! my door is lock'd. Go bid them let us in.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Maud, Bridget, Marian, Cicel, Gillian, Ginn!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Mome, malt-horse, capon, coxcomb,</line>
+<line>idiot, patch!</line>
+<line>Either get thee from the door, or sit down at the hatch.</line>
+<line>Dost thou conjure for wenches, that thou call'st</line>
+<line>for such store,</line>
+<line>When one is one too many? Go, get thee from the door.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>What patch is made our porter? My master stays in</line>
+<line>the street.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Let him walk from whence he came, lest he</line>
+<line>catch cold on's feet.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Who talks within there? ho, open the door!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Right, sir; I'll tell you when, an you tell</line>
+<line>me wherefore.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Wherefore? for my dinner: I have not dined to-day.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Nor to-day here you must not; come again</line>
+<line>when you may.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>What art thou that keepest me out from the house I owe?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  The porter for this time, sir, and my name</line>
+<line>is Dromio.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>O villain! thou hast stolen both mine office and my name.</line>
+<line>The one ne'er got me credit, the other mickle blame.</line>
+<line>If thou hadst been Dromio to-day in my place,</line>
+<line>Thou wouldst have changed thy face for a name or thy</line>
+<line>name for an ass.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  What a coil is there, Dromio? who are those</line>
+<line>at the gate?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Let my master in, Luce.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Faith, no; he comes too late;</line>
+<line>And so tell your master.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>O Lord, I must laugh!</line>
+<line>Have at you with a proverb--Shall I set in my staff?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Have at you with another; that's--When?</line>
+<line>can you tell?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  If thy name be call'd Luce--Luce, thou hast</line>
+<line>answered him well.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Do you hear, you minion? you'll let us in, I hope?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  I thought to have asked you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  And you said no.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>So, come, help: well struck! there was blow for blow.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Thou baggage, let me in.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Can you tell for whose sake?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Master, knock the door hard.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Let him knock till it ache.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>You'll cry for this, minion, if I beat the door down.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCE</speaker>
+<line><phrase role="stagedir">Within</phrase>  What needs all that, and a pair of stocks in the town?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line><phrase role="stagedir">Within</phrase>  Who is that at the door that keeps all</line>
+<line>this noise?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  By my troth, your town is troubled with</line>
+<line>unruly boys.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Are you there, wife? you might have come before.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line><phrase role="stagedir">Within</phrase>  Your wife, sir knave! go get you from the door.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>If you went in pain, master, this 'knave' would go sore.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Here is neither cheer, sir, nor welcome: we would</line>
+<line>fain have either.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">BALTHAZAR</speaker>
+<line>In debating which was best, we shall part with neither.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>They stand at the door, master; bid them welcome hither.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>There is something in the wind, that we cannot get in.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>You would say so, master, if your garments were thin.</line>
+<line>Your cake there is warm within; you stand here in the cold:</line>
+<line>It would make a man mad as a buck, to be so bought and sold.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Go fetch me something: I'll break ope the gate.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Break any breaking here, and I'll break your</line>
+<line>knave's pate.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>A man may break a word with you, sir, and words are but wind,</line>
+<line>Ay, and break it in your face, so he break it not behind.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  It seems thou want'st breaking: out upon</line>
+<line>thee, hind!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Here's too much 'out upon thee!' I pray thee,</line>
+<line>let me in.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line><phrase role="stagedir">Within</phrase>  Ay, when fowls have no feathers and fish have no fin.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Well, I'll break in: go borrow me a crow.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>A crow without feather? Master, mean you so?</line>
+<line>For a fish without a fin, there's a fowl without a feather;</line>
+<line>If a crow help us in, sirrah, we'll pluck a crow together.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Go get thee gone; fetch me an iron crow.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">BALTHAZAR</speaker>
+<line>Have patience, sir; O, let it not be so!</line>
+<line>Herein you war against your reputation</line>
+<line>And draw within the compass of suspect</line>
+<line>The unviolated honour of your wife.</line>
+<line>Once this,--your long experience of her wisdom,</line>
+<line>Her sober virtue, years and modesty,</line>
+<line>Plead on her part some cause to you unknown:</line>
+<line>And doubt not, sir, but she will well excuse</line>
+<line>Why at this time the doors are made against you.</line>
+<line>Be ruled by me: depart in patience,</line>
+<line>And let us to the Tiger all to dinner,</line>
+<line>And about evening come yourself alone</line>
+<line>To know the reason of this strange restraint.</line>
+<line>If by strong hand you offer to break in</line>
+<line>Now in the stirring passage of the day,</line>
+<line>A vulgar comment will be made of it,</line>
+<line>And that supposed by the common rout</line>
+<line>Against your yet ungalled estimation</line>
+<line>That may with foul intrusion enter in</line>
+<line>And dwell upon your grave when you are dead;</line>
+<line>For slander lives upon succession,</line>
+<line>For ever housed where it gets possession.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>You have prevailed: I will depart in quiet,</line>
+<line>And, in despite of mirth, mean to be merry.</line>
+<line>I know a wench of excellent discourse,</line>
+<line>Pretty and witty; wild, and yet, too, gentle:</line>
+<line>There will we dine. This woman that I mean,</line>
+<line>My wife--but, I protest, without desert--</line>
+<line>Hath oftentimes upbraided me withal:</line>
+<line>To her will we to dinner.</line>
+<para role="stagedir">To Angelo</para>
+<line>Get you home</line>
+<line>And fetch the chain; by this I know 'tis made:</line>
+<line>Bring it, I pray you, to the Porpentine;</line>
+<line>For there's the house: that chain will I bestow--</line>
+<line>Be it for nothing but to spite my wife--</line>
+<line>Upon mine hostess there: good sir, make haste.</line>
+<line>Since mine own doors refuse to entertain me,</line>
+<line>I'll knock elsewhere, to see if they'll disdain me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>I'll meet you at that place some hour hence.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Do so. This jest shall cost me some expense.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+
+<section role="scene"><title>SCENE II.  The same.</title>
+<para role="stagedir">Enter LUCIANA and ANTIPHOLUS of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>And may it be that you have quite forgot</line>
+<line>A husband's office? shall, Antipholus.</line>
+<line>Even in the spring of love, thy love-springs rot?</line>
+<line>Shall love, in building, grow so ruinous?</line>
+<line>If you did wed my sister for her wealth,</line>
+<line>Then for her wealth's sake use her with more kindness:</line>
+<line>Or if you like elsewhere, do it by stealth;</line>
+<line>Muffle your false love with some show of blindness:</line>
+<line>Let not my sister read it in your eye;</line>
+<line>Be not thy tongue thy own shame's orator;</line>
+<line>Look sweet, be fair, become disloyalty;</line>
+<line>Apparel vice like virtue's harbinger;</line>
+<line>Bear a fair presence, though your heart be tainted;</line>
+<line>Teach sin the carriage of a holy saint;</line>
+<line>Be secret-false: what need she be acquainted?</line>
+<line>What simple thief brags of his own attaint?</line>
+<line>'Tis double wrong, to truant with your bed</line>
+<line>And let her read it in thy looks at board:</line>
+<line>Shame hath a bastard fame, well managed;</line>
+<line>Ill deeds are doubled with an evil word.</line>
+<line>Alas, poor women! make us but believe,</line>
+<line>Being compact of credit, that you love us;</line>
+<line>Though others have the arm, show us the sleeve;</line>
+<line>We in your motion turn and you may move us.</line>
+<line>Then, gentle brother, get you in again;</line>
+<line>Comfort my sister, cheer her, call her wife:</line>
+<line>'Tis holy sport to be a little vain,</line>
+<line>When the sweet breath of flattery conquers strife.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Sweet mistress--what your name is else, I know not,</line>
+<line>Nor by what wonder you do hit of mine,--</line>
+<line>Less in your knowledge and your grace you show not</line>
+<line>Than our earth's wonder, more than earth divine.</line>
+<line>Teach me, dear creature, how to think and speak;</line>
+<line>Lay open to my earthy-gross conceit,</line>
+<line>Smother'd in errors, feeble, shallow, weak,</line>
+<line>The folded meaning of your words' deceit.</line>
+<line>Against my soul's pure truth why labour you</line>
+<line>To make it wander in an unknown field?</line>
+<line>Are you a god? would you create me new?</line>
+<line>Transform me then, and to your power I'll yield.</line>
+<line>But if that I am I, then well I know</line>
+<line>Your weeping sister is no wife of mine,</line>
+<line>Nor to her bed no homage do I owe</line>
+<line>Far more, far more to you do I decline.</line>
+<line>O, train me not, sweet mermaid, with thy note,</line>
+<line>To drown me in thy sister's flood of tears:</line>
+<line>Sing, siren, for thyself and I will dote:</line>
+<line>Spread o'er the silver waves thy golden hairs,</line>
+<line>And as a bed I'll take them and there lie,</line>
+<line>And in that glorious supposition think</line>
+<line>He gains by death that hath such means to die:</line>
+<line>Let Love, being light, be drowned if she sink!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>What, are you mad, that you do reason so?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Not mad, but mated; how, I do not know.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>It is a fault that springeth from your eye.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>For gazing on your beams, fair sun, being by.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Gaze where you should, and that will clear your sight.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>As good to wink, sweet love, as look on night.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Why call you me love? call my sister so.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Thy sister's sister.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>That's my sister.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>No;</line>
+<line>It is thyself, mine own self's better part,</line>
+<line>Mine eye's clear eye, my dear heart's dearer heart,</line>
+<line>My food, my fortune and my sweet hope's aim,</line>
+<line>My sole earth's heaven and my heaven's claim.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>All this my sister is, or else should be.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Call thyself sister, sweet, for I am thee.</line>
+<line>Thee will I love and with thee lead my life:</line>
+<line>Thou hast no husband yet nor I no wife.</line>
+<line>Give me thy hand.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>O, soft, air! hold you still:</line>
+<line>I'll fetch my sister, to get her good will.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+<para role="stagedir">Enter DROMIO of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Why, how now, Dromio! where runn'st thou so fast?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Do you know me, sir? am I Dromio? am I your man?</line>
+<line>am I myself?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Thou art Dromio, thou art my man, thou art thyself.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I am an ass, I am a woman's man and besides myself.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, sir, besides myself, I am due to a woman; one</line>
+<line>that claims me, one that haunts me, one that will have me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What claim lays she to thee?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry sir, such claim as you would lay to your</line>
+<line>horse; and she would have me as a beast: not that, I</line>
+<line>being a beast, she would have me; but that she,</line>
+<line>being a very beastly creature, lays claim to me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What is she?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>A very reverent body; ay, such a one as a man may</line>
+<line>not speak of without he say 'Sir-reverence.' I have</line>
+<line>but lean luck in the match, and yet is she a</line>
+<line>wondrous fat marriage.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>How dost thou mean a fat marriage?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, sir, she's the kitchen wench and all grease;</line>
+<line>and I know not what use to put her to but to make a</line>
+<line>lamp of her and run from her by her own light. I</line>
+<line>warrant, her rags and the tallow in them will burn a</line>
+<line>Poland winter: if she lives till doomsday,</line>
+<line>she'll burn a week longer than the whole world.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What complexion is she of?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Swart, like my shoe, but her face nothing half so</line>
+<line>clean kept: for why, she sweats; a man may go over</line>
+<line>shoes in the grime of it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>That's a fault that water will mend.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No, sir, 'tis in grain; Noah's flood could not do it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What's her name?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Nell, sir; but her name and three quarters, that's</line>
+<line>an ell and three quarters, will not measure her from</line>
+<line>hip to hip.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Then she bears some breadth?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No longer from head to foot than from hip to hip:</line>
+<line>she is spherical, like a globe; I could find out</line>
+<line>countries in her.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>In what part of her body stands Ireland?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, in her buttocks: I found it out by the bogs.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Where Scotland?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I found it by the barrenness; hard in the palm of the hand.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Where France?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>In her forehead; armed and reverted, making war</line>
+<line>against her heir.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Where England?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I looked for the chalky cliffs, but I could find no</line>
+<line>whiteness in them; but I guess it stood in her chin,</line>
+<line>by the salt rheum that ran between France and it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Where Spain?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Faith, I saw it not; but I felt it hot in her breath.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Where America, the Indies?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Oh, sir, upon her nose all o'er embellished with</line>
+<line>rubies, carbuncles, sapphires, declining their rich</line>
+<line>aspect to the hot breath of Spain; who sent whole</line>
+<line>armadoes of caracks to be ballast at her nose.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Where stood Belgia, the Netherlands?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Oh, sir, I did not look so low. To conclude, this</line>
+<line>drudge, or diviner, laid claim to me, call'd me</line>
+<line>Dromio; swore I was assured to her; told me what</line>
+<line>privy marks I had about me, as, the mark of my</line>
+<line>shoulder, the mole in my neck, the great wart on my</line>
+<line>left arm, that I amazed ran from her as a witch:</line>
+<line>And, I think, if my breast had not been made of</line>
+<line>faith and my heart of steel,</line>
+<line>She had transform'd me to a curtal dog and made</line>
+<line>me turn i' the wheel.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Go hie thee presently, post to the road:</line>
+<line>An if the wind blow any way from shore,</line>
+<line>I will not harbour in this town to-night:</line>
+<line>If any bark put forth, come to the mart,</line>
+<line>Where I will walk till thou return to me.</line>
+<line>If every one knows us and we know none,</line>
+<line>'Tis time, I think, to trudge, pack and be gone.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>As from a bear a man would run for life,</line>
+<line>So fly I from her that would be my wife.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>There's none but witches do inhabit here;</line>
+<line>And therefore 'tis high time that I were hence.</line>
+<line>She that doth call me husband, even my soul</line>
+<line>Doth for a wife abhor. But her fair sister,</line>
+<line>Possess'd with such a gentle sovereign grace,</line>
+<line>Of such enchanting presence and discourse,</line>
+<line>Hath almost made me traitor to myself:</line>
+<line>But, lest myself be guilty to self-wrong,</line>
+<line>I'll stop mine ears against the mermaid's song.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ANGELO with the chain</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Master Antipholus,--</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Ay, that's my name.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>I know it well, sir, lo, here is the chain.</line>
+<line>I thought to have ta'en you at the Porpentine:</line>
+<line>The chain unfinish'd made me stay thus long.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What is your will that I shall do with this?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>What please yourself, sir: I have made it for you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Made it for me, sir! I bespoke it not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Not once, nor twice, but twenty times you have.</line>
+<line>Go home with it and please your wife withal;</line>
+<line>And soon at supper-time I'll visit you</line>
+<line>And then receive my money for the chain.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I pray you, sir, receive the money now,</line>
+<line>For fear you ne'er see chain nor money more.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>You are a merry man, sir: fare you well.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What I should think of this, I cannot tell:</line>
+<line>But this I think, there's no man is so vain</line>
+<line>That would refuse so fair an offer'd chain.</line>
+<line>I see a man here needs not live by shifts,</line>
+<line>When in the streets he meets such golden gifts.</line>
+<line>I'll to the mart, and there for Dromio stay</line>
+<line>If any ship put out, then straight away.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+</section>
+
+</chapter>
+
+<chapter role="act"><title>ACT IV</title>
+
+<section role="scene"><title>SCENE I.  A public place.</title>
+<para role="stagedir">Enter Second Merchant, ANGELO, and an Officer</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>You know since Pentecost the sum is due,</line>
+<line>And since I have not much importuned you;</line>
+<line>Nor now I had not, but that I am bound</line>
+<line>To Persia, and want guilders for my voyage:</line>
+<line>Therefore make present satisfaction,</line>
+<line>Or I'll attach you by this officer.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Even just the sum that I do owe to you</line>
+<line>Is growing to me by Antipholus,</line>
+<line>And in the instant that I met with you</line>
+<line>He had of me a chain: at five o'clock</line>
+<line>I shall receive the money for the same.</line>
+<line>Pleaseth you walk with me down to his house,</line>
+<line>I will discharge my bond and thank you too.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ANTIPHOLUS of Ephesus and DROMIO of Ephesus
+from the courtezan's</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>That labour may you save: see where he comes.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>While I go to the goldsmith's house, go thou</line>
+<line>And buy a rope's end: that will I bestow</line>
+<line>Among my wife and her confederates,</line>
+<line>For locking me out of my doors by day.</line>
+<line>But, soft! I see the goldsmith. Get thee gone;</line>
+<line>Buy thou a rope and bring it home to me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I buy a thousand pound a year: I buy a rope.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>A man is well holp up that trusts to you:</line>
+<line>I promised your presence and the chain;</line>
+<line>But neither chain nor goldsmith came to me.</line>
+<line>Belike you thought our love would last too long,</line>
+<line>If it were chain'd together, and therefore came not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Saving your merry humour, here's the note</line>
+<line>How much your chain weighs to the utmost carat,</line>
+<line>The fineness of the gold and chargeful fashion.</line>
+<line>Which doth amount to three odd ducats more</line>
+<line>Than I stand debted to this gentleman:</line>
+<line>I pray you, see him presently discharged,</line>
+<line>For he is bound to sea and stays but for it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I am not furnish'd with the present money;</line>
+<line>Besides, I have some business in the town.</line>
+<line>Good signior, take the stranger to my house</line>
+<line>And with you take the chain and bid my wife</line>
+<line>Disburse the sum on the receipt thereof:</line>
+<line>Perchance I will be there as soon as you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Then you will bring the chain to her yourself?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>No; bear it with you, lest I come not time enough.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Well, sir, I will. Have you the chain about you?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>An if I have not, sir, I hope you have;</line>
+<line>Or else you may return without your money.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Nay, come, I pray you, sir, give me the chain:</line>
+<line>Both wind and tide stays for this gentleman,</line>
+<line>And I, to blame, have held him here too long.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Good Lord! you use this dalliance to excuse</line>
+<line>Your breach of promise to the Porpentine.</line>
+<line>I should have chid you for not bringing it,</line>
+<line>But, like a shrew, you first begin to brawl.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>The hour steals on; I pray you, sir, dispatch.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>You hear how he importunes me;--the chain!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Why, give it to my wife and fetch your money.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Come, come, you know I gave it you even now.</line>
+<line>Either send the chain or send me by some token.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Fie, now you run this humour out of breath,</line>
+<line>where's the chain? I pray you, let me see it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>My business cannot brook this dalliance.</line>
+<line>Good sir, say whether you'll answer me or no:</line>
+<line>If not, I'll leave him to the officer.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I answer you! what should I answer you?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>The money that you owe me for the chain.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I owe you none till I receive the chain.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>You know I gave it you half an hour since.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>You gave me none: you wrong me much to say so.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>You wrong me more, sir, in denying it:</line>
+<line>Consider how it stands upon my credit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>Well, officer, arrest him at my suit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>I do; and charge you in the duke's name to obey me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>This touches me in reputation.</line>
+<line>Either consent to pay this sum for me</line>
+<line>Or I attach you by this officer.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Consent to pay thee that I never had!</line>
+<line>Arrest me, foolish fellow, if thou darest.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Here is thy fee; arrest him, officer,</line>
+<line>I would not spare my brother in this case,</line>
+<line>If he should scorn me so apparently.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>I do arrest you, sir: you hear the suit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I do obey thee till I give thee bail.</line>
+<line>But, sirrah, you shall buy this sport as dear</line>
+<line>As all the metal in your shop will answer.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Sir, sir, I will have law in Ephesus,</line>
+<line>To your notorious shame; I doubt it not.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter DROMIO of Syracuse, from the bay</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Master, there is a bark of Epidamnum</line>
+<line>That stays but till her owner comes aboard,</line>
+<line>And then, sir, she bears away. Our fraughtage, sir,</line>
+<line>I have convey'd aboard; and I have bought</line>
+<line>The oil, the balsamum and aqua-vitae.</line>
+<line>The ship is in her trim; the merry wind</line>
+<line>Blows fair from land: they stay for nought at all</line>
+<line>But for their owner, master, and yourself.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>How now! a madman! Why, thou peevish sheep,</line>
+<line>What ship of Epidamnum stays for me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>A ship you sent me to, to hire waftage.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Thou drunken slave, I sent thee for a rope;</line>
+<line>And told thee to what purpose and what end.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>You sent me for a rope's end as soon:</line>
+<line>You sent me to the bay, sir, for a bark.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I will debate this matter at more leisure</line>
+<line>And teach your ears to list me with more heed.</line>
+<line>To Adriana, villain, hie thee straight:</line>
+<line>Give her this key, and tell her, in the desk</line>
+<line>That's cover'd o'er with Turkish tapestry,</line>
+<line>There is a purse of ducats; let her send it:</line>
+<line>Tell her I am arrested in the street</line>
+<line>And that shall bail me; hie thee, slave, be gone!</line>
+<line>On, officer, to prison till it come.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt Second Merchant, Angelo, Officer, and
+Antipholus of Ephesus</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>To Adriana! that is where we dined,</line>
+<line>Where Dowsabel did claim me for her husband:</line>
+<line>She is too big, I hope, for me to compass.</line>
+<line>Thither I must, although against my will,</line>
+<line>For servants must their masters' minds fulfil.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+</section>
+
+<section role="scene"><title>SCENE II.  The house of ANTIPHOLUS of Ephesus.</title>
+<para role="stagedir">Enter ADRIANA and LUCIANA</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Ah, Luciana, did he tempt thee so?</line>
+<line>Mightst thou perceive austerely in his eye</line>
+<line>That he did plead in earnest? yea or no?</line>
+<line>Look'd he or red or pale, or sad or merrily?</line>
+<line>What observation madest thou in this case</line>
+<line>Of his heart's meteors tilting in his face?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>First he denied you had in him no right.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>He meant he did me none; the more my spite.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Then swore he that he was a stranger here.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>And true he swore, though yet forsworn he were.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Then pleaded I for you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>And what said he?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>That love I begg'd for you he begg'd of me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>With what persuasion did he tempt thy love?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>With words that in an honest suit might move.</line>
+<line>First he did praise my beauty, then my speech.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Didst speak him fair?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Have patience, I beseech.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I cannot, nor I will not, hold me still;</line>
+<line>My tongue, though not my heart, shall have his will.</line>
+<line>He is deformed, crooked, old and sere,</line>
+<line>Ill-faced, worse bodied, shapeless everywhere;</line>
+<line>Vicious, ungentle, foolish, blunt, unkind;</line>
+<line>Stigmatical in making, worse in mind.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Who would be jealous then of such a one?</line>
+<line>No evil lost is wail'd when it is gone.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Ah, but I think him better than I say,</line>
+<line>And yet would herein others' eyes were worse.</line>
+<line>Far from her nest the lapwing cries away:</line>
+<line>My heart prays for him, though my tongue do curse.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter DROMIO of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Here! go; the desk, the purse! sweet, now, make haste.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>How hast thou lost thy breath?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>By running fast.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Where is thy master, Dromio? is he well?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No, he's in Tartar limbo, worse than hell.</line>
+<line>A devil in an everlasting garment hath him;</line>
+<line>One whose hard heart is button'd up with steel;</line>
+<line>A fiend, a fury, pitiless and rough;</line>
+<line>A wolf, nay, worse, a fellow all in buff;</line>
+<line>A back-friend, a shoulder-clapper, one that</line>
+<line>countermands</line>
+<line>The passages of alleys, creeks and narrow lands;</line>
+<line>A hound that runs counter and yet draws dryfoot well;</line>
+<line>One that before the judgement carries poor souls to hell.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Why, man, what is the matter?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I do not know the matter: he is 'rested on the case.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>What, is he arrested? Tell me at whose suit.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I know not at whose suit he is arrested well;</line>
+<line>But he's in a suit of buff which 'rested him, that can I tell.</line>
+<line>Will you send him, mistress, redemption, the money in his desk?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Go fetch it, sister.</line>
+<para role="stagedir">Exit Luciana</para>
+<line>This I wonder at,</line>
+<line>That he, unknown to me, should be in debt.</line>
+<line>Tell me, was he arrested on a band?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Not on a band, but on a stronger thing;</line>
+<line>A chain, a chain! Do you not hear it ring?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>What, the chain?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No, no, the bell: 'tis time that I were gone:</line>
+<line>It was two ere I left him, and now the clock</line>
+<line>strikes one.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>The hours come back! that did I never hear.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>O, yes; if any hour meet a sergeant, a' turns back for</line>
+<line>very fear.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>As if Time were in debt! how fondly dost thou reason!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Time is a very bankrupt, and owes more than he's</line>
+<line>worth, to season.</line>
+<line>Nay, he's a thief too: have you not heard men say</line>
+<line>That Time comes stealing on by night and day?</line>
+<line>If Time be in debt and theft, and a sergeant in the way,</line>
+<line>Hath he not reason to turn back an hour in a day?</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Re-enter LUCIANA with a purse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Go, Dromio; there's the money, bear it straight;</line>
+<line>And bring thy master home immediately.</line>
+<line>Come, sister: I am press'd down with conceit--</line>
+<line>Conceit, my comfort and my injury.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+
+<section role="scene"><title>SCENE III.  A public place.</title>
+<para role="stagedir">Enter ANTIPHOLUS of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>There's not a man I meet but doth salute me</line>
+<line>As if I were their well-acquainted friend;</line>
+<line>And every one doth call me by my name.</line>
+<line>Some tender money to me; some invite me;</line>
+<line>Some other give me thanks for kindnesses;</line>
+<line>Some offer me commodities to buy:</line>
+<line>Even now a tailor call'd me in his shop</line>
+<line>And show'd me silks that he had bought for me,</line>
+<line>And therewithal took measure of my body.</line>
+<line>Sure, these are but imaginary wiles</line>
+<line>And Lapland sorcerers inhabit here.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter DROMIO OF SYRACUSE</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Master, here's the gold you sent me for. What, have</line>
+<line>you got the picture of old Adam new-apparelled?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What gold is this? what Adam dost thou mean?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Not that Adam that kept the Paradise but that Adam</line>
+<line>that keeps the prison: he that goes in the calf's</line>
+<line>skin that was killed for the Prodigal; he that came</line>
+<line>behind you, sir, like an evil angel, and bid you</line>
+<line>forsake your liberty.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I understand thee not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>No? why, 'tis a plain case: he that went, like a</line>
+<line>bass-viol, in a case of leather; the man, sir,</line>
+<line>that, when gentlemen are tired, gives them a sob</line>
+<line>and 'rests them; he, sir, that takes pity on decayed</line>
+<line>men and gives them suits of durance; he that sets up</line>
+<line>his rest to do more exploits with his mace than a</line>
+<line>morris-pike.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>What, thou meanest an officer?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Ay, sir, the sergeant of the band, he that brings</line>
+<line>any man to answer it that breaks his band; one that</line>
+<line>thinks a man always going to bed, and says, 'God</line>
+<line>give you good rest!'</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Well, sir, there rest in your foolery. Is there any</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Why, sir, I brought you word an hour since that the</line>
+<line>bark Expedition put forth to-night; and then were</line>
+<line>you hindered by the sergeant, to tarry for the hoy</line>
+<line>Delay. Here are the angels that you sent for to</line>
+<line>deliver you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>The fellow is distract, and so am I;</line>
+<line>And here we wander in illusions:</line>
+<line>Some blessed power deliver us from hence!</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter a Courtezan</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>Well met, well met, Master Antipholus.</line>
+<line>I see, sir, you have found the goldsmith now:</line>
+<line>Is that the chain you promised me to-day?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Satan, avoid! I charge thee, tempt me not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Master, is this Mistress Satan?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>It is the devil.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Nay, she is worse, she is the devil's dam; and here</line>
+<line>she comes in the habit of a light wench: and thereof</line>
+<line>comes that the wenches say 'God damn me;' that's as</line>
+<line>much to say 'God make me a light wench.' It is</line>
+<line>written, they appear to men like angels of light:</line>
+<line>light is an effect of fire, and fire will burn;</line>
+<line>ergo, light wenches will burn. Come not near her.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>Your man and you are marvellous merry, sir.</line>
+<line>Will you go with me? We'll mend our dinner here?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Master, if you do, expect spoon-meat; or bespeak a</line>
+<line>long spoon.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Why, Dromio?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Marry, he must have a long spoon that must eat with</line>
+<line>the devil.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Avoid then, fiend! what tell'st thou me of supping?</line>
+<line>Thou art, as you are all, a sorceress:</line>
+<line>I conjure thee to leave me and be gone.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>Give me the ring of mine you had at dinner,</line>
+<line>Or, for my diamond, the chain you promised,</line>
+<line>And I'll be gone, sir, and not trouble you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Some devils ask but the parings of one's nail,</line>
+<line>A rush, a hair, a drop of blood, a pin,</line>
+<line>A nut, a cherry-stone;</line>
+<line>But she, more covetous, would have a chain.</line>
+<line>Master, be wise: an if you give it her,</line>
+<line>The devil will shake her chain and fright us with it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>I pray you, sir, my ring, or else the chain:</line>
+<line>I hope you do not mean to cheat me so.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Avaunt, thou witch! Come, Dromio, let us go.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>'Fly pride,' says the peacock: mistress, that you know.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt Antipholus of Syracuse and Dromio of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>Now, out of doubt Antipholus is mad,</line>
+<line>Else would he never so demean himself.</line>
+<line>A ring he hath of mine worth forty ducats,</line>
+<line>And for the same he promised me a chain:</line>
+<line>Both one and other he denies me now.</line>
+<line>The reason that I gather he is mad,</line>
+<line>Besides this present instance of his rage,</line>
+<line>Is a mad tale he told to-day at dinner,</line>
+<line>Of his own doors being shut against his entrance.</line>
+<line>Belike his wife, acquainted with his fits,</line>
+<line>On purpose shut the doors against his way.</line>
+<line>My way is now to hie home to his house,</line>
+<line>And tell his wife that, being lunatic,</line>
+<line>He rush'd into my house and took perforce</line>
+<line>My ring away. This course I fittest choose;</line>
+<line>For forty ducats is too much to lose.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+</section>
+
+<section role="scene"><title>SCENE IV.  A street.</title>
+<para role="stagedir">Enter ANTIPHOLUS of Ephesus and the Officer</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Fear me not, man; I will not break away:</line>
+<line>I'll give thee, ere I leave thee, so much money,</line>
+<line>To warrant thee, as I am 'rested for.</line>
+<line>My wife is in a wayward mood to-day,</line>
+<line>And will not lightly trust the messenger</line>
+<line>That I should be attach'd in Ephesus,</line>
+<line>I tell you, 'twill sound harshly in her ears.</line>
+<para role="stagedir">Enter DROMIO of Ephesus with a rope's-end</para>
+<line>Here comes my man; I think he brings the money.</line>
+<line>How now, sir! have you that I sent you for?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Here's that, I warrant you, will pay them all.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>But where's the money?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Why, sir, I gave the money for the rope.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Five hundred ducats, villain, for a rope?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I'll serve you, sir, five hundred at the rate.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>To what end did I bid thee hie thee home?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>To a rope's-end, sir; and to that end am I returned.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>And to that end, sir, I will welcome you.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Beating him</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>Good sir, be patient.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Nay, 'tis for me to be patient; I am in adversity.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>Good, now, hold thy tongue.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Nay, rather persuade him to hold his hands.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Thou whoreson, senseless villain!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I would I were senseless, sir, that I might not feel</line>
+<line>your blows.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I am an ass, indeed; you may prove it by my long</line>
+<line>ears. I have served him from the hour of my</line>
+<line>nativity to this instant, and have nothing at his</line>
+<line>hands for my service but blows. When I am cold, he</line>
+<line>heats me with beating; when I am warm, he cools me</line>
+<line>with beating; I am waked with it when I sleep;</line>
+<line>raised with it when I sit; driven out of doors with</line>
+<line>it when I go from home; welcomed home with it when</line>
+<line>I return; nay, I bear it on my shoulders, as a</line>
+<line>beggar wont her brat; and, I think when he hath</line>
+<line>lamed me, I shall beg with it from door to door.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Come, go along; my wife is coming yonder.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ADRIANA, LUCIANA, the Courtezan, and PINCH</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Mistress, 'respice finem,' respect your end; or</line>
+<line>rather, the prophecy like the parrot, 'beware the</line>
+<line>rope's-end.'</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Wilt thou still talk?</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Beating him</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>How say you now? is not your husband mad?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>His incivility confirms no less.</line>
+<line>Good Doctor Pinch, you are a conjurer;</line>
+<line>Establish him in his true sense again,</line>
+<line>And I will please you what you will demand.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Alas, how fiery and how sharp he looks!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>Mark how he trembles in his ecstasy!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">PINCH</speaker>
+<line>Give me your hand and let me feel your pulse.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>There is my hand, and let it feel your ear.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Striking him</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">PINCH</speaker>
+<line>I charge thee, Satan, housed within this man,</line>
+<line>To yield possession to my holy prayers</line>
+<line>And to thy state of darkness hie thee straight:</line>
+<line>I conjure thee by all the saints in heaven!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Peace, doting wizard, peace! I am not mad.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>O, that thou wert not, poor distressed soul!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>You minion, you, are these your customers?</line>
+<line>Did this companion with the saffron face</line>
+<line>Revel and feast it at my house to-day,</line>
+<line>Whilst upon me the guilty doors were shut</line>
+<line>And I denied to enter in my house?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>O husband, God doth know you dined at home;</line>
+<line>Where would you had remain'd until this time,</line>
+<line>Free from these slanders and this open shame!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Dined at home! Thou villain, what sayest thou?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Sir, sooth to say, you did not dine at home.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Were not my doors lock'd up and I shut out?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Perdie, your doors were lock'd and you shut out.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>And did not she herself revile me there?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Sans fable, she herself reviled you there.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Did not her kitchen-maid rail, taunt, and scorn me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Certes, she did; the kitchen-vestal scorn'd you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>And did not I in rage depart from thence?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>In verity you did; my bones bear witness,</line>
+<line>That since have felt the vigour of his rage.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Is't good to soothe him in these contraries?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">PINCH</speaker>
+<line>It is no shame: the fellow finds his vein,</line>
+<line>And yielding to him humours well his frenzy.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Thou hast suborn'd the goldsmith to arrest me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Alas, I sent you money to redeem you,</line>
+<line>By Dromio here, who came in haste for it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Money by me! heart and goodwill you might;</line>
+<line>But surely master, not a rag of money.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Went'st not thou to her for a purse of ducats?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>He came to me and I deliver'd it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>And I am witness with her that she did.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>God and the rope-maker bear me witness</line>
+<line>That I was sent for nothing but a rope!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">PINCH</speaker>
+<line>Mistress, both man and master is possess'd;</line>
+<line>I know it by their pale and deadly looks:</line>
+<line>They must be bound and laid in some dark room.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Say, wherefore didst thou lock me forth to-day?</line>
+<line>And why dost thou deny the bag of gold?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I did not, gentle husband, lock thee forth.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>And, gentle master, I received no gold;</line>
+<line>But I confess, sir, that we were lock'd out.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Dissembling villain, thou speak'st false in both.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Dissembling harlot, thou art false in all;</line>
+<line>And art confederate with a damned pack</line>
+<line>To make a loathsome abject scorn of me:</line>
+<line>But with these nails I'll pluck out these false eyes</line>
+<line>That would behold in me this shameful sport.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter three or four, and offer to bind him.
+He strives</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>O, bind him, bind him! let him not come near me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">PINCH</speaker>
+<line>More company! The fiend is strong within him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Ay me, poor man, how pale and wan he looks!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>What, will you murder me? Thou gaoler, thou,</line>
+<line>I am thy prisoner: wilt thou suffer them</line>
+<line>To make a rescue?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>Masters, let him go</line>
+<line>He is my prisoner, and you shall not have him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">PINCH</speaker>
+<line>Go bind this man, for he is frantic too.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">They offer to bind Dromio of Ephesus</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>What wilt thou do, thou peevish officer?</line>
+<line>Hast thou delight to see a wretched man</line>
+<line>Do outrage and displeasure to himself?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>He is my prisoner: if I let him go,</line>
+<line>The debt he owes will be required of me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I will discharge thee ere I go from thee:</line>
+<line>Bear me forthwith unto his creditor,</line>
+<line>And, knowing how the debt grows, I will pay it.</line>
+<line>Good master doctor, see him safe convey'd</line>
+<line>Home to my house. O most unhappy day!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>O most unhappy strumpet!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Master, I am here entered in bond for you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Out on thee, villain! wherefore dost thou mad me?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Will you be bound for nothing? be mad, good master:</line>
+<line>cry 'The devil!'</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>God help, poor souls, how idly do they talk!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Go bear him hence. Sister, go you with me.</line>
+<para role="stagedir">Exeunt all but Adriana, Luciana, Officer and
+Courtezan</para>
+<line>Say now, whose suit is he arrested at?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>One Angelo, a goldsmith: do you know him?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I know the man. What is the sum he owes?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>Two hundred ducats.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Say, how grows it due?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>Due for a chain your husband had of him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>He did bespeak a chain for me, but had it not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>When as your husband all in rage to-day</line>
+<line>Came to my house and took away my ring--</line>
+<line>The ring I saw upon his finger now--</line>
+<line>Straight after did I meet him with a chain.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>It may be so, but I did never see it.</line>
+<line>Come, gaoler, bring me where the goldsmith is:</line>
+<line>I long to know the truth hereof at large.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ANTIPHOLUS of Syracuse with his rapier drawn,
+and DROMIO of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>God, for thy mercy! they are loose again.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>And come with naked swords.</line>
+<line>Let's call more help to have them bound again.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Officer</speaker>
+<line>Away! they'll kill us.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt all but Antipholus of Syracuse and Dromio
+of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I see these witches are afraid of swords.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>She that would be your wife now ran from you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Come to the Centaur; fetch our stuff from thence:</line>
+<line>I long that we were safe and sound aboard.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Faith, stay here this night; they will surely do us</line>
+<line>no harm: you saw they speak us fair, give us gold:</line>
+<line>methinks they are such a gentle nation that, but for</line>
+<line>the mountain of mad flesh that claims marriage of</line>
+<line>me, I could find in my heart to stay here still and</line>
+<line>turn witch.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I will not stay to-night for all the town;</line>
+<line>Therefore away, to get our stuff aboard.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+
+</chapter>
+
+<chapter role="act"><title>ACT V</title>
+
+<section role="scene"><title>SCENE I.  A street before a Priory.</title>
+<para role="stagedir">Enter Second Merchant and ANGELO</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>I am sorry, sir, that I have hinder'd you;</line>
+<line>But, I protest, he had the chain of me,</line>
+<line>Though most dishonestly he doth deny it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>How is the man esteemed here in the city?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Of very reverend reputation, sir,</line>
+<line>Of credit infinite, highly beloved,</line>
+<line>Second to none that lives here in the city:</line>
+<line>His word might bear my wealth at any time.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>Speak softly; yonder, as I think, he walks.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ANTIPHOLUS of Syracuse and DROMIO of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>'Tis so; and that self chain about his neck</line>
+<line>Which he forswore most monstrously to have.</line>
+<line>Good sir, draw near to me, I'll speak to him.</line>
+<line>Signior Antipholus, I wonder much</line>
+<line>That you would put me to this shame and trouble;</line>
+<line>And, not without some scandal to yourself,</line>
+<line>With circumstance and oaths so to deny</line>
+<line>This chain which now you wear so openly:</line>
+<line>Beside the charge, the shame, imprisonment,</line>
+<line>You have done wrong to this my honest friend,</line>
+<line>Who, but for staying on our controversy,</line>
+<line>Had hoisted sail and put to sea to-day:</line>
+<line>This chain you had of me; can you deny it?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I think I had; I never did deny it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>Yes, that you did, sir, and forswore it too.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Who heard me to deny it or forswear it?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>These ears of mine, thou know'st did hear thee.</line>
+<line>Fie on thee, wretch! 'tis pity that thou livest</line>
+<line>To walk where any honest man resort.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>Thou art a villain to impeach me thus:</line>
+<line>I'll prove mine honour and mine honesty</line>
+<line>Against thee presently, if thou darest stand.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>I dare, and do defy thee for a villain.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">They draw</para>
+<para role="stagedir">Enter ADRIANA, LUCIANA, the Courtezan, and others</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Hold, hurt him not, for God's sake! he is mad.</line>
+<line>Some get within him, take his sword away:</line>
+<line>Bind Dromio too, and bear them to my house.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Run, master, run; for God's sake, take a house!</line>
+<line>This is some priory. In, or we are spoil'd!</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt Antipholus of Syracuse and Dromio of Syracuse
+to the Priory</para>
+<para role="stagedir">Enter the Lady Abbess, AEMILIA</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Be quiet, people. Wherefore throng you hither?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>To fetch my poor distracted husband hence.</line>
+<line>Let us come in, that we may bind him fast</line>
+<line>And bear him home for his recovery.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>I knew he was not in his perfect wits.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>I am sorry now that I did draw on him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>How long hath this possession held the man?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>This week he hath been heavy, sour, sad,</line>
+<line>And much different from the man he was;</line>
+<line>But till this afternoon his passion</line>
+<line>Ne'er brake into extremity of rage.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Hath he not lost much wealth by wreck of sea?</line>
+<line>Buried some dear friend? Hath not else his eye</line>
+<line>Stray'd his affection in unlawful love?</line>
+<line>A sin prevailing much in youthful men,</line>
+<line>Who give their eyes the liberty of gazing.</line>
+<line>Which of these sorrows is he subject to?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>To none of these, except it be the last;</line>
+<line>Namely, some love that drew him oft from home.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>You should for that have reprehended him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Why, so I did.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Ay, but not rough enough.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>As roughly as my modesty would let me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Haply, in private.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>And in assemblies too.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Ay, but not enough.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>It was the copy of our conference:</line>
+<line>In bed he slept not for my urging it;</line>
+<line>At board he fed not for my urging it;</line>
+<line>Alone, it was the subject of my theme;</line>
+<line>In company I often glanced it;</line>
+<line>Still did I tell him it was vile and bad.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>And thereof came it that the man was mad.</line>
+<line>The venom clamours of a jealous woman</line>
+<line>Poisons more deadly than a mad dog's tooth.</line>
+<line>It seems his sleeps were hinder'd by thy railing,</line>
+<line>And therefore comes it that his head is light.</line>
+<line>Thou say'st his meat was sauced with thy upbraidings:</line>
+<line>Unquiet meals make ill digestions;</line>
+<line>Thereof the raging fire of fever bred;</line>
+<line>And what's a fever but a fit of madness?</line>
+<line>Thou say'st his sports were hinderd by thy brawls:</line>
+<line>Sweet recreation barr'd, what doth ensue</line>
+<line>But moody and dull melancholy,</line>
+<line>Kinsman to grim and comfortless despair,</line>
+<line>And at her heels a huge infectious troop</line>
+<line>Of pale distemperatures and foes to life?</line>
+<line>In food, in sport and life-preserving rest</line>
+<line>To be disturb'd, would mad or man or beast:</line>
+<line>The consequence is then thy jealous fits</line>
+<line>Have scared thy husband from the use of wits.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>She never reprehended him but mildly,</line>
+<line>When he demean'd himself rough, rude and wildly.</line>
+<line>Why bear you these rebukes and answer not?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>She did betray me to my own reproof.</line>
+<line>Good people enter and lay hold on him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>No, not a creature enters in my house.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Then let your servants bring my husband forth.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Neither: he took this place for sanctuary,</line>
+<line>And it shall privilege him from your hands</line>
+<line>Till I have brought him to his wits again,</line>
+<line>Or lose my labour in assaying it.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I will attend my husband, be his nurse,</line>
+<line>Diet his sickness, for it is my office,</line>
+<line>And will have no attorney but myself;</line>
+<line>And therefore let me have him home with me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Be patient; for I will not let him stir</line>
+<line>Till I have used the approved means I have,</line>
+<line>With wholesome syrups, drugs and holy prayers,</line>
+<line>To make of him a formal man again:</line>
+<line>It is a branch and parcel of mine oath,</line>
+<line>A charitable duty of my order.</line>
+<line>Therefore depart and leave him here with me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I will not hence and leave my husband here:</line>
+<line>And ill it doth beseem your holiness</line>
+<line>To separate the husband and the wife.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Be quiet and depart: thou shalt not have him.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Complain unto the duke of this indignity.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Come, go: I will fall prostrate at his feet</line>
+<line>And never rise until my tears and prayers</line>
+<line>Have won his grace to come in person hither</line>
+<line>And take perforce my husband from the abbess.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>By this, I think, the dial points at five:</line>
+<line>Anon, I'm sure, the duke himself in person</line>
+<line>Comes this way to the melancholy vale,</line>
+<line>The place of death and sorry execution,</line>
+<line>Behind the ditches of the abbey here.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>Upon what cause?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>To see a reverend Syracusian merchant,</line>
+<line>Who put unluckily into this bay</line>
+<line>Against the laws and statutes of this town,</line>
+<line>Beheaded publicly for his offence.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>See where they come: we will behold his death.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Kneel to the duke before he pass the abbey.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter DUKE SOLINUS, attended; AEGEON bareheaded; with the
+Headsman and other Officers</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Yet once again proclaim it publicly,</line>
+<line>If any friend will pay the sum for him,</line>
+<line>He shall not die; so much we tender him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Justice, most sacred duke, against the abbess!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>She is a virtuous and a reverend lady:</line>
+<line>It cannot be that she hath done thee wrong.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>May it please your grace, Antipholus, my husband,</line>
+<line>Whom I made lord of me and all I had,</line>
+<line>At your important letters,--this ill day</line>
+<line>A most outrageous fit of madness took him;</line>
+<line>That desperately he hurried through the street,</line>
+<line>With him his bondman, all as mad as he--</line>
+<line>Doing displeasure to the citizens</line>
+<line>By rushing in their houses, bearing thence</line>
+<line>Rings, jewels, any thing his rage did like.</line>
+<line>Once did I get him bound and sent him home,</line>
+<line>Whilst to take order for the wrongs I went,</line>
+<line>That here and there his fury had committed.</line>
+<line>Anon, I wot not by what strong escape,</line>
+<line>He broke from those that had the guard of him;</line>
+<line>And with his mad attendant and himself,</line>
+<line>Each one with ireful passion, with drawn swords,</line>
+<line>Met us again and madly bent on us,</line>
+<line>Chased us away; till, raising of more aid,</line>
+<line>We came again to bind them. Then they fled</line>
+<line>Into this abbey, whither we pursued them:</line>
+<line>And here the abbess shuts the gates on us</line>
+<line>And will not suffer us to fetch him out,</line>
+<line>Nor send him forth that we may bear him hence.</line>
+<line>Therefore, most gracious duke, with thy command</line>
+<line>Let him be brought forth and borne hence for help.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Long since thy husband served me in my wars,</line>
+<line>And I to thee engaged a prince's word,</line>
+<line>When thou didst make him master of thy bed,</line>
+<line>To do him all the grace and good I could.</line>
+<line>Go, some of you, knock at the abbey-gate</line>
+<line>And bid the lady abbess come to me.</line>
+<line>I will determine this before I stir.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter a Servant</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Servant</speaker>
+<line>O mistress, mistress, shift and save yourself!</line>
+<line>My master and his man are both broke loose,</line>
+<line>Beaten the maids a-row and bound the doctor</line>
+<line>Whose beard they have singed off with brands of fire;</line>
+<line>And ever, as it blazed, they threw on him</line>
+<line>Great pails of puddled mire to quench the hair:</line>
+<line>My master preaches patience to him and the while</line>
+<line>His man with scissors nicks him like a fool,</line>
+<line>And sure, unless you send some present help,</line>
+<line>Between them they will kill the conjurer.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Peace, fool! thy master and his man are here,</line>
+<line>And that is false thou dost report to us.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Servant</speaker>
+<line>Mistress, upon my life, I tell you true;</line>
+<line>I have not breathed almost since I did see it.</line>
+<line>He cries for you, and vows, if he can take you,</line>
+<line>To scorch your face and to disfigure you.</line>
+<para role="stagedir">Cry within</para>
+<line>Hark, hark! I hear him, mistress. fly, be gone!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Come, stand by me; fear nothing. Guard with halberds!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Ay me, it is my husband! Witness you,</line>
+<line>That he is borne about invisible:</line>
+<line>Even now we housed him in the abbey here;</line>
+<line>And now he's there, past thought of human reason.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Enter ANTIPHOLUS of Ephesus and DROMIO of Ephesus</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Justice, most gracious duke, O, grant me justice!</line>
+<line>Even for the service that long since I did thee,</line>
+<line>When I bestrid thee in the wars and took</line>
+<line>Deep scars to save thy life; even for the blood</line>
+<line>That then I lost for thee, now grant me justice.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Unless the fear of death doth make me dote,</line>
+<line>I see my son Antipholus and Dromio.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Justice, sweet prince, against that woman there!</line>
+<line>She whom thou gavest to me to be my wife,</line>
+<line>That hath abused and dishonour'd me</line>
+<line>Even in the strength and height of injury!</line>
+<line>Beyond imagination is the wrong</line>
+<line>That she this day hath shameless thrown on me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Discover how, and thou shalt find me just.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>This day, great duke, she shut the doors upon me,</line>
+<line>While she with harlots feasted in my house.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>A grievous fault! Say, woman, didst thou so?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>No, my good lord: myself, he and my sister</line>
+<line>To-day did dine together. So befall my soul</line>
+<line>As this is false he burdens me withal!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">LUCIANA</speaker>
+<line>Ne'er may I look on day, nor sleep on night,</line>
+<line>But she tells to your highness simple truth!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>O perjured woman! They are both forsworn:</line>
+<line>In this the madman justly chargeth them.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>My liege, I am advised what I say,</line>
+<line>Neither disturbed with the effect of wine,</line>
+<line>Nor heady-rash, provoked with raging ire,</line>
+<line>Albeit my wrongs might make one wiser mad.</line>
+<line>This woman lock'd me out this day from dinner:</line>
+<line>That goldsmith there, were he not pack'd with her,</line>
+<line>Could witness it, for he was with me then;</line>
+<line>Who parted with me to go fetch a chain,</line>
+<line>Promising to bring it to the Porpentine,</line>
+<line>Where Balthazar and I did dine together.</line>
+<line>Our dinner done, and he not coming thither,</line>
+<line>I went to seek him: in the street I met him</line>
+<line>And in his company that gentleman.</line>
+<line>There did this perjured goldsmith swear me down</line>
+<line>That I this day of him received the chain,</line>
+<line>Which, God he knows, I saw not: for the which</line>
+<line>He did arrest me with an officer.</line>
+<line>I did obey, and sent my peasant home</line>
+<line>For certain ducats: he with none return'd</line>
+<line>Then fairly I bespoke the officer</line>
+<line>To go in person with me to my house.</line>
+<line>By the way we met</line>
+<line>My wife, her sister, and a rabble more</line>
+<line>Of vile confederates. Along with them</line>
+<line>They brought one Pinch, a hungry lean-faced villain,</line>
+<line>A mere anatomy, a mountebank,</line>
+<line>A threadbare juggler and a fortune-teller,</line>
+<line>A needy, hollow-eyed, sharp-looking wretch,</line>
+<line>A dead-looking man: this pernicious slave,</line>
+<line>Forsooth, took on him as a conjurer,</line>
+<line>And, gazing in mine eyes, feeling my pulse,</line>
+<line>And with no face, as 'twere, outfacing me,</line>
+<line>Cries out, I was possess'd. Then all together</line>
+<line>They fell upon me, bound me, bore me thence</line>
+<line>And in a dark and dankish vault at home</line>
+<line>There left me and my man, both bound together;</line>
+<line>Till, gnawing with my teeth my bonds in sunder,</line>
+<line>I gain'd my freedom, and immediately</line>
+<line>Ran hither to your grace; whom I beseech</line>
+<line>To give me ample satisfaction</line>
+<line>For these deep shames and great indignities.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>My lord, in truth, thus far I witness with him,</line>
+<line>That he dined not at home, but was lock'd out.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>But had he such a chain of thee or no?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>He had, my lord: and when he ran in here,</line>
+<line>These people saw the chain about his neck.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Second Merchant</speaker>
+<line>Besides, I will be sworn these ears of mine</line>
+<line>Heard you confess you had the chain of him</line>
+<line>After you first forswore it on the mart:</line>
+<line>And thereupon I drew my sword on you;</line>
+<line>And then you fled into this abbey here,</line>
+<line>From whence, I think, you are come by miracle.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I never came within these abbey-walls,</line>
+<line>Nor ever didst thou draw thy sword on me:</line>
+<line>I never saw the chain, so help me Heaven!</line>
+<line>And this is false you burden me withal.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Why, what an intricate impeach is this!</line>
+<line>I think you all have drunk of Circe's cup.</line>
+<line>If here you housed him, here he would have been;</line>
+<line>If he were mad, he would not plead so coldly:</line>
+<line>You say he dined at home; the goldsmith here</line>
+<line>Denies that saying. Sirrah, what say you?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Sir, he dined with her there, at the Porpentine.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>He did, and from my finger snatch'd that ring.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>'Tis true, my liege; this ring I had of her.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Saw'st thou him enter at the abbey here?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>As sure, my liege, as I do see your grace.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Why, this is strange. Go call the abbess hither.</line>
+<line>I think you are all mated or stark mad.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exit one to Abbess</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Most mighty duke, vouchsafe me speak a word:</line>
+<line>Haply I see a friend will save my life</line>
+<line>And pay the sum that may deliver me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Speak freely, Syracusian, what thou wilt.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Is not your name, sir, call'd Antipholus?</line>
+<line>And is not that your bondman, Dromio?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Within this hour I was his bondman sir,</line>
+<line>But he, I thank him, gnaw'd in two my cords:</line>
+<line>Now am I Dromio and his man unbound.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>I am sure you both of you remember me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Ourselves we do remember, sir, by you;</line>
+<line>For lately we were bound, as you are now</line>
+<line>You are not Pinch's patient, are you, sir?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Why look you strange on me? you know me well.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>O, grief hath changed me since you saw me last,</line>
+<line>And careful hours with time's deformed hand</line>
+<line>Have written strange defeatures in my face:</line>
+<line>But tell me yet, dost thou not know my voice?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Neither.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Dromio, nor thou?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>No, trust me, sir, nor I.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>I am sure thou dost.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Ay, sir, but I am sure I do not; and whatsoever a</line>
+<line>man denies, you are now bound to believe him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>Not know my voice! O time's extremity,</line>
+<line>Hast thou so crack'd and splitted my poor tongue</line>
+<line>In seven short years, that here my only son</line>
+<line>Knows not my feeble key of untuned cares?</line>
+<line>Though now this grained face of mine be hid</line>
+<line>In sap-consuming winter's drizzled snow,</line>
+<line>And all the conduits of my blood froze up,</line>
+<line>Yet hath my night of life some memory,</line>
+<line>My wasting lamps some fading glimmer left,</line>
+<line>My dull deaf ears a little use to hear:</line>
+<line>All these old witnesses--I cannot err--</line>
+<line>Tell me thou art my son Antipholus.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I never saw my father in my life.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>But seven years since, in Syracusa, boy,</line>
+<line>Thou know'st we parted: but perhaps, my son,</line>
+<line>Thou shamest to acknowledge me in misery.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>The duke and all that know me in the city</line>
+<line>Can witness with me that it is not so</line>
+<line>I ne'er saw Syracusa in my life.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>I tell thee, Syracusian, twenty years</line>
+<line>Have I been patron to Antipholus,</line>
+<line>During which time he ne'er saw Syracusa:</line>
+<line>I see thy age and dangers make thee dote.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Re-enter AEMILIA, with ANTIPHOLUS of Syracuse and
+DROMIO of Syracuse</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Most mighty duke, behold a man much wrong'd.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">All gather to see them</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I see two husbands, or mine eyes deceive me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>One of these men is Genius to the other;</line>
+<line>And so of these. Which is the natural man,</line>
+<line>And which the spirit? who deciphers them?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>I, sir, am Dromio; command him away.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>I, sir, am Dromio; pray, let me stay.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>AEgeon art thou not? or else his ghost?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>O, my old master! who hath bound him here?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Whoever bound him, I will loose his bonds</line>
+<line>And gain a husband by his liberty.</line>
+<line>Speak, old AEgeon, if thou be'st the man</line>
+<line>That hadst a wife once call'd AEmilia</line>
+<line>That bore thee at a burden two fair sons:</line>
+<line>O, if thou be'st the same AEgeon, speak,</line>
+<line>And speak unto the same AEmilia!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEGEON</speaker>
+<line>If I dream not, thou art AEmilia:</line>
+<line>If thou art she, tell me where is that son</line>
+<line>That floated with thee on the fatal raft?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>By men of Epidamnum he and I</line>
+<line>And the twin Dromio all were taken up;</line>
+<line>But by and by rude fishermen of Corinth</line>
+<line>By force took Dromio and my son from them</line>
+<line>And me they left with those of Epidamnum.</line>
+<line>What then became of them I cannot tell</line>
+<line>I to this fortune that you see me in.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Why, here begins his morning story right;</line>
+<line>These two Antipholuses, these two so like,</line>
+<line>And these two Dromios, one in semblance,--</line>
+<line>Besides her urging of her wreck at sea,--</line>
+<line>These are the parents to these children,</line>
+<line>Which accidentally are met together.</line>
+<line>Antipholus, thou camest from Corinth first?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>No, sir, not I; I came from Syracuse.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>Stay, stand apart; I know not which is which.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>I came from Corinth, my most gracious lord,--</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>And I with him.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Brought to this town by that most famous warrior,</line>
+<line>Duke Menaphon, your most renowned uncle.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>Which of you two did dine with me to-day?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I, gentle mistress.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>And are not you my husband?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>No; I say nay to that.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>And so do I; yet did she call me so:</line>
+<line>And this fair gentlewoman, her sister here,</line>
+<line>Did call me brother.</line>
+<para role="stagedir">To Luciana</para>
+<line>What I told you then,</line>
+<line>I hope I shall have leisure to make good;</line>
+<line>If this be not a dream I see and hear.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>That is the chain, sir, which you had of me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>I think it be, sir; I deny it not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>And you, sir, for this chain arrested me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANGELO</speaker>
+<line>I think I did, sir; I deny it not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ADRIANA</speaker>
+<line>I sent you money, sir, to be your bail,</line>
+<line>By Dromio; but I think he brought it not.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>No, none by me.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>This purse of ducats I received from you,</line>
+<line>And Dromio, my man, did bring them me.</line>
+<line>I see we still did meet each other's man,</line>
+<line>And I was ta'en for him, and he for me,</line>
+<line>And thereupon these errors are arose.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>These ducats pawn I for my father here.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>It shall not need; thy father hath his life.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">Courtezan</speaker>
+<line>Sir, I must have that diamond from you.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>There, take it; and much thanks for my good cheer.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">AEMELIA</speaker>
+<line>Renowned duke, vouchsafe to take the pains</line>
+<line>To go with us into the abbey here</line>
+<line>And hear at large discoursed all our fortunes:</line>
+<line>And all that are assembled in this place,</line>
+<line>That by this sympathized one day's error</line>
+<line>Have suffer'd wrong, go keep us company,</line>
+<line>And we shall make full satisfaction.</line>
+<line>Thirty-three years have I but gone in travail</line>
+<line>Of you, my sons; and till this present hour</line>
+<line>My heavy burden ne'er delivered.</line>
+<line>The duke, my husband and my children both,</line>
+<line>And you the calendars of their nativity,</line>
+<line>Go to a gossips' feast and go with me;</line>
+<line>After so long grief, such festivity!</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DUKE SOLINUS</speaker>
+<line>With all my heart, I'll gossip at this feast.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt all but Antipholus of Syracuse, Antipholus
+of Ephesus, Dromio of Syracuse and Dromio of Ephesus</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Master, shall I fetch your stuff from shipboard?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF EPHESUS</speaker>
+<line>Dromio, what stuff of mine hast thou embark'd?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Your goods that lay at host, sir, in the Centaur.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">ANTIPHOLUS OF SYRACUSE</speaker>
+<line>He speaks to me. I am your master, Dromio:</line>
+<line>Come, go with us; we'll look to that anon:</line>
+<line>Embrace thy brother there; rejoice with him.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt Antipholus of Syracuse and Antipholus of Ephesus</para>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>There is a fat friend at your master's house,</line>
+<line>That kitchen'd me for you to-day at dinner:</line>
+<line>She now shall be my sister, not my wife.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Methinks you are my glass, and not my brother:</line>
+<line>I see by you I am a sweet-faced youth.</line>
+<line>Will you walk in to see their gossiping?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>Not I, sir; you are my elder.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>That's a question: how shall we try it?</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF SYRACUSE</speaker>
+<line>We'll draw cuts for the senior: till then lead thou first.</line>
+</linegroup></dialogue>
+
+<dialogue role="speech"><linegroup>
+<speaker role="speaker">DROMIO OF EPHESUS</speaker>
+<line>Nay, then, thus:</line>
+<line>We came into the world like brother and brother;</line>
+<line>And now let's go hand in hand, not one before another.</line>
+</linegroup></dialogue>
+
+<para role="stagedir">Exeunt</para>
+</section>
+</chapter>
+</book>
