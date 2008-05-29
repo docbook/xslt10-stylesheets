@@ -1,0 +1,200 @@
+default namespace = "http://purl.org/dc/terms/"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace dc = "http://purl.org/dc/elements/1.1/"
+namespace dcterms = "http://purl.org/dc/terms/"
+namespace dcmitype = "http://purl.org/dc/dcmitype/"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+a:documentation [
+  "\x{a}" ~
+  "    \x{a}" ~
+  "      DCterms XML Schema\x{a}" ~
+  "      XML Schema for http://purl.org/dc/terms/ namespace\x{a}" ~
+  " \x{a}" ~
+  "      Created 2008-02-11\x{a}" ~
+  "\x{a}" ~
+  "      Created by \x{a}" ~
+  "\x{a}" ~
+  "      Tim Cole (t-cole3@uiuc.edu)\x{a}" ~
+  "      Tom Habing (thabing@uiuc.edu)\x{a}" ~
+  "      Jane Hunter (jane@dstc.edu.au)\x{a}" ~
+  "      Pete Johnston (p.johnston@ukoln.ac.uk),\x{a}" ~
+  "      Carl Lagoze (lagoze@cs.cornell.edu)\x{a}" ~
+  "\x{a}" ~
+  "      This schema declares XML elements for the DC elements and\x{a}" ~
+  "      DC element refinements from the http://purl.org/dc/terms/ namespace.\x{a}" ~
+  "      \x{a}" ~
+  "      It reuses the complexType dc:SimpleLiteral, imported from the dc.xsd\x{a}" ~
+  "      schema, which permits simple element content, and makes the xml:lang\x{a}" ~
+  "      attribute available.\x{a}" ~
+  "\x{a}" ~
+  "      This complexType permits the derivation of other complexTypes\x{a}" ~
+  "      which would permit child elements.\x{a}" ~
+  "\x{a}" ~
+  "      XML elements corresponding to DC elements are declared as substitutable for the abstract element dc:any, and \x{a}" ~
+  "      XML elements corresponding to DC element refinements are defined as substitutable for the base elements \x{a}" ~
+  "      which they refine.\x{a}" ~
+  "\x{a}" ~
+  "      This means that the default type for all XML elements (i.e. corresponding to all DC elements and \x{a}" ~
+  "      element refinements) is dc:SimpleLiteral.\x{a}" ~
+  "\x{a}" ~
+  "      Encoding schemes are defined as complexTypes which are restrictions\x{a}" ~
+  "      of the dc:SimpleLiteral complexType. These complexTypes restrict \x{a}" ~
+  "      values to an appropriates syntax or format using data typing,\x{a}" ~
+  "      regular expressions, or enumerated lists.\x{a}" ~
+  "  \x{a}" ~
+  "      In order to specify one of these encodings an xsi:type attribute must \x{a}" ~
+  "      be used in the instance document.\x{a}" ~
+  "\x{a}" ~
+  "      Also, note that one shortcoming of this approach is that any type can be \x{a}" ~
+  "      applied to any of the elements or refinements.  There is no convenient way\x{a}" ~
+  "      to restrict types to specific elements using this approach.\x{a}" ~
+  "\x{a}" ~
+  "      Changes in 2008-02-11 version:\x{a}" ~
+  "      \x{a}" ~
+  "      Add element declarations corresponding to 15 new dcterms URIs, and amend use of substitutionGroups.\x{a}" ~
+  "      \x{a}" ~
+  "      Add compexType definitions corresponding to ISO639-3, RFC4646.\x{a}" ~
+  "      \x{a}" ~
+  "    \x{a}" ~
+  "\x{a}" ~
+  "  "
+]
+include "dc.rnc" inherit = dc {start|=notAllowed}
+include "dcmitype.rnc" inherit = dcmitype
+
+start |= dc.title
+| dc.creator 
+| dc.subject
+| dc.description
+| dc.publisher
+| dc.contributor
+| dc.date
+| dc.type
+| dc.format
+| dc.identifier
+| dc.source
+| dc.language
+| dc.relation
+| dc.coverage
+| dc.rights
+| dcterms.alternative
+| dcterms.tableOfContents
+| dcterms.abstract
+| dcterms.created
+| dcterms.valid
+| dcterms.available
+| dcterms.issued
+| dcterms.modified
+| dcterms.dateAccepted
+| dcterms.dateCopyrighted
+| dcterms.dateSubmitted
+| dcterms.extent
+| dcterms.medium
+| dcterms.isVersionOf
+| dcterms.hasVersion
+| dcterms.isReplacedBy
+| dcterms.replaces
+| dcterms.isRequiredBy
+| dcterms.requires
+| dcterms.isPartOf
+| dcterms.hasPart
+| dcterms.isReferencedBy
+| dcterms.references
+| dcterms.isFormatOf
+| dcterms.hasFormat
+| dcterms.conformsTo
+| dcterms.spatial
+| dcterms.temporal
+| dcterms.audience
+| dcterms.accrualMethod
+| dcterms.accrualPeriodicity
+| dcterms.accrualPolicy
+| dcterms.instructionalMethod
+| dcterms.provenance
+| dcterms.rightsHolder
+| dcterms.mediator
+| dcterms.educationLevel
+| dcterms.accessRights
+| dcterms.license
+| dcterms.bibliographicCitation
+
+dcterms.alternative |= element alternative { text }
+dcterms.tableOfContents |= element tableOfContents { text }
+dcterms.abstract |= element abstract { text }
+dcterms.created |= element created { text }
+dcterms.valid |= element valid { text }
+dcterms.available |= element available { text }
+dcterms.issued |= element issued { text }
+dcterms.modified |= element modified { text }
+dcterms.dateAccepted |= element dateAccepted { text }
+dcterms.dateCopyrighted |= element dateCopyrighted { text }
+dcterms.dateSubmitted |= element dateSubmitted { text }
+dcterms.extent |= element extent { text }
+dcterms.medium |= element medium { text }
+dcterms.isVersionOf |= element isVersionOf { text }
+dcterms.hasVersion |= element hasVersion { text }
+dcterms.isReplacedBy |= element isReplacedBy { text }
+dcterms.replaces |= element replaces { text }
+dcterms.isRequiredBy |= element isRequiredBy { text }
+dcterms.requires |= element requires { text }
+dcterms.isPartOf |= element isPartOf { text }
+dcterms.hasPart |= element hasPart { text }
+dcterms.isReferencedBy |= element isReferencedBy { text }
+dcterms.references |= element references { text }
+dcterms.isFormatOf |= element isFormatOf { text }
+dcterms.hasFormat |= element hasFormat { text }
+dcterms.conformsTo |= element conformsTo { text }
+dcterms.spatial |= element spatial { text }
+dcterms.temporal |= element temporal { text }
+dcterms.audience |= element audience { text }
+dcterms.accrualMethod |= element accrualMethod { text }
+dcterms.accrualPeriodicity |= element accrualPeriodicity { text }
+dcterms.accrualPolicy |= element accrualPolicy { text }
+dcterms.instructionalMethod |= element instructionalMethod { text }
+dcterms.provenance |= element provenance { text }
+dcterms.rightsHolder |= element rightsHolder { text }
+dcterms.mediator |= element mediator { text }
+dcterms.educationLevel |= element educationLevel { text }
+dcterms.accessRights |= element accessRights { text }
+dcterms.license |= element license { text }
+dcterms.bibliographicCitation |= element bibliographicCitation { text }
+LCSH |= SimpleLiteral, xsd:string
+MESH |= SimpleLiteral, xsd:string
+DDC |= SimpleLiteral, xsd:string
+LCC |= SimpleLiteral, xsd:string
+UDC |= SimpleLiteral, xsd:string
+Period |= SimpleLiteral, xsd:string
+W3CDTF |= SimpleLiteral
+DCMIType |= SimpleLiteral, DCMIType
+IMT |= SimpleLiteral, xsd:string
+URI |= SimpleLiteral, xsd:anyURI
+ISO639-2 |= SimpleLiteral, xsd:string
+ISO639-3 |= SimpleLiteral, xsd:string
+RFC1766 |= SimpleLiteral, xsd:language
+RFC3066 |= SimpleLiteral, xsd:language
+RFC4646 |= SimpleLiteral, xsd:language
+Point |= SimpleLiteral, xsd:string
+ISO3166 |= SimpleLiteral, xsd:string
+Box |= SimpleLiteral, xsd:string
+TGN |= SimpleLiteral, xsd:string
+
+## 
+##     	
+##     		This group is included as a convenience for schema authors
+##             who need to refer to all the DC elements and element refinements 
+##             in the http://purl.org/dc/elements/1.1/ and 
+##             http://purl.org/dc/terms namespaces. 
+##             N.B. Refinements available via substitution groups.
+##     	
+##   	
+elementsAndRefinementsGroup |= text
+
+## 
+##     	
+##     		This is included as a convenience for schema authors who need to define a root
+##     		or container element for all of the DC elements and element refinements.
+##     	
+##   	
+elementOrRefinementContainer |= elementsAndRefinementsGroup

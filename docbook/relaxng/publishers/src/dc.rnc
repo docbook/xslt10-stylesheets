@@ -1,0 +1,105 @@
+default namespace = "http://purl.org/dc/elements/1.1/"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+namespace dc = "http://purl.org/dc/elements/1.1/"
+
+a:documentation [
+  "\x{a}" ~
+  "    \x{a}" ~
+  "      DCMES 1.1 XML Schema\x{a}" ~
+  "      XML Schema for http://purl.org/dc/elements/1.1/ namespace\x{a}" ~
+  "\x{a}" ~
+  "      Created 2008-02-11\x{a}" ~
+  "\x{a}" ~
+  "      Created by \x{a}" ~
+  "\x{a}" ~
+  "      Tim Cole (t-cole3@uiuc.edu)\x{a}" ~
+  "      Tom Habing (thabing@uiuc.edu)\x{a}" ~
+  "      Jane Hunter (jane@dstc.edu.au)\x{a}" ~
+  "      Pete Johnston (p.johnston@ukoln.ac.uk),\x{a}" ~
+  "      Carl Lagoze (lagoze@cs.cornell.edu)\x{a}" ~
+  "\x{a}" ~
+  "      This schema declares XML elements for the 15 DC elements from the\x{a}" ~
+  "      http://purl.org/dc/elements/1.1/ namespace.\x{a}" ~
+  "\x{a}" ~
+  "      It defines a complexType SimpleLiteral which permits mixed content \x{a}" ~
+  "      and makes the xml:lang attribute available. It disallows child elements by\x{a}" ~
+  "      use of minOcccurs/maxOccurs.\x{a}" ~
+  "\x{a}" ~
+  "      However, this complexType does permit the derivation of other complexTypes\x{a}" ~
+  "      which would permit child elements.\x{a}" ~
+  "\x{a}" ~
+  "      All elements are declared as substitutable for the abstract element any, \x{a}" ~
+  "      which means that the default type for all elements is dc:SimpleLiteral.\x{a}" ~
+  "\x{a}" ~
+  "    \x{a}" ~
+  "\x{a}" ~
+  "  "
+]
+
+## 
+##         
+##             This is the default type for all of the DC elements.
+##             It permits text content only with optional
+##             xml:lang attribute.
+##             Text is allowed because mixed="true", but sub-elements
+##             are disallowed because minOccurs="0" and maxOccurs="0" 
+##             are on the xs:any tag.
+## 
+##     	    This complexType allows for restriction or extension permitting
+##             child elements.
+##     	
+##   
+
+start |= dc.title
+| dc.creator 
+| dc.subject
+| dc.description
+| dc.publisher
+| dc.contributor
+| dc.date
+| dc.type
+| dc.format
+| dc.identifier
+| dc.source
+| dc.language
+| dc.relation
+| dc.coverage
+| dc.rights
+| dc.any
+
+SimpleLiteral |= element * { text }?
+dc.any |= element any { SimpleLiteral }
+dc.title |= element title { text }
+dc.creator |= element creator { text }
+dc.subject |= element subject { text }
+dc.description |= element description { text }
+dc.publisher |= element publisher { text }
+dc.contributor |= element contributor { text }
+dc.date |= element date { text }
+dc.type |= element type { text }
+dc.format |= element format { text }
+dc.identifier |= element identifier { text }
+dc.source |= element source { text }
+dc.language |= element language { text }
+dc.relation |= element relation { text }
+dc.coverage |= element coverage { text }
+dc.rights |= element rights { text }
+
+## 
+##     	
+##     	    This group is included as a convenience for schema authors
+##             who need to refer to all the elements in the 
+##             http://purl.org/dc/elements/1.1/ namespace.
+##     	
+##   	
+elementsGroup |= text
+
+## 
+##     	
+##     		This complexType is included as a convenience for schema authors who need to define a root
+##     		or container element for all of the DC elements.
+##     	
+##   	
+elementContainer |= elementsGroup
