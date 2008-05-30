@@ -24,12 +24,13 @@
   </xsl:param>
 
   <xsl:param name="ade.extensions" select="0"/>
-  <xsl:param name="epub.autolabel" select="'1'"/> <!-- TODO: Document this in params -->
-  <xsl:param name="manifest.in.base.dir" select="'1'"/> <!-- TODO: Document this in params; is '1' correct? -->
+  <xsl:param name="epub.autolabel" select="'1'"/> 
 
-  <xsl:param name="epub.oebps.dir" select="'OEBPS/'"/> 
+
+  <xsl:param name="manifest.in.base.dir" select="'1'"/> 
   <xsl:param name="base.dir" select="$epub.oebps.dir"/>
 
+  <xsl:param name="epub.oebps.dir" select="'OEBPS/'"/> 
   <xsl:param name="epub.ncx.filename" select="'toc.ncx'"/> 
   <xsl:param name="epub.container.filename" select="'container.xml'"/> 
   <xsl:param name="epub.opf.filename" select="concat($epub.oebps.dir, 'content.opf')"/> 
@@ -40,7 +41,6 @@
   <xsl:param name="epub.ncx.toc.id">ncxtoc</xsl:param>
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
   <xsl:param name="epub.metainf.dir" select="'META-INF/'"/> 
-
 
   <!-- Per Bob Stayton:
        """Process your documents with the css.decoration parameter set to zero. 
@@ -361,7 +361,7 @@
             </xsl:when>
             <xsl:otherwise>
               <xsl:variable name="title">
-                <xsl:if test="$epub.autolabel=1">
+                <xsl:if test="$epub.autolabel != 0">
                   <xsl:variable name="label.markup">
                     <xsl:apply-templates select="/*" mode="label.markup" />
                   </xsl:variable>
@@ -423,7 +423,7 @@
                 mode="ncx">
     <xsl:variable name="depth" select="count(ancestor::*)"/>
     <xsl:variable name="title">
-      <xsl:if test="$epub.autolabel=1">
+      <xsl:if test="$epub.autolabel != 0">
         <xsl:variable name="label.markup">
           <xsl:apply-templates select="." mode="label.markup" />
         </xsl:variable>
@@ -596,12 +596,14 @@
       </xsl:if>  
 
       <!-- TODO: be nice to have a idref="titlepage" here -->
-      <xsl:if test="$root.is.a.chunk != '0'">
-
-        <xsl:apply-templates select="/*" mode="opf.spine"/>
-      </xsl:if>
-      <xsl:apply-templates select="/*/*|
-                                   /*/part/*" mode="opf.spine"/>
+      <xsl:choose>
+        <xsl:when test="$root.is.a.chunk != '0'">
+          <xsl:apply-templates select="/*" mode="opf.spine"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="/*/*" mode="opf.spine"/>
+        </xsl:otherwise>
+      </xsl:choose>
                                    
     </xsl:element>
   </xsl:template>
@@ -778,7 +780,7 @@
 
   <xsl:template match="mediaobjectco"
                 mode="opf.manifest">
-    <xsl:message>Warning: mediaobjectco almost certain will not render as expected in .epub </xsl:message>
+    <xsl:message>Warning: mediaobjectco almost certainly will not render as expected in .epub!</xsl:message>
     <xsl:apply-templates select="imageobjectco/imageobject/imagedata" 
                          mode="opf.manifest"/>              
   </xsl:template>
@@ -1320,5 +1322,9 @@
     <xsl:text>-toc</xsl:text>
     <xsl:value-of select="$html.ext"/>
   </xsl:template>
+
+  <xsl:template match="bibliodiv" mode="label.markup">
+  </xsl:template>
+
 
 </xsl:stylesheet>
