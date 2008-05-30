@@ -13,6 +13,10 @@
       <primary>First Part</primary>
     </indexterm></para>
     <para>Referencing <firstterm>gloss-1</firstterm>.</para>
+    <sect1>
+      <title>A sect1 in a chapter</title>
+      <para>With a little text.</para>
+    </sect1>
   </chapter>
 
   <glossary role="auto">
