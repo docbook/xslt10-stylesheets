@@ -1,0 +1,266 @@
+<!DOCTYPE article [
+<!ENTITY standard "Committee Draft">
+<!ENTITY tracker "http://sourceforge.net/tracker">
+<!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
+<!ENTITY root "http://docs.oasis-open.org/docbook/">
+]>
+<article xmlns="http://docbook.org/ns/docbook"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+	 version="5.0"
+	 xml:lang="en"
+	 status="&standard;">
+<info>
+<releaseinfo role="cvs">
+$Id: docbook.xml 7996 2008-04-09 19:40:26Z nwalsh $
+</releaseinfo>
+
+<!-- product -->        <productname>publishers</productname>
+<!-- productVersion --> <productnumber>1.0</productnumber>
+<!-- artifactType       spec; what else? :-) -->
+<!-- stage -->          <releaseinfo role="stage">wd</releaseinfo>
+<!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
+<!-- language           en; see /article/@xml:lang -->
+<!-- form               xml -->
+
+<releaseinfo role="location">&root;specs</releaseinfo>
+
+<title>The DocBook Publishers Schema</title>
+
+<org>
+  <orgname>OASIS</orgname>
+  <orgdiv xlink:href="http://www.oasis-open.org/committees/workgroup.php?wg_abbrev=docbook">OASIS DocBook Technical Committee</orgdiv>
+</org>
+
+<othercredit class="other" otherclass="chair">
+  <personname>
+    <firstname>A</firstname>
+    <surname>Nonymous</surname>
+  </personname>
+</othercredit>
+
+<pubdate>2008-05-30</pubdate>
+
+<bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
+
+<!--
+<bibliorelation type="replaces" condition="online"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
+<bibliorelation type="replaces" condition="online"
+    xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.html"/>
+
+<bibliorelation type="replaces" condition="print"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
+<bibliorelation type="replaces" condition="print"
+    xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.pdf"/>
+
+<bibliorelation type="references" condition="online"
+    xlink:href="http://docs.oasis-open.org/docbook/specs/docbook-4.5-spec.html"/>
+
+<bibliorelation type="references" condition="print"
+    xlink:href="http://docs.oasis-open.org/docbook/specs/docbook-4.5-spec.pdf"/>
+-->
+
+<copyright>
+<year>2008</year>
+<holder>The Organization for the Advancement of Structured Information
+Standards [OASIS]. All Rights Reserved. </holder></copyright>
+
+<abstract>
+<para>The DocBook Publishers Schema is a …</para>
+</abstract>
+
+<legalnotice role="status">
+<!--
+<para>This &standard; was
+<link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200711/msg00007.html">approved</link>
+for publication by the
+OASIS DocBook Technical Committee. It represents the
+consensus of the committee.
+</para>
+-->
+
+<para>This is a &standard;. It does not necessarily
+represent the consensus of the committee.
+</para>
+
+<para>Please send comments on this specification to the
+<email>docbook-publishers@lists.oasis-open.org</email> list. To subscribe, please
+use the
+<link xlink:href="http://lists.oasis-open.org/ob/adm.pl">OASIS Subscription
+Manager</link>.</para>
+
+<para>The errata page for this specification is at
+<link xlink:href="&root;specs/publishers-errata.html"/>.
+</para>
+</legalnotice>
+
+<legalnotice role="notices">
+<para>Copyright © OASIS® 2008. All Rights Reserved.</para>
+
+<para>All capitalized terms in the following text have the meanings
+assigned to them in the OASIS Intellectual Property Rights Policy (the
+"OASIS IPR Policy"). The full Policy may be found at the OASIS
+website.</para>
+
+<para>This document and translations of it may be copied and furnished
+to others, and derivative works that comment on or otherwise explain
+it or assist in its implementation may be prepared, copied, published,
+and distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this section are included
+on all such copies and derivative works. However, this document itself
+may not be modified in any way, including by removing the copyright
+notice or references to OASIS, except as needed for the purpose of
+developing any document or deliverable produced by an OASIS Technical
+Committee (in which case the rules applicable to copyrights, as set
+forth in the OASIS IPR Policy, must be followed) or as required to
+translate it into languages other than English.</para>
+
+<para>The limited permissions granted above are perpetual and will not
+be revoked by OASIS or its successors or assigns.</para>
+
+<para>This document and the information contained herein is provided
+on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY
+IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR
+PURPOSE.</para>
+
+<para>OASIS requests that any OASIS Party or any other party that
+believes it has patent claims that would necessarily be infringed by
+implementations of this OASIS Committee Specification or OASIS
+Standard, to notify OASIS TC Administrator and provide an indication
+of its willingness to grant patent licenses to such patent claims in a
+manner consistent with the IPR Mode of the OASIS Technical Committee
+that produced this specification.</para>
+
+<para>OASIS invites any party to contact the OASIS TC Administrator if
+it is aware of a claim of ownership of any patent claims that would
+necessarily be infringed by implementations of this specification by a
+patent holder that is not willing to provide a license to such patent
+claims in a manner consistent with the IPR Mode of the OASIS Technical
+Committee that produced this specification. OASIS may include such
+claims on its website, but disclaims any obligation to do so.</para>
+
+<para>OASIS takes no position regarding the validity or scope of any
+intellectual property or other rights that might be claimed to pertain
+to the implementation or use of the technology described in this
+document or the extent to which any license under such rights might or
+might not be available; neither does it represent that it has made any
+effort to identify any such rights. Information on OASIS' procedures
+with respect to rights in any document or deliverable produced by an
+OASIS Technical Committee can be found on the OASIS website. Copies of
+claims of rights made available for publication and any assurances of
+licenses to be made available, or the result of an attempt made to
+obtain a general license or permission for the use of such proprietary
+rights by implementers or users of this OASIS Committee Specification
+or OASIS Standard, can be obtained from the OASIS TC Administrator.
+OASIS makes no representation that any information or list of
+intellectual property rights will at any time be complete, or that any
+claims in such list are, in fact, Essential Claims.</para>
+
+<para>The name "OASIS" is a trademark of OASIS, the owner and
+developer of this specification, and should be used only to refer to
+the organization and its official outputs. OASIS welcomes reference
+to, and implementation and use of, specifications, while reserving the
+right to enforce its marks against misleading uses. Please see
+<link xlink:href="http://www.oasis-open.org/who/trademark.php"/>
+for above guidance.</para>
+</legalnotice>
+</info>
+
+<section xml:id="s.intro">
+<title>Introduction</title>
+
+<para>…</para>
+
+<section xml:id="s.terminology"><title>Terminology</title>
+<para>The key words <glossterm>must</glossterm>, <glossterm>must
+not</glossterm>, <glossterm>required</glossterm>,
+<glossterm>shall</glossterm>, <glossterm>shall not</glossterm>,
+<glossterm>should</glossterm>, <glossterm>should not</glossterm>,
+<glossterm>recommended</glossterm>, <glossterm>may</glossterm>, and
+<glossterm>optional</glossterm> in this &standard; are to be
+interpreted as described in <xref linkend="rfc2119"/>. Note that for
+reasons of style, these words are not capitalized in this
+document.</para>
+</section>
+
+<section xml:id="normative.refs">
+<title>Normative References</title>
+
+<para>…</para>
+
+<!--
+<bibliolist>
+<bibliomixed xml:id="relaxng"/>
+<bibliomixed xml:id="xml-rec"/>
+<bibliomixed xml:id="xlink11"/>
+<bibliomixed xml:id="rfc2119"/>
+<bibliomixed xml:id="rfc3023"/>
+<bibliomixed xml:id="bib.docbooktdg5"/>
+</bibliolist>
+-->
+</section>
+
+<!--
+<section xml:id="non-normative.refs">
+<title>Non-Normative References</title>
+
+<bibliolist>
+<bibliomixed xml:id="iso8879"/>
+<bibliomixed xml:id="xmlschema-1"/>
+<bibliomixed xml:id="xmlschema-2"/>
+<bibliomixed xml:id="schematron2000"/>
+</bibliolist>
+</section>
+-->
+</section>
+
+<section xml:id="s.docbook">
+<title>The DocBook Publshers RELAX NG Schema</title>
+<para>…</para>
+</section>
+
+<appendix xml:id="a.committee" role="non-normative">
+<title>Acknowledgements</title>
+
+<para>The following individuals have participated in the creation of
+this specification and are gratefully acknowledged:</para>
+
+<!--
+<itemizedlist spacing="compact">
+<title>Participants</title>
+<listitem><para>Steve Cogorno, Sun Microsystems</para></listitem>
+<listitem><para>Gary Cornelius, Individual</para></listitem>
+<listitem><para>Adam Di Carlo, Debian</para></listitem>
+<listitem><para>Paul Grosso, Arbortext</para></listitem>
+<listitem><para>Dick Hamilton, Individual</para></listitem>
+<listitem><para>Nancy Harrison, IBM</para></listitem>
+<listitem><para>Scott Hudson, Individual</para></listitem>
+<listitem><para>Mark Johnson, Debian</para></listitem>
+<listitem><para>Gershon Joseph, Tech-Tav Documentation Ltd.</para></listitem>
+<listitem><para>Jirka Kosek, Individual</para></listitem>
+<listitem><para>Larry Rowland, Hewlett-Packard</para></listitem>
+<listitem><para>Michael Smith, Individual</para></listitem>
+<listitem><para>Robert Stayton, Individual (Secretary)</para></listitem>
+<listitem><para>Norman Walsh, Sun Microsystems (Chair, Editor)</para></listitem>
+</itemizedlist>
+-->
+</appendix>
+
+<appendix xml:id="changes">
+<title>Revision History</title>
+
+<para>…</para>
+
+<!--
+<listitem xml:id="rfe.">
+<para>Fixed <link xlink:href="&RFE;aid=">RFE </link>:
+
+</para>
+</listitem>
+-->
+
+</appendix>
+
+</article>
