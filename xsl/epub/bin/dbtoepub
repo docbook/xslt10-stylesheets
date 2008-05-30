@@ -1,9 +1,20 @@
 #!/usr/bin/env ruby
+# This program converts DocBook documents into .epub files.
+# 
+# Usage: dbtoepub [OPTIONS] [DocBook Files]
+#
+# .epub is defined by the IDPF at www.idpf.org and is made up of 3 standards:
+# - Open Publication Structure (OPS)
+# - Open Packaging Format (OPF) 
+# - Open Container Format (OCF)
+#
+# Specific options:
+#     -d, --debug                      Show debugging output.
+#     -h, --help                       Display usage info
+#     -v, --verbose                    Make output verbose
+
 lib = File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
 $LOAD_PATH.unshift(lib) if File.exist?(lib)
-
-# Keith Fahlgren
-# Sat Feb 23 17:22:35 PST 2008
 
 require 'optparse'
 

@@ -6,8 +6,8 @@ require 'spec/spec_helper'
 lib = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(lib) if File.exist?(lib)
 
-require 'tmpdir'
 require 'fileutils'
+require 'tmpdir'
 
 require 'rubygems'
 require 'spec'

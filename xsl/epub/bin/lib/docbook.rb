@@ -37,7 +37,7 @@ module DocBook
     end
 
     def self.invalid?(file)
-      # obnoxiously, we can't just check for a non-zero output...
+      # Obnoxiously, we can't just check for a non-zero output...
       cmd = "#{CHECKER} #{file}"
       output = `#{cmd} 2>&1`
 
@@ -69,12 +69,12 @@ module DocBook
 
     def bundle_epub(output_file, verbose)  
       quiet = verbose ? "" : "-q"
-      # zip -X -r ../book.epub mimetype META-INF OEBPS
       mimetype_filename = write_mimetype()
       meta  = File.basename(@meta_dir)
       oebps  = File.basename(@oebps_dir)
       images = copy_images()
       callouts = copy_callouts()
+      # zip -X -r ../book.epub mimetype META-INF OEBPS
       zip_cmd = "cd #{@output_dir} &&  #{ZIPPER} #{quiet} -X -r  #{File.expand_path(output_file)} #{mimetype_filename} #{meta} #{oebps}"
       puts zip_cmd if $DEBUG
       success = system(zip_cmd)

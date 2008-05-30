@@ -14,7 +14,7 @@ require 'spec'
 
 require 'docbook'
 
-$DEBUG = true
+$DEBUG = false
 
 TESTDOCSDIR = File.expand_path(File.join(File.dirname(__FILE__), 'testdocs'))
 NUMBER_TO_TEST = 15
@@ -25,10 +25,7 @@ describe DocBook::Epub do
     @tmpdir = File.join(Dir::tmpdir(), "epubspecsmoke"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
   end
 
-  # TODO olink, index, cmdsynopsis, refentry, table
-
-  Dir["#{TESTDOCSDIR}/programlisting*.006.xml"].sort_by { rand }[0..(NUMBER_TO_TEST-1)].each do |xml_file|
-  #Dir["#{TESTDOCSDIR}/*.[0-9][0-9][0-9].xml"].sort_by { rand }[0..(NUMBER_TO_TEST-1)].each do |xml_file|
+  Dir["#{TESTDOCSDIR}/*.[0-9][0-9][0-9].xml"].sort_by { rand }[0..(NUMBER_TO_TEST-1)].each do |xml_file|
     it "should be able to render a valid .epub for the test document #{xml_file}" do
       epub = DocBook::Epub.new(xml_file, @tmpdir)
       epub_file = File.join(@tmpdir, File.basename(xml_file, ".xml") + ".epub")
