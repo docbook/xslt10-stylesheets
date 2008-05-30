@@ -42,7 +42,7 @@ start = db.set
 	| db.section
 	| db.para
 
-include "core.rnc" {
+include "../../docbook/src/core.rnc" {
   start |= notAllowed
   db.sidebar |= notAllowed
   db.person |= notAllowed
