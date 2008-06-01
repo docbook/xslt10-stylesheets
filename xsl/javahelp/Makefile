@@ -1,4 +1,4 @@
-include ../../buildtools/Makefile.incl
+include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 all: profile-javahelp.xsl
 
 profile-javahelp.xsl: javahelp.xsl ../profiling/xsl2profile.xsl
