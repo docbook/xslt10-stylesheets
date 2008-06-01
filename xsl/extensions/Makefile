@@ -2,25 +2,25 @@
 
 all: saxon65.jar xalan27.jar xslt.py docbook.py README.LIBXSLT
 
-saxon65.jar: ../../xsl-saxon/saxon65.jar
+saxon65.jar: $(DOCBOOK_SVN)/xsl-saxon/saxon65.jar
 	cp -p $^ $@
 
-xalan27.jar: ../../xsl-xalan/xalan27.jar
+xalan27.jar: $(DOCBOOK_SVN)/xsl-xalan/xalan27.jar
 	cp -p $^ $@
 
-../../xsl-saxon/saxon65.jar: $(wildcard ../../xsl-saxon/src/com/nwalsh/saxon/*.java) 
+$(DOCBOOK_SVN)/xsl-saxon/saxon65.jar: $(wildcard ../../xsl-saxon/src/com/nwalsh/saxon/*.java) 
 	$(MAKE) -C $(dir $@)
 
-../../xsl-xalan/xalan27.jar: $(wildcard ../../xsl-xalan/src/com/nwalsh/xalan/*.java) 
+$(DOCBOOK_SVN)/xsl-xalan/xalan27.jar: $(wildcard ../../xsl-xalan/src/com/nwalsh/xalan/*.java) 
 	$(MAKE) -C $(dir $@)
 
-xslt.py: ../../xsl-libxslt/python/xslt.py
+xslt.py: $(DOCBOOK_SVN)/xsl-libxslt/python/xslt.py
 	cp -p $^ $@
 
-docbook.py: ../../xsl-libxslt/python/docbook.py
+docbook.py: $(DOCBOOK_SVN)/xsl-libxslt/python/docbook.py
 	cp -p $^ $@
 
-README.LIBXSLT: ../../xsl-libxslt/python/README.LIBXSLT
+README.LIBXSLT: $(DOCBOOK_SVN)/xsl-libxslt/python/README.LIBXSLT
 	cp -p $^ $@
 
 clean:

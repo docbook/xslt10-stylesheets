@@ -1,4 +1,4 @@
-include ../../buildtools/Makefile.incl
+include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
 all: xsl-files profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
 

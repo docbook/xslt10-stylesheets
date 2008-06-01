@@ -1,4 +1,4 @@
-include ../../releasetools/Variables.mk
+include $(DOCBOOK_SVN)/releasetools/Variables.mk
 
 XJPARSEFLAGS= -E 0 -w
 
