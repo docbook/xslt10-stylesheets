@@ -59,7 +59,8 @@ module DocBook
       meta =          "--stringparam epub.metainf.dir #{@meta_dir}/" 
       oebps =         "--stringparam epub.oebps.dir #{@oebps_dir}/" 
       options = "--xinclude #{chunk_quietly} #{callout_path} #{callout_limit} #{callout_ext} #{base} #{meta} #{oebps}"
-      db2epub_cmd = "#{XSLT_PROCESSOR} #{options} #{STYLESHEET} #{@docbook_file}"
+      # Double-quote stylesheet & file to help Windows cmd.exe
+      db2epub_cmd = "#{XSLT_PROCESSOR} #{options} \"#{STYLESHEET}\" \"#{@docbook_file}\""
       STDERR.puts db2epub_cmd if $DEBUG
       success = system(db2epub_cmd)
       raise "Could not render as .epub to #{output_file} (#{db2epub_cmd})" unless success
@@ -75,7 +76,8 @@ module DocBook
       images = copy_images()
       callouts = copy_callouts()
       # zip -X -r ../book.epub mimetype META-INF OEBPS
-      zip_cmd = "cd #{@output_dir} &&  #{ZIPPER} #{quiet} -X -r  #{File.expand_path(output_file)} #{mimetype_filename} #{meta} #{oebps}"
+      # Double-quote stylesheet & file to help Windows cmd.exe
+      zip_cmd = "cd \"#{@output_dir}\" &&  #{ZIPPER} #{quiet} -X -r  \"#{File.expand_path(output_file)}\" \"#{mimetype_filename}\" \"#{meta}\" \"#{oebps}\""
       puts zip_cmd if $DEBUG
       success = system(zip_cmd)
       raise "Could not bundle into .epub file to #{output_file}" unless success

@@ -25,6 +25,7 @@ describe DocBook::Epub do
     epub = DocBook::Epub.new(xml_file, TMPDIR)
     epub_file = File.join(TMPDIR, File.basename(xml_file, ".xml") + ".epub")
     epub.render_to_file(epub_file, $DEBUG)
+
     FileUtils.copy(epub_file, "." + File.basename(xml_file, ".xml") + ".epub") if $DEBUG
 
     it "should be able to render a valid .epub for the 'Real Book' test document #{xml_file}" do
@@ -41,7 +42,7 @@ describe DocBook::Epub do
     end
   end
 
-  after do
+  after(:all) do
     FileUtils.rm_r(TMPDIR, :force => true)
   end  
 end
