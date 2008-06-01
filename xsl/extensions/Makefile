@@ -8,10 +8,10 @@ saxon65.jar: $(DOCBOOK_SVN)/xsl-saxon/saxon65.jar
 xalan27.jar: $(DOCBOOK_SVN)/xsl-xalan/xalan27.jar
 	cp -p $^ $@
 
-$(DOCBOOK_SVN)/xsl-saxon/saxon65.jar: $(wildcard ../../xsl-saxon/src/com/nwalsh/saxon/*.java) 
+$(DOCBOOK_SVN)/xsl-saxon/saxon65.jar: $(wildcard $(DOCBOOK_SVN)/xsl-saxon/src/com/nwalsh/saxon/*.java) 
 	$(MAKE) -C $(dir $@)
 
-$(DOCBOOK_SVN)/xsl-xalan/xalan27.jar: $(wildcard ../../xsl-xalan/src/com/nwalsh/xalan/*.java) 
+$(DOCBOOK_SVN)/xsl-xalan/xalan27.jar: $(wildcard $(DOCBOOK_SVN)/xsl-xalan/src/com/nwalsh/xalan/*.java) 
 	$(MAKE) -C $(dir $@)
 
 xslt.py: $(DOCBOOK_SVN)/xsl-libxslt/python/xslt.py

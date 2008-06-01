@@ -1,4 +1,4 @@
-include ../../buildtools/Makefile.incl
+include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 all: profile-htmlhelp-common.xsl
 
 profile-htmlhelp-common.xsl: htmlhelp-common.xsl ../profiling/xsl2profile.xsl
