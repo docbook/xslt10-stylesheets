@@ -12,3 +12,6 @@ Or, prettier:
   $ spec --format specdoc --color spec/epub_spec.rb 
 
 3. Repeat for other files in spec/*spec.rb
+
+How to make them more verbose?
+1. Set $DEBUG to true (near the top of each spec)
