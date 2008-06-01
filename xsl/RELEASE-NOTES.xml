@@ -41,8 +41,8 @@ changes made over the entire history of the codebase.</para>
   are experimental).</para>
 <para condition="snapshot">This is a pre-release “snapshot” of the
 DocBook XSL Stylesheets. The change information in the first
-section of this file (for “<xi:include href="NEWS.xml"
-  xpointer="xpointer(/article/sect1/title/text())"/>”) is
+section of this file 
+(for “<xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/title/text())"/>”) is
 auto-generated from change descriptions stored in the project
 source-code repository.</para>
 <para condition="snapshot">That means the first section contains
@@ -54,8 +54,1445 @@ public APIs (user-configurable parameters).</para>
 </abstract>
 </info>
 
-<sect1 condition="snapshot" id="current">
+<sect1 condition="snapshot" xml:id="current">
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
+</sect1>
+
+<sect1 xml:id="V1.74.0">
+<title>Release Notes: 1.74.0</title>
+<para>This release includes important bug fixes and adds the following
+significant feature changes:
+<variablelist>
+<varlistentry>
+<term>.epub target</term>
+<listitem><para>Paul Norton (Adobe) and Keith Fahlgren(O'Reilly Media) have donated code that generates <filename>.epub</filename> documents from
+DocBook input. An alpha-reference implementation in Ruby has also been provided.</para>
+<para>.epub is an open standard of the The International Digital Publishing Forum (IDPF), 
+a the trade and standards association for the digital publishing industry. </para> 
+<para>Read more about this target in <filename>epub/README</filename>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>XHTML 1.1 target</term>
+<listitem><para>To support .epub output, a strict XHTML 1.1 target has been added. The stylesheets for this output are
+generated and are quite similar to the XHTML target.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Gentext updates</term>
+<listitem><para>A number of locales have been updated.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>Roundtrip improvements</term>
+<listitem><para>Table, figure, template syncronization, and character style improvements have been made for WordML &amp; Pages. Support added for OpenOffice.org.</para></listitem>
+
+</varlistentry>
+
+
+</variablelist>
+</para>
+<para>The following is a list of changes that have been made
+        since the 1.73.2 release.</para>
+
+<sect2 xml:id="V1.74.0_Gentext">
+<title>Gentext</title>
+<para>The following changes have been made to the
+            <filename>gentext</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/id.xml</literal></para><screen><phrase role="commit-message">Checked in changes to Indonesion locale submitted by Euis Luhuanam a long time ago.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/lt.xml</literal></para><screen><phrase role="commit-message">Added changes to Lithuanian locate submitted a long time back by Nikolajus Krauklis.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/hu.xml</literal></para><screen><phrase role="commit-message">fixed error in lowercase.alpha definition in Hungarian locale</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/nb.xml</literal></para><screen><phrase role="commit-message">Corrected language code for nb locale, and restored missing "startquote" key.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/ja.xml</literal></para><screen><phrase role="commit-message">Committed changes to ja locale file, from Akagi Kobayashi. Adds bracket quotes around many xref instances that did not have them
+before.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile</literal></para><screen><phrase role="commit-message">"no" locale is now "nb"</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/nb.xml</literal></para><screen><phrase role="commit-message">Update Norwegian Bokmål translation. Thanks to Hans F. Nordhaug.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/no.xml; locale/nb.xml</literal></para><screen><phrase role="commit-message">per message from Hans F. Nordhaug, correct identifier for
+Norwegian Bokmål is "nb" (not "no") and has been for quite some
+time now...</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/ja.xml</literal></para><screen><phrase role="commit-message">Converted ja.xml source file to use real unicode characters so
+that the actual glyphs so up when you edit it in a text editor
+(instead of the character references).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/ja.xml</literal></para><screen><phrase role="commit-message">Checked in changes to ja.xml locale file. Thanks to Akagi Kobayashi.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/it.xml</literal></para><screen><phrase role="commit-message">Changes from Federico Zenith</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Dongsheng Song: locale/zh_cn.xml</literal></para><screen><phrase role="commit-message">Added missing translations.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Gentext changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Common">
+<title>Common</title>
+<para>The following changes have been made to the
+            <filename>common</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: l10n.xsl</literal></para><screen><phrase role="commit-message">Added new template "l10.language.name" for retrieving the
+English-language name of the lang setting of the current document.
+Closes #1916837. Thanks to Simon Kennedy.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">fixed syntax error</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">fixed a couple of typos</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">refined handling of cases where refentry "source" or "manual"
+metadata is missing or when we use fallback content instead. We
+now report a Warning if we use fallback content.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">don't use refmiscinfo@class=date value as fallback for refentry
+"source" or "manual" metadata fields</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">Made reporting of missing refentry metadata more quiet:
+
+  - we no longer report anything if usable-but-not-preferred
+    metadata is found; we just quietly use whatever we manage to
+    find
+
+  - we now only report missing "source" metadata if the refentry
+    is missing BOTH "source name" and "version" metadata; if it
+    has one but not the other, we use whichever one it has and
+    don't report anything as missing
+
+The above changes were made because testing with some "real world"
+source reveals that some authors are intentionally choosing to use
+"non preferred" markup for some metadata, and also choosing to
+omit "source name" or "version" metadata in there DocBook XML. So
+it does no good to give them pedantic reminders about what they
+already know...
+
+Also, changed code to cause "fixme" text to be inserted in output
+in particular cases:
+
+  - if we can't manage to find any "source" metadata at all, we
+    now put fixme text into the output
+
+  - if we can't manage to find any "manual" metadata a all, we 
+    now put fixme text into the output
+
+The "source" and "manual" metadata is necessary information, so
+buy putting the fixme stuff in the output, we alert users to the
+need problem of it being missing.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">When generating manpages output, we no longer report anything if
+the refentry source is missing date or pubdate content. In
+practice, many users intentionally omit the date from the source
+because they explicitly want it to be generated.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: l10n.xml</literal></para><screen><phrase role="commit-message">further change needed for switch from no locale to nb.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: common.xsl</literal></para><screen><phrase role="commit-message">Added support for orgname in authorgroup. Thanks to Camille
+Bégnis.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile</literal></para><screen><phrase role="commit-message">"no" locale is now "nb"</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: stripns.xsl</literal></para><screen><phrase role="commit-message">Removed the template matching "ng:link|db:link" (in order to make @xlink:show 
+work with &lt;link&gt; elements). As far as I can tell, this template is no longer needed.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: entities.ent</literal></para><screen><phrase role="commit-message">Moved declaration of comment.block.parents entity to common/entities.ent.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Added an update the fix made in revision 7528 (handling of xref/link in no.anchor.mode mode).
+Having xref in title is not a problem as long as the target is not an ancestor element. 
+Closes bug #1838136.
+
+Note that an xref that is in a title and whose target is an ancestor element is still not 
+rendered in the TOC. This could be considered a bug, but on the other hand I cannot really
+see the point in having such an xref in a document.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Added a "not(ancestor::title)" test to work around "too many nested 
+apply-templates" problems when processing xrefs or links in no.anchor.mode mode.
+Hopefully, this closes bug #1811721.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Removed old template matching "link" in no.anchor.mode mode.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Process &lt;link&gt; in no.anchor.mode mode with the same template as &lt;xref&gt;. 
+Closes bug #1759205 (Empty link in no.anchor.mode mode).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">In no.anchor.mode mode, do not output anchors for elements that are descendants 
+of &lt;title&gt;. Previously, having inline elements with @id/@xml:id in &lt;title&gt;s 
+resulted in anchors both in the TOC and in the main flow. Closes bug #1797492.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Common changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_FO">
+<title>FO</title>
+<para>The following changes have been made to the
+            <filename>fo</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem> <para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Updated documentation for keep-together.</phrase></screen> </listitem>
+<listitem> <para><literal>Mauritz Jeanson: task.xsl</literal></para><screen><phrase role="commit-message">Enabled use of the keep-together PI on <tag>task</tag> elements.</phrase></screen> </listitem>
+<listitem>
+<para><literal>Robert Stayton: index.xsl</literal></para><screen><phrase role="commit-message">FOP1 requires fo:wrapper for inline index entries, not fo:inline.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: index.xsl</literal></para><screen><phrase role="commit-message">Fixed non-working inline.or.block template for indexterm wrappers.
+Add fop1 to list of processors using inline.or.block.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: table.xsl</literal></para><screen><phrase role="commit-message">Fixed bug #1891965 (colsep in entytbl not working).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl</literal></para><screen><phrase role="commit-message">Added support for title in revhistory. Closes bug #1842847.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Small doc cleanup (dbfo float-type).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl</literal></para><screen><phrase role="commit-message">Insert commas between multiple copyright holders.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: autotoc.xsl; division.xsl</literal></para><screen><phrase role="commit-message">Added modifications to support nested set elements. See bug #1853172.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: glossary.xsl</literal></para><screen><phrase role="commit-message">Added normalize-space to xsl:sorts to avoid missorting of glossterms due to stray leading spaces.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: glossary.xsl</literal></para><screen><phrase role="commit-message">Fixed bug #1854199: glossary.xsl should use the sortas attribute on glossentry</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: inline.xsl</literal></para><screen><phrase role="commit-message">Added a template for citebiblioid. The hyperlink target is the parent of the referenced biblioid,
+and the "hot text" is the biblioid itself enclosed in brackets.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: inline.xsl</literal></para><screen><phrase role="commit-message">Moved declaration of comment.block.parents entity to common/entities.ent.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: docbook.xsl</literal></para><screen><phrase role="commit-message">Updated message about unmatched element.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: param.xweb</literal></para><screen><phrase role="commit-message">Added link to profiling chapter of TCG.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: refentry.xsl</literal></para><screen><phrase role="commit-message">Fixed typo (refsynopsysdiv -&gt; refsynopsisdiv).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: fop.xsl; fop1.xsl; ptc.xsl; xep.xsl</literal></para><screen><phrase role="commit-message">Added test to check generate.index param when generating pdf bookmarks</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: graphics.xsl</literal></para><screen><phrase role="commit-message">Added support for MathML in imagedata.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: math.xsl</literal></para><screen><phrase role="commit-message">Removed unnecessary extra test condition in test express that
+checks for passivetex.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: math.xsl</literal></para><screen><phrase role="commit-message">Don't use fo:instream-foreign-object if we are processing with
+passivetex. Closes #1806899. Thanks to Justus Piater.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: component.xsl</literal></para><screen><phrase role="commit-message">Added code to output a TOC for an appendix in an article when 
+generate.toc='article/appendix toc'. Closes bug #1669658.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Dongsheng Song: biblio-iso690.xsl</literal></para><screen><phrase role="commit-message">Change encoding from "windows-1250" to "UTF-8".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Updated documentation for dbfo_label-width.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: lists.xsl</literal></para><screen><phrase role="commit-message">Added support for the dbfo_label-width PI in calloutlists.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: biblio.xsl</literal></para><screen><phrase role="commit-message">Support finding glossary database entries inside bibliodivs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: formal.xsl</literal></para><screen><phrase role="commit-message">Complete support for &lt;?dbfo pgwide="1"?&gt; for informal
+elements too.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: table.xsl</literal></para><screen><phrase role="commit-message">In the table.block template, added a check for the dbfo_keep-together PI, so that 
+a table may break (depending on the PI value) at a page break. This was needed 
+since the outer fo:block that surrounds fo:table has keep-together.within-column="always" 
+by default, which prevents the table from breaking. Closes bug #1740964 (Titled 
+table does not respect dbfo PI).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Added a few missing @role="tcg".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: inline.xsl</literal></para><screen><phrase role="commit-message">Use normalize-space() in glossterm comparisons (as in html/inline.xsl).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: autoidx.xsl</literal></para><screen><phrase role="commit-message">Removed the [&amp;scope;] predicate from the target variable in the template with name="reference".
+This filter was the cause of missing index backlinks when @zone and @type were used on indexterms,
+with index.on.type=1. Closes bug #1680836.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl; xref.xsl; footnote.xsl</literal></para><screen><phrase role="commit-message">Added capability in FO output for displaying URLs for all
+hyperlinks (elements marked up with xlink:href attributes) in the
+same way as URLs for ulinks are already handled (which is to say,
+either inline or as numbered footnotes).
+
+Background on this change:
+DocBook 5 allows "ubiquitous" linking, which means you can make
+any element a hyperlink just by adding an xlink:href attribute to
+it, with the value set to an external URL. That's in contrast to
+DocBook 4, which only allows you to use specific elements (e.g.,
+the link and ulink elements) to mark up hyperlinks.
+
+The existing FO stylesheets have a mechanism for handling display
+of URLs for hyperlinks that are marked up with ulink, but they did
+not handle display of URLs for elements that were marked up with
+xlink:href attributes. This change adds handling for those other
+elements, enabling the URLs they link to be displayed either
+inline or as numbered footnotes (depending on what values the user
+has the ulink.show and ulink.footnotes params set to).
+
+Note that this change only adds URL display support for elements
+that call the simple.xlink template -- which currently is most
+(but not all) inline elements.
+
+This change also moves the URL display handling out of the ulink
+template and into a new "hyperlink.url.display" named template;
+the ulink template and the simple.xlink named template now both
+call the hyperlink.url.display template.
+
+Warning: In the stylesheet code that determines what footnote
+number to assign to each footnote or external hyperlink, there is
+an XPath expression for determining whether a particular
+xlink:href instance is an external hyperlink; that expression is
+necessarily a bit complicated and further testing may reveal that
+it doesn't handle all cases as expected -- so some refinements to
+it may need to be done later.
+
+Closes #1785519. Thanks to Ken Morse for reporting and
+troubleshooting the problem.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the
+            <filename>html</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem> <para><literal>Keith Fahlgren: inline.xsl; synop.xsl</literal></para><screen><phrase role="commit-message">Work to make HTML and XHTML targets more valid</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: table.xsl</literal></para><screen><phrase role="commit-message">Add better handling for tables that have footnotes in the titles</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: biblio.xsl</literal></para><screen><phrase role="commit-message">Add anchors to bibliodivs</phrase></screen> </listitem>
+<listitem>
+<para><literal>Keith Fahlgren: formal.xsl; Makefile; htmltbl.xsl</literal></para><screen><phrase role="commit-message">Initial checkin/merge of epub target from work provided by Paul Norton of Adobe
+and Keith Fahlgren of O'Reilly.</phrase></screen>
+<para>This change includes new code for generating the XHTML 1.1 target sanely.</para>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: biblio.xsl</literal></para><screen><phrase role="commit-message">Added code for creating URLs from biblioids with @class="doi" (representing Digital 
+Object Identifiers). See FR #1934434 and http://doi.org.
+
+To do: 1) Add support for FO output. 2) Figure out how @class="doi" should be handled 
+for bibliorelation, bibliosource and citebiblioid.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Norman Walsh: formal.xsl</literal></para><screen><phrase role="commit-message">Don't use xsl:copy because it forces the resulting element to be in the same namespace as the source element; in the XHTML stylesheets, that's wrong. But the HTML-to-XHTML converter does the right thing with literal result elements, so use one of them.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile</literal></para><screen><phrase role="commit-message">Added checks and hacks to various makefiles to enable building
+under Cygwin. This stuff is ugly and maybe not worth the mess and
+trouble, but does seem to work as expected and not break anything
+else.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: docbook.xsl</literal></para><screen><phrase role="commit-message">added "exslt" namespace binding to html/docbook.xsl file (in
+addition to existing "exsl" binding. reason is because lack of it
+seems to cause processing problems when using the profiled
+version of the stylsheet</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Norman Walsh: chunk-common.xsl</literal></para><screen><phrase role="commit-message">Rename link</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: table.xsl</literal></para><screen><phrase role="commit-message">Added a fix to make rowsep apply to the last row of thead in entrytbl.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl</literal></para><screen><phrase role="commit-message">Simplified and streamlined handling of output for ANSI-style
+funcprototype output, to correct a problem that was causing type
+data to be lost in the output parameter definitions. For example,
+for an instance like this:
+  &lt;paramdef&gt;void *&lt;parameter&gt;dataptr&lt;/parameter&gt;[]&lt;/paramdef&gt;
+... the brackets (indicating an array type) were being dropped.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl</literal></para><screen><phrase role="commit-message">Changed HTML handling of K&amp;R-style paramdef output. The parameter
+definitions are no longer output in a table (though the prototype
+still is). The reason for the change is that the
+kr-tabular-funcsynopsis-mode template was causing type data to be
+lost in the output parameter definitions. For example, for an
+instance like this:
+  &lt;paramdef&gt;void *&lt;parameter&gt;dataptr&lt;/parameter&gt;[]&lt;/paramdef&gt;
+... the brackets (indicating an array type) were being dropped.
+The easiest way to deal with the problem is to not try to chop up
+the parameter definitions and display them in table format, but to
+instead just output them as-is. May not look quite as pretty, but
+at least we can be sure no information is being lost...</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: pi.xsl</literal></para><screen><phrase role="commit-message">updated wording of doc for funcsynopsis-style PI</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: param.xweb; param.ent; synop.xsl</literal></para><screen><phrase role="commit-message">Removed the funcsynopsis.tabular.threshold param. It's no longer
+being used in the code and hasn't been since mid 2006.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: graphics.xsl</literal></para><screen><phrase role="commit-message">Added support for the img.src.path parameter for SVG graphics. Closes bug #1888169.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: chunk-common.xsl</literal></para><screen><phrase role="commit-message">Added missing space.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Norman Walsh: component.xsl</literal></para><screen><phrase role="commit-message">Fix bug where component titles inside info elements were not handled properly</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: pi.xsl</literal></para><screen><phrase role="commit-message">Moved dbhtml_stop-chunking embedded doc into alphabetical order,
+fixed text of TCG section it see-also'ed.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: pi.xsl</literal></para><screen><phrase role="commit-message">Added support for &lt;?dbhtml stop-chunking?&gt; processing instruction</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: chunk-common.xsl; pi.xsl</literal></para><screen><phrase role="commit-message">Added support for &lt;?dbhtml stop-chunking?&gt; processing instruction</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: glossary.xsl</literal></para><screen><phrase role="commit-message">Fixed bug #1854199: glossary.xsl should use the sortas attribute on glossentry. Also added normalize-space to avoid missorting due to stray leading spaces.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: inline.xsl</literal></para><screen><phrase role="commit-message">Added a template for citebiblioid. The hyperlink target is the parent of the referenced biblioid,
+and the "hot text" is the biblioid itself enclosed in brackets.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: inline.xsl</literal></para><screen><phrase role="commit-message">Added support for @xlink:show in the simple.xlink template. The "new" and "replace" 
+values are supported (corresponding to values of "_blank" and "_top" for the 
+ulink.target parameter). I have assumed that @xlink:show should override ulink.target
+for external URI links. This closes bugs #1762023 and #1727498.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: inline.xsl</literal></para><screen><phrase role="commit-message">Moved declaration of comment.block.parents entity to common/entities.ent.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: param.xweb</literal></para><screen><phrase role="commit-message">Added link to profiling chapter of TCG.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Dongsheng Song: biblio-iso690.xsl</literal></para><screen><phrase role="commit-message">Change encoding from "windows-1250" to "UTF-8".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: biblio.xsl</literal></para><screen><phrase role="commit-message">Add support in biblio collection to entries in bibliodivs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Added missing @role="tcg".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: chunk-common.xsl; titlepage.xsl</literal></para><screen><phrase role="commit-message">Refactored legalnotice/revhistory chunking, so that the use.id.as.filename 
+parameter as well as the dbhtml_filename PI are taken into account. A new named
+template in titlepage.xsl is used to compute the filename.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: chunk-common.xsl; titlepage.xsl</literal></para><screen><phrase role="commit-message">An update to the fix for bug #1790495 (r7433):
+The "ln-" prefix is output only when the legalnotice doesn't have an
+@id/@xml:id, in which case the stylesheets generate an ID value, 
+resulting in a filename like "ln-7e0fwgj.html". This is useful because 
+without the prefix, you wouldn't know that the file contained a legalnotice. 
+The same logic is also applied to revhistory, using an "rh-" prefix.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: autoidx.xsl</literal></para><screen><phrase role="commit-message">Removed the [&amp;scope;] predicate from the target variable in the template with name="reference".
+This filter was the cause of missing index backlinks when @zone and @type were used on indexterms,
+with index.on.type=1. Closes bug #1680836.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl</literal></para><screen><phrase role="commit-message">Added 'ln-' prefix to the name of the legalnotice chunk, in order to match the 
+&lt;link href"..."&gt; that is output by make.legalnotice.head.links (chunk-common.xsl).
+Modified the href attribute on the legalnotice link.
+Closes bug #1790495.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Manpages">
+<title>Manpages</title>
+<para>The following changes have been made to the
+            <filename>manpages</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">slightly adjusted spacing around admonition markers</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl; utility.xsl</literal></para><screen><phrase role="commit-message">make sure refsect3 titles are preceded by a line of space, and
+make the indenting of their child content less severe</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">only indent verbatim environments in TTY output, not in non-TTY/PS</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">made another adjustment to correct vertical alignment of admonition marker</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl; other.xsl</literal></para><screen><phrase role="commit-message">Adjusted/corrected alignment of adominition marker in PS/non-TTY output.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: endnotes.xsl</literal></para><screen><phrase role="commit-message">For PS/non-TTY output, display footnote/endnote numbers in
+superscript.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: table.xsl; synop.xsl; utility.xsl</literal></para><screen><phrase role="commit-message">Changed handling of hanging indents for cmdsynopsis, funcsynopsis,
+and synopfragment such that they now look correct in non-TTY/PS
+output. We now use the groff \w escape to hang by the actual width
+-- in the current font -- of the command, funcdef, or
+synopfragment references number (as opposed to hanging by the
+number of characters). This rendering in TTY output remains the
+same, since the width in monospaced TTY output is the same as the
+number of characters.
+
+Also, created new synopsis-block-start and synopsis-block-end
+templates to use for cmdsynopsis and funcsynopsis instead of the
+corresponding verbatim-* templates.
+
+Along with those changes, also corrected a problem that caused the
+content of synopfragment to be dropped, and made a
+vertical-spacing change to adjust spacing around table titles and
+among sibling synopfragment instances.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">use common l10.language.name template to retrieve English-language name</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl; inline.xsl</literal></para><screen><phrase role="commit-message">added comment in code explaining why we don't put filename output
+in italic (despite the fact that man guidelines say we should)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl</literal></para><screen><phrase role="commit-message">put filename output in monospace instead of italic</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl</literal></para><screen><phrase role="commit-message">put cmdsynopsis in monospace</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl</literal></para><screen><phrase role="commit-message">removed template match for literal. template matches for monospace
+inlines are all imported from the HTML stylesheet</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">don't indent verbatim environments that are descendants of
+refsynopsisdiv, not put backgrounds behind them</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl</literal></para><screen><phrase role="commit-message">set output of the literal element in monospace. this causes all
+inline monospace instances in the git man pages to be set in
+monospace (since DocBook XML source for git docs is generated with
+asciidoc and asciidoc consistently outputs only &lt;literal&gt; for
+inline monospace (not &lt;command&gt; or &lt;code&gt; or anything else).
+Of course this only affects non-TTY output...</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: utility.xsl</literal></para><screen><phrase role="commit-message">Added inline.monoseq named template.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: utility.xsl</literal></para><screen><phrase role="commit-message">don't bother using a custom register to store the previous
+font-family value when setting blocks of text in code font; just
+use \F[] .fam with no arg to switch back</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: endnotes.xsl</literal></para><screen><phrase role="commit-message">put links in blue in PS output (note that this matches how groff
+renders content marked up with the .URL macro)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: endnotes.xsl; param.xweb; param.ent</literal></para><screen><phrase role="commit-message">removed man.links.are.underlined and added man.font.links. Also,
+changed the default font formatting for links to bold.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: endnotes.xsl; param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Added new param man.base.url.for.relative.links .. specifies a
+base URL for relative links (for ulink, @xlink:href, imagedata,
+audiodata, videodata) shown in the generated NOTES section of
+man-page output. The value of man.base.url.for.relative.links is
+prepended to any relative URI that is a value of ulink url,
+xlink:href, or fileref attribute.
+
+If you use relative URIs in link sources in your DocBook refentry
+source, and you leave man.base.url.for.relative.links unset, the
+relative links will appear "as is" in the NOTES section of any
+man-page output generated from your source. That's probably not
+what you want, because such relative links are only usable in the
+context of HTML output. So, to make the links meaningful and
+usable in the context of man-page output, set a value for
+man.base.url.for.relative.links that points
+to the online version of HTML output generated from your DocBook
+refentry source. For example:
+
+  &lt;xsl:param name="man.base.url.for.relative.links"
+  &gt;http://www.kernel.org/pub/software/scm/git/docs/&lt;/xsl:param&gt;</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">If a source refentry contains a Documentation or DOCUMENTATION
+section, don't report it as having missing AUTHOR information.
+Also, if missing a contrib/personblurb for a person or org, report
+pointers to http://docbook.sf.net/el/personblurb and to
+http://docbook.sf.net/el/contrib</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">If we encounter an author|editor|othercredit instance that lacks a
+personblurb or contrib, report it to the user (because that means
+we have no information about that author|editor|othercredit to
+display in the generated AUTHOR|AUTHORS section...)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl; docbook.xsl; other.xsl</literal></para><screen><phrase role="commit-message">if we can't find any usable author data, emit a warning and insert
+a fixme in the output</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">fixed bug in indenting of output for contrib instances in AUTHORS
+section. Thanks to Daniel Leidert and the fglrx docs for exposing
+the bug.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">for a para or simpara that is the first child of a callout,
+suppress the .sp or .PP that would normally be output (because in
+those cases, the output goes into a table cell, and the .sp or .PP
+markup causes a spurious linebreak before it when displayed</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">Added support for rendering co callouts and calloutlist instances.
+So you can now use simple callouts -- marking up programlisting
+and such with co instances -- and have the callouts displayed in
+man-page output. ("simple callouts" means using co@id and
+callout@arearefs pointing to co@id instances; in man/roff output,
+we can't/don't support markup that uses areaset and area)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">only put a line of space after a verbatim if it's followed by a
+text node or a paragraph</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: utility.xsl</literal></para><screen><phrase role="commit-message">put verbatim environments in slightly smaller font in non-TTY
+output</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">minor whitespace-only reformatting of lists.xsl source</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">Made refinements/fixes to output of orderedlist and itemizedlist
+-- in part, to get mysql man pages to display correctly. This
+change causes a "\c" continuation marker to be added between
+listitem markers and contents (to ensure that the content remains
+on the same line as the marker when displayed)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">put a line of vertical space after all verbatim output that has
+sibling content following it (not just if that sibling content is
+a text node)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">refined spacing around titles for admonitions</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl; other.xsl</literal></para><screen><phrase role="commit-message">Deal with case of verbatim environments that have a linebreak
+after the opening tag. Assumption is that users generally don't
+want that linebreak to appear in output, so we do some groff
+hackery to mess with vertical spacing and close the space.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl</literal></para><screen><phrase role="commit-message">indexterm instances now produce groff comments like this:
+
+  .\" primary: secondary: tertiary
+
+remark instances, if non-empty, now produce groff comments</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: charmap.groff.xsl; other.xsl</literal></para><screen><phrase role="commit-message">convert no-break space character to groff "\ \&amp;" (instead of just
+"\ "). the reason is that if a space occurs at the end of a line,
+our processing causes it to be eaten. a real-world case of this is
+the mysql(1) man page. appending the "\&amp;" prevents that</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">output "sp" before simpara output, not after it (outputting it
+after results in undesirable whitespace in particular cases; for
+example, in the hg/mercurial docs</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: table.xsl; synop.xsl; utility.xsl</literal></para><screen><phrase role="commit-message">renamed from title-preamble to pinch.together and replaced "sp -1"
+between synopsis fragments with call to pinch.together instead</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: table.xsl</literal></para><screen><phrase role="commit-message">use title-preamble template for table titles (instead of "sp -1"
+hack), and "sp 1" after all tables (instead of just "sp"</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: utility.xsl</literal></para><screen><phrase role="commit-message">created title-preamble template for suppressing line spacing after
+headings</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">further refinement of indenting in AUTHORS section</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl; other.xsl</literal></para><screen><phrase role="commit-message">refined handling of admonitions</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">Use RS/RE in another place where we had IP ""</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">Replace (ab)use of IP with "sp -1" in AUTHORS section with RS/RE
+instead.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: table.xsl; synop.xsl; info.xsl</literal></para><screen><phrase role="commit-message">changed all instances of ".sp -1n" to ".sp -1"</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">add extra line before SH heads only in non-TTY output</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">Reworked output for admonitions (caution, important, note, tip,
+warning). In TTY output, admonitions now get indented. In non-TTY
+output, a colored marker (yellow) is displayed next to them.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">Added BM/EM macros for putting a colored marker in margin next to
+a block of text.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: utility.xsl</literal></para><screen><phrase role="commit-message">created make.bold.title template by moving title-bolding part out
+from nested-section-title template. This allows the bolding to
+also be used by the template for formatting admonitions</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">put .br before copyright contents to prevent them from getting run in</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl; other.xsl; utility.xsl</literal></para><screen><phrase role="commit-message">made point size of output for Refsect2 and Refsect3 heads bigger</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">put slightly more space between SH head and underline in non-TTY
+output</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: param.xweb; param.ent; other.xsl</literal></para><screen><phrase role="commit-message">Added the man.charmap.subset.profile.english parameter and refined
+the handling of charmap subsets to differentiate between English
+and non-English source.
+
+This way charmap subsets are now handled is this:
+
+If the value of the man.charmap.use.subset parameter is non-zero,
+and your DocBook source is not written in English (that is, if its
+lang or xml:lang attribute has a value other than en), then the
+character-map subset specified by the man.charmap.subset.profile
+parameter is used instead of the full roff character map.
+
+Otherwise, if the lang or xml:lang attribute on the root element
+in your DocBook source or on the first refentry element in your
+source has the value en or if it has no lang or xml:lang
+attribute, then the character-map subset specified by the
+man.charmap.subset.profile.english parameter is used instead of
+man.charmap.subset.profile.
+
+The difference between the two subsets is that
+man.charmap.subset.profile provides mappings for characters in
+Western European languages that are not part of the Roman
+(English) alphabet (ASCII character set).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">Various updates, mainly related to uppercasing SH titles:
+
+  - added a "Language: " metadata line to the top comment area of
+    output man pages, to indicate the language the page is in
+
+  - added a "toupper" macro of doing locale-aware uppercasing of
+    SH titles and cross-references to SH titles; the mechanism
+    relies on the uppercase.alpha and lowercase.alpha DocBook
+    gentext keys to do locale-aware uppercasing based on the
+    language the page is written in
+
+  - added a "string.shuffle" template, which provides a library
+    function for "shuffling" two strings together into a single
+    string; it takes the first character for the first string, the
+    first character from second string, etc. The only current use
+    for it is to generate the argument for the groff tr request
+    that does string uppercasing.
+
+  - added make.tr.uppercase.arg and make.tr.normalcase.arg named
+    templates for use in generating groff code for uppercasing and
+    "normal"-casing SH titles
+
+  - made the BB/BE "background drawing" macros have effect only in
+    non-TTY output
+
+  - output a few comments in the top part of source</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: utility.xsl</literal></para><screen><phrase role="commit-message">removed some leftover kruft</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">To create the name(s) for each man page, we now replace any spaces
+in the refname(s) with underscores. This ensures that tools like
+lexgrog(1) will be able to parse the name (lexgrog won't parse
+names that contain spaces).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: docbook.xsl</literal></para><screen><phrase role="commit-message">Put a comment into source of man page to indicate where the main
+content starts. (We now have a few of macro definitions at the
+start of the source, so putting this comment in helps those that
+might be viewing the source.)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">refined mechanism for generating SH titles</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: charmap.groff.xsl</literal></para><screen><phrase role="commit-message">Added zcaron, Zcaron, scaron, and Scaron to the groff character map.
+This means that generated Finnish man pages will no longer contain
+any raw accented characters -- they'll instead by marked up with
+groff escapes.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl; utility.xsl</literal></para><screen><phrase role="commit-message">corrected a regression I introduced about a year ago that caused
+dots to be output just as "\." -- instead needs to be "\&amp;." (which
+is what it will be now, after this change)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">Changed backend handling for generating titles for SH sections and
+for cross-references to those sections. This should have no effect
+on TTY output (behavior should remain the same hopefully) but
+results in titles in normal case (instead of uppercase) in PS
+output.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: info.xsl</literal></para><screen><phrase role="commit-message">use make.subheading template to make subheadings for AUTHORS and
+COPYRIGHT sections (instead of harcoding roff markup)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: block.xsl</literal></para><screen><phrase role="commit-message">put code font around programlisting etc.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl; docbook.xsl</literal></para><screen><phrase role="commit-message">embed custom macro definitions in man pages, plus wrap synopsis in
+code font</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: endnotes.xsl</literal></para><screen><phrase role="commit-message">use the make.subheading template to generated SH subheading for
+endnotes section.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">Added some templates for generating if-then-else conditional
+markup in groff, so let's use those instead of hard-coding it in
+multiple places...</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl; utility.xsl</literal></para><screen><phrase role="commit-message">Initial checkin of some changes related to making PS/PDF output
+from "man -l -Tps" look better. The current changes:
+
+  - render synopsis and verbatim sections in a monospace/code font
+
+  - put a light-grey background behind all programlisting, screen,
+    and literallayout instances
+
+  - prevent SH heads in PS output from being rendered in uppercase
+    (as they are in console output)
+
+  - also display xrefs to SH heads in PS output in normal case
+    (instead of uppercase)
+
+  - draw a line under SH heads in PS output
+
+The changes made to the code to support the above features were:
+
+  - added some embedded/custom macros: one for conditionally
+    upper-casing SH x-refs, one for redefining the SH macro
+    itself, with some conditional handling for PS output, and
+    finally a macro for putting a background/screen (filled box)
+    around a block of text (e.g., a program listing) in PS output
+
+  - added utility templates for wrapping blocks of text in code
+    font; also templates for inline code font</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: refentry.xsl</literal></para><screen><phrase role="commit-message">refpurpose nodes now get apply-templates instead of just normalize-space().</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">Fixed alignment of first lined of text for each listitem in
+orderedlist output for TTY. Existing code seemed to have been
+causing an extra undesirable space to appear.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: lists.xsl</literal></para><screen><phrase role="commit-message">Wrapped some roff conditionals around roff markup for orderedlist
+and itemizedlist output, so that the lists look acceptable in PS
+output as well as TTY.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: pi.xsl; synop.xsl; param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Added the man.funcsynopsis.style parameter. Has the same effect in
+manpages output as the funcsynopsis.style parameter has in HTML
+output -- except that its default value is 'ansi' instead of 'kr'.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl</literal></para><screen><phrase role="commit-message">Reworked handling of K&amp;R funcprototype output. It no longer relies
+on the HTML kr-tabular templates, but instead just does direct
+transformation to roff. For K&amp;R output, it displays the paramdef
+output in an indented list following the prototype.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: synop.xsl</literal></para><screen><phrase role="commit-message">Properly integrated handling for K&amp;R output into manpages
+stylesheet. The choice between K&amp;R output and ANSI output is
+currently controlled through use of the (HTML) funcsynopsis.style
+parameter. Note that because the mechanism does currently rely on
+funcsynopsis.style, the default in manpages output is now K&amp;R
+(because that's the default of that param). But I suppose I ought
+to create a man.funcsynopsis.style and make the default for that
+ANSI (to preserve the existing default behavior).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: docbook.xsl</literal></para><screen><phrase role="commit-message">added manpages/pi.xsl file</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: .cvsignore; pi.xsl</literal></para><screen><phrase role="commit-message">Added "dbman funcsynopsis-style" PI and incorporated it into the
+doc build.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.xsl</literal></para><screen><phrase role="commit-message">Fixed regression that caused an unescaped dash to be output
+between refname and refpurpose content. Closes bug #1894244.
+Thanks to Daniel Leidert.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: other.xsl</literal></para><screen><phrase role="commit-message">Fixed problem with dots being escaped in filenames of generated
+man files. Closes #1827195. Thanks to Daniel Leidert.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl</literal></para><screen><phrase role="commit-message">Added support for processing structfield (was appearing in roff
+output surrounded by HTML &lt;em&gt; tags; fixed so that it gets roff
+ital markup). Closes bug #1858329.  Thanks to Sam Varshavchik.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Manpages changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Epub">
+<title>Epub</title>
+<para>The following changes have been made to the
+            <filename>epub</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem> <para><literal>Keith Fahlgren: bin/spec/README; bin/spec/epub_realbook_spec.rb</literal></para><screen><phrase role="commit-message">'Realbook' spec now passes</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: bin/dbtoepub; README; bin/spec/README; bin/lib/docbook.rb; bin/spec/epub_r⋯</literal></para><screen><phrase role="commit-message">Very primitive Windows support for dbtoepub <tag>reference</tag> implementation; README for running tests and for the .epub target in general; shorter realbook test document (still fails for now)</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: bin/dbtoepub; bin/spec/epub_regressions_spec.rb; bin/lib/docbook.rb; bin/s⋯</literal></para><screen><phrase role="commit-message">Changes to OPF spine to not duplicate idrefs for documents with parts not at the root; regression specs for same</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: docbook.xsl</literal></para><screen><phrase role="commit-message">Fixing linking to <tag>cover</tag> @id, distinct from other needs of cover-image-id (again, thanks to Martin Goerner)</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: docbook.xsl</literal></para><screen><phrase role="commit-message">Updating the <tag>title</tag> of the <tag>toc</tag> element in the guide to be more explicit (thanks to Martin Goerner)</phrase></screen> </listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/examples/amasque_exploded/content.opf; bin/spec/examples/amasque_⋯</literal></para><screen><phrase role="commit-message">Initial checkin/merge of epub target from work provided by Paul Norton of Adobe
+and Keith Fahlgren of O'Reilly.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl</literal></para><screen><phrase role="commit-message">== General epub test support
+
+$ spec -O ~/.spec.opts spec/epub_spec.rb 
+
+DocBook::Epub
+- should be able to be created
+- should fail on a nonexistent file
+- should be able to render to a file
+- should create a file after rendering
+- should have the correct mimetype after rendering
+- should be valid .epub after rendering an article
+- should be valid .epub after rendering an article without sections
+- should be valid .epub after rendering a book
+- should be valid .epub after rendering a book even if it has one graphic
+- should be valid .epub after rendering a book even if it has many graphics
+- should be valid .epub after rendering a book even if it has many duplicated graphics
+- should report an empty file as invalid
+- should confirm that a valid .epub file is valid
+- should not include PDFs in rendered epub files as valid image inclusions
+- should include a TOC link in rendered epub files for &lt;book&gt;s
+
+Finished in 20.608395 seconds
+
+15 examples, 0 failures
+
+
+== Verbose epub test coverage against _all_ of the testdocs 
+
+Fails on only (errors truncated):
+1)
+'DocBook::Epub should be able to render a valid .epub for the test document /Users/keith/work/docbook-dev/trunk/xsl/epub/bin/spec/testdocs/calloutlist.003.xml [30]' FAILED
+'DocBook::Epub should be able to render a valid .epub for the test document /Users/keith/work/docbook-dev/trunk/xsl/epub/bin/spec/testdocs/cmdsynopsis.001.xml [35]' FAILED
+....
+
+Finished in 629.89194 seconds
+
+224 examples, 15 failures
+
+224 examples, 15 failures yields 6% failure rate</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Epub changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_HTMLHelp">
+<title>HTMLHelp</title>
+<para>The following changes have been made to the
+            <filename>htmlhelp</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: htmlhelp-common.xsl</literal></para><screen><phrase role="commit-message">Added &lt;xsl:with-param name="quiet" select="$chunk.quietly"/&gt; to calls to
+the write.chunk, write.chunk.with.doctype, and write.text.chunk templates.
+This makes chunk.quietly=1 suppress chunk filename messages also for help 
+support files (which seems to be what one would expect). See bug #1648360.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTMLHelp changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Eclipse">
+<title>Eclipse</title>
+<para>The following changes have been made to the
+            <filename>eclipse</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>David Cramer: eclipse.xsl</literal></para><screen><phrase role="commit-message">Use sortas attributes (if they exist) when sorting indexterms</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: eclipse.xsl</literal></para><screen><phrase role="commit-message">Added support for indexterm/see in eclipse index.xml</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: eclipse.xsl</literal></para><screen><phrase role="commit-message">Added &lt;xsl:with-param name="quiet" select="$chunk.quietly"/&gt;
+to helpidx template.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: eclipse.xsl</literal></para><screen><phrase role="commit-message">Generate index.xml file and add related goo to plugin.xml file. Does not yet support see and seealso.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: eclipse.xsl</literal></para><screen><phrase role="commit-message">Added &lt;xsl:with-param name="quiet" select="$chunk.quietly"/&gt; to calls to
+the write.chunk, write.chunk.with.doctype, and write.text.chunk templates.
+This makes chunk.quietly=1 suppress chunk filename messages also for help 
+support files (which seems to be what one would expect). See bug #1648360.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Eclipse changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_JavaHelp">
+<title>JavaHelp</title>
+<para>The following changes have been made to the
+            <filename>javahelp</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: javahelp.xsl</literal></para><screen><phrase role="commit-message">Added &lt;xsl:with-param name="quiet" select="$chunk.quietly"/&gt; to calls to
+the write.chunk, write.chunk.with.doctype, and write.text.chunk templates.
+This makes chunk.quietly=1 suppress chunk filename messages also for help 
+support files (which seems to be what one would expect). See bug #1648360.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of JavaHelp changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Roundtrip">
+<title>Roundtrip</title>
+<para>The following changes have been made to the
+            <filename>roundtrip</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; wordml2normalise.xsl</literal></para><screen><phrase role="commit-message">fix table/cell borders for wordml, fix formal figure, add emphasis-strong</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: supported.xml</literal></para><screen><phrase role="commit-message">Changed @cols to 5.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; blocks2dbk.dtd; template.xml</literal></para><screen><phrase role="commit-message">added pubdate, fixed metadata handling in biblioentry</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: supported.xml</literal></para><screen><phrase role="commit-message">Added support for edition.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: docbook-pages.xsl; wordml-blocks.xsl; docbook.xsl; wordml.xsl; pages-normalise⋯</literal></para><screen><phrase role="commit-message">Removed stylesheets for old, deprecated conversion method.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: specifications.xml; dbk2ooo.xsl; blocks2dbk.xsl; dbk2pages.xsl; blocks2dbk.dtd⋯</literal></para><screen><phrase role="commit-message">Added support for Open Office, added edition element, improved list and table support in Word and Pages</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: normalise-common.xsl; blocks2dbk.xsl; dbk2pages.xsl; template-pages.xml; templ⋯</literal></para><screen><phrase role="commit-message">Fixed bug in WordML table handling, improved table handling for Pages 08, synchronised WordML and Pages templates.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: normalise-common.xsl; blocks2dbk.xsl; wordml2normalise.xsl; dbk2wp.xsl</literal></para><screen><phrase role="commit-message">fix caption, attributes</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: specifications.xml; blocks2dbk.xsl; wordml2normalise.xsl; blocks2dbk.dtd; temp⋯</literal></para><screen><phrase role="commit-message">Fixes to table and list handling</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl</literal></para><screen><phrase role="commit-message">added support for explicit emphasis character styles</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: wordml2normalise.xsl</literal></para><screen><phrase role="commit-message">added support for customisation in image handling</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl</literal></para><screen><phrase role="commit-message">Added inlinemediaobject support for metadata.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: normalise-common.xsl; blocks2dbk.xsl; template.xml; dbk2wordml.xsl; dbk2wp.xsl</literal></para><screen><phrase role="commit-message">Added support file. Added style locking. Conversion bug fixes.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Roundtrip changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Slides">
+<title>Slides</title>
+<para>The following changes have been made to the
+            <filename>slides</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: fo/Makefile; html/Makefile</literal></para><screen><phrase role="commit-message">Added checks and hacks to various makefiles to enable building
+under Cygwin. This stuff is ugly and maybe not worth the mess and
+trouble, but does seem to work as expected and not break anything
+else.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Jirka Kosek: html/plain.xsl</literal></para><screen><phrase role="commit-message">Added support for showing foil number</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Slides changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Website">
+<title>Website</title>
+<para>The following changes have been made to the
+            <filename>website</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: extensions/saxon64/.classes/.gitignore; extensions/xalan2/.classes/com/⋯</literal></para><screen><phrase role="commit-message">renamed a bunch more .cvsignore files to .gitignore (to facilitate use of git-svn)</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Website changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Params">
+<title>Params</title>
+<para>The following changes have been made to the
+            <filename>params</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem> <para><literal>Keith Fahlgren: epub.autolabel.xml</literal></para><screen><phrase role="commit-message">New parameter for epub, epub.autolabel</phrase></screen> </listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: table.frame.border.color.xml; table.cell.padding.xml; table.cell.border.t⋯</literal></para><screen><phrase role="commit-message">Added missing refpurposes and descriptions.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: ade.extensions.xml</literal></para><screen><phrase role="commit-message">Extensions to support Adobe Digital Editions extensions in .epub output.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: fop.extensions.xml; fop1.extensions.xml</literal></para><screen><phrase role="commit-message">Clarified that fop1.extensions is for FOP 0.90 and later. Version 1 is not here yet...</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.links.are.underlined.xml; man.endnotes.list.enabled.xml; man.font.l⋯</literal></para><screen><phrase role="commit-message">removed man.links.are.underlined and added man.font.links. Also,
+changed the default font formatting for links to bold.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.base.url.for.relative.links.xml</literal></para><screen><phrase role="commit-message">Added new param man.base.url.for.relative.links .. specifies a
+base URL for relative links (for ulink, @xlink:href, imagedata,
+audiodata, videodata) shown in the generated NOTES section of
+man-page output. The value of man.base.url.for.relative.links is
+prepended to any relative URI that is a value of ulink url,
+xlink:href, or fileref attribute.
+
+If you use relative URIs in link sources in your DocBook refentry
+source, and you leave man.base.url.for.relative.links unset, the
+relative links will appear "as is" in the NOTES section of any
+man-page output generated from your source. That's probably not
+what you want, because such relative links are only usable in the
+context of HTML output. So, to make the links meaningful and
+usable in the context of man-page output, set a value for
+man.base.url.for.relative.links that points
+to the online version of HTML output generated from your DocBook
+refentry source. For example:
+
+  &lt;xsl:param name="man.base.url.for.relative.links"
+  &gt;http://www.kernel.org/pub/software/scm/git/docs/&lt;/xsl:param&gt;</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.string.subst.map.xml</literal></para><screen><phrase role="commit-message">squeeze .sp\n.sp into a single .sp (to prevent a extra, spurious
+line of whitespace from being inserted after programlisting etc.
+in certain cases)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: refentry.manual.fallback.profile.xml; refentry.source.fallback.profile.⋯</literal></para><screen><phrase role="commit-message">don't use refmiscinfo@class=date value as fallback for refentry
+"source" or "manual" metadata fields</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.charmap.subset.profile.xml; man.charmap.enabled.xml; man.charmap.su⋯</literal></para><screen><phrase role="commit-message">made some further doc tweaks related to the
+man.charmap.subset.profile.english param</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.charmap.subset.profile.xml; man.charmap.enabled.xml; man.charmap.su⋯</literal></para><screen><phrase role="commit-message">Added the man.charmap.subset.profile.english parameter and refined
+the handling of charmap subsets to differentiate between English
+and non-English source.
+
+This way charmap subsets are now handled is this:
+
+If the value of the man.charmap.use.subset parameter is non-zero,
+and your DocBook source is not written in English (that is, if its
+lang or xml:lang attribute has a value other than en), then the
+character-map subset specified by the man.charmap.subset.profile
+parameter is used instead of the full roff character map.
+
+Otherwise, if the lang or xml:lang attribute on the root element
+in your DocBook source or on the first refentry element in your
+source has the value en or if it has no lang or xml:lang
+attribute, then the character-map subset specified by the
+man.charmap.subset.profile.english parameter is used instead of
+man.charmap.subset.profile.
+
+The difference between the two subsets is that
+man.charmap.subset.profile provides mappings for characters in
+Western European languages that are not part of the Roman
+(English) alphabet (ASCII character set).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.charmap.subset.profile.xml</literal></para><screen><phrase role="commit-message">Added to default charmap used by manpages:
+
+  - the "letters" part of the 'C1 Controls And Latin-1 Supplement
+    (Latin-1 Supplement)' Unicode block
+  - Latin Extended-A block (but not all of the characters from
+    that block have mappings in groff, so some of them are still
+    passed through as-is)
+
+The effects of this change are that in man pages generated for
+most Western European languages and for Finnish, all characters
+not part of the Roman alphabet are (e.g., "accented" characters)
+are converted to groff escapes.
+
+Previously, by default we passed through those characters as is
+(and users needed to use the full charmap if they wanted to have
+those characters converted).
+
+As a result of this change, man pages generated for Western
+European languages will be viewable in some environments in which
+they are not viewable if the "raw" non-Roman characters are in them.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: generate.legalnotice.link.xml; generate.revhistory.link.xml</literal></para><screen><phrase role="commit-message">Added information on how the filename is computed.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: default.table.width.xml</literal></para><screen><phrase role="commit-message">Clarified PI usage.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: man.funcsynopsis.style.xml</literal></para><screen><phrase role="commit-message">Added the man.funcsynopsis.style parameter. Has the same effect in
+manpages output as the funcsynopsis.style parameter has in HTML
+output -- except that its default value is 'ansi' instead of 'kr'.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: funcsynopsis.tabular.threshold.xml</literal></para><screen><phrase role="commit-message">Removed the funcsynopsis.tabular.threshold param. It's no longer
+being used in the code and hasn't been since mid 2006.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: table.properties.xml</literal></para><screen><phrase role="commit-message">Set keep-together.within-column to "auto". This seems to be the most sensible
+default value for tables.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: informal.object.properties.xml; admon.graphics.extension.xml; informalequ⋯</literal></para><screen><phrase role="commit-message">Several small documentation fixes.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: manifest.in.base.dir.xml</literal></para><screen><phrase role="commit-message">Wording fixes.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: header.content.properties.xml; footer.content.properties.xml</literal></para><screen><phrase role="commit-message">Added refpurpose.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: ulink.footnotes.xml; ulink.show.xml</literal></para><screen><phrase role="commit-message">Updated for DocBook 5.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: index.method.xml; glossterm.auto.link.xml</literal></para><screen><phrase role="commit-message">Spelling and wording fixes.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: callout.graphics.extension.xml</literal></para><screen><phrase role="commit-message">Clarifed available graphics formats and extensions.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: footnote.sep.leader.properties.xml</literal></para><screen><phrase role="commit-message">Corrected refpurpose.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Jirka Kosek: footnote.properties.xml</literal></para><screen><phrase role="commit-message">Added more properties which make it possible to render correctly footnotes placed inside verbatim elements.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: img.src.path.xml</literal></para><screen><phrase role="commit-message">img.src.path works with inlinegraphic too.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: saxon.character.representation.xml</literal></para><screen><phrase role="commit-message">Added TCG link.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: img.src.path.xml</literal></para><screen><phrase role="commit-message">Updated description of img.src.path. Bug #1785224 revealed that 
+there was a risk of misunderstanding how it works.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Profiling">
+<title>Profiling</title>
+<para>The following changes have been made to the
+            <filename>profiling</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Jirka Kosek: xsl2profile.xsl</literal></para><screen><phrase role="commit-message">Added new rules to profile all content generated by HTML Help (including alias files)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: profile-mode.xsl</literal></para><screen><phrase role="commit-message">use mode="profile" instead of xsl:copy-of for attributes so
+they can be more easily customized.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Profiling changes for 1.74.0-->
+
+
+<sect2 xml:id="V1.74.0_Tools">
+<title>Tools</title>
+<para>The following changes have been made to the
+            <filename>tools</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: make/Makefile.DocBook</literal></para><screen><phrase role="commit-message">various changes and additions to support making with asciidoc as
+an input format</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: make/Makefile.DocBook</literal></para><screen><phrase role="commit-message">make dblatex the default PDF maker for the example makefile</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: xsl/build/html2roff.xsl</literal></para><screen><phrase role="commit-message">Reworked handling of K&amp;R funcprototype output. It no longer relies
+on the HTML kr-tabular templates, but instead just does direct
+transformation to roff. For K&amp;R output, it displays the paramdef
+output in an indented list following the prototype.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: xsl/build/make-xsl-params.xsl</literal></para><screen><phrase role="commit-message">Made attribute-sets members of the param list. This enables links to attribute-sets in the
+reference documentation.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: xsl/build/html2roff.xsl</literal></para><screen><phrase role="commit-message">use .BI handling in K&amp;R funsynopsis output for manpages, just as
+we do already of ANSI output</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: xsl/build/html2roff.xsl</literal></para><screen><phrase role="commit-message">Implemented initial support for handling tabular K&amp;R output of
+funcprototype in manpages output. Accomplished by adding more
+templates to the intermediate HTML-to-roff stylesheet that the
+build uses to create the manpages/html-synop.xsl stylesheet.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: xsl/build/doc-link-docbook.xsl</literal></para><screen><phrase role="commit-message">Made the xsl/tools/xsl/build/doc-link-docbook.xsl stylesheet
+import profile-docbook.xsl, so that we can do profiling of release
+notes. Corrected some problems in the target for the release-notes
+HTML build.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Tools changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_Extensions">
+<title>Extensions</title>
+<para>The following changes have been made to the
+            <filename>extensions</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem> <para><literal>Keith Fahlgren: Makefile</literal></para><screen><phrase role="commit-message">Use DOCBOOK_SVN variable everywhere, please; build with PDF_MAKER</phrase></screen> </listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile</literal></para><screen><phrase role="commit-message">moved extensions build targets from master xsl/Makefile to
+xsl/extensions/Makefile</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: .cvsignore</literal></para><screen><phrase role="commit-message">re-adding empty extensions subdir</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Extensions changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_XSL-Saxon">
+<title>XSL-Saxon</title>
+<para>The following changes have been made to the
+            <filename>xsl-saxon</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: VERSION</literal></para><screen><phrase role="commit-message">bring xsl2, xsl-saxon, and xsl-xalan VERSION files up-to-date with
+recent change to snapshot build infrastructure</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: nbproject/build-impl.xml; nbproject/project.properties</literal></para><screen><phrase role="commit-message">Changed hard-coded file references in "clean" target to variable
+references. Closes #1792043. Thanks to Daniel Leidert.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: VERSION; Makefile</literal></para><screen><phrase role="commit-message">Did post-release wrap-up of xsl-saxon and xsl-xalan dirs</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: nbproject/build-impl.xml; VERSION; Makefile; test</literal></para><screen><phrase role="commit-message">More tweaks to get release-ready</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-Saxon changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_XSL-Xalan">
+<title>XSL-Xalan</title>
+<para>The following changes have been made to the
+            <filename>xsl-xalan</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: VERSION</literal></para><screen><phrase role="commit-message">bring xsl2, xsl-saxon, and xsl-xalan VERSION files up-to-date with
+recent change to snapshot build infrastructure</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: nbproject/build-impl.xml</literal></para><screen><phrase role="commit-message">Changed hard-coded file references in "clean" target to variable
+references. Closes #1792043. Thanks to Daniel Leidert.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile; VERSION</literal></para><screen><phrase role="commit-message">Did post-release wrap-up of xsl-saxon and xsl-xalan dirs</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: Makefile; nbproject/build-impl.xml; VERSION</literal></para><screen><phrase role="commit-message">More tweaks to get release-ready</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-Xalan changes for 1.74.0-->
+
+<sect2 xml:id="V1.74.0_XSL-libxslt">
+<title>XSL-libxslt</title>
+<para>The following changes have been made to the
+            <filename>xsl-libxslt</filename> code
+            since the 1.73.2 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: python/xslt.py</literal></para><screen><phrase role="commit-message">Print the result to stdout if no outfile has been given.
+Some unnecessary semicolons removed.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: python/xslt.py</literal></para><screen><phrase role="commit-message">Added a function that quotes parameter values (to ensure that they are interpreted as strings).
+Replaced deprecated functions from the string module with string methods.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: python/README; python/README.LIBXSLT</literal></para><screen><phrase role="commit-message">renamed xsl-libxslt/python/README to xsl-libxslt/python/README.LIBXSLT</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: python/README</literal></para><screen><phrase role="commit-message">Tweaked the text a little.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-libxslt changes for 1.74.0-->
+
 </sect1>
 
 <sect1 xml:id="V1.73.2">
