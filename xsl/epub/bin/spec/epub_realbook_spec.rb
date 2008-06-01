@@ -14,7 +14,7 @@ require 'spec'
 
 require 'docbook'
 
-$DEBUG = true
+$DEBUG = false
 
 TESTDOCSDIR = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
 
@@ -34,7 +34,7 @@ describe DocBook::Epub do
 
     it "should include cover images in each rendered epub of a 'Real Book' test document like #{xml_file}" do
       cvr_tmpdir = File.join(Dir::tmpdir(), "epubcovers"); Dir.mkdir(cvr_tmpdir) rescue Errno::EEXIST
-      system("unzip -o -d #{cvr_tmpdir} #{epub_file}")
+      system("unzip -q -o -d #{cvr_tmpdir} #{epub_file}")
       cover_grep_lines = `grep --no-filename -c cvr_ #{cvr_tmpdir}/OEBPS/*.html`
       num_covers = cover_grep_lines.split("\n").inject(0) {|sum,n| sum + n.to_i}
       num_covers.should > 0
