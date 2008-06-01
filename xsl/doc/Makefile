@@ -1,4 +1,4 @@
-include ../../releasetools/Variables.mk
+include $(DOCBOOK_SVN)/releasetools/Variables.mk
 
 XJPARSEFLAGS= -E 0 -w
 FO_BUILDER=saxon
@@ -68,7 +68,16 @@ reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL) fo/page.png $(D
 	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
+ifeq ($(PDF_MAKER),dblatex)
+	-$(DBLATEX) $(DBLATEXFLAGS) \
+	  -p $(DBX_STYLE) \
+	  -o $@ \
+    $< 
+else
+ifeq ($(PDF_MAKER),xep)
 	$(XEP) $(XEPFLAGS) $<
+endif
+endif
 
 reference.txt.html: ../docsrc/reference.xml.included $(REFERENCETXTXSL) $(DOC_SOURCE_XML_FILES)
 	$(XSLT) $< $(REFERENCETXTXSL) > $@
