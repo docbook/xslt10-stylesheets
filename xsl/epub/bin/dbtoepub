@@ -48,5 +48,6 @@ end
 db_files.each {|docbook_file|
   e = DocBook::Epub.new(docbook_file)
   epub_file = File.basename(docbook_file, ".xml") + ".epub"
+  puts "Rendering DocBook file #{docbook_file} to #{epub_file}" if verbose
   e.render_to_file(epub_file)
 }  
