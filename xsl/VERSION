@@ -26,7 +26,7 @@
   <fm:Branch>XSL Stylesheets</fm:Branch>
   <!-- * set/keep fm:version as N.NN.N-pre except for official releases, -->
   <!-- * then after the release, revert it to N.NN.N-pre & check back in -->
-  <fm:Version>1.74.0-pre</fm:Version>
+  <fm:Version>1.74.0</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -48,8 +48,7 @@ Major feature enhancements
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://docbook.svn.sourceforge.net/viewvc/docbook/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>This is feature release with a number of bug fixes included.
-</fm:Changes>
+  <fm:Changes>This is feature release with that includes the first support of .epub output and a number of bug fixes.</fm:Changes>
 </fm:project>
 
 <xsl:template match="/" priority="-100">
