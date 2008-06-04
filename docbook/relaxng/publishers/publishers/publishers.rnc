@@ -48,16 +48,80 @@ include "../../docbook/src/core.rnc" {
   db.person |= notAllowed
   db.org |= notAllowed
   db.parameter = notAllowed
-  db.info.extension |= notAllowed
+  db.info |= notAllowed
+  db.titleforbidden.info |= notAllowed
+  db.titleonly.info |= notAllowed
+  db.titleonlyreq.info |= notAllowed
+  db.titlereq.info |= notAllowed
+  db.bibliographic.elements |= notAllowed
   db.extension.blocks |= notAllowed
 }
 include "dc.rnc" {start |= notAllowed}
 include "dcterms.rnc" {start |= notAllowed}
 include "dcmitype.rnc"
 
-db.info.extension = 
-db._any 
-| dc.title
+db.info =
+element info
+{
+db.info.attlist,
+(
+db._title
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.titleforbidden.info =
+element info
+{
+db.titleforbidden.info.attlist,
+(db.info.elements*|db.dublincore.elements*)
+}
+
+db.titleonly.info =
+element info
+{
+db.titleonly.info.attlist,
+(
+db._title.only
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.titleonlyreq.info =
+element info
+{
+db.titleonlyreq.info.attlist,
+(
+db._title.onlyreq
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.titlereq.info =
+element info
+{
+db.titlereq.info.attlist,
+(
+db._title.req
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.bibliographic.elements =
+(db.info.elements*|db.dublincore.elements*)
+| db.publishing.inlines
+| db.citerefentry
+| db.citetitle
+| db.citebiblioid
+| db.person
+| db.personblurb
+| db.personname
+| db.subtitle
+| db.title
+| db.titleabbrev
+
+db.dublincore.elements = 
+dc.title
 | dc.creator 
 | dc.subject
 | dc.description
@@ -138,20 +202,41 @@ db.org =
    
  db.speaker.role.attribute = attribute role { text }
  
+   db.speaker.attlist =
+    db.speaker.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+ 
  db.speaker = 
        element speaker {
-       (db.speaker.role.attribute?
-       | db.person
+       db.speaker.attlist,
+       ( db.person
        | text)*
        }
        
- db.line =
+    db.line.role.attribute = attribute role { text }
+       
+    db.line.attlist =
+    db.line.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    
+    db.line =
        element line {
+       db.line.attlist,
        (db.all.inlines | text)+
        }
        
+    db.linegroup.role.attribute = attribute role { text }
+       
+    db.linegroup.attlist =
+    db.linegroup.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+       
 db.linegroup =
    element linegroup {
+   db.linegroup.attlist,
    db.speaker*, (db.line|db.all.blocks)+
    }
        

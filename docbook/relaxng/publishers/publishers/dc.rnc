@@ -71,21 +71,21 @@ start |= dc.title
 
 SimpleLiteral |= element * { text }?
 dc.any |= element any { SimpleLiteral }
-dc.title |= element title { text }
-dc.creator |= element creator { text }
-dc.subject |= element subject { text }
-dc.description |= element description { text }
-dc.publisher |= element publisher { text }
-dc.contributor |= element contributor { text }
-dc.date |= element date { text }
-dc.type |= element type { text }
-dc.format |= element format { text }
-dc.identifier |= element identifier { text }
-dc.source |= element source { text }
-dc.language |= element language { text }
-dc.relation |= element relation { text }
-dc.coverage |= element coverage { text }
-dc.rights |= element rights { text }
+dc.title |= element dc:title { text }
+dc.creator |= element dc:creator { text }
+dc.subject |= element dc:subject { text }
+dc.description |= element dc:description { text }
+dc.publisher |= element dc:publisher { text }
+dc.contributor |= element dc:contributor { text }
+dc.date |= element dc:date { text }
+dc.type |= element dc:type { text }
+dc.format |= element dc:format { text }
+dc.identifier |= element dc:identifier { text }
+dc.source |= element dc:source { text }
+dc.language |= element dc:language { text }
+dc.relation |= element dc:relation { text }
+dc.coverage |= element dc:coverage { text }
+dc.rights |= element dc:rights { text }
 
 ## 
 ##     	

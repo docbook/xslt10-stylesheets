@@ -29,7 +29,7 @@
          <xsl:otherwise><chapter remap="EPILOGUE"><xsl:apply-templates/></chapter></xsl:otherwise>
      </xsl:choose>
    </xsl:template>
-    <xsl:template match="FM"><info remap="FM"><author><personname><firstname>William</firstname><surname>Shakespeare</surname></personname></author><legalnotice><xsl:apply-templates /></legalnotice><copyright><year>2008</year><holder>Scott Hudson</holder></copyright></info></xsl:template>
+    <xsl:template match="FM"><info remap="FM"><author><personname><firstname>William</firstname><surname>Shakespeare</surname></personname></author><legalnotice><xsl:apply-templates /><para>DocBook version by Scott Hudson, 2008.</para></legalnotice></info></xsl:template>
    <xsl:template match="GRPDESCR"><xsl:apply-templates /></xsl:template>
     <xsl:template match="INDUCT"><chapter remap="INDUCT"><xsl:apply-templates /></chapter></xsl:template>
     <xsl:template match="LINE"><line remap="LINE"><xsl:apply-templates /></line></xsl:template>
