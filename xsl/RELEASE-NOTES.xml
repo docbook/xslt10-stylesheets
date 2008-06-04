@@ -88,6 +88,14 @@ generated and are quite similar to the XHTML target.</para></listitem>
 
 </varlistentry>
 
+<varlistentry>
+    <term>First implementation of a libxslt extension</term>
+    <listitem>
+      <para>A stylesheet extension for libxslt, written in Python, has been added. 
+      The extension is a function for adjusting column widths in CALS tables. See 
+      <filename>extensions/README.LIBXSLT</filename> for more information.</para>
+    </listitem>
+ </varlistentry>
 
 </variablelist>
 </para>
