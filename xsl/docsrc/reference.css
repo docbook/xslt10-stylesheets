@@ -53,3 +53,8 @@ div.informalexample pre {
   border-bottom-width: 0px;
   padding: 0px;
 }
+
+/* Parameter and PI titles */
+  div.refnamediv h2 {
+  font-size: 2em; 
+}
