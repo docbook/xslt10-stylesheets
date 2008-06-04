@@ -201,6 +201,7 @@ ZIP_EXCLUDES = \
  \.\\\#.* \
  prj\.el \
  \.cvsignore \
+ \.gitignore \
  Makefile$$ \
  Makefile.common \
  Makefile.incl \
