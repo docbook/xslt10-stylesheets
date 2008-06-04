@@ -17,6 +17,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="set.toc">
+
   <xsl:param name="toc-context" select="."/>
 
   <xsl:variable name="id">
@@ -29,7 +30,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="nodes" select=".|book|set|setindex"/>
+  <xsl:variable name="nodes" select="book|set|setindex"/>
 
   <xsl:if test="$nodes">
     <fo:block id="toc...{$id}"
