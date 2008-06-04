@@ -88,7 +88,7 @@
     <xsl:when test="@xlink:href">
       <xsl:call-template name="ulink">
 	<xsl:with-param name="url" select="concat($tcg.base.url,@xlink:href)"/>
-      </xsl:call-template>link"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="ulink">
