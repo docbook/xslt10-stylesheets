@@ -354,10 +354,6 @@
 
     <fo:flow flow-name="xsl-region-body">
       <fo:block>
-        <xsl:call-template name="anchor">
-          <xsl:with-param name="conditional" select="0"/>
-        </xsl:call-template>
-
 	<xsl:if test="*[not(self::foil)]">
 	  <fo:block xsl:use-attribute-sets="foil.properties" space-after="1em">
 	    <xsl:apply-templates select="*[not(self::foil)]"/>
@@ -432,11 +428,7 @@
     </xsl:apply-templates>
     <fo:flow flow-name="xsl-region-body">
       <fo:block>
-        <xsl:call-template name="anchor">
-          <xsl:with-param name="conditional" select="0"/>
-        </xsl:call-template>
-
-        <fo:block xsl:use-attribute-sets="foil.properties">
+	<fo:block xsl:use-attribute-sets="foil.properties">
           <xsl:apply-templates/>
         </fo:block>
       </fo:block>
