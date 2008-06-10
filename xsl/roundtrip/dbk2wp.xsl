@@ -887,7 +887,8 @@
 
   <xsl:template match='blockquote|doc:blockquote'
     mode='doc:body'>
-    <xsl:apply-templates select='blockinfo|title|doc:info|doc:title'>
+    <xsl:apply-templates select='blockinfo|title|doc:info|doc:title'
+      mode='doc:body'>
       <xsl:with-param name='class'>
         <xsl:value-of select='local-name()'/>
       </xsl:with-param>
