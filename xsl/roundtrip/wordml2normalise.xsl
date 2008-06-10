@@ -276,9 +276,21 @@
 
       <dbk:tgroup>
         <xsl:apply-templates select='w:tblGrid'/>
-        <dbk:tbody>
-          <xsl:apply-templates select='w:tr'/>
-        </dbk:tbody>
+        <xsl:choose>
+          <xsl:when test='$tbl.style/w:tblStylePr[@w:type = "firstRow"]/w:trPr/w:tblHeader'>
+            <dbk:thead>
+              <xsl:apply-templates select='w:tr[1]'/>
+            </dbk:thead>
+            <dbk:tbody>
+              <xsl:apply-templates select='w:tr[position() != 1]'/>
+            </dbk:tbody>
+          </xsl:when>
+          <xsl:otherwise>
+            <dbk:tbody>
+              <xsl:apply-templates select='w:tr'/>
+            </dbk:tbody>
+          </xsl:otherwise>
+        </xsl:choose>
       </dbk:tgroup>
     </dbk:informaltable>
   </xsl:template>

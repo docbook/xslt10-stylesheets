@@ -1198,7 +1198,47 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <xsl:template match='dbk:tgroup|dbk:tbody|dbk:thead|dbk:tfoot|dbk:row|dbk:colspec'>
+  <xsl:template match='dbk:tgroup'>
+    <xsl:copy>
+      <xsl:apply-templates select='@*' mode='rnd:copy'/>
+      <xsl:if test='not(@cols)'>
+        <xsl:attribute name='cols'>
+          <xsl:call-template name='dbk:max-columns'>
+            <xsl:with-param name='rows' select='*/dbk:row'/>
+          </xsl:call-template>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:template>
+  <xsl:template name='dbk:max-columns'>
+    <xsl:param name='rows' select='/..'/>
+    <xsl:param name='max' select='0'/>
+
+    <!-- This is a tail-recursive algorithm.
+         Could improve this with other algorithm(s),
+         eg. divide-and-conquer.
+      -->
+
+    <xsl:choose>
+      <xsl:when test='not($rows)'>
+        <xsl:value-of select='$max'/>
+      </xsl:when>
+      <xsl:when test='count($rows[1]/dbk:entry) > $max'>
+        <xsl:call-template name='dbk:max-columns'>
+          <xsl:with-param name='rows' select='$rows[position() != 1]'/>
+          <xsl:with-param name='max' select='count($rows[1]/dbk:entry)'/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name='dbk:max-columns'>
+          <xsl:with-param name='rows' select='$rows[position() != 1]'/>
+          <xsl:with-param name='max' select='$max'/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match='dbk:tbody|dbk:thead|dbk:tfoot|dbk:row|dbk:colspec'>
     <xsl:copy>
       <xsl:apply-templates select='@*' mode='rnd:copy'/>
       <xsl:apply-templates/>
