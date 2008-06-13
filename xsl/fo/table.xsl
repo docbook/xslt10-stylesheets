@@ -543,21 +543,24 @@
   <xsl:variable name="column.sum">
     <xsl:choose>
       <!-- CALS table -->
-      <xsl:when test="@cols">
-        <xsl:if test="count(colspec) = @cols">
-          <xsl:for-each select="colspec">
-            <xsl:if test="position() != 1">
-              <xsl:text> + </xsl:text>
-            </xsl:if>
-            <xsl:choose>
-              <xsl:when test="not(@colwidth)">NOWIDTH</xsl:when>
-              <xsl:when test="contains(@colwidth, '*')">NOWIDTH</xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="@colwidth"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:if>
+      <xsl:when test="tgroup/@cols">
+        <!-- change context to the first tgroup -->
+        <xsl:for-each select="tgroup[1]">
+          <xsl:if test="count(colspec) = @cols">
+            <xsl:for-each select="colspec">
+              <xsl:if test="position() != 1">
+                <xsl:text> + </xsl:text>
+              </xsl:if>
+              <xsl:choose>
+                <xsl:when test="not(@colwidth)">NOWIDTH</xsl:when>
+                <xsl:when test="contains(@colwidth, '*')">NOWIDTH</xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="@colwidth"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
+          </xsl:if>
+        </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
         <!-- HTML table -->
