@@ -24,6 +24,3 @@ uninstall.sh
 test.sh
 catalog.xml
 extensions
-epub/bin/spec/testdocs
-epub/bin/spec/files/graphics
-epub/bin/spec/testdocs/graphics
