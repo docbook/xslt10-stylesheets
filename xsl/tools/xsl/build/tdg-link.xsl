@@ -3,7 +3,7 @@
   version="1.0">
 
   <xsl:include href="docbook-elements.xsl"/>
-  <xsl:param name="tdg-baseuri" select="'http://docbook.org/tdg/en/html/'"/>
+  <xsl:param name="tdg-baseuri" select="'http://docbook.org/tdg5/en/html/'"/>
 
   <xsl:template match="tag[not(@class) or @class='element']
     |sgmltag[not(@class) or @class='element']">
