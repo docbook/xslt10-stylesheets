@@ -42,7 +42,7 @@ else
 ifneq ($(shell uname -s | grep -i cygwin),)
 	$(XSLT) $< $(NESTLEVEL)../../releasetools/w2docbook.xsl $@.tmp
 else
-	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@
+	$(XSLT) $< $(DOCBOOK_SVN)/releasetools/w2docbook.xsl $@.tmp
 endif
 	$(XSLT) $@.tmp $(ADDNEWLINE) $@
 	$(RM) $@.tmp
