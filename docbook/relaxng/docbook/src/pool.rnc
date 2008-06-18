@@ -4951,7 +4951,7 @@ div {
 
    db.olink.localinfo.attribute =
       [
-         db:refpurpose [ "Holds additional information that may be used by the applicatoin when resolving the link" ]
+         db:refpurpose [ "Holds additional information that may be used by the application when resolving the link" ]
       ]
       attribute localinfo { text }
 
