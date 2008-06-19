@@ -35,21 +35,59 @@
 
   <xsl:template match="&components; |
                        &blocks;">
-    <xsl:copy>
-      <xsl:call-template name='rnd:attributes'/>
+    <xsl:choose>
+      <xsl:when test='self::dbk:article and
+                      count(dbk:book) = 1 and
+                      count(dbk:info|dbk:book) &lt;= 2'>
+        <xsl:apply-templates select='dbk:book'/>
+      </xsl:when>
+      <xsl:when test='self::dbk:article and
+                      *[1][self::dbk:para] and
+                      *[1]/@rnd:style != "article-title" and
+                      contains(*[1]/@rnd:style, "-title")'>
+        <xsl:variable name='element-name'
+          select='substring-before(*[1]/@rnd:style, "-title")'/>
+        <xsl:element name='{$element-name}'
+          namespace='http://docbook.org/ns/docbook'>
+          <dbk:info>
+            <xsl:apply-templates select='*[1]'
+              mode='rnd:metadata'/>
+          </dbk:info>
+          <xsl:apply-templates/>
+        </xsl:element>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy>
+          <xsl:call-template name='rnd:attributes'/>
 
-      <xsl:variable name='metadata'>
+          <xsl:variable name='metadata'>
+            <xsl:apply-templates select='*[1]'
+              mode='rnd:metadata'/>
+          </xsl:variable>
+          <xsl:if test='$metadata'>
+            <dbk:info>
+              <xsl:copy-of select='$metadata'/>
+            </dbk:info>
+          </xsl:if>
+
+          <xsl:apply-templates/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='dbk:book-component'>
+    <xsl:variable name='element-name'
+      select='substring-before(*[1]/@rnd:style, "-title")'/>
+
+    <xsl:element name='{$element-name}'
+      namespace='http://docbook.org/ns/docbook'>
+      <dbk:info>
         <xsl:apply-templates select='*[1]'
           mode='rnd:metadata'/>
-      </xsl:variable>
-      <xsl:if test='$metadata'>
-        <dbk:info>
-          <xsl:copy-of select='$metadata'/>
-        </dbk:info>
-      </xsl:if>
-
+      </dbk:info>
       <xsl:apply-templates/>
-    </xsl:copy>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="dbk:para" name='rnd:para'>
@@ -809,6 +847,12 @@
               <xsl:apply-templates mode='rnd:metadata'/>
             </dbk:titleabbrev>
           </xsl:when>
+          <xsl:when test='(parent::dbk:article or parent::dbk:book-component) and
+                          preceding-sibling::dbk:para[@rnd:style = concat($parent, "-title")]'>
+            <dbk:titleabbrev>
+              <xsl:apply-templates mode='rnd:metadata'/>
+            </dbk:titleabbrev>
+          </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name='rnd:error'>
               <xsl:with-param name='code'>bad-titleabbrev</xsl:with-param>
@@ -832,6 +876,17 @@
             </dbk:title>
           </xsl:when>
           <xsl:when test='$parent = local-name(..)'>
+            <dbk:title>
+              <xsl:apply-templates mode='rnd:metadata'/>
+            </dbk:title>
+          </xsl:when>
+          <xsl:when test='parent::dbk:book-component'>
+            <dbk:title>
+              <xsl:apply-templates mode='rnd:metadata'/>
+            </dbk:title>
+          </xsl:when>
+          <xsl:when test='parent::dbk:article and
+                          not(../../..)'>
             <dbk:title>
               <xsl:apply-templates mode='rnd:metadata'/>
             </dbk:title>
@@ -864,6 +919,12 @@
 
         <xsl:choose>
           <xsl:when test='$parent = local-name(..)'>
+            <dbk:subtitle>
+              <xsl:apply-templates mode='rnd:metadata'/>
+            </dbk:subtitle>
+          </xsl:when>
+          <xsl:when test='(parent::dbk:article or parent::dbk:book-component) and
+                          preceding-sibling::dbk:para[@rnd:style = concat($parent, "-title")]'>
             <dbk:subtitle>
               <xsl:apply-templates mode='rnd:metadata'/>
             </dbk:subtitle>
