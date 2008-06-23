@@ -19,10 +19,13 @@ $DEBUG = false
 describe DocBook::Epub do
   before(:all) do
     @filedir = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
-    @testdocsdir = File.expand_path(File.join(File.dirname(__FILE__), 'testdocs'))
+    @testdocsdir = File.expand_path(File.join(ENV['DOCBOOK_SVN'], 'testdocs'))
     exampledir = File.expand_path(File.join(File.dirname(__FILE__), 'examples'))
     @valid_epub = File.join(exampledir, "AMasqueOfDays.epub")
     @tmpdir = File.join(Dir::tmpdir(), "epubspec"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
+
+    @css_file_base = "test.css"
+    @css_file = File.join(@filedir, @css_file_base)
 
     @simple_bookfile = File.join(@testdocsdir, "book.001.xml")
     @simple_epub = DocBook::Epub.new(@simple_bookfile, @tmpdir)
@@ -140,6 +143,46 @@ describe DocBook::Epub do
     ensure
       FileUtils.rm_r(tmpdir, :force => true)
     end  
+  end
+
+  it "should include a CSS link in HTML files when CSS files have been provided" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file)
+      epubfile = File.join(tmpdir, "csslink.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      html_files = Dir.glob(File.join(tmpdir, "**", "*.html"))
+      html_links = html_files.find_all {|html_file| File.open(html_file).readlines.to_s =~ /<link [^>]*#{@css_file_base}/}
+      html_links.size.should == html_files.size
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end
+  end
+
+  it "should include a CSS link in OPF file when CSS files have been provided" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file)
+      epubfile = File.join(tmpdir, "csslink.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
+      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<item [^>]*#{@css_file_base}/}
+      opf_links.size.should == opf_files.size
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end
   end
 
   it "should include a TOC link in rendered epub files for <book>s" do
