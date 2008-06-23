@@ -9,6 +9,7 @@
 # - Open Container Format (OCF)
 #
 # Specific options:
+#     -c, --css [FILE]                 Use FILE for CSS on generated XHTML.
 #     -d, --debug                      Show debugging output.
 #     -h, --help                       Display usage info
 #     -v, --verbose                    Make output verbose
@@ -17,11 +18,13 @@ lib = File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
 $LOAD_PATH.unshift(lib) if File.exist?(lib)
 
 require 'optparse'
+require 'tmpdir'
 
 require 'docbook'
 
 verbose = false
 debug = false
+css_file = nil
 
 # Set up the OptionParser
 opts = OptionParser.new
@@ -35,6 +38,7 @@ opts.banner = "Usage: #{File.basename($0)} [OPTIONS] [DocBook Files]
 - Open Container Format (OCF)
 
 Specific options:"
+opts.on("-c", "--css [FILE]", "Use FILE for CSS on generated XHTML.") {|f| css_file = f}
 opts.on("-d", "--debug", "Show debugging output.") {debug = true; verbose = true}
 opts.on("-h", "--help", "Display usage info") {puts opts.to_s; exit 0}
 opts.on("-v", "--verbose", "Make output verbose") {verbose = true}
@@ -46,7 +50,8 @@ if db_files.size == 0
 end
 
 db_files.each {|docbook_file|
-  e = DocBook::Epub.new(docbook_file)
+  dir = File.expand_path(File.join(Dir.tmpdir, ".epubtmp#{Time.now.to_f.to_s}"))
+  e = DocBook::Epub.new(docbook_file, dir, css_file)
   epub_file = File.basename(docbook_file, ".xml") + ".epub"
   puts "Rendering DocBook file #{docbook_file} to #{epub_file}" if verbose
   e.render_to_file(epub_file)

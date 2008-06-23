@@ -19,13 +19,11 @@ $DEBUG = false
 describe DocBook::Epub do
   before(:all) do
     @filedir = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
-    @testdocsdir = File.expand_path(File.join(ENV['DOCBOOK_SVN'], 'testdocs'))
+    @testdocsdir = File.expand_path(File.join(ENV['DOCBOOK_SVN'], 'testdocs', 'tests'))
     exampledir = File.expand_path(File.join(File.dirname(__FILE__), 'examples'))
     @valid_epub = File.join(exampledir, "AMasqueOfDays.epub")
     @tmpdir = File.join(Dir::tmpdir(), "epubspec"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
 
-    @css_file_base = "test.css"
-    @css_file = File.join(@filedir, @css_file_base)
 
     @simple_bookfile = File.join(@testdocsdir, "book.001.xml")
     @simple_epub = DocBook::Epub.new(@simple_bookfile, @tmpdir)
@@ -36,6 +34,13 @@ describe DocBook::Epub do
     @manygraphic_epubfile  = File.join(@tmpdir, "manygraphicepub.epub")
     @manygraphic_epub.render_to_file(@manygraphic_epubfile, $DEBUG)
 
+    @css_file_base = "test.css"
+    @css_file = File.join(@filedir, @css_file_base)
+    @css_epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file)
+    @css_epubfile = File.join(@tmpdir, "css.epub")
+    @css_epub.render_to_file(@css_epubfile, $DEBUG)
+
+    FileUtils.copy(@css_epubfile, ".css.epub") if $DEBUG
     FileUtils.copy(@simple_epubfile, ".t.epub") if $DEBUG
     FileUtils.copy(@manygraphic_epubfile, ".mg.epub") if $DEBUG
   end
@@ -145,16 +150,12 @@ describe DocBook::Epub do
     end  
   end
 
-  it "should include a CSS link in HTML files when CSS files have been provided" do
+  it "should include a CSS link in HTML files when a CSS file has been provided" do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
-      
-      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file)
-      epubfile = File.join(tmpdir, "csslink.epub")
-      epub.render_to_file(epubfile, $DEBUG)
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
-      raise "Could not unzip #{epubfile}" unless success
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      raise "Could not unzip #{@css_epubfile}" unless success
       html_files = Dir.glob(File.join(tmpdir, "**", "*.html"))
       html_links = html_files.find_all {|html_file| File.open(html_file).readlines.to_s =~ /<link [^>]*#{@css_file_base}/}
       html_links.size.should == html_files.size
@@ -165,19 +166,30 @@ describe DocBook::Epub do
     end
   end
 
-  it "should include a CSS link in OPF file when CSS files have been provided" do
+  it "should include CSS file in .epub when a CSS file has been provided" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubcssfiletest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      raise "Could not unzip #{@css_epubfile}" unless success
+      css_files = Dir.glob(File.join(tmpdir, "**", "*.css"))
+      css_files.should_not be_empty
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end
+  end
+
+  it "should include a CSS link in OPF file when a CSS file has been provided" do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
-      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file)
-      epubfile = File.join(tmpdir, "csslink.epub")
-      epub.render_to_file(epubfile, $DEBUG)
-
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
-      raise "Could not unzip #{epubfile}" unless success
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      raise "Could not unzip #{@css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<item [^>]*#{@css_file_base}/}
-      opf_links.size.should == opf_files.size
+      opf_links.should_not be_empty
     rescue => e
       raise e
     ensure

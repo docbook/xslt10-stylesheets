@@ -17,7 +17,7 @@ require 'docbook'
 
 $DEBUG = false
 
-TESTDOCSDIR = File.expand_path(File.join(ENV['DOCBOOK_SVN'], 'testdocs'))
+TESTDOCSDIR = File.expand_path(File.join(ENV['DOCBOOK_SVN'], 'testdocs', 'tests'))
 
 describe DocBook::Epub do
 

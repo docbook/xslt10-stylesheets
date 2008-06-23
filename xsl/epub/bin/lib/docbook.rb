@@ -1,5 +1,6 @@
-require 'rexml/parsers/pullparser'
 require 'fileutils'
+require 'rexml/parsers/pullparser'
+
 module DocBook
 
   class Epub
@@ -18,11 +19,12 @@ module DocBook
 
     attr_reader :output_dir
 
-    def initialize(docbook_file, output_dir=OUTPUT_DIR)
+    def initialize(docbook_file, output_dir=OUTPUT_DIR, css_file=nil)
       @docbook_file = docbook_file
       @output_dir = output_dir
       @meta_dir  = File.join(@output_dir, META_DIR)
       @oebps_dir = File.join(@output_dir, OEBPS_DIR)
+      @css_file = css_file ? File.expand_path(css_file) : css_file
       @to_delete = []
 
       unless File.exist?(@docbook_file)
@@ -51,14 +53,15 @@ module DocBook
 
     private
     def render_to_epub(output_file, verbose)  
-      chunk_quietly = "--stringparam chunk.quietly " + (verbose ? '0' : '1')
-      callout_path =  "--stringparam callout.graphics.path #{CALLOUT_PATH}/"
-      callout_limit = "--stringparam callout.graphics.number.limit #{CALLOUT_LIMIT}"
-      callout_ext =   "--stringparam callout.graphics.extension #{CALLOUT_EXT}" 
-      base =          "--stringparam base.dir #{@oebps_dir}/" 
-      meta =          "--stringparam epub.metainf.dir #{@meta_dir}/" 
-      oebps =         "--stringparam epub.oebps.dir #{@oebps_dir}/" 
-      options = "--xinclude #{chunk_quietly} #{callout_path} #{callout_limit} #{callout_ext} #{base} #{meta} #{oebps}"
+      chunk_quietly =   "--stringparam chunk.quietly " + (verbose ? '0' : '1')
+      callout_path =    "--stringparam callout.graphics.path #{CALLOUT_PATH}/"
+      callout_limit =   "--stringparam callout.graphics.number.limit #{CALLOUT_LIMIT}"
+      callout_ext =     "--stringparam callout.graphics.extension #{CALLOUT_EXT}" 
+      html_stylesheet = "--stringparam html.stylesheet #{File.basename(@css_file)}" if @css_file
+      base =            "--stringparam base.dir #{@oebps_dir}/" 
+      meta =            "--stringparam epub.metainf.dir #{@meta_dir}/" 
+      oebps =           "--stringparam epub.oebps.dir #{@oebps_dir}/" 
+      options = "--xinclude #{chunk_quietly} #{callout_path} #{callout_limit} #{callout_ext} #{base} #{meta} #{oebps} #{html_stylesheet}"
       # Double-quote stylesheet & file to help Windows cmd.exe
       db2epub_cmd = "#{XSLT_PROCESSOR} #{options} \"#{STYLESHEET}\" \"#{@docbook_file}\""
       STDERR.puts db2epub_cmd if $DEBUG
@@ -71,9 +74,10 @@ module DocBook
     def bundle_epub(output_file, verbose)  
       quiet = verbose ? "" : "-q"
       mimetype_filename = write_mimetype()
-      meta  = File.basename(@meta_dir)
+      meta   = File.basename(@meta_dir)
       oebps  = File.basename(@oebps_dir)
       images = copy_images()
+      csses  = copy_csses()
       callouts = copy_callouts()
       # zip -X -r ../book.epub mimetype META-INF OEBPS
       # Double-quote stylesheet & file to help Windows cmd.exe
@@ -98,6 +102,13 @@ module DocBook
         }  
       end  
       return new_callout_images
+    end
+
+    def copy_csses
+      if @css_file 
+        css_new_filename = File.join(@oebps_dir, File.basename(@css_file))
+        FileUtils.cp(@css_file, css_new_filename)
+      end
     end
 
     def copy_images
