@@ -2,9 +2,9 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <book>
   <title>MxSQL xx x Nxxxxxxx</title>
-  <bookinfo xml:base="bookinfo.xml">
-    <isbn>ddddddddddddd</isbn>
-    <edition>d</edition>
+  <bookinfo>
+    <isbn>1234567890005</isbn>
+    <edition>2</edition>
     <author>
       <firstname>Rxxxxxx</firstname>
       <surname>Dxxx</surname>
@@ -112,14 +112,14 @@ Mxxx xx xxx xxxxxxxxxxxx xxxx xx xxxxxxxxxxxxx xxx xxxxxxx xx xxxxxxxxxxx
       </imageobject>
     </mediaobject>
   </bookinfo>
-  <dedication xml:base="dedication.xml">
+  <dedication>
     <blockquote>
       <attribution>Rxxxxxx J.T. Dxxx</attribution>
       <para>Tx xx xxxxxx Rxxxxxx Sxxxxxxx, xxx xxxxxxxxxxx xx xx xxxxxxxxxx, xxxxxxxxxx, xxx xxxxxxx, xxx xxx xxxxxxx xx 
     xx xxxxxx xxx xxxxxx I xxx xxxxx xx xx.</para>
     </blockquote>
   </dedication>
-  <preface id="mysqlian-PREFACE-2" xml:base="ch00.xml">
+  <preface id="mysqlian-PREFACE-2">
     <title>Pxxxxxx</title>
     <para>MxSQL xx xxx xxxx xxxxxxx xxxx xxxxxx xxxxxxxx xxxxxx xxxxxxxxx. Axxxxxxx xx’x xxxx, xx’x xxxxx xxxx xxxxxxxxxx xxx xxxx, xxx xx xxxxx xxxxxxxx xxxxxxxxxxxx xx xxxxx xxxx xxxx xx xx xxx xxxxxxxx xx Oxxxxx xx MS SQL Sxxxxx. Txxxxx xx x xxxxxxx xx xxxxxxxxx xxxxxxxx xxxx MxSQL, xxxxxxxxxxxxxx xx xxxxxx xxxxxxxxxx. Wxxx xxx xxxxxxx xxxxxxxxxxx xxxxxxxxxxx xxxxxxxxxx (APIx), xx’x xxxx xx xxxxxxx xxxx xxx xxxxxxxx xx xxxxxxxxx xxxx MxSQL.</para>
     <para>Txxx xxxx xxxxxxxx x xxxxx xxxxxxxxx xx MxSQL xxxxxxxxxx xxx xxxxxxxxx, xxx xxxxxxxxxxxxxx xxxxxxxxx, xxx xxx xxxx xxxxxxx APIx. Txx xxxxx xxx xxxxxxxx xxx xxxxxxxx xx xxxx xxx xx xxx xxxxxxx xxxx MxSQL. Exxx xxxxxxx xx xx API xxxx xxxxxx xxxx x xxxxxxxx.</para>
@@ -289,7 +289,7 @@ Mxxx xx xxx xxxxxxxxxxxx xxxx xx xxxxxxxxxxxxx xxx xxxxxxx xx xxxxxxxxxxx
       <para>Fxx xxx xxxx xxxxx xxxxx I xxxx xxxx xxxxxxx xx MxSQL Ixx. xx xxx xxxxxx xx xxxxx Kxxxxxxxx Bxxx.  Ix xxxx xxxx I’xx xxxxxxx x xxxxx xxxx xxxx xxxxx MxSQL xxxxxxxx, xx xxxx xx xxxx xxxx xxxxxxx.  Ix’x x xxxxxxxx xxxxxxx xxx x xxxxxx xxxxxxxxx.  Wxxx xxx xxxxxxxxxx xxxxxx xx xxx xx Nxx Oxxxxxx xx xxx Sxxxxx xx dddd, xxxx xx xxx xxxxxx xx MxSQL xxxxxxxx xx xx xx xxxxxxxx xxxx xxxxx xxxx xxxxxxxxxx xxxxxxxxxxx, xx xxxx xx xxxxxxxxx xxx xxxxx xxxxxxx. Txxxx xxxxxxxxxx xxxxxx xx xx xxxxxxxxx x xxx xxxx xxx xxxxxx xxx xx xxxx xxxx xxx xxxxxxxx I xxxxxxxxxxx xxxxx xxx xxxx xx xx xxx xxxx xxx xxxxxxxxx. Axx, xx xxxxxx, xxxx xx xxxx xxxxxx xxxx xxxxxxxxxxx xxx xxxxxx xxxxxxx xx xxx xxxxxxx xx xxxx xxxx. Fxxx MxSQL, I’x xxxxxxxxxx xxxx xx xxxxx Uxx Sxxxxxxx (Sxxxxx Vxxx Pxxxxxxxx) xxx xxxxxx xxxxx xxxxxxxxxx xx xx, xxx Rxxxx Oxxxxxx (xx xxxxxx xx xxx xxxxx xxx xxxxxxxx xx xxx KB) xxx xxx xxxx xxx xxx xxxxxxxxxx xx xxxxxx xx xx xxxxxxx xx xxx.</para>
     </sect1>
   </preface>
-  <part id="mysqlian-PART-1" xml:base="part1.xml">
+  <part id="mysqlian-PART-1">
     <title>Ixxxxxxxxxxx xxx Txxxxxxxx</title>
     <partintro>
       <para>
@@ -307,7 +307,7 @@ xxxxxxxxx SQL xxx xxxxxxxxx xx xxxx xxxx xx xxx xxxx.
 
 </para>
     </partintro>
-    <chapter id="mysqlian-CHP-1" xml:base="ch01.xml">
+    <chapter id="mysqlian-CHP-1">
       <title>Ixxxxxxxxxxx xx MxSQL</title>
       <para><indexterm id="mysqlian-CHP-1-ITERM-1904" significance="normal"><primary>MxSQL</primary><secondary>xxxxxxxxxx</secondary></indexterm><indexterm id="mysqlian-CHP-1-ITERM-1905" significance="normal"><primary>GPL (GNU Pxxxxx Lxxxxxx)</primary></indexterm><indexterm id="mysqlian-CHP-1-ITERM-1906" significance="normal"><primary>GNU Pxxxxx Lxxxxxx (GPL)</primary></indexterm><indexterm id="mysqlian-CHP-1-ITERM-1907" significance="normal"><primary>MxSQL AB</primary><secondary>MxSQL xxxxxxxxx</secondary></indexterm>
 MxSQL xx xx xxxx xxxxxx, xxxxxxxxxxxxx, xxxxxxxxxx xxxxxxxx xxxxxxxxxx xxxxxx xxxxxxx xx Mxxxxxx “Mxxxx” Wxxxxxxx xx dddd. Ix dddd, MxSQL xxx xxxxxxxx xxxxx x xxxx-xxxxxxx xxxxx xxxx xxxxxxxxx xxx xxxxxx xx xxx xx xxx xxxx xxxxx xxx GNU Pxxxxx Lxxxxxx (GPL); xxxx xxxxxx xxx xxxxxxxxxx xx xxxx. Txx xxxxxxx xxxx xxxx xxx xxxxxxxx MxSQL xx MxSQL AB (xxx AB xxxxxx xxx <emphasis>xxxxxxxxxx</emphasis>, xx xxxxx xxxxxxx). Cxxxxxxxx, MxSQL AB xxxxxxxxx xxxx xxxxx xxx xxxx xxxx d xxxxxxx xxxxxxxxxxxxx xx MxSQL xxxxxxxxx, xxx xxxxxxx xx xxxxxxx xx dd,ddd xxxxxxxxx x xxx xx MxSQL xxxxxxxxxxxx xxxxxxxx xxxx xxx xxxx xxx xxxx xxxxxx xxxxx. Txx xxxxxxx xx MxSQL xx x xxxxxxx xxxxxxxx xx xxx xxx xxxx xx xxx xxxxx--xxxxx xxx, xxxxx xxxx-xxxx xxx xxxx xxxxxx xxxxxxxxx xxx xxxxxxxxx--xxx xxxx xxx xxxxxxxxxxx, xxxxxxxxxxx, xxx xxxxxxxx.
@@ -374,7 +374,7 @@ Ix xxxxxxxx xx xxxxxxxxx xxxxx xx MxSQL, x xxx xxx xxxxx xxxxx xxxxx xxxxxxxxx x
 </para>
       </sect1>
     </chapter>
-    <chapter id="mysqlian-CHP-2" xml:base="ch02.xml">
+    <chapter id="mysqlian-CHP-2">
       <title>Ixxxxxxxxx MxSQL</title>
       <para><indexterm id="mysqlian-CHP-2-ITERM-1958" significance="normal"><primary>MxSQL AB</primary><secondary>xxxxxxxxxxxx xxx</secondary></indexterm><indexterm id="mysqlian-CHP-2-ITERM-1959" significance="normal"><primary>Mxx OS X xxxxxxxxxxx</primary></indexterm><indexterm id="mysqlian-CHP-2-ITERM-1960" significance="normal"><primary>Uxxx xxxxxxxxxxx</primary><secondary>MxSQL xxxxxxx</secondary></indexterm><indexterm id="mysqlian-CHP-2-ITERM-1961" significance="normal"><primary>FxxxBSD xxxxxxxxxxx</primary></indexterm><indexterm id="mysqlian-CHP-2-ITERM-1962" significance="normal"><primary>Lxxxx xxxxxxxxxxx</primary></indexterm><indexterm id="mysqlian-CHP-2-ITERM-1963" significance="normal"><primary>Wxxxxxx xxxxxxxxxxx</primary><secondary>MxSQL xxxxxxx</secondary></indexterm><indexterm id="mysqlian-CHP-2-ITERM-1964" significance="normal"><primary>Nxxxxx NxxWxxx xxxxxxxxxxx</primary></indexterm>
 Txx MxSQL xxxxxxxx xxxxxx xxx xxxxxx xxxxxxxx xxxx xx xxxxxxx xxxxxxxxx xxxxxxxxx xxxxxxx, xxxxxxx Lxxxx, FxxxBSD, xxx x xxxx xxxxx xx Uxxx xxxxxxx: Sxx Sxxxxxx, IBM AIX, HP-UX, xxx xx xx. MxSQL AB xxx xxxx xxxxxxxxx x Mxx OS X xxxxxxx, x Nxxxxx NxxWxxx xxxxxxx, xxx xxxxxxx MS Wxxxxxx xxxxxxxx. Yxx xxx xxxxxx x xxxx xx MxSQL xxxx MxSQL AB’x xxxx (<ulink url="http://dev.mysql.com/downloads"/>) xx xxxx xxx xx xxx xxxxxx xxxxx (<ulink url="http://dev.mysql.com/downloads/mirrors.html"/>).
@@ -659,7 +659,7 @@ Wxxx xxx MxSQL xxxxxxxxxxxx xxxxxxxx xxxxxxxxxx xxx xxxxxxxxx xxx xxx xx xxx xxx
     </chapter>
 </part>
 
-    <appendix id="mysqlian-APP-A" xml:base="appa.xml">
+    <appendix id="mysqlian-APP-A">
       <title>Dxxxxxxxx</title>
       <para><indexterm id="mysqlian-APP-A-ITERM-4634" significance="normal"><primary>xxxxxxx</primary><secondary>xxxx xxxxx xxx</secondary></indexterm>
 Wxxx x xxxxx xx xxxxxxx xxxxx xxx <literal moreinfo="none">CREATE TABLE</literal> xxxxxxxxx, xxxxx xxxxxx xx x xxxxx xxxx xx xxxxxxxx xx xxx xx xxx xxxx xxxxx xxxxxxxxx xx MxSQL. A xxxxxx xx x xxxxx xxx xx xxxxx xx xxxxxxx xxxxx xxx <literal moreinfo="none">ALTER TABLE</literal> xxxxxxxxx. Dxxxxxxxx xxx xx xxxxxxxxx xxxx xxxxx xxxxx xxxxxx: xxxxxxx, xxxx xxx xxxx, xxx xxxxxx. Txxx xxxxxxxx xxxxxxxx x xxxxxxx xx xxxx xxxxx xxxxx xxxx xxxxx xxxxxxxxxxx.
@@ -1294,7 +1294,7 @@ Txx <literal moreinfo="none">SET</literal> xxxx xxxx xx xxxxxxx xx <literal more
         </refentry>
       </sect1>
     </appendix>
-    <appendix id="mysqlian-APP-B" xml:base="appb.xml">
+    <appendix id="mysqlian-APP-B">
       <title>Oxxxxxxxx</title>
       <para>Oxxxxxxxx xxx xxxx xx xxxxxxxxxxxx xx xxxxxxx xxxxxxxxxx. Ax xxxxxxxx xx xxxxxxxxx xxxxxx xxxxxxx xxx xxxxxx (x.x., xxxxxxx, xxxxxxx, xxxxxxx, xx xxxxxxxxxxx) xxx xxxxxxxxx xx xxxxxxxxxx xxxx. Txxxx xxx xxxx xxxxx xx xxxxxxxxx: xxxxxxxxxx, xxxxxxxxxx, xxxxxxx, xxx xxxxxxx. Txxx xxxxxxxx xxxxxxxx x xxxxxxx xx xxxxxxxxx xxxxxxx xx xxxxx xxxx xxxxx. Axxxxxxxxxxx, xxxx xxxxxxxx xxxxxxxx x xxxx xx xxxxxxx xxxxxxx xxxxxxxx xxxxxxxxxx xxx xxxxxxxxxx xxx xxxxxxx xxxxxxxxxxx.</para>
       <sect1 id="mysqlian-APP-B-SECT-1">
@@ -2020,7 +2020,7 @@ WHERE xxx_xxx NOT REGEXP
         </table>
       </sect1>
     </appendix>
-    <appendix id="mysqlian-APP-C" xml:base="appc.xml">
+    <appendix id="mysqlian-APP-C">
       <title>Sxxxxx xxx Exxxxxxxxxx Vxxxxxxxx</title>
       <para><indexterm id="mysqlian-APP-C-ITERM-4753" significance="normal"><primary>xxxxxxxxxxx xxxxxxxxx</primary></indexterm>
 Txx MxSQL xxxxxx, xxx xxxx xx xxx xxxxxxx xxx xxxxxxxxx, xxx xxxxxxx xxxxxxxxxxx xxxxxxxxx xxxxxxxx xx xxx xxxxxxxxx xxxxxx. Fxx xxxx xxxxxxxx, xxx xxxx xxx xxxxxxxx xxxx xx xxxxx xxxxxxxxx xx xxxxxxx-xxxx xxxxxxx xx xxxxxx xxx xx xx xxxxxx xxxx (x.x., <literal moreinfo="none">xx.xxx</literal> xx <literal moreinfo="none">xx.xxx</literal>, xxxxxxxxx xx xxxx xxxxxx). <link linkend="mysqlian-APP-C-TABLE-1">Txxxx C-d</link> xxxxx xxx xxxxxxxxx xxxx.
@@ -2276,7 +2276,7 @@ USER
       </table>
     </appendix>
   <index/>
-  <colophon id="colophon" xml:base="colo.xml">
+  <colophon id="colophon">
     <title>Cxxxxxxx</title>
     <para>Oxx xxxx xx xxx xxxxxx xx xxxxxx xxxxxxxx, xxx xxx xxxxxxxxxxxxxxx,
   xxx xxxxxxxx xxxx xxxxxxxxxxxx xxxxxxxx. Dxxxxxxxxxx xxxxxx xxxxxxxxxx xxx

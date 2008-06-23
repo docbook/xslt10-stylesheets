@@ -40,6 +40,15 @@ describe DocBook::Epub do
       num_covers.should > 0
       FileUtils.rm_r(cvr_tmpdir, :force => true)
     end
+
+    it "should use the <isbn> as dc:identifier for the 'Real Book' test document #{xml_file}" do
+      tmpdir = File.join(Dir::tmpdir(), "epubdcid"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epub_file}")
+      raise "Could not unzip #{epub_file}" unless success
+      opf_file = Dir.glob(File.join(tmpdir, "**", "*.opf")).first
+      File.open(opf_file).readlines.to_s.should =~ /identifier[^>]+>urn:isbn:[0-9]/
+    end
   end
 
   after(:all) do
