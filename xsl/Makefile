@@ -31,7 +31,7 @@ RELEASE_CLEAN_TARGETS = docsrc-clean
 # targets for this distro's "install" target to depend on
 INSTALL_DEPENDS = release tag
 
-# value of ZIP_EXCLUDES is a space-separated list of any file or
+# value of DISTRIB_EXCLUDES is a space-separated list of any file or
 # directory names (shell wildcards OK) that should be excluded
 # from the zip file and tarball for the release
 DISTRIB_EXCLUDES = \
@@ -40,6 +40,7 @@ DISTRIB_EXCLUDES = \
   doc/reference.fo$$ \
   doc/reference.pdf$$ \
   doc/HTML.manifest$$ \
+  epub/bin/spec \
   tools/xsl \
   xhtml/html2xhtml.xsl$$ \
   xhtml-1_1/html2xhtml.xsl$$ \
