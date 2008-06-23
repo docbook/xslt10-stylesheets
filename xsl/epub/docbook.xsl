@@ -206,8 +206,37 @@
 
           <xsl:element name="metadata">
             <xsl:element name="dc:identifier">
-              <xsl:attribute name="id"> <xsl:value-of select="$package-id"/> </xsl:attribute>
-              <xsl:value-of select="$unique-id"/>
+              <xsl:attribute name="id"><xsl:value-of select="$package-id"/></xsl:attribute>
+              <xsl:choose>
+                <xsl:when test="/appendix/appendixinfo/isbn|
+                                /article/articleinfo/isbn|
+                                /book/bookinfo/isbn|
+                                /chapter/chapterinfo/isbn|
+                                /glossary/glossaryinfo/isbn|
+                                /part/partinfo/isbn|
+                                /preface/prefaceinfo/isbn|
+                                /refentry/refentryinfo/isbn|
+                                /reference/referenceinfo/isbn|
+                                /refsect1/refsect1info/isbn|
+                                /refsect2/refsect2info/isbn|
+                                /refsect3/refsect3info/isbn|
+                                /refsection/refsectioninfo/isbn|
+                                /refsynopsisdiv/refsynopsisdivinfo/isbn|
+                                /sect1/sect1info/isbn|
+                                /sect2/sect2info/isbn|
+                                /sect3/sect3info/isbn|
+                                /sect4/sect4info/isbn|
+                                /sect5/sect5info/isbn|
+                                /section/sectioninfo/isbn|
+                                /setindex/setindexinfo/isbn|
+                                /set/setinfo/isbn">
+                  <xsl:text>urn:isbn:</xsl:text>
+                  <xsl:value-of select="/*/*/isbn"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="$unique-id"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:element>
 
             <xsl:element name="dc:title">
