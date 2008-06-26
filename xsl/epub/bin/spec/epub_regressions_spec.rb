@@ -41,6 +41,27 @@ describe DocBook::Epub do
     itemrefs.should == itemrefs.uniq
   end
 
+  it "should preserve content from <dedication> elements" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubdedtest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "xref.001.xml"), @tmpdir)
+      epubfile = File.join(tmpdir, "regress.ded.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+      FileUtils.copy(epubfile, ".re.ded.epub") if $DEBUG
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      glob = Dir.glob(File.join(tmpdir, "**", "*.opf"))
+      index_html_links = glob.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /href=["']index.html["']/}
+      index_html_links.should_not be_empty
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end  
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
