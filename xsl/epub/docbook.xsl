@@ -19,7 +19,6 @@
   <xsl:param name="chunk.tocs.and.lots">1</xsl:param>
   <xsl:param name="toc.section.depth">2</xsl:param>
   <xsl:param name="generate.toc">
-  article   toc,title
   book   toc,title
   </xsl:param>
 
@@ -56,12 +55,18 @@
   <!-- no navigation in .epub -->
   <xsl:param name="suppress.navigation" select="'1'"/> 
 
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="node" select="/*"/>
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:variable name="root.is.a.chunk">
     <xsl:choose>
       <xsl:when test="/*[not(self::book)][not(sect1) or not(section)]">
         <xsl:text>1</xsl:text>
       </xsl:when>
-      <xsl:when test="/book[*[last()][self::bookinfo]]">
+      <xsl:when test="/book[*[last()][self::bookinfo]]|book[bookinfo]">
         <xsl:text>1</xsl:text>
       </xsl:when>
       <xsl:when test="/bibliography">
@@ -428,7 +433,6 @@
     </xsl:call-template>
   </xsl:template>
 
-  <!-- TODO: Are we certain of this match list? -->
   <xsl:template match="book|
                        article|
                        part|
@@ -567,7 +571,8 @@
   </xsl:template>
 
   <xsl:template name="opf.guide">
-    <xsl:if test="$root.is.a.chunk = '0' or /*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+    <xsl:if test="contains($toc.params, 'toc') or 
+                  /*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
       <xsl:element name="guide">
         <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
         <xsl:if test="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
@@ -581,8 +586,7 @@
           </xsl:element>
         </xsl:if>  
 
-        <!-- TODO test against generate.toc -->
-        <xsl:if test="$root.is.a.chunk = '0'">
+        <xsl:if test="contains($toc.params, 'toc')">
           <xsl:element name="reference">
             <xsl:attribute name="href">
               <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
@@ -616,8 +620,7 @@
       </xsl:if>
 
 
-      <xsl:if test="$root.is.a.chunk = '0'">
-        <!-- TODO test against generate.toc -->
+      <xsl:if test="contains($toc.params, 'toc')">
         <xsl:element name="itemref">
           <xsl:attribute name="idref"> <xsl:value-of select="$epub.html.toc.id"/> </xsl:attribute>
           <xsl:attribute name="linear">yes</xsl:attribute>
@@ -665,8 +668,7 @@
         <xsl:attribute name="href"><xsl:value-of select="$epub.ncx.filename"/> </xsl:attribute>
       </xsl:element>
 
-      <!-- TODO test against generate.toc -->
-      <xsl:if test="$root.is.a.chunk = '0'">
+      <xsl:if test="contains($toc.params, 'toc')">
         <xsl:element name="item">
           <xsl:attribute name="id"> <xsl:value-of select="$epub.html.toc.id"/> </xsl:attribute>
           <xsl:attribute name="media-type">application/xhtml+xml</xsl:attribute>
@@ -702,6 +704,7 @@
       <!-- TODO: be nice to have a id="titlepage" here -->
       <xsl:apply-templates select="//part|
                                    //book[*[last()][self::bookinfo]]|
+                                   //book[bookinfo]|
                                    /set|
                                    /set/book|
                                    //reference|
@@ -934,11 +937,14 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- TODO: Are we certain of this match list? -->
+  <!-- Warning: While the test indicate this match list is accurate, it may 
+       need further tweaking to ensure _never_ dropping generated content (XHTML)
+       from the manifest (OPF file) -->
   <xsl:template
       match="set|
             book[parent::set]|
             book[*[last()][self::bookinfo]]|
+            book[bookinfo]|
             article|
             part|
             reference|

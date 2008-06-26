@@ -88,7 +88,6 @@ describe DocBook::Epub do
     FileUtils.copy(article_nosects_epubfile, ".as.epub") if $DEBUG
 
     article_nosects_epubfile.should be_valid_epub  
-
   end
 
 
@@ -204,6 +203,7 @@ describe DocBook::Epub do
       epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
       epubfile = File.join(tmpdir, "toclink.epub")
       epub.render_to_file(epubfile, $DEBUG)
+      FileUtils.copy(epubfile, ".tcl.epub") if $DEBUG
 
       success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
       raise "Could not unzip #{epubfile}" unless success
