@@ -34,31 +34,35 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-start = db.set
-        | db.book
-	| db.divisions
-	| db.components
-	| db.navigation.components
-	| db.section
-	| db.para
-
 include "../../docbook/src/core.rnc" {
-  start |= notAllowed
-  db.sidebar |= notAllowed
-  db.person |= notAllowed
-  db.org |= notAllowed
+  start = db.set
+   | db.book
+   | db.divisions
+   | db.components
+   | db.navigation.components
+   | db.section
+   | db.para
+   db.sidebar =
+      element sidebar {
+         db.sidebar.attlist,
+         db.sidebar.info,
+         db.all.blocks+, db.recursive.sections*
+      }
+db.person =
+      element person {
+         db.person.attlist,
+         db.personname,
+         (db.address|db.affiliation|db.email|db.uri|db.personblurb|db.mediaobject)*
+      }
+      
+db.org =
+      element org {
+         db.org.attlist,
+         db.orgname,
+         (db.address|db.affiliation|db.email|db.uri|db.orgdiv|db.mediaobject)*
+      }
+
   db.parameter = notAllowed
-  db.info |= notAllowed
-  db.titleforbidden.info |= notAllowed
-  db.titleonly.info |= notAllowed
-  db.titleonlyreq.info |= notAllowed
-  db.titlereq.info |= notAllowed
-  db.bibliographic.elements |= notAllowed
-  db.extension.blocks |= notAllowed
-}
-include "dc.rnc" {start |= notAllowed}
-include "dcterms.rnc" {start |= notAllowed}
-include "dcmitype.rnc"
 
 db.info =
 element info
@@ -120,6 +124,13 @@ db.bibliographic.elements =
 | db.title
 | db.titleabbrev
 
+  db.extension.blocks = db.dialogue | db.poetry
+}
+include "dc.rnc" {start |= notAllowed}
+include "dcterms.rnc" {start |= notAllowed}
+include "dcmitype.rnc"
+
+
 db.dublincore.elements = 
 dc.title
 | dc.creator 
@@ -177,29 +188,6 @@ dc.title
 | dcterms.license
 | dcterms.bibliographicCitation
 
-db.extension.blocks = db.dialogue | db.poetry
-
-   db.sidebar =
-      element sidebar {
-         db.sidebar.attlist,
-         db.sidebar.info,
-         db.all.blocks+, db.recursive.sections*
-      }
-
-db.person =
-      element person {
-         db.person.attlist,
-         db.personname,
-         (db.address|db.affiliation|db.email|db.uri|db.personblurb|db.mediaobject)*
-      }
-      
-db.org =
-      element org {
-         db.org.attlist,
-         db.orgname,
-         (db.address|db.affiliation|db.email|db.uri|db.orgdiv|db.mediaobject)*
-      }
-   
  db.speaker.role.attribute = attribute role { text }
  
    db.speaker.attlist =
