@@ -51,25 +51,32 @@
         <xsl:with-param name='style' select='w:pPr/w:pStyle/@w:val'/>
       </xsl:call-template>
     </xsl:variable>
-    <dbk:para>
-      <xsl:attribute name='rnd:style'>
-        <xsl:value-of select='$style'/>
-      </xsl:attribute>
-      <xsl:if test='w:pPr/w:pStyle/@w:val and
-                    $style != w:pPr/w:pStyle/@w:val'>
-        <xsl:attribute name='rnd:original-style'>
-          <xsl:value-of select='w:pPr/w:pStyle/@w:val'/>
-        </xsl:attribute>
-      </xsl:if>
+    <xsl:choose>
+      <xsl:when test='aml:annotation[@w:type = "Word.Deletion"] and
+                      not(aml:annotation[@w:type != "Word.Deletion"]) and
+                      count(*) = count(aml:annotation|w:pPr)'/>
+      <xsl:otherwise>
+        <dbk:para>
+          <xsl:attribute name='rnd:style'>
+            <xsl:value-of select='$style'/>
+          </xsl:attribute>
+          <xsl:if test='w:pPr/w:pStyle/@w:val and
+                        $style != w:pPr/w:pStyle/@w:val'>
+            <xsl:attribute name='rnd:original-style'>
+              <xsl:value-of select='w:pPr/w:pStyle/@w:val'/>
+            </xsl:attribute>
+          </xsl:if>
 
-      <xsl:if test='w:r[1][w:rPr/w:rStyle/@w:val = "attributes"] and
-                    w:r[2][w:rPr/w:rStyle/@w:val = "CommentReference"]'>
-        <xsl:apply-templates select='w:r[2]//w:r[w:rPr/w:rStyle/@w:val = "attribute-name"]'
-          mode='rnd:attributes'/>
-      </xsl:if>
+          <xsl:if test='w:r[1][w:rPr/w:rStyle/@w:val = "attributes"] and
+                        w:r[2][w:rPr/w:rStyle/@w:val = "CommentReference"]'>
+            <xsl:apply-templates select='w:r[2]//w:r[w:rPr/w:rStyle/@w:val = "attribute-name"]'
+              mode='rnd:attributes'/>
+          </xsl:if>
 
-      <xsl:apply-templates/>
-    </dbk:para>
+          <xsl:apply-templates/>
+        </dbk:para>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match='*' mode='rnd:attributes'>
@@ -382,5 +389,14 @@
   </xsl:template>
 
   <xsl:template match='w:hdr|w:ftr'/>
+
+  <xsl:template match='aml:annotation'>
+    <xsl:choose>
+      <xsl:when test='@w:type = "Word.Deletion"'/>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>

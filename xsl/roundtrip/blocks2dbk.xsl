@@ -211,7 +211,9 @@
           </xsl:when>
 
           <!-- TODO: the previous para-continue may not be associated with a list -->
-          <xsl:when test='preceding-sibling::*[1][self::dbk:para][starts-with(@rnd:style, "itemizedlist") or starts-with(@rnd:style, "orderedlist") or @rnd:style = "para-continue"]'/>
+
+          <!-- NB. Look back at the previous paragraph. There may be intervening tables or images. -->
+          <xsl:when test='preceding-sibling::dbk:para[1][starts-with(@rnd:style, "itemizedlist") or starts-with(@rnd:style, "orderedlist") or @rnd:style = "para-continue"]'/>
           <xsl:when test='substring-after(@rnd:style, "list") != 1'>
             <xsl:call-template name='rnd:error'>
               <xsl:with-param name='code'>list-wrong-level</xsl:with-param>
@@ -277,6 +279,7 @@
       </xsl:when>
 
       <xsl:when test='@rnd:style = "sidebar-title"'>
+        <!-- TODO: next sidebar should stop this sidebar -->
 	<xsl:variable name='stop.node'
 		      select='following-sibling::dbk:para[(not(@rnd:style) or @rnd:style = "") and
 			      normalize-space(.) = ""][1]'/>
@@ -1225,11 +1228,22 @@
         mode='rnd:continue'/>
     </xsl:if>
   </xsl:template>
+  <xsl:template match='dbk:informaltable' mode='rnd:continue'>
+    <xsl:apply-templates select='.'>
+      <xsl:with-param name='in-list' select='true()'/>
+    </xsl:apply-templates>
+    <xsl:apply-templates select='following-sibling::*[1]'
+      mode='rnd:continue'/>
+  </xsl:template>
 
   <!-- Tables -->
 
   <xsl:template match='dbk:informaltable'>
+    <xsl:param name='in-list' select='false()'/>
+
     <xsl:choose>
+      <xsl:when test='not($in-list) and
+                      preceding-sibling::dbk:para[1][starts-with(@rnd:style, "itemizedlist") or starts-with(@rnd:style, "orderedlist") or @rnd:style = "para-continue"]'/>
       <xsl:when test='preceding-sibling::*[1][self::dbk:para][@rnd:style ="table-title"]'>
 	<dbk:table>
 	  <xsl:apply-templates select='@*' mode='rnd:copy'/>
