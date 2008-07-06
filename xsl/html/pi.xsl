@@ -403,7 +403,7 @@
 </xsl:template> 
 
 <doc:pi name="dbhtml_linenumbering.everyNth" xmlns="">
-  <refpurpose>Specifies interval for lines numbers in verbatims</refpurpose>
+  <refpurpose>Specifies interval for line numbers in verbatims</refpurpose>
   <refdescription>
     <para>Use the <tag class="xmlpi">dbhtml linenumbering.everyNth</tag> PI as a child
       of a “verbatim” element – <tag>programlisting</tag>,
