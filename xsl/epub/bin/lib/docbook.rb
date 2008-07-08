@@ -19,13 +19,19 @@ module DocBook
 
     attr_reader :output_dir
 
-    def initialize(docbook_file, output_dir=OUTPUT_DIR, css_file=nil)
+    def initialize(docbook_file, output_dir=OUTPUT_DIR, css_file=nil, customization_layer=nil)
       @docbook_file = docbook_file
       @output_dir = output_dir
       @meta_dir  = File.join(@output_dir, META_DIR)
       @oebps_dir = File.join(@output_dir, OEBPS_DIR)
       @css_file = css_file ? File.expand_path(css_file) : css_file
       @to_delete = []
+      
+      if customization_layer
+        @stylesheet = File.expand_path(customization_layer)
+      else
+        @stylesheet = STYLESHEET
+      end
 
       unless File.exist?(@docbook_file)
         raise ArgumentError.new("File #{@docbook_file} does not exist")
@@ -63,7 +69,7 @@ module DocBook
       oebps =           "--stringparam epub.oebps.dir #{@oebps_dir}/" 
       options = "--xinclude #{chunk_quietly} #{callout_path} #{callout_limit} #{callout_ext} #{base} #{meta} #{oebps} #{html_stylesheet}"
       # Double-quote stylesheet & file to help Windows cmd.exe
-      db2epub_cmd = "#{XSLT_PROCESSOR} #{options} \"#{STYLESHEET}\" \"#{@docbook_file}\""
+      db2epub_cmd = "#{XSLT_PROCESSOR} #{options} \"#{@stylesheet}\" \"#{@docbook_file}\""
       STDERR.puts db2epub_cmd if $DEBUG
       success = system(db2epub_cmd)
       raise "Could not render as .epub to #{output_file} (#{db2epub_cmd})" unless success

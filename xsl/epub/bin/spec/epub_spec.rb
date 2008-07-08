@@ -218,6 +218,32 @@ describe DocBook::Epub do
     end  
   end
 
+  it "should allow for the stylesheets to be overridden by a customization layer" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubcusttest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      css_file = nil
+      customization_layer = File.join(@filedir, "test_cust.xsl")
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "xref.001.xml"), @tmpdir, css_file, customization_layer)
+      epubfile = File.join(tmpdir, "cust.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+      FileUtils.copy(epubfile, ".cust.epub") if $DEBUG
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      glob = Dir.glob(File.join(tmpdir, "**", "*.html")) 
+      # The customization layer changes the style of cross references to _not_
+      # include the title, so it should only appear in the part file and the
+      # TOC
+      files_including_part_title = glob.find_all {|html_file| File.open(html_file).readlines.to_s =~ />[^<]*Part One Title/}
+      files_including_part_title.length.should == 2
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end  
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
