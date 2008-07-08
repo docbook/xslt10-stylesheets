@@ -554,6 +554,13 @@
         </dbk:link>
       </xsl:when>
 
+      <!-- In rare circumstances, Word inserts an empty element that appears to be something like a space in the editor -->
+      <xsl:when test='(@rnd:style = "EndnoteReference" or
+                      @rnd:style = "FootnoteReference") and
+                      . = ""'>
+        <xsl:text> </xsl:text>
+      </xsl:when>
+
       <xsl:otherwise>
         <xsl:call-template name='rnd:error'>
           <xsl:with-param name='code'>unknown-style</xsl:with-param>
@@ -806,6 +813,7 @@
             <!-- TODO: check style of author; mixed content or structured -->
             <xsl:apply-templates mode='rnd:personname'/>
           </dbk:personname>
+          <xsl:apply-templates mode='rnd:author-personblurb'/>
           <xsl:apply-templates select='following-sibling::*[1]'
             mode='rnd:author'/>
         </dbk:author>
@@ -1087,6 +1095,19 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='text()' mode='rnd:author-personblurb'/>
+  <xsl:template match='dbk:emphasis' mode='rnd:author-personblurb'/>
+  <xsl:template match='dbk:footnote' mode='rnd:author-personblurb'>
+    <dbk:personblurb>
+      <dbk:para>
+        <xsl:copy>
+          <xsl:apply-templates select='@*' mode='rnd:copy'/>
+          <xsl:apply-templates/>
+        </xsl:copy>
+      </dbk:para>
+    </dbk:personblurb>
   </xsl:template>
 
   <xsl:template match='dbk:para' mode='rnd:author'>
