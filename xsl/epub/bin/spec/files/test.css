@@ -1,4 +1,11 @@
+@font-face {
+  font-family: "DejaVu Serif";
+  font-style: normal;
+  font-weight: normal;
+  src:url(DejaVuSerif.otf);
+}
 h2 {
+  font-family: "DejaVu Serif";
   text-align: center;
   color: #dda0dd;
 }

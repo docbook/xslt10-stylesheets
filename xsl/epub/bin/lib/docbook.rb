@@ -19,12 +19,14 @@ module DocBook
 
     attr_reader :output_dir
 
-    def initialize(docbook_file, output_dir=OUTPUT_DIR, css_file=nil, customization_layer=nil)
+    def initialize(docbook_file, output_dir=OUTPUT_DIR, css_file=nil, customization_layer=nil, embedded_fonts=[])
       @docbook_file = docbook_file
       @output_dir = output_dir
       @meta_dir  = File.join(@output_dir, META_DIR)
       @oebps_dir = File.join(@output_dir, OEBPS_DIR)
       @css_file = css_file ? File.expand_path(css_file) : css_file
+      @embedded_fonts = embedded_fonts
+      raise NotImplementedError if @embedded_fonts.length > 1
       @to_delete = []
       
       if customization_layer
@@ -65,9 +67,22 @@ module DocBook
       callout_ext =     "--stringparam callout.graphics.extension #{CALLOUT_EXT}" 
       html_stylesheet = "--stringparam html.stylesheet #{File.basename(@css_file)}" if @css_file
       base =            "--stringparam base.dir #{@oebps_dir}/" 
+      unless @embedded_fonts.empty? 
+        font =            "--stringparam epub.embedded.font \"#{File.basename(@embedded_fonts.first)}\"" 
+      end  
       meta =            "--stringparam epub.metainf.dir #{@meta_dir}/" 
       oebps =           "--stringparam epub.oebps.dir #{@oebps_dir}/" 
-      options = "--xinclude #{chunk_quietly} #{callout_path} #{callout_limit} #{callout_ext} #{base} #{meta} #{oebps} #{html_stylesheet}"
+      options = ["--xinclude", 
+                 chunk_quietly, 
+                 callout_path, 
+                 callout_limit, 
+                 callout_ext, 
+                 base, 
+                 font, 
+                 meta, 
+                 oebps, 
+                 html_stylesheet,
+                ].join(" ")
       # Double-quote stylesheet & file to help Windows cmd.exe
       db2epub_cmd = "#{XSLT_PROCESSOR} #{options} \"#{@stylesheet}\" \"#{@docbook_file}\""
       STDERR.puts db2epub_cmd if $DEBUG
@@ -84,6 +99,7 @@ module DocBook
       oebps  = File.basename(@oebps_dir)
       images = copy_images()
       csses  = copy_csses()
+      fonts  = copy_fonts()
       callouts = copy_callouts()
       # zip -X -r ../book.epub mimetype META-INF OEBPS
       # Double-quote stylesheet & file to help Windows cmd.exe
@@ -108,6 +124,16 @@ module DocBook
         }  
       end  
       return new_callout_images
+    end
+
+    def copy_fonts
+      new_fonts = []
+      @embedded_fonts.each {|font_file|
+        font_new_filename = File.join(@oebps_dir, File.basename(font_file))
+        FileUtils.cp(font_file, font_new_filename)
+        new_fonts << font_file
+      }
+      return new_fonts
     end
 
     def copy_csses

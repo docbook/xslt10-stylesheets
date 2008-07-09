@@ -36,7 +36,10 @@ describe DocBook::Epub do
 
     @css_file_base = "test.css"
     @css_file = File.join(@filedir, @css_file_base)
-    @css_epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file)
+    customization_layer = nil
+    @embedded_font_file_base = "DejaVuSerif.otf"
+    embedded_fonts = [File.join(@filedir, @embedded_font_file_base)]
+    @css_epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file, customization_layer, embedded_fonts)
     @css_epubfile = File.join(@tmpdir, "css.epub")
     @css_epub.render_to_file(@css_epubfile, $DEBUG)
 
@@ -180,7 +183,7 @@ describe DocBook::Epub do
     end
   end
 
-  it "should include a CSS link in OPF file when a CSS file has been provided" do
+  it "should include a reference in the OPF manifest to the provided CSS file" do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
@@ -189,6 +192,37 @@ describe DocBook::Epub do
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<item [^>]*#{@css_file_base}/}
       opf_links.should_not be_empty
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end
+  end
+
+  it "should include a reference in the OPF manifest to the embedded font" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubfontman"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      raise "Could not unzip #{@css_epubfile}" unless success
+      opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
+      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<item [^>]*#{@embedded_font_file_base}/}
+      opf_links.should_not be_empty
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end
+  end
+
+  it "should include the embedded font file in the bundle" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubfontbundle"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      raise "Could not unzip #{@css_epubfile}" unless success
+      font_files = Dir.glob(File.join(tmpdir, "**", @embedded_font_file_base))
+      font_files.should_not be_empty
     rescue => e
       raise e
     ensure
