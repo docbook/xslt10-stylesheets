@@ -62,6 +62,29 @@ describe DocBook::Epub do
     end  
   end
 
+  it "should use the correct mimetype for CSS files" do
+    begin
+      css_file_base = "test.css"
+      css_file = File.join(@filedir, css_file_base)
+      css_epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, css_file)
+      css_epubfile = File.join(@tmpdir, "css.epub")
+      css_epub.render_to_file(css_epubfile, $DEBUG)
+
+      tmpdir = File.join(Dir::tmpdir(), "epubcssreg"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{css_epubfile}")
+      raise "Could not unzip #{css_epubfile}" unless success
+      opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
+      opf_files.find_all {|opf_file| 
+        File.open(opf_file).readlines.to_s.should_not =~ /media-type=.test\/css/
+      }  
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end  
+  end  
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
