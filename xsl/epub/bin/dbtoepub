@@ -11,6 +11,7 @@
 # Specific options:
 #     -c, --css [FILE]                 Use FILE for CSS on generated XHTML.
 #     -d, --debug                      Show debugging output.
+#     -f, --font [OTF FILE]            Embed OTF FILE in .epub.
 #     -h, --help                       Display usage info.
 #     -s, --stylesheet [XSL FILE]      Use XSL FILE as a customization
 #                                        layer (imports epub/docbook.xsl).
@@ -27,6 +28,7 @@ require 'docbook'
 verbose = false
 debug = false
 css_file = nil
+otf_files = []
 customization_layer = nil
 
 # Set up the OptionParser
@@ -43,6 +45,7 @@ opts.banner = "Usage: #{File.basename($0)} [OPTIONS] [DocBook Files]
 Specific options:"
 opts.on("-c", "--css [FILE]", "Use FILE for CSS on generated XHTML.") {|f| css_file = f}
 opts.on("-d", "--debug", "Show debugging output.") {debug = true; verbose = true}
+opts.on("-f", "--font [OTF FILE]", "Embed OTF FILE in .epub.") {|f| otf_files << f}
 opts.on("-h", "--help", "Display usage info.") {puts opts.to_s; exit 0}
 opts.on("-s", "--stylesheet [XSL FILE]", "Use XSL FILE as a customization layer (imports epub/docbook.xsl).") {|f| customization_layer = f}
 opts.on("-v", "--verbose", "Make output verbose.") {verbose = true}
@@ -55,7 +58,7 @@ end
 
 db_files.each {|docbook_file|
   dir = File.expand_path(File.join(Dir.tmpdir, ".epubtmp#{Time.now.to_f.to_s}"))
-  e = DocBook::Epub.new(docbook_file, dir, css_file, customization_layer)
+  e = DocBook::Epub.new(docbook_file, dir, css_file, customization_layer, otf_files)
   epub_file = File.basename(docbook_file, ".xml") + ".epub"
   puts "Rendering DocBook file #{docbook_file} to #{epub_file}" if verbose
   e.render_to_file(epub_file)

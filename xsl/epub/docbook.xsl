@@ -41,6 +41,8 @@
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
   <xsl:param name="epub.metainf.dir" select="'META-INF/'"/> 
 
+  <xsl:param name="epub.embedded.font"></xsl:param>
+
   <!-- Per Bob Stayton:
        """Process your documents with the css.decoration parameter set to zero. 
           That will avoid the use of style attributes in XHTML elements where they are not permitted."""
@@ -700,6 +702,26 @@
           <xsl:attribute name="media-type">application/xhtml+xml</xsl:attribute>
         </xsl:element>
       </xsl:if>  
+
+     <xsl:if test="$epub.embedded.font != ''">
+        <xsl:element name="item">
+          <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+          <xsl:attribute name="id">epub.embedded.font</xsl:attribute>
+          <xsl:attribute name="href"><xsl:value-of select="$epub.embedded.font"/></xsl:attribute>
+          <xsl:choose>
+            <xsl:when test="contains($epub.embedded.font, 'otf')">
+              <xsl:attribute name="media-type">font/opentype</xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:message terminate="yes">
+                <xsl:text>ERROR: Only OpenType fonts are supported in .epub! (</xsl:text>
+                <xsl:value-of select="$epub.embedded.font"/>
+                <xsl:text>)</xsl:text>
+              </xsl:message>
+            </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+     </xsl:if>
 
       <!-- TODO: be nice to have a id="titlepage" here -->
       <xsl:apply-templates select="//part|
