@@ -685,7 +685,7 @@
       <xsl:if test="$html.stylesheet != ''">
         <xsl:element name="item">
           <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
-          <xsl:attribute name="media-type">test/css</xsl:attribute>
+          <xsl:attribute name="media-type">text/css</xsl:attribute>
           <xsl:attribute name="id">css</xsl:attribute>
           <xsl:attribute name="href"><xsl:value-of select="$html.stylesheet"/></xsl:attribute>
         </xsl:element>
