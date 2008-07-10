@@ -110,6 +110,9 @@ Mxxx xx xxx xxxxxxxxxxxx xxxx xx xxxxxxxxxxxxx xxx xxxxxxx xx xxxxxxxxxxx
       <imageobject role="thumbnail" remap="cs">
         <imagedata format="GIF" fileref="covers/cvr_cs.gif"/>
       </imageobject>
+      <imageobject role="front-large" remap="lrg">
+        <imagedata width="600px" format="JPG" fileref="covers/cvr_lrg.jpg"/>
+      </imageobject>
     </mediaobject>
   </bookinfo>
   <dedication>
