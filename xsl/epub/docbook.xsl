@@ -891,7 +891,7 @@
           <xsl:attribute name="id"> 
             <xsl:choose>
               <!-- TODO: Remove hardcoded 'front' -->
-              <xsl:when test="ancestor::mediaobject[@role='cover'] and @role='front'">
+              <xsl:when test="ancestor::mediaobject[@role='cover'] and ../@role='front-large'">
                 <xsl:value-of select="$epub.cover.image.id"/>
               </xsl:when>
               <xsl:otherwise>
@@ -941,7 +941,7 @@
         <xsl:attribute name="id"> 
           <xsl:choose>
             <!-- TODO: Remove hardcoded 'front' -->
-            <xsl:when test="ancestor::mediaobject[@role='cover'] and @role='front'">
+            <xsl:when test="ancestor::mediaobject[@role='cover'] and ../@role='front-large'">
               <xsl:value-of select="$epub.cover.image.id"/>
             </xsl:when>
             <xsl:otherwise>
@@ -1368,7 +1368,7 @@
                 <xsl:value-of select="$epub.cover.image.id"/>
               </xsl:attribute>
               <!-- TODO: Remove hardcoded 'front' -->
-              <xsl:apply-templates select="imageobject[@role='front']"/>
+              <xsl:apply-templates select="imageobject[@role='front-large']"/>
             </xsl:element>
           </xsl:element>
         </xsl:element>
