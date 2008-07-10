@@ -34,6 +34,7 @@ describe DocBook::Epub do
 
     @html_files = Dir.glob(File.join(@tmpdir2, "**", "*.html"))
     @opf_file = Dir.glob(File.join(@tmpdir2, "**", "*.opf")).first
+    @opf_lines = File.open(@opf_file).readlines
   end  
 
   it "should be able to render a valid .epub for the 'Real Book' test document #{@xml_file}" do
@@ -45,8 +46,28 @@ describe DocBook::Epub do
     @cover_links.length.should == 1
   end  
 
+  it "should mark the HTML cover as not linear for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.each {|l|
+      if l =~ /itemref[^>]+idref=['"]cover['"]/
+        l.should =~ /item[^>]+linear=['"]no['"]/
+      end  
+    }  
+  end
+
+  it "should use the cover image @id for the opf/meta[@name='cover'] for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.each {|l|
+      if l =~ /meta[^>]+name=['"]cover['"]/
+        l.should =~ /meta[^>]+cover-image/
+      end  
+    }  
+  end
+
+  it "should reference the cover in the OPF guide for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.to_s.should =~ /reference[^>]+type=['"]cover['"]/
+  end
+
   it "should use the <isbn> as dc:identifier for the 'Real Book' test document #{@xml_file}" do
-    File.open(@opf_file).readlines.to_s.should =~ /identifier[^>]+>urn:isbn:[0-9]/
+    @opf_lines.to_s.should =~ /identifier[^>]+>urn:isbn:[0-9]/
   end
 
   after(:all) do

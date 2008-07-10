@@ -263,7 +263,7 @@
               <xsl:element name="meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
-                  <xsl:value-of select="$epub.cover.id"/>
+                  <xsl:value-of select="$epub.cover.image.id"/>
                 </xsl:attribute>
               </xsl:element>
             </xsl:if>
