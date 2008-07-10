@@ -105,7 +105,7 @@
     <xsl:variable name='table'
 		  select='preceding-sibling::dbk:informaltable[1]'/>
     <xsl:variable name='figure'
-		  select='preceding-sibling::dbk:para[dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""][1]'/>
+		  select='preceding-sibling::dbk:para[@rnd:style = "informalfigure-imagedata" or (dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = "")][1]'/>
     <xsl:variable name='caption'
 		  select='following-sibling::dbk:para[@rnd:style = "caption" or @rnd:style = "Caption"]'/>
 
@@ -130,11 +130,11 @@
 		      following-sibling::*[1][self::dbk:informaltable]'/>
       <xsl:when test='$suppress and
 		      @rnd:style = "figure-title" and
-		      following-sibling::*[1][self::dbk:para][dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""]'/>
+		      following-sibling::*[1][self::dbk:para][@rnd:style = "informalfigure-imagedata" or (dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = "")]'/>
       <xsl:when test='$suppress and
 		      (@rnd:style = "caption" or @rnd:style = "Caption") and
 		      (preceding-sibling::*[self::dbk:informaltable] or
-		      preceding-sibling::*[self::dbk:para][dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""])'/>
+		      preceding-sibling::*[self::dbk:para][@rnd:style = "informalfigure-imagedata" or (dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = "")])'/>
 
       <xsl:when test='$suppress and
 		      $table and
@@ -143,7 +143,7 @@
       <xsl:when test='$suppress and
 		      $figure and
 		      $caption and
-		      generate-id($caption/preceding-sibling::dbk:para[dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = ""][1]) = generate-id($figure)'/>
+		      generate-id($caption/preceding-sibling::dbk:para[@rnd:style = "informalfigure-imagedata" or (dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = "")][1]) = generate-id($figure)'/>
 
       <!-- Ignore empty paragraphs -->
       <xsl:when test='(not(@rnd:style) or
@@ -423,6 +423,9 @@
       </xsl:when>
 
       <xsl:when test='@rnd:style = "informalfigure-imagedata"'>
+        <xsl:variable name='caption.next'
+          select='following-sibling::dbk:para[@rnd:style = "caption" or @rnd:style = "Caption"][1]'/>
+
         <xsl:choose>
           <xsl:when test='preceding-sibling::*[1][self::dbk:para][@rnd:style = "figure-title"]'>
             <dbk:figure>
@@ -437,8 +440,9 @@
                   <dbk:imagedata fileref='{.}'/>
                 </dbk:imageobject>
               </dbk:mediaobject>
-              <xsl:apply-templates select='following-sibling::*[1][self::dbk:para][@rnd:style = "caption" or @rnd:style = "Caption"]'
-                mode='rnd:caption'/>
+              <xsl:call-template name='rnd:figure-text-caption'>
+                <xsl:with-param name='caption' select='$caption.next'/>
+              </xsl:call-template>
             </dbk:figure>
           </xsl:when>
           <xsl:otherwise>
@@ -449,8 +453,9 @@
                   <dbk:imagedata fileref='{.}'/>
                 </dbk:imageobject>
               </dbk:mediaobject>
-              <xsl:apply-templates select='following-sibling::*[1][self::dbk:para][@rnd:style = "caption" or @rnd:style = "Caption"]'
-                mode='rnd:caption'/>
+              <xsl:call-template name='rnd:figure-text-caption'>
+                <xsl:with-param name='caption' select='$caption.next'/>
+              </xsl:call-template>
             </dbk:informalfigure>
           </xsl:otherwise>
         </xsl:choose>
@@ -481,6 +486,29 @@
           <xsl:with-param name='code'>unknown-style</xsl:with-param>
           <xsl:with-param name='message'>unknown paragraph style "<xsl:value-of select='@rnd:style'/>" encountered</xsl:with-param>
         </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!-- Determine if the caption belongs to the current figure.
+       If so, then process the textobject content and the caption.
+    -->
+  <xsl:template name='rnd:figure-text-caption'>
+    <xsl:param name='caption' select='/..'/>
+
+    <xsl:variable name='textobjs'
+      select='following-sibling::*[following-sibling::*[generate-id() = generate-id($caption)]]'/>
+
+    <xsl:choose>
+      <xsl:when test='not($caption)'/> <!-- nothing to do -->
+      <xsl:when test='$textobjs[self::dbk:informaltable |
+                      self::dbk:inlinemediaobject |
+                      self::dbk:para[@rnd:style = "informalfigure-imagedata" or
+                      @rnd:style = "mediaobject-imagedata"]]'/> <!-- caption belongs to something else -->
+      <xsl:otherwise>
+        <xsl:apply-templates select='$textobjs' mode='rnd:textobject'/>
+
+        <xsl:apply-templates select='$caption' mode='rnd:caption'/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -1076,6 +1104,7 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match='dbk:footnote' mode='rnd:personname'/>
   <xsl:template match='dbk:emphasis' mode='rnd:personname'>
     <xsl:choose>
       <xsl:when test='@rnd:style = "honorific" or
@@ -1378,12 +1407,12 @@
 		    select='following-sibling::*[following-sibling::*[generate-id($caption) = generate-id()]]'/>
       <xsl:if test='$content'>
 	<dbk:textobject>
-	  <xsl:apply-templates select='$content' mode='rnd:table-textobject'/>
+	  <xsl:apply-templates select='$content' mode='rnd:textobject'/>
 	</dbk:textobject>
       </xsl:if>
     </xsl:if>
   </xsl:template>
-  <xsl:template match='dbk:para' mode='rnd:table-textobject'>
+  <xsl:template match='dbk:para' mode='rnd:textobject'>
     <xsl:call-template name='rnd:para'>
       <xsl:with-param name='suppress' select='false()'/>
     </xsl:call-template>
