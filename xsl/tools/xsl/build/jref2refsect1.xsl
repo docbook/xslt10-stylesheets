@@ -39,7 +39,7 @@
 
 <xsl:template match="refdescription">
   <refsect1>
-    <title></title>
+    <title>Description</title>
     <xsl:apply-templates/>
   </refsect1>
 </xsl:template>
