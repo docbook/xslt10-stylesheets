@@ -82,6 +82,7 @@
   <refdescription>
     <para>Use the <tag class="xmlpi">dbfo bgcolor</tag> PI as child of a table row
       or cell to set a background color for that table row or cell.</para>
+    <para>This PI works for both CALS and HTML tables.</para>
   </refdescription>
   <refsynopsisdiv>
     <synopsis><tag class="xmlpi">dbfo bgcolor="<replaceable>color</replaceable>"</tag></synopsis>
@@ -545,9 +546,9 @@
 </xsl:template>
 
 <doc:pi name="dbfo_orientation" xmlns="">
-  <refpurpose>Specifies the orientation for table row or cell</refpurpose>
+  <refpurpose>Specifies the orientation for a CALS table row or cell</refpurpose>
   <refdescription>
-    <para>Use the <tag class="xmlpi">dbfo orientation</tag> PI as a child of an
+    <para>Use the <tag class="xmlpi">dbfo orientation</tag> PI as a child of a CALS
       <tag>table</tag> row or cell to specify the orientation
       (rotation) for the row or cell.</para>
   </refdescription>
@@ -612,11 +613,11 @@
 </xsl:template>
 
 <doc:pi name="dbfo_rotated-width" xmlns="">
-  <refpurpose>Specifies the width for a table <tag>entry</tag> or
+  <refpurpose>Specifies the width for a CALS table <tag>entry</tag> or
     <tag>row</tag></refpurpose>
   <refdescription>
-    <para>Use the <tag class="xmlpi">dbfo rotated-width</tag> PI as a child of an
-      <tag>entry</tag> or <tag>row</tag> instance to specify the
+    <para>Use the <tag class="xmlpi">dbfo rotated-width</tag> PI as a child of 
+      <tag>entry</tag> or <tag>row</tag> instance in a CALS table to specify the
       width of that the <tag>entry</tag> or <tag>row</tag>; or
       use it higher up in table to cause the width to be inherited
       recursively down.</para>
@@ -719,12 +720,12 @@
 </xsl:template>
 
 <doc:pi name="dbfo_table-width" xmlns="">
-  <refpurpose>Specifies the width for a table or for revhistory
+  <refpurpose>Specifies the width for a CALS table or for revhistory
     output</refpurpose>
   <refdescription>
     <para>Use the <tag class="xmlpi">dbfo table-width</tag> PI as a child or
-      sibling of a <tag>table</tag>, or as a child of an
-      <tag>informaltable</tag>, <tag>entrybl</tag>, or
+      sibling of a CALS <tag>table</tag>, or as a child of an
+      <tag>informaltable</tag>, <tag>entrytbl</tag>, or
       <tag>revhistory</tag> instance (which is rendered as a table
       in output) to specify the width of the table in output.</para>
   </refdescription>
