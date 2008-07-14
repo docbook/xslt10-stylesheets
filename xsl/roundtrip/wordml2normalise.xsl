@@ -118,16 +118,7 @@
       <xsl:when test='w:rPr/w:rStyle/@w:val = "CommentReference"'/>
       <xsl:when test='w:pict'>
         <xsl:variable name='filename'>
-          <xsl:choose>
-            <xsl:when test='contains(w:pict/w:binData/@w:name, "wordml://")'>
-              <xsl:value-of select='substring-after(w:pict/w:binData/@w:name, "wordml://")'/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text>image</xsl:text>
-              <xsl:value-of select='count(preceding::w:pict) + 1'/>
-              <xsl:text>.jpg</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:call-template name='rnd:image-filename'/>
         </xsl:variable>
 
         <xsl:call-template name='rnd:handle-image-data'>
@@ -197,7 +188,21 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-  <!-- An application may wish to override this template -->
+  <!-- An application may wish to override these templates -->
+  <xsl:template name='rnd:image-filename'>
+    <xsl:param name='pict' select='w:pict'/>
+
+    <xsl:choose>
+      <xsl:when test='contains($pict/w:binData/@w:name, "wordml://")'>
+        <xsl:value-of select='substring-after($pict/w:binData/@w:name, "wordml://")'/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>image</xsl:text>
+        <xsl:value-of select='count($pict/preceding::w:pict) + 1'/>
+        <xsl:text>.jpg</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
   <xsl:template name='rnd:handle-image-data'>
     <xsl:param name='filename'/>
     <xsl:param name='data'/>
