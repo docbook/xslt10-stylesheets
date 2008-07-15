@@ -55,6 +55,12 @@
       <xsl:when test='aml:annotation[@w:type = "Word.Deletion"] and
                       not(aml:annotation[@w:type != "Word.Deletion"]) and
                       count(*) = count(aml:annotation|w:pPr)'/>
+
+      <!-- Eliminate paragraphs that have no content.
+           These are section or page breaks.
+        -->
+      <xsl:when test='not(w:r|w:hlink|w:tbl)'/>
+
       <xsl:otherwise>
         <dbk:para>
           <xsl:attribute name='rnd:style'>
