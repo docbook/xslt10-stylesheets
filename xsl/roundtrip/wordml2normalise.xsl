@@ -59,7 +59,8 @@
       <!-- Eliminate paragraphs that have no content.
            These are section or page breaks.
         -->
-      <xsl:when test='not(w:r|w:hlink|w:tbl)'/>
+      <xsl:when test='not(w:r|w:hlink|w:tbl) and
+                      w:pPr/w:sectPr'/>
 
       <xsl:otherwise>
         <dbk:para>
