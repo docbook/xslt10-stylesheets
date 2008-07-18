@@ -73,6 +73,7 @@
 <!ENTITY header.rule SYSTEM "../params/header.rule.xml">
 <!ENTITY highlight.default.language SYSTEM "../params/highlight.default.language.xml"> 
 <!ENTITY highlight.source SYSTEM "../params/highlight.source.xml"> 
+<!ENTITY highlight.xslthl.config SYSTEM "../params/highlight.xslthl.config.xml"> 
 <!ENTITY html.append SYSTEM "../params/html.append.xml">
 <!ENTITY html.base SYSTEM "../params/html.base.xml">
 <!ENTITY html.cleanup SYSTEM "../params/html.cleanup.xml">

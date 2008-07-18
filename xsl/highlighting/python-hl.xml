@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-Syntax highlighting definition for Java
+Syntax highlighting definition for Python
 
 xslthl - XSLT Syntax Highlighting
 http://sourceforge.net/projects/xslthl/
@@ -29,16 +29,21 @@ Michiel Hendriks <elmuerte at users.sourceforge.net>
 
 -->
 <highlighters>
-	<highlighter type="multiline-comment">
-		<start>/**</start>
-		<end>*/</end>
-		<style>doccomment</style>
+	<highlighter type="annotation">
+		<!-- these are actually called decorators -->
+		<start>@</start>
+		<valueStart>(</valueStart>
+		<valueEnd>)</valueEnd>
 	</highlighter>
-	<highlighter type="multiline-comment">
-		<start>/*</start>
-		<end>*/</end>
+	<highlighter type="oneline-comment">#</highlighter>
+	<highlighter type="string">
+		<string>"""</string>
+		<spanNewLines />
 	</highlighter>
-	<highlighter type="oneline-comment">//</highlighter>
+	<highlighter type="string">
+		<string>'''</string>
+		<spanNewLines />
+	</highlighter>
 	<highlighter type="string">
 		<string>"</string>
 		<escape>\</escape>
@@ -47,71 +52,49 @@ Michiel Hendriks <elmuerte at users.sourceforge.net>
 		<string>'</string>
 		<escape>\</escape>
 	</highlighter>
-	<highlighter type="annotation">
-		<start>@</start>
-		<valueStart>(</valueStart>
-		<valueEnd>)</valueEnd>
-	</highlighter>
 	<highlighter type="hexnumber">
 		<prefix>0x</prefix>
+		<suffix>l</suffix>
 		<ignoreCase />
 	</highlighter>
 	<highlighter type="number">
 		<point>.</point>
+		<pointStarts />
 		<exponent>e</exponent>
-		<suffix>f</suffix>
-		<suffix>d</suffix>
 		<suffix>l</suffix>
 		<ignoreCase />
 	</highlighter>
 	<highlighter type="keywords">
-		<keyword>abstract</keyword>
-		<keyword>boolean</keyword>
-		<keyword>break</keyword>
-		<keyword>byte</keyword>
-		<keyword>case</keyword>
-		<keyword>catch</keyword>
-		<keyword>char</keyword>
-		<keyword>class</keyword>
-		<keyword>const</keyword>
-		<keyword>continue</keyword>
-		<keyword>default</keyword>
-		<keyword>do</keyword>
-		<keyword>double</keyword>
-		<keyword>else</keyword>
-		<keyword>extends</keyword>
-		<keyword>final</keyword>
-		<keyword>finally</keyword>
-		<keyword>float</keyword>
-		<keyword>for</keyword>
-		<keyword>goto</keyword>
-		<keyword>if</keyword>
-		<keyword>implements</keyword>
-		<keyword>import</keyword>
-		<keyword>instanceof</keyword>
-		<keyword>int</keyword>
-		<keyword>interface</keyword>
-		<keyword>long</keyword>
-		<keyword>native</keyword>
-		<keyword>new</keyword>
-		<keyword>package</keyword>
-		<keyword>private</keyword>
-		<keyword>protected</keyword>
-		<keyword>public</keyword>
-		<keyword>return</keyword>
-		<keyword>short</keyword>
-		<keyword>static</keyword>
-		<keyword>strictfp</keyword>
-		<keyword>super</keyword>
-		<keyword>switch</keyword>
-		<keyword>synchronized</keyword>
-		<keyword>this</keyword>
-		<keyword>throw</keyword>
-		<keyword>throws</keyword>
-		<keyword>transient</keyword>
-		<keyword>try</keyword>
-		<keyword>void</keyword>
-		<keyword>volatile</keyword>
+		<keyword>and</keyword>
+		<keyword>del</keyword>
+		<keyword>from</keyword>
+		<keyword>not</keyword>
 		<keyword>while</keyword>
+		<keyword>as</keyword>
+		<keyword>elif</keyword>
+		<keyword>global</keyword>
+		<keyword>or</keyword>
+		<keyword>with</keyword>
+		<keyword>assert</keyword>
+		<keyword>else</keyword>
+		<keyword>if</keyword>
+		<keyword>pass</keyword>
+		<keyword>yield</keyword>
+		<keyword>break</keyword>
+		<keyword>except</keyword>
+		<keyword>import</keyword>
+		<keyword>print</keyword>
+		<keyword>class</keyword>
+		<keyword>exec</keyword>
+		<keyword>in</keyword>
+		<keyword>raise</keyword>
+		<keyword>continue</keyword>
+		<keyword>finally</keyword>
+		<keyword>is</keyword>
+		<keyword>return</keyword>
+		<keyword>def</keyword>
+		<keyword>for</keyword>
+		<keyword>lambda</keyword>
+		<keyword>try</keyword>
 	</highlighter>
 </highlighters>
