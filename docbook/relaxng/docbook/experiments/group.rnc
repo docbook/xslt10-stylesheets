@@ -1,0 +1,92 @@
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "../docbook.rnc" {
+
+   db.constructorsynopsis =
+      element constructorsynopsis {
+         db.constructorsynopsis.attlist,
+         db.modifier*,
+         db.methodname?,
+         ((db.methodparam|db.group.methodparam)+ | db.void?),
+         db.exceptionname*
+      }
+
+   db.destructorsynopsis =
+      element destructorsynopsis {
+         db.destructorsynopsis.attlist,
+         db.modifier*,
+         db.methodname?,
+         ((db.methodparam|db.group.methodparam)+ | db.void?),
+         db.exceptionname*
+      }
+
+   db.methodsynopsis =
+      element methodsynopsis {
+         db.methodsynopsis.attlist,
+         db.modifier*,
+         (db.type | db.void)?,
+         db.methodname,
+         ((db.methodparam|db.group.methodparam)+ | db.void),
+         db.exceptionname*,
+         db.modifier*
+      }
+
+   db.funcprototype =
+      element funcprototype {
+         db.funcprototype.attlist,
+         db.modifier*,
+         db.funcdef,
+         (db.void | db.varargs | ((db.paramdef|db.group.paramdef)+, db.varargs?)),
+         db.modifier*
+      }
+
+}
+
+[
+   db:refname [ "group" ]
+   db:refpurpose [ "A group of method parameters" ]
+]
+div {
+
+   db.group.methodparam.role.attribute = attribute role { text }
+   db.group.methodparam.choice.attribute = db.choice.opt.attribute
+
+   db.group.methodparam.attlist =
+      db.group.methodparam.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.group.methodparam.choice.attribute?
+
+   db.group.methodparam =
+      element group {
+         db.group.methodparam.attlist,
+         (db.methodparam|db.group.methodparam)+
+      }
+}
+
+[
+   db:refname [ "group" ]
+   db:refpurpose [ "A group of parameters" ]
+]
+div {
+
+   db.group.paramdef.role.attribute = attribute role { text }
+   db.group.paramdef.choice.attribute = db.choice.opt.attribute
+
+   db.group.paramdef.attlist =
+      db.group.paramdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.group.paramdef.choice.attribute?
+
+   db.group.paramdef =
+      element group {
+         db.group.paramdef.attlist,
+         (db.paramdef|db.group.paramdef)+
+      }
+}
+
