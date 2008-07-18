@@ -14,12 +14,12 @@ XSLPARAM=
 all: publishers.html publishers.pdf
 
 publishers.html: publishers.xml html.xsl
-	jing ../publishers.rng $<
+	jing ../../docbook/docbook.rng $<
 	$(XSLT) $< $(HTMLSTYLE) $@ $(XSLPARAM)
 	$(TIDY) -q -utf8 -mn -asxml $@
 
 publishers.fo: publishers.xml fo.xsl
-	jing ../publishers.rng $<
+	jing ../../docbook/docbook.rng $<
 	$(XSLT) $< $(FOSTYLE) publishers.fo $(XSLPARAM)
 
 publishers.pdf: publishers.fo
