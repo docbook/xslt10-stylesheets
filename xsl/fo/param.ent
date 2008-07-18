@@ -89,6 +89,7 @@
 <!ENTITY headers.on.blank.pages SYSTEM "../params/headers.on.blank.pages.xml">
 <!ENTITY highlight.default.language SYSTEM "../params/highlight.default.language.xml"> 
 <!ENTITY highlight.source SYSTEM "../params/highlight.source.xml"> 
+<!ENTITY highlight.xslthl.config SYSTEM "../params/highlight.xslthl.config.xml"> 
 <!ENTITY hyphenate SYSTEM "../params/hyphenate.xml">
 <!ENTITY hyphenate.verbatim SYSTEM "../params/hyphenate.verbatim.xml">
 <!ENTITY hyphenate.verbatim.characters SYSTEM "../params/hyphenate.verbatim.characters.xml">

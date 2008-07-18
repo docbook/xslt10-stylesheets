@@ -14,41 +14,58 @@
 
      ******************************************************************** -->
 
-<xsl:template match='xslthl:keyword'>
-  <b class="hl-keyword"><xsl:apply-templates/></b>
+<xsl:template match='xslthl:keyword' mode="xslthl">
+  <b class="hl-keyword"><xsl:apply-templates mode="xslthl"/></b>
 </xsl:template>
 
-<xsl:template match='xslthl:string'>
-  <b class="hl-string"><i style="color:red"><xsl:apply-templates/></i></b>
+<xsl:template match='xslthl:string' mode="xslthl">
+  <b class="hl-string"><i style="color:red"><xsl:apply-templates mode="xslthl"/></i></b>
 </xsl:template>
 
-<xsl:template match='xslthl:comment'>
-  <i class="hl-comment" style="color: silver"><xsl:apply-templates/></i>
+<xsl:template match='xslthl:comment' mode="xslthl">
+  <i class="hl-comment" style="color: silver"><xsl:apply-templates mode="xslthl"/></i>
 </xsl:template>
 
-<xsl:template match='xslthl:tag'>
-  <b class="hl-tag" style="color: blue"><xsl:apply-templates/></b>
+<xsl:template match='xslthl:directive' mode="xslthl">
+  <span class="hl-directive" style="color: maroon"><xsl:apply-templates mode="xslthl"/></span>
 </xsl:template>
 
-<xsl:template match='xslthl:attribute'>
-  <span class="hl-attribute" style="color: blue"><xsl:apply-templates/></span>
+<xsl:template match='xslthl:tag' mode="xslthl">
+  <b class="hl-tag" style="color: blue"><xsl:apply-templates mode="xslthl"/></b>
 </xsl:template>
 
-<xsl:template match='xslthl:value'>
-  <span class="hl-value" style="color: blue"><xsl:apply-templates/></span>
+<xsl:template match='xslthl:attribute' mode="xslthl">
+  <span class="hl-attribute" style="color: blue"><xsl:apply-templates mode="xslthl"/></span>
 </xsl:template>
 
-<xsl:template match='xslthl:html'>
-  <b><i style="color: red"><xsl:apply-templates/></i></b>
+<xsl:template match='xslthl:value' mode="xslthl">
+  <span class="hl-value" style="color: blue"><xsl:apply-templates mode="xslthl"/></span>
 </xsl:template>
 
-<xsl:template match='xslthl:xslt'>
-  <b style="color: blue"><xsl:apply-templates/></b>
+<xsl:template match='xslthl:html' mode="xslthl">
+  <b><i style="color: red"><xsl:apply-templates mode="xslthl"/></i></b>
 </xsl:template>
 
-<xsl:template match='xslthl:section'>
-  <b><xsl:apply-templates/></b>
+<xsl:template match='xslthl:xslt' mode="xslthl">
+  <b style="color: blue"><xsl:apply-templates mode="xslthl"/></b>
+</xsl:template>
+
+<!-- Not emitted since XSLTHL 2.0 -->
+<xsl:template match='xslthl:section' mode="xslthl">
+  <b><xsl:apply-templates mode="xslthl"/></b>
+</xsl:template>
+
+<xsl:template match='xslthl:number' mode="xslthl">
+  <span class="hl-number"><xsl:apply-templates mode="xslthl"/></span>
+</xsl:template>
+
+<xsl:template match='xslthl:annotation' mode="xslthl">
+  <i><span class="hl-annotation" style="color: gray"><xsl:apply-templates mode="xslthl"/></span></i>
+</xsl:template>
+
+<!-- Not sure which element will be in final XSLTHL 2.0 -->
+<xsl:template match='xslthl:doccomment|xslthl:doctype' mode="xslthl">
+  <b class="hl-tag" style="color: blue"><xsl:apply-templates mode="xslthl"/></b>
 </xsl:template>
 
 </xsl:stylesheet>
-

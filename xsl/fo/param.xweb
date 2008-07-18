@@ -256,6 +256,7 @@ generate.section.toc.level;
 &subscript.properties;
 &pgwide.properties;
 &highlight.source;
+&highlight.xslthl.config;
 &highlight.default.language;
 &email.delimiters.enabled;
 &section.container.element;
@@ -649,6 +650,7 @@ around all these parameters.</para>
 <src:fragref linkend="headers.on.blank.pages.frag"/>
 <src:fragref linkend="highlight.default.language.frag"/>
 <src:fragref linkend="highlight.source.frag"/>
+<src:fragref linkend="highlight.xslthl.config.frag"/>
 <src:fragref linkend="hyphenate.frag"/>
 <src:fragref linkend="hyphenate.verbatim.frag"/>
 <src:fragref linkend="hyphenate.verbatim.characters.frag"/>
