@@ -31,15 +31,15 @@
 </xsl:template>
 
 <xsl:template match='xslthl:tag' mode="xslthl">
-  <b class="hl-tag" style="color: blue"><xsl:apply-templates mode="xslthl"/></b>
+  <b class="hl-tag" style="color: #000096"><xsl:apply-templates mode="xslthl"/></b>
 </xsl:template>
 
 <xsl:template match='xslthl:attribute' mode="xslthl">
-  <span class="hl-attribute" style="color: blue"><xsl:apply-templates mode="xslthl"/></span>
+  <span class="hl-attribute" style="color: #F5844C"><xsl:apply-templates mode="xslthl"/></span>
 </xsl:template>
 
 <xsl:template match='xslthl:value' mode="xslthl">
-  <span class="hl-value" style="color: blue"><xsl:apply-templates mode="xslthl"/></span>
+  <span class="hl-value" style="color: #993300"><xsl:apply-templates mode="xslthl"/></span>
 </xsl:template>
 
 <xsl:template match='xslthl:html' mode="xslthl">
@@ -47,7 +47,7 @@
 </xsl:template>
 
 <xsl:template match='xslthl:xslt' mode="xslthl">
-  <b style="color: blue"><xsl:apply-templates mode="xslthl"/></b>
+  <b style="color: #0066FF"><xsl:apply-templates mode="xslthl"/></b>
 </xsl:template>
 
 <!-- Not emitted since XSLTHL 2.0 -->
