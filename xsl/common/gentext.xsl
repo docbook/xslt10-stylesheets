@@ -199,6 +199,11 @@
   <xsl:value-of select="$section.autolabel"/>
 </xsl:template>
 
+<xsl:template match="procedure" mode="is.autonumber">
+  <xsl:value-of select="$formal.procedures"/>
+</xsl:template>
+
+
 <xsl:template match="*" mode="object.xref.template">
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
