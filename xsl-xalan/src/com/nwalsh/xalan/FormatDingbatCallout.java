@@ -2,10 +2,11 @@ package com.nwalsh.xalan;
 
 import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.SAXException;
-import org.w3c.dom.*;
+import org.w3c.dom.Element;
 import org.apache.xml.utils.DOMBuilder;
-import com.nwalsh.xalan.Callout;
 import org.apache.xml.utils.AttList;
+
+import com.nwalsh.xalan.Callout;
 
 /**
  * <p>Utility class for the Verbatim extension (ignore this).</p>

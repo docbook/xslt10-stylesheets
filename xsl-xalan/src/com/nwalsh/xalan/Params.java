@@ -2,11 +2,12 @@
 
 package com.nwalsh.xalan;
 
+import javax.xml.transform.TransformerException;
+
 import org.apache.xpath.objects.XObject;
 import org.apache.xalan.extensions.ExpressionContext;
 import org.apache.xml.utils.QName;
 
-import javax.xml.transform.TransformerException;
 
 public class Params {
 

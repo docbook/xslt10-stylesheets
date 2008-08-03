@@ -1,8 +1,11 @@
 package com.nwalsh.xalan;
 
-import java.io.*;
-import java.awt.*;
-import java.awt.image.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
 import java.lang.Thread;
 import java.util.StringTokenizer;
 
