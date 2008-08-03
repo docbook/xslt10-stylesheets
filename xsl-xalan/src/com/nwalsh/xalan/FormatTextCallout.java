@@ -1,9 +1,7 @@
 package com.nwalsh.xalan;
 
-import org.w3c.dom.*;
 import org.apache.xml.utils.DOMBuilder;
 import com.nwalsh.xalan.Callout;
-import org.apache.xml.utils.AttList;
 
 /**
  * <p>Utility class for the Verbatim extension (ignore this).</p>

@@ -1,13 +1,8 @@
 package com.nwalsh.xalan;
 
-import java.io.*;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
-import java.text.DateFormat;
-import java.text.ParseException;
 
 /**
  * <p>Xalan extension to convert CVS date strings into local time</p>

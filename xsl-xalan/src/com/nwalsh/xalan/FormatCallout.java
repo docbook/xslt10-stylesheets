@@ -2,7 +2,7 @@ package com.nwalsh.xalan;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.AttributesImpl;
-import org.w3c.dom.*;
+import org.w3c.dom.Element;
 import org.apache.xml.utils.DOMBuilder;
 import com.nwalsh.xalan.Callout;
 
