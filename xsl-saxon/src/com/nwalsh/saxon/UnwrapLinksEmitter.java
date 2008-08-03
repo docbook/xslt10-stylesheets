@@ -1,11 +1,8 @@
 package com.nwalsh.saxon;
 
 import java.util.Stack;
-import org.xml.sax.*;
-import org.w3c.dom.*;
 import javax.xml.transform.TransformerException;
-import com.icl.saxon.output.*;
-import com.icl.saxon.om.*;
+import com.icl.saxon.om.NamePool;
 import com.icl.saxon.Controller;
 import com.icl.saxon.tree.AttributeCollection;
 

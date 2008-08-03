@@ -3,7 +3,6 @@
 package com.nwalsh.saxon;
 
 import com.icl.saxon.style.ExtensionElementFactory;
-import org.xml.sax.SAXException;
 
 /**
  * <p>Saxon extension element factory

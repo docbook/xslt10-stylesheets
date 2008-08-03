@@ -3,13 +3,11 @@ package com.nwalsh.saxon;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.net.URL;
 import java.net.MalformedURLException;
 import java.awt.Toolkit;
 import java.awt.Image;
 import java.awt.image.ImageObserver;
-import java.lang.Thread;
 import java.util.StringTokenizer;
 
 /**

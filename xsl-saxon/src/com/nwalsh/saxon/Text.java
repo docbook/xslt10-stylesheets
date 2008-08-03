@@ -4,9 +4,6 @@ package com.nwalsh.saxon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.net.MalformedURLException;
 
@@ -20,7 +17,6 @@ import com.icl.saxon.style.StyleElement;
 import com.icl.saxon.output.Outputter;
 import com.icl.saxon.expr.Expression;
 
-import org.xml.sax.AttributeList;
 
 /**
  * <p>Saxon extension element for inserting text
