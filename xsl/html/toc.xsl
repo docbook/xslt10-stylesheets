@@ -153,10 +153,6 @@
   <xsl:call-template name="component.toc"/>
 </xsl:template>
 
-<xsl:template match="*" mode="toc.for.section">
-  <xsl:call-template name="section.toc"/>
-</xsl:template>
-
 <xsl:template match="*" mode="toc.for.division">
   <xsl:call-template name="division.toc"/>
 </xsl:template>
