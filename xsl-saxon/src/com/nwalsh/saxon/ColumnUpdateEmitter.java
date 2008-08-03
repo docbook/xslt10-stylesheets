@@ -1,11 +1,9 @@
 package com.nwalsh.saxon;
 
-import org.xml.sax.*;
-import com.icl.saxon.output.*;
-import com.icl.saxon.Controller;
-import com.icl.saxon.om.*;
 import javax.xml.transform.TransformerException;
-import com.icl.saxon.expr.FragmentValue;
+
+import com.icl.saxon.Controller;
+import com.icl.saxon.om.NamePool;
 import com.icl.saxon.tree.AttributeCollection;
 
 /**

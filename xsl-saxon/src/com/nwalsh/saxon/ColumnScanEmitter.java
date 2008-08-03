@@ -1,10 +1,7 @@
 package com.nwalsh.saxon;
 
-import org.xml.sax.*;
 import javax.xml.transform.TransformerException;
-import com.icl.saxon.output.*;
-import com.icl.saxon.om.*;
-import com.icl.saxon.expr.FragmentValue;
+import com.icl.saxon.om.NamePool;
 
 /**
  * <p>Saxon extension to scan the column widths in a result tree fragment.</p>

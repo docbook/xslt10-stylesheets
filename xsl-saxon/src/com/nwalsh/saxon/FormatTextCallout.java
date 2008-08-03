@@ -1,10 +1,5 @@
 package com.nwalsh.saxon;
 
-import org.xml.sax.SAXException;
-import org.w3c.dom.*;
-
-import javax.xml.transform.TransformerException;
-
 import com.icl.saxon.om.NamePool;
 import com.icl.saxon.output.Emitter;
 

@@ -1,6 +1,6 @@
 package com.nwalsh.saxon;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Element;
 
 /**
  * <p>A class for maintaining information about callouts.</p>

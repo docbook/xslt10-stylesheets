@@ -3,15 +3,13 @@
 package com.nwalsh.saxon;
 
 import java.util.Hashtable;
-import org.xml.sax.*;
-import org.w3c.dom.*;
 import javax.xml.transform.TransformerException;
 import com.icl.saxon.Controller;
-import com.icl.saxon.expr.*;
-import com.icl.saxon.om.*;
-import com.icl.saxon.pattern.*;
+import com.icl.saxon.expr.Value;
+import com.icl.saxon.expr.FragmentValue;
+import com.icl.saxon.expr.NodeSetValue;
+import com.icl.saxon.om.NamePool;
 import com.icl.saxon.Context;
-import com.icl.saxon.tree.*;
 import com.icl.saxon.functions.Extensions;
 
 /**
