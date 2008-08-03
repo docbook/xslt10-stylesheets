@@ -33,9 +33,6 @@
           appropriate stylesheet parameter (if there is one).</para>
       </note>
     </para>
-
-    <para>THIS IS JUST A TEST. TO BE REMOVED!</para>
-
   </partintro>
 </doc:reference>
 
