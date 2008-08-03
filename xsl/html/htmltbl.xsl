@@ -39,7 +39,7 @@
   </caption>
 </xsl:template>
 
-<xsl:template match="thead|tbody|tgroup|tr" mode="htmlTable">
+<xsl:template match="tr" mode="htmlTable">
   <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="htmlTable"/>
