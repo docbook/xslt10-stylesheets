@@ -1,5 +1,5 @@
 <!DOCTYPE article [
-<!ENTITY standard "Committee Draft">
+<!ENTITY standard "Committee Specification">
 <!ENTITY tracker "http://sourceforge.net/tracker">
 <!ENTITY RFE "&tracker;/index.php?func=detail&amp;group_id=21935&amp;atid=384107&amp;">
 <!ENTITY root "http://docs.oasis-open.org/docbook/">
@@ -17,8 +17,8 @@ $Id$
 <!-- product -->        <productname>docbook</productname>
 <!-- productVersion --> <productnumber>5.0</productnumber>
 <!-- artifactType       spec; what else? :-) -->
-<!-- stage -->          <releaseinfo role="stage">cd</releaseinfo>
-<!-- revision -->       <biblioid class="pubsnumber">04</biblioid>
+<!-- stage -->          <releaseinfo role="stage">cs</releaseinfo>
+<!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
 
@@ -57,17 +57,21 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2008-04-09</pubdate>
+<pubdate>2008-08-12</pubdate>
 
 <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
 
+<bibliorelation type="replaces" condition="online"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-04.html"/>
 <bibliorelation type="replaces" condition="online"
     xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
 <bibliorelation type="replaces" condition="online"
     xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.html"/>
 
 <bibliorelation type="replaces" condition="print"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-04.pdf"/>
+<bibliorelation type="replaces" condition="print"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.pdf"/>
 <bibliorelation type="replaces" condition="print"
     xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.pdf"/>
 
@@ -957,12 +961,9 @@ this specification and are gratefully acknowledged:</para>
 <section xml:id="s.50">
 <title>Changes in DocBook V5.0</title>
 
-<para>There are no user-visible changes in 5.0 (Public Review Draft 1).
+<para>There are no user-visible changes in 5.0 (Committee Specification 1).
 </para>
 
-<para>This version of DocBook V5.0 will become the official Committee
-Specification version of DocBook V5.0 as soon as the Technical Committee
-balloting process is finished.</para>
 </section>
 
 <section xml:id="s.50CR7">
