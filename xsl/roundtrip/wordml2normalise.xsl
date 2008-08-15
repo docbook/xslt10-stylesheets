@@ -124,8 +124,17 @@
       <xsl:when test='w:rPr/w:rStyle/@w:val = "attributes"'/>
       <xsl:when test='w:rPr/w:rStyle/@w:val = "CommentReference"'/>
       <xsl:when test='w:pict'>
+        <!-- "filename" is where the image data gets extracted to -->
         <xsl:variable name='filename'>
           <xsl:call-template name='rnd:image-filename'/>
+        </xsl:variable>
+        <!-- "target" is the URL that will be the target of the imagedata hyperlink.
+             This may or may not be related to the physical filename.
+          -->
+        <xsl:variable name='target'>
+          <xsl:call-template name='rnd:image-target'>
+            <xsl:with-param name='filename' select='$filename'/>
+          </xsl:call-template>
         </xsl:variable>
 
         <xsl:call-template name='rnd:handle-image-data'>
@@ -135,7 +144,7 @@
 
         <dbk:inlinemediaobject>
           <dbk:imageobject>
-            <dbk:imagedata fileref='{$filename}'>
+            <dbk:imagedata fileref='{$target}'>
               <xsl:if test='w:pict/v:shape/@style'>
                 <xsl:attribute name='width'>
                   <xsl:value-of select='normalize-space(substring-before(substring-after(w:pict/v:shape/@style, "width:"), ";"))'/>
@@ -195,7 +204,12 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
   <!-- An application may wish to override these templates -->
+
+  <!-- rnd:image-filename determines the filename of the physical file
+       to which the image data should be written.
+    -->
   <xsl:template name='rnd:image-filename'>
     <xsl:param name='pict' select='w:pict'/>
 
@@ -210,6 +224,23 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <!-- rnd:image-target determines the URL for the image data.
+       This may or may not be related to the physical filename.
+    -->
+  <xsl:template name='rnd:image-target'>
+    <xsl:param name='filename'/>
+    <xsl:param name='pict' select='w:pict'/>
+
+    <xsl:value-of select='$filename'/>
+  </xsl:template>
+
+  <!-- rnd:handle-image-data receives the base64-encoded data and a filename
+       for the physical file to which the data should be written.
+       Since XSLT cannot natively handle binary data, this implementation
+       just writes the undecoded data to the nominated file.
+       A real application would decode the data into a binary representation.
+    -->
   <xsl:template name='rnd:handle-image-data'>
     <xsl:param name='filename'/>
     <xsl:param name='data'/>
