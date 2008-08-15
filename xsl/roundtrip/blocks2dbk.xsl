@@ -20,7 +20,7 @@
   <!-- Stylesheet to convert word processing docs to DocBook -->
   <!-- This stylesheet processes the output of sections2blocks.xsl -->
 
-  <xsl:output indent="yes" method="xml" 
+  <xsl:output indent="yes" method="xml"
     cdata-section-elements='dbk:programlisting dbk:literallayout'/>
 
   <!-- ================================================== -->
@@ -245,7 +245,7 @@
                       @rnd:style = "literallayout"'>
 
         <xsl:variable name='stop.node'
-          select='following-sibling::*[@rnd:style != current()/@rnd:style][1]'/>
+          select='following-sibling::dbk:para[@rnd:style != current()/@rnd:style][1]'/>
 
         <xsl:element name='{@rnd:style}'
           namespace='http://docbook.org/ns/docbook'>
@@ -253,11 +253,11 @@
 
           <xsl:choose>
             <xsl:when test='$stop.node'>
-              <xsl:apply-templates select='following-sibling::*[following-sibling::*[generate-id() = generate-id($stop.node)]]'
+              <xsl:apply-templates select='following-sibling::dbk:para[following-sibling::*[generate-id() = generate-id($stop.node)]]'
                 mode='rnd:programlisting'/>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:apply-templates select='following-sibling::*'
+              <xsl:apply-templates select='following-sibling::dbk:para'
                 mode='rnd:programlisting'/>
             </xsl:otherwise>
           </xsl:choose>
@@ -437,7 +437,18 @@
               </dbk:info>
               <dbk:mediaobject>
                 <dbk:imageobject>
-                  <dbk:imagedata fileref='{.}'/>
+                  <dbk:imagedata>
+                    <xsl:attribute name='fileref'>
+                      <xsl:choose>
+                        <xsl:when test='dbk:inlinemediaobject/dbk:imageobject/dbk:imagedata/@fileref != ""'>
+                          <xsl:value-of select='dbk:inlinemediaobject/dbk:imageobject/dbk:imagedata/@fileref'/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select='.'/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:attribute>
+                  </dbk:imagedata>
                 </dbk:imageobject>
               </dbk:mediaobject>
               <xsl:call-template name='rnd:figure-text-caption'>
@@ -450,7 +461,18 @@
               <xsl:call-template name='rnd:attributes'/>
               <dbk:mediaobject>
                 <dbk:imageobject>
-                  <dbk:imagedata fileref='{.}'/>
+                  <dbk:imagedata>
+                    <xsl:attribute name='fileref'>
+                      <xsl:choose>
+                        <xsl:when test='dbk:inlinemediaobject/dbk:imageobject/dbk:imagedata/@fileref != ""'>
+                          <xsl:value-of select='dbk:inlinemediaobject/dbk:imageobject/dbk:imagedata/@fileref'/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select='.'/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:attribute>
+                  </dbk:imagedata>
                 </dbk:imageobject>
               </dbk:mediaobject>
               <xsl:call-template name='rnd:figure-text-caption'>
@@ -837,10 +859,27 @@
 
       <xsl:when test='@rnd:style = "author"'>
         <dbk:author>
-          <dbk:personname>
-            <!-- TODO: check style of author; mixed content or structured -->
-            <xsl:apply-templates mode='rnd:personname'/>
-          </dbk:personname>
+          <xsl:choose>
+            <xsl:when test='dbk:emphasis[@rnd:style = "orgname"]'>
+              <dbk:orgname>
+                <xsl:apply-templates
+                  select='dbk:emphasis[@rnd:style = "orgname"]'
+                  mode='rnd:orgname'/>
+              </dbk:orgname>
+              <xsl:if test='*[not(@rnd:style = "orgname")]'>
+                <xsl:call-template name='rnd:error'>
+                  <xsl:with-param name='code'>bad-author-orgname-combo</xsl:with-param>
+                  <xsl:with-param name='message'>character span "<xsl:value-of select='dbk:emphasis[@rnd:style != "orgname"][1]/@rnd:style'/>" not allowed in an author paragraph combined with orgname</xsl:with-param>
+                </xsl:call-template>
+              </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+              <dbk:personname>
+                <!-- TODO: check style of author; mixed content or structured -->
+                <xsl:apply-templates mode='rnd:personname'/>
+              </dbk:personname>
+            </xsl:otherwise>
+          </xsl:choose>
           <xsl:apply-templates mode='rnd:author-personblurb'/>
           <xsl:apply-templates select='following-sibling::*[1]'
             mode='rnd:author'/>
