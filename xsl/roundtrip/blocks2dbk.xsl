@@ -835,6 +835,28 @@
           mode='rnd:metadata'/>
       </xsl:when>
 
+      <xsl:when test='@rnd:style = "legalnotice"'>
+        <xsl:variable name='stop.node'
+          select='following-sibling::dbk:para[@rnd:style != "legalnotice"]'/>
+
+        <dbk:legalnotice>
+          <xsl:apply-templates select='.'
+            mode='rnd:legalnotice'/>
+          <xsl:choose>
+            <xsl:when test='$stop.node'>
+              <xsl:apply-templates select='following-sibling::dbk:para[@rnd:style = "legalnotice"][following-sibling::*[generate-id() = generate-id($stop.node)]]'
+                mode='rnd:legalnotice'/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select='following-sibling::dbk:para[@rnd:style = "legalnotice"]'
+                mode='rnd:legalnotice'/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </dbk:legalnotice>
+        <xsl:apply-templates select='$stop.node'
+          mode='rnd:metadata'/>
+      </xsl:when>
+
       <xsl:when test='@rnd:style = "keyword"'>
         <xsl:variable name='stop.node'
           select='following-sibling::*[not(self::dbk:para) or
@@ -1141,6 +1163,13 @@
         </dbk:para>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match='dbk:para' mode='rnd:legalnotice'>
+    <dbk:para>
+      <xsl:call-template name='rnd:attributes'/>
+      <xsl:apply-templates/>
+    </dbk:para>
   </xsl:template>
 
   <xsl:template match='dbk:footnote' mode='rnd:personname'/>
