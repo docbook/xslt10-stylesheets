@@ -31,7 +31,7 @@
   <xsl:param name="nest.sections">1</xsl:param>
 
   <xsl:strip-space elements='*'/>
-  <xsl:preserve-space elements='dbk:para'/>
+  <xsl:preserve-space elements='dbk:para dbk:emphasis'/>
 
   <xsl:template match="&components; |
                        &blocks;">
@@ -632,6 +632,21 @@
   </xsl:template>
   <xsl:template match='*|text()' mode='rnd:emphasis'/>
 
+  <xsl:template match='dbk:emphasis' mode='rnd:personname-emphasis'>
+    <xsl:param name='style'/>
+
+    <xsl:choose>
+      <xsl:when test='@rnd:style = $style'>
+        <xsl:apply-templates/>
+        <xsl:apply-templates select='following-sibling::dbk:emphasis[1]'
+          mode='rnd:personname-emphasis'>
+          <xsl:with-param name='style' select='$style'/>
+        </xsl:apply-templates>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+  <xsl:template match='*|text()' mode='rnd:emphasis'/>
+
   <xsl:template match='dbk:subscript|dbk:superscript'>
     <xsl:copy>
       <xsl:apply-templates select='@*' mode='rnd:copy'/>
@@ -1174,7 +1189,16 @@
 
   <xsl:template match='dbk:footnote' mode='rnd:personname'/>
   <xsl:template match='dbk:emphasis' mode='rnd:personname'>
+    <!-- Need to check preceding emphasis for same style,
+         but blocks pretty-prints and all text nodes
+         are preserved in paragraph content.
+      -->
+    <xsl:variable name='previous'
+      select='preceding-sibling::node()[not(self::text()) or (self::text() and normalize-space() != "")]'/>
+
     <xsl:choose>
+      <!-- inlines are coalesced -->
+      <xsl:when test='@rnd:style = $previous[1][self::dbk:emphasis]/@rnd:style'/>
       <xsl:when test='@rnd:style = "honorific" or
                       @rnd:style = "firstname" or
                       @rnd:style = "lineage" or
@@ -1183,6 +1207,10 @@
         <xsl:element name='{@rnd:style}'
           namespace='http://docbook.org/ns/docbook'>
           <xsl:apply-templates/>
+          <xsl:apply-templates select='following-sibling::dbk:emphasis[1]'
+            mode='rnd:personname-emphasis'>
+            <xsl:with-param name='style' select='@rnd:style'/>
+          </xsl:apply-templates>
         </xsl:element>
       </xsl:when>
       <xsl:otherwise>
