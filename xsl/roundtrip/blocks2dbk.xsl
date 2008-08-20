@@ -829,69 +829,71 @@
           <xsl:with-param name='message'>style "<xsl:value-of select='@rnd:style'/>" must not be metadata for parent "<xsl:value-of select='local-name(..)'/>"</xsl:with-param>
         </xsl:call-template>
       </xsl:when>
+
       <xsl:when test='@rnd:style = "abstract-title" or
                       @rnd:style = "abstract"'>
         <xsl:variable name='stop.node'
           select='following-sibling::dbk:para[@rnd:style != "abstract"][1]'/>
-        <dbk:abstract>
-          <xsl:apply-templates select='.' mode='rnd:abstract'/>
-          <xsl:choose>
-            <xsl:when test='$stop.node'>
-              <xsl:apply-templates select='following-sibling::dbk:para[@rnd:style = "abstract"][following-sibling::*[generate-id() = generate-id($stop.node)]]'
+        <xsl:choose>
+          <xsl:when test='$stop.node'>
+            <dbk:abstract>
+              <xsl:apply-templates select='.|following-sibling::dbk:para[@rnd:style = "abstract"][following-sibling::*[generate-id() = generate-id($stop.node)]]'
                 mode='rnd:abstract'/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select='following-sibling::dbk:para[@rnd:style = "abstract"]'
-                mode='rnd:abstract'/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </dbk:abstract>
-        <xsl:apply-templates select='$stop.node'
-          mode='rnd:metadata'/>
+            </dbk:abstract>
+            <xsl:apply-templates select='$stop.node'
+              mode='rnd:metadata'/>
+          </xsl:when>
+          <xsl:otherwise>
+            <dbk:abstract>
+              <xsl:apply-templates select='.|following-sibling::dbk:para[@rnd:style = "abstract"]' mode='rnd:abstract'/>
+            </dbk:abstract>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
 
       <xsl:when test='@rnd:style = "legalnotice"'>
         <xsl:variable name='stop.node'
-          select='following-sibling::dbk:para[@rnd:style != "legalnotice"]'/>
+          select='following-sibling::dbk:para[@rnd:style != "legalnotice"][1]'/>
 
-        <dbk:legalnotice>
-          <xsl:apply-templates select='.'
-            mode='rnd:legalnotice'/>
-          <xsl:choose>
-            <xsl:when test='$stop.node'>
-              <xsl:apply-templates select='following-sibling::dbk:para[@rnd:style = "legalnotice"][following-sibling::*[generate-id() = generate-id($stop.node)]]'
+        <xsl:choose>
+          <xsl:when test='$stop.node'>
+            <dbk:legalnotice>
+              <xsl:apply-templates select='.|following-sibling::dbk:para[@rnd:style = "legalnotice"][following-sibling::*[generate-id() = generate-id($stop.node)]]'
                 mode='rnd:legalnotice'/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select='following-sibling::dbk:para[@rnd:style = "legalnotice"]'
-                mode='rnd:legalnotice'/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </dbk:legalnotice>
-        <xsl:apply-templates select='$stop.node'
-          mode='rnd:metadata'/>
+            </dbk:legalnotice>
+            <xsl:apply-templates select='$stop.node'
+              mode='rnd:metadata'/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select='.|following-sibling::dbk:para[@rnd:style = "legalnotice"]'
+              mode='rnd:legalnotice'/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
 
       <xsl:when test='@rnd:style = "keyword"'>
         <xsl:variable name='stop.node'
           select='following-sibling::*[not(self::dbk:para) or
                   (self::dbk:para and @rnd:style != "keyword")][1]'/>
-        <dbk:keywordset>
-          <xsl:choose>
-            <xsl:when test='$stop.node'>
+
+        <xsl:choose>
+          <xsl:when test='$stop.node'>
+            <dbk:keywordset>
               <xsl:call-template name='rnd:keyword'>
                 <xsl:with-param name='nodes'
                   select='.|following-sibling::dbk:para[@rnd:style = "keyword"][following-sibling::*[generate-id() = generate-id($stop.node)]]'/>
               </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:call-template name='rnd:keyword'>
-                <xsl:with-param name='nodes'
-                  select='.|following-sibling::dbk:para[@rnd:style = "keyword"]'/>
-              </xsl:call-template>
-            </xsl:otherwise>
-          </xsl:choose>
-        </dbk:keywordset>
+            </dbk:keywordset>
+            <xsl:apply-templates select='$stop.node'
+              mode='rnd:metadata'/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name='rnd:keyword'>
+              <xsl:with-param name='nodes'
+                select='.|following-sibling::dbk:para[@rnd:style = "keyword"]'/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
 
       <xsl:when test='@rnd:style = "author"'>
