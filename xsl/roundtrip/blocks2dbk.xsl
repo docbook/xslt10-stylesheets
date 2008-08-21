@@ -562,6 +562,8 @@
         <xsl:copy>
           <xsl:call-template name='rnd:attributes'/>
           <xsl:apply-templates mode='rnd:copy'/>
+          <xsl:apply-templates select='following-sibling::node()[1]'
+            mode='rnd:emphasis'/>
         </xsl:copy>
       </xsl:when>
       <xsl:when test='@rnd:style = "emphasis-bold" or
@@ -570,6 +572,8 @@
           <xsl:attribute name='role'>bold</xsl:attribute>
           <xsl:call-template name='rnd:attributes'/>
           <xsl:apply-templates mode='rnd:copy'/>
+          <xsl:apply-templates select='following-sibling::node()[1]'
+            mode='rnd:emphasis'/>
         </xsl:copy>
       </xsl:when>
       <xsl:when test='@rnd:style = "emphasis-underline"'>
@@ -577,6 +581,8 @@
           <xsl:attribute name='role'>underline</xsl:attribute>
           <xsl:call-template name='rnd:attributes'/>
           <xsl:apply-templates mode='rnd:copy'/>
+          <xsl:apply-templates select='following-sibling::node()[1]'
+            mode='rnd:emphasis'/>
         </xsl:copy>
       </xsl:when>
 
