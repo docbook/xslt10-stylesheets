@@ -1064,6 +1064,15 @@
           mode='rnd:metadata'/>
       </xsl:when>
 
+      <xsl:when test='@rnd:style = "publisher-address" and
+                      preceding-sibling::*[1][not(self::dbk:para) or not(@rnd:style = "publisher")]'>
+        <xsl:call-template name='rnd:error'>
+          <xsl:with-param name='code'>bad-publisher-address</xsl:with-param>
+          <xsl:with-param name='message'>publisher-address must follow publisher</xsl:with-param>
+        </xsl:call-template>
+        <xsl:apply-templates select='following-sibling::*[1]'
+          mode='rnd:metadata'/>
+      </xsl:when>
       <xsl:when test='@rnd:style = "publisher-address"'>
         <xsl:apply-templates select='following-sibling::*[1]'
           mode='rnd:metadata'/>
