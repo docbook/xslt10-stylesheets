@@ -276,6 +276,7 @@
     </xsl:if>
 
     <xsl:if test="$fop1.extensions != 0">
+      <xsl:call-template name="fop1-document-information"/>
       <xsl:variable name="bookmarks">
         <xsl:apply-templates select="$document.element" 
                              mode="fop1.outline"/>
