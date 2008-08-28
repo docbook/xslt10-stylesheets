@@ -68,5 +68,95 @@
 -->
 </xsl:template>
 
+<!-- Metadata support ("Document Properties" in Adobe Reader) -->
+<xsl:template name="fop1-document-information">
+  <xsl:variable name="authors" select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
+
+  <xsl:variable name="title">
+    <xsl:apply-templates select="/*[1]" mode="label.markup"/>
+    <xsl:apply-templates select="/*[1]" mode="title.markup"/>
+    <xsl:variable name="subtitle">
+      <xsl:apply-templates select="/*[1]" mode="subtitle.markup"/>
+    </xsl:variable>
+    <xsl:if test="$subtitle">
+      <xsl:text> - </xsl:text>
+      <xsl:value-of select="$subtitle"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <fo:declarations>
+    <x:xmpmeta xmlns:x="adobe:ns:meta/">
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/">
+          <!-- Dublin Core properties go here -->
+
+          <!-- Title -->
+          <dc:title><xsl:value-of select="normalize-space($title)"/></dc:title>
+
+          <!-- Author -->
+	  <xsl:if test="$authors">
+	    <xsl:variable name="author">
+	      <xsl:choose>
+		<xsl:when test="$authors[self::authorgroup]">
+                  <xsl:call-template name="person.name.list">
+                    <xsl:with-param name="person.list" 
+                       select="$authors/*[self::author|self::corpauthor|
+                                     self::othercredit|self::editor]"/>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$authors[self::corpauthor]">
+                  <xsl:value-of select="$authors"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:call-template name="person.name">
+                    <xsl:with-param name="node" select="$authors"/>
+                  </xsl:call-template>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+
+            <dc:creator><xsl:value-of select="normalize-space($author)"/></dc:creator>
+          </xsl:if>
+
+          <!-- Subject -->
+          <xsl:if test="//subjectterm">
+            <dc:description>
+              <xsl:for-each select="//subjectterm">
+                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="position() != last()">
+                  <xsl:text>, </xsl:text>
+                </xsl:if>
+              </xsl:for-each>
+            </dc:description>
+          </xsl:if>
+        </rdf:Description>
+
+        <rdf:Description rdf:about="" xmlns:pdf="http://ns.adobe.com/pdf/1.3/">
+          <!-- PDF properties go here -->
+
+          <!-- Keywords -->
+          <xsl:if test="//keyword">
+            <pdf:Keywords>
+              <xsl:for-each select="//keyword">
+                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="position() != last()">
+                  <xsl:text>, </xsl:text>
+                </xsl:if>
+              </xsl:for-each>
+            </pdf:Keywords>
+          </xsl:if>
+        </rdf:Description>
+
+        <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+          <!-- XMP properties go here -->
+
+          <!-- Creator Tool -->
+          <xmp:CreatorTool>DocBook XSL Stylesheets with Apache FOP</xmp:CreatorTool>
+        </rdf:Description>
+
+      </rdf:RDF>
+    </x:xmpmeta>
+  </fo:declarations>
+</xsl:template>
 
 </xsl:stylesheet>
