@@ -77,7 +77,6 @@ zh_cn.xml: $(DOCBOOK_SVN)/gentext/locale/zh_cn.xml $(GENSTYLE)
 zh_tw.xml: $(DOCBOOK_SVN)/gentext/locale/zh_tw.xml $(GENSTYLE)
 
 %.xml:
-	$(XJPARSE) $(XJPARSEFLAGS) $<
 	$(XSLT) $(DOCBOOK_SVN)/gentext/locale/en.xml $(DOCBOOK_SVN)/gentext/xsl/xsl.xsl $@ locale.file=$@
 
 clean:
