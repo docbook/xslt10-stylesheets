@@ -259,6 +259,7 @@ generate.section.toc.level;
 &highlight.xslthl.config;
 &highlight.default.language;
 &email.delimiters.enabled;
+&email.mailto.enabled;
 &section.container.element;
 </reference>
 <reference xml:id="graphics"><title>Graphics</title>
@@ -605,6 +606,7 @@ around all these parameters.</para>
 <src:fragref linkend="ebnf.assignment.frag"/>
 <src:fragref linkend="ebnf.statement.terminator.frag"/>
 <src:fragref linkend="email.delimiters.enabled.frag"/>
+<src:fragref linkend="email.mailto.enabled.frag"/>
 <src:fragref linkend="equation.properties.frag"/>
 <src:fragref linkend="example.properties.frag"/>
 <src:fragref linkend="figure.properties.frag"/>
