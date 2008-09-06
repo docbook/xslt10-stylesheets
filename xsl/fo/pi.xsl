@@ -150,6 +150,43 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbfo_funcsynopsis-style" xmlns="">
+  <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
+  <refdescription>
+    <para>Use the <tag class="xmlpi">dbfo funcsynopsis-style</tag> PI as a child of
+      a <tag>funcsynopsis</tag> or anywhere within a funcsynopsis
+      to control the presentation style for output of all
+      <tag>funcprototype</tag> instances within that funcsynopsis.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfo funcsynopsis-style="kr"|"ansi"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>funcsynopsis-style="kr"</term>
+        <listitem>
+          <para>Displays <tag>funcprototype</tag> output in K&amp;R style</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry><term>funcsynopsis-style="ansi"</term>
+        <listitem>
+          <para>Displays <tag>funcprototype</tag> output in ANSI style</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="params">
+    <para><parameter>funcsynopsis.style</parameter></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbfo_funcsynopsis-style">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbfo-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
+    <xsl:with-param name="attribute" select="'funcsynopsis-style'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbfo_glossary-presentation" xmlns="">
   <refpurpose>Specifies presentation style for a glossary</refpurpose>
   <refdescription>
