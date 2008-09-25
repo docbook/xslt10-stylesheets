@@ -645,7 +645,15 @@
 </xsl:template>
 
 <xsl:template match="entry|entrytbl" name="entry">
-  <xsl:param name="col" select="1"/>
+  <xsl:param name="col">
+    <xsl:choose>
+      <xsl:when test="@revisionflag">
+	<xsl:number from="row"/>
+      </xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
   <xsl:param name="spans"/>
 
   <xsl:variable name="cellgi">
