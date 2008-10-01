@@ -753,11 +753,11 @@
                                        ancestor::refentry|ancestor::reference|ancestor::refsect1|ancestor::refsect2|
                                        ancestor::refsect3|ancestor::refsection|ancestor::refsynopsisdiv|
                                        ancestor::sect1|ancestor::sect2|ancestor::sect3|ancestor::sect4|ancestor::sect5|
-                                       ancestor::section|ancestor::setindex|ancestor::set|ancestor::sidebar)[&scope;]"/>
+                                       ancestor::section|ancestor::setindex|ancestor::set|ancestor::sidebar|ancestor::mediaobject)[&scope;]"/>
   
   <xsl:variable name="id">
     <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="$target[1]"/>
+      <xsl:with-param name="object" select="$target[position() = last()]"/>
     </xsl:call-template>
   </xsl:variable>
   
