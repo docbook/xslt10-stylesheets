@@ -11,14 +11,15 @@
 		exclude-result-prefixes="db f h m t xlink xs"
                 version="2.0">
 
-<xsl:import href="/sourceforge/docbook/xsl2/base/html/docbook.xsl"/>
+<xsl:import href="../../../docbook-xsl-ns-1.74.0/html/docbook.xsl"/>
 
 <xsl:param name="generate.toc" as="element()*">
 <tocparam path="appendix" toc="0" title="0"/>
 <tocparam path="article"  toc="1" title="1"/>
 </xsl:param>
 
-<xsl:param name="section.label.includes.component.label" select="1"/>
+    <xsl:param name="section.autolabel" select="1"/>
+    <xsl:param name="section.label.includes.component.label" select="1"/>
 
 <xsl:param name="bibliography.collection" select="'bibliography.xml'"/>
 
@@ -56,8 +57,8 @@ div.toc p b {
 </xsl:template>
 
 <xsl:template match="db:article">
-  <xsl:variable name="toc.params"
-		select="f:find-toc-params(., $generate.toc)"/>
+<!--  <xsl:variable name="toc.params"
+		select="f:find-toc-params(., $generate.toc)"/>-->
 
   <p>
     <img src="http://docs.oasis-open.org/templates/OASISLogo.jpg"
@@ -65,7 +66,7 @@ div.toc p b {
   </p>
 
   <xsl:apply-templates select="db:info"/>
-
+<!--
   <xsl:call-template name="make-lots">
     <xsl:with-param name="toc.params" select="$toc.params"/>
     <xsl:with-param name="toc">
@@ -73,7 +74,7 @@ div.toc p b {
 	<xsl:with-param name="toc.title" select="$toc.params/@title != 0"/>
       </xsl:call-template>
     </xsl:with-param>
-  </xsl:call-template>
+  </xsl:call-template>-->
 
   <xsl:apply-templates select="*[not(self::db:info)]"/>
 </xsl:template>

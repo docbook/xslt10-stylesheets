@@ -9,17 +9,19 @@
 		exclude-result-prefixes="db m t xlink xs"
                 version="2.0">
 
-<xsl:import href="/sourceforge/docbook/xsl2/base/fo/docbook.xsl"/>
+    <xsl:import href="../../../docbook-xsl-ns-1.74.0/fo/docbook.xsl"/>
 
 <xsl:param name="draft.watermark.image"
-           select="'/sourceforge/docbook/xsl/images/draft.png'"/>
+           select="'../../../sourceforge/docbook/xsl/images/draft.png'"/>
 
 <xsl:param name="generate.toc" as="element()*">
   <tocparam path="appendix" toc="0" title="0"/>
   <tocparam path="article"  toc="1" title="1"/>
 </xsl:param>
 
-<xsl:param name="autolabel.elements">
+    <xsl:param name="section.autolabel" select="1"/>
+    
+    <xsl:param name="autolabel.elements">
   <db:appendix format="A"/>
   <db:chapter/>
   <db:figure/>
