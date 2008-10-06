@@ -327,6 +327,7 @@ consensus of the committee.
                         <entry>Element</entry>
                         <entry>Defined In</entry>
                         <entry>Content Model</entry>
+                        <entry>Description</entry>
                     </row>
                 </thead>
                 <tbody>
@@ -334,32 +335,83 @@ consensus of the committee.
                         <entry>speaker</entry>
                         <entry>db.speaker</entry>
                         <entry>db.speaker.attlist, ( db.person | text)*</entry>
+                        <entry>Designates a person who is giving a speech or lecture.</entry>
                     </row>
                     <row>
                         <entry>line</entry>
                         <entry>db.line</entry>
                         <entry>db.line.attlist, (db.all.inlines | text)+</entry>
+                        <entry>A line of dialogue or other form of communication.</entry>
                     </row>
                     <row>
                         <entry>linegroup</entry>
                         <entry>db.linegroup</entry>
                         <entry>db.linegroup.attlist, db.speaker*, (db.line|db.all.blocks)+</entry>
+                        <entry>A grouping of lines in dialogue or other form of
+                        communication.</entry>
                     </row>
                     <row>
                         <entry>poetry</entry>
                         <entry>db.poetry</entry>
                         <entry>db.poetry.attlist, db.poetry.info?,
                             (db.mediaobject|db.linegroup|db.line|db.all.blocks)+</entry>
+                        <entry>A container for poetry.</entry>
                     </row>
                     <row>
                         <entry>dialogue</entry>
                         <entry>db.dialogue</entry>
                         <entry>db.dialogue.attlist, db.dialogue.info?,
                             (db.mediaobject|db.linegroup|db.line|db.all.blocks)+</entry>
+                        <entry>A container for speeches, plays and other forms of communication
+                            involving dialogue.</entry>
                     </row>
                 </tbody>
             </tgroup>
         </table>
+        <example>
+            <title>Example Dialogue</title>
+            <para>The following provides an example usage of the newly added elements:</para>
+            <literallayout>
+                &lt;dialogue remap="SPEECH">
+                &lt;linegroup>
+                &lt;speaker remap="SPEAKER">HAMLET&lt;/speaker>
+                &lt;line remap="LINE">To be, or not to be: that is the question:&lt;/line>
+                &lt;line remap="LINE">Whether 'tis nobler in the mind to suffer&lt;/line>
+                &lt;line remap="LINE">The slings and arrows of outrageous fortune,&lt;/line>
+                &lt;line remap="LINE">Or to take arms against a sea of troubles,&lt;/line>
+                &lt;line remap="LINE">And by opposing end them?&lt;/line>
+                &lt;/linegroup>
+                &lt;/dialogue>
+            </literallayout>
+        </example>
+        <example>
+            <title>Example Poetry</title>
+            <para>The following provides an example usage of the newly added elements:</para>
+            <literallayout>
+                &lt;poetry>
+                &lt;title>Auld Lang Syne&lt;/title>
+                &lt;info>
+                &lt;author>
+                &lt;personname>
+                &lt;firstname>Robert&lt;/firstname>
+                &lt;surname>Burns&lt;/surname>
+                &lt;/personname>
+                &lt;/author>
+                &lt;/info>&lt;linegroup>
+                &lt;line>Should auld acquaintance be forgot,&lt;/line>
+                &lt;line>And never brought to mind?&lt;/line>
+                &lt;line>Should auld acquaintance be forgot,&lt;/line>
+                &lt;line>And auld lang syne?&lt;/line>
+                &lt;/linegroup>                
+                &lt;linegroup>
+                &lt;line>For auld lang syne, my dear,&lt;/line>
+                &lt;line>For auld lang syne,&lt;/line>
+                &lt;line>We'll tak a cup o' kindness yet,&lt;/line>
+                &lt;line>For auld lang syne.&lt;/line>
+                &lt;/linegroup>
+                &lt;/poetry>
+            </literallayout>
+        </example>
     </section>
     <section>
         <title>Re-Defined DocBook Content Models</title>
@@ -477,7 +529,7 @@ consensus of the committee.
         <para>Each element in DocBook V5.0 is defined by its own pattern. To change the content
             model of an element, only that pattern need be redefined. To remove an element from
             DocBook, that pattern can be redefined as <quote><literal>notAllowed</literal></quote>.</para>
-        <para>The following elements from full DocBook have been included:</para>
+        <para>The following 212 elements from full DocBook have been included:</para>
 <table>
 <title>Included DocBook elements</title>
 <tgroup cols="5">
@@ -2236,7 +2288,34 @@ variable list </entry>
     </section>
     <section>
         <title>Excluded DocBook Element Definitions</title>
-        <para>The following elements from full DocBook have been excluded from the Publishers
+        <para>In the interest of providing a schema that meets the needs of the Publishing industry,
+            the following considerations were made with regard to the modular approach to the schema
+            and the exclusion of certain core DocBook elements:</para>
+        <variablelist>
+            <varlistentry>
+                <term>Simplified markup</term>
+                <listitem>
+                    <para>The focus should be on the structural, presentational and semantic markup
+                        that meets the needs of Publishers.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>No technical elements</term>
+                <listitem>
+                    <para>The vast majority of Publishers will not need the technical elements from
+                        core DocBook. For those titles that require technical markup, the inlines
+                        can easily be added as a module to the Publishers schema.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Generated text</term>
+                <listitem>
+                    <para>With the robust DocBook toolchain, most Publishers will want to automate
+                        the creation of a Table of Contents and Index.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para> The following 149 elements from full DocBook have been excluded from the Publishers
             schema:</para>
         <note>
             <para>Because the Publishers schema is written in RelaxNG Compact syntax, it is very
@@ -2244,6 +2323,8 @@ variable list </entry>
                 example, if the elements in the programming module were needed, it is very simple to
                 use an include statement for the programming.rnc file from the source DocBook
                 distribution.</para>
+            <para>in favor of generated text, removed tech writing specific, simplify the markup
+                burden</para>
         </note>
 <table>
 <title>Excluded DocBook elements</title>
@@ -3388,6 +3469,69 @@ or functions </entry>
             of attributes available on an element, only that pattern need be redefined. To remove
             all the attributes, that pattern can be redefined as
             <quote><literal>empty</literal></quote>.</para>
+<<<<<<< .mine
+        <para>The following attribute definitions have been added to the Publishers schema:</para>
+        <table frame="all">
+            <title>Publishers Attribute Pattern Definitions</title>
+            <tgroup cols="2">
+                <colspec colname="c1" colnum="1"/>
+                <colspec colname="c2" colnum="2"/>
+                <thead>
+                    <row>
+                        <entry>Attribute pattern name</entry>
+                        <entry>Attribute pattern definition</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>db.speaker.role.attribute</entry>
+                        <entry>attribute role { text }</entry>
+                    </row>
+                    <row>
+                        <entry>db.speaker.attlist</entry>
+                        <entry>db.speaker.role.attribute? &amp; db.common.attributes &amp;
+                            db.common.linking.attributes</entry>
+                    </row>
+                    <row>
+                        <entry>db.line.role.attribute</entry>
+                        <entry>attribute role { text }</entry>
+                    </row>
+                    <row>
+                        <entry>db.line.attlist</entry>
+                        <entry>db.line.role.attribute? &amp; db.common.attributes &amp;
+                            db.common.linking.attributes</entry>
+                    </row>
+                    <row>
+                        <entry>db.linegroup.role.attribute</entry>
+                        <entry>attribute role { text }</entry>
+                    </row>
+                    <row>
+                        <entry>db.linegroup.attlist</entry>
+                        <entry>db.linegroup.role.attribute? &amp; db.common.attributes &amp;
+                            db.common.linking.attributes</entry>
+                    </row>
+                    <row>
+                        <entry>db.dialogue.role.attribute</entry>
+                        <entry>attribute role { text }</entry>
+                    </row>
+                    <row>
+                        <entry>db.dialogue.attlist</entry>
+                        <entry>db.dialogue.role.attribute? &amp; db.common.attributes &amp;
+                            db.common.linking.attributes</entry>
+                    </row>
+                    <row>
+                        <entry>db.poetry.role.attribute</entry>
+                        <entry>attribute role { text }</entry>
+                    </row>
+                    <row>
+                        <entry>db.poetry.attlist</entry>
+                        <entry>db.poetry.role.attribute? &amp; db.common.attributes &amp;
+                            db.common.linking.attributes</entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+=======
         <para>The following attribute definitions have been added to the Publishers schema:</para>
 <table
                 frame="all">
@@ -3455,8 +3599,9 @@ or functions </entry>
                     </tbody>
                 </tgroup>
             </table>
+>>>>>>> .r8131
     </section>
-     <appendix xml:id="a.committee" role="non-normative">
+    <appendix xml:id="a.committee" role="non-normative">
         <title>Acknowledgements</title>
         <para>The following individuals have participated in the creation of this specification and
             are gratefully acknowledged:</para>
@@ -3494,6 +3639,7 @@ or functions </entry>
     <appendix xml:id="changes">
         <title>Revision History</title>
         <para>Initial Draft. 11 June 2008.</para>
+        <para>Revised Draft. 6 October 2008. Usage examples, additional clarifications added.</para>
         <!--
 <listitem xml:id="rfe.">
 <para>Fixed <link xlink:href="&RFE;aid=">RFE </link>:
