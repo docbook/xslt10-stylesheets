@@ -535,6 +535,10 @@
 
   </xsl:template>
 
+  <xsl:template match="*" mode="opf.metadata">
+    <!-- override if you care -->
+  </xsl:template>
+
   <xsl:template match="author|corpauthor" mode="opf.metadata">
     <xsl:variable name="n">
       <xsl:call-template name="person.name">
@@ -546,7 +550,7 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="publishername" mode="opf.metadata">
+  <xsl:template match="publisher/publishername|publishername" mode="opf.metadata">
     <xsl:element name="dc:publisher">
       <xsl:value-of select="normalize-space(string(.))"/>
     </xsl:element>
