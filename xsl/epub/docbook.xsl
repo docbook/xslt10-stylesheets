@@ -550,7 +550,11 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="publisher/publishername|publishername" mode="opf.metadata">
+  <xsl:template match="publisher" mode="opf.metadata">
+    <xsl:apply-templates select="publishername" mode="opf.metadata"/>
+  </xsl:template>
+  
+  <xsl:template match="publishername" mode="opf.metadata">
     <xsl:element name="dc:publisher">
       <xsl:value-of select="normalize-space(string(.))"/>
     </xsl:element>
