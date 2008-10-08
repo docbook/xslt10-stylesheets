@@ -74,6 +74,10 @@ describe DocBook::Epub do
     @opf_lines.to_s.should =~ /rights[^>]+>Copyright © dddd O/
   end
 
+  it "should use the <publishername> as dc:publisher for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.to_s.should =~ /publisher[^>]+>O'Rxxxxx Mxxxx, Ixx.</
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
     FileUtils.rm_r(@tmpdir2, :force => true)
