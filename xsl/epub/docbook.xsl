@@ -250,11 +250,8 @@
               <xsl:value-of select="normalize-space($doc.title)"/>
             </xsl:element>
 
-            <xsl:apply-templates select="/*/*[contains(name(.), 'info')]/author|
-                                         /*/*[contains(name(.), 'info')]/corpauthor|
-                                         /*/*[contains(name(.), 'info')]/authorgroup/author" 
+            <xsl:apply-templates select="/*/*[contains(name(.), 'info')]/*"
                                  mode="opf.metadata"/>        
-            <xsl:apply-templates select="/*/*[contains(name(.), 'info')]/publisher/publishername" mode="opf.metadata"/>
             <xsl:element name="dc:language">
               <xsl:call-template name="l10n.language"/>
             </xsl:element>
@@ -565,9 +562,9 @@
       <xsl:value-of select="$copyright.date"/>
     </xsl:element>
     <xsl:element name="dc:rights">
-      <xsl:text>Copyright </xsl:text>
+      <xsl:text>Copyright &#x00A9; </xsl:text>
       <xsl:value-of select="year[1]"/>
-      <xsl:text>, </xsl:text>
+      <xsl:text> </xsl:text>
       <xsl:value-of select="holder[1]"/>
     </xsl:element>
   </xsl:template>
