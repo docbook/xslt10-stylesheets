@@ -127,7 +127,7 @@
       <!-- Separate processing is performed for table/figure titles and captions -->
       <xsl:when test='$suppress and
 		      @rnd:style = "table-title" and
-		      following-sibling::*[1][self::dbk:informaltable]'/>
+		      following-sibling::*[1][self::dbk:informaltable|self::dbk:para[@rnd:style = "informalfigure-imagedata"]|self::dbk:para[dbk:inlinemediaobject and count(*) = 1 and normalize-space() = ""]]'/>
       <xsl:when test='$suppress and
 		      @rnd:style = "figure-title" and
 		      following-sibling::*[1][self::dbk:para][@rnd:style = "informalfigure-imagedata" or (dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = "")]'/>
@@ -144,6 +144,9 @@
 		      $figure and
 		      $caption and
 		      generate-id($caption/preceding-sibling::dbk:para[@rnd:style = "informalfigure-imagedata" or (dbk:inlinemediaobject and count(*) = 1 and normalize-space(.) = "")][1]) = generate-id($figure)'/>
+
+      <xsl:when test='@rnd:style = "imagedata-metadata" or
+                      @rnd:style = "table-metadata"'/>
 
       <!-- Ignore empty paragraphs -->
       <xsl:when test='(not(@rnd:style) or
@@ -426,13 +429,26 @@
         <xsl:variable name='caption.next'
           select='following-sibling::dbk:para[@rnd:style = "caption" or @rnd:style = "Caption"][1]'/>
 
+        <xsl:variable name='metadata'
+          select='preceding-sibling::*[1][self::dbk:para][@rnd:style = "imagedata-metadata"]'/>
+
         <xsl:choose>
-          <xsl:when test='preceding-sibling::*[1][self::dbk:para][@rnd:style = "figure-title"]'>
+          <xsl:when test='preceding-sibling::*[1][self::dbk:para][@rnd:style = "figure-title"] or
+                          ($metadata and preceding-sibling::*[2][self::dbk:para][@rnd:style = "figure-title"])'>
             <dbk:figure>
               <xsl:call-template name='rnd:attributes'/>
               <dbk:info>
                 <dbk:title>
-                  <xsl:apply-templates select='preceding-sibling::*[1]/node()'/>
+                  <xsl:choose>
+                    <xsl:when test='$metadata'>
+                      <xsl:apply-templates
+                        select='preceding-sibling::*[2]/node()'/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates
+                        select='preceding-sibling::*[1]/node()'/>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </dbk:title>
               </dbk:info>
               <dbk:mediaobject>
@@ -448,6 +464,9 @@
                         </xsl:otherwise>
                       </xsl:choose>
                     </xsl:attribute>
+                    <xsl:call-template name='rnd:imagedata-attributes'>
+                      <xsl:with-param name='metadata' select='$metadata'/>
+                    </xsl:call-template>
                   </dbk:imagedata>
                 </dbk:imageobject>
               </dbk:mediaobject>
@@ -455,6 +474,49 @@
                 <xsl:with-param name='caption' select='$caption.next'/>
               </xsl:call-template>
             </dbk:figure>
+          </xsl:when>
+          <xsl:when test='preceding-sibling::*[1][self::dbk:para][@rnd:style = "table-title"] or
+                          ($metadata and preceding-sibling::*[2][self::dbk:para][@rnd:style = "table-title"])'>
+            <dbk:table>
+              <xsl:call-template name='rnd:attributes'/>
+              <dbk:info>
+                <dbk:title>
+                  <xsl:choose>
+                    <xsl:when test='$metadata'>
+                      <xsl:apply-templates
+                        select='preceding-sibling::*[2]/node()'/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:apply-templates
+                        select='preceding-sibling::*[1]/node()'/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </dbk:title>
+              </dbk:info>
+
+              <dbk:mediaobject>
+                <dbk:imageobject>
+                  <dbk:imagedata>
+                    <xsl:attribute name='fileref'>
+                      <xsl:choose>
+                        <xsl:when test='dbk:inlinemediaobject/dbk:imageobject/dbk:imagedata/@fileref != ""'>
+                          <xsl:value-of select='dbk:inlinemediaobject/dbk:imageobject/dbk:imagedata/@fileref'/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select='.'/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:call-template name='rnd:imagedata-attributes'>
+                      <xsl:with-param name='metadata' select='$metadata'/>
+                    </xsl:call-template>
+                  </dbk:imagedata>
+                </dbk:imageobject>
+              </dbk:mediaobject>
+              <xsl:call-template name='rnd:figure-text-caption'>
+                <xsl:with-param name='caption' select='$caption.next'/>
+              </xsl:call-template>
+            </dbk:table>
           </xsl:when>
           <xsl:otherwise>
             <dbk:informalfigure>
@@ -472,6 +534,9 @@
                         </xsl:otherwise>
                       </xsl:choose>
                     </xsl:attribute>
+                    <xsl:call-template name='rnd:imagedata-attributes'>
+                      <xsl:with-param name='metadata' select='$metadata'/>
+                    </xsl:call-template>
                   </dbk:imagedata>
                 </dbk:imageobject>
               </dbk:mediaobject>
@@ -540,6 +605,75 @@
       <xsl:call-template name='rnd:attributes'/>
       <xsl:apply-templates/>
     </dbk:caption>
+  </xsl:template>
+
+  <xsl:template name='rnd:imagedata-attributes'>
+    <xsl:param name='metadata' select='""'/>
+
+    <xsl:choose>
+      <xsl:when test='not($metadata)'/>
+      <xsl:when test='contains($metadata, " ")'>
+        <xsl:call-template name='rnd:imagedata-attributes'>
+          <xsl:with-param name='metadata'
+            select='substring-before($metadata, " ")'/>
+        </xsl:call-template>
+        <xsl:call-template name='rnd:imagedata-attributes'>
+          <xsl:with-param name='metadata'
+            select='substring-after($metadata, " ")'/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test='not(contains($metadata, "="))'>
+        <xsl:call-template name='rnd:warning'>
+          <xsl:with-param name='code' select='"imagedata-missing-value"'/>
+          <xsl:with-param name='message'>
+            <xsl:text>imagedata-metadata missing value for attribute "</xsl:text>
+            <xsl:value-of select='$metadata'/>
+            <xsl:text>"</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name='name'
+          select='translate(normalize-space(substring-before($metadata, "=")), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")'/>
+        <xsl:variable name='value'
+          select='translate(normalize-space(substring-after($metadata, "=")), "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")'/>
+
+        <xsl:choose>
+          <xsl:when test='$name = "scalefit"'>
+            <xsl:attribute name='scalefit'>
+              <xsl:choose>
+                <xsl:when test='$value = "1" or
+                                $value = "yes" or
+                                $value = "true"'>1</xsl:when>
+                <xsl:otherwise>0</xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:when test='$name = "align" or
+                          $name = "contentdepth" or
+                          $name = "contentwidth" or
+                          $name = "depth" or
+                          $name = "scale" or
+                          $name = "valign" or
+                          $name = "width"'>
+            <!-- TODO: check enumerate values-->
+            <xsl:attribute name='{$name}'>
+              <xsl:value-of select='$value'/>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name='rnd:error'>
+              <xsl:with-param name='code' select='"imagedata-unknown-attribute"'/>
+              <xsl:with-param name='message'>
+                <xsl:text>imagedata-metadata unknown attribute "</xsl:text>
+                <xsl:value-of select='$name'/>
+                <xsl:text>"</xsl:text>
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match='dbk:emphasis'>
@@ -1212,10 +1346,12 @@
       -->
     <xsl:variable name='previous'
       select='preceding-sibling::node()[not(self::text()) or (self::text() and normalize-space() != "")]'/>
-
+    <!--
+    <xsl:comment> this style is <xsl:value-of select='@rnd:style'/>, previous style is <xsl:value-of select='$previous[last()]/@rnd:style'/> # previous <xsl:value-of select='count($previous)'/></xsl:comment>
+-->
     <xsl:choose>
       <!-- inlines are coalesced -->
-      <xsl:when test='@rnd:style = $previous[1][self::dbk:emphasis]/@rnd:style'/>
+      <xsl:when test='@rnd:style = $previous[last()][self::dbk:emphasis]/@rnd:style'/>
       <xsl:when test='@rnd:style = "honorific" or
                       @rnd:style = "firstname" or
                       @rnd:style = "lineage" or
@@ -1575,6 +1711,22 @@
         <xsl:value-of select='$message'/>
       </rnd:message>
     </rnd:error>
+  </xsl:template>
+  <xsl:template name='rnd:warning'>
+    <xsl:param name='node' select='.'/>
+    <xsl:param name='code'/>
+    <xsl:param name='message'/>
+
+    <xsl:comment><xsl:value-of select='$message'/></xsl:comment>
+    <xsl:message>WARNING "<xsl:value-of select='$code'/>": <xsl:value-of select='$message'/></xsl:message>
+    <rnd:warning>
+      <rnd:code>
+        <xsl:value-of select='$code'/>
+      </rnd:code>
+      <rnd:message>
+        <xsl:value-of select='$message'/>
+      </rnd:message>
+    </rnd:warning>
   </xsl:template>
 
 </xsl:stylesheet>
