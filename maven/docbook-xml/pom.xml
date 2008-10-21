@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.docbook</groupId>
+  <artifactId>docbook-xml</artifactId>
+  <name>DocBook XML</name>
+  <packaging>pom</packaging>
+  <version>5.0</version>
+  <description>Docbook XML</description>
+  <url>http://www.docbook.org/</url>
+
+  <properties>
+    <docbook.xml.release>docbook-5.0</docbook.xml.release>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <!-- Extract XML resources-->
+                <echo>Extracting XML resources from Docbook XML distribution ${docbook.xml.release}.zip.</echo>
+                <unzip dest="${project.basedir}/target/xmltmp">
+                  <fileset dir="${project.basedir}/lib" includes="${docbook.xml.release}.zip"/>
+                  <patternset>
+                    <include name="${docbook.xml.release}/**"/>
+                    <exclude name="${docbook.xml.release}/docs/"/>
+                    <exclude name="${docbook.xml.release}/tools/"/>
+                  </patternset>
+                </unzip>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-1</version>
+
+        <executions>
+          <execution>
+            <id>make docbook-xml schema resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly-sch.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>make docbook-xml xsd resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly-xsd.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>make docbook-xml dtd resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly-dtd.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>make docbook-xml rng resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly-rng.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.docbook</groupId>
+  <artifactId>docbook-xsl</artifactId>
+  <name>DocBook XSL Stylesheets</name>
+  <packaging>pom</packaging>
+  <version>1.74</version>
+  <description>These are XSL stylesheets for transforming DocBook XML document instances into various output formats.
+  </description>
+  <url>http://sourceforge.net/projects/docbook/</url>
+
+  <parent>
+     <groupId>net.sf.docbook</groupId>
+     <artifactId>docbook</artifactId>
+     <version>1.0.0</version>
+   </parent>
+
+
+  <properties>
+    <docbook.xsl.release>docbook-xsl-1.74.0</docbook.xsl.release>
+    <docbook.xslns.release>docbook-xsl-ns-1.74.0</docbook.xslns.release>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <!-- Extract XSL resources-->
+                <echo>Extracting XSLT resources from Docbook XLS distribution ${docbook.xsl.release}.zip.</echo>
+                <unzip dest="${project.basedir}/target/xsltmp">
+                  <fileset dir="${project.basedir}/lib" includes="${docbook.xsl.release}.zip"/>
+                  <patternset>
+                    <include name="${docbook.xsl.release}/**"/>
+                    <exclude name="${docbook.xsl.release}/extensions/"/>
+                    <exclude name="${docbook.xsl.release}/doc/"/>
+                    <exclude name="${docbook.xsl.release}/docsrc/"/>
+                    <exclude name="${docbook.xsl.release}/tools/"/>
+                    <exclude name="**/.gitignore"/>
+                    <exclude name="${docbook.xsl.release}/*"/>
+                  </patternset>
+                </unzip>
+                <!-- Extract XSL-NS resources-->
+                <echo>Extracting XSLT NS resources from Docbook XLS-NS distribution ${docbook.xslns.release}.zip.</echo>
+                <unzip dest="${project.basedir}/target/xslnstmp">
+                  <fileset dir="${project.basedir}/lib" includes="${docbook.xslns.release}.zip"/>
+                  <patternset>
+                    <include name="${docbook.xslns.release}/**"/>
+                    <exclude name="${docbook.xslns.release}/extensions/"/>
+                    <exclude name="${docbook.xslns.release}/doc/"/>
+                    <exclude name="${docbook.xslns.release}/docsrc/"/>
+                    <exclude name="${docbook.xslns.release}/tools/"/>
+                    <exclude name="**/.gitignore"/>
+                    <exclude name="${docbook.xslns.release}/*"/>
+                  </patternset>
+                </unzip>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-1</version>
+
+        <executions>
+          <execution>
+            <id>make docbook xsl resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>>make docbook xsl-ns resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly-ns.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>
