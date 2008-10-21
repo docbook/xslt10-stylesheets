@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.docbook</groupId>
+  <artifactId>docbook</artifactId>
+  <name>DocBook</name>
+  <packaging>pom</packaging>
+  <version>1.0.0</version>
+  <description>Docbook</description>
+
+  <scm>
+    <connection>scm:svn:https://docbook.svn.sourceforge.net/svnroot/docbook/trunk</connection>
+    <developerConnection>scm:svn:https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/</developerConnection>
+    <url>http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/</url>
+  </scm>
+  <mailingLists>
+    <mailingList>
+      <name>Docbook APPS Mailing list</name>
+      <subscribe>mailto:docbook-apps-subscribe@lists.oasis-open.org</subscribe>
+      <unsubscribe>maito:docbook-apps-unsubscribe@lists.oasis-open.org</unsubscribe>
+      <archive>http://lists.oasis-open.org/archives/docbook-apps/</archive>
+      <post>docbook-apps@lists.oasis-open.org</post>
+    </mailingList>
+    <mailingList>
+      <name>Docbook Mailing list</name>
+      <subscribe>mailto:docbook-subscribe@lists.oasis-open.org</subscribe>
+      <unsubscribe>maito:docbook-unsubscribe@lists.oasis-open.org</unsubscribe>
+      <archive>http://lists.oasis-open.org/archives/docbook/</archive>
+      <post>docbook@lists.oasis-open.org</post>
+    </mailingList>
+  </mailingLists>
+  <issueManagement>
+    <system>sourceforge</system>
+    <url>http://sourceforge.net/tracker/?group_id=21935</url>
+  </issueManagement>
+  <distributionManagement>
+    <repository>
+      <id>docbook-sourceforge</id>
+      <name>Docbook Repository</name>
+      <url>scpexe://shell.sourceforge.net/home/groups/d/do/docbook/htdocs/maven/repository</url>
+    </repository>
+    <snapshotRepository>
+      <id>docbook-snapshot-sourceforge</id>
+      <name>Docbook Snapshot Repository</name>
+      <url>scpexe://shell.sourceforge.net/home/groups/d/do/docbkx/htdocs/maven/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+
+  <modules>
+    <module>docbook-xsl</module>
+    <module>docbook-xsl-saxon</module>
+    <module>docbook-xsl-xalan</module>
+    <module>docbook-xml</module>
+  </modules>
+
+
+</project>
