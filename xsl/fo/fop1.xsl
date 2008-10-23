@@ -78,7 +78,7 @@
     <xsl:variable name="subtitle">
       <xsl:apply-templates select="/*[1]" mode="subtitle.markup"/>
     </xsl:variable>
-    <xsl:if test="$subtitle">
+    <xsl:if test="$subtitle !=''">
       <xsl:text> - </xsl:text>
       <xsl:value-of select="$subtitle"/>
     </xsl:if>
