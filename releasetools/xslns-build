@@ -273,7 +273,7 @@ sub nsfilter {
   }
 
   # Add d: prefix to literal tocentry in maketoc.xsl
-  if ($infile =~ "maketoc") {
+  if ($infile =~ /maketoc/) {
     s/(<\/?)(tocentry)/$1d:$2/sg;
   }
 
