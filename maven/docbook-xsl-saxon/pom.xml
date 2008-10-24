@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl-saxon</artifactId>
   <name>DocBook XSL Saxon extension</name>
   <packaging>jar</packaging>
-  <version>1.00</version>
+  <version>1.0.0-SNAPSHOT</version>
   <description>These are Java extensions for use with the DocBook XML stylesheets and the Saxon XSLT engine.
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -13,7 +13,7 @@
   <parent>
     <groupId>net.sf.docbook</groupId>
     <artifactId>docbook</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
 
