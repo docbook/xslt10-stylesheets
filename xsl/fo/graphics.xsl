@@ -150,6 +150,7 @@
       <xsl:when test="@scale">0</xsl:when>
       <xsl:when test="@scalefit"><xsl:value-of select="@scalefit"/></xsl:when>
       <xsl:when test="@width or @depth">1</xsl:when>
+      <xsl:when test="$default.image.width != ''">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
