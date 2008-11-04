@@ -85,6 +85,24 @@ describe DocBook::Epub do
     end  
   end  
 
+  it "should not include an XHTML DOCTYPE in the OPF file" do
+    part_file = File.join(@testdocsdir, "subtitle.001.xml") 
+    epub_file = File.join(@tmpdir, File.basename(part_file, ".xml") + ".epub")
+    part_epub = DocBook::Epub.new(part_file, @tmpdir)
+    part_epub.render_to_file(epub_file, $DEBUG)
+
+    FileUtils.copy(epub_file, "./.doctype.epub") if $DEBUG
+
+    xhtml_dtd = "DTD XHTML 1.1"
+
+    itemref_tmpdir = File.join(Dir::tmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
+    system("unzip -q -o -d #{itemref_tmpdir} #{epub_file}")
+
+    opf_file = File.join(itemref_tmpdir, "OEBPS", "content.opf")
+    xhtml_dtd_in_opf_file = system("grep '#{xhtml_dtd}' #{opf_file}")
+    xhtml_dtd_in_opf_file.should_not be_true
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  

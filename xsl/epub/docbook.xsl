@@ -205,6 +205,8 @@
       <xsl:with-param name="encoding" select="'utf-8'" />
       <xsl:with-param name="indent" select="'yes'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
+      <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
+      <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="content">
         <xsl:element name="package">
           <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
@@ -285,6 +287,9 @@
       <xsl:with-param name="encoding" select="'utf-8'" />
       <xsl:with-param name="indent" select="'yes'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
+      <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
+      <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
+
       <xsl:with-param name="content">
         <xsl:element name="container">
           <xsl:attribute name="xmlns">urn:oasis:names:tc:opendocument:xmlns:container</xsl:attribute>
@@ -319,6 +324,8 @@
       <xsl:with-param name="encoding" select="'utf-8'" />
       <xsl:with-param name="indent" select="'yes'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
+      <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
+      <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="content">
         <xsl:element name="ncx">
           <xsl:attribute name="version">2005-1</xsl:attribute>
@@ -564,16 +571,23 @@
     <xsl:variable name="copyright.date">
       <xsl:call-template name="copyright.years">
         <xsl:with-param name="years" select="year"/>
+        <xsl:with-param name="print.ranges" select="$make.year.ranges"/>
+        <xsl:with-param name="single.year.ranges" select="$make.single.year.ranges"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:element name="dc:date">
       <xsl:value-of select="$copyright.date"/>
     </xsl:element>
     <xsl:element name="dc:rights">
-      <xsl:text>Copyright &#x00A9; </xsl:text>
-      <xsl:value-of select="year[1]"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="holder[1]"/>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'Copyright'"/>
+      </xsl:call-template>
+      <xsl:call-template name="gentext.space"/>
+      <xsl:text>&#x00A9;</xsl:text>
+      <xsl:call-template name="gentext.space"/>
+      <xsl:value-of select="$copyright.date"/>
+      <xsl:call-template name="gentext.space"/>
+      <xsl:apply-templates select="holder" mode="titlepage.mode"/>
     </xsl:element>
   </xsl:template>
 

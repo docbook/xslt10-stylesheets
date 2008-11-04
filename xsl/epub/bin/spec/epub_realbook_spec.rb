@@ -71,7 +71,7 @@ describe DocBook::Epub do
   end
 
   it "should use the <copyright> as dc:rights for the 'Real Book' test document #{@xml_file}" do
-    @opf_lines.to_s.should =~ /rights[^>]+>Copyright © dddd O/
+    @opf_lines.to_s.should =~ /:rights[^>]+>Copyright © dddd O/
   end
 
   it "should use the <publishername> as dc:publisher for the 'Real Book' test document #{@xml_file}" do
