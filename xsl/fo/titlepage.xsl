@@ -738,7 +738,7 @@
               mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'published'"/>
+      <xsl:with-param name="key" select="'pubdate'"/>
     </xsl:call-template>
     <xsl:text> </xsl:text>
     <xsl:apply-templates mode="titlepage.mode"/>
