@@ -13,7 +13,7 @@
   <parent>
      <groupId>net.sf.docbook</groupId>
      <artifactId>docbook</artifactId>
-     <version>1.0.0-SNAPSHOT</version>
+     <version>5.0-SNAPSHOT</version>
    </parent>
 
 
