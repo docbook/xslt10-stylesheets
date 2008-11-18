@@ -5,7 +5,7 @@
   <artifactId>docbook</artifactId>
   <name>DocBook</name>
   <packaging>pom</packaging>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>5.0-SNAPSHOT</version>
   <description>Docbook</description>
 
   <scm>
@@ -45,6 +45,21 @@
       <url>sftp://web.sourceforge.net/home/groups/d/do/docbook/htdocs/maven/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
+
+  <developers>
+    <developer>
+      <id>developer_list</id>
+      <name>http://sourceforge.net/project/memberlist.php?group_id=21935</name>
+    </developer>
+        <developer>
+      <id>mimil</id>
+      <name>Cedric Pronzato</name>
+      <email>mimil@users.sourceforge.net</email>
+      <roles>
+        <role>artifact maintainer</role>
+      </roles>
+    </developer>
+  </developers>
 
 
   <modules>
