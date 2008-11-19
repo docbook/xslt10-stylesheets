@@ -46,6 +46,7 @@
                     <exclude name="${docbook.xsl.release}/tools/"/>
                     <exclude name="**/.gitignore"/>
                     <exclude name="${docbook.xsl.release}/*"/>
+                    <exclude name="${docbook.xsl.release}/epub/bin/spec/examples/"/>
                   </patternset>
                 </unzip>
                 <!-- Extract XSL-NS resources-->
@@ -58,6 +59,7 @@
                     <exclude name="${docbook.xslns.release}/doc/"/>
                     <exclude name="${docbook.xslns.release}/docsrc/"/>
                     <exclude name="${docbook.xslns.release}/tools/"/>
+                    <exclude name="${docbook.xslns.release}/epub/bin/spec/examples/"/>
                     <exclude name="**/.gitignore"/>
                     <exclude name="${docbook.xslns.release}/*"/>
                   </patternset>
