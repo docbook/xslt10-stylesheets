@@ -493,7 +493,7 @@ or 0 (the empty string)</para>
 
   <xsl:variable name="table" 
                 select="($node/ancestor-or-self::table | 
-                         $node/ancestor-or-self::informaltable)[1]"/>
+                         $node/ancestor-or-self::informaltable)[last()]"/>
 
   <xsl:variable name="tabstyle">
     <xsl:choose>
