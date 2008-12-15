@@ -429,7 +429,7 @@ sub namespacefilter {
 
   my $newstring = '';
 
-  while ( $string =~ /^(.*?)($dbname)(.*?$)/s ) {
+  while ( $string =~ /^(.*?)($dbname)(.*$)/s ) {
 
     my $pre = $1;
     my $name = $2;
