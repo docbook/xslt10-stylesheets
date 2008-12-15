@@ -172,6 +172,7 @@
 <gentext key="above"         text="boven"/>
 <gentext key="below"         text="onder"/>
 <gentext key="index symbols" text="Symbolen"/>
+<gentext key="writing-mode" text="lr-tb"/>
 <gentext key="sectioncalled"       text="de paragraaf"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzëïé"/>

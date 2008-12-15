@@ -180,6 +180,7 @@
 <gentext key="nav-up" text="上に戻る"/>
 
 <gentext key="index symbols" text="シンボル"/>
+<gentext key="writing-mode" text="lr-tb"/>
 <gentext key="Draft" text="Draft"/> <!-- en -->
 <gentext key="above" text="above"/> <!-- en -->
 <gentext key="below" text="below"/> <!-- en -->

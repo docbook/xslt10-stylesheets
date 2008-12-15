@@ -179,6 +179,7 @@
 <gentext key="below"         text="baba"/>
 <gentext key="sectioncalled" text="ang bahaging tinatawag na"/>
 <gentext key="index symbols" text="Mga simbolo"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

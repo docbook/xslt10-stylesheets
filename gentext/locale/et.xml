@@ -173,6 +173,7 @@
 <gentext key="above"         text="above"/> <!-- en -->
 <gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->

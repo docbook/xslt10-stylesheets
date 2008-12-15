@@ -170,6 +170,7 @@
 <gentext key="above"         text="goian"/>
 <gentext key="below"         text="behean"/> 
 <gentext key="index symbols"            text="Ikurrak"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->

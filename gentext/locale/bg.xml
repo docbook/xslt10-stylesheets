@@ -203,6 +203,7 @@
 <gentext key="below" text="по-долу"/>
 <gentext key="sectioncalled" text="разделът със заглавие"/>
 <gentext key="index symbols" text="символи"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="абвгдежзийклмнопрстуфхцчшщъыьэюя"/>
 <gentext key="uppercase.alpha" text="АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>

@@ -184,6 +184,7 @@
 <gentext key="below"         text="žemiau"/>
 <gentext key="sectioncalled" text="skyrius pavadinimu"/>
 <gentext key="index symbols" text="Simboliai"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="aąbcčdeęėfghiįyjklmnoprsštuųūvzžqwx"/>
 <gentext key="uppercase.alpha" text="AĄBCČDEĘĖFGHIĮYJKLMNOPRSŠTUŲŪVZŽQWX"/>

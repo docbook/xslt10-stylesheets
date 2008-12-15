@@ -178,6 +178,7 @@
 <gentext key="below"         text="Altında"/>
 <gentext key="sectioncalled" text=""/>
 <gentext key="index symbols" text="Simvollar"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcçdeəfgğhxıijkqlmnoöprsştuüvyz"/>
 <gentext key="uppercase.alpha" text="ABCÇDEƏFGĞHXIİJKQLMNOÖPRSŞTUÜVYZ"/>

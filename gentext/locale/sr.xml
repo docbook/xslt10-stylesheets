@@ -200,6 +200,7 @@
 <gentext key="below" text="испод"/>
 <gentext key="sectioncalled" text="одељак под именом"/>
 <gentext key="index symbols" text="Симболи"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="абвгдђежзијклљмнњопрстћуфхцчџш"/>
 <gentext key="uppercase.alpha" text="АБВГДЂЕЖЗИЈКЛЉМНЊОПРСТЋУФХЦЧЏШ"/>
