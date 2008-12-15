@@ -12,7 +12,7 @@
 
      ******************************************************************** -->
 
-<!-- These variables set the alignment value for HTML output based on
+<!-- These variables set the align attribute value for HTML output based on
      the writing-mode specified in the gentext file for the document's lang. -->
 
 <xsl:variable name="direction.align.start">
