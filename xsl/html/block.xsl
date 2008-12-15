@@ -160,7 +160,7 @@
           </tr>
           <tr>
             <td width="10%" valign="top">&#160;</td>
-            <td colspan="2" align="right" valign="top">
+            <td colspan="2" align="{$direction.align.end}" valign="top">
               <xsl:text>--</xsl:text>
               <xsl:apply-templates select="attribution"/>
             </td>
@@ -329,7 +329,7 @@
     <xsl:apply-templates select="." mode="class.attribute"/>
     <table border="0" width="100%" summary="Revision history">
       <tr>
-        <th align="left" valign="top" colspan="3">
+        <th align="{$direction.align.start}" valign="top" colspan="3">
           <b>
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'RevHistory'"/>
@@ -348,7 +348,7 @@
   <xsl:variable name="revauthor" select="authorinitials|author"/>
   <xsl:variable name="revremark" select="revremark|revdescription"/>
   <tr>
-    <td align="left">
+    <td align="{$direction.align.start}">
       <xsl:if test="$revnumber">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'Revision'"/>
@@ -357,19 +357,19 @@
         <xsl:apply-templates select="$revnumber"/>
       </xsl:if>
     </td>
-    <td align="left">
+    <td align="{$direction.align.start}">
       <xsl:apply-templates select="$revdate"/>
     </td>
     <xsl:choose>
       <xsl:when test="count($revauthor)=0">
-        <td align="left">
+        <td align="{$direction.align.start}">
           <xsl:call-template name="dingbat">
             <xsl:with-param name="dingbat">nbsp</xsl:with-param>
           </xsl:call-template>
         </td>
       </xsl:when>
       <xsl:otherwise>
-        <td align="left">
+        <td align="{$direction.align.start}">
           <xsl:for-each select="$revauthor">
             <xsl:apply-templates select="."/>
             <xsl:if test="position() != last()">
@@ -382,7 +382,7 @@
   </tr>
   <xsl:if test="$revremark">
     <tr>
-      <td align="left" colspan="3">
+      <td align="{$direction.align.start}" colspan="3">
         <xsl:apply-templates select="$revremark"/>
       </td>
     </tr>

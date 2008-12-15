@@ -865,7 +865,7 @@
   <xsl:if test="$fcount &gt; 0">
     <div class="footnotes">
       <br/>
-      <hr width="100" align="left"/>
+      <hr width="100" align="{$direction.align.start}"/>
       <xsl:call-template name="process.footnotes.in.this.chunk">
         <xsl:with-param name="node" select="."/>
         <xsl:with-param name="footnotes" select="$footnotes"/>
@@ -1507,7 +1507,7 @@
 
           <xsl:if test="$row2">
             <tr>
-              <td width="20%" align="left">
+              <td width="20%" align="{$direction.align.start}">
                 <xsl:if test="count($prev)>0">
                   <a accesskey="p">
                     <xsl:attribute name="href">
@@ -1532,7 +1532,7 @@
                   <xsl:otherwise>&#160;</xsl:otherwise>
                 </xsl:choose>
               </th>
-              <td width="20%" align="right">
+              <td width="20%" align="{$direction.align.end}">
                 <xsl:text>&#160;</xsl:text>
                 <xsl:if test="count($next)>0">
                   <a accesskey="n">
@@ -1589,7 +1589,7 @@
         <table width="100%" summary="Navigation footer">
           <xsl:if test="$row1">
             <tr>
-              <td width="40%" align="left">
+              <td width="40%" align="{$direction.align.start}">
                 <xsl:if test="count($prev)>0">
                   <a accesskey="p">
                     <xsl:attribute name="href">
@@ -1622,7 +1622,7 @@
                   <xsl:otherwise>&#160;</xsl:otherwise>
                 </xsl:choose>
               </td>
-              <td width="40%" align="right">
+              <td width="40%" align="{$direction.align.end}">
                 <xsl:text>&#160;</xsl:text>
                 <xsl:if test="count($next)>0">
                   <a accesskey="n">
@@ -1642,7 +1642,7 @@
 
           <xsl:if test="$row2">
             <tr>
-              <td width="40%" align="left" valign="top">
+              <td width="40%" align="{$direction.align.start}" valign="top">
                 <xsl:if test="$navig.showtitles != 0">
                   <xsl:apply-templates select="$prev" mode="object.title.markup"/>
                 </xsl:if>
@@ -1684,7 +1684,7 @@
                   </a>
                 </xsl:if>
               </td>
-              <td width="40%" align="right" valign="top">
+              <td width="40%" align="{$direction.align.end}" valign="top">
                 <xsl:text>&#160;</xsl:text>
                 <xsl:if test="$navig.showtitles != 0">
                   <xsl:apply-templates select="$next" mode="object.title.markup"/>

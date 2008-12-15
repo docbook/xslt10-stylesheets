@@ -75,7 +75,7 @@
 
   <xsl:if test="blockinfo/title|info/title|title">
     <tr class="qandadiv">
-      <td align="left" valign="top" colspan="2">
+      <td align="{$direction.align.start}" valign="top" colspan="2">
         <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
       </td>
     </tr>
@@ -93,14 +93,14 @@
 
   <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') or $toc = '1'">
     <tr class="toc">
-      <td align="left" valign="top" colspan="2">
+      <td align="{$direction.align.start}" valign="top" colspan="2">
         <xsl:call-template name="process.qanda.toc"/>
       </td>
     </tr>
   </xsl:if>
   <xsl:if test="$preamble">
     <tr class="toc">
-      <td align="left" valign="top" colspan="2">
+      <td align="{$direction.align.start}" valign="top" colspan="2">
         <xsl:apply-templates select="$preamble"/>
       </td>
     </tr>
@@ -151,7 +151,7 @@
 
   <tr>
     <xsl:apply-templates select="." mode="class.attribute"/>
-    <td align="left" valign="top">
+    <td align="{$direction.align.start}" valign="top">
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select=".."/>
         <xsl:with-param name="conditional" select="0"/>
@@ -173,7 +173,7 @@
         </b></p>
       </xsl:if>
     </td>
-    <td align="left" valign="top">
+    <td align="{$direction.align.start}" valign="top">
       <xsl:choose>
         <xsl:when test="$deflabel = 'none' and not(label)">
           <b><xsl:apply-templates select="*[local-name(.) != 'label']"/></b>
@@ -200,7 +200,7 @@
   </xsl:variable>
 
   <tr class="{local-name(.)}">
-    <td align="left" valign="top">
+    <td align="{$direction.align.start}" valign="top">
       <xsl:call-template name="anchor"/>
       <xsl:variable name="answer.label">
         <xsl:apply-templates select="." mode="label.markup"/>
@@ -211,7 +211,7 @@
         </b></p>
       </xsl:if>
     </td>
-    <td align="left" valign="top">
+    <td align="{$direction.align.start}" valign="top">
       <xsl:apply-templates select="*[local-name(.) != 'label'
         and local-name(.) != 'qandaentry']"/>
       <!-- * handle nested answer/qandaentry instances -->
@@ -362,7 +362,7 @@
       </xsl:attribute>
     </xsl:if>
 
-    <col align="left">
+    <col align="{$direction.align.start}">
       <xsl:attribute name="width">
         <xsl:choose>
           <xsl:when test="$label-width != ''">
