@@ -173,6 +173,7 @@
 <gentext key="above"         text="ovan"/> 
 <gentext key="below"         text="nedan"/> 
 <gentext key="index symbols" text="Symboler"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&#229;&#228;&#246;"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#197;&#196;&#214;"/>

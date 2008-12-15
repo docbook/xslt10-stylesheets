@@ -172,6 +172,7 @@
 <gentext key="above"         text="above"/> <!-- en -->
 <gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols"            text="Iimpawu"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

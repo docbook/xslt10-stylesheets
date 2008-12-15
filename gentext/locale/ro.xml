@@ -177,6 +177,7 @@
 <gentext key="above" text="deasupra"/>
 <gentext key="below" text="sub"/>
 <gentext key="index symbols" text="Simboluri"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="aăâbcdefghiîjklmnopqrsștșuvwxyz"/>
 <gentext key="uppercase.alpha" text="AĂÂBCDEFGHIÎJKLMNOPQRSȘTȚUVWXYZ"/>

@@ -179,6 +179,7 @@
 <gentext key="below"         text="ከስር"/>
 <gentext key="sectioncalled" text="የክፍሉ መጠሪያ"/>
 <gentext key="index symbols" text="ምልክቶች"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

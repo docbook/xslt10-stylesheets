@@ -187,6 +187,7 @@
 <gentext key="above"         text="acima"/>
 <gentext key="below"         text="abaixo"/>
 <gentext key="index symbols" text="S&#237;mbolos"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

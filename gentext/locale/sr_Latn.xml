@@ -199,6 +199,7 @@
 <gentext key="below" text="ispod"/>
 <gentext key="sectioncalled" text="odeljak pod imenom"/>
 <gentext key="index symbols" text="Simboli"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcčćdđefghijklmnopqrsštuvwxyzž"/>
 <gentext key="uppercase.alpha" text="ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽ"/>

@@ -172,6 +172,7 @@
 <gentext key="above" text="fent"/>
 <gentext key="below" text="lent"/>
 <gentext key="index symbols" text="szimbólummutató"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz"/>
 <gentext key="uppercase.alpha" text="AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ"/>

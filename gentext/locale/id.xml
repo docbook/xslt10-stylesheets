@@ -180,6 +180,7 @@
 <gentext key="above"         text="Di Atas"/>
 <gentext key="below"         text="Di Bawah"/>
 <gentext key="index symbols" text="Simbol"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

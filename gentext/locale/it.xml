@@ -207,6 +207,7 @@
 <gentext key="below" text="sotto"/>
 <gentext key="sectioncalled" text="la sezione chiamata"/>
 <gentext key="index symbols" text="Simboli"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

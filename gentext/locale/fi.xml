@@ -177,6 +177,7 @@
 <gentext key="above"         text="yllä"/>
 <gentext key="below"         text="alla"/>
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzåäöšž"/> 
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖŠŽ"/> 

@@ -182,6 +182,7 @@
 <gentext key="below"         text="ispod"/>
 <gentext key="sectioncalled" text="the section called"/><!-- en -->
 <gentext key="index symbols" text="Oznake"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abc&#x010D;&#x0107;d&#x0111;efghijklmnopqrs&#x0161;tuvwxyz&#x017E;"/>
 <gentext key="uppercase.alpha" text="ABC&#x010C;&#x0106;D&#x0110;EFGHIJKLMNOPQRS&#x0160;TUVWXYZ&#x017D;"/>

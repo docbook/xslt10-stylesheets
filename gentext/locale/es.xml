@@ -170,6 +170,7 @@
 <gentext key="nav-up" text="Subir"/>
 
 <gentext key="index symbols" text="Símbolos"/>
+<gentext key="writing-mode" text="lr-tb"/>
 <gentext key="Draft" text="Borrador"/>
 <gentext key="above" text="arriba"/>
 <gentext key="below" text="abajo"/>

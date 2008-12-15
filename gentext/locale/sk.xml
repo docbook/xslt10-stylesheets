@@ -177,6 +177,7 @@
 <gentext key="above" text="nad"/> 
 <gentext key="below" text="pod"/> 
 <gentext key="index symbols" text="Symboly"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="aáäbcčdďeéfghiíjklĺľmnňoóôpqrŕsštťuúvwxyýzž"/> 
 <gentext key="uppercase.alpha" text="AÁÄBCČDĎEÉFGHIÍJKLĹĽMNŇOÓÔPQRŔSŠTŤUÚVWXYÝZŽ"/> 

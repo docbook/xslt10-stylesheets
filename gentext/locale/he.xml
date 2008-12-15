@@ -171,6 +171,7 @@
 <gentext key="above"         text="למעלה"/> 
 <gentext key="below"         text="למטה"/> 
 <gentext key="index symbols"            text="סמלים"/>
+<gentext key="writing-mode" text="rl-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->

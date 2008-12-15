@@ -176,6 +176,7 @@
 <gentext key="above"         text="above"/> <!-- en -->
 <gentext key="below"         text="below"/> <!-- en -->
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="writing-mode" text="lr-tb"/>
 
 <dingbat key="startquote" text="“"/>
 <dingbat key="endquote" text="”"/>

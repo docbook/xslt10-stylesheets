@@ -183,6 +183,7 @@
 <gentext key="below"         text="&#x0AA8;&#x0AC0;&#x0A9A;&#x0AC7;"/>
 <gentext key="sectioncalled" text="&#x0AAC;&#x0ACB;&#x0AB2;&#x0ABE;&#x0AB5;&#x0ABE;&#x0AAF;&#x0AC7;&#x0AB2;&#x0AB5;&#x0ABF;&#x0AAD;&#x0ABE;&#x0A97;"/>
 <gentext key="index symbols" text="Symbols"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="&#x0A95;&#x0A96;&#x0A97;&#x0A98;&#x0A9A;&#x0A9B;&#x0A9C;&#x0A9D;&#x0A9F;&#x0AA0;&#x0AA1;&#x0AA2;&#x0AA8;&#x0AA3;&#x0AAF;&#x0AB0;&#x0AB2;&#x0AB5;&#x0AB8;&#x0AB6;&#x0AB7;&#x0AB9;"/>
 <gentext key="uppercase.alpha" text="&#x0A95;&#x0A96;&#x0A97;&#x0A98;&#x0A9A;&#x0A9B;&#x0A9C;&#x0A9D;&#x0A9F;&#x0AA0;&#x0AA1;&#x0AA2;&#x0AA8;&#x0AA3;&#x0AAF;&#x0AB0;&#x0AB2;&#x0AB5;&#x0AB8;&#x0AB6;&#x0AB7;&#x0AB9;"/>

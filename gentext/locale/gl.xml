@@ -189,6 +189,7 @@
 <gentext key="above"         text="acima"/>
 <gentext key="below"         text="abaixo"/>
 <gentext key="index symbols" text="S&#237;mbolos"/>
+<gentext key="writing-mode" text="lr-tb"/>
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz&#225;&#233;&#237;&#243;&#250;&#241;"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#193;&#201;&#205;&#211;&#218;&#209;"/>
 <dingbat key="startquote" text="&#171;&#160;"/>

@@ -180,6 +180,7 @@
 <gentext key="below" text="au-dessous"/>
 <gentext key="sectioncalled" text="la section intitulée"/>
 <gentext key="index symbols" text="Symboles"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzâêîôûëïüàèùéçæœ"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÂÊÎÔÛËÏÜÀÈÙÉÇÆŒ"/>

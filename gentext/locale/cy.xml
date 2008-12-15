@@ -179,6 +179,7 @@
 <gentext key="below"         text="isod"/>
 <gentext key="sectioncalled" text="yr adran o'r enw"/>
 <gentext key="index symbols" text="Symbolau"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

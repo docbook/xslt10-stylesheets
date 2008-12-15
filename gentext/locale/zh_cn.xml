@@ -207,6 +207,7 @@
 <gentext key="below"         text="以下"/>
 <gentext key="sectioncalled" text="一节"/>
 <gentext key="index symbols" text="符号"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

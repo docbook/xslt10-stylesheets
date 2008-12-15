@@ -179,6 +179,7 @@
 <gentext key="below"         text="posht&#0235;"/>
 <gentext key="sectioncalled" text="seksioni i quajtur"/>
 <gentext key="index symbols" text="Simbole"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

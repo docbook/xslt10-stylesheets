@@ -204,6 +204,7 @@
 <gentext key="below" text="suba"/>
 <gentext key="sectioncalled" text="la sekcio nomata"/>
 <gentext key="index symbols" text="Simboloj"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abc&#x0109;defg&#x011D;h&#x0125;ij&#x0135;klmnopqrs&#x015D;tu&#x016D;vyz"/>
 <gentext key="uppercase.alpha" text="ABC&#x0108;DEFG&#x011C;H&#x0124;IJ&#x0134;KLMNOPQRS&#x015C;TU&#x016C;VYZ"/>

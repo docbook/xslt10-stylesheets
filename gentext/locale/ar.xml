@@ -171,6 +171,7 @@
 <gentext key="below"         text="áêåÇ êäê"/>
 <gentext key="sectioncalled" text="ÇäâÓå ÇäåÓåé"/>
 <gentext key="index symbols" text="ÇäÑåèÒ"/>
+<gentext key="writing-mode" text="rl-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!-- en -->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!-- en -->

@@ -176,6 +176,7 @@
 <gentext key="below"         text="under"/>
 <gentext key="sectioncalled"       text="afsnittet der hedder"/>
 <gentext key="index symbols"            text="symboler"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha"
  text="abcdefghijklmnopqrstuvwxyz&#xE6;&#xF8;&#xE5;"/>

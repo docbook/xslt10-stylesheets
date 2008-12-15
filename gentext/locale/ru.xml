@@ -209,6 +209,7 @@
 <gentext key="above" text="выше"/>
 <gentext key="below" text="ниже"/>
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="абвгдеёжзийклмнопрстуфхцчшщъыьэюя"/>
 <gentext key="uppercase.alpha" text="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"/>

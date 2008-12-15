@@ -201,6 +201,7 @@
 <gentext key="below"         text="доор"/> 
 <gentext key="sectioncalled" text="Хэсгийн нэр"/>
 <gentext key="index symbols" text="тэмдэгтүүд"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 
 <gentext key="lowercase.alpha" text="абвгдеёжзийклмноөпрстуүфхцчшщъыьэюя"/> 

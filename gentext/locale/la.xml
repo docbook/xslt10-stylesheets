@@ -171,6 +171,7 @@
 <gentext key="below"         text="sub"/>
 <gentext key="sectioncalled" text="sectio vocata"/>
 <gentext key="index symbols" text="signa"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>

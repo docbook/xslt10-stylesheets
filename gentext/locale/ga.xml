@@ -179,6 +179,7 @@
 <gentext key="below"         text="thíos"/>
 <gentext key="sectioncalled" text="an rannán dar teideal"/>
 <gentext key="index symbols" text="Siombailí"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzáéíóú"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚ"/>
