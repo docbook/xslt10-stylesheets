@@ -763,7 +763,7 @@
       <xsl:apply-templates select="." mode="class.attribute"/>
       <table border="1" width="100%" summary="Revision history">
         <tr>
-          <th align="left" valign="top" colspan="{$numcols}">
+          <th align="{$direction.align.start}" valign="top" colspan="{$numcols}">
             <b>
               <xsl:call-template name="gentext">
                 <xsl:with-param name="key" select="'RevHistory'"/>
@@ -839,7 +839,7 @@
   <xsl:variable name="revauthor" select="authorinitials|author"/>
   <xsl:variable name="revremark" select="revremark|revdescription"/>
   <tr>
-    <td align="left">
+    <td align="{$direction.align.start}">
       <xsl:if test="$revnumber">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'Revision'"/>
@@ -848,12 +848,12 @@
         <xsl:apply-templates select="$revnumber[1]" mode="titlepage.mode"/>
       </xsl:if>
     </td>
-    <td align="left">
+    <td align="{$direction.align.start}">
       <xsl:apply-templates select="$revdate[1]" mode="titlepage.mode"/>
     </td>
     <xsl:choose>
       <xsl:when test="$revauthor">
-        <td align="left">
+        <td align="{$direction.align.start}">
           <xsl:for-each select="$revauthor">
             <xsl:apply-templates select="." mode="titlepage.mode"/>
             <xsl:if test="position() != last()">
@@ -870,7 +870,7 @@
   </tr>
   <xsl:if test="$revremark">
     <tr>
-      <td align="left" colspan="{$numcols}">
+      <td align="{$direction.align.start}" colspan="{$numcols}">
         <xsl:apply-templates select="$revremark[1]" mode="titlepage.mode"/>
       </td>
     </tr>

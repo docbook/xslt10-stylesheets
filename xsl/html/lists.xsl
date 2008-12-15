@@ -155,7 +155,7 @@
     <xsl:choose>
       <xsl:when test="@inheritnum='inherit' and ancestor::listitem[parent::orderedlist]">
 	<table border="0">
-	  <col align="left" valign="top"/>
+	  <col align="{$direction.align.start}" valign="top"/>
           <tbody>
 	    <xsl:apply-templates 
 		mode="orderedlist-table"
@@ -307,7 +307,7 @@
               <xsl:value-of select="$table-summary"/>
             </xsl:attribute>
           </xsl:if>
-          <col align="left" valign="top">
+          <col align="{$direction.align.start}" valign="top">
             <xsl:if test="$term-width != ''">
               <xsl:attribute name="width">
                 <xsl:value-of select="$term-width"/>
@@ -997,7 +997,7 @@
           </xsl:with-param>
         </xsl:call-template>
 
-        <td width="5%" valign="top" align="left">
+        <td width="5%" valign="top" align="{$direction.align.start}">
           <p>
             <xsl:call-template name="anchor"/>
             <xsl:call-template name="callout.arearefs">
@@ -1005,7 +1005,7 @@
             </xsl:call-template>
           </p>
         </td>
-        <td valign="top" align="left">
+        <td valign="top" align="{$direction.align.start}">
           <xsl:apply-templates/>
         </td>
       </tr>
