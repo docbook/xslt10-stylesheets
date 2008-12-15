@@ -132,6 +132,7 @@ $Id$
 &draft.watermark.image;
 &generate.id.attributes;
 &generate.meta.abstract;
+&writing.mode;
 </reference>
 <reference xml:id="xslt"><title>XSLT Processing</title>
 &rootid;
@@ -726,6 +727,7 @@ around all these parameters.</para>
 <src:fragref linkend="variablelist.as.table.frag"/>
 <src:fragref linkend="variablelist.term.separator.frag"/>
 <src:fragref linkend="variablelist.term.break.after.frag"/>
+<src:fragref linkend="writing.mode.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
 <src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>
