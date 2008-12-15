@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:saxon="http://icl.com/saxon"
                 exclude-result-prefixes="exsl"
@@ -10,6 +11,9 @@
   encoding="ASCII"
   saxon:character-representation="decimal"
   />
+
+<xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
+
 <xsl:preserve-space elements="*"/>
 
 <xsl:template match="/">
@@ -131,9 +135,9 @@
 <xsl:template match="xsl:template[@name='body.attributes']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:if test="starts-with($writing.mode, 'rl')">
-      <xsl:attribute name="dir">rtl</xsl:attribute>
-    </xsl:if>
+    <xslo:if test="starts-with($writing.mode, 'rl')">
+      <xslo:attribute name="dir">rtl</xslo:attribute>
+    </xslo:if>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> no apply-templates; make it empty except for dir for rtl</xsl:comment>
     <xsl:text>&#10;</xsl:text>
