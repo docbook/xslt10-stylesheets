@@ -131,8 +131,11 @@
 <xsl:template match="xsl:template[@name='body.attributes']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
+    <xsl:if test="starts-with($writing.mode, 'rl')">
+      <xsl:attribute name="dir">rtl</xsl:attribute>
+    </xsl:if>
     <xsl:text>&#10;</xsl:text>
-    <xsl:comment> no apply-templates; make it empty </xsl:comment>
+    <xsl:comment> no apply-templates; make it empty except for dir for rtl</xsl:comment>
     <xsl:text>&#10;</xsl:text>
   </xsl:copy>
 </xsl:template>
