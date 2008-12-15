@@ -12,6 +12,33 @@
 
      ******************************************************************** -->
 
+<!-- These variables set the alignment value for HTML output based on
+     the writing-mode specified in the gentext file for the document's lang. -->
+
+<xsl:variable name="direction.align.start">
+  <xsl:choose>
+    <xsl:when test="starts-with($writing.mode, 'lr')">left</xsl:when>
+    <xsl:when test="starts-with($writing.mode, 'rl')">right</xsl:when>
+    <xsl:otherwise>left</xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
+<xsl:variable name="direction.align.end">
+  <xsl:choose>
+    <xsl:when test="starts-with($writing.mode, 'lr')">right</xsl:when>
+    <xsl:when test="starts-with($writing.mode, 'rl')">left</xsl:when>
+    <xsl:otherwise>right</xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
+<xsl:variable name="direction.mode">
+  <xsl:choose>
+    <xsl:when test="starts-with($writing.mode, 'lr')">ltr</xsl:when>
+    <xsl:when test="starts-with($writing.mode, 'rl')">rtl</xsl:when>
+    <xsl:otherwise>ltr</xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
 <!-- The generate.html.title template is currently used for generating HTML -->
 <!-- "title" attributes for some inline elements only, but not for any -->
 <!-- block elements. It is called in eleven places in the inline.xsl -->

@@ -308,3 +308,4 @@
 <!ENTITY reference.autolabel SYSTEM "../params/reference.autolabel.xml">
 <!ENTITY glossary.sort SYSTEM "../params/glossary.sort.xml">
 <!ENTITY javahelp.encoding SYSTEM "../params/javahelp.encoding.xml">
+<!ENTITY writing.mode SYSTEM "../params/writing.mode.xml">
