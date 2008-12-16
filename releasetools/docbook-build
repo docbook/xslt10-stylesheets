@@ -45,7 +45,7 @@ TARFLAGS=P
 ZIPTARG=zip
 SITEUSER=`whoami`
 SITEBASE=/home/groups/d/do/docbook/htdocs/snapshots
-SITEHOST=docbook.sourceforge.net
+SITEHOST=web.sourceforge.net
 RELEASEVERSION=snapshot
 if [ -z "$TMP" ]; then
   TMP=/tmp
@@ -82,7 +82,7 @@ Options:
 
   -d DOMAIN
      Specifies the remote host (domain) to which the snaphost is
-     uploaded. Default: 'docbook.sourceforge.net'
+     uploaded. Default: 'web.sourceforge.net'
 
   -e ENGINENAME
      Specifies which XSLT engine to use. Default: xsltproc
@@ -344,7 +344,8 @@ EOF
         > $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
       scp $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log $SITEUSER@$SITEHOST:$SITEBASE
     fi
-    ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.zip *.log; touch $DISTRO)"
+    # FIXME: uncomment below when SF fixes their shell server
+    #ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.zip *.log; touch $DISTRO)"
     fi
 
     # set up the e-mail From and To headers for buildbot message
