@@ -6,6 +6,7 @@
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 exclude-result-prefixes="doc xsl lxslt">
 
+<xsl:include href="../../../common/l10n.xsl"/>
 <xsl:include href="../../../html/param.xsl"/>
 <xsl:include href="../../../html/chunker.xsl"/>
 
