@@ -43,8 +43,8 @@
 <gentext key="caution" text="小心"/>
 <gentext key="Chapter" text="章"/>
 <gentext key="chapter" text="章"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/>
+<gentext key="Colophon" text="版本记录"/>
+<gentext key="colophon" text="版本记录"/>
 <gentext key="Copyright" text="版权"/>
 <gentext key="copyright" text="版权"/>
 <gentext key="Dedication" text="题词"/>
@@ -130,8 +130,8 @@
 <gentext key="Set" text="Set"/>
 <gentext key="setindex" text="Set Index"/>
 <gentext key="SetIndex" text="Set Index"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="sidebar"/>
+<gentext key="Sidebar" text="侧栏"/>
+<gentext key="sidebar" text="侧栏"/>
 <gentext key="step" text="步骤"/>
 <gentext key="Step" text="步骤"/>
 <gentext key="Table" text="表"/>
@@ -149,8 +149,8 @@
 <gentext key="by" text="由"/>
 <gentext key="Edited" text="编辑时间"/>
 <gentext key="edited" text="编辑时间"/>
-<gentext key="Editedby" text="编辑者"/>
-<gentext key="editedby" text="编辑者"/>
+<gentext key="Editedby" text="编辑"/>
+<gentext key="editedby" text="编辑"/>
 <gentext key="in" text="于"/>
 <gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text="、"/>
