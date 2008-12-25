@@ -43,8 +43,8 @@
 <gentext key="caution" text="小心"/>
 <gentext key="Chapter" text="章"/>
 <gentext key="chapter" text="章"/>
-<gentext key="Colophon" text="版本记录"/>
-<gentext key="colophon" text="版本记录"/>
+<gentext key="Colophon" text="后记"/>
+<gentext key="colophon" text="后记"/>
 <gentext key="Copyright" text="版权"/>
 <gentext key="copyright" text="版权"/>
 <gentext key="Dedication" text="题词"/>
