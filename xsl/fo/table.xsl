@@ -97,6 +97,11 @@
       </xsl:if>
       <xsl:apply-templates select="."/>
     </fo:table>
+
+    <xsl:for-each select="mediaobject|graphic">
+      <xsl:apply-templates select="."/>
+    </xsl:for-each>
+
   </xsl:for-each>
 </xsl:template>
 
