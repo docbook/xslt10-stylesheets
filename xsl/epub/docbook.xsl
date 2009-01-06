@@ -1165,7 +1165,7 @@
     </xsl:if>
 
     <xsl:if test="@align and $viewport = 0">
-      <xsl:attribute name="align">
+      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
         <xsl:choose>
           <xsl:when test="@align = 'center'">middle</xsl:when>
           <xsl:otherwise>
