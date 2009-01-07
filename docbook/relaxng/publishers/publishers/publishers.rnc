@@ -42,9 +42,11 @@ include "../../docbook/src/core.rnc" {
    | db.navigation.components
    | db.section
    | db.para
-   db.sidebar =
+   
+ db.sidebar =
       element sidebar {
          db.sidebar.attlist,
+         db._title, 
          db.sidebar.info,
          db.all.blocks+, db.recursive.sections*
       }
@@ -235,6 +237,16 @@ db.linegroup =
       (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
       }
       
+ db.poetry.info =
+     db._info.title.only
+     
+  db.poetry.role.attribute = attribute role { text }
+  
+  db.poetry.attlist =
+    db.poetry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+      
  db.dialogue =
       element dialogue {
       db.dialogue.attlist,
@@ -251,13 +263,20 @@ db.linegroup =
     db.dialogue.role.attribute?
     & db.common.attributes
     & db.common.linking.attributes
- 
- db.poetry.info =
+    
+ db.drama =
+      element drama {
+      db.drama.attlist,
+      db.drama.info?,
+      (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
+      }
+      
+  db.drama.info =
      db._info.title.only
      
-  db.poetry.role.attribute = attribute role { text }
-  
-  db.poetry.attlist =
-    db.poetry.role.attribute?
+  db.drama.role.attribute = attribute role { text }
+     
+  db.drama.attlist =
+    db.drama.role.attribute?
     & db.common.attributes
-    & db.common.linking.attributes
+    & db.common.linking.attributes    
