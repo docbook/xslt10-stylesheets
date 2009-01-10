@@ -574,14 +574,6 @@ Defaults to the context node.</para>
     <xsl:apply-templates select="$node//othername[1]"/>
   </xsl:if>
 
-  <xsl:if test="$node//orgname">
-    <xsl:if test="$node//honorific or $node//firstname
-                  or ($node//othername and $author.othername.in.middle != 0)">
-      <xsl:text> </xsl:text>
-    </xsl:if>
-    <xsl:apply-templates select="$node//orgname[1]"/>
-  </xsl:if>
-
   <xsl:if test="$node//surname">
     <xsl:if test="$node//honorific or $node//firstname
                   or ($node//othername and $author.othername.in.middle != 0)">
