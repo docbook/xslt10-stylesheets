@@ -40,7 +40,7 @@ file (using URL syntax).</para>
 <programlisting>java -cp c:\batch\;…;c:\path\to\xslthl-2.0.0.jar -Dxslthl.config=file:///c:/docbook-xsl/highlighting/xslthl-config.xml … com.icl.saxon.StyleSheet …</programlisting>
 
 <para>You can specify the language for each programlisting by using the <tag class="attribute">language</tag> attribute. The
-<parameter>highlighting.default.language</parameter> parameter can be used for specifying the
+<parameter>highlight.default.language</parameter> parameter can be used for specifying the
 language to be used for programlistings without a <tag class="attribute">language</tag> attribute.</para>
 
 </refsection>
