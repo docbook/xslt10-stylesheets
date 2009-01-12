@@ -229,7 +229,7 @@ consensus of the committee.
         </section>
     </section>
     <section xml:id="s.docbook">
-        <title>The DocBook Publshers RELAX NG Schema</title>
+        <title>The DocBook Publishers RELAX NG Schema</title>
         <para>The DocBook Publishers <link xlink:href="http://docs.oasis-open.org/docbook/rng/"
                 >RELAX NG Schema</link> is distributed from the <link
                 xlink:href="http://www.oasis-open.org/docbook/">DocBook site</link> at <link
@@ -851,7 +851,7 @@ consensus of the committee.
                         <tag>info</tag>
                     </term>
                     <listitem>
-                        <para>The various patterns defining <tag>info</tag> have been modifed to
+                        <para>The various patterns defining <tag>info</tag> have been modified to
                             allow either DocBook metadata OR Dublin Core metadata elements.</para>
                     </listitem>
                 </varlistentry>
