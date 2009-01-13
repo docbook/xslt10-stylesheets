@@ -1,6 +1,5 @@
 default namespace = "http://purl.org/dc/terms/"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
-namespace dc = "http://purl.org/dc/elements/1.1/"
 namespace dcterms = "http://purl.org/dc/terms/"
 namespace dcmitype = "http://purl.org/dc/dcmitype/"
 namespace rng = "http://relaxng.org/ns/structure/1.0"
@@ -61,24 +60,25 @@ a:documentation [
   "\x{a}" ~
   "  "
 ]
-include "dc.rnc" inherit = dc {start|=notAllowed}
+
 include "dcmitype.rnc" inherit = dcmitype
 
-start |= dc.title
-| dc.creator 
-| dc.subject
-| dc.description
-| dc.publisher
-| dc.contributor
-| dc.date
-| dc.type
-| dc.format
-| dc.identifier
-| dc.source
-| dc.language
-| dc.relation
-| dc.coverage
-| dc.rights
+start |= dcterms.title
+| dcterms.creator 
+| dcterms.subject
+| dcterms.description
+| dcterms.publisher
+| dcterms.contributor
+| dcterms.date
+| dcterms.type
+| dcterms.format
+| dcterms.identifier
+| dcterms.source
+| dcterms.language
+| dcterms.relation
+| dcterms.coverage
+| dcterms.rights
+| dcterms.any
 | dcterms.alternative
 | dcterms.tableOfContents
 | dcterms.abstract
@@ -120,6 +120,23 @@ start |= dc.title
 | dcterms.license
 | dcterms.bibliographicCitation
 
+SimpleLiteral |= element * { text }?
+dcterms.any |= element any { SimpleLiteral }
+dcterms.title |= element dcterms:title { text }
+dcterms.creator |= element dcterms:creator { text }
+dcterms.subject |= element dcterms:subject { text }
+dcterms.description |= element dcterms:description { text }
+dcterms.publisher |= element dcterms:publisher { text }
+dcterms.contributor |= element dcterms:contributor { text }
+dcterms.date |= element dcterms:date { text }
+dcterms.type |= element dcterms:type { text }
+dcterms.format |= element dcterms:format { text }
+dcterms.identifier |= element dcterms:identifier { text }
+dcterms.source |= element dcterms:source { text }
+dcterms.language |= element dcterms:language { text }
+dcterms.relation |= element dcterms:relation { text }
+dcterms.coverage |= element dcterms:coverage { text }
+dcterms.rights |= element dcterms:rights { text }
 dcterms.alternative |= element dcterms:alternative { text }
 dcterms.tableOfContents |= element dcterms:tableOfContents { text }
 dcterms.abstract |= element dcterms:abstract { text }
@@ -198,3 +215,21 @@ elementsAndRefinementsGroup |= text
 ##     	
 ##   	
 elementOrRefinementContainer |= elementsAndRefinementsGroup
+
+
+## 
+##     	
+##     	    This group is included as a convenience for schema authors
+##             who need to refer to all the elements in the 
+##             http://purl.org/dc/elements/1.1/ namespace.
+##     	
+##   	
+elementsGroup |= text
+
+## 
+##     	
+##     		This complexType is included as a convenience for schema authors who need to define a root
+##     		or container element for all of the DC elements.
+##     	
+##   	
+elementContainer |= elementsGroup

@@ -66,5 +66,9 @@ World Wide Web Consortium, 2000.
 <citetitle><link xlink:href="http://www.ascc.net/xml/resource/schematron/Schematron2000.html">The Schematron Assertion Language 1.5</link></citetitle>. Rick Jelliffe and
 Acedemia Sinica Computing Centre. 2001, 2001.
 </bibliomixed>
+    
+<bibliomixed xml:id="dcterms"><abbrev>DCMI Metadata Terms</abbrev>DCMI Usage Board
+    <citetitle><link xlink:href="http://dublincore.org/documents/dcmi-terms/">DCMI Metadata Terms (DCMI Recommendation)</link></citetitle>. Copyright © 2008-01-14 Dublin Core Metadata Initiative. All Rights Reserved. http://www.dublincore.org/about/copyright.
+</bibliomixed>
 
 </bibliography>

@@ -128,67 +128,65 @@ db.bibliographic.elements =
 
   db.extension.blocks = db.dialogue | db.poetry
 }
-include "dc.rnc" {start |= notAllowed}
 include "dcterms.rnc" {start |= notAllowed}
 include "dcmitype.rnc"
 
-
-db.dublincore.elements = 
-dc.title
-| dc.creator 
-| dc.subject
-| dc.description
-| dc.publisher
-| dc.contributor
-| dc.date
-| dc.type
-| dc.format
-| dc.identifier
-| dc.source
-| dc.language
-| dc.relation
-| dc.coverage
-| dc.rights
-| dcterms.alternative
-| dcterms.tableOfContents
-| dcterms.abstract
-| dcterms.created
-| dcterms.valid
-| dcterms.available
-| dcterms.issued
-| dcterms.modified
-| dcterms.dateAccepted
-| dcterms.dateCopyrighted
-| dcterms.dateSubmitted
-| dcterms.extent
-| dcterms.medium
-| dcterms.isVersionOf
-| dcterms.hasVersion
-| dcterms.isReplacedBy
-| dcterms.replaces
-| dcterms.isRequiredBy
-| dcterms.requires
-| dcterms.isPartOf
-| dcterms.hasPart
-| dcterms.isReferencedBy
-| dcterms.references
-| dcterms.isFormatOf
-| dcterms.hasFormat
-| dcterms.conformsTo
-| dcterms.spatial
-| dcterms.temporal
-| dcterms.audience
-| dcterms.accrualMethod
-| dcterms.accrualPeriodicity
-| dcterms.accrualPolicy
-| dcterms.instructionalMethod
-| dcterms.provenance
-| dcterms.rightsHolder
-| dcterms.mediator
-| dcterms.educationLevel
-| dcterms.accessRights
-| dcterms.license
-| dcterms.bibliographicCitation
+            db.dublincore.elements = 
+            dcterms.title
+            | dcterms.creator 
+            | dcterms.subject
+            | dcterms.description
+            | dcterms.publisher
+            | dcterms.contributor
+            | dcterms.date
+            | dcterms.type
+            | dcterms.format
+            | dcterms.identifier
+            | dcterms.source
+            | dcterms.language
+            | dcterms.relation
+            | dcterms.coverage
+            | dcterms.rights
+            | dcterms.alternative
+            | dcterms.tableOfContents
+            | dcterms.abstract
+            | dcterms.created
+            | dcterms.valid
+            | dcterms.available
+            | dcterms.issued
+            | dcterms.modified
+            | dcterms.dateAccepted
+            | dcterms.dateCopyrighted
+            | dcterms.dateSubmitted
+            | dcterms.extent
+            | dcterms.medium
+            | dcterms.isVersionOf
+            | dcterms.hasVersion
+            | dcterms.isReplacedBy
+            | dcterms.replaces
+            | dcterms.isRequiredBy
+            | dcterms.requires
+            | dcterms.isPartOf
+            | dcterms.hasPart
+            | dcterms.isReferencedBy
+            | dcterms.references
+            | dcterms.isFormatOf
+            | dcterms.hasFormat
+            | dcterms.conformsTo
+            | dcterms.spatial
+            | dcterms.temporal
+            | dcterms.audience
+            | dcterms.accrualMethod
+            | dcterms.accrualPeriodicity
+            | dcterms.accrualPolicy
+            | dcterms.instructionalMethod
+            | dcterms.provenance
+            | dcterms.rightsHolder
+            | dcterms.mediator
+            | dcterms.educationLevel
+            | dcterms.accessRights
+            | dcterms.license
+            | dcterms.bibliographicCitation
 
  db.speaker.role.attribute = attribute role { text }
  

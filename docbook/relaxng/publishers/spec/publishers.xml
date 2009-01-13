@@ -38,10 +38,7 @@
             <affiliation>
                 <shortaffil>Flatirons</shortaffil>
                 <orgname>Flatirons Solutions Corporation</orgname>
-                <address><email>scott.hudson@flatironssolutions.com</email></address>
-            </affiliation>
-        </othercredit>
-        <authorgroup>
+                <address><email>scott.hudson@flatironssolutions.com</email></address></affiliation></othercredit><authorgroup>
             <editor>
                 <personname>
                     <firstname>Scott</firstname>
@@ -50,9 +47,7 @@
                 <affiliation>
                     <shortaffil>Flatirons</shortaffil>
                     <orgname>Flatirons Solutions Corporation</orgname>
-                    <address><email>scott.hudson@flatironssolutions.com</email></address>
-                </affiliation>
-            </editor>
+                    <address><email>scott.hudson@flatironssolutions.com</email></address></affiliation></editor>
         </authorgroup>
         <pubdate>2009-01-05</pubdate>
         <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
@@ -94,8 +89,7 @@
                 textbooks and other document types as appropriate for this industry.</para>
             <para>The DocBook Publishers Schema is based on DocBook 5.0, and delivered in the
                 normative RelaxNG Schema format.</para>
-        </abstract>
-        <legalnotice role="status">
+        </abstract><legalnotice role="status">
             <!--
 <para>This &standard; was
 <link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200711/msg00007.html">approved</link>
@@ -114,8 +108,7 @@ consensus of the committee.
             <para>The errata page for this specification is at <link
                     xlink:href="http://docs.oasis-open.org/docbook/specs/publishers-errata.html"
             />.</para>
-        </legalnotice>
-        <legalnotice role="notices">
+        </legalnotice><legalnotice role="notices">
             <para>Copyright © OASIS® 2009. All Rights Reserved.</para>
             <para>All capitalized terms in the following text have the meanings assigned to them in
                 the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full
@@ -169,8 +162,7 @@ consensus of the committee.
                 while reserving the right to enforce its marks against misleading uses. Please see
                     <link xlink:href="http://www.oasis-open.org/who/trademark.php"/> for above
                 guidance.</para>
-        </legalnotice>
-    </info>
+        </legalnotice></info>
     <section xml:id="s.intro">
         <title>Introduction</title>
         <para>For more than a decade, DocBook has provided a structured markup vocabulary for
@@ -197,6 +189,10 @@ consensus of the committee.
                 xlink:href="http://sourceforge.net/tracker/?atid=1037852&amp;group_id=21935&amp;func=browse"
                 >tracker</link> interface. This is also the preferred mechanism for submitting new
             requests.</para>
+        <para>Of the 361 total elements in the full DocBook standard, the Publishers schema has been
+            simplified to exclude 149 elements from full DocBook. Modifications have been made to 11
+            patterns from the DocBook schema. Additions to the schema include: the Dublin Core
+            metadata elements (54) and 6 new elements.</para>
         <section xml:id="s.terminology">
             <title>Terminology</title>
             <para>The key words <glossterm>must</glossterm>, <glossterm>must not</glossterm>,
@@ -216,6 +212,7 @@ consensus of the committee.
                 <bibliomixed xml:id="rfc2119"/>
                 <bibliomixed xml:id="rfc3023"/>
                 <bibliomixed xml:id="bib.docbooktdg5"/>
+                <bibliomixed xml:id="dcterms"/>
             </bibliolist>
         </section>
         <section xml:id="non-normative.refs">
@@ -253,7 +250,7 @@ consensus of the committee.
             </listitem>
         </orderedlist>
     </section>
-    <section>
+    <section xml:id="additions">
         <title>Additions to Core DocBook</title>
         <para>The DocBook Publishers schema includes the following elements above and beyond those
             currently provided by the core DocBook standard. These are considered "official
@@ -263,29 +260,29 @@ consensus of the committee.
             <title>Explicit support for Dublin Core metadata</title>
             <para>While DocBook already includes many of the elements that are defined by the Dublin
                 Core, it is not inherently interoperable with DC metadata. The Publisher's SC has
-                decided to formally adopt Dublin Core metadata as a formal metadata model for info
-                elements. The Publishers schema will continue to support the base DocBook info
-                metadata, but will allow Dublin Core elements as an alternative for capturing
-                metadata in this widely adopted schema. In <tag>info</tag>, authors will be allowed
-                to use <emphasis>either</emphasis> the standard DocBook elements
-                <emphasis>or</emphasis> Dublin Core elements, and <tag>info</tag> may not contain a
-                mix of the two element sets.</para>
+                decided to formally adopt Dublin Core metadata (issued 2008-01-14) as a formal
+                metadata model for info elements. The Publishers schema will continue to support the
+                base DocBook info metadata, but will allow Dublin Core elements as an alternative
+                for capturing metadata in this widely adopted schema. In <tag>info</tag>, authors
+                will be allowed to use <emphasis>either</emphasis> the standard DocBook elements
+                    <emphasis>or</emphasis> Dublin Core elements, and <tag>info</tag> may not
+                contain a mix of the two element sets.</para>
             <para>As the Dublin Core standard does not provide a RelaxNG or RelaxNG Compact version
                 of their schema, the Publishers SC has endeavored to create Dublin Core in RNC
-                format. The Publishers SC plans to contribute the dc.rnc, dcterms.rnc, and
-                dcmitypes.rnc back to the Dublin Core standard.</para>
+                format. The Publishers SC plans to contribute the dcterms.rnc, and dcmitypes.rnc
+                back to the Dublin Core standard.</para>
             <para>The following Dublin Core elements from the <uri type="namespace"
-                    >http://purl.org/dc/elements/1.1/</uri> namespace have been defined and included
-                in the Publishers schema:</para>
+                    >http://purl.org/dc/terms/</uri> namespace have been defined and included in the
+                Publishers schema:</para>
             <variablelist>
                 <varlistentry>
-                    <term>dc:title</term>
+                    <term>title</term>
                     <listitem>
                         <para>A name given to the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:creator</term>
+                    <term>creator</term>
                     <listitem>
                         <para>An entity primarily responsible for making the resource. Examples of a
                             Creator include a person, an organization, or a service. Typically, the
@@ -293,7 +290,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:subject</term>
+                    <term>subject</term>
                     <listitem>
                         <para>The topic of the resource. Typically, the subject will be represented
                             using keywords, key phrases, or classification codes. Recommended best
@@ -302,7 +299,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:description</term>
+                    <term>description</term>
                     <listitem>
                         <para>An account of the resource. Description may include but is not limited
                             to: an abstract, a table of contents, a graphical representation, or a
@@ -310,7 +307,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:publisher</term>
+                    <term>publisher</term>
                     <listitem>
                         <para>An entity responsible for making the resource available. Examples of a
                             Publisher include a person, an organization, or a service. Typically,
@@ -318,7 +315,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:contributor</term>
+                    <term>contributor</term>
                     <listitem>
                         <para>An entity responsible for making contributions to the resource.
                             Examples of a Contributor include a person, an organization, or a
@@ -327,7 +324,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:date</term>
+                    <term>date</term>
                     <listitem>
                         <para>A point or period of time associated with an event in the lifecycle of
                             the resource. Date may be used to express temporal information at any
@@ -336,7 +333,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:type</term>
+                    <term>type</term>
                     <listitem>
                         <para>The nature or genre of the resource. Recommended best practice is to
                             use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE].
@@ -345,7 +342,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:format</term>
+                    <term>format</term>
                     <listitem>
                         <para>The file format, physical medium, or dimensions of the resource.
                             Examples of dimensions include size and duration. Recommended best
@@ -354,7 +351,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:identifier</term>
+                    <term>identifier</term>
                     <listitem>
                         <para>An unambiguous reference to the resource within a given context.
                             Recommended best practice is to identify the resource by means of a
@@ -362,7 +359,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:source</term>
+                    <term>source</term>
                     <listitem>
                         <para>A related resource from which the described resource is derived. The
                             described resource may be derived from the related resource in whole or
@@ -372,14 +369,14 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:language</term>
+                    <term>language</term>
                     <listitem>
                         <para>A language of the resource. Recommended best practice is to use a
                             controlled vocabulary such as RFC 4646 [RFC4646].</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:relation</term>
+                    <term>relation</term>
                     <listitem>
                         <para>A related resource. Recommended best practice is to identify the
                             related resource by means of a string conforming to a formal
@@ -387,7 +384,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:coverage</term>
+                    <term>coverage</term>
                     <listitem>
                         <para>The spatial or temporal topic of the resource, the spatial
                             applicability of the resource, or the jurisdiction under which the
@@ -403,7 +400,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dc:rights</term>
+                    <term>rights</term>
                     <listitem>
                         <para>Information about rights held in and over the resource. Typically,
                             rights information includes a statement about various property rights
@@ -411,63 +408,58 @@ consensus of the committee.
                         rights.</para>
                     </listitem>
                 </varlistentry>
-            </variablelist>
-            <para>The following Dublin Core elements from the <uri type="namespace"
-                    >http://purl.org/dc/terms/</uri> namespace have been defined and included in the
-                Publishers schema:</para>
-            <variablelist>
                 <varlistentry>
-                    <term>dcterms:alternative</term>
+                    <term>alternative</term>
                     <listitem>
                         <para>An alternative name for the resource. The distinction between titles
                             and alternative titles is application-specific.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:tableOfContents</term>
+                    <term>tableOfContents</term>
                     <listitem>
                         <para>A list of subunits of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:abstract</term>
+                    <term>abstract</term>
                     <listitem>
                         <para>A summary of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:created</term>
+                    <term>created</term>
                     <listitem>
                         <para>Date of creation of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:valid</term>
+                    <term>valid</term>
                     <listitem>
                         <para>Date (often a range) of validity of a resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:available</term>
+                    <term>available</term>
                     <listitem>
                         <para>Date (often a range) that the resource became or will become
                             available.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:issued</term>
+                    <term>issued</term>
                     <listitem>
                         <para>Date of formal issuance (e.g., publication) of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:modified</term>
+                    <term>modified</term>
                     <listitem>
                         <para>Date on which the resource was changed.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:dateAccepted</term>
+                    <term>dateAccepted</term>
                     <listitem>
                         <para>Date of acceptance of the resource. Examples of resources to which a
                             Date Accepted may be relevant are a thesis (accepted by a university
@@ -475,13 +467,13 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:dateCopyrighted</term>
+                    <term>dateCopyrighted</term>
                     <listitem>
                         <para>Date of copyright.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:dateSubmitted</term>
+                    <term>dateSubmitted</term>
                     <listitem>
                         <para>Date of submission of the resource. Examples of resources to which a
                             Date Submitted may be relevant are a thesis (submitted to a university
@@ -489,19 +481,19 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:extent</term>
+                    <term>extent</term>
                     <listitem>
                         <para>The size or duration of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:medium</term>
+                    <term>medium</term>
                     <listitem>
                         <para>The material or physical carrier of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:isVersionOf</term>
+                    <term>isVersionOf</term>
                     <listitem>
                         <para>A related resource of which the described resource is a version,
                             edition, or adaptation. Changes in version imply substantive changes in
@@ -509,127 +501,127 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:hasVersion</term>
+                    <term>hasVersion</term>
                     <listitem>
                         <para>A related resource that is a version, edition, or adaptation of the
                             described resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:isReplacedBy</term>
+                    <term>isReplacedBy</term>
                     <listitem>
                         <para>A related resource that supplants, displaces, or supersedes the
                             described resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:replaces</term>
+                    <term>replaces</term>
                     <listitem>
                         <para>A related resource that is supplanted, displaced, or superseded by the
                             described resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:isRequiredBy</term>
+                    <term>isRequiredBy</term>
                     <listitem>
                         <para>A related resource that requires the described resource to support its
                             function, delivery, or coherence.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:requires</term>
+                    <term>requires</term>
                     <listitem>
                         <para>A related resource that is required by the described resource to
                             support its function, delivery, or coherence.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:isPartOf</term>
+                    <term>isPartOf</term>
                     <listitem>
                         <para>A related resource in which the described resource is physically or
                             logically included.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:hasPart</term>
+                    <term>hasPart</term>
                     <listitem>
                         <para>A related resource that is included either physically or logically in
                             the described resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:isReferencedBy</term>
+                    <term>isReferencedBy</term>
                     <listitem>
                         <para>A related resource that references, cites, or otherwise points to the
                             described resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:references</term>
+                    <term>references</term>
                     <listitem>
                         <para>A related resource that is referenced, cited, or otherwise pointed to
                             by the described resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:isFormatOf</term>
+                    <term>isFormatOf</term>
                     <listitem>
                         <para>A related resource that is substantially the same as the described
                             resource, but in another format.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:hasFormat</term>
+                    <term>hasFormat</term>
                     <listitem>
                         <para>A related resource that is substantially the same as the pre-existing
                             described resource, but in another format.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:conformsTo</term>
+                    <term>conformsTo</term>
                     <listitem>
                         <para>An established standard to which the described resource
                         conforms.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:spatial</term>
+                    <term>spatial</term>
                     <listitem>
                         <para>Spatial characteristics of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:temporal</term>
+                    <term>temporal</term>
                     <listitem>
                         <para>Temporal characteristics of the resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:audience</term>
+                    <term>audience</term>
                     <listitem>
                         <para>A class of entity for whom the resource is intended or useful.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:accrualMethod</term>
+                    <term>accrualMethod</term>
                     <listitem>
                         <para>The method by which items are added to a collection.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:accrualPeriodicity</term>
+                    <term>accrualPeriodicity</term>
                     <listitem>
                         <para>The frequency with which items are added to a collection.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:accrualPolicy</term>
+                    <term>accrualPolicy</term>
                     <listitem>
                         <para>The policy governing the addition of items to a collection.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:instructionalMethod</term>
+                    <term>instructionalMethod</term>
                     <listitem>
                         <para>A process, used to engender knowledge, attitudes and skills, that the
                             described resource is designed to support. Instructional Method will
@@ -642,7 +634,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:provenance</term>
+                    <term>provenance</term>
                     <listitem>
                         <para> A statement of any changes in ownership and custody of the resource
                             since its creation that are significant for its authenticity, integrity,
@@ -651,14 +643,14 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:rightsHolder</term>
+                    <term>rightsHolder</term>
                     <listitem>
                         <para>A person or organization owning or managing rights over the
                         resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:mediator</term>
+                    <term>mediator</term>
                     <listitem>
                         <para>An entity that mediates access to the resource and for whom the
                             resource is intended or useful. In an educational context, a mediator
@@ -666,7 +658,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:educationLevel</term>
+                    <term>educationLevel</term>
                     <listitem>
                         <para>A class of entity, defined in terms of progression through an
                             educational or training context, for which the described resource is
@@ -674,7 +666,7 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:accessRights</term>
+                    <term>accessRights</term>
                     <listitem>
                         <para>Information about who can access the resource or an indication of its
                             security status. Access Rights may include information regarding access
@@ -682,14 +674,14 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:license</term>
+                    <term>license</term>
                     <listitem>
                         <para>A legal document giving official permission to do something with the
                             resource.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>dcterms:bibliographicCitation</term>
+                    <term>bibliographicCitation</term>
                     <listitem>
                         <para>A bibliographic reference for the resource. Recommended practice is to
                             include sufficient bibliographic detail to identify the resource as
@@ -743,68 +735,64 @@ consensus of the committee.
             <example>
                 <title>Example Drama</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout>
-                &lt;drama remap="SPEECH"&gt;
-                &lt;linegroup&gt;
-                &lt;speaker remap="SPEAKER"&gt;HAMLET&lt;/speaker&gt;
-                &lt;line remap="LINE"&gt;To be, or not to be: that is the question:&lt;/line&gt;
-                &lt;line remap="LINE"&gt;Whether 'tis nobler in the mind to suffer&lt;/line&gt;
-                &lt;line remap="LINE"&gt;The slings and arrows of outrageous fortune,&lt;/line&gt;
-                &lt;line remap="LINE"&gt;Or to take arms against a sea of troubles,&lt;/line&gt;
-                &lt;line remap="LINE"&gt;And by opposing end them?&lt;/line&gt;
-                &lt;/linegroup&gt;
-                &lt;/drama&gt;
+                <literallayout class="monospaced">
+&lt;drama remap="SPEECH"&gt;
+  &lt;linegroup&gt;
+    &lt;speaker remap="SPEAKER"&gt;HAMLET&lt;/speaker&gt;
+    &lt;line remap="LINE"&gt;To be, or not to be: that is the question:&lt;/line&gt;
+    &lt;line remap="LINE"&gt;Whether 'tis nobler in the mind to suffer&lt;/line&gt;
+    &lt;line remap="LINE"&gt;The slings and arrows of outrageous fortune,&lt;/line&gt;
+    &lt;line remap="LINE"&gt;Or to take arms against a sea of troubles,&lt;/line&gt;
+    &lt;line remap="LINE"&gt;And by opposing end them?&lt;/line&gt;
+  &lt;/linegroup&gt;
+&lt;/drama&gt;
             </literallayout>
             </example>
             <example>
                 <title>Example Dialogue</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout>
-                &lt;dialogue remap="SPEECH"&gt;
-                &lt;linegroup&gt;
-                &lt;speaker remap="SPEAKER"&gt;President John F. Kennedy&lt;/speaker&gt;
-                &lt;line remap="LINE"&gt;And so, my fellow Americans, 
+                <literallayout class="monospaced">
+&lt;dialogue remap="SPEECH"&gt;
+  &lt;linegroup&gt;
+    &lt;speaker remap="SPEAKER"&gt;President John F. Kennedy&lt;/speaker&gt;
+    &lt;line remap="LINE"&gt;And so, my fellow Americans, 
                   ask not what your country can do for you; 
-                  ask what you can do for your country.&lt;/line&gt;
-                &lt;line remap="LINE"&gt;My fellow citizens of the world, 
+                  ask what you can do for your country.&lt;/line>
+    &lt;line remap="LINE"&gt;My fellow citizens of the world, 
                   ask not what America will do for you, 
                   but what together we can do for the freedom of man.&lt;/line&gt;
-                &lt;line remap="LINE"&gt;Finally, whether you are citizens of America 
+    &lt;line remap="LINE"&gt;Finally, whether you are citizens of America 
                   or citizens of the world, ask of us here the same high standards 
                   of strength and sacrifice which we ask of you. With a good conscience 
                   our only sure reward, with history the final judge of our deeds, 
                   let us go forth to lead the land we love, asking His blessing and His help, 
                   but knowing that here on earth God's work must truly be our own.&lt;/line&gt;
-                &lt;/linegroup&gt;
-                &lt;/dialogue&gt;
+  &lt;/linegroup&gt;
+&lt;/dialogue&gt;
             </literallayout>
             </example>
             <example>
                 <title>Example Poetry</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout>
-                &lt;poetry&gt;
-                &lt;title&gt;Auld Lang Syne&lt;/title&gt;
-                &lt;info&gt;
-                &lt;author&gt;
-                &lt;personname&gt;
-                &lt;firstname&gt;Robert&lt;/firstname&gt;
-                &lt;surname&gt;Burns&lt;/surname&gt;
-                &lt;/personname&gt;
-                &lt;/author&gt;
-                &lt;/info&gt;&lt;linegroup&gt;
-                &lt;line&gt;Should auld acquaintance be forgot,&lt;/line&gt;
-                &lt;line&gt;And never brought to mind?&lt;/line&gt;
-                &lt;line&gt;Should auld acquaintance be forgot,&lt;/line&gt;
-                &lt;line&gt;And auld lang syne?&lt;/line&gt;
-                &lt;/linegroup&gt;                
-                &lt;linegroup&gt;
-                &lt;line&gt;For auld lang syne, my dear,&lt;/line&gt;
-                &lt;line&gt;For auld lang syne,&lt;/line&gt;
-                &lt;line&gt;We'll tak a cup o' kindness yet,&lt;/line&gt;
-                &lt;line&gt;For auld lang syne.&lt;/line&gt;
-                &lt;/linegroup&gt;
-                &lt;/poetry&gt;
+                <literallayout class="monospaced">
+&lt;poetry&gt;
+  &lt;title&gt;Auld Lang Syne&lt;/title&gt;
+  &lt;info&gt;
+    &lt;creator xmlns="http://purl.org/dc/terms/"&gt;Robert Burns&lt;/creator&gt;
+  &lt;/info&gt;
+  &lt;linegroup&gt;
+    &lt;line&gt;Should auld acquaintance be forgot,&lt;/line&gt;
+    &lt;line&gt;And never brought to mind?&lt;/line&gt;
+    &lt;line&gt;Should auld acquaintance be forgot,&lt;/line&gt;
+    &lt;line&gt;And auld lang syne?&lt;/line&gt;
+  &lt;/linegroup&gt;                
+  &lt;linegroup&gt;
+    &lt;line&gt;For auld lang syne, my dear,&lt;/line&gt;
+    &lt;line&gt;For auld lang syne,&lt;/line&gt;
+    &lt;line&gt;We'll tak a cup o' kindness yet,&lt;/line&gt;
+    &lt;line&gt;For auld lang syne.&lt;/line&gt;
+  &lt;/linegroup&gt;
+&lt;/poetry&gt;
             </literallayout>
             </example>
         </section>
@@ -821,7 +809,8 @@ consensus of the committee.
                         <para>Several publishers demonstrated a need to have nested sections within
                             a <tag>sidebar</tag>. As a result, the <tag>sidebar</tag> model was
                             modified to allow recursive <tag>section</tag> elements.</para>
-                        <para>Sidebar was also modified to allow <tag>subtitle</tag> as well as <tag>title</tag>.</para>
+                        <para>Sidebar was also modified to allow <tag>subtitle</tag> as well as
+                                <tag>title</tag>.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
@@ -991,8 +980,8 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry>db.speaker.attlist</entry>
-                            <entry>db.speaker.role.attribute? &amp; db.common.attributes
-                                &amp; db.common.linking.attributes</entry>
+                            <entry>db.speaker.role.attribute? &amp; db.common.attributes &amp;
+                                db.common.linking.attributes</entry>
                         </row>
                         <row>
                             <entry>db.line.role.attribute</entry>
@@ -1009,8 +998,8 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry>db.linegroup.attlist</entry>
-                            <entry>db.linegroup.role.attribute? &amp; db.common.attributes
-                                &amp; db.common.linking.attributes</entry>
+                            <entry>db.linegroup.role.attribute? &amp; db.common.attributes &amp;
+                                db.common.linking.attributes</entry>
                         </row>
                         <row>
                             <entry>db.drama.role.attribute</entry>
@@ -1018,8 +1007,8 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry>db.drama.attlist</entry>
-                            <entry>db.drama.role.attribute? &amp; db.common.attributes
-                                &amp; db.common.linking.attributes</entry>
+                            <entry>db.drama.role.attribute? &amp; db.common.attributes &amp;
+                                db.common.linking.attributes</entry>
                         </row>
                         <row>
                             <entry>db.drama.role.attribute</entry>
@@ -1027,8 +1016,8 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry>db.dialogue.attlist</entry>
-                            <entry>db.dialogue.role.attribute? &amp; db.common.attributes
-                                &amp; db.common.linking.attributes</entry>
+                            <entry>db.dialogue.role.attribute? &amp; db.common.attributes &amp;
+                                db.common.linking.attributes</entry>
                         </row>
                         <row>
                             <entry>db.poetry.role.attribute</entry>
@@ -1036,8 +1025,8 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry>db.poetry.attlist</entry>
-                            <entry>db.poetry.role.attribute? &amp; db.common.attributes
-                                &amp; db.common.linking.attributes</entry>
+                            <entry>db.poetry.role.attribute? &amp; db.common.attributes &amp;
+                                db.common.linking.attributes</entry>
                         </row>
                     </tbody>
                 </tgroup>
@@ -1049,21 +1038,21 @@ consensus of the committee.
                 Publishers schema:</para>
             <literallayout>
             db.dublincore.elements = 
-            dc.title
-            | dc.creator 
-            | dc.subject
-            | dc.description
-            | dc.publisher
-            | dc.contributor
-            | dc.date
-            | dc.type
-            | dc.format
-            | dc.identifier
-            | dc.source
-            | dc.language
-            | dc.relation
-            | dc.coverage
-            | dc.rights
+            dcterms.title
+            | dcterms.creator 
+            | dcterms.subject
+            | dcterms.description
+            | dcterms.publisher
+            | dcterms.contributor
+            | dcterms.date
+            | dcterms.type
+            | dcterms.format
+            | dcterms.identifier
+            | dcterms.source
+            | dcterms.language
+            | dcterms.relation
+            | dcterms.coverage
+            | dcterms.rights
             | dcterms.alternative
             | dcterms.tableOfContents
             | dcterms.abstract
@@ -1126,7 +1115,8 @@ consensus of the committee.
                         <row>
                             <entry>db.sidebar</entry>
                             <entry>db.sidebar.attlist, db.sidebar.info, db.all.blocks+</entry>
-                            <entry>db.sidebar.attlist, db._title, db.sidebar.info, db.all.blocks+, db.recursive.sections*</entry>
+                            <entry>db.sidebar.attlist, db._title, db.sidebar.info, db.all.blocks+,
+                                db.recursive.sections*</entry>
                         </row>
                         <row>
                             <entry>db.person</entry>
@@ -1170,8 +1160,8 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry>db.titlereq.info</entry>
-                            <entry>db.titlereq.info.attlist, ( db._title.req &amp;
-                                db.info.elements* )</entry>
+                            <entry>db.titlereq.info.attlist, ( db._title.req &amp; db.info.elements*
+                                )</entry>
                             <entry>db.titlereq.info.attlist, ( db._title.req &amp;
                                 (db.info.elements*|db.dublincore.elements*) )</entry>
                         </row>
@@ -4090,13 +4080,15 @@ consensus of the committee.
                                 <para>db.releaseinfo </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4107,7 +4099,8 @@ consensus of the committee.
                                 <para>remark </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4125,13 +4118,15 @@ consensus of the committee.
                                 <para>revdescription </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4142,13 +4137,15 @@ consensus of the committee.
                                 <para>revhistory </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4159,13 +4156,15 @@ consensus of the committee.
                                 <para>revision </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4176,13 +4175,15 @@ consensus of the committee.
                                 <para>revnumber </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4193,13 +4194,15 @@ consensus of the committee.
                                 <para>revremark </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4210,13 +4213,15 @@ consensus of the committee.
                                 <para>row </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4227,13 +4232,15 @@ consensus of the committee.
                                 <para>secondary </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4244,13 +4251,15 @@ consensus of the committee.
                                 <para>secondaryie </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4261,13 +4270,15 @@ consensus of the committee.
                                 <para>db.section </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>hier.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4278,13 +4289,15 @@ consensus of the committee.
                                 <para>see </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4295,13 +4308,15 @@ consensus of the committee.
                                 <para>seealso </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4312,13 +4327,15 @@ consensus of the committee.
                                 <para>seriesvolnums </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4329,13 +4346,15 @@ consensus of the committee.
                                 <para>set </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>hier.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4346,13 +4365,15 @@ consensus of the committee.
                                 <para>setindex </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4363,13 +4384,15 @@ consensus of the committee.
                                 <para>shortaffil </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4380,7 +4403,8 @@ consensus of the committee.
                                 <para>sidebar </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4398,7 +4422,8 @@ consensus of the committee.
                                 <para>simpara </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4416,7 +4441,8 @@ consensus of the committee.
                                 <para>simplelist </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4433,7 +4459,8 @@ consensus of the committee.
                                 <para>simplesect </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>hier.rnc </para>
@@ -4450,13 +4477,15 @@ consensus of the committee.
                                 <para>spanspec </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4467,13 +4496,16 @@ consensus of the committee.
                                 <para>state </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4484,7 +4516,8 @@ consensus of the committee.
                                 <para>step </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4501,7 +4534,8 @@ consensus of the committee.
                                 <para>stepalternatives </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4518,13 +4552,15 @@ consensus of the committee.
                                 <para>street </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4535,7 +4571,8 @@ consensus of the committee.
                                 <para>subject </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4553,7 +4590,8 @@ consensus of the committee.
                                 <para>subjectset </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4571,7 +4609,8 @@ consensus of the committee.
                                 <para>subjectterm </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4589,13 +4628,15 @@ consensus of the committee.
                                 <para>subscript </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4606,7 +4647,8 @@ consensus of the committee.
                                 <para>substeps </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4624,7 +4666,8 @@ consensus of the committee.
                                 <para>subtitle </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4641,13 +4684,15 @@ consensus of the committee.
                                 <para>superscript </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4658,13 +4703,15 @@ consensus of the committee.
                                 <para>surname </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4675,13 +4722,15 @@ consensus of the committee.
                                 <para>table </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4692,7 +4741,8 @@ consensus of the committee.
                                 <para>task </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>tasks.rnc </para>
@@ -4709,7 +4759,8 @@ consensus of the committee.
                                 <para>taskprerequisites </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>tasks.rnc </para>
@@ -4726,7 +4777,8 @@ consensus of the committee.
                                 <para>taskrelated </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>tasks.rnc </para>
@@ -4743,7 +4795,8 @@ consensus of the committee.
                                 <para>tasksummary </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>tasks.rnc </para>
@@ -4760,13 +4813,15 @@ consensus of the committee.
                                 <para>tbody </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4777,7 +4832,8 @@ consensus of the committee.
                                 <para>term </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4795,7 +4851,8 @@ consensus of the committee.
                                 <para>db.termdef </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>glossary.rnc </para>
@@ -4812,13 +4869,15 @@ consensus of the committee.
                                 <para>tertiary </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4829,7 +4888,8 @@ consensus of the committee.
                                 <para>textdata </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4846,7 +4906,8 @@ consensus of the committee.
                                 <para>textobject </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4864,13 +4925,15 @@ consensus of the committee.
                                 <para>tfoot </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4881,7 +4944,8 @@ consensus of the committee.
                                 <para>tgroup </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
@@ -4899,13 +4963,15 @@ consensus of the committee.
                                 <para>thead </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>calstbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4916,7 +4982,8 @@ consensus of the committee.
                                 <para>title </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4934,7 +5001,8 @@ consensus of the committee.
                                 <para>titleabbrev </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -4951,7 +5019,8 @@ consensus of the committee.
                                 <para>toc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>toc.rnc </para>
@@ -4968,13 +5037,15 @@ consensus of the committee.
                                 <para>trademark </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -4985,13 +5056,15 @@ consensus of the committee.
                                 <para>uri </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -5002,7 +5075,8 @@ consensus of the committee.
                                 <para>variablelist </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -5020,7 +5094,8 @@ consensus of the committee.
                                 <para>varlistentry </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -5038,7 +5113,8 @@ consensus of the committee.
                                 <para>videodata </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -5055,7 +5131,8 @@ consensus of the committee.
                                 <para>videoobject </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
@@ -5073,13 +5150,15 @@ consensus of the committee.
                                 <para>volumenum </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -5090,13 +5169,15 @@ consensus of the committee.
                                 <para>db.wordasword </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -5107,13 +5188,15 @@ consensus of the committee.
                                 <para>xref </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -5124,13 +5207,15 @@ consensus of the committee.
                                 <para>year </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>pool.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7123,7 +7208,8 @@ consensus of the committee.
                                 <para>technical.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7140,7 +7226,8 @@ consensus of the committee.
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7157,7 +7244,8 @@ consensus of the committee.
                                 <para>ebnf.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7168,13 +7256,15 @@ consensus of the committee.
                                 <para> db.sbr </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7185,7 +7275,8 @@ consensus of the committee.
                                 <para> db.screen </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>technical.rnc </para>
@@ -7220,7 +7311,8 @@ consensus of the committee.
                                 <para> db.screenshot </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>technical.rnc </para>
@@ -7323,7 +7415,8 @@ consensus of the committee.
                                 <para>seealsoie </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
@@ -7341,7 +7434,8 @@ consensus of the committee.
                                 <para>seeie </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
@@ -7358,7 +7452,8 @@ consensus of the committee.
                                 <para>db.seg </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>markup.rnc </para>
@@ -7375,7 +7470,8 @@ consensus of the committee.
                                 <para>db.seglistitem </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>markup.rnc </para>
@@ -7392,7 +7488,8 @@ consensus of the committee.
                                 <para>db.segmentedlist </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>markup.rnc </para>
@@ -7409,7 +7506,8 @@ consensus of the committee.
                                 <para>db.segtitle </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>markup.rnc </para>
@@ -7427,13 +7525,15 @@ consensus of the committee.
                                 <para>db.shortcut </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>keyboard.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7450,7 +7550,8 @@ consensus of the committee.
                                 <para>msgset.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7478,13 +7579,15 @@ consensus of the committee.
                                 <para> db.synopfragment </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7495,13 +7598,15 @@ consensus of the committee.
                                 <para> db.synopfragmentref </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7512,7 +7617,8 @@ consensus of the committee.
                                 <para> db.synopsis </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>programming.rnc </para>
@@ -7536,7 +7642,8 @@ consensus of the committee.
                                 <para>technical.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7564,13 +7671,15 @@ consensus of the committee.
                                 <para>db.html.informaltable </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>htmltbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7581,13 +7690,15 @@ consensus of the committee.
                                 <para>tertiaryie </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>index.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7598,13 +7709,15 @@ consensus of the committee.
                                 <para>db.html.informaltable </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>htmltbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7615,13 +7728,15 @@ consensus of the committee.
                                 <para>tip </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>admonitions.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7629,10 +7744,12 @@ consensus of the committee.
                                 <para>tocdiv </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>toc.rnc </para>
@@ -7646,10 +7763,12 @@ consensus of the committee.
                                 <para>tocentry </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>toc.rnc </para>
@@ -7683,13 +7802,15 @@ consensus of the committee.
                                 <para>db.html.informaltable </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>htmltbl.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7706,7 +7827,8 @@ consensus of the committee.
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7723,7 +7845,8 @@ consensus of the committee.
                                 <para>os.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7734,13 +7857,15 @@ consensus of the committee.
                                 <para>varargs </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7757,7 +7882,8 @@ consensus of the committee.
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7768,13 +7894,15 @@ consensus of the committee.
                                 <para> db.void </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>programming.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                         <row>
@@ -7785,13 +7913,15 @@ consensus of the committee.
                                 <para> db.warning </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                             <entry>
                                 <para>admonitions.rnc </para>
                             </entry>
                             <entry>
-                                <para> </para>
+                                <para>
+                                </para>
                             </entry>
                         </row>
                     </tbody>
@@ -7805,6 +7935,9 @@ consensus of the committee.
         <para>Revised Draft. 6 October 2008. Usage examples, additional clarifications added.</para>
         <para>Revised Draft. 5 January 2009. New appendices added, clarifications based on review
             feedback.</para>
+        <para>Revised Draft. 13 January 2009. Updated to include 2008-01-14 version of Dublin Core
+            (removed dc namespace, added dc elements to dcterms; better formatted examples, summary
+            of elements added/removed in Introduction.</para>
         <!--
 <listitem xml:id="rfe.">
 <para>Fixed <link xlink:href="&RFE;aid=">RFE </link>:
