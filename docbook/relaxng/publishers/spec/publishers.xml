@@ -10,7 +10,7 @@
     xmlns:ns4="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/1999/xhtml"
     xmlns:ns="http://docbook.org/ns/docbook">
     <info>
-        <releaseinfo role="cvs">$Id: docbook.xml 7996 2008-04-09 19:40:26Z nwalsh $</releaseinfo>
+        <releaseinfo role="cvs">$Id: publishers.xml 8210 2009-01-13 22:26:02Z shudson310 $</releaseinfo>
         <!-- product -->
         <productname>publishers</productname>
         <!-- productVersion -->
@@ -49,7 +49,7 @@
                     <orgname>Flatirons Solutions Corporation</orgname>
                     <address><email>scott.hudson@flatironssolutions.com</email></address></affiliation></editor>
         </authorgroup>
-        <pubdate>2009-01-05</pubdate>
+        <pubdate>2009-01-13</pubdate>
         <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
         <!--
 <bibliorelation type="replaces" condition="online"
