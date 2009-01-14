@@ -735,53 +735,58 @@ consensus of the committee.
             <example>
                 <title>Example Drama</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout class="monospaced">
-&lt;drama remap="SPEECH"&gt;
+                <literallayout class="monospaced">&lt;drama remap="SPEECH"&gt;
   &lt;linegroup&gt;
     &lt;speaker remap="SPEAKER"&gt;HAMLET&lt;/speaker&gt;
-    &lt;line remap="LINE"&gt;To be, or not to be: that is the question:&lt;/line&gt;
-    &lt;line remap="LINE"&gt;Whether 'tis nobler in the mind to suffer&lt;/line&gt;
-    &lt;line remap="LINE"&gt;The slings and arrows of outrageous fortune,&lt;/line&gt;
-    &lt;line remap="LINE"&gt;Or to take arms against a sea of troubles,&lt;/line&gt;
-    &lt;line remap="LINE"&gt;And by opposing end them?&lt;/line&gt;
+    &lt;line remap="LINE"&gt;To be, or not to be: that is the 
+      question:&lt;/line&gt;
+    &lt;line remap="LINE"&gt;Whether 'tis nobler in the mind to 
+      suffer&lt;/line&gt;
+    &lt;line remap="LINE"&gt;The slings and arrows of outrageous 
+      fortune,&lt;/line&gt;
+    &lt;line remap="LINE"&gt;Or to take arms against a sea of 
+      troubles,&lt;/line&gt;
+    &lt;line remap="LINE"&gt;And by opposing end them?
+      &lt;/line&gt;
   &lt;/linegroup&gt;
-&lt;/drama&gt;
-            </literallayout>
+&lt;/drama&gt;</literallayout>
             </example>
             <example>
                 <title>Example Dialogue</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout class="monospaced">
-&lt;dialogue remap="SPEECH"&gt;
+                <literallayout class="monospaced">&lt;dialogue remap="SPEECH"&gt;
   &lt;linegroup&gt;
-    &lt;speaker remap="SPEAKER"&gt;President John F. Kennedy&lt;/speaker&gt;
-    &lt;line remap="LINE"&gt;And so, my fellow Americans, 
-    ask not what your country can do for you; 
-    ask what you can do for your country.&lt;/line>
+    &lt;speaker remap="SPEAKER"&gt;President John F. 
+      Kennedy&lt;/speaker&gt;
+    &lt;line remap="LINE"&gt;And so, my fellow Americans, ask 
+      not what your country can do for you; ask what you can 
+      do for your country.&lt;/line>
     &lt;line remap="LINE"&gt;My fellow citizens of the world, 
-    ask not what America will do for you, 
-    but what together we can do for the freedom of man.&lt;/line&gt;
-    &lt;line remap="LINE"&gt;Finally, whether you are citizens of America 
-    or citizens of the world, ask of us here the same high standards 
-    of strength and sacrifice which we ask of you. With a good conscience 
-    our only sure reward, with history the final judge of our deeds, 
-    let us go forth to lead the land we love, asking His blessing and His help, 
-    but knowing that here on earth God's work must truly be our own.&lt;/line&gt;
+      ask not what America will do for you, but what together 
+      we can do for the freedom of man.&lt;/line&gt;
+    &lt;line remap="LINE"&gt;Finally, whether you are citizens 
+      of America or citizens of the world, ask of us here the 
+      same high standards of strength and sacrifice which we 
+      ask of you. With a good conscience our only sure reward, 
+      with history the final judge of our deeds, let us go 
+      forth to lead the land we love, asking His blessing and 
+      His help, but knowing that here on earth God's work must 
+      truly be our own.&lt;/line&gt;
   &lt;/linegroup&gt;
-&lt;/dialogue&gt;
-            </literallayout>
+&lt;/dialogue&gt;</literallayout>
             </example>
             <example>
                 <title>Example Poetry</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout class="monospaced">
-&lt;poetry&gt;
+                <literallayout class="monospaced">&lt;poetry&gt;
   &lt;title&gt;Auld Lang Syne&lt;/title&gt;
   &lt;info&gt;
-    &lt;creator xmlns="http://purl.org/dc/terms/"&gt;Robert Burns&lt;/creator&gt;
+    &lt;creator xmlns="http://purl.org/dc/terms/"&gt;Robert 
+      Burns&lt;/creator&gt;
   &lt;/info&gt;
   &lt;linegroup&gt;
-    &lt;line&gt;Should auld acquaintance be forgot,&lt;/line&gt;
+    &lt;line&gt;Should auld acquaintance be 
+      forgot,&lt;/line&gt;
     &lt;line&gt;And never brought to mind?&lt;/line&gt;
     &lt;line&gt;Should auld acquaintance be forgot,&lt;/line&gt;
     &lt;line&gt;And auld lang syne?&lt;/line&gt;
@@ -792,8 +797,7 @@ consensus of the committee.
     &lt;line&gt;We'll tak a cup o' kindness yet,&lt;/line&gt;
     &lt;line&gt;For auld lang syne.&lt;/line&gt;
   &lt;/linegroup&gt;
-&lt;/poetry&gt;
-            </literallayout>
+&lt;/poetry&gt;</literallayout>
             </example>
         </section>
         <section>
@@ -1101,9 +1105,9 @@ consensus of the committee.
             <table frame="all">
                 <title/>
                 <tgroup cols="3">
-                    <colspec colname="c1" colnum="1" colwidth="20%"/>
-                    <colspec colname="c2" colnum="2" colwidth="40%"/>
-                    <colspec colname="c3" colnum="3" colwidth="40%"/>
+                    <colspec colname="c1" colnum="1" colwidth="2*"/>
+                    <colspec colname="c2" colnum="2" colwidth="4*"/>
+                    <colspec colname="c3" colnum="3" colwidth="4*"/>
                     <thead>
                         <row>
                             <entry>Pattern Name</entry>
