@@ -10,7 +10,8 @@
     xmlns:ns4="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/1999/xhtml"
     xmlns:ns="http://docbook.org/ns/docbook">
     <info>
-        <releaseinfo role="cvs">$Id: publishers.xml 8210 2009-01-13 22:26:02Z shudson310 $</releaseinfo>
+        <releaseinfo role="cvs">$Id: publishers.xml 8213 2009-01-14 03:27:01Z shudson310
+        $</releaseinfo>
         <!-- product -->
         <productname>publishers</productname>
         <!-- productVersion -->
@@ -49,7 +50,7 @@
                     <orgname>Flatirons Solutions Corporation</orgname>
                     <address><email>scott.hudson@flatironssolutions.com</email></address></affiliation></editor>
         </authorgroup>
-        <pubdate>2009-01-13</pubdate>
+        <pubdate>2009-01-15</pubdate>
         <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
         <!--
 <bibliorelation type="replaces" condition="online"
@@ -689,6 +690,245 @@ consensus of the committee.
                     </listitem>
                 </varlistentry>
             </variablelist>
+            <para>The following table provides a comparison of the Dublin Core metadata elements and
+                equivalent elements from core DocBook. As the Publishers schema provides for an
+                "either-or" approach to metadata, authors will have to provide metadata in either
+                Dublin Core or in DocBook, but not a mix of the two. In some cases, additional
+                    <tag>role</tag> attributes or other logic may be required to determine the best
+                mapping for core DocBook elements.</para>
+            <table frame="all">
+                <title>Comparison of Dublin Core and core DocBook metadata elements</title>
+                <tgroup cols="2">
+                    <colspec colname="c1" colnum="1"/>
+                    <colspec colname="c2" colnum="2"/>
+                    <thead>
+                        <row>
+                            <entry>Dublin Core element</entry>
+                            <entry>Core DocBook element</entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry><tag>title</tag></entry>
+                            <entry><tag>title</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>creator</tag></entry>
+                            <entry><tag>author</tag>,<tag>editor</tag>,<tag>othercredit</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>subject</tag></entry>
+                            <entry><tag>keywordset</tag>,<tag>subjectset</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>description</tag></entry>
+                            <entry><tag>abstract</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>publisher</tag></entry>
+                            <entry><tag>publisher</tag>,<tag>publishername</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>contributor</tag></entry>
+                            <entry><tag>author</tag>,<tag>editor</tag>,<tag>othercredit</tag>,<tag>collab</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>date</tag></entry>
+                            <entry><tag>date</tag>,<tag>pubdate</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>type</tag></entry>
+                            <entry>Derived from document element and <tag>status</tag>
+                            attribute</entry>
+                        </row>
+                        <row>
+                            <entry><tag>format</tag></entry>
+                            <entry><tag>bibliomisc role="format"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>identifier</tag></entry>
+                            <entry><tag>biblioid</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>source</tag></entry>
+                            <entry><tag>bibliosource</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>language</tag></entry>
+                            <entry><tag>lang</tag> or <tag>xml:lang</tag> attribute</entry>
+                        </row>
+                        <row>
+                            <entry><tag>relation</tag></entry>
+                            <entry><tag>bibliorelation</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>coverage</tag></entry>
+                            <entry><tag>bibliocoverage</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>rights</tag></entry>
+                            <entry><tag>copyright</tag>,<tag>legalnotice</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>alternative</tag></entry>
+                            <entry><tag>titleabbrev</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>tableOfContents</tag></entry>
+                            <entry><tag>bibliomisc role="toc"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>abstract</tag></entry>
+                            <entry><tag>abstract</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>created</tag></entry>
+                            <entry><tag>date role="created"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>valid</tag></entry>
+                            <entry><tag>date role="valid"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>available</tag></entry>
+                            <entry><tag>date role="available"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>issued</tag></entry>
+                            <entry><tag>pubdate</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>modified</tag></entry>
+                            <entry><tag>date
+                                    role="modified"</tag>,<tag>revhistory</tag>/<tag>revision</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>dateAccepted</tag></entry>
+                            <entry><tag>date role="accepted"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>dateCopyrighted</tag></entry>
+                            <entry><tag>copyright</tag>/<tag>year</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>dateSubmitted</tag></entry>
+                            <entry><tag>date role="submitted"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>extent</tag></entry>
+                            <entry><tag>releaseinfo</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>medium</tag></entry>
+                            <entry><tag>bibliomisc role="medium"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>isVersionOf</tag></entry>
+                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>hasVersion</tag></entry>
+                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>isReplacedBy</tag></entry>
+                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>replaces</tag></entry>
+                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>isRequriedBy</tag></entry>
+                            <entry><tag>bibliomisc role="isRequiredBy"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>requires</tag></entry>
+                            <entry><tag>bibliomisc role="requires"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>isPartOf</tag></entry>
+                            <entry><tag>bibliomisc role="isPartOf"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>hasPart</tag></entry>
+                            <entry><tag>bibliomisc role="hasPart"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>isReferencedBy</tag></entry>
+                            <entry><tag>bibliomisc role="requires"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>references</tag></entry>
+                            <entry><tag>bibliomisc role="requires"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>isFormatOf</tag></entry>
+                            <entry><tag>bibliomisc role="isFormatOf"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>hasFormat</tag></entry>
+                            <entry><tag>bibliomisc role="hasFormat"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>conformsTo</tag></entry>
+                            <entry><tag>version</tag> attribute</entry>
+                        </row>
+                        <row>
+                            <entry><tag>spatial</tag></entry>
+                            <entry><tag>bibliocoverage spatial=""</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>temporal</tag></entry>
+                            <entry><tag>bibliocoverage temporal=""</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>audience</tag></entry>
+                            <entry><tag>bibliomisc role="audience"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>accrualMethod</tag></entry>
+                            <entry><tag>bibliomisc role="accrualMethod"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>accrualPeriodicity</tag></entry>
+                            <entry><tag>bibliomisc role="accrualPeriodicity"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>instructionalMethod</tag></entry>
+                            <entry><tag>bibliomisc role="instructionalMethod"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>provenance</tag></entry>
+                            <entry><tag>copyright</tag>/<tag>holder</tag>,<tag>publisher</tag>/<tag>publishername</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>rightsHolder</tag></entry>
+                            <entry><tag>copyright</tag>/<tag>holder</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>mediator</tag></entry>
+                            <entry><tag>bibliomisc role="mediator"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>educationLevel</tag></entry>
+                            <entry><tag>bibliomisc role="educationLevel"</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>accessRights</tag></entry>
+                            <entry><tag>legalnotice</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>license</tag></entry>
+                            <entry><tag>legalnotice</tag></entry>
+                        </row>
+                        <row>
+                            <entry><tag>bibliographicCitation</tag></entry>
+                            <entry><tag>bibliomset</tag>,<tag>bibliomixed</tag></entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
         </section>
         <section>
             <title>New Element Definitions</title>
@@ -735,18 +975,18 @@ consensus of the committee.
             <example>
                 <title>Example Drama</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout class="monospaced">&lt;drama remap="SPEECH"&gt;
+                <literallayout class="monospaced">&lt;drama &gt;
   &lt;linegroup&gt;
-    &lt;speaker remap="SPEAKER"&gt;HAMLET&lt;/speaker&gt;
-    &lt;line remap="LINE"&gt;To be, or not to be: that is the 
+    &lt;speaker&gt;HAMLET&lt;/speaker&gt;
+    &lt;line&gt;To be, or not to be: that is the 
       question:&lt;/line&gt;
-    &lt;line remap="LINE"&gt;Whether 'tis nobler in the mind to 
+    &lt;line&gt;Whether 'tis nobler in the mind to 
       suffer&lt;/line&gt;
-    &lt;line remap="LINE"&gt;The slings and arrows of outrageous 
+    &lt;line&gt;The slings and arrows of outrageous 
       fortune,&lt;/line&gt;
-    &lt;line remap="LINE"&gt;Or to take arms against a sea of 
+    &lt;line&gt;Or to take arms against a sea of 
       troubles,&lt;/line&gt;
-    &lt;line remap="LINE"&gt;And by opposing end them?
+    &lt;line&gt;And by opposing end them?
       &lt;/line&gt;
   &lt;/linegroup&gt;
 &lt;/drama&gt;</literallayout>
@@ -754,17 +994,17 @@ consensus of the committee.
             <example>
                 <title>Example Dialogue</title>
                 <para>The following provides an example usage of the newly added elements:</para>
-                <literallayout class="monospaced">&lt;dialogue remap="SPEECH"&gt;
+                <literallayout class="monospaced">&lt;dialogue &gt;
   &lt;linegroup&gt;
-    &lt;speaker remap="SPEAKER"&gt;President John F. 
+    &lt;speaker&gt;President John F. 
       Kennedy&lt;/speaker&gt;
-    &lt;line remap="LINE"&gt;And so, my fellow Americans, ask 
+    &lt;line&gt;And so, my fellow Americans, ask 
       not what your country can do for you; ask what you can 
       do for your country.&lt;/line>
-    &lt;line remap="LINE"&gt;My fellow citizens of the world, 
+    &lt;line&gt;My fellow citizens of the world, 
       ask not what America will do for you, but what together 
       we can do for the freedom of man.&lt;/line&gt;
-    &lt;line remap="LINE"&gt;Finally, whether you are citizens 
+    &lt;line&gt;Finally, whether you are citizens 
       of America or citizens of the world, ask of us here the 
       same high standards of strength and sacrifice which we 
       ask of you. With a good conscience our only sure reward, 
@@ -7942,6 +8182,8 @@ consensus of the committee.
         <para>Revised Draft. 13 January 2009. Updated to include 2008-01-14 version of Dublin Core
             (removed dc namespace, added dc elements to dcterms; better formatted examples, summary
             of elements added/removed in Introduction.</para>
+        <para>Revised Draft. 15 January 2009. Removed spurious "remap" attributes from examples. 
+            Added table mapping Dublin Core to DocBook equivalents per request from Jirka Kosek.</para>
         <!--
 <listitem xml:id="rfe.">
 <para>Fixed <link xlink:href="&RFE;aid=">RFE </link>:
