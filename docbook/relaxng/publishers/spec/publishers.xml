@@ -10,7 +10,7 @@
     xmlns:ns4="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/1999/xhtml"
     xmlns:ns="http://docbook.org/ns/docbook">
     <info>
-        <releaseinfo role="cvs">$Id: publishers.xml 8213 2009-01-14 03:27:01Z shudson310
+        <releaseinfo role="cvs">$Id: publishers.xml 8215 2009-01-15 18:46:13Z shudson310
         $</releaseinfo>
         <!-- product -->
         <productname>publishers</productname>
@@ -824,51 +824,51 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry><tag>isVersionOf</tag></entry>
-                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                            <entry><tag>bibliorelation type="isversionof"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>hasVersion</tag></entry>
-                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                            <entry><tag>bibliorelation type="hasversion"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>isReplacedBy</tag></entry>
-                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                            <entry><tag>bibliorelation type="isreplacedby"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>replaces</tag></entry>
-                            <entry><tag>revhistory</tag>/<tag>revision</tag></entry>
+                            <entry><tag>bibliorelation type="replaces"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>isRequriedBy</tag></entry>
-                            <entry><tag>bibliomisc role="isRequiredBy"</tag></entry>
+                            <entry><tag>bibliorelation type="isrequiredby"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>requires</tag></entry>
-                            <entry><tag>bibliomisc role="requires"</tag></entry>
+                            <entry><tag>bibliorelation type="requires"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>isPartOf</tag></entry>
-                            <entry><tag>bibliomisc role="isPartOf"</tag></entry>
+                            <entry><tag>bibliorelation type="ispartof"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>hasPart</tag></entry>
-                            <entry><tag>bibliomisc role="hasPart"</tag></entry>
+                            <entry><tag>bibliorelation type="haspart"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>isReferencedBy</tag></entry>
-                            <entry><tag>bibliomisc role="requires"</tag></entry>
+                            <entry><tag>bibliorelation type="isreferencedby"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>references</tag></entry>
-                            <entry><tag>bibliomisc role="requires"</tag></entry>
+                            <entry><tag>bibliorelation type="references"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>isFormatOf</tag></entry>
-                            <entry><tag>bibliomisc role="isFormatOf"</tag></entry>
+                            <entry><tag>bibliorelation type="isformatof"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>hasFormat</tag></entry>
-                            <entry><tag>bibliomisc role="hasFormat"</tag></entry>
+                            <entry><tag>bibliorelation type="hasformat"</tag></entry>
                         </row>
                         <row>
                             <entry><tag>conformsTo</tag></entry>
@@ -8182,7 +8182,7 @@ consensus of the committee.
         <para>Revised Draft. 13 January 2009. Updated to include 2008-01-14 version of Dublin Core
             (removed dc namespace, added dc elements to dcterms; better formatted examples, summary
             of elements added/removed in Introduction.</para>
-        <para>Revised Draft. 15 January 2009. Removed spurious "remap" attributes from examples. 
+        <para>Revised Draft. 15 January 2009. Removed spurious "remap" attributes from examples.
             Added table mapping Dublin Core to DocBook equivalents per request from Jirka Kosek.</para>
         <!--
 <listitem xml:id="rfe.">
