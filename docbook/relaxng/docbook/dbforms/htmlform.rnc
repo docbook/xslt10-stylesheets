@@ -34,14 +34,17 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
-db.extension.blocks |= db.html.form
-db.extension.inlines |=
+db.htmlform.blocks = db.html.form
+db.htmlform.inlines =
    db.html.input
  | db.html.button
  | db.html.label
  | db.html.select
  | db.html.textarea
  | db.html.fieldset
+
+db.extension.blocks |= db.htmlform.blocks
+db.extension.inlines |= db.htmlform.inlines
 
 # ======================================================================
 
