@@ -6,9 +6,10 @@
 # works and it isn't recursive. I still need to get the documentation
 # build into the new system.
 
-include ../../../buildtools/Makefile.incl
+include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
 XSLTPROC=xsltproc
+SAXON=$(DOCBOOK_SVN)/buildtools/saxon
 PERL=perl
 MV ?= mv
 

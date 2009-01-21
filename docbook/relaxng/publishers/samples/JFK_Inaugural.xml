@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><?oxygen RNGSchema="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/docbook/relaxng/publishers/publishers/publishers.rnc" type="compact"?>
+<?xml version="1.0" encoding="utf-8"?><?oxygen RNGSchema="../publishers/publishers.rnc" type="compact"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
     <title>John F. Kennedy Inaugural Address</title>
     <info>
-        <date xmlns="http://purl.org/dc/elements/1.1/">Friday, January 20, 1961</date>
+        <date xmlns="http://purl.org/dc/terms/">Friday, January 20, 1961</date>
     </info>
     <dialogue>
         <title>John F. Kennedy Inaugural Address</title>

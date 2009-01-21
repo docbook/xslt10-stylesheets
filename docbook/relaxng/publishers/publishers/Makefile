@@ -13,7 +13,6 @@ clean:: ; rm -f publishers.rng publishers.rnc publishers.dtd publishers.sch *.xs
 
 $(_OUTTOP)/publishers/publishers.rng: publishers/publishers.rnc \
                                   ../docbook/src/core.rnc \
-                                  publishers/dc.rnc \
                                   publishers/dcterms.rnc \
                                   publishers/dcmitype.rnc
 
@@ -26,10 +25,10 @@ publishers.rnc: publishers.rng
 	$(RUNTRANG) $< $@
 
 publishers.dtd: $(basename $(publishers_BINARY)).dtx publishers.rnc
-	$(XSLTPROC) -output $@ $(TOOLS)/xml2dtd.xsl $<
+	$(XSLTPROC) --output $@ $(TOOLS)/xml2dtd.xsl $<
 
 publishers.sch: $(basename $(publishers_BINARY)).rnx
-	$(XSLTPROC) --output $@ $(TOOLS)/schematron.xsl $<
+	$(SAXON) $< $(TOOLS)/schematron.xsl $@
 
 publishers.xsd: publishers.dtd
 	$(RUNTRANG) $< $@

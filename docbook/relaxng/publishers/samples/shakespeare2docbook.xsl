@@ -20,7 +20,7 @@
 					06.06.2006 [Jim E.] - Initial release
 					05.29.2008 [Scott Hudson] - created shakespeare2docbook.
 -->
-    <xsl:template match="/"><xsl:processing-instruction name="oxygen">RNGSchema="http://docbook.svn.sourceforge.net/viewvc/*checkout*/docbook/trunk/docbook/relaxng/publishers/src/publishers.rnc" type="compact"</xsl:processing-instruction>
+    <xsl:template match="/"><xsl:processing-instruction name="oxygen">RNGSchema="../publishers/publishers.rnc" type="compact"</xsl:processing-instruction>
         <xsl:apply-templates/></xsl:template>
     <xsl:template match="ACT"><chapter remap="ACT"><xsl:apply-templates /></chapter></xsl:template>
    <xsl:template match="EPILOGUE">

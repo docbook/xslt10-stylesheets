@@ -32,10 +32,10 @@ $($(_MODULE)_OUTPUT)/%.rnx: $($(_MODULE)_OBJS) $($(_MODULE)_OUTPUT)/.f $(INCLUDE
 #	$(RM) $@,
 
 $($(_MODULE)_OUTPUT)/%.rnd: $($(_MODULE)_OUTPUT)/%.rnx $(TOOLS)/rngdocxml.xsl
-	$(XSLTPROC) -output $@ $(TOOLS)/rngdocxml.xsl $<
+	$(XSLTPROC) --output $@ $(TOOLS)/rngdocxml.xsl $<
 
 $($(_MODULE)_OUTPUT)/%.dtx: $($(_MODULE)_OUTPUT)/%.rnd $(TOOLS)/doc2dtd.xsl
-	$(XSLTPROC) -output $@ $(TOOLS)/doc2dtd.xsl $<
+	$(XSLTPROC) --output $@ $(TOOLS)/doc2dtd.xsl $<
 
 all:: $($(_MODULE)_BINARY)
 
