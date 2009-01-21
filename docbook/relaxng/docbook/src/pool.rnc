@@ -1231,10 +1231,12 @@ div {
 
    ctrl:exclude [ from="db.sidebar" exclude="db.sidebar" ]
 
+   db.sidebar.floatstyle.attribute = db.floatstyle.attribute
    db.sidebar.role.attribute = attribute role { text }
 
    db.sidebar.attlist =
       db.sidebar.role.attribute?
+    & db.sidebar.floatstyle.attribute?
     & db.common.attributes
     & db.common.linking.attributes
 
