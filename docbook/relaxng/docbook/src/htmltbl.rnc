@@ -31,6 +31,7 @@ namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 default namespace = "http://docbook.org/ns/docbook"
 
 db.table.choice |= db.html.table
@@ -127,7 +128,10 @@ db.html.cellhalign =
  & [
       db:refpurpose [ "When present, this attribute specifies the offset to the first occurrence of the alignment character on each line. If a line doesn't include the alignment character, it should be horizontally shifted to end at the alignment position. When charoff is used to set the offset of an alignment character, the direction of offset is determined by the current text direction (set by the dir attribute). In left-to-right texts (the default), offset is from the left margin. In right-to-left texts, offset is from the right margin. User agents are not required to support this attribute." ]
    ]
-   attribute charoff { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
+   attribute charoff {
+      xsd:integer >> a:documentation [ "An explicit offset." ]
+    | xsd:string { pattern="[0-9]+%" } >> a:documentation [ "A percentage offset." ]
+   }?
 
 db.html.cellvalign =
    [
@@ -151,7 +155,10 @@ db.html.table.attributes =
  & [
       db:refpurpose [ "Specifies the desired width of the entire table and is intended for visual user agents. When the value is a percentage value, the value is relative to the user agent's available horizontal space. In the absence of any width specification, table width is determined by the user agent." ]
    ]
-   attribute width { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
+   attribute width { 
+      xsd:integer >> a:documentation [ "An explicit width." ]
+    | xsd:string { pattern="[0-9]+%" } >> a:documentation [ "A percentage width." ]
+   }?
  & [
       db:refpurpose [ "Specifies the width (in pixels only) of the frame around a table." ]
    ]
@@ -196,11 +203,17 @@ db.html.table.attributes =
  & [
       db:refpurpose [ "Specifies how much space the user agent should leave between the left side of the table and the left-hand side of the leftmost column, the top of the table and the top side of the topmost row, and so on for the right and bottom of the table. The attribute also specifies the amount of space to leave between cells." ]
    ]
-   attribute cellspacing { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
+   attribute cellspacing {
+      xsd:integer >> a:documentation [ "An explicit spacing." ]
+    | xsd:string { pattern="[0-9]+%" } >> a:documentation [ "A percentage spacing." ]
+   }?
  & [
       db:refpurpose [ "Specifies the amount of space between the border of the cell and its contents. If the value of this attribute is a pixel length, all four margins should be this distance from the contents. If the value of the attribute is a percentage length, the top and bottom margins should be equally separated from the content based on a percentage of the available vertical space, and the left and right margins should be equally separated from the content based on a percentage of the available horizontal space." ]
    ]
-   attribute cellpadding { xsd:integer | xsd:string { pattern="[0-9]+%" } }?
+   attribute cellpadding {
+      xsd:integer >> a:documentation [ "An explicit padding." ]
+    | xsd:string { pattern="[0-9]+%" } >> a:documentation [ "A percentage padding." ]
+   }?
 
 db.html.tablecell.attributes =
    [
