@@ -2571,6 +2571,7 @@ div {
          db.address.attlist,
          (db._text
           | db.personname
+          | db.orgname
           | db.pob
           | db.street
           | db.city
