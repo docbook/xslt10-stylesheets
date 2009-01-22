@@ -1240,7 +1240,7 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
 
-   db.sidebar.info = db._info.title
+   db.sidebar.info = db._info
 
    db.sidebar =
       element sidebar {
