@@ -27,6 +27,8 @@
 
 <gentext key="Abstract" text="摘要"/>
 <gentext key="abstract" text="摘要"/>
+<gentext key="Acknowledgements" text="鸣谢"/>
+<gentext key="Acknowledgements" text="鸣谢"/>
 <gentext key="Answer" text="答："/>
 <gentext key="answer" text="答："/>
 <gentext key="Appendix" text="附录"/>
