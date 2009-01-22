@@ -1,0 +1,47 @@
+<article xmlns="http://docbook.org/ns/docbook">
+<title>Method Parameter Grouping Test</title>
+
+<methodsynopsis>
+<type>int</type>
+<methodname>x</methodname>
+<methodparam>
+<type>int</type>
+<parameter>param1</parameter>
+</methodparam>
+<group choice="opt">
+<methodparam>
+<type>string</type>
+<parameter>param2</parameter>
+</methodparam>
+<methodparam>
+<type>float</type>
+<parameter>param3</parameter>
+</methodparam>
+<group choice="opt">
+<methodparam>
+<type>array</type>
+<parameter>param4</parameter>
+</methodparam>
+<methodparam>
+<type>array</type>
+<parameter>param5</parameter>
+</methodparam>
+<group choice="opt">
+<methodparam>
+<type>boolean</type>
+<parameter>param6</parameter>
+</methodparam>
+</group>
+</group>
+</group>
+</methodsynopsis>
+
+<cmdsynopsis>
+<command>test</command>
+<group>
+  <arg>arg1</arg>
+  <arg>arg2</arg>
+</group>
+</cmdsynopsis>
+
+</article>
