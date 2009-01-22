@@ -82,6 +82,37 @@
       <!-- db.area.inareaset is the "right" one; it has an optional id -->
     </xsl:when>
 
+    <!-- handle the group patterns -->
+    <xsl:when test="@name = 'db.group'">
+      <dtd:element name="group">
+	<dtd:group>
+	  <dtd:choice repeat="+">
+	    <dtd:ref name="arg"/>
+	    <dtd:ref name="group"/>
+	    <dtd:ref name="option"/>
+	    <dtd:ref name="synopfragmentref"/>
+	    <dtd:ref name="replaceable"/>
+	    <dtd:ref name="sbr"/>
+	    <dtd:ref name="paramdef"/>
+	    <dtd:ref name="methodparam"/>
+	  </dtd:choice>
+	</dtd:group>
+      </dtd:element>
+
+      <dtd:attlist name="group">
+	<dtd:attribute name="role" occurs="optional"/>
+	<dtd:peref name="db.common.attributes"/>
+	<dtd:peref name="db.common.linking.attributes"/>
+	<dtd:attribute name="rep" default="norepeat" occurs="optional">(norepeat|repeat)</dtd:attribute>
+	<dtd:attribute name="choice" default="opt" occurs="optional">(opt|plain|req)</dtd:attribute>
+      </dtd:attlist>
+    </xsl:when>
+
+    <xsl:when test="@name = 'db.group.paramdef'
+	            or @name = 'db.group.methodparam'">
+      <!-- nop; handled by group above -->
+    </xsl:when>
+
     <!-- Handle the row patterns -->
 
     <xsl:when test="@name = 'db.entrytbl.row' and key('pattern', 'db.row')">
