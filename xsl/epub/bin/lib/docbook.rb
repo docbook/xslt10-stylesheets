@@ -51,7 +51,7 @@ module DocBook
       cmd = "#{CHECKER} #{file}"
       output = `#{cmd} 2>&1`
 
-      if output == "No errors or warnings detected\n" # TODO wow.. this isn't fragile
+      if $?.to_i == 0
         return false
       else  
         STDERR.puts output if $DEBUG

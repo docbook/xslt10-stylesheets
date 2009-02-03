@@ -14,7 +14,7 @@ require 'spec'
 
 require 'docbook'
 
-$DEBUG = false
+$DEBUG = true
 
 TESTDOCSDIR = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
 
