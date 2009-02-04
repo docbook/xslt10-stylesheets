@@ -456,7 +456,7 @@
                        sect5|
                        refentry|
                        colophon|
-                       bibliodiv|
+                       bibliodiv[title]|
                        setindex|
                        index"
                 mode="ncx">
@@ -503,7 +503,7 @@
                                   preceding::sect5|
                                   preceding::refentry|
                                   preceding::colophon|
-                                  preceding::bibliodiv|
+                                  preceding::bibliodiv[title]|
                                   preceding::index)"/>
     </xsl:variable>
 
@@ -537,7 +537,7 @@
           <xsl:value-of select="$href"/>
         </xsl:attribute>
       </xsl:element>
-      <xsl:apply-templates select="book[parent::set]|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|setindex|index" mode="ncx"/>
+      <xsl:apply-templates select="book[parent::set]|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv[title]|setindex|index" mode="ncx"/>
     </xsl:element>
 
   </xsl:template>
@@ -763,7 +763,7 @@
                                    //sect5|
                                    //refentry|
                                    //colophon|
-                                   //bibliodiv|
+                                   //bibliodiv[title]|
                                    //index|
                                    //setindex|
                                    //graphic|
@@ -1002,7 +1002,7 @@
             sect5|
             refentry|
             colophon|
-            bibliodiv|
+            bibliodiv[title]|
             setindex|
             index"
       mode="opf.manifest">
@@ -1408,7 +1408,7 @@
     <xsl:value-of select="$html.ext"/>
   </xsl:template>
 
-  <xsl:template match="bibliodiv" mode="label.markup">
+  <xsl:template match="bibliodiv[title]" mode="label.markup">
   </xsl:template>
 
 
