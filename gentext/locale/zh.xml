@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
-<locale language="zh_cn"
-        english-language-name="Chinese Simplified"
+<locale language="zh"
+        english-language-name="Chinese"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo>
