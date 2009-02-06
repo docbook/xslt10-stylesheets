@@ -230,6 +230,54 @@ describe DocBook::Epub do
     end
   end
 
+  it "should include one and only one <h1> in each HTML file in rendered ePub files for <book>s" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
+      epubfile = File.join(tmpdir, "h1count.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+      FileUtils.copy(epubfile, ".h1c.epub") if $DEBUG
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      glob = Dir.glob(File.join(tmpdir, "**", "*.html"))
+      glob.each {|html_file| 
+        h1s = File.open(html_file).readlines.to_s.scan(/<h1/)
+        puts html_file if $DEBUG && h1s.length != 1 
+        h1s.length.should == 1
+      }
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end  
+  end
+
+  it "should include one and only one <h1> in each HTML file in rendered ePub files for <book>s even if they do not have section markup" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
+      epubfile = File.join(tmpdir, "h1count2.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+      FileUtils.copy(epubfile, ".h1c2.epub") if $DEBUG
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      glob = Dir.glob(File.join(tmpdir, "**", "*.html"))
+      glob.each {|html_file| 
+        h1s = File.open(html_file).readlines.to_s.scan(/<h1/)
+        puts html_file if $DEBUG && h1s.length != 1 
+        h1s.length.should == 1
+      }
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end  
+  end
+
   it "should include a TOC link in rendered epub files for <book>s" do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
