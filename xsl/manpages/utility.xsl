@@ -69,11 +69,15 @@
   </xsl:template>
 
   <xsl:template name="code-inline-start">
-    <xsl:text>\FC</xsl:text>
+    <xsl:if test="not($man.output.better.ps.enabled = 0)">
+      <xsl:text>\FC</xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="code-inline-end">
-    <xsl:text>\F[]</xsl:text>
+    <xsl:if test="not($man.output.better.ps.enabled = 0)">
+      <xsl:text>\F[]</xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <!-- ================================================================== -->
