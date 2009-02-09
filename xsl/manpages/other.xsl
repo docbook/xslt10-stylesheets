@@ -747,7 +747,7 @@ manvolnum
 .if \\n[.$] \&amp;\\$*
 ..&#10;</xsl:text>
     <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
-    <xsl:text>.\" BB/BE - put background/screen (filled box) around block of text&#10;</xsl:text>
+    <xsl:text>.\" BB/EB - put background/screen (filled box) around block of text&#10;</xsl:text>
     <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
     <xsl:text>.de BB
 .if t \{\
