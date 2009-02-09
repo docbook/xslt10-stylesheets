@@ -121,6 +121,7 @@
 &man.output.subdirs.enabled;
 &man.output.quietly;
 &man.output.encoding;
+&man.output.better.ps.enabled;
   </reference>
   <reference xml:id="other">
   <title>Other</title>
@@ -185,6 +186,7 @@
 <src:fragref linkend="man.output.lang.in.name.enabled.frag"/>
 <src:fragref linkend="man.output.manifest.enabled.frag"/>
 <src:fragref linkend="man.output.manifest.filename.frag"/>
+<src:fragref linkend="man.output.better.ps.enabled.frag"/>
 <src:fragref linkend="man.output.quietly.frag"/>
 <src:fragref linkend="man.output.subdirs.enabled.frag"/>
 <src:fragref linkend="man.segtitle.suppress.frag"/>

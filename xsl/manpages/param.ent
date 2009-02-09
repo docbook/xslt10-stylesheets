@@ -32,6 +32,7 @@
 <!ENTITY man.output.lang.in.name.enabled SYSTEM "../params/man.output.lang.in.name.enabled.xml">
 <!ENTITY man.output.manifest.enabled SYSTEM "../params/man.output.manifest.enabled.xml">
 <!ENTITY man.output.manifest.filename SYSTEM "../params/man.output.manifest.filename.xml">
+<!ENTITY man.output.better.ps.enabled SYSTEM "../params/man.output.better.ps.enabled.xml">
 <!ENTITY man.output.quietly SYSTEM "../params/man.output.quietly.xml">
 <!ENTITY man.output.subdirs.enabled SYSTEM "../params/man.output.subdirs.enabled.xml">
 <!ENTITY man.segtitle.suppress SYSTEM "../params/man.segtitle.suppress.xml">
