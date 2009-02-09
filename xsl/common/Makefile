@@ -4,7 +4,7 @@ XJPARSEFLAGS= -E 0 -w
 
 SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
         de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
-        gl.xml gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml la.xml \
+        gl.xml gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml ky.xml la.xml \
         lt.xml lv.xml mn.xml nl.xml nn.xml nb.xml pa.xml pl.xml hr.xml la.xml or.xml \
         pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
         ta.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
@@ -46,6 +46,7 @@ it.xml: $(DOCBOOK_SVN)/gentext/locale/it.xml $(GENSTYLE)
 ja.xml: $(DOCBOOK_SVN)/gentext/locale/ja.xml $(GENSTYLE)
 kn.xml: $(DOCBOOK_SVN)/gentext/locale/kn.xml $(GENSTYLE)
 ko.xml: $(DOCBOOK_SVN)/gentext/locale/ko.xml $(GENSTYLE)
+ky.xml: $(DOCBOOK_SVN)/gentext/locale/ky.xml $(GENSTYLE)
 la.xml: $(DOCBOOK_SVN)/gentext/locale/la.xml $(GENSTYLE)
 lt.xml: $(DOCBOOK_SVN)/gentext/locale/lt.xml $(GENSTYLE)
 lv.xml: $(DOCBOOK_SVN)/gentext/locale/lv.xml $(GENSTYLE)
