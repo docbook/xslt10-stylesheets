@@ -824,7 +824,9 @@
         </xsl:when>
         <!-- Use the xlink:href if no other text -->
         <xsl:when test="@xlink:href">
-          <xsl:value-of select="@xlink:href"/>
+	  <xsl:call-template name="hyphenate-url">
+	    <xsl:with-param name="url" select="@xlink:href"/>
+	  </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message>
