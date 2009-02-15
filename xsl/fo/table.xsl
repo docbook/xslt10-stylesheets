@@ -225,10 +225,12 @@
 
   <xsl:variable name="rowsep">
     <xsl:choose>
-      <!-- If this is the last row, rowsep never applies. -->
+      <!-- If this is the last row, rowsep never applies (except when 
+	   the ancestor tgroup has a following sibling tgroup) -->
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
-                          or ancestor-or-self::tbody/preceding-sibling::tfoot)">
+                          or ancestor-or-self::tbody/preceding-sibling::tfoot)
+			  and not(ancestor::tgroup/following-sibling::tgroup)">
         <xsl:value-of select="0"/>
       </xsl:when>
       <xsl:otherwise>
@@ -802,19 +804,23 @@
 
   <xsl:variable name="rowsep">
     <xsl:choose>
-      <!-- If this is the last row, rowsep never applies. -->
+      <!-- If this is the last row, rowsep never applies (except when 
+	   the ancestor tgroup has a following sibling tgroup) -->
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
-                          or ancestor-or-self::tbody/preceding-sibling::tfoot)">
+                          or ancestor-or-self::tbody/preceding-sibling::tfoot)
+			  and not(ancestor::tgroup/following-sibling::tgroup)">
         <xsl:value-of select="0"/>
       </xsl:when>
       <!-- Check for morerows too -->
       <xsl:when test="(@morerows and count(ancestor-or-self::row[1]/
                        following-sibling::row) = @morerows )
                       and not (ancestor-or-self::thead/following-sibling::tbody
-                       or ancestor-or-self::tbody/preceding-sibling::tfoot)">
+                       or ancestor-or-self::tbody/preceding-sibling::tfoot)
+		       and not(ancestor::tgroup/following-sibling::tgroup)">
         <xsl:value-of select="0"/>
       </xsl:when>
+
       <xsl:otherwise>
         <xsl:call-template name="inherited.table.attribute">
           <xsl:with-param name="entry" select="."/>
