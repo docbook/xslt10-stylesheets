@@ -190,13 +190,20 @@
 </xsl:template>
 
 <xsl:template match="abstract" mode="titlepage.mode">
-  <fo:block>
-    <xsl:call-template name="formal.object.heading">
-      <xsl:with-param name="title">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:apply-templates mode="titlepage.mode"/>
+  <fo:block xsl:use-attribute-sets="abstract.properties">
+    <fo:block xsl:use-attribute-sets="abstract.title.properties">
+      <xsl:choose>
+	<xsl:when test="title|info/title">
+	  <xsl:apply-templates select="title|info/title"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:call-template name="gentext">
+	    <xsl:with-param name="key" select="'Abstract'"/>
+	  </xsl:call-template>
+	</xsl:otherwise>
+      </xsl:choose>
+    </fo:block>
+    <xsl:apply-templates select="*[not(self::title)]" mode="titlepage.mode"/>
   </fo:block>
 </xsl:template>
 
