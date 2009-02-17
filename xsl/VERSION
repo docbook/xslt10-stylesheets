@@ -26,7 +26,7 @@
   <fm:Branch>XSL Stylesheets</fm:Branch>
   <!-- * set/keep fm:version as N.NN.N-pre except for official releases, -->
   <!-- * then after the release, revert it to N.NN.N-pre & check back in -->
-  <fm:Version>snapshot_8050</fm:Version>
+  <fm:Version>1.74.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -34,9 +34,9 @@
 <!-- * Initial freshmeat announcement -->
 <!-- * Documentation -->
 <!-- * Code cleanup -->
-<!-- * Minor feature enhancements -->
-Major feature enhancements
-<!-- * Minor bugfixes -->
+* Minor feature enhancements 
+<!-- * Major feature enhancements -->
+* Minor bugfixes 
 <!-- * Major bugfixes -->
 <!-- * Minor security fixes -->
 <!-- * Major security fixes -->
