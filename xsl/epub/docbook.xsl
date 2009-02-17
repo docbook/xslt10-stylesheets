@@ -1445,8 +1445,9 @@
             <xsl:element name="title">Cover</xsl:element>
             <xsl:element name="style">
               <xsl:attribute name="type">text/css</xsl:attribute>
-              <xsl:text>.</xsl:text><xsl:value-of select="$epub.cover.image.id"/>
-              <xsl:text> { width:100%; height: 100%; }</xsl:text>
+              <!-- Select the cover image by @id in the CSS then apply a max-width to help Adobe Digital Editions -->
+              <xsl:text>#</xsl:text><xsl:value-of select="$epub.cover.image.id"/>
+              <xsl:text> img { max-width: 100%; }</xsl:text>
             </xsl:element>
           </xsl:element>
           <xsl:element name="body">
