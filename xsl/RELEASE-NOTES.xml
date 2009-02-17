@@ -158,7 +158,7 @@ Patch from Paolo Borelli. Closes #2086321.</para>
 <para>The following is a list of changes that have been made since the 1.74.0 release.</para>
 
 
-<sect2 xml:id="V1.74.1_Gentext">
+<sect2 xml:id="summary_V1.74.1_Gentext">
 <title>Gentext</title>
 <para>The following changes have been made to the <filename>gentext</filename> code since the 1.74.0 release.</para>
 <itemizedlist>
@@ -177,7 +177,7 @@ Patch from Paolo Borelli. Closes #2086321.</para>
 </itemizedlist>
 </sect2><!--end of Gentext changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_FO">
+<sect2 xml:id="summary_V1.74.1_FO">
 <title>FO</title>
 <para>The following changes have been made to the <filename>fo</filename> code since the 1.74.0 release.</para>
 <itemizedlist>
@@ -207,7 +207,7 @@ Patch from Paolo Borelli. Closes #2086321.</phrase></screen>
 </itemizedlist>
 </sect2><!--end of FO changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_HTML">
+<sect2 xml:id="summary_V1.74.1_HTML">
 <title>HTML</title>
 <para>The following changes have been made to the <filename>html</filename> code since the 1.74.0 release.</para>
 <itemizedlist>
@@ -224,7 +224,7 @@ See FRs #1015180 and #1819915.</phrase></screen>
 </itemizedlist>
 </sect2><!--end of HTML changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_Manpages">
+<sect2 xml:id="summary_V1.74.1_Manpages">
 <title>Manpages</title>
 <para>The following changes have been made to the <filename>manpages</filename> code since the 1.74.0 release.</para>
 <itemizedlist>
@@ -238,7 +238,7 @@ automatically, but apparently AT&amp;T troff needs to be explicitly told</phrase
 </itemizedlist>
 </sect2><!--end of Manpages changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_Epub">
+<sect2 xml:id="summary_V1.74.1_Epub">
 <title>ePub</title>
 <para>The following changes have been made to the <filename>epub</filename> code since the 1.74.0 release.</para>
 <itemizedlist>
@@ -294,7 +294,7 @@ DocBook::Epub
 </itemizedlist>
 </sect2><!--end of Epub changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_Roundtrip">
+<sect2 xml:id="summary_V1.74.1_Roundtrip">
 <title>Roundtrip</title>
 <para>The following changes have been made to the
             <filename>roundtrip</filename> code
@@ -321,7 +321,7 @@ from-DocBook: fix for <tag>blockquote</tag> <tag>title</tag></phrase></screen>
 </itemizedlist>
 </sect2><!--end of Roundtrip changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_Params">
+<sect2 xml:id="summary_V1.74.1_Params">
 <title>Params</title>
 <para>The following changes have been made to the <filename>params</filename> since the 1.74.0 release.</para>
 <itemizedlist>
@@ -378,7 +378,7 @@ Patch from Paolo Borelli. Closes #2086321.</phrase></screen>
 </itemizedlist>
 </sect2><!--end of Params changes for 1.74.1-->
 
-<sect2 xml:id="V1.74.1_Highlighting">
+<sect2 xml:id="summary_V1.74.1_Highlighting">
 <title>Highlighting</title>
 <para>The following changes have been made to the
             <filename>highlighting</filename> code
