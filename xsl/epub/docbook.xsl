@@ -36,7 +36,7 @@
   <xsl:param name="epub.cover.filename" select="concat($epub.oebps.dir, 'cover', $html.ext)"/> 
   <xsl:param name="epub.cover.id" select="'cover'"/> 
   <xsl:param name="epub.cover.image.id" select="'cover-image'"/> 
-
+  <xsl:param name="epub.cover.linear" select="0" />
   <xsl:param name="epub.ncx.toc.id">ncxtoc</xsl:param>
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
   <xsl:param name="epub.metainf.dir" select="'META-INF/'"/> 
@@ -321,7 +321,7 @@
               <xsl:call-template name="l10n.language"/>
             </xsl:element>
 
-            <xsl:if test="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+            <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
               <xsl:element name="meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
@@ -404,7 +404,7 @@
             type="cover" pointing to it AND there is a logical cover specified in a
             <meta name="cover"> tag, THEN, the HTML cover is discarded. -->
           <xsl:element name="head">
-            <xsl:if test="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+            <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
               <xsl:element name="meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
@@ -656,10 +656,10 @@
 
   <xsl:template name="opf.guide">
     <xsl:if test="contains($toc.params, 'toc') or 
-                  /*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+                  /*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
       <xsl:element name="guide">
         <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
-        <xsl:if test="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+        <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
           <xsl:element name="reference">
             <xsl:attribute name="href">
               <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
@@ -694,12 +694,19 @@
         <xsl:value-of select="$epub.ncx.toc.id"/>
       </xsl:attribute>
 
-      <xsl:if test="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+      <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
         <xsl:element name="itemref">
           <xsl:attribute name="idref">
             <xsl:value-of select="$epub.cover.id"/>
           </xsl:attribute>
-          <xsl:attribute name="linear">no</xsl:attribute>
+          <xsl:attribute name="linear">
+          <xsl:choose>
+            <xsl:when test="$epub.cover.linear">
+              <xsl:text>yes</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>no</xsl:otherwise>
+          </xsl:choose>
+          </xsl:attribute>
         </xsl:element>
       </xsl:if>
 
@@ -773,7 +780,7 @@
         </xsl:element>
       </xsl:if>
 
-      <xsl:if test="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"> 
+      <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
         <xsl:element name="item">
           <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
           <xsl:attribute name="id"> <xsl:value-of select="$epub.cover.id"/> </xsl:attribute>
@@ -972,8 +979,7 @@
           <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
           <xsl:attribute name="id"> 
             <xsl:choose>
-              <!-- TODO: Remove hardcoded 'front' -->
-              <xsl:when test="ancestor::mediaobject[@role='cover'] and ../@role='front-large'">
+              <xsl:when test="(ancestor::mediaobject[@role='cover'] or ancestor::cover) and (../@role='front-large' or count(ancestor::mediaobject/descendant::imageobject) = 1)">
                 <xsl:value-of select="$epub.cover.image.id"/>
               </xsl:when>
               <xsl:otherwise>
@@ -1022,8 +1028,7 @@
         <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
         <xsl:attribute name="id"> 
           <xsl:choose>
-            <!-- TODO: Remove hardcoded 'front' -->
-            <xsl:when test="ancestor::mediaobject[@role='cover'] and ../@role='front-large'">
+            <xsl:when test="(ancestor::mediaobject[@role='cover'] or ancestor::cover) and (../@role='front-large' or count(ancestor::mediaobject/descendant::imageobject) = 1)">
               <xsl:value-of select="$epub.cover.image.id"/>
             </xsl:when>
             <xsl:otherwise>
@@ -1421,10 +1426,10 @@
   </xsl:template>  
 
   <xsl:template name="cover">
-    <xsl:apply-templates select="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']"/>
+    <xsl:apply-templates select="/*/*[contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"/>
   </xsl:template>  
 
-  <xsl:template match="/*/*[contains(name(.), 'info')]/mediaobject[@role='cover']">
+  <xsl:template match="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]">
     <xsl:call-template name="write.chunk">
       <xsl:with-param name="filename">
         <xsl:value-of select="$epub.cover.filename" />
@@ -1449,9 +1454,20 @@
               <xsl:attribute name="id">
                 <xsl:value-of select="$epub.cover.image.id"/>
               </xsl:attribute>
-              <!-- TODO: Remove hardcoded 'front' -->
-              <xsl:apply-templates select="imageobject[@role='front-large']"/>
+              <xsl:choose>
+                <xsl:when test="imageobject[@role='front-large']">
+                  <xsl:apply-templates select="imageobject[@role='front-large']"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates select="imageobject[1]"/>
+                </xsl:otherwise>
+              </xsl:choose>
             </xsl:element>
+            <!-- If this is defined as an explicit cover page, then process
+            any remaining text -->
+            <xsl:if test="ancestor::cover">
+              <xsl:apply-templates select="ancestor::cover/para"/>
+            </xsl:if>
           </xsl:element>
         </xsl:element>
       </xsl:with-param>  
