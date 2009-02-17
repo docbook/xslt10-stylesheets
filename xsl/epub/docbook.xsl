@@ -182,17 +182,26 @@
     <xsl:variable name="unique-id">
       <xsl:choose>
         <xsl:when test="/*/*[contains(name(.), 'info')]/biblioid"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/biblioid"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/invpartnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/invpartnumber"/> </xsl:when>
+        <xsl:when test="/*/*[contains(name(.), 'info')]/isbn"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/isbn"/> </xsl:when>
         <xsl:when test="/*/*[contains(name(.), 'info')]/issn"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/issn"/> </xsl:when>
+        <xsl:when test="/*/*[contains(name(.), 'info')]/invpartnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/invpartnumber"/> </xsl:when>
         <xsl:when test="/*/*[contains(name(.), 'info')]/issuenum"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/issuenum"/> </xsl:when>
         <xsl:when test="/*/*[contains(name(.), 'info')]/productnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/productnumber"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/pubsnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/pubsnumber"/> </xsl:when>
         <xsl:when test="/*/*[contains(name(.), 'info')]/seriesvolnums"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/seriesvolnums"/> </xsl:when>
         <xsl:when test="/*/*[contains(name(.), 'info')]/volumenum"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/volumenum"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/isbn"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/isbn"/> </xsl:when>
+        <!-- Deprecated -->
+        <xsl:when test="/*/*[contains(name(.), 'info')]/pubsnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/pubsnumber"/> </xsl:when>
       </xsl:choose>  
       <xsl:text>_</xsl:text>
-      <xsl:value-of select="/*/@id"/>
+      <xsl:choose>
+        <xsl:when test="/*/@id">
+          <xsl:value-of select="/*/@id"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- TODO: Do UUIDs here -->
+          <xsl:value-of select="generate-id(/*)"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
     <xsl:variable name="doc.title">
       <xsl:call-template name="get.doc.title" />
@@ -217,6 +226,35 @@
             <xsl:element name="dc:identifier">
               <xsl:attribute name="id"><xsl:value-of select="$package-id"/></xsl:attribute>
               <xsl:choose>
+                <xsl:when test="/appendix/appendixinfo/biblioid|
+                                /article/articleinfo/biblioid|
+                                /book/bookinfo/biblioid|
+                                /chapter/chapterinfo/biblioid|
+                                /glossary/glossaryinfo/biblioid|
+                                /part/partinfo/biblioid|
+                                /preface/prefaceinfo/biblioid|
+                                /refentry/refentryinfo/biblioid|
+                                /reference/referenceinfo/biblioid|
+                                /refsect1/refsect1info/biblioid|
+                                /refsect2/refsect2info/biblioid|
+                                /refsect3/refsect3info/biblioid|
+                                /refsection/refsectioninfo/biblioid|
+                                /refsynopsisdiv/refsynopsisdivinfo/biblioid|
+                                /sect1/sect1info/biblioid|
+                                /sect2/sect2info/biblioid|
+                                /sect3/sect3info/biblioid|
+                                /sect4/sect4info/biblioid|
+                                /sect5/sect5info/biblioid|
+                                /section/sectioninfo/biblioid|
+                                /setindex/setindexinfo/biblioid|
+                                /set/setinfo/biblioid">
+                  <xsl:if test="/*/*/biblioid[1]/@class = 'doi' or /*/*/biblioid[1]/@class = 'isbn' or /*/*/biblioid[1]/@class = 'isrn' or /*/*/biblioid[1]/@class = 'issn'">
+                    <xsl:text>urn:</xsl:text>
+                    <xsl:value-of select="/*/*/biblioid[1]/@class"/>
+                    <xsl:text>:</xsl:text>
+                  </xsl:if>
+                  <xsl:value-of select="/*/*/biblioid[1]"/>
+                </xsl:when>
                 <xsl:when test="/appendix/appendixinfo/isbn|
                                 /article/articleinfo/isbn|
                                 /book/bookinfo/isbn|
@@ -241,6 +279,31 @@
                                 /set/setinfo/isbn">
                   <xsl:text>urn:isbn:</xsl:text>
                   <xsl:value-of select="/*/*/isbn"/>
+                </xsl:when>
+                <xsl:when test="/appendix/appendixinfo/issn|
+                                /article/articleinfo/issn|
+                                /book/bookinfo/issn|
+                                /chapter/chapterinfo/issn|
+                                /glossary/glossaryinfo/issn|
+                                /part/partinfo/issn|
+                                /preface/prefaceinfo/issn|
+                                /refentry/refentryinfo/issn|
+                                /reference/referenceinfo/issn|
+                                /refsect1/refsect1info/issn|
+                                /refsect2/refsect2info/issn|
+                                /refsect3/refsect3info/issn|
+                                /refsection/refsectioninfo/issn|
+                                /refsynopsisdiv/refsynopsisdivinfo/issn|
+                                /sect1/sect1info/issn|
+                                /sect2/sect2info/issn|
+                                /sect3/sect3info/issn|
+                                /sect4/sect4info/issn|
+                                /sect5/sect5info/issn|
+                                /section/sectioninfo/issn|
+                                /setindex/setindexinfo/issn|
+                                /set/setinfo/issn">
+                  <xsl:text>urn:issn:</xsl:text>
+                  <xsl:value-of select="/*/*/issn"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="$unique-id"/>

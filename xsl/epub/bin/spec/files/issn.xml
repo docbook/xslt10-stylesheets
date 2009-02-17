@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<article>
+  <articleinfo>
+    <title>Test: issn</title>
+    <author>
+      <firstname>Keith</firstname>
+      <surname>Fahlgren</surname>
+      <affiliation>
+        <address>
+          <email>keith@oreilly.com</email>
+        </address>
+      </affiliation>
+    </author>
+    <issn>X987654321</issn>
+  </articleinfo>
+  <section>
+    <title>Section One</title>
+    <para>This document has an issn assigned.</para>
+  </section>
+</article>
