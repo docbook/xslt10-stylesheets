@@ -16,6 +16,20 @@ require 'docbook'
 
 $DEBUG = false
 
+def opf_lines(filename, filedir)
+  shortname = filename.gsub(/\W/, '')
+  tmpdir = File.join(Dir::tmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+  epub = DocBook::Epub.new(File.join(filedir, filename), tmpdir)
+  epubfile  = File.join(tmpdir, shortname + ".epub")
+  epub.render_to_file(epubfile, $DEBUG)
+  FileUtils.copy(epubfile, "." + shortname + ".epub") if $DEBUG
+  success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{File.expand_path(epubfile)}")
+  raise "Could not unzip #{epubfile}" unless success
+  opf_file = Dir.glob(File.join(tmpdir, "**", "*.opf")).first
+  opf_lines = File.open(opf_file).readlines
+  return opf_lines
+end
+
 describe DocBook::Epub do
   before(:all) do
     @filedir = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
@@ -134,6 +148,32 @@ describe DocBook::Epub do
 
   it "should confirm that a valid .epub file is valid" do
     @valid_epub.should_not satisfy {|ve| DocBook::Epub.invalid?(ve)}
+  end
+
+  it "should include at least one dc:identifier" do
+    # TODO Consider UUID
+    opf_lns = opf_lines('nogoodid.xml', @filedir)
+    opf_lns.to_s.should =~ /identifier[^>]+>[^<][^_<]+</
+  end
+
+  it "should include an ISBN as URN for dc:identifier if an ISBN was in the metadata" do
+    opf_lns = opf_lines('isbn.xml', @filedir)
+    opf_lns.to_s.should =~ /identifier[^>]+>urn:isbn:123456789X</
+  end
+
+  it "should include an ISSN as URN for dc:identifier if an ISSN was in the metadata" do
+    opf_lns = opf_lines('issn.xml', @filedir)
+    opf_lns.to_s.should =~ /identifier[^>]+>urn:issn:X987654321</
+  end
+
+  it "should include an biblioid as a dc:identifier if an biblioid was in the metadata" do
+    opf_lns = opf_lines('biblioid.xml', @filedir)
+    opf_lns.to_s.should =~ /identifier[^>]+>thebiblioid</
+  end
+
+  it "should include a URN for a biblioid with @class attribute as a dc:identifier if an biblioid was in the metadata" do
+    opf_lns = opf_lines('biblioid.doi.xml', @filedir)
+    opf_lns.to_s.should =~ /identifier[^>]+>urn:doi:thedoi</
   end
 
   it "should not include PDFs in rendered epub files as valid image inclusions" do
