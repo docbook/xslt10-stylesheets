@@ -58,6 +58,344 @@ public APIs (user-configurable parameters).</para>
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
 </sect1>
 
+<sect1 xml:id="V1.74.1">
+<title>Release Notes: 1.74.1</title>
+<para>This release includes important bug fixes and adds the following
+significant feature changes:
+<variablelist>
+<varlistentry>
+<term>Gentext</term>
+<listitem><para>Kirghiz locale added and Chinese translations have been simplified.</para></listitem>
+<listitem><para>Somme support for gentext and right-to-left languages has been added.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term>FO</term>
+<listitem><para>Various bugs have been resolved. </para> </listitem>
+<listitem><para>Support for a new processing instruction: <markup>dbfo funcsynopsis-style</markup> has been added.  </para> </listitem>
+<listitem><para>Added new param <parameter>email.mailto.enabled</parameter> for FO output. Patch from Paolo Borelli.  </para>
+</listitem>
+<listitem><para>Support for documented metadata in fop1 mode has been added. </para>
+</listitem>
+
+</varlistentry>
+<varlistentry>
+<term>Highlighting</term>
+<listitem><para>Support for the latest version of XSLTHL 2.0 and some new language syntaxes have been added to a variety of outputs.</para></listitem>
+
+</varlistentry>
+
+<varlistentry>
+<term>Manpages</term>
+<listitem><para>Added man.output.better.ps.enabled param (zero default). It non-zero, no such
+markup is embedded in generated man pages, and no enhancements are
+included in the PostScript output generated from those man pages
+by the man -Tps <tag>command</tag>.</para></listitem>
+
+</varlistentry>
+
+
+<varlistentry>
+<term>HTML</term>
+<listitem><para>Support for <parameter>writing.mode</parameter> to set text direction and <parameter>alignment</parameter> based on document locale has been added.</para></listitem>
+<listitem>
+<para>Added a new top-level stylesheet module, chunk-changebars.xsl, to be 
+used for generating chunked output with highlighting based on change 
+(@revisionflag) markup. The module imports/includes the standard chunking 
+and changebars templates and contains additional logic for chunked output.
+See FRs #1015180 and #1819915.</para>
+</listitem>
+
+</varlistentry>
+<varlistentry>
+<term>ePub</term>
+<listitem>
+<para>Covers now look better in Adobe Digital Editions thanks to a patch from Paul Norton of Adobe</para>
+</listitem>
+<listitem><para>Cover handling now more generic (including limited DocBook 5.0 <markup>cover</markup> support thanks to patch contributed by Liza Daly.</para> </listitem>
+<listitem><para>Cover markup now carries more reliably into files destined for .mobi and the Kindle.</para> </listitem>
+<listitem><para><markup>dc:identifiers</markup> are now generated from more types of numbering schemes. </para></listitem>
+<listitem><para>Both SEO and semantic structure of chunked ePub output by ensuring that we always send out one and only one h1 in each XHTML chunk.</para></listitem>
+<listitem>
+<para>Primitive support for embedding a single font added.</para>
+</listitem>
+<listitem>
+<para>Support for embedding a CSS customizations added.</para>
+</listitem>
+
+</varlistentry>
+
+<varlistentry>
+<term>Roundtrip</term>
+
+<listitem>
+<para>Support for imagedata-metadata and <tag>table</tag> as images added.</para>
+</listitem>
+<listitem>
+<para>Support for imagedata-metadata and <tag>legalnotice</tag> as images added.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Params</term>
+<listitem><para><parameter>man.output.better.ps.enabled</parameter> added for Manpages output </para></listitem>
+<listitem>
+<para><parameter>writing.mode.xml</parameter> added to set text direction.</para>
+</listitem>
+<listitem>
+<para>Added new param <parameter>email.mailto.enabled</parameter> for FO output.
+Patch from Paolo Borelli. Closes #2086321.</para>
+</listitem>
+<listitem>
+<para><parameter>highlight.source</parameter> upgraded to support the latest version of XSLTHL 2.0.</para>
+</listitem>
+
+</varlistentry>
+
+
+
+</variablelist>
+</para>
+<para>The following is a list of changes that have been made since the 1.74.0 release.</para>
+
+
+<sect2 xml:id="V1.74.1_Gentext">
+<title>Gentext</title>
+<para>The following changes have been made to the <filename>gentext</filename> code since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: locale/ky.xml; Makefile</literal></para><screen><phrase role="commit-message">new Kirghiz locale from Ilyas Bakirov</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: locale/en.xml</literal></para><screen><phrase role="commit-message">Added "<tag>Acknowledgements</tag>".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Dongsheng Song: locale/zh_cn.xml</literal></para><screen><phrase role="commit-message">Simplified Chinese translation.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: locale/lv.xml; locale/ca.xml; locale/pt.xml; locale/tr.xml; locale/af.xml;⋯</literal></para><screen><phrase role="commit-message">Add writing-mode gentext string to support right-to-left languages.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Gentext changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_FO">
+<title>FO</title>
+<para>The following changes have been made to the <filename>fo</filename> code since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>David Cramer: footnote.xsl</literal></para><screen><phrase role="commit-message">Added a check to confirm that a <tag>footnoteref</tag>'s linkend points to a <tag>footnote</tag>. Stylesheets stop processing if not and provide a useful error message.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: spaces.xsl</literal></para><screen><phrase role="commit-message">Convert spaces to fo:leader also in elements in the DB 5 namespace.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl; synop.xsl</literal></para><screen><phrase role="commit-message">Added support for a new processing instruction: dbfo funcsynopsis-style. 
+Closes bug #1838213.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: inline.xsl; param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Added new param <parameter>email.mailto.enabled</parameter> for FO output.
+Patch from Paolo Borelli. Closes #2086321.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: docbook.xsl</literal></para><screen><phrase role="commit-message">Added support for document metadata for fop1 (patch #2067318).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Jirka Kosek: param.ent; param.xweb; highlight.xsl</literal></para><screen><phrase role="commit-message">Upgraded to support the latest version of XSLTHL 2.0
+ -- nested markup in highlited code is now processed
+ -- it is no longer needed to specify path XSLTHL configuration file using Java property
+ -- support for new languages, including Perl, Python and Ruby was added</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the <filename>html</filename> code since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; docbook.xsl; param.ent; html.xsl</literal></para><screen><phrase role="commit-message">Add support for <parameter>writing.mode</parameter> to set text direction and <parameter>alignment</parameter> based on document locale.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: chunk-changebars.xsl</literal></para><screen><phrase role="commit-message">Added a new top-level stylesheet module, chunk-changebars.xsl, to be 
+used for generating chunked output with highlighting based on change 
+(@revisionflag) markup. The module imports/includes the standard chunking 
+and changebars templates and contains additional logic for chunked output.
+See FRs #1015180 and #1819915.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_Manpages">
+<title>Manpages</title>
+<para>The following changes have been made to the <filename>manpages</filename> code since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Michael(tm) Smith: docbook.xsl</literal></para><screen><phrase role="commit-message">Put the following at the top of generated roff for each page:
+  \" t
+purpose is to explicitly tell AT&amp;T troff that the page needs to be
+pre-processed through tbl(1); groff can <tag>figure</tag> it out
+automatically, but apparently AT&amp;T troff needs to be explicitly told</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Manpages changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_Epub">
+<title>ePub</title>
+<para>The following changes have been made to the <filename>epub</filename> code since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl</literal></para><screen><phrase role="commit-message">Patch from Paul Norton of Adobe to get covers to look better in Adobe Digital Editions</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/epub_regressions_spec.rb; bin/spec/files/v5cover.xml; bin/spec/sp⋯</literal></para><screen><phrase role="commit-message">Patch contributed by Liza Daly to make ePub <tag>cover</tag> handling more generic. Additionally
+DocBook 5.0's &lt;<tag>cover</tag>&gt; now has some limited support:
+
+- should <tag>reference</tag> a <tag>cover</tag> in the OPF guide for a DocBook 5.0 test document</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/files/isbn.xml; bin/spec/files/issn.xml; bin/spec/files/biblioid.⋯</literal></para><screen><phrase role="commit-message">Liza Daly reported that the dc:identifer-generation code was garbage (she was right).
+
+Added new tests:
+- should include at least one dc:identifier
+- should include an ISBN as URN for dc:identifier if an ISBN was in the metadata
+- should include an ISSN as URN for dc:identifier if an ISSN was in the metadata
+- should include an <tag>biblioid</tag> as a dc:identifier if an <tag>biblioid</tag> was in the metadata
+- should include a URN for a <tag>biblioid</tag> with @class attribute as a dc:identifier if an <tag>biblioid</tag> was in the metadata</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl; bin/spec/epub_spec.rb</literal></para><screen><phrase role="commit-message">Improve both SEO and  semantic structure of chunked ePub output by ensuring that
+we always send out one and only one h1 in each XHTML chunk.
+
+DocBook::Epub
+- should include one and only one &lt;h1&gt; in each HTML file in rendered ePub files
+for &lt;<tag>book</tag>&gt;s
+- should include one and only one &lt;h1&gt; in each HTML file in rendered ePub files
+for &lt;<tag>book</tag>&gt;s even if they do not have <tag>section</tag> markup</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl; bin/spec/epub_realbook_spec.rb; bin/spec/files/orm.book.001.x⋯</literal></para><screen><phrase role="commit-message">Adding better support for covers in epub files destined for .mobi and the Kindle</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/dbtoepub; bin/lib/docbook.rb; bin/spec/files/DejaVuSerif.otf; docbook.⋯</literal></para><screen><phrase role="commit-message">Adding primitive support for embedding a single font</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/dbtoepub; bin/lib/docbook.rb; bin/spec/files/test_cust.xsl; bin/spec/e⋯</literal></para><screen><phrase role="commit-message">Adding support for user-specified customization layers in dbtoepub</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/dbtoepub; bin/spec/epub_regressions_spec.rb; bin/lib/docbook.rb; bin/s⋯</literal></para><screen><phrase role="commit-message">Adding CSS support to .epub target &amp; dbtoepub:
+    -c, --css [FILE]                 Use FILE for CSS on generated XHTML.
+
+
+DocBook::Epub
+...
+- should include a CSS <tag>link</tag> in HTML files when a CSS file has been provided
+- should include CSS file in .epub when a CSS file has been provided
+- should include a CSS <tag>link</tag> in OPF file when a CSS file has been provided</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Epub changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_Roundtrip">
+<title>Roundtrip</title>
+<para>The following changes have been made to the
+            <filename>roundtrip</filename> code
+            since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; template.xml; template.dot</literal></para><screen><phrase role="commit-message">added support for imagedata-metadata
+added support for <tag>table</tag> as images</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; normalise2sections.xsl; sections2blocks.xsl</literal></para><screen><phrase role="commit-message">Improved support for <tag>personname</tag> inlines.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; blocks2dbk.dtd; template.xml</literal></para><screen><phrase role="commit-message">Added support for <tag>legalnotice</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: blocks2dbk.xsl; wordml2normalise.xsl</literal></para><screen><phrase role="commit-message">added support for <tag>orgname</tag> in <tag>author</tag></phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Steve Ball: specifications.xml; supported.xml; blocks2dbk.xsl; wordml2normalise.xsl; dbk2w⋯</literal></para><screen><phrase role="commit-message">Updated specification.
+to-DocBook: add cols attribute to <tag>tgroup</tag>
+from-DocBook: fix for <tag>blockquote</tag> <tag>title</tag></phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Roundtrip changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_Params">
+<title>Params</title>
+<para>The following changes have been made to the <filename>params</filename> since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para>The change was to add man.output.better.ps.enabled parameter, with
+its default value set to zero.
+
+If the value of the man.output.better.ps.enabled parameter is
+non-zero, certain markup is embedded in each generated man page
+such that PostScript output from the man -Tps <tag>command</tag> for that
+page will include a number of enhancements designed to improve the
+quality of that output.
+
+If man.output.better.ps.enabled is zero (the default), no such
+markup is embedded in generated man pages, and no enhancements are
+included in the PostScript output generated from those man pages
+by the man -Tps <tag>command</tag>.
+
+WARNING: The enhancements provided by this parameter rely on
+features that are specific to groff (GNU troff) and that are not
+part of "classic" AT&amp;T troff or any of its derivatives. Therefore,
+any man pages you generate with this parameter enabled will be
+readable only on systems on which the groff (GNU troff) program is
+installed, such as GNU/Linux systems.  The pages will not not be
+readable on systems on with the classic troff (AT&amp;T troff) <tag>command</tag>
+is installed.
+
+NOTE: The value of this parameter only affects PostScript output
+generated from the man <tag>command</tag>. It has no effect on output
+generated using the FO backend.
+
+<tag>TIP</tag>: You can generate PostScript output for any man page by
+running the following <tag>command</tag>:
+
+man FOO -Tps &gt; FOO.ps
+
+You can then generate PDF output by running the following <tag>command</tag>:
+
+ps2pdf FOO.ps</para>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: writing.mode.xml</literal></para><screen><phrase role="commit-message">writing mode param used to set text direction.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Michael(tm) Smith: email.mailto.enabled.xml</literal></para><screen><phrase role="commit-message">Added new param <parameter>email.mailto.enabled</parameter> for FO output.
+Patch from Paolo Borelli. Closes #2086321.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Jirka Kosek: highlight.source.xml; highlight.xslthl.config.xml</literal></para><screen><phrase role="commit-message">Upgraded to support the latest version of XSLTHL 2.0
+ -- nested markup in highlited code is now processed
+ -- it is no longer needed to specify path XSLTHL configuration file using Java property
+ -- support for new languages, including Perl, Python and Ruby was added</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.74.1-->
+
+<sect2 xml:id="V1.74.1_Highlighting">
+<title>Highlighting</title>
+<para>The following changes have been made to the
+            <filename>highlighting</filename> code
+            since the 1.74.0 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Jirka Kosek: cpp-hl.xml; c-hl.xml; tcl-hl.xml; php-hl.xml; common.xsl; perl-hl.xml; delphi⋯</literal></para><screen><phrase role="commit-message">Upgraded to support the latest version of XSLTHL 2.0
+ -- nested markup in highlited code is now processed
+ -- it is no longer needed to specify path XSLTHL configuration file using Java property
+ -- support for new languages, including Perl, Python and Ruby was added</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Highlighting changes for 1.74.1-->
+
+</sect1>
+
+
 <sect1 xml:id="V1.74.0">
 <title>Release Notes: 1.74.0</title>
 <para>This release includes important bug fixes and adds the following
