@@ -16,19 +16,6 @@ require 'docbook'
 
 $DEBUG = false
 
-def opf_lines(filename, filedir)
-  shortname = filename.gsub(/\W/, '')
-  tmpdir = File.join(Dir::tmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
-  epub = DocBook::Epub.new(File.join(filedir, filename), tmpdir)
-  epubfile  = File.join(tmpdir, shortname + ".epub")
-  epub.render_to_file(epubfile, $DEBUG)
-  FileUtils.copy(epubfile, "." + shortname + ".epub") if $DEBUG
-  success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{File.expand_path(epubfile)}")
-  raise "Could not unzip #{epubfile}" unless success
-  opf_file = Dir.glob(File.join(tmpdir, "**", "*.opf")).first
-  opf_lines = File.open(opf_file).readlines
-  return opf_lines
-end
 
 describe DocBook::Epub do
   before(:all) do

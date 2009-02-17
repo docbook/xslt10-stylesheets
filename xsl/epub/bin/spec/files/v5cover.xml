@@ -1,0 +1,25 @@
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+  <info>
+    <title>v5 test</title>
+    <author>
+      <personname>
+        <firstname>Liza</firstname>
+        <surname>Daly</surname>
+      </personname>
+    </author>
+    <cover>   
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="covers/cvr_lrg.jpg"/>
+        </imageobject>
+      </mediaobject>
+      <para>Additional content on cover page. </para>
+    </cover>
+  </info>
+  <chapter>
+    <info>
+      <title>DocBook v5 Regression Cover Test</title>
+    </info>
+    <para>Some content</para>
+  </chapter>
+</book>

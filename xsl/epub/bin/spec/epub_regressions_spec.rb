@@ -17,6 +17,7 @@ require 'docbook'
 
 $DEBUG = false
 
+
 describe DocBook::Epub do
   before(:all) do
     @filedir = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
@@ -101,6 +102,11 @@ describe DocBook::Epub do
     opf_file = File.join(itemref_tmpdir, "OEBPS", "content.opf")
     xhtml_dtd_in_opf_file = system("grep '#{xhtml_dtd}' #{opf_file}")
     xhtml_dtd_in_opf_file.should_not be_true
+  end
+
+  it "should reference a cover in the OPF guide for a DocBook 5.0 test document" do
+    opf_lns = opf_lines('v5cover.xml', @filedir)
+    opf_lns.to_s.should =~ /reference[^>]+type=['"]cover['"]/
   end
 
   after(:all) do
