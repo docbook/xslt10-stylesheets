@@ -2,12 +2,14 @@ include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
 XJPARSEFLAGS= -E 0 -w
 
-SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml da.xml \
-        de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml fa.xml fi.xml fr.xml ga.xml \
-        gl.xml gu.xml hi.xml he.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml ky.xml la.xml \
-        lt.xml lv.xml mn.xml nl.xml nn.xml nb.xml pa.xml pl.xml hr.xml la.xml or.xml \
-        pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
-        ta.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml zh_cn.xml zh_tw.xml
+SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml \
+	cy.xml da.xml de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml \
+	fa.xml fi.xml fr.xml ga.xml gl.xml gu.xml hi.xml he.xml hu.xml \
+	id.xml it.xml ja.xml kn.xml ko.xml ky.xml la.xml lt.xml lv.xml \
+	mn.xml nl.xml nn.xml nb.xml pa.xml pl.xml hr.xml la.xml or.xml \
+	pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml \
+	sr_Latn.xml sv.xml ta.xml th.xml tl.xml tr.xml uk.xml vi.xml \
+	xh.xml zh.xml zh_cn.xml zh_tw.xml
 
 GENSTYLE=$(DOCBOOK_SVN)/gentext/xsl/xsl.xsl $(DOCBOOK_SVN)/gentext/locale/en.xml
 
@@ -74,6 +76,7 @@ tr.xml: $(DOCBOOK_SVN)/gentext/locale/tr.xml $(GENSTYLE)
 uk.xml: $(DOCBOOK_SVN)/gentext/locale/uk.xml $(GENSTYLE)
 vi.xml: $(DOCBOOK_SVN)/gentext/locale/vi.xml $(GENSTYLE)
 xh.xml: $(DOCBOOK_SVN)/gentext/locale/xh.xml $(GENSTYLE)
+zh.xml: $(DOCBOOK_SVN)/gentext/locale/zh.xml $(GENSTYLE)
 zh_cn.xml: $(DOCBOOK_SVN)/gentext/locale/zh_cn.xml $(GENSTYLE)
 zh_tw.xml: $(DOCBOOK_SVN)/gentext/locale/zh_tw.xml $(GENSTYLE)
 

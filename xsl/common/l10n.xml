@@ -60,6 +60,7 @@
 <!ENTITY uk SYSTEM "uk.xml">
 <!ENTITY vi SYSTEM "vi.xml">
 <!ENTITY xh SYSTEM "xh.xml">
+<!ENTITY zh SYSTEM "zh.xml">
 <!ENTITY zh_cn SYSTEM "zh_cn.xml">
 <!ENTITY zh_tw SYSTEM "zh_tw.xml">
 ]>
@@ -124,6 +125,7 @@
 &uk;
 &vi;
 &xh;
+&zh;
 &zh_cn;
 &zh_tw;
 </l:i18n>
