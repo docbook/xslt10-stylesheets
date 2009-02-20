@@ -51,7 +51,14 @@
 		    and $use.extensions != '0'
 		    and $linenumbering.extension != '0'">
       <xsl:variable name="rtf">
-	<xsl:call-template name="apply-highlighting"/>
+        <xsl:choose>
+          <xsl:when test="$highlight.source != 0">
+            <xsl:call-template name="apply-highlighting"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:variable>
       <pre>
         <xsl:apply-templates select="." mode="class.attribute"/>
@@ -63,7 +70,14 @@
     <xsl:otherwise>
       <pre>
         <xsl:apply-templates select="." mode="class.attribute"/>
-	<xsl:call-template name="apply-highlighting"/>
+        <xsl:choose>
+          <xsl:when test="$highlight.source != 0">
+            <xsl:call-template name="apply-highlighting"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
       </pre>
     </xsl:otherwise>
   </xsl:choose>
