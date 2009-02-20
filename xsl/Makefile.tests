@@ -12,7 +12,7 @@ XSLTPROC=xsltproc
 XSLTPROC_FLAGS=
 
 TESTFILE=tests/refentry.007.xml
-TESTFILE=tests/refentry.007.ns.xml
+TESTFILE_NS=tests/refentry.007.ns.xml
 
 NORMAL_STYLES=fo/docbook.xsl html/docbook.xsl xhtml/docbook.xsl
 NORMAL_PROFILE_STYLES=fo/profile-docbook.xsl html/profile-docbook.xsl xhtml/profile-docbook.xsl
@@ -47,37 +47,49 @@ smoketest-normal:
 	for stylesheet in $(NORMAL_STYLES); do \
 	echo "$(XSLT) $(TESTFILE) $$stylesheet > /dev/null"; \
 	$(XSLT) $(TESTFILE) $$stylesheet > /dev/null; \
-	echo "$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null"; \
-	$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null; \
+	echo "$(XSLT) $(TESTFILE_NS) $$stylesheet > /dev/null"; \
+	$(XSLT) $(TESTFILE_NS) $$stylesheet > /dev/null; \
 	done
 
 smoketest-normal-profile:
 	for stylesheet in $(NORMAL_PROFILE_STYLES); do \
 	echo "$(XSLT) $(TESTFILE) $$stylesheet > /dev/null"; \
 	$(XSLT) $(TESTFILE) $$stylesheet > /dev/null; \
-	echo "$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null"; \
-	$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null; \
+	echo "$(XSLT) $(TESTFILE_NS) $$stylesheet > /dev/null"; \
+	$(XSLT) $(TESTFILE_NS) $$stylesheet > /dev/null; \
 	done
 
+# The Perl versions of the processors in buildtools cannot handle multiple parameters, so we dropped the following:
+# --param manifest.in.base.dir=1; \
+ 
 smoketest-chunk:
 	for stylesheet in $(MULTIFILE_STYLES) ; do \
-	$(XSLT) $(TESTFILE) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
-	$(XSLT) $(TESTFILE-NS) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
+	$(XSLT) $(TESTFILE) $$stylesheet --stringparam base.dir=$(TMP_OUTPUT_DIR) ; \
+	$(XSLT) $(TESTFILE_NS) $$stylesheet --stringparam base.dir=$(TMP_OUTPUT_DIR) ; \
 	done;
+
+# The Perl versions of the processors in buildtools cannot handle multiple parameters, so we dropped the following:
+# --param manifest.in.base.dir=1; \
 
 smoketest-chunk-profile:
 	for stylesheet in $(MULTIFILE_PROFILE_STYLES) ; do \
-	$(XSLT) $(TESTFILE) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
-	$(XSLT) $(TESTFILE-NS) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
+	$(XSLT) $(TESTFILE) $$stylesheet --stringparam base.dir=$(TMP_OUTPUT_DIR) ; \
+	$(XSLT) $(TESTFILE_NS) $$stylesheet --stringparam base.dir=$(TMP_OUTPUT_DIR) ; \
 	done;
 
+# The Perl versions of the processors in buildtools cannot handle multiple parameters, so we dropped the following:
+# --param man.output.in.separate.dir 1 \
+
 smoketest-man:
-	$(XSLT) $(TESTFILE) $(MAN_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
-	$(XSLT) $(TESTFILE-NS) $(MAN_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
+	$(XSLT) $(TESTFILE) $(MAN_STYLE) --stringparam man.output.base.dir=$(TMP_OUTPUT_DIR) ; \
+	$(XSLT) $(TESTFILE_NS) $(MAN_STYLE) --stringparam man.output.base.dir=$(TMP_OUTPUT_DIR) ; 
+
+# The Perl versions of the processors in buildtools cannot handle multiple parameters, so we dropped the following:
+# --param man.output.in.separate.dir 1 \
 
 smoketest-man-profile:
-	$(XSLT) $(TESTFILE) $(MAN_PROFILE_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
-	$(XSLT) $(TESTFILE-NS) $(MAN_PROFILE_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
+	$(XSLT) $(TESTFILE) $(MAN_PROFILE_STYLE) --stringparam man.output.base.dir=$(TMP_OUTPUT_DIR) ; \
+	$(XSLT) $(TESTFILE_NS) $(MAN_PROFILE_STYLE) --stringparam man.output.base.dir=$(TMP_OUTPUT_DIR) ; 
 
 smoketest-clean:
 	$(RM) -r $(TMP_OUTPUT_DIR)
