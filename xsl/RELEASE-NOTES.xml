@@ -57,6 +57,10 @@ public APIs (user-configurable parameters).</para>
 <sect1 condition="snapshot" xml:id="current">
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
 </sect1>
+<sect1 xml:id="V1.74.2">
+<title>Release Notes: 1.74.2</title>
+<para>This release fixes some bugs in the 1.74.1 release.</para>
+</sect1>
 
 <sect1 xml:id="V1.74.1">
 <title>Release Notes: 1.74.1</title>
