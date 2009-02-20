@@ -45,39 +45,39 @@ smoketest-make-tmp-dir:
 
 smoketest-normal:
 	for stylesheet in $(NORMAL_STYLES); do \
-	echo "$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE) > /dev/null"; \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE) > /dev/null; \
-	echo "$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE-NS) > /dev/null"; \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE-NS) > /dev/null; \
+	echo "$(XSLT) $(TESTFILE) $$stylesheet > /dev/null"; \
+	$(XSLT) $(TESTFILE) $$stylesheet > /dev/null; \
+	echo "$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null"; \
+	$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null; \
 	done
 
 smoketest-normal-profile:
 	for stylesheet in $(NORMAL_PROFILE_STYLES); do \
-	echo "$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE) > /dev/null"; \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE) > /dev/null; \
-	echo "$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE-NS) > /dev/null"; \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) $$stylesheet $(TESTFILE-NS) > /dev/null; \
+	echo "$(XSLT) $(TESTFILE) $$stylesheet > /dev/null"; \
+	$(XSLT) $(TESTFILE) $$stylesheet > /dev/null; \
+	echo "$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null"; \
+	$(XSLT) $(TESTFILE-NS) $$stylesheet > /dev/null; \
 	done
 
 smoketest-chunk:
 	for stylesheet in $(MULTIFILE_STYLES) ; do \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1 $$stylesheet $(TESTFILE); \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1 $$stylesheet $(TESTFILE-NS); \
+	$(XSLT) $(TESTFILE) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
+	$(XSLT) $(TESTFILE-NS) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
 	done;
 
 smoketest-chunk-profile:
 	for stylesheet in $(MULTIFILE_PROFILE_STYLES) ; do \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1 $$stylesheet $(TESTFILE); \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1 $$stylesheet $(TESTFILE-NS); \
+	$(XSLT) $(TESTFILE) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
+	$(XSLT) $(TESTFILE-NS) $$stylesheet --stringparam base.dir $(TMP_OUTPUT_DIR) --param manifest.in.base.dir 1; \
 	done;
 
 smoketest-man:
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 $(MAN_STYLE) $(TESTFILE); \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 $(MAN_STYLE) $(TESTFILE-NS); \
+	$(XSLT) $(TESTFILE) $(MAN_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
+	$(XSLT) $(TESTFILE-NS) $(MAN_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
 
 smoketest-man-profile:
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 $(MAN_PROFILE_STYLE) $(TESTFILE); \
-	$(XSLTPROC) $(XSLTPROC_FLAGS) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 $(MAN_PROFILE_STYLE) $(TESTFILE-NS); \
+	$(XSLT) $(TESTFILE) $(MAN_PROFILE_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
+	$(XSLT) $(TESTFILE-NS) $(MAN_PROFILE_STYLE) --stringparam man.output.base.dir $(TMP_OUTPUT_DIR) --param man.output.in.separate.dir 1 \
 
 smoketest-clean:
 	$(RM) -r $(TMP_OUTPUT_DIR)
