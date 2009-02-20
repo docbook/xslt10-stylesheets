@@ -247,12 +247,25 @@ and all other Parts following it).
    the driver stylesheets for each output format (e.g.,
    html/docbook.xsl, fo/docbook.xsl, etc.).
 
+   Because of problems with the 1.74.* releases, it is now
+   recommended that "make check" be run multiple times with
+   different XSLT processors.
+
    One recommended way to invoke "make check" is the following:
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
      make check 2>&1 \
        XSLTENGINE=xsltproc \
+       | tee DOCBOOK-BUILD.LOG && \
+     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
+
+   After running with "xsltproc", you should run it again with
+   "saxon":
+     rm -f DOCBOOK-BUILD.LOG && \
+     . ~/docbk.sh && \
+     make check 2>&1 \
+       XSLTENGINE=saxon \
        | tee DOCBOOK-BUILD.LOG && \
      $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
 
@@ -264,7 +277,7 @@ and all other Parts following it).
    Once you have any obvious problems fixed (that is, the kind
    that build-check and "make check" can catch, you should
    do further testing of the changes (if any) that you have made
-   to the stylesheet code. Try to test with a variety of test
+   m to the stylesheet code. Try to test with a variety of test
    files, not just with DocBook XML source files you've created
    yourself. Consider using the files in the "testdocs" module
    (see step 1 of the "Build Setup" section above).
