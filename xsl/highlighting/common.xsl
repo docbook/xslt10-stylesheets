@@ -24,15 +24,15 @@
      ******************************************************************** -->
 
 <!-- this construction is needed to have the saxon and xalan connectors working alongside each other -->
-<!-- <xalan:component prefix="xhl" functions="highlight"> -->
-<!-- 	<xalan:script lang="javaclass" src="xalan://net.sf.xslthl.ConnectorXalan" /> -->
-<!-- </xalan:component> -->
+<xalan:component prefix="xhl" functions="highlight"> 
+  <xalan:script lang="javaclass" src="xalan://net.sf.xslthl.ConnectorXalan" /> 
+</xalan:component> 
 
 <!-- for saxon 6 -->
-<!-- <saxon6:script implements-prefix="s6hl" language="java" src="java:net.sf.xslthl.ConnectorSaxon6" /> -->
+<saxon6:script implements-prefix="s6hl" language="java" src="java:net.sf.xslthl.ConnectorSaxon6" />
 
 <!-- for saxon 8.5 and later -->
-<!-- <saxonb:script implements-prefix="sbhl" language="java" src="java:net.sf.xslthl.ConnectorSaxonB" />   -->
+<saxonb:script implements-prefix="sbhl" language="java" src="java:net.sf.xslthl.ConnectorSaxonB" />
 
 
 <!-- You can override this template to do more complex mapping of

@@ -17,8 +17,10 @@
 
      ******************************************************************** -->
 
+<!-- These stylesheets should be included (in your customization layer
+     or elsewhere) only if you want to use the XSLTHL highlighting tool 
 <xsl:include href="../highlighting/common.xsl"/>
-<xsl:include href="highlight.xsl"/>
+<xsl:include href="highlight.xsl"/>-->
 
 <lxslt:component prefix="xverb"
                  functions="numberLines"/>
