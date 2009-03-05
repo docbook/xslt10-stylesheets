@@ -292,7 +292,30 @@
 
 <xsl:template match="question" mode="toc">
   <xsl:variable name="firstchunk">
-    <xsl:apply-templates select="(*[local-name(.)!='label'])[1]/node()"/>
+    <!-- Use a titleabbrev or title if available -->
+    <xsl:choose>
+      <xsl:when test="../blockinfo/titleabbrev">
+        <xsl:apply-templates select="../blockinfo/titleabbrev[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../blockinfo/title">
+        <xsl:apply-templates select="../blockinfo/title[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../info/titleabbrev">
+        <xsl:apply-templates select="../info/titleabbrev[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../titleabbrev">
+        <xsl:apply-templates select="../titleabbrev[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../info/title">
+        <xsl:apply-templates select="../info/title[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../title">
+        <xsl:apply-templates select="../title[1]/node()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="(*[local-name(.)!='label'])[1]/node()"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="deflabel">
