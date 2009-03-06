@@ -23,6 +23,7 @@
     <xsl:when test="$fop1.extensions != 0">left</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'lr')">left</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'rl')">right</xsl:when>
+    <xsl:when test="starts-with($writing.mode, 'tb')">top</xsl:when>
     <xsl:otherwise>left</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
@@ -33,6 +34,7 @@
     <xsl:when test="$fop1.extensions != 0">right</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'lr')">right</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'rl')">left</xsl:when>
+    <xsl:when test="starts-with($writing.mode, 'tb')">bottom</xsl:when>
     <xsl:otherwise>right</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
@@ -51,6 +53,7 @@
     </xsl:when>
     <xsl:when test="starts-with($writing.mode, 'lr')">lr-tb</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'rl')">rl-tb</xsl:when>
+    <xsl:when test="starts-with($writing.mode, 'tb')">tb-rl</xsl:when>
     <xsl:otherwise>lr-tb</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
