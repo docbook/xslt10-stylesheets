@@ -109,6 +109,13 @@ describe DocBook::Epub do
     opf_lns.to_s.should =~ /reference[^>]+type=['"]cover['"]/
   end
 
+  it "should allow pre elements inside blockquotes" do
+    blockquotepre_epub = DocBook::Epub.new(File.join(@filedir, "blockquotepre.xml"), @tmpdir)
+    blockquotepre_epubfile  = File.join(@tmpdir, "blockquotepreepub.epub")
+    blockquotepre_epub.render_to_file(blockquotepre_epubfile, $DEBUG)
+    blockquotepre_epubfile.should be_valid_epub  
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  

@@ -132,6 +132,19 @@
   </xsl:copy>
 </xsl:template>
 
+<!-- Bare anchors (<a/>) are not allowed in <blockquote>s -->
+<xsl:template match="xsl:template[@name='anchor']/xsl:if">
+  <xslo:if>
+    <xsl:attribute name="test">
+      <xsl:text>not($node[parent::blockquote])</xsl:text>
+    </xsl:attribute>
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xslo:if>
+</xsl:template>
+
 <xsl:template match="xsl:template[@name='body.attributes']">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
