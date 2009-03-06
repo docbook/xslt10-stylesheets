@@ -707,7 +707,7 @@ GlossEntry ::=
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:list-item xsl:use-attribute-sets="normal.para.spacing">
+  <fo:list-item xsl:use-attribute-sets="glossentry.list.item.properties">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -719,7 +719,7 @@ GlossEntry ::=
     </xsl:call-template>
 
     <fo:list-item-label end-indent="label-end()">
-      <fo:block>
+      <fo:block xsl:use-attribute-sets="glossterm.list.properties">
         <xsl:choose>
           <xsl:when test="$glossentry.show.acronym = 'primary'">
             <xsl:choose>
@@ -758,7 +758,9 @@ GlossEntry ::=
     </fo:list-item-label>
 
     <fo:list-item-body start-indent="body-start()">
-      <xsl:apply-templates select="glosssee|glossdef" mode="glossary.as.list"/>
+      <fo:block xsl:use-attribute-sets="glossdef.list.properties">
+        <xsl:apply-templates select="glosssee|glossdef" mode="glossary.as.list"/>
+      </fo:block>
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
@@ -929,9 +931,7 @@ GlossEntry ::=
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
-  <fo:block xsl:use-attribute-sets="list.item.spacing"
-           keep-with-next.within-column="always" 
-           keep-together.within-column="always">
+  <fo:block xsl:use-attribute-sets="glossterm.block.properties">
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -975,7 +975,7 @@ GlossEntry ::=
     <xsl:apply-templates select="indexterm"/>
   </fo:block>
 
-  <fo:block margin-left="0.25in">
+  <fo:block xsl:use-attribute-sets="glossdef.block.properties">
     <xsl:apply-templates select="glosssee|glossdef" mode="glossary.as.blocks"/>
   </fo:block>
 </xsl:template>

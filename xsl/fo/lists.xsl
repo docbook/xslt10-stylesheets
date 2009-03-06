@@ -544,7 +544,8 @@
     <xsl:apply-templates select="term"/>
   </fo:block>
 
-  <fo:block margin-left="0.25in">
+  <fo:block>
+    <xsl:attribute name="margin-{$direction.align.start}">0.25in</xsl:attribute>
     <xsl:apply-templates select="listitem"/>
   </fo:block>
 </xsl:template>
