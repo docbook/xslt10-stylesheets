@@ -274,7 +274,7 @@
 
     <xsl:if test="$colsep &gt; 0 and number($colnum) &lt; ancestor::tgroup/@cols">
       <xsl:call-template name="border">
-        <xsl:with-param name="side" select="'right'"/>
+        <xsl:with-param name="side" select="'end'"/>
       </xsl:call-template>
     </xsl:if>
 
@@ -299,10 +299,10 @@
 
   <xsl:choose>
     <xsl:when test="$frame='all'">
-      <xsl:attribute name="border-left-style">
+      <xsl:attribute name="border-start-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
-      <xsl:attribute name="border-right-style">
+      <xsl:attribute name="border-end-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
       <xsl:attribute name="border-top-style">
@@ -311,10 +311,10 @@
       <xsl:attribute name="border-bottom-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
-      <xsl:attribute name="border-left-width">
+      <xsl:attribute name="border-start-width">
         <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
-      <xsl:attribute name="border-right-width">
+      <xsl:attribute name="border-end-width">
         <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-top-width">
@@ -323,10 +323,10 @@
       <xsl:attribute name="border-bottom-width">
         <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
-      <xsl:attribute name="border-left-color">
+      <xsl:attribute name="border-start-color">
         <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
-      <xsl:attribute name="border-right-color">
+      <xsl:attribute name="border-end-color">
         <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
       <xsl:attribute name="border-top-color">
@@ -337,8 +337,8 @@
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='bottom'">
-      <xsl:attribute name="border-left-style">none</xsl:attribute>
-      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-start-style">none</xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">
         <xsl:value-of select="$table.frame.border.style"/>
@@ -351,30 +351,30 @@
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='sides'">
-      <xsl:attribute name="border-left-style">
+      <xsl:attribute name="border-start-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
-      <xsl:attribute name="border-right-style">
+      <xsl:attribute name="border-end-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
-      <xsl:attribute name="border-left-width">
+      <xsl:attribute name="border-start-width">
         <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
-      <xsl:attribute name="border-right-width">
+      <xsl:attribute name="border-end-width">
         <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
-      <xsl:attribute name="border-left-color">
+      <xsl:attribute name="border-start-color">
         <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
-      <xsl:attribute name="border-right-color">
+      <xsl:attribute name="border-end-color">
         <xsl:value-of select="$table.frame.border.color"/>
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='top'">
-      <xsl:attribute name="border-left-style">none</xsl:attribute>
-      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-start-style">none</xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
@@ -387,8 +387,8 @@
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='topbot'">
-      <xsl:attribute name="border-left-style">none</xsl:attribute>
-      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-start-style">none</xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">
         <xsl:value-of select="$table.frame.border.style"/>
       </xsl:attribute>
@@ -409,8 +409,8 @@
       </xsl:attribute>
     </xsl:when>
     <xsl:when test="$frame='none'">
-      <xsl:attribute name="border-left-style">none</xsl:attribute>
-      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-start-style">none</xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
     </xsl:when>
@@ -419,8 +419,8 @@
         <xsl:text>Impossible frame on table: </xsl:text>
         <xsl:value-of select="$frame"/>
       </xsl:message>
-      <xsl:attribute name="border-left-style">none</xsl:attribute>
-      <xsl:attribute name="border-right-style">none</xsl:attribute>
+      <xsl:attribute name="border-start-style">none</xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
       <xsl:attribute name="border-top-style">none</xsl:attribute>
       <xsl:attribute name="border-bottom-style">none</xsl:attribute>
     </xsl:otherwise>
@@ -430,7 +430,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="border">
-  <xsl:param name="side" select="'left'"/>
+  <xsl:param name="side" select="'start'"/>
 
   <xsl:attribute name="border-{$side}-width">
     <xsl:value-of select="$table.cell.border.thickness"/>
@@ -1094,7 +1094,7 @@
       <xsl:if test="$colsep.inherit &gt; 0 and 
                       $col &lt; (ancestor::tgroup/@cols|ancestor::entrytbl/@cols)[last()]">
         <xsl:call-template name="border">
-          <xsl:with-param name="side" select="'right'"/>
+          <xsl:with-param name="side" select="'end'"/>
         </xsl:call-template>
       </xsl:if>
 
