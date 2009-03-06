@@ -330,3 +330,7 @@
 <!ENTITY reference.autolabel SYSTEM "../params/reference.autolabel.xml">
 <!ENTITY glossary.sort SYSTEM "../params/glossary.sort.xml">
 <!ENTITY writing.mode SYSTEM "../params/writing.mode.xml">
+<!ENTITY glossterm.list.properties SYSTEM "../params/glossterm.list.properties.xml">
+<!ENTITY glossterm.block.properties SYSTEM "../params/glossterm.block.properties.xml">
+<!ENTITY glossdef.list.properties SYSTEM "../params/glossdef.list.properties.xml">
+<!ENTITY glossdef.block.properties SYSTEM "../params/glossdef.block.properties.xml">
