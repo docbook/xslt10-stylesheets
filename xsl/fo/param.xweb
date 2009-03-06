@@ -492,6 +492,7 @@ profiling of your document. For more information about profiling, see
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
 &l10n.lang.value.rfc.compliant;
+&writing.mode;
 </reference>
 <reference xml:id="ebnf"><title>EBNF</title>
 &ebnf.assignment;
@@ -853,6 +854,7 @@ around all these parameters.</para>
 <src:fragref linkend="variablelist.term.separator.frag"/>
 <src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
+<src:fragref linkend="writing.mode.frag"/>
 <src:fragref linkend="xep.extensions.frag"/>
 <src:fragref linkend="xep.index.item.properties.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>
