@@ -213,10 +213,14 @@ generate.section.toc.level;
 &glossterm.auto.link;
 &firstterm.only.link;
 &glossary.collection;
-&glossterm.separation;
-&glossterm.width;
 &glossary.as.blocks;
 &glosslist.as.blocks;
+&glossterm.block.properties;
+&glossdef.block.properties;
+&glossterm.list.properties;
+&glossdef.list.properties;
+&glossterm.width;
+&glossterm.separation;
 &glossentry.show.acronym;
 &glossary.sort;
 </reference>
@@ -644,6 +648,10 @@ around all these parameters.</para>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="glossterm.separation.frag"/>
 <src:fragref linkend="glossterm.width.frag"/>
+<src:fragref linkend="glossterm.list.properties.frag"/>
+<src:fragref linkend="glossterm.block.properties.frag"/>
+<src:fragref linkend="glossdef.list.properties.frag"/>
+<src:fragref linkend="glossdef.block.properties.frag"/>
 <src:fragref linkend="graphic.default.extension.frag"/>
 <src:fragref linkend="header.content.properties.frag"/>
 <src:fragref linkend="header.rule.frag"/>
