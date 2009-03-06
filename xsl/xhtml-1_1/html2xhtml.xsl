@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
+                xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
                 xmlns:saxon="http://icl.com/saxon"
                 exclude-result-prefixes="exsl"
                 version="1.0">
@@ -11,6 +12,7 @@
   saxon:character-representation="decimal"
   />
 <xsl:preserve-space elements="*"/>
+<xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
 
 <xsl:template match="/">
   <xsl:comment>This file was created automatically by html2xhtml</xsl:comment>
@@ -206,6 +208,19 @@
     <xsl:attribute name="namespace">http://www.w3.org/1999/xhtml</xsl:attribute>
     <xsl:apply-templates/>
   </xsl:copy>
+</xsl:template>
+
+<!-- Bare anchors (<a/>) are not allowed in <blockquote>s -->
+<xsl:template match="xsl:template[@name='anchor']/xsl:if">
+  <xslo:if>
+    <xsl:attribute name="test">
+      <xsl:text>not($node[parent::blockquote])</xsl:text>
+    </xsl:attribute>
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xslo:if>
 </xsl:template>
 
 <xsl:template match="xsl:template[@name='body.attributes']">

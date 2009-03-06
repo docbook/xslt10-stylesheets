@@ -1,0 +1,14 @@
+<!DOCTYPE sect1 PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<sect1><title>Blockquote with pre test</title>
+ <blockquote>
+        <para><emphasis>Definition:</emphasis> Let <emphasis>A, B</emphasis>,
+        . . . <emphasis>, Z</emphasis> be subsets of the heading of relvar
+        <emphasis>R</emphasis>. Then <emphasis>R</emphasis> satisfies the
+        <emphasis>join dependency</emphasis> (JD<indexterm id="IDX-CHP-7-0533" significance="normal"><primary>JD</primary></indexterm>)</para>
+        <programlisting format="linespecific" id="I_7_tt242">{ <emphasis>A</emphasis>, <emphasis>B</emphasis>, ..., <emphasis>Z</emphasis> }
+</programlisting>
+        <para>if and only if every relation that's a legal value for
+        <emphasis>R</emphasis> is equal to the join of its projections on
+        <emphasis>A, B</emphasis>, . . . <emphasis>, Z</emphasis>.</para>
+      </blockquote>
+</sect1>
