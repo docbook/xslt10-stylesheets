@@ -24,12 +24,21 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>The inner page margin is the distance from binding edge of the
-page to the first column of text. In the left-to-right, top-to-bottom writing
-direction, this is the left margin of recto pages.</para>
-<para>The inner and outer margins are usually the same unless the output
-is double-sided.
-</para>
+<para>The inner page margin is the distance from bound edge of the
+page to the first column of text. </para>
+
+<para>The inner page margin is the distance from bound edge of the
+page to the outer edge of the first column of text.</para>
+
+<para>In left-to-right text direction,
+this is the left margin of recto (front side) pages.
+For single-sided output, it is the left margin
+of all pages.</para>
+
+<para>In right-to-left text direction,
+this is the right margin of recto pages.
+For single-sided output, this is the
+right margin of all pages.</para>
 
 </refsection>
 </refentry>

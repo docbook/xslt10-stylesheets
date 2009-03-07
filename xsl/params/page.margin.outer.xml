@@ -24,12 +24,18 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>The outer page margin is the distance from non-binding edge of the
-page to the last column of text. In the left-to-right, top-to-bottom writing
-direction, this is the right margin of recto pages.</para>
-<para>The inner and outer margins are usually the same unless the output
-is double-sided.
-</para>
+<para>The outer page margin is the distance from non-bound edge of the
+page to the outer edge of the last column of text.</para>
+
+<para>In left-to-right text direction,
+this is the right margin of recto (front side) pages.
+For single-sided output, it is the right margin
+of all pages.</para>
+
+<para>In right-to-left text direction,
+this is the left margin of recto pages.
+For single-sided output, this is the
+left margin of all pages.</para>
 
 </refsection>
 </refentry>
