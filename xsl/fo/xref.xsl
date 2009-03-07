@@ -1241,7 +1241,7 @@
     <xsl:variable name="candidate">
       <xsl:for-each select="$target.database" >
         <xsl:value-of 
-                  select="key('targetptr-key', $olink.key)/@lang" />
+                  select="key('targetptr-key', $olink.key)[1]/@lang" />
       </xsl:for-each>
     </xsl:variable>
     <xsl:choose>
