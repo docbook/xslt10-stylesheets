@@ -416,7 +416,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="ackno">
+<xsl:template match="ackno|acknowledgements[parent::article]">
   <p>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>

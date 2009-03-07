@@ -582,7 +582,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="ackno">
+<xsl:template match="ackno|acknowledgements[parent::article]">
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
