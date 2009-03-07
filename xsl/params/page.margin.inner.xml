@@ -40,5 +40,17 @@ this is the right margin of recto pages.
 For single-sided output, this is the
 right margin of all pages.</para>
 
+<note>
+<para>Current versions (at least as of version 4.13)
+of the XEP XSL-FO processor do not
+correctly handle these margin settings for documents
+with right-to-left text direction.
+The workaround in that situation is to reverse
+the values for <parameter>page.margin.inner</parameter>
+and <parameter>page.margin.outer</parameter>, until
+this bug is fixed by RenderX.  It does not affect documents
+with left-to-right text direction.</para>
+</note>
+
 </refsection>
 </refentry>
