@@ -1191,7 +1191,7 @@
   <xsl:if test="$olink.key != ''">
     <xsl:variable name="target.href" >
       <xsl:for-each select="$target.database" >
-        <xsl:value-of select="key('targetptr-key', $olink.key)/@href" />
+        <xsl:value-of select="key('targetptr-key', $olink.key)[1]/@href" />
       </xsl:for-each>
     </xsl:variable>
   
