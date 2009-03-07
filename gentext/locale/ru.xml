@@ -539,7 +539,7 @@
 <template name="Monday">понедельник</template>
 <template name="Tuesday">вторник</template>
 <template name="Wednesday">среда</template>
-<template name="Thursday">четвэрг</template>
+<template name="Thursday">четверг</template>
 <template name="Friday">пятница</template>
 <template name="Saturday">суббота</template>
 <template name="Sunday">воскресенье</template>
