@@ -37,8 +37,7 @@ key name 'writing-mode' to look it up in the gentext file.
 But the param can also be
 set on the command line to override that gentext value.
 </para>
-<para>
-Accepted values are:
+<para>Accepted values are:
 <variablelist>
   <varlistentry>
     <term>lr-tb</term>
@@ -56,7 +55,7 @@ Accepted values are:
     <term>tb-rl</term>
     <listitem>
       <para>Top-to-bottom text flow in each vertical line, lines stack right to left.
-      Not supported in HTML output.</para>
+      Supported by only a few XSL-FO processors. Not supported in HTML output.</para>
     </listitem>
   </varlistentry>
   <varlistentry>
