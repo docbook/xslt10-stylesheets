@@ -67,9 +67,9 @@
 <gentext key="msglevel"       text="&#x7A0B;&#x5EA6;"/>
 <gentext key="MsgOrig"        text="&#x51FA;&#x8655;"/>
 <gentext key="msgorig"        text="&#x51FA;&#x8655;"/>
-<gentext key="NOTE"           text="&#x6CE8;"/>
-<gentext key="Note"           text="&#x6CE8;"/>
-<gentext key="note"           text="&#x6CE8;"/>
+<gentext key="NOTE"           text="&#x6CE8;&#x610F;"/>
+<gentext key="Note"           text="&#x6CE8;&#x610F;"/>
+<gentext key="note"           text="&#x6CE8;&#x610F;"/>
 <gentext key="Part"           text="&#x90E8;"/>
 <gentext key="part"           text="&#x90E8;"/>
 <gentext key="Preface"        text="&#x5E8F;&#x8A00;"/>
