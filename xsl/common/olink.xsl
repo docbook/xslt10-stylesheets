@@ -879,9 +879,55 @@
 
         <xsl:when test="$use.local.olink.style != 0">
 
+          <!-- Is autonumbering on? -->
+          <xsl:variable name="target.number">
+            <xsl:for-each select="$target.database" >
+              <xsl:value-of 
+                      select="key('targetptr-key', $olink.key)[1]/@number" />
+            </xsl:for-each>
+          </xsl:variable>
+
+          <xsl:variable name="autonumber">
+            <xsl:choose>
+              <xsl:when test="$target.number != ''">1</xsl:when>
+              <xsl:otherwise>0</xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+        
+          <xsl:variable name="number-and-title-template">
+            <xsl:call-template name="gentext.template.exists">
+              <xsl:with-param name="context" select="'xref-number-and-title'"/>
+              <xsl:with-param name="name" select="$target.elem"/>
+            </xsl:call-template>
+          </xsl:variable>
+        
+          <xsl:variable name="number-template">
+            <xsl:call-template name="gentext.template.exists">
+              <xsl:with-param name="context" select="'xref-number'"/>
+              <xsl:with-param name="name" select="$target.elem"/>
+            </xsl:call-template>
+          </xsl:variable>
+        
+          <xsl:variable name="context">
+            <xsl:choose>
+              <xsl:when test="string($autonumber) != 0 
+                              and $number-and-title-template != 0
+                              and $xref.with.number.and.title != 0">
+                 <xsl:value-of select="'xref-number-and-title'"/>
+              </xsl:when>
+              <xsl:when test="string($autonumber) != 0 
+                              and $number-template != 0">
+                 <xsl:value-of select="'xref-number'"/>
+              </xsl:when>
+              <xsl:otherwise>
+                 <xsl:value-of select="'xref'"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+        
           <xsl:variable name="template">
             <xsl:call-template name="gentext.template">
-              <xsl:with-param name="context" select="'xref'"/>
+              <xsl:with-param name="context" select="$context"/>
               <xsl:with-param name="name" select="$target.elem"/>
               <xsl:with-param name="lang" select="$lang"/>
             </xsl:call-template>
