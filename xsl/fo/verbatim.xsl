@@ -99,11 +99,21 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="@width != ''">
+    <!-- Need a block-container for these features -->
+    <xsl:when test="@width != '' or
+                    (self::programlisting and
+                    starts-with($writing.mode, 'rl'))">
       <fo:block-container start-indent="0pt" end-indent="0pt">
-        <xsl:attribute name="width">
-          <xsl:value-of select="concat(@width, '*', $monospace.verbatim.font.width)"/>
-        </xsl:attribute>
+        <xsl:if test="@width != ''">
+          <xsl:attribute name="width">
+            <xsl:value-of select="concat(@width, '*', $monospace.verbatim.font.width)"/>
+          </xsl:attribute>
+        </xsl:if>
+        <!-- All known program code is left-to-right -->
+        <xsl:if test="self::programlisting and
+                      starts-with($writing.mode, 'rl')">
+          <xsl:attribute name="writing-mode">lr-tb</xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$block.content"/>
       </fo:block-container>
     </xsl:when>
