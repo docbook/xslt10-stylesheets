@@ -196,15 +196,13 @@
 
 <xsl:template match="refclass">
   <xsl:if test="$refclass.suppress = 0">
-  <p>
-    <b>
-      <xsl:if test="@role">
-        <xsl:value-of select="@role"/>
-        <xsl:text>: </xsl:text>
-      </xsl:if>
-      <xsl:apply-templates/>
-    </b>
-  </p>
+  <b>
+    <xsl:if test="@role">
+      <xsl:value-of select="@role"/>
+      <xsl:text>: </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </b>
   </xsl:if>
 </xsl:template>
 

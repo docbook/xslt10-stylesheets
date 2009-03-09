@@ -116,6 +116,13 @@ describe DocBook::Epub do
     blockquotepre_epubfile.should be_valid_epub  
   end
 
+  it "should render refentry/refclass without duplicating <p>s" do
+    refclass_epub = DocBook::Epub.new(File.join(@filedir, "refclass.xml"), @tmpdir)
+    refclass_epubfile  = File.join(@tmpdir, "refclassepub.epub")
+    refclass_epub.render_to_file(refclass_epubfile, $DEBUG)
+    refclass_epubfile.should be_valid_epub  
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  

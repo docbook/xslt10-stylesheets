@@ -1,0 +1,17 @@
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<refentry id="siehe_auch-id522">
+  <refnamediv>
+    <refname>XSLTProcessor</refname>
+    <refpurpose>Transformiert XML mit XSLT-Stylesheets</refpurpose>
+    <refclass>Firefox 1.0, Safari 2.01, Opera 9</refclass>
+    <refclass>Object &#x2192; XSLTProcessor</refclass>
+  </refnamediv>
+  <refsect1 id="konstruktor-id22">
+    <title>Konstruktor</title>
+    <programlisting id="I_programlisting_d1e98549" format="linespecific">new XSLTProcessor( )</programlisting>
+  </refsect1>
+  <refsect1 id="methoden-id48">
+    <title>Methoden</title>
+    <para/>
+  </refsect1>
+</refentry>
