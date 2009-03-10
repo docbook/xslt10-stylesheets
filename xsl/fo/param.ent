@@ -122,6 +122,7 @@
 <!ENTITY marker.section.level SYSTEM "../params/marker.section.level.xml">
 <!ENTITY monospace.font.family SYSTEM "../params/monospace.font.family.xml">
 <!ENTITY monospace.verbatim.properties SYSTEM "../params/monospace.verbatim.properties.xml">
+<!ENTITY monospace.verbatim.font.width SYSTEM "../params/monospace.verbatim.font.width.xml">
 <!ENTITY nominal.table.width SYSTEM "../params/nominal.table.width.xml">
 <!ENTITY normal.para.spacing SYSTEM "../params/normal.para.spacing.xml">
 <!ENTITY olink.doctitle SYSTEM "../params/olink.doctitle.xml">
