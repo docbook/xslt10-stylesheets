@@ -215,6 +215,7 @@ generate.section.toc.level;
 &glossary.collection;
 &glossary.as.blocks;
 &glosslist.as.blocks;
+&glossentry.list.item.properties;
 &glossterm.block.properties;
 &glossdef.block.properties;
 &glossterm.list.properties;
@@ -650,6 +651,7 @@ around all these parameters.</para>
 <src:fragref linkend="glossterm.auto.link.frag"/>
 <src:fragref linkend="glossterm.separation.frag"/>
 <src:fragref linkend="glossterm.width.frag"/>
+<src:fragref linkend="glossentry.list.item.properties.frag"/>
 <src:fragref linkend="glossterm.list.properties.frag"/>
 <src:fragref linkend="glossterm.block.properties.frag"/>
 <src:fragref linkend="glossdef.list.properties.frag"/>
