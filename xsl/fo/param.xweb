@@ -265,6 +265,7 @@ generate.section.toc.level;
 &email.delimiters.enabled;
 &email.mailto.enabled;
 &section.container.element;
+&monospace.verbatim.font.width;
 </reference>
 <reference xml:id="graphics"><title>Graphics</title>
 &graphic.default.extension;
@@ -406,6 +407,7 @@ zero by default, so this is simply the page-master region-left.
 <reference xml:id="fonts"><title>Font Families</title>
 &body.font.family;
 &dingbat.font.family;
+&monospace.font.family;
 &monospace.font.family;
 &sans.font.family;
 &title.font.family;
@@ -714,6 +716,7 @@ around all these parameters.</para>
 <src:fragref linkend="monospace.font.family.frag"/>
 <src:fragref linkend="monospace.properties.frag"/>
 <src:fragref linkend="monospace.verbatim.properties.frag"/>
+<src:fragref linkend="monospace.verbatim.font.width.frag"/>
 <src:fragref linkend="nominal.table.width.frag"/>
 <src:fragref linkend="normal.para.spacing.frag"/>
 <src:fragref linkend="olink.doctitle.frag"/>
