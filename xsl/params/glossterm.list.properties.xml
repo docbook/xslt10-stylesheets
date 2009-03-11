@@ -14,7 +14,8 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="glossterm.list.properties.frag"><xsl:attribute-set name="glossterm.list.properties">
+<src:fragment xml:id="glossterm.list.properties.frag">
+<xsl:attribute-set name="glossterm.list.properties">
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
