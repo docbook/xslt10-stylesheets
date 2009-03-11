@@ -409,7 +409,6 @@ zero by default, so this is simply the page-master region-left.
 &body.font.family;
 &dingbat.font.family;
 &monospace.font.family;
-&monospace.font.family;
 &sans.font.family;
 &title.font.family;
 &symbol.font.family;
