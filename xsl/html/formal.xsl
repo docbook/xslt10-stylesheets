@@ -186,13 +186,13 @@
     </xsl:when>
     <xsl:otherwise>
       <!-- do not use xsl:copy because of XHTML's needs -->
-      <table>
-        <xsl:copy-of select="@*[not(local-name()='id')]"/>
+      <xsl:element name="table" namespace="">
+        <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
         </xsl:attribute>
         <xsl:call-template name="htmlTable"/>
-      </table>
+      </xsl:element>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -327,10 +327,13 @@
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
-      <table>
-        <xsl:copy-of select="@*"/>
+      <xsl:element name="table" namespace="">
+        <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
+        <xsl:attribute name="id">
+          <xsl:call-template name="object.id"/>
+        </xsl:attribute>
         <xsl:call-template name="htmlTable"/>
-      </table>
+      </xsl:element>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
