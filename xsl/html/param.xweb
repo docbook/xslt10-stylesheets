@@ -132,7 +132,6 @@ $Id$
 &draft.watermark.image;
 &generate.id.attributes;
 &generate.meta.abstract;
-&writing.mode;
 </reference>
 <reference xml:id="xslt"><title>XSLT Processing</title>
 &rootid;
@@ -407,6 +406,7 @@ profiling of your document. For more information about profiling, see
 &l10n.gentext.default.language;
 &l10n.gentext.use.xref.language;
 &l10n.lang.value.rfc.compliant;
+&writing.mode;
 </reference>
 <appendix xml:id="stylesheet"><title>The Stylesheet</title>
 
