@@ -462,7 +462,8 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="section|refentry|simplesect
+    <xsl:with-param name="nodes" select="section|refentry
+                                         |simplesect[$simplesect.in.toc != 0]
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
