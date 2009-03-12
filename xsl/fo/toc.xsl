@@ -34,7 +34,7 @@
     <xsl:variable name="content">
       <xsl:choose>
         <xsl:when test="* and $process.source.toc != 0">
-          <xsl:apply-templates select="*"/>
+          <xsl:apply-templates />
         </xsl:when>
         <xsl:when test="count(*) = 0 and $process.empty.source.toc != 0">
           <!-- trick to switch context node to parent element -->
@@ -247,7 +247,7 @@
   <xsl:variable name="content">
     <xsl:choose>
       <xsl:when test="* and $process.source.toc != 0">
-        <xsl:apply-templates select="*"/>
+        <xsl:apply-templates />
       </xsl:when>
       <xsl:when test="not(child::*) and $process.empty.source.toc != 0">
         <xsl:call-template name="process.empty.lot"/>
