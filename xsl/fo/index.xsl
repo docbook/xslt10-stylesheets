@@ -447,8 +447,12 @@
   <fo:block>
     <xsl:attribute name="start-indent">
       <xsl:choose>
-        <xsl:when test="preceding-sibling::tertiaryie">3pc</xsl:when>
-        <xsl:when test="preceding-sibling::secondaryie">2pc</xsl:when>
+        <xsl:when test="(preceding-sibling::tertiaryie |
+                         preceding-sibling::secondaryie)[last()]
+                         [self::tertiaryie]">3pc</xsl:when>
+        <xsl:when test="(preceding-sibling::tertiaryie |
+                         preceding-sibling::secondaryie)[last()]
+                         [self::secondaryie]">2pc</xsl:when>
         <xsl:otherwise>1pc</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
