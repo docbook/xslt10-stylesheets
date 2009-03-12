@@ -49,6 +49,9 @@
 <xsl:attribute-set name="dedication.titlepage.recto.style"/>
 <xsl:attribute-set name="dedication.titlepage.verso.style"/>
 
+<xsl:attribute-set name="acknowledgements.titlepage.recto.style"/>
+<xsl:attribute-set name="acknowledgements.titlepage.verso.style"/>
+
 <xsl:attribute-set name="preface.titlepage.recto.style"/>
 <xsl:attribute-set name="preface.titlepage.verso.style"/>
 

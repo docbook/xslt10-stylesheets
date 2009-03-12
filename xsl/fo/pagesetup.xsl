@@ -1764,6 +1764,7 @@
       </xsl:when>
       <xsl:when test="$pageclass = 'lot'">lot</xsl:when>
       <xsl:when test="$element = 'dedication'">front</xsl:when>
+      <xsl:when test="$element = 'acknowledgements'">front</xsl:when>
       <xsl:when test="$element = 'preface'">front</xsl:when>
       <xsl:when test="$element = 'appendix'">back</xsl:when>
       <xsl:when test="$element = 'glossary'">back</xsl:when>
