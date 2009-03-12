@@ -38,6 +38,9 @@
 <xsl:attribute-set name="dedication.titlepage.recto.style"/>
 <xsl:attribute-set name="dedication.titlepage.verso.style"/>
 
+<xsl:attribute-set name="acknowledgements.titlepage.recto.style"/>
+<xsl:attribute-set name="acknowledgements.titlepage.verso.style"/>
+
 <xsl:attribute-set name="preface.titlepage.recto.style"/>
 <xsl:attribute-set name="preface.titlepage.verso.style"/>
 
@@ -248,6 +251,10 @@
 
 <xsl:template match="authorgroup" mode="titlepage.mode">
   <div>
+    <xsl:if test="parent::refentryinfo">
+      <h2>Authors</h2>
+    </xsl:if>
+      
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates mode="titlepage.mode"/>
@@ -354,6 +361,11 @@
 </xsl:template>
 
 <xsl:template match="copyright" mode="titlepage.mode">
+
+  <xsl:if test="generate-id() = generate-id(//refentryinfo/copyright[1])">
+    <h2>Copyright</h2>
+  </xsl:if>
+
   <p>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="gentext">
