@@ -396,7 +396,7 @@
   <xsl:apply-templates select="(.//function)[1]" mode="xref"/>
 </xsl:template>
 
-<xsl:template match="dedication|preface|chapter|appendix" mode="xref-to">
+<xsl:template match="dedication|acknowledgements|preface|chapter|appendix" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="verbose" select="1"/>
@@ -764,6 +764,7 @@
                                        |ancestor::preface
                                        |ancestor::partintro
                                        |ancestor::dedication
+                                       |ancestor::acknowledgements
                                        |ancestor::colophon
                                        |ancestor::bibliography
                                        |ancestor::index
@@ -1296,6 +1297,7 @@
                     or local-name($target) = 'equation'
                     or local-name($target) = 'table'
                     or local-name($target) = 'dedication'
+                    or local-name($target) = 'acknowledgements'
                     or local-name($target) = 'preface'
                     or local-name($target) = 'bibliography'
                     or local-name($target) = 'glossary'
