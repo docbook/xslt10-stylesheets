@@ -157,6 +157,22 @@ title of the element. This does not include the label.
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="acknowledgements" mode="title.markup">
+  <xsl:param name="allow-anchors" select="0"/>
+  <xsl:choose>
+    <xsl:when test="title">
+      <xsl:apply-templates select="(title|info/title)[1]" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key" select="'Acknowledgements'"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="colophon" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:choose>

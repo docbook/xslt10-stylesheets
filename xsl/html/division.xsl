@@ -75,6 +75,7 @@
     <xsl:call-template name="book.titlepage"/>
 
     <xsl:apply-templates select="dedication" mode="dedication"/>
+    <xsl:apply-templates select="acknowledgements" mode="acknowledgements"/>
 
     <xsl:variable name="toc.params">
       <xsl:call-template name="find.path.params">
