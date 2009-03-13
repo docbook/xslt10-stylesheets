@@ -57,10 +57,10 @@
         <!-- Is it an olink ? -->
         <xsl:variable name="is.olink">
           <xsl:choose>
-	    <!-- If xlink:role="http://docbook.org/xlink/role/olink" -->
+            <!-- If xlink:role="http://docbook.org/xlink/role/olink" -->
             <!-- and if the href contains # -->
             <xsl:when test="contains($xhref,'#') and
-	         @xlink:role = $xolink.role">1</xsl:when>
+                 @xlink:role = $xolink.role">1</xsl:when>
             <xsl:otherwise>0</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
@@ -126,9 +126,9 @@
           </xsl:when>
 
           <xsl:when test="$is.olink = 1">
-	    <xsl:call-template name="olink">
-	      <xsl:with-param name="content" select="$content"/>
-	    </xsl:call-template>
+            <xsl:call-template name="olink">
+              <xsl:with-param name="content" select="$content"/>
+            </xsl:call-template>
           </xsl:when>
 
           <!-- otherwise it's a URI -->
@@ -144,18 +144,18 @@
                 </xsl:attribute>
               </xsl:if>
 
-	      <!-- For URIs, use @xlink:show if defined, otherwise use ulink.target -->
-	      <xsl:attribute name="target">
-		<xsl:choose>
-		  <xsl:when test="$target.show !=''">
-		    <xsl:value-of select="$target.show"/>
-		  </xsl:when>
-		  <xsl:otherwise>
-		  <xsl:value-of select="$ulink.target"/>
-		  </xsl:otherwise>
-		</xsl:choose>
-	      </xsl:attribute>
-	      
+              <!-- For URIs, use @xlink:show if defined, otherwise use ulink.target -->
+              <xsl:attribute name="target">
+                <xsl:choose>
+                  <xsl:when test="$target.show !=''">
+                    <xsl:value-of select="$target.show"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                  <xsl:value-of select="$ulink.target"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+              
               <xsl:copy-of select="$content"/>
             </a>
           </xsl:otherwise>
@@ -829,18 +829,22 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:choose>
-    <xsl:when test="$depth mod 2 = 0">
-      <xsl:call-template name="gentext.startquote"/>
-      <xsl:call-template name="inline.charseq"/>
-      <xsl:call-template name="gentext.endquote"/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="gentext.nestedstartquote"/>
-      <xsl:call-template name="inline.charseq"/>
-      <xsl:call-template name="gentext.nestedendquote"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="anchor"/>
+    <xsl:choose>
+      <xsl:when test="$depth mod 2 = 0">
+        <xsl:call-template name="gentext.startquote"/>
+        <xsl:call-template name="inline.charseq"/>
+        <xsl:call-template name="gentext.endquote"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext.nestedstartquote"/>
+        <xsl:call-template name="inline.charseq"/>
+        <xsl:call-template name="gentext.nestedendquote"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </span>
 </xsl:template>
 
 <xsl:template match="varname">
@@ -1282,14 +1286,14 @@
           </xsl:call-template>
         </xsl:attribute>
 
-	<xsl:choose>
-	  <xsl:when test="$bibliography.numbered != 0">
-	    <xsl:apply-templates select="$target" mode="citation"/>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:call-template name="inline.charseq"/>
-	  </xsl:otherwise>
-	</xsl:choose>
+        <xsl:choose>
+          <xsl:when test="$bibliography.numbered != 0">
+            <xsl:apply-templates select="$target" mode="citation"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="inline.charseq"/>
+          </xsl:otherwise>
+        </xsl:choose>
 
       </a>
       <xsl:text>]</xsl:text>
@@ -1319,7 +1323,7 @@
           </xsl:call-template>
         </xsl:attribute>
 
-	<xsl:call-template name="inline.charseq"/>
+        <xsl:call-template name="inline.charseq"/>
 
       </a>
       <xsl:text>]</xsl:text>
@@ -1334,7 +1338,7 @@
 
 <xsl:template match="biblioentry|bibliomixed" mode="citation">
   <xsl:number from="bibliography" count="biblioentry|bibliomixed"
-	      level="any" format="1"/>
+              level="any" format="1"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
