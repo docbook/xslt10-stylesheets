@@ -743,7 +743,10 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="para" mode="xref-to">
+<!-- These are elements for which no link text exists, so an xref to one
+     uses the xrefstyle attribute if specified, or if not it falls back
+     to the container element's link text -->
+<xsl:template match="para|phrase|simpara|anchor|quote" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="verbose"/>
