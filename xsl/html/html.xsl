@@ -106,7 +106,30 @@
       </xsl:attribute>
     </xsl:when>
   </xsl:choose>
+</xsl:template>
 
+<xsl:template match="qandaentry" mode="html.title.attribute">
+  <xsl:apply-templates select="question" mode="html.title.attribute"/>
+</xsl:template>
+
+<xsl:template match="question" mode="html.title.attribute">
+  <xsl:variable name="label.text">
+    <xsl:apply-templates select="." mode="qanda.label"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="string-length($label.text) != 0">
+      <xsl:attribute name="title">
+        <xsl:value-of select="$label.text"/>
+      </xsl:attribute>
+    </xsl:when>
+    <!-- Fall back to alt if available -->
+    <xsl:when test="alt">
+      <xsl:attribute name="title">
+        <xsl:value-of select="normalize-space(alt)"/>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="dir">
