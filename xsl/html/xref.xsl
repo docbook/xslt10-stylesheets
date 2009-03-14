@@ -744,6 +744,10 @@
   </xsl:apply-templates>
 </xsl:template>
 
+<xsl:template match="indexterm" mode="xref-to">
+  <xsl:value-of select="primary"/>
+</xsl:template>
+
 <xsl:template match="varlistentry/term" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
