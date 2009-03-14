@@ -800,6 +800,10 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="indexterm" mode="xref-to">
+  <xsl:value-of select="primary"/>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">
