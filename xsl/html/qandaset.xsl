@@ -35,6 +35,12 @@
   <div>
     <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates select="$title"/>
+    <xsl:if test="not($title)">
+      <!-- id is output on title if there is one -->
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
+    </xsl:if>
     <xsl:if test="((contains($toc.params, 'toc') and $toc != '0') or $toc = '1')
                   and not(ancestor::answer and not($qanda.nested.in.toc=0))">
       <xsl:call-template name="process.qanda.toc"/>
