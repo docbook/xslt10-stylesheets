@@ -273,6 +273,9 @@
   <xsl:variable name="key" select="&primary;"/>
   <xsl:variable name="refs" select="key('primary', $key)[&scope;]"/>
   <dt>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="primary"/>
+    </xsl:call-template>
     <xsl:value-of select="primary"/>
     <xsl:choose>
       <xsl:when test="$index.links.to.section = 1">
@@ -340,6 +343,9 @@
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;)"/>
   <xsl:variable name="refs" select="key('secondary', $key)[&scope;]"/>
   <dt>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="secondary"/>
+    </xsl:call-template>
     <xsl:value-of select="secondary"/>
     <xsl:choose>
       <xsl:when test="$index.links.to.section = 1">
@@ -407,6 +413,9 @@
   <xsl:variable name="key" select="concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;)"/>
   <xsl:variable name="refs" select="key('tertiary', $key)[&scope;]"/>
   <dt>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="tertiary"/>
+    </xsl:call-template>
     <xsl:value-of select="tertiary"/>
     <xsl:choose>
       <xsl:when test="$index.links.to.section = 1">
