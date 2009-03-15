@@ -974,6 +974,11 @@
   </fo:block>
 </xsl:template>
 
+<!-- Used when not occurring as a child of classsynopsis -->
+<xsl:template match="ooclass|oointerface|ooexception">
+  <xsl:apply-templates/>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <!-- * DocBook 5 allows linking elements (link, olink, and xref) -->
