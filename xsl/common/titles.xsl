@@ -675,6 +675,36 @@ title of the element. This does not include the label.
   <xsl:apply-templates/>
 </xsl:template>
 
+<xsl:template match="link" mode="no.anchor.mode">
+  <xsl:choose>
+    <xsl:when test="count(child::node()) &gt; 0">
+      <!-- If it has content, use it -->
+      <xsl:apply-templates/>
+    </xsl:when>
+	<!-- look for an endterm -->
+    <xsl:when test="@endterm">
+      <xsl:variable name="etargets" select="key('id',@endterm)"/>
+      <xsl:variable name="etarget" select="$etargets[1]"/>
+      <xsl:choose>
+	<xsl:when test="count($etarget) = 0">
+          <xsl:message>
+	    <xsl:value-of select="count($etargets)"/>
+	    <xsl:text>Endterm points to nonexistent ID: </xsl:text>
+	    <xsl:value-of select="@endterm"/>
+          </xsl:message>
+	  <xsl:text>???</xsl:text>
+	</xsl:when>
+        <xsl:otherwise>
+	  <xsl:apply-templates select="$etarget" mode="endterm"/>
+	</xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template match="olink" mode="no.anchor.mode">
   <xsl:apply-templates/>
 </xsl:template>
@@ -683,7 +713,7 @@ title of the element. This does not include the label.
   <!-- nop, suppressed -->
 </xsl:template>
 
-<xsl:template match="xref|link" mode="no.anchor.mode">
+<xsl:template match="xref" mode="no.anchor.mode">
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
