@@ -51,6 +51,10 @@
     <author space-before="0.5em"
             font-size="&hsize2;"/>
 
+    <!-- If you add editor, include this t:predicate attribute
+         because only the first editor generates the list of editors.
+    <editor t:predicate="[position() = 1]"/>
+    -->
     <othercredit space-before="0.5em"/>
     <releaseinfo space-before="0.5em"/>
     <copyright space-before="0.5em"/>
@@ -146,6 +150,10 @@
       <author font-size="&hsize3;"
 	      space-before="&hsize2space;"
 	      keep-with-next.within-column="always"/>
+      <!-- If you add editor, include this t:predicate attribute
+           because only the first editor generates the list of editors.
+      <editor t:predicate="[position() = 1]"/>
+      -->
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -157,6 +165,10 @@
       <corpauthor/>
       <authorgroup t:named-template="verso.authorgroup"/>
       <author/>
+      <!-- If you add editor, include this t:predicate attribute
+           because only the first editor generates the list of editors.
+      <editor t:predicate="[position() = 1]"/>
+      -->
       <othercredit/>
       <releaseinfo space-before="0.5em"/>
       <pubdate space-before="1em"/>
