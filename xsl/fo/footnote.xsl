@@ -196,7 +196,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
       </fo:block>
     </xsl:when>
 
-    <xsl:when test="function-available('exsl:node-set')">
+    <xsl:when test="$exsl.node.set.available != 0">
       <fo:block xsl:use-attribute-sets="table.footnote.properties">
         <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
