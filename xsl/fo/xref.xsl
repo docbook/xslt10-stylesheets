@@ -804,6 +804,10 @@
   <xsl:value-of select="primary"/>
 </xsl:template>
 
+<xsl:template match="primary|secondary|tertiary" mode="xref-to">
+  <xsl:value-of select="."/>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="link" name="link">

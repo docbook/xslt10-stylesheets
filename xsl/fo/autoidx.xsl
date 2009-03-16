@@ -294,6 +294,13 @@
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
     </xsl:if>
+
+    <xsl:for-each select="$refs/primary">
+      <xsl:if test="@id or @xml:id">
+        <fo:inline id="{(@id|@xml:id)[1]}"/>
+      </xsl:if>
+    </xsl:for-each>
+
     <xsl:value-of select="primary"/>
 
     <xsl:choose>
@@ -403,6 +410,13 @@
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
     </xsl:if>
+
+    <xsl:for-each select="$refs/secondary">
+      <xsl:if test="@id or @xml:id">
+        <fo:inline id="{(@id|@xml:id)[1]}"/>
+      </xsl:if>
+    </xsl:for-each>
+
     <xsl:value-of select="secondary"/>
 
     <xsl:choose>
@@ -522,6 +536,13 @@
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
     </xsl:if>
+
+    <xsl:for-each select="$refs/tertiary">
+      <xsl:if test="@id or @xml:id">
+        <fo:inline id="{(@id|@xml:id)[1]}"/>
+      </xsl:if>
+    </xsl:for-each>
+
     <xsl:value-of select="tertiary"/>
 
     <xsl:choose>
