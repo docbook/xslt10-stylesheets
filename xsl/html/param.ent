@@ -135,6 +135,7 @@
 <!ENTITY htmlhelp.use.hhk SYSTEM "../params/htmlhelp.use.hhk.xml">
 <!ENTITY htmlhelp.window.geometry SYSTEM "../params/htmlhelp.window.geometry.xml">
 <!ENTITY img.src.path SYSTEM "../params/img.src.path.xml">
+<!ENTITY index.links.to.section SYSTEM "../params/index.links.to.section.xml">
 <!ENTITY index.on.role SYSTEM "../params/index.on.role.xml">
 <!ENTITY index.prefer.titleabbrev SYSTEM "../params/index.prefer.titleabbrev.xml">
 <!ENTITY index.on.type SYSTEM "../params/index.on.type.xml">
