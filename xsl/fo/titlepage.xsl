@@ -681,7 +681,7 @@
 
 <!-- book recto -->
 
-<xsl:template match="bookinfo/authorgroup|info/authorgroup"
+<xsl:template match="bookinfo/authorgroup|book/info/authorgroup"
               mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="anchor"/>
@@ -730,21 +730,21 @@
   <xsl:apply-templates select="othercredit" mode="titlepage.mode"/>
 </xsl:template>
 
-<xsl:template match="bookinfo/author|info/author"
+<xsl:template match="bookinfo/author|book/info/author"
               mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="person.name"/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="bookinfo/corpauthor|info/corpauthor"
+<xsl:template match="bookinfo/corpauthor|book/info/corpauthor"
               mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="bookinfo/pubdate|info/pubdate"
+<xsl:template match="bookinfo/pubdate|book/info/pubdate"
               mode="titlepage.mode" priority="2">
   <fo:block>
     <xsl:call-template name="gentext">
