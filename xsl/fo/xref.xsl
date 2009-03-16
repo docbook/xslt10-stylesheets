@@ -233,7 +233,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')">
+    <xsl:when test="$exsl.node.set.available != 0">
       <xsl:apply-templates select="exsl:node-set($endterm)" mode="remove-ids"/>
     </xsl:when>
     <xsl:otherwise>
