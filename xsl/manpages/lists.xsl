@@ -46,6 +46,11 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="bibliolist">
+  <xsl:apply-templates/>
+  <xsl:text>&#10;</xsl:text>
+</xsl:template>
+
 <xsl:template match="variablelist|glosslist">
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
