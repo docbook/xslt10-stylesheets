@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="index.links.to.section.frag">
-<xsl:param name="index.links.to.section" select="0"/>
+<xsl:param name="index.links.to.section" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
