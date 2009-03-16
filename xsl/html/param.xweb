@@ -79,6 +79,7 @@ $Id$
 &index.method;
 &index.on.type;
 &index.on.role;
+&index.links.to.section;
 &index.prefer.titleabbrev;
 &index.term.separator;
 &index.number.separator;
@@ -590,6 +591,7 @@ around all these parameters.</para>
 <src:fragref linkend="id.warnings.frag"/>
 <src:fragref linkend="index.method.frag"/>
 <src:fragref linkend="index.on.role.frag"/>
+<src:fragref linkend="index.links.to.section.frag"/>
 <src:fragref linkend="index.on.type.frag"/>
 <src:fragref linkend="index.number.separator.frag"/>
 <src:fragref linkend="index.term.separator.frag"/>
