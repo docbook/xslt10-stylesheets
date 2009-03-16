@@ -265,6 +265,7 @@ $Id$
 &highlight.xslthl.config;
 &highlight.default.language;
 &email.delimiters.enabled;
+&exsl.node.set.available;
 </reference>
 <reference xml:id="annos"><title>Annotations</title>
 &annotation.support;
@@ -497,6 +498,7 @@ around all these parameters.</para>
 <src:fragref linkend="email.delimiters.enabled.frag"/>
 <src:fragref linkend="emphasis.propagates.style.frag"/>
 <src:fragref linkend="entry.propagates.style.frag"/>
+<src:fragref linkend="exsl.node.set.available.frag"/>
 <src:fragref linkend="firstterm.only.link.frag"/>
 <src:fragref linkend="footer.rule.frag"/>
 <src:fragref linkend="footnote.number.format.frag"/>

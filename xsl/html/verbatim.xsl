@@ -341,7 +341,7 @@
        or I have to rely on CSS. -->
 
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')">
+    <xsl:when test="$exsl.node.set.available != 0">
       <xsl:apply-templates select="exsl:node-set($rtf)" mode="make.verbatim.mode"/>
     </xsl:when>
     <xsl:otherwise>

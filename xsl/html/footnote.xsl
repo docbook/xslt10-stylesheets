@@ -187,7 +187,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="function-available('exsl:node-set')">
+    <xsl:when test="$exsl.node.set.available != 0">
       <xsl:variable name="html-nodes" select="exsl:node-set($html)"/>
       <xsl:choose>
         <xsl:when test="$html-nodes//p">
@@ -274,7 +274,8 @@ linkend/id: <xsl:value-of select="@linkend"/>
       </div>
     </xsl:when>
 
-    <xsl:when test="$html.cleanup != 0 and function-available('exsl:node-set')">
+    <xsl:when test="$html.cleanup != 0 and 
+                    $exsl.node.set.available != 0">
       <div>
         <xsl:apply-templates select="." mode="class.attribute"/>
         <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
