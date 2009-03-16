@@ -70,7 +70,7 @@
              xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style">
           <xsl:choose>
             <xsl:when test="$hyphenate.verbatim != 0 and 
-                            function-available('exsl:node-set')">
+                            $exsl.node.set.available != 0">
               <xsl:apply-templates select="exsl:node-set($content)" 
                                    mode="hyphenate.verbatim"/>
             </xsl:when>
@@ -85,7 +85,7 @@
                   xsl:use-attribute-sets="monospace.verbatim.properties">
           <xsl:choose>
             <xsl:when test="$hyphenate.verbatim != 0 and 
-                            function-available('exsl:node-set')">
+                            $exsl.node.set.available != 0">
               <xsl:apply-templates select="exsl:node-set($content)" 
                                    mode="hyphenate.verbatim"/>
             </xsl:when>
