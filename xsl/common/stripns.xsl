@@ -269,9 +269,7 @@
 
 <xsl:template match="/" priority="-1">
   <xsl:choose>
-    <xsl:when test="(function-available('exsl:node-set') or
-                     contains(system-property('xsl:vendor'),
-                       'Apache Software Foundation'))
+    <xsl:when test="$exsl.node.set.available != 0
                     and (*/self::ng:* or */self::db:*)">
       <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
