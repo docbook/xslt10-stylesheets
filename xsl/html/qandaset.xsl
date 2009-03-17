@@ -198,7 +198,7 @@
     <xsl:apply-templates select="." mode="qanda.defaultlabel"/>
   </xsl:variable>
   <xsl:apply-templates select="." mode="label.markup"/>
-  <xsl:if test="$deflabel = 'number' and not(label)">
+  <xsl:if test="contains($deflabel, 'number') and not(label)">
     <xsl:apply-templates select="." mode="intralabel.punctuation"/>
   </xsl:if>
 </xsl:template>
@@ -268,8 +268,13 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
-  <xsl:value-of select="$autotoc.label.separator"/>
+  <xsl:variable name="div.label">
+    <xsl:apply-templates select="parent::qandadiv" mode="label.markup"/>
+  </xsl:variable>
+  <xsl:if test="string-length($div.label) != 0">
+    <xsl:copy-of select="$div.label"/>
+    <xsl:value-of select="$autotoc.label.separator"/>
+  </xsl:if>
   <xsl:text> </xsl:text>
   <a>
     <xsl:attribute name="href">
@@ -332,7 +337,7 @@
 
   <dt>
     <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:if test="$deflabel = 'number' and not(label)">
+    <xsl:if test="contains($deflabel,'number') and not(label)">
       <xsl:apply-templates select="." mode="intralabel.punctuation"/>
     </xsl:if>
     <xsl:text> </xsl:text>
@@ -363,6 +368,10 @@
 
 <xsl:template name="process.qandaset">
 
+  <xsl:variable name="deflabel">
+    <xsl:apply-templates select="." mode="qanda.defaultlabel"/>
+  </xsl:variable>
+
   <xsl:variable name="label-width">
     <xsl:call-template name="pi.dbhtml_label-width"/>
   </xsl:variable>
@@ -379,7 +388,7 @@
     <xsl:call-template name="pi.dbhtml_cellspacing"/>
   </xsl:variable>
 
-  <table border="0" summary="Q and A Set">
+  <table border="0" width="100%" summary="Q and A Set">
     <xsl:if test="$table-summary != ''">
       <xsl:attribute name="summary">
         <xsl:value-of select="$table-summary"/>
@@ -404,10 +413,13 @@
           <xsl:when test="$label-width != ''">
             <xsl:value-of select="$label-width"/>
           </xsl:when>
-          <xsl:otherwise>1%</xsl:otherwise>
+          <xsl:otherwise>
+            <xsl:text>1%</xsl:text>
+          </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
     </col>
+    <col/>
     <tbody>
       <xsl:apply-templates select="qandaentry|qandadiv"/>
     </tbody>
