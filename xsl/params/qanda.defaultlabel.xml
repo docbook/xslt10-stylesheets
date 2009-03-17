@@ -41,14 +41,13 @@ The default value is 'number'.
 </listitem>
 </varlistentry>
 
-<variablelist>
 <varlistentry><term><literal>number</literal></term>
 <listitem>
 <para>The questions are enumerated and the answers
 are not labeled. </para>
 </listitem>
 </varlistentry>
-<variablelist>
+
 <varlistentry><term><literal>qnumber</literal></term>
 <listitem>
 <para>The questions are labeled "Q:" followed by a number, and answers are not 
@@ -61,7 +60,7 @@ This value is not allowed in the
 of a <tag>qandaset</tag> element.</para>
 </listitem>
 </varlistentry>
-<variablelist>
+
 <varlistentry><term><literal>qnumberanda</literal></term>
 <listitem>
 <para>The questions are labeled "Q:" followed by a number, and
@@ -74,7 +73,7 @@ This value is not allowed in the
 of a <tag>qandaset</tag> element.</para>
 </listitem>
 </varlistentry>
-<variablelist>
+
 <varlistentry><term><literal>none</literal></term>
 <listitem>
 <para>No distinguishing label precedes Questions or Answers. 
