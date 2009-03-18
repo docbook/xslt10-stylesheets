@@ -84,10 +84,17 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <xsl:variable name="has.title.markup">
+    <xsl:apply-templates select="." mode="title.markup">
+      <xsl:with-param name="verbose" select="0"/>
+    </xsl:apply-templates>
+  </xsl:variable>
+
   <xsl:variable name="gentext.title">
-    <xsl:if test="$is.title != 0 or
+    <xsl:if test="$has.title.markup != '???TITLE???' and
+                  ($is.title != 0 or
                   $is.title-numbered != 0 or
-                  $is.title-unnumbered != 0">
+                  $is.title-unnumbered != 0)">
       <xsl:apply-templates select="."
                            mode="object.title.markup.textonly"/>
     </xsl:if>
@@ -269,6 +276,10 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="generate.class.attribute">
+  <xsl:apply-templates select="." mode="class.attribute"/>
+</xsl:template>
+
 <xsl:template match="*" mode="class.attribute">
   <xsl:param name="class" select="local-name(.)"/>
   <!-- permit customization of class attributes -->
@@ -285,6 +296,49 @@
   <!-- permit customization of class value only -->
   <!-- Use element name by default -->
   <xsl:value-of select="$class"/>
+</xsl:template>
+
+<!-- Apply common attributes such as class, lang, dir -->
+<xsl:template name="common.html.attributes">
+  <xsl:apply-templates select="." mode="common.html.attributes"/>
+</xsl:template>
+
+<xsl:template match="*" mode="common.html.attributes">
+  <xsl:call-template name="generate.html.lang"/>
+  <xsl:call-template name="dir"/>
+  <xsl:call-template name="generate.class.attribute"/>
+  <xsl:call-template name="generate.html.title"/>
+</xsl:template>
+
+<!-- Pass through any lang attributes -->
+<xsl:template name="generate.html.lang">
+  <xsl:apply-templates select="." mode="html.lang.attribute"/>
+</xsl:template>
+
+<xsl:template match="*" mode="html.lang.attribute">
+  <!-- match the attribute name to the output type -->
+  <xsl:choose>
+    <xsl:when test="@lang and $stylesheet.result.type = 'html'">
+      <xsl:attribute name="lang">
+        <xsl:value-of select="@lang"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:when test="@lang and $stylesheet.result.type = 'xhtml'">
+      <xsl:attribute name="xml:lang">
+        <xsl:value-of select="@lang"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:when test="@xml:lang and $stylesheet.result.type = 'html'">
+      <xsl:attribute name="lang">
+        <xsl:value-of select="@xml:lang"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:when test="@xml:lang and $stylesheet.result.type = 'xhtml'">
+      <xsl:attribute name="xml:lang">
+        <xsl:value-of select="@xml:lang"/>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>

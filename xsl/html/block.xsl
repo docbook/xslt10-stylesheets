@@ -140,10 +140,7 @@
 
 <xsl:template match="blockquote">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
-    <xsl:if test="@lang or @xml:lang">
-      <xsl:call-template name="language.attribute"/>
-    </xsl:if>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:choose>
