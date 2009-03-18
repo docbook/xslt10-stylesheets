@@ -729,7 +729,7 @@
                 |processing-instruction()[not(preceding-sibling::step)]"/>
 
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -785,12 +785,14 @@
   <xsl:call-template name="anchor"/>
 
   <ol type="{$numeration}">
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:apply-templates/>
   </ol>
 </xsl:template>
 
 <xsl:template match="step">
   <li>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </li>
