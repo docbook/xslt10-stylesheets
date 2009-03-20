@@ -4,7 +4,7 @@
   xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  exclude-result-prefixes="doc"
+  exclude-result-prefixes="doc xlink"
   version='1.0'>
 
 <!-- ********************************************************************

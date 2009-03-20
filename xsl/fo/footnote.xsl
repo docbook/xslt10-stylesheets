@@ -3,7 +3,7 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="exsl"
+                exclude-result-prefixes="exsl xlink"
                 version='1.0'>
 
 <!-- ********************************************************************

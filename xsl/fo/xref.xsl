@@ -3,7 +3,7 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
-                exclude-result-prefixes="exsl"
+                exclude-result-prefixes="exsl xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -1159,7 +1159,7 @@
 
       <xsl:variable name="hottext">
         <xsl:choose>
-          <xsl:when test="$content">
+          <xsl:when test="string-length($content) != 0">
             <xsl:copy-of select="$content"/>
           </xsl:when>
           <xsl:otherwise>
