@@ -66,6 +66,12 @@
         </xsl:variable>
 
         <xsl:choose>
+          <xsl:when test="$is.olink = 1">
+            <xsl:call-template name="olink">
+              <xsl:with-param name="content" select="$content"/>
+            </xsl:call-template>
+          </xsl:when>
+
           <xsl:when test="$is.idref = 1">
 
             <xsl:variable name="idref">
@@ -123,12 +129,6 @@
                 </a>
               </xsl:otherwise>
             </xsl:choose>
-          </xsl:when>
-
-          <xsl:when test="$is.olink = 1">
-            <xsl:call-template name="olink">
-              <xsl:with-param name="content" select="$content"/>
-            </xsl:call-template>
           </xsl:when>
 
           <!-- otherwise it's a URI -->
