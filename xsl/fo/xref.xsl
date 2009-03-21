@@ -516,7 +516,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="glossterm" mode="xref-to">
+<xsl:template match="glossterm|firstterm" mode="xref-to">
   <xsl:apply-templates/>
 </xsl:template>
 
