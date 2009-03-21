@@ -555,7 +555,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="glossterm" mode="xref-to">
+<xsl:template match="glossterm|firstterm" mode="xref-to">
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -1115,7 +1115,7 @@
 
       <xsl:variable name="hottext">
         <xsl:choose>
-          <xsl:when test="$content">
+          <xsl:when test="string-length($content) != 0">
             <xsl:copy-of select="$content"/>
           </xsl:when>
           <xsl:otherwise>
