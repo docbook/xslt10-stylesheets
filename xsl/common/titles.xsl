@@ -347,7 +347,7 @@ title of the element. This does not include the label.
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="glossterm" mode="title.markup">
+<xsl:template match="glossterm|firstterm" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
 
   <xsl:choose>
