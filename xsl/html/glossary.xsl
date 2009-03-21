@@ -4,6 +4,8 @@
 %common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xlink='http://www.w3.org/1999/xlink'
+                exclude-result-prefixes="xlink"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -235,6 +237,7 @@ GlossEntry ::=
   <xsl:variable name="otherterm" select="@otherterm"/>
   <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:variable name="xlink" select="@xlink:href"/>
 
   <dd>
     <p>
@@ -257,6 +260,13 @@ GlossEntry ::=
               </xsl:attribute>
               <xsl:apply-templates select="$target" mode="xref-to"/>
             </a>
+          </xsl:when>
+          <xsl:when test="$xlink">
+            <xsl:call-template name="simple.xlink">
+              <xsl:with-param name="content">
+                <xsl:apply-templates/>
+              </xsl:with-param>
+            </xsl:call-template>
           </xsl:when>
           <xsl:when test="$otherterm != '' and not($target)">
             <xsl:message>
@@ -307,6 +317,7 @@ GlossEntry ::=
   <xsl:variable name="otherterm" select="@otherterm"/>
   <xsl:variable name="targets" select="key('id', $otherterm)"/>
   <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:variable name="xlink" select="@xlink:href"/>
 
   <xsl:choose>
     <xsl:when test="$target">
@@ -319,6 +330,13 @@ GlossEntry ::=
         </xsl:attribute>
         <xsl:apply-templates select="$target" mode="xref-to"/>
       </a>
+    </xsl:when>
+    <xsl:when test="$xlink">
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content">
+          <xsl:apply-templates/>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <xsl:when test="$otherterm != '' and not($target)">
       <xsl:message>
