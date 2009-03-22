@@ -223,6 +223,7 @@
 <!ENTITY use.svg SYSTEM "../params/use.svg.xml">
 <!ENTITY variablelist.as.blocks SYSTEM "../params/variablelist.as.blocks.xml">
 <!ENTITY variablelist.max.termlength SYSTEM "../params/variablelist.max.termlength.xml">
+<!ENTITY variablelist.term.properties SYSTEM "../params/variablelist.term.properties.xml">
 <!ENTITY variablelist.term.separator SYSTEM "../params/variablelist.term.separator.xml">
 <!ENTITY variablelist.term.break.after SYSTEM "../params/variablelist.term.break.after.xml">
 <!ENTITY verbatim.properties SYSTEM "../params/verbatim.properties.xml">

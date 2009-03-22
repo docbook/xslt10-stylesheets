@@ -193,6 +193,7 @@ generate.section.toc.level;
 &orderedlist.label.width;
 &variablelist.max.termlength;
 &variablelist.term.separator;
+&variablelist.term.properties;
 &variablelist.term.break.after;
 </reference>
 <reference xml:id="qa"><title>QAndASet</title>
@@ -866,6 +867,7 @@ around all these parameters.</para>
 <src:fragref linkend="variablelist.as.blocks.frag"/>
 <src:fragref linkend="variablelist.max.termlength.frag"/>
 <src:fragref linkend="variablelist.term.separator.frag"/>
+<src:fragref linkend="variablelist.term.properties.frag"/>
 <src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="verbatim.properties.frag"/>
 <src:fragref linkend="writing.mode.frag"/>
