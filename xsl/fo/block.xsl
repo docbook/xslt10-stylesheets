@@ -23,7 +23,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="block.object">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
   <fo:block>
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
@@ -32,21 +39,42 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="para">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="simpara">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
 <xsl:template match="formalpara">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
   <fo:block xsl:use-attribute-sets="normal.para.spacing">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
@@ -86,7 +114,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
   <fo:block xsl:use-attribute-sets="blockquote.properties">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="anchor"/>
     <fo:block>
       <xsl:if test="title|info/title">
@@ -386,7 +421,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="abstract">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
   <fo:block xsl:use-attribute-sets="abstract.properties">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
