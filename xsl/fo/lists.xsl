@@ -467,7 +467,7 @@
   </xsl:variable>
   <xsl:variable name="item.contents">
     <fo:list-item-label end-indent="label-end()" text-align="start">
-      <fo:block>
+      <fo:block xsl:-use-attribute-sets="variablelist.term.properties">
         <xsl:apply-templates select="term"/>
       </fo:block>
     </fo:list-item-label>
@@ -538,7 +538,8 @@
 <xsl:template match="varlistentry" mode="vl.as.blocks">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
-  <fo:block id="{$id}" xsl:use-attribute-sets="list.item.spacing"  
+  <fo:block id="{$id}" xsl:use-attribute-sets="variablelist.term.properties
+                                               list.item.spacing"  
       keep-together.within-column="always" 
       keep-with-next.within-column="always">
     <xsl:apply-templates select="term"/>
