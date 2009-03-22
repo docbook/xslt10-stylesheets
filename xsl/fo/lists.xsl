@@ -20,6 +20,10 @@
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+
   <xsl:variable name="pi-label-width">
     <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
@@ -61,6 +65,10 @@
         <xsl:attribute name="provisional-distance-between-starts">
           <xsl:value-of select="$label-width"/>
         </xsl:attribute>
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
@@ -69,6 +77,10 @@
         <xsl:attribute name="provisional-distance-between-starts">
           <xsl:value-of select="$label-width"/>
         </xsl:attribute>
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
@@ -210,6 +222,10 @@
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+
   <xsl:if test="title">
     <xsl:apply-templates select="title" mode="list.title.mode"/>
   </xsl:if>
@@ -236,6 +252,10 @@
         <xsl:attribute name="provisional-distance-between-starts">
           <xsl:value-of select="$label-width"/>
         </xsl:attribute>
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
@@ -244,6 +264,10 @@
         <xsl:attribute name="provisional-distance-between-starts">
           <xsl:value-of select="$label-width"/>
         </xsl:attribute>
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
@@ -335,6 +359,10 @@
 <xsl:template match="variablelist" mode="vl.as.list">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
   <xsl:variable name="term-width">
@@ -435,6 +463,10 @@
                      provisional-distance-between-starts=
                         "{$distance-between-starts}"
                      provisional-label-separation="{$label-separation}">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:when>
@@ -444,6 +476,10 @@
                         "{$distance-between-starts}"
                      provisional-label-separation="{$label-separation}"
                      xsl:use-attribute-sets="list.block.spacing">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$content"/>
       </fo:list-block>
     </xsl:otherwise>
@@ -1054,6 +1090,10 @@
     <xsl:call-template name="pi.dbfo_list-presentation"/>
   </xsl:variable>
 
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -1061,21 +1101,37 @@
   <xsl:choose>
     <xsl:when test="$presentation = 'table'">
       <fo:block id="{$id}">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates select="." mode="seglist-table"/>
       </fo:block>
     </xsl:when>
     <xsl:when test="$presentation = 'list'">
       <fo:block id="{$id}">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates/>
       </fo:block>
     </xsl:when>
     <xsl:when test="$segmentedlist.as.table != 0">
       <fo:block id="{$id}">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
         <xsl:apply-templates select="." mode="seglist-table"/>
       </fo:block>
     </xsl:when>
     <xsl:otherwise>
       <fo:block id="{$id}">
+        <xsl:variable name="keep.together">
+          <xsl:call-template name="pi.dbfo_keep-together"/>
+        </xsl:variable>
+
         <xsl:apply-templates/>
       </fo:block>
     </xsl:otherwise>
