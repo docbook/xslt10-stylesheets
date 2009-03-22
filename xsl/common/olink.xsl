@@ -626,8 +626,10 @@
       <!-- Get the xref text for this record -->
       <xsl:variable name="xref.text" >
         <xsl:for-each select="$target.database" >
-          <xsl:copy-of 
+          <xsl:call-template name="insert.targetdb.data">
+            <xsl:with-param name="data"
                   select="key('targetptr-key', $olink.key)[1]/xreftext/node()" />
+          </xsl:call-template>
         </xsl:for-each>
       </xsl:variable>
 
@@ -853,7 +855,10 @@
             <xsl:with-param name="template" select="$template"/>
             <xsl:with-param name="title">
               <xsl:for-each select="$target.database" >
-                <xsl:value-of select="key('targetptr-key', $olink.key)[1]/ttl" />
+                <xsl:call-template name="insert.targetdb.data">
+                  <xsl:with-param name="data"
+                                  select="key('targetptr-key', $olink.key)/ttl" />
+                </xsl:call-template>
               </xsl:for-each>
             </xsl:with-param>
             <xsl:with-param name="label">
@@ -870,8 +875,10 @@
             </xsl:with-param>
             <xsl:with-param name="docname">
               <xsl:for-each select="$target.database" >
-                <xsl:value-of 
+                <xsl:call-template name="insert.targetdb.data">
+                  <xsl:with-param name="data"
                        select="key('targetdoc-key', $targetdoc)[1]/div[1]/ttl" />
+                </xsl:call-template>
               </xsl:for-each>
             </xsl:with-param>
           </xsl:call-template>
@@ -937,13 +944,18 @@
             <xsl:with-param name="template" select="$template"/>
             <xsl:with-param name="title">
               <xsl:for-each select="$target.database" >
-                <xsl:value-of select="key('targetptr-key', $olink.key)[1]/ttl" />
+                <xsl:call-template name="insert.targetdb.data">
+                  <xsl:with-param name="data"
+                                  select="key('targetptr-key', $olink.key)[1]/ttl" />
+                </xsl:call-template>
               </xsl:for-each>
             </xsl:with-param>
             <xsl:with-param name="label">
               <xsl:for-each select="$target.database" >
-                <xsl:value-of 
+                <xsl:call-template name="insert.targetdb.data">
+                  <xsl:with-param name="data"
                           select="key('targetptr-key', $olink.key)[1]/@number" />
+                </xsl:call-template>
               </xsl:for-each>
             </xsl:with-param>
           </xsl:call-template>
@@ -983,6 +995,12 @@
       </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="insert.targetdb.data">
+  <xsl:param name="data"/>
+  <!-- Customize this to massage data further -->
+  <xsl:copy-of select="$data"/>
 </xsl:template>
 
 <xsl:template match="*" mode="olink.docname.markup">
@@ -1136,8 +1154,10 @@
 
   <xsl:variable name="docname">
     <xsl:for-each select="$target.database" >
-      <xsl:value-of 
+      <xsl:call-template name="insert.targetdb.data">
+        <xsl:with-param name="data"
              select="key('targetdoc-key', $targetdoc)[1]/div[1]/ttl" />
+      </xsl:call-template>
     </xsl:for-each>
   </xsl:variable>
 
