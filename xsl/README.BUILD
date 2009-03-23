@@ -537,6 +537,12 @@ release.
    packages) to the Sourceforge "incoming" area and to the DocBook
    Project webspace, run "make install-ns":
 
+*****************************************************************
+* NOTE: The part of the build that installs releases at the
+* Sourceforge project site is currently working (due to SF
+* disabling non-interactive ssh access.
+*****************************************************************
+
      make install-ns
 
 -----------------------------------------------------------------
@@ -738,6 +744,12 @@ This section explains how to announce a release.
 -----------------------------------------------------------------
 Part 9: Prepare for Freshmeat update
 -----------------------------------------------------------------
+
+*****************************************************************
+* NOTE: The part of the build that updates Freshmeat is not
+* currently working, so you can ignore this section.
+*****************************************************************
+
 This section explains how to prepare for updating Freshmeat with
 information about a release.
 
@@ -757,6 +769,12 @@ your freshmeat password.
 -----------------------------------------------------------------
 Part 10: Update Freshmeat
 -----------------------------------------------------------------
+
+*****************************************************************
+* NOTE: The part of the build that updates Freshmeat is not
+* currently working, so you can ignore this section.
+*****************************************************************
+
 This section explains how to update Freshmeat with information
 about a release.
 
