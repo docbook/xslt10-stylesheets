@@ -539,8 +539,8 @@ release.
 
 *****************************************************************
 * NOTE: The part of the build that installs releases at the
-* Sourceforge project site is currently working (due to SF
-* disabling non-interactive ssh access.
+* Sourceforge project site is currently NOT working (due to SF
+* disabling non-interactive ssh access).
 *****************************************************************
 
      make install-ns
