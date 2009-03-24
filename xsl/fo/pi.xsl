@@ -899,6 +899,40 @@
         >Soft page breaks</link></para>
   </refsee>
 </doc:pi>
+
+<doc:pi name="dbfo_row-height" xmlns="">
+  <refpurpose>Specifies the height for a CALS table row</refpurpose>
+  <refdescription>
+    <para>Use the <tag class="xmlpi">dbfo row-height</tag> PI as a child of a
+      <tag>row</tag> to specify the height of the row.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfo row-height="<replaceable>height</replaceable>"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>row-height="<replaceable>height</replaceable>"</term>
+        <listitem>
+          <para>Specifies the label height (including units)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  <refsee role="tcg">
+    <para><link role="tcg"
+        xlink:href="RowHeight.html"
+        >Row height</link></para>
+  </refsee>
+</doc:pi>
+<xsl:template name="pi.dbfo_row-height">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbfo-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
+    <xsl:with-param name="attribute" select="'row-height'"/>
+  </xsl:call-template>
+</xsl:template> 
+
+
 <xsl:template name="pi.dbfo-need">
   <xsl:variable name="pi-height">
     <xsl:call-template name="dbfo-attribute">
