@@ -23,7 +23,7 @@
 
 <xsl:template name="block.object">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
@@ -57,12 +57,16 @@
 
   <xsl:variable name="p">
     <p>
-      <xsl:call-template name="dir"/>
-      <xsl:if test="$class != ''">
-        <xsl:apply-templates select="." mode="class.attribute">
-          <xsl:with-param name="class" select="$class"/>
-        </xsl:apply-templates>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$class != ''">
+          <xsl:call-template name="common.html.attributes">
+            <xsl:with-param name="class" select="$class"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="locale.html.attributes"/>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:copy-of select="$content"/>
     </p>
   </xsl:variable>

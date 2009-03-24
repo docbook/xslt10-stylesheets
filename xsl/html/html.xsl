@@ -277,7 +277,10 @@
 </xsl:template>
 
 <xsl:template name="generate.class.attribute">
-  <xsl:apply-templates select="." mode="class.attribute"/>
+  <xsl:param name="class" select="local-name(.)"/>
+  <xsl:apply-templates select="." mode="class.attribute">
+    <xsl:with-param name="class" select="$class"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="*" mode="class.attribute">
@@ -300,13 +303,30 @@
 
 <!-- Apply common attributes such as class, lang, dir -->
 <xsl:template name="common.html.attributes">
-  <xsl:apply-templates select="." mode="common.html.attributes"/>
+  <xsl:param name="class" select="local-name(.)"/>
+  <xsl:apply-templates select="." mode="common.html.attributes">
+    <xsl:with-param name="class" select="$class"/>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="*" mode="common.html.attributes">
+  <xsl:param name="class" select="local-name(.)"/>
   <xsl:call-template name="generate.html.lang"/>
   <xsl:call-template name="dir"/>
-  <xsl:call-template name="generate.class.attribute"/>
+  <xsl:apply-templates select="." mode="class.attribute">
+    <xsl:with-param name="class" select="$class"/>
+  </xsl:apply-templates>
+  <xsl:call-template name="generate.html.title"/>
+</xsl:template>
+
+<!-- Apply common attributes not including class -->
+<xsl:template name="locale.html.attributes">
+  <xsl:apply-templates select="." mode="locale.html.attributes"/>
+</xsl:template>
+
+<xsl:template match="*" mode="locale.html.attributes">
+  <xsl:call-template name="generate.html.lang"/>
+  <xsl:call-template name="dir"/>
   <xsl:call-template name="generate.html.title"/>
 </xsl:template>
 
