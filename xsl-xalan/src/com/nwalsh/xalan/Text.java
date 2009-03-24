@@ -141,7 +141,7 @@ public class Text {
           nlen++;
         }
 
-	text += String.valueOf(nchars, 0, nlen);
+	text += String.valueOf(nchars, 0, nlen-1);
 
         // handle look aheaded character
         if (carry != -1) text += String.valueOf((char)carry);
