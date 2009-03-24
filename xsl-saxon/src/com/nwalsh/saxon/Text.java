@@ -186,7 +186,7 @@ public class Text extends StyleElement {
           nchars[nlen] = chars[i];
           nlen++;
         }
-        out.writeContent(nchars, 0, nlen);
+        out.writeContent(nchars, 0, nlen-1);
         // handle look aheaded character
         if (carry != -1) out.writeContent(String.valueOf((char)carry));
         carry = -1;
