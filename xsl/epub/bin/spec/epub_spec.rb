@@ -217,7 +217,7 @@ describe DocBook::Epub do
       success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
       raise "Could not unzip #{@css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
-      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<item [^>]*#{@css_file_base}/}
+      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<(opf:item|item) [^>]*#{@css_file_base}/}
       opf_links.should_not be_empty
     rescue => e
       raise e
@@ -233,7 +233,7 @@ describe DocBook::Epub do
       success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
       raise "Could not unzip #{@css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
-      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<item [^>]*#{@embedded_font_file_base}/}
+      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<(opf:item|item) [^>]*#{@embedded_font_file_base}/}
       opf_links.should_not be_empty
     rescue => e
       raise e

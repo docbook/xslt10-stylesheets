@@ -1,14 +1,21 @@
 <?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:ng="http://docbook.org/docbook-ng"
-  xmlns:dc="http://purl.org/dc/elements/1.1/"  
+<xsl:stylesheet 
   xmlns:db="http://docbook.org/ns/docbook"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"  
   xmlns:exsl="http://exslt.org/common" 
+  xmlns:h="http://www.w3.org/1999/xhtml"
+  xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/"
+  xmlns:ng="http://docbook.org/docbook-ng"
+  xmlns:odfc="urn:oasis:names:tc:opendocument:xmlns:container"
+  xmlns:opf="http://www.idpf.org/2007/opf"
   xmlns:stext="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.TextFactory"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
-  version="1.0"
+
   extension-element-prefixes="stext xtext"
-  exclude-result-prefixes="exsl db ng dc stext xtext">
+  exclude-result-prefixes="exsl db dc h ncx ng opf odfc stext xtext"
+
+  version="1.0">
 
   <xsl:import href="../xhtml-1_1/docbook.xsl" />
   <xsl:import href="../xhtml-1_1/chunk-common.xsl" />
@@ -217,12 +224,11 @@
       <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="content">
-        <xsl:element name="package">
-          <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+        <xsl:element name="opf:package">
           <xsl:attribute name="version">2.0</xsl:attribute>
           <xsl:attribute name="unique-identifier"> <xsl:value-of select="$package-id"/> </xsl:attribute>
 
-          <xsl:element name="metadata">
+          <xsl:element name="opf:metadata">
             <xsl:element name="dc:identifier">
               <xsl:attribute name="id"><xsl:value-of select="$package-id"/></xsl:attribute>
               <xsl:choose>
@@ -322,7 +328,7 @@
             </xsl:element>
 
             <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-              <xsl:element name="meta">
+              <xsl:element name="opf:meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
                   <xsl:value-of select="$epub.cover.image.id"/>
@@ -354,13 +360,10 @@
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
 
       <xsl:with-param name="content">
-        <xsl:element name="container">
-          <xsl:attribute name="xmlns">urn:oasis:names:tc:opendocument:xmlns:container</xsl:attribute>
+        <xsl:element name="odfc:container">
           <xsl:attribute name="version">1.0</xsl:attribute>
-          <xsl:element name="rootfiles">
-            <xsl:attribute name="xmlns">urn:oasis:names:tc:opendocument:xmlns:container</xsl:attribute>
-            <xsl:element name="rootfile">
-              <xsl:attribute name="xmlns">urn:oasis:names:tc:opendocument:xmlns:container</xsl:attribute>
+          <xsl:element name="odfc:rootfiles">
+            <xsl:element name="odfc:rootfile">
               <xsl:attribute name="full-path">
                 <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
                 <xsl:value-of select="'OEBPS/content.opf'"/>
@@ -390,9 +393,8 @@
       <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="content">
-        <xsl:element name="ncx">
+        <xsl:element name="ncx:ncx">
           <xsl:attribute name="version">2005-1</xsl:attribute>
-          <xsl:attribute name="xmlns">http://www.daisy.org/z3986/2005/ncx/</xsl:attribute>
 
             <!-- Via Martin Goerner: On covers: the IDPF2.0 standard unfortunately does not have a provision for
             covers. We had to add one and we did so in conjunction with the IDPF and
@@ -403,9 +405,9 @@
             if the HTML cover item is marked linear="no" AND there is a guide item of
             type="cover" pointing to it AND there is a logical cover specified in a
             <meta name="cover"> tag, THEN, the HTML cover is discarded. -->
-          <xsl:element name="head">
+          <xsl:element name="ncx:head">
             <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-              <xsl:element name="meta">
+              <xsl:element name="ncx:meta">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
                   <xsl:value-of select="$epub.cover.id"/>
@@ -413,7 +415,7 @@
               </xsl:element>
             </xsl:if>
             <xsl:if test="/*/*[contains(name(.), 'info')]/isbn"> 
-              <xsl:element name="meta">
+              <xsl:element name="ncx:meta">
                 <xsl:attribute name="name">dtb:uid</xsl:attribute>
                 <xsl:attribute name="content">
                   <xsl:text>isbn:</xsl:text>
@@ -424,15 +426,15 @@
             <!-- TODO: be nice to have a name="cover" here for .mobi-->
 
             <!-- TODO What are these hardcoded values? -->
-            <xsl:element name="meta">
+            <xsl:element name="ncx:meta">
               <xsl:attribute name="name">dtb:depth</xsl:attribute>
               <xsl:attribute name="content">-1</xsl:attribute>
             </xsl:element>
-            <xsl:element name="meta">
+            <xsl:element name="ncx:meta">
               <xsl:attribute name="name">dtb:totalPageCount</xsl:attribute>
               <xsl:attribute name="content">0</xsl:attribute>
             </xsl:element>
-            <xsl:element name="meta">
+            <xsl:element name="ncx:meta">
               <xsl:attribute name="name">dtb:maxPageNumber</xsl:attribute>
               <xsl:attribute name="content">0</xsl:attribute>
             </xsl:element>
@@ -455,10 +457,10 @@
                   <xsl:with-param name="object" select="key('id',$rootid)" />
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:element name="docTitle">
-                <xsl:element name="text"><xsl:value-of select="normalize-space($title)" />  </xsl:element>
+              <xsl:element name="ncx:docTitle">
+                <xsl:element name="ncx:text"><xsl:value-of select="normalize-space($title)" />  </xsl:element>
               </xsl:element>
-              <xsl:element name="navMap">
+              <xsl:element name="ncx:navMap">
                 <xsl:apply-templates select="key('id',$rootid)/*" mode="ncx" />
               </xsl:element>
             </xsl:when>
@@ -479,12 +481,12 @@
                   <xsl:with-param name="object" select="/" />
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:element name="docTitle">
-                <xsl:element name="text">
+              <xsl:element name="ncx:docTitle">
+                <xsl:element name="ncx:text">
                   <xsl:value-of select="normalize-space($title)" />
                 </xsl:element>
               </xsl:element>
-              <xsl:element name="navMap">
+              <xsl:element name="ncx:navMap">
                 <xsl:choose>
                   <xsl:when test="$root.is.a.chunk != '0'">
                     <xsl:apply-templates select="/*" mode="ncx" />
@@ -570,8 +572,7 @@
                                   preceding::index)"/>
     </xsl:variable>
 
-    <xsl:element name="navPoint">
-      <xsl:attribute name="xmlns">http://www.daisy.org/z3986/2005/ncx/</xsl:attribute>
+    <xsl:element name="ncx:navPoint">
       <xsl:attribute name="id">
         <xsl:value-of select="$id"/>
       </xsl:attribute>
@@ -592,10 +593,10 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
-      <xsl:element name="navLabel">
-        <xsl:element name="text"><xsl:value-of select="normalize-space($title)"/> </xsl:element>
+      <xsl:element name="ncx:navLabel">
+        <xsl:element name="ncx:text"><xsl:value-of select="normalize-space($title)"/> </xsl:element>
       </xsl:element>
-      <xsl:element name="content">
+      <xsl:element name="ncx:content">
         <xsl:attribute name="src">
           <xsl:value-of select="$href"/>
         </xsl:attribute>
@@ -657,10 +658,9 @@
   <xsl:template name="opf.guide">
     <xsl:if test="contains($toc.params, 'toc') or 
                   /*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-      <xsl:element name="guide">
-        <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+      <xsl:element name="opf:guide">
         <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-          <xsl:element name="reference">
+          <xsl:element name="opf:reference">
             <xsl:attribute name="href">
               <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
               <xsl:value-of select="'cover.html'"/>
@@ -671,7 +671,7 @@
         </xsl:if>  
 
         <xsl:if test="contains($toc.params, 'toc')">
-          <xsl:element name="reference">
+          <xsl:element name="opf:reference">
             <xsl:attribute name="href">
               <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
               <xsl:call-template name="toc-href">
@@ -688,14 +688,13 @@
 
   <xsl:template name="opf.spine">
 
-    <xsl:element name="spine">
-      <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+    <xsl:element name="opf:spine">
       <xsl:attribute name="toc">
         <xsl:value-of select="$epub.ncx.toc.id"/>
       </xsl:attribute>
 
       <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-        <xsl:element name="itemref">
+        <xsl:element name="opf:itemref">
           <xsl:attribute name="idref">
             <xsl:value-of select="$epub.cover.id"/>
           </xsl:attribute>
@@ -712,7 +711,7 @@
 
 
       <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:element name="itemref">
+        <xsl:element name="opf:itemref">
           <xsl:attribute name="idref"> <xsl:value-of select="$epub.html.toc.id"/> </xsl:attribute>
           <xsl:attribute name="linear">yes</xsl:attribute>
         </xsl:element>
@@ -739,8 +738,7 @@
     </xsl:variable>
 
     <xsl:if test="$is.chunk != 0">
-      <xsl:element name="itemref">
-        <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+      <xsl:element name="opf:itemref">
         <xsl:attribute name="idref">
           <xsl:value-of select="generate-id(.)"/>
         </xsl:attribute>
@@ -750,17 +748,16 @@
   </xsl:template>
 
   <xsl:template name="opf.manifest">
-    <xsl:element name="manifest">
-      <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+    <xsl:element name="opf:manifest">
       <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
-      <xsl:element name="item">
+      <xsl:element name="opf:item">
         <xsl:attribute name="id"> <xsl:value-of select="$epub.ncx.toc.id"/> </xsl:attribute>
         <xsl:attribute name="media-type">application/x-dtbncx+xml</xsl:attribute>
         <xsl:attribute name="href"><xsl:value-of select="$epub.ncx.filename"/> </xsl:attribute>
       </xsl:element>
 
       <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:element name="item">
+        <xsl:element name="opf:item">
           <xsl:attribute name="id"> <xsl:value-of select="$epub.html.toc.id"/> </xsl:attribute>
           <xsl:attribute name="media-type">application/xhtml+xml</xsl:attribute>
           <xsl:attribute name="href">
@@ -772,8 +769,7 @@
       </xsl:if>  
 
       <xsl:if test="$html.stylesheet != ''">
-        <xsl:element name="item">
-          <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+        <xsl:element name="opf:item">
           <xsl:attribute name="media-type">text/css</xsl:attribute>
           <xsl:attribute name="id">css</xsl:attribute>
           <xsl:attribute name="href"><xsl:value-of select="$html.stylesheet"/></xsl:attribute>
@@ -781,8 +777,7 @@
       </xsl:if>
 
       <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-        <xsl:element name="item">
-          <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+        <xsl:element name="opf:item">
           <xsl:attribute name="id"> <xsl:value-of select="$epub.cover.id"/> </xsl:attribute>
           <xsl:attribute name="href"> 
             <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
@@ -793,8 +788,7 @@
       </xsl:if>  
 
      <xsl:if test="$epub.embedded.font != ''">
-        <xsl:element name="item">
-          <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+        <xsl:element name="opf:item">
           <xsl:attribute name="id">epub.embedded.font</xsl:attribute>
           <xsl:attribute name="href"><xsl:value-of select="$epub.embedded.font"/></xsl:attribute>
           <xsl:choose>
@@ -866,8 +860,7 @@
 
     <xsl:variable name="filename" select="concat($callout.graphics.path, $conum, $callout.graphics.extension)"/>
 
-    <xsl:element name="item">
-      <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+    <xsl:element name="opf:item">
       <xsl:attribute name="id"> <xsl:value-of select="concat(generate-id(.), 'callout', $conum)"/> </xsl:attribute>
       <xsl:attribute name="href"> <xsl:value-of select="$filename"/> </xsl:attribute>
       <xsl:attribute name="media-type">
@@ -975,8 +968,7 @@
       <!-- only do this if we're the first file to match -->
       <!-- TODO: Why can't this be simple equality?? (I couldn't get it to work) -->
       <xsl:if test="generate-id(.) = generate-id(key('image-filerefs', $fr)[1])">
-        <xsl:element name="item">
-          <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+        <xsl:element name="opf:item">
           <xsl:attribute name="id"> 
             <xsl:choose>
               <xsl:when test="(ancestor::mediaobject[@role='cover'] or ancestor::cover) and (../@role='front-large' or count(ancestor::mediaobject/descendant::imageobject) = 1)">
@@ -1024,8 +1016,7 @@
     <!-- only do this if we're the first file to match -->
     <!-- TODO: Why can't this be simple equality?? (I couldn't get it to work) -->
     <xsl:if test="generate-id(.) = generate-id(key('image-filerefs', $fr)[1])">
-      <xsl:element name="item">
-        <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+      <xsl:element name="opf:item">
         <xsl:attribute name="id"> 
           <xsl:choose>
             <xsl:when test="(ancestor::mediaobject[@role='cover'] or ancestor::cover) and (../@role='front-large' or count(ancestor::mediaobject/descendant::imageobject) = 1)">
@@ -1092,8 +1083,7 @@
     </xsl:variable>
 
     <xsl:if test="$is.chunk != 0">
-      <xsl:element name="item">
-        <xsl:attribute name="xmlns">http://www.idpf.org/2007/opf</xsl:attribute>
+      <xsl:element name="opf:item">
         <xsl:attribute name="id"> <xsl:value-of select="$id"/> </xsl:attribute>
         <xsl:attribute name="href"> <xsl:value-of select="$href"/> </xsl:attribute>
         <xsl:attribute name="media-type">application/xhtml+xml</xsl:attribute>
@@ -1439,18 +1429,17 @@
       <xsl:with-param name="indent" select="'yes'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
       <xsl:with-param name="content">
-        <xsl:element name="html">
-          <xsl:attribute name="xmlns">http://www.w3.org/1999/xhtml</xsl:attribute>
-          <xsl:element name="head">
-            <xsl:element name="title">Cover</xsl:element>
-            <xsl:element name="style">
+        <xsl:element name="h:html">
+          <xsl:element name="h:head">
+            <xsl:element name="h:title">Cover</xsl:element>
+            <xsl:element name="h:style">
               <xsl:attribute name="type">text/css</xsl:attribute>
               <!-- Help the cover image scale nicely in the CSS then apply a max-width to look better in Adobe Digital Editions -->
               <xsl:text> img { max-width: 100%; }</xsl:text>
             </xsl:element>
           </xsl:element>
-          <xsl:element name="body">
-            <xsl:element name="div">
+          <xsl:element name="h:body">
+            <xsl:element name="h:div">
               <xsl:attribute name="id">
                 <xsl:value-of select="$epub.cover.image.id"/>
               </xsl:attribute>
