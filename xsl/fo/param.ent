@@ -338,3 +338,4 @@
 <!ENTITY glossdef.list.properties SYSTEM "../params/glossdef.list.properties.xml">
 <!ENTITY glossdef.block.properties SYSTEM "../params/glossdef.block.properties.xml">
 <!ENTITY glossentry.list.item.properties SYSTEM "../params/glossentry.list.item.properties.xml">
+<!ENTITY bookmarks.collapse SYSTEM "../params/bookmarks.collapse.xml">

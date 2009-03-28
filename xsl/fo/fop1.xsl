@@ -15,6 +15,13 @@
 
 <!-- ==================================================================== -->
 
+<xsl:variable name="bookmarks.state">
+  <xsl:choose>
+    <xsl:when test="$bookmarks.collapse != 0">hide</xsl:when>
+    <xsl:otherwise>show</xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
 <xsl:template match="*" mode="fop1.outline">
   <xsl:apply-templates select="*" mode="fop1.outline"/>
 </xsl:template>
@@ -40,6 +47,9 @@
     <xsl:when test="self::index and $generate.index = 0"/>	
     <xsl:when test="parent::*">
       <fo:bookmark internal-destination="{$id}">
+	<xsl:attribute name="starting-state">
+	  <xsl:value-of select="$bookmarks.state"/>
+	</xsl:attribute>
         <fo:bookmark-title>
           <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
         </fo:bookmark-title>
@@ -48,6 +58,9 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:bookmark internal-destination="{$id}">
+	<xsl:attribute name="starting-state">
+	  <xsl:value-of select="$bookmarks.state"/>
+	</xsl:attribute>
         <fo:bookmark-title>
           <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
         </fo:bookmark-title>
