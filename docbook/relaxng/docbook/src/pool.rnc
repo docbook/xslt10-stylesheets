@@ -3787,6 +3787,22 @@ div {
       "technicaleditor"
     | ## A translator
       "translator"
+    | # An indexer
+      "indexer"
+    | # A proof-reader
+      "proofreader"
+    | # A cover designer
+      "coverdesigner"
+    | # An interior designer
+      "interiordesigner"
+    | # An illustrator
+      "illustrator"
+    | # A reviewer
+      "reviewer"
+    | # A typesetter
+      "typesetter"
+    | # A converter (a persons responsible for conversion, not an application)
+      "conversion"
 
    db.othercredit.class-enum.attribute =
       [
