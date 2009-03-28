@@ -34,6 +34,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 
+start |= db.synopsis.blocks | db.funcsynopsisinfo | db.classsynopsisinfo
+
 db.domain.inlines |= db.programming.inlines
 
 db.nopara.blocks |= db.synopsis.blocks

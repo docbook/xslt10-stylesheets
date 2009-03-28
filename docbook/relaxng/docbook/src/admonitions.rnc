@@ -33,6 +33,8 @@ namespace rng  = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 
+start |= db.admonition.blocks 
+
 db.nopara.blocks |= db.admonition.blocks
 
 # ======================================================================

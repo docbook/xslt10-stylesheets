@@ -33,6 +33,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
+start |= db.calloutlist | db.programlistingco | db.screenco | db.imageobjectco
+
 db.publishing.inlines |= db.coref
 db.list.blocks |= db.calloutlist
 db.verbatim.blocks |= db.programlistingco | db.screenco

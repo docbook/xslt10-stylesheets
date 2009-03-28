@@ -39,6 +39,35 @@ default namespace = "http://docbook.org/ns/docbook"
 
 # ======================================================================
 
+# The start tokens are somewhat arbitrary. To resolve RFE #1899655, the
+# TC concluded that anything with an info element was a reasonable start
+# element. That's mostly what has been done, with a few extra elements
+# where the patterns seemed to warrant it. If you need more, just ask.
+
+start |= db.abstract
+ | db.mediaobject.content
+ | db.audiodata 
+ | db.imagedata
+ | db.textdata
+ | db.videodata
+ | db.caption
+ | db.publishing.blocks
+ | db.formal.blocks
+ | db.informal.blocks
+ | db.formalpara
+ | db.inlinemediaobject
+ | db.list.blocks
+ | db.legalnotice
+ | db.verbatim.blocks
+ | db.graphic.blocks
+ | db.personblurb
+ | db.revhistory
+ | db.simpara
+ | db.step
+ | db.stepalternatives
+
+# ======================================================================
+
 [
    db:refname [ "*:*" ]
    db:refpurpose [ "Any element from almost any namespace" ]

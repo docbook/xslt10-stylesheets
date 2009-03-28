@@ -33,6 +33,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
+start |= db.annotation
+
 db.ubiq.inlines |= db.annotation
 db.all.blocks |= db.annotation
 db.info.elements |= db.annotation

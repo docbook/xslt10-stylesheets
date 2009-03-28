@@ -32,6 +32,8 @@ namespace s = "http://www.ascc.net/xml/schematron"
 namespace db = "http://docbook.org/ns/docbook"
 default namespace = "http://docbook.org/ns/docbook"
 
+start |= db.task | db.taskprerequisites | db.taskrelated | db.tasksummary
+
 db.technical.blocks |= db.task
 
 db.task.info = db._info.title.req
