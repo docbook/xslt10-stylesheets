@@ -2974,11 +2974,9 @@ div {
       element personname {
          db.personname.attlist,
          (db._text
-          | (db.honorific
-           | db.firstname
-           | db.surname
-           | db.lineage
-           | db.othername)+)
+          | (db.honorific | db.firstname | db.surname | db.lineage | db.othername)+
+          | (db.honorific | db.givenname | db.surname | db.lineage | db.othername)+
+         )
       }
 }
 
@@ -3886,6 +3884,28 @@ div {
    db.firstname =
       element firstname {
          db.firstname.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "givenname" ]
+   db:refpurpose [ "The given name of a person" ]
+]
+div {
+
+   db.givenname.role.attribute = attribute role { text }
+
+   db.givenname.attlist =
+      db.givenname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.givenname =
+      element givenname {
+         db.givenname.attlist,
          db._text
       }
 }
