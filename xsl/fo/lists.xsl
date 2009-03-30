@@ -1128,9 +1128,10 @@
     </xsl:when>
     <xsl:otherwise>
       <fo:block id="{$id}">
-        <xsl:variable name="keep.together">
-          <xsl:call-template name="pi.dbfo_keep-together"/>
-        </xsl:variable>
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                          select="$keep.together"/></xsl:attribute>
+        </xsl:if>
 
         <xsl:apply-templates/>
       </fo:block>
