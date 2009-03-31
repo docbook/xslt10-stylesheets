@@ -343,11 +343,11 @@ but the DocBook stylesheets explicitly make it
 </para></listitem>
 <listitem><para>The sum of the page-master margin-left and the
 region-body margin-left. In DocBook, the region-body margin-left is
-zero by default, so this is simply the page-master region-left.
+zero by default, so this is simply the page-master margin-left.
 </para></listitem>
 <listitem><para>The sum of the page-master margin-right and the
 region-body margin-right. In DocBook, the region-body margin-right is
-zero by default, so this is simply the page-master region-left.
+zero by default, so this is simply the page-master margin-right.
 </para></listitem>
 </orderedlist>
 
