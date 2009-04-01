@@ -156,8 +156,18 @@
 </xsl:template>
 
 <xsl:template match="td" mode="htmlTable">
-  <xsl:variable name="bgcolor">
+  <xsl:variable name="bgcolor.pi">
     <xsl:call-template name="pi.dbfo_bgcolor"/>
+  </xsl:variable>
+  <xsl:variable name="bgcolor">
+    <xsl:choose>
+      <xsl:when test="$bgcolor.pi != ''">
+        <xsl:value-of select="$bgcolor.pi"/>
+      </xsl:when>
+      <xsl:when test="string-length(@bgcolor) != 0">
+        <xsl:value-of select="@bgcolor"/>
+      </xsl:when>
+    </xsl:choose>
   </xsl:variable>
   <fo:table-cell xsl:use-attribute-sets="table.cell.padding">
     <xsl:call-template name="table.cell.properties">
@@ -165,6 +175,19 @@
       <xsl:with-param name="rowsep.inherit" select="0"/>
       <xsl:with-param name="colsep.inherit" select="0"/>
     </xsl:call-template>
+
+    <xsl:if test="@colspan &gt; 1">
+      <xsl:attribute name="number-columns-spanned">
+        <xsl:value-of select="@colspan"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="@rowspan &gt; 1">
+      <xsl:attribute name="number-rows-spanned">
+        <xsl:value-of select="@rowspan"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <fo:block>
       <xsl:call-template name="table.cell.block.properties"/>
       <xsl:apply-templates/>
@@ -180,15 +203,39 @@
 </xsl:template>
 
 <xsl:template match="th" mode="htmlTable">
-  <xsl:variable name="bgcolor">
+  <xsl:variable name="bgcolor.pi">
     <xsl:call-template name="pi.dbfo_bgcolor"/>
   </xsl:variable>
+  <xsl:variable name="bgcolor">
+    <xsl:choose>
+      <xsl:when test="$bgcolor.pi != ''">
+        <xsl:value-of select="$bgcolor.pi"/>
+      </xsl:when>
+      <xsl:when test="string-length(@bgcolor) != 0">
+        <xsl:value-of select="@bgcolor"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
   <fo:table-cell xsl:use-attribute-sets="th.style table.cell.padding">
+
     <xsl:call-template name="table.cell.properties">
       <xsl:with-param name="bgcolor.pi" select="$bgcolor"/>
       <xsl:with-param name="rowsep.inherit" select="0"/>
       <xsl:with-param name="colsep.inherit" select="0"/>
     </xsl:call-template>
+
+    <xsl:if test="@colspan &gt; 1">
+      <xsl:attribute name="number-columns-spanned">
+        <xsl:value-of select="@colspan"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="@rowspan &gt; 1">
+      <xsl:attribute name="number-rows-spanned">
+        <xsl:value-of select="@rowspan"/>
+      </xsl:attribute>
+    </xsl:if>
+
     <fo:block>
       <xsl:call-template name="table.cell.block.properties"/>
       <xsl:apply-templates/>
