@@ -1146,6 +1146,11 @@
     </xsl:when>
     <xsl:otherwise>
       <!-- HTML table -->
+      <xsl:if test="$bgcolor.pi != ''">
+        <xsl:attribute name="background-color">
+          <xsl:value-of select="$bgcolor.pi"/>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:variable name="border" 
                     select="(ancestor::table |
                              ancestor::informaltable)[last()]/@border"/>
