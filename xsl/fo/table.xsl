@@ -148,11 +148,11 @@
     <xsl:when test="self::table">
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="table.properties">
-	<xsl:if test="$keep.together != ''">
-	  <xsl:attribute name="keep-together.within-column">
-	    <xsl:value-of select="$keep.together"/>
-	  </xsl:attribute>
-	</xsl:if>
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column">
+            <xsl:value-of select="$keep.together"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:if test="$placement = 'before'">
           <xsl:call-template name="formal.object.heading">
             <xsl:with-param name="placement" select="$placement"/>
@@ -226,11 +226,11 @@
   <xsl:variable name="rowsep">
     <xsl:choose>
       <!-- If this is the last row, rowsep never applies (except when 
-	   the ancestor tgroup has a following sibling tgroup) -->
+           the ancestor tgroup has a following sibling tgroup) -->
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
                           or ancestor-or-self::tbody/preceding-sibling::tfoot)
-			  and not(ancestor::tgroup/following-sibling::tgroup)">
+                          and not(ancestor::tgroup/following-sibling::tgroup)">
         <xsl:value-of select="0"/>
       </xsl:when>
       <xsl:otherwise>
@@ -285,7 +285,7 @@
 
 <!-- ==================================================================== -->
 <xsl:template name="table.frame">
-  <xsl:variable name="frame">
+  <xsl:param name="frame">
     <xsl:choose>
       <xsl:when test="../@frame">
         <xsl:value-of select="../@frame"/>
@@ -295,7 +295,8 @@
       </xsl:when>
       <xsl:otherwise>all</xsl:otherwise>
     </xsl:choose>
-  </xsl:variable>
+  </xsl:param>
+
 
   <xsl:choose>
     <xsl:when test="$frame='all'">
@@ -367,6 +368,34 @@
       </xsl:attribute>
       <xsl:attribute name="border-start-color">
         <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-end-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='lhs'">
+      <xsl:attribute name="border-start-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">none</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+      <xsl:attribute name="border-start-width">
+        <xsl:value-of select="$table.frame.border.thickness"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-start-color">
+        <xsl:value-of select="$table.frame.border.color"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$frame='rhs'">
+      <xsl:attribute name="border-end-style">
+        <xsl:value-of select="$table.frame.border.style"/>
+      </xsl:attribute>
+      <xsl:attribute name="border-end-style">none</xsl:attribute>
+      <xsl:attribute name="border-top-style">none</xsl:attribute>
+      <xsl:attribute name="border-bottom-style">none</xsl:attribute>
+      <xsl:attribute name="border-end-width">
+        <xsl:value-of select="$table.frame.border.thickness"/>
       </xsl:attribute>
       <xsl:attribute name="border-end-color">
         <xsl:value-of select="$table.frame.border.color"/>
@@ -819,11 +848,11 @@
   <xsl:variable name="rowsep">
     <xsl:choose>
       <!-- If this is the last row, rowsep never applies (except when 
-	   the ancestor tgroup has a following sibling tgroup) -->
+           the ancestor tgroup has a following sibling tgroup) -->
       <xsl:when test="not(ancestor-or-self::row[1]/following-sibling::row
                           or ancestor-or-self::thead/following-sibling::tbody
                           or ancestor-or-self::tbody/preceding-sibling::tfoot)
-			  and not(ancestor::tgroup/following-sibling::tgroup)">
+                          and not(ancestor::tgroup/following-sibling::tgroup)">
         <xsl:value-of select="0"/>
       </xsl:when>
       <!-- Check for morerows too -->
@@ -831,7 +860,7 @@
                        following-sibling::row) = @morerows )
                       and not (ancestor-or-self::thead/following-sibling::tbody
                        or ancestor-or-self::tbody/preceding-sibling::tfoot)
-		       and not(ancestor::tgroup/following-sibling::tgroup)">
+                       and not(ancestor::tgroup/following-sibling::tgroup)">
         <xsl:value-of select="0"/>
       </xsl:when>
 
@@ -1151,18 +1180,33 @@
           <xsl:value-of select="$bgcolor.pi"/>
         </xsl:attribute>
       </xsl:if>
-      <xsl:variable name="border" 
-                    select="(ancestor::table |
-                             ancestor::informaltable)[last()]/@border"/>
-      <xsl:if test="$border != '' and $border != 0">
-        <xsl:attribute name="border">
-          <xsl:value-of select="$table.cell.border.thickness"/>
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="$table.cell.border.style"/>
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="$table.cell.border.color"/>
+
+      <xsl:if test="$align.inherit != ''">
+        <xsl:attribute name="text-align">
+          <xsl:value-of select="$align.inherit"/>
         </xsl:attribute>
       </xsl:if>
+
+      <xsl:if test="$valign.inherit != ''">
+        <xsl:attribute name="display-align">
+          <xsl:choose>
+            <xsl:when test="$valign.inherit='top'">before</xsl:when>
+            <xsl:when test="$valign.inherit='middle'">center</xsl:when>
+            <xsl:when test="$valign.inherit='bottom'">after</xsl:when>
+            <xsl:otherwise>
+              <xsl:message>
+                <xsl:text>Unexpected valign value: </xsl:text>
+                <xsl:value-of select="$valign.inherit"/>
+                <xsl:text>, center used.</xsl:text>
+              </xsl:message>
+              <xsl:text>center</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </xsl:if>
+
+      <xsl:call-template name="html.table.cell.rules"/>
+
     </xsl:otherwise>
   </xsl:choose>
 

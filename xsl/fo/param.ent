@@ -48,6 +48,7 @@
 <!ENTITY current.docid SYSTEM "../params/current.docid.xml">
 <!ENTITY default.table.width SYSTEM "../params/default.table.width.xml">
 <!ENTITY default.table.frame SYSTEM "../params/default.table.frame.xml">
+<!ENTITY default.table.rules SYSTEM "../params/default.table.rules.xml">
 <!ENTITY default.units SYSTEM "../params/default.units.xml">
 <!ENTITY dingbat.font.family SYSTEM "../params/dingbat.font.family.xml">
 <!ENTITY double.sided SYSTEM "../params/double.sided.xml">
