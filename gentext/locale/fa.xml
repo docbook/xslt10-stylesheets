@@ -602,8 +602,9 @@
     </template>
   </context>
   <context name="glossary">
-    <template name="see"> %t <GlossSee/></template>
-    <template name="seealso">%t <GlossSeeAlso/></template>
+    <template name="see"> %t <GlossSee/>.</template>
+    <template name="seealso">%t <GlossSeeAlso/>.</template>
+    <template name="seealso-separator">, </template>
   </context>
   <context name="msgset">
     <template name="MsgAud">

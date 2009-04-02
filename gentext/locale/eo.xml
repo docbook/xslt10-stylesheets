@@ -532,8 +532,9 @@
 </context>
 
 <context name="glossary">
-<template name="see"><GlossSee/> %t</template>
-<template name="seealso"><GlossSeeAlso/> %t</template>
+<template name="see"><GlossSee/> %t.</template>
+<template name="seealso"><GlossSeeAlso/> %t.</template>
+<template name="seealso-separator">, </template>
 </context>
 
 <context name="msgset">
