@@ -285,7 +285,6 @@ GlossEntry ::=
         <xsl:with-param name="template" select="$template"/>
         <xsl:with-param name="title" select="$title"/>
       </xsl:call-template>
-      <xsl:text>.</xsl:text>
     </p>
   </dd>
 </xsl:template>
@@ -351,11 +350,12 @@ GlossEntry ::=
   </xsl:choose>
 
   <xsl:choose>
-    <xsl:when test="position() = last()">
-      <xsl:text>.</xsl:text>
-    </xsl:when>
+    <xsl:when test="position() = last()"/>
     <xsl:otherwise>
-      <xsl:text>, </xsl:text>
+		<xsl:call-template name="gentext.template">
+		  <xsl:with-param name="context" select="'glossary'"/>
+		  <xsl:with-param name="name" select="'seealso-separator'"/>
+		</xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
