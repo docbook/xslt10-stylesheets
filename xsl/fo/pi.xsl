@@ -913,7 +913,7 @@
     <variablelist>
       <varlistentry><term>row-height="<replaceable>height</replaceable>"</term>
         <listitem>
-          <para>Specifies the label height (including units)</para>
+          <para>Specifies the row height (including units)</para>
         </listitem>
       </varlistentry>
     </variablelist>
