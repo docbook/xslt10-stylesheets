@@ -743,7 +743,7 @@
       <xsl:when test="$titletype != ''">
         <xsl:value-of select="$xref.label-title.separator"/>
       </xsl:when>
-      <xsl:when test="$pagetype != ''">
+      <xsl:when test="$pagetype != '' and $pagetype != 'nopage'">
         <xsl:value-of select="$xref.label-page.separator"/>
       </xsl:when>
     </xsl:choose>
