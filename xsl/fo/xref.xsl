@@ -88,6 +88,7 @@
         </xsl:when>
   
         <xsl:when test="$target">
+				<xsl:variable name="label">
           <xsl:if test="not(parent::citation)">
             <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
           </xsl:if>
@@ -100,6 +101,8 @@
           <xsl:if test="not(parent::citation)">
             <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
           </xsl:if>
+					</xsl:variable>
+					<xsl:value-of select="normalize-space($label)"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:message>
