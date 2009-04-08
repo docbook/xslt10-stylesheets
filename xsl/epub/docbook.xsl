@@ -614,6 +614,11 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:element name="dc:creator">
+      <xsl:attribute name="opf:file-as">
+        <xsl:call-template name="person.name.last-first">
+          <xsl:with-param name="node" select="."/>
+        </xsl:call-template>
+      </xsl:attribute>
       <xsl:value-of select="normalize-space(string($n))"/>
     </xsl:element>
   </xsl:template>
