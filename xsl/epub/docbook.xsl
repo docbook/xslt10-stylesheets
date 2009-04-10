@@ -623,6 +623,27 @@
     </xsl:element>
   </xsl:template>
 
+  <!-- Space separate the compontents of the abstract (dropping the inline markup, sadly) -->
+  <xsl:template match="abstract" mode="opf.metadata">
+    <xsl:element name="dc:description">
+      <xsl:for-each select="formalpara|para|simpara|title">
+        <xsl:choose>
+          <xsl:when test="self::formalpara">
+            <xsl:value-of select="normalize-space(string(title))"/>
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="normalize-space(string(para))"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="normalize-space(string(.))"/>
+          </xsl:otherwise>  
+        </xsl:choose>
+        <xsl:if test="not(position() = last())">
+          <xsl:text> </xsl:text>
+        </xsl:if>
+      </xsl:for-each>  
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="publisher" mode="opf.metadata">
     <xsl:apply-templates select="publishername" mode="opf.metadata"/>
   </xsl:template>
