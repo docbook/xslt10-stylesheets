@@ -651,6 +651,16 @@
     </xsl:element>
   </xsl:template>
 
+  <xsl:template match="subjectset" mode="opf.metadata">
+    <xsl:apply-templates select="subject/subjectterm" mode="opf.metadata"/>
+  </xsl:template>
+  
+  <xsl:template match="subjectterm" mode="opf.metadata">
+    <xsl:element name="dc:subject">
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </xsl:element>
+  </xsl:template>
+
   <xsl:template match="publisher" mode="opf.metadata">
     <xsl:apply-templates select="publishername" mode="opf.metadata"/>
   </xsl:template>

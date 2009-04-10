@@ -86,6 +86,11 @@ describe DocBook::Epub do
     @opf_lines.to_s.should =~ /date[^>]+>2008-04-15</
   end
 
+  it "should use the <subjectset> as dc:subject for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.to_s.should =~ /subject[^>]+>COM018000</
+  end
+
+
 
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
