@@ -78,6 +78,10 @@ describe DocBook::Epub do
     @opf_lines.to_s.should =~ /publisher[^>]+>O'Rxxxxx Mxxxx, Ixx.</
   end
 
+  it "should use the <abstract> as dc:description for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.to_s.should =~ /description[^>]+>This is a great title! Many people love it!</
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
     FileUtils.rm_r(@tmpdir2, :force => true)
