@@ -679,9 +679,11 @@
         <xsl:with-param name="single.year.ranges" select="$make.single.year.ranges"/>
       </xsl:call-template>
     </xsl:variable>
-    <xsl:element name="dc:date">
-      <xsl:value-of select="$copyright.date"/>
-    </xsl:element>
+    <xsl:if test="not(../date)">
+      <xsl:element name="dc:date">
+        <xsl:value-of select="$copyright.date"/>
+      </xsl:element>
+    </xsl:if>
     <xsl:element name="dc:rights">
       <xsl:call-template name="gentext">
         <xsl:with-param name="key" select="'Copyright'"/>
