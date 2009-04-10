@@ -123,6 +123,11 @@ describe DocBook::Epub do
     refclass_epubfile.should be_valid_epub  
   end
 
+  it "should not use namespace prefixes for the OPF manifest because mobigen is unable of handling XML input" do
+    opf_lns = opf_lines('refclass.xml', @filedir)
+    opf_lns.to_s.should_not =~ /opf:manifest/
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
