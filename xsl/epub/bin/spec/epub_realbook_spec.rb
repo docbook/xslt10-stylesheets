@@ -82,6 +82,11 @@ describe DocBook::Epub do
     @opf_lines.to_s.should =~ /description[^>]+>This is a great title! Many people love it!</
   end
 
+  it "should use the <date> as dc:date for the 'Real Book' test document #{@xml_file}" do
+    @opf_lines.to_s.should =~ /date[^>]+>2008-04-15</
+  end
+
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
     FileUtils.rm_r(@tmpdir2, :force => true)

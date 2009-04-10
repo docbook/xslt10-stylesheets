@@ -623,6 +623,13 @@
     </xsl:element>
   </xsl:template>
 
+  <xsl:template match="date" mode="opf.metadata">
+    <xsl:element name="dc:date">
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </xsl:element>
+  </xsl:template>
+
+
   <!-- Space separate the compontents of the abstract (dropping the inline markup, sadly) -->
   <xsl:template match="abstract" mode="opf.metadata">
     <xsl:element name="dc:description">
