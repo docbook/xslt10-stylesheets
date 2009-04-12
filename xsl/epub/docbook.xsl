@@ -639,13 +639,16 @@
         <xsl:choose>
           <xsl:when test="self::formalpara">
             <xsl:value-of select="normalize-space(string(title))"/>
-            <xsl:text> </xsl:text>
+            <xsl:text>: </xsl:text>
             <xsl:value-of select="normalize-space(string(para))"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="normalize-space(string(.))"/>
           </xsl:otherwise>  
         </xsl:choose>
+        <xsl:if test="self::title">
+          <xsl:text>:</xsl:text>
+        </xsl:if>
         <xsl:if test="not(position() = last())">
           <xsl:text> </xsl:text>
         </xsl:if>
