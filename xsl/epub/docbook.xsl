@@ -321,7 +321,9 @@
             <xsl:apply-templates select="/*/*[contains(name(.), 'info')]/*"
                                  mode="opf.metadata"/>        
             <xsl:element name="dc:language">
-              <xsl:call-template name="l10n.language"/>
+              <xsl:call-template name="l10n.language">
+                <xsl:with-param name="target" select="/*"/>
+              </xsl:call-template>  
             </xsl:element>
 
             <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 

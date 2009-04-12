@@ -128,6 +128,12 @@ describe DocBook::Epub do
     opf_lns.to_s.should_not =~ /opf:manifest/
   end
 
+  it "should use the @lang of the document being converted for the OPF metadata" do
+    opf_lns = opf_lines('de.xml', @filedir)
+    opf_lns.to_s.should =~ /language[^>]*>de</
+  end
+
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
