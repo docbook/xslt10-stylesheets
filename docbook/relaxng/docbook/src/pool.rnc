@@ -3915,7 +3915,7 @@ div {
 
 [
    db:refname [ "firstname" ]
-   db:refpurpose [ "The first name of a person" ]
+   db:refpurpose [ "A given name of a person" ]
 ]
 div {
 
@@ -3959,7 +3959,7 @@ div {
 
 [
    db:refname [ "surname" ]
-   db:refpurpose [ "A family name; in western cultures the last name" ]
+   db:refpurpose [ "An inherited or family name; in western cultures the last name" ]
 ]
 div {
 
