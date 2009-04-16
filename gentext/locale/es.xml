@@ -15,6 +15,8 @@
 
 <gentext key="Abstract" text="Resumen"/>
 <gentext key="abstract" text="resumen"/>
+<gentext key="Acknowledgements" text="Agradecimentos"/>
+<gentext key="acknowledgements" text="agradecimentos"/>
 <gentext key="Answer" text="R:"/>
 <gentext key="answer" text="r:"/>
 <gentext key="Appendix" text="Apéndice"/>
@@ -22,6 +24,7 @@
 <gentext key="Article" text="Artículo"/>
 <gentext key="article" text="artículo"/>
 <gentext key="Author" text="Autor"/>
+<gentext key="Authors" text="Autores"/>
 <gentext key="Bibliography" text="Bibliografía"/>
 <gentext key="bibliography" text="bibliografía"/>
 <gentext key="Book" text="Libro"/>
@@ -88,6 +91,7 @@
 <gentext key="refentry" text="entrada de referencia"/>
 <gentext key="Reference" text="Referencia"/>
 <gentext key="reference" text="referencia"/>
+<gentext key="References" text="Referencias"/>
 <gentext key="RefName" text="Nombre de referencia"/>
 <gentext key="refname" text="nombre de referencia"/>
 <gentext key="RefSection" text="Sección de referencia"/>
@@ -123,6 +127,7 @@
 <gentext key="TIP" text="SUGERENCIA"/>
 <gentext key="Tip" text="Sugerencia"/>
 <gentext key="tip" text="sugerencia"/>
+<gentext key="translator" text="traductor"/>
 <gentext key="WARNING" text="AVISO"/>
 <gentext key="Warning" text="Aviso"/>
 <gentext key="warning" text="aviso"/>
