@@ -603,10 +603,12 @@ div {
     & db.common.attributes
     & db.common.linking.attributes
 
+   db.initializer.inlines = db._text
+
    db.initializer =
       element initializer {
          db.initializer.attlist,
-         db._text
+         db.initializer.inlines*
       }
 }
 

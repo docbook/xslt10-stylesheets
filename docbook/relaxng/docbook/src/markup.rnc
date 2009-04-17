@@ -50,6 +50,8 @@ db.markup.inlines =
  | db.email
  | db.uri
 
+db.initializer.inlines |= db.markup.inlines
+
 # ======================================================================
 
 [

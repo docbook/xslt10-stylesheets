@@ -41,6 +41,8 @@ db.informal.blocks |= db.informalequation
 db.math.inlines = db.inlineequation
 db.domain.inlines |= db.math.inlines
 
+db.initializer.inlines |= db.mathphrase
+
 # ======================================================================
 
 db.equation.content = db.mediaobject+ | db.mathphrase+
