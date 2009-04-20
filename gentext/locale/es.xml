@@ -15,8 +15,8 @@
 
 <gentext key="Abstract" text="Resumen"/>
 <gentext key="abstract" text="resumen"/>
-<gentext key="Acknowledgements" text="Agradecimentos"/>
-<gentext key="acknowledgements" text="agradecimentos"/>
+<gentext key="Acknowledgements" text="Agradecimientos"/>
+<gentext key="acknowledgements" text="agradecimientos"/>
 <gentext key="Answer" text="R:"/>
 <gentext key="answer" text="r:"/>
 <gentext key="Appendix" text="Apéndice"/>
