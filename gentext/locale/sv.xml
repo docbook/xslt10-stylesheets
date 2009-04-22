@@ -59,8 +59,8 @@
 <gentext key="index" text="Index"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Legal Notice"/>
-<gentext key="legalnotice" text="Legal Notice"/> <!-- en -->
+<gentext key="LegalNotice" text="Rättsligt Meddelande"/>
+<gentext key="legalnotice" text="rättsligt meddelande"/>
 <gentext key="MsgAud" text="M&#229;lgrupp"/>
 <gentext key="msgaud" text="M&#229;lgrupp"/>
 <gentext key="MsgLevel" text="Niv&#229;"/>
