@@ -58,8 +58,8 @@
 <gentext key="index" text="Indeks"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text=""/>
-<gentext key="legalnotice" text=""/>
+<gentext key="LegalNotice" text="Informacja Prawna"/>
+<gentext key="legalnotice" text="informacja prawna"/>
 <gentext key="MsgAud" text="Odbiorcy"/>
 <gentext key="msgaud" text="Odbiorcy"/>
 <gentext key="MsgLevel" text="Poziom"/>

@@ -70,8 +70,8 @@
 <gentext key="index" text="目次"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text=""/>
-<gentext key="legalnotice" text=""/>
+<gentext key="LegalNotice" text="法律上の通知"/>
+<gentext key="legalnotice" text="法律上の通知"/>
 <gentext key="MsgAud" text="対象者"/>
 <gentext key="msgaud" text="対象者"/>
 <gentext key="MsgLevel" text="レベル"/>
