@@ -130,13 +130,16 @@
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
-  <!-- These don't have a pgwide attribute, so may use a PI -->
+  <!-- Some don't have a pgwide attribute, so may use a PI -->
   <xsl:variable name="pgwide.pi">
     <xsl:call-template name="pi.dbfo_pgwide"/>
   </xsl:variable>
 
   <xsl:variable name="pgwide">
     <xsl:choose>
+      <xsl:when test="@pgwide">
+        <xsl:value-of select="@pgwide"/>
+      </xsl:when>
       <xsl:when test="$pgwide.pi">
         <xsl:value-of select="$pgwide.pi"/>
       </xsl:when>
