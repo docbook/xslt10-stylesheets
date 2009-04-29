@@ -14,6 +14,8 @@
 
      ******************************************************************** -->
 
+<xsl:import href="../highlighting/common.xsl"/>
+
 <xsl:template match='xslthl:keyword' mode="xslthl">
   <b class="hl-keyword"><xsl:apply-templates mode="xslthl"/></b>
 </xsl:template>
