@@ -31,7 +31,7 @@
                 |processing-instruction()[not(preceding-sibling::listitem)]"/>
 
     <ul>
-      <xsl:call-template name="common.html.attributes"/>
+      <xsl:call-template name="generate.class.attribute"/>
       <xsl:if test="$css.decoration != 0">
         <xsl:attribute name="type">
           <xsl:call-template name="list.itemsymbol"/>
@@ -157,7 +157,7 @@
     <xsl:choose>
       <xsl:when test="@inheritnum='inherit' and ancestor::listitem[parent::orderedlist]">
         <table border="0">
-          <xsl:call-template name="common.html.attributes"/>
+          <xsl:call-template name="generate.class.attribute"/>
           <col align="{$direction.align.start}" valign="top"/>
           <tbody>
             <xsl:apply-templates 
@@ -170,7 +170,7 @@
       </xsl:when>
       <xsl:otherwise>
         <ol>
-          <xsl:call-template name="common.html.attributes"/>
+          <xsl:call-template name="generate.class.attribute"/>
           <xsl:if test="$start != '1'">
             <xsl:attribute name="start">
               <xsl:value-of select="$start"/>
@@ -761,7 +761,7 @@
     <xsl:choose>
       <xsl:when test="count(step) = 1">
         <ul>
-          <xsl:call-template name="common.html.attributes"/>
+          <xsl:call-template name="generate.class.attribute"/>
           <xsl:apply-templates 
             select="step
                     |comment()[preceding-sibling::step]
@@ -770,7 +770,7 @@
       </xsl:when>
       <xsl:otherwise>
         <ol>
-          <xsl:call-template name="common.html.attributes"/>
+          <xsl:call-template name="generate.class.attribute"/>
           <xsl:attribute name="type">
             <xsl:value-of select="substring($procedure.step.numeration.formats,1,1)"/>
           </xsl:attribute>
@@ -863,7 +863,7 @@
     <xsl:call-template name="common.html.attributes"/>
     <strong>
       <span>
-        <xsl:call-template name="common.html.attributes"/>
+        <xsl:call-template name="generate.class.attribute"/>
         <xsl:apply-templates/>
       </span>
     </strong>
