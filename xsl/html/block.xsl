@@ -86,6 +86,7 @@
 <xsl:template match="simpara">
   <!-- see also listitem/simpara in lists.xsl -->
   <p>
+    <xsl:call-template name="locale.html.attributes"/>
     <xsl:if test="@role and $para.propagates.style != 0">
       <xsl:apply-templates select="." mode="class.attribute">
         <xsl:with-param name="class" select="@role"/>
@@ -170,7 +171,7 @@
       </xsl:when>
       <xsl:otherwise>
         <blockquote>
-          <xsl:apply-templates select="." mode="class.attribute"/>
+          <xsl:call-template name="common.html.attributes"/>
           <xsl:apply-templates/>
         </blockquote>
       </xsl:otherwise>
@@ -190,7 +191,7 @@
 
 <xsl:template match="epigraph">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
       <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
       <xsl:if test="attribution">
         <div class="attribution">
@@ -202,7 +203,7 @@
 
 <xsl:template match="attribution">
   <span>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>
@@ -211,7 +212,7 @@
 
 <xsl:template match="abstract|sidebar">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="formal.object.heading">
       <xsl:with-param name="title">
@@ -327,7 +328,7 @@
 
 <xsl:template match="revhistory">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
     <table border="0" width="100%" summary="Revision history">
       <tr>
         <th align="{$direction.align.start}" valign="top" colspan="3">
@@ -419,7 +420,7 @@
 
 <xsl:template match="ackno|acknowledgements[parent::article]">
   <p>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:apply-templates/>
   </p>
 </xsl:template>
