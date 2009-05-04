@@ -800,6 +800,7 @@
           </xsl:attribute>
         </xsl:if>
 
+        <xsl:call-template name="locale.html.attributes"/>
         <xsl:if test="$entry.propagates.style != 0 and @role">
           <xsl:apply-templates select="." mode="class.attribute">
             <xsl:with-param name="class" select="@role"/>

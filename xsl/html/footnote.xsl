@@ -137,6 +137,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
     </xsl:call-template>
   </xsl:variable>
   <p>
+    <xsl:call-template name="locale.html.attributes"/>
     <xsl:if test="@role and $para.propagates.style != 0">
       <xsl:apply-templates select="." mode="class.attribute">
         <xsl:with-param name="class" select="@role"/>
@@ -269,7 +270,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
   <xsl:choose>
     <xsl:when test="local-name(*[1]) = 'para' or local-name(*[1]) = 'simpara'">
       <div>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:call-template name="common.html.attributes"/>
         <xsl:apply-templates/>
       </div>
     </xsl:when>
@@ -277,7 +278,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
     <xsl:when test="$html.cleanup != 0 and 
                     $exsl.node.set.available != 0">
       <div>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:call-template name="common.html.attributes"/>
         <xsl:apply-templates select="*[1]" mode="footnote.body.number"/>
         <xsl:apply-templates select="*[position() &gt; 1]"/>
       </div>
@@ -291,7 +292,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
         <xsl:text> unexpected as first child of footnote.</xsl:text>
       </xsl:message>
       <div>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:call-template name="common.html.attributes"/>
         <xsl:apply-templates/>
       </div>
     </xsl:otherwise>

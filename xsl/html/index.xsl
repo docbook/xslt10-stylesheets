@@ -25,7 +25,7 @@
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div>
-      <xsl:apply-templates select="." mode="class.attribute"/>
+      <xsl:apply-templates select="." mode="common.html.attributes"/>
       <xsl:if test="$generate.id.attributes != 0">
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
@@ -80,7 +80,7 @@
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div>
-      <xsl:apply-templates select="." mode="class.attribute"/>
+      <xsl:apply-templates select="." mode="common.html.attributes"/>
       <xsl:if test="$generate.id.attributes != 0">
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
@@ -115,7 +115,7 @@
   <xsl:call-template name="id.warning"/>
 
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -132,7 +132,7 @@
 
 <xsl:template match="indexdiv/title">
   <h3>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </h3>
 </xsl:template>

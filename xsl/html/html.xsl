@@ -303,16 +303,21 @@
 
 <!-- Apply common attributes such as class, lang, dir -->
 <xsl:template name="common.html.attributes">
+  <xsl:param name="inherit" select="0"/>
   <xsl:param name="class" select="local-name(.)"/>
   <xsl:apply-templates select="." mode="common.html.attributes">
     <xsl:with-param name="class" select="$class"/>
+    <xsl:with-param name="inherit" select="$inherit"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="*" mode="common.html.attributes">
   <xsl:param name="class" select="local-name(.)"/>
+  <xsl:param name="inherit" select="0"/>
   <xsl:call-template name="generate.html.lang"/>
-  <xsl:call-template name="dir"/>
+  <xsl:call-template name="dir">
+    <xsl:with-param name="inherit" select="$inherit"/>
+  </xsl:call-template>
   <xsl:apply-templates select="." mode="class.attribute">
     <xsl:with-param name="class" select="$class"/>
   </xsl:apply-templates>

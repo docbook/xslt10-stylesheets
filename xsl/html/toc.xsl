@@ -82,10 +82,10 @@
     <xsl:choose>
       <xsl:when test="* and $process.source.toc != 0">
         <div>
-          <xsl:apply-templates select="." mode="class.attribute"/>
+          <xsl:apply-templates select="." mode="common.html.attributes"/>
           <xsl:apply-templates select="title"/> 
           <dl>
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:apply-templates select="*[not(self::title)]"/> 
           </dl>
         </div>
@@ -127,10 +127,10 @@
     <xsl:choose>
       <xsl:when test="* and $process.source.toc != 0">
         <div>
-          <xsl:apply-templates select="." mode="class.attribute"/>
+          <xsl:apply-templates select="." mode="common.html.attributes"/>
           <xsl:apply-templates select="title"/> 
           <dl>
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:apply-templates select="*[not(self::title)]"/> 
           </dl>
         </div>
@@ -159,9 +159,9 @@
       <xsl:choose>
         <xsl:when test="$toc.list.type = 'dl'">
           <dd>
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:element name="{$toc.list.type}">
-              <xsl:apply-templates select="." mode="class.attribute"/>
+              <xsl:apply-templates select="." mode="common.html.attributes"/>
               <xsl:apply-templates select="tocchap|toclevel1|toclevel2|
                                            toclevel3|toclevel4|toclevel5"/>
             </xsl:element>
@@ -169,7 +169,7 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:element name="{$toc.list.type}">
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:apply-templates select="tocchap|toclevel1|toclevel2|
                                          toclevel3|toclevel4|toclevel5"/>
           </xsl:element>
@@ -183,14 +183,14 @@
   <xsl:choose>
     <xsl:when test="$toc.list.type = 'dl'">
       <dt>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:apply-templates select="tocentry[position() = last()]"/>
       </dt>
       <xsl:copy-of select="$sub-toc"/>
     </xsl:when>
     <xsl:otherwise>
       <li>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:apply-templates select="tocentry[position() = last()]"/>
         <xsl:copy-of select="$sub-toc"/>
       </li>
@@ -202,13 +202,13 @@
   <xsl:choose>
     <xsl:when test="$toc.list.type = 'dl'">
       <dt>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:call-template name="tocentry-content"/>
       </dt>
     </xsl:when>
     <xsl:otherwise>
       <li>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:call-template name="tocentry-content"/>
       </li>
     </xsl:otherwise>
@@ -245,14 +245,14 @@
 
 <xsl:template match="toc/title">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
 <xsl:template match="toc/subtitle">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
@@ -270,7 +270,7 @@
     <xsl:choose>
       <xsl:when test="* and $process.source.toc != 0">
         <div>
-          <xsl:apply-templates select="." mode="class.attribute"/>
+          <xsl:apply-templates select="." mode="common.html.attributes"/>
           <xsl:apply-templates />
         </div>
       </xsl:when>
@@ -289,7 +289,7 @@
   <xsl:choose>
     <xsl:when test="* and $process.source.toc != 0">
       <div>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:apply-templates />
       </div>
       <xsl:call-template name="component.toc.separator"/>
@@ -309,7 +309,7 @@
   <xsl:choose>
     <xsl:when test="* and $process.source.toc != 0">
       <div>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:apply-templates/>
       </div>
       <xsl:call-template name="section.toc.separator"/>
@@ -332,14 +332,14 @@
 
 <xsl:template match="lot/title">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
 <xsl:template match="lot/subtitle">
   <div>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>

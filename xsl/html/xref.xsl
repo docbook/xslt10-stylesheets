@@ -158,13 +158,13 @@
             <xsl:value-of select="@endterm"/>
           </xsl:message>
           <a href="{$href}">
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:text>???</xsl:text>
           </a>
         </xsl:when>
         <xsl:otherwise>
           <a href="{$href}">
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:apply-templates select="$etarget" mode="endterm"/>
           </a>
         </xsl:otherwise>
@@ -173,7 +173,7 @@
 
     <xsl:when test="$target/@xreflabel">
       <a>
-        <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target"/>
@@ -988,7 +988,7 @@
   <xsl:param name="url" select="@url"/>
   <xsl:variable name="link">
     <a>
-      <xsl:apply-templates select="." mode="class.attribute"/>
+      <xsl:apply-templates select="." mode="common.html.attributes"/>
       <xsl:if test="@id or @xml:id">
         <xsl:attribute name="name">
           <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -1147,7 +1147,7 @@
       <xsl:choose>
         <xsl:when test="$href != ''">
           <a href="{$href}">
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:copy-of select="$hottext"/>
           </a>
           <xsl:copy-of select="$olink.page.citation"/>
@@ -1205,7 +1205,7 @@
       <xsl:choose>
         <xsl:when test="$href != ''">
           <a href="{$href}">
-            <xsl:apply-templates select="." mode="class.attribute"/>
+            <xsl:apply-templates select="." mode="common.html.attributes"/>
             <xsl:call-template name="olink.hottext"/>
           </a>
         </xsl:when>
