@@ -1090,9 +1090,18 @@
     </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="href.from.uri">
-    <xsl:call-template name="href.target.uri">
-      <xsl:with-param name="object" select="$context"/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="not($toc-context = .)">
+        <xsl:call-template name="href.target.uri">
+          <xsl:with-param name="object" select="$toc-context"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="href.target.uri">
+          <xsl:with-param name="object" select="$context"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
   <!-- * <xsl:message>toc-context: <xsl:value-of select="local-name($toc-context)"/></xsl:message> -->
   <!-- * <xsl:message>node: <xsl:value-of select="local-name(.)"/></xsl:message> -->
