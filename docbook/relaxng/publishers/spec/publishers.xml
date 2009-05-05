@@ -10,7 +10,7 @@
     xmlns:ns4="http://www.w3.org/1998/Math/MathML" xmlns:ns3="http://www.w3.org/1999/xhtml"
     xmlns:ns="http://docbook.org/ns/docbook">
     <info>
-        <releaseinfo role="cvs">$Id: publishers.xml 8215 2009-01-15 18:46:13Z shudson310
+        <releaseinfo role="cvs">$Id: publishers.xml 8215 2009-05-05 18:46:13Z shudson310
         $</releaseinfo>
         <!-- product -->
         <productname>publishers</productname>
@@ -18,7 +18,7 @@
         <productnumber>1.0</productnumber>
         <!-- artifactType       spec; what else? :-) -->
         <!-- stage -->
-        <releaseinfo role="stage">wd</releaseinfo>
+        <releaseinfo role="stage">cd</releaseinfo>
         <!-- revision -->
         <biblioid class="pubsnumber">01</biblioid>
         <!-- language           en; see /article/@xml:lang -->
@@ -50,7 +50,7 @@
                     <orgname>Flatirons Solutions Corporation</orgname>
                     <address><email>scott.hudson@flatironssolutions.com</email></address></affiliation></editor>
         </authorgroup>
-        <pubdate>2009-01-15</pubdate>
+        <pubdate>2009-05-05</pubdate>
         <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
         <!--
 <bibliorelation type="replaces" condition="online"
@@ -91,17 +91,15 @@
             <para>The DocBook Publishers Schema is based on DocBook 5.0, and delivered in the
                 normative RelaxNG Schema format.</para>
         </abstract><legalnotice role="status">
-            <!--
+            
 <para>This &standard; was
-<link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200711/msg00007.html">approved</link>
-for publication by the
-OASIS DocBook Technical Committee. It represents the
-consensus of the committee.
+    <link xlink:href="http://lists.oasis-open.org/archives/docbook-tc/200901/msg00014.html">approved</link>
+for publication by the OASIS DocBook Technical Committee. It represents the consensus of the committee.
 </para>
--->
-            <para>This is a &standard;. It was approved by the OASIS DocBook Publishers
+
+<!--            <para>This is a &standard;. It was approved by the OASIS DocBook Publishers
                 subcommittee, but it does not necessarily represent the consensus of the OASIS
-                DocBook Technical Committee.</para>
+                DocBook Technical Committee.</para>-->
             <para>Please send comments on this specification to the
                     <email>docbook-publishers@lists.oasis-open.org</email> list. To subscribe,
                 please use the <link xlink:href="http://lists.oasis-open.org/ob/adm.pl">OASIS
@@ -164,6 +162,7 @@ consensus of the committee.
                     <link xlink:href="http://www.oasis-open.org/who/trademark.php"/> for above
                 guidance.</para>
         </legalnotice></info>
+    <toc/>
     <section xml:id="s.intro">
         <title>Introduction</title>
         <para>For more than a decade, DocBook has provided a structured markup vocabulary for
@@ -225,6 +224,28 @@ consensus of the committee.
                 <bibliomixed xml:id="schematron2000"/>
             </bibliolist>
         </section>
+    </section>
+    <section xml:id="s.conformance">
+        <title>Conformance</title>
+        <para>The DocBook Publishers schema is a valid DocBook v5.0 customization.
+        Publications or documents will be considered conformant to this
+        specification if they validate against the DocBook Publishers schema
+        (publishers.rnc or publishers.rng).</para>
+        <para>Extensions allow implementers to include features that are in demand
+        by their customers. Extensions may migrate into future versions of this
+        specification. However, the use of extensions can have an impact on interoperability.</para>
+        <para>Any extenstions to this schema SHALL follow the principles and
+        guidelines of the DocBook v5.0 and this Publishers specification;
+        that is, the specifications SHALL be extended in a standard manner
+        as described in <link xlink:href="http://docbook.org/tdg5/en/html/ch05.html">http://docbook.org/tdg5/en/html/ch05.html</link>.</para>
+        <para>For implementations and/or applications that contain extensions,
+        extensions SHALL
+        be clearly described in supporting documentation, and the extensions
+        SHALL be marked
+        as such within the implementation/application.</para>
+        <para>This document’s normative language is English. Translation into
+        other languages
+        is permitted.</para>
     </section>
     <section xml:id="s.docbook">
         <title>The DocBook Publishers RELAX NG Schema</title>
@@ -714,7 +735,7 @@ consensus of the committee.
                         </row>
                         <row>
                             <entry><tag>creator</tag></entry>
-                            <entry><tag>author</tag>,<tag>editor</tag>,<tag>othercredit</tag></entry>
+                            <entry><tag>author</tag>,<tag>editor</tag>,<tag>othercredit</tag><footnote><para>Best practice would be to only use author for creator. Use contributor for other roles.</para></footnote></entry>
                         </row>
                         <row>
                             <entry><tag>subject</tag></entry>
@@ -1104,6 +1125,32 @@ consensus of the committee.
         <para>The DocBook Publishers Subcommittee identified 149 elements from core DocBook that,
             while appropriate for technical documentation, were not necessary for the broader
             Publishing industry. These elements are listed in <xref linkend="excluded"/>.</para>
+    </section>
+    <section xml:id="s.conformance">
+        <title>Conformance</title>
+        
+        <para>The DocBook Publishers schema is a valid DocBook v5.0 customization.
+            Publications or documents will be considered conformant to this
+            specification if they validate against the DocBook Publishers schema
+            (publishers.rnc or publishers.rng).</para>
+        <para>Extensions allow implementers to include features that are in demand
+            by their customers. Also, extensions, often times,
+            define new features that may migrate into future versions of this
+            specification. However, the use of extensions can have a severe
+            negative impact on interoperability.</para>
+        <para>Any extenstions to this schema SHALL follow the principles and
+            guidelines of the DocBook v5.0 and this Publishers specification;
+            that is, the specifications SHALL be extended in a standard manner
+            as described in <link xlink:href="http://docbook.org/tdg5/en/html/ch05.html">http://docbook.org/tdg5/en/html/ch05.html</link>.</para>
+        <para>For implementations and/or applications that contain extensions,
+            extensions SHALL
+            be clearly described in supporting documentation, and the extensions
+            SHALL be marked
+            as such within the implementation/application.</para>
+        <para>This document’s normative language is English. Translation into
+            other languages
+            is permitted.</para>
+        
     </section>
     <appendix role="non-normative" xml:id="a.committee">
         <title>Acknowledgements</title>
