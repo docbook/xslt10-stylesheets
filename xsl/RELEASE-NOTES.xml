@@ -149,7 +149,7 @@ any dedications.</para>
 <para>The following is a list of changes that have been made
         since the 1.74.3 release.</para>
 
-<sect2 xml:id="V1.75.0_Gentext">
+<sect2 xml:id="rn_V1.75.0_Gentext">
 <title>Gentext</title>
 <para>The following changes have been made to the
             <filename>gentext</filename> code
