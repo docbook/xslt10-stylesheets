@@ -133,6 +133,17 @@ describe DocBook::Epub do
     opf_lns.to_s.should =~ /language[^>]*>de</
   end
 
+  it "should include images from &entity; and XInclude'd documents" do
+    opf_lns = opf_lines('xincludeents.xml', @filedir)
+    opf_lns.to_s.should =~ /stamp.png/
+    opf_lns.to_s.should =~ /duck-small.png/
+    opf_lns.to_s.should_not =~ /duck-small.gif/ # Choose one, not both
+    xincludeents_epub = DocBook::Epub.new(File.join(@filedir, "xincludeents.xml"), @tmpdir)
+    xincludeents_epubfile  = File.join(@tmpdir, "xincludeentsepub.epub")
+    xincludeents_epub.render_to_file(xincludeents_epubfile, $DEBUG)
+    xincludeents_epubfile.should be_valid_epub  
+  end
+
 
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)

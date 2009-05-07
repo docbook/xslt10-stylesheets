@@ -843,8 +843,8 @@
               <xsl:attribute name="media-type">font/opentype</xsl:attribute>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message terminate="yes">
-                <xsl:text>ERROR: Only OpenType fonts are supported in .epub! (</xsl:text>
+              <xsl:message>
+                <xsl:text>WARNING: OpenType fonts should be supplied! (</xsl:text>
                 <xsl:value-of select="$epub.embedded.font"/>
                 <xsl:text>)</xsl:text>
               </xsl:message>
@@ -966,13 +966,33 @@
                        mediaobjectco|
                        inlinemediaobject" 
                 mode="opf.manifest">
-    <xsl:apply-templates select="imageobject/imagedata"
-                         mode="opf.manifest"/>              
+    <xsl:choose>
+      <xsl:when test="imageobject/imagedata[@format = 'GIF' or 
+                                            @format = 'GIF87a' or 
+                                            @format = 'GIF89a' or 
+                                            @format = 'JPEG' or 
+                                            @format = 'JPG' or 
+                                            @format = 'PNG' or 
+                                            @format = 'SVG']">
+        <xsl:apply-templates select="imageobject[imagedata[@format = 'GIF' or 
+                                                           @format = 'GIF87a' or 
+                                                           @format = 'GIF89a' or 
+                                                           @format = 'JPEG' or 
+                                                           @format = 'JPG' or 
+                                                           @format = 'PNG' or 
+                                                           @format = 'SVG']][1]/imagedata"
+                             mode="opf.manifest"/>              
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="imageobject/imagedata[1]"
+                             mode="opf.manifest"/>              
+      </xsl:otherwise>
+    </xsl:choose>  
   </xsl:template>
 
   <xsl:template match="mediaobjectco"
                 mode="opf.manifest">
-    <xsl:message>Warning: mediaobjectco almost certainly will not render as expected in .epub!</xsl:message>
+    <xsl:message>WARNING: mediaobjectco almost certainly will not render as expected in .epub!</xsl:message>
     <xsl:apply-templates select="imageobjectco/imageobject/imagedata" 
                          mode="opf.manifest"/>              
   </xsl:template>
@@ -1036,9 +1056,10 @@
   </xsl:template>
 
   <!-- TODO: Remove hardcoding -->
-  <xsl:template match="graphic[@format][@format = 'GIF' or @format = 'GIF87a' or @format = 'GIF89a' or @format = 'JPEG' or @format = 'JPG' or @format = 'PNG' or @format = 'SVG']|
-                       inlinegraphic[@format][@format = 'GIF' or @format = 'GIF87a' or @format = 'GIF89a' or @format = 'JPEG' or @format = 'JPG' or @format = 'PNG' or @format = 'SVG']|
-                       imagedata[@format][@format = 'GIF' or @format = 'GIF87a' or @format = 'GIF89a' or @format = 'JPEG' or @format = 'JPG' or @format = 'PNG' or @format = 'SVG']"
+  <!-- Note: Selection of the first interesting imagedata is done in the select -->
+  <xsl:template match="graphic[@format = 'GIF' or @format = 'GIF87a' or @format = 'GIF89a' or @format = 'JPEG' or @format = 'JPG' or @format = 'PNG' or @format = 'SVG']|
+                       inlinegraphic[@format = 'GIF' or @format = 'GIF87a' or @format = 'GIF89a' or @format = 'JPEG' or @format = 'JPG' or @format = 'PNG' or @format = 'SVG']|
+                       imagedata[@format]"
                 mode="opf.manifest">
     <xsl:variable name="filename">
       <xsl:choose>

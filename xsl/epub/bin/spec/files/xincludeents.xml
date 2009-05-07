@@ -1,0 +1,10 @@
+<!DOCTYPE set PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+  <!ENTITY onegraphic SYSTEM "onegraphic.entity.xml">
+]>
+<set>
+ <title>XIncludes and Entities &amp; Figures</title>
+
+&onegraphic;
+<xi:include href="onegraphic.xinclude.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</set>
