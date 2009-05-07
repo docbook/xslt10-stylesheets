@@ -57,6 +57,773 @@ public APIs (user-configurable parameters).</para>
 <sect1 condition="snapshot" xml:id="current">
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
 </sect1>
+<sect1 xml:id="V1.75.0">
+<title>Release Notes: 1.75.0</title>
+<para>This release includes important bug fixes and adds the following
+significant feature changes:
+<variablelist>
+<varlistentry>
+<term>Gentext</term>
+<listitem><para>Modifications to translations have been made. </para></listitem>
+
+</varlistentry>
+<varlistentry>
+<term>Common</term>
+<listitem>
+<para>Added support for some format properties on tables using
+HTML <tag>table</tag> markup.  </para>
+<para>Added two new <parameter>qanda.defaultlabel</parameter> values so that numbered sections
+and numbered questions can be distinguished.  Satisfies
+Feature Request #1539045.</para>
+<para>Added code to handle <tag>acknowledgements</tag> in <tag>book</tag> and part. The element is processed
+similarly to <tag>dedication</tag>. All <tag>acknowledgements</tag> will appear as front matter, after
+any dedications.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>FO</term>
+<listitem>
+<para>The inclusion of highlighting code has been simplified.</para>
+<para>Add support for pgwide on informal objects.</para>
+<para>Added a new parameter, <parameter>bookmarks.collapse</parameter>, that controls the initial <tag>state</tag> of the bookmark tree. Closes FR #1792326.</para>
+<para>Add support for more dbfo processing instructions.</para>
+<para>Add new <parameter>variablelist.term.properties</parameter> to format terms, per request # 1968513.</para>
+<para>Add support for @width on <tag>screen</tag> and <tag>programlisting</tag>, fixes bug #2012736.</para>
+<para>Add support for writing-mode="rl-tb" (right-to-left) in FO outputs.  </para>
+<para>Add <parameter>writing.mode</parameter> param for FO output.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>HTML</term>
+<listitem>
+<para>Convert all calls to class.attribute to calls to common.html.attributes to support dir, lang, and <tag>title</tag> attributes in html output for all elements.  Fulfills feature request #1993833.</para>
+<para>Inclusion of highlighting code was simplified. Only one import is now necessary.</para>
+<para>Add new param <parameter>index.links.to.section</parameter>.</para>
+<para>Add support for the new <parameter>index.links.to.section</parameter> param which permits precise links to indexterms in HTML output rather than to the <tag>section</tag> <tag>title</tag>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>ePub</term>
+<listitem>
+<para>Slightly more nuanced handling of <tag>imageobject</tag> alternatives and better support in dbtoepub for XIncludes and ENTITYs to resolve Issue #2750442 reported by Raphael Hertzog.</para>
+<para>Added a colon after an <tag>abstract</tag>/<tag>title</tag> when mapping into the dc:description for OPF metadata in ePub output to help the flat text have more pseudo-semantics (sugestions from Michael Wiedmann)</para>
+<para>Added DocBook <tag>subjectset</tag> -&gt; OPF dc:<tag>subject</tag> mapping and tests</para>
+<para>Added DocBook <tag>date</tag> -&gt; OPF dc:date mapping and tests</para>
+<para>Added DocBook <tag>abstract</tag> -&gt; OPF dc:description mapping and tests</para>
+<para>Added --output option to dbtoepub based on user request</para>
+</listitem>
+
+</varlistentry>
+<varlistentry>
+<term>HTMLHelp</term>
+<listitem>
+<para>Add support for generating <tag>olink</tag> target <tag>database</tag> for htmlhelp files.</para></listitem>
+
+</varlistentry>
+
+<varlistentry>
+<term>Params</term>
+<listitem>
+<para>Add default setting for @rules attribute on HTML markup tables.</para>
+<para>Added a new parameter, <parameter>bookmarks.collapse</parameter>, that controls the initial <tag>state</tag> of the bookmark tree. When the parameter has a non-zero value (the default), only the top-level bookmarks are displayed initially. Otherwise, the whole tree of bookmarks is displayed.  This is implemented for FOP 0.9X. Closes FR #1792326.</para>
+<para>Add new <parameter>variablelist.term.properties</parameter> to format terms, per request # 1968513.</para>
+<para>Add two new <parameter>qanda.defaultlabel</parameter> values so that numbered sections and numbered questions can be distinguished.  Satisfies Feature Request #1539045.</para>
+<para>Add param to control whether an <tag>index</tag> <tag>entry</tag> links to a <tag>section</tag> <tag>title</tag> or to the precise location of the <tag>indexterm</tag>.</para>
+<para>New attribute list for <tag>glossentry</tag> in <tag>glossary</tag>.</para>
+<para>New parameter to support @width on <tag>programlisting</tag> and <tag>screen</tag>.</para>
+<para>Add attribute-sets for formatting <tag>glossary</tag> terms and defs.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>Highlighting</term>
+<listitem>
+<para>Inclusion of highlighting code was simplified. Only one import is now necessary.</para>
+</listitem>
+
+</varlistentry>
+
+
+
+
+
+
+</variablelist>
+
+
+</para>
+<para>The following is a list of changes that have been made
+        since the 1.74.3 release.</para>
+
+<sect2 xml:id="V1.75.0_Gentext">
+<title>Gentext</title>
+<para>The following changes have been made to the
+            <filename>gentext</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: locale/sv.xml; locale/ja.xml; locale/pl.xml</literal></para><screen><phrase role="commit-message">Check in translations of <tag>Legalnotice</tag> submitted on mailing list.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: locale/es.xml</literal></para><screen><phrase role="commit-message">Fix spelling errors in <tag>Acknowledgements</tag> entries.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: locale/es.xml</literal></para><screen><phrase role="commit-message">Check in translations for 4 elements submitted through docbook-apps
+message of 14 April 2009.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: locale/zh.xml; locale/ca.xml; locale/ru.xml; locale/ga.xml; locale/gl.xml; l⋯</literal></para><screen><phrase role="commit-message">Internationalized punctuation in <tag>glosssee</tag> and <tag>glossseealso</tag></phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: Makefile</literal></para><screen><phrase role="commit-message">Check in fixes for DSSSL gentext targets from submitted patch #1689633.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: locale/uk.xml</literal></para><screen><phrase role="commit-message">Check in major update submitted with bug report #2008524.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: locale/zh_tw.xml</literal></para><screen><phrase role="commit-message">Check in fix to Note string submitted in bug #2441051.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: locale/ru.xml</literal></para><screen><phrase role="commit-message">Checkin typo fix submitted in bug #2453406.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Gentext changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_Common">
+<title>Common</title>
+<para>The following changes have been made to the
+            <filename>common</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: gentext.xsl</literal></para><screen><phrase role="commit-message">Fix extra generated space when xrefstyle includes 'nopage'.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: table.xsl</literal></para><screen><phrase role="commit-message">Add support for some format properties on tables using
+HTML <tag>table</tag> markup.  These include:
+  - frame attribute on <tag>table</tag> (or uses $default.table.frame parameter).
+  - rules attribute on <tag>table</tag> (or uses $default.table.rules parameter).
+  - align attribute on <tag>td</tag> and <tag>th</tag>
+  - valign attribute on <tag>td</tag> and <tag>th</tag>
+  - colspan on <tag>td</tag> and <tag>th</tag>
+  - rowspan on <tag>td</tag> and <tag>th</tag>
+  - bgcolor on <tag>td</tag> and <tag>th</tag></phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: olink.xsl</literal></para><screen><phrase role="commit-message">Add placeholder template to massage <tag>olink</tag> hot text to make
+customization easier, per Feature Request 1828608.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: targets.xsl</literal></para><screen><phrase role="commit-message">Add support for collecting <tag>olink</tag> targets from a <tag>glossary</tag>
+generated from a <parameter>glossary.collection</parameter>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: titles.xsl</literal></para><screen><phrase role="commit-message">Handle <tag>firstterm</tag> like <tag>glossterm</tag> in mode="title.markup".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: titles.xsl</literal></para><screen><phrase role="commit-message">Add match on <tag>info</tag>/<tag>title</tag> in title.markup templates where missing.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Changed "ancestor::<tag>title</tag>" to "(ancestor::<tag>title</tag> and (@id or @xml:id))".
+This enables proper formatting of inline elements in titles in TOCs, 
+as long as these inlines don't have id or xml:id attributes.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: labels.xsl</literal></para><screen><phrase role="commit-message">Add two new <parameter>qanda.defaultlabel</parameter> values so that numbered sections
+and numbered questions can be distinguished.  Satisfies
+Feature Request #1539045.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: stripns.xsl; pi.xsl</literal></para><screen><phrase role="commit-message">Convert function-available(exsl:node-set) to use the new param
+so Xalan bug is isolated.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Added fixes for bugs #2112656 and #1759205:
+1. Reverted mistaken commits r7485 and r7523. 
+2. Updated the template with match="<tag>link</tag>" and mode="no.anchor.mode" so that 
+@endterm is used if it exists and if the <tag>link</tag> has no content.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titles.xsl</literal></para><screen><phrase role="commit-message">Added code to handle <tag>acknowledgements</tag> in <tag>book</tag> and part. The element is processed
+similarly to <tag>dedication</tag>. All <tag>acknowledgements</tag> will appear as front matter, after
+any dedications.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: olink.xsl</literal></para><screen><phrase role="commit-message">Fix bug #2018717 <parameter>use.local.olink.style</parameter> uses wrong gentext context.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: olink.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1787167 incorrect hot text for some olinks.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: common.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1669654 Broken output if <tag>copyright</tag> &lt;<tag>year</tag>&gt; contains a range.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: labels.xsl</literal></para><screen><phrase role="commit-message">Fix bug in labelling <tag>figure</tag> inside <tag>appendix</tag> inside <tag>article</tag> inside <tag>book</tag>.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Common changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_FO">
+<title>FO</title>
+<para>The following changes have been made to the
+            <filename>fo</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Jirka Kosek: highlight.xsl</literal></para><screen><phrase role="commit-message">Inclusion of highlighting code was simplified. Only one import is now necessary.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: fop1.xsl</literal></para><screen><phrase role="commit-message">Add the new fop extensions namespace declaration, in case FOP
+extension functions are used.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: formal.xsl</literal></para><screen><phrase role="commit-message">Add support for pgwide on informal objects.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: docbook.xsl</literal></para><screen><phrase role="commit-message">Fixed spurious closing <tag>quote</tag> on line 134.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: docbook.xsl; autoidx-kosek.xsl; autoidx.xsl</literal></para><screen><phrase role="commit-message">Convert function-available for node-set() to use
+new $exsl.node.set.available param in test.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: xref.xsl</literal></para><screen><phrase role="commit-message">Suppress extra space after <tag>xref</tag> when xrefstyle='select: <tag>label</tag> nopage' (#2740472)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Fixed doc bug for row-height.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: glossary.xsl</literal></para><screen><phrase role="commit-message">Internationalized punctuation in <tag>glosssee</tag> and <tag>glossseealso</tag></phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent; htmltbl.xsl; table.xsl</literal></para><screen><phrase role="commit-message">Add support for some format properties on tables using
+HTML <tag>table</tag> markup.  These include:
+  - frame attribute on <tag>table</tag> (or uses $default.table.frame parameter).
+  - rules attribute on <tag>table</tag> (or uses $default.table.rules parameter).
+  - align attribute on <tag>td</tag> and <tag>th</tag>
+  - valign attribute on <tag>td</tag> and <tag>th</tag>
+  - colspan on <tag>td</tag> and <tag>th</tag>
+  - rowspan on <tag>td</tag> and <tag>th</tag>
+  - bgcolor on <tag>td</tag> and <tag>th</tag></phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: table.xsl</literal></para><screen><phrase role="commit-message">Add support bgcolor in <tag>td</tag> and <tag>th</tag>
+elements in HTML <tag>table</tag> markup.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: htmltbl.xsl</literal></para><screen><phrase role="commit-message">Add support for colspan and rowspan and bgcolor in <tag>td</tag> and <tag>th</tag>
+elements in HTML <tag>table</tag> markup.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb</literal></para><screen><phrase role="commit-message">Fix working of page-master left and right margins.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: param.xweb; param.ent; fop1.xsl</literal></para><screen><phrase role="commit-message">Added a new parameter, <parameter>bookmarks.collapse</parameter>, that controls the initial <tag>state</tag> of the bookmark tree. When the parameter has a non-zero value (the default), only the top-level bookmarks are displayed initially. Otherwise, the whole tree of bookmarks is displayed.  This is implemented for FOP 0.9X. Closes FR #1792326.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: table.xsl; pi.xsl</literal></para><screen><phrase role="commit-message">Add support for dbfo row-height processing instruction, like that in dbhtml.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl</literal></para><screen><phrase role="commit-message">Add support for dbfo keep-together processing instruction for
+entire list instances.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl; block.xsl</literal></para><screen><phrase role="commit-message">Add support fo dbfo keep-together processing instruction to
+more blocks like list items and paras.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl; param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Add new <parameter>variablelist.term.properties</parameter> to format terms, per request # 1968513.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: inline.xsl</literal></para><screen><phrase role="commit-message">In simple.xlink, rearrange order of processing.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Handle <tag>firstterm</tag> like <tag>glossterm</tag> in mode="xref-to".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: glossary.xsl; xref.xsl; pi.xsl; footnote.xsl</literal></para><screen><phrase role="commit-message">Implement simple.xlink for <tag>glosssee</tag> and <tag>glossseealso</tag> so they can use
+other types of linking besides otherterm.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: qandaset.xsl</literal></para><screen><phrase role="commit-message">Add two new <parameter>qanda.defaultlabel</parameter> values so that numbered sections and numbered questions can be distinguished.  Satisfies Feature Request #1539045.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: titlepage.xsl</literal></para><screen><phrase role="commit-message">For the <tag>book</tag> <tag>title</tag> templates, I changed <tag>info</tag>/<tag>title</tag> to <tag>book</tag>/<tag>info</tag>/<tag>title</tag>
+so other element's titles will not be affected.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl; verbatim.xsl</literal></para><screen><phrase role="commit-message">Use param <parameter>exsl.node.set.available</parameter> to test for <tag>function</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent; footnote.xsl</literal></para><screen><phrase role="commit-message">Start using new param <parameter>exsl.node.set.available</parameter> to work around Xalan bug.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: titlepage.templates.xml</literal></para><screen><phrase role="commit-message">Add comment on use of t:predicate for <tag>editor</tag> to prevent
+extra processing of multiple editors. Fixes bug 2687842.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl; autoidx.xsl</literal></para><screen><phrase role="commit-message">An <tag>indexterm</tag> <tag>primary</tag>, <tag>secondary</tag>, or <tag>tertiary</tag> element with an id or xml:id
+now outputs that ID, so that <tag>index</tag> entries can be cross referenced to.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: synop.xsl</literal></para><screen><phrase role="commit-message">Added modeless template for ooclass|oointerface|ooexception.
+Closes bug #1623468.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Add template with match on <tag>indexterm</tag> in mode="xref-to" to fix bug 2102592.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Now <tag>xref</tag> to <tag>qandaentry</tag> will use the <tag>label</tag> element in a <tag>question</tag> for
+the <tag>link</tag> text if it has one.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: inline.xsl</literal></para><screen><phrase role="commit-message">Add id if specified from @id to output for <tag>quote</tag> and <tag>phrase</tag> so
+they can be <tag>xref</tag>'ed to.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Add support for <tag>xref</tag> to <tag>phrase</tag>, <tag>simpara</tag>, <tag>anchor</tag>, and <tag>quote</tag>.
+This assumes the <tag>author</tag> specifies something using xrefstyle since
+the elements don't have ordinary <tag>link</tag> text.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: toc.xsl</literal></para><screen><phrase role="commit-message">Fix bug in new <tag>toc</tag> templates.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl; component.xsl; division.xsl; xref.xsl; titlepage.templates⋯</literal></para><screen><phrase role="commit-message">Added code to handle <tag>acknowledgements</tag> in <tag>book</tag> and part. The element is processed
+similarly to <tag>dedication</tag>. All <tag>acknowledgements</tag> will appear as front matter, after
+any dedications.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: toc.xsl</literal></para><screen><phrase role="commit-message">Rewrite <tag>toc</tag> templates to support an empty <tag>toc</tag> or populated <tag>toc</tag>
+in all permitted contexts.  Same for lot elements.
+This fixes bug #1595969 for FO outputs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: index.xsl</literal></para><screen><phrase role="commit-message">Fix indents for <tag>seealsoie</tag> so they are consistent.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: param.xweb</literal></para><screen><phrase role="commit-message">Removed duplicate (<parameter>monospace.font.family</parameter>).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Add <parameter>glossentry.list.item.properties</parameter>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Add <parameter>monospace.verbatim.font.width</parameter> param to support @width on <tag>programlisting</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: verbatim.xsl</literal></para><screen><phrase role="commit-message">Put <tag>programlisting</tag> in fo:block-container with writing-mode="lr-tb"
+when text direction is right to left because all program languages
+are left-to-right.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: verbatim.xsl</literal></para><screen><phrase role="commit-message">Add support for @width on <tag>screen</tag> and <tag>programlisting</tag>, fixes bug #2012736.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1973585 <tag>xref</tag> to <tag>para</tag> with xrefstyle not handled correctly.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: block.xsl</literal></para><screen><phrase role="commit-message">Added support for <tag>acknowledgements</tag> in <tag>article</tag>.
+Support in <tag>book</tag>/part remains to be added.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1787167 incorrect hot text for some olinks.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: fo.xsl</literal></para><screen><phrase role="commit-message">Add writing-mode="tb-rl" as well since some XSL-FO processors support it.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: autotoc.xsl; lists.xsl; glossary.xsl; fo.xsl; table.xsl; pagesetup.xsl</literal></para><screen><phrase role="commit-message">Add support for writing-mode="rl-tb" (right-to-left) in FO outputs.
+Changed instances of margin-left to margin-{$direction.align.start}
+and margin-right to margin-{$direction.align.end}. Those direction.align
+params are computed from the writing mode value in each locale's
+gentext key named 'writing-mode', introduced in 1.74.3 to add
+right-to-left support to HTML outputs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Add attribute-sets for formatting <tag>glossary</tag> terms and defs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Add <parameter>writing.mode</parameter> param for FO output.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: autotoc.xsl</literal></para><screen><phrase role="commit-message">Fix bug 1546008: in <tag>qandaentry</tag> in a <tag>TOC</tag>, use its blockinfo/<tag>titleabbrev</tag> or blockinfo/<tag>title</tag>
+instead of <tag>question</tag>, if available. For DocBook 5, use the <tag>info</tag> versions.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">Add better pointer to README for XSLTHL</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">More tweaking the way that XSLTHL does or does not get called</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">Alternate attempt at sanely including/excluding XSLTHT code</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of FO changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_HTML">
+<title>HTML</title>
+<para>The following changes have been made to the
+            <filename>html</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl</literal></para><screen><phrase role="commit-message">Removed redundant lang and <tag>title</tag> attributes on list element inside
+div element for lists.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: inline.xsl; titlepage.xsl; division.xsl; toc.xsl; sections.xsl; table.xsl;⋯</literal></para><screen><phrase role="commit-message">Convert all calls to class.attribute to calls to common.html.attributes
+to support dir, lang, and <tag>title</tag> attributes in html output for all elements.
+Fulfills feature request #1993833.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: chunk-common.xsl</literal></para><screen><phrase role="commit-message">Fix bug #2750253 wrong links in list of figures in chunk.html
+when target html is in a subdirectory and dbhtml <tag>filename</tag> used.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Jirka Kosek: highlight.xsl</literal></para><screen><phrase role="commit-message">Inclusion of highlighting code was simplified. Only one import is now necessary.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: chunk-common.xsl; chunktoc.xsl; docbook.xsl; chunk-changebars.xsl; autoidx⋯</literal></para><screen><phrase role="commit-message">Convert function-available for node-set() to use
+new $exsl.node.set.available param in test.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: pi.xsl</literal></para><screen><phrase role="commit-message">Fixed doc bug for row-height.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>David Cramer: glossary.xsl</literal></para><screen><phrase role="commit-message">Internationalized punctuation in <tag>glosssee</tag> and <tag>glossseealso</tag></phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl; html.xsl; block.xsl</literal></para><screen><phrase role="commit-message">More elements get common.html.attributes.
+Added locale.html.attributes template which does the lang,
+dir, and <tag>title</tag> attributes, but not the class attribute
+(used on <tag>para</tag>, for example).</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl</literal></para><screen><phrase role="commit-message">Replace more <tag>literal</tag> class atts with mode="class.attribute" to support
+easier customization.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: glossary.xsl</literal></para><screen><phrase role="commit-message">Support olinking in <tag>glosssee</tag> and <tag>glossseealso</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: inline.xsl</literal></para><screen><phrase role="commit-message">In simple.xlink, rearrange order of processing.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Handle <tag>firstterm</tag> like <tag>glossterm</tag> in mode="xref-to".</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: lists.xsl; html.xsl; block.xsl</literal></para><screen><phrase role="commit-message">Added template named common.html.attributes to output
+class, <tag>title</tag>, lang, and dir for most elements.
+Started adding it to some list and block elements.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: qandaset.xsl</literal></para><screen><phrase role="commit-message">Add two new <parameter>qanda.defaultlabel</parameter> values so that numbered sections
+and numbered questions can be distinguished.  Satisfies
+Feature Request #1539045.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; chunk-code.xsl; param.ent; xref.xsl; chunkfast.xsl; verbatim.x⋯</literal></para><screen><phrase role="commit-message">Use new param <parameter>exsl.node.set.available</parameter> to test, handles Xalan bug.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: autoidx.xsl</literal></para><screen><phrase role="commit-message">Use named anchors for <tag>primary</tag>, <tag>secondary</tag>, and <tag>tertiary</tag> ids so
+duplicate entries with different ids can still have an id output.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb; param.ent</literal></para><screen><phrase role="commit-message">Add new param <parameter>index.links.to.section</parameter>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl; autoidx.xsl</literal></para><screen><phrase role="commit-message">Pass through an id on <tag>primary</tag>, <tag>secondary</tag>, or <tag>tertiary</tag> to 
+the <tag>index</tag> <tag>entry</tag>, so that one could <tag>link</tag> to an <tag>index</tag> <tag>entry</tag>.
+You can't <tag>link</tag> to the id on an <tag>indexterm</tag> because that is
+used to place the main <tag>anchor</tag> in the text flow.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: autoidx.xsl</literal></para><screen><phrase role="commit-message">Add support for the new <parameter>index.links.to.section</parameter> param which permits
+precise links to indexterms in HTML output rather than to
+the <tag>section</tag> <tag>title</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: synop.xsl</literal></para><screen><phrase role="commit-message">Added modeless template for ooclass|oointerface|ooexception.
+Closes bug #1623468.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: qandaset.xsl</literal></para><screen><phrase role="commit-message">Make sure a <tag>qandaset</tag> has an <tag>anchor</tag>, even when it has no <tag>title</tag>, 
+because it may be referenced in a <tag>TOC</tag> or <tag>xref</tag>.
+Before, the <tag>anchor</tag> was output by the <tag>title</tag>, but there was no
+<tag>anchor</tag> if there was no <tag>title</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Add a template for <tag>indexterm</tag> with mode="xref-to" to fix bug 2102592.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: xref.xsl</literal></para><screen><phrase role="commit-message">Now <tag>xref</tag> to <tag>qandaentry</tag> will use the <tag>label</tag> element in a <tag>question</tag> for
+the <tag>link</tag> text if it has one.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: qandaset.xsl; html.xsl</literal></para><screen><phrase role="commit-message">Create separate templates for computing <tag>label</tag> of <tag>question</tag> and <tag>answer</tag>
+in a <tag>qandaentry</tag>, so such can be used for the <tag>alt</tag> text of an <tag>xref</tag>
+to a <tag>qandaentry</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: inline.xsl; xref.xsl</literal></para><screen><phrase role="commit-message">Now support <tag>xref</tag> to <tag>phrase</tag>, <tag>simpara</tag>, <tag>anchor</tag>, and <tag>quote</tag>,
+most useful when an xrefstyle is used.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: toc.xsl</literal></para><screen><phrase role="commit-message">Rewrite <tag>toc</tag> templates to support an empty <tag>toc</tag> or populated <tag>toc</tag>
+in all permitted contexts.  Same for lot elements.
+This fixes bug #1595969 for HTML outputs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: titlepage.xsl; component.xsl; division.xsl; xref.xsl; titlepage.templates⋯</literal></para><screen><phrase role="commit-message">Added code to handle <tag>acknowledgements</tag> in <tag>book</tag> and part. The element is processed
+similarly to <tag>dedication</tag>. All <tag>acknowledgements</tag> will appear as front matter, after
+any dedications.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: index.xsl</literal></para><screen><phrase role="commit-message">Rewrote <tag>primaryie</tag>, <tag>secondaryie</tag> and <tag>tertiaryie</tag> templates to handle
+nesting of elements and <tag>seeie</tag> and <tag>seealsoie</tag>, as reported in
+bug # 1168912.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: autotoc.xsl</literal></para><screen><phrase role="commit-message">Fix <tag>simplesect</tag> in <tag>toc</tag> problem.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: verbatim.xsl</literal></para><screen><phrase role="commit-message">Add support for @width per bug report #2012736.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: formal.xsl; htmltbl.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1787140 HTML tables not handling attributes correctly.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: param.xweb</literal></para><screen><phrase role="commit-message">Move writing-mode param.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: refentry.xsl</literal></para><screen><phrase role="commit-message">Remove a nesting of &lt;p&gt; inside &lt;p&gt; for <tag>refclass</tag> (made XHTML* invalid, made HTML silly)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: table.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1945872 to allow passthrough of colwidth values to
+HTML <tag>table</tag> when no <parameter>tablecolumns.extension</parameter> is available and
+when no instance of * appears in the <tag>table</tag>'s colspecs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: block.xsl</literal></para><screen><phrase role="commit-message">Added support for <tag>acknowledgements</tag> in <tag>article</tag>.
+Support in <tag>book</tag>/part remains to be added.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: chunk-common.xsl</literal></para><screen><phrase role="commit-message">Fix bug #1787167 incorrect hot text for some olinks.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: qandaset.xsl</literal></para><screen><phrase role="commit-message">Fix bug 1546008: in <tag>qandaentry</tag> in a <tag>TOC</tag>, use its blockinfo/<tag>titleabbrev</tag> or blockinfo/<tag>title</tag>
+instead of <tag>question</tag>, if available. For DocBook 5, use the <tag>info</tag> versions.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: chunktoc.xsl</literal></para><screen><phrase role="commit-message">Add support for generating <tag>olink</tag> <tag>database</tag> when using chunktoc.xsl.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">Add better pointer to README for XSLTHL</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">Another stab at fixing the stupid XSLTHT includes across processors (Saxon regression reported by Sorin Ristache)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">More tweaking the way that XSLTHL does or does not get called</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: verbatim.xsl</literal></para><screen><phrase role="commit-message">Alternate attempt at sanely including/excluding XSLTHT code</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTML changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_Manpages">
+<title>Manpages</title>
+<para>The following changes have been made to the
+            <filename>manpages</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: table.xsl</literal></para><screen><phrase role="commit-message">Convert function-available test for node-set() <tag>function</tag> to
+test of $exsl.node.set.available param.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: lists.xsl</literal></para><screen><phrase role="commit-message">Added a template for <tag>bibliolist</tag>. Closes bug #1815916.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Manpages changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_Epub">
+<title>ePub</title>
+<para>The following changes have been made to the
+            <filename>epub</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/epub_regressions_spec.rb; bin/spec/files/onegraphic.xinclude.xml;⋯</literal></para><screen><phrase role="commit-message">Slightly more nuanced handling of <tag>imageobject</tag> alternatives and better support in dbtoepub for XIncludes and ENTITYs to resolve Issue #2750442 reported by Raphael Hertzog.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl</literal></para><screen><phrase role="commit-message">Add a colon after an <tag>abstract</tag>/<tag>title</tag> when mapping into the dc:description for OPF metadata in ePub output to help the flat text have more pseudo-semantics (sugestions from Michael Wiedmann)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/epub_regressions_spec.rb; docbook.xsl; bin/spec/files/de.xml</literal></para><screen><phrase role="commit-message">Correctly set dc:language in OPF metadata when i18nizing. Closes Bug #2755150</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/epub_regressions_spec.rb; docbook.xsl</literal></para><screen><phrase role="commit-message">Corrected namespace declarations for <tag>literal</tag> XHTML elements to make them serialize "normally"</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl</literal></para><screen><phrase role="commit-message">Be a little bit more nuanced about dates</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl; bin/spec/epub_realbook_spec.rb; bin/spec/files/orm.book.001.x⋯</literal></para><screen><phrase role="commit-message">Add DocBook <tag>subjectset</tag> -&gt; OPF dc:<tag>subject</tag> mapping and tests</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl; bin/spec/epub_realbook_spec.rb; bin/spec/files/orm.book.001.x⋯</literal></para><screen><phrase role="commit-message">Add DocBook <tag>date</tag> -&gt; OPF dc:date mapping and tests</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl; bin/spec/epub_realbook_spec.rb; bin/spec/files/orm.book.001.x⋯</literal></para><screen><phrase role="commit-message">Add DocBook <tag>abstract</tag> -&gt; OPF dc:description mapping and tests</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: docbook.xsl</literal></para><screen><phrase role="commit-message">Check in patch submitted by user to add opf:file-as attribute
+to dc:creator element.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/dbtoepub</literal></para><screen><phrase role="commit-message">Adding --output option to dbtoepub based on user request</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: docbook.xsl; bin/spec/epub_spec.rb</literal></para><screen><phrase role="commit-message">Cleaning and regularizing the generation of namespaced nodes for OPF, NCX, XHTML and other outputted filetypes (hat <tag>tip</tag> to bobstayton for pointing out the silly, incorrect code)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/epub_regressions_spec.rb; bin/spec/files/refclass.xml</literal></para><screen><phrase role="commit-message">Remove a nesting of &lt;p&gt; inside &lt;p&gt; for <tag>refclass</tag> (made XHTML* invalid, made HTML silly)</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: bin/spec/epub_regressions_spec.rb; bin/spec/files/blockquotepre.xml</literal></para><screen><phrase role="commit-message">Added regression test and fix for XHTML validation problem with &lt;a&gt;s added inside &lt;<tag>blockquote</tag>&gt;; This potentially causes another problem (where something is referenced by has no <tag>anchor</tag>, but someone reporting that should cause the whole &lt;a id='thing'/&gt; thing to be reconsidered with modern browsers in mind.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Epub changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_HTMLHelp">
+<title>HTMLHelp</title>
+<para>The following changes have been made to the
+            <filename>htmlhelp</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: htmlhelp-common.xsl</literal></para><screen><phrase role="commit-message">Add support for generating <tag>olink</tag> target <tag>database</tag> for htmlhelp files.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of HTMLHelp changes for 1.75.0-->
+
+
+<sect2 xml:id="V1.75.0_Params">
+<title>Params</title>
+<para>The following changes have been made to the
+            <filename>params</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Robert Stayton: default.table.rules.xml</literal></para><screen><phrase role="commit-message">Add default setting for @rules attribute on HTML markup tables.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: bookmarks.collapse.xml</literal></para><screen><phrase role="commit-message">Added a new parameter, <parameter>bookmarks.collapse</parameter>, that controls the initial <tag>state</tag> 
+of the bookmark tree. When the parameter has a non-zero value (the default), 
+only the top-level bookmarks are displayed initially. Otherwise, the whole 
+tree of bookmarks is displayed. 
+
+This is implemented for FOP 0.9X. Closes FR #1792326.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: variablelist.term.properties.xml</literal></para><screen><phrase role="commit-message">Add new <parameter>variablelist.term.properties</parameter> to format terms, per 
+request # 1968513.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: qanda.defaultlabel.xml</literal></para><screen><phrase role="commit-message">Add two new <parameter>qanda.defaultlabel</parameter> values so that numbered sections
+and numbered questions can be distinguished.  Satisfies
+Feature Request #1539045.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: index.links.to.section.xml</literal></para><screen><phrase role="commit-message">Change default to 1 to match past behavior.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: exsl.node.set.available.xml</literal></para><screen><phrase role="commit-message">Isolate this text for Xalan bug regarding exsl:node-set available.
+If it is ever fixed in Xalan, just fix it here.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: index.links.to.section.xml</literal></para><screen><phrase role="commit-message">Add param to control whether an <tag>index</tag> <tag>entry</tag> links to
+a <tag>section</tag> <tag>title</tag> or to the precise location of the
+<tag>indexterm</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: glossentry.list.item.properties.xml</literal></para><screen><phrase role="commit-message">New attribute list for <tag>glossentry</tag> in <tag>glossary</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: monospace.verbatim.font.width.xml</literal></para><screen><phrase role="commit-message">New parameter to support @width on <tag>programlisting</tag> and <tag>screen</tag>.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Mauritz Jeanson: highlight.source.xml</literal></para><screen><phrase role="commit-message">Updated and reorganized the description.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: page.margin.outer.xml; page.margin.inner.xml</literal></para><screen><phrase role="commit-message">Add caveat about XEP bug when writing-mode is right-to-left.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: article.appendix.title.properties.xml; writing.mode.xml; body.start.indent⋯</literal></para><screen><phrase role="commit-message">Change 'left' to 'start' and 'right' to 'end' to support right-to-left
+writing mode.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: glossdef.block.properties.xml; glossdef.list.properties.xml; glossterm.blo⋯</literal></para><screen><phrase role="commit-message">Add attribute-sets for formatting <tag>glossary</tag> terms and defs.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: glossterm.separation.xml</literal></para><screen><phrase role="commit-message">Clarify the description.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Robert Stayton: make.year.ranges.xml</literal></para><screen><phrase role="commit-message">Now handles <tag>year</tag> element containing a comma or dash without error.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Params changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_Highlighting">
+<title>Highlighting</title>
+<para>The following changes have been made to the
+            <filename>highlighting</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Jirka Kosek: README</literal></para><screen><phrase role="commit-message">Inclusion of highlighting code was simplified. Only one import is now necessary.</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: README</literal></para><screen><phrase role="commit-message">Adding XSLTHL readme</phrase></screen>
+</listitem>
+<listitem>
+<para><literal>Keith Fahlgren: common.xsl</literal></para><screen><phrase role="commit-message">Alternate attempt at sanely including/excluding XSLTHT code</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of Highlighting changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_XSL-Saxon">
+<title>XSL-Saxon</title>
+<para>The following changes have been made to the
+            <filename>xsl-saxon</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: src/com/nwalsh/saxon/Text.java</literal></para><screen><phrase role="commit-message">Added a fix that prevents output of extra blank line.
+Hopefully this closes bug #894805.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-Saxon changes for 1.75.0-->
+
+<sect2 xml:id="V1.75.0_XSL-Xalan">
+<title>XSL-Xalan</title>
+<para>The following changes have been made to the
+            <filename>xsl-xalan</filename> code
+            since the 1.74.3 release.</para>
+<itemizedlist>
+<listitem>
+<para><literal>Mauritz Jeanson: src/com/nwalsh/xalan/Text.java</literal></para><screen><phrase role="commit-message">Added a fix that prevents output of extra blank line.
+Hopefully this closes bug #894805.</phrase></screen>
+</listitem>
+</itemizedlist>
+</sect2><!--end of XSL-Xalan changes for 1.75.0-->
+
+
+</sect1>
+
 <sect1 xml:id="V1.74.3">
 <title>Release Notes: 1.74.3</title>
 <para>This release fixes some bugs in the 1.74.2 release.</para>
