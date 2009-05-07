@@ -101,6 +101,9 @@ Mxxx xx xxx xxxxxxxxxxxx xxxx xx xxxxxxxxxxxxx xxx xxxxxxx xx xxxxxxxxxxx
         xx xxx xxxxxxx xxxxxxxxx xxxx xxx xxx xx xxx xxxxxxxxxxx xxxxxxxxx xxxxxx.</para>
     </legalnotice>
     <mediaobject role="cover" id="coverd1e4">
+      <imageobject role="front-large" remap="lrg">
+        <imagedata width="600px" format="JPG" fileref="covers/cvr_lrg.jpg"/>
+      </imageobject>
       <imageobject role="front" remap="s">
         <imagedata format="GIF" fileref="covers/cvr_s.gif"/>
       </imageobject>
@@ -109,9 +112,6 @@ Mxxx xx xxx xxxxxxxxxxxx xxxx xx xxxxxxxxxxxxx xxx xxxxxxx xx xxxxxxxxxxx
       </imageobject>
       <imageobject role="thumbnail" remap="cs">
         <imagedata format="GIF" fileref="covers/cvr_cs.gif"/>
-      </imageobject>
-      <imageobject role="front-large" remap="lrg">
-        <imagedata width="600px" format="JPG" fileref="covers/cvr_lrg.jpg"/>
       </imageobject>
     </mediaobject>
     <date>2008-04-15</date>
