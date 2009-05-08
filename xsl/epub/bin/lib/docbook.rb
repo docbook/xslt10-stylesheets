@@ -117,9 +117,14 @@ module DocBook
     def collapse_docbook
       collapsed_file = File.join(File.dirname(@docbook_file),
                                               '.collapsed.' + File.basename(@docbook_file))
-      collapse_command = "xmllint --noent --xinclude -o '#{collapsed_file}' '#{@docbook_file}'"
-      success = system(collapse_command)
-      raise "Could not collapse XIncludes and/or entites in #{@docbook_file}" unless success
+      entity_collapse_command = "xmllint --noent -o '#{collapsed_file}' '#{@docbook_file}'"
+      entity_success = system(entity_collapse_command)
+      raise "Could not collapse named entites in #{@docbook_file}" unless entity_success
+
+      xinclude_collapse_command = "xmllint --xinclude -o '#{collapsed_file}' '#{collapsed_file}'"
+      xinclude_success = system(xinclude_collapse_command)
+      raise "Could not collapse XIncludes in #{@docbook_file}" unless xinclude_success
+
       @to_delete << collapsed_file
       return collapsed_file
     end  
