@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl</artifactId>
   <name>DocBook XSL Stylesheets</name>
   <packaging>pom</packaging>
-  <version>1.74.3</version>
+  <version>1.75.0</version>
   <description>These are XSL stylesheets for transforming DocBook XML document instances into various output formats.
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -18,8 +18,8 @@
 
 
   <properties>
-    <docbook.xsl.release>docbook-xsl-1.74.3</docbook.xsl.release>
-    <docbook.xslns.release>docbook-xsl-ns-1.74.3</docbook.xslns.release>
+    <docbook.xsl.release>docbook-xsl-1.75.0</docbook.xsl.release>
+    <docbook.xslns.release>docbook-xsl-ns-1.75.0</docbook.xslns.release>
   </properties>
 
   <build>
@@ -45,7 +45,6 @@
                     <exclude name="${docbook.xsl.release}/docsrc/"/>
                     <exclude name="${docbook.xsl.release}/tools/"/>
                     <exclude name="**/.gitignore"/>
-                    <exclude name="${docbook.xsl.release}/*"/>
                     <exclude name="${docbook.xsl.release}/epub/bin/spec/examples/"/>
                   </patternset>
                 </unzip>
@@ -61,7 +60,6 @@
                     <exclude name="${docbook.xslns.release}/tools/"/>
                     <exclude name="${docbook.xslns.release}/epub/bin/spec/examples/"/>
                     <exclude name="**/.gitignore"/>
-                    <exclude name="${docbook.xslns.release}/*"/>
                   </patternset>
                 </unzip>
               </tasks>
