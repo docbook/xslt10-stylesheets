@@ -10,6 +10,11 @@
 
 <para>The small duck.</para>
 
+<para>Include a copy entity to trigger a bug in entity collapsing 
+  following <ulink url="https://sourceforge.net/tracker/?func=detail&amp;aid=2750442&amp;group_id=21935&amp;atid=373747">Bug #2750442</ulink>'s resolution.
+To that end: &copy;.
+Reported by Michael Wiedmann.</para>
+
 <mediaobject>
   <imageobject role="webhires">
     <imagedata format="PNG" fileref="graphics/duck-small.png"/>

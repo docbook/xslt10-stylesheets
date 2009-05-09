@@ -144,6 +144,12 @@ describe DocBook::Epub do
     xincludeents_epubfile.should be_valid_epub  
   end
 
+  it "should not warn about named &entity;s" do
+    ents_epub = DocBook::Epub.new(File.join(@filedir, "entity.xml"), @tmpdir)
+    ents_epubfile  = File.join(@tmpdir, "entsepub.epub")
+    ents_epub.render_to_file(ents_epubfile, $DEBUG)
+    ents_epubfile.should be_valid_epub  
+  end
 
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
