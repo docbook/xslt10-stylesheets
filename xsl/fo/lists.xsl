@@ -663,6 +663,10 @@
 <xsl:template match="simplelist|simplelist[@type='vert']">
   <!-- with no type specified, the default is 'vert' -->
 
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:variable name="explicit.table.width">
     <xsl:call-template name="dbfo-attribute">
       <xsl:with-param name="pis"
@@ -685,7 +689,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:table xsl:use-attribute-sets="normal.para.spacing">
+  <fo:table id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
 
     <xsl:choose>
       <xsl:when test="$axf.extensions != 0 or $xep.extensions != 0">
@@ -731,7 +735,11 @@
   <!-- if dbchoice PI exists, use that to determine the choice separator -->
   <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
   <!-- value of "choice" otherwise -->
-  <fo:inline><xsl:variable name="localized-choice-separator">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:inline id="{$id}"><xsl:variable name="localized-choice-separator">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbchoice')">
         <xsl:call-template name="select.choice.separator"/>
@@ -761,6 +769,10 @@
 
 <xsl:template match="simplelist[@type='horiz']">
 
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
   <xsl:variable name="explicit.table.width">
     <xsl:call-template name="pi.dbfo_list-width"/>
   </xsl:variable>
@@ -779,7 +791,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:table xsl:use-attribute-sets="normal.para.spacing">
+  <fo:table id="{$id}" xsl:use-attribute-sets="normal.para.spacing">
     <xsl:choose>
       <xsl:when test="$axf.extensions != 0 or $xep.extensions != 0">
         <xsl:attribute name="table-layout">auto</xsl:attribute>
