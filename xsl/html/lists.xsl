@@ -386,6 +386,7 @@
         </xsl:choose>
 
         <xsl:call-template name="anchor"/>
+        <xsl:apply-templates/>
       </p>
     </xsl:otherwise>
   </xsl:choose>
