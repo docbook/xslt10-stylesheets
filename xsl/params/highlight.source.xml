@@ -39,18 +39,25 @@ from <link xlink:href="http://sourceforge.net/projects/xslthl">the XSLT syntax h
 at SourceForge.</para>
 </listitem>
 <listitem>
-<para>use a customization layer in which you import two stylesheet modules: 
-<orderedlist>
+<para>use a customization layer in which you import one of the following stylesheet modules: 
+<itemizedlist>
   <listitem>
-    <para><filename>highlighting/common.xsl</filename>
+    <para><filename>html/highlight.xsl</filename>
     </para>
   </listitem>
-  <listitem><para>one of the following: 
-  <filename>html/highlight.xsl</filename>, <filename>xhtml/highlight.xsl</filename>,
-  <filename>xhtml-1_1/highlight.xsl</filename>, <filename>fo/highlight.xsl</filename>.</para>
+<listitem>
+    <para><filename>xhtml/highlight.xsl</filename>
+    </para>
+  </listitem>
+<listitem>
+    <para><filename>html-1_1/highlight.xsl</filename>
+    </para>
+  </listitem>
+<listitem>
+    <para><filename>fo/highlight.xsl</filename>
+    </para>
 </listitem>
-</orderedlist>
-
+</itemizedlist>
 </para>
 </listitem>
 <listitem><para>let either the <literal>xslthl.config</literal> Java system property or the
