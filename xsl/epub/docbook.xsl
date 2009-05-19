@@ -6,14 +6,13 @@
   xmlns:h="http://www.w3.org/1999/xhtml"
   xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/"
   xmlns:ng="http://docbook.org/docbook-ng"
-  xmlns:odfc="urn:oasis:names:tc:opendocument:xmlns:container"
   xmlns:opf="http://www.idpf.org/2007/opf"
   xmlns:stext="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.TextFactory"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
 
   extension-element-prefixes="stext xtext"
-  exclude-result-prefixes="exsl db dc h ncx ng opf odfc stext xtext"
+  exclude-result-prefixes="exsl db dc h ncx ng opf stext xtext"
 
   version="1.0">
 
@@ -359,10 +358,10 @@
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
 
       <xsl:with-param name="content">
-        <xsl:element name="odfc:container">
+        <xsl:element namespace="urn:oasis:names:tc:opendocument:xmlns:container" name="container">
           <xsl:attribute name="version">1.0</xsl:attribute>
-          <xsl:element name="odfc:rootfiles">
-            <xsl:element name="odfc:rootfile">
+          <xsl:element namespace="urn:oasis:names:tc:opendocument:xmlns:container" name="rootfiles">
+            <xsl:element namespace="urn:oasis:names:tc:opendocument:xmlns:container" name="rootfile">
               <xsl:attribute name="full-path">
                 <!-- TODO: Figure out how to get this to work right with generation but also not be hardcoded -->
                 <xsl:value-of select="'OEBPS/content.opf'"/>
