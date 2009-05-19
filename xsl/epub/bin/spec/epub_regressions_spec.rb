@@ -151,6 +151,22 @@ describe DocBook::Epub do
     ents_epubfile.should be_valid_epub  
   end
 
+  # https://sourceforge.net/tracker/index.php?func=detail&aid=2790017&group_id=21935&atid=373747
+  it "should not use a namespace prefix for the container element to help some broken reading systems" do
+    filename = "isbn.xml"
+    shortname = filename.gsub(/\W/, '')
+    tmpdir = File.join(Dir::tmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+    epub = DocBook::Epub.new(File.join(@filedir, filename), tmpdir)
+    epubfile  = File.join(tmpdir, shortname + ".epub")
+    epub.render_to_file(epubfile, $DEBUG)
+    FileUtils.copy(epubfile, "." + shortname + ".epub") if $DEBUG
+    success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{File.expand_path(epubfile)}")
+    raise "Could not unzip #{epubfile}" unless success
+    container_file = File.join(tmpdir, 'META-INF', 'container.xml')
+    container_lines = File.open(container_file).readlines
+    container_lines.to_s.should =~ /<container/
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
