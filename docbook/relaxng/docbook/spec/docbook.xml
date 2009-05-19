@@ -18,7 +18,7 @@ $Id$
 <!-- productVersion --> <productnumber>5.0</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">cs</releaseinfo>
-<!-- revision -->       <biblioid class="pubsnumber">01</biblioid>
+<!-- revision -->       <biblioid class="pubsnumber">02</biblioid>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
 
@@ -36,10 +36,10 @@ $Id$
     <firstname>Norman</firstname>
     <surname>Walsh</surname>
   </personname>
+  <email>norman.walsh@marklogic.com</email>
   <affiliation>
-    <shortaffil>Sun</shortaffil>
-    <orgname>Sun Microsystems, Inc.</orgname>
-    <address><email>Norman.Walsh@Sun.COM</email></address>
+    <shortaffil>Mark Logic</shortaffil>
+    <orgname>Mark Logic Corporation</orgname>
   </affiliation>
 </othercredit>
 
@@ -49,18 +49,20 @@ $Id$
     <firstname>Norman</firstname>
     <surname>Walsh</surname>
   </personname>
+  <email>norman.walsh@marklogic.com</email>
   <affiliation>
-    <shortaffil>Sun</shortaffil>
-    <orgname>Sun Microsystems, Inc.</orgname>
-    <address><email>Norman.Walsh@Sun.COM</email></address>
+    <shortaffil>Mark Logic</shortaffil>
+    <orgname>Mark Logic Corporation</orgname>
   </affiliation>
 </editor>
 </authorgroup>
 
-<pubdate>2008-08-12</pubdate>
+<pubdate>2009-05-19</pubdate>
 
 <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
 
+<bibliorelation type="replaces" condition="online"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cs-01.html"/>
 <bibliorelation type="replaces" condition="online"
     xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-04.html"/>
 <bibliorelation type="replaces" condition="online"
@@ -68,6 +70,8 @@ $Id$
 <bibliorelation type="replaces" condition="online"
     xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.html"/>
 
+<bibliorelation type="replaces" condition="print"
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cs-01.pdf"/>
 <bibliorelation type="replaces" condition="print"
     xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-04.pdf"/>
 <bibliorelation type="replaces" condition="print"
@@ -85,7 +89,7 @@ $Id$
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
 <year>2004</year><year>2005</year><year>2006</year>
-<year>2007</year><year>2008</year>
+<year>2007</year><year>2008</year><year>2009</year>
 <holder>The Organization for the Advancement of Structured Information
 Standards [OASIS]. All Rights Reserved. </holder></copyright>
 
@@ -217,7 +221,8 @@ and software (though it is by no means limited to these applications).
 <para>The <link xlink:href="mailto:docbook-tc@oasis-open.org">DocBook
 Technical Committee</link> maintains the DocBook schema. Starting
 with V5.0, DocBook is normatively available as a <xref
-linkend="relaxng"/> Schema (with some additional Schematron assertions).
+linkend="iso19757-2"/> Schema (with some additional
+<xref linkend="iso19757-3"/> assertions).
 W3C XML Schema and Document Type
 Definition (DTD) versions are also available.
 </para>
@@ -256,9 +261,11 @@ document.</para>
 <title>Normative References</title>
 
 <bibliolist>
-<bibliomixed xml:id="relaxng"/>
 <bibliomixed xml:id="xml-rec"/>
 <bibliomixed xml:id="xlink11"/>
+<bibliomixed xml:id="xmlschema-2"/>
+<bibliomixed xml:id="iso19757-2"/>
+<bibliomixed xml:id="iso19757-3"/>
 <bibliomixed xml:id="rfc2119"/>
 <bibliomixed xml:id="rfc3023"/>
 <bibliomixed xml:id="bib.docbooktdg5"/>
@@ -271,8 +278,6 @@ document.</para>
 <bibliolist>
 <bibliomixed xml:id="iso8879"/>
 <bibliomixed xml:id="xmlschema-1"/>
-<bibliomixed xml:id="xmlschema-2"/>
-<bibliomixed xml:id="schematron2000"/>
 </bibliolist>
 </section>
 </section>
@@ -745,6 +750,36 @@ have valid DocBook V5.0 representations.
 </section>
 </section>
 
+<section xml:id="s.identifying">
+<title>Identifying DocBook Documents and Schemas</title>
+
+<para>Historically, when DocBook was defined by a DTD, DocBook
+documents could be identified by the presence of standard public
+and/or system identifiers in the document type declaration. RELAX NG,
+the normative schema language for DocBook V5.0, does not provide
+any equivalent mechanism.</para>
+
+<para>For systems that can make use of public identifiers, e.g., systems
+where the informative DTD is being used, the following
+public identifier can be used for DocBook V5.0:
+“<literal>-//OASIS//DTD DocBook V5.0//EN//XML</literal>”.</para>
+</section>
+
+<section xml:id="s.conformance">
+<title>Conformance</title>
+
+<para>This specification normatively defines DocBook V5.0 with a RELAX NG
+grammar and a set of Schematron assertions. A conformant DocBook V5.0 document
+<glossterm>must</glossterm> be valid according to both the grammar and the
+assertions.</para>
+
+<para>The reference documentation describes additional constraints and
+processing expectations. A conformant DocBook V5.0 document
+<glossterm>should</glossterm> respect those constraints and anticipate
+those processing expectations.</para>
+
+</section>
+
 <section xml:id="s.relnotes">
 <title>Release Notes</title>
 
@@ -943,7 +978,7 @@ this specification and are gratefully acknowledged:</para>
 <listitem><para>Larry Rowland, Hewlett-Packard</para></listitem>
 <listitem><para>Michael Smith, Individual</para></listitem>
 <listitem><para>Robert Stayton, Individual (Secretary)</para></listitem>
-<listitem><para>Norman Walsh, Sun Microsystems (Chair, Editor)</para></listitem>
+<listitem><para>Norman Walsh, Mark Logic Corporation (Chair, Editor)</para></listitem>
 </itemizedlist>
 </appendix>
 

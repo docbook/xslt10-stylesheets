@@ -145,11 +145,8 @@ div.toc p b {
 	    <xsl:text>s</xsl:text>
 	  </xsl:if>
 	</dt>
-	<xsl:for-each select="db:othercredit[@otherclass = 'chair']">
-	  <dd>
-	    <xsl:apply-templates select="db:personname"/>
-	  </dd>
-	</xsl:for-each>
+	<xsl:apply-templates select="db:othercredit[@otherclass = 'chair']"
+			     mode="spec.titlepage"/>
 
 	<xsl:variable name="editors" select="db:authorgroup/db:editor|db:editor"/>
 	<dt>
@@ -158,11 +155,7 @@ div.toc p b {
 	    <xsl:text>s</xsl:text>
 	  </xsl:if>
 	</dt>
-	<xsl:for-each select="$editors">
-	  <dd>
-	    <xsl:apply-templates select="db:personname"/>
-	  </dd>
-	</xsl:for-each>
+	<xsl:apply-templates select="$editors" mode="spec.titlepage"/>
 
 	<xsl:variable name="replaces" select="db:bibliorelation[@type='replaces']"/>
 	<xsl:variable name="supersedes" select="db:bibliorelation[@othertype='supersedes']"/>
@@ -227,6 +220,30 @@ div.toc p b {
   </div>
 </xsl:template>
 
+<xsl:template match="db:editor|db:editor|db:othercredit" mode="spec.titlepage">
+  <dd>
+    <xsl:apply-templates select="db:personname" mode="spec.titlepage"/>
+    <xsl:if test="db:affiliation/db:orgname">
+      <xsl:text>, </xsl:text>
+      <span class="affiliation">
+	<xsl:apply-templates select="db:affiliation/db:orgname"/>
+      </span>
+    </xsl:if>
+    <xsl:if test="db:email">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="db:email"/>
+    </xsl:if>
+  </dd>
+</xsl:template>
+
+<xsl:template match="db:personname" mode="spec.titlepage">
+  <span class="personname">
+    <xsl:apply-templates select="db:firstname"/>
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates select="db:surname"/>
+  </span>
+</xsl:template>
+
 <xsl:template match="db:abstract|db:legalnotice">
   <xsl:apply-templates/>
 </xsl:template>
@@ -249,163 +266,3 @@ div.toc p b {
 </xsl:template>
 
 </xsl:stylesheet>
-
-<!--
-<div class="notices">
-<h2>Notices</h2>
-<p>Copyright &copy; OASIS&reg; 2008. All Rights Reserved.</p>
-
-<p>All capitalized terms in the following text have the meanings
-assigned to them in the OASIS Intellectual Property Rights Policy (the
-&quot;OASIS IPR Policy&quot;). The full Policy may be found at the
-OASIS website.</p>
-
-<p>This document and translations of it may be copied and furnished to
-others, and derivative works that comment on or otherwise explain it
-or assist in its implementation may be prepared, copied, published,
-and distributed, in whole or in part, without restriction of any kind,
-provided that the above copyright notice and this section are included
-on all such copies and derivative works. However, this document itself
-may not be modified in any way, including by removing the copyright
-notice or references to OASIS, except as needed for the purpose of
-developing any document or deliverable produced by an OASIS Technical
-Committee (in which case the rules applicable to copyrights, as set
-forth in the OASIS IPR Policy, must be followed) or as required to
-translate it into languages other than English. </p>
-
-<p>The limited permissions granted above are perpetual and will not be
-revoked by OASIS or its successors or assigns. </p>
-
-<p>This document and the information contained herein is provided on
-an &quot;AS IS&quot; basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF
-THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY
-IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR
-PURPOSE. </p>
-
-<p>OASIS requests that any OASIS Party or any other party that
-believes it has patent claims that would necessarily be infringed by
-implementations of this OASIS Committee Specification or OASIS
-Standard, to notify OASIS TC Administrator and provide an indication
-of its willingness to grant patent licenses to such patent claims in a
-manner consistent with the IPR Mode of the OASIS Technical Committee
-that produced this specification.</p>
-
-<p>OASIS invites any party to contact the OASIS TC Administrator if it
-is aware of a claim of ownership of any patent claims that would
-necessarily be infringed by implementations of this specification by a
-patent holder that is not willing to provide a license to such patent
-claims in a manner consistent with the IPR Mode of the OASIS Technical
-Committee that produced this specification. OASIS may include such
-claims on its website, but disclaims any obligation to do so.</p>
-
-<p>OASIS takes no position regarding the validity or scope of any
-intellectual property or other rights that might be claimed to pertain
-to the implementation or use of the technology described in this
-document or the extent to which any license under such rights might or
-might not be available; neither does it represent that it has made any
-effort to identify any such rights. Information on OASIS' procedures
-with respect to rights in any document or deliverable produced by an
-OASIS Technical Committee can be found on the OASIS website. Copies of
-claims of rights made available for publication and any assurances of
-licenses to be made available, or the result of an attempt made to
-obtain a general license or permission for the use of such proprietary
-rights by implementers or users of this OASIS Committee Specification
-or OASIS Standard, can be obtained from the OASIS TC Administrator.
-OASIS makes no representation that any information or list of
-intellectual property rights will at any time be complete, or that any
-claims in such list are, in fact, Essential Claims.</p>
-
-<p>The names "OASIS", [insert specific trademarked names,
-abbreviations, etc. here] are trademarks of <a
-href="http://www.oasis-open.org">OASIS</a>, the owner and developer of
-this specification, and should be used only to refer to the
-organization and its official outputs. OASIS welcomes reference to,
-and implementation and use of, specifications, while reserving the
-right to enforce its marks against misleading uses. Please see <a
-href="http://www.oasis-open.org/who/trademark.php">http://www.oasis-open.org/who/trademark.php</a>
-for above guidance.</p>
-</div>
-</div>
-
-<p class="heading1">Table of Contents</p>
-<p>[build table of contents here. Should list at least 3 levels (sections numbered x.x.x) which are hyperlinked to the actual section.] </p>
-<p class="titlepageinfodescription">1.0 <a href="#A1">Introduction</a></p>
-<p class="titlepageinfodescription">1.1 <a href="#A1-1"> Terminology</a></p>
-<p class="titlepageinfodescription">1.2 <a href="#A1-2">Normative References</a></p>
-
-<p class="titlepageinfodescription">1.3 <a href="#A1-3">Non-Normative References</a></p>
-<p class="titlepageinfodescription">2.0 <a href="#A2">[Section title]</a></p>
-<p class="titlepageinfodescription">#.0 <a href="#A9">Conformance</a></p>
-<p class="titlepageinfodescription">A. <a href="#AA">Acknowledgements</a></p>
-<p class="titlepageinfodescription">B. <a href="#AB">[Non-normative text] </a></p>
-<p class="titlepageinfodescription">C. <a href="#AC">Revision History</a> </p>
-
-<div>
-<p class="heading1"><a name="A1" id="A1"></a>1. Introduction</p>
-<p>[All text is normative unless otherwise labeled.] </p>
-<div>
-<p class="heading2"><a name="A1-1" id="A1-1"></a>1.1 Terminology</p>
-<p> The key words &ldquo;MUST&rdquo;, &ldquo;MUST NOT&rdquo;, &ldquo;REQUIRED&rdquo;, &ldquo;SHALL&rdquo;, &ldquo;SHALL NOT&rdquo;, &ldquo;SHOULD&rdquo;, &ldquo;SHOULD NOT&rdquo;, &ldquo;RECOMMENDED&rdquo;, &ldquo;MAY&rdquo;, and &ldquo;OPTIONAL&rdquo;  are to be interpreted as described in [<a href="#rfc2119" >RFC2119</a>].</p>
-
-</div>
-<div>
-<p class="heading2"> <a name="A1-2" id="A1-2"></a>1.2 Normative References</p>
-<p class="refterm"><a name="rfc2119" id="rfc2119"> [RFC2119]</a> </p>
-<p class="ref">S. Bradner, <em>Key words for use in RFCs to Indicate Requirement Levels</em>, <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a>, IETF RFC 2119, March 1997.</p>
-<p class="refterm"><a name="insert" id="insert"> [Reference]</a> </p>
-
-<p class="ref">[Full reference citation]</p></div>
-<div>
-<p class="heading2"> <a name="A1-3" id="A1-3"></a>1.3 Non-Normative References</p>
-<p class="refterm"><a name="insert2" id="insert2"> [Reference]</a> </p>
-<p class="ref">[Full reference citation]</p></div>
-</div>
-<div>
-<p class="heading1"><a name="A2" id="A2"></a>2. Section Title</p>
-<p>[body of standard goes here] </p></div>
-
-<div>
-<p class="heading1"><a name="A9" id="A9"></a>#. Conformance</p>
-<p>[conformance clauses/statements go here] </p></div>
-<div>
-<p class="appendixheading1"><a name="AA" id="AA"></a>Appendix A. Acknowledgements</p>
-<p>The following individuals have participated in the creation of this specification and are gratefully acknowledged:</p>
-<span class="titlepageinfo">Participants:</span>
-<p>[list of acknowledgements as determined by Technical Committee chair(s)]</p></div>
-<div>
-<p class="appendixheading1"><a name="AB" id="AB"></a>Appendix B. Non-Normative Text </p>
-
-<p>[any additional appendices go here]</p>
-<p>&nbsp;</p></div>
-<div>
-<p class="appendixheading1"><a name="AC" id="AC"></a>Appendix C. Revision History </p>
-<p>[optional; should NOT be included in OASIS Standards]</p>
-<table width="600" border="1">
-  <tr>
-    <th scope="col">Revision</th>
-    <th scope="col">Date</th>
-
-    <th scope="col">Editor</th>
-    <th scope="col">Changes Made </th>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-</div>
-
-</body>
-</html>
--->

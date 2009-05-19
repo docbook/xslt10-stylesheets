@@ -14,8 +14,8 @@
 Jean Paoli, C. M. Sperberg-McQueen, <foreignphrase>et. al.</foreignphrase>,
 editors.
 <citetitle><link xlink:href="http://www.w3.org/TR/REC-xml">Extensible Markup
-Language (XML) 1.0 (Fourth Edition)</link></citetitle>.
-World Wide Web Consortium, 16 August 2006.
+Language (XML) 1.0 (Fifth Edition)</link></citetitle>.
+World Wide Web Consortium. 26 November 2008.
 </bibliomixed>
 
 <bibliomixed xml:id="xlink11"><abbrev>XLink11</abbrev>Steven DeRose, Eve Maler,
@@ -44,7 +44,7 @@ Norman Walsh and Leonard Meullner.
 The Definitive Guide</link>.</citetitle>
 </bibliomixed>
 
-<bibliomixed xml:id="iso8879"><abbrev>SGML</abbrev>JTC 1, SC 34.
+<bibliomixed xml:id="iso8879"><abbrev>SGML</abbrev>ISO/IEC JTC 1, SC 34.
 <citetitle>ISO 8879:1986
 Information processing -- Text and office systems --
 Standard Generalized Markup Language (SGML)</citetitle>. 1986.
@@ -65,6 +65,18 @@ World Wide Web Consortium, 2000.
 <bibliomixed xml:id="schematron2000"><abbrev>Schematron</abbrev>Rick Jelliffe, editor.
 <citetitle><link xlink:href="http://www.ascc.net/xml/resource/schematron/Schematron2000.html">The Schematron Assertion Language 1.5</link></citetitle>. Rick Jelliffe and
 Acedemia Sinica Computing Centre. 2001, 2001.
+</bibliomixed>
+
+<bibliomixed xml:id="iso19757-2"><abbrev>RELAX NG</abbrev>ISO/IEC JTC 1, SC 34.
+<citetitle>ISO 19757-2:2008(E)
+Information technology — Document Schema Definition Language (DSDL) —
+Part 2: Regular-grammare-based validation — RELAX NG</citetitle>. 2008.
+</bibliomixed>
+
+<bibliomixed xml:id="iso19757-3"><abbrev>Schematron</abbrev>ISO/IEC JTC 1, SC 34.
+<citetitle>ISO 19757-3:2006(E)
+Information technology — Document Schema Definition Languages (DSDL) —
+Part 3: Rule-based validation — Schematron</citetitle>. 2006.
 </bibliomixed>
 
 </bibliography>
