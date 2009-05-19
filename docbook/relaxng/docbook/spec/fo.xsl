@@ -217,11 +217,8 @@
   </fo:block>
 
   <fo:block margin-left="0.3in">
-    <xsl:for-each select="db:othercredit[@otherclass = 'chair']">
-      <fo:block>
-	<xsl:apply-templates select="db:personname"/>
-      </fo:block>
-    </xsl:for-each>
+    <xsl:apply-templates select="db:othercredit[@otherclass = 'chair']"
+			 mode="spec.titlepage"/>
   </fo:block>
 
   <xsl:variable name="editors" select="db:authorgroup/db:editor|db:editor"/>
@@ -236,11 +233,7 @@
   </fo:block>
 
   <fo:block margin-left="0.3in">
-    <xsl:for-each select="$editors">
-      <fo:block>
-	<xsl:apply-templates select="db:personname"/>
-      </fo:block>
-    </xsl:for-each>
+    <xsl:apply-templates select="$editors" mode="spec.titlepage"/>
   </fo:block>
 
   <xsl:variable name="replaces" select="db:bibliorelation[@type='replaces']"/>
@@ -335,6 +328,28 @@
       <xsl:apply-templates select="db:legalnotice[@role='notices']"/>
     </fo:block>
   </fo:block>
+</xsl:template>
+
+<xsl:template match="db:editor|db:editor|db:othercredit" mode="spec.titlepage">
+  <fo:block>
+    <xsl:apply-templates select="db:personname" mode="spec.titlepage"/>
+    <xsl:if test="db:affiliation/db:orgname">
+      <xsl:text>, </xsl:text>
+      <xsl:apply-templates select="db:affiliation/db:orgname"/>
+    </xsl:if>
+    <xsl:if test="db:email">
+      <xsl:text> </xsl:text>
+      <xsl:apply-templates select="db:email"/>
+    </xsl:if>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="db:personname" mode="spec.titlepage">
+  <fo:inline>
+    <xsl:apply-templates select="db:firstname"/>
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates select="db:surname"/>
+  </fo:inline>
 </xsl:template>
 
 <!-- ============================================================ -->
