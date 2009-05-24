@@ -189,13 +189,14 @@
   </div>
 </xsl:template>
 
+<!-- Use an em dash per Chicago Manual of Style and https://sourceforge.net/tracker/index.php?func=detail&aid=2793878&group_id=21935&atid=373747 -->
 <xsl:template match="epigraph">
   <div>
     <xsl:call-template name="common.html.attributes"/>
       <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
       <xsl:if test="attribution">
         <div class="attribution">
-          <span>--<xsl:apply-templates select="attribution"/></span>
+          <span>&#x2014;<xsl:apply-templates select="attribution"/></span>
         </div>
       </xsl:if>
   </div>

@@ -142,13 +142,14 @@
   </fo:block>
 </xsl:template>
 
+<!-- Use an em dash per Chicago Manual of Style and https://sourceforge.net/tracker/index.php?func=detail&aid=2793878&group_id=21935&atid=373747 -->
 <xsl:template match="epigraph">
   <fo:block>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
     <xsl:if test="attribution">
       <fo:inline>
-        <xsl:text>--</xsl:text>
+        <xsl:text>&#x2014;</xsl:text>
         <xsl:apply-templates select="attribution"/>
       </fo:inline>
     </xsl:if>
