@@ -26,7 +26,7 @@
   <fm:Branch>XSL Stylesheets</fm:Branch>
   <!-- * set/keep fm:version as N.NN.N-pre except for official releases, -->
   <!-- * then after the release, revert it to N.NN.N-pre & check back in -->
-  <fm:Version>1.75.1-pre</fm:Version>
+  <fm:Version>1.75.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
@@ -34,9 +34,9 @@
 <!-- * Initial freshmeat announcement -->
 <!-- * Documentation -->
 <!-- * Code cleanup -->
-* Minor feature enhancements 
+<!-- * Minor feature enhancements  -->
 <!-- * Major feature enhancements -->
-<!-- Minor bugfixes -->
+* Minor bugfixes 
 <!-- * Major bugfixes -->
 <!-- * Minor security fixes -->
 <!-- * Major security fixes -->
@@ -48,7 +48,7 @@
   <fm:Changelog-URL>http://sourceforge.net/project/shownotes.php?release_id={SFRELID}</fm:Changelog-URL>
   <fm:CVS-URL>http://docbook.svn.sourceforge.net/viewvc/docbook/</fm:CVS-URL>
   <fm:Mailing-List-URL>http://lists.oasis-open.org/archives/docbook-apps/</fm:Mailing-List-URL>
-  <fm:Changes>This is a release with feature improvements and bugfixes.</fm:Changes>
+  <fm:Changes>This is a release with bugfixes.</fm:Changes>
 </fm:project>
 
 <xsl:template match="/" priority="-100">
