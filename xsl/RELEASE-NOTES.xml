@@ -58,14 +58,14 @@ public APIs (user-configurable parameters).</para>
   <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
 </sect1>
 
-<sect1 xml:id="V1.75.1">
+<sect1 xml:id="rn_V1.75.1">
 <title>Release Notes: 1.75.1</title>
 <para>This release includes bug fixes.</para>
 
 <para>The following is a list of changes that have been made since the 1.75.0 release.</para>
 
 
-<sect2 xml:id="V1.75.1_FO">
+<sect2 xml:id="rn_V1.75.1_FO">
 <title>FO</title>
 <para>The following changes have been made to the <filename>fo</filename> code since the 1.75.0 release.</para>
 <itemizedlist>
@@ -78,7 +78,7 @@ public APIs (user-configurable parameters).</para>
 </itemizedlist>
 </sect2><!--end of FO changes for 1.75.1-->
 
-<sect2 xml:id="V1.75.1_HTML">
+<sect2 xml:id="rn_V1.75.1_HTML">
 <title>HTML</title>
 <para>The following changes have been made to the
             <filename>html</filename> code
@@ -93,7 +93,7 @@ public APIs (user-configurable parameters).</para>
 </itemizedlist>
 </sect2><!--end of HTML changes for 1.75.1-->
 
-<sect2 xml:id="V1.75.1_Epub">
+<sect2 xml:id="rn_V1.75.1_Epub">
 <title>Epub</title>
 <para>The following changes have been made to the
             <filename>epub</filename> code
@@ -111,7 +111,7 @@ public APIs (user-configurable parameters).</para>
 </itemizedlist>
 </sect2><!--end of Epub changes for 1.75.1-->
 
-<sect2 xml:id="V1.75.1_Params">
+<sect2 xml:id="rn_V1.75.1_Params">
 <title>Params</title>
 <para>The following changes have been made to the
             <filename>params</filename> code
