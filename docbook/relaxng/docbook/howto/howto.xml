@@ -498,51 +498,25 @@ complete configuration file like:</para>
 <para><application
 xl:href="http://www.oxygenxml.com/">oXygen</application> is a feature
 rich XML editor. It has built-in support for many schema languages
-including RELAX NG. If you want to smoothly edit and validate DocBook
-5.0 documents you should associate the DocBook namespace with the
-corresponding schema. Go to
-<menuchoice><guimenu>Options</guimenu><guisubmenu>Preferences…</guisubmenu><guisubmenu>Editor</guisubmenu><guimenuitem>Default
-Schema Associations</guimenuitem></menuchoice>. Then click the
-<guibutton>New</guibutton> button to add a new association. Type in
-the DocBook namespace and the RELAX NG schema location, choose the
-<guilabel>RNG Schema + Schematron</guilabel> type of schema as, and
-confirm your choice by clicking the <guibutton>OK</guibutton>
-button.</para>
-
-<figure xml:id="f.oxygen">
-<title>Adding a new schema association in oXygen</title>
-<mediaobject>
-<imageobject>
-<imagedata fileref='images/oxygen1.png'/>
-</imageobject>
-</mediaobject>
-</figure>
-
-<para>Because oXygen comes with preconfigured associations for
-DocBook V4.x, you must move your newly added configuration to the
-top of the list (using the <guibutton>Up</guibutton> button).
-That way you will be able to use
-oXygen with both DocBook V4.x and DocBook V5.0.</para>
-
-<figure xml:id="f.oxygen.assoc">
-<title>DocBook V5.0 association must precede associations for DocBook V4.x</title>
-<mediaobject>
-<imageobject>
-<imagedata fileref='images/oxygen2.png'/>
-</imageobject>
-</mediaobject>
-</figure>
-
-<para>Now you can close the preference box by clicking on the
-<guibutton>OK</guibutton> button. oXygen will assist
-you with writing DocBook V5.0 content, and you will be able to validate
-your documents against both RELAX NG and Schematron schemas. </para>
+including RELAX NG and it is preconfigured with many document types
+including DocBook. oXygen will assist you with writing DocBook V5.0
+content, and you will be able to validate your documents against both
+RELAX NG and Schematron schemas.</para>
 
 <figure xml:id="f.oxygen.open5">
 <title>DocBook V5.0 document opened in oXygen</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref='images/oxygen3.png' width="100%"/>
+<imagedata fileref='images/oxygen4.png' width="100%"/>
+</imageobject>
+</mediaobject>
+</figure>
+
+<figure xml:id="f.oxygen.author.mode">
+<title>DocBook V5.0 document opened in oXygen in Author mode</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref='images/oxygen5.png' width="100%"/>
 </imageobject>
 </mediaobject>
 </figure>
