@@ -58,3 +58,6 @@ dl            { margin-left: 3em;
 	padding: 1px; 
 	font-size: smaller; 
 	text-transform: uppercase }
+
+.yes     { color: green; }
+.no      { color: red; }

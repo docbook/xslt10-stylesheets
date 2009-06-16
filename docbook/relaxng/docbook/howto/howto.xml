@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>  <!-- -*- nxml -*- -->
 <!DOCTYPE article [
 <!ENTITY version "5.0">
+<!--
+<!ENTITY yes "<phrase role='unicode yes'>✔</phrase>">
+<!ENTITY no "<phrase role='unicode no'>✘</phrase>">
+-->
+<!ENTITY yes "<phrase role='unicode yes'>YES</phrase>">
+<!ENTITY no "<phrase role='unicode no'>NO</phrase>">
 ]>
 <article xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xl="http://www.w3.org/1999/xlink"
@@ -214,7 +220,8 @@ V5.0. But please note that neither the DTD nor the W3C XML schema are able to
 capture all the constraints of DocBook V5.0. This mean that a
 document that validates against the DTD or XML schema is not necessarily
 valid against the RELAX NG schema and thus may not be a valid
-DocBook V5.0 document.</para>
+DocBook V5.0 document. See <xref linkend="t.schema-comparison"/> for
+summary of constraints that are checked by different schemas.</para>
 
 <para>DTD and W3C XML Schema versions of the DocBook V5.0 grammar are provided
 as a convenience for users who want to use DocBook V5.0 with legacy tools
@@ -227,6 +234,136 @@ like RELAX NG or W3C XML Schema. To check for these additional
 constraints DocBook V5.0 uses Schematron.  We recommend that you
 validate your document against both the RELAX NG and
 Schematron schemas.</para>
+
+<table xml:id="t.schema-comparison">
+  <title>Schema Comparison</title>
+  <tgroup cols="6">
+    <colspec colwidth="4*"/>
+    <colspec colwidth="1*" align="center"/>
+    <colspec colwidth="1*" align="center"/>
+    <colspec colwidth="1*" align="center"/>
+    <colspec colwidth="1*" align="center"/>
+    <colspec colwidth="1*" align="center"/>
+    <thead>
+      <row>
+	<entry>Description</entry>
+	<entry>DTD</entry>
+	<entry>W3C XML Schema</entry>
+	<entry>W3C XML Schema + Schematron</entry>
+	<entry>RELAX NG</entry>
+	<entry>RELAX NG + Schematron/NVDL</entry>
+      </row>
+    </thead>
+    <tbody>
+      <row>
+	<entry>Basic document structure</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>ID/IDREF datatypes</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Datatypes<footnote>
+	  <para>In a very few places RELAX NG specifies datatype
+	  like number (mainly for length specifications) or
+	  enumeration between <literal>0</literal> and
+	  <literal>1</literal>.</para>
+	  <para>In general those datatypes can be also supported in
+	  W3C XML Schema, but currently this schema is generated
+	  from DTD which lacks datatype information.</para>
+	</footnote>
+	</entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Co-occurrences<footnote>
+	<para>RELAX NG grammar enforces exclusivity of several
+	elements. For example if you have <tag>title</tag> inside
+	<tag>info</tag> then it is not allowed to have another
+	<tag>title</tag> outside <tag>info</tag>. Similarly,
+	models of HTML and CALS tables are separated and validated
+	properly, where in DTD and WXS only union of both models is
+	available.</para>
+	<para>On other places co-occurrences enforces particular
+	content model based on presence of specific attribute or
+	attribute value.</para>
+	<para>Please also note that in theory co-occurences can be
+	validated using Schematron, but the current DocBook schema
+	uses RELAX NG for these definitions. Schematron can be used
+	only for validation, whereas grammar based schemas like
+	RELAX NG are useful also for other purposes like guided editing.</para>
+	</footnote></entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Hooks for MathML and SVG content</entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Link type integrity<footnote>
+	<para>Check whether ID/IDREF links are pointing to element
+	of corresponding type. For example that
+	<tag>footnoteref</tag> points to
+	<tag>footnote</tag>.</para></footnote></entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Presence of <tag class="attribute">version</tag>
+	attribute on the root element</entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Miscellaneous checks<footnote>
+	<para>For example consistency of segmented lists, only one
+	term inside term definition etc.</para></footnote></entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+      </row>
+      <row>
+	<entry>Element exclusions<footnote>
+	<para>Prevents improper nesting of elements, like admonition
+	inside admonition.</para></footnote></entry>
+	<entry>&no;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+	<entry>&no;</entry>
+	<entry>&yes;</entry>
+      </row>        
+    </tbody>
+  </tgroup>
+</table>
 
 <section xml:id="schemas">
 <title>Where to get the schemas</title>
