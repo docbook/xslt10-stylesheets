@@ -68,12 +68,12 @@ module DocBook
       callout_limit =   "--stringparam callout.graphics.number.limit #{CALLOUT_LIMIT}"
       callout_ext =     "--stringparam callout.graphics.extension #{CALLOUT_EXT}" 
       html_stylesheet = "--stringparam html.stylesheet #{File.basename(@css_file)}" if @css_file
-      base =            "--stringparam base.dir #{@oebps_dir}/" 
+      base =            "--stringparam base.dir #{OEBPS_DIR}/" 
       unless @embedded_fonts.empty? 
         font =            "--stringparam epub.embedded.font \"#{File.basename(@embedded_fonts.first)}\"" 
       end  
-      meta =            "--stringparam epub.metainf.dir #{@meta_dir}/" 
-      oebps =           "--stringparam epub.oebps.dir #{@oebps_dir}/" 
+      meta =            "--stringparam epub.metainf.dir #{META_DIR}/" 
+      oebps =           "--stringparam epub.oebps.dir #{OEBPS_DIR}/" 
       options = [chunk_quietly, 
                  callout_path, 
                  callout_limit, 
@@ -85,7 +85,7 @@ module DocBook
                  html_stylesheet,
                 ].join(" ")
       # Double-quote stylesheet & file to help Windows cmd.exe
-      db2epub_cmd = "#{XSLT_PROCESSOR} #{options} \"#{@stylesheet}\" \"#{@collapsed_docbook_file}\""
+      db2epub_cmd = "cd #{@output_dir} && #{XSLT_PROCESSOR} #{options} \"#{@stylesheet}\" \"#{@collapsed_docbook_file}\""
       STDERR.puts db2epub_cmd if $DEBUG
       success = system(db2epub_cmd)
       raise "Could not render as .epub to #{output_file} (#{db2epub_cmd})" unless success
