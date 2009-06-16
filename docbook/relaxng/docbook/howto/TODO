@@ -28,7 +28,7 @@ Tom
 ...and to other existing DB5 customizations
 * DONE Add more references (NVDL, ...)
 
-* TODO Improve breaking of long lines
+* DONE Improve breaking of long lines
 Gentlemen,
 
   I am trying to read the subject guide via html and find it most difficult because of the formatting.   The problem is that the display is much too wide and causes horizontal scrolling.  This is because the contents of the line:
