@@ -6,21 +6,12 @@
 <!ENTITY yes "<phrase role='unicode yes'>✔</phrase>">
 <!ENTITY no "<phrase role='unicode no'>✘</phrase>">
 -->
-<!ENTITY yes "<phrase role='unicode yes'>JA</phrase>">
-<!ENTITY no "<phrase role='unicode no'>NEIN</phrase>">
+<!ENTITY yes "<phrase xmlns='http://docbook.org/ns/docbook' role='unicode yes'>JA</phrase>">
+<!ENTITY no  "<phrase xmlns='http://docbook.org/ns/docbook' role='unicode no'>NEIN</phrase>">
 ]>
-<!-- 
- Process it with:
- $ xsltproc -output howto_de.html -stringparam profile.lang de \
-    $DB_XSL_NS/html/profile-docbook.xsl howto_de.xml
- 
- Replace $DB_XSL_NS with the path of your DocBook XSL Stylesheet
- installation directory 
--->
 
 
 <article xmlns="http://docbook.org/ns/docbook"
-  xml:base="http://www.suse.de/~toms/transitionguide/"
   xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="de">
   <info>
     <title>DocBook V5.0</title>
