@@ -19,11 +19,11 @@ all: howto.xml howto.html howto.pdf
 ns: howto.ns.xml howto.ns.html howto.ns.pdf
 
 %.xml :  %.de.xml 
-	@echo "Profiling $@ into $<..."
+	@echo "Profiling $< into $@..."
 	$(XSLT) $< $(PROFSTYLE) $@ $(VARS) profile.lang=de
 
 %.ns.xml: %.de.xml
-	@echo "Profiling $@ into $<..." 
+	@echo "Profiling $< into $@..." 
 	$(XSLT) $< $(PROFNSSTYLE) $@ $(VARS) profile.lang=de
 
 %.html : %.xml $(HTMLSTYLE)
