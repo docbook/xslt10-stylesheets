@@ -7,10 +7,24 @@ HTMLNSSTYLE=../stylesheets/html-ns.xsl
 FONSSTYLE=../stylesheets/fo-ns.xsl
 VARS=
 
-all: howto.html howto.pdf
+XMLCATFILE=/etc/xml/catalog
+DB=http://docbook.sourceforge.net/release/xsl/current/
+DBNS=http://docbook.sourceforge.net/release/xsl-ns/current/
+PROFSTYLE=$(shell xmlcatalog ${XMLCATFILE}   ${DB}/profiling/profile.xsl )
+PROFNSSTYLE=$(shell xmlcatalog ${XMLCATFILE} ${DBNS}/profiling/profile.xsl )
+
+all: howto.xml howto.html howto.pdf
 
 # output using the namespaced stylesheets
-ns: howto.ns.html howto.ns.pdf
+ns: howto.ns.xml howto.ns.html howto.ns.pdf
+
+%.xml :  %.de.xml 
+	@echo "Profiling $@ into $<..."
+	$(XSLT) $< $(PROFSTYLE) $@ $(VARS) profile.lang=de
+
+%.ns.xml: %.de.xml
+	@echo "Profiling $@ into $<..." 
+	$(XSLT) $< $(PROFNSSTYLE) $@ $(VARS) profile.lang=de
 
 %.html : %.xml $(HTMLSTYLE)
 	jing -c ../../docbook.rnc $<
