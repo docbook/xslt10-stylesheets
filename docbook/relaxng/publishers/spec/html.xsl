@@ -11,7 +11,7 @@
 		exclude-result-prefixes="db f h m t xlink xs"
                 version="2.0">
 
-<xsl:import href="../../../docbook-xsl-ns-1.74.0/html/docbook.xsl"/>
+<xsl:import href="../../../docbook-xsl-ns-1.75.1/html/docbook.xsl"/>
 
 <xsl:param name="generate.toc" as="element()*">
 <tocparam path="appendix" toc="0" title="0"/>

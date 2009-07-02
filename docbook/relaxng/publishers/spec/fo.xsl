@@ -9,8 +9,7 @@
 		exclude-result-prefixes="db m t xlink xs"
                 version="2.0">
 
-    <xsl:import href="/Users/keith/scratch/docbook-xsl-ns-1.74.0/fo/docbook.xsl"/>
-<xsl:param name="axf.extensions" select="1"/>
+    <xsl:import href="../../../docbook-xsl-ns-1.75.1/fo/docbook.xsl"/>
 
 <xsl:param name="draft.watermark.image"
            select="'../../../sourceforge/docbook/xsl/images/draft.png'"/>

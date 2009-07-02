@@ -225,28 +225,6 @@ for publication by the OASIS DocBook Technical Committee. It represents the cons
             </bibliolist>
         </section>
     </section>
-    <section xml:id="s.conformance">
-        <title>Conformance</title>
-        <para>The DocBook Publishers schema is a valid DocBook v5.0 customization.
-        Publications or documents will be considered conformant to this
-        specification if they validate against the DocBook Publishers schema
-        (publishers.rnc or publishers.rng).</para>
-        <para>Extensions allow implementers to include features that are in demand
-        by their customers. Extensions may migrate into future versions of this
-        specification. However, the use of extensions can have an impact on interoperability.</para>
-        <para>Any extenstions to this schema SHALL follow the principles and
-        guidelines of the DocBook v5.0 and this Publishers specification;
-        that is, the specifications SHALL be extended in a standard manner
-        as described in <link xlink:href="http://docbook.org/tdg5/en/html/ch05.html">http://docbook.org/tdg5/en/html/ch05.html</link>.</para>
-        <para>For implementations and/or applications that contain extensions,
-        extensions SHALL
-        be clearly described in supporting documentation, and the extensions
-        SHALL be marked
-        as such within the implementation/application.</para>
-        <para>This document’s normative language is English. Translation into
-        other languages
-        is permitted.</para>
-    </section>
     <section xml:id="s.docbook">
         <title>The DocBook Publishers RELAX NG Schema</title>
         <para>The DocBook Publishers <link xlink:href="http://docs.oasis-open.org/docbook/rng/"
@@ -8230,7 +8208,8 @@ for publication by the OASIS DocBook Technical Committee. It represents the cons
             (removed dc namespace, added dc elements to dcterms; better formatted examples, summary
             of elements added/removed in Introduction.</para>
         <para>Revised Draft. 15 January 2009. Removed spurious "remap" attributes from examples.
-            Added table mapping Dublin Core to DocBook equivalents per request from Jirka Kosek.</para>
+        Added table mapping Dublin Core to DocBook equivalents per request from Jirka Kosek.</para>
+        <para>Revised Draft. 7 May 2009. Added conformance statement.</para>
         <!--
 <listitem xml:id="rfe.">
 <para>Fixed <link xlink:href="&RFE;aid=">RFE </link>:
