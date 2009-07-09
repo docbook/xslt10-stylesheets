@@ -396,14 +396,14 @@ title of the element. This does not include the label.
 
 <xsl:template match="figure|example|equation" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
-  <xsl:apply-templates select="title|info/title" mode="title.markup">
+  <xsl:apply-templates select="(title|info/title)[1]" mode="title.markup">
     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
   </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="table" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
-  <xsl:apply-templates select="(title|caption)[1]" mode="title.markup">
+  <xsl:apply-templates select="(title|info/title|caption)[1]" mode="title.markup">
     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
   </xsl:apply-templates>
 </xsl:template>
@@ -417,7 +417,7 @@ title of the element. This does not include the label.
 
 <xsl:template match="task" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
-  <xsl:apply-templates select="title" mode="title.markup">
+  <xsl:apply-templates select="(title|info/title)[1]" mode="title.markup">
     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
   </xsl:apply-templates>
 </xsl:template>
@@ -509,7 +509,7 @@ title of the element. This does not include the label.
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:choose>
     <xsl:when test="title|info/title">
-      <xsl:apply-templates select="title" mode="title.markup">
+      <xsl:apply-templates select="(title|info/title)[1]" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
       </xsl:apply-templates>
     </xsl:when>
@@ -530,6 +530,11 @@ title of the element. This does not include the label.
   <xsl:choose>
     <xsl:when test="titleabbrev">
       <xsl:apply-templates select="titleabbrev[1]" mode="title.markup">
+        <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+      </xsl:apply-templates>
+    </xsl:when>
+    <xsl:when test="info/titleabbrev">
+      <xsl:apply-templates select="info/titleabbrev[1]" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
       </xsl:apply-templates>
     </xsl:when>
