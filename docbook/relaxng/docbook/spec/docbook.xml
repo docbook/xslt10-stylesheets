@@ -18,7 +18,7 @@ $Id$
 <!-- productVersion --> <productnumber>5.0</productnumber>
 <!-- artifactType       spec; what else? :-) -->
 <!-- stage -->          <releaseinfo role="stage">cs</releaseinfo>
-<!-- revision -->       <biblioid class="pubsnumber">02</biblioid>
+<!-- revision -->       <biblioid class="pubsnumber">03</biblioid>
 <!-- language           en; see /article/@xml:lang -->
 <!-- form               xml -->
 
@@ -57,34 +57,21 @@ $Id$
 </editor>
 </authorgroup>
 
-<pubdate>2009-05-19</pubdate>
+<pubdate>2009-06-03</pubdate>
 
 <bibliomisc role="namespace">http://docbook.org/ns/docbook</bibliomisc>
 
 <bibliorelation type="replaces" condition="online"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cs-01.html"/>
-<bibliorelation type="replaces" condition="online"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-04.html"/>
-<bibliorelation type="replaces" condition="online"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.html"/>
-<bibliorelation type="replaces" condition="online"
-    xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.html"/>
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-05.html"/>
 
 <bibliorelation type="replaces" condition="print"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cs-01.pdf"/>
-<bibliorelation type="replaces" condition="print"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-04.pdf"/>
-<bibliorelation type="replaces" condition="print"
-    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-03.pdf"/>
-<bibliorelation type="replaces" condition="print"
-    xlink:href="http://docbook.org/specs/docbook-5.0CR7-spec-wd-01.pdf"/>
+    xlink:href="http://docbook.org/specs/docbook-5.0-spec-cd-05.pdf"/>
 
 <bibliorelation type="references" condition="online"
     xlink:href="http://docs.oasis-open.org/docbook/specs/docbook-4.5-spec.html"/>
 
 <bibliorelation type="references" condition="print"
     xlink:href="http://docs.oasis-open.org/docbook/specs/docbook-4.5-spec.pdf"/>
-
 
 <copyright>
 <year>2001</year><year>2002</year><year>2003</year>
@@ -137,7 +124,7 @@ Manager</link>.</para>
 </legalnotice>
 
 <legalnotice role="notices">
-<para>Copyright © OASIS® 2008. All Rights Reserved.</para>
+<para>Copyright © OASIS® 2009. All Rights Reserved.</para>
 
 <para>All capitalized terms in the following text have the meanings
 assigned to them in the OASIS Intellectual Property Rights Policy (the
@@ -996,7 +983,7 @@ this specification and are gratefully acknowledged:</para>
 <section xml:id="s.50">
 <title>Changes in DocBook V5.0</title>
 
-<para>There are no user-visible changes in 5.0 (Committee Specification 1).
+<para>There are no user-visible changes in 5.0 (Committee Specification 3).
 </para>
 
 </section>
