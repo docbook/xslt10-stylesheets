@@ -41,19 +41,19 @@ db.xlink.from.attribute =
    [
       db:refpurpose [ "Specifies the XLink traversal-from" ]
    ]
-   attribute xlink:from { xsd:NMTOKEN }?
+   attribute xlink:from { xsd:NMTOKEN }
 
 db.xlink.label.attribute =
    [
       db:refpurpose [ "Specifies the XLink label" ]
    ]
-   attribute xlink:label { xsd:NMTOKEN }?
+   attribute xlink:label { xsd:NMTOKEN }
 
 db.xlink.to.attribute =
    [
       db:refpurpose [ "Specifies the XLink traversal-to" ]
    ]
-   attribute xlink:to { xsd:NMTOKEN }?
+   attribute xlink:to { xsd:NMTOKEN }
 
 # ======================================================================
 
