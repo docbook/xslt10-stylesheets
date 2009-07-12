@@ -251,7 +251,7 @@ db.xlink.title.attribute =
    [
       db:refpurpose [ "Identifies the XLink title of the link" ]
    ]
-   attribute xlink:title { text }?
+   attribute xlink:title { text }
 
 db.xlink.show.enumeration =
    ## An application traversing to the ending resource should load it in a new window, frame, pane, or other relevant presentation context.
@@ -3787,21 +3787,21 @@ div {
       "technicaleditor"
     | ## A translator
       "translator"
-    | # An indexer
+    | ## An indexer
       "indexer"
-    | # A proof-reader
+    | ## A proof-reader
       "proofreader"
-    | # A cover designer
+    | ## A cover designer
       "coverdesigner"
-    | # An interior designer
+    | ## An interior designer
       "interiordesigner"
-    | # An illustrator
+    | ## An illustrator
       "illustrator"
-    | # A reviewer
+    | ## A reviewer
       "reviewer"
-    | # A typesetter
+    | ## A typesetter
       "typesetter"
-    | # A converter (a persons responsible for conversion, not an application)
+    | ## A converter (a persons responsible for conversion, not an application)
       "conversion"
 
    db.othercredit.class-enum.attribute =
