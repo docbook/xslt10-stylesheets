@@ -433,7 +433,9 @@ safely ignore this part.
    doesn't need to be included in the final release notes. In
    general, that means removing most bug fixes and "housekeeping"
    changes that do not need to be exposed to users, but changes
-   for feature enhancements or changes to public APIs.
+   for feature enhancements or changes to public APIs. Do remember
+   to modify the @xml:ids for each pasted sect2 or you'll get a
+   conflict later.
 
 7. After making all changes/additions to the RELEASE-NOTES.xml
    file, check it back in with 
