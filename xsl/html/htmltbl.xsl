@@ -70,7 +70,6 @@
                    | @char
                    | @charoff
                    | @class
-                   | @colspan
                    | @dir
                    | @frame
                    | @headers
@@ -87,9 +86,7 @@
                    | @onmouseout
                    | @onmouseover
                    | @onmouseup
-                   | @rowspan
                    | @rules
-                   | @span
                    | @style
                    | @summary
                    | @title
