@@ -46,6 +46,8 @@
   <xsl:param name="tbl.font.headings" select="$man.font.table.headings"/>
   <xsl:param name="tbl.font.title" select="$man.font.table.title"/>
 
+  <xsl:param name="stylesheet.result.type" select="'manpages'"/>
+
   <!-- ==================================================================== -->
 
   <xsl:template match="/">

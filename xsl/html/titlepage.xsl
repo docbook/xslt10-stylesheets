@@ -362,7 +362,8 @@
 
 <xsl:template match="copyright" mode="titlepage.mode">
 
-  <xsl:if test="generate-id() = generate-id(//refentryinfo/copyright[1])">
+  <xsl:if test="generate-id() = generate-id(//refentryinfo/copyright[1])
+      and $stylesheet.result.type = 'html'">
     <h2>Copyright</h2>
   </xsl:if>
 
