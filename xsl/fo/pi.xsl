@@ -964,6 +964,9 @@
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when test="$fop1.extensions != 0">
+      <!-- Doesn't work in fop -->
+    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
     </xsl:when>
@@ -1036,6 +1039,9 @@
   </xsl:choose>
 
   <xsl:choose>
+    <xsl:when test="$fop1.extensions != 0">
+      <!-- Doesn't work in fop -->
+    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
     </xsl:when>
