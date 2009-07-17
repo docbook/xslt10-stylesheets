@@ -66,8 +66,8 @@
 <gentext key="IMPORTANT" text="重要項目"/>
 <gentext key="Important" text="重要項目"/>
 <gentext key="important" text="重要項目"/>
-<gentext key="Index" text="目次"/>
-<gentext key="index" text="目次"/>
+<gentext key="Index" text="索引"/>
+<gentext key="index" text="索引"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="法律上の通知"/>
