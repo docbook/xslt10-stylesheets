@@ -344,7 +344,7 @@
 
   <xsl:if test="self::ulink or self::*[@xlink:href]">
     <xsl:variable name="link.wrapper">
-      <xsl:value-of select="$notesource.contents"/>
+      <xsl:value-of select="normalize-space($notesource.contents)"/>
     </xsl:variable>
     <xsl:text>\m[blue]</xsl:text>
     <!-- * This is a hyperlink, so we need to determine if the user wants -->
