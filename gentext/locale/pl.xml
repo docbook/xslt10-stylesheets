@@ -174,8 +174,8 @@
 <gentext key="index symbols" text="Symbols"/> <!-- en -->
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="a&#261;bc&#263;de&#281;fghijkl&#322;mn&#324;o&#242;pqrs&#347;tuvwxyz&#378;&#380;"/>        
-<gentext key="uppercase.alpha" text="A&#260;BC&#262;DE&#280;FGHIJKL&#321;MN&#323;O&#210;PQRS&#346;TUVWXYZ&#377;&#379;"/>
+<gentext key="lowercase.alpha" text="a&#261;bc&#263;de&#281;fghijkl&#322;mn&#324;o&#243;pqrs&#347;tuvwxyz&#378;&#380;"/>        
+<gentext key="uppercase.alpha" text="A&#260;BC&#262;DE&#280;FGHIJKL&#321;MN&#323;O&#211;PQRS&#346;TUVWXYZ&#377;&#379;"/>
 
 <dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201D;"/>
