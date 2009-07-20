@@ -78,9 +78,9 @@
 <gentext key="msglevel" text="レベル"/>
 <gentext key="MsgOrig" text="発信元"/>
 <gentext key="msgorig" text="発信元"/>
-<gentext key="note" text="注意"/>
-<gentext key="Note" text="注意"/>
-<gentext key="NOTE" text="注意"/>
+<gentext key="note" text="注記"/>
+<gentext key="Note" text="注記"/>
+<gentext key="NOTE" text="注記"/>
 <gentext key="Part" text="パート"/>
 <gentext key="part" text="パート"/>
 <gentext key="Preface" text="序文"/>
@@ -147,8 +147,8 @@
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="nonexistantelement" text="要素が存在しません"/>
-<gentext key="notes" text="注意"/>
-<gentext key="Notes" text="注意"/>
+<gentext key="notes" text="注記"/>
+<gentext key="Notes" text="注記"/>
 <gentext key="Pgs" text="偧献"/>
 <gentext key="pgs" text="偧献"/>
 <gentext key="Revisedby" text="Revised by: "/>
