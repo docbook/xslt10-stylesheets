@@ -5,7 +5,7 @@
   <artifactId>docbook-xml</artifactId>
   <name>DocBook XML</name>
   <packaging>pom</packaging>
-  <version>5.0</version>
+  <version>5.0-all</version>
   <description>Docbook XML</description>
   <url>http://www.docbook.org/</url>
 
@@ -38,7 +38,6 @@
                   <patternset>
                     <include name="${docbook.xml.release}/**"/>
                     <exclude name="${docbook.xml.release}/docs/"/>
-                    <exclude name="${docbook.xml.release}/tools/"/>
                   </patternset>
                 </unzip>
               </tasks>
@@ -54,53 +53,14 @@
 
         <executions>
           <execution>
-            <id>make docbook-xml schema resources</id>
+            <id>make docbook schemas resources</id>
             <goals>
               <goal>single</goal>
             </goals>
             <phase>package</phase>
             <configuration>
               <descriptors>
-                <descriptor>${project.basedir}/assembly-sch.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>make docbook-xml xsd resources</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <descriptors>
-                <descriptor>${project.basedir}/assembly-xsd.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>make docbook-xml dtd resources</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <descriptors>
-                <descriptor>${project.basedir}/assembly-dtd.xml</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>make docbook-xml rng resources</id>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <descriptors>
-                <descriptor>${project.basedir}/assembly-rng.xml</descriptor>
+                <descriptor>${project.basedir}/assembly-all.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>
