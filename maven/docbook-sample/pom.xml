@@ -19,7 +19,7 @@
     <dependency>
       <groupId>net.sf.docbook</groupId>
       <artifactId>docbook-xsl</artifactId>
-      <version>1.75.0</version>
+      <version>1.75.1</version>
       <type>zip</type>
       <classifier>ns-resources</classifier>
     </dependency>
@@ -39,6 +39,7 @@
             <goals>
               <goal>unpack-dependencies</goal>
             </goals>
+            <!-- linked with generate-resources phase -->
             <phase>generate-resources</phase>
             <configuration>
               <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
@@ -62,6 +63,8 @@
             <goals>
               <goal>transform</goal>
             </goals>
+            <!-- linked with generate-resources phase -->
+            <phase>generate-resources</phase>
           </execution>
         </executions>
         <configuration>
