@@ -543,6 +543,9 @@ release.
 * NOTE: The part of the build that installs releases at the
 * Sourceforge project site is currently NOT working (due to SF
 * disabling non-interactive ssh access).
+*
+* Try 
+*    scp [FILES] [username]@frs.sourceforge.net:uploads/
 *****************************************************************
 
      make install-ns
@@ -615,7 +618,7 @@ a mistake, see the next section for details on how to fix it.
 13. Go to the project "Latest File Releases" page and confirm
     that releases you have created appear there.
 
-      http://sourceforge.net/project/showfiles.php?group_id=21935
+      https://sourceforge.net/projects/docbook/files/
 
 -----------------------------------------------------------------
 Part 7: Fix upload mistakes
@@ -717,7 +720,7 @@ This section explains how to announce a release.
 
         This release includes bug fixes and a few feature changes.
 
-        http://sourceforge.net/project/showfiles.php?group_id=21935
+        https://sourceforge.net/projects/docbook/files/
 
    E. Click the Submit button.
       The News submission form re-appears.
@@ -736,7 +739,7 @@ This section explains how to announce a release.
 
         This release includes bug fixes and a few feature changes.
 
-        http://sourceforge.net/project/showfiles.php?group_id=21935
+        https://sourceforge.net/projects/docbook/files/
 
    H. Go to the project News page and confirm that the announcements
       appear:
