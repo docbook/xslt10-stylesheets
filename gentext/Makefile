@@ -3,7 +3,7 @@ XJPARSE=../buildtools/xjparse
 
 SOURCES=af.xml am.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml cy.xml \
 	da.xml de.xml el.xml en.xml es.xml et.xml fa.xml fi.xml fr.xml ga.xml \
-	gu.xml hi.xml hu.xml id.xml it.xml ja.xml kn.xml ko.xml ky.xml lt.xml \
+	gu.xml hi.xml hu.xml id.xml is.xml it.xml ja.xml kn.xml ko.xml ky.xml lt.xml \
 	lv.xml mn.xml nl.xml nb.xml or.xml pa.xml pl.xml pt.xml pt_br.xml \
 	ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml ta.xml \
 	tl.xml tr.xml zh.xml zh_cn.xml zh_tw.xml
@@ -50,6 +50,7 @@ dbl1gu.ent: locale/gu.xml
 dbl1hi.ent: locale/hi.xml
 dbl1hu.ent: locale/hu.xml
 dbl1id.ent: locale/id.xml
+dbl1is.ent: locale/is.xml
 dbl1it.ent: locale/it.xml
 dbl1ja.ent: locale/ja.xml
 dbl1kn.ent: locale/kn.xml
