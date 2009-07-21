@@ -330,6 +330,11 @@ the stylesheets -- then you can ignore this "Part 2" section; the
       Saxon Extensions and the DocBook Xalan extensions)
   -----------------------------------------------------------
 
+0. Ensure repository is fully updated.
+   If you're hoping to make a release of the current trunk of the
+   stylesheets, make sure to "svn up" from the parent of this 
+   directory (trunk/, not xsl/).
+
 1. make distrib
    If you have followed the steps in Part 1 above to successfully
    run a "make all" build, then to build a full distribution,
