@@ -115,8 +115,8 @@ module DocBook
     # were XIncluded or added by ENTITY
     #   http://sourceforge.net/tracker/?func=detail&aid=2750442&group_id=21935&atid=373747
     def collapse_docbook
-      collapsed_file = File.join(File.dirname(@docbook_file),
-                                              '.collapsed.' + File.basename(@docbook_file))
+      collapsed_file = File.join(File.expand_path(File.dirname(@docbook_file)), 
+                                 '.collapsed.' + File.basename(@docbook_file))
       entity_collapse_command = "xmllint --loaddtd --noent -o '#{collapsed_file}' '#{@docbook_file}'"
       entity_success = system(entity_collapse_command)
       raise "Could not collapse named entites in #{@docbook_file}" unless entity_success
