@@ -205,7 +205,7 @@
 <gentext key="Draft" text="Bozza"/>
 <gentext key="above" text="sopra"/>
 <gentext key="below" text="sotto"/>
-<gentext key="sectioncalled" text="la sezione chiamata"/>
+<gentext key="sectioncalled" text="sezione chiamata"/>
 <gentext key="index symbols" text="Simboli"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
@@ -1334,3 +1334,5 @@
 </letters>
 
 </locale>
+
+ 	  	 
