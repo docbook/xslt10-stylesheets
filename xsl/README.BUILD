@@ -548,9 +548,53 @@ release.
 * NOTE: The part of the build that installs releases at the
 * Sourceforge project site is currently NOT working (due to SF
 * disabling non-interactive ssh access).
-*
-* Try 
-*    scp [FILES] [username]@frs.sourceforge.net:uploads/
+
+-----------------------------------------------------------------
+Manual upload of release packages
+-----------------------------------------------------------------
+Below are instructions for manually uploading and installing 
+release packages in order to make them available at the project
+site (http://docbook.sourceforge.net/release/).
+
+1. Transfer the following files 
+
+   - docbook-xsl-<version>.zip
+   - docbook-xsl-ns-<version>.zip
+   - docbook-xsl-doc-<version>.zip 
+
+   to the /home/groups/d/do/docbook/htdocs/release/xsl 
+   directory at web.sourceforge.net using scp, WinSCP, or another 
+   equivalent tool. The login string is 
+
+     <username>,docbook@web.sourceforge.net
+
+2. Start a SourceForge shell session, like so:
+
+     ssh -t <username>,docbook@shell.sourceforge.net create
+
+3. In the shell, execute commands as follows for the docbook-xsl 
+   package (the 1.75.2 version is used as an example):
+
+     cd /home/groups/d/do/docbook/htdocs/release/xsl
+     rm -rf current
+     unzip docbook-xsl-1.75.2.zip
+     mv docbook-xsl-1.75.2 1.75.2
+     chmod -R g+w 1.75.2
+     ln -s 1.75.2 current
+
+4. Repeat (and modify where applicable) the commands in step 3 for 
+   the docbook-xsl-ns package.
+
+5. Extract the contents of the docbook-xsl-doc package into the 
+   xsl/<version> and xsl-ns/<version> directories. 
+
+6. Delete ZIP files and temporary directories.
+
+For more information about file management and shell services at 
+SourceForge, see
+
+     https://sourceforge.net/apps/trac/sourceforge/wiki/WikiStart
+
 *****************************************************************
 
      make install-ns
