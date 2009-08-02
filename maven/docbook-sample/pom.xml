@@ -19,7 +19,7 @@
     <dependency>
       <groupId>net.sf.docbook</groupId>
       <artifactId>docbook-xsl</artifactId>
-      <version>1.75.1</version>
+      <version>1.75.2</version>
       <type>zip</type>
       <classifier>ns-resources</classifier>
     </dependency>
