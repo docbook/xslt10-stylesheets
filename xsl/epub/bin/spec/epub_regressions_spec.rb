@@ -167,6 +167,15 @@ describe DocBook::Epub do
     container_lines.to_s.should =~ /<container/
   end
 
+  it "should not include an index entry for Symbols when using @types and the symbols are not a part of that @type" do
+    css_file = nil
+    index_on_type_customization_layer = File.join(@filedir, "test_cust.xsl")
+    typed_index_epub = DocBook::Epub.new(File.join(@filedir, "index.with.symbol.and.type.xml"), @tmpdir, css_file, index_on_type_customization_layer)
+    typed_index_epubfile  = File.join(@tmpdir, "typed_indexepub.epub")
+    typed_index_epub.render_to_file(typed_index_epubfile, $DEBUG)
+    typed_index_epubfile.should be_valid_epub  
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  

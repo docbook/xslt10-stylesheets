@@ -126,24 +126,51 @@
                                              substring(&primary;, 1, 1)))]"/>
   <div class="index">
     <xsl:if test="$others">
-      <div class="indexdiv">
-        <h3>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key" select="'index symbols'"/>
-          </xsl:call-template>
-        </h3>
-        <dl>
-          <xsl:apply-templates select="$others[count(.|key('primary',
-                                       &primary;)[&scope;][1]) = 1]"
-                               mode="index-symbol-div">
-            <xsl:with-param name="position" select="position()"/>                                
-            <xsl:with-param name="scope" select="$scope"/>
-            <xsl:with-param name="role" select="$role"/>
-            <xsl:with-param name="type" select="$type"/>
-            <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
-          </xsl:apply-templates>
-        </dl>
-      </div>
+      <xsl:choose>
+        <xsl:when test="normalize-space($type) != '' and 
+                        $others[@type = $type][count(.|key('primary', &primary;)[&scope;][1]) = 1]">
+          <div class="indexdiv">
+            <h3>
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'index symbols'"/>
+              </xsl:call-template>
+            </h3>
+            <dl>
+              <xsl:apply-templates select="$others[count(.|key('primary', &primary;)[&scope;][1]) = 1]"
+                                   mode="index-symbol-div">
+                <xsl:with-param name="position" select="position()"/>                                
+                <xsl:with-param name="scope" select="$scope"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="type" select="$type"/>
+                <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
+              </xsl:apply-templates>
+            </dl>
+          </div>
+        </xsl:when>
+        <xsl:when test="normalize-space($type) != ''"> 
+          <!-- Output nothing, as there isn't a match for $other using this $type -->
+        </xsl:when>  
+        <xsl:otherwise>
+          <div class="indexdiv">
+            <h3>
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'index symbols'"/>
+              </xsl:call-template>
+            </h3>
+            <dl>
+              <xsl:apply-templates select="$others[count(.|key('primary',
+                                          &primary;)[&scope;][1]) = 1]"
+                                  mode="index-symbol-div">
+                <xsl:with-param name="position" select="position()"/>                                
+                <xsl:with-param name="scope" select="$scope"/>
+                <xsl:with-param name="role" select="$role"/>
+                <xsl:with-param name="type" select="$type"/>
+                <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
+              </xsl:apply-templates>
+            </dl>
+          </div>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
 
     <xsl:apply-templates select="$alphabetical[count(.|key('letter',
