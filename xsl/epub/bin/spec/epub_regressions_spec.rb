@@ -176,6 +176,12 @@ describe DocBook::Epub do
     typed_index_epubfile.should be_valid_epub  
   end
 
+  it "should include chunked refentries in the spine even when they're deeply nested" do
+    opf_lns = opf_lines('orm.book.001.xml', @filedir)
+    re01_id = opf_lns.to_s.sub(/.+<item id="([^"]+)" href="re01.html".+/m, '\1')
+    opf_lns.to_s.should =~ /<itemref idref="#{re01_id}"/
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  

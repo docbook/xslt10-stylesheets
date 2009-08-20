@@ -988,6 +988,8 @@ Txxxx xxx x xxx xxxxxx xxxx xxxxx xxx xxxxxxx xxxx xxx xxxx xxxxxx. Txxx xxx xxx
 Txxxx xxx x xxxxxxx xxxxxx xxxx xxxxx xxx xxxxxxx xxxxxxx. Sxxxxx xxxx xxxxx xxx xxxx-xxxxxxxxx. Sx xxxxxxxxx xxx xxxxxxxxx xxxxxxx xxxxxx xxxxxxxxx xxxx xxxxxx xx xxxxxxxxx. Fxx x xxx xx xxx xxxxxx xxxx xxxxx, x xxxxxxx xxxxxx xxxxx xxx xx xxxxxxxxx. Ix x xxxxxx xx xxxxxxx xx x xxxxxx xxxx xxxxxxx xxx xxxxx xxx xxx xxx xxxxxx, xxx xxxxxx xxxx xx xxxxx-xxxxxxxxx xxxx xxxxxx. Bxxxxx xxxxxxx xxx xxxx-xxxxxxxxx.
 </para>
       <para>Bxxxx xx x xxxx xx xxxxxx xxxx xxxxx, xxxx’xx xxx xxxxxxxxx xxxxxxxxxxxxxx. Ixxxxxx, xxxx’xx xxxxxxxxx xx xxxxxxxxx xxxxx xxxxx xx xxx xxxx xx xxxxxx xxxxxx xxxx xxx xxxxxxx. Txx xxxx xxxx xxxxxxxx xxx xxxxx xx xxxxxxxxxx xx xxxxx xxx xxxx xxxx xxxx.</para>
+      <sect2>
+        <title>More wrapping</title>
       <refentry id="appa-77011">
         <refmeta>
           <refentrytitle>CHAR</refentrytitle>
@@ -1282,6 +1284,7 @@ Txx <literal moreinfo="none">SET</literal> xxxx xxxx xx xxxxxxx xx <literal more
 </para>
         </refsect1>
       </refentry>
+    </sect2>
     </sect1>
   </appendix>
   <appendix id="mysqlian-APP-B">
