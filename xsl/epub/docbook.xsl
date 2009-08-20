@@ -761,10 +761,10 @@
       <!-- TODO: be nice to have a idref="titlepage" here -->
       <xsl:choose>
         <xsl:when test="$root.is.a.chunk != '0'">
-          <xsl:apply-templates select="/*|//refentry" mode="opf.spine"/>
+          <xsl:apply-templates select="/*" mode="opf.spine"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="/*/*|//refentry" mode="opf.spine"/>
+          <xsl:apply-templates select="/*/*" mode="opf.spine"/>
         </xsl:otherwise>
       </xsl:choose>
                                    
@@ -784,7 +784,7 @@
           <xsl:value-of select="generate-id(.)"/>
         </xsl:attribute>
       </xsl:element>
-      <xsl:apply-templates select="*" mode="opf.spine"/>
+      <xsl:apply-templates select="*|.//refentry" mode="opf.spine"/>
     </xsl:if>
   </xsl:template>
 
