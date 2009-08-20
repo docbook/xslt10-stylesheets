@@ -182,6 +182,14 @@ describe DocBook::Epub do
     opf_lns.to_s.should =~ /<itemref idref="#{re01_id}"/
   end
 
+  it "should include chunked refentries in the spine in the correct order and adjacency even when they're deeply nested" do
+    opf_lns = opf_lines('orm.book.001.xml', @filedir)
+    before_refentry_id = opf_lns.to_s.sub(/.+<item id="([^"]+)" href="apa.html".+/m, '\1')
+    re01_id = opf_lns.to_s.sub(/.+<item id="([^"]+)" href="re01.html".+/m, '\1')
+    re02_id = opf_lns.to_s.sub(/.+<item id="([^"]+)" href="re02.html".+/m, '\1')
+    opf_lns.to_s.should =~ /<itemref idref="#{before_refentry_id}"[^>]*[^<]*<itemref idref="#{re01_id}"[^>]*>[^<]*<itemref idref="#{re02_id}"/m
+  end
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
