@@ -982,6 +982,21 @@
     </xsl:choose>  
   </xsl:template>
 
+  <xsl:template match="cover/mediaobject|
+                       mediaobject[@role='cover']"
+                mode="opf.manifest">
+    <xsl:choose>
+      <xsl:when test="imageobject[@role='front-large']">
+        <xsl:apply-templates select="imageobject[@role='front-large']/imagedata"
+                             mode="opf.manifest"/>              
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="imageobject/imagedata[1]"
+                             mode="opf.manifest"/>              
+      </xsl:otherwise>
+    </xsl:choose>  
+  </xsl:template>
+
   <xsl:template match="mediaobjectco"
                 mode="opf.manifest">
     <xsl:message>WARNING: mediaobjectco almost certainly will not render as expected in .epub!</xsl:message>
@@ -1029,7 +1044,13 @@
         <xsl:element namespace="http://www.idpf.org/2007/opf" name="item">
           <xsl:attribute name="id"> 
             <xsl:choose>
-              <xsl:when test="(ancestor::mediaobject[@role='cover'] or ancestor::cover) and (../@role='front-large' or count(ancestor::mediaobject/descendant::imageobject) = 1)">
+              <xsl:when test="ancestor::mediaobject[@role='cover'] and parent::*[@role='front-large']">
+                <xsl:value-of select="$epub.cover.image.id"/>
+              </xsl:when>
+              <xsl:when test="ancestor::mediaobject[@role='cover'] and (count(ancestor::mediaobject//imageobject) = 1)">
+                <xsl:value-of select="$epub.cover.image.id"/>
+              </xsl:when>
+              <xsl:when test="ancestor::cover">
                 <xsl:value-of select="$epub.cover.image.id"/>
               </xsl:when>
               <xsl:otherwise>
@@ -1077,7 +1098,13 @@
       <xsl:element namespace="http://www.idpf.org/2007/opf" name="item">
         <xsl:attribute name="id"> 
           <xsl:choose>
-            <xsl:when test="(ancestor::mediaobject[@role='cover'] or ancestor::cover) and (../@role='front-large' or count(ancestor::mediaobject/descendant::imageobject) = 1)">
+            <xsl:when test="ancestor::mediaobject[@role='cover'] and parent::*[@role='front-large']">
+              <xsl:value-of select="$epub.cover.image.id"/>
+            </xsl:when>
+            <xsl:when test="ancestor::mediaobject[@role='cover'] and (count(ancestor::mediaobject//imageobject) = 1)">
+              <xsl:value-of select="$epub.cover.image.id"/>
+            </xsl:when>
+            <xsl:when test="ancestor::cover">
               <xsl:value-of select="$epub.cover.image.id"/>
             </xsl:when>
             <xsl:otherwise>
