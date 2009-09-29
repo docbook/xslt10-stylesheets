@@ -211,7 +211,11 @@ include "dcmitype.rnc"
     & db.common.attributes
     & db.common.linking.attributes
  
- db.speaker = 
+ db.speaker =  
+  [
+    db:refpurpose [ "Designates a person who is giving a speech or lecture."
+    ]
+  ]
        element speaker {
        db.speaker.attlist,
        ( db.person
@@ -225,8 +229,12 @@ include "dcmitype.rnc"
     & db.common.attributes
     & db.common.linking.attributes
     
-    db.line =
-       element line {
+    db.line = 
+  [
+    db:refpurpose [ "A line of dialogue or other form of communication."
+    ]
+  ]
+         element line {
        db.line.attlist,
        (db.all.inlines | text)+
        }
@@ -238,14 +246,22 @@ include "dcmitype.rnc"
     & db.common.attributes
     & db.common.linking.attributes
        
-db.linegroup =
-   element linegroup {
+db.linegroup = 
+  [
+    db:refpurpose [ "A grouping of lines in dialogue or other form of communication."
+    ]
+  ]
+     element linegroup {
    db.linegroup.attlist,
    db.speaker*, (db.line|db.all.blocks)+
    }
        
- db.poetry =
-      element poetry {
+ db.poetry = 
+  [
+    db:refpurpose [ "A container for poetry."
+    ]
+  ]
+        element poetry {
       db.poetry.attlist,
       db.poetry.info?,
       (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
@@ -261,8 +277,12 @@ db.linegroup =
     & db.common.attributes
     & db.common.linking.attributes
       
- db.dialogue =
-      element dialogue {
+ db.dialogue = 
+  [
+    db:refpurpose [ "A container for speeches and other forms of communication involving dialogue."
+    ]
+  ]
+        element dialogue {
       db.dialogue.attlist,
       db.dialogue.info?,
       (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
@@ -278,8 +298,12 @@ db.linegroup =
     & db.common.attributes
     & db.common.linking.attributes
     
- db.drama =
-      element drama {
+ db.drama = 
+  [
+    db:refpurpose [ "A container for plays and other forms of dramatic presentation."
+    ]
+  ]
+        element drama {
       db.drama.attlist,
       db.drama.info?,
       (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
