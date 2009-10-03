@@ -91,7 +91,7 @@ set of templates. This template creates an appropriate
     </xsl:for-each>
 
     <xsl:attribute name="version">1.0</xsl:attribute>
-    <xsl:attribute name="exclude-result-prefixes">exsl</xsl:attribute>
+    <xsl:attribute name="exclude-result-prefixes">exsl d</xsl:attribute>
 
     <xsl:text>&#xA;&#xA;</xsl:text>
     <xsl:comment>
