@@ -232,6 +232,11 @@
   </xsl:copy>
 </xsl:template>
 
+<!-- "The following HTML elements specify font information. 
+      Although they are not all deprecated, their use is discouraged in 
+      favor of style sheets." -->
+<xsl:template match="b|i"/>
+
 <!-- this only occurs in docbook.xsl to identify errors -->
 <xsl:template match="font">
   <span class="ERROR" xmlns="http://www.w3.org/1999/xhtml">
