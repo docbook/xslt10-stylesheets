@@ -39,8 +39,11 @@ describe DocBook::Epub do
     @css_file = File.join(@filedir, @css_file_base)
     customization_layer = nil
     @embedded_font_file_base = "DejaVuSerif.otf"
-    embedded_fonts = [File.join(@filedir, @embedded_font_file_base)]
-    @css_epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file, customization_layer, embedded_fonts)
+    @embedded_font_file2_base = "DejaVuSerif-Italic.otf"
+    @embedded_fonts = [File.join(@filedir, @embedded_font_file_base),
+                       File.join(@filedir, @embedded_font_file2_base),
+                      ]
+    @css_epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir, @css_file, customization_layer, @embedded_fonts)
     @css_epubfile = File.join(@tmpdir, "css.epub")
     @css_epub.render_to_file(@css_epubfile, $DEBUG)
 
@@ -233,8 +236,11 @@ describe DocBook::Epub do
       success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
       raise "Could not unzip #{@css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
-      opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<(opf:item|item) [^>]*#{@embedded_font_file_base}/}
-      opf_links.should_not be_empty
+
+      @embedded_fonts.each {|font|
+        opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<(opf:item|item) [^>]*#{File.basename(font)}/}
+        opf_links.should_not be_empty
+      }  
     rescue => e
       raise e
     ensure
@@ -248,13 +254,19 @@ describe DocBook::Epub do
       
       success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
       raise "Could not unzip #{@css_epubfile}" unless success
-      font_files = Dir.glob(File.join(tmpdir, "**", @embedded_font_file_base))
-      font_files.should_not be_empty
+      @embedded_fonts.each {|font|
+        font_files = Dir.glob(File.join(tmpdir, "**", File.basename(font)))
+        font_files.should_not be_empty
+      }  
     rescue => e
       raise e
     ensure
       FileUtils.rm_r(tmpdir, :force => true)
     end
+  end
+
+  it "should be valid .epub after including more than one embedded font" do
+    @css_epubfile.should be_valid_epub
   end
 
   it "should include one and only one <h1> in each HTML file in rendered ePub files for <book>s" do

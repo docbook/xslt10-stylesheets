@@ -8,11 +8,12 @@
   xmlns:ng="http://docbook.org/docbook-ng"
   xmlns:opf="http://www.idpf.org/2007/opf"
   xmlns:stext="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.TextFactory"
+  xmlns:str="http://exslt.org/strings"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
 
   extension-element-prefixes="stext xtext"
-  exclude-result-prefixes="exsl db dc h ncx ng opf stext xtext"
+  exclude-result-prefixes="exsl db dc h ncx ng opf stext str xtext"
 
   version="1.0">
 
@@ -48,7 +49,7 @@
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
   <xsl:param name="epub.metainf.dir" select="'META-INF/'"/> 
 
-  <xsl:param name="epub.embedded.font"></xsl:param>
+  <xsl:param name="epub.embedded.fonts"></xsl:param>
 
   <!-- Per Bob Stayton:
        """Process your documents with the css.decoration parameter set to zero. 
@@ -826,24 +827,22 @@
         </xsl:element>
       </xsl:if>  
 
-     <xsl:if test="$epub.embedded.font != ''">
-        <xsl:element namespace="http://www.idpf.org/2007/opf" name="item">
-          <xsl:attribute name="id">epub.embedded.font</xsl:attribute>
-          <xsl:attribute name="href"><xsl:value-of select="$epub.embedded.font"/></xsl:attribute>
-          <xsl:choose>
-            <xsl:when test="contains($epub.embedded.font, 'otf')">
-              <xsl:attribute name="media-type">font/opentype</xsl:attribute>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:message>
-                <xsl:text>WARNING: OpenType fonts should be supplied! (</xsl:text>
-                <xsl:value-of select="$epub.embedded.font"/>
-                <xsl:text>)</xsl:text>
-              </xsl:message>
-            </xsl:otherwise>  
-            </xsl:choose>
-        </xsl:element>
-     </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$epub.embedded.fonts != '' and not(contains($epub.embedded.fonts, ','))">
+          <xsl:call-template name="embedded-font-item">
+            <xsl:with-param name="font.file" select="$epub.embedded.fonts"/> <!-- There is just one -->
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="$epub.embedded.fonts != ''">
+          <xsl:variable name="font.file.tokens" select="str:tokenize($epub.embedded.fonts, ',')"/>
+          <xsl:for-each select="exsl:node-set($font.file.tokens)">
+            <xsl:call-template name="embedded-font-item">
+              <xsl:with-param name="font.file" select="."/>
+              <xsl:with-param name="font.order" select="position()"/>
+            </xsl:call-template>
+          </xsl:for-each>
+        </xsl:when>
+      </xsl:choose>
 
       <!-- TODO: be nice to have a id="titlepage" here -->
       <xsl:apply-templates select="//part|
@@ -1563,6 +1562,35 @@
   <xsl:template match="bibliodiv[title]" mode="label.markup">
   </xsl:template>
 
+  <xsl:template match="token" mode="opf.manifest.font">
+    <xsl:call-template name="embedded-font-item">
+      <xsl:with-param name="font.file" select="."/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="embedded-font-item">
+    <xsl:param name="font.file"/>
+    <xsl:param name="font.order" select="1"/>
+
+    <xsl:element namespace="http://www.idpf.org/2007/opf" name="item">
+      <xsl:attribute name="id">
+        <xsl:value-of select="concat('epub.embedded.font.', $font.order)"/>
+      </xsl:attribute>
+      <xsl:attribute name="href"><xsl:value-of select="$font.file"/></xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="contains($font.file, 'otf')">
+          <xsl:attribute name="media-type">font/opentype</xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:message>
+            <xsl:text>WARNING: OpenType fonts should be supplied! (</xsl:text>
+            <xsl:value-of select="$font.file"/>
+            <xsl:text>)</xsl:text>
+          </xsl:message>
+        </xsl:otherwise>  
+      </xsl:choose>
+    </xsl:element>
+  </xsl:template>
 
 <!-- Change section.heading to improve SEO on generated HTML by doing heading levels 
      "correctly". SEO rules are sometimes silly silly, but this does actually create 

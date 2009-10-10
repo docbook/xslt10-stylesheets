@@ -4,8 +4,17 @@
   font-weight: normal;
   src:url(DejaVuSerif.otf);
 }
+@font-face {
+  font-family: "DejaVu Serif Italic";
+  font-style: italic;
+  font-weight: normal;
+  src:url(DejaVuSerif-Italic.otf);
+}
 h2 {
   font-family: "DejaVu Serif";
   text-align: center;
   color: #dda0dd;
+}
+em {
+  font-family: "DejaVu Serif Italic";
 }
