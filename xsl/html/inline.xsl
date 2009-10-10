@@ -1331,7 +1331,7 @@
 
 <xsl:template match="comment[&comment.block.parents;]|remark[&comment.block.parents;]">
   <xsl:if test="$show.comments != 0">
-    <p class="remark"><i><xsl:call-template name="inline.charseq"/></i></p>
+    <p class="remark"><em><xsl:call-template name="inline.charseq"/></em></p>
   </xsl:if>
 </xsl:template>
 

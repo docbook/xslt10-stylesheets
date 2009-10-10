@@ -190,6 +190,31 @@ describe DocBook::Epub do
     opf_lns.to_s.should =~ /<itemref idref="#{before_refentry_id}"[^>]*[^<]*<itemref idref="#{re01_id}"[^>]*>[^<]*<itemref idref="#{re02_id}"/m
   end
 
+  it "should not include font style elements like <b> or <i>" do
+    begin
+      tmpdir = File.join(Dir::tmpdir(), "epubbtest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      
+      epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
+      epubfile = File.join(tmpdir, "bcount.epub")
+      epub.render_to_file(epubfile, $DEBUG)
+      FileUtils.copy(epubfile, ".b.epub") if $DEBUG
+
+      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      raise "Could not unzip #{epubfile}" unless success
+      glob = Dir.glob(File.join(tmpdir, "**", "*.html"))
+      glob.each {|html_file| 
+        bs = File.open(html_file).readlines.to_s.scan(/<b>/)
+        bs.should be_empty
+        is = File.open(html_file).readlines.to_s.scan(/<i>/)
+        is.should be_empty
+      }
+    rescue => e
+      raise e
+    ensure
+      FileUtils.rm_r(tmpdir, :force => true)
+    end  
+  end  
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  
