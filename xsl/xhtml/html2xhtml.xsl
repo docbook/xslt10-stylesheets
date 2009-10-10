@@ -167,7 +167,9 @@
 <!-- "The following HTML elements specify font information. 
       Although they are not all deprecated, their use is discouraged in 
       favor of style sheets." -->
-<xsl:template match="b|i"/>
+<xsl:template match="b|i">
+  <xsl:apply-templates/>
+</xsl:template>  
 
 <!-- this only occurs in docbook.xsl to identify errors -->
 <xsl:template match="a[@name]">
