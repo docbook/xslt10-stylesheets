@@ -26,7 +26,6 @@ module DocBook
       @oebps_dir = File.join(@output_dir, OEBPS_DIR)
       @css_file = css_file ? File.expand_path(css_file) : css_file
       @embedded_fonts = embedded_fonts
-      raise NotImplementedError if @embedded_fonts.length > 1
       @to_delete = []
       
       if customization_layer
@@ -70,7 +69,8 @@ module DocBook
       html_stylesheet = "--stringparam html.stylesheet #{File.basename(@css_file)}" if @css_file
       base =            "--stringparam base.dir #{OEBPS_DIR}/" 
       unless @embedded_fonts.empty? 
-        font =            "--stringparam epub.embedded.font \"#{File.basename(@embedded_fonts.first)}\"" 
+        embedded_fonts = @embedded_fonts.map {|f| File.basename(f)}.join(',')
+        font =            "--stringparam epub.embedded.fonts \"#{embedded_fonts}\"" 
       end  
       meta =            "--stringparam epub.metainf.dir #{META_DIR}/" 
       oebps =           "--stringparam epub.oebps.dir #{OEBPS_DIR}/" 
