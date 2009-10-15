@@ -136,24 +136,26 @@ linkend/id: <xsl:value-of select="@linkend"/>
       <xsl:with-param name="object" select="ancestor::footnote"/>
     </xsl:call-template>
   </xsl:variable>
-  <p>
-    <xsl:call-template name="locale.html.attributes"/>
-    <xsl:if test="@role and $para.propagates.style != 0">
-      <xsl:apply-templates select="." mode="class.attribute">
-        <xsl:with-param name="class" select="@role"/>
-      </xsl:apply-templates>
-    </xsl:if>
-    <sup>
-      <xsl:text>[</xsl:text>
-      <a name="{$name}" href="{$href}">
-        <xsl:apply-templates select="." mode="class.attribute"/>
-        <xsl:apply-templates select="ancestor::footnote"
-                             mode="footnote.number"/>
-      </a>
-      <xsl:text>] </xsl:text>
-    </sup>
-    <xsl:apply-templates/>
-  </p>
+
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class">
+      <xsl:if test="@role and $para.propagates.style != 0">
+        <xsl:value-of select="@role"/>
+      </xsl:if>
+    </xsl:with-param>
+    <xsl:with-param name="content">
+      <sup>
+        <xsl:text>[</xsl:text>
+        <a id="{$name}" href="{$href}">
+          <xsl:apply-templates select="." mode="class.attribute"/>
+          <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
+        </a>
+        <xsl:text>] </xsl:text>
+      </sup>
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
+
 </xsl:template>
 
 <!-- ==================================================================== -->
