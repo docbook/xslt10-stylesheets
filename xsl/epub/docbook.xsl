@@ -606,6 +606,10 @@
     <!-- override if you care -->
   </xsl:template>
 
+  <xsl:template match="authorgroup" mode="opf.metadata">
+    <xsl:apply-templates select="author|corpauthor" mode="opf.metadata"/>
+  </xsl:template>
+
   <xsl:template match="author|corpauthor" mode="opf.metadata">
     <xsl:variable name="n">
       <xsl:call-template name="person.name">
