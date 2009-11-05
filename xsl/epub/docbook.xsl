@@ -51,6 +51,10 @@
 
   <xsl:param name="epub.embedded.fonts"></xsl:param>
 
+  <!-- Turning this on crashes ADE, which is unbelievably awesome -->
+  <xsl:param name="formal.object.break.after">0</xsl:param>
+
+
   <!-- Per Bob Stayton:
        """Process your documents with the css.decoration parameter set to zero. 
           That will avoid the use of style attributes in XHTML elements where they are not permitted."""
