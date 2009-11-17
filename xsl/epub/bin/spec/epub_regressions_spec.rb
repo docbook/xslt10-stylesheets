@@ -215,6 +215,14 @@ describe DocBook::Epub do
     end  
   end  
 
+  it "should allow sect2s inside partintros" do
+    partintro_epub = DocBook::Epub.new(File.join(@filedir, "partintro.xml"), @tmpdir)
+    partintro_epubfile  = File.join(@tmpdir, "partintro.epub")
+    partintro_epub.render_to_file(partintro_epubfile, $DEBUG)
+    partintro_epubfile.should be_valid_epub  
+  end
+
+
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
   end  

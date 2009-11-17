@@ -565,10 +565,10 @@
                                   preceding::glossary|
                                   preceding::section[not(parent::partintro)]|
                                   preceding::sect1[not(parent::partintro)]|
-                                  preceding::sect2|
-                                  preceding::sect3|
-                                  preceding::sect4|
-                                  preceding::sect5|
+                                  preceding::sect2[not(ancestor::partintro)]|
+                                  preceding::sect3[not(ancestor::partintro)]|
+                                  preceding::sect4[not(ancestor::partintro)]|
+                                  preceding::sect5[not(ancestor::partintro)]|
                                   preceding::refentry|
                                   preceding::colophon|
                                   preceding::bibliodiv[title]|
