@@ -764,6 +764,63 @@ assertions.</para>
 processing expectations. A conformant DocBook V5.0 document
 <glossterm>should</glossterm> respect those constraints and anticipate
 those processing expectations.</para>
+</section>
+
+<section xml:id="backwards-compatibility">
+<title>Backwards compatibility</title>
+
+<para>The DocBook Technical Committee understands that the community
+benefits from the long-term stability of the DocBook family of
+schemas. We also understand that DocBook must continue to adapt and
+change in order to remain relevant in a changing world.</para>
+
+<para>All changes, and especially changes that are backwards
+incompatible (changes that make a currently valid document no longer
+valid under a new version of the schema), have a cost associated with
+them. Our duty is to balance those costs against the need to remain
+responsive to the community's desire to see DocBook grow to cover the
+new use cases that inevitably arise in documentation.</para>
+
+<para>With that in mind, the DocBook Technical Committee has adopted
+the following policy on backwards incompatible changes. This policy
+spells out when backwards incompatible changes can occur and how much
+notice the TC must provide before adopting a schema that is backwards
+incompatible with the current release.</para>
+
+<para>This policy allows DocBook to continue to change and adapt while
+simultaneously guaranteeing that existing users will have sufficient
+advance notice to develop reasonable migration plans.</para>
+
+<para>With respect to schema changes, the following points
+<glossterm>must</glossterm> always apply:</para>
+
+<itemizedlist>
+<listitem>
+<para>A point release (X.1 to X.2, X.2 to X.3, X.1 to X.1.2, etc.)
+<glossterm>must not</glossterm> contain any backwards incompatible changes.
+</para>
+</listitem>
+<listitem>
+<para>A major release (X.1 to Y.0, X.2 to Y.0, X.1.2 to Y.0, etc.)
+<glossterm>may</glossterm> contain backwards incompatible changes if
+both of the following conditions are true:</para>
+<itemizedlist>
+<listitem>
+<para>The change was announced in the release notes for the previous
+version (major or minor).</para>
+</listitem>
+<listitem>
+<para>The change was announced in a release that occurred at least six
+months previously.</para>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+
+<para>By these rules, the TC can announce, in V5.1 for example, its
+plans to make a backwards incompatible change in V6.0. Then, in V6.0,
+if it's been at least six months since V5.1 was released, it can make
+that change.</para>
 
 </section>
 
