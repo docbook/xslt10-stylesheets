@@ -325,7 +325,13 @@
   <xsl:choose>
     <xsl:when test="$local.exsl.node.set.available != 0
                     and (*/self::ng:* or */self::db:*)">
-      <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
+      <xsl:message>
+        <xsl:text>Stripping namespace from DocBook 5 document. </xsl:text>
+        <xsl:text>It is suggested to use namespaced version of the stylesheets </xsl:text>
+        <xsl:text>available in distribution file 'docbook-xsl-ns' </xsl:text>
+        <xsl:text>at //http://sourceforge.net/projects/docbook/files/</xsl:text>
+        <xsl:text> which does not require namespace stripping step.</xsl:text>
+      </xsl:message>
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
       </xsl:variable>
