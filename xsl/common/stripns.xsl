@@ -312,8 +312,19 @@
 </xsl:template>
 
 <xsl:template match="/" priority="-1">
+  <!-- need a local version of this variable because this module imported many places-->
+  <xsl:variable name="local.exsl.node.set.available">
+    <xsl:choose>
+      <xsl:when exsl:foo="" xmlns:exsl="http://exslt.org/common"
+        test="function-available('exsl:node-set') or
+                         contains(system-property('xsl:vendor'),
+                           'Apache Software Foundation')">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:choose>
-    <xsl:when test="(*/self::ng:* or */self::db:*)">
+    <xsl:when test="$local.exsl.node.set.available != 0
+                    and (*/self::ng:* or */self::db:*)">
       <xsl:message>Stripping namespace from DocBook 5 document.</xsl:message>
       <xsl:variable name="nons">
         <xsl:apply-templates mode="stripNS"/>
