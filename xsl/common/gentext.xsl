@@ -234,6 +234,9 @@
 
   <xsl:variable name="context">
     <xsl:choose>
+      <xsl:when test="self::equation and not(title) and not(info/title)">
+         <xsl:value-of select="'xref-number'"/>
+      </xsl:when>
       <xsl:when test="string($autonumber) != 0 
                       and $number-and-title-template != 0
                       and $xref.with.number.and.title != 0">
