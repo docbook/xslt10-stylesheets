@@ -134,7 +134,7 @@
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
-<xsl:template match="book/appendix">
+<xsl:template match="appendix">
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
@@ -167,10 +167,6 @@
 </xsl:template>
 
 <xsl:template match="article">
-  <xsl:call-template name="process-chunk"/>
-</xsl:template>
-
-<xsl:template match="article/appendix">
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
