@@ -451,6 +451,7 @@ zero by default, so this is simply the page-master margin-right.
 &figure.properties;
 &example.properties;
 &equation.properties;
+&equation.number.properties;
 &table.properties;
 &informalfigure.properties;
 &informalexample.properties;
@@ -621,6 +622,7 @@ around all these parameters.</para>
 <src:fragref linkend="email.delimiters.enabled.frag"/>
 <src:fragref linkend="email.mailto.enabled.frag"/>
 <src:fragref linkend="equation.properties.frag"/>
+<src:fragref linkend="equation.number.properties.frag"/>
 <src:fragref linkend="example.properties.frag"/>
 <src:fragref linkend="exsl.node.set.available.frag"/>
 <src:fragref linkend="figure.properties.frag"/>
