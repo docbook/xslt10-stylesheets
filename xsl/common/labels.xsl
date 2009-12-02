@@ -742,11 +742,11 @@ element label.</para>
             <xsl:apply-templates select="$pchap" mode="label.markup"/>
             <xsl:apply-templates select="$pchap" mode="intralabel.punctuation"/>
           </xsl:if>
-          <xsl:number format="1" count="equation[title or info/title]" 
+          <xsl:number format="1" count="equation" 
                       from="chapter|appendix" level="any"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:number format="1" count="equation[title or info/title]" 
+          <xsl:number format="1" count="equation" 
                       from="book|article" level="any"/>
         </xsl:otherwise>
       </xsl:choose>
