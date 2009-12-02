@@ -142,7 +142,7 @@
   <xsl:param name="class" select="local-name(.)"/>
 
   <xsl:choose>
-    <xsl:when test="title">
+    <xsl:when test="title or info/title">
       <xsl:call-template name="formal.object">
         <xsl:with-param name="placement" select="$placement"/>
         <xsl:with-param name="class" select="$class"/>
@@ -244,6 +244,16 @@
   </xsl:if>
 
   <xsl:apply-templates mode="htmlTable"/>
+
+  <xsl:if test=".//footnote|../title//footnote">
+    <tbody class="footnotes">
+      <tr>
+        <td colspan="50">
+          <xsl:apply-templates select=".//footnote|../title//footnote" mode="table.footnote.mode"/>
+        </td>
+      </tr>
+    </tbody>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="example">
