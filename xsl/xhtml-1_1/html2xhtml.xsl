@@ -126,7 +126,6 @@
 <xsl:template match="xsl:param[@name='ulink.target']">
 	<xsl:copy>
 		<xsl:copy-of select="@*"/>
-		<xsl:element name="xsl:text"><xsl:text></xsl:text></xsl:element>
 	</xsl:copy>
 </xsl:template>
 
