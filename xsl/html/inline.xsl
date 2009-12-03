@@ -145,18 +145,18 @@
               </xsl:if>
 
               <!-- For URIs, use @xlink:show if defined, otherwise use ulink.target -->
-	      <xsl:choose>
-		<xsl:when test="$target.show !=''">
-		  <xsl:attribute name="target">
-		    <xsl:value-of select="$target.show"/>
-		  </xsl:attribute>
-		</xsl:when>
-		<xsl:when test="$ulink.target !=''">
-		  <xsl:attribute name="target">
-		    <xsl:value-of select="$ulink.target"/>
-		  </xsl:attribute>
-		</xsl:when>
-	      </xsl:choose>
+              <xsl:choose>
+                <xsl:when test="$target.show !=''">
+                  <xsl:attribute name="target">
+                    <xsl:value-of select="$target.show"/>
+                  </xsl:attribute>
+                </xsl:when>
+                <xsl:when test="$ulink.target !=''">
+                  <xsl:attribute name="target">
+                    <xsl:value-of select="$ulink.target"/>
+                  </xsl:attribute>
+                </xsl:when>
+              </xsl:choose>
               
               <xsl:copy-of select="$content"/>
             </a>
