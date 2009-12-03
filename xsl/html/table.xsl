@@ -1073,9 +1073,16 @@
                 <xsl:value-of select="$colspec/@char"/>
               </xsl:attribute>
             </xsl:if>
+            
             <xsl:if test="$colspec/@charoff">
               <xsl:attribute name="charoff">
                 <xsl:value-of select="$colspec/@charoff"/>
+              </xsl:attribute>
+            </xsl:if>
+
+            <xsl:if test="$colspec/@colname">
+              <xsl:attribute name="class">
+                <xsl:value-of select="$colspec/@colname"/>
               </xsl:attribute>
             </xsl:if>
           </col>
