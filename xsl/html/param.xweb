@@ -133,6 +133,11 @@ $Id$
 &draft.watermark.image;
 &generate.id.attributes;
 &generate.meta.abstract;
+&make.clean.html.xml;
+&docbook.css.source.xml;
+&docbook.css.link.xml;
+&custom.css.source.xml;
+&generate.css.header.xml;
 </reference>
 <reference xml:id="xslt"><title>XSLT Processing</title>
 &rootid;
@@ -433,6 +438,7 @@ around all these parameters.</para>
 
      ******************************************************************** -->
 
+<src:fragref linkend="abstract.notitle.enabled.frag"/>
 <src:fragref linkend="admon.graphics.extension.frag"/>
 <src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>
@@ -440,14 +446,14 @@ around all these parameters.</para>
 <src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="annotate.toc.frag"/>
 <src:fragref linkend="annotation.css.frag"/>
-<src:fragref linkend="annotation.js.frag"/>
-<src:fragref linkend="annotation.graphic.open.frag"/>
 <src:fragref linkend="annotation.graphic.close.frag"/>
+<src:fragref linkend="annotation.graphic.open.frag"/>
+<src:fragref linkend="annotation.js.frag"/>
 <src:fragref linkend="annotation.support.frag"/>
 <src:fragref linkend="appendix.autolabel.frag"/>
 <src:fragref linkend="author.othername.in.middle.frag"/>
-<src:fragref linkend="autotoc.label.separator.frag"/>
 <src:fragref linkend="autotoc.label.in.hyperlink.frag"/>
+<src:fragref linkend="autotoc.label.separator.frag"/>
 <src:fragref linkend="base.dir.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
@@ -470,29 +476,32 @@ around all these parameters.</para>
 <src:fragref linkend="chunk.first.sections.frag"/>
 <src:fragref linkend="chunk.quietly.frag"/>
 <src:fragref linkend="chunk.section.depth.frag"/>
+<src:fragref linkend="chunk.separate.lots.frag"/>
 <src:fragref linkend="chunk.toc.frag"/>
 <src:fragref linkend="chunk.tocs.and.lots.frag"/>
 <src:fragref linkend="chunk.tocs.and.lots.has.title.frag"/>
-<src:fragref linkend="chunk.separate.lots.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
 <src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="component.label.includes.part.label.frag"/>
 <src:fragref linkend="contrib.inline.enabled.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
 <src:fragref linkend="current.docid.frag"/>
+<src:fragref linkend="custom.css.source.frag"/>
 <src:fragref linkend="default.float.class.frag"/>
 <src:fragref linkend="default.image.width.frag"/>
-<src:fragref linkend="default.table.width.frag"/>
 <src:fragref linkend="default.table.frame.frag"/>
+<src:fragref linkend="default.table.width.frag"/>
+<src:fragref linkend="docbook.css.link.frag"/>
+<src:fragref linkend="docbook.css.source.frag"/>
 <src:fragref linkend="draft.mode.frag"/>
 <src:fragref linkend="draft.watermark.image.frag"/>
-<src:fragref linkend="ebnf.table.bgcolor.frag"/>
-<src:fragref linkend="ebnf.table.border.frag"/>
 <src:fragref linkend="ebnf.assignment.frag"/>
 <src:fragref linkend="ebnf.statement.terminator.frag"/>
+<src:fragref linkend="ebnf.table.bgcolor.frag"/>
+<src:fragref linkend="ebnf.table.border.frag"/>
 <src:fragref linkend="eclipse.autolabel.frag"/>
-<src:fragref linkend="eclipse.plugin.name.frag"/>
 <src:fragref linkend="eclipse.plugin.id.frag"/>
+<src:fragref linkend="eclipse.plugin.name.frag"/>
 <src:fragref linkend="eclipse.plugin.provider.frag"/>
 <src:fragref linkend="editedby.enabled.frag"/>
 <src:fragref linkend="email.delimiters.enabled.frag"/>
@@ -508,12 +517,13 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
+<src:fragref linkend="generate.css.header.frag"/>
 <src:fragref linkend="generate.id.attributes.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.legalnotice.link.frag"/>
-<src:fragref linkend="generate.revhistory.link.frag"/>
 <src:fragref linkend="generate.manifest.frag"/>
 <src:fragref linkend="generate.meta.abstract.frag"/>
+<src:fragref linkend="generate.revhistory.link.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>
 <src:fragref linkend="glossary.collection.frag"/>
@@ -534,8 +544,8 @@ around all these parameters.</para>
 <src:fragref linkend="html.cleanup.frag"/>
 <src:fragref linkend="html.ext.frag"/>
 <src:fragref linkend="html.extra.head.links.frag"/>
-<src:fragref linkend="html.head.legalnotice.link.types.frag"/>
 <src:fragref linkend="html.head.legalnotice.link.multiple.frag"/>
+<src:fragref linkend="html.head.legalnotice.link.types.frag"/>
 <src:fragref linkend="html.longdesc.frag"/>
 <src:fragref linkend="html.longdesc.link.frag"/>
 <src:fragref linkend="html.stylesheet.frag"/>
@@ -589,18 +599,20 @@ around all these parameters.</para>
 <src:fragref linkend="htmlhelp.title.frag"/>
 <src:fragref linkend="htmlhelp.use.hhk.frag"/>
 <src:fragref linkend="htmlhelp.window.geometry.frag"/>
-<src:fragref linkend="img.src.path.frag"/>
 <src:fragref linkend="id.warnings.frag"/>
-<src:fragref linkend="index.method.frag"/>
-<src:fragref linkend="index.on.role.frag"/>
-<src:fragref linkend="index.links.to.section.frag"/>
-<src:fragref linkend="index.on.type.frag"/>
-<src:fragref linkend="index.number.separator.frag"/>
-<src:fragref linkend="index.term.separator.frag"/>
-<src:fragref linkend="index.range.separator.frag"/>
-<src:fragref linkend="index.prefer.titleabbrev.frag"/>
 <src:fragref linkend="ignore.image.scaling.frag"/>
+<src:fragref linkend="img.src.path.frag"/>
+<src:fragref linkend="index.links.to.section.frag"/>
+<src:fragref linkend="index.method.frag"/>
+<src:fragref linkend="index.number.separator.frag"/>
+<src:fragref linkend="index.on.role.frag"/>
+<src:fragref linkend="index.on.type.frag"/>
+<src:fragref linkend="index.prefer.titleabbrev.frag"/>
+<src:fragref linkend="index.range.separator.frag"/>
+<src:fragref linkend="index.term.separator.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
+<src:fragref linkend="insert.olink.page.number.frag"/>
+<src:fragref linkend="insert.olink.pdf.frag.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
 <src:fragref linkend="javahelp.encoding.frag"/>
 <src:fragref linkend="keep.relative.image.uris.frag"/>
@@ -614,6 +626,7 @@ around all these parameters.</para>
 <src:fragref linkend="linenumbering.separator.frag"/>
 <src:fragref linkend="linenumbering.width.frag"/>
 <src:fragref linkend="link.mailto.url.frag"/>
+<src:fragref linkend="make.clean.html.frag"/>
 <src:fragref linkend="make.graphic.viewport.frag"/>
 <src:fragref linkend="make.single.year.ranges.frag"/>
 <src:fragref linkend="make.valid.html.frag"/>
@@ -632,18 +645,14 @@ around all these parameters.</para>
 <src:fragref linkend="nominal.table.width.frag"/>
 <src:fragref linkend="olink.base.uri.frag"/>
 <src:fragref linkend="olink.debug.frag"/>
-<src:fragref linkend="olink.properties.frag"/>
-<src:fragref linkend="insert.olink.page.number.frag"/>
-<src:fragref linkend="insert.olink.pdf.frag.frag"/>
-<src:fragref linkend="prefer.internal.olink.frag"/>
-<src:fragref linkend="olink.lang.fallback.sequence.frag"/>
 <src:fragref linkend="olink.doctitle.frag"/>
 <src:fragref linkend="olink.fragid.frag"/>
+<src:fragref linkend="olink.lang.fallback.sequence.frag"/>
 <src:fragref linkend="olink.outline.ext.frag"/>
+<src:fragref linkend="olink.properties.frag"/>
 <src:fragref linkend="olink.pubid.frag"/>
 <src:fragref linkend="olink.resolver.frag"/>
 <src:fragref linkend="olink.sysid.frag"/>
-<src:fragref linkend="abstract.notitle.enabled.frag"/>
 <src:fragref linkend="othercredit.like.author.enabled.frag"/>
 <src:fragref linkend="para.propagates.style.frag"/>
 <src:fragref linkend="part.autolabel.frag"/>
@@ -651,12 +660,13 @@ around all these parameters.</para>
 <src:fragref linkend="pixels.per.inch.frag"/>
 <src:fragref linkend="points.per.em.frag"/>
 <src:fragref linkend="preface.autolabel.frag"/>
+<src:fragref linkend="prefer.internal.olink.frag"/>
 <src:fragref linkend="preferred.mediaobject.role.frag"/>
 <src:fragref linkend="process.empty.source.toc.frag"/>
 <src:fragref linkend="process.source.toc.frag"/>
 <src:fragref linkend="profile.arch.frag"/>
-<src:fragref linkend="profile.audience.frag"/>
 <src:fragref linkend="profile.attribute.frag"/>
+<src:fragref linkend="profile.audience.frag"/>
 <src:fragref linkend="profile.condition.frag"/>
 <src:fragref linkend="profile.conformance.frag"/>
 <src:fragref linkend="profile.lang.frag"/>
@@ -673,16 +683,16 @@ around all these parameters.</para>
 <src:fragref linkend="profile.wordsize.frag"/>
 <src:fragref linkend="punct.honorific.frag"/>
 <src:fragref linkend="qanda.defaultlabel.frag"/>
-<src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qanda.in.toc.frag"/>
+<src:fragref linkend="qanda.inherit.numeration.frag"/>
 <src:fragref linkend="qanda.nested.in.toc.frag"/>
 <src:fragref linkend="qandadiv.autolabel.frag"/>
+<src:fragref linkend="refclass.suppress.frag"/>
 <src:fragref linkend="refentry.generate.name.frag"/>
 <src:fragref linkend="refentry.generate.title.frag"/>
 <src:fragref linkend="refentry.separator.frag"/>
 <src:fragref linkend="refentry.xref.manvolnum.frag"/>
 <src:fragref linkend="reference.autolabel.frag"/>
-<src:fragref linkend="refclass.suppress.frag"/>
 <src:fragref linkend="root.filename.frag"/>
 <src:fragref linkend="rootid.frag"/>
 <src:fragref linkend="runinhead.default.title.end.punct.frag"/>
@@ -712,14 +722,14 @@ around all these parameters.</para>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="targets.filename.frag"/>
-<src:fragref linkend="textdata.default.encoding.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.file.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>
+<src:fragref linkend="textdata.default.encoding.frag"/>
 <src:fragref linkend="textinsert.extension.frag"/>
 <src:fragref linkend="toc.list.type.frag"/>
-<src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="toc.max.depth.frag"/>
+<src:fragref linkend="toc.section.depth.frag"/>
 <src:fragref linkend="ulink.target.frag"/>
 <src:fragref linkend="use.embed.for.svg.frag"/>
 <src:fragref linkend="use.extensions.frag"/>
@@ -729,13 +739,13 @@ around all these parameters.</para>
 <src:fragref linkend="use.role.for.mediaobject.frag"/>
 <src:fragref linkend="use.svg.frag"/>
 <src:fragref linkend="variablelist.as.table.frag"/>
-<src:fragref linkend="variablelist.term.separator.frag"/>
 <src:fragref linkend="variablelist.term.break.after.frag"/>
+<src:fragref linkend="variablelist.term.separator.frag"/>
 <src:fragref linkend="writing.mode.frag"/>
-<src:fragref linkend="xref.with.number.and.title.frag"/>
-<src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>
+<src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.title-page.separator.frag"/>
+<src:fragref linkend="xref.with.number.and.title.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
