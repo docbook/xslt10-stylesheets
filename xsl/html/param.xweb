@@ -133,11 +133,11 @@ $Id$
 &draft.watermark.image;
 &generate.id.attributes;
 &generate.meta.abstract;
-&make.clean.html.xml;
-&docbook.css.source.xml;
-&docbook.css.link.xml;
-&custom.css.source.xml;
-&generate.css.header.xml;
+&make.clean.html;
+&docbook.css.source;
+&docbook.css.link;
+&custom.css.source;
+&generate.css.header;
 </reference>
 <reference xml:id="xslt"><title>XSLT Processing</title>
 &rootid;
