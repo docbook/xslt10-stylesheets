@@ -135,6 +135,9 @@
     <xsl:copy-of select="$title"/>
   </title>
 
+  <!-- Insert links to CSS files or insert literal style elements -->
+  <xsl:call-template name="generate.css"/>
+
   <xsl:if test="$html.stylesheet != ''">
     <xsl:call-template name="output.html.stylesheets">
       <xsl:with-param name="stylesheets" select="normalize-space($html.stylesheet)"/>
@@ -207,25 +210,20 @@ body { background-image: url('</xsl:text>
 
   <xsl:choose>
     <xsl:when test="contains($stylesheets, ' ')">
-      <link rel="stylesheet" href="{substring-before($stylesheets, ' ')}">
-        <xsl:if test="$html.stylesheet.type != ''">
-          <xsl:attribute name="type">
-            <xsl:value-of select="$html.stylesheet.type"/>
-          </xsl:attribute>
-        </xsl:if>
-      </link>
+      <xsl:variable name="css.filename" select="substring-before($stylesheets, ' ')"/>
+
+      <xsl:call-template name="make.css.link">
+        <xsl:with-param name="css.filename" select="$css.filename"/>
+      </xsl:call-template>
+
       <xsl:call-template name="output.html.stylesheets">
         <xsl:with-param name="stylesheets" select="substring-after($stylesheets, ' ')"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:when test="$stylesheets != ''">
-      <link rel="stylesheet" href="{$stylesheets}">
-        <xsl:if test="$html.stylesheet.type != ''">
-          <xsl:attribute name="type">
-            <xsl:value-of select="$html.stylesheet.type"/>
-          </xsl:attribute>
-        </xsl:if>
-      </link>
+      <xsl:call-template name="make.css.link">
+        <xsl:with-param name="css.filename" select="$stylesheets"/>
+      </xsl:call-template>
     </xsl:when>
   </xsl:choose>
 </xsl:template>
@@ -460,6 +458,9 @@ body { background-image: url('</xsl:text>
     </body>
   </html>
   <xsl:value-of select="$html.append"/>
+  
+  <!-- Generate any css files only once, not once per chunk -->
+  <xsl:call-template name="generate.css.files"/>
 </xsl:template>
 
 <xsl:template name="root.messages">
@@ -475,7 +476,5 @@ body { background-image: url('</xsl:text>
   <!-- The default is that we are not chunking... -->
   <xsl:text>0</xsl:text>
 </xsl:template>
-
-<!-- ==================================================================== -->
 
 </xsl:stylesheet>
