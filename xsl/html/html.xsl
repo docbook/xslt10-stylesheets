@@ -498,8 +498,6 @@
     <xsl:value-of select="$href.to"/>
   </xsl:variable>
 
-  <xsl:message>href is <xsl:value-of select="$href"/></xsl:message>
-
   <xsl:if test="string-length($css.filename) != 0">
     <link rel="stylesheet" 
           type="text/css"
