@@ -71,7 +71,7 @@ db.indexterm.pagenum.attribute =
 db.scope.enumeration =
    ## All indexes
    "all"
- | ## The global index (as for a combined index of a set of box)
+ | ## The global index (as for a combined index of a set of books)
    "global"
  | ## The local index (the index for this document only)
    "local"
