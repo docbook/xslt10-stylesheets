@@ -47,4 +47,14 @@ span.msgexplan-title {
 /********************************/
 /* end of styles in block.xsl */
 /********************************/
+
+/********************************/
+/* start of styles in autotoc.xsl */
+/********************************/
+div.toc-title {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 </style>
