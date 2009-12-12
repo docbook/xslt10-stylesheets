@@ -466,13 +466,29 @@
       </xsl:attribute>
     </xsl:if>
 
-    <xsl:apply-templates select="row[1]">
-      <xsl:with-param name="spans">
-        <xsl:call-template name="blank.spans">
-          <xsl:with-param name="cols" select="../@cols"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:apply-templates>
+    <xsl:choose>
+      <!-- recurse on rows only if @morerows is present -->
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
+        <xsl:apply-templates select="row[1]">
+          <xsl:with-param name="spans">
+            <xsl:call-template name="blank.spans">
+              <xsl:with-param name="cols" select="../@cols"/>
+            </xsl:call-template>
+          </xsl:with-param>
+          <xsl:with-param name="browserows" select="'recurse'"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="row">
+          <xsl:with-param name="spans">
+            <xsl:call-template name="blank.spans">
+              <xsl:with-param name="cols" select="../@cols"/>
+            </xsl:call-template>
+          </xsl:with-param>
+          <xsl:with-param name="browserows" select="'loop'" />
+        </xsl:apply-templates>
+      </xsl:otherwise>
+    </xsl:choose>
 
   </xsl:element>
 </xsl:template>
@@ -500,24 +516,41 @@
       </xsl:attribute>
     </xsl:if>
 
-    <xsl:apply-templates select="row[1]">
-      <xsl:with-param name="spans">
-        <xsl:call-template name="blank.spans">
-          <xsl:with-param name="cols" select="../@cols"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:apply-templates>
+    <xsl:choose>
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
+        <xsl:apply-templates select="row[1]">
+          <xsl:with-param name="spans">
+            <xsl:call-template name="blank.spans">
+              <xsl:with-param name="cols" select="../@cols"/>
+            </xsl:call-template>
+          </xsl:with-param>
+          <xsl:with-param name="browserows" select="'recurse'"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="row">
+          <xsl:with-param name="spans">
+            <xsl:call-template name="blank.spans">
+              <xsl:with-param name="cols" select="../@cols"/>
+            </xsl:call-template>
+          </xsl:with-param>
+          <xsl:with-param name="browserows" select="'loop'" />
+        </xsl:apply-templates>
+      </xsl:otherwise>
+    </xsl:choose>
 
   </tbody>
 </xsl:template>
 
 <xsl:template match="row">
   <xsl:param name="spans"/>
+  <xsl:param name="browserows"/>
 
   <xsl:choose>
     <xsl:when test="contains($spans, '0')">
       <xsl:call-template name="normal-row">
         <xsl:with-param name="spans" select="$spans"/>
+        <xsl:with-param name="browserows" select="$browserows"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
@@ -538,19 +571,23 @@
 
       <tr><xsl:comment> This row intentionally left blank </xsl:comment></tr>
 
-      <xsl:apply-templates select="following-sibling::row[1]">
-        <xsl:with-param name="spans">
-          <xsl:call-template name="consume-row">
-            <xsl:with-param name="spans" select="$spans"/>
-          </xsl:call-template>
-        </xsl:with-param>
-      </xsl:apply-templates>
+      <xsl:if test="$browserows = 'recurse'">
+        <xsl:apply-templates select="following-sibling::row[1]">
+          <xsl:with-param name="spans">
+            <xsl:call-template name="consume-row">
+              <xsl:with-param name="spans" select="$spans"/>
+            </xsl:call-template>
+          </xsl:with-param>
+          <xsl:with-param name="browserows" select="$browserows"/>
+        </xsl:apply-templates>
+      </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template name="normal-row">
   <xsl:param name="spans"/>
+  <xsl:param name="browserows"/>
 
   <xsl:variable name="row-height">
     <xsl:if test="processing-instruction('dbhtml')">
@@ -631,16 +668,19 @@
     </xsl:apply-templates>
   </tr>
 
-  <xsl:if test="following-sibling::row">
-    <xsl:variable name="nextspans">
-      <xsl:apply-templates select="(entry|entrytbl)[1]" mode="span">
-        <xsl:with-param name="spans" select="$spans"/>
+  <xsl:if test="$browserows = 'recurse'">
+    <xsl:if test="following-sibling::row">
+      <xsl:variable name="nextspans">
+        <xsl:apply-templates select="(entry|entrytbl)[1]" mode="span">
+          <xsl:with-param name="spans" select="$spans"/>
+        </xsl:apply-templates>
+      </xsl:variable>
+  
+      <xsl:apply-templates select="following-sibling::row[1]">
+        <xsl:with-param name="spans" select="$nextspans"/>
+        <xsl:with-param name="browserows" select="$browserows"/>
       </xsl:apply-templates>
-    </xsl:variable>
-
-    <xsl:apply-templates select="following-sibling::row[1]">
-      <xsl:with-param name="spans" select="$nextspans"/>
-    </xsl:apply-templates>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
