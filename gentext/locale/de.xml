@@ -105,8 +105,8 @@
 <gentext key="RefName" text="Name"/>
 <gentext key="RefSection" text="Abschnitt"/>
 <gentext key="refsection" text="Abschnitt"/>
-<gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/> 
+<gentext key="RefSynopsisDiv" text="Übersicht"/>
+<gentext key="refsynopsisdiv" text="Übersicht"/> 
 <gentext key="RevHistory" text="Versionsgeschichte"/>
 <gentext key="revhistory" text="Versionsgeschichte"/>
 <gentext key="Revision" text="Version"/>
