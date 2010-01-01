@@ -41,6 +41,8 @@ db.navigation.components |= db.glossary
 db.glossary.inlines =
    db.firstterm
  | db.glossterm
+ | db._firstterm
+ | db._glossterm
 
 # ======================================================================
 
@@ -256,6 +258,41 @@ div {
 # ======================================================================
 
 [
+   db:refname [ "firstterm" ]
+   db:refpurpose [ "The first occurrence of a term, with limited content" ]
+]
+div {
+
+   db._firstterm.role.attribute = attribute role { text }
+
+   db._firstterm.attlist =
+      db._firstterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db._firstterm =
+      [
+         s:pattern [
+            name = "Glossary 'firstterm' type constraint"
+            s:rule [
+               context = "db:firstterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on firstterm must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element firstterm {
+         db._firstterm.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
    db:refname [ "glossterm" ]
    db:refpurpose [ "A glossary term" ]
 ]
@@ -285,6 +322,41 @@ div {
       element glossterm {
          db.glossterm.attlist,
          db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossterm" ]
+   db:refpurpose [ "A glossary term" ]
+]
+div {
+
+   db._glossterm.role.attribute = attribute role { text }
+
+   db._glossterm.attlist =
+      db._glossterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db._glossterm =
+      [
+         s:pattern [
+            name = "Glossary 'glossterm' type constraint"
+            s:rule [
+               context = "db:glossterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on glossterm must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element glossterm {
+         db._glossterm.attlist,
+         db._text
       }
 }
 

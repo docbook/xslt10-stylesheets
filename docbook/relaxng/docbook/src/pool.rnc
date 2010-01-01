@@ -46,7 +46,7 @@ default namespace = "http://docbook.org/ns/docbook"
 
 start |= db.abstract
  | db.mediaobject.content
- | db.audiodata 
+ | db.audiodata
  | db.imagedata
  | db.textdata
  | db.videodata
@@ -637,10 +637,27 @@ db.biblio.class.attribute =
 db.ubiq.inlines =
    db.inlinemediaobject
  | db.remark
- | db.superscript
- | db.subscript
  | db.link.inlines
  | db.alt
+ | db.trademark
+ # below, effectively the publishing inlines (as of 5.0)
+ | db.abbrev
+ | db.acronym
+ | db.date
+ | db._emphasis
+ | db.footnote
+ | db.footnoteref
+ | db._foreignphrase
+ | db._phrase
+ | db._quote
+ | db.subscript
+ | db.superscript
+ | db.wordasword
+ | db._firstterm
+ | db._glossterm
+ | db.coref
+
+
 
 db._text         = (text | db.ubiq.inlines | db._phrase | db.replaceable)*
 
@@ -4728,7 +4745,7 @@ div {
    db._emphasis =
       element emphasis {
          db.emphasis.attlist,
-         (db._text | db._emphasis)*
+         db._text
       }
 }
 
@@ -4751,6 +4768,28 @@ div {
       element foreignphrase {
          db.foreignphrase.attlist,
          (text | db.general.inlines)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "foreignphrase" ]
+   db:refpurpose [ "A limited word or phrase in a language other than the primary language of the document" ]
+]
+div {
+
+   db._foreignphrase.role.attribute = attribute role { text }
+
+   db._foreignphrase.attlist =
+      db._foreignphrase.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db._foreignphrase =
+      element foreignphrase {
+         db._foreignphrase.attlist,
+         db._text
       }
 }
 
@@ -4810,6 +4849,28 @@ div {
       element quote {
          db.quote.attlist,
          db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "quote" ]
+   db:refpurpose [ "A limited inline quotation" ]
+]
+div {
+
+   db._quote.role.attribute = attribute role { text }
+
+   db._quote.attlist =
+      db._quote.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db._quote =
+      element quote {
+         db._quote.attlist,
+         db._text
       }
 }
 
