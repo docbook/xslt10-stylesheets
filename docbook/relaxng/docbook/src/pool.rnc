@@ -1475,7 +1475,7 @@ div {
 
    db.remark = element remark {
       db.remark.attlist,
-      db._text
+      db.all.inlines*
    }
 }
 
