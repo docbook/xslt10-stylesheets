@@ -55,7 +55,7 @@ db.relation.attribute =
 
 [
    db:refname [ "biblioentry" ]
-   db:refpurpose [ "An entry in a Bibliography" ]
+   db:refpurpose [ "A raw entry in a Bibliography" ]
 ]
 div {
 
@@ -77,7 +77,7 @@ div {
 
 [
    db:refname [ "bibliomixed" ]
-   db:refpurpose [ "An entry in a Bibliography" ]
+   db:refpurpose [ "A cooked entry in a Bibliography" ]
 ]
 div {
 
@@ -91,7 +91,10 @@ div {
    db.bibliomixed =
       element bibliomixed {
          db.bibliomixed.attlist,
-         (text | db.bibliographic.elements)*
+         ((db._text | db.honorific | db.firstname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*
+         | (db._text | db.honorific | db.givenname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*)
       }
 }
 
@@ -141,7 +144,10 @@ div {
    db.bibliomset =
       element bibliomset {
          db.bibliomset.attlist,
-         (db._text | db.bibliographic.elements)*
+         ((db._text | db.honorific | db.firstname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*
+         | (db._text | db.honorific | db.givenname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*)
       }
 }
 
