@@ -224,7 +224,8 @@ div {
       element colophon {
          db.colophon.attlist,
          db.colophon.info,
-         db.all.blocks+
+         ((db.all.blocks+, db.simplesect*)
+          |(db.all.blocks*, db.simplesect+))
       }
 }
 
