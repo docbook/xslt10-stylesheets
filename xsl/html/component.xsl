@@ -259,7 +259,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="chapter/title|chapter/chapterinfo/title"
+<xsl:template match="chapter/title|chapter/chapterinfo/title|chapter/info/title"
 	      mode="titlepage.mode" priority="2">
   <xsl:call-template name="component.title">
     <xsl:with-param name="node" select="ancestor::chapter[1]"/>
