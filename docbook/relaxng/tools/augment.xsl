@@ -97,7 +97,7 @@
 	      <s:rule context="db:{$name}">
 		<s:assert test="not(.//db:{name(.)})">
 		  <xsl:value-of select="name(.)"/>
-		  <xsl:text> must not occur in the descendants of </xsl:text>
+		  <xsl:text> must not occur among the children or descendants of </xsl:text>
 		  <xsl:value-of select="$name"/>
 		</s:assert>
 	      </s:rule>
@@ -117,7 +117,7 @@
 	<s:pattern name="Root must have version">
 	  <s:rule context="/db:{$name}">
 	    <s:assert test="@version">
-	      <xsl:text>The root element must have a version attribute.</xsl:text>
+	      <xsl:text>If this element is the root element, it must have a version attribute.</xsl:text>
 	    </s:assert>
 	  </s:rule>
 	</s:pattern>
