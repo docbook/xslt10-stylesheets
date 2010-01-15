@@ -128,7 +128,7 @@ div {
 
 [
    db:refname [ "funcsynopsisinfo" ]
-   db:refpurpose [ "Information supplementing the FuncDefs of a FuncSynopsis" ]
+   db:refpurpose [ "Information supplementing the funcdefs of a funcsynopsis" ]
 ]
 div {
 
@@ -388,7 +388,7 @@ div {
 
 [
    db:refname [ "classsynopsisinfo" ]
-   db:refpurpose [ "Information supplementing the contents of a ClassSynopsis" ]
+   db:refpurpose [ "Information supplementing the contents of a classsynopsis" ]
 ]
 div {
 
@@ -592,7 +592,7 @@ div {
 
 [
    db:refname [ "initializer" ]
-   db:refpurpose [ "The initializer for a FieldSynopsis" ]
+   db:refpurpose [ "The initializer for a fieldsynopsis" ]
 ]
 div {
 

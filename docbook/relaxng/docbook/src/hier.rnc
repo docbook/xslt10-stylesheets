@@ -233,7 +233,7 @@ div {
 
 [
    db:refname [ "appendix" ]
-   db:refpurpose [ "An appendix in a Book or Article" ]
+   db:refpurpose [ "An appendix in a book or article" ]
 ]
 div {
 

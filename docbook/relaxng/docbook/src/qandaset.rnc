@@ -82,7 +82,7 @@ div {
 
 [
    db:refname [ "qandadiv" ]
-   db:refpurpose [ "A titled division in a QandASet" ]
+   db:refpurpose [ "A titled division in a qandaset" ]
 ]
 div {
 
@@ -108,7 +108,7 @@ div {
 
 [
    db:refname [ "qandaentry" ]
-   db:refpurpose [ "A question/answer set within a QandASet" ]
+   db:refpurpose [ "A question/answer set within a qandaset" ]
 ]
 div {
 
@@ -134,7 +134,7 @@ div {
 
 [
    db:refname [ "question" ]
-   db:refpurpose [ "A question in a QandASet" ]
+   db:refpurpose [ "A question in a qandaset" ]
 ]
 div {
 
@@ -157,7 +157,7 @@ div {
 
 [
    db:refname [ "answer" ]
-   db:refpurpose [ "An answer to a question posed in a QandASet" ]
+   db:refpurpose [ "An answer to a question posed in a qandaset" ]
 ]
 div {
 
@@ -180,7 +180,7 @@ div {
 
 [
    db:refname [ "label" ]
-   db:refpurpose [ "A label on a Question or Answer" ]
+   db:refpurpose [ "A label on a question or answer" ]
 ]
 div {
 

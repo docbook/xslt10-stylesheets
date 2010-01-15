@@ -55,7 +55,7 @@ db.relation.attribute =
 
 [
    db:refname [ "biblioentry" ]
-   db:refpurpose [ "A raw entry in a Bibliography" ]
+   db:refpurpose [ "A raw entry in a bibliography" ]
 ]
 div {
 
@@ -77,7 +77,7 @@ div {
 
 [
    db:refname [ "bibliomixed" ]
-   db:refpurpose [ "A cooked entry in a Bibliography" ]
+   db:refpurpose [ "A cooked entry in a bibliography" ]
 ]
 div {
 
@@ -207,7 +207,7 @@ div {
 
 [
    db:refname [ "bibliodiv" ]
-   db:refpurpose [ "A section of a Bibliography" ]
+   db:refpurpose [ "A section of a bibliography" ]
 ]
 div {
 

@@ -493,7 +493,7 @@ div {
 
 [
    db:refname [ "entrytbl" ]
-   db:refpurpose [ "A subtable appearing in place of an Entry in a table" ]
+   db:refpurpose [ "A subtable appearing in place of an entry in a table" ]
 ]
 div {
 

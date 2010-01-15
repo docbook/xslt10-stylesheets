@@ -76,7 +76,7 @@ db.sect2.sections = (db.sect3+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect2" ]
-   db:refpurpose [ "A subsection within a Sect1" ]
+   db:refpurpose [ "A subsection within a sect1" ]
 ]
 div {
 
@@ -109,7 +109,7 @@ db.sect3.sections = (db.sect4+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect3" ]
-   db:refpurpose [ "A subsection within a Sect2" ]
+   db:refpurpose [ "A subsection within a sect2" ]
 ]
 div {
 
@@ -142,7 +142,7 @@ db.sect4.sections = (db.sect5+, db.simplesect*) | db.simplesect+
 
 [
    db:refname [ "sect4" ]
-   db:refpurpose [ "A subsection within a Sect3" ]
+   db:refpurpose [ "A subsection within a sect3" ]
 ]
 div {
 
@@ -175,7 +175,7 @@ db.sect5.sections = db.simplesect+
 
 [
    db:refname [ "sect5" ]
-   db:refpurpose [ "A subsection within a Sect4" ]
+   db:refpurpose [ "A subsection within a sect4" ]
 ]
 div {
 

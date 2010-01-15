@@ -65,7 +65,7 @@ db.area.units.enumeration =
 
 db.area.units-enum.attribute =
    [
-      db:refpurpose [ "Identifies the units used in the coords attribute The default units vary according to the type of callout specified: " db:tag [ class="attvalue" "calspair" ] " for graphics and " db:tag [ class="attvalue" "linecolumn" ] " for line-oriented elements." ]
+      db:refpurpose [ "Identifies the units used in the coords attribute. The default units vary according to the type of callout specified: " db:tag [ class="attvalue" "calspair" ] " for graphics and " db:tag [ class="attvalue" "linecolumn" ] " for line-oriented elements." ]
    ]
    attribute units { db.area.units.enumeration }?
 
@@ -114,7 +114,7 @@ div {
 
 [
    db:refname [ "callout" ]
-   db:refpurpose [ "A " db:quote [ "called out" ] " description of a marked Area" ]
+   db:refpurpose [ "A " db:quote [ "called out" ] " description of a marked area" ]
 ]
 div {
 
@@ -191,7 +191,7 @@ div {
 
 [
    db:refname [ "area" ]
-   db:refpurpose [ "A region defined for a Callout in a graphic or code example" ]
+   db:refpurpose [ "A region defined for a callout in a graphic or code example" ]
 ]
 div {
 
@@ -231,7 +231,7 @@ div {
 
 [
    db:refname [ "area" ]
-   db:refpurpose [ "A region defined for a Callout in a graphic or code example" ]
+   db:refpurpose [ "A region defined for a callout in a graphic or code example" ]
 ]
 div {
    # The only difference is that xml:id is optional
