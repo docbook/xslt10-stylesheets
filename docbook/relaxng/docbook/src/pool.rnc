@@ -76,7 +76,7 @@ div {
 
    db._any.attribute =
       [
-         db:refpurpose [ "Any attribute including in any attribute in any namespace." ]
+         db:refpurpose [ "Any attribute, including any attribute in any namespace." ]
       ]
       attribute * { text }
 
