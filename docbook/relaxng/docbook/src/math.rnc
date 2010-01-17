@@ -133,7 +133,7 @@ div {
 
 [
    db:refname [ "mathphrase" ]
-   db:refpurpose [ "A mathematical phrase, an expression that can be represented with ordinary text and a small amount of markup" ]
+   db:refpurpose [ "A mathematical phrase that can be represented with ordinary text and a small amount of markup" ]
 ]
 div {
 
