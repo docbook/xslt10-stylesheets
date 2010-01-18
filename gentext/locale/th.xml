@@ -144,7 +144,6 @@
 <gentext key="listcomma" text=","/>
 <!-- FIXME: Thai lanuage nomally use space for separate list, not comma -->
 
-<gentext key="nonexistantelement" text="ไม่พบส่วนที่ต้องการ"/><!-- FIXME: Don't Sure -->
 <gentext key="notes" text="หมายเหตุ"/>
 <gentext key="Notes" text="หมายเหตุ"/>
 <gentext key="Pgs" text="หน้า"/>
