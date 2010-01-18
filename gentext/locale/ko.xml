@@ -133,7 +133,6 @@
 <gentext key="in" text="-"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="nonexistantelement" text="존재하지 않는 기초요소입니다"/>
 <gentext key="notes" text="주석"/>
 <gentext key="Notes" text="주석"/>
 <gentext key="Pgs" text="Pgs."/>

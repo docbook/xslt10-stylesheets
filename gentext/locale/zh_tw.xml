@@ -145,8 +145,6 @@
 <gentext key="in"             text="&#x5728;"/>
 <gentext key="lastlistcomma"  text=","/>
 <gentext key="listcomma"      text=","/>
-<gentext key="nonexistantelement"
-         text="&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5143;&#x7D20;"/>
 <gentext key="page.citation"  text="&#x9801;"/>
 <gentext key="unexpectedelementname"
          text="&#x975E;&#x9810;&#x671F;&#x7684;&#x5143;&#x7D20;&#x540D;"/>

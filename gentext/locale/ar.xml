@@ -13,164 +13,163 @@
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="ฮไวีษ"/>
-<gentext key="abstract" text="ฮไวีษ"/>
-<gentext key="Answer" text="ฬ:"/>
-<gentext key="answer" text="ฬ:"/>
-<gentext key="Appendix" text="ๅไอโ"/>
-<gentext key="appendix" text="ๅไอโ"/>
-<gentext key="Article" text="ๅโวไ"/>
-<gentext key="article" text="ๅโวไ"/>
-<gentext key="Bibliography" text="โวฦๅษ วไๅัวฬู"/>
-<gentext key="bibliography" text="โวฦๅษ วไๅัวฬู"/>
-<gentext key="Book" text="ใสวศ"/>
-<gentext key="book" text="ใสวศ"/>
-<gentext key="CAUTION" text="สอะ๊ั"/>
-<gentext key="Caution" text="สอะ๊ั"/>
-<gentext key="caution" text="สอะ๊ั"/>
-<gentext key="Chapter" text="แีไ"/>
-<gentext key="chapter" text="แีไ"/>
-<gentext key="Colophon" text="วไๆวิั"/>
-<gentext key="colophon" text="วไๆวิั"/>
-<gentext key="Copyright" text="อโ่โ วไๆิั"/>
-<gentext key="copyright" text="อโ่โ วไๆิั"/>
-<gentext key="Dedication" text="ล็ฯวม"/>
-<gentext key="dedication" text="ล็ฯวม"/>
-<gentext key="Edition" text="ๆำฮษ"/>
-<gentext key="edition" text="ๆำฮษ"/>
-<gentext key="Equation" text="ๅูวฯไษ"/>
-<gentext key="equation" text="ๅูวฯไษ"/>
-<gentext key="Example" text="ๅหวไ"/>
-<gentext key="example" text="ๅหวไ"/>
-<gentext key="Figure" text="ิใไ"/>
-<gentext key="figure" text="ิใไ"/>
-<gentext key="Glossary" text="โวๅ่ำ วไๅแัฯวส"/>
-<gentext key="glossary" text="โวๅ่ำ วไๅแัฯวส"/>
-<gentext key="GlossSee" text="วๆุั"/>
-<gentext key="glosssee" text="วๆุั"/>
-<gentext key="GlossSeeAlso" text="วๆุั ร๊ึว๋"/>
-<gentext key="glossseealso" text="วๆุั ร๊ึว๋"/>
-<gentext key="IMPORTANT" text="็วๅ"/>
-<gentext key="important" text="็วๅ"/>
-<gentext key="Important" text="็วๅ"/>
-<gentext key="Index" text="แ็ัำ"/>
-<gentext key="index" text="แ็ัำ"/>
-<gentext key="ISBN" text="วไสัโ๊ๅ วไูวไๅ๊ วไโ๊วำ๊ ไไใสวศ"/>
-<gentext key="isbn" text="วไสัโ๊ๅ วไูวไๅ๊ วไโ๊วำ๊ ไไใสวศ"/>
-<gentext key="LegalNotice" text="ๅไวอุษ โวๆ่ๆ๊ษ"/>
-<gentext key="legalnotice" text="ๅไวอุษ โวๆ่ๆ๊ษ"/>
-<gentext key="MsgAud" text="วไฬๅ็่ั"/>
-<gentext key="msgaud" text="วไฬๅ็่ั"/>
-<gentext key="MsgLevel" text="วไๅำส่้"/>
-<gentext key="msglevel" text="วไๅำส่้"/>
-<gentext key="MsgOrig" text="วไๅีฯั"/>
-<gentext key="msgorig" text="วไๅีฯั"/>
-<gentext key="NOTE" text="ๅไวอุษ"/>
-<gentext key="Note" text="ๅไวอุษ"/>
-<gentext key="note" text="ๅไวอุษ"/>
-<gentext key="Part" text="ฬาม"/>
-<gentext key="part" text="ฬาม"/>
-<gentext key="Preface" text="ๅโฯๅษ"/>
-<gentext key="preface" text="ๅโฯๅษ"/>
-<gentext key="Procedure" text="ลฬัวม"/>
-<gentext key="procedure" text="ลฬัวม"/>
-<gentext key="ProductionSet" text="ๅๆสฬ"/>
-<gentext key="Published" text="ๅๆิ่ั"/>
-<gentext key="published" text="ๅๆิ่ั"/>
-<gentext key="Qandadiv" text="ำ ่ ฬ"/>
-<gentext key="qandadiv" text="ำ ่ ฬ"/>
-<gentext key="Question" text="ำ:"/>
-<gentext key="question" text="ำ:"/>
+<gentext key="Abstract" text="ุฎูุงุตุฉ"/>
+<gentext key="abstract" text="ุฎูุงุตุฉ"/>
+<gentext key="Answer" text="ุฌ:"/>
+<gentext key="answer" text="ุฌ:"/>
+<gentext key="Appendix" text="ู…ูุญู"/>
+<gentext key="appendix" text="ู…ูุญู"/>
+<gentext key="Article" text="ู…ูุงู"/>
+<gentext key="article" text="ู…ูุงู"/>
+<gentext key="Bibliography" text="ูุงุฆู…ุฉ ุงูู…ุฑุงุฌุน"/>
+<gentext key="bibliography" text="ูุงุฆู…ุฉ ุงูู…ุฑุงุฌุน"/>
+<gentext key="Book" text="ูุชุงุจ"/>
+<gentext key="book" text="ูุชุงุจ"/>
+<gentext key="CAUTION" text="ุชุญุฐูุฑ"/>
+<gentext key="Caution" text="ุชุญุฐูุฑ"/>
+<gentext key="caution" text="ุชุญุฐูุฑ"/>
+<gentext key="Chapter" text="ูุตู"/>
+<gentext key="chapter" text="ูุตู"/>
+<gentext key="Colophon" text="ุงููุงุดุฑ"/>
+<gentext key="colophon" text="ุงููุงุดุฑ"/>
+<gentext key="Copyright" text="ุญููู ุงููุดุฑ"/>
+<gentext key="copyright" text="ุญููู ุงููุดุฑ"/>
+<gentext key="Dedication" text="ุฅูุฏุงุก"/>
+<gentext key="dedication" text="ุฅูุฏุงุก"/>
+<gentext key="Edition" text="ูุณุฎุฉ"/>
+<gentext key="edition" text="ูุณุฎุฉ"/>
+<gentext key="Equation" text="ู…ุนุงุฏูุฉ"/>
+<gentext key="equation" text="ู…ุนุงุฏูุฉ"/>
+<gentext key="Example" text="ู…ุซุงู"/>
+<gentext key="example" text="ู…ุซุงู"/>
+<gentext key="Figure" text="ุดูู"/>
+<gentext key="figure" text="ุดูู"/>
+<gentext key="Glossary" text="ูุงู…ูุณ ุงูู…ูุฑุฏุงุช"/>
+<gentext key="glossary" text="ูุงู…ูุณ ุงูู…ูุฑุฏุงุช"/>
+<gentext key="GlossSee" text="ุงูุธุฑ"/>
+<gentext key="glosssee" text="ุงูุธุฑ"/>
+<gentext key="GlossSeeAlso" text="ุงูุธุฑ ุฃูุถุงู"/>
+<gentext key="glossseealso" text="ุงูุธุฑ ุฃูุถุงู"/>
+<gentext key="IMPORTANT" text="ูุงู…"/>
+<gentext key="important" text="ูุงู…"/>
+<gentext key="Important" text="ูุงู…"/>
+<gentext key="Index" text="ููุฑุณ"/>
+<gentext key="index" text="ููุฑุณ"/>
+<gentext key="ISBN" text="ุงูุชุฑููู… ุงูุนุงูู…ู ุงูููุงุณู ูููุชุงุจ"/>
+<gentext key="isbn" text="ุงูุชุฑููู… ุงูุนุงูู…ู ุงูููุงุณู ูููุชุงุจ"/>
+<gentext key="LegalNotice" text="ู…ูุงุญุธุฉ ูุงููููุฉ"/>
+<gentext key="legalnotice" text="ู…ูุงุญุธุฉ ูุงููููุฉ"/>
+<gentext key="MsgAud" text="ุงูุฌู…ููุฑ"/>
+<gentext key="msgaud" text="ุงูุฌู…ููุฑ"/>
+<gentext key="MsgLevel" text="ุงูู…ุณุชูู"/>
+<gentext key="msglevel" text="ุงูู…ุณุชูู"/>
+<gentext key="MsgOrig" text="ุงูู…ุตุฏุฑ"/>
+<gentext key="msgorig" text="ุงูู…ุตุฏุฑ"/>
+<gentext key="NOTE" text="ู…ูุงุญุธุฉ"/>
+<gentext key="Note" text="ู…ูุงุญุธุฉ"/>
+<gentext key="note" text="ู…ูุงุญุธุฉ"/>
+<gentext key="Part" text="ุฌุฒุก"/>
+<gentext key="part" text="ุฌุฒุก"/>
+<gentext key="Preface" text="ู…ูุฏู…ุฉ"/>
+<gentext key="preface" text="ู…ูุฏู…ุฉ"/>
+<gentext key="Procedure" text="ุฅุฌุฑุงุก"/>
+<gentext key="procedure" text="ุฅุฌุฑุงุก"/>
+<gentext key="ProductionSet" text="ู…ูุชุฌ"/>
+<gentext key="Published" text="ู…ูุดูุฑ"/>
+<gentext key="published" text="ู…ูุดูุฑ"/>
+<gentext key="Qandadiv" text="ุณ ู ุฌ"/>
+<gentext key="qandadiv" text="ุณ ู ุฌ"/>
+<gentext key="Question" text="ุณ:"/>
+<gentext key="question" text="ุณ:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
-<gentext key="Reference" text="ๅัฬู"/>
-<gentext key="reference" text="ๅัฬู"/>
-<gentext key="RefName" text="วไวำๅ"/>
-<gentext key="refname" text="วไวำๅ"/>
+<gentext key="Reference" text="ู…ุฑุฌุน"/>
+<gentext key="reference" text="ู…ุฑุฌุน"/>
+<gentext key="RefName" text="ุงูุงุณู…"/>
+<gentext key="refname" text="ุงูุงุณู…"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="วไๅฮสีั"/>
-<gentext key="refsynopsisdiv" text="วไๅฮสีั"/>
-<gentext key="RevHistory" text="สวั๊ฮ วไๅัวฬูษ"/>
-<gentext key="revhistory" text="สวั๊ฮ วไๅัวฬูษ"/>
-<gentext key="revision" text="ๅัวฬูษ"/>
-<gentext key="Revision" text="ๅัวฬูษ"/>
-<gentext key="sect1" text="โำๅ"/>
-<gentext key="sect2" text="โำๅ"/>
-<gentext key="sect3" text="โำๅ"/>
-<gentext key="sect4" text="โำๅ"/>
-<gentext key="sect5" text="โำๅ"/>
-<gentext key="section" text="โำๅ"/>
-<gentext key="Section" text="โำๅ"/>
-<gentext key="see" text="วำสูัึ"/>             <!-- uncapitalized -->
-<gentext key="seealso" text="วำสูัึ ร๊ึว๋"/>    <!-- uncapitalized -->
-<gentext key="set" text="ๅฬๅู่ษ"/>
-<gentext key="Set" text="ๅฬๅู่ษ"/>
-<gentext key="setindex" text="แ็ัำ วไๅฬๅู่ษ"/>
-<gentext key="SetIndex" text="แ็ัำ วไๅฬๅู่ษ"/>
-<gentext key="Sidebar" text="วไิั๊ื วไฬวๆศ๊"/>
-<gentext key="sidebar" text="วไิั๊ื วไฬวๆศ๊"/>
-<gentext key="step" text="ฮื่ษ"/>
-<gentext key="Step" text="ฮื่ษ"/>
-<gentext key="Table" text="ฬฯ่ไ"/>
-<gentext key="table" text="ฬฯ่ไ"/>
-<gentext key="tip" text="แใัษ ๅแ๊ฯษ"/>
-<gentext key="TIP" text="แใัษ ๅแ๊ฯษ"/>
-<gentext key="Tip" text="แใัษ ๅแ๊ฯษ"/>
-<gentext key="Warning" text="สๆศ๊็"/>
-<gentext key="warning" text="สๆศ๊็"/>
-<gentext key="WARNING" text="สๆศ๊็"/>
+<gentext key="RefSynopsisDiv" text="ุงูู…ุฎุชุตุฑ"/>
+<gentext key="refsynopsisdiv" text="ุงูู…ุฎุชุตุฑ"/>
+<gentext key="RevHistory" text="ุชุงุฑูุฎ ุงูู…ุฑุงุฌุนุฉ"/>
+<gentext key="revhistory" text="ุชุงุฑูุฎ ุงูู…ุฑุงุฌุนุฉ"/>
+<gentext key="revision" text="ู…ุฑุงุฌุนุฉ"/>
+<gentext key="Revision" text="ู…ุฑุงุฌุนุฉ"/>
+<gentext key="sect1" text="ูุณู…"/>
+<gentext key="sect2" text="ูุณู…"/>
+<gentext key="sect3" text="ูุณู…"/>
+<gentext key="sect4" text="ูุณู…"/>
+<gentext key="sect5" text="ูุณู…"/>
+<gentext key="section" text="ูุณู…"/>
+<gentext key="Section" text="ูุณู…"/>
+<gentext key="see" text="ุงุณุชุนุฑุถ"/>             <!-- uncapitalized -->
+<gentext key="seealso" text="ุงุณุชุนุฑุถ ุฃูุถุงู"/>    <!-- uncapitalized -->
+<gentext key="set" text="ู…ุฌู…ูุนุฉ"/>
+<gentext key="Set" text="ู…ุฌู…ูุนุฉ"/>
+<gentext key="setindex" text="ููุฑุณ ุงูู…ุฌู…ูุนุฉ"/>
+<gentext key="SetIndex" text="ููุฑุณ ุงูู…ุฌู…ูุนุฉ"/>
+<gentext key="Sidebar" text="ุงูุดุฑูุท ุงูุฌุงูุจู"/>
+<gentext key="sidebar" text="ุงูุดุฑูุท ุงูุฌุงูุจู"/>
+<gentext key="step" text="ุฎุทูุฉ"/>
+<gentext key="Step" text="ุฎุทูุฉ"/>
+<gentext key="Table" text="ุฌุฏูู"/>
+<gentext key="table" text="ุฌุฏูู"/>
+<gentext key="tip" text="ููุฑุฉ ู…ููุฏุฉ"/>
+<gentext key="TIP" text="ููุฑุฉ ู…ููุฏุฉ"/>
+<gentext key="Tip" text="ููุฑุฉ ู…ููุฏุฉ"/>
+<gentext key="Warning" text="ุชูุจูู"/>
+<gentext key="warning" text="ุชูุจูู"/>
+<gentext key="WARNING" text="ุชูุจูู"/>
 
-<gentext key="and" text="่"/>
-<gentext key="by" text="ศ่วำืษ"/>
-<gentext key="Edited" text="ๅูฯไ"/>
-<gentext key="edited" text="ๅูฯไ"/>
-<gentext key="Editedby" text="ๅูฯไ ศ่วำืษ"/>
-<gentext key="editedby" text="ๅูฯไ ศ่วำืษ"/>
-<gentext key="in" text="แ๊"/>
-<gentext key="lastlistcomma" text="ฌ"/>
-<gentext key="listcomma" text="ฌ"/>
-<gentext key="nonexistantelement" text="ูๆีั ๅแโ่ฯ"/>
-<gentext key="notes" text="ๅไวอุวส"/>
-<gentext key="Notes" text="ๅไวอุวส"/>
-<gentext key="Pgs" text="ีแอวส"/>
-<gentext key="pgs" text="ีแอวส"/>
-<gentext key="Revisedby" text="สๅส วไๅัวฬูษ ศ่วำืษ: "/>
-<gentext key="revisedby" text="สๅส วไๅัวฬูษ ศ่วำืษ: "/>
-<gentext key="TableNotes" text="ๅไวอุวส"/>
-<gentext key="tablenotes" text="ๅไวอุวส"/>
-<gentext key="TableofContents" text="โวฦๅษ วไๅอส่๊วส"/>
-<gentext key="tableofcontents" text="โวฦๅษ วไๅอส่๊วส"/>
-<gentext key="unexpectedelementname" text="วำๅ ูๆีั ฺ๊ั ๅส่โู"/>
-<gentext key="unsupported" text="ฺ๊ั ๅฯู่ๅ"/>
-<gentext key="xrefto" text="ลิวัษ ลไ้"/>
+<gentext key="and" text="ู"/>
+<gentext key="by" text="ุจูุงุณุทุฉ"/>
+<gentext key="Edited" text="ู…ุนุฏู"/>
+<gentext key="edited" text="ู…ุนุฏู"/>
+<gentext key="Editedby" text="ู…ุนุฏู ุจูุงุณุทุฉ"/>
+<gentext key="editedby" text="ู…ุนุฏู ุจูุงุณุทุฉ"/>
+<gentext key="in" text="ูู"/>
+<gentext key="lastlistcomma" text="ุ"/>
+<gentext key="listcomma" text="ุ"/>
+<gentext key="notes" text="ู…ูุงุญุธุงุช"/>
+<gentext key="Notes" text="ู…ูุงุญุธุงุช"/>
+<gentext key="Pgs" text="ุตูุญุงุช"/>
+<gentext key="pgs" text="ุตูุญุงุช"/>
+<gentext key="Revisedby" text="ุชู…ุช ุงูู…ุฑุงุฌุนุฉ ุจูุงุณุทุฉ: "/>
+<gentext key="revisedby" text="ุชู…ุช ุงูู…ุฑุงุฌุนุฉ ุจูุงุณุทุฉ: "/>
+<gentext key="TableNotes" text="ู…ูุงุญุธุงุช"/>
+<gentext key="tablenotes" text="ู…ูุงุญุธุงุช"/>
+<gentext key="TableofContents" text="ูุงุฆู…ุฉ ุงูู…ุญุชููุงุช"/>
+<gentext key="tableofcontents" text="ูุงุฆู…ุฉ ุงูู…ุญุชููุงุช"/>
+<gentext key="unexpectedelementname" text="ุงุณู… ุนูุตุฑ ุบูุฑ ู…ุชููุน"/>
+<gentext key="unsupported" text="ุบูุฑ ู…ุฏุนูู…"/>
+<gentext key="xrefto" text="ุฅุดุงุฑุฉ ุฅูู"/>
 
-<gentext key="listofequations" text="โวฦๅษ วไๅูวฯไวส"/>
-<gentext key="ListofEquations" text="โวฦๅษ วไๅูวฯไวส"/>
-<gentext key="ListofExamples" text="โวฦๅษ วไรๅหไษ"/>
-<gentext key="listofexamples" text="โวฦๅษ วไรๅหไษ"/>
-<gentext key="ListofFigures" text="โวฦๅษ วไริใวไ"/>
-<gentext key="listoffigures" text="โวฦๅษ วไริใวไ"/>
-<gentext key="ListofProcedures" text="โวฦๅษ วไลฬัวมวส"/>
-<gentext key="listofprocedures" text="โวฦๅษ วไลฬัวมวส"/>
-<gentext key="listoftables" text="โวฦๅษ วไฬฯว่ไ"/>
-<gentext key="ListofTables" text="โวฦๅษ วไฬฯว่ไ"/>
-<gentext key="ListofUnknown" text="โวฦๅษ วไๅฬ็่ไวส"/>
-<gentext key="listofunknown" text="โวฦๅษ วไๅฬ็่ไวส"/>
+<gentext key="listofequations" text="ูุงุฆู…ุฉ ุงูู…ุนุงุฏูุงุช"/>
+<gentext key="ListofEquations" text="ูุงุฆู…ุฉ ุงูู…ุนุงุฏูุงุช"/>
+<gentext key="ListofExamples" text="ูุงุฆู…ุฉ ุงูุฃู…ุซูุฉ"/>
+<gentext key="listofexamples" text="ูุงุฆู…ุฉ ุงูุฃู…ุซูุฉ"/>
+<gentext key="ListofFigures" text="ูุงุฆู…ุฉ ุงูุฃุดูุงู"/>
+<gentext key="listoffigures" text="ูุงุฆู…ุฉ ุงูุฃุดูุงู"/>
+<gentext key="ListofProcedures" text="ูุงุฆู…ุฉ ุงูุฅุฌุฑุงุกุงุช"/>
+<gentext key="listofprocedures" text="ูุงุฆู…ุฉ ุงูุฅุฌุฑุงุกุงุช"/>
+<gentext key="listoftables" text="ูุงุฆู…ุฉ ุงูุฌุฏุงูู"/>
+<gentext key="ListofTables" text="ูุงุฆู…ุฉ ุงูุฌุฏุงูู"/>
+<gentext key="ListofUnknown" text="ูุงุฆู…ุฉ ุงูู…ุฌูููุงุช"/>
+<gentext key="listofunknown" text="ูุงุฆู…ุฉ ุงูู…ุฌูููุงุช"/>
 
-<gentext key="nav-home" text="วไศฯว๊ษ"/>
-<gentext key="nav-next" text="วไสวไ๊"/>
-<gentext key="nav-next-sibling" text="ลไ้ วไรๅวๅ"/>
-<gentext key="nav-prev" text="วไำวศโ"/>
-<gentext key="nav-prev-sibling" text="ลไ้ วไฮไแ"/>
-<gentext key="nav-up" text="รูไ้"/>
-<gentext key="nav-toc" text="วไแ็ัำ"/>
+<gentext key="nav-home" text="ุงูุจุฏุงูุฉ"/>
+<gentext key="nav-next" text="ุงูุชุงูู"/>
+<gentext key="nav-next-sibling" text="ุฅูู ุงูุฃู…ุงู…"/>
+<gentext key="nav-prev" text="ุงูุณุงุจู"/>
+<gentext key="nav-prev-sibling" text="ุฅูู ุงูุฎูู"/>
+<gentext key="nav-up" text="ุฃุนูู"/>
+<gentext key="nav-toc" text="ุงูููุฑุณ"/>
 
-<gentext key="Draft"         text="ๅำ่ฯษ"/>
-<gentext key="above"         text="รูไ้"/>
-<gentext key="below"         text="แ๊ๅว ๊ไ๊"/>
-<gentext key="sectioncalled" text="วไโำๅ วไๅำๅ้"/>
-<gentext key="index symbols" text="วไัๅ่า"/>
+<gentext key="Draft"         text="ู…ุณูุฏุฉ"/>
+<gentext key="above"         text="ุฃุนูู"/>
+<gentext key="below"         text="ููู…ุง ููู"/>
+<gentext key="sectioncalled" text="ุงููุณู… ุงูู…ุณู…ู"/>
+<gentext key="index symbols" text="ุงูุฑู…ูุฒ"/>
 <gentext key="writing-mode" text="rl-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!-- en -->
@@ -495,47 +494,47 @@
 </context>
 
 <context name="datetime-full">
-<template name="January">๊ๆว๊ั</template>
-<template name="February">แศัว๊ั</template>
-<template name="March">ๅวัำ</template>
-<template name="April">รศั๊ไ</template>
-<template name="May">ๅว๊่</template>
-<template name="June">๊่ๆ๊่</template>
-<template name="July">๊่ไ๊่</template>
-<template name="August">รฺำืำ</template>
-<template name="September">ำศสๅศั</template>
-<template name="October">รใส่ศั</template>
-<template name="November">ๆ่แๅศั</template>
-<template name="December">ฯ๊ำๅศั</template>
-<template name="Monday">วไลหๆ๊ๆ</template>
-<template name="Tuesday">วไหไวหวม</template>
-<template name="Wednesday">วไรัศูวม</template>
-<template name="Thursday">วไฮๅ๊ำ</template>
-<template name="Friday">วไฬๅูษ</template>
-<template name="Saturday">วไำศส</template>
-<template name="Sunday">วไรอฯ</template>
+<template name="January">ููุงูุฑ</template>
+<template name="February">ูุจุฑุงูุฑ</template>
+<template name="March">ู…ุงุฑุณ</template>
+<template name="April">ุฃุจุฑูู</template>
+<template name="May">ู…ุงูู</template>
+<template name="June">ููููู</template>
+<template name="July">ููููู</template>
+<template name="August">ุฃุบุณุทุณ</template>
+<template name="September">ุณุจุชู…ุจุฑ</template>
+<template name="October">ุฃูุชูุจุฑ</template>
+<template name="November">ูููู…ุจุฑ</template>
+<template name="December">ุฏูุณู…ุจุฑ</template>
+<template name="Monday">ุงูุฅุซููู</template>
+<template name="Tuesday">ุงูุซูุงุซุงุก</template>
+<template name="Wednesday">ุงูุฃุฑุจุนุงุก</template>
+<template name="Thursday">ุงูุฎู…ูุณ</template>
+<template name="Friday">ุงูุฌู…ุนุฉ</template>
+<template name="Saturday">ุงูุณุจุช</template>
+<template name="Sunday">ุงูุฃุญุฏ</template>
 </context>
 
 <context name="datetime-abbrev">
-<template name="Jan">๊ๆว๊ั</template>
-<template name="Feb">แศัว๊ั</template>
-<template name="Mar">ๅวัำ</template>
-<template name="Apr">รศั๊ไ</template>
-<template name="May">ๅว๊่</template>
-<template name="Jun">๊่ๆ๊่</template>
-<template name="Jul">๊่ไ๊่</template>
-<template name="Aug">รฺำืำ</template>
-<template name="Sep">ำศสๅศั</template>
-<template name="Oct">รใส่ศั</template>
-<template name="Nov">ๆ่แๅศั</template>
-<template name="Dec">ฯ๊ำๅศั</template>
-<template name="Mon">วไลหๆ๊ๆ</template>
-<template name="Tue">วไหไวหวม</template>
-<template name="Wed">วไรัศูวม</template>
-<template name="Thu">วไฮๅ๊ำ</template>
-<template name="Fri">วไฬๅูษ</template>
-<template name="Sat">วไำศส</template>
-<template name="Sun">วไรอฯ</template>
+<template name="Jan">ููุงูุฑ</template>
+<template name="Feb">ูุจุฑุงูุฑ</template>
+<template name="Mar">ู…ุงุฑุณ</template>
+<template name="Apr">ุฃุจุฑูู</template>
+<template name="May">ู…ุงูู</template>
+<template name="Jun">ููููู</template>
+<template name="Jul">ููููู</template>
+<template name="Aug">ุฃุบุณุทุณ</template>
+<template name="Sep">ุณุจุชู…ุจุฑ</template>
+<template name="Oct">ุฃูุชูุจุฑ</template>
+<template name="Nov">ูููู…ุจุฑ</template>
+<template name="Dec">ุฏูุณู…ุจุฑ</template>
+<template name="Mon">ุงูุฅุซููู</template>
+<template name="Tue">ุงูุซูุงุซุงุก</template>
+<template name="Wed">ุงูุฃุฑุจุนุงุก</template>
+<template name="Thu">ุงูุฎู…ูุณ</template>
+<template name="Fri">ุงูุฌู…ุนุฉ</template>
+<template name="Sat">ุงูุณุจุช</template>
+<template name="Sun">ุงูุฃุญุฏ</template>
 </context>
 
 </locale>

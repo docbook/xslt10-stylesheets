@@ -174,7 +174,6 @@
 
 <!-- Suggestion of I. Kouznetsov: Error messages are better in English -->
 
-<gentext key="nonexistantelement" text="non-existant element"/>
 <gentext key="pgs" text="Стр."/>
 <gentext key="Pgs" text="Стр."/>
 <gentext key="Revisedby" text="Revised by: "/>
