@@ -4900,7 +4900,7 @@ div {
 
 [
    db:refname [ "superscript" ]
-   db:refpurpose [ "A superscript (as in x^2, the mathematical notation for x multiplied by itself)" ]
+   db:refpurpose [ "A superscript (as in x" db:superscript [ "2" ] ", the mathematical notation for x multiplied by itself)" ]
 ]
 div {
 
