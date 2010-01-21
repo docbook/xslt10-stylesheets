@@ -1515,7 +1515,6 @@ div {
 
    ctrl:exclude [ from="db.footnote" exclude="db.footnote" ]
    ctrl:exclude [ from="db.footnote" exclude="db.formal.blocks" ]
-   ctrl:exclude [ from="db.footnote" exclude="db.indexterm" ]
    ctrl:exclude [ from="db.footnote" exclude="db.sidebar" ]
    ctrl:exclude [ from="db.footnote" exclude="db.task" ]
    ctrl:exclude [ from="db.footnote" exclude="db.epigraph" ]
