@@ -7,189 +7,211 @@
 <doc:localeinfo xmlns="">
 <authorgroup>
   <author><firstname>Bernd</firstname><surname>Groh</surname>
-          <affiliation><address><email>bgroh@redhat.com</email></address>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>bgroh@redhat.com</email></address>
           </affiliation>
   </author>
   <author><firstname>Jayaradha</firstname><surname>N</surname>
-          <affiliation><address><email>jaya@pune.redhat.com</email></address>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>jaya@pune.redhat.com</email></address>
           </affiliation>
   </author>
   <author><firstname>Jayaradha</firstname><surname>N</surname>
-          <affiliation><address><email>njaya@redhat.com</email></address>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>njaya@redhat.com</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Felix</firstname><surname>I</surname>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>ifelix@redhat.com</email></address>
           </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="&#x0B9A;&#x0BC1;&#x0BB0;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BAE;&#x0BCD;"/>
-<gentext key="abstract" text="&#x0B9A;&#x0BC1;&#x0BB0;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BAE;&#x0BCD;"/>
-<gentext key="Answer" text="&#x0041;&#x003A;"/>
-<gentext key="answer" text="&#x0041;&#x003A;"/>
-<gentext key="Appendix" text="&#x0B87;&#x0BA3;&#x0BC8;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="appendix" text="&#x0B87;&#x0BA3;&#x0BC8;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Article" text="&#x0B95;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BC1;&#x0BB0;&#x0BC8;"/>
-<gentext key="article" text="&#x0B95;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BC1;&#x0BB0;&#x0BC8;"/>
-<gentext key="Author" text="Author"/>
-<gentext key="Bibliography" text="&#x0BB5;&#x0BBF;&#x0BB5;&#x0BB0;&#x0B95;&#x0BCD;&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="bibliography" text="&#x0BB5;&#x0BBF;&#x0BB5;&#x0BB0;&#x0B95;&#x0BCD;&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Book" text="&#x0BAA;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0B95;&#x0BAE;&#x0BCD;"/>
-<gentext key="book" text="&#x0BAA;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0B95;&#x0BAE;&#x0BCD;"/>
-<gentext key="CAUTION" text="&#x0B8E;&#x0B9A;&#x0BCD;&#x0B9A;&#x0BB0;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="Caution" text="&#x0B8E;&#x0B9A;&#x0BCD;&#x0B9A;&#x0BB0;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="caution" text="&#x0B8E;&#x0B9A;&#x0BCD;&#x0B9A;&#x0BB0;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="Chapter" text="&#x0BAA;&#x0BBE;&#x0B9F;&#x0BAE;&#x0BCD;"/>
-<gentext key="chapter" text="&#x0BAA;&#x0BBE;&#x0B9F;&#x0BAE;&#x0BCD;"/>
-<gentext key="Colophon" text="&#x0BAA;&#x0BBF;&#x0BA9;&#x0BCD;&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="colophon" text="&#x0BAA;&#x0BBF;&#x0BA9;&#x0BCD;&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Copyright" text="&#x0B95;&#x0BBE;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0BB0;&#x0BBF;&#x0BAE;&#x0BC8;"/>
-<gentext key="copyright" text="&#x0B95;&#x0BBE;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0BB0;&#x0BBF;&#x0BAE;&#x0BC8;"/>
-<gentext key="Dedication" text="&#x0B9A;&#x0BAE;&#x0BB0;&#x0BCD;&#x0BAA;&#x0BA3;&#x0BAE;&#x0BCD;"/>
-<gentext key="dedication" text="&#x0B9A;&#x0BAE;&#x0BB0;&#x0BCD;&#x0BAA;&#x0BA3;&#x0BAE;&#x0BCD;"/>
-<gentext key="Edition" text="&#x0BAA;&#x0BA4;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="edition" text="&#x0BAA;&#x0BA4;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Equation" text="&#x0B9A;&#x0BAE;&#x0BA9;&#x0BCD;&#x0BAA;&#x0BBE;&#x0B9F;&#x0BC1;"/>
-<gentext key="equation" text="&#x0B9A;&#x0BAE;&#x0BA9;&#x0BCD;&#x0BAA;&#x0BBE;&#x0B9F;&#x0BC1;"/>
-<gentext key="Example" text="&#x0B89;&#x0BA4;&#x0BBE;&#x0BB0;&#x0BA3;&#x0BAE;&#x0BCD;"/>
-<gentext key="example" text="&#x0B89;&#x0BA4;&#x0BBE;&#x0BB0;&#x0BA3;&#x0BAE;&#x0BCD;"/>
-<gentext key="Figure" text="&#x0BAA;&#x0B9F;&#x0BAE;&#x0BCD;"/>
-<gentext key="figure" text="&#x0BAA;&#x0B9F;&#x0BAE;&#x0BCD;"/>
-<gentext key="Glossary" text="&#x0B85;&#x0B95;&#x0BB0;&#x0BBE;&#x0BA4;&#x0BBF;"/>
-<gentext key="glossary" text="&#x0B85;&#x0B95;&#x0BB0;&#x0BBE;&#x0BA4;&#x0BBF;"/>
-<gentext key="GlossSee" text="&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;"/>
-<gentext key="glosssee" text="&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;"/>
-<gentext key="GlossSeeAlso" text="&#x0B87;&#x0BA4;&#x0BC8;&#x0BAF;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0B95;&#x0BCD;&#x0B95;&#x0BB5;&#x0BC1;&#x0BAE;&#x0BCD;"/>
-<gentext key="glossseealso" text="&#x0B87;&#x0BA4;&#x0BC8;&#x0BAF;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0B95;&#x0BCD;&#x0B95;&#x0BB5;&#x0BC1;&#x0BAE;&#x0BCD;"/>
-<gentext key="IMPORTANT" text="&#x0BAE;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BBF;&#x0BAF;&#x0BAE;&#x0BCD;"/>
-<gentext key="important" text="&#x0BAE;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BBF;&#x0BAF;&#x0BAE;&#x0BCD;"/>
-<gentext key="Important" text="&#x0BAE;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BBF;&#x0BAF;&#x0BAE;&#x0BCD;"/>
-<gentext key="Index" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;"/>
-<gentext key="index" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;"/>
-<gentext key="ISBN" text="&#x0049;&#x0053;&#x0042;&#x004E;"/>
-<gentext key="isbn" text="&#x0049;&#x0053;&#x0042;&#x004E;"/>
-<gentext key="LegalNotice" text="&#x0B9A;&#x0B9F;&#x0BCD;&#x0B9F;&#x0B85;&#x0BB1;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="legalnotice" text="&#x0B9A;&#x0B9F;&#x0BCD;&#x0B9F;&#x0B85;&#x0BB1;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="MsgAud" text="&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BB5;&#x0BC8;&#x0BAF;&#x0BBE;&#x0BB3;&#x0BB0;&#x0BCD;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="msgaud" text="&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BB5;&#x0BC8;&#x0BAF;&#x0BBE;&#x0BB3;&#x0BB0;&#x0BCD;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="MsgLevel" text="&#x0BAE;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BAE;&#x0BCD;"/>
-<gentext key="msglevel" text="&#x0BAE;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BAE;&#x0BCD;"/>
-<gentext key="MsgOrig" text="&#x0BAE;&#x0BC2;&#x0BB2;&#x0BAE;&#x0BCD;"/>
-<gentext key="msgorig" text="&#x0BAE;&#x0BC2;&#x0BB2;&#x0BAE;&#x0BCD;"/>
-<gentext key="NOTE" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Note" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="note" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Part" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="part" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="Preface" text="&#x0BAE;&#x0BC1;&#x0BA9;&#x0BCD;&#x0BA9;&#x0BC1;&#x0BB0;&#x0BC8;"/>
-<gentext key="preface" text="&#x0BAE;&#x0BC1;&#x0BA9;&#x0BCD;&#x0BA9;&#x0BC1;&#x0BB0;&#x0BC8;"/>
-<gentext key="Procedure" text="&#x0BAE;&#x0BC1;&#x0BB1;&#x0BC8;"/>
-<gentext key="procedure" text="&#x0BAE;&#x0BC1;&#x0BB1;&#x0BC8;"/>
-<gentext key="ProductionSet" text="&#x0B89;&#x0BB1;&#x0BCD;&#x0BAA;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BBF;"/>
-<gentext key="PubDate" text="Publication Date"/>
-<gentext key="pubdate" text="Publication date"/>
-<gentext key="Published" text="&#x0BAA;&#x0BA4;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BAA;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;"/>
-<gentext key="published" text="&#x0BAA;&#x0BA4;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BAA;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;"/>
-<gentext key="Qandadiv" text="Q &amp; A"/>
-<gentext key="qandadiv" text="Q &amp; A"/>
-<gentext key="Question" text="&#x0051;&#x003A;"/>
-<gentext key="question" text="&#x0051;&#x003A;"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
-<gentext key="Reference" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="reference" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="RefName" text="&#x0BAA;&#x0BC6;&#x0BAF;&#x0BB0;&#x0BCD;"/>
-<gentext key="refname" text="&#x0BAA;&#x0BC6;&#x0BAF;&#x0BB0;&#x0BCD;"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="&#x0B9A;&#x0BC1;&#x0BB0;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BAE;&#x0BCD;"/>
-<gentext key="refsynopsisdiv" text="&#x0B9A;&#x0BC1;&#x0BB0;&#x0BC1;&#x0B95;&#x0BCD;&#x0B95;&#x0BAE;&#x0BCD;"/>
-<gentext key="RevHistory" text="&#x0BAE;&#x0BC0;&#x0BB3;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BB5;&#x0BC8;&#x0BB5;&#x0BB0;&#x0BB2;&#x0BBE;&#x0BB1;&#x0BC1;"/>
-<gentext key="revhistory" text="&#x0BAE;&#x0BC0;&#x0BB3;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BB5;&#x0BC8;&#x0BB5;&#x0BB0;&#x0BB2;&#x0BBE;&#x0BB1;&#x0BC1;"/>
-<gentext key="revision" text="&#x0BAE;&#x0BC0;&#x0BB3;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BB5;&#x0BC8;"/>
-<gentext key="Revision" text="&#x0BAE;&#x0BC0;&#x0BB3;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BB5;&#x0BC8;"/>
-<gentext key="sect1" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="sect2" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="sect3" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="sect4" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="sect5" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="section" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="Section" text="&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="see" text="&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;"/>             <!-- uncapitalized -->
-<gentext key="See" text="&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;"/>
-<gentext key="seealso" text="&#x0B87;&#x0BA4;&#x0BC8;&#x0BAF;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;"/>    <!-- uncapitalized -->
-<gentext key="Seealso" text="&#x0B87;&#x0BA4;&#x0BC8;&#x0BAF;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0B95;&#x0BCD;&#x0B95;&#x0BB5;&#x0BC1;&#x0BAE;&#x0BCD;"/>
-<gentext key="SeeAlso" text="&#x0B87;&#x0BA4;&#x0BC8;&#x0BAF;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0B95;&#x0BCD;&#x0B95;&#x0BB5;&#x0BC1;&#x0BAE;&#x0BCD;"/>
-<gentext key="set" text="&#x0B85;&#x0BAE;&#x0BC8;"/>
-<gentext key="Set" text="&#x0B85;&#x0BAE;&#x0BC8;"/>
-<gentext key="setindex" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;&#x0B85;&#x0BAE;&#x0BC8;"/>
-<gentext key="SetIndex" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;&#x0B85;&#x0BAE;&#x0BC8;"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="&#x0BAA;&#x0B95;&#x0BCD;&#x0B95;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;"/>
-<gentext key="step" text="&#x0BAA;&#x0B9F;&#x0BBF;&#x0BAE;&#x0BC1;&#x0BB1;&#x0BC8;"/>
-<gentext key="Step" text="&#x0BAA;&#x0B9F;&#x0BBF;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="Table" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;"/>
-<gentext key="table" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;"/>
-<gentext key="tip" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="TIP" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Tip" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;"/>
-<gentext key="Warning" text="&#x0B8E;&#x0B9A;&#x0BCD;&#x0B9A;&#x0BB0;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="warning" text="&#x0B8E;&#x0B9A;&#x0BCD;&#x0B9A;&#x0BB0;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
-<gentext key="WARNING" text="&#x0B8E;&#x0B9A;&#x0BCD;&#x0B9A;&#x0BB0;&#x0BBF;&#x0B95;&#x0BCD;&#x0B95;&#x0BC8;"/>
+<gentext key="Abstract" text="சுருக்கம்"/>
+<gentext key="abstract" text="சுருக்கம்"/>
+<gentext key="Acknowledgements" text="ஒப்புதல்கள்"/>
+<gentext key="acknowledgements" text="ஒப்புதல்கள்"/>
+<gentext key="Answer" text="விடை:"/>
+<gentext key="answer" text="விடை:"/>
+<gentext key="Appendix" text="இணைப்பு"/>
+<gentext key="appendix" text="இணைப்பு"/>
+<gentext key="Article" text="கட்டுரை"/>
+<gentext key="article" text="கட்டுரை"/>
+<gentext key="Author" text="ஆசிரியர்"/>
+<gentext key="Bibliography" text="விவரக்குறிப்பு"/>
+<gentext key="bibliography" text="விவரக்குறிப்பு"/>
+<gentext key="Book" text="புத்தகம்"/>
+<gentext key="book" text="புத்தகம்"/>
+<gentext key="CAUTION" text="எச்சரிக்கை"/>
+<gentext key="Caution" text="எச்சரிக்கை"/>
+<gentext key="caution" text="எச்சரிக்கை"/>
+<gentext key="Chapter" text="பாடம்"/>
+<gentext key="chapter" text="பாடம்"/>
+<gentext key="Colophon" text="பின்குறிப்பு"/>
+<gentext key="colophon" text="பின்குறிப்பு"/>
+<gentext key="Copyright" text="காப்புரிமை"/>
+<gentext key="copyright" text="காப்புரிமை"/>
+<gentext key="Dedication" text="சமர்பணம்"/>
+<gentext key="dedication" text="சமர்பணம்"/>
+<gentext key="Edition" text="பதிப்பு"/>
+<gentext key="edition" text="பதிப்பு"/>
+<gentext key="Editor" text="ஆசிரியர்"/>
+<gentext key="Equation" text="சமன்பாடு"/>
+<gentext key="equation" text="சமன்பாடு"/>
+<gentext key="Example" text="உதாரணம்"/>
+<gentext key="example" text="உதாரணம்"/>
+<gentext key="Figure" text="படம்"/>
+<gentext key="figure" text="படம்"/>
+<gentext key="Glossary" text="அகராதி"/>
+<gentext key="glossary" text="அகராதி"/>
+<gentext key="GlossSee" text="பார்"/>
+<gentext key="glosssee" text="பார்"/>
+<gentext key="GlossSeeAlso" text="இதையும்பார்க்கவும்"/>
+<gentext key="glossseealso" text="இதையும்பார்க்கவும்"/>
+<gentext key="IMPORTANT" text="முக்கியம்"/>
+<gentext key="important" text="முக்கியம்"/>
+<gentext key="Important" text="முக்கியம்"/>
+<gentext key="Index" text="அட்டவணை"/>
+<gentext key="index" text="அட்டவணை"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
+<gentext key="LegalNotice" text="சட்டஅறிக்கை"/>
+<gentext key="legalnotice" text="சட்டஅறிக்கை"/>
+<gentext key="MsgAud" text="பார்வையாளர்கள்"/>
+<gentext key="msgaud" text="பார்வையாளர்கள்"/>
+<gentext key="MsgLevel" text="நிலை"/>
+<gentext key="msglevel" text="நிலை"/>
+<gentext key="MsgOrig" text="மூலம்"/>
+<gentext key="msgorig" text="மூலம்"/>
+<gentext key="NOTE" text="குறிப்பு"/>
+<gentext key="Note" text="குறிப்பு"/>
+<gentext key="note" text="குறிப்பு"/>
+<gentext key="Part" text="பகுதி"/>
+<gentext key="part" text="பகுதி"/>
+<gentext key="Preface" text="முன்னுரை"/>
+<gentext key="preface" text="முன்னுரை"/>
+<gentext key="Procedure" text="முறை"/>
+<gentext key="procedure" text="முறை"/>
+<gentext key="ProductionSet" text="உற்பத்தி"/>
+<gentext key="PubDate" text="வெளியீடு தேதி"/>
+<gentext key="pubdate" text="வெளியீடு தேதி"/>
+<gentext key="Published" text="பதிப்பிக்கப்பட்ட"/>
+<gentext key="published" text="பதிப்பிக்கப்பட்ட"/>
+<gentext key="Publisher" text="வெளியீட்டாளர்"/>
+<gentext key="Qandadiv" text="வினா &amp; விடை"/>
+<gentext key="qandadiv" text="வினா &amp; விடை"/>
+<gentext key="QandASet" text="அடிக்கடி எழும் வினாக்கள்"/>
+<gentext key="Question" text="வினா:"/>
+<gentext key="question" text="வினா:"/>
+<gentext key="RefEntry" text="பக்கம்"/>
+<gentext key="refentry" text="பக்கம்"/>
+<gentext key="Reference" text="குறிப்புகள்"/>
+<gentext key="reference" text="குறிப்புகள்"/>
+<gentext key="References" text="குறிப்புகள்"/>
+<gentext key="RefName" text="பெயர்"/>
+<gentext key="refname" text="பெயர்"/>
+<gentext key="RefSection" text="பகுதி"/>
+<gentext key="refsection" text="பகுதி"/>
+<gentext key="RefSynopsisDiv" text="சுருக்கம்"/>
+<gentext key="refsynopsisdiv" text="சுருக்கம்"/>
+<gentext key="RevHistory" text="மீள்பார்வைவரலாறு"/>
+<gentext key="revhistory" text="மீள்பார்வைவரலாறு"/>
+<gentext key="revision" text="மீள்பார்வை"/>
+<gentext key="Revision" text="மீள்பார்வை"/>
+<gentext key="sect1" text="பிரிவு"/>
+<gentext key="sect2" text="பிரிவு"/>
+<gentext key="sect3" text="பிரிவு"/>
+<gentext key="sect4" text="பிரிவு"/>
+<gentext key="sect5" text="பிரிவு"/>
+<gentext key="section" text="பிரிவு"/>
+<gentext key="Section" text="பிரிவு"/>
+<gentext key="see" text="பார்"/>             
+<gentext key="See" text="பார்"/>
+<gentext key="seealso" text="இதையும்பார்க்கவும்"/>    
+<gentext key="Seealso" text="இதையும்பார்க்கவும்"/>
+<gentext key="SeeAlso" text="இதையும்பார்க்கவும்"/>
+<gentext key="set" text="அமை"/>
+<gentext key="Set" text="அமை"/>
+<gentext key="setindex" text="அட்டவணைஅமை"/>
+<gentext key="SetIndex" text="அட்டவணைஅமை"/>
+<gentext key="Sidebar" text="பக்கப்பட்டை"/>
+<gentext key="sidebar" text="பக்கப்பட்டை"/>
+<gentext key="step" text="படிமுறை"/>
+<gentext key="Step" text="படிமுறை"/>
+<gentext key="table" text="அட்டவணை"/>
+<gentext key="Table" text="அட்டவணை"/>
+<gentext key="task" text="பணி"/>
+<gentext key="Task" text="பணி"/>
+<gentext key="tip" text="குறிப்பு"/>
+<gentext key="TIP" text="குறிப்பு"/>
+<gentext key="Tip" text="குறிப்பு"/>
+<gentext key="Warning" text="எச்சரிக்கை"/>
+<gentext key="warning" text="எச்சரிக்கை"/>
+<gentext key="WARNING" text="எச்சரிக்கை"/>
 
-<gentext key="and" text="&#x0BAE;&#x0BB1;&#x0BCD;&#x0BB1;&#x0BC1;&#x0BAE;&#x0BCD;"/>
-<gentext key="by" text=""/>
-<gentext key="called" text="called"/>
-<gentext key="Edited" text="&#x0BA4;&#x0BBF;&#x0BB0;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BAA;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;"/>
-<gentext key="edited" text="&#x0BA4;&#x0BBF;&#x0BB0;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BAA;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;"/>
-<gentext key="Editedby" text="&#x0BA4;&#x0BBF;&#x0BB0;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BBF;&#x0BAF;&#x0BB5;&#x0BB0;&#x0BCD;"/>
-<gentext key="editedby" text="&#x0BA4;&#x0BBF;&#x0BB0;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BBF;&#x0BAF;&#x0BB5;&#x0BB0;&#x0BCD;"/>
-<gentext key="in" text="&#x0B87;&#x0BB2;&#x0BCD;"/>
+<gentext key="and" text="மற்றும்"/>
+<gentext key="by" text="ஆல்"/>
+<gentext key="Edited" text="திருத்தப்பட்ட"/>
+<gentext key="edited" text="திருத்தப்பட்ட"/>
+<gentext key="Editedby" text="திருத்தியவர்"/>
+<gentext key="editedby" text="திருத்தியவர்"/>
+<gentext key="in" text="இல்"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="notes" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="Notes" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="Pgs" text="&#x0050;&#x0067;&#x0073;&#x002E;"/>
-<gentext key="pgs" text="&#x0050;&#x0067;&#x0073;&#x002E;"/>
-<gentext key="Revisedby" text="&#x0BAE;&#x0BC0;&#x0BA3;&#x0BCD;&#x0B9F;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BB5;&#x0BB0;&#x0BCD;&#x003A;"/>
-<gentext key="revisedby" text="&#x0BAE;&#x0BC0;&#x0BA3;&#x0BCD;&#x0B9F;&#x0BC1;&#x0BAE;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BCD;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BB5;&#x0BB0;&#x0BCD;&#x003A;"/>
-<gentext key="TableNotes" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="tablenotes" text="&#x0B95;&#x0BC1;&#x0BB1;&#x0BBF;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="TableofContents" text="&#x0B89;&#x0BB3;&#x0BCD;&#x0BB3;&#x0B9F;&#x0B95;&#x0BCD;&#x0B95;&#x0B99;&#x0BCD;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="tableofcontents" text="&#x0B89;&#x0BB3;&#x0BCD;&#x0BB3;&#x0B9F;&#x0B95;&#x0BCD;&#x0B95;&#x0B99;&#x0BCD;&#x0B95;&#x0BB3;&#x0BCD;"/>
-<gentext key="the" text=""/>
-<gentext key="unexpectedelementname" text="&#x0B8E;&#x0BA4;&#x0BBF;&#x0BB0;&#x0BCD;&#x0BAA;&#x0BBE;&#x0BB0;&#x0BBE;&#x0BA4;&#x0B89;&#x0BB1;&#x0BC1;&#x0BAA;&#x0BCD;&#x0BAA;&#x0BC1;&#x0BAA;&#x0BC6;&#x0BAF;&#x0BB0;&#x0BCD;"/>
-<gentext key="unsupported" text="&#x0B86;&#x0BA4;&#x0BB0;&#x0BB5;&#x0BB1;&#x0BCD;&#x0BB1;"/>
-<gentext key="xrefto" text="&#x0078;&#x0072;&#x0065;&#x0066;&#x0074;&#x006F;"/>
+<gentext key="notes" text="குறிப்புகள்"/>
+<gentext key="Notes" text="குறிப்புகள்"/>
+<gentext key="Pgs" text="பக்கம்"/>
+<gentext key="pgs" text="பக்கம்"/>
+<gentext key="Revisedby" text="மீண்டும்பார்த்தவர்: "/>
+<gentext key="revisedby" text="மீண்டும்பார்த்தவர்: "/>
+<gentext key="TableNotes" text="குறிப்புகள்"/>
+<gentext key="tablenotes" text="குறிப்புகள்"/>
+<gentext key="TableofContents" text="உள்ளடக்கங்கள்"/>
+<gentext key="tableofcontents" text="உள்ளடக்கங்கள்"/>
+<gentext key="unexpectedelementname" text="எதிர்பாராதஉறுப்புபெயர்"/>
+<gentext key="unsupported" text="ஆதரவற்ற"/>
+<gentext key="xrefto" text="xref to"/>
 
-<gentext key="listofequations" text="&#x0B9A;&#x0BAE;&#x0BA9;&#x0BCD;&#x0BAA;&#x0BBE;&#x0B9F;&#x0BC1;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="ListofEquations" text="&#x0B9A;&#x0BAE;&#x0BA9;&#x0BCD;&#x0BAA;&#x0BBE;&#x0B9F;&#x0BC1;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="ListofExamples" text="&#x0B89;&#x0BA4;&#x0BBE;&#x0BB0;&#x0BA3;&#x0B99;&#x0BCD;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="listofexamples" text="&#x0B89;&#x0BA4;&#x0BBE;&#x0BB0;&#x0BA3;&#x0B99;&#x0BCD;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="ListofFigures" text="&#x0BAA;&#x0B9F;&#x0B99;&#x0BCD;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="listoffigures" text="&#x0BAA;&#x0B9F;&#x0B99;&#x0BCD;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="ListofProcedures" text="&#x0B9A;&#x0BC6;&#x0BAF;&#x0BCD;&#x0BAE;&#x0BC1;&#x0BB1;&#x0BC8;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="listofprocedures" text="&#x0B9A;&#x0BC6;&#x0BAF;&#x0BCD;&#x0BAE;&#x0BC1;&#x0BB1;&#x0BC8;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="listoftables" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="ListofTables" text="&#x0B85;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BB5;&#x0BA3;&#x0BC8;&#x0B95;&#x0BB3;&#x0BBF;&#x0BA9;&#x0BCD;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="ListofUnknown" text="&#x0BA4;&#x0BC6;&#x0BB0;&#x0BBF;&#x0BAF;&#x0BBE;&#x0BA4;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
-<gentext key="listofunknown" text="&#x0BA4;&#x0BC6;&#x0BB0;&#x0BBF;&#x0BAF;&#x0BBE;&#x0BA4;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BBF;&#x0BAF;&#x0BB2;&#x0BCD;"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="ஆசிரியர்கள்"/>
 
-<gentext key="nav-home" text="&#x0B87;&#x0BB2;&#x0BCD;&#x0BB2;&#x0BAE;&#x0BCD;"/>
-<gentext key="nav-next" text="&#x0B85;&#x0B9F;&#x0BC1;&#x0BA4;&#x0BCD;&#x0BA4;&#x0BC1;"/>
-<gentext key="nav-next-sibling" text="&#x0BB5;&#x0BC7;&#x0B95;&#x0BAE;&#x0BBE;&#x0B95;&#x0BAE;&#x0BC1;&#x0BA9;&#x0BCD;&#x0B9A;&#x0BC6;&#x0BB2;&#x0BCD;"/>
-<gentext key="nav-prev" text="&#x0BAE;&#x0BC1;&#x0BA9;&#x0BCD;"/>
-<gentext key="nav-prev-sibling" text="&#x0BB5;&#x0BC7;&#x0B95;&#x0BAE;&#x0BBE;&#x0B95;&#x0BAA;&#x0BBF;&#x0BA9;&#x0BCD;&#x0B9A;&#x0BC6;&#x0BB2;&#x0BCD;"/>
-<gentext key="nav-up" text="&#x0BAE;&#x0BC7;&#x0BB2;&#x0BCD;"/>
-<gentext key="nav-toc" text="&#x0054;&#x006F;&#x0043;"/>
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="காப்பி எடிட்டர்"/>
+<gentext key="graphicdesigner" text="வரைகலை வடிவமைப்பாளர்"/>
+<gentext key="productioneditor" text="தயாரிப்பு எடிட்டர்"/>
+<gentext key="technicaleditor" text="தொழில்நுட்ப ஆசிரியர்"/>
+<gentext key="translator" text="மொழிபெயர்ப்பாளர்"/>
 
-<gentext key="Draft"         text="&#x0B86;&#x0BB5;&#x0BA3;&#x0BAE;&#x0BCD;"/>
-<gentext key="above"         text="&#x0BAE;&#x0BC7;&#x0BB2;&#x0BCD;"/>
-<gentext key="below"         text="&#x0B95;&#x0BC0;&#x0BB4;&#x0BCD;"/>
-<gentext key="sectioncalled" text="&#x0B85;&#x0BB4;&#x0BC8;&#x0B95;&#x0BCD;&#x0B95;&#x0BAA;&#x0B9F;&#x0BCD;&#x0B9F;&#x0BAA;&#x0B95;&#x0BC1;&#x0BA4;&#x0BBF;"/>
-<gentext key="index symbols" text="Symbols"/>
+<gentext key="listofequations" text="சமன்பாடுகளின்பட்டியல்"/>
+<gentext key="ListofEquations" text="சமன்பாடுகளின்பட்டியல்"/>
+<gentext key="ListofExamples" text="சமன்பாடுகளின்பட்டியல்"/>
+<gentext key="listofexamples" text="சமன்பாடுகளின்பட்டியல்"/>
+<gentext key="ListofFigures" text="படங்களின்பட்டியல்"/>
+<gentext key="listoffigures" text="படங்களின்பட்டியல்"/>
+<gentext key="ListofProcedures" text="செய்முறைகளின்பட்டியல்"/>
+<gentext key="listofprocedures" text="செய்முறைகளின்பட்டியல்"/>
+<gentext key="listoftables" text="அட்டவணைகளின்பட்டியல்"/>
+<gentext key="ListofTables" text="அட்டவணைகளின்பட்டியல்"/>
+<gentext key="ListofUnknown" text="தெரியாதபட்டியல்"/>
+<gentext key="listofunknown" text="தெரியாதபட்டியல்"/>
+
+<gentext key="nav-home" text="இல்லம்"/>
+<gentext key="nav-next" text="அடுத்து"/>
+<gentext key="nav-next-sibling" text="வேகமாகமுன்செல்"/>
+<gentext key="nav-prev" text="முன்"/>
+<gentext key="nav-prev-sibling" text="வேகமாகபின்செல்"/>
+<gentext key="nav-up" text="மேல்"/>
+<gentext key="nav-toc" text="உள்ளடக்கங்கள்"/>
+
+<gentext key="Draft" text="ஆவணம்"/>
+<gentext key="above" text="மேல்"/>
+<gentext key="below" text="கீழ்"/>
+<gentext key="sectioncalled" text="அழைக்கபட்டபகுதி"/>
+<gentext key="index symbols" text="குறியீடுகள்"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="&#x0061;&#x0062;&#x0063;&#x0064;&#x0065;&#x0066;&#x0067;&#x0068;&#x0069;&#x006A;&#x006B;&#x006C;&#x006D;&#x006E;&#x006F;&#x0070;&#x0071;&#x0072;&#x0073;&#x0074;&#x0075;&#x0076;&#x0077;&#x0078;&#x0079;&#x007A;"/>
-<gentext key="uppercase.alpha" text="&#x0041;&#x0042;&#x0043;&#x0044;&#x0045;&#x0046;&#x0047;&#x0048;&#x0049;&#x004A;&#x004B;&#x004C;&#x004D;&#x004E;&#x004F;&#x0050;&#x0051;&#x0052;&#x0053;&#x0054;&#x0055;&#x0056;&#x0057;&#x0058;&#x0059;&#x005A;"/>
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -532,51 +554,209 @@
 </context>
 
 <context name="datetime-full">
-<template name="January">January</template>
-<template name="February">February</template>
-<template name="March">March</template>
-<template name="April">April</template>
-<template name="May">May</template>
-<template name="June">June</template>
-<template name="July">July</template>
-<template name="August">August</template>
-<template name="September">September</template>
-<template name="October">October</template>
-<template name="November">November</template>
-<template name="December">December</template>
-<template name="Monday">Monday</template>
-<template name="Tuesday">Tuesday</template>
-<template name="Wednesday">Wednesday</template>
-<template name="Thursday">Thursday</template>
-<template name="Friday">Friday</template>
-<template name="Saturday">Saturday</template>
-<template name="Sunday">Sunday</template>
+<template name="January">ஜனவரி</template>
+<template name="February">பிப்ரவரி</template>
+<template name="March">மார்ச்</template>
+<template name="April">ஏப்ரல்</template>
+<template name="May">மே</template>
+<template name="June">ஜூன்</template>
+<template name="July">ஜூலை</template>
+<template name="August">ஆகஸ்ட்</template>
+<template name="September">செப்டம்பர்</template>
+<template name="October">அக்டோபர்</template>
+<template name="November">நவம்பர்</template>
+<template name="December">டிசம்பர்</template>
+<template name="Monday">திங்கட்கிழமை</template>
+<template name="Tuesday">செவ்வாய்கிழமை</template>
+<template name="Wednesday">புதன்கிழமை</template>
+<template name="Thursday">வியாழக்கிழமை</template>
+<template name="Friday">வெள்ளிக்கிழமை</template>
+<template name="Saturday">சனிக்கிழமை</template>
+<template name="Sunday">ஞாயிற்றுக்கிழமை</template>
 </context>
 
 <context name="datetime-abbrev">
-<template name="Jan">Jan</template>
-<template name="Feb">Feb</template>
-<template name="Mar">Mar</template>
-<template name="Apr">Apr</template>
-<template name="May">May</template>
-<template name="Jun">Jun</template>
-<template name="Jul">Jul</template>
-<template name="Aug">Aug</template>
-<template name="Sep">Sep</template>
-<template name="Oct">Oct</template>
-<template name="Nov">Nov</template>
-<template name="Dec">Dec</template>
-<template name="Mon">Mon</template>
-<template name="Tue">Tue</template>
-<template name="Wed">Wed</template>
-<template name="Thu">Thu</template>
-<template name="Fri">Fri</template>
-<template name="Sat">Sat</template>
-<template name="Sun">Sun</template>
+<template name="Jan">ஐன</template>
+<template name="Feb">பிப்</template>
+<template name="Mar">மார்</template>
+<template name="Apr">ஏப்</template>
+<template name="May">மே</template>
+<template name="Jun">ஜூன்</template>
+<template name="Jul">ஜூலை</template>
+<template name="Aug">ஆக</template>
+<template name="Sep">செப்</template>
+<template name="Oct">அக்</template>
+<template name="Nov">நவ</template>
+<template name="Dec">டிச</template>
+<template name="Mon">திங்</template>
+<template name="Tue">செவ்</template>
+<template name="Wed">புத</template>
+<template name="Thu">வியா</template>
+<template name="Fri">வெள்</template>
+<template name="Sat">சனி</template>
+<template name="Sun">ஞாயி</template>
 </context>
 
 <context name="htmlhelp">
 <template name="langcode">0x0049 Tamil</template>
 </context>
 
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">குறியீடுகள்</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="170">Q</l>
+  <l i="170">q</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="230">W</l>
+  <l i="230">w</l>
+  <l i="240">X</l>
+  <l i="240">x</l>
+  <l i="250">Y</l>
+  <l i="250">y</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+</letters>
+
 </locale>
+

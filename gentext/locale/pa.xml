@@ -7,185 +7,208 @@
 <doc:localeinfo xmlns="">
 <authorgroup>
   <author><firstname>Bernd</firstname><surname>Groh</surname>
-          <affiliation><address><email>bgroh@redhat.com</email></address>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>bgroh@redhat.com</email></address>
           </affiliation>
   </author>
   <author><firstname>Amanpreet</firstname><surname>Alam</surname>
-          <affiliation><address><email>aalam@redhat.com</email></address>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>aalam@redhat.com</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Jaswinder</firstname><surname>Singh</surname>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>jsingh@redhat.com</email></address>
           </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="&#x0A38;&#x0A3E;&#x0A30;"/>
-<gentext key="abstract" text="&#x0A38;&#x0A3E;&#x0A30;"/>
-<gentext key="Answer" text="&#x0A1C;&#x003A;"/>
-<gentext key="answer" text="&#x0A1C;&#x003A;"/>
-<gentext key="Appendix" text="&#x0A05;&#x0A70;&#x0A24;&#x0A3F;&#x0A15;&#x0A3E;"/>
-<gentext key="appendix" text="&#x0A05;&#x0A70;&#x0A24;&#x0A3F;&#x0A15;&#x0A3E;"/>
-<gentext key="Article" text="&#x0A32;&#x0A47;&#x0A16;"/>
-<gentext key="article" text="&#x0A32;&#x0A47;&#x0A16;"/>
-<gentext key="Author" text="Author"/>
-<gentext key="Bibliography" text="&#x0A2A;&#x0A41;&#x0A38;&#x0A24;&#x0A15;&#x002D;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="bibliography" text="&#x0A2A;&#x0A41;&#x0A38;&#x0A24;&#x0A15;&#x002D;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="Book" text="&#x0A2A;&#x0A41;&#x0A38;&#x0A24;&#x0A15;"/>
-<gentext key="book" text="&#x0A2A;&#x0A41;&#x0A38;&#x0A24;&#x0A15;"/>
-<gentext key="CAUTION" text="&#x0A38;&#x0A3E;&#x0A35;&#x0A27;&#x0A3E;&#x0A28;"/>
-<gentext key="Caution" text="&#x0A38;&#x0A3E;&#x0A35;&#x0A27;&#x0A3E;&#x0A28;"/>
-<gentext key="caution" text="&#x0A38;&#x0A3E;&#x0A35;&#x0A27;&#x0A3E;&#x0A28;"/>
-<gentext key="Chapter" text="&#x0A05;&#x0A27;&#x0A3F;&#x0A06;&#x0A07;"/>
-<gentext key="chapter" text="&#x0A05;&#x0A27;&#x0A3F;&#x0A06;&#x0A07;"/>
-<gentext key="Colophon" text="&#x0A32;&#x0A47;&#x0A16;&#x0A15;&#x0A3E;&#x0A02;&#x0A2C;&#x0A3E;&#x0A30;&#x0A47;"/>
-<gentext key="colophon" text="&#x0A32;&#x0A47;&#x0A16;&#x0A15;&#x0A3E;&#x0A02;&#x0A2C;&#x0A3E;&#x0A30;&#x0A47;"/>
-<gentext key="Copyright" text="&#x0A39;&#x0A71;&#x0A15;&#x0A30;&#x0A3E;&#x0A16;&#x0A35;&#x0A47;&#x0A02;&#x0A39;&#x0A28;"/>
-<gentext key="copyright" text="&#x0A39;&#x0A71;&#x0A15;&#x0A30;&#x0A3E;&#x0A16;&#x0A35;&#x0A47;&#x0A02;&#x0A39;&#x0A28;"/>
-<gentext key="Dedication" text="&#x0A38;&#x0A2E;&#x0A30;&#x0A2A;&#x0A3F;&#x0A24;"/>
-<gentext key="dedication" text="&#x0A38;&#x0A2E;&#x0A30;&#x0A2A;&#x0A3F;&#x0A24;"/>
-<gentext key="Edition" text="&#x0A2A;&#x0A4D;&#x0A30;&#x0A15;&#x0A3E;&#x0A36;&#x0A28;"/>
-<gentext key="edition" text="&#x0A2A;&#x0A4D;&#x0A30;&#x0A15;&#x0A3E;&#x0A36;&#x0A28;"/>
-<gentext key="Equation" text="&#x0A38;&#x0A2E;&#x0A40;&#x0A15;&#x0A30;&#x0A28;"/>
-<gentext key="equation" text="&#x0A38;&#x0A2E;&#x0A40;&#x0A15;&#x0A30;&#x0A28;"/>
-<gentext key="Example" text="&#x0A09;&#x0A26;&#x0A3E;&#x0A39;&#x0A30;&#x0A28;"/>
-<gentext key="example" text="&#x0A09;&#x0A26;&#x0A3E;&#x0A39;&#x0A30;&#x0A28;"/>
-<gentext key="Figure" text="&#x0A1A;&#x0A3F;&#x0A71;&#x0A24;&#x0A30;"/>
-<gentext key="figure" text="&#x0A1A;&#x0A3F;&#x0A71;&#x0A24;&#x0A30;"/>
-<gentext key="Glossary" text="&#x0A36;&#x0A2C;&#x0A26;&#x0A3E;&#x0A35;&#x0A32;&#x0A40;"/>
-<gentext key="glossary" text="&#x0A36;&#x0A2C;&#x0A26;&#x0A3E;&#x0A35;&#x0A32;&#x0A40;"/>
-<gentext key="GlossSee" text="&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="glosssee" text="&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="GlossSeeAlso" text="&#x0A07;&#x0A39;&#x0A35;&#x0A40;&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="glossseealso" text="&#x0A07;&#x0A39;&#x0A35;&#x0A40;&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="IMPORTANT" text="&#x0A16;&#x0A3E;&#x0A38;"/>
-<gentext key="important" text="&#x0A16;&#x0A3E;&#x0A38;"/>
-<gentext key="Important" text="&#x0A16;&#x0A3E;&#x0A38;"/>
-<gentext key="Index" text="&#x0A24;&#x0A24;&#x0A15;&#x0A30;&#x0A3E;"/>
-<gentext key="index" text="&#x0A24;&#x0A24;&#x0A15;&#x0A30;&#x0A3E;"/>
-<gentext key="ISBN" text="&#x0049;&#x0053;&#x0042;&#x004E;"/>
-<gentext key="isbn" text="&#x0049;&#x0053;&#x0042;&#x004E;"/>
-<gentext key="LegalNotice" text="&#x0A15;&#x0A3E;&#x0A28;&#x0A42;&#x0A70;&#x0A28;&#x0A40;&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="legalnotice" text="&#x0A15;&#x0A3E;&#x0A28;&#x0A42;&#x0A70;&#x0A28;&#x0A40;&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="MsgAud" text="&#x0A2A;&#x0A3E;&#x0A20;&#x0A15;"/>
-<gentext key="msgaud" text="&#x0A2A;&#x0A3E;&#x0A20;&#x0A15;"/>
-<gentext key="MsgLevel" text="&#x0A2A;&#x0A71;&#x0A27;&#x0A30;"/>
-<gentext key="msglevel" text="&#x0A2A;&#x0A71;&#x0A27;&#x0A30;"/>
-<gentext key="MsgOrig" text="&#x0A2E;&#x0A41;&#x0A71;&#x0A22;"/>
-<gentext key="msgorig" text="&#x0A2E;&#x0A41;&#x0A71;&#x0A22;"/>
-<gentext key="NOTE" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="Note" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="note" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="Part" text="&#x0A2D;&#x0A3E;&#x0A17;"/>
-<gentext key="part" text="&#x0A2D;&#x0A3E;&#x0A17;"/>
-<gentext key="Preface" text="&#x0A2D;&#x0A42;&#x0A2E;&#x0A3F;&#x0A15;&#x0A3E;"/>
-<gentext key="preface" text="&#x0A2D;&#x0A42;&#x0A2E;&#x0A3F;&#x0A15;&#x0A3E;"/>
-<gentext key="Procedure" text="&#x0A15;&#x0A3E;&#x0A30;&#x0A35;&#x0A3E;&#x0A08;"/>
-<gentext key="procedure" text="&#x0A15;&#x0A3E;&#x0A30;&#x0A35;&#x0A3E;&#x0A08;"/>
-<gentext key="ProductionSet" text="&#x0A09;&#x0A24;&#x0A2A;&#x0A3E;&#x0A26;&#x0A28;"/>
-<gentext key="PubDate" text="Publication Date"/>
-<gentext key="pubdate" text="Publication date"/>
-<gentext key="Published" text="&#x0A2A;&#x0A4D;&#x0A30;&#x0A15;&#x0A3E;&#x0A36;&#x0A3F;&#x0A24;"/>
-<gentext key="published" text="&#x0A2A;&#x0A4D;&#x0A30;&#x0A15;&#x0A3E;&#x0A36;&#x0A3F;&#x0A24;"/>
+<gentext key="Abstract" text="ਸਾਰ"/>
+<gentext key="abstract" text="ਸਾਰ"/>
+<gentext key="Acknowledgements" text="ਰਸੀਦਾਂ"/>
+<gentext key="acknowledgements" text="ਰਸੀਦਾਂ"/>
+<gentext key="Answer" text="A:"/>
+<gentext key="answer" text="a:"/>
+<gentext key="Appendix" text="ਅੰਤਿਕਾ"/>
+<gentext key="appendix" text="ਅੰਤਿਕਾ"/>
+<gentext key="Article" text="ਲੇਖ"/>
+<gentext key="article" text="ਲੇਖ"/>
+<gentext key="Author" text="ਲੇਖਕ"/>
+<gentext key="Bibliography" text="ਪੁਸਤਕ-ਸੂਚੀ"/>
+<gentext key="bibliography" text="ਪੁਸਤਕ-ਸੂਚੀ"/>
+<gentext key="Book" text="ਪੁਸਤਕ"/>
+<gentext key="book" text="ਪੁਸਤਕ"/>
+<gentext key="CAUTION" text="ਸਾਵਧਾਨ"/>
+<gentext key="Caution" text="ਸਾਵਧਾਨ"/>
+<gentext key="caution" text="ਸਾਵਧਾਨ"/>
+<gentext key="Chapter" text="ਅਧਿਆਇ"/>
+<gentext key="chapter" text="ਅਧਿਆਇ"/>
+<gentext key="Colophon" text="ਲੇਖਕਾਂਬਾਰੇ"/>
+<gentext key="colophon" text="ਲੇਖਕਾਂਬਾਰੇ"/>
+<gentext key="Copyright" text="ਹੱਕਰਾਖਵੇਂਹਨ"/>
+<gentext key="copyright" text="ਹੱਕਰਾਖਵੇਂਹਨ"/>
+<gentext key="Dedication" text="ਸਮਰਪਣ"/>
+<gentext key="dedication" text="ਸਮਰਪਣ"/>
+<gentext key="Edition" text="ਪ੍ਰਕਾਸ਼ਨ"/>
+<gentext key="edition" text="ਪ੍ਰਕਾਸ਼ਨ"/>
+<gentext key="Editor" text="ਪ੍ਰਕਾਸ਼ਕ"/>
+<gentext key="Equation" text="ਸਮੀਕਰਨ"/>
+<gentext key="equation" text="ਸਮੀਕਰਨ"/>
+<gentext key="Example" text="ਉਦਾਹਰਨ"/>
+<gentext key="example" text="ਉਦਾਹਰਨ"/>
+<gentext key="Figure" text="ਚਿੱਤਰ"/>
+<gentext key="figure" text="ਚਿੱਤਰ"/>
+<gentext key="Glossary" text="ਸ਼ਬਦਾਵਲੀ"/>
+<gentext key="glossary" text="ਸ਼ਬਦਾਵਲੀ"/>
+<gentext key="GlossSee" text="ਵੇਖੋ"/>
+<gentext key="glosssee" text="ਵੇਖੋ"/>
+<gentext key="GlossSeeAlso" text="ਇਹਵੀਵੇਖੋ"/>
+<gentext key="glossseealso" text="ਇਹਵੀਵੇਖੋ"/>
+<gentext key="IMPORTANT" text="ਖਾਸ"/>
+<gentext key="important" text="ਖਾਸ"/>
+<gentext key="Important" text="ਖਾਸ"/>
+<gentext key="Index" text="ਤਤਕਰਾ"/>
+<gentext key="index" text="ਤਤਕਰਾ"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
+<gentext key="LegalNotice" text="ਕਾਨੂੰਨੀ ਸੂਚਨਾ"/>
+<gentext key="legalnotice" text="ਕਾਨੂੰਨੀ ਸੂਚਨਾ"/>
+<gentext key="MsgAud" text="ਪਾਠਕ"/>
+<gentext key="msgaud" text="ਪਾਠਕ"/>
+<gentext key="MsgLevel" text="ਪੱਧਰ"/>
+<gentext key="msglevel" text="ਪੱਧਰ"/>
+<gentext key="MsgOrig" text="ਮੁੱਢ"/>
+<gentext key="msgorig" text="ਮੁੱਢ"/>
+<gentext key="NOTE" text="ਸੂਚਨਾ"/>
+<gentext key="Note" text="ਸੂਚਨਾ"/>
+<gentext key="note" text="ਸੂਚਨਾ"/>
+<gentext key="Part" text="ਭਾਗ"/>
+<gentext key="part" text="ਭਾਗ"/>
+<gentext key="Preface" text="ਭੂਮਿਕਾ"/>
+<gentext key="preface" text="ਭੂਮਿਕਾ"/>
+<gentext key="Procedure" text="ਤਰੀਕਾ"/>
+<gentext key="procedure" text="ਤਰੀਕਾ"/>
+<gentext key="ProductionSet" text="ਉਤਪਾਦਨ"/>
+<gentext key="PubDate" text="ਪ੍ਰਕਾਸ਼ਨ ਮਿਤੀ"/>
+<gentext key="pubdate" text="ਪ੍ਰਕਾਸ਼ਨ ਮਿਤੀ"/>
+<gentext key="Published" text="ਪ੍ਰਕਾਸ਼ਿਤ"/>
+<gentext key="published" text="ਪ੍ਰਕਾਸ਼ਿਤ"/>
+<gentext key="Publisher" text="ਪ੍ਰਕਾਸ਼ਕ"/>
 <gentext key="Qandadiv" text="Q &amp; A"/>
-<gentext key="qandadiv" text="Q &amp; A"/>
-<gentext key="Question" text="&#x0A38;&#x003A;"/>
-<gentext key="question" text="&#x0A38;&#x003A;"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
-<gentext key="Reference" text="&#x0A39;&#x0A35;&#x0A3E;&#x0A32;&#x0A3E;"/>
-<gentext key="reference" text="&#x0A39;&#x0A35;&#x0A3E;&#x0A32;&#x0A3E;"/>
-<gentext key="RefName" text="&#x0A28;&#x0A3E;&#x0A02;"/>
-<gentext key="refname" text="&#x0A28;&#x0A3E;&#x0A02;"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="&#x0A16;&#x0A41;&#x0A32;&#x0A3E;&#x0A38;&#x0A3E;"/>
-<gentext key="refsynopsisdiv" text="&#x0A16;&#x0A41;&#x0A32;&#x0A3E;&#x0A38;&#x0A3E;"/>
-<gentext key="RevHistory" text="&#x0A38;&#x0A41;&#x0A27;&#x0A3E;&#x0A08;&#x0A05;&#x0A24;&#x0A40;&#x0A24;"/>
-<gentext key="revhistory" text="&#x0A38;&#x0A41;&#x0A27;&#x0A3E;&#x0A08;&#x0A05;&#x0A24;&#x0A40;&#x0A24;"/>
-<gentext key="revision" text="&#x0A38;&#x0A41;&#x0A27;&#x0A3E;&#x0A08;"/>
-<gentext key="Revision" text="&#x0A38;&#x0A41;&#x0A27;&#x0A3E;&#x0A08;"/>
-<gentext key="sect1" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="sect2" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="sect3" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="sect4" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="sect5" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="section" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="Section" text="&#x0A39;&#x0A3F;&#x0A71;&#x0A38;&#x0A3E;"/>
-<gentext key="see" text="&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>             <!-- uncapitalized -->
-<gentext key="See" text="&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="seealso" text="&#x0A07;&#x0A39;&#x0A35;&#x0A40;&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>    <!-- uncapitalized -->
-<gentext key="Seealso" text="&#x0A07;&#x0A39;&#x0A35;&#x0A40;&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="SeeAlso" text="&#x0A07;&#x0A39;&#x0A35;&#x0A40;&#x0A35;&#x0A47;&#x0A16;&#x0A4B;"/>
-<gentext key="set" text="&#x0A28;&#x0A3F;&#x0A30;&#x0A27;&#x0A3E;&#x0A30;&#x0A3F;&#x0A24;"/>
-<gentext key="Set" text="&#x0A28;&#x0A3F;&#x0A30;&#x0A27;&#x0A3E;&#x0A30;&#x0A3F;&#x0A24;"/>
-<gentext key="setindex" text="&#x0A24;&#x0A24;&#x0A15;&#x0A30;&#x0A3E;&#x0A28;&#x0A3F;&#x0A30;&#x0A27;&#x0A3E;&#x0A30;&#x0A28;"/>
-<gentext key="SetIndex" text="&#x0A24;&#x0A24;&#x0A15;&#x0A30;&#x0A3E;&#x0A28;&#x0A3F;&#x0A30;&#x0A27;&#x0A3E;&#x0A30;&#x0A28;"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="&#x0A2C;&#x0A3E;&#x0A39;&#x0A40;"/>
-<gentext key="step" text="&#x0A2A;&#x0A5A;"/>
-<gentext key="Step" text="&#x0A2A;&#x0A5A;"/>
-<gentext key="Table" text="&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;"/>
-<gentext key="table" text="&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;"/>
-<gentext key="tip" text="&#x0A38;&#x0A70;&#x0A15;&#x0A47;&#x0A24;"/>
-<gentext key="TIP" text="&#x0A38;&#x0A70;&#x0A15;&#x0A47;&#x0A24;"/>
-<gentext key="Tip" text="&#x0A38;&#x0A70;&#x0A15;&#x0A47;&#x0A24;"/>
-<gentext key="Warning" text="&#x0A38;&#x0A3E;&#x0A35;&#x0A27;&#x0A3E;&#x0A28;"/>
-<gentext key="warning" text="&#x0A38;&#x0A3E;&#x0A35;&#x0A27;&#x0A3E;&#x0A28;"/>
-<gentext key="WARNING" text="&#x0A38;&#x0A3E;&#x0A35;&#x0A27;&#x0A3E;&#x0A28;"/>
+<gentext key="qandadiv" text="q &amp; a"/>
+<gentext key="QandASet" text="ਆਮ ਸਵਾਲ ਜਵਾਬ"/>
+<gentext key="Question" text="Q:"/>
+<gentext key="question" text="q:"/>
+<gentext key="RefEntry" text="ਸਫਾ"/>
+<gentext key="refentry" text="ਸਫਾ"/>
+<gentext key="Reference" text="ਹਵਾਲਾ"/>
+<gentext key="reference" text="ਹਵਾਲਾ"/>
+<gentext key="References" text="ਹਵਾਲਾ"/>
+<gentext key="RefName" text="ਨਾਂ"/>
+<gentext key="refname" text="ਨਾਂ"/>
+<gentext key="RefSection" text="ਹਿੱਸਾ"/>
+<gentext key="refsection" text="ਹਿੱਸਾ"/>
+<gentext key="RefSynopsisDiv" text="ਖੁਲਾਸਾ"/>
+<gentext key="refsynopsisdiv" text="ਖੁਲਾਸਾ"/>
+<gentext key="RevHistory" text="ਸੁਧਾਈ ਅਤੀਤ"/>
+<gentext key="revhistory" text="ਸੁਧਾਈ ਅਤੀਤ"/>
+<gentext key="revision" text="ਸੁਧਾਈ"/>
+<gentext key="Revision" text="ਸੁਧਾਈ"/>
+<gentext key="sect1" text="ਹਿੱਸਾ"/>
+<gentext key="sect2" text="ਹਿੱਸਾ"/>
+<gentext key="sect3" text="ਹਿੱਸਾ"/>
+<gentext key="sect4" text="ਹਿੱਸਾ"/>
+<gentext key="sect5" text="ਹਿੱਸਾ"/>
+<gentext key="section" text="ਹਿੱਸਾ"/>
+<gentext key="Section" text="ਹਿੱਸਾ"/>
+<gentext key="see" text="ਵੇਖੋ"/>
+<gentext key="See" text="ਵੇਖੋ"/>
+<gentext key="seealso" text="ਇਹਵੀਵੇਖੋ"/> 
+<gentext key="Seealso" text="ਇਹਵੀਵੇਖੋ"/>
+<gentext key="SeeAlso" text="ਇਹਵੀਵੇਖੋ"/>
+<gentext key="set" text="ਨਿਰਧਾਰਿਤ"/>
+<gentext key="Set" text="ਨਿਰਧਾਰਿਤ"/>
+<gentext key="setindex" text="ਤਤਕਰਾ ਨਿਰਧਾਰਨ"/>
+<gentext key="SetIndex" text="ਤਤਕਰਾ ਨਿਰਧਾਰਨ"/>
+<gentext key="Sidebar" text="ਬਾਹੀ"/>
+<gentext key="sidebar" text="ਬਾਹੀ"/>
+<gentext key="step" text="ਪਗ਼"/>
+<gentext key="Step" text="ਪਗ਼"/>
+<gentext key="table" text="ਸਾਰਣੀ"/>
+<gentext key="Table" text="ਸਾਰਣੀ"/>
+<gentext key="task" text="ਕਾਰਜ"/>
+<gentext key="Task" text="ਕਾਰਜ"/>
+<gentext key="tip" text="ਸੰਕੇਤ"/>
+<gentext key="TIP" text="ਸੰਕੇਤ"/>
+<gentext key="Tip" text="ਸੰਕੇਤ"/>
+<gentext key="Warning" text="ਸਾਵਧਾਨ"/>
+<gentext key="warning" text="ਸਾਵਧਾਨ"/>
+<gentext key="WARNING" text="ਸਾਵਧਾਨ"/>
 
-<gentext key="and" text="&#x0A05;&#x0A24;&#x0A47;"/>
-<gentext key="by" text="&#x0A32;&#x0A08;"/>
-<gentext key="called" text="called"/>
-<gentext key="Edited" text="&#x0A38;&#x0A70;&#x0A2A;&#x0A3E;&#x0A26;&#x0A28;"/>
-<gentext key="edited" text="&#x0A38;&#x0A70;&#x0A2A;&#x0A3E;&#x0A26;&#x0A28;"/>
-<gentext key="Editedby" text="&#x0A38;&#x0A70;&#x0A2A;&#x0A3E;&#x0A26;&#x0A28;&#x0A15;&#x0A40;&#x0A24;&#x0A3E;"/>
-<gentext key="editedby" text="&#x0A38;&#x0A70;&#x0A2A;&#x0A3E;&#x0A26;&#x0A28;&#x0A15;&#x0A40;&#x0A24;&#x0A3E;"/>
-<gentext key="in" text="&#x0A35;&#x0A3F;&#x0A71;&#x0A1A;"/>
+<gentext key="and" text="ਅਤੇ"/>
+<gentext key="by" text="ਲਈ"/>
+<gentext key="Edited" text="ਸੰਪਾਦਨ"/>
+<gentext key="edited" text="ਸੰਪਾਦਨ"/>
+<gentext key="Editedby" text="ਸੰਪਾਦਨ ਕੀਤਾ"/>
+<gentext key="editedby" text="ਸੰਪਾਦਨ ਕੀਤਾ"/>
+<gentext key="in" text="ਵਿੱਚ"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="notes" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="Notes" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="Pgs" text="&#x0A38;&#x0A5E;&#x0A47;"/>
-<gentext key="pgs" text="&#x0A38;&#x0A5E;&#x0A47;"/>
-<gentext key="Revisedby" text="&#x0A38;&#x0A41;&#x0A27;&#x0A3E;&#x0A08;&#x0A15;&#x0A40;&#x0A24;&#x0A40;&#x003A;"/>
-<gentext key="revisedby" text="&#x0A38;&#x0A41;&#x0A27;&#x0A3E;&#x0A08;&#x0A15;&#x0A40;&#x0A24;&#x0A40;&#x003A;"/>
-<gentext key="TableNotes" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="tablenotes" text="&#x0A38;&#x0A42;&#x0A1A;&#x0A28;&#x0A3E;"/>
-<gentext key="TableofContents" text="&#x0A2D;&#x0A3E;&#x0A17;&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;"/>
-<gentext key="tableofcontents" text="&#x0A2D;&#x0A3E;&#x0A17;&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;"/>
-<gentext key="the" text=""/>
-<gentext key="unexpectedelementname" text="&#x0A28;&#x0A3E;&#x002D;&#x0A32;&#x0A4B;&#x0A5C;&#x0A40;&#x0A26;&#x0A3E;&#x0A07;&#x0A15;&#x0A3E;&#x0A08;&#x0A28;&#x0A3E;&#x0A02;"/>
-<gentext key="unsupported" text="&#x0A28;&#x0A3E;&#x002D;&#x0A38;&#x0A39;&#x0A3E;&#x0A07;&#x0A15;"/>
-<gentext key="xrefto" text="&#x0078;&#x0072;&#x0065;&#x0066;&#x0074;&#x006F;"/>
+<gentext key="notes" text="ਸੂਚਨਾ"/>
+<gentext key="Notes" text="ਸੂਚਨਾ"/>
+<gentext key="Pgs" text="ਸਫ਼ੇ"/>
+<gentext key="pgs" text="ਸਫ਼ੇ"/>
+<gentext key="Revisedby" text="ਸੁਧਾਈ ਕੀਤੀ: "/>
+<gentext key="revisedby" text="ਸੁਧਾਈ ਕੀਤੀ: "/>
+<gentext key="TableNotes" text="ਸੂਚਨਾ"/>
+<gentext key="tablenotes" text="ਸੂਚਨਾ"/>
+<gentext key="TableofContents" text="ਭਾਗ ਸਾਰਣੀ"/>
+<gentext key="tableofcontents" text="ਭਾਗ ਸਾਰਣੀ"/>
+<gentext key="unexpectedelementname" text="ਨਾ-ਲੋੜੀਦਾ ਇਕਾਈ ਨਾਂ"/>
+<gentext key="unsupported" text="ਨਾ-ਸਹਾਇਕ"/>
+<gentext key="xrefto" text="xref ਨੂੰ"/>
 
-<gentext key="listofequations" text="&#x0A38;&#x0A2E;&#x0A40;&#x0A15;&#x0A30;&#x0A28;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="ListofEquations" text="&#x0A38;&#x0A2E;&#x0A40;&#x0A15;&#x0A30;&#x0A28;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="ListofExamples" text="&#x0A09;&#x0A26;&#x0A3E;&#x0A39;&#x0A30;&#x0A28;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="listofexamples" text="&#x0A09;&#x0A26;&#x0A3E;&#x0A39;&#x0A30;&#x0A28;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="ListofFigures" text="&#x0A1A;&#x0A3F;&#x0A71;&#x0A24;&#x0A30;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="listoffigures" text="&#x0A1A;&#x0A3F;&#x0A71;&#x0A24;&#x0A30;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="ListofProcedures" text="&#x0A15;&#x0A3E;&#x0A30;&#x0A35;&#x0A3E;&#x0A08;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="listofprocedures" text="&#x0A15;&#x0A3E;&#x0A30;&#x0A35;&#x0A3E;&#x0A08;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="listoftables" text="&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="ListofTables" text="&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="ListofUnknown" text="&#x0A05;&#x0A23;&#x0A1C;&#x0A3E;&#x0A23;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
-<gentext key="listofunknown" text="&#x0A05;&#x0A23;&#x0A1C;&#x0A3E;&#x0A23;&#x0A38;&#x0A42;&#x0A1A;&#x0A40;"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="ਲੇਖਕ"/>
 
-<gentext key="nav-home" text="&#x0A18;&#x0A30;"/>
-<gentext key="nav-next" text="&#x0A05;&#x0A71;&#x0A17;&#x0A47;"/>
-<gentext key="nav-next-sibling" text="&#x0A24;&#x0A47;&#x0A5B;&#x0A05;&#x0A71;&#x0A17;&#x0A47;"/>
-<gentext key="nav-prev" text="&#x0A2A;&#x0A3F;&#x0A71;&#x0A1B;&#x0A47;"/>
-<gentext key="nav-prev-sibling" text="&#x0A24;&#x0A47;&#x0A5B;&#x0A2A;&#x0A3F;&#x0A71;&#x0A1B;&#x0A47;"/>
-<gentext key="nav-up" text="&#x0A09;&#x0A71;&#x0A2A;&#x0A30;"/>
-<gentext key="nav-toc" text="&#x0A38;&#x0A3E;&#x0A30;&#x0A23;&#x0A40;"/>
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="ਨਕਲ ਸੰਪਾਦਕ"/>
+<gentext key="graphicdesigner" text="ਗਰਾਫਿਕ ਡਿਜ਼ਾਈਨਰ"/>
+<gentext key="productioneditor" text="ਉਤਪਾਦਨ ਸੰਪਾਦਕ"/>
+<gentext key="technicaleditor" text="ਤਕਨੀਕੀ ਸੰਪਾਦਕ"/>
+<gentext key="translator" text="ਅਨੁਵਾਦਕ"/>
 
-<gentext key="Draft"         text="&#x0A21;&#x0A30;&#x0A3E;&#x0A2B;&#x0A1F;"/>
-<gentext key="above"         text="&#x0A09;&#x0A71;&#x0A2A;&#x0A30;"/>
-<gentext key="below"         text="&#x0A39;&#x0A47;&#x0A20;&#x0A3E;&#x0A02;"/>
-<gentext key="sectioncalled" text="&#x0A2D;&#x0A3E;&#x0A17;&#x0A15;&#x0A39;&#x0A3F;&#x0A70;&#x0A26;&#x0A47;&#x0A28;&#x0A47;"/>
-<gentext key="index symbols" text="Symbols"/>
+<gentext key="listofequations" text="ਸਮੀਕਰਨ ਸੂਚੀ"/>
+<gentext key="ListofEquations" text="ਸਮੀਕਰਨ ਸੂਚੀ"/>
+<gentext key="ListofExamples" text="ਉਦਾਹਰਨ ਸੂਚੀ"/>
+<gentext key="listofexamples" text="ਉਦਾਹਰਨ ਸੂਚੀ"/>
+<gentext key="ListofFigures" text="ਚਿੱਤਰ ਸੂਚੀ"/>
+<gentext key="listoffigures" text="ਚਿੱਤਰ ਸੂਚੀ"/>
+<gentext key="ListofProcedures" text="ਕਾਰਵਾਈ ਸੂਚੀ"/>
+<gentext key="listofprocedures" text="ਕਾਰਵਾਈ ਸੂਚੀ"/>
+<gentext key="listoftables" text="ਸਾਰਣੀ ਸੂਚੀ"/>
+<gentext key="ListofTables" text="ਸਾਰਣੀ ਸੂਚੀ"/>
+<gentext key="ListofUnknown" text="ਅਣਜਾਣ ਸੂਚੀ"/>
+<gentext key="listofunknown" text="ਅਣਜਾਣ ਸੂਚੀ"/>
+
+<gentext key="nav-home" text="ਘਰ"/>
+<gentext key="nav-next" text="ਅੱਗੇ"/>
+<gentext key="nav-next-sibling" text="ਤੇਜ਼ ਅੱਗੇ"/>
+<gentext key="nav-prev" text="ਪਿੱਛੇ"/>
+<gentext key="nav-prev-sibling" text="ਤੇਜ਼ ਪਿੱਛੇ"/>
+<gentext key="nav-up" text="ਉੱਪਰ"/>
+<gentext key="nav-toc" text="ਸਾਰਣੀ"/>
+
+<gentext key="Draft" text="ਡਰਾਫਟ"/>
+<gentext key="above" text="ਉੱਪਰ"/>
+<gentext key="below" text="ਹੇਠਾਂ"/>
+<gentext key="sectioncalled" text="ਭਾਗ ਕਹਿੰਦੇ ਨੇ"/>
+<gentext key="index symbols" text="ਚਿੰਨ"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="&#x0061;&#x0062;&#x0063;&#x0064;&#x0065;&#x0066;&#x0067;&#x0068;&#x0069;&#x006A;&#x006B;&#x006C;&#x006D;&#x006E;&#x006F;&#x0070;&#x0071;&#x0072;&#x0073;&#x0074;&#x0075;&#x0076;&#x0077;&#x0078;&#x0079;&#x007A;"/>
-<gentext key="uppercase.alpha" text="&#x0041;&#x0042;&#x0043;&#x0044;&#x0045;&#x0046;&#x0047;&#x0048;&#x0049;&#x004A;&#x004B;&#x004C;&#x004D;&#x004E;&#x004F;&#x0050;&#x0051;&#x0052;&#x0053;&#x0054;&#x0055;&#x0056;&#x0057;&#x0058;&#x0059;&#x005A;"/>
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -528,52 +551,210 @@
 </context>
 
 <context name="datetime-full">
-<template name="January">January</template>
-<template name="February">February</template>
-<template name="March">March</template>
-<template name="April">April</template>
-<template name="May">May</template>
-<template name="June">June</template>
-<template name="July">July</template>
-<template name="August">August</template>
-<template name="September">September</template>
-<template name="October">October</template>
-<template name="November">November</template>
-<template name="December">December</template>
-<template name="Monday">Monday</template>
-<template name="Tuesday">Tuesday</template>
-<template name="Wednesday">Wednesday</template>
-<template name="Thursday">Thursday</template>
-<template name="Friday">Friday</template>
-<template name="Saturday">Saturday</template>
-<template name="Sunday">Sunday</template>
+<template name="January">ਜਨਵਰੀ</template>
+<template name="February">ਫਰਵਰੀ</template>
+<template name="March">ਮਾਰਚ</template>
+<template name="April">ਅਪ੍ਰੈਲ</template>
+<template name="May">ਮਈ</template>
+<template name="June">ਜੂਨ</template>
+<template name="July">ਜੁਲਾਈ</template>
+<template name="August">ਅਗਸਤ</template>
+<template name="September">ਸਤੰਬਰ</template>
+<template name="October">ਅਕਤੂਬਰ</template>
+<template name="November">ਨਵੰਬਰ</template>
+<template name="December">ਦਸੰਬਰ</template>
+<template name="Monday">ਸੋਮਵਾਰ</template>
+<template name="Tuesday">ਮੰਗਲਵਾਰ</template>
+<template name="Wednesday">ਬੁੱਧਵਾਰ</template>
+<template name="Thursday">ਵੀਰਵਾਰ</template>
+<template name="Friday">ਸ਼ੁੱਕਰਵਾਰ</template>
+<template name="Saturday">ਸ਼ਨੀਵਾਰ</template>
+<template name="Sunday">ਐਤਵਾਰ</template>
 </context>
 
 <context name="datetime-abbrev">
-<template name="Jan">Jan</template>
-<template name="Feb">Feb</template>
-<template name="Mar">Mar</template>
-<template name="Apr">Apr</template>
-<template name="May">May</template>
-<template name="Jun">Jun</template>
-<template name="Jul">Jul</template>
-<template name="Aug">Aug</template>
-<template name="Sep">Sep</template>
-<template name="Oct">Oct</template>
-<template name="Nov">Nov</template>
-<template name="Dec">Dec</template>
-<template name="Mon">Mon</template>
-<template name="Tue">Tue</template>
-<template name="Wed">Wed</template>
-<template name="Thu">Thu</template>
-<template name="Fri">Fri</template>
-<template name="Sat">Sat</template>
-<template name="Sun">Sun</template>
+<template name="Jan">ਜੈਨ</template>
+<template name="Feb">ਫੈਬ</template>
+<template name="Mar">ਮਾਰ</template>
+<template name="Apr">ਅਪ੍ਰੈ</template>
+<template name="May">ਮਈ</template>
+<template name="Jun">ਜੂਨ</template>
+<template name="Jul">ਜੁਲ</template>
+<template name="Aug">ਅਗ</template>
+<template name="Sep">ਸਤੰ</template>
+<template name="Oct">ਅਕਤੂ</template>
+<template name="Nov">ਨਵੰ</template>
+<template name="Dec">ਦਸੰ</template>
+<template name="Mon">ਸੋਮ</template>
+<template name="Tue">ਮੰਗਲ</template>
+<template name="Wed">ਬੁੱਧ</template>
+<template name="Thu">ਵੀਰ</template>
+<template name="Fri">ਸ਼ੁੱਕਰ</template>
+<template name="Sat">ਸ਼ਨੀ</template>
+<template name="Sun">ਐਤ</template>
 </context>
 
 <context name="htmlhelp">
 <template name="langcode">0x0446 Punjabi</template>
 </context>
+
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">ਚਿੰਨ</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="170">Q</l>
+  <l i="170">q</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="230">W</l>
+  <l i="230">w</l>
+  <l i="240">X</l>
+  <l i="240">x</l>
+  <l i="250">Y</l>
+  <l i="250">y</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+</letters>
 
 </locale>
 

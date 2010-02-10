@@ -18,11 +18,17 @@
           <affiliation><address><email>ralf.schleitzer@ixos.de</email></address>
           </affiliation>
   </author>
+  <author><firstname>Noriko</firstname><surname>Mizumoto</surname>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>noriko@fedoraproject.org</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="概要"/>
 <gentext key="abstract" text="概要"/>
+<gentext key="Acknowledgements" text="謝辞"/>
+<gentext key="acknowledgements" text="謝辞"/>
 <gentext key="Answer" text="答："/>
 <gentext key="answer" text="答："/>
 <gentext key="Appendix" text="付録"/>
@@ -51,6 +57,7 @@
 <gentext key="dedication" text="謝辞"/>
 <gentext key="Edition" text="編集"/>
 <gentext key="edition" text="編集"/>
+<gentext key="Editor" text="編集者"/>
 <gentext key="Equation" text="式"/>
 <gentext key="equation" text="式"/>
 <gentext key="Example" text="例"/>
@@ -63,9 +70,9 @@
 <gentext key="glosssee" text="参照"/>
 <gentext key="GlossSeeAlso" text="参照"/>
 <gentext key="glossseealso" text="参照"/>
-<gentext key="IMPORTANT" text="重要項目"/>
-<gentext key="Important" text="重要項目"/>
-<gentext key="important" text="重要項目"/>
+<gentext key="IMPORTANT" text="重要"/>
+<gentext key="Important" text="重要"/>
+<gentext key="important" text="重要"/>
 <gentext key="Index" text="索引"/>
 <gentext key="index" text="索引"/>
 <gentext key="ISBN" text="ISBN"/>
@@ -76,32 +83,37 @@
 <gentext key="msgaud" text="対象者"/>
 <gentext key="MsgLevel" text="レベル"/>
 <gentext key="msglevel" text="レベル"/>
-<gentext key="MsgOrig" text="発信元"/>
-<gentext key="msgorig" text="発信元"/>
+<gentext key="MsgOrig" text="出所"/>
+<gentext key="msgorig" text="出所"/>
 <gentext key="note" text="注記"/>
 <gentext key="Note" text="注記"/>
 <gentext key="NOTE" text="注記"/>
 <gentext key="Part" text="パート"/>
 <gentext key="part" text="パート"/>
-<gentext key="Preface" text="序文"/>
-<gentext key="preface" text="序文"/>
+<gentext key="Preface" text="前書き"/>
+<gentext key="preface" text="前書き"/>
 <gentext key="Procedure" text="手順"/>
 <gentext key="procedure" text="手順"/>
 <gentext key="ProductionSet" text="プロダクション"/>
+<gentext key="PubDate" text="発行日"/>
+<gentext key="pubdate" text="発行日"/>
 <gentext key="Published" text="発行"/>
 <gentext key="published" text="発行"/>
-<gentext key="Qandadiv" text="問：、答："/>
-<gentext key="qandadiv" text="問：、答："/>
+<gentext key="Publisher" text="発行元"/>
+<gentext key="Qandadiv" text="質問と答え"/>
+<gentext key="qandadiv" text="質問と答え"/>
+<gentext key="QandASet" text="よくある質問"/>
 <gentext key="Question" text="問："/>
 <gentext key="question" text="問："/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="ページ"/>
+<gentext key="refentry" text="ページ"/>
 <gentext key="Reference" text="参照"/>
 <gentext key="reference" text="参照"/>
+<gentext key="References" text="参照"/>
 <gentext key="RefName" text="名前"/>
 <gentext key="refname" text="名前"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="項"/>
+<gentext key="refsection" text="項"/>
 <gentext key="RefSynopsisDiv" text="概要"/>
 <gentext key="refsynopsisdiv" text="概要"/>
 <gentext key="RevHistory" text="改訂履歴"/>
@@ -120,70 +132,87 @@
 <gentext key="seealso" text="参照"/>
 <gentext key="SeeAlso" text="参照"/>
 <gentext key="Seealso" text="参照"/>
-<gentext key="Set" text="設定"/>
-<gentext key="set" text="設定"/>
-<gentext key="SetIndex" text="目次設定"/>
-<gentext key="setindex" text="目次設定"/>
-<gentext key="Sidebar" text=""/>
+<gentext key="Set" text="セット"/>
+<gentext key="set" text="セット"/>
+<gentext key="SetIndex" text="セット目次"/>
+<gentext key="setindex" text="セット目次"/>
+<gentext key="Sidebar" text="サイドバー"/>
 <gentext key="sidebar" text="サイドバー"/>
 <gentext key="step" text="ステップ"/>
 <gentext key="Step" text="ステップ"/>
 <gentext key="table" text="表"/>
 <gentext key="Table" text="表"/>
-<gentext key="TIP" text="ティップ"/>
-<gentext key="Tip" text="ティップ"/>
-<gentext key="tip" text="ティップ"/>
+<gentext key="task" text="タスク"/>
+<gentext key="Task" text="タスク"/>
+<gentext key="TIP" text="ヒント"/>
+<gentext key="Tip" text="ヒント"/>
+<gentext key="tip" text="ヒント"/>
 <gentext key="WARNING" text="警告"/>
 <gentext key="Warning" text="警告"/>
 <gentext key="warning" text="警告"/>
 
 <gentext key="and" text="、"/>
 <gentext key="by" text="："/>
-<gentext key="Edited" text="編者"/>
-<gentext key="edited" text="編者"/>
-<gentext key="Editedby" text="編者："/>
-<gentext key="editedby" text="編者："/>
+<gentext key="Edited" text="編集者"/>
+<gentext key="edited" text="編集者"/>
+<gentext key="Editedby" text="編集者"/>
+<gentext key="editedby" text="編集者"/>
 <gentext key="in" text=""/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="notes" text="注記"/>
 <gentext key="Notes" text="注記"/>
-<gentext key="Pgs" text="偧献"/>
-<gentext key="pgs" text="偧献"/>
-<gentext key="Revisedby" text="Revised by: "/>
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Pgs" text="ページ"/>
+<gentext key="pgs" text="ページ"/>
+<gentext key="Revisedby" text="校正者："/>
+<gentext key="revisedby" text="校正者： "/> 
 <gentext key="TableNotes" text="注意"/>
 <gentext key="tablenotes" text="注意"/>
 <gentext key="TableofContents" text="目次"/>
 <gentext key="tableofcontents" text="目次"/>
-<gentext key="unexpectedelementname" text="不明な要素名"/>
-<gentext key="unsupported" text="サポートしません"/>
-<gentext key="xrefto" text="xref to"/> <!-- en -->
+<gentext key="unexpectedelementname" text="予期しない要素名です"/>
+<gentext key="unsupported" text="サポートされません"/>
+<gentext key="xrefto" text="xref "/>
 
-<gentext key="listofequations" text="式目次"/>
-<gentext key="ListofEquations" text="式目次"/>
-<gentext key="ListofExamples" text="例目次"/>
-<gentext key="listofexamples" text="例目次"/>
-<gentext key="ListofFigures" text="図目次"/>
-<gentext key="listoffigures" text="図目次"/>
-<gentext key="listoftables" text="表目次"/>
-<gentext key="ListofTables" text="表目次"/>
-<gentext key="ListofUnknown" text="不明目次"/>
-<gentext key="listofunknown" text="不明目次"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="著者"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="コピーエディター"/>
+<gentext key="graphicdesigner" text="グラフィックデザイナー"/>
+<gentext key="productioneditor" text="プロダクションエディター"/>
+<gentext key="technicaleditor" text="テクニカルエディター"/>
+<gentext key="translator" text="翻訳者"/>
+
+<gentext key="listofequations" text="式の一覧"/>
+<gentext key="ListofEquations" text="式の一覧"/>
+<gentext key="ListofExamples" text="例の一覧"/>
+<gentext key="listofexamples" text="例の一覧"/>
+<gentext key="ListofFigures" text="図の一覧"/>
+<gentext key="listoffigures" text="図の一覧"/>
+<gentext key="ListofProcedures" text="手順の一覧"/>
+<gentext key="listofprocedures" text="手順の一覧"/>
+<gentext key="listoftables" text="表の一覧"/>
+<gentext key="ListofTables" text="表の一覧"/>
+<gentext key="ListofUnknown" text="不明の一覧"/>
+<gentext key="listofunknown" text="不明の一覧"/>
 
 <gentext key="nav-home" text="ホーム"/>
-<gentext key="nav-next" text="次のページ"/>
+<gentext key="nav-next" text="次へ"/>
 <gentext key="nav-next-sibling" text="早送り"/>
-<gentext key="nav-prev" text="前のページ"/>
+<gentext key="nav-prev" text="戻る"/>
 <gentext key="nav-prev-sibling" text="巻戻し"/>
 <gentext key="nav-up" text="上に戻る"/>
+<gentext key="nav-toc" text="目次"/>
 
+<gentext key="Draft" text="ドラフト"/> 
+<gentext key="above" text="上"/> 
+<gentext key="below" text="下"/> 
+<gentext key="sectioncalled" text="セクション名"/> 
 <gentext key="index symbols" text="シンボル"/>
 <gentext key="writing-mode" text="lr-tb"/>
-<gentext key="Draft" text="Draft"/> <!-- en -->
-<gentext key="above" text="above"/> <!-- en -->
-<gentext key="below" text="below"/> <!-- en -->
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
 
 <dingbat key="startquote" text="「"/>
 <dingbat key="endquote" text="」"/>
@@ -491,8 +520,218 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">1 月</template>
+<template name="February">2 月</template>
+<template name="March">3 月</template>
+<template name="April">4 月</template>
+<template name="May">5 月</template>
+<template name="June">6 月</template>
+<template name="July">7 月</template>
+<template name="August">8 月</template>
+<template name="September">9 月</template>
+<template name="October">10 月</template>
+<template name="November">11 月</template>
+<template name="December">12 月</template>
+<template name="Monday">月曜日</template>
+<template name="Tuesday">火曜日</template>
+<template name="Wednesday">水曜日</template>
+<template name="Thursday">木曜日</template>
+<template name="Friday">金曜日</template>
+<template name="Saturday">土曜日</template>
+<template name="Sunday">日曜日</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">1 月</template>
+<template name="Feb">2 月</template>
+<template name="Mar">3 月</template>
+<template name="Apr">4 月</template>
+<template name="May">5 月</template>
+<template name="Jun">6 月</template>
+<template name="Jul">7 月</template>
+<template name="Aug">8 月</template>
+<template name="Sep">9 月</template>
+<template name="Oct">10 月</template>
+<template name="Nov">11 月</template>
+<template name="Dec">12 月</template>
+<template name="Mon">月</template>
+<template name="Tue">火</template>
+<template name="Wed">水</template>
+<template name="Thu">木</template>
+<template name="Fri">金</template>
+<template name="Sat">土</template>
+<template name="Sun">日</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x0411 Japanese</template>
 </context>
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">シンボル</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="170">Q</l>
+  <l i="170">q</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="230">W</l>
+  <l i="230">w</l>
+  <l i="240">X</l>
+  <l i="240">x</l>
+  <l i="250">Y</l>
+  <l i="250">y</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+</letters>
 
 </locale>

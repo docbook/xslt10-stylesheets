@@ -6,175 +6,204 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
-  <author><firstname>Rafa&#179;</firstname><surname>Kleger-Rudomin</surname>
+  <author><firstname>Rafał</firstname><surname>Kleger-Rudomin</surname>
           <affiliation><address><email>klakier@pld.org.pl</email></address>
+          </affiliation>
+  </author>
+    <author><firstname>Piotr</firstname><surname>Drąg</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>piotrdrag@gmail.com</email></address>
           </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Abstrakt"/>
-<gentext key="abstract" text="Abstrakt"/>
-<gentext key="Answer" text="Odp:"/>
-<gentext key="answer" text="Odp:"/>
+<gentext key="abstract" text="abstrakt"/>
+<gentext key="Acknowledgements" text="Podziękowania"/>
+<gentext key="acknowledgements" text="podziękowania"/>
+<gentext key="Answer" text="Odp.:"/>
+<gentext key="answer" text="odp.:"/>
 <gentext key="Appendix" text="Dodatek"/>
 <gentext key="appendix" text="dodatek"/>
-<gentext key="Article" text="Artyku&#322;"/>
-<gentext key="article" text="Artyku&#322;"/>
+<gentext key="Article" text="Artykuł"/>
+<gentext key="article" text="artykuł"/>
 <gentext key="Author" text="Autor"/>
 <gentext key="Bibliography" text="Bibliografia"/>
-<gentext key="bibliography" text="Bibliografia"/>
-<gentext key="Book" text="Ksi&#261;&#380;ka"/>
-<gentext key="book" text="Ksi&#261;&#380;ka"/>
-<gentext key="CAUTION" text="PRZYPADEK"/>
-<gentext key="Caution" text="Uwaga!"/>
-<gentext key="caution" text="Uwaga!"/>
-<gentext key="Chapter" text="Rozdzia&#322;"/>
-<gentext key="chapter" text="rozdzia&#322;"/>
-<gentext key="Colophon" text="Colophon"/>
-<gentext key="colophon" text="Colophon"/> <!-- en -->
+<gentext key="bibliography" text="bibliografia"/>
+<gentext key="Book" text="Książka"/>
+<gentext key="book" text="książka"/>
+<gentext key="CAUTION" text="OSTRZEŻENIE"/>
+<gentext key="Caution" text="Ostrzeżenie"/>
+<gentext key="caution" text="ostrzeżenie"/>
+<gentext key="Chapter" text="Rozdział"/>
+<gentext key="chapter" text="rozdział"/>
+<gentext key="Colophon" text="Kolofon"/>
+<gentext key="colophon" text="kolofon"/> 
 <gentext key="Copyright" text="Copyright"/>
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Dedykacja"/>
-<gentext key="dedication" text="Dedykacja"/>
+<gentext key="dedication" text="dedykacja"/>
 <gentext key="Edition" text="Wydanie"/>
-<gentext key="edition" text="Wydanie"/>
-<gentext key="Equation" text="R&#243;wnanie"/>
-<gentext key="equation" text="R&#243;wnanie"/>
-<gentext key="Example" text="Przyk&#322;ad"/>
-<gentext key="example" text="Przyk&#322;ad"/>
+<gentext key="edition" text="wydanie"/>
+<gentext key="Editor" text="Redaktor"/>
+<gentext key="Equation" text="Równanie"/>
+<gentext key="equation" text="równanie"/>
+<gentext key="Example" text="Przykład"/>
+<gentext key="example" text="przykład"/>
 <gentext key="Figure" text="Rysunek"/>
-<gentext key="figure" text="Rysunek"/>
-<gentext key="Glossary" text="Glossary"/>
-<gentext key="glossary" text="Glossary"/>
+<gentext key="figure" text="rysunek"/>
+<gentext key="Glossary" text="Glosariusz"/>
+<gentext key="glossary" text="glosariusz"/>
 <gentext key="GlossSee" text="Patrz"/>
-<gentext key="glosssee" text="Patrz"/>
-<gentext key="GlossSeeAlso" text="Patrz te&#380;"/>
-<gentext key="glossseealso" text="Patrz te&#380;"/>
-<gentext key="IMPORTANT" text="WA&#379;NE"/>
-<gentext key="Important" text="WA&#379;NE"/>
-<gentext key="important" text="WA&#379;NE"/>
+<gentext key="glosssee" text="patrz"/>
+<gentext key="GlossSeeAlso" text="Patrz też"/>
+<gentext key="glossseealso" text="patrz też"/>
+<gentext key="IMPORTANT" text="WAŻNE"/>
+<gentext key="Important" text="Ważne"/>
+<gentext key="important" text="ważne"/>
 <gentext key="Index" text="Indeks"/>
-<gentext key="index" text="Indeks"/>
+<gentext key="index" text="indeks"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Informacja Prawna"/>
 <gentext key="legalnotice" text="informacja prawna"/>
 <gentext key="MsgAud" text="Odbiorcy"/>
-<gentext key="msgaud" text="Odbiorcy"/>
+<gentext key="msgaud" text="odbiorcy"/>
 <gentext key="MsgLevel" text="Poziom"/>
-<gentext key="msglevel" text="Poziom"/>
+<gentext key="msglevel" text="poziom"/>
 <gentext key="MsgOrig" text="Nadawca"/>
-<gentext key="msgorig" text="Nadawca"/>
-<gentext key="NOTE" text="Notatka"/>
-<gentext key="Note" text="Notatka"/>
-<gentext key="note" text="Notatka"/>
-<gentext key="Part" text="Cz&#281;&#347;&#263;"/>
-<gentext key="part" text="Cz&#281;&#347;&#263;"/>
+<gentext key="msgorig" text="nadawca"/>
+<gentext key="NOTE" text="UWAGA"/>
+<gentext key="Note" text="Uwaga"/>
+<gentext key="note" text="uwaga"/>
+<gentext key="Part" text="Część"/>
+<gentext key="part" text="część"/>
 <gentext key="Preface" text="Przedmowa"/>
-<gentext key="preface" text="Przedmowa"/>
+<gentext key="preface" text="przedmowa"/>
 <gentext key="Procedure" text="Procedura"/>
-<gentext key="procedure" text="Procedura"/>
-<gentext key="ProductionSet" text="Production"/> <!-- en -->
-<gentext key="Published" text="Data wydania"/>
-<gentext key="published" text="Data wydania"/>
-<gentext key="Qandadiv" text="Pyt i Odp"/>
-<gentext key="qandadiv" text="Pyt i Odp"/>
-<gentext key="question" text="Pyt:"/>
-<gentext key="Question" text="Pyt:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
-<gentext key="Reference" text="Materia&#322;y &#378;r&#243;d&#322;owe"/>
-<gentext key="reference" text="Materia&#322;y &#378;r&#243;d&#322;owe"/>
+<gentext key="procedure" text="procedura"/>
+<gentext key="ProductionSet" text="Produkcja"/>
+<gentext key="PubDate" text="Data wydania"/>
+<gentext key="pubdate" text="data wydania"/>
+<gentext key="Published" text="Wydano"/>
+<gentext key="published" text="wydano"/>
+<gentext key="Publisher" text="Wydawca"/>
+<gentext key="Qandadiv" text="Pytania i odpowiedzi"/>
+<gentext key="qandadiv" text="Pytania i odpowiedzi"/>
+<gentext key="QandASet" text="Najczęściej zadawane pytania"/>
+<gentext key="question" text="Pyt.:"/>
+<gentext key="Question" text="Pyt.:"/>
+<gentext key="RefEntry" text="Strona"/>
+<gentext key="refentry" text="strona"/>
+<gentext key="Reference" text="Materiały źródłowe"/>
+<gentext key="reference" text="Materiały źródłowe"/>
+<gentext key="References" text="Materiały źródłowe"/>
 <gentext key="RefName" text="Nazwa"/>
-<gentext key="refname" text="Nazwa"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Sk&#322;adnia"/>
-<gentext key="refsynopsisdiv" text="Sk&#322;adnia"/>
+<gentext key="refname" text="nazwa"/>
+<gentext key="RefSection" text="Sekcja"/>
+<gentext key="refsection" text="sekcja"/>
+<gentext key="RefSynopsisDiv" text="Streszczenie"/>
+<gentext key="refsynopsisdiv" text="streszczenie"/>
 <gentext key="RevHistory" text="Historia zmian"/>
 <gentext key="revhistory" text="Historia zmian"/>
 <gentext key="Revision" text="Zmiana"/>
 <gentext key="revision" text="Zmiana"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
+<gentext key="sect1" text="Sekcja"/> 
+<gentext key="sect2" text="Sekcja"/> 
+<gentext key="sect3" text="Sekcja"/>
+<gentext key="sect4" text="Sekcja"/>
+<gentext key="sect5" text="Sekcja"/> 
 <gentext key="Section" text="Sekcja"/>
 <gentext key="section" text="sekcja"/>
 <gentext key="See" text="Patrz"/>
-<gentext key="see" text="Patrz"/>
-<gentext key="SeeAlso" text="Patrz te&#380;"/>
-<gentext key="Seealso" text="Patrz te&#380;"/>
-<gentext key="seealso" text="Patrz te&#380;"/>
-<gentext key="Set" text="Set"/>
-<gentext key="set" text="Set"/> <!--en-->
+<gentext key="see" text="patrz"/>
+<gentext key="SeeAlso" text="Patrz też"/>
+<gentext key="Seealso" text="Patrz też"/>
+<gentext key="seealso" text="patrz też"/>
+<gentext key="Set" text="Zestaw"/>
+<gentext key="set" text="zestaw"/> 
 <gentext key="SetIndex" text="Indeks"/>
 <gentext key="setindex" text="Indeks"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text=""/>
-<gentext key="Step" text="krok"/>
+<gentext key="Sidebar" text="Panel boczny"/>
+<gentext key="sidebar" text="panel boczny"/>
+<gentext key="Step" text="Krok"/>
 <gentext key="step" text="krok"/>
 <gentext key="Table" text="Tabela"/>
 <gentext key="table" text="Tabela"/>
-<gentext key="TIP" text="Podpowied&#378;"/>
-<gentext key="Tip" text="Podpowied&#378;"/>
-<gentext key="tip" text="Podpowied&#378;"/>
-<gentext key="WARNING" text="Ostrze&#380;enie"/>
-<gentext key="Warning" text="Ostrze&#380;enie"/>
-<gentext key="warning" text="Ostrze&#380;enie"/>
+<gentext key="task" text="zadanie"/>
+<gentext key="Task" text="Zadanie"/>
+<gentext key="TIP" text="PODPOWIEDŹ"/>
+<gentext key="Tip" text="Podpowiedź"/>
+<gentext key="tip" text="podpowiedź"/>
+<gentext key="WARNING" text="OSTRZEŻENIE"/>
+<gentext key="Warning" text="Ostrzeżenie"/>
+<gentext key="warning" text="ostrzeżenie"/>
 
 <gentext key="and" text="i"/>
-<gentext key="by" text=""/>
-<gentext key="Edited" text="Edited"/>   <!--en-->
-<gentext key="edited" text="Edited"/>   <!--en-->
+<gentext key="by" text="autorstwa"/>
+<gentext key="Edited" text="Redakcja"/>
+<gentext key="edited" text="redakcja"/>
 <gentext key="Editedby" text="Redakcja: "/>
 <gentext key="editedby" text="Redakcja: "/>
 <gentext key="in" text="w"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="notes" text="Przypisy"/>
+<gentext key="notes" text="przypisy"/>
 <gentext key="Notes" text="Przypisy"/>
-<gentext key="Pgs" text="stron"/>
-<gentext key="pgs" text="stron"/>
-<gentext key="Revisedby" text="Revised by: "/> <!-- en -->
-<gentext key="revisedby" text="Revised by: "/> <!-- en -->
+<gentext key="Pgs" text="S."/>
+<gentext key="pgs" text="s."/>
+<gentext key="Revisedby" text="Korekta: "/> 
+<gentext key="revisedby" text="korekta: "/> 
 <gentext key="TableNotes" text="Przypisy"/>
-<gentext key="tablenotes" text="Przypisy"/>
-<gentext key="TableofContents" text="Spis tre&#347;ci"/>
-<gentext key="tableofcontents" text="Spis tre&#347;ci"/>
-<gentext key="unexpectedelementname" text="Unexpected element name"/>
-<gentext key="unsupported" text="nie wspierany"/>
-<gentext key="xrefto" text="xref to"/>
+<gentext key="tablenotes" text="przypisy"/>
+<gentext key="TableofContents" text="Spis treści"/>
+<gentext key="tableofcontents" text="spis treści"/>
+<gentext key="unexpectedelementname" text="Nieoczekiwana nazwa elementu"/>
+<gentext key="unsupported" text="niewspierane"/>
+<gentext key="xrefto" text="xref do"/>
 
-<gentext key="listofequations" text="Spis r&#243;wna&#324;"/>
-<gentext key="ListofEquations" text="Spis r&#243;wna&#324;"/>
-<gentext key="ListofExamples" text="Spis przyk&#322;ad&#243;w"/>
-<gentext key="listofexamples" text="Spis przyk&#322;ad&#243;w"/>
-<gentext key="ListofFigures" text="Spis rysunk&#243;w"/>
-<gentext key="listoffigures" text="Spis rysunk&#243;w"/>
-<gentext key="listoftables" text="Spis tabel"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Autorzy"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Redaktor kopii"/>
+<gentext key="graphicdesigner" text="Projektant graficzny"/>
+<gentext key="productioneditor" text="Redaktor produkcji"/>
+<gentext key="technicaleditor" text="Redaktor techniczny"/>
+<gentext key="translator" text="Tłumacz"/>
+
+<gentext key="listofequations" text="spis równań"/>
+<gentext key="ListofEquations" text="Spis równań"/>
+<gentext key="ListofExamples" text="Spis przykładów"/>
+<gentext key="listofexamples" text="spis przykładów"/>
+<gentext key="ListofFigures" text="Spis rysunków"/>
+<gentext key="listoffigures" text="spis rysunków"/>
+<gentext key="ListofProcedures" text="Spis procedur"/>
+<gentext key="listofprocedures" text="spis procedur"/>
+<gentext key="listoftables" text="spis tabel"/>
 <gentext key="ListofTables" text="Spis tabel"/>
-<gentext key="ListofUnknown" text="Spis ???"/>
-<gentext key="listofunknown" text="Spis ???"/>
+<gentext key="ListofUnknown" text="Spis nieznanych"/>
+<gentext key="listofunknown" text="spis nieznanych"/>
 
-<gentext key="nav-home" text="Spis tre&#347;ci"/>
-<gentext key="nav-next" text="Nast&#281;pny"/>
-<gentext key="nav-next-sibling" text="Nast&#281;pny rozdzia&#322;"/>
+<gentext key="nav-home" text="Spis treści"/>
+<gentext key="nav-next" text="Następny"/>
+<gentext key="nav-next-sibling" text="Następny rozdział"/>
 <gentext key="nav-prev" text="Poprzedni"/>
-<gentext key="nav-prev-sibling" text="Poprzedni rozdzia&#322;"/>
-<gentext key="nav-up" text="Pocz&#261;tek rozdzia&#322;u"/>
+<gentext key="nav-prev-sibling" text="Poprzedni rozdział"/>
+<gentext key="nav-up" text="Początek rozdziału"/>
+<gentext key="nav-toc" text="Spis treści"/>
 
-<gentext key="sectioncalled" text="the section called"/> <!-- en -->
-<gentext key="Draft"         text="Draft"/> <!-- en -->
-<gentext key="above"         text="above"/> <!-- en -->
-<gentext key="below"         text="below"/> <!-- en -->
-<gentext key="index symbols" text="Symbols"/> <!-- en -->
+<gentext key="Draft" text="Szkic"/>
+<gentext key="above" text="powyżej"/>
+<gentext key="below" text="poniżej"/>
+<gentext key="sectioncalled" text="sekcja o nazwie"/>
+<gentext key="index symbols" text="Symbole"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="a&#261;bc&#263;de&#281;fghijkl&#322;mn&#324;o&#243;pqrs&#347;tuvwxyz&#378;&#380;"/>        
-<gentext key="uppercase.alpha" text="A&#260;BC&#262;DE&#280;FGHIJKL&#321;MN&#323;O&#211;PQRS&#346;TUVWXYZ&#377;&#379;"/>
+<gentext key="lowercase.alpha" text="aąbcćdeęfghijklłmnńoópqrsśtuvwxyzźż"/>        
+<gentext key="uppercase.alpha" text="AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ"/>
 
 <dingbat key="startquote" text="&#x201E;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -482,8 +511,238 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">m/d/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">styczeń</template>
+<template name="February">luty</template>
+<template name="March">marzec</template>
+<template name="April">kwiecień</template>
+<template name="May">maj</template>
+<template name="June">czerwiec</template>
+<template name="July">lipiec</template>
+<template name="August">sierpień</template>
+<template name="September">wrzesień</template>
+<template name="October">październik</template>
+<template name="November">listopad</template>
+<template name="December">grudzień</template>
+<template name="Monday">poniedziałek</template>
+<template name="Tuesday">wtorek</template>
+<template name="Wednesday">środa</template>
+<template name="Thursday">czwartek</template>
+<template name="Friday">piątek</template>
+<template name="Saturday">sobota</template>
+<template name="Sunday">niedziela</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">sty</template>
+<template name="Feb">lut</template>
+<template name="Mar">mar</template>
+<template name="Apr">kwi</template>
+<template name="May">maj</template>
+<template name="Jun">cze</template>
+<template name="Jul">lip</template>
+<template name="Aug">sie</template>
+<template name="Sep">wrz</template>
+<template name="Oct">paź</template>
+<template name="Nov">lis</template>
+<template name="Dec">gru</template>
+<template name="Mon">pon</template>
+<template name="Tue">wto</template>
+<template name="Wed">śro</template>
+<template name="Thu">czw</template>
+<template name="Fri">pią</template>
+<template name="Sat">sob</template>
+<template name="Sun">nie</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x0415 Polish</template>
 </context>
 
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">Symbole</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">Ą</l>
+  <l i="20">ą</l>
+  <l i="30">B</l>
+  <l i="30">b</l>
+  <l i="40">C</l>
+  <l i="40">c</l>
+  <l i="50">Ć</l>
+  <l i="50">ć</l>
+  <l i="60">D</l>
+  <l i="60">d</l>
+  <l i="70">E</l>
+  <l i="70">e</l>
+  <l i="80">Ę</l>
+  <l i="80">ę</l>
+  <l i="90">F</l>
+  <l i="90">f</l>
+  <l i="100">G</l>
+  <l i="100">g</l>
+  <l i="110">H</l>
+  <l i="110">h</l>
+  <l i="120">I</l>
+  <l i="120">i</l>
+  <l i="130">J</l>
+  <l i="130">j</l>
+  <l i="140">K</l>
+  <l i="140">k</l>
+  <l i="150">L</l>
+  <l i="150">l</l>
+  <l i="160">Ł</l>
+  <l i="160">ł</l>
+  <l i="170">M</l>
+  <l i="170">m</l>
+  <l i="180">N</l>
+  <l i="180">n</l>
+  <l i="190">Ń</l>
+  <l i="190">ń</l>
+  <l i="200">O</l>
+  <l i="200">o</l>
+  <l i="210">Ó</l>
+  <l i="210">ó</l>
+  <l i="220">P</l>
+  <l i="220">p</l>
+  <l i="230">Q</l>
+  <l i="230">q</l>
+  <l i="240">R</l>
+  <l i="240">r</l>
+  <l i="250">S</l>
+  <l i="250">s</l>
+  <l i="260">Ś</l>
+  <l i="260">ś</l>
+  <l i="270">T</l>
+  <l i="270">t</l>
+  <l i="280">U</l>
+  <l i="280">u</l>
+  <l i="290">V</l>
+  <l i="290">v</l>
+  <l i="300">W</l>
+  <l i="300">w</l>
+  <l i="310">X</l>
+  <l i="310">x</l>
+  <l i="320">Y</l>
+  <l i="320">y</l>
+  <l i="330">Z</l>
+  <l i="330">z</l>
+  <l i="340">Ź</l>
+  <l i="340">ź</l>
+  <l i="350">Ż</l>
+  <l i="350">ż</l>
+</letters>
+
 </locale>
+

@@ -14,6 +14,10 @@
           <affiliation><address><email>fundawang@linux.net.cn</email></address>
           </affiliation>
   </author>
+  <author><firstname>Tom</firstname><surname>K. C. Chiu</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>tomchiukc@gmail.com</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -96,20 +100,20 @@
 <gentext key="Published" text="出版方"/>
 <gentext key="published" text="出版方"/>
 <gentext key="Publisher" text="出版者"/>
-<gentext key="Qandadiv" text="质保"/>
-<gentext key="qandadiv" text="质保"/>
+<gentext key="Qandadiv" text="答问集"/>
+<gentext key="qandadiv" text="答问集"/>
 <gentext key="QandASet" text="常见问题"/>
 <gentext key="Question" text="问："/>
 <gentext key="question" text="问："/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="页"/>
+<gentext key="refentry" text="页"/>
 <gentext key="Reference" text="参考"/>
 <gentext key="reference" text="参考"/>
 <gentext key="References" text="参考"/>
 <gentext key="RefName" text="名称"/>
 <gentext key="refname" text="名称"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="节"/>
+<gentext key="refsection" text="节"/>
 <gentext key="RefSynopsisDiv" text="大纲"/>
 <gentext key="refsynopsisdiv" text="大纲"/>
 <gentext key="RevHistory" text="修订历史"/>
@@ -123,15 +127,15 @@
 <gentext key="sect5" text="节"/>
 <gentext key="section" text="节"/>
 <gentext key="Section" text="节"/>
-<gentext key="see" text="见"/>             <!-- uncapitalized -->
+<gentext key="see" text="见"/>   
 <gentext key="See" text="见"/>
-<gentext key="seealso" text="参见"/>    <!-- uncapitalized -->
+<gentext key="seealso" text="参见"/> 
 <gentext key="Seealso" text="参见"/>
 <gentext key="SeeAlso" text="参见"/>
-<gentext key="set" text="Set"/>
-<gentext key="Set" text="Set"/>
-<gentext key="setindex" text="Set Index"/>
-<gentext key="SetIndex" text="Set Index"/>
+<gentext key="set" text="集合"/>
+<gentext key="Set" text="集合"/>
+<gentext key="setindex" text="索引"/>
+<gentext key="SetIndex" text="索引"/>
 <gentext key="Sidebar" text="侧栏"/>
 <gentext key="sidebar" text="侧栏"/>
 <gentext key="step" text="步骤"/>
@@ -203,9 +207,9 @@
 <gentext key="nav-up" text="上一级"/>
 <gentext key="nav-toc" text="目录"/>
 
-<gentext key="Draft"         text="草稿"/>
-<gentext key="above"         text="以上"/>
-<gentext key="below"         text="以下"/>
+<gentext key="Draft" text="草稿"/>
+<gentext key="above" text="以上"/>
+<gentext key="below" text="以下"/>
 <gentext key="sectioncalled" text="一节"/>
 <gentext key="index symbols" text="符号"/>
 <gentext key="writing-mode" text="lr-tb"/>

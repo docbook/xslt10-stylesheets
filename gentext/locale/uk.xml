@@ -11,23 +11,26 @@
           <affiliation><address><email>ot@parcs.de</email></address>
           </affiliation>
   </author>
+  <author><firstname>Yuri</firstname><surname>Chornoivan</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>yurchor@ukr.net</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 
 </doc:localeinfo>
 
 
 <gentext key="Abstract" text="Анотація"/>
-<gentext key="abstract" text="Анотація"/>
+<gentext key="abstract" text="анотація"/>
+<gentext key="Acknowledgements" text="Подяки"/>
+<gentext key="acknowledgements" text="подяки"/>
 <gentext key="Answer" text="В:"/>
 <gentext key="answer" text="в:"/>
 <gentext key="Appendix" text="Додаток"/>
 <gentext key="appendix" text="додаток"/>
-<gentext key="Appendix.abr" text="Дод."/>
-<gentext key="appendix.abr" text="дод."/>
 <gentext key="Article" text="Стаття"/>
 <gentext key="article" text="стаття"/>
-<gentext key="Audience" text="Аудиторія"/>
-<gentext key="audience" text="Аудиторія"/>
+<gentext key="Author" text="Автор"/>
 <gentext key="Bibliography" text="Література"/>
 <gentext key="bibliography" text="література"/>
 <gentext key="Book" text="Книга"/>
@@ -37,34 +40,26 @@
 <gentext key="caution" text="застереження"/>
 <gentext key="Chapter" text="Розділ"/>
 <gentext key="chapter" text="розділ"/>
-<gentext key="Chapter.abr" text="Розд."/>
-<gentext key="chapter.abr" text="розд."/>
 <gentext key="Colophon" text="Вихідні відомості"/>
-<gentext key="colophon" text="Вихідні відомості"/>
+<gentext key="colophon" text="вихідні відомості"/>
 <gentext key="Copyright" text="Авторське право"/>
 <gentext key="copyright" text="авторське право"/>
 <gentext key="Dedication" text="Присвята"/>
 <gentext key="dedication" text="присвята"/>
 <gentext key="Edition" text="Видання"/>
 <gentext key="edition" text="видання"/>
+<gentext key="Editor" text="Editor"/>
 <gentext key="Equation" text="Формула"/>
 <gentext key="equation" text="Формула"/>
-<gentext key="Equation.abr" text="Ф."/>
-<gentext key="equation.abr" text="ф."/>
 <gentext key="Example" text="Приклад"/>
 <gentext key="example" text="приклад"/>
-<gentext key="Example.abr" text="Прикл."/>
-<gentext key="example.abr" text="прикл."/>
 <gentext key="Figure" text="Рисунок"/>
 <gentext key="figure" text="Рисунок"/>
-<gentext key="Figure.abr" text="Рис."/>
-<gentext key="figure.abr" text="Рис."/>
 <gentext key="Glossary" text="Глосарій"/>
 <gentext key="glossary" text="глосарій"/>
 <gentext key="GlossSee" text="Див."/>
 <gentext key="glosssee" text="див."/>
 <gentext key="GlossSeeAlso" text="Див. також"/>
-<gentext key="glossSeeAlso" text="див. також"/>
 <gentext key="glossseealso" text="див. також"/>
 <gentext key="IMPORTANT" text="ВАЖЛИВО"/>
 <gentext key="Important" text="Важливо"/>
@@ -72,64 +67,57 @@
 <gentext key="Index" text="Покажчик"/>
 <gentext key="index" text="покажчик"/>
 <gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/> <!-- en -->
+<gentext key="isbn" text="ISBN"/> 
 <gentext key="LegalNotice" text="Правова примітка"/>
 <gentext key="legalnotice" text="правова примітка"/>
-<gentext key="Level" text="Рівень"/>
-<gentext key="level" text="рівень"/>
 <gentext key="MsgAud" text="Аудиторія"/>
 <gentext key="msgaud" text="аудиторія"/>
 <gentext key="MsgLevel" text="Рівень"/>
 <gentext key="msglevel" text="рівень"/>
 <gentext key="MsgOrig" text="Джерело"/>
 <gentext key="msgorig" text="джерело"/>
-<gentext key="Name" text="Ім’я"/>
-<gentext key="name" text="ім’я"/>
 <gentext key="NOTE" text="ПРИМІТКА"/>
 <gentext key="Note" text="Примітка"/>
 <gentext key="note" text="примітка"/>
-<gentext key="Origin" text="Джерело"/>
-<gentext key="origin" text="джерело"/>
 <gentext key="Part" text="Частина"/>
 <gentext key="part" text="частина"/>
-<gentext key="Part.abr" text="Ч."/>
-<gentext key="part.abr" text="ч."/>
 <gentext key="Preface" text="Передмова"/>
 <gentext key="preface" text="передмова"/>
 <gentext key="Procedure" text="Процедура"/>
 <gentext key="procedure" text="Процедура"/>
-<gentext key="Procedure.abr" text="Проц."/>
-<gentext key="procedure.abr" text="Проц."/>
-<gentext key="ProductionSet" text="Production"/> <!-- en -->
+<gentext key="ProductionSet" text="Продукція"/>
+<gentext key="PubDate" text="Дата публікації"/>
+<gentext key="pubdate" text="дата публікації"/>
 <gentext key="Published" text="Опубліковано"/>
 <gentext key="published" text="опубліковано"/>
+<gentext key="Publisher" text="Видавець"/>
 <gentext key="Qandadiv" text="П і В"/>
 <gentext key="qandadiv" text="П і В"/>
+<gentext key="QandASet" text="Часті питання"/>
 <gentext key="Question" text="П:"/>
 <gentext key="question" text="п:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="Сторінка"/>
+<gentext key="refentry" text="сторінка"/>
 <gentext key="Reference" text="Посилання"/>
 <gentext key="reference" text="посилання"/>
+<gentext key="References" text="Посилання"/>
 <gentext key="RefName" text="Назва"/>
 <gentext key="refname" text="назва"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="Розділ"/>
+<gentext key="refsection" text="розділ"/>
 <gentext key="RefSynopsisDiv" text="Короткий огляд"/>
 <gentext key="refsynopsisdiv" text="короткий огляд"/>
 <gentext key="RevHistory" text="Опис змін"/>
 <gentext key="revhistory" text="опис змін"/>
 <gentext key="Revision" text="Версія"/>
 <gentext key="revision" text="версія"/>
-<gentext key="sect1" text="Section"/> <!-- en -->
-<gentext key="sect2" text="Section"/> <!-- en -->
-<gentext key="sect3" text="Section"/> <!-- en -->
-<gentext key="sect4" text="Section"/> <!-- en -->
-<gentext key="sect5" text="Section"/> <!-- en -->
-<gentext key="Section" text="Параграф"/>
-<gentext key="section" text="параграф"/>
-<gentext key="Section.abr" text="Пар."/>
-<gentext key="section.abr" text="пар."/>
+<gentext key="sect1" text="Розділ"/> 
+<gentext key="sect2" text="Розділ"/>
+<gentext key="sect3" text="Розділ"/>
+<gentext key="sect4" text="Розділ"/> 
+<gentext key="sect5" text="Розділ"/>
+<gentext key="Section" text="Розділ"/>
+<gentext key="section" text="розділ"/>
 <gentext key="See" text="Див."/>
 <gentext key="see" text="див."/>
 <gentext key="SeeAlso" text="Див. також"/>
@@ -145,8 +133,8 @@
 <gentext key="step" text="крок"/>
 <gentext key="Table" text="Таблиця"/>
 <gentext key="table" text="таблиця"/>
-<gentext key="Table.abr" text="Табл."/>
-<gentext key="table.abr" text="табл."/>
+<gentext key="task" text="завдання"/>
+<gentext key="Task" text="Завдання"/>
 <gentext key="TIP" text="ПІДКАЗКА"/>
 <gentext key="Tip" text="Підказка"/>
 <gentext key="tip" text="підказка"/>
@@ -154,30 +142,68 @@
 <gentext key="Warning" text="Застереження"/>
 <gentext key="warning" text="застереження"/>
 
+<gentext key="Appendix.abr" text="Дод."/>
+<gentext key="appendix.abr" text="дод."/>
+<gentext key="Audience" text="Аудиторія"/>
+<gentext key="audience" text="аудиторія"/>
+<gentext key="Chapter.abr" text="Розд."/>
+<gentext key="chapter.abr" text="розд."/>
+<gentext key="Equation.abr" text="Ф."/>
+<gentext key="equation.abr" text="ф."/>
+<gentext key="Example.abr" text="Прикл."/>
+<gentext key="example.abr" text="прикл."/>
+<gentext key="Figure.abr" text="Рис."/>
+<gentext key="figure.abr" text="Рис."/>
+<gentext key="glossSeeAlso" text="див. також"/>
+<gentext key="Level" text="Рівень"/>
+<gentext key="level" text="рівень"/>
+<gentext key="Name" text="Ім’я"/>
+<gentext key="name" text="ім’я"/>
+<gentext key="Origin" text="Джерело"/>
+<gentext key="origin" text="джерело"/>
+<gentext key="Part.abr" text="Ч."/>
+<gentext key="part.abr" text="ч."/>
+<gentext key="Procedure.abr" text="Проц."/>
+<gentext key="procedure.abr" text="Проц."/>
+<gentext key="Section.abr" text="Пар."/>
+<gentext key="section.abr" text="пар."/>
+<gentext key="Table.abr" text="Табл."/>
+<gentext key="table.abr" text="табл."/>
+
 <gentext key="and" text=""/> 
 <gentext key="by" text=""/>
-<gentext key="called" text=""/>
 <gentext key="edited" text="за редакції"/>
 <gentext key="Edited" text="За редакції"/>
 <gentext key="Editedby" text="За редакції"/>
 <gentext key="editedby" text="за редакції"/>
 <gentext key="in" text="у"/>
-<gentext key="TableofContents" text="Зміст"/>
-<gentext key="tableofcontents" text="зміст"/>
-<gentext key="lastlistcomma" text="."/>
+<gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="Notes" text="Примітки"/>
 <gentext key="notes" text="примітки"/>
-<gentext key="TableNotes" text="Примітки"/>
-<gentext key="tablenotes" text="примітки"/>
 <gentext key="pgs" text="стор."/>
 <gentext key="Pgs" text="Стор."/>
 <gentext key="Revisedby" text="Коректура:"/>
 <gentext key="revisedby" text="коректура:"/>
-<gentext key="the" text=""/>
+<gentext key="TableNotes" text="Примітки"/>
+<gentext key="tablenotes" text="примітки"/>
+<gentext key="TableofContents" text="Зміст"/>
+<gentext key="tableofcontents" text="зміст"/>
 <gentext key="unexpectedelementname" text="неочікувана назва елемента"/>
 <gentext key="unsupported" text="не підтримується"/>
 <gentext key="xrefto" text="xref to"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Автори"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Редактор"/>
+<gentext key="graphicdesigner" text="Художнє оформлення"/>
+<gentext key="productioneditor" text="Відповідальний за випуск"/>
+<gentext key="technicaleditor" text="Технічний редактор"/>
+<gentext key="translator" text="Перекладач"/>
 
 <gentext key="listofequations" text="список формул"/>
 <gentext key="ListofEquations" text="Список формул"/>
@@ -185,22 +211,27 @@
 <gentext key="listofexamples" text="список прикладів"/>
 <gentext key="ListofFigures" text="Список ілюстрацій"/>
 <gentext key="listoffigures" text="Список ілюстрацій"/>
+<gentext key="ListofProcedures" text="Список алгоритмів"/>
+<gentext key="listofprocedures" text="список алгоритмів"/>
 <gentext key="listoftables" text="список таблиць"/>
 <gentext key="ListofTables" text="Список таблиць"/>
-<gentext key="ListofUnknown" text="Невизначений список"/>
-<gentext key="listofunknown" text="невизначений список"/>
+<gentext key="ListofUnknown" text="Список невідомих"/>
+<gentext key="listofunknown" text="список невідомих"/>
+
+<gentext key="nav-home" text="Початок"/>
 <gentext key="nav-next" text="далі"/>
 <gentext key="nav-next-sibling" text="далі за рівнем"/>
 <gentext key="nav-prev" text="назад"/>
 <gentext key="nav-prev-sibling" text="назад за рівнем"/>
-<gentext key="x-nav-next" text="далі"/>
-<gentext key="nav-home" text="Початок"/>
 <gentext key="nav-up" text="Догори"/>
+<gentext key="nav-toc" text="Зміст"/>
 
-<gentext key="sectioncalled" text="розділ з назвою"/>
+<gentext key="x-nav-next" text="далі"/>
+
 <gentext key="Draft" text="Чернетка"/>
 <gentext key="above" text="вище"/>
 <gentext key="below" text="нижче"/>
+<gentext key="sectioncalled" text="розділ з назвою"/>
 <gentext key="index symbols" text="Символи"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
@@ -517,6 +548,11 @@
 	<template name="format">d/m/Y</template>
 </context>
 
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
 <context name="datetime-full">
 	<template name="January">січня</template>
 	<template name="February">лютого</template>
@@ -567,7 +603,7 @@
 
 <letters>
 	<l i="-1"/>
-	<l i="0"/>  <!-- Russian language doesn't use division name for symbols -->
+	<l i="0"/>  
 	<l i="10">A</l>
 	<l i="10">a</l>
 	<l i="20">B</l>

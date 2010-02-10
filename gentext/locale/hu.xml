@@ -10,11 +10,17 @@
           <affiliation><address><email>tszanto@mol.hu</email></address>
           </affiliation>
   </author>
+  <author><firstname>Péter</firstname><surname>Sulyok</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>peti@fedoraproject.org</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Kivonat"/>
 <gentext key="abstract" text="kivonat"/>
+<gentext key="Acknowledgements" text="Köszönetnyilvánítás"/>
+<gentext key="acknowledgements" text="köszönetnyilvánítás"/>
 <gentext key="Answer" text="V:"/>
 <gentext key="answer" text="v:"/>
 <gentext key="Appendix" text="Függelék"/>
@@ -33,12 +39,13 @@
 <gentext key="chapter" text="fejezet"/>
 <gentext key="Colophon" text="Végszó"/>
 <gentext key="colophon" text="végszó"/>
-<gentext key="Copyright" text="Copyright"/>
-<gentext key="copyright" text="copyright"/>
+<gentext key="Copyright" text="Szerzői jog"/>
+<gentext key="copyright" text="szerzői jog"/>
 <gentext key="Dedication" text="Ajánlás"/>
 <gentext key="dedication" text="ajánlás"/>
 <gentext key="Edition" text="Kiadás"/>
 <gentext key="edition" text="kiadás"/>
+<gentext key="Editor" text="Szerkesztő"/>
 <gentext key="Equation" text="Egyenlet"/>
 <gentext key="equation" text="egyenlet"/>
 <gentext key="Example" text="Példa"/>
@@ -76,16 +83,21 @@
 <gentext key="Procedure" text="Eljárás"/>
 <gentext key="procedure" text="eljárás"/>
 <gentext key="ProductionSet" text="Elemcsoport"/>
+<gentext key="PubDate" text="Publication Date"/>
+<gentext key="pubdate" text="Publication date"/>
 <gentext key="Published" text="Megjelent"/>
 <gentext key="published" text="megjelent"/>
+<gentext key="Publisher" text="Kiadó"/>
 <gentext key="Qandadiv" text="K és V"/>
 <gentext key="qandadiv" text="K és V"/>
+<gentext key="QandASet" text="Gyakran feltett kérdések"/>
 <gentext key="Question" text="K:"/>
 <gentext key="question" text="k:"/>
-<gentext key="RefEntry" text="Bejegyzés"/>
-<gentext key="refentry" text="bejegyzés"/>
-<gentext key="Reference" text="Referencia"/>
-<gentext key="reference" text="referencia"/>
+<gentext key="RefEntry" text="Oldal"/>
+<gentext key="refentry" text="oldal"/>
+<gentext key="Reference" text="Hivatkozás"/>
+<gentext key="reference" text="hivatkozás"/>
+<gentext key="References" text="Hivatkozások"/>
 <gentext key="RefName" text="Név"/>
 <gentext key="refname" text="név"/>
 <gentext key="RefSection" text="Szakasz"/>
@@ -118,6 +130,8 @@
 <gentext key="step" text="lépés"/>
 <gentext key="Table" text="Táblázat"/>
 <gentext key="table" text="táblázat"/>
+<gentext key="task" text="feladat"/>
+<gentext key="Task" text="Feladat"/>
 <gentext key="TIP" text="TIPP"/>
 <gentext key="Tip" text="Tipp"/>
 <gentext key="tip" text="tipp"/>
@@ -126,27 +140,39 @@
 <gentext key="warning" text="figyelem"/>
 
 <gentext key="and" text="és"/>
-<gentext key="by" text=""/>
+<gentext key="by" text="írta"/>
 <gentext key="Edited" text="Szerk."/>
 <gentext key="edited" text="szerk."/>
 <gentext key="Editedby" text="Szerkesztette"/>
 <gentext key="editedby" text="szerkesztette"/>
-<gentext key="in" text=""/>
+<gentext key="in" text="in"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="notes" text="megjegyzések"/>
 <gentext key="Notes" text="Megjegyzések"/>
-<gentext key="Pgs" text="Lsz."/>
-<gentext key="pgs" text="lsz."/>
-<gentext key="Revisedby" text="Megvizsgálva"/>
-<gentext key="revisedby" text="megvizsgálva"/>
+<gentext key="Pgs" text="Old."/>
+<gentext key="pgs" text="old."/>
+<gentext key="Revisedby" text="Felülvizsgálta"/>
+<gentext key="revisedby" text="felülvizsgálta"/>
 <gentext key="TableNotes" text="Megjegyzések"/>
 <gentext key="tablenotes" text="megjegyzések"/>
 <gentext key="TableofContents" text="Tartalom"/>
 <gentext key="tableofcontents" text="tartalom"/>
 <gentext key="unexpectedelementname" text="nem várt elemnév"/>
 <gentext key="unsupported" text="nem támogatott"/>
-<gentext key="xrefto" text="keresztref"/>
+<gentext key="xrefto" text="kereszthiv"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Szerzők"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Kiadás szerkesztő"/>
+<gentext key="graphicdesigner" text="Grafikus tervező"/>
+<gentext key="productioneditor" text="Főszerkesztőr"/>
+<gentext key="technicaleditor" text="Szakszerkesztő"/>
+<gentext key="translator" text="Fordító"/>
 
 <gentext key="listofequations" text="az egyenletek listája"/>
 <gentext key="ListofEquations" text="Az egyenletek listája"/>
@@ -154,23 +180,26 @@
 <gentext key="listofexamples" text="a példák listája"/>
 <gentext key="ListofFigures" text="Az ábrák listája"/>
 <gentext key="listoffigures" text="az ábrák listája"/>
+<gentext key="ListofProcedures" text="Eljárások listája"/>
+<gentext key="listofprocedures" text="eljárások listája"/>
 <gentext key="listoftables" text="a táblázatok listája"/>
 <gentext key="ListofTables" text="A táblázatok listája"/>
 <gentext key="ListofUnknown" text="Az egyéb elemek listája"/>
 <gentext key="listofunknown" text="az egyéb elemek listája"/>
 
-<gentext key="nav-home" text="Tartalom"/>
-<gentext key="nav-next" text="Következő"/>
+<gentext key="nav-home" text="Főoldal"/>
+<gentext key="nav-next" text="Előre"/>
 <gentext key="nav-next-sibling" text="Gyors előre"/>
-<gentext key="nav-prev" text="Előző"/>
+<gentext key="nav-prev" text="Vissza"/>
 <gentext key="nav-prev-sibling" text="Gyors vissza"/>
 <gentext key="nav-up" text="Fel"/>
+<gentext key="nav-toc" text="Tartalom"/>
 
-<gentext key="sectioncalled" text="ilyen nevű szakasz:"/>
-<gentext key="Draft" text="Vázlat"/>
+<gentext key="Draft" text="Piszkozat"/>
 <gentext key="above" text="fent"/>
-<gentext key="below" text="lent"/>
-<gentext key="index symbols" text="szimbólummutató"/>
+<gentext key="below" text="alább"/>
+<gentext key="sectioncalled" text="a szakasz:"/>
+<gentext key="index symbols" text="Jelzések"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz"/>
@@ -482,8 +511,241 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">január</template>
+<template name="February">február</template>
+<template name="March">március</template>
+<template name="April">április</template>
+<template name="May">május</template>
+<template name="June">június</template>
+<template name="July">július</template>
+<template name="August">augusztus</template>
+<template name="September">szeptember</template>
+<template name="October">október</template>
+<template name="November">november</template>
+<template name="December">december</template>
+<template name="Monday">hétfő</template>
+<template name="Tuesday">kedd</template>
+<template name="Wednesday">szerda</template>
+<template name="Thursday">csütörtök</template>
+<template name="Friday">péntek</template>
+<template name="Saturday">szombat</template>
+<template name="Sunday">vasárnap</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">jan</template>
+<template name="Feb">feb</template>
+<template name="Mar">már</template>
+<template name="Apr">ápr</template>
+<template name="May">máj</template>
+<template name="Jun">jún</template>
+<template name="Jul">júl</template>
+<template name="Aug">aug</template>
+<template name="Sep">szep</template>
+<template name="Oct">okt</template>
+<template name="Nov">nov</template>
+<template name="Dec">dec</template>
+<template name="Mon">hfő</template>
+<template name="Tue">ked</template>
+<template name="Wed">sze</template>
+<template name="Thu">csü</template>
+<template name="Fri">pén</template>
+<template name="Sat">szo</template>
+<template name="Sun">vas</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x040e Hungarian</template>
 </context>
+
+<context name="htmlhelp">
+<template name="langcode">0x0409 English (UNITED STATES)</template>
+</context>
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">Jelzések</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="10">Á</l>
+  <l i="10">á</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="50">É</l>
+  <l i="50">é</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="90">Í</l>
+  <l i="90">í</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="150">Ó</l>
+  <l i="150">ó</l>
+  <l i="160">Ö</l>
+  <l i="160">ö</l>
+  <l i="160">Ő</l>
+  <l i="160">ő</l>
+  <l i="170">P</l>
+  <l i="170">p</l>
+  <l i="180">Q</l>
+  <l i="180">q</l>
+  <l i="190">R</l>
+  <l i="190">r</l>
+  <l i="200">S</l>
+  <l i="200">s</l>
+  <l i="210">T</l>
+  <l i="210">t</l>
+  <l i="220">U</l>
+  <l i="220">u</l>
+  <l i="220">Ú</l>
+  <l i="220">ú</l>
+  <l i="230">Ü</l>
+  <l i="230">ü</l>
+  <l i="230">Ű</l>
+  <l i="230">ű</l>
+  <l i="240">V</l>
+  <l i="240">v</l>
+  <l i="250">W</l>
+  <l i="250">w</l>
+  <l i="260">X</l>
+  <l i="260">x</l>
+  <l i="270">Y</l>
+  <l i="270">y</l>
+  <l i="280">Z</l>
+  <l i="280">z</l>
+</letters>
+
 
 </locale>

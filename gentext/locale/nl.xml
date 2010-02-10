@@ -10,93 +10,105 @@
           <affiliation><address><email>fouvry@coli.uni-sb.de</email></address>
           </affiliation>
   </author>
+  <author><firstname>Geert</firstname><surname>Warrink</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>geert.warrink@onsnet.nu</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
 <!-- Updated by Frederik Fouvry, fouvry@sfs.nphil.uni-tuebingen.de -->
 <gentext key="Abstract" text="Samenvatting"/>
-<gentext key="abstract" text="Samenvatting"/>
+<gentext key="abstract" text="samenvatting"/>
+<gentext key="Acknowledgements" text="Erkenning"/>
+<gentext key="acknowledgements" text="erkenning"/>
 <gentext key="Answer" text="Antwoord:"/>
-<gentext key="answer" text="Antwoord:"/>
+<gentext key="answer" text="antwoord:"/>
 <gentext key="Appendix" text="Bijlage"/>
-<gentext key="appendix" text="Bijlage"/>
+<gentext key="appendix" text="bijlage"/>
 <gentext key="Article" text="Artikel"/>
-<gentext key="article" text="Artikel"/>
+<gentext key="article" text="artikel"/>
 <gentext key="Author" text="Auteur"/>
 <gentext key="Bibliography" text="Literatuurlijst"/>
-<gentext key="bibliography" text="Literatuurlijst"/>
+<gentext key="bibliography" text="literatuurlijst"/>
 <gentext key="Book" text="Boek"/>
-<gentext key="book" text="Boek"/>
+<gentext key="book" text="boek"/>
 <gentext key="CAUTION" text="LET OP"/>
 <gentext key="Caution" text="Let op"/>
-<gentext key="caution" text="Let op"/>
+<gentext key="caution" text="let op"/>
 <gentext key="Chapter" text="Hoofdstuk"/>
 <gentext key="chapter" text="hoofdstuk"/>
 <gentext key="Colophon" text="Colofon"/>
-<gentext key="colophon" text="Colofon"/>
+<gentext key="colophon" text="colofon"/>
 <gentext key="Copyright" text="Copyright"/>
-<gentext key="copyright" text="Copyright"/>
+<gentext key="copyright" text="copyright"/>
 <gentext key="Dedication" text="Opdracht"/>
-<gentext key="dedication" text="Opdracht"/>
+<gentext key="dedication" text="opdracht"/>
 <gentext key="Edition" text="Uitgave"/>
-<gentext key="edition" text="Uitgave"/>
+<gentext key="edition" text="uitgave"/>
+<gentext key="Editor" text="Redacteur"/>
 <gentext key="Equation" text="Vergelijking"/>
-<gentext key="equation" text="Vergelijking"/>
+<gentext key="equation" text="vergelijking"/>
 <gentext key="Example" text="Voorbeeld"/>
-<gentext key="example" text="Voorbeeld"/>
-<gentext key="Figure" text="Figuur"/>
-<gentext key="figure" text="Figuur"/>
+<gentext key="example" text="voorbeeld"/>
+<gentext key="Figure" text="Afbeelding"/>
+<gentext key="figure" text="afbeelding"/>
 <gentext key="Glossary" text="Woordenlijst"/>
-<gentext key="glossary" text="Woordenlijst"/>
+<gentext key="glossary" text="woordenlijst"/>
 <gentext key="GlossSee" text="Zie"/>
-<gentext key="glosssee" text="Zie"/>
+<gentext key="glosssee" text="zie"/>
 <gentext key="GlossSeeAlso" text="Zie ook"/>
-<gentext key="glossseealso" text="Zie ook"/>
+<gentext key="glossseealso" text="zie ook"/>
 <gentext key="IMPORTANT" text="BELANGRIJK"/>
 <gentext key="Important" text="Belangrijk"/>
 <gentext key="important" text="Belangrijk"/>
 <gentext key="Index" text="Register"/>
 <gentext key="index" text="Register"/>
 <gentext key="ISBN" text="ISBN"/>
-<gentext key="isbn" text="ISBN"/>
-<gentext key="LegalNotice" text="Bericht"/>
-<gentext key="legalnotice" text="Bericht"/>
+<gentext key="isbn" text="isbn"/>
+<gentext key="LegalNotice" text="Juridische Kennisgeving"/>
+<gentext key="legalnotice" text="juridische kennisgeving"/>
 <gentext key="MsgAud" text="Doelgroep"/>
-<gentext key="msgaud" text="Doelgroep"/>
+<gentext key="msgaud" text="doelgroep"/>
 <gentext key="MsgLevel" text="Niveau"/>
-<gentext key="msglevel" text="Niveau"/>
+<gentext key="msglevel" text="niveau"/>
 <gentext key="MsgOrig" text="Herkomst"/>
-<gentext key="msgorig" text="Herkomst"/>
+<gentext key="msgorig" text="herkomst"/>
 <gentext key="NOTE" text="OPMERKING"/>
 <gentext key="Note" text="Opmerking"/>
-<gentext key="note" text="Opmerking"/>
+<gentext key="note" text="opmerking"/>
 <gentext key="Part" text="Deel"/>
-<gentext key="part" text="Deel"/>
+<gentext key="part" text="deel"/>
 <gentext key="Preface" text="Voorwoord"/>
-<gentext key="preface" text="Voorwoord"/>
+<gentext key="preface" text="voorwoord"/>
 <gentext key="Procedure" text="Procedure"/>
-<gentext key="procedure" text="Procedure"/>
-<gentext key="ProductionSet" text="Production"/> <!-- en -->
+<gentext key="procedure" text="procedure"/>
+<gentext key="ProductionSet" text="Productie"/> 
+<gentext key="PubDate" text="Publicatie Datum"/>
+<gentext key="pubdate" text="publicatie datum"/>
 <gentext key="Published" text="Uitgegeven"/>
-<gentext key="published" text="Uitgegeven"/> 
+<gentext key="published" text="uitgegeven"/> 
+<gentext key="Publisher" text="Uitgever"/>
 <gentext key="Qandadiv" text="Vraag en Antwoord"/>
-<gentext key="qandadiv" text="Vraag en Antwoord"/>
+<gentext key="qandadiv" text="vraag en antwoord"/>
+<gentext key="QandASet" text="Vaak gestelde vragen"/>
 <gentext key="Question" text="Vraag:"/>
-<gentext key="question" text="Vraag:"/>
-<gentext key="RefEntry" text="Referentielemma"/>
-<gentext key="refentry" text="Referentielemma"/>
+<gentext key="question" text="vraag:"/>
+<gentext key="RefEntry" text="Pagina"/>
+<gentext key="refentry" text="pagina"/>
 <gentext key="Reference" text="Referentie"/>
-<gentext key="reference" text="Referentie"/>
-<gentext key="RefName" text="Referentienaam"/>
-<gentext key="refname" text="Referentienaam"/>
-<gentext key="RefSection" text="Referentieparagraaf"/>
-<gentext key="refsection" text="Referentieparagraaf"/>
-<gentext key="RefSynopsisDiv" text="Referentiesamenvatting"/>
-<gentext key="refsynopsisdiv" text="Referentiesamenvatting"/>
-<gentext key="RevHistory" text="Wijzigingen"/>
-<gentext key="revhistory" text="Wijzigingen"/>
+<gentext key="reference" text="referentie"/>
+<gentext key="References" text="Referenties"/>
+<gentext key="RefName" text="Name"/>
+<gentext key="refname" text="name"/>
+<gentext key="RefSection" text="Paragraaf"/>
+<gentext key="refsection" text="paragraaf"/>
+<gentext key="RefSynopsisDiv" text="Samenvatting"/>
+<gentext key="refsynopsisdiv" text="samenvatting"/>
+<gentext key="RevHistory" text="Wijzigingsgwschiedenis"/>
+<gentext key="revhistory" text="wijzigingsgwschiedenis"/>
 <gentext key="Revision" text="Herziening"/>
-<gentext key="revision" text="Herziening"/>
+<gentext key="revision" text="herziening"/>
 <gentext key="sect1" text="Paragraaf"/>
 <gentext key="sect2" text="Paragraaf"/>
 <gentext key="sect3" text="Paragraaf"/>
@@ -105,74 +117,92 @@
 <gentext key="Section" text="Paragraaf"/>
 <gentext key="section" text="paragraaf"/>
 <gentext key="See" text="Zie"/>
-<gentext key="see" text="Zie"/>
+<gentext key="see" text="zie"/>
 <gentext key="SeeAlso" text="Zie ook"/>
 <gentext key="Seealso" text="Zie ook"/>
-<gentext key="seealso" text="Zie ook"/>
+<gentext key="seealso" text="zie ook"/>
 <gentext key="Set" text="Verzameling"/>
-<gentext key="set" text="Verzameling"/>
+<gentext key="set" text="verzameling"/>
 <gentext key="SetIndex" text="Hoofdregister"/>
-<gentext key="setindex" text="Hoofdregister"/>
-<gentext key="Sidebar" text="Excursie"/>
-<gentext key="sidebar" text="excursie"/>
+<gentext key="setindex" text="hoofdregister"/>
+<gentext key="Sidebar" text="Zijbalk"/>
+<gentext key="sidebar" text="zijbalk"/>
 <gentext key="Step" text="Stap"/>
 <gentext key="step" text="stap"/>
 <gentext key="Table" text="Tabel"/>
-<gentext key="table" text="Tabel"/>
+<gentext key="table" text="tabel"/>
+<gentext key="task" text="taak"/>
+<gentext key="Task" text="Taak"/>
 <gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
-<gentext key="tip" text="Tip"/>
+<gentext key="tip" text="tip"/>
 <gentext key="WARNING" text="WAARSCHUWING"/>
 <gentext key="Warning" text="Waarschuwing"/>
-<gentext key="warning" text="Waarschuwing"/>
+<gentext key="warning" text="waarschuwing"/>
 
 <gentext key="and" text="en"/>
 <gentext key="by" text="door"/>
 <gentext key="Edited" text="Redactie"/>
-<gentext key="edited" text="Redactie"/>
-<gentext key="Editedby" text="Redactie door"/>
-<gentext key="editedby" text="Redactie door"/>
+<gentext key="edited" text="redactie"/>
+<gentext key="Editedby" text="Onder redactie van"/>
+<gentext key="editedby" text="onder redactie van"/>
 <gentext key="in" text="in"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="notes" text="Noten"/>
-<gentext key="Notes" text="Noten"/>
-<gentext key="Pgs" text="blz."/>
+<gentext key="notes" text="opmerkingen"/>
+<gentext key="Notes" text="Opmerkingen"/>
+<gentext key="Pgs" text="Blz."/>
 <gentext key="pgs" text="blz."/>
 <gentext key="Revisedby" text="Herzien door: "/>
 <gentext key="revisedby" text="Herzien door: "/>
 <gentext key="TableNotes" text="Opmerkingen"/>
-<gentext key="tablenotes" text="Opmerkingen"/>
+<gentext key="tablenotes" text="opmerkingen"/>
 <gentext key="TableofContents" text="Inhoudsopgave"/>
-<gentext key="tableofcontents" text="Inhoudsopgave"/>
-<gentext key="unexpectedelementname" text="ONVERWACHT-ELEMENT"/>
+<gentext key="tableofcontents" text="inhoudsopgave"/>
+<gentext key="unexpectedelementname" text="Onverwacht onderdeelsnaam"/>
 <gentext key="unsupported" text="niet ondersteund"/>
 <gentext key="xrefto" text="verwijzing naar"/>
 
-<gentext key="listofequations" text="Lijst van vergelijkingen"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Auteurs"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Copy Redacteur"/>
+<gentext key="graphicdesigner" text="Grafisch ontwerper"/>
+<gentext key="productioneditor" text="Productie redacteur"/>
+<gentext key="technicaleditor" text="Technische redacteur"/>
+<gentext key="translator" text="Vertaler"/>
+
+<gentext key="listofequations" text="lijst van vergelijkingen"/>
 <gentext key="ListofEquations" text="Lijst van vergelijkingen"/>
 <gentext key="ListofExamples" text="Lijst van voorbeelden"/>
-<gentext key="listofexamples" text="Lijst van voorbeelden"/>
-<gentext key="ListofFigures" text="Lijst van figuren"/>
-<gentext key="listoffigures" text="Lijst van figuren"/>
-<gentext key="listoftables" text="Lijst van tabellen"/>
+<gentext key="listofexamples" text="lijst van voorbeelden"/>
+<gentext key="ListofFigures" text="Lijst van afbeeldingen"/>
+<gentext key="listoffigures" text="lijst van afbeeldingen"/>
+<gentext key="ListofProcedures" text="Lijst van procedures"/>
+<gentext key="listofprocedures" text="lijst van procedures"/>
+<gentext key="listoftables" text="lijst van tabellen"/>
 <gentext key="ListofTables" text="Lijst van tabellen"/>
-<gentext key="ListofUnknown" text="Lijst van ???"/>
-<gentext key="listofunknown" text="Lijst van ???"/>
+<gentext key="ListofUnknown" text="Lijst van onbekenden"/>
+<gentext key="listofunknown" text="lijst van onbekenden"/>
 
 <gentext key="nav-home" text="Begin"/>
 <gentext key="nav-next" text="Volgende"/>
-<gentext key="nav-next-sibling" text="Verder vooruit"/>
+<gentext key="nav-next-sibling" text="Snel vooruit"/>
 <gentext key="nav-prev" text="Terug"/>
-<gentext key="nav-prev-sibling" text="Verder terug"/>
+<gentext key="nav-prev-sibling" text="Snel terug"/>
 <gentext key="nav-up" text="Omhoog"/>
+<gentext key="nav-toc" text="Inhoudsopgave"/>
 
-<gentext key="Draft"         text="Ontwerp"/>
-<gentext key="above"         text="boven"/>
-<gentext key="below"         text="onder"/>
+<gentext key="Draft" text="Ontwerp"/>
+<gentext key="above" text="boven"/>
+<gentext key="below" text="onder"/>
+<gentext key="sectioncalled" text="de paragraaf met de naam"/>
 <gentext key="index symbols" text="Symbolen"/>
 <gentext key="writing-mode" text="lr-tb"/>
-<gentext key="sectioncalled"       text="de paragraaf"/>
+
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzëïé"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZËÏÉ"/>
@@ -483,8 +513,219 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">januari</template>
+<template name="February">februari</template>
+<template name="March">maart</template>
+<template name="April">april</template>
+<template name="May">mei</template>
+<template name="June">juni</template>
+<template name="July">juli</template>
+<template name="August">augustus</template>
+<template name="September">september</template>
+<template name="October">october</template>
+<template name="November">november</template>
+<template name="December">december</template>
+<template name="Monday">maandag</template>
+<template name="Tuesday">dinsdag</template>
+<template name="Wednesday">woensdag</template>
+<template name="Thursday">donderdag</template>
+<template name="Friday">vrijdag</template>
+<template name="Saturday">zaterdag</template>
+<template name="Sunday">zondag</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">jan</template>
+<template name="Feb">feb</template>
+<template name="Mar">maa</template>
+<template name="Apr">apr</template>
+<template name="May">mei</template>
+<template name="Jun">jun</template>
+<template name="Jul">jul</template>
+<template name="Aug">aug</template>
+<template name="Sep">sep</template>
+<template name="Oct">oct</template>
+<template name="Nov">nov</template>
+<template name="Dec">dec</template>
+<template name="Mon">maa</template>
+<template name="Tue">din</template>
+<template name="Wed">woe</template>
+<template name="Thu">don</template>
+<template name="Fri">vrij</template>
+<template name="Sat">zat</template>
+<template name="Sun">zon</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x0413 Dutch</template>
 </context>
+
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">Symbolen</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="170">Q</l>
+  <l i="170">q</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="230">W</l>
+  <l i="230">w</l>
+  <l i="240">X</l>
+  <l i="240">x</l>
+  <l i="250">Y</l>
+  <l i="250">y</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+</letters>
 
 </locale>
