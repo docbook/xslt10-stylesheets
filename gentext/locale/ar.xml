@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='iso-8859-6'?>
+<?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="ar"
         english-language-name="Arabic"
@@ -10,17 +10,24 @@
           <affiliation><address><email>visualmind@php.net</email></address>
           </affiliation>
   </author>
+  <author><firstname>Muayyad</firstname><surname>Alsadi</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>muayyad.alsadi@ojuba.org</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="خلاصة"/>
 <gentext key="abstract" text="خلاصة"/>
+<gentext key="Acknowledgements" text="عرفان"/>
+<gentext key="acknowledgements" text="عرفان"/>
 <gentext key="Answer" text="ج:"/>
 <gentext key="answer" text="ج:"/>
 <gentext key="Appendix" text="ملحق"/>
 <gentext key="appendix" text="ملحق"/>
 <gentext key="Article" text="مقال"/>
 <gentext key="article" text="مقال"/>
+<gentext key="Author" text="مؤلف"/>
 <gentext key="Bibliography" text="قائمة المراجع"/>
 <gentext key="bibliography" text="قائمة المراجع"/>
 <gentext key="Book" text="كتاب"/>
@@ -38,6 +45,7 @@
 <gentext key="dedication" text="إهداء"/>
 <gentext key="Edition" text="نسخة"/>
 <gentext key="edition" text="نسخة"/>
+<gentext key="Editor" text="محرر"/>
 <gentext key="Equation" text="معادلة"/>
 <gentext key="equation" text="معادلة"/>
 <gentext key="Example" text="مثال"/>
@@ -75,20 +83,24 @@
 <gentext key="Procedure" text="إجراء"/>
 <gentext key="procedure" text="إجراء"/>
 <gentext key="ProductionSet" text="منتج"/>
+<gentext key="PubDate" text="تاريخ النشر"/>
+<gentext key="pubdate" text="تاريخ النشر"/>
 <gentext key="Published" text="منشور"/>
 <gentext key="published" text="منشور"/>
+<gentext key="Publisher" text="الناشر"/>
 <gentext key="Qandadiv" text="س و ج"/>
 <gentext key="qandadiv" text="س و ج"/>
 <gentext key="Question" text="س:"/>
 <gentext key="question" text="س:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="صفحة"/>
+<gentext key="refentry" text="صفحة"/>
 <gentext key="Reference" text="مرجع"/>
 <gentext key="reference" text="مرجع"/>
+<gentext key="References" text="مراجع"/>
 <gentext key="RefName" text="الاسم"/>
 <gentext key="refname" text="الاسم"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="قسم"/>
+<gentext key="refsection" text="قسم"/>
 <gentext key="RefSynopsisDiv" text="المختصر"/>
 <gentext key="refsynopsisdiv" text="المختصر"/>
 <gentext key="RevHistory" text="تاريخ المراجعة"/>
@@ -102,8 +114,11 @@
 <gentext key="sect5" text="قسم"/>
 <gentext key="section" text="قسم"/>
 <gentext key="Section" text="قسم"/>
-<gentext key="see" text="استعرض"/>             <!-- uncapitalized -->
-<gentext key="seealso" text="استعرض أيضاً"/>    <!-- uncapitalized -->
+<gentext key="see" text="استعرض"/> 
+<gentext key="See" text="استعرض"/> 
+<gentext key="seealso" text="استعرض أيضاً"/> 
+<gentext key="Seealso" text="استعرض أيضاً"/> 
+<gentext key="SeeAlso" text="استعرض أيضاً"/> 
 <gentext key="set" text="مجموعة"/>
 <gentext key="Set" text="مجموعة"/>
 <gentext key="setindex" text="فهرس المجموعة"/>
@@ -114,6 +129,8 @@
 <gentext key="Step" text="خطوة"/>
 <gentext key="Table" text="جدول"/>
 <gentext key="table" text="جدول"/>
+<gentext key="task" text="مَهمة"/>
+<gentext key="Task" text="مَهمة"/>
 <gentext key="tip" text="فكرة مفيدة"/>
 <gentext key="TIP" text="فكرة مفيدة"/>
 <gentext key="Tip" text="فكرة مفيدة"/>
@@ -143,6 +160,18 @@
 <gentext key="unexpectedelementname" text="اسم عنصر غير متوقع"/>
 <gentext key="unsupported" text="غير مدعوم"/>
 <gentext key="xrefto" text="إشارة إلى"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="مؤلفون"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="محرر النسخة"/>
+<gentext key="graphicdesigner" text="مصمم جرافيكي"/>
+<gentext key="productioneditor" text="محرر إنتاج"/>
+<gentext key="technicaleditor" text="محرر فني"/>
+<gentext key="translator" text="مترجم"/>
 
 <gentext key="listofequations" text="قائمة المعادلات"/>
 <gentext key="ListofEquations" text="قائمة المعادلات"/>
@@ -538,3 +567,4 @@
 </context>
 
 </locale>
+ 

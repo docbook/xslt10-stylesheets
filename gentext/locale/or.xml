@@ -10,11 +10,17 @@
           <affiliation><address><email>gora_mohanty@yahoo.co.in</email></address>
           </affiliation>
   </author>
+  <author><firstname>Manoj Kumar</firstname><surname>Giri</surname>
+          <affiliation><orgname>Red Hat, Inc.</orgname><address><email>mgiri@redhat.com</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="ସାରାଂଶ"/>
 <gentext key="abstract" text="ସାରାଂଶ"/>
+<gentext key="Acknowledgements" text="ପ୍ରାପ୍ତି ସୂଚନା"/>
+<gentext key="acknowledgements" text="ପ୍ରାପ୍ତି ସୂଚନା"/>
 <gentext key="Answer" text="ଉ:"/>
 <gentext key="answer" text="ଉ:"/>
 <gentext key="Appendix" text="ପରିଶିଷ୍ଠ"/>
@@ -39,6 +45,7 @@
 <gentext key="dedication" text="ସମର୍ପଣ"/>
 <gentext key="Edition" text="ସଂସକରଣ"/>
 <gentext key="edition" text="ସଂସକରଣ"/>
+<gentext key="Editor" text="ସମ୍ପାଦକ"/>
 <gentext key="Equation" text="ସମୀକରଣ"/>
 <gentext key="equation" text="ସମୀକରଣ"/>
 <gentext key="Example" text="ଉଦାହରଣ"/>
@@ -80,18 +87,21 @@
 <gentext key="pubdate" text="ପ୍ରକାଶନ ତାରୀଖ"/>
 <gentext key="Published" text="ପ୍ରକାଶିତ"/>
 <gentext key="published" text="ପ୍ରକାଶିତ"/>
+<gentext key="Publisher" text="ପ୍ରକାଶକ"/>
 <gentext key="Qandadiv" text="ପ୍ର &amp; ଉ"/>
 <gentext key="qandadiv" text="ପ୍ର &amp; ଉ"/>
+<gentext key="QandASet" text="ବାରମ୍ବାର ପଚରାଯାଉଥିବା ପ୍ରଶ୍ନଗୁଡ଼ିକ"/>
 <gentext key="Question" text="ପ୍ର:"/>
 <gentext key="question" text="ପ୍ର:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="ପୃଷ୍ଠା"/>
+<gentext key="refentry" text="ପୃଷ୍ଠା"/>
 <gentext key="Reference" text="ସନ୍ଦର୍ଭ"/>
 <gentext key="reference" text="ସନ୍ଦର୍ଭ"/>
+<gentext key="References" text="ସନ୍ଦର୍ଭ"/>
 <gentext key="RefName" text="ନାମ"/>
 <gentext key="refname" text="ନାମ"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="ଅଂଶ"/>
+<gentext key="refsection" text="ଅଂଶ"/>
 <gentext key="RefSynopsisDiv" text="ସାରାଂଶ"/>
 <gentext key="refsynopsisdiv" text="ସାରାଂଶ"/>
 <gentext key="RevHistory" text="ସଂଶୋଧନ ଇତିହାସ"/>
@@ -105,9 +115,9 @@
 <gentext key="sect5" text="ଅଂଶ"/>
 <gentext key="section" text="ଅଂଶ"/>
 <gentext key="Section" text="ଅଂଶ"/>
-<gentext key="see" text="ଦେଖନ୍ତୁ"/>             <!-- uncapitalized -->
+<gentext key="see" text="ଦେଖନ୍ତୁ"/>
 <gentext key="See" text="ଦେଖନ୍ତୁ"/>
-<gentext key="seealso" text="ଏହା ଭି ଦେଖନ୍ତୁ"/>    <!-- uncapitalized -->
+<gentext key="seealso" text="ଏହା ଭି ଦେଖନ୍ତୁ"/>
 <gentext key="Seealso" text="ଏହା ଭି ଦେଖନ୍ତୁ"/>
 <gentext key="SeeAlso" text="ଏହା ଭି ଦେଖନ୍ତୁ"/>
 <gentext key="set" text="ବିନ୍ଯାସ କରନ୍ତୁ"/>
@@ -120,6 +130,8 @@
 <gentext key="Step" text="ପଦକ୍ଷେପ"/>
 <gentext key="Table" text="ସାରଣୀ"/>
 <gentext key="table" text="ସାରଣୀ"/>
+<gentext key="task" text="କାର୍ଯ୍ୟସୂଚୀ"/>
+<gentext key="Task" text="କାର୍ଯ୍ୟସୂଚୀ"/>
 <gentext key="tip" text="ସଂକେତ"/>
 <gentext key="TIP" text="ସଂକେତ"/>
 <gentext key="Tip" text="ସଂକେତ"/>
@@ -129,7 +141,6 @@
 
 <gentext key="and" text="ଓ"/>
 <gentext key="by" text="ଦ୍ବାରା"/>
-<gentext key="called" text="ଡକାଯାଇଥିବା"/>
 <gentext key="Edited" text="ସମ୍ପାଦିତ"/>
 <gentext key="edited" text="ସମ୍ପାଦିତ"/>
 <gentext key="Editedby" text="ଦ୍ବାରା ସମ୍ପାଦିତ"/>
@@ -147,10 +158,21 @@
 <gentext key="tablenotes" text="ଟୀକା"/>
 <gentext key="TableofContents" text="ସୂଚୀପତ୍ର"/>
 <gentext key="tableofcontents" text="ସୂଚୀପତ୍ର"/>
-<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="ଅପ୍ରତ୍ଯାଶିତ ଉପାଦାନ ନାମ"/>
 <gentext key="unsupported" text="ଅସହାୟକ"/>
 <gentext key="xrefto" text="ସହିତ ପ୍ରାସଙ୍ଗିକ ସନ୍ଦର୍ଭ କରନ୍ତୁ"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="ଲେଖକ"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="ନକଲ ସମ୍ପାଦକ"/>
+<gentext key="graphicdesigner" text="ଆଲେଖୀ ରଚନାକାରୀ"/>
+<gentext key="productioneditor" text="ଉତ୍ପାଦନ ସମ୍ପାଦକ"/>
+<gentext key="technicaleditor" text="ଯାନ୍ତ୍ରିକ ସମ୍ପାଦକ"/>
+<gentext key="translator" text="ଅନୁବାଦକ"/>
 
 <gentext key="listofequations" text="ସମୀକରଣ ତାଲିକା"/>
 <gentext key="ListofEquations" text="ସମୀକରଣ ତାଲିକା"/>
@@ -568,12 +590,12 @@
 </context>
 
 <context name="htmlhelp">
-<template name="langcode">0x0409 English (UNITED STATES)</template>
+<template name="langcode">0x0448 Oriya</template>
 </context>
 
 <letters>
   <l i="-1"/>
-  <l i="0">Symbols</l>
+  <l i="0">ପ୍ରତୀକ</l>
   <l i="10">A</l>
   <l i="10">a</l>
   <l i="10">&#x00C0;</l>

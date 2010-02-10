@@ -11,6 +11,12 @@
           </affiliation>
   </author>
 </authorgroup>
+<authorgroup>
+  <author><firstname>Héctor Daniel</firstname><surname>Cabrera</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>h.daniel.cabrera@gmail.com</email></address>
+          </affiliation>
+  </author>
+</authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Resumen"/>
@@ -83,12 +89,14 @@
 <gentext key="pubdate" text="fecha de publicación"/>
 <gentext key="Published" text="Publicado"/>
 <gentext key="published" text="publicado"/>
+<gentext key="Publisher" text="Editor"/>
 <gentext key="Qandadiv" text="P y R"/>
 <gentext key="qandadiv" text="P y R"/>
+<gentext key="QandASet" text="Preguntas más frecuentes"/>
 <gentext key="Question" text="P:"/>
 <gentext key="question" text="p:"/>
-<gentext key="RefEntry" text="Entrada de referencia"/>
-<gentext key="refentry" text="entrada de referencia"/>
+<gentext key="RefEntry" text="Página"/>
+<gentext key="refentry" text="página"/>
 <gentext key="Reference" text="Referencia"/>
 <gentext key="reference" text="referencia"/>
 <gentext key="References" text="Referencias"/>
@@ -124,10 +132,11 @@
 <gentext key="step" text="paso"/>
 <gentext key="Table" text="Tabla"/>
 <gentext key="table" text="tabla"/>
+<gentext key="task" text="tarea"/>
+<gentext key="Task" text="Tarea"/>
 <gentext key="TIP" text="SUGERENCIA"/>
 <gentext key="Tip" text="Sugerencia"/>
 <gentext key="tip" text="sugerencia"/>
-<gentext key="translator" text="traductor"/>
 <gentext key="WARNING" text="AVISO"/>
 <gentext key="Warning" text="Aviso"/>
 <gentext key="warning" text="aviso"/>
@@ -155,12 +164,26 @@
 <gentext key="unsupported" text="no soportado"/>
 <gentext key="xrefto" text="referencia a"/>
 
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Autores"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Editor de copiado"/>
+<gentext key="graphicdesigner" text="Diseñador gráfico"/>
+<gentext key="productioneditor" text="Editor de producción"/>
+<gentext key="technicaleditor" text="Editor técnico"/>
+<gentext key="translator" text="Traductor"/>
+
 <gentext key="listofequations" text="lista de ecuaciones"/>
 <gentext key="ListofEquations" text="Lista de ecuaciones"/>
 <gentext key="ListofExamples" text="Lista de ejemplos"/>
 <gentext key="listofexamples" text="lista de ejemplos"/>
 <gentext key="ListofFigures" text="Lista de figuras"/>
 <gentext key="listoffigures" text="lista de figuras"/>
+<gentext key="ListofProcedures" text="Lista de procedimientos"/>
+<gentext key="listofprocedures" text="lista de procedimientos"/>
 <gentext key="listoftables" text="lista de tablas"/>
 <gentext key="ListofTables" text="Lista de tablas"/>
 <gentext key="ListofUnknown" text="Lista de desconocido"/>
@@ -172,13 +195,14 @@
 <gentext key="nav-prev" text="Anterior"/>
 <gentext key="nav-prev-sibling" text="Retroceder"/>
 <gentext key="nav-up" text="Subir"/>
+<gentext key="nav-toc" text="TdC"/>
 
-<gentext key="index symbols" text="Símbolos"/>
-<gentext key="writing-mode" text="lr-tb"/>
 <gentext key="Draft" text="Borrador"/>
 <gentext key="above" text="arriba"/>
 <gentext key="below" text="abajo"/>
 <gentext key="sectioncalled" text="sección llamada"/>
+<gentext key="index symbols" text="Símbolos"/>
+<gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzáéíóúñ"/> 
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÁÉÍÓÚÑ"/>
@@ -487,6 +511,59 @@
 <template name="MsgAud"><MsgAud/>: </template>
 <template name="MsgLevel"><MsgLevel/>: </template>
 <template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">Enero</template>
+<template name="February">Febrero</template>
+<template name="March">Marzo</template>
+<template name="April">Abril</template>
+<template name="May">Mayo</template>
+<template name="June">Junio</template>
+<template name="July">Julio</template>
+<template name="August">Agosto</template>
+<template name="September">Septiembre</template>
+<template name="October">Octubre</template>
+<template name="November">Noviembre</template>
+<template name="December">Diciembre</template>
+<template name="Monday">Lunes</template>
+<template name="Tuesday">Martes</template>
+<template name="Wednesday">Miércoles</template>
+<template name="Thursday">Jueves</template>
+<template name="Friday">Viernes</template>
+<template name="Saturday">Sábado</template>
+<template name="Sunday">Domingo</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">Ene</template>
+<template name="Feb">Feb</template>
+<template name="Mar">Mar</template>
+<template name="Abr">Apr</template>
+<template name="May">May</template>
+<template name="Jun">Jun</template>
+<template name="Jul">Jul</template>
+<template name="Aug">Ago</template>
+<template name="Sep">Sep</template>
+<template name="Oct">Oct</template>
+<template name="Nov">Nov</template>
+<template name="Dec">Dic</template>
+<template name="Mon">Lun</template>
+<template name="Tue">Mar</template>
+<template name="Wed">Mie</template>
+<template name="Thu">Jue</template>
+<template name="Fri">Vie</template>
+<template name="Sat">Sab</template>
+<template name="Sun">Dom</template>
 </context>
 
 <context name="htmlhelp">

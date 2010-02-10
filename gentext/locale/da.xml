@@ -6,7 +6,7 @@
 
 <doc:localeinfo xmlns="">
 <authorgroup>
-  <author><firstname>Erik</firstname><surname>Kj&#xE6;r Pedersen</surname>
+  <author><firstname>Erik</firstname><surname>Kjær Pedersen</surname>
           <affiliation><address><email>erik@binghamton.edu</email></address>
           </affiliation>
   </author>
@@ -14,13 +14,19 @@
           <affiliation><address><email>js@ddre.dk</email></address>
 	  </affiliation>
   </author>
+  <author><firstname>Kris</firstname><surname>Thomsen</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>lakristho@gmail.com</email></address>
+	  </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Resum&#xE9;"/>
-<gentext key="abstract" text="resum&#xE9;"/>
-<gentext key="Answer" text="Svar"/>
-<gentext key="answer" text="svar"/>
+<gentext key="Abstract" text="Resumé"/>
+<gentext key="abstract" text="resumé"/>
+<gentext key="Acknowledgements" text="Erkendelser"/>
+<gentext key="acknowledgements" text="erkendelser"/>
+<gentext key="Answer" text="Svar:"/>
+<gentext key="answer" text="svar:"/>
 <gentext key="Appendix" text="Appendiks"/>
 <gentext key="appendix" text="appendiks"/>
 <gentext key="Article" text="Artikel"/>
@@ -30,9 +36,9 @@
 <gentext key="bibliography" text="litteraturliste"/>
 <gentext key="Book" text="Bog"/>
 <gentext key="book" text="bog"/>
-<gentext key="CAUTION" text="PAS P&#xC5;"/>
-<gentext key="Caution" text="Pas p&#xE5;"/>
-<gentext key="caution" text="pas p&#xE5;"/>
+<gentext key="CAUTION" text="PAS PÅ"/>
+<gentext key="Caution" text="Pas på"/>
+<gentext key="caution" text="pas på"/>
 <gentext key="Chapter" text="Kapitel"/>
 <gentext key="chapter" text="kapitel"/>
 <gentext key="Colophon" text="Kolofon"/>
@@ -43,6 +49,7 @@
 <gentext key="dedication" text="tilegnet"/>
 <gentext key="Edition" text="Udgave"/>
 <gentext key="edition" text="udgave"/>
+<gentext key="Editor" text="Redaktør"/>
 <gentext key="Equation" text="Ligning"/>
 <gentext key="equation" text="ligning"/>
 <gentext key="Example" text="Eksempel"/>
@@ -53,8 +60,8 @@
 <gentext key="glossary" text="ordliste"/>
 <gentext key="GlossSee" text="Se"/>
 <gentext key="glosssee" text="se"/>
-<gentext key="GlossSeeAlso" text="Se ogs&#xE5;"/>
-<gentext key="glossseealso" text="se ogs&#xE5;"/>
+<gentext key="GlossSeeAlso" text="Se også"/>
+<gentext key="glossseealso" text="se også"/>
 <gentext key="IMPORTANT" text="VIGTIGT"/>
 <gentext key="Important" text="Vigtigt"/>
 <gentext key="important" text="vigtigt"/>
@@ -64,15 +71,15 @@
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Retslig note"/>
 <gentext key="legalnotice" text="retslig note"/>
-<gentext key="MsgAud" text="M&#xE5;lgruppe"/>
-<gentext key="msgaud" text="m&#xE5;lgruppe"/>
+<gentext key="MsgAud" text="Målgruppe"/>
+<gentext key="msgaud" text="målgruppe"/>
 <gentext key="MsgLevel" text="Niveau"/>
 <gentext key="msglevel" text="niveau"/>
 <gentext key="MsgOrig" text="Grundlag"/>
 <gentext key="msgorig" text="grundlag"/>
-<gentext key="NOTE" text="BEM&#xC6;RK"/>
-<gentext key="Note" text="Bem&#xE6;rk"/>
-<gentext key="note" text="bem&#xE6;rk"/>
+<gentext key="NOTE" text="BEMÆRK"/>
+<gentext key="Note" text="Bemærk"/>
+<gentext key="note" text="bemærk"/>
 <gentext key="Part" text="Del"/>
 <gentext key="part" text="del"/>
 <gentext key="Preface" text="Forord"/>
@@ -80,16 +87,21 @@
 <gentext key="Procedure" text="Procedure"/>
 <gentext key="procedure" text="procedure"/>
 <gentext key="ProductionSet" text="Produktion"/>
+<gentext key="PubDate" text="Udgivelsesdato"/>
+<gentext key="pubdate" text="udgivelsesdato"/>
 <gentext key="Published" text="Udgivet"/>
 <gentext key="published" text="udgivet"/>
-<gentext key="Qandadiv" text="Sp&#xF8;rgsm&#xE5;l og Svar"/>
-<gentext key="qandadiv" text="Sp&#xF8;rgsm&#xE5;l og Svar"/>
-<gentext key="Question" text="Sp&#xF8;rgsm&#xE5;l"/>
-<gentext key="question" text="sp&#xF8;rgsm&#xE5;l"/>
-<gentext key="RefEntry" text="Punkt"/>
-<gentext key="refentry" text="punkt"/>
+<gentext key="Publisher" text="Udgiver"/>
+<gentext key="Qandadiv" text="Spørgsmål og Svar"/>
+<gentext key="qandadiv" text="Spørgsmål og Svar"/>
+<gentext key="QandASet" text="Ofte stillede spørgsmål"/>
+<gentext key="Question" text="Spørgsmål:"/>
+<gentext key="question" text="spørgsmål:"/>
+<gentext key="RefEntry" text="Side"/>
+<gentext key="refentry" text="side"/>
 <gentext key="Reference" text="Henvisning"/>
 <gentext key="reference" text="henvisning"/>
+<gentext key="References" text="Henvisninger"/>
 <gentext key="RefName" text="Navn"/>
 <gentext key="refname" text="navn"/>
 <gentext key="RefSection" text="Afsnit"/>
@@ -109,19 +121,21 @@
 <gentext key="Section" text="Afsnit"/>
 <gentext key="See" text="Se"/>
 <gentext key="see" text="se"/>
-<gentext key="SeeAlso" text="Se ogs&#xE5;"/>
-<gentext key="seealso" text="se ogs&#xE5;"/>
-<gentext key="Seealso" text="Se ogs&#xE5;"/>
-<gentext key="set" text="s&#xE6;t"/>
-<gentext key="Set" text="S&#xE6;t"/>
-<gentext key="setindex" text="s&#xE6;t indeks"/>
-<gentext key="SetIndex" text="S&#xE6;t indeks"/>
-<gentext key="Sidebar" text="Sidebj&#xE6;lke"/>
-<gentext key="sidebar" text="sidebj&#xE6;lke"/>
+<gentext key="SeeAlso" text="Se Også"/>
+<gentext key="seealso" text="se også"/>
+<gentext key="Seealso" text="Se også"/>
+<gentext key="set" text="sæt"/>
+<gentext key="Set" text="Sæt"/>
+<gentext key="setindex" text="sæt indeks"/>
+<gentext key="SetIndex" text="Sæt indeks"/>
+<gentext key="Sidebar" text="Sidebjælke"/>
+<gentext key="sidebar" text="sidebjælke"/>
 <gentext key="step" text="trin"/>
 <gentext key="Step" text="Trin"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="tabel"/>
+<gentext key="task" text="opgave"/>
+<gentext key="Task" text="Opgave"/>
 <gentext key="tip" text="vink"/>
 <gentext key="TIP" text="VINK"/>
 <gentext key="Tip" text="Vink"/>
@@ -138,8 +152,8 @@
 <gentext key="in" text="i"/>
 <gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=", "/>
-<gentext key="notes" text="slutbem&#xE6;rkning:"/>
-<gentext key="Notes" text="Slutbem&#xE6;rkning:"/>
+<gentext key="notes" text="slutbemærkning:"/>
+<gentext key="Notes" text="Slutbemærkning:"/>
 <gentext key="Pgs" text="Siderne"/>
 <gentext key="pgs" text="siderne"/>
 <gentext key="Revisedby" text="Revideret af: "/>
@@ -149,8 +163,20 @@
 <gentext key="TableofContents" text="Indholdsfortegnelse"/>
 <gentext key="tableofcontents" text="indholdsfortegnelse"/>
 <gentext key="unexpectedelementname" text="uventet elementnavn"/>
-<gentext key="unsupported" text="ikke underst&#xF8;ttet"/>
+<gentext key="unsupported" text="ikke understøttet"/>
 <gentext key="xrefto" text="krydshenvisning til"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Forfattere"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Kopieringsredaktør"/>
+<gentext key="graphicdesigner" text="Grafisk designer"/>
+<gentext key="productioneditor" text="Produktionsredaktør"/>
+<gentext key="technicaleditor" text="Tekniskredaktør"/>
+<gentext key="translator" text="Oversætter"/>
 
 <gentext key="listofequations" text="ligningsliste"/>
 <gentext key="ListofEquations" text="Ligningsliste"/>
@@ -158,29 +184,30 @@
 <gentext key="listofexamples" text="eksempelliste"/>
 <gentext key="ListofFigures" text="Figurliste"/>
 <gentext key="listoffigures" text="figurliste"/>
+<gentext key="ListofProcedures" text="Procedureliste"/>
+<gentext key="listofprocedures" text="lrocedureliste"/>
 <gentext key="listoftables" text="tabelliste"/>
 <gentext key="ListofTables" text="Tabelliste"/>
 <gentext key="ListofUnknown" text="Liste over ukendte"/>
 <gentext key="listofunknown" text="liste over ukendte"/>
 
 <gentext key="nav-home" text="hjem"/>
-<gentext key="nav-next" text="n&#xE6;ste"/>
+<gentext key="nav-next" text="næste"/>
 <gentext key="nav-next-sibling" text="hurtigt fremad"/>
 <gentext key="nav-prev" text="forrige"/>
 <gentext key="nav-prev-sibling" text="hurtigt tilbage"/>
 <gentext key="nav-up" text="op"/>
+<gentext key="nav-toc" text="Indholdsfortegnelse"/>
 
-<gentext key="Draft"         text="Kladde"/>
-<gentext key="above"         text="over"/>
-<gentext key="below"         text="under"/>
-<gentext key="sectioncalled"       text="afsnittet der hedder"/>
-<gentext key="index symbols"            text="symboler"/>
+<gentext key="Draft" text="Kladde"/>
+<gentext key="above" text="over"/>
+<gentext key="below" text="under"/>
+<gentext key="sectioncalled" text="afsnittet der hedder"/>
+<gentext key="index symbols" text="symboler"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha"
- text="abcdefghijklmnopqrstuvwxyz&#xE6;&#xF8;&#xE5;"/>
-<gentext key="uppercase.alpha"
- text="ABCDEFGHIJKLMNOPQRSTUVWXYZ&#xC6;&#xD8;&#xC5;"/>
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzæøå"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
@@ -497,6 +524,11 @@
 <template name="format">d/m/Y</template>
 </context>
 
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
 <context name="datetime-full">
 <template name="January">Januar</template>
 <template name="February">Februar</template>
@@ -515,8 +547,8 @@
 <template name="Wednesday">Onsdag</template>
 <template name="Thursday">Torsdag</template>
 <template name="Friday">Fredag</template>
-<template name="Saturday">L&#xF8;rdag</template>
-<template name="Sunday">S&#xF8;ndag</template>
+<template name="Saturday">Lørdag</template>
+<template name="Sunday">Søndag</template>
 </context>
 
 <context name="datetime-abbrev">
@@ -537,12 +569,112 @@
 <template name="Wed">ins</template>
 <template name="Thu">Tor</template>
 <template name="Fri">Fre</template>
-<template name="Sat">L&#xF8;r</template>
-<template name="Sun">S&#xF8;n</template>
+<template name="Sat">Lør</template>
+<template name="Sun">Søn</template>
 </context>
 
 <context name="htmlhelp">
 <template name="langcode">0x0406 Danish</template>
+</context>
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
 </context>
 
 <letters>
@@ -598,12 +730,12 @@
   <l i="25">y</l>
   <l i="26">Z</l>
   <l i="26">z</l>
-  <l i="27">&#x00C6;</l> <!-- AElig -->
-  <l i="27">&#x00E6;</l> <!-- aelig -->
-  <l i="28">&#x00D8;</l> <!-- Oslash -->
-  <l i="28">&#x00F8;</l> <!-- oslash -->
-  <l i="29">&#x00C5;</l> <!-- Aring -->
-  <l i="29">&#x00E5;</l> <!-- aring -->
+  <l i="27">Æ</l>
+  <l i="27">æ</l>
+  <l i="28">Ø</l>
+  <l i="28">ø</l>
+  <l i="29">Å</l>
+  <l i="29">å</l>
 </letters>
 
 </locale>

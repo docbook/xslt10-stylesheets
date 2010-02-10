@@ -19,6 +19,8 @@
 
 <gentext key="Abstract" text="Sažetak"/>
 <gentext key="abstract" text="sažetak"/>
+<gentext key="Acknowledgements" text="Priznanja"/>
+<gentext key="acknowledgements" text="priznanja"/>
 <gentext key="Answer" text="O:"/>
 <gentext key="answer" text="o:"/>
 <gentext key="Appendix" text="Dodatak"/>
@@ -91,15 +93,15 @@
 <gentext key="QandASet" text="Često postavljana pitanja"/>
 <gentext key="Question" text="P:"/>
 <gentext key="question" text="p:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="Stranica"/>
+<gentext key="refentry" text="stranica"/>
 <gentext key="Reference" text="Referenca"/>
 <gentext key="reference" text="referenca"/>
 <gentext key="References" text="Reference"/>
 <gentext key="RefName" text="Ime"/>
 <gentext key="refname" text="ime"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="Odeljak"/>
+<gentext key="refsection" text="odeljak"/>
 <gentext key="RefSynopsisDiv" text="Pregled"/>
 <gentext key="refsynopsisdiv" text="pregled"/>
 <gentext key="RevHistory" text="Istorija revizija"/>

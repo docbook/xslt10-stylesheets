@@ -22,11 +22,21 @@
           <affiliation><address><email>F.Schuette@t-online.de</email></address>
           </affiliation>
   </author>
+  <author><firstname>Marcus</firstname><surname>Nitzschke</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>kenda@fedoraproject.org</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Fabian</firstname><surname>Affolter</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>fab@fedoraproject.org</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Zusammenfassung"/>
 <gentext key="abstract" text="Zusammenfassung"/>
+<gentext key="Acknowledgements" text="Danksagungen"/>
+<gentext key="acknowledgements" text="Danksagungen"/>
 <gentext key="Answer" text="A:"/>
 <gentext key="answer" text="A:"/>
 <gentext key="Appendix" text="Anhang"/>
@@ -93,14 +103,17 @@
 <gentext key="pubdate" text="Veröffentlicht"/>
 <gentext key="Published" text="Veröffentlicht"/>
 <gentext key="published" text="Veröffentlicht"/>
+<gentext key="Publisher" text="Herausgeber"/>
 <gentext key="Qandadiv" text="F &amp; A"/>
 <gentext key="qandadiv" text="F &amp; A"/>
+<gentext key="QandASet" text="Häufig gestellte Fragen"/>
 <gentext key="Question" text="F:"/>
 <gentext key="question" text="F:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="Seite"/>
+<gentext key="refentry" text="seite"/>
 <gentext key="Reference" text="Verweis"/>
 <gentext key="reference" text="Verweis"/>
+<gentext key="References" text="Verweise"/>
 <gentext key="refname" text="Name"/>
 <gentext key="RefName" text="Name"/>
 <gentext key="RefSection" text="Abschnitt"/>
@@ -133,6 +146,8 @@
 <gentext key="step" text="Schritt"/>
 <gentext key="table" text="Tabelle"/>
 <gentext key="Table" text="Tabelle"/>
+<gentext key="task" text="aufgabe"/>
+<gentext key="Task" text="Aufgabe"/>
 <gentext key="TIP" text="TIPP"/>
 <gentext key="Tip" text="Tipp"/>
 <gentext key="tip" text="Tipp"/>
@@ -159,17 +174,30 @@
 <gentext key="tablenotes" text="Bemerkungen"/>
 <gentext key="TableofContents" text="Inhaltsverzeichnis"/>
 <gentext key="tableofcontents" text="Inhaltsverzeichnis"/>
-<gentext key="the" text=""/>
 <gentext key="unexpectedelementname" text="Unerwarteter Elementname"/>
 <gentext key="unsupported" text="wird nicht unterstützt"/>
 <gentext key="xrefto" text="xref auf"/>
 
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Autoren"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Korrekteur"/>
+<gentext key="graphicdesigner" text="Grafikgestalter"/>
+<gentext key="productioneditor" text="Produktions-Verfasser"/>
+<gentext key="technicaleditor" text="Technischer Verfasser"/>
+<gentext key="translator" text="Übersetzer"/>
+
 <gentext key="listofequations" text="Gleichungen"/>
 <gentext key="ListofEquations" text="Gleichungen"/>
-<gentext key="ListofExamples" text="Beispiele"/>
-<gentext key="listofexamples" text="Beispiele"/>
+<gentext key="ListofExamples" text="Liste der Beispiele"/>
+<gentext key="listofexamples" text="Liste der Beispiele"/>
 <gentext key="ListofFigures" text="Abbildungsverzeichnis"/>
 <gentext key="listoffigures" text="Abbildungsverzeichnis"/>
+<gentext key="ListofProcedures" text="Liste der Prozeduren"/>
+<gentext key="listofprocedures" text="Liste der Prozeduren"/>
 <gentext key="listoftables" text="Tabellenverzeichnis"/>
 <gentext key="ListofTables" text="Tabellenverzeichnis"/>
 <gentext key="ListofUnknown" text="???-Verzeichnis"/>
