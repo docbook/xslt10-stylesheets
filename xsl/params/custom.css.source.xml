@@ -14,7 +14,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <src:fragment xml:id="custom.css.source.frag"><xsl:param name="custom.css.source">custom.css.xml</xsl:param></src:fragment>
+    <src:fragment xml:id="custom.css.source.frag"><xsl:param name="custom.css.source"></xsl:param></src:fragment>
   </refsynopsisdiv>
 
   <refsection><info><title>Description</title></info>
