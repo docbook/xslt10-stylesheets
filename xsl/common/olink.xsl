@@ -887,7 +887,7 @@
               <xsl:for-each select="$target.database" >
                 <xsl:call-template name="insert.targetdb.data">
                   <xsl:with-param name="data"
-                       select="key('targetdoc-key', $targetdoc)[1]/div[1]/ttl" />
+                       select="key('targetdoc-key', $targetdoc)[1]/div[1]/ttl/node()" />
                 </xsl:call-template>
               </xsl:for-each>
             </xsl:with-param>
@@ -956,7 +956,7 @@
               <xsl:for-each select="$target.database" >
                 <xsl:call-template name="insert.targetdb.data">
                   <xsl:with-param name="data"
-                                  select="key('targetptr-key', $olink.key)[1]/ttl" />
+                               select="key('targetptr-key', $olink.key)[1]/ttl/node()" />
                 </xsl:call-template>
               </xsl:for-each>
             </xsl:with-param>
@@ -1166,7 +1166,7 @@
     <xsl:for-each select="$target.database" >
       <xsl:call-template name="insert.targetdb.data">
         <xsl:with-param name="data"
-             select="key('targetdoc-key', $targetdoc)[1]/div[1]/ttl" />
+             select="key('targetdoc-key', $targetdoc)[1]/div[1]/ttl/node()" />
       </xsl:call-template>
     </xsl:for-each>
   </xsl:variable>
