@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dtd xmlns="http://nwalsh.com/ns/dtd-xml">
+
+  <!-- Fix "any" content -->
+
+  <del-pe name="db._any.attribute"/>
+  <del-element name="db._any"/>
+
+  <!-- Fix indexterm -->
+
+  <ref-rename name="db.indexterm.singular" rename="db.indexterm"/>
+
+  <!-- Fix caption -->
+
+  <ref-rename name="db.html.caption" rename="db.caption"/>
+
+  <!-- Fix limited content model inlines -->
+
+  <del-element name="db._foreignphrase"/>
+  <ref-rename name="db._foreignphrase" rename="db.foreignphrase"/>
+
+  <del-element name="db._emphasis"/>
+  <ref-rename name="db._emphasis" rename="db.emphasis"/>
+
+  <del-element name="db._quote"/>
+  <ref-rename name="db._quote" rename="db.quote"/>
+
+  <del-element name="db._firstterm"/>
+  <ref-rename name="db._firstterm" rename="db.firstterm"/>
+
+  <del-element name="db._glossterm"/>
+  <ref-rename name="db._glossterm" rename="db.glossterm"/>
+
+  <del-element name="db._phrase"/>
+  <ref-rename name="db._phrase" rename="db.phrase"/>
+
+  <!-- Fix SVG and MathML -->
+
+  <ref-rename name="db.imagedata.mathml" rename="db.imagedata"/>
+  <ref-rename name="db.imagedata.svg" rename="db.imagedata"/>
+
+  <!-- area -->
+
+  <ref-rename name="db.area.inareaset" rename="db.area"/>
+
+  <!-- group -->
+
+  <ref-rename name="db.group.methodparam" rename="db.group"/>
+  <ref-rename name="db.group.paramdef" rename="db.group"/>
+
+  <!-- info -->
+
+  <ref-rename name="db.titlereq.info" rename="db.info"/>
+  <ref-rename name="db.titleonly.info" rename="db.info"/>
+  <ref-rename name="db.titleonlyreq.info" rename="db.info"/>
+  <ref-rename name="db.titleforbidden.info" rename="db.info"/>
+
+  <!-- tables -->
+<!--
+  <ref-rename name="db.cals.entrytbl.thead" rename="db.thead"/>
+  <ref-rename name="db.cals.entrytbl.tbody" rename="db.tbody"/>
+-->
+</dtd>
