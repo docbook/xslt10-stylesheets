@@ -30,7 +30,7 @@ HTML coding to a CSS stylesheet.</para>
 <para>The resulting HTML is dependent on
 CSS for formatting, and so the stylesheet is capable of
 generating a supporting CSS file. The <parameter>docbook.css.source</parameter>
-and <paramter>custom.css.source</paramter> parameters control
+and <parameter>custom.css.source</parameter> parameters control
 how a CSS file is generated.</para>
 
 <para>If you require your CSS to reside in the HTML 
