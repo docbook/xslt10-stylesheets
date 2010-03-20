@@ -105,7 +105,7 @@ CSS file, then do the following:
   </listitem>
 </orderedlist>
 
-<para>If you set <paramter>make.clean.html</paramter> to nonzero but
+<para>If you set <parameter>make.clean.html</parameter> to nonzero but
 you do not want the default CSS generated, then also set
 the <parameter>docbook.css.source</parameter> parameter to blank.
 Then no default CSS will be generated, and so
