@@ -90,7 +90,7 @@ xhtml:
 	$(MAKE) -C xhtml
 	$(MAKE) -C xhtml-1_1
 
-docsrc: base 
+docsrc: base docsrc-clean
 	$(MAKE) -C docsrc
 
 doc: docsrc
