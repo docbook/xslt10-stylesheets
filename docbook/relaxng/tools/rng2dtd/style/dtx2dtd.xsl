@@ -11,7 +11,6 @@
 
 <!-- If the contents of an attdecl is a ref, inline the referenced content -->
 
-<xsl:param name="prefix" select="''"/>
 <xsl:param name="ns" select="'http://docbook.org/ns/docbook'"/>
 
 <xsl:output method="text" encoding="utf-8"/>
@@ -21,8 +20,52 @@
 <xsl:strip-space elements="*"/>
 
 <xsl:template match="/">
+  <xsl:variable name="prefix-list" as="xs:string*">
+    <xsl:for-each select="//dtx:element[contains(@gi,':')]">
+      <xsl:value-of select="substring-before(@gi, ':')"/>
+    </xsl:for-each>
+  </xsl:variable>
+
+  <xsl:variable name="prefixes" select="distinct-values($prefix-list)"/>
+
+  <xsl:variable name="root" select="/*"/>
+
   <!-- This is silly, but we do it for XProc -->
   <dtd>
+    <xsl:text>&lt;!ENTITY % db.xmlns.attrib&#10;&#9;"xmlns</xsl:text>
+    <xsl:text>&#9;CDATA&#9;#FIXED '</xsl:text>
+    <xsl:value-of select="$ns"/>
+    <xsl:text>'"&#10;>&#10;</xsl:text>
+
+    <xsl:text>&lt;!ENTITY % xlink.xmlns.attrib&#10;&#9;"xmlns:xlink</xsl:text>
+    <xsl:text>&#9;CDATA&#9;#FIXED 'http://www.w3.org/1999/xlink'"&#10;>&#10;</xsl:text>
+
+    <xsl:for-each select="$prefixes">
+      <xsl:text>&lt;!ENTITY % </xsl:text>
+      <xsl:value-of select="."/>
+      <xsl:text>.prefix&#10;&#9;"</xsl:text>
+      <xsl:value-of select="."/>
+      <xsl:text>"&#10;>&#10;</xsl:text>
+      <xsl:text>&lt;!ENTITY % </xsl:text>
+      <xsl:value-of select="."/>
+      <xsl:text>.xmlns.attrib&#10;&#9;"xmlns:%</xsl:text>
+      <xsl:value-of select="."/>
+      <xsl:text>.prefix;&#9;CDATA&#9;#FIXED '</xsl:text>
+      <xsl:value-of select="namespace-uri-for-prefix(., $root)"/>
+      <xsl:text>'"&#10;>&#10;</xsl:text>
+    </xsl:for-each>
+
+    <!-- Now we need all the names... -->
+    <xsl:for-each select="//dtx:element[contains(@gi,':')]">
+      <xsl:text>&lt;!ENTITY % </xsl:text>
+      <xsl:value-of select="translate(@gi, ':', '.')"/>
+      <xsl:text>.name&#9;"%</xsl:text>
+      <xsl:value-of select="substring-before(@gi, ':')"/>
+      <xsl:text>.prefix;:</xsl:text>
+      <xsl:value-of select="substring-after(@gi, ':')"/>
+      <xsl:text>">&#10;</xsl:text>
+    </xsl:for-each>
+
     <xsl:apply-templates/>
   </dtd>
 </xsl:template>
@@ -47,46 +90,48 @@
       <xsl:call-template name="implicit-group"/>
     </xsl:otherwise>
   </xsl:choose>
-<!--
-  <xsl:choose>
-    <xsl:when test="count(dtx:ref) &gt; 1">
-      <xsl:for-each select="dtx:ref">
-        <xsl:if test="position() &gt; 1"> | </xsl:if>
-        <xsl:apply-templates select="."/>
-      </xsl:for-each>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates/>
-    </xsl:otherwise>
-  </xsl:choose>
--->
 
   <xsl:text>"&#10;&gt;&#10;&#10;</xsl:text>
 </xsl:template>
 
 <xsl:template match="dtx:element">
   <xsl:text>  &lt;!ATTLIST </xsl:text>
-  <xsl:value-of select="if ($prefix) then concat($prefix, ':') else ''"/>
-  <xsl:value-of select="@gi"/>
-  <xsl:text>&#10;&#9;</xsl:text>
 
-  <xsl:text>xmlns</xsl:text>
-  <xsl:value-of select="if ($prefix) then concat(':', $prefix) else ''"/>
-  <xsl:text>&#9;CDATA&#9;#FIXED "</xsl:text>
-  <xsl:value-of select="$ns"/>
-  <xsl:text>"&#10;&#9;</xsl:text>
+  <xsl:choose>
+    <xsl:when test="contains(@gi, ':')">
+      <xsl:text>%</xsl:text>
+      <xsl:value-of select="translate(@gi, ':', '.')"/>
+      <xsl:text>.name;</xsl:text>
+      <xsl:text>&#10;&#9;</xsl:text>
+      <xsl:text>%</xsl:text>
+      <xsl:value-of select="substring-before(@gi, ':')"/>
+      <xsl:text>.xmlns.attrib;&#10;&#9;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="@gi"/>
+      <xsl:text>&#10;&#9;</xsl:text>
+      <xsl:text>%db.xmlns.attrib;&#10;&#9;</xsl:text>
+    </xsl:otherwise>
+  </xsl:choose>
 
-  <xsl:text>xmlns:xlink</xsl:text>
-  <xsl:text>&#9;CDATA&#9;#FIXED "http://www.w3.org/1999/xlink"</xsl:text>
-  <xsl:text>&#10;&#9;</xsl:text>
+  <xsl:text>%xlink.xmlns.attrib;&#10;&#9;</xsl:text>
 
   <xsl:apply-templates select="dtx:attref"/>
 
   <xsl:text>&#10;&gt;&#10;&#10;</xsl:text>
 
   <xsl:text>  &lt;!ELEMENT </xsl:text>
-  <xsl:value-of select="if ($prefix) then concat($prefix, ':') else ''"/>
-  <xsl:value-of select="@gi"/>
+
+  <xsl:choose>
+    <xsl:when test="contains(@gi, ':')">
+      <xsl:text>%</xsl:text>
+      <xsl:value-of select="translate(@gi, ':', '.')"/>
+      <xsl:text>.name;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="@gi"/>
+    </xsl:otherwise>
+  </xsl:choose>
   <xsl:text>&#10;&#9;</xsl:text>
 
   <xsl:variable name="cm" select="*[not(self::dtx:attref)]"/>
@@ -181,8 +226,16 @@
       </xsl:choose>
     </xsl:when>
     <xsl:when test="$target/self::dtx:element">
-      <xsl:value-of select="if ($prefix) then concat($prefix, ':') else ''"/>
-      <xsl:value-of select="$target/@gi"/>
+      <xsl:choose>
+        <xsl:when test="contains($target/@gi, ':')">
+          <xsl:text>%</xsl:text>
+          <xsl:value-of select="translate($target/@gi, ':', '.')"/>
+          <xsl:text>.name;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$target/@gi"/>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:if test="@optional = 'true'">?</xsl:if>
     </xsl:when>
     <xsl:otherwise>
@@ -283,19 +336,6 @@
 <xsl:template name="mixed-content">
   <xsl:param name="cm"/>
 
-<!--
-  <xsl:variable name="refs" as="xs:string*">
-    <xsl:apply-templates select="$cm" mode="mixed-refs"/>
-  </xsl:variable>
-
-  <xsl:message>element: <xsl:value-of select="@gi"/></xsl:message>
-  <xsl:message><xsl:value-of select="distinct-values($refs)"/></xsl:message>
-
-  <xsl:call-template name="collapse-mixed">
-    <xsl:with-param name="refs" select="distinct-values($refs)"/>
-  </xsl:call-template>
--->
-
   <xsl:variable name="gis" as="xs:string*">
     <xsl:apply-templates select="$cm" mode="mixed"/>
   </xsl:variable>
@@ -305,8 +345,17 @@
     <xsl:sort select="."/>
     <xsl:if test=". != '#PCDATA'">
       <xsl:text> | </xsl:text>
-      <xsl:value-of select="if ($prefix) then concat($prefix, ':') else ''"/>
-      <xsl:value-of select="."/>
+
+      <xsl:choose>
+        <xsl:when test="contains(., ':')">
+          <xsl:text>%</xsl:text>
+          <xsl:value-of select="translate(., ':', '.')"/>
+          <xsl:text>.name;</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:for-each>
   <xsl:text>)*</xsl:text>
@@ -321,8 +370,7 @@
 
   <xsl:choose>
     <xsl:when test="$target/self::dtx:element">
-      <xsl:value-of select="concat(if ($prefix) then concat($prefix, ':') else '',
-                                   $target/@gi)"/>
+      <xsl:value-of select="$target/@gi"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:apply-templates select="$target/*" mode="mixed"/>
