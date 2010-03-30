@@ -153,6 +153,9 @@
       </xsl:for-each>
       <xsl:text>)</xsl:text>
     </xsl:when>
+    <xsl:when test="$cm/self::dtx:empty">
+      <xsl:apply-templates select="$cm"/>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:text>(</xsl:text>
       <xsl:apply-templates select="$cm"/>
@@ -317,7 +320,7 @@
 
 <xsl:template name="implicit-group">
   <xsl:choose>
-    <xsl:when test="count(*) &gt; 1">
+    <xsl:when test="count(*) &gt; 1 and not(dtx:empty)">
       <xsl:text>(</xsl:text>
       <xsl:for-each select="*">
         <xsl:if test="position() &gt; 1">, </xsl:if>
