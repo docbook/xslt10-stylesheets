@@ -14,6 +14,11 @@
 
 <xsl:template match="rng:grammar">
   <dtd>
+    <xsl:for-each select="namespace::*">
+      <xsl:if test="local-name(.) != ''">
+        <xsl:copy-of select="."/>
+      </xsl:if>
+    </xsl:for-each>
     <xsl:apply-templates/>
   </dtd>
 </xsl:template>
