@@ -125,8 +125,6 @@ start |= dcterms.title
 | dcterms.license
 | dcterms.bibliographicCitation
 
-SimpleLiteral = element * { text }?
-dcterms.any = element any { SimpleLiteral }
 dcterms.title =
   [
     db:refpurpose [ "A name given to the resource."
@@ -457,25 +455,36 @@ dcterms.bibliographicCitation =
     ]
   ]
   element dcterms:bibliographicCitation { text }
-LCSH = SimpleLiteral, xsd:string
-MESH = SimpleLiteral, xsd:string
-DDC = SimpleLiteral, xsd:string
-LCC = SimpleLiteral, xsd:string
-UDC = SimpleLiteral, xsd:string
-Period = SimpleLiteral, xsd:string
+
+SimpleStringLiteral = element * { text }?
+SimpleURILiteral = element * { xsd:anyURI }?
+SimpleDCMITypeLiteral = element * { DCMIType.enumeration }?
+SimpleLanguageLiteral = element * { xsd:language }?
+SimpleLiteral =
+   (SimpleStringLiteral | SimpleURILiteral
+    | SimpleDCMITypeLiteral | SimpleLanguageLiteral)
+
+dcterms.any = element any { SimpleLiteral }
+
+LCSH = SimpleStringLiteral
+MESH = SimpleStringLiteral
+DDC = SimpleStringLiteral
+LCC = SimpleStringLiteral
+UDC = SimpleStringLiteral
+Period = SimpleStringLiteral
 W3CDTF = SimpleLiteral
-DCMIType |= SimpleLiteral, DCMIType
-IMT = SimpleLiteral, xsd:string
-URI = SimpleLiteral, xsd:anyURI
-ISO639-2 = SimpleLiteral, xsd:string
-ISO639-3 = SimpleLiteral, xsd:string
-RFC1766 = SimpleLiteral, xsd:language
-RFC3066 = SimpleLiteral, xsd:language
-RFC4646 = SimpleLiteral, xsd:language
-Point = SimpleLiteral, xsd:string
-ISO3166 = SimpleLiteral, xsd:string
-Box = SimpleLiteral, xsd:string
-TGN = SimpleLiteral, xsd:string
+DCMIType |= SimpleDCMITypeLiteral
+IMT = SimpleStringLiteral
+URI = SimpleURILiteral
+ISO639-2 = SimpleStringLiteral
+ISO639-3 = SimpleStringLiteral
+RFC1766 = SimpleLanguageLiteral
+RFC3066 = SimpleLanguageLiteral
+RFC4646 = SimpleLanguageLiteral
+Point = SimpleStringLiteral
+ISO3166 = SimpleStringLiteral
+Box = SimpleStringLiteral
+TGN = SimpleStringLiteral
 
 ##
 ##

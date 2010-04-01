@@ -24,7 +24,8 @@ a:documentation [
   " \x{a}" ~
   "  "
 ]
-DCMIType =
+
+DCMIType.enumeration =
   "Collection"
   | "Dataset"
   | "Event"
@@ -37,3 +38,5 @@ DCMIType =
   | "Sound"
   | "Text"
   | "PhysicalObject"
+
+DCMIType = DCMIType.enumeration
