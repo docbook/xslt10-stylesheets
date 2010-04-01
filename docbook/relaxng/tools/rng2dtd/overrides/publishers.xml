@@ -281,9 +281,4 @@
   <ref-rename name="db.titleonlyreq.info" rename="db.info"/>
   <ref-rename name="db.titleforbidden.info" rename="db.info"/>
 
-  <!-- tables -->
-<!--
-  <ref-rename name="db.cals.entrytbl.thead" rename="db.thead"/>
-  <ref-rename name="db.cals.entrytbl.tbody" rename="db.tbody"/>
--->
 </dtd>
