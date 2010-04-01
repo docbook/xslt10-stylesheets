@@ -11,7 +11,7 @@
   <p:serialization port="result" method="text"/>
 
   <p:option name="debug" select="0"/>
-  <p:option name="override" select="'override/docbook.xml'"/>
+  <p:option name="override" select="'overrides/docbook.xml'"/>
 
 <!-- ============================================================ -->
 
