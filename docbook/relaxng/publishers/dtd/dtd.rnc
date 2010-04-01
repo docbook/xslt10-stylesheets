@@ -1,0 +1,376 @@
+# This file is a customization of DocBook V5.0. It attempts to reduce
+# the complexity of DocBook to the point where it can be represented
+# by an W3C XML Schema or DTD. It accepts documents which are not
+# valid DocBook V5.0 documents.
+#
+# Copyright 2010 HaL Computer Systems, Inc., O'Reilly & Associates,
+# Inc., ArborText, Inc., Fujitsu Software Corporation, Norman Walsh,
+# Sun Microsystems, Inc., and the Organization for the Advancement of
+# Structured Information Standards (OASIS).
+#
+# Release: $Id: publishers.rnc 7466 2007-09-27 14:03:55Z shudson310 $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook) for more
+# information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "../publishers/publishers.rnc" {
+
+db.biblio.class.enumeration =
+   ## A digital object identifier.
+   "doi"
+ | ## An international standard book number.
+   "isbn"
+ | ## An international standard technical report number (ISO 10444).
+   "isrn"
+ | ## An international standard serial number.
+   "issn"
+ | ## A Library of Congress reference number.
+   "libraryofcongress"
+ | ## A publication number (an internal number or possibly organizational standard).
+   "pubsnumber"
+ | ## A Uniform Resource Identifier
+   "uri"
+ | ## Some other identifier specified in otherclass.
+   "other"
+
+db.biblio.class-other.attributes = notAllowed
+
+db.biblio.class.attribute =
+   (db.biblio.class-enum.attribute?
+    | db.biblio.class-other.attribute?)
+
+# ======================================================================
+
+db.bridgehead.renderas.enumeration =
+   ## Render as a first-level section
+   "sect1"
+ | ## Render as a second-level section
+   "sect2"
+ | ## Render as a third-level section
+   "sect3"
+ | ## Render as a fourth-level section
+   "sect4"
+ | ## Render as a fifth-level section
+   "sect5"
+ | ## Render in some other way as specified by otherrenderas
+   "other"
+
+db.bridgehead.renderas-other.attributes = notAllowed
+
+db.bridgehead.renderas.attribute =
+   (db.bridgehead.renderas-enum.attribute?
+    | db.bridgehead.renderas-other.attribute?)
+
+# ======================================================================
+
+db.othercredit.class.enumeration =
+   ## A copy editor
+   "copyeditor"
+ | ## A graphic designer
+   "graphicdesigner"
+ | ## Some other contributor
+   "other"
+ | ## A production editor
+   "productioneditor"
+ | ## A technical editor
+   "technicaleditor"
+ | ## A translator
+   "translator"
+ | ## An indexer
+   "indexer"
+ | ## A proof-reader
+   "proofreader"
+ | ## A cover designer
+   "coverdesigner"
+ | ## An interior designer
+   "interiordesigner"
+ | ## An illustrator
+   "illustrator"
+ | ## A reviewer
+   "reviewer"
+ | ## A typesetter
+   "typesetter"
+ | ## A converter (a persons responsible for conversion, not an application)
+   "conversion"
+
+db.othercredit.class-other.attributes = notAllowed
+
+db.othercredit.class.attribute =
+   (db.othercredit.class-enum.attribute?
+    | db.othercredit.class-other.attribute?)
+
+# ======================================================================
+
+db.indexterm.role.attribute = attribute role { text }
+
+db.indexterm.class.attribute =
+   [
+      db:refpurpose [ "Identifies the class of index term" ]
+   ]
+   attribute class {
+      ## A singular index term
+      "singular"
+    | ## An indexterm that starts a range
+      "startofrange"
+    | ## An indexterm that ends a range
+      "endofrange"
+   }
+
+db.indexterm.attlist =
+   db.indexterm.role.attribute?
+ & db.common.attributes
+ & db.common.linking.attributes
+ & db.significance.attribute?
+ & db.zone.attribute?
+ & db.indexterm.pagenum.attribute?
+ & db.scope.attribute?
+ & db.index.type.attribute?
+ & db.indexterm.class.attribute?
+
+db.indexterm =
+   element indexterm {
+      db.indexterm.attlist,
+      db.indexterm.contentmodel
+   }
+
+db.indexterm.singular = db.indexterm
+db.indexterm.startofrange = db.indexterm
+db.indexterm.endofrange = db.indexterm
+
+# ======================================================================
+#
+#   db.html.caption = db.caption
+#
+#   db.caption =
+#      element caption {
+#         db.caption.attlist,
+#         db.html.caption.attlist,
+#         (db.all.inlines | db.caption.info | db.all.blocks)*
+#      }
+#
+# ======================================================================
+
+db.imagedata.mathml = db.imagedata
+db.imagedata.svg = db.imagedata
+
+# ======================================================================
+
+db.area.inareaset = db.area
+
+# ======================================================================
+
+   db.titlereq.info = db.info
+   db.titleonly.info = db.info
+   db.titleonlyreq.info = db.info
+   db.titleforbidden.info = db.info
+
+# ======================================================================
+#
+#   db.thead.role.attribute = attribute role { text }
+#
+#   db.thead.attlist =
+#      db.thead.role.attribute?
+#    & db.common.attributes
+#    & db.common.linking.attributes
+#    & db.valign.attribute?
+#    & db.html.coreattrs
+#    & db.html.i18n
+#    & db.html.events
+#    & db.html.cellhalign
+#    & db.html.cellvalign
+#
+#   db.thead =
+#      element thead {
+#         db.thead.attlist,
+#         ((db.colspec*, db.row+) | db.html.tr+)
+#      }
+#
+#   db.html.thead = db.thead
+#   db.cals.thead = db.thead
+#
+# ======================================================================
+#
+#   db.tfoot.role.attribute = attribute role { text }
+#
+#   db.tfoot.attlist =
+#      db.tfoot.role.attribute?
+#    & db.common.attributes
+#    & db.common.linking.attributes
+#    & db.valign.attribute?
+#    & db.html.coreattrs
+#    & db.html.i18n
+#    & db.html.events
+#    & db.html.cellhalign
+#    & db.html.cellvalign
+#
+#   db.tfoot =
+#      element tfoot {
+#         db.tfoot.attlist,
+#         ((db.colspec*, db.row+) | db.html.tr+)
+#      }
+#
+#   db.html.tfoot = db.tfoot
+#   db.cals.tfoot = db.tfoot
+#
+# ======================================================================
+#
+#   db.tbody.role.attribute = attribute role { text }
+#
+#   db.tbody.attlist =
+#      db.tbody.role.attribute?
+#    & db.common.attributes
+#    & db.common.linking.attributes
+#    & db.valign.attribute?
+#    & db.html.coreattrs
+#    & db.html.i18n
+#    & db.html.events
+#    & db.html.cellhalign
+#    & db.html.cellvalign
+#
+#   db.tbody =
+#      element tbody {
+#         db.tbody.attlist,
+#         (db.row+ | db.html.tr+)
+#      }
+#
+#   db.html.tbody = db.tbody
+#   db.cals.tbody = db.tbody
+#
+# ======================================================================
+
+   db.entrytbl.row = db.row
+   db.cals.entrytbl.thead = db.cals.thead
+   db.cals.entrytbl.tbody = db.cals.tbody
+
+# ======================================================================
+#
+#   db.table.role.attribute = attribute role { text }
+#   db.table.label.attribute = db.label.attribute
+#
+#   db.table.attlist =
+#      db.table.role.attribute?
+#    & db.table.label.attribute?
+#    & db.common.attributes
+#    & db.common.linking.attributes
+#    & db.tabstyle.attribute?
+#    & db.floatstyle.attribute?
+#    & db.orient.attribute?
+#    & db.colsep.attribute?
+#    & db.rowsep.attribute?
+#    & db.frame.attribute?
+#    & db.pgwide.attribute?
+#    & [
+#       db:refpurpose [ "Indicates if the short or long title should be used in a List of Tables" ]
+#    ]
+#      attribute shortentry {
+#         ## Indicates that the full title should be used.
+#         "0"
+#       | ## Indicates that the short short title (titleabbrev) should be used.
+#         "1" }?
+#    & [
+#       db:refpurpose [ "Indicates if the table should appear in a List of Tables" ]
+#      ]
+#      attribute tocentry {
+#         ## Indicates that the table should not occur in the List of Tables.
+#         "0"
+#       | ## Indicates that the table should appear in the List of Tables.
+#         "1" }?
+#    & db.rowheader.attribute?
+#    & db.html.coreattrs
+#    & db.html.i18n
+#    & db.html.events
+#    & db.html.table.attributes
+#
+#   db.table = element table {
+#      db.table.attlist,
+#      ((db.cals.table.info,
+#         (db.alt? & db.indexing.inlines* & db.textobject*),
+#         (db.mediaobject+|db.tgroup+),
+#         db.caption?)
+#       | db.html.table.model)
+#   }
+#
+#   db.cals.table = db.table
+#   db.html.table = db.table
+#
+# ======================================================================
+#
+#   db.informaltable.role.attribute = attribute role { text }
+#
+#   db.informaltable.attlist =
+#      db.informaltable.role.attribute?
+#    & db.common.attributes
+#    & db.common.linking.attributes
+#    & db.tabstyle.attribute?
+#    & db.floatstyle.attribute?
+#    & db.orient.attribute?
+#    & db.colsep.attribute?
+#    & db.rowsep.attribute?
+#    & db.frame.attribute?
+#    & db.pgwide.attribute?
+#    & db.rowheader.attribute?
+#    & db.html.coreattrs
+#    & db.html.i18n
+#    & db.html.events
+#    & db.html.table.attributes
+#
+#   db.informaltable =
+#      element informaltable {
+#         db.informaltable.attlist,
+#         ((db.cals.informaltable.info,
+#            (db.alt? & db.indexing.inlines* & db.textobject*),
+#            (db.mediaobject+|db.tgroup+),
+#            db.caption?)
+#          | db.html.informaltable.model)
+#      }
+#
+#   db.html.informaltable = db.informaltable
+#   db.cals.informaltable = db.informaltable
+#
+# ======================================================================
+
+   db.info.extension = notAllowed
+
+# ======================================================================
+
+db.equation.content = db.mediaobject+ | db.mathphrase+
+db.inlineequation.content = db.inlinemediaobject+ | db.mathphrase+
+
+# ======================================================================
+
+db.date.contentmodel = (text)
+
+# ======================================================================
+
+SimpleLiteral = notAllowed
+dcterms.any = notAllowed
+
+
+   db.colophon =
+      element colophon {
+         db.colophon.attlist,
+         db.colophon.info,
+         ((db.all.blocks+, db.simplesect*) | db.simplesect+)
+      }
+
+
+}
