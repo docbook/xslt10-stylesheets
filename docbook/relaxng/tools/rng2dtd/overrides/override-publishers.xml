@@ -6,6 +6,54 @@
   <del-pe name="db._any.attribute"/>
   <del-element name="db._any"/>
 
+  <!-- Fix info -->
+
+   <pe name="db._info">
+     <group>
+       <optional>
+         <ref name="db._title"/>
+       </optional>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+   <pe name="db._info.title.req">
+     <group>
+       <ref name="db._title.req"/>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+   <pe name="db._info.title.only">
+     <group>
+       <ref name="db._title.only"/>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+   <pe name="db._info.title.onlyreq">
+     <group>
+       <ref name="db._title.onlyreq"/>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+  <!-- Fix procedure  -->
+
+   <pe name="db.technical.blocks">
+      <choice>
+         <ref name="db.task"/>
+      </choice>
+   </pe>
+
   <!-- Fix indexterm -->
 
   <ref-rename name="db.indexterm.singular" rename="db.indexterm"/>
@@ -106,7 +154,7 @@
    <del-pe name="db.bibliorelation.type-enum.attribute"/>
 
    <pe name="db.bibliorelation.type.attribute">
-      <attdecl name="class">
+      <attdecl name="type">
          <ref name="db.bibliorelation.type.enumeration"/>
       </attdecl>
    </pe>
@@ -145,7 +193,7 @@
    <del-pe name="db.bibliocoverage.spatial-enum.attribute"/>
 
    <pe name="db.bibliocoverage.spatial.attribute">
-      <attdecl name="class">
+      <attdecl name="spatial">
          <ref name="db.bibliocoverage.spacial.enumeration"/>
       </attdecl>
    </pe>
@@ -162,7 +210,7 @@
    <del-pe name="db.bibliocoverage.temporal-enum.attribute"/>
 
    <pe name="db.bibliocoverage.temporal.attribute">
-      <attdecl name="class">
+      <attdecl name="temporal">
          <ref name="db.bibliocoverage.temporal.enumeration"/>
       </attdecl>
    </pe>
