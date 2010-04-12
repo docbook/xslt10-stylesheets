@@ -26,6 +26,12 @@
 		
 		<xsl:apply-templates select="current-group()[1]"/>
 	      </xsl:for-each-group>
+
+	      <xsl:for-each-group select="current-group()/s:report" group-by="@test">
+		<xsl:sort data-type="text" order="ascending"/>
+		
+		<xsl:apply-templates select="current-group()[1]"/>
+	      </xsl:for-each-group>
 	    </s:rule>
 	  </xsl:for-each-group>
 	</s:pattern>
