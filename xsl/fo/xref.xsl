@@ -791,6 +791,15 @@
       </xsl:apply-templates>
     </xsl:when>
     <xsl:otherwise>
+      <xsl:if test="$verbose != 0">
+        <xsl:message>
+          <xsl:text>WARNING: xref to &lt;</xsl:text>
+          <xsl:value-of select="local-name()"/>
+          <xsl:text> id="</xsl:text>
+          <xsl:value-of select="@id|@xml:id"/>
+          <xsl:text>"&gt; has no generated text. Trying its ancestor elements.</xsl:text>
+        </xsl:message>
+      </xsl:if>
       <xsl:apply-templates select="$context" mode="xref-to">
         <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         <xsl:with-param name="referrer" select="$referrer"/>
@@ -1062,8 +1071,6 @@
   <!-- olink content may be passed in from xlink olink -->
   <xsl:param name="content" select="NOTANELEMENT"/>
 
-  <xsl:call-template name="anchor"/>
-
   <xsl:variable name="localinfo" select="@localinfo"/>
 
   <xsl:choose>
@@ -1193,6 +1200,7 @@
         <xsl:when test="$linkend != ''">
           <fo:basic-link internal-destination="{$linkend}"
                        xsl:use-attribute-sets="xref.properties">
+            <xsl:call-template name="anchor"/>
             <xsl:copy-of select="$hottext"/>
             <xsl:copy-of select="$olink.page.citation"/>
           </fo:basic-link>
@@ -1202,6 +1210,7 @@
             <xsl:when test="$xep.extensions != 0">
               <fo:basic-link external-destination="url({$href})"
                              xsl:use-attribute-sets="olink.properties">
+                <xsl:call-template name="anchor"/>
                 <xsl:copy-of select="$hottext"/>
               </fo:basic-link>
               <xsl:copy-of select="$olink.page.citation"/>
