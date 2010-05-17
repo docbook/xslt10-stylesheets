@@ -10,12 +10,18 @@
           <affiliation><address><email>jirka@kosek.cz</email></address>
           </affiliation>
   </author>
+    <author><firstname>Josef</firstname><surname>Hruška</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>josef.hruska@upcmail.cz</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Abstrakt"/>
 <gentext key="abstract" text="Abstrakt"/>
+<gentext key="Acknowledgements" text="Poděkování"/>
+<gentext key="acknowledgements" text="poděkování"/>
 <gentext key="Answer" text="Odpověď:"/>
 <gentext key="answer" text="Odpověď:"/>
 <gentext key="Appendix" text="Příloha"/>
@@ -40,6 +46,7 @@
 <gentext key="dedication" text="Věnování"/>
 <gentext key="Edition" text="Vydání"/>
 <gentext key="edition" text="Vydání"/>
+<gentext key="Editor" text="Editor"/>
 <gentext key="Equation" text="Rovnice"/>
 <gentext key="equation" text="Rovnice"/>
 <gentext key="Example" text="Příklad"/>
@@ -81,18 +88,21 @@
 <gentext key="pubdate" text="Datum vydání"/>
 <gentext key="Published" text="Vydáno"/>
 <gentext key="published" text="Vydáno"/>
+<gentext key="Publisher" text="Vydavatel"/>
 <gentext key="Qandadiv" text="Otázky a odpovědi"/>
 <gentext key="qandadiv" text="Otázky a odpovědi"/>
+<gentext key="QandASet" text="Časté dotazy"/>
 <gentext key="Question" text="Otázka:"/>
 <gentext key="question" text="Otázka:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="RefEntry" text="Strana"/>
+<gentext key="refentry" text="strana"/>
 <gentext key="Reference" text="Odkaz"/>
 <gentext key="reference" text="Odkaz"/>
+<gentext key="References" text="Odkazy"/>
 <gentext key="RefName" text="Jméno"/>
 <gentext key="refname" text="Jméno"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="Oddíl"/>
+<gentext key="refsection" text="oddíl"/>
 <gentext key="RefSynopsisDiv" text="Přehled"/>
 <gentext key="refsynopsisdiv" text="Přehled"/>
 <gentext key="RevHistory" text="Přehled revizí"/>
@@ -121,6 +131,8 @@
 <gentext key="step" text="krok"/>
 <gentext key="Table" text="Tabulka"/>
 <gentext key="table" text="Tabulka"/>
+<gentext key="task" text="úloha"/>
+<gentext key="Task" text="Úloha"/>
 <gentext key="TIP" text="Tip"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="Tip"/>
@@ -151,8 +163,12 @@
 <gentext key="unsupported" text="nepodporovaný"/>
 <gentext key="xrefto" text="xref k"/>
 
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
 <gentext key="Authors" text="Autoři"/>
 
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
 <gentext key="copyeditor" text="Korektor"/>
 <gentext key="graphicdesigner" text="Grafický designér"/>
 <gentext key="productioneditor" text="Produkce"/>
@@ -512,6 +528,11 @@
 
 <context name="datetime">
 <template name="format">d.&#160;B Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definice: </template>
+<template name="suffix">]</template>
 </context>
 
 <context name="datetime-full">

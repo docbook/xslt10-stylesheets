@@ -545,7 +545,7 @@
 </context>
 
 <context name="termdef">
-<template name="prefix">[Definition: </template>
+<template name="prefix">[વ્યાખ્યા: </template>
 <template name="suffix">]</template>
 </context>
 

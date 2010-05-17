@@ -533,7 +533,7 @@
 </context>
 
 <context name="termdef">
-<template name="prefix">[Definition: </template>
+<template name="prefix">[Definição: </template>
 <template name="suffix">]</template>
 </context>
 
