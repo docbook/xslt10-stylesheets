@@ -60,6 +60,7 @@
           That will avoid the use of style attributes in XHTML elements where they are not permitted."""
        http://www.sagehill.net/docbookxsl/OtherOutputForms.html#StrictXhtmlValid -->
   <xsl:param name="css.decoration" select="0"/>
+  <xsl:param name="custom.css.source"></xsl:param> <!-- FIXME: Align with current CSS parameter design -->
 
   <xsl:param name="callout.graphics" select="1"/>
   <xsl:param name="callout.graphics.extension">.png</xsl:param>
@@ -396,7 +397,7 @@
       <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="content">
-        <xsl:element name="ncx:ncx">
+        <xsl:element name="ncx" namespace="http://www.daisy.org/z3986/2005/ncx/">
           <xsl:attribute name="version">2005-1</xsl:attribute>
 
             <!-- Via Martin Goerner: On covers: the IDPF2.0 standard unfortunately does not have a provision for
@@ -408,9 +409,9 @@
             if the HTML cover item is marked linear="no" AND there is a guide item of
             type="cover" pointing to it AND there is a logical cover specified in a
             <meta name="cover"> tag, THEN, the HTML cover is discarded. -->
-          <xsl:element name="ncx:head">
+          <xsl:element name="head" namespace="http://www.daisy.org/z3986/2005/ncx/">
             <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
-              <xsl:element name="ncx:meta">
+              <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
                 <xsl:attribute name="name">cover</xsl:attribute>
                 <xsl:attribute name="content">
                   <xsl:value-of select="$epub.cover.id"/>
@@ -418,7 +419,7 @@
               </xsl:element>
             </xsl:if>
             <xsl:if test="/*/*[contains(name(.), 'info')]/isbn"> 
-              <xsl:element name="ncx:meta">
+              <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
                 <xsl:attribute name="name">dtb:uid</xsl:attribute>
                 <xsl:attribute name="content">
                   <xsl:text>isbn:</xsl:text>
@@ -429,15 +430,15 @@
             <!-- TODO: be nice to have a name="cover" here for .mobi-->
 
             <!-- TODO What are these hardcoded values? -->
-            <xsl:element name="ncx:meta">
+            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
               <xsl:attribute name="name">dtb:depth</xsl:attribute>
               <xsl:attribute name="content">-1</xsl:attribute>
             </xsl:element>
-            <xsl:element name="ncx:meta">
+            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
               <xsl:attribute name="name">dtb:totalPageCount</xsl:attribute>
               <xsl:attribute name="content">0</xsl:attribute>
             </xsl:element>
-            <xsl:element name="ncx:meta">
+            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
               <xsl:attribute name="name">dtb:maxPageNumber</xsl:attribute>
               <xsl:attribute name="content">0</xsl:attribute>
             </xsl:element>
@@ -460,10 +461,10 @@
                   <xsl:with-param name="object" select="key('id',$rootid)" />
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:element name="ncx:docTitle">
-                <xsl:element name="ncx:text"><xsl:value-of select="normalize-space($title)" />  </xsl:element>
+              <xsl:element name="docTitle" namespace="http://www.daisy.org/z3986/2005/ncx/">
+                <xsl:element name="text" namespace="http://www.daisy.org/z3986/2005/ncx/"><xsl:value-of select="normalize-space($title)" />  </xsl:element>
               </xsl:element>
-              <xsl:element name="ncx:navMap">
+              <xsl:element name="navMap" namespace="http://www.daisy.org/z3986/2005/ncx/">
                 <xsl:apply-templates select="key('id',$rootid)/*" mode="ncx" />
               </xsl:element>
             </xsl:when>
@@ -484,12 +485,12 @@
                   <xsl:with-param name="object" select="/" />
                 </xsl:call-template>
               </xsl:variable>
-              <xsl:element name="ncx:docTitle">
-                <xsl:element name="ncx:text">
+              <xsl:element name="docTitle" namespace="http://www.daisy.org/z3986/2005/ncx/">
+                <xsl:element name="text" namespace="http://www.daisy.org/z3986/2005/ncx/">
                   <xsl:value-of select="normalize-space($title)" />
                 </xsl:element>
               </xsl:element>
-              <xsl:element name="ncx:navMap">
+              <xsl:element name="navMap" namespace="http://www.daisy.org/z3986/2005/ncx/">
                 <xsl:choose>
                   <xsl:when test="$root.is.a.chunk != '0'">
                     <xsl:apply-templates select="/*" mode="ncx" />
@@ -575,7 +576,7 @@
                                   preceding::index)"/>
     </xsl:variable>
 
-    <xsl:element name="ncx:navPoint">
+    <xsl:element name="navPoint" namespace="http://www.daisy.org/z3986/2005/ncx/">
       <xsl:attribute name="id">
         <xsl:value-of select="$id"/>
       </xsl:attribute>
@@ -593,10 +594,10 @@
           </xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
-      <xsl:element name="ncx:navLabel">
-        <xsl:element name="ncx:text"><xsl:value-of select="normalize-space($title)"/> </xsl:element>
+      <xsl:element name="navLabel" namespace="http://www.daisy.org/z3986/2005/ncx/">
+        <xsl:element name="text" namespace="http://www.daisy.org/z3986/2005/ncx/"><xsl:value-of select="normalize-space($title)"/> </xsl:element>
       </xsl:element>
-      <xsl:element name="ncx:content">
+      <xsl:element name="content" namespace="http://www.daisy.org/z3986/2005/ncx/">
         <xsl:attribute name="src">
           <xsl:value-of select="$href"/>
         </xsl:attribute>

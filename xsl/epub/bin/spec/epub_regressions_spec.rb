@@ -222,6 +222,21 @@ describe DocBook::Epub do
     partintro_epubfile.should be_valid_epub  
   end
 
+  it "should create NCX documents using a default namespace" do
+    ncx_epub = DocBook::Epub.new(File.join(@filedir, "partintro.xml"), @tmpdir)
+    ncx_epubfile  = File.join(@tmpdir, "ncx.epub")
+    ncx_epub.render_to_file(ncx_epubfile, $DEBUG)
+    ncx_epubfile.should be_valid_epub  
+
+    ncx_tmpdir = File.join(Dir::tmpdir(), "epubncx"); Dir.mkdir(ncx_tmpdir) rescue Errno::EEXIST
+    system("unzip -q -o -d #{ncx_tmpdir} #{ncx_epubfile}")
+
+    ncx_file = File.join(ncx_tmpdir, "OEBPS", "toc.ncx")
+    ncx_default = '<ncx '
+
+    ncx_in_default_ns = system("grep '#{ncx_default}' #{ncx_file}")
+    ncx_in_default_ns.should be_true
+  end
 
   after(:all) do
     FileUtils.rm_r(@tmpdir, :force => true)
