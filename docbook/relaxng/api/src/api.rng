@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"  ns="http://docbook.org/ns/docbook">
+  <!-- ========== Import DocBook DTD ========== -->
+  <include href="http://docbook.org/xml/5.0/rng/docbook.rng"/>
+  <start combine="choice">
+    <choice>
+      <ref name="header"/>
+      <ref name="library"/>
+      <ref name="boostbook"/>
+      <ref name="precondition"/>
+    </choice>
+  </start>
+  <define name="local.common.attrib">
+    <optional>
+      <attribute name="last-revision"/>
+    </optional>
+  </define>
+  <!-- ========== Define the BoostBook extensions ========== -->
+  <define name="boost.common.attrib">
+    <ref name="local.common.attrib"/>
+    <optional>
+      <ref name="db.xml.id.attribute"/>
+    </optional>
+  </define>
+  <define name="boost.namespace.mix">
+    <choice>
+      <ref name="class"/>
+      <ref name="class-specialization"/>
+      <ref name="struct"/>
+      <ref name="struct-specialization"/>
+      <ref name="union"/>
+      <ref name="union-specialization"/>
+      <ref name="typedef"/>
+      <ref name="enum"/>
+      <ref name="free-function-group"/>
+      <ref name="function"/>
+      <ref name="overloaded-function"/>
+      <ref name="namespace"/>
+    </choice>
+  </define>
+  <define name="boost.template.mix">
+    <choice>
+      <ref name="template-type-parameter"/>
+      <ref name="template-nontype-parameter"/>
+      <ref name="template-varargs"/>
+    </choice>
+  </define>
+  <define name="boost.class.members">
+    <choice>
+      <ref name="static-constant"/>
+      <ref name="typedef"/>
+      <ref name="enum"/>
+      <ref name="copy-assignment"/>
+      <ref name="constructor"/>
+      <ref name="destructor"/>
+      <ref name="method-group"/>
+      <ref name="method"/>
+      <ref name="overloaded-method"/>
+      <ref name="data-member"/>
+      <ref name="class"/>
+      <ref name="class-specialization"/>
+      <ref name="struct"/>
+      <ref name="struct-specialization"/>
+      <ref name="union"/>
+      <ref name="union-specialization"/>
+    </choice>
+  </define>
+  <define name="boost.class.mix">
+    <choice>
+      <ref name="boost.class.members"/>
+      <ref name="free-function-group"/>
+      <ref name="function"/>
+      <ref name="overloaded-function"/>
+    </choice>
+  </define>
+  <define name="boost.class.content">
+    <optional>
+      <ref name="template"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="inherit"/>
+    </zeroOrMore>
+    <optional>
+      <ref name="purpose"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+    <zeroOrMore>
+      <choice>
+        <ref name="boost.class.mix"/>
+        <ref name="access"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="boost.class-specialization.content">
+    <optional>
+      <ref name="template"/>
+    </optional>
+    <optional>
+      <ref name="specialization"/>
+    </optional>
+    <optional>
+      <ref name="inherit"/>
+    </optional>
+    <optional>
+      <ref name="purpose"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+    <zeroOrMore>
+      <choice>
+        <ref name="boost.class.mix"/>
+        <ref name="access"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="boost.function.semantics">
+    <optional>
+      <ref name="purpose"/>
+    </optional>
+    <optional>
+      <ref name="description"/>
+    </optional>
+    <optional>
+      <ref name="requires"/>
+    </optional>
+    <optional>
+      <ref name="effects"/>
+    </optional>
+    <optional>
+      <ref name="postconditions"/>
+    </optional>
+    <optional>
+      <ref name="returns"/>
+    </optional>
+    <optional>
+      <ref name="throws"/>
+    </optional>
+    <optional>
+      <ref name="complexity"/>
+    </optional>
+    <optional>
+      <ref name="notes"/>
+    </optional>
+    <optional>
+      <ref name="rationale"/>
+    </optional>
+  </define>
+  <define name="library.content">
+    <ref name="libraryinfo"/>
+    <optional>
+      <ref name="db.title"/>
+      <oneOrMore>
+        <choice>
+          <ref name="db.section"/>
+          <ref name="library-reference"/>
+          <ref name="testsuite"/>
+        </choice>
+      </oneOrMore>
+    </optional>
+  </define>
+  <define name="library">
+    <element name="library">
+      <ref name="library.attlist"/>
+      <ref name="library.content"/>
+    </element>
+  </define>
+  <define name="library.attlist" combine="interleave">
+    <attribute name="name"/>
+    <attribute name="dirname"/>
+    <optional>
+      <attribute name="html-only"/>
+    </optional>
+    <optional>
+      <attribute name="url"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="boostbook">
+    <element name="boostbook">
+      <ref name="boostbook.attlist"/>
+      <ref name="db.title"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="db.chapter"/>
+          <ref name="library"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="boostbook.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="libraryinfo">
+    <element name="libraryinfo">
+      <ref name="libraryinfo.attlist"/>
+      <oneOrMore>
+        <ref name="db.author"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="db.copyright"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="db.legalnotice"/>
+      </zeroOrMore>
+      <ref name="librarypurpose"/>
+      <zeroOrMore>
+        <ref name="librarycategory"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="libraryinfo.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="librarypurpose">
+    <element name="librarypurpose">
+      <ref name="librarypurpose.attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="code"/>
+          <ref name="functionname"/>
+          <ref name="db.methodname"/>
+          <ref name="db.classname"/>
+          <ref name="macroname"/>
+          <ref name="headername"/>
+          <ref name="enumname"/>
+          <ref name="globalname"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="librarypurpose.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="librarycategory">
+    <element name="librarycategory">
+      <ref name="librarycategory.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="librarycategory.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="libraryname">
+    <element name="libraryname">
+      <ref name="libraryname.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="libraryname.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="library-reference">
+    <element name="library-reference">
+      <ref name="library-reference.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="library-reference.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="librarylist">
+    <element name="librarylist">
+      <ref name="librarylist.attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="librarylist.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="librarycategorylist">
+    <element name="librarycategorylist">
+      <ref name="librarycategorylist.attlist"/>
+      <zeroOrMore>
+        <ref name="librarycategorydef"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="librarycategorylist.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="librarycategorydef">
+    <element name="librarycategorydef">
+      <ref name="librarycategorydef.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="librarycategorydef.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="header">
+    <element name="header">
+      <ref name="header.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="header.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="namespace">
+    <element name="namespace">
+      <ref name="namespace.attlist"/>
+      <zeroOrMore>
+        <ref name="boost.namespace.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="namespace.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="class">
+    <element name="class">
+      <ref name="class.attlist"/>
+      <ref name="boost.class.content"/>
+    </element>
+  </define>
+  <define name="class.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="struct">
+    <element name="struct">
+      <ref name="struct.attlist"/>
+      <ref name="boost.class.content"/>
+    </element>
+  </define>
+  <define name="struct.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="union">
+    <element name="union">
+      <ref name="union.attlist"/>
+      <ref name="boost.class.content"/>
+    </element>
+  </define>
+  <define name="union.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="class-specialization">
+    <element name="class-specialization">
+      <ref name="class-specialization.attlist"/>
+      <ref name="boost.class-specialization.content"/>
+    </element>
+  </define>
+  <define name="class-specialization.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="struct-specialization">
+    <element name="struct-specialization">
+      <ref name="struct-specialization.attlist"/>
+      <ref name="boost.class-specialization.content"/>
+    </element>
+  </define>
+  <define name="struct-specialization.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="union-specialization">
+    <element name="union-specialization">
+      <ref name="union-specialization.attlist"/>
+      <ref name="boost.class-specialization.content"/>
+    </element>
+  </define>
+  <define name="union-specialization.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="access">
+    <element name="access">
+      <ref name="access.attlist"/>
+      <oneOrMore>
+        <ref name="boost.class.members"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="access.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <!-- ========= C++ Templates ========= -->
+  <define name="template">
+    <element name="template">
+      <ref name="template.attlist"/>
+      <zeroOrMore>
+        <ref name="boost.template.mix"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="template.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="template-type-parameter">
+    <element name="template-type-parameter">
+      <ref name="template-type-parameter.attlist"/>
+      <optional>
+        <ref name="default"/>
+      </optional>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+    </element>
+  </define>
+  <define name="template-type-parameter.attlist" combine="interleave">
+    <attribute name="name"/>
+    <optional>
+      <attribute name="pack"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="template-nontype-parameter">
+    <element name="template-nontype-parameter">
+      <ref name="template-nontype-parameter.attlist"/>
+      <ref name="type"/>
+      <optional>
+        <ref name="default"/>
+      </optional>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+    </element>
+  </define>
+  <define name="template-nontype-parameter.attlist" combine="interleave">
+    <attribute name="name"/>
+    <optional>
+      <attribute name="pack"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="template-varargs">
+    <element name="template-varargs">
+      <ref name="template-varargs.attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="template-varargs.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="specialization">
+    <element name="specialization">
+      <ref name="specialization.attlist"/>
+      <zeroOrMore>
+        <ref name="template-arg"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="specialization.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="template-arg">
+    <element name="template-arg">
+      <ref name="template-arg.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="template-arg.attlist" combine="interleave">
+    <optional>
+      <attribute name="pack"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="default">
+    <element name="default">
+      <ref name="default.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="default.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="inherit">
+    <element name="inherit">
+      <ref name="inherit.attlist"/>
+      <ref name="type"/>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+    </element>
+  </define>
+  <define name="inherit.attlist" combine="interleave">
+    <optional>
+      <attribute name="access"/>
+    </optional>
+    <optional>
+      <attribute name="pack"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="purpose">
+    <element name="purpose">
+      <ref name="purpose.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="purpose.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="description">
+    <element name="description">
+      <ref name="description.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="description.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="type">
+    <element name="type">
+      <ref name="type.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="type.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="typedef">
+    <element name="typedef">
+      <ref name="typedef.attlist"/>
+      <ref name="type"/>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+    </element>
+  </define>
+  <define name="typedef.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="enum">
+    <element name="enum">
+      <ref name="enum.attlist"/>
+      <zeroOrMore>
+        <ref name="enumvalue"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+    </element>
+  </define>
+  <define name="enum.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="enumvalue">
+    <element name="enumvalue">
+      <ref name="enumvalue.attlist"/>
+      <optional>
+        <ref name="default"/>
+      </optional>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+    </element>
+  </define>
+  <define name="enumvalue.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="static-constant">
+    <element name="static-constant">
+      <ref name="static-constant.attlist"/>
+      <ref name="type"/>
+      <ref name="default"/>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+    </element>
+  </define>
+  <define name="static-constant.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="data-member">
+    <element name="data-member">
+      <ref name="data-member.attlist"/>
+      <ref name="type"/>
+      <optional>
+        <ref name="purpose"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+    </element>
+  </define>
+  <define name="data-member.attlist" combine="interleave">
+    <attribute name="name"/>
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="paramtype">
+    <element name="paramtype">
+      <ref name="paramtype.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="paramtype.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="effects">
+    <element name="effects">
+      <ref name="effects.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="effects.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="postconditions">
+    <element name="postconditions">
+      <ref name="postconditions.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="postconditions.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="method-group">
+    <element name="method-group">
+      <ref name="method-group.attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="method"/>
+          <ref name="overloaded-method"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="method-group.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="constructor">
+    <element name="constructor">
+      <ref name="constructor.attlist"/>
+      <optional>
+        <ref name="template"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="parameter"/>
+      </zeroOrMore>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="constructor.attlist" combine="interleave">
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="destructor">
+    <element name="destructor">
+      <ref name="destructor.attlist"/>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="destructor.attlist" combine="interleave">
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="method">
+    <element name="method">
+      <ref name="method.attlist"/>
+      <optional>
+        <ref name="template"/>
+      </optional>
+      <ref name="type"/>
+      <zeroOrMore>
+        <ref name="parameter"/>
+      </zeroOrMore>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="method.attlist" combine="interleave">
+    <attribute name="name"/>
+    <optional>
+      <attribute name="cv"/>
+    </optional>
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="function">
+    <element name="function">
+      <ref name="function.attlist"/>
+      <optional>
+        <ref name="template"/>
+      </optional>
+      <ref name="type"/>
+      <zeroOrMore>
+        <ref name="parameter"/>
+      </zeroOrMore>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="function.attlist" combine="interleave">
+    <attribute name="name"/>
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="overloaded-method">
+    <element name="overloaded-method">
+      <ref name="overloaded-method.attlist"/>
+      <zeroOrMore>
+        <ref name="signature"/>
+      </zeroOrMore>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="overloaded-method.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="overloaded-function">
+    <element name="overloaded-function">
+      <ref name="overloaded-function.attlist"/>
+      <zeroOrMore>
+        <ref name="signature"/>
+      </zeroOrMore>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="overloaded-function.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="signature">
+    <element name="signature">
+      <ref name="signature.attlist"/>
+      <optional>
+        <ref name="template"/>
+      </optional>
+      <ref name="type"/>
+      <zeroOrMore>
+        <ref name="parameter"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="signature.attlist" combine="interleave">
+    <optional>
+      <attribute name="cv"/>
+    </optional>
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="requires">
+    <element name="requires">
+      <ref name="requires.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="requires.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="returns">
+    <element name="returns">
+      <ref name="returns.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="returns.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="throws">
+    <element name="throws">
+      <ref name="throws.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="throws.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="complexity">
+    <element name="complexity">
+      <ref name="complexity.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="complexity.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="notes">
+    <element name="notes">
+      <ref name="notes.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="notes.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="rationale">
+    <element name="rationale">
+      <ref name="rationale.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="rationale.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="functionname">
+    <element name="functionname">
+      <ref name="functionname.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="functionname.attlist" combine="interleave">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="enumname">
+    <element name="enumname">
+      <ref name="enumname.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="enumname.attlist" combine="interleave">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="macroname">
+    <element name="macroname">
+      <ref name="macroname.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="macroname.attlist" combine="interleave">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="headername">
+    <element name="headername">
+      <ref name="headername.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="headername.attlist" combine="interleave">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="globalname">
+    <element name="globalname">
+      <ref name="globalname.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="globalname.attlist" combine="interleave">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="copy-assignment">
+    <element name="copy-assignment">
+      <ref name="copy-assignment.attlist"/>
+      <optional>
+        <ref name="template"/>
+      </optional>
+      <optional>
+        <ref name="type"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="parameter"/>
+      </zeroOrMore>
+      <ref name="boost.function.semantics"/>
+    </element>
+  </define>
+  <define name="copy-assignment.attlist" combine="interleave">
+    <optional>
+      <attribute name="cv"/>
+    </optional>
+    <optional>
+      <attribute name="specifiers"/>
+    </optional>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="free-function-group">
+    <element name="free-function-group">
+      <ref name="free-function-group.attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="function"/>
+          <ref name="overloaded-function"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="free-function-group.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="precondition">
+    <element name="precondition">
+      <ref name="precondition.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="precondition.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="code" combine="choice">
+    <element name="code">
+      <ref name="code.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="code.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="using-namespace">
+    <element name="using-namespace">
+      <ref name="using-namespace.attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="using-namespace.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="using-class">
+    <element name="using-class">
+      <ref name="using-class.attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="using-class.attlist" combine="interleave">
+    <attribute name="name"/>
+    <ref name="boost.common.attrib"/>
+  </define>
+  <!-- ========== Boost Testsuite Extensions ========== -->
+  <define name="boost.testsuite.tests">
+    <choice>
+      <ref name="compile-test"/>
+      <ref name="link-test"/>
+      <ref name="run-test"/>
+      <ref name="compile-fail-test"/>
+      <ref name="link-fail-test"/>
+      <ref name="run-fail-test"/>
+    </choice>
+  </define>
+  <define name="boost.testsuite.test.content">
+    <zeroOrMore>
+      <ref name="source"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="lib"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="requirement"/>
+    </zeroOrMore>
+    <ref name="purpose"/>
+    <optional>
+      <ref name="if-fails"/>
+    </optional>
+  </define>
+  <define name="testsuite">
+    <element name="testsuite">
+      <ref name="testsuite.attlist"/>
+      <oneOrMore>
+        <ref name="boost.testsuite.tests"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="testsuite.attlist" combine="interleave">
+    <ref name="boost.common.attrib"/>
+  </define>
+  <define name="compile-test">
+    <element name="compile-test">
+      <ref name="compile-test.attlist"/>
+      <ref name="boost.testsuite.test.content"/>
+    </element>
+  </define>
+  <define name="compile-test.attlist" combine="interleave">
+    <attribute name="filename"/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <define name="link-test">
+    <element name="link-test">
+      <ref name="link-test.attlist"/>
+      <ref name="boost.testsuite.test.content"/>
+    </element>
+  </define>
+  <define name="link-test.attlist" combine="interleave">
+    <attribute name="filename"/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <define name="run-test">
+    <element name="run-test">
+      <ref name="run-test.attlist"/>
+      <ref name="boost.testsuite.test.content"/>
+    </element>
+  </define>
+  <define name="run-test.attlist" combine="interleave">
+    <attribute name="filename"/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <define name="compile-fail-test">
+    <element name="compile-fail-test">
+      <ref name="compile-fail-test.attlist"/>
+      <ref name="boost.testsuite.test.content"/>
+    </element>
+  </define>
+  <define name="compile-fail-test.attlist" combine="interleave">
+    <attribute name="filename"/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <define name="link-fail-test">
+    <element name="link-fail-test">
+      <ref name="link-fail-test.attlist"/>
+      <ref name="boost.testsuite.test.content"/>
+    </element>
+  </define>
+  <define name="link-fail-test.attlist" combine="interleave">
+    <attribute name="filename"/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <define name="run-fail-test">
+    <element name="run-fail-test">
+      <ref name="run-fail-test.attlist"/>
+      <ref name="boost.testsuite.test.content"/>
+    </element>
+  </define>
+  <define name="run-fail-test.attlist" combine="interleave">
+    <attribute name="filename"/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <define name="source">
+    <element name="source">
+      <ref name="source.attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="snippet"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="source.attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="snippet">
+    <element name="snippet">
+      <ref name="snippet.attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="snippet.attlist" combine="interleave">
+    <attribute name="name"/>
+  </define>
+  <define name="lib">
+    <element name="lib">
+      <ref name="lib.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="lib.attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="requirement">
+    <element name="requirement">
+      <ref name="requirement.attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="requirement.attlist" combine="interleave">
+    <attribute name="name"/>
+  </define>
+  <define name="if-fails">
+    <element name="if-fails">
+      <ref name="if-fails.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="if-fails.attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="parameter">
+    <element name="parameter">
+      <ref name="parameter.attlist"/>
+      <ref name="paramtype"/>
+      <optional>
+        <ref name="default"/>
+      </optional>
+      <optional>
+        <ref name="description"/>
+      </optional>
+    </element>
+  </define>
+  <define name="parameter.attlist" combine="interleave">
+    <optional>
+      <attribute name="name"/>
+    </optional>
+    <optional>
+      <attribute name="pack"/>
+    </optional>
+  </define>
+  <define name="programlisting" combine="interleave">
+    <element name="programlisting">
+      <ref name="db.programlisting.attlist"/>
+      <ref name="any"/>
+    </element>
+  </define>
+  <define name="db.programlisting.attlist" combine="choice">
+    <optional>
+      <attribute name="name"/>
+    </optional>
+  </define>
+  <!-- ========== Customize the DocBook DTD ========== -->
+  <define name="db.programming.inlines" combine="choice">
+    <choice>
+      <ref name="functionname"/>
+      <ref name="libraryname"/>
+      <ref name="enumname"/>
+      <ref name="headername"/>
+      <ref name="macroname"/>
+      <ref name="code"/>
+    </choice>
+  </define>
+  <define name="db.para" combine="choice">
+    <choice>
+      <ref name="using-namespace"/>
+      <ref name="using-class"/>
+      <ref name="librarylist"/>
+      <ref name="librarycategorylist"/>
+    </choice>
+  </define>
+  <define name="local.descobj.class">
+    <ref name="libraryinfo"/>
+  </define>
+  <define name="local.classname.attrib">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+  </define>
+  <define name="local.methodname.attrib">
+    <optional>
+      <attribute name="alt"/>
+    </optional>
+  </define>
+  <define name="local.refentry.class">
+    <choice>
+      <ref name="library-reference"/>
+      <ref name="testsuite"/>
+    </choice>
+  </define>
+  <define name="local.title.char.mix">
+    <notAllowed/>
+  </define>
+  <define name="any">
+    <zeroOrMore>
+      <choice>
+        <element>
+          <anyName/>
+          <zeroOrMore>
+            <attribute>
+              <anyName/>
+            </attribute>
+          </zeroOrMore>
+          <ref name="any"/>
+        </element>
+        <text/>
+      </choice>
+    </zeroOrMore>
+  </define>
+</grammar>
