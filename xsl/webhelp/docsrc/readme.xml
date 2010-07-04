@@ -123,20 +123,11 @@
         <listitem>
           <para>A customization to the xsls is included to put any <sgmltag>indexterm</sgmltag>s in the <sgmltag class="emptytag">meta name="keywords"...</sgmltag> element. The main reason for doing this is to improve support for Asian languages and help compensate for the lack of stemming in the indexer. As implmented, this customization only supports situations where all sections or sect* elements are chunked. For example, if you have chunk.first.sections set to 0, any indexterms in the first sections will not be appended to the keywords list.   </para>
         </listitem>
-        <listitem>
-          <para>If you click on an open node in the tree control, it closes the node no matter where you click on it. I.e. you cannot click on the node label to navigate to the target page without closing the node. </para>
-        </listitem>
-        <listitem>
-          <para>The tree control system does not indicate which page in the tree is the current page in the content pane. </para>
-        </listitem>
       </itemizedlist>
       <itemizedlist>
         <title>Planned enhancements</title>
         <listitem>
-          <para>Replace the current tree control with one from the Yahoo JavaScript library that supports a sync-toc feature and lets you click on the node without closing it.</para>
-        </listitem>
-        <listitem>
-          <para>Add a switch so that the indexer only indexs meta tags. This will reduce the size of the index since only the meta tag content matters.</para>
+          <para>Add a switch so that the indexer only indexs meta tags. This will reduce the size of the index since only the meta tag content matters for Asian languages.</para>
         </listitem>
         <listitem>
           <para>Limit the size of the search description to something like 150 characters or so.</para>
