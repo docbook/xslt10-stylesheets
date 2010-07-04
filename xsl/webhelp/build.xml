@@ -1,0 +1,105 @@
+<project default="help">
+
+  <loadproperties srcFile="build.properties"/>
+  
+  <xmlcatalog id="catalog">
+	<dtd publicId="-//OASIS//DTD DocBook XML V4.5//EN"
+	  location="${docbookx.dtd}"/>
+  </xmlcatalog>
+
+  <property environment="env"/>
+  <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
+
+  <target name="validate">
+	<xmlvalidate file="${input-xml}">
+	  <xmlcatalog refid="catalog"/>
+	</xmlvalidate>
+  </target>
+
+  <target name="chunk" depends="clean">
+
+	<mkdir dir="${frameset.base.dir}"/>
+	<xslt 
+	  in="${input-xml}"
+	  out="${frameset.base.dir}/dummy.html"
+	  style="xsl/webhelp.xsl"
+	  scanincludeddirectories="false"
+	  classpath="${xslt-processor}">
+	  <xmlcatalog refid="catalog"/>
+	  <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
+	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>
+	  <param name="output_file_name" expression="${output_file_name}"/>
+	  <param name="frameset.base.dir" expression="${frameset.base.dir}" if="frameset.base.dir"/>
+	</xslt>
+
+	<delete file="${frameset.base.dir}/dummy.html"/>
+
+<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
+	<copy todir="${frameset.base.dir}">
+	  <fileset dir="template">
+		<include name="**/*"/>
+	  </fileset>
+	</copy>
+  </target>
+
+  <target name="index">
+
+	<path id="nw-cms.jar.path">
+	  <pathelement location="indexer/lib/nw-cms.jar" />
+	</path>
+
+    <taskdef name="indexertask"
+	  classname="com.nexwave.nquindexer.IndexerTask">
+	  <classpath refid="nw-cms.jar.path" />
+    </taskdef>
+
+	<echo>Indexing html files in ${frameset.base.dir}/content</echo>
+
+    <indexertask htmldir="${frameset.base.dir}/content"/>
+
+	<delete>
+	  <fileset dir="${frameset.base.dir}/content/search" includes="*.props"/>
+	</delete>
+
+	<delete file="xx.html"/>
+	
+  </target>
+
+  <target name="webhelp" depends="validate,chunk,index"/>
+
+  <target name="build-indexer">
+
+	<javac
+	  srcdir="indexer/src"
+	  destdir="indexer/lib"
+	  includes="com/nexwave/nsidita/*.java com/nexwave/nquindexer/*.java"
+	  classpath="${ant.jar}"/>
+	  
+	<jar
+	  destfile="indexer/lib/nw-cms.jar"
+	  basedir="indexer/lib"
+	  includes="com/**"/>
+	
+	<delete dir="indexer/lib/com"/>
+	
+  </target>
+
+  <target name="zip" depends="webhelp">
+	<zip destfile="../docbook-webhelp.zip"
+	  basedir=".."
+	  includes="docbook-webhelp/**"/>
+  </target>
+
+  <target name="clean">
+	<delete dir="${frameset.base.dir}"/>
+  </target>
+
+  <target name="help">
+	<echo>Usage:</echo>
+	<echo>doc: Generate the documentation in the doc dir and index it.</echo>
+	<echo>chunk: Generate the frameset.</echo>
+	<echo>index: Index the content.</echo>
+	<echo>build-indexer: Rebuilds the indexer.</echo>	
+  </target>
+
+</project>
