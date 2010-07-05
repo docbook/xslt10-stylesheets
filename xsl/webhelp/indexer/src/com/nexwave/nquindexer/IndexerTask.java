@@ -10,9 +10,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+/*
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
+*/
 
 
 import com.nexwave.nsidita.DirList;
@@ -24,8 +26,9 @@ import com.nexwave.nsidita.DocFileInfo;
  * 
  * @author N. Quaine
  */
-public class IndexerTask extends Task {
-	
+//public class IndexerTask extends Task {
+public class IndexerTask  {
+
 	// messages
 	private String txt_no_inputdir = "Input directory not found:";
 	private String txt_cannot_create_outputdir = "Cannot create output search directory.";
@@ -55,7 +58,7 @@ public class IndexerTask extends Task {
 
 	}
 	/** The setter for the "htmldir" attribute (parameter of the task)
-	 * @param args
+	 * @param htmldir
 	 * @throws InterruptedException 
 	 */
     public void setHtmldir(String htmldir) {
@@ -66,8 +69,9 @@ public class IndexerTask extends Task {
 	/**
 	 * Implementation of the execute function (Task interface)
 	 */
-	public void execute() throws BuildException {
-		
+	//public void execute() throws BuildException {
+	public void execute(){
+
 		ArrayList<DocFileInfo> filesDescription = null; // list of information about the topic files
 		ArrayList<File> htmlFiles = null; // topic files listed in the given directory
 		ArrayList<String> htmlFilesPathRel = null;
@@ -104,6 +108,7 @@ public class IndexerTask extends Task {
 		
 		// check if outputdir defined
 		if (outputDir == null) {
+            //set the output directory: path= {inputDir}/search
 			outputDir = new String(inputDir.getPath().concat(File.separator).concat(searchdir));
 		}
 
@@ -152,7 +157,7 @@ public class IndexerTask extends Task {
 		
 		// Retrieve the clean-up properties for indexing
 		RetrieveCleanUpProps();
-	    //System.out.print("clean"+" " +cleanUpStrings);
+	    System.out.print("clean"+" " +cleanUpStrings);
 	    
 		//create a default handler
 		//SaxHTMLIndex spe = new SaxHTMLIndex (); // do not use clean-up props files
@@ -240,10 +245,12 @@ public class IndexerTask extends Task {
         String tempStr= new String();
         File ftemp;
         Collection c = new ArrayList<String>();
-                
-		// Get the list of the props file containing the words to remove (not the punctuation)
+
+        //TODO punctuation files are located at webhelp/template/content/search/*.* But here, it refers to doc/content/search which does not exist.
+
+        // Get the list of the props file containing the words to remove (not the punctuation)
         DirList props = new DirList(inputDir, "^(?!(punctuation)).*\\.props$", 1);
-		ArrayList<File>wordsList = props.getListFiles();
+		ArrayList<File> wordsList = props.getListFiles();
 		System.out.println("props files:"+wordsList);
 		
 		Properties enProps =new Properties ();

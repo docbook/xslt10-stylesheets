@@ -10,11 +10,9 @@ p, ul, ol, li {
 h1 {
     font: bold 14pt Arial, Helvetica, geneva;
 }
-
 h2 {
     font: bold 12pt Arial, Helvetica, geneva;
 }
-
 #header {
     background: white url(../images/gov-header-bg.gif) repeat-x;
     position: fixed;
@@ -27,17 +25,16 @@ h2 {
     border-bottom: 2px solid #cccccc;
     z-index: 2000;
 }
-
 #leftnavigation {
 /* background-color:#91e7b3;*/
     overflow: auto;
     position: fixed;
     height: auto;
     top: 80px;
-    bottom: 0px;
+    bottom: 0;
     left: 0;
     width: 230px;
-    margin: 0px 0px 0px 10px;
+    margin: 0 0 0 10px;
     overflow: auto;
 }
 
@@ -53,9 +50,7 @@ h2 {
     padding-left: 5px;
     padding-right: 12px;
     color: #000000;
-    border-left: 2px solid #cccccc; /*overflow :scroll;*/
-    background-image: url(../images/back.png);
-    background-repeat: repeat;
+    border-left: 2px solid #cccccc; /*overflow :scroll;*/ 
     z-index: 1000;
 }
 

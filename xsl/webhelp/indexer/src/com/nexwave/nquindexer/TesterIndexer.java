@@ -1,5 +1,7 @@
 package com.nexwave.nquindexer;
 
+import java.io.File;
+
 /**
  * For running tests with the indexertask.
  * 
@@ -14,7 +16,9 @@ public class TesterIndexer {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		
+//
+//        File file = new File("test");
+//        System.out.println(file.getAbsolutePath());
 		System.out.println(args[0]);
 		if (args.length == 0 ) {
 			System.out.println("When using the TestIndexer class, you must give the directory of html files to parse as input");

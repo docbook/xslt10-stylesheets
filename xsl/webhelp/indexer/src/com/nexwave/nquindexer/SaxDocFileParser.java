@@ -81,7 +81,7 @@ public class SaxDocFileParser extends DefaultHandler {
 		try {
 		
 			//get a new instance of parser
-			SAXParser sp = (SAXParser)spf.newSAXParser();
+			SAXParser sp = spf.newSAXParser();
 			// deactivate the validation
 			sp.getXMLReader().setFeature("http://xml.org/sax/features/external-general-entities", false);
 			sp.getXMLReader().setFeature( "http://apache.org/xml/features/nonvalidating/load-external-dtd",	false);
@@ -206,6 +206,11 @@ public class SaxDocFileParser extends DefaultHandler {
 	return null;
 	}
 
+    /**
+     * Removes the validation in html files, such as xml version and DTDs  
+     * @param file
+     * @return int: returns 0 if no IOException occurs, else 1.
+     */
 	public int RemoveValidationPI (File file) {
 		
 		try {

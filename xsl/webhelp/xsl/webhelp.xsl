@@ -3,11 +3,13 @@
         xmlns:exsl="http://exslt.org/common"
         xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
-    <xsl:import
-            href="c:/gsoc2010/docbook-webhelp/1Beta02/xsl/../../../docbook-xsl-1.75.2/xhtml/chunk.xsl"/>
 
     <!--<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>-->
-
+    <!--xsl:import
+            href="c:/gsoc2010/docbook-webhelp/1Beta02/xsl/../../../docbook-xsl-1.75.2/xhtml/chunk.xsl"/--> 
+    <xsl:import
+            href="file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/docbook/xhtml/chunk.xsl"/>
+ 
     <xsl:include href="keywords.xsl"/>
 
     <!--TODO check how html and xml behaves-->
@@ -23,6 +25,9 @@
     <xsl:param name="chunked.toc.all.open">1</xsl:param>
     <xsl:param name="frameset.base.dir">doc</xsl:param>
     <xsl:param name="generate.web.xml">0</xsl:param>
+    <xsl:param name="direction.align.start">left</xsl:param>
+    <xsl:param name="direction.align.end">right</xsl:param>
+    <xsl:variable name="tree.cookie.id" select="concat( 'treeview-', generate-id(.) )"/>
     <!-- Custom params! -->
 
     <xsl:param name="chunker.output.indent">no</xsl:param>
@@ -59,6 +64,30 @@
     </i18n>
 
     <xsl:template name="user.head.content">
+        <!--xsl:message>
+            tree.cookie.id = <xsl:value-of select="$tree.cookie.id"/>
+        </xsl:message--> 
+        <script type="text/javascript">
+            //The id for tree cookie
+            var treeCookieId = "<xsl:value-of select="$tree.cookie.id"/>";
+            
+            //Localization
+            txt_filesfound = '<xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'txt_filesfound'"/>
+                </xsl:call-template>';
+            txt_enter_at_least_1_char = "<xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'txt_enter_at_least_1_char'"/>
+                </xsl:call-template>";
+            txt_browser_not_supported = "<xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'txt_browser_not_supported'"/>
+                </xsl:call-template>";
+            txt_please_wait = "<xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'txt_please_wait'"/>
+                </xsl:call-template>";
+            txt_results_for = "<xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'txt_results_for'"/>
+                </xsl:call-template>";
+        </script>
         <style type="text/css">
             input {
                 margin-bottom: 5px;
@@ -72,23 +101,12 @@
                 background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
             }
         <!--[if IE]>
-        <style type="text/css">
             input {
                 margin-bottom: 5px;
                 margin-top: 2px;
             }
-        </style><![endif]-->
-        </style>
-        <script type="text/javascript">
-            <xsl:comment><![CDATA[
-                var txt_filesfound = "Results";
-                var txt_enter_at_least_1_char = "You must enter at least one character.";
-                var txt_browser_not_supported = "Your browser is not supported. Use of Mozilla Firefox is recommended.";
-                var txt_please_wait = "Please wait. Search in progress...";
-                var txt_results_for = "Results for: ";
-            ]]></xsl:comment>
-        </script>
-
+            <![endif]-->
+        </style>  
         <link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/>
         <link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
         <link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/>
@@ -96,19 +114,15 @@
         <script type="text/javascript" src="../common/jquery/jquery-1.4.2.min.js">
             <xsl:comment></xsl:comment>
         </script>
-
         <script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js">
             <xsl:comment></xsl:comment>
         </script>
-
-
         <script type="text/javascript" src="../common/jquery/jquery.cookie.js">
             <xsl:comment></xsl:comment>
         </script>
         <script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js">
             <xsl:comment></xsl:comment>
         </script>
-
         <!--Scripts/css stylesheets for Search-->
         <script type="text/javascript" src="search/addition.js">
             <xsl:comment></xsl:comment>
@@ -121,14 +135,11 @@
         <script type="text/javascript" src="search/nwSearchFnt.js">
             <xsl:comment></xsl:comment>
         </script>
-
-
     </xsl:template>
 
-    <xsl:template name="user.header.navigation">
-
+    <xsl:template name="user.header.navigation"> 
         <xsl:call-template name="webhelpheader"/>
-        <xsl:call-template name="webhelptoc"/>
+        <!--xsl:call-template name="webhelptoc"/-->
 
         <!--testing toc in the content page>
         <xsl:call-template name="webhelptoctoc"/>
@@ -138,7 +149,11 @@
 
     </xsl:template>
 
-<xsl:template name="header.navigation">
+    <xsl:template name="user.footer.navigation"> 
+        <xsl:call-template name="webhelptoc"/>
+    </xsl:template>
+
+    <xsl:template name="header.navigation">
   <xsl:param name="prev" select="/foo"/>
   <xsl:param name="next" select="/foo"/>
   <xsl:param name="nav.context"/>
@@ -278,26 +293,26 @@
       <xsl:call-template name="user.header.navigation"/>
 
       <div id="content">
-      <xsl:call-template name="header.navigation">
-        <xsl:with-param name="prev" select="$prev"/>
-        <xsl:with-param name="next" select="$next"/>
-        <xsl:with-param name="nav.context" select="$nav.context"/>
-      </xsl:call-template>
+          <xsl:call-template name="header.navigation">
+              <xsl:with-param name="prev" select="$prev"/>
+              <xsl:with-param name="next" select="$next"/>
+              <xsl:with-param name="nav.context" select="$nav.context"/>
+          </xsl:call-template>
 
-      <xsl:call-template name="user.header.content"/>
+          <xsl:call-template name="user.header.content"/>
 
-      <xsl:copy-of select="$content"/>
+          <xsl:copy-of select="$content"/>
 
-      <xsl:call-template name="user.footer.content"/>
+          <xsl:call-template name="user.footer.content"/>
 
-      <xsl:call-template name="footer.navigation">
-        <xsl:with-param name="prev" select="$prev"/>
-        <xsl:with-param name="next" select="$next"/>
-        <xsl:with-param name="nav.context" select="$nav.context"/>
-      </xsl:call-template>
-
-      <xsl:call-template name="user.footer.navigation"/>
+          <xsl:call-template name="footer.navigation">
+              <xsl:with-param name="prev" select="$prev"/>
+              <xsl:with-param name="next" select="$next"/>
+              <xsl:with-param name="nav.context" select="$nav.context"/>
+          </xsl:call-template>
       </div>
+        
+      <xsl:call-template name="user.footer.navigation"/>
     </body>
   </html>
   <xsl:value-of select="$chunk.append"/>
@@ -507,13 +522,7 @@
     <xsl:template name="user.footer.content">
        <script type="text/javascript" src="../common/main.js">
            <xsl:comment></xsl:comment>
-       </script>
-       <script type="text/javascript">
-            <!--code for synching content page with the toc-->
-
-       </script>
-
-
+       </script> 
     </xsl:template>
 
     <xsl:template name="index.html">

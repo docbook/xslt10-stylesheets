@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "c:/workhead/export/DocBookDTD/4.5/docbookx.dtd">
+<!--DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "c:/workhead/export/DocBookDTD/4.5/docbookx.dtd"-->
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "/media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/defguide/en/schema/docbookx.dtd">
   <!--  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"-->
 <book>
   <title>Web-based Help from DocBook XML Readme</title>

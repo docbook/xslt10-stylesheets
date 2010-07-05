@@ -92,9 +92,13 @@
 			this.find("div." + CLASSES.hitarea).click( toggler );
 		},
 		treeview: function(settings) {
-			
+
+            if(typeof(window.treeCookieId) !== 'undefined' || window.treeCookieId === ""){
+                treeCookieId = "treeview";
+            }
+
 			settings = $.extend({
-				cookieId: "treeview"
+				cookieId: treeCookieId
 			}, settings);
 			
 			if (settings.add) {

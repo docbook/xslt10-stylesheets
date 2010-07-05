@@ -50,6 +50,7 @@ public class WriteJSFiles {
 	        OutputStreamWriter out  = new OutputStreamWriter(bout, "UTF-8");
 	        
 	        /*fl : file list*/
+	        out.write("//List of files which are indexed.\n");
 	        out.write("fl = new Array();\n");
 	        String temp;
 	        while ( it.hasNext ( ) ) {
@@ -113,11 +114,11 @@ public class WriteJSFiles {
         		//Remove unwanted white char
         		if (tempTitle != null ) {
 					tempTitle = tempTitle.replaceAll("\\s+", " ");
-        			tempTitle = tempTitle.replaceAll("['’\"]", " ");
+        			tempTitle = tempTitle.replaceAll("['ï¿½\"]", " ");
 				}
         		if (tempShortdesc != null ) {
         			tempShortdesc = tempShortdesc.replaceAll("\\s+", " ");
-        			tempShortdesc = tempShortdesc.replaceAll("['’\"]", " ");
+        			tempShortdesc = tempShortdesc.replaceAll("['ï¿½\"]", " ");
         		}
         		//System.out.println("temp : "+File.separatorChar+" "+tempShortdesc);
 			   out.write("fil[\""+i+"\"]"+"= \""+tempPath+"@@@"+tempTitle+"@@@"+tempShortdesc+"\";\n");
