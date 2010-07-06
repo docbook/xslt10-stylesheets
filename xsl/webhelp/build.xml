@@ -1,7 +1,8 @@
-<project default="help">
+<project default="help" name="mainbuild">
 
   <loadproperties srcFile="build.properties"/>
-  
+  <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
+
   <xmlcatalog id="catalog">
 	<catalogpath>
 	  <pathelement location="${docbook-xsl-catalog}"/>
@@ -24,7 +25,7 @@
 	<xslt 
 	  in="${input-xml}"
 	  out="${frameset.base.dir}/dummy.html"
-	  style="xsl/webhelp.xsl"
+	  style="${ant.file.dir}/xsl/webhelp.xsl"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
@@ -38,7 +39,7 @@
 
 <!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
 	<copy todir="${frameset.base.dir}">
-	  <fileset dir="template">
+	  <fileset dir="${ant.file.dir}/template">
 		<include name="**/*"/>
 	  </fileset>
 	</copy>
@@ -47,7 +48,7 @@
   <target name="index">
 
 	<path id="nw-cms.jar.path">
-	  <pathelement location="indexer/lib/nw-cms.jar" />
+	  <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar" />
 	</path>
 
     <taskdef name="indexertask"
