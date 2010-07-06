@@ -3,14 +3,16 @@
   <loadproperties srcFile="build.properties"/>
   
   <xmlcatalog id="catalog">
-	<dtd publicId="-//OASIS//DTD DocBook XML V4.5//EN"
-	  location="${docbookx.dtd}"/>
+	<catalogpath>
+	  <pathelement location="${docbook-xsl-catalog}"/>
+	</catalogpath>
+	<dtd publicId="-//OASIS//DTD DocBook XML V4.5//EN" location="${docbookx.dtd}"/>
   </xmlcatalog>
 
   <property environment="env"/>
   <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
 
-  <target name="validate">
+  <target name="validate" if="validate">
 	<xmlvalidate file="${input-xml}">
 	  <xmlcatalog refid="catalog"/>
 	</xmlvalidate>
@@ -24,7 +26,7 @@
 	  out="${frameset.base.dir}/dummy.html"
 	  style="xsl/webhelp.xsl"
 	  scanincludeddirectories="false"
-	  classpath="${xslt-processor}">
+	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
 	  <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
 	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>

@@ -4,11 +4,7 @@
         xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
 
-    <!--<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>-->
-    <!--xsl:import
-            href="c:/gsoc2010/docbook-xsl-1.75.2/xhtml/chunk.xsl"/-->
-    <xsl:import
-            href="file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/docbook/xhtml/chunk.xsl"/>
+    <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
  
     <xsl:include href="keywords.xsl"/>
 
