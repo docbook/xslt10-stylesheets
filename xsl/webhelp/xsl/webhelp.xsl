@@ -5,10 +5,10 @@
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
 
     <!--<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>-->
-    <xsl:import
-            href="c:/gsoc2010/docbook-xsl-1.75.2/xhtml/chunk.xsl"/> 
     <!--xsl:import
-            href="file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/docbook/xhtml/chunk.xsl"/-->
+            href="c:/gsoc2010/docbook-xsl-1.75.2/xhtml/chunk.xsl"/-->
+    <xsl:import
+            href="file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/docbook/xhtml/chunk.xsl"/>
  
     <xsl:include href="keywords.xsl"/>
 
@@ -27,12 +27,12 @@
     <xsl:param name="generate.web.xml">0</xsl:param>
     <xsl:param name="direction.align.start">left</xsl:param>
     <xsl:param name="direction.align.end">right</xsl:param>
-    <xsl:variable name="tree.cookie.id" select="concat( 'treeview-', generate-id(.) )"/>
+    <xsl:variable name="tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
     <!-- Custom params! -->
 
     <xsl:param name="chunker.output.indent">no</xsl:param>
     <xsl:param name="navig.showtitles">0</xsl:param>
-
+                                                                                    
     <xsl:param name="manifest.in.base.dir" select="0"/>
     <xsl:param name="base.dir" select="concat($frameset.base.dir,'/content/')"/>
     <xsl:param name="suppress.navigation">0</xsl:param>
@@ -65,8 +65,8 @@
 
     <xsl:template name="user.head.content">
         <!--xsl:message>
-            tree.cookie.id = <xsl:value-of select="$tree.cookie.id"/>
-        </xsl:message--> 
+            tree.cookie.id = <xsl:value-of select="$tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
+        </xsl:message-->
         <script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "<xsl:value-of select="$tree.cookie.id"/>";
@@ -154,93 +154,6 @@
 		  <xsl:with-param name="currentid" select="generate-id(.)"/>
 	     </xsl:call-template>
     </xsl:template>
-
-    <xsl:template name="header.navigation">
-  <xsl:param name="prev" select="/foo"/>
-  <xsl:param name="next" select="/foo"/>
-  <xsl:param name="nav.context"/>
-
-  <xsl:variable name="home" select="/*[1]"/>
-  <xsl:variable name="up" select="parent::*"/>
-
-    <xsl:variable name="row1" select="$navig.showtitles != 0"/>
-    <xsl:variable name="row2"
-                  select="count($prev) &gt; 0 or (count($up) &gt; 0 and generate-id($up) != generate-id($home) and $navig.showtitles != 0) or count($next) &gt; 0"/>
-
-        <xsl:if test="$suppress.navigation = '0' and $suppress.header.navigation = '0'">
-    <div class="navheader">
-      <xsl:if test="$row1 or $row2">
-        <table width="100%" summary="Navigation header">
-          <xsl:if test="$row1">
-            <tr>
-              <th colspan="3" align="center">
-                <xsl:apply-templates select="." mode="object.title.markup"/>
-              </th>
-            </tr>
-          </xsl:if>
-
-          <xsl:if test="$row2">
-            <tr>
-              <td width="20%" align="{$direction.align.start}">
-                <xsl:if test="count($prev)&gt;0">
-                  <a accesskey="p">
-                    <xsl:attribute name="href">
-                      <xsl:call-template name="href.target">
-                        <xsl:with-param name="object" select="$prev"/>
-                      </xsl:call-template>
-                    </xsl:attribute>
-                    <xsl:call-template name="navig.content">
-                      <xsl:with-param name="direction" select="'prev'"/>
-                    </xsl:call-template>
-                  </a>
-                </xsl:if>
-                <xsl:text>&#160;</xsl:text>
-              </td>
-              <th width="60%" align="center">
-                <xsl:choose>
-                  <xsl:when test="count($up) &gt; 0 and generate-id($up) != generate-id($home) and $navig.showtitles != 0">
-                    <xsl:apply-templates select="$up" mode="object.title.markup"/>
-                  </xsl:when>
-                  <xsl:otherwise>&#160;</xsl:otherwise>
-                </xsl:choose>
-              </th>
-              <td width="20%" align="{$direction.align.end}">
-                <xsl:text>&#160;</xsl:text>
-
-                <!--code for synching content page with the toc-->
-                <xsl:variable name="contentId" select="generate-id(.)"/>
-                <a href='#' id="sync">Sync</a>
-                <script type="text/javascript">
-                    <![CDATA[
-                        $('#sync').click(function() {
-                            syncToc("]]><xsl:value-of select="$contentId"/><![CDATA[");
-                        });
-                ]]></script>
-
-                <xsl:if test="count($next)&gt;0">
-                  |
-                  <a accesskey="n">
-                    <xsl:attribute name="href">
-                      <xsl:call-template name="href.target">
-                        <xsl:with-param name="object" select="$next"/>
-                      </xsl:call-template>
-                    </xsl:attribute>
-                    <xsl:call-template name="navig.content">
-                      <xsl:with-param name="direction" select="'next'"/>
-                    </xsl:call-template>
-                  </a>
-                </xsl:if>
-              </td>
-            </tr>
-          </xsl:if>
-        </table>
-      </xsl:if>
-      <xsl:if test="$header.rule != 0">
-        <hr/>
-      </xsl:if>
-    </div>
-  </xsl:if>
-</xsl:template>
 
     <xsl:template match="/">
         <xsl:choose>
@@ -346,7 +259,7 @@
     </xsl:template>
 
     <xsl:template name="webhelptoc">
-	<xsl:param name="currentid"/>
+	    <xsl:param name="currentid"/>
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:variable name="title">
@@ -433,8 +346,8 @@
                                      id="tocLoading" style="display:block;"/>
                                 <ul id="tree" class="filetree" style="display:none;">
                                     <xsl:apply-templates select="/*/*" mode="webhelptoc">
-					<xsl:with-param name="currentid" select="$currentid"/>
-				  </xsl:apply-templates>
+                                        <xsl:with-param name="currentid" select="$currentid"/>
+                                    </xsl:apply-templates>
                                 </ul>
                             </div>
                             <xsl:if test="$exclude.search.from.chunked.html != 'true'">

@@ -1,3 +1,10 @@
+/**
+ * main.js
+ *
+ * Developed by: Kasun Gajasinghe, David Cramer
+ *
+ */
+
 $(document).ready(function() {
 
     $(function() {
@@ -41,45 +48,35 @@ $(document).ready(function() {
         //tabView.selectTab(0);
     } 
 
+    syncToc();
 
-
-
-    $('#sync').click();
+ //   $('#sync').click();
 
 
 });
-/*
-
-function tocTabClick(e) {
-    $.cookie('search', 'no');
-}
-
-function searchTabClick(e) {
-    $.cookie('search', 'yes');
-}
-*/
 
 /**
- * Synchronize with the tableOfContents
- * @param id the node/element id which should be displayed when synching. 
+ * Synchronize with the tableOfContents 
  */
-function syncToc(id){
+function syncToc(){
     var a = document.getElementById("webhelp-currentid");
 	var b = a.getElementsByTagName("a")[0];
 
     //Setting the background for selected node.
     var style = a.getAttribute("style");
     if(style != null && !style.match(/background-color: Background;/)){ 
-        a.setAttribute("style", "background-color: Background;  "+style);
+        a.setAttribute("style", "background-color: #6495ed;  "+style);
 		b.setAttribute("style", "color: white;");
     } else if(style != null){
-        a.setAttribute("style", "background-color: Background;  " + style);
+        a.setAttribute("style", "background-color: #6495ed;  " + style);
 		b.setAttribute("style", "color: white;");
     } else {
-        a.setAttribute("style", "background-color: Background;  ");        
+        a.setAttribute("style", "background-color: #6495ed;  ");        
 		b.setAttribute("style", "color: white;");
     }
-    
+
+    //shows the node related to current content.
+    //goes a recursive call from current node to ancestor nodes, displaying all of them.
 	while (a.parentNode && a.parentNode.nodeName){
         var parentNode = a.parentNode;
         var nodeName = parentNode.nodeName;
