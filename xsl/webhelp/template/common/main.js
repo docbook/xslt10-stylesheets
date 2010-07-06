@@ -64,16 +64,20 @@ function searchTabClick(e) {
  * @param id the node/element id which should be displayed when synching. 
  */
 function syncToc(id){
-    var a = document.getElementById(id);
+    var a = document.getElementById("webhelp-currentid");
+	var b = a.getElementsByTagName("a")[0];
 
     //Setting the background for selected node.
     var style = a.getAttribute("style");
     if(style != null && !style.match(/background-color: Background;/)){ 
-        a.setAttribute("style", "background-color: Background; "+style);
+        a.setAttribute("style", "background-color: Background;  "+style);
+		b.setAttribute("style", "color: white;");
     } else if(style != null){
-        a.setAttribute("style", "background-color: Background; " + style);
+        a.setAttribute("style", "background-color: Background;  " + style);
+		b.setAttribute("style", "color: white;");
     } else {
-        a.setAttribute("style", "background-color: Background; ");        
+        a.setAttribute("style", "background-color: Background;  ");        
+		b.setAttribute("style", "color: white;");
     }
     
 	while (a.parentNode && a.parentNode.nodeName){

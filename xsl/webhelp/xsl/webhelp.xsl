@@ -5,10 +5,10 @@
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
 
     <!--<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>-->
-    <!--xsl:import
-            href="c:/gsoc2010/docbook-webhelp/1Beta02/xsl/../../../docbook-xsl-1.75.2/xhtml/chunk.xsl"/--> 
     <xsl:import
-            href="file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/docbook/xhtml/chunk.xsl"/>
+            href="c:/gsoc2010/docbook-xsl-1.75.2/xhtml/chunk.xsl"/> 
+    <!--xsl:import
+            href="file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/docbook/xhtml/chunk.xsl"/-->
  
     <xsl:include href="keywords.xsl"/>
 
@@ -150,7 +150,9 @@
     </xsl:template>
 
     <xsl:template name="user.footer.navigation"> 
-        <xsl:call-template name="webhelptoc"/>
+    	<xsl:call-template name="webhelptoc">
+		  <xsl:with-param name="currentid" select="generate-id(.)"/>
+	     </xsl:call-template>
     </xsl:template>
 
     <xsl:template name="header.navigation">
@@ -312,7 +314,7 @@
           </xsl:call-template>
       </div>
         
-      <xsl:call-template name="user.footer.navigation"/>
+		<xsl:call-template name="user.footer.navigation"/>
     </body>
   </html>
   <xsl:value-of select="$chunk.append"/>
@@ -344,6 +346,7 @@
     </xsl:template>
 
     <xsl:template name="webhelptoc">
+	<xsl:param name="currentid"/>
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:variable name="title">
@@ -429,7 +432,9 @@
                                 <img src="../common/images/loading.gif" alt="loading table of contents..."
                                      id="tocLoading" style="display:block;"/>
                                 <ul id="tree" class="filetree" style="display:none;">
-                                    <xsl:apply-templates select="/*/*" mode="webhelptoc"/>
+                                    <xsl:apply-templates select="/*/*" mode="webhelptoc">
+					<xsl:with-param name="currentid" select="$currentid"/>
+				  </xsl:apply-templates>
                                 </ul>
                             </div>
                             <xsl:if test="$exclude.search.from.chunked.html != 'true'">
@@ -470,6 +475,7 @@
     <xsl:template
             match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
             mode="webhelptoc">
+	<xsl:param name="currentid"/>
         <xsl:variable name="title">
             <xsl:if test="$eclipse.autolabel=1">
                 <xsl:variable name="label.markup">
@@ -500,7 +506,10 @@
 
         <xsl:if test="not(self::index) or (self::index and not($generate.index = 0))">
             <!--li style="white-space: pre; line-height: 0em;"-->
-            <li id="{$id}">
+	  <li>
+		<xsl:if test="$id = $currentid">
+		  <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
+		</xsl:if>		
                 <span class="file">
                     <a href="{substring-after($href,concat($frameset.base.dir,'/content/'))}">
                         <xsl:value-of select="$title"/>
@@ -510,7 +519,9 @@
                     <ul>
                         <xsl:apply-templates
                                 select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv"
-                                mode="webhelptoc"/>
+                                mode="webhelptoc">
+					<xsl:with-param name="currentid" select="$currentid"/>
+			</xsl:apply-templates>
                     </ul>
                 </xsl:if>
             </li>
