@@ -18,88 +18,101 @@
   <othercredit>
     <firstname>Nenad</firstname>
 
-    <surname>Antoni&#x0107;</surname>
+    <surname>Antonić</surname>
     <contrib>Review, help with some translations.</contrib>
   </othercredit>
+    <author><firstname>Edmon</firstname><surname>Begoli</surname>
+          <affiliation><orgname>The Fedora Project</orgname><address><email>ebegoli@fedoraproject.org</email></address>
+          </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
-<gentext key="Abstract" text="Sa&#x017E;etak"/>
-<gentext key="abstract" text="Sa&#x017E;etak"/>
+<gentext key="Abstract" text="Sažetak"/>
+<gentext key="abstract" text="sažetak"/>
+<gentext key="Acknowledgements" text="Acknowledgements"/>
+<gentext key="acknowledgements" text="acknowledgements"/>
 <gentext key="Answer" text="Odgovor:"/>
-<gentext key="answer" text="Odgovor:"/>
+<gentext key="answer" text="odgovor:"/>
 <gentext key="Appendix" text="Dodatak"/>
 <gentext key="appendix" text="dodatak"/>
-<gentext key="Article" text="&#x010C;lanak"/>
-<gentext key="article" text="&#x010C;lanak"/>
+<gentext key="Article" text="Članak"/>
+<gentext key="article" text="članak"/>
+<gentext key="Author" text="Author"/>
 <gentext key="Bibliography" text="Literatura"/><!-- ? -->
-<gentext key="bibliography" text="Literatura"/><!-- ? -->
+<gentext key="bibliography" text="literatura"/><!-- ? -->
 <gentext key="Book" text="Knjiga"/>
-<gentext key="book" text="Knjiga"/>
+<gentext key="book" text="knjiga"/>
 <gentext key="CAUTION" text="OPREZ"/>
 <gentext key="Caution" text="Oprez"/>
-<gentext key="caution" text="Oprez"/>
+<gentext key="caution" text="oprez"/>
 <gentext key="Chapter" text="Poglavlje"/>
 <gentext key="chapter" text="poglavlje"/>
 <gentext key="Colophon" text="Impresum"/>
-<gentext key="colophon" text="Impresum"/>
+<gentext key="colophon" text="impresum"/>
 <gentext key="Copyright" text="Autorska prava"/><!-- ? -->
-<gentext key="copyright" text="Autorska prava"/><!-- ? -->
+<gentext key="copyright" text="autorska prava"/><!-- ? -->
 <gentext key="Dedication" text="Posveta"/>
-<gentext key="dedication" text="Posveta"/>
+<gentext key="dedication" text="posveta"/>
 <gentext key="Edition" text="Izdanje"/>
-<gentext key="edition" text="Izdanje"/>
-<gentext key="Equation" text="Jednad&#x017E;ba"/>
-<gentext key="equation" text="Jednad&#x017E;ba"/>
+<gentext key="edition" text="izdanje"/>
+<gentext key="Editor" text="Editor"/>
+<gentext key="Equation" text="Jednadžba"/>
+<gentext key="equation" text="jednadžba"/>
 <gentext key="Example" text="Primjer"/>
-<gentext key="example" text="Primjer"/>
+<gentext key="example" text="primjer"/>
 <gentext key="Figure" text="Slika"/>
-<gentext key="figure" text="Slika"/>
-<gentext key="Glossary" text="Rje&#x010D;nik"/><!-- ? pojmovnik ? -->
-<gentext key="glossary" text="Rje&#x010D;nik"/><!-- ? pojmovnik ? -->
+<gentext key="figure" text="slika"/>
+<gentext key="Glossary" text="Rječnik"/><!-- ? pojmovnik ? -->
+<gentext key="glossary" text="rječnik"/><!-- ? pojmovnik ? -->
 <gentext key="GlossSee" text="Vidi"/>
-<gentext key="glosssee" text="Vidi"/>
+<gentext key="glosssee" text="vidi"/>
 <gentext key="GlossSeeAlso" text="Vidi i"/>
-<gentext key="glossseealso" text="Vidi i"/>
-<gentext key="IMPORTANT" text="VA&#x017D;NO"/>
-<gentext key="important" text="Va&#x017E;no"/>
-<gentext key="Important" text="Va&#x017E;no"/>
+<gentext key="glossseealso" text="vidi i"/>
+<gentext key="IMPORTANT" text="VAŽNO"/>
+<gentext key="important" text="važno"/>
+<gentext key="Important" text="Važno"/>
 <gentext key="Index" text="Kazalo"/>
-<gentext key="index" text="Kazalo"/>
+<gentext key="index" text="kazalo"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Pravne odredbe"/>
-<gentext key="legalnotice" text="Pravne odredbe"/>
+<gentext key="legalnotice" text="pravne odredbe"/>
 <gentext key="MsgAud" text="Primatelji"/>
-<gentext key="msgaud" text="Primatelji"/>
+<gentext key="msgaud" text="primatelji"/>
 <gentext key="MsgLevel" text="Razina"/>
-<gentext key="msglevel" text="Razina"/>
+<gentext key="msglevel" text="razina"/>
 <gentext key="MsgOrig" text="Izvor"/>
-<gentext key="msgorig" text="Izvor"/>
-<gentext key="NOTE" text="BILJE&#x0160;KA"/>
-<gentext key="Note" text="Bilje&#x0161;ka"/>
-<gentext key="note" text="Bilje&#x0161;ka"/>
+<gentext key="msgorig" text="izvor"/>
+<gentext key="NOTE" text="BILJEŠKA"/>
+<gentext key="Note" text="Bilješka"/>
+<gentext key="note" text="bilješka"/>
 <gentext key="Part" text="Dio"/>
-<gentext key="part" text="Dio"/>
+<gentext key="part" text="dio"/>
 <gentext key="Preface" text="Predgovor"/>
-<gentext key="preface" text="Predgovor"/>
+<gentext key="preface" text="predgovor"/>
 <gentext key="Procedure" text="Postupak"/>
-<gentext key="procedure" text="Postupak"/>
+<gentext key="procedure" text="postupak"/>
 <gentext key="ProductionSet" text="Produkcija"/><!-- ? -->
+<gentext key="PubDate" text="Datum publikacije"/>
+<gentext key="pubdate" text="datum publikacije"/>
 <gentext key="Published" text="Objavljeno"/>
-<gentext key="published" text="Objavljeno"/>
+<gentext key="published" text="objavljeno"/>
+<gentext key="Publisher" text="Nakladnik"/>
 <gentext key="Qandadiv" text="Pitanje i Odgovor"/>
-<gentext key="qandadiv" text="Pitanje i Odgovor"/>
+<gentext key="qandadiv" text="pitanje i Odgovor"/>
+<gentext key="QandASet" text="Česti Upiti"/>
 <gentext key="Question" text="Pitanje:"/>
-<gentext key="question" text="Pitanje:"/>
-<gentext key="RefEntry" text=""/>
-<gentext key="refentry" text=""/>
+<gentext key="question" text="pitanje:"/>
+<gentext key="RefEntry" text="Stranica"/>
+<gentext key="refentry" text="stranica"/>
 <gentext key="Reference" text="Referenca"/><!-- ? -->
-<gentext key="reference" text="Referenca"/><!-- ? -->
+<gentext key="reference" text="referenca"/><!-- ? -->
+<gentext key="References" text="Reference"/>
 <gentext key="RefName" text="Ime"/>
 <gentext key="refname" text="Ime"/>
-<gentext key="RefSection" text=""/>
-<gentext key="refsection" text=""/>
+<gentext key="RefSection" text="Odjeljak"/>
+<gentext key="refsection" text="odjeljak"/>
 <gentext key="RefSynopsisDiv" text="Pregled"/>
 <gentext key="refsynopsisdiv" text="Pregled"/>
 <gentext key="RevHistory" text="Povijest preinaka"/>
@@ -111,70 +124,87 @@
 <gentext key="sect3" text="Odjeljak"/>
 <gentext key="sect4" text="Odjeljak"/>
 <gentext key="sect5" text="Odjeljak"/>
-<gentext key="section" text="Odjeljak"/>
+<gentext key="section" text="odjeljak"/>
 <gentext key="Section" text="Odjeljak"/>
 <gentext key="see" text="vidi"/>             <!-- uncapitalized -->
+<gentext key="See" text="Vidi"/>
 <gentext key="seealso" text="vidi i"/>    <!-- uncapitalized -->
-<gentext key="set" text="Set"/><!-- ? -->
+<gentext key="Seealso" text="Vidi i"/>
+<gentext key="SeeAlso" text="Vidi i"/>
+<gentext key="set" text="set"/><!-- ? -->
 <gentext key="Set" text="Set"/><!-- ? -->
-<gentext key="setindex" text="Kazalo seta"/><!-- ? -->
-<gentext key="SetIndex" text="Kazalo seta"/><!-- ? -->
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text="sidebar"/><!-- en -->
+<gentext key="setindex" text="kazalo"/>
+<gentext key="SetIndex" text="Kazalo"/>
+<gentext key="Sidebar" text="Rubni stupac"/>
+<gentext key="sidebar" text="rubni stupac"/>
 <gentext key="step" text="korak"/>
 <gentext key="Step" text="Korak"/>
 <gentext key="Table" text="Tablica"/>
-<gentext key="table" text="Tablica"/>
+<gentext key="table" text="tablica"/>
+<gentext key="task" text="zadatak"/>
+<gentext key="Task" text="Zadatak"/>
 <gentext key="tip" text="Savjet"/>
 <gentext key="TIP" text="SAVJET"/>
 <gentext key="Tip" text="Savjet"/>
 <gentext key="Warning" text="Upozorenje"/>
-<gentext key="warning" text="Upozorenje"/>
+<gentext key="warning" text="upozorenje"/>
 <gentext key="WARNING" text="UPOZORENJE"/>
 
 <gentext key="and" text="i"/>
 <gentext key="by" text="po"/><!-- ? uz ? -->
 <gentext key="Edited" text="Uredio/la"/><!-- ? -->
-<gentext key="edited" text="Uredio/la"/><!-- ? -->
+<gentext key="edited" text="uredio/la"/><!-- ? -->
 <gentext key="Editedby" text="Uredio/la"/><!-- ? -->
-<gentext key="editedby" text="Uredio/la"/><!-- ? -->
+<gentext key="editedby" text="uredio/la"/><!-- ? -->
 <gentext key="in" text="u"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
-<gentext key="notes" text="Bilje&#x0161;ke"/>
-<gentext key="Notes" text="Bilje&#x0161;ke"/>
+<gentext key="notes" text="bilješke"/>
+<gentext key="Notes" text="Bilješke"/>
 <gentext key="Pgs" text="Str."/><!-- ? -->
-<gentext key="pgs" text="Str."/><!-- ? -->
+<gentext key="pgs" text="str."/><!-- ? -->
 <gentext key="Revisedby" text="Promijenjeno po: "/>
-<gentext key="revisedby" text="Promijenjeno po: "/>
+<gentext key="revisedby" text="promijenjeno po: "/>
 <gentext key="TableNotes" text="Napomene"/>
-<gentext key="tablenotes" text="Napomene"/>
-<gentext key="TableofContents" text="Sadr&#x017E;aj"/>
-<gentext key="tableofcontents" text="Sadr&#x017E;aj"/>
-<gentext key="unexpectedelementname" text="Neo&#x010D;ekivano ime elementa"/>
-<gentext key="unsupported" text="nepodr&#x017E;ano"/>
+<gentext key="tablenotes" text="napomene"/>
+<gentext key="TableofContents" text="Sadržaj"/>
+<gentext key="tableofcontents" text="sadržaj"/>
+<gentext key="unexpectedelementname" text="Neočekivano ime elementa"/>
+<gentext key="unsupported" text="nepodržano"/>
 <gentext key="xrefto" text="xref za"/><!-- ? -->
 
-<gentext key="listofequations" text="Popis jednad&#x017E;bi"/>
-<gentext key="ListofEquations" text="Popis jednad&#x017E;bi"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Autori"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Urdenik za autorska prava"/>
+<gentext key="graphicdesigner" text="Grafički dizajner"/>
+<gentext key="productioneditor" text="Urednik produkcija"/>
+<gentext key="technicaleditor" text="Tehnički urednik"/>
+<gentext key="translator" text="Prevodilac"/>
+
+<gentext key="listofequations" text="popis jednadžbi"/>
+<gentext key="ListofEquations" text="Popis jednadžbi"/>
 <gentext key="ListofExamples" text="Popis primjera"/>
-<gentext key="listofexamples" text="Popis primjera"/>
+<gentext key="listofexamples" text="popis primjera"/>
 <gentext key="ListofFigures" text="Popis slika"/>
-<gentext key="listoffigures" text="Popis slika"/>
+<gentext key="listoffigures" text="popis slika"/>
 <gentext key="ListofProcedures" text="Popis postupaka"/>
-<gentext key="listofprocedures" text="Popis postupaka"/>
-<gentext key="listoftables" text="Popis tablica"/>
+<gentext key="listofprocedures" text="popis postupaka"/>
+<gentext key="listoftables" text="popis tablica"/>
 <gentext key="ListofTables" text="Popis tablica "/>
 <gentext key="ListofUnknown" text="Popis nepoznanica"/>
-<gentext key="listofunknown" text="Popis nepoznanica"/>
+<gentext key="listofunknown" text="popis nepoznanica"/>
 
-<gentext key="nav-home" text="Po&#x010D;etak"/>
+<gentext key="nav-home" text="Početak"/>
 <gentext key="nav-next" text="Naprijed"/>
-<gentext key="nav-next-sibling" text="Sko&#x010D;i unaprijed"/>
+<gentext key="nav-next-sibling" text="Skoči unaprijed"/>
 <gentext key="nav-prev" text="Natrag"/>
-<gentext key="nav-prev-sibling" text="Sko&#x010D;i unatrag"/>
+<gentext key="nav-prev-sibling" text="Skoči unatrag"/>
 <gentext key="nav-up" text="Gore"/>
-<gentext key="nav-toc" text="Sadr&#x017E;aj"/>
+<gentext key="nav-toc" text="Sadržaj"/>
 
 <gentext key="Draft"         text="Nacrt"/><!-- ? -->
 <gentext key="above"         text="iznad"/>
@@ -183,16 +213,19 @@
 <gentext key="index symbols" text="Oznake"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="abc&#x010D;&#x0107;d&#x0111;efghijklmnopqrs&#x0161;tuvwxyz&#x017E;"/>
-<gentext key="uppercase.alpha" text="ABC&#x010C;&#x0106;D&#x0110;EFGHIJKLMNOPQRS&#x0160;TUVWXYZ&#x017D;"/>
+<gentext key="lowercase.alpha" text="abcčćdđefghijklmnopqrsštuvwxyzž"/>
+<gentext key="uppercase.alpha" text="ABCČĆDĐEFGHIJKLMNOPQRSŠTUVWXYZŽ"/>
 
-<dingbat key="startquote" text="&#x201E;"/>
-<dingbat key="endquote" text="&#x201C;"/>
-<dingbat key="nestedstartquote" text="&#x201A;"/>
-<dingbat key="nestedendquote" text="&#x2018;"/>
-<dingbat key="bullet" text="&#x2022;"/>
+<dingbat key="startquote" text="“"/>
+<dingbat key="endquote" text="”"/>
+<dingbat key="nestedstartquote" text="‘"/>
+<dingbat key="nestedendquote" text="’"/>
+<dingbat key="singlestartquote" text="‘"/>
+<dingbat key="singleendquote" text="’"/>
+<dingbat key="bullet" text="•"/>
 
-<gentext key="hyphenation-character" text="&#x2010;"/>
+<!-- n.b. &#x2010; might be better, but it doesn't always render properly -->
+<gentext key="hyphenation-character" text="-"/>
 <gentext key="hyphenation-push-character-count" text="2"/>
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
@@ -205,6 +238,7 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="acknowledgements">%t</template>
 <template name="answer">%t</template>
 <template name="appendix"><Appendix/>&#160;%n.&#160;%t</template>
 <template name="article">%t</template>
@@ -212,6 +246,7 @@
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
@@ -225,9 +260,12 @@
 <template name="equation"><Equation/>&#160;%n.&#160;%t</template>
 <template name="example"><Example/>&#160;%n.&#160;%t</template>
 <template name="figure"><Figure/>&#160;%n.&#160;%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
 <template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
@@ -269,6 +307,10 @@
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
 <template name="table"><Table/>&#160;%n.&#160;%t</template>
+<template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
@@ -290,6 +332,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="part">%t</template>
 
 </context>
 
@@ -313,6 +356,7 @@
 <context name="subtitle">
 
 <template name="appendix">%s</template>
+<template name="acknowledgements">%s</template>
 <template name="article">%s</template>
 <template name="bibliodiv">%s</template>
 <template name="biblioentry">%s</template>
@@ -355,6 +399,7 @@
 
 <context name="xref">
 <template name="abstract">%t</template>
+<template name="acknowledgements">%t</template>
 <template name="answer"><Answer/>&#160;%n</template>
 <template name="appendix">%t</template>
 <template name="article">%t</template>
@@ -374,6 +419,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -408,12 +455,20 @@
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> in %o</template>
+<template name="olink.page.citation"> (page %p)</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(page %p)</template>
+<template name="docname"> in %o</template>
+<template name="docnamelong"> in the document titled %o</template>
+<template name="pageabbrev">(p. %p)</template>
+<template name="Page">Page %p</template>
 
 <template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
@@ -504,10 +559,15 @@
 <template name="format">m/d/Y</template>
 </context>
 
+<context name="termdef">
+<template name="prefix">[Definicija: </template>
+<template name="suffix">]</template>
+</context>
+
 <context name="datetime-full">
-<template name="January">Sije&#x010D;anj</template>
-<template name="February">Velja&#x010D;a</template>
-<template name="March">O&#x017E;ujak</template>
+<template name="January">Siječanj</template>
+<template name="February">Veljača</template>
+<template name="March">Ožujak</template>
 <template name="April">Travanj</template>
 <template name="May">Svibanj</template>
 <template name="June">Lipanj</template>
@@ -520,7 +580,7 @@
 <template name="Monday">Ponedjeljak</template>
 <template name="Tuesday">Utorak</template>
 <template name="Wednesday">Srijeda</template>
-<template name="Thursday">&#x010C;etvrtak</template>
+<template name="Thursday">Četvrtak</template>
 <template name="Friday">Petak</template>
 <template name="Saturday">Subota</template>
 <template name="Sunday">Nedjelja</template>
@@ -529,7 +589,7 @@
 <context name="datetime-abbrev">
 <template name="Jan">Sij</template>
 <template name="Feb">Velj</template>
-<template name="Mar">O&#x017E;u</template>
+<template name="Mar">Ožu</template>
 <template name="Apr">Tra</template>
 <template name="May">Svi</template>
 <template name="Jun">Lip</template>
@@ -542,7 +602,7 @@
 <template name="Mon">Pon</template>
 <template name="Tue">Uto</template>
 <template name="Wed">Sri</template>
-<template name="Thu">&#x010C;et</template>
+<template name="Thu">Čet</template>
 <template name="Fri">Pet</template>
 <template name="Sat">Sub</template>
 <template name="Sun">Ned</template>
@@ -552,4 +612,164 @@
 <template name="langcode">0x041a Croatian</template>
 </context>
 
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+
+<letters>
+  <l i="-1"/>
+  <l i="0">Oznake</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="30">Ć</l>
+  <l i="30">ć</l>
+  <l i="30">Č</l>
+  <l i="30">č</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="40">Đ</l>
+  <l i="40">đ</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="190">Š</l>
+  <l i="190">š</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+  <l i="260">Ž</l>
+  <l i="260">ž</l>
+</letters>
+
 </locale>
+

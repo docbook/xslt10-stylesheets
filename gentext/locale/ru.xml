@@ -73,9 +73,9 @@
 <gentext key="msglevel" text="уровень"/> 
 <gentext key="MsgOrig" text="Источник"/>
 <gentext key="msgorig" text="источник"/> 
-<gentext key="NOTE" text="ЗАМЕЧАНИЕ"/>
-<gentext key="Note" text="Замечание"/>
-<gentext key="note" text="замечание"/>
+<gentext key="NOTE" text="ПРИМЕЧАНИЕ"/>
+<gentext key="Note" text="Примечание"/>
+<gentext key="note" text="примечание"/>
 <gentext key="Part" text="Часть"/>
 <gentext key="part" text="часть"/>
 <gentext key="Preface" text="Предисловие"/>
@@ -547,6 +547,11 @@
 
 <context name="datetime">
 <template name="format">m/d/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Определение: </template>
+<template name="suffix">]</template>
 </context>
 
 <context name="datetime-full">
