@@ -1,0 +1,464 @@
+default namespace = "http://docbook.org/ns/docbook"
+# ========== Import DocBook Grammar ==========
+include "http://docbook.org/xml/5.0/rng/docbook.rnc"
+start |= header | library | boostbook | precondition
+local.common.attrib = attribute last-revision { text }?
+# ========== Define the API extensions ==========
+api.common.attrib = local.common.attrib, db.xml.id.attribute?
+api.namespace.mix =
+  class
+  | class-specialization
+  | struct
+  | struct-specialization
+  | union
+  | union-specialization
+  | typedef
+  | enum
+  | free-function-group
+  | function
+  | overloaded-function
+  | \namespace
+api.template.mix =
+  template-type-parameter
+  | template-nontype-parameter
+  | template-varargs
+api.class.members =
+  static-constant
+  | typedef
+  | enum
+  | copy-assignment
+  | constructor
+  | destructor
+  | method-group
+  | method
+  | overloaded-method
+  | data-member
+  | class
+  | class-specialization
+  | struct
+  | struct-specialization
+  | union
+  | union-specialization
+api.class.mix =
+  api.class.members
+  | free-function-group
+  | function
+  | overloaded-function
+api.class.content =
+  template?,
+  \inherit*,
+  purpose?,
+  description?,
+  (api.class.mix | access)*
+api.class-specialization.content =
+  template?,
+  specialization?,
+  \inherit?,
+  purpose?,
+  description?,
+  (api.class.mix | access)*
+api.function.semantics =
+  purpose?,
+  description?,
+  requires?,
+  effects?,
+  postconditions?,
+  returns?,
+  throws?,
+  complexity?,
+  notes?,
+  rationale?
+library.content =
+  libraryinfo,
+  (db.title, (db.section | library-reference | testsuite)+)?
+library = element library { library.attlist, library.content }
+library.attlist &=
+  attribute name { text },
+  attribute dirname { text },
+  attribute html-only { text }?,
+  attribute url { text }?,
+  api.common.attrib
+boostbook =
+  element boostbook { api.attlist, db.title, (db.chapter | library)* }
+api.attlist &= api.common.attrib
+libraryinfo =
+  element libraryinfo {
+    libraryinfo.attlist,
+    db.author+,
+    db.copyright*,
+    db.legalnotice*,
+    librarypurpose,
+    librarycategory*
+  }
+libraryinfo.attlist &= api.common.attrib
+librarypurpose =
+  element librarypurpose {
+    librarypurpose.attlist,
+    (text
+     | code
+     | functionname
+     | db.methodname
+     | db.classname
+     | macroname
+     | headername
+     | enumname
+     | globalname)*
+  }
+librarypurpose.attlist &= api.common.attrib
+librarycategory =
+  element librarycategory { librarycategory.attlist, text }
+librarycategory.attlist &=
+  attribute name { text },
+  api.common.attrib
+libraryname = element libraryname { libraryname.attlist, text }
+libraryname.attlist &= api.common.attrib
+library-reference =
+  element library-reference { library-reference.attlist, any }
+library-reference.attlist &= api.common.attrib
+librarylist = element librarylist { librarylist.attlist, empty }
+librarylist.attlist &= api.common.attrib
+librarycategorylist =
+  element librarycategorylist {
+    librarycategorylist.attlist, librarycategorydef*
+  }
+librarycategorylist.attlist &= api.common.attrib
+librarycategorydef =
+  element librarycategorydef { librarycategorydef.attlist, text }
+librarycategorydef.attlist &=
+  attribute name { text },
+  api.common.attrib
+header = element header { header.attlist, any }
+header.attlist &=
+  attribute name { text },
+  api.common.attrib
+\namespace = element namespace { namespace.attlist, api.namespace.mix* }
+namespace.attlist &=
+  attribute name { text },
+  api.common.attrib
+class = element class { class.attlist, api.class.content }
+class.attlist &=
+  attribute name { text },
+  api.common.attrib
+struct = element struct { struct.attlist, api.class.content }
+struct.attlist &=
+  attribute name { text },
+  api.common.attrib
+union = element union { union.attlist, api.class.content }
+union.attlist &=
+  attribute name { text },
+  api.common.attrib
+class-specialization =
+  element class-specialization {
+    class-specialization.attlist, api.class-specialization.content
+  }
+class-specialization.attlist &=
+  attribute name { text },
+  api.common.attrib
+struct-specialization =
+  element struct-specialization {
+    struct-specialization.attlist, api.class-specialization.content
+  }
+struct-specialization.attlist &=
+  attribute name { text },
+  api.common.attrib
+union-specialization =
+  element union-specialization {
+    union-specialization.attlist, api.class-specialization.content
+  }
+union-specialization.attlist &=
+  attribute name { text },
+  api.common.attrib
+access = element access { access.attlist, api.class.members+ }
+access.attlist &=
+  attribute name { text },
+  api.common.attrib
+# ========= C++ Templates =========
+template = element template { template.attlist, api.template.mix* }
+template.attlist &= api.common.attrib
+template-type-parameter =
+  element template-type-parameter {
+    template-type-parameter.attlist, \default?, purpose?
+  }
+template-type-parameter.attlist &=
+  attribute name { text },
+  attribute pack { text }?,
+  api.common.attrib
+template-nontype-parameter =
+  element template-nontype-parameter {
+    template-nontype-parameter.attlist, type, \default?, purpose?
+  }
+template-nontype-parameter.attlist &=
+  attribute name { text },
+  attribute pack { text }?,
+  api.common.attrib
+template-varargs =
+  element template-varargs { template-varargs.attlist, empty }
+template-varargs.attlist &= api.common.attrib
+specialization =
+  element specialization { specialization.attlist, template-arg* }
+specialization.attlist &= api.common.attrib
+template-arg = element template-arg { template-arg.attlist, any }
+template-arg.attlist &=
+  attribute pack { text }?,
+  api.common.attrib
+\default = element default { default.attlist, any }
+default.attlist &= api.common.attrib
+\inherit = element inherit { inherit.attlist, type, purpose? }
+inherit.attlist &=
+  attribute access { text }?,
+  attribute pack { text }?,
+  api.common.attrib
+purpose = element purpose { purpose.attlist, any }
+purpose.attlist &= api.common.attrib
+description = element description { description.attlist, any }
+description.attlist &= api.common.attrib
+type = element type { type.attlist, any }
+type.attlist &= api.common.attrib
+typedef =
+  element typedef { typedef.attlist, type, purpose?, description? }
+typedef.attlist &=
+  attribute name { text },
+  api.common.attrib
+enum = element enum { enum.attlist, enumvalue*, purpose?, description? }
+enum.attlist &=
+  attribute name { text },
+  api.common.attrib
+enumvalue =
+  element enumvalue {
+    enumvalue.attlist, \default?, purpose?, description?
+  }
+enumvalue.attlist &=
+  attribute name { text },
+  api.common.attrib
+static-constant =
+  element static-constant {
+    static-constant.attlist, type, \default, purpose?, description?
+  }
+static-constant.attlist &=
+  attribute name { text },
+  api.common.attrib
+data-member =
+  element data-member {
+    data-member.attlist, type, purpose?, description?
+  }
+data-member.attlist &=
+  attribute name { text },
+  attribute specifiers { text }?,
+  api.common.attrib
+paramtype = element paramtype { paramtype.attlist, any }
+paramtype.attlist &= api.common.attrib
+effects = element effects { effects.attlist, any }
+effects.attlist &= api.common.attrib
+postconditions = element postconditions { postconditions.attlist, any }
+postconditions.attlist &= api.common.attrib
+method-group =
+  element method-group {
+    method-group.attlist, (method | overloaded-method)*
+  }
+method-group.attlist &=
+  attribute name { text },
+  api.common.attrib
+constructor =
+  element constructor {
+    constructor.attlist, template?, parameter*, api.function.semantics
+  }
+constructor.attlist &=
+  attribute specifiers { text }?,
+  api.common.attrib
+destructor =
+  element destructor { destructor.attlist, api.function.semantics }
+destructor.attlist &=
+  attribute specifiers { text }?,
+  api.common.attrib
+method =
+  element method {
+    method.attlist, template?, type, parameter*, api.function.semantics
+  }
+method.attlist &=
+  attribute name { text },
+  attribute cv { text }?,
+  attribute specifiers { text }?,
+  api.common.attrib
+function =
+  element function {
+    function.attlist,
+    template?,
+    type,
+    parameter*,
+    api.function.semantics
+  }
+function.attlist &=
+  attribute name { text },
+  attribute specifiers { text }?,
+  api.common.attrib
+overloaded-method =
+  element overloaded-method {
+    overloaded-method.attlist, signature*, api.function.semantics
+  }
+overloaded-method.attlist &=
+  attribute name { text },
+  api.common.attrib
+overloaded-function =
+  element overloaded-function {
+    overloaded-function.attlist, signature*, api.function.semantics
+  }
+overloaded-function.attlist &=
+  attribute name { text },
+  api.common.attrib
+signature =
+  element signature { signature.attlist, template?, type, parameter* }
+signature.attlist &=
+  attribute cv { text }?,
+  attribute specifiers { text }?,
+  api.common.attrib
+requires = element requires { requires.attlist, any }
+requires.attlist &= api.common.attrib
+returns = element returns { returns.attlist, any }
+returns.attlist &= api.common.attrib
+throws = element throws { throws.attlist, any }
+throws.attlist &= api.common.attrib
+complexity = element complexity { complexity.attlist, any }
+complexity.attlist &= api.common.attrib
+notes = element notes { notes.attlist, any }
+notes.attlist &= api.common.attrib
+rationale = element rationale { rationale.attlist, any }
+rationale.attlist &= api.common.attrib
+functionname = element functionname { functionname.attlist, text }
+functionname.attlist &=
+  attribute alt { text }?,
+  api.common.attrib
+enumname = element enumname { enumname.attlist, text }
+enumname.attlist &=
+  attribute alt { text }?,
+  api.common.attrib
+macroname = element macroname { macroname.attlist, text }
+macroname.attlist &=
+  attribute alt { text }?,
+  api.common.attrib
+headername = element headername { headername.attlist, text }
+headername.attlist &=
+  attribute alt { text }?,
+  api.common.attrib
+globalname = element globalname { globalname.attlist, text }
+globalname.attlist &=
+  attribute alt { text }?,
+  api.common.attrib
+copy-assignment =
+  element copy-assignment {
+    copy-assignment.attlist,
+    template?,
+    type?,
+    parameter*,
+    api.function.semantics
+  }
+copy-assignment.attlist &=
+  attribute cv { text }?,
+  attribute specifiers { text }?,
+  api.common.attrib
+free-function-group =
+  element free-function-group {
+    free-function-group.attlist, (function | overloaded-function)*
+  }
+free-function-group.attlist &=
+  attribute name { text },
+  api.common.attrib
+precondition = element precondition { precondition.attlist, any }
+precondition.attlist &= api.common.attrib
+code |= element code { code.attlist, any }
+code.attlist &= api.common.attrib
+using-namespace =
+  element using-namespace { using-namespace.attlist, empty }
+using-namespace.attlist &=
+  attribute name { text },
+  api.common.attrib
+using-class = element using-class { using-class.attlist, empty }
+using-class.attlist &=
+  attribute name { text },
+  api.common.attrib
+# ========== api Testsuite Extensions ==========
+api.testsuite.tests =
+  compile-test
+  | link-test
+  | run-test
+  | compile-fail-test
+  | link-fail-test
+  | run-fail-test
+api.testsuite.test.content =
+  source*, lib*, requirement*, purpose, if-fails?
+testsuite =
+  element testsuite { testsuite.attlist, api.testsuite.tests+ }
+testsuite.attlist &= api.common.attrib
+compile-test =
+  element compile-test {
+    compile-test.attlist, api.testsuite.test.content
+  }
+compile-test.attlist &=
+  attribute filename { text },
+  attribute name { text }?
+link-test =
+  element link-test { link-test.attlist, api.testsuite.test.content }
+link-test.attlist &=
+  attribute filename { text },
+  attribute name { text }?
+run-test =
+  element run-test { run-test.attlist, api.testsuite.test.content }
+run-test.attlist &=
+  attribute filename { text },
+  attribute name { text }?
+compile-fail-test =
+  element compile-fail-test {
+    compile-fail-test.attlist, api.testsuite.test.content
+  }
+compile-fail-test.attlist &=
+  attribute filename { text },
+  attribute name { text }?
+link-fail-test =
+  element link-fail-test {
+    link-fail-test.attlist, api.testsuite.test.content
+  }
+link-fail-test.attlist &=
+  attribute filename { text },
+  attribute name { text }?
+run-fail-test =
+  element run-fail-test {
+    run-fail-test.attlist, api.testsuite.test.content
+  }
+run-fail-test.attlist &=
+  attribute filename { text },
+  attribute name { text }?
+source = element source { source.attlist, (text | snippet)* }
+source.attlist &= empty
+snippet = element snippet { snippet.attlist, empty }
+snippet.attlist &= attribute name { text }
+lib = element lib { lib.attlist, text }
+lib.attlist &= empty
+requirement = element requirement { requirement.attlist, text }
+requirement.attlist &= attribute name { text }
+if-fails = element if-fails { if-fails.attlist, any }
+if-fails.attlist &= empty
+parameter =
+  element parameter {
+    parameter.attlist, paramtype, \default?, description?
+  }
+parameter.attlist &=
+  attribute name { text }?,
+  attribute pack { text }?
+programlisting &=
+  element programlisting { db.programlisting.attlist, any }
+db.programlisting.attlist |= attribute name { text }?
+# ========== Customize the DocBook Grammar ==========
+db.programming.inlines |=
+  functionname | libraryname | enumname | headername | macroname | code
+db.para |=
+  using-namespace | using-class | librarylist | librarycategorylist
+local.descobj.class = libraryinfo
+local.classname.attrib = attribute alt { text }?
+local.methodname.attrib = attribute alt { text }?
+local.refentry.class = library-reference | testsuite
+local.title.char.mix = notAllowed
+any =
+  (element * {
+     attribute * { text }*,
+     any
+   }
+   | text)*
