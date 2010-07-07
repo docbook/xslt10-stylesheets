@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<!--DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "c:/workhead/export/DocBookDTD/4.5/docbookx.dtd"-->
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "/media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/defguide/en/schema/docbookx.dtd">
-  <!--  "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"-->
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <book>
   <title>Web-based Help from DocBook XML Readme</title>
   <bookinfo>
@@ -104,7 +102,7 @@
           <para>Search pane. Search results can include brief descriptions of the target. </para>
         </listitem>
         <listitem>
-          <para>Support for deep linking by appending <code>?content=content/filename.html</code> to the url.</para>
+          <para>Support for deep linking by simply linking to the page since no frameset is used.</para>
         </listitem>
         <listitem>
           <para>A demo <filename>build.xml</filename> file to generate output. You can use this build file by importing it into your own or use it as a model for integrating this output format into your own build system.</para>
@@ -126,24 +124,45 @@
         </listitem>
       </itemizedlist>
       <itemizedlist>
-        <title>Planned enhancements</title>
-        <listitem>
-          <para>Add a switch so that the indexer only indexs meta tags. This will reduce the size of the index since only the meta tag content matters for Asian languages.</para>
-        </listitem>
-        <listitem>
-          <para>Limit the size of the search description to something like 150 characters or so.</para>
-        </listitem>
-        <listitem>
-          <para>Add to the indexer the ability to specify a list of files or file patterns not to index. Currently it does not index <filename>index.html</filename> or <filename>ix01.html</filename>.</para>
-        </listitem>
-        <listitem>
-          <para>When you mouse over a node in the table of contents, have it show the brief description in a Tool Tip.</para>
-        </listitem>
+        <title>Enhancements planned as part of GSOC 2010</title>
+		<listitem>
+		  <para>Add stemmming support for English and one major non-Asian language.</para>
+		</listitem>
+		<listitem>
+		  <para>Improve the support for Japanese and Chinese.</para>
+		</listitem>
+		<listitem>
+		  <para>Add search highlighting.</para>
+		</listitem>
+		<listitem>
+		  <para>Make indexer skip next and prev links in the footer and header.</para>
+		</listitem>
+		<listitem>
+		  <para>Document skinning and customization options.</para>
+		</listitem>
 		<listitem>                                     
 		  <para>Add a show/hide toc button.</para>
 		</listitem>
 		<listitem>
-		  <para>Make indexer skip next and prev links in the footer and header.</para>
+		  <para>Move the header Next and Prev links to the banner</para>
+		</listitem>
+	  </itemizedlist>
+      <itemizedlist>
+        <title>Future enhancements</title>
+		<listitem>
+		  <para>Add an option to use Lucene for server-side searches with toc state persisted on the server.</para>
+		</listitem>
+        <listitem>
+          <para>Automatically limit the size of the search description to something 140 characters.</para>
+        </listitem>
+        <listitem>
+          <para>Support boolean operators in search.</para>
+        </listitem>
+        <listitem>
+          <para>Add to the indexer the ability to specify a list of files or file patterns not to index. Currently it does not index <filename>index.html</filename> or <filename>ix01.html</filename>, which is generally appropriate, but it should be up to the user to decide.</para>
+        </listitem>
+		<listitem>
+		  <para>Add a parameter to make it possible to disable the search tab if it is not required.</para>
 		</listitem>
       </itemizedlist>
 	</para>
@@ -167,7 +186,7 @@
           <para>Confirm that you have <ulink url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink> in your CLASSPATH.</para>
         </step>
         <step>
-          <para>Download the package: <ulink url="http://www.thingbag.net/docbook/docbook-webhelp.zip">docbook-webhelp.zip</ulink> and unzip it somewhere convenient.</para>
+          <para>Download the package <!--ulink url="http://www.thingbag.net/docbook/docbook-webhelp.zip">docbook-webhelp.zip</ulink--> and unzip it somewhere convenient.</para>
         </step>
         <step>
           <para>Test the package by running <code>ant webhelp</code>. It should generate a copy of this documentation in the <filename class="directory">doc</filename> directory.</para>
@@ -197,7 +216,7 @@
     </section>
     <section>
 	  <title>Using the output</title>
-	  <para>To deep link to a topic inside the help set, append <code>?content=content/filename.html</code> to the URL, for example: <systemitem>http://yourdomain.com/help/index.html?content=content/filename.html</systemitem>, where <code>filename.html</code> is the name of the file in your helpset that you want to navigate to. <tip>
+	  <para>To deep link to a topic inside the help set, simply link directly to the page. This help system uses no frameset, so nothing further is necessary. <tip>
 		  <para>See <ulink url="http://www.sagehill.net/docbookxsl/Chunking.html">Chunking into multiple HTML files</ulink> in Bob Stayton's  <ulink url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The Complete Guide</ulink> for information on controlling output file names in DocBook.</para>
 		</tip>
 </para>
@@ -224,9 +243,13 @@
     </section>
   </chapter>
   <chapter>
+	<title>Design</title>
+	<para>This chapter provides an overview of how webhelp is implemented. <remark>WRITEME</remark></para>
+  </chapter>
+  <chapter>
 	<chapterinfo>
 	  <abstract>
-		<para>ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
+		<para>Demo of Japanese text: ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
 	  </abstract>
 	</chapterinfo>
 	<title>ホスト</title>
