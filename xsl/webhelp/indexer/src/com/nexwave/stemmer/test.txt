@@ -1,0 +1,9 @@
+common use requirement for technical publications groups is to produce a Web-based help format that includes a table of contents pane, a search feature, 
+
+and an index similar to what you get from the Microsoft HTML Help (.chm) format or Eclipse help. If the content is help for a Web application that is not
+
+exposed to the Internet or requires that the user be logged in, then it is impossible to use services like Google to add search.
+
+You must use xhtml output because the search indexer cannot index html.
+
+No support for stemming. If you search for "start" it will not find "started" and vice versa.

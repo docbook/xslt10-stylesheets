@@ -7,6 +7,7 @@
 
 $(document).ready(function() {
 
+    //Generate tabs in nav-pane with JQuery
     $(function() {
             $("#tabs").tabs({
                 cookie: {
@@ -15,7 +16,8 @@ $(document).ready(function() {
                 }
             });
         });
-     
+
+    //Generate the tree
     $("#tree").treeview({
         collapsed: true,
         animated: "medium",
@@ -23,36 +25,27 @@ $(document).ready(function() {
         persist: "cookie"
     });
 
+    //after toc fully styled, display it. Until loading, a 'loading' image will be displayed
     $("#tocLoading").attr("style","display:none;");
     $("#tree").attr("style","display:block;"); 
 
+    //.searchButton is the css class applied to 'Go' button 
     $(function() {
 		$("button", ".searchButton").button();
 
 		$("button", ".searchButton").click(function() { return false; });
 	});
 
-    /*var tabView = new YAHOO.widget.TabView('tabs');
-    var tab0 = tabView.getTab(0);   //TOC tab
-    var tab1 = tabView.getTab(1);   //Search tab
-
-    tab0.addListener('click', tocTabClick);
-    tab1.addListener('click', searchTabClick);
-    */
+    //'ui-tabs-1' is the cookie name which is used for the persistence of the tabs.(Content/Search tab)
     if ($.cookie('ui-tabs-1') === '1') { 
-        if ($.cookie('textToSearch').length > 0) {
+        if ($.cookie('textToSearch') != undefined && $.cookie('textToSearch').length > 0) {
             document.getElementById('textToSearch').value = $.cookie('textToSearch');
             Verifie('diaSearch_Form');
         }
-    } else {
-        //tabView.selectTab(0);
     } 
 
-    syncToc();
-
- //   $('#sync').click();
-
-
+    syncToc(); //Synchronize the toc tree with the content pane, when loading the page.
+    $("#doSearch").button(); //add jquery button styling to 'Go' button
 });
 
 /**
@@ -60,33 +53,37 @@ $(document).ready(function() {
  */
 function syncToc(){
     var a = document.getElementById("webhelp-currentid");
-	var b = a.getElementsByTagName("a")[0];
+    if (a != undefined) {
+        var b = a.getElementsByTagName("a")[0];
 
-    //Setting the background for selected node.
-    var style = a.getAttribute("style");
-    if(style != null && !style.match(/background-color: Background;/)){ 
-        a.setAttribute("style", "background-color: #6495ed;  "+style);
-		b.setAttribute("style", "color: white;");
-    } else if(style != null){
-        a.setAttribute("style", "background-color: #6495ed;  " + style);
-		b.setAttribute("style", "color: white;");
-    } else {
-        a.setAttribute("style", "background-color: #6495ed;  ");        
-		b.setAttribute("style", "color: white;");
+        if (b != undefined) {
+            //Setting the background for selected node.
+            var style = a.getAttribute("style");
+            if (style != null && !style.match(/background-color: Background;/)) {
+                a.setAttribute("style", "background-color: #6495ed;  " + style);
+                b.setAttribute("style", "color: white;");
+            } else if (style != null) {
+                a.setAttribute("style", "background-color: #6495ed;  " + style);
+                b.setAttribute("style", "color: white;");
+            } else {
+                a.setAttribute("style", "background-color: #6495ed;  ");
+                b.setAttribute("style", "color: white;");
+            }
+        }
+
+        //shows the node related to current content.
+        //goes a recursive call from current node to ancestor nodes, displaying all of them.
+        while (a.parentNode && a.parentNode.nodeName) {
+            var parentNode = a.parentNode;
+            var nodeName = parentNode.nodeName;
+
+            if (nodeName.toLowerCase() == "ul") {
+                parentNode.setAttribute("style", "display: block;");
+            } else if (nodeName.toLocaleLowerCase() == "li") {
+                parentNode.setAttribute("class", "collapsable");
+                parentNode.firstChild.setAttribute("class", "hitarea collapsable-hitarea ");
+            }
+            a = parentNode;
+        }
     }
-
-    //shows the node related to current content.
-    //goes a recursive call from current node to ancestor nodes, displaying all of them.
-	while (a.parentNode && a.parentNode.nodeName){
-        var parentNode = a.parentNode;
-        var nodeName = parentNode.nodeName;
-
-        if(nodeName.toLowerCase() == "ul"){
-            parentNode.setAttribute("style", "display: block;");
-        } else if(nodeName.toLocaleLowerCase() == "li"){
-            parentNode.setAttribute("class", "collapsable");
-            parentNode.firstChild.setAttribute("class", "hitarea collapsable-hitarea ");
-        } 
-		a = parentNode;
-	}
 }

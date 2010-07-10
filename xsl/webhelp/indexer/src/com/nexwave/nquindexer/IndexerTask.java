@@ -10,24 +10,26 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-/*
+
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-*/
+
 
 
 import com.nexwave.nsidita.DirList;
 import com.nexwave.nsidita.DocFileInfo;
+
 /**
  * Indexer ant task.
  * 
  * @version 1.0 2008-02-26
  * 
  * @author N. Quaine
+ * @author Kasun Gajasinghe <http://kasunbg.blogspot.com>
  */
 //public class IndexerTask extends Task {
-public class IndexerTask  {
+public class IndexerTask extends Task {
 
 	// messages
 	private String txt_no_inputdir = "Input directory not found:";
@@ -47,6 +49,11 @@ public class IndexerTask  {
 
 	// ANT parameters
 	private String htmldir=null;
+    private String indexerLanguage="en";
+
+    //supported languages: add new additions to this. don't include country codes to the end such as en_US or en_UK,
+    // as stemmers doesn't find a difference between them.
+    private String[] supportedLanguages= {"en", "fr", "cn" };
 
 	// Indexing features: words to remove
 	private ArrayList<String> cleanUpStrings = null;	
@@ -65,23 +72,55 @@ public class IndexerTask  {
         this.htmldir = htmldir;
     }
 
+    /**
+     * setter for "indexerLanguage" attribute from ANT
+     * @param indexerLanguage language for the search indexer. Used to differerentiate which stemmer to be used.
+     *              defaults to "en".
+     * @throws InterruptedException for ant
+     */
+    public void setIndexerLanguage(String indexerLanguage){
+        if(indexerLanguage !=null) {
+            int temp = indexerLanguage.indexOf('_');
+            if( temp != -1){
+                indexerLanguage = indexerLanguage.substring(0,temp);
+            }
+            int i=0;
+            for (;i<supportedLanguages.length;i++) {
+                if(indexerLanguage.equals(supportedLanguages[i])){
+                    this.indexerLanguage = supportedLanguages[i];
+                    break;
+                }
+            }
+            
+            //if not in supported language list,
+            if(i>=supportedLanguages.length){
+                System.out.println("The given language, \""+indexerLanguage+"\", is not supported or specified in a bad format. " +
+                        "Check documentation for details. Language now defaults to english.");
+                this.indexerLanguage = "en";
+            } 
+        } else {
+            this.indexerLanguage = "en";
+        } 
+    }
+
+
 	
 	/**
 	 * Implementation of the execute function (Task interface)
 	 */
-	//public void execute() throws BuildException {
-	public void execute(){
+	public void execute() throws BuildException {
+	//public void execute(){
 
 		ArrayList<DocFileInfo> filesDescription = null; // list of information about the topic files
 		ArrayList<File> htmlFiles = null; // topic files listed in the given directory
 		ArrayList<String> htmlFilesPathRel = null;
-		Map tempDico = new HashMap(); 
+		Map<String, String> tempDico = new HashMap<String, String>(); 
 		Iterator it;
 		
 		//File name initialization
-		String htmlList = new String ("htmlFileList.js");
-		String htmlInfoList = new String ("htmlFileInfoList.js");
-		String indexName = new String(".js");
+		String htmlList = "htmlFileList.js";
+		String htmlInfoList = "htmlFileInfoList.js";
+		String indexName = ".js";
 		
 		//timing
 		Date dateStart = new Date();
@@ -108,8 +147,8 @@ public class IndexerTask  {
 		
 		// check if outputdir defined
 		if (outputDir == null) {
-            //set the output directory: path= {inputDir}/search
-			outputDir = new String(inputDir.getPath().concat(File.separator).concat(searchdir));
+            //set the output directory: path= {inputDir}/search 
+			outputDir = inputDir.getPath().concat(File.separator).concat(searchdir);
 		}
 
 		// check if outputdir exists
@@ -124,7 +163,7 @@ public class IndexerTask  {
 		
 		// check if projdir is defined
 		if (projectDir == null) {
-			projectDir = new String(inputDir.getPath());
+			projectDir = inputDir.getPath();
 		}
 		//end of init
 		
@@ -176,10 +215,10 @@ public class IndexerTask  {
 				File ftemp = (File) it.next();
 				//tempMap.put(key, value);
 				//The HTML file information are added in the list of FileInfoObject
-				DocFileInfo docFileInfoTemp = new DocFileInfo(spe.runExtractData(ftemp));
+				DocFileInfo docFileInfoTemp = new DocFileInfo(spe.runExtractData(ftemp,indexerLanguage));
 				
 				ftemp = docFileInfoTemp.getFullpath();
-				String stemp = ftemp.toString();
+				String stemp = ftemp.toString();              
 				int i = stemp.indexOf(projectDir);
 				if ( i != 0 ) {
 					System.out.println("the documentation root does not match with the documentation input!");

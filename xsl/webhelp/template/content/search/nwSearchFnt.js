@@ -60,6 +60,7 @@ function Effectuer_recherche(expressionInput) {
     scriptLetterTab = new scriptfirstchar(); // Array containing the first letter of each word to look for
     var scriptsarray = new Array(); // Array with the name of the scripts to load
     var wordsList = new Array(); // Array with the words to look for
+    var stemmedWordsList = new Array(); // Array with the words to look for
     var cleanwordsList = new Array(); // Array with the words to look for after removing spaces
     var listNumerosDesFicStr = "";
     var ou_recherche = true;
@@ -73,15 +74,23 @@ function Effectuer_recherche(expressionInput) {
 
     searchFor = searchFor.replace(/  +/g, " ")
     searchFor = searchFor.replace(/ $/, "").replace(/^ /, "")
-    wordsList = searchFor.split(" ")
-    wordsList.sort();
 
-    /* wordsList est la liste des mots de la recherhces separes par des espaces*/
-    for (t in wordsList) {
-        wordsList[t] = wordsList[t].replace(/(%22)|^-/g, "")
-        if (wordsList[t] != "%20") {
-            scriptLetterTab.add(wordsList[t].charAt(0));
-            cleanwordsList.push(wordsList[t]);
+    wordsList = searchFor.split(" ");
+
+    //Do the stemming using Porter's stemming algorithm
+    for(var i=0;i<wordsList.length;i++){
+        var stemWord = stemmer(wordsList[i]);
+        stemmedWordsList.push(stemWord);
+    }
+ 
+    stemmedWordsList.sort();
+
+    //stemmedWordsList is the stemmed list of words separated by spaces. 
+    for (t in stemmedWordsList) {
+        stemmedWordsList[t] = stemmedWordsList[t].replace(/(%22)|^-/g, "")
+        if (stemmedWordsList[t] != "%20") {
+            scriptLetterTab.add(stemmedWordsList[t].charAt(0));
+            cleanwordsList.push(stemmedWordsList[t]);
         }
     }
     //load the scripts with the indices: the following lines do not work on the server. To be corrected

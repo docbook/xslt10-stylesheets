@@ -28,6 +28,7 @@ import com.nexwave.nsidita.DocFileInfo;
  * @version 1.0 2008-02-26
  * 
  * @author N. Quaine
+ * @author Kasun Gajasinghe
  */
 public class SaxDocFileParser extends DefaultHandler {
 	
@@ -113,6 +114,7 @@ public class SaxDocFileParser extends DefaultHandler {
    //kasun: TODO remove indexing of css styles
     private boolean addContent = false;
     private boolean addHeaderInfo = false;
+    private boolean doNotIndex=false;
     private int divCount = 0;
 	//SAX parser Event Handlers:
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -169,6 +171,13 @@ public class SaxDocFileParser extends DefaultHandler {
             if (shortdescBool) {
                 shortTagCpt++;
             }
+
+            String accessKey = attributes.getValue("accesskey");
+            if(accessKey!=null && ("n".equals(accessKey) || "p".equals(accessKey) || "h".equals(accessKey))){
+                doNotIndex = true;
+            } else {
+                doNotIndex = false;
+            }
         }
 		strbf.append(" ");
 	}
@@ -182,7 +191,7 @@ public class SaxDocFileParser extends DefaultHandler {
 		// "titles only" index, say if you wanted to use <span/>s to
 		// create space breaks in ja_JP lines to indicate word breaks.
         
-		if((addContent || addHeaderInfo) && !currentElName.equalsIgnoreCase("script")){
+		if((addContent || addHeaderInfo) && !doNotIndex && !currentElName.equalsIgnoreCase("script")){
 			String text = new String(ch,start,length);
 			strbf.append(text);
 			if (tempVal != null) { tempVal.append(text);}

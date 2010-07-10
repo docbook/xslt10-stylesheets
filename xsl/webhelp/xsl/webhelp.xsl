@@ -40,7 +40,7 @@
     <xsl:param name="chunk.first.sections" select="1"/>
     <xsl:param name="chapter.autolabel" select="0"/>
     <xsl:param name="section.autolabel" select="0"/>
-    <xsl:param name="generate.toc">book toc</xsl:param>
+    <!--xsl:param name="generate.toc">book toc</xsl:param-->
 
     <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
@@ -131,6 +131,9 @@
         <script type="text/javascript" src="search/nwSearchFnt.js">
             <xsl:comment></xsl:comment>
         </script>
+        <script type="text/javascript" src="search/stemmers/stemmer.js">
+            <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
+        </script>
     </xsl:template>
 
     <xsl:template name="user.header.navigation"> 
@@ -141,8 +144,7 @@
         <xsl:call-template name="webhelptoctoc"/>
         <xsl:if test="$exclude.search.from.chunked.html != 'true'">
             <xsl:call-template name="search"/>
-        </xsl:if-->
-
+        </xsl:if--> 
     </xsl:template>
 
     <xsl:template name="user.footer.navigation"> 
@@ -152,6 +154,9 @@
     </xsl:template>
 
     <xsl:template match="/">
+        <xsl:message>language:
+            <xsl:value-of select="$l10n.gentext.language"/>
+        </xsl:message>
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:choose>
@@ -363,7 +368,7 @@
                                                            class="searchText"/>
                                                     <input onclick="Verifie(ditaSearch_Form)" type="button"
                                                            class="searchButton"
-                                                           value="Go"/>
+                                                           value="Go" id="doSearch"/>
                                                 </center>
                                             </fieldset>
                                         </form>

@@ -26,6 +26,7 @@ public class TesterIndexer {
 		
 		IT = new IndexerTask();
 		IT.setHtmldir(args[0]);
+		IT.setIndexerLanguage(args[1]);
 		IT.execute();
 		
 	}
