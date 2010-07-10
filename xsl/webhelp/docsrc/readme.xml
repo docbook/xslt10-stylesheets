@@ -181,11 +181,17 @@
         <listitem>
           <para>Support boolean operators in search.</para>
         </listitem>
+		<listitem>
+		  <para>Improve performance by moving the table of contents div out of each page and into a separate JavaScript file which then adds it to the page. </para>
+		</listitem>
         <listitem>
           <para>Add to the indexer the ability to specify a list of files or file patterns not to index. Currently it does not index <filename>index.html</filename> or <filename>ix01.html</filename>, which is generally appropriate, but it should be up to the user to decide.</para>
         </listitem>
 		<listitem>
 		  <para>Add a parameter to make it possible to disable the search tab if it is not required.</para>
+		</listitem>
+		<listitem>
+		  <para>Add an (optional) index tab populated by a separate JavaScript file.</para>
 		</listitem>
       </itemizedlist>
 	</para>
@@ -202,16 +208,19 @@
       <title>Installation</title>
       <procedure>
         <title>To install the package</title>
+		<note>
+		  <para>The examples in this procedure assume a Windows installation, but the process is the same in other environments, <foreignphrase>mutatis mutandis</foreignphrase>.</para>
+		</note>
 		<step>
 		  <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java 1.5</ulink> or higher.  </para>
 		  <substeps>
 			<step>
-			  <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing: <programlisting>java -version</programlisting></para>
+			  <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing the following at a command prompt: <programlisting>java -version</programlisting></para>
 			</step>
 		  </substeps>
 		</step>
         <step>
-          <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache Ant 1.6.5</ulink> or higher installed.</para>
+          <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache Ant 1.6.5</ulink> or higher.</para>
 		  <substeps>
 			<step>
 			  <para>Unzip the Ant binary distribution to a convenient location on your system. For example: <filename>c:\Program Files</filename>.</para>
@@ -222,10 +231,13 @@
 			<step>
 			  <para>Add the Ant <filename>bin</filename> directory to your <envar>PATH</envar>. For example: <filename>c:\Program Files\apache-ant-1.7.1\bin</filename></para>
 			</step>
+			<step>
+			  <para>Confirm that Ant is installed by typing the following at a command prompt: <programlisting>ant -version</programlisting></para>
+			</step>
 		  </substeps>
         </step>
         <step>
-          <para>If necessary, download <ulink url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink> and add it to your <envar>CLASSPATH</envar>.</para>
+          <para>If necessary, download <ulink url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink> and add it to your <envar>CLASSPATH</envar>. </para>
         </step>
         <step>
           <para>Obtain the package. <!--ulink url="http://www.thingbag.net/docbook/docbook-webhelp.zip">docbook-webhelp.zip</ulink--> Currently, the webhelp package is only available through Subversion.</para>
@@ -239,7 +251,11 @@
 		  </substeps>
         </step>
 		<step>
-		  <para>To improve performance, download and extract DocBook XSLs to a convenient location on your file system. Currently, this package supports <ulink url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink> (i.e. it does not yet support the namespace version of the xsls and does not yet strip the namespace from DocBook 5.x documents. </para>
+		  <para>To improve performance, download and extract DocBook XSLs to a convenient location on your file system. Currently, this package supports <ulink url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink> (i.e. it does not yet support the namespace version of the xsls and does not yet strip the namespace from DocBook 5.x documents. 
+			<note>
+			  <para>If you see the message <screen>Warning: catalogpath listing external catalogs will be ignored</screen> when you generate output, this indicates that your catalog resolver is not installed correctly and is not being used.</para>
+			</note>
+ </para>
 		</step>
 		<step>
 		  <para>In a text editor, edit the <filename>build.properties</filename> file in the webhelp directory and make the changes indicated by the comments:<programlisting>input-xml=docsrc/readme.xml
@@ -287,7 +303,7 @@ docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
       </procedure>
     </section>
     <section>
-	  <title>Using the output</title>
+	  <title>Using and customizing the output</title>
 	  <para>To deep link to a topic inside the help set, simply link directly to the page. This help system uses no frameset, so nothing further is necessary. <tip>
 		  <para>See <ulink url="http://www.sagehill.net/docbookxsl/Chunking.html">Chunking into multiple HTML files</ulink> in Bob Stayton's  <ulink url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The Complete Guide</ulink> for information on controlling output file names in DocBook.</para>
 		</tip>
@@ -301,6 +317,7 @@ docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
 		  </listitem>
 		</itemizedlist>
 		</para>
+	  <para>TODO: Document Apache config changes to improve performance of very long documents. </para>
     </section>
     <section>
       <title>Building the indexer</title>
@@ -317,6 +334,7 @@ docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
   <chapter>
 	<title>Design</title>
 	<para>This chapter provides an overview of how webhelp is implemented. <remark>WRITEME</remark></para>
+	<para>TODO: Document details about cookie use.</para>
   </chapter>
   <chapter>
 	<chapterinfo>
