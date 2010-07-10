@@ -77,7 +77,8 @@ public class SaxDocFileParser extends DefaultHandler {
 		SAXParserFactory spf = SAXParserFactory.newInstance();
 		
 		spf.setValidating(false);
-		
+        addContent = false;
+		divCount = 0;
 		try {
 		
 			//get a new instance of parser
@@ -109,20 +110,23 @@ public class SaxDocFileParser extends DefaultHandler {
 			ie.printStackTrace();
 		}
 	}
-	
+   //kasun: TODO remove indexing of css styles
+    private boolean addContent = false;
+    private boolean addHeaderInfo = false;
+    private int divCount = 0;
 	//SAX parser Event Handlers:
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
 		//dwc: capture current element name
-		currentElName = qName; 
+		currentElName = qName;
 
 		// dwc: Adding contents of some meta tags to the index
 		if((qName.equalsIgnoreCase("meta")) ) {
+            addHeaderInfo = true;
 			String attrName = attributes.getValue("name");
 			if(attrName != null && (attrName.equalsIgnoreCase("keywords") || attrName.equalsIgnoreCase("description"))){
 				strbf.append(" " + attributes.getValue("content") + " ");
 			}
-
 			// dwc: adding this to make the docbook <abstract> element
 			// (which becomes <meta name="description".../> in html)
 			// into the brief description that shows up in search
@@ -130,31 +134,46 @@ public class SaxDocFileParser extends DefaultHandler {
 			if(attrName != null && (attrName.equalsIgnoreCase("description"))){
 				fileDesc.setShortdesc(BlankRemover.rmWhiteSpace(attributes.getValue("content").replace('\n', ' ')));
 			}
-		}
-		// dwc: End addition
-		
-		// dwc: commenting out DITA specific lines
+		} // dwc: End addition
+
+        // dwc: commenting out DITA specific lines
 		if((qName.equalsIgnoreCase("title")) || (qName.equalsIgnoreCase("shortdesc"))) {
 			tempVal = new StringBuffer();
 		}
 
-		// dwc: Adding mechansim to grab <p class="summary"> etc. Powered by para.propagates.style etc.
-		if(qName.equalsIgnoreCase("div")||qName.equalsIgnoreCase("p")||qName.equalsIgnoreCase("span")) {
-			String stemp = attributes.getValue("class");
-			if (stemp !=null && (stemp.equalsIgnoreCase("shortdesc")||stemp.equalsIgnoreCase("summary"))) {
-				shortdescBool = true;
-			}
-			tempVal = new StringBuffer();
-			strbf.append(" ");
-		}
-		if (shortdescBool == true) {
-			shortTagCpt ++;			
-		}
-		
-		strbf.append(" ");
+        if(qName.equalsIgnoreCase("meta") || qName.equalsIgnoreCase("title") || qName.equalsIgnoreCase("shortdesc")){
+            addHeaderInfo = true;
+        } else {
+            addHeaderInfo = false;
+        }
 
+        String elementId = attributes.getValue("id"); 
+        if("content".equals(elementId)) addContent = true;
+
+        if(addContent) {
+            //counts div tags starting from "content" div(inclusive). This will be used to track the end of content "div" tag.
+            //see #endElement()
+            if(qName.equalsIgnoreCase("div")){
+                divCount++;
+            }
+
+            // dwc: Adding mechansim to grab <p class="summary"> etc. Powered by para.propagates.style etc.
+            if (qName.equalsIgnoreCase("div") || qName.equalsIgnoreCase("p") || qName.equalsIgnoreCase("span")) {
+                String stemp = attributes.getValue("class");
+                if (stemp != null && (stemp.equalsIgnoreCase("shortdesc") || stemp.equalsIgnoreCase("summary"))) {
+                    shortdescBool = true;
+                }
+                tempVal = new StringBuffer();
+                strbf.append(" ");
+            }
+            if (shortdescBool) {
+                shortTagCpt++;
+            }
+        }
+		strbf.append(" ");
 	}
-	
+
+	//triggers when there's character data inside an element.
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		
 		// dwc: Bug fix. Don't index contents of script tag.
@@ -162,7 +181,8 @@ public class SaxDocFileParser extends DefaultHandler {
 		// index certain elements. E.g. Use this to implement a
 		// "titles only" index, say if you wanted to use <span/>s to
 		// create space breaks in ja_JP lines to indicate word breaks.
-		if(! currentElName.equalsIgnoreCase("script")){
+        
+		if((addContent || addHeaderInfo) && !currentElName.equalsIgnoreCase("script")){
 			String text = new String(ch,start,length);
 			strbf.append(text);
 			if (tempVal != null) { tempVal.append(text);}
@@ -183,7 +203,14 @@ public class SaxDocFileParser extends DefaultHandler {
 			tempVal = null;
 			shortdescBool = false;
 			}
-		}		
+		}
+        
+        if(qName.equalsIgnoreCase("div") && addContent){
+            divCount--;
+            if (divCount == 0) {
+                addContent = false;
+            }
+        } 
 	}
 	
 	public void processingInstruction(String target, String data) throws SAXException {
@@ -220,8 +247,9 @@ public class SaxDocFileParser extends DefaultHandler {
 			
 			//PrintWriter pw = new PrintWriter(new FileOutputStream(new File("xx.html")));
 			PrintWriter pw = new PrintWriter(new  OutputStreamWriter (new FileOutputStream(new File("xx.html")),"UTF-8"));
-			
-	
+			 //writes the content to xx.html after removing validation. This temp file will be source to index the
+            // content of the particular html page.
+
 			while(true)
 			{
 				int i1, i2;

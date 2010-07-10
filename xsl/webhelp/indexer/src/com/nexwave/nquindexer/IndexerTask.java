@@ -43,7 +43,7 @@ public class IndexerTask  {
 	private String searchdir = "search";
 	private File inputDir = null;
 	private String outputDir = null;
-	private String projectDir = null;	
+	private String projectDir = null;
 
 	// ANT parameters
 	private String htmldir=null;
@@ -187,7 +187,7 @@ public class IndexerTask  {
 				}
 				int ad = 1;
 				if (stemp.equals(projectDir)) ad = 0; 
-				stemp = stemp.substring(i+projectDir.length()+ad);
+				stemp = stemp.substring(i+projectDir.length()+ad);  //i is redundant (i==0 always)
 				ftemp = new File (stemp);
 				docFileInfoTemp.setFullpath(ftemp);
 				
@@ -242,17 +242,15 @@ public class IndexerTask  {
     	// Files for punctuation (only one for now)
         String[] punctuationFiles = new String[] {"punctuation.props"};
         FileInputStream input;
-        String tempStr= new String();
+        String tempStr;
         File ftemp;
         Collection c = new ArrayList<String>();
-
-        //TODO punctuation files are located at webhelp/template/content/search/*.* But here, it refers to doc/content/search which does not exist.
 
         // Get the list of the props file containing the words to remove (not the punctuation)
         DirList props = new DirList(inputDir, "^(?!(punctuation)).*\\.props$", 1);
 		ArrayList<File> wordsList = props.getListFiles();
 		System.out.println("props files:"+wordsList);
-		
+        //TODO all properties are taken toa single arraylist. does it ok?.
 		Properties enProps =new Properties ();
 		String propsDir = new String (inputDir.getPath().concat(File.separator).concat(searchdir));
 		

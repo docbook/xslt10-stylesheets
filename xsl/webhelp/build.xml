@@ -13,7 +13,7 @@
   <property environment="env"/>
   <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
 
-  <target name="validate" if="validate">
+  <target name="validate" if="validate">                            
 	<xmlvalidate file="${input-xml}">
 	  <xmlcatalog refid="catalog"/>
 	</xmlvalidate>

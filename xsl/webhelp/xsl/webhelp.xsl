@@ -369,7 +369,7 @@
                                         </form>
                                     </div>
                                     <div id="searchResults">
-
+                                           <center> </center>
                                     </div>
                                 </div>
                             </xsl:if>

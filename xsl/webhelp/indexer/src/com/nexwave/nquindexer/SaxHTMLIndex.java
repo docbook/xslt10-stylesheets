@@ -1,10 +1,7 @@
 package com.nexwave.nquindexer;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 
 // specific dita ot
@@ -72,13 +69,11 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 		
 		String str = cleanBuffer(strbf);
 
-		//System.out.println(file.toString()+" "+ str +"\n");
+		System.out.println(file.toString()+" "+ str +"\n");
 		String[] items = str.split("\\s");
 		//items: remove the duplicated strings first
 		HashSet <String> tempSet = new HashSet<String>();
-		for (String s : items) {
-			tempSet.add(s);
-		}
+        tempSet.addAll(Arrays.asList(items));
 		Iterator it = tempSet.iterator();
 		String s;
         while (it.hasNext()) {
@@ -86,11 +81,11 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         	s = (String)it.next();
         	if (tempDico.containsKey(s)) {
         		String temp = (String) tempDico.get(s);
-        		temp = temp.concat(",").concat(new Integer(i).toString());
+        		temp = temp.concat(",").concat(Integer.toString(i));
         		//System.out.println("temp="+s+"="+temp);
         		tempDico.put(s, temp);
         	}else {
-        		tempDico.put(s, new Integer(i).toString());
+        		tempDico.put(s, Integer.toString(i));
         	}
         }
         
@@ -125,7 +120,7 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 			tempStrBuf.append("|\\byou\\b|\\bby\\b|\\bso\\b|\\bon\\b|\\byour\\b|\\bat\\b");
 			tempStrBuf.append("|\\b-or-\\b|\\bso\\b|\\bon\\b|\\byour\\b|\\bat\\b");
 
-			str = str.replaceFirst("Copyright © 1998-2007 NexWave Solutions.", " ");
+			str = str.replaceFirst("Copyright ï¿½ 1998-2007 NexWave Solutions.", " ");
 			
 
 			//nqu 25.01.2008 str = str.replaceAll("\\b.\\b|\\\\", " ");
