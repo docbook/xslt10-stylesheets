@@ -13,7 +13,14 @@
   <property environment="env"/>
   <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
 
-  <target name="validate" if="validate">                            
+  <condition property="perform-validation">
+	<equals arg1="${validate}" arg2="true"/>
+  </condition>
+  <condition property="skip-search-indexing">
+	<equals arg1="${exclude.search.from.chunked.html}" arg2="true"/>
+  </condition>
+
+  <target name="validate" if="perform-validation">                            
 	<xmlvalidate file="${input-xml}">
 	  <xmlcatalog refid="catalog"/>
 	</xmlvalidate>
@@ -33,6 +40,7 @@
 	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
 	  <param name="frameset.base.dir" expression="${frameset.base.dir}" if="frameset.base.dir"/>
+	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>
 	  <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
 	</xslt>
 
@@ -46,7 +54,7 @@
 	</copy>
   </target>
 
-  <target name="index">
+  <target name="index" unless="skip-search-indexing">
 
 	<path id="nw-cms.jar.path">
 	  <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar" />
