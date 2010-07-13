@@ -87,3 +87,27 @@ function syncToc(){
         }
     }
 }
+
+/**
+ * Code for Show/Hide TOC
+ *
+ */
+function showHideToc() {
+    var showHideButton = $("#showHideButton");
+    var leftNavigation = $("#leftnavigation");
+    var content = $("#content");
+
+    if (showHideButton != undefined && showHideButton.hasClass("pointLeft")) {
+        //Hide TOC
+        showHideButton.removeClass('pointLeft').addClass('pointRight');
+        content.css("margin", "0 0 0 0");
+        leftNavigation.css("display","none");
+        showHideButton.attr("title", "Hide the TOC tree");
+    } else {
+        //Show the TOC
+        showHideButton.removeClass('pointRight').addClass('pointLeft');
+        content.css("margin", "0 0 0 240px");
+        leftNavigation.css("display","block");
+        showHideButton.attr("title", "Show the TOC Tree");
+    }
+}

@@ -17,7 +17,7 @@ h2 {
     background: white url(../images/gov-header-bg.gif) repeat-x;
     position: fixed;
     width: 100%;
-    height: 80px;
+    height: 88px;
     top: 0;
     right: 0;
     bottom: auto;
@@ -30,7 +30,7 @@ h2 {
     overflow: auto;
     position: fixed;
     height: auto;
-    top: 80px;
+    top: 88px;
     bottom: 0;
     left: 0;
     width: 230px;
@@ -40,10 +40,10 @@ h2 {
 
 #content {
     position: relative;
-    top: 80px;
-    left: auto;
+    top: 88px;
+   /* left: 240px;*/
     right: auto;
-    bottom: 20px;
+  /*  bottom: 20px;  */
     margin: 0px 0px 0px 240px;
     width: auto;
     height: inherit;
@@ -59,11 +59,24 @@ h2 {
 }
 
 .navfooter {
-    bottom: 2%;
-    content: attr;
+    bottom: 2%; 
 }
 
 .searchFieldSet {
     font-size: 68.75%;
 }
- 
+
+.pointLeft{
+    background:url("../images/showHideTreeIcons.png") 0 0 no-repeat ; 
+    height:28px;
+    width:15px;
+    display:block;
+    font-size:0;
+}
+
+.pointRight{
+    background: url("../images/showHideTreeIcons.png") -15px 0 no-repeat;
+    height:28px;
+    display:block;
+    font-size:0;
+}
