@@ -55,8 +55,8 @@
 <gentext key="copyright" text="製作著作"/>
 <gentext key="Dedication" text="謝辞"/>
 <gentext key="dedication" text="謝辞"/>
-<gentext key="Edition" text="編集"/>
-<gentext key="edition" text="編集"/>
+<gentext key="Edition" text="エディッション"/>
+<gentext key="edition" text="エディッション"/>
 <gentext key="Editor" text="編集者"/>
 <gentext key="Equation" text="式"/>
 <gentext key="equation" text="式"/>

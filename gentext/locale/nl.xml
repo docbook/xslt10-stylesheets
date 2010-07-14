@@ -66,7 +66,7 @@
 <gentext key="index" text="Register"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="isbn"/>
-<gentext key="LegalNotice" text="Juridische Kennisgeving"/>
+<gentext key="LegalNotice" text="Juridische kennisgeving"/>
 <gentext key="legalnotice" text="juridische kennisgeving"/>
 <gentext key="MsgAud" text="Doelgroep"/>
 <gentext key="msgaud" text="doelgroep"/>
@@ -84,12 +84,12 @@
 <gentext key="Procedure" text="Procedure"/>
 <gentext key="procedure" text="procedure"/>
 <gentext key="ProductionSet" text="Productie"/> 
-<gentext key="PubDate" text="Publicatie Datum"/>
+<gentext key="PubDate" text="Publicatie datum"/>
 <gentext key="pubdate" text="publicatie datum"/>
 <gentext key="Published" text="Uitgegeven"/>
 <gentext key="published" text="uitgegeven"/> 
 <gentext key="Publisher" text="Uitgever"/>
-<gentext key="Qandadiv" text="Vraag en Antwoord"/>
+<gentext key="Qandadiv" text="Vraag en antwoord"/>
 <gentext key="qandadiv" text="vraag en antwoord"/>
 <gentext key="QandASet" text="Vaak gestelde vragen"/>
 <gentext key="Question" text="Vraag:"/>
@@ -105,8 +105,8 @@
 <gentext key="refsection" text="paragraaf"/>
 <gentext key="RefSynopsisDiv" text="Samenvatting"/>
 <gentext key="refsynopsisdiv" text="samenvatting"/>
-<gentext key="RevHistory" text="Wijzigingsgwschiedenis"/>
-<gentext key="revhistory" text="wijzigingsgwschiedenis"/>
+<gentext key="RevHistory" text="Wijzigingsgeschiedenis"/>
+<gentext key="revhistory" text="wijzigingsgeschiedenis"/>
 <gentext key="Revision" text="Herziening"/>
 <gentext key="revision" text="herziening"/>
 <gentext key="sect1" text="Paragraaf"/>
@@ -131,8 +131,8 @@
 <gentext key="step" text="stap"/>
 <gentext key="Table" text="Tabel"/>
 <gentext key="table" text="tabel"/>
-<gentext key="task" text="taak"/>
-<gentext key="Task" text="Taak"/>
+<gentext key="task" text="taap"/>
+<gentext key="Task" text="Taap"/>
 <gentext key="TIP" text="TIP"/>
 <gentext key="Tip" text="Tip"/>
 <gentext key="tip" text="tip"/>
@@ -159,9 +159,9 @@
 <gentext key="tablenotes" text="opmerkingen"/>
 <gentext key="TableofContents" text="Inhoudsopgave"/>
 <gentext key="tableofcontents" text="inhoudsopgave"/>
-<gentext key="unexpectedelementname" text="Onverwacht onderdeelsnaam"/>
+<gentext key="unexpectedelementname" text="Onverwachte element naam"/>
 <gentext key="unsupported" text="niet ondersteund"/>
-<gentext key="xrefto" text="verwijzing naar"/>
+<gentext key="xrefto" text="xref naar"/>
 
 <!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
 <!-- * in a man page AUTHORS section which lists multiple authors -->
@@ -169,7 +169,7 @@
 
 <!-- * The following all correspond to enumerated values for the Class -->
 <!-- *  attribute on the Othercredit element -->
-<gentext key="copyeditor" text="Copy Redacteur"/>
+<gentext key="copyeditor" text="Copy redacteur"/>
 <gentext key="graphicdesigner" text="Grafisch ontwerper"/>
 <gentext key="productioneditor" text="Productie redacteur"/>
 <gentext key="technicaleditor" text="Technische redacteur"/>
