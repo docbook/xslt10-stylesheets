@@ -19,9 +19,9 @@
 <xsl:param name="local.l10n.xml" select="document('')"/>
 
 <xsl:key name="l10n-lang" match="l:l10n" use="@language"/>
-<xsl:key name="l10n-gentext" match="l:l10n/l:gentext" use="concat(../@language, '#', @key)"/>
-<xsl:key name="l10n-dingbat" match="l:l10n/l:dingbat" use="concat(../@language, '#', @key)"/>
-<xsl:key name="l10n-context" match="l:l10n/l:context" use="concat(../@language, '#', @name)"/>
+<xsl:key name="l10n-gentext" match="l:l10n/l:gentext" use="@key"/>
+<xsl:key name="l10n-dingbat" match="l:l10n/l:dingbat" use="@key"/>
+<xsl:key name="l10n-context" match="l:l10n/l:context" use="@name"/>
 
 <xsl:template name="l10n.language">
   <xsl:param name="target" select="."/>
@@ -113,12 +113,12 @@
   </xsl:for-each>
 </xsl:template>
 
-<xsl:template name="l10.language.name">
+<xsl:template name="l10n.language.name">
   <xsl:param name="lang">
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
   <xsl:value-of
-    select="$l10n.xml/l:i18n/l:l10n[@language=$lang]/@english-language-name"/>
+    select="document(concat($l10n.xml/l:i18n/l:l10n[@language=$lang]/@href, '.xml'))/l:l10n/@english-language-name"/>
 </xsl:template>
 
 <xsl:template name="language.attribute">
@@ -221,12 +221,12 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
-  <xsl:for-each select="$l10n.xml">  <!-- We need to switch context in order to make key() work -->
+  <xsl:for-each select="document(concat($lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
     <xsl:variable name="local.l10n.gentext"
                   select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:gentext[@key=$key])[1]"/>
 
     <xsl:variable name="l10n.gentext"
-                  select="key('l10n-gentext', concat($lang, '#', $key))[1]"/>
+                  select="key('l10n-gentext', $key)[1]"/>
 
     <xsl:choose>
       <xsl:when test="$local.l10n.gentext">
@@ -252,7 +252,9 @@
           </xsl:choose>
         </xsl:message>
 
-        <xsl:value-of select="key('l10n-gentext', concat('en', '#', $key))[1]/@text"/>
+	<xsl:for-each select="document('en.xml')">  <!-- We need to switch context in order to make key() work -->
+	  <xsl:value-of select="key('l10n-gentext', $key)[1]/@text"/>
+	</xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
@@ -292,12 +294,12 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
-  <xsl:for-each select="$l10n.xml">  <!-- We need to switch context in order to make key() work -->
+  <xsl:for-each select="document(concat($lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
     <xsl:variable name="local.l10n.dingbat"
                   select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
 
     <xsl:variable name="l10n.dingbat"
-                  select="key('l10n-dingbat', concat($lang, '#', $dingbat))[1]"/>
+                  select="key('l10n-dingbat', $dingbat)[1]"/>
 
     <xsl:choose>
       <xsl:when test="$local.l10n.dingbat">
@@ -314,8 +316,10 @@
           <xsl:value-of select="$dingbat"/>
           <xsl:text> exists; using "en".</xsl:text>
         </xsl:message>
-
-        <xsl:value-of select="key('l10n-dingbat', concat('en', '#', $dingbat))[1]/@text"/>
+	
+	<xsl:for-each select="document('en.xml')">  <!-- We need to switch context in order to make key() work -->
+	  <xsl:value-of select="key('l10n-dingbat', $dingbat)[1]/@text"/>
+	</xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:for-each>
@@ -383,7 +387,7 @@
   </xsl:param>
   <xsl:param name="verbose" select="1"/>
 
-  <xsl:for-each select="$l10n.xml">  <!-- We need to switch context in order to make key() work -->
+  <xsl:for-each select="document(concat($lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
 
     <xsl:variable name="local.localization.node"
                   select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang])[1]"/>
@@ -405,7 +409,7 @@
                   select="$local.localization.node/l:context[@name=$context]"/>
 
     <xsl:variable name="context.node"
-                  select="key('l10n-context', concat($lang, '#', $context))[1]"/>
+                  select="key('l10n-context', $context)[1]"/>
 
     <xsl:if test="count($context.node) = 0
                   and count($local.context.node) = 0
