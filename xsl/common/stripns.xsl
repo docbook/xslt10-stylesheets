@@ -184,6 +184,11 @@
 
 <xsl:template match="db:link[@xlink:href]" mode="stripNS">
   <ulink url="{@xlink:href}">
+    <xsl:if test="@role">
+      <xsl:attribute name="role">
+        <xsl:value-of select="@role"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates mode="stripNS"/>
   </ulink>
 </xsl:template>
