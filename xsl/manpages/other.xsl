@@ -306,7 +306,7 @@ manvolnum
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"  Language: </xsl:text>
-    <xsl:call-template name="l10.language.name"/>
+    <xsl:call-template name="l10n.language.name"/>
     <xsl:text>&#10;</xsl:text>
     <xsl:text>.\"</xsl:text>
     <xsl:text>&#10;</xsl:text>

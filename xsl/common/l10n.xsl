@@ -117,8 +117,9 @@
   <xsl:param name="lang">
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
+
   <xsl:value-of
-    select="document(concat($l10n.xml/l:i18n/l:l10n[@language=$lang]/@href, '.xml'))/l:l10n/@english-language-name"/>
+    select="document($l10n.xml/l:i18n/l:l10n[@language=$lang]/@href)/l:l10n/@english-language-name"/>
 </xsl:template>
 
 <xsl:template name="language.attribute">
