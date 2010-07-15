@@ -64,5 +64,4 @@
 <l:l10n language="zh" href="zh.xml"/>
 <l:l10n language="zh_cn" href="zh_cn.xml"/>
 <l:l10n language="zh_tw" href="zh_tw.xml"/>
-<l:l10n language="/l" href="/l.xml"/>
 </l:i18n>
