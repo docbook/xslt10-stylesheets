@@ -966,25 +966,37 @@
                        mediaobjectco|
                        inlinemediaobject" 
                 mode="opf.manifest">
+
+    <xsl:variable name="olist" select="imageobject|imageobjectco                      |videoobject|audioobject                      |textobject"/>
+
+    <xsl:variable name="object.index">
+      <xsl:call-template name="select.mediaobject.index">
+        <xsl:with-param name="olist" select="$olist"/>
+        <xsl:with-param name="count" select="1"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="object" select="$olist[position() = $object.index]"/>
+
     <xsl:choose>
-      <xsl:when test="imageobject/imagedata[@format = 'GIF' or 
-                                            @format = 'GIF87a' or 
-                                            @format = 'GIF89a' or 
-                                            @format = 'JPEG' or 
-                                            @format = 'JPG' or 
-                                            @format = 'PNG' or 
-                                            @format = 'SVG']">
-        <xsl:apply-templates select="imageobject[imagedata[@format = 'GIF' or 
-                                                           @format = 'GIF87a' or 
-                                                           @format = 'GIF89a' or 
-                                                           @format = 'JPEG' or 
-                                                           @format = 'JPG' or 
-                                                           @format = 'PNG' or 
-                                                           @format = 'SVG']][1]/imagedata"
+      <xsl:when test="$object/descendant::imagedata[@format = 'GIF' or 
+                                                    @format = 'GIF87a' or 
+                                                    @format = 'GIF89a' or 
+                                                    @format = 'JPEG' or 
+                                                    @format = 'JPG' or 
+                                                    @format = 'PNG' or 
+                                                    @format = 'SVG']">
+        <xsl:apply-templates select="$object[descendant::imagedata[@format = 'GIF' or 
+                                                                   @format = 'GIF87a' or 
+                                                                   @format = 'GIF89a' or 
+                                                                   @format = 'JPEG' or 
+                                                                   @format = 'JPG' or 
+                                                                   @format = 'PNG' or 
+                                                                   @format = 'SVG']][1]/imagedata"
                              mode="opf.manifest"/>              
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="imageobject/imagedata[1]"
+        <xsl:apply-templates select="$object/imagedata[1]"
                              mode="opf.manifest"/>              
       </xsl:otherwise>
     </xsl:choose>  
