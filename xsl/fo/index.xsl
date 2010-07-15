@@ -1,8 +1,7 @@
 <?xml version='1.0'?>
 <!DOCTYPE xsl:stylesheet [
-<!ENTITY primary   'normalize-space(concat(primary/@sortas, primary[not(@sortas)]))'>
-<!ENTITY secondary 'normalize-space(concat(secondary/@sortas, secondary[not(@sortas)]))'>
-<!ENTITY tertiary  'normalize-space(concat(tertiary/@sortas, tertiary[not(@sortas)]))'>
+<!ENTITY % common.entities SYSTEM "../common/entities.ent">
+%common.entities;
 ]>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
