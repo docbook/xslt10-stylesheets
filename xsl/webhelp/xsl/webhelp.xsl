@@ -5,7 +5,7 @@
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
 
     <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
- 
+
     <xsl:include href="keywords.xsl"/>
 
     <!--TODO check how html and xml behaves-->
@@ -24,11 +24,12 @@
     <xsl:param name="direction.align.start">left</xsl:param>
     <xsl:param name="direction.align.end">right</xsl:param>
     <xsl:variable name="tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
+    <xsl:param name="indexer.language">en</xsl:param>
     <!-- Custom params! -->
 
     <xsl:param name="chunker.output.indent">no</xsl:param>
     <xsl:param name="navig.showtitles">0</xsl:param>
-                                                                                    
+
     <xsl:param name="manifest.in.base.dir" select="0"/>
     <xsl:param name="base.dir" select="concat($frameset.base.dir,'/content/')"/>
     <xsl:param name="suppress.navigation">0</xsl:param>
@@ -60,13 +61,15 @@
     </i18n>
 
     <xsl:template name="user.head.content">
-        <!--xsl:message>
+        <!--  <xsl:message>
             tree.cookie.id = <xsl:value-of select="$tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
-        </xsl:message-->
+            $indexer.language = <xsl:value-of select="$indexer.language"/> +++ <xsl:value-of select="count(//node())"/>
+        </xsl:message>-->
         <script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "<xsl:value-of select="$tree.cookie.id"/>";
-            
+            var language = "<xsl:value-of select="$indexer.language"/>";
+
             //Localization
             txt_filesfound = '<xsl:call-template name="gentext">
                 <xsl:with-param name="key" select="'txt_filesfound'"/>
@@ -82,27 +85,27 @@
                 </xsl:call-template>";
             txt_results_for = "<xsl:call-template name="gentext">
                 <xsl:with-param name="key" select="'txt_results_for'"/>
-                </xsl:call-template>"; 
+                </xsl:call-template>";
         </script>
         <style type="text/css">
             input {
-                margin-bottom: 5px;
-                margin-top: 2px;
+            margin-bottom: 5px;
+            margin-top: 2px;
             }
 
             .folder {
-                display: block;
-                height: 22px;
-                padding-left: 20px;
-                background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
+            display: block;
+            height: 22px;
+            padding-left: 20px;
+            background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
             }
-        <!--[if IE]>
+            <!--[if IE]>
             input {
                 margin-bottom: 5px;
                 margin-top: 2px;
             }
             <![endif]-->
-        </style>  
+        </style>
         <link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/>
         <link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
         <link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/>
@@ -131,7 +134,14 @@
         <script type="text/javascript" src="search/nwSearchFnt.js">
             <xsl:comment></xsl:comment>
         </script>
-        <script type="text/javascript" src="search/stemmers/stemmer.js">
+
+        <!--
+           NOTE: Stemmer javascript files should be in format <language>_stemmer.js.
+           For example, for English(en), source should be: "search/stemmers/en_stemmer.js"
+           For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm
+        -->
+        <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$indexer.language,'_stemmer.js')"/></xsl:message>-->
+        <script type="text/javascript" src="{concat('search/stemmers/',$indexer.language,'_stemmer.js')}">
             <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
         </script>
     </xsl:template>
@@ -151,25 +161,23 @@
         <xsl:call-template name="webhelptoctoc"/>
         <xsl:if test="$exclude.search.from.chunked.html != 'true'">
             <xsl:call-template name="search"/>
-        </xsl:if--> 
+        </xsl:if-->
     </xsl:template>
 
     <xsl:template name="user.header.content">
-        <div> 
+        <div>
             <a id="showHideButton" onclick="showHideToc();" class="pointLeft" title="Hide TOC tree">.</a>
         </div>
     </xsl:template>
 
-    <xsl:template name="user.footer.navigation"> 
+    <xsl:template name="user.footer.navigation">
     	<xsl:call-template name="webhelptoc">
 		  <xsl:with-param name="currentid" select="generate-id(.)"/>
 	     </xsl:call-template>
     </xsl:template>
 
     <xsl:template match="/">
-        <xsl:message>language:
-            <xsl:value-of select="$l10n.gentext.language"/>
-        </xsl:message>
+        <xsl:message>language: <xsl:value-of select="$indexer.language"/> </xsl:message>
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:choose>
@@ -200,61 +208,61 @@
         </xsl:if>
     </xsl:template>
 
-<xsl:template name="chunk-element-content">
-  <xsl:param name="prev"/>
-  <xsl:param name="next"/>
-  <xsl:param name="nav.context"/>
-  <xsl:param name="content">
-    <xsl:apply-imports/>
-  </xsl:param>
+    <xsl:template name="chunk-element-content">
+        <xsl:param name="prev"/>
+        <xsl:param name="next"/>
+        <xsl:param name="nav.context"/>
+        <xsl:param name="content">
+            <xsl:apply-imports/>
+        </xsl:param>
 
-  <xsl:call-template name="user.preroot"/>
+        <xsl:call-template name="user.preroot"/>
 
-  <html>
-    <xsl:call-template name="html.head">
-      <xsl:with-param name="prev" select="$prev"/>
-      <xsl:with-param name="next" select="$next"/>
-    </xsl:call-template>
+        <html>
+            <xsl:call-template name="html.head">
+                <xsl:with-param name="prev" select="$prev"/>
+                <xsl:with-param name="next" select="$next"/>
+            </xsl:call-template>
 
-    <body>
-      <xsl:call-template name="body.attributes"/>
+            <body>
+                <xsl:call-template name="body.attributes"/>
 
-      <xsl:call-template name="user.header.navigation">
-          <xsl:with-param name="prev" select="$prev"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="nav.context" select="$nav.context"/>
-      </xsl:call-template>
+                <xsl:call-template name="user.header.navigation">
+                    <xsl:with-param name="prev" select="$prev"/>
+                    <xsl:with-param name="next" select="$next"/>
+                    <xsl:with-param name="nav.context" select="$nav.context"/>
+                </xsl:call-template>
 
 
-      <div id="content">
+                <div id="content">
 
-          <xsl:call-template name="user.header.content"/>
+                    <xsl:call-template name="user.header.content"/>
 
-          <xsl:copy-of select="$content"/>
+                    <xsl:copy-of select="$content"/>
 
-          <xsl:call-template name="user.footer.content"/>
+                    <xsl:call-template name="user.footer.content"/>
 
-          <xsl:call-template name="footer.navigation">
-              <xsl:with-param name="prev" select="$prev"/>
-              <xsl:with-param name="next" select="$next"/>
-              <xsl:with-param name="nav.context" select="$nav.context"/>
-          </xsl:call-template>
-      </div>
-        
-		<xsl:call-template name="user.footer.navigation"/>
-    </body>
-  </html>
-  <xsl:value-of select="$chunk.append"/>
-</xsl:template>
+                    <xsl:call-template name="footer.navigation">
+                        <xsl:with-param name="prev" select="$prev"/>
+                        <xsl:with-param name="next" select="$next"/>
+                        <xsl:with-param name="nav.context" select="$nav.context"/>
+                    </xsl:call-template>
+                </div>
 
-<!-- The Header with the company logo -->
-<xsl:template name="webhelpheader">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:param name="nav.context"/>
+                <xsl:call-template name="user.footer.navigation"/>
+            </body>
+        </html>
+        <xsl:value-of select="$chunk.append"/>
+    </xsl:template>
 
-    <xsl:variable name="home" select="/*[1]"/>
-      <xsl:variable name="up" select="parent::*"/>
+    <!-- The Header with the company logo -->
+    <xsl:template name="webhelpheader">
+        <xsl:param name="prev"/>
+        <xsl:param name="next"/>
+        <xsl:param name="nav.context"/>
+
+        <xsl:variable name="home" select="/*[1]"/>
+        <xsl:variable name="up" select="parent::*"/>
 
         <div id="header">
             <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
@@ -273,7 +281,7 @@
                 </xsl:choose>
             </h1>
 
-             <!-- Prev and Next links generation-->
+            <!-- Prev and Next links generation-->
             <div id="navheader" align="right">
                 <!--xsl:with-param name="prev" select="$prev"/>
                 <xsl:with-param name="next" select="$next"/>
@@ -300,7 +308,7 @@
                     <xsl:choose>
                         <xsl:when test="count($up)&gt;0
                                   and generate-id($up) != generate-id($home)">
-                             | 
+                            |
                             <a accesskey="u">
                                 <xsl:attribute name="href">
                                     <xsl:call-template name="href.target">
@@ -331,12 +339,12 @@
                     </xsl:if>
                 </xsl:if>
             </div>
-            
+
         </div>
     </xsl:template>
 
     <xsl:template name="webhelptoc">
-	    <xsl:param name="currentid"/>
+        <xsl:param name="currentid"/>
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:variable name="title">
@@ -394,7 +402,7 @@
                 </xsl:variable>
 
                 <div>
-                    <div id="leftnavigation" style="padding-top:3px;">
+                    <div id="leftnavigation" style="padding-top:3px; background-color:white;">
                         <div id="tabs">
                             <ul>
                                 <li>
@@ -465,7 +473,7 @@
     <xsl:template
             match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
             mode="webhelptoc">
-	<xsl:param name="currentid"/>
+        <xsl:param name="currentid"/>
         <xsl:variable name="title">
             <xsl:if test="$eclipse.autolabel=1">
                 <xsl:variable name="label.markup">
@@ -496,10 +504,10 @@
 
         <xsl:if test="not(self::index) or (self::index and not($generate.index = 0))">
             <!--li style="white-space: pre; line-height: 0em;"-->
-	  <li>
-		<xsl:if test="$id = $currentid">
-		  <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
-		</xsl:if>		
+            <li>
+                <xsl:if test="$id = $currentid">
+                    <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
+                </xsl:if>
                 <span class="file">
                     <a href="{substring-after($href,concat($frameset.base.dir,'/content/'))}">
                         <xsl:value-of select="$title"/>
@@ -510,8 +518,8 @@
                         <xsl:apply-templates
                                 select="part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv"
                                 mode="webhelptoc">
-					<xsl:with-param name="currentid" select="$currentid"/>
-			</xsl:apply-templates>
+                            <xsl:with-param name="currentid" select="$currentid"/>
+                        </xsl:apply-templates>
                     </ul>
                 </xsl:if>
             </li>
@@ -521,58 +529,65 @@
     <xsl:template match="text()" mode="webhelptoc"/>
 
     <xsl:template name="user.footer.content">
-       <script type="text/javascript" src="../common/main.js">
-           <xsl:comment></xsl:comment>
-       </script> 
+        <script type="text/javascript" src="../common/main.js">
+            <xsl:comment></xsl:comment>
+        </script>
     </xsl:template>
 
     <xsl:template name="index.html">
         <xsl:variable name="default.topic">
-          <xsl:choose>
-            <xsl:when test="$htmlhelp.default.topic != ''">
-              <xsl:value-of select="$htmlhelp.default.topic"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:call-template name="make-relative-filename">
-                <xsl:with-param name="base.dir"/>
-                <xsl:with-param name="base.name">
-                  <xsl:choose>
-                    <xsl:when test="$rootid != ''">
-                      <xsl:apply-templates select="key('id',$rootid)" mode="chunk-filename"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:apply-templates select="*/*[self::preface|self::chapter|self::appendix|self::part][1]" mode="chunk-filename"/>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:with-param>
-              </xsl:call-template>
-            </xsl:otherwise>
-          </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$htmlhelp.default.topic != ''">
+                    <xsl:value-of select="$htmlhelp.default.topic"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="make-relative-filename">
+                        <xsl:with-param name="base.dir"/>
+                        <xsl:with-param name="base.name">
+                            <xsl:choose>
+                                <xsl:when test="$rootid != ''">
+                                    <xsl:apply-templates select="key('id',$rootid)" mode="chunk-filename"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:apply-templates
+                                            select="*/*[self::preface|self::chapter|self::appendix|self::part][1]"
+                                            mode="chunk-filename"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         <xsl:call-template name="write.chunk">
-          <xsl:with-param name="filename">
-            <!--       <xsl:if test="$manifest.in.base.dir != 0"> -->
-            <!--         <xsl:value-of select="$base.dir"/> -->
-            <!--       </xsl:if> -->
-            <xsl:choose>
-              <xsl:when test="$chunk.frameset.start.filename"><xsl:value-of select="concat($frameset.base.dir,'/',$chunk.frameset.start.filename)"/></xsl:when>
-              <xsl:otherwise><xsl:value-of select="'index.html'"/></xsl:otherwise>
-            </xsl:choose>
-          </xsl:with-param>
-          <xsl:with-param name="method" select="'xml'"/>
-          <xsl:with-param name="encoding" select="'utf-8'"/>
-          <xsl:with-param name="indent" select="'yes'"/>
-          <xsl:with-param name="content">
-            <html>
-            <head>
-            <meta http-equiv="Refresh" content="0; URL=content/ch01.html"/>
-            <title><xsl:value-of select="//title[1]"/>&#160;</title>
-            <!-- Call template "metatags" to add copyright and date meta tags:  -->
-            </head>
-            </html>
-          </xsl:with-param>
+            <xsl:with-param name="filename">
+                <!--       <xsl:if test="$manifest.in.base.dir != 0"> -->
+                <!--         <xsl:value-of select="$base.dir"/> -->
+                <!--       </xsl:if> -->
+                <xsl:choose>
+                    <xsl:when test="$chunk.frameset.start.filename">
+                        <xsl:value-of select="concat($frameset.base.dir,'/',$chunk.frameset.start.filename)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="'index.html'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:with-param>
+            <xsl:with-param name="method" select="'xml'"/>
+            <xsl:with-param name="encoding" select="'utf-8'"/>
+            <xsl:with-param name="indent" select="'yes'"/>
+            <xsl:with-param name="content">
+                <html>
+                    <head>
+                        <meta http-equiv="Refresh" content="0; URL=content/ch01.html"/>
+                        <title><xsl:value-of select="//title[1]"/>&#160;
+                        </title>
+                        <!-- Call template "metatags" to add copyright and date meta tags:  -->
+                    </head>
+                </html>
+            </xsl:with-param>
         </xsl:call-template>
-  </xsl:template>
+    </xsl:template>
 
 
     <xsl:template name="web.xml">

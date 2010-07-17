@@ -11,10 +11,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
+/*
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 
+*/
 
 
 import com.nexwave.nsidita.DirList;
@@ -28,8 +30,8 @@ import com.nexwave.nsidita.DocFileInfo;
  * @author N. Quaine
  * @author Kasun Gajasinghe <http://kasunbg.blogspot.com>
  */
+public class IndexerTask{
 //public class IndexerTask extends Task {
-public class IndexerTask extends Task {
 
 	// messages
 	private String txt_no_inputdir = "Input directory not found:";
@@ -53,7 +55,7 @@ public class IndexerTask extends Task {
 
     //supported languages: add new additions to this. don't include country codes to the end such as en_US or en_UK,
     // as stemmers doesn't find a difference between them.
-    private String[] supportedLanguages= {"en", "fr", "cn" };
+    private String[] supportedLanguages= {"en", "de"}; //currently English & German only. Chinese(cn) to be added shortly.
 
 	// Indexing features: words to remove
 	private ArrayList<String> cleanUpStrings = null;	
@@ -108,8 +110,8 @@ public class IndexerTask extends Task {
 	/**
 	 * Implementation of the execute function (Task interface)
 	 */
-	public void execute() throws BuildException {
-	//public void execute(){
+//	public void execute() throws BuildException {
+	public void execute(){
 
 		ArrayList<DocFileInfo> filesDescription = null; // list of information about the topic files
 		ArrayList<File> htmlFiles = null; // topic files listed in the given directory

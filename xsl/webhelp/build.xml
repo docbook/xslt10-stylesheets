@@ -40,8 +40,8 @@
 	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
 	  <param name="frameset.base.dir" expression="${frameset.base.dir}" if="frameset.base.dir"/>
-	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>
 	  <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
+	  <param name="chunk.frameset.start.filename" expression="${chunk.frameset.start.filename}" if="chunk.frameset.start.filename"/>
 	</xslt>
 
 	<delete file="${frameset.base.dir}/dummy.html"/>

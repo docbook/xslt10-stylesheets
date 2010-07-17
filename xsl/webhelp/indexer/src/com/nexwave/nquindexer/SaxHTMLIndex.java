@@ -5,7 +5,9 @@ import java.util.*;
 
 // specific dita ot
 import com.nexwave.nsidita.DocFileInfo;
-import com.nexwave.stemmer.*;
+import com.nexwave.stemmer.snowball.SnowballStemmer;
+import com.nexwave.stemmer.snowball.ext.EnglishStemmer;
+import com.nexwave.stemmer.snowball.ext.GermanStemmer;
 
 
 /**
@@ -61,7 +63,8 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 	/**
 	 * Parses the file to extract all the words for indexing and 
 	 * some data characterizing the file. 
-	 * @param file contains the fullpath of the document to parse  
+	 * @param file contains the fullpath of the document to parse
+     * @param indexerLanguage this will be used to tell the program which stemmer to be used.
 	 * @return a DitaFileInfo object filled with data describing the file
 	 */
 	public DocFileInfo runExtractData(File file, String indexerLanguage) {
@@ -81,18 +84,22 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         //Then, add them to tempSet
         //Do Stemming for words in items
         //TODO currently, stemming support is for english only. Add support for other languages as well.
-
-        Stemmer stemmer;
+ 
+        SnowballStemmer stemmer;
         if(indexerLanguage.equals("en")){
              stemmer = new EnglishStemmer();
-        } else if (indexerLanguage.equals("cn")){
-            throw new UnsupportedOperationException("Chinese stemmer is not implemented yet.");
+        } else if (indexerLanguage.equals("de")){
+            stemmer= new GermanStemmer();
         } else {
-            throw new UnsupportedOperationException("This stemmer is not implemented yet.");
+            stemmer = null;//Languages which stemming is not yet supproted.So, No stemmers will be used.
         }
 
-        String[] stemmedItems = stemmer.doStem(items);
-
+        String[] stemmedItems;
+        if(stemmer != null)             //If a stemmer available
+            stemmedItems  = stemmer.doStem(items);
+        else                            //if no stemmer available for the particular language
+            stemmedItems = items;
+ 
         for(String stemmedItem: stemmedItems){
             System.out.print(stemmedItem+"| ");
         }
