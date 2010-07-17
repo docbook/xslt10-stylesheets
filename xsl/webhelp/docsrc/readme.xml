@@ -99,16 +99,16 @@
           <para>Table of contents pane with collapsable toc tree.</para>
         </listitem>
         <listitem>
-          <para>Search pane. Search results can include brief descriptions of the target. </para>
+          <para>Full-text search. Search results can include brief descriptions of the target. </para>
         </listitem>
         <listitem>
           <para>Support for deep linking by simply linking to the page since no frameset is used.</para>
         </listitem>
         <listitem>
-          <para>A demo <filename>build.xml</filename> file to generate output. You can use this build file by importing it into your own or use it as a model for integrating this output format into your own build system.</para>
+          <para>An Ant <filename>build.xml</filename> file to generate output. You can use this build file by importing it into your own or use it as a model for integrating this output format into your own build system.</para>
         </listitem>
       </itemizedlist>
-      <itemizedlist>
+      <!--itemizedlist>
         <title>Limitations and annoyances</title>
 		<listitem>
 		  <para>You must use xhtml output because the search indexer cannot index html.</para>
@@ -128,7 +128,7 @@
 		<listitem>
 		  <para>By design, the indexer does not index <filename>index.html</filename> or <filename>ix01.html</filename>. Unfortunately, this is currently hard coded in the indexer. </para>
 		</listitem>
-      </itemizedlist>
+      </itemizedlist-->
       <itemizedlist>
         <title>Enhancements planned as part of GSOC 2010</title>
 		<listitem>
@@ -138,25 +138,25 @@
 		  <para>Improve the support for Japanese and Chinese.</para>
 		</listitem>
 		<listitem>
-		  <para>Add search highlighting.</para>
+		  <para>Search highlighting.</para>
 		</listitem>
 		<listitem>
-		  <para>Make indexer skip next and prev links in the footer and header.</para>
-		</listitem>
-		<listitem>
-		  <para>Document skinning and customization options.</para>
+		  <para>Documentation for skinning and customization options.</para>
 		</listitem>
 		<listitem>                                     
-		  <para>Add a show/hide toc button.</para>
-		</listitem>
-		<listitem>
-		  <para>Move the header Next and Prev links to the banner</para>
+		  <para>A show/hide toc button.</para>
 		</listitem>
 		<listitem>
 		  <para>Parameterize width of the TOC pane OR make the TOC pane resizable by the user.</para>
 		</listitem>
 		<listitem>
-		  <para>Support ns and non-ns DocBook stylesheets.</para>
+		  <para>Support for ns and non-ns DocBook stylesheets.</para>
+		</listitem>
+		<listitem>
+		  <para>Skipping of next and prev links in the footer and header.</para>
+		</listitem>
+		<listitem>
+		  <para>Moving of the header Next and Prev links to the banner</para>
 		</listitem>
 	  </itemizedlist>
       <itemizedlist>
@@ -346,7 +346,7 @@ indexer-language=en</programlisting></para>
     </section>
     <section>
       <title>Building the indexer</title>
-      <para role="summary">To build the indexer, you must have installed the JDK version 1.5 or higher and set the ANT_HOME environment variable. Run <code>ant build-indexer</code> to recompile <filename>nw-cms.jar</filename></para>
+      <para role="summary">To build the indexer, you must have installed the JDK version 1.5 or higher and set the <envar>ANT_HOME</envar> environment variable. Run <code>ant build-indexer</code> to recompile <filename>nw-cms.jar</filename></para>
       <indexterm>
         <primary>ANT_HOME</primary>
       </indexterm>
