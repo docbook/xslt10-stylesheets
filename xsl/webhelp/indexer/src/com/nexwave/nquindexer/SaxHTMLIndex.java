@@ -77,7 +77,7 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 		
 		String str = cleanBuffer(strbf);
         str = str.replaceAll("\\s+"," ");   //there's still redundant spaces in the middle
-		System.out.println(file.toString()+" "+ str +"\n");
+//		System.out.println(file.toString()+" "+ str +"\n");
 		String[] items = str.split("\\s");      //contains all the words in the array
 
         //get items one-by-one, tunnel through the stemmer, and get the stem.
@@ -100,9 +100,9 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         else                            //if no stemmer available for the particular language
             stemmedItems = items;
  
-        for(String stemmedItem: stemmedItems){
+       /* for(String stemmedItem: stemmedItems){
             System.out.print(stemmedItem+"| ");
-        }
+        }*/
         
 		//items: remove the duplicated strings first
 		HashSet <String> tempSet = new HashSet<String>();

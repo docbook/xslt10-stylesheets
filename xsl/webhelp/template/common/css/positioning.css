@@ -35,20 +35,20 @@ h2 {
     top: 90px;
     bottom: 0;
     left: 0;
-    width: 230px;
-    margin: 0 0 0 10px;
+    width: 280px;
     z-index: 1500;
+    border-right:2px solid #CCCCCC;
 }
 
 #content {
     position: relative;
     top: 90px; /* left: 240px;*/
     right: auto; /*  bottom: 20px;  */
-    margin: 0px 0px 0px 240px;
+    margin: 0px 0px 0px 280px;
     width: auto;
     height: inherit;
     padding-left: 5px;
-    padding-right: 12px;
+    padding-right: 30px;
     color: #000000;
     border-left: 2px solid #cccccc; /*overflow :scroll;*/
     z-index: 1000;
@@ -57,9 +57,11 @@ h2 {
 #content h1, #content h2 {
     color: #cc0000;
 }
+
 .navfooter {
     bottom: 2%;
 }
+
 .pointLeft {
     background: url("../images/showHideTreeIcons.png") 0 0 no-repeat;
     height: 28px;
@@ -67,9 +69,54 @@ h2 {
     display: block;
     font-size: 0;
 }
+
 .pointRight {
     background: url("../images/showHideTreeIcons.png") -15px 0 no-repeat;
     height: 28px;
     display: block;
     font-size: 0;
 }
+
+/* Search results */
+
+.searchExpression {
+    color: #0050A0;
+    background-color: #EBEFF8;
+    font-size: 12pt;
+
+}
+
+ul.searchresult li a {
+    text-decoration: none;
+    color: #0050A0;
+
+}
+
+ul.searchresult li {
+    color: #0050A0;
+}
+
+.shortdesc {
+    color: #0053AC;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+.shortdesclink {
+    color: gray;
+    font-size: 9pt;
+}
+
+.searchText {
+    border: #BFCEE9 solid 1pt;
+    width: 11em
+}
+
+.searchButton {
+    background: #EBEFF8;
+    color: #0050A0;
+    border: #BFCEE9 solid 1pt;
+    font-weight: bold;
+    font-size: 10pt
+}
+

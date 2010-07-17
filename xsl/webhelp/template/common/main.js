@@ -106,7 +106,7 @@ function showHideToc() {
     } else {
         //Show the TOC
         showHideButton.removeClass('pointRight').addClass('pointLeft');
-        content.css("margin", "0 0 0 240px");
+        content.css("margin", "0 0 0 280px");
         leftNavigation.css("display","block");
         showHideButton.attr("title", "Show the TOC Tree");
     }

@@ -253,7 +253,10 @@ public class IndexerTask{
 			//perf measurement
 			Date dateEnd = new Date();
 			long diff = dateEnd.getTime() - dateStart.getTime();
-			System.out.println("Delay = " + diff/1000 + " sec");
+            if(diff<1000)
+			    System.out.println("Delay = " + diff + " milliseconds");
+            else
+                System.out.println("Delay = " + diff/1000 + " seconds");
 		}else {
 			System.out.println(txt_wrong_dita_basedir);
 			return;
@@ -290,10 +293,10 @@ public class IndexerTask{
         // Get the list of the props file containing the words to remove (not the punctuation)
         DirList props = new DirList(inputDir, "^(?!(punctuation)).*\\.props$", 1);
 		ArrayList<File> wordsList = props.getListFiles();
-		System.out.println("props files:"+wordsList);
-        //TODO all properties are taken toa single arraylist. does it ok?.
+//		System.out.println("props files:"+wordsList);
+        //TODO all properties are taken to a single arraylist. does it ok?.
 		Properties enProps =new Properties ();
-		String propsDir = new String (inputDir.getPath().concat(File.separator).concat(searchdir));
+		String propsDir = inputDir.getPath().concat(File.separator).concat(searchdir);
 		
 		// Init the lists which will contain the words and chars to remove 
 		cleanUpStrings = new ArrayList<String>();
@@ -301,30 +304,29 @@ public class IndexerTask{
 		
 	    try {
 	    	// Retrieve words to remove
-	    	for (int i =0; i<wordsList.size(); i++)
-	    	{
-	    		ftemp = wordsList.get(i);
-	    		if (ftemp.exists()){
-		    		enProps.load(input = new FileInputStream(ftemp.getAbsolutePath()));
-				    input.close();
-				    c = enProps.values();
-				    cleanUpStrings.addAll(c);
-	    			enProps.clear();
-	    		}
-	    	}
+            for (File aWordsList : wordsList) {
+                ftemp = aWordsList;
+                if (ftemp.exists()) {
+                    enProps.load(input = new FileInputStream(ftemp.getAbsolutePath()));
+                    input.close();
+                    c = enProps.values();
+                    cleanUpStrings.addAll(c);
+                    enProps.clear();
+                }
+            }
 
 	    	// Retrieve char to remove (punctuation for ex.)
-	    	for (int i =0; i<punctuationFiles.length; i++)
-	    	{
-	    		tempStr = propsDir.concat(File.separator).concat(punctuationFiles[i]);
-	    		ftemp = new File (tempStr);
-	    		if (ftemp.exists()){
-		    		enProps.load(input = new FileInputStream(tempStr));
-				    input.close();
-				    c = enProps.values();
-				    cleanUpChars.addAll(c);
-			    	enProps.clear();	    		}
-	    	}
+            for (String punctuationFile : punctuationFiles) {
+                tempStr = propsDir.concat(File.separator).concat(punctuationFile);
+                ftemp = new File(tempStr);
+                if (ftemp.exists()) {
+                    enProps.load(input = new FileInputStream(tempStr));
+                    input.close();
+                    c = enProps.values();
+                    cleanUpChars.addAll(c);
+                    enProps.clear();
+                }
+            }
 	    }
 	    catch (IOException e) {
 	        e.printStackTrace();

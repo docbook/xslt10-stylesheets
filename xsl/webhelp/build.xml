@@ -1,117 +1,125 @@
 <project default="help" name="mainbuild">
 
-  <loadproperties srcFile="build.properties"/>
-  <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
+    <loadproperties srcFile="build.properties"/>
+    <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
 
-  <xmlcatalog id="catalog">
-	<catalogpath>
-	  <pathelement location="${docbook-xsl-catalog}"/>
-	</catalogpath>
-	<dtd publicId="-//OASIS//DTD DocBook XML V4.5//EN" location="${docbookx.dtd}"/>
-  </xmlcatalog>
+    <xmlcatalog id="catalog">
+        <catalogpath>
+            <pathelement location="${docbook-xsl-catalog}"/>
+        </catalogpath>
+        <dtd publicId="-//OASIS//DTD DocBook XML V4.5//EN" location="${docbookx.dtd}"/>
+    </xmlcatalog>
 
-  <property environment="env"/>
-  <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
+    <property environment="env"/>
+    <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
 
-  <condition property="perform-validation">
-	<equals arg1="${validate}" arg2="true"/>
-  </condition>
-  <condition property="skip-search-indexing">
-	<equals arg1="${exclude.search.from.chunked.html}" arg2="true"/>
-  </condition>
+    <condition property="perform-validation">
+        <equals arg1="${validate}" arg2="true"/>
+    </condition>
+    <condition property="skip-search-indexing">
+        <equals arg1="${exclude.search.from.chunked.html}" arg2="true"/>
+    </condition>
 
-  <target name="validate" if="perform-validation">                            
-	<xmlvalidate file="${input-xml}">
-	  <xmlcatalog refid="catalog"/>
-	</xmlvalidate>
-  </target>
+    <target name="validate" if="perform-validation">
+        <xmlvalidate file="${input-xml}">
+            <xmlcatalog refid="catalog"/>
+        </xmlvalidate>
+    </target>
 
-  <target name="chunk" depends="clean">
+    <target name="chunk" depends="clean">
 
-	<mkdir dir="${frameset.base.dir}"/>
-	<xslt 
-	  in="${input-xml}"
-	  out="${frameset.base.dir}/dummy.html"
-	  style="${ant.file.dir}/xsl/webhelp.xsl"
-	  scanincludeddirectories="false"
-	  classpath="${xslt-processor-classpath}">
-	  <xmlcatalog refid="catalog"/>
-	  <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
-	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}" if="exclude.search.from.chunked.html"/>
-	  <param name="output_file_name" expression="${output_file_name}"/>
-	  <param name="frameset.base.dir" expression="${frameset.base.dir}" if="frameset.base.dir"/>
-	  <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
-	  <param name="chunk.frameset.start.filename" expression="${chunk.frameset.start.filename}" if="chunk.frameset.start.filename"/>
-	</xslt>
+        <mkdir dir="${frameset.base.dir}"/>
+        <xslt
+                in="${input-xml}"
+                out="${frameset.base.dir}/dummy.html"
+                style="${ant.file.dir}/xsl/webhelp.xsl"
+                scanincludeddirectories="false"
+                classpath="${xslt-processor-classpath}">
+            <xmlcatalog refid="catalog"/>
+            <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
+            <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}"
+                   if="exclude.search.from.chunked.html"/>
+            <param name="output_file_name" expression="${output_file_name}"/>
+            <param name="frameset.base.dir" expression="${frameset.base.dir}" if="frameset.base.dir"/>
+            <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
+            <param name="chunk.frameset.start.filename" expression="${chunk.frameset.start.filename}"
+                   if="chunk.frameset.start.filename"/>
+        </xslt>
 
-	<delete file="${frameset.base.dir}/dummy.html"/>
+        <delete file="${frameset.base.dir}/dummy.html"/>
 
-<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
-	<copy todir="${frameset.base.dir}">
-	  <fileset dir="${ant.file.dir}/template">
-		<include name="**/*"/>
-	  </fileset>
-	</copy>
-  </target>
+        <!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
+        <copy todir="${frameset.base.dir}">
+            <fileset dir="${ant.file.dir}/template">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
 
-  <target name="index" unless="skip-search-indexing">
+        <!--Deletes all the stemmers that are copied to doc/ folder. Then, adds only the needed stemmer-->
+        <delete dir="${frameset.base.dir}/content/search/stemmers"/>
+        <copy todir="doc/content/search/stemmers/"
+              file="template/content/search/stemmers/${indexer-language}_stemmer.js"/>
 
-	<path id="nw-cms.jar.path">
-	  <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar" />
-	</path>
+    </target>
 
-    <taskdef name="indexertask"
-	  classname="com.nexwave.nquindexer.IndexerTask">
-	  <classpath refid="nw-cms.jar.path" />
-    </taskdef>
+    <target name="index" unless="skip-search-indexing">
 
-	<echo>Indexing html files in ${frameset.base.dir}/content</echo>
+        <path id="nw-cms.jar.path">
+            <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar"/>
+        </path>
 
-    <indexertask htmldir="${frameset.base.dir}/content" indexerLanguage="${indexer-language}"/>
+        <taskdef name="indexertask"
+                 classname="com.nexwave.nquindexer.IndexerTask">
+            <classpath refid="nw-cms.jar.path"/>
+        </taskdef>
 
-	<delete>
-	  <fileset dir="${frameset.base.dir}/content/search" includes="*.props"/>
-	</delete>
+        <echo>Indexing html files in ${frameset.base.dir}/content</echo>
 
-	<delete file="xx.html"/>
-	
-  </target>
+        <indexertask htmldir="${frameset.base.dir}/content" indexerLanguage="${indexer-language}"/>
 
-  <target name="webhelp" depends="validate,chunk,index"/>
+        <delete>
+            <fileset dir="${frameset.base.dir}/content/search" includes="*.props"/>
+        </delete>
 
-  <target name="build-indexer">
+        <delete file="xx.html"/>
 
-	<javac
-	  srcdir="indexer/src"
-	  destdir="indexer/lib"
-	  includes="com/nexwave/nsidita/*.java com/nexwave/nquindexer/*.java"
-	  classpath="${ant.jar}"/>
-	  
-	<jar
-	  destfile="indexer/lib/nw-cms.jar"
-	  basedir="indexer/lib"
-	  includes="com/**"/>
-	
-	<delete dir="indexer/lib/com"/>
-	
-  </target>
+    </target>
 
-  <target name="zip" depends="webhelp">
-	<zip destfile="../docbook-webhelp.zip"
-	  basedir=".."
-	  includes="docbook-webhelp/**"/>
-  </target>
+    <target name="webhelp" depends="validate,chunk,index"/>
 
-  <target name="clean">
-	<delete dir="${frameset.base.dir}"/>
-  </target>
+    <target name="build-indexer">
 
-  <target name="help">
-	<echo>Usage:</echo>
-	<echo>doc: Generate the documentation in the doc dir and index it.</echo>
-	<echo>chunk: Generate the frameset.</echo>
-	<echo>index: Index the content.</echo>
-	<echo>build-indexer: Rebuilds the indexer.</echo>	
-  </target>
+        <javac
+                srcdir="indexer/src"
+                destdir="indexer/lib"
+                includes="com/nexwave/nsidita/*.java com/nexwave/nquindexer/*.java"
+                classpath="${ant.jar}"/>
+
+        <jar
+                destfile="indexer/lib/nw-cms.jar"
+                basedir="indexer/lib"
+                includes="com/**"/>
+
+        <delete dir="indexer/lib/com"/>
+
+    </target>
+
+    <target name="zip" depends="webhelp">
+        <zip destfile="../docbook-webhelp.zip"
+             basedir=".."
+             includes="docbook-webhelp/**"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${frameset.base.dir}"/>
+    </target>
+
+    <target name="help">
+        <echo>Usage:</echo>
+        <echo>doc: Generate the documentation in the doc dir and index it.</echo>
+        <echo>chunk: Generate the frameset.</echo>
+        <echo>index: Index the content.</echo>
+        <echo>build-indexer: Rebuilds the indexer.</echo>
+    </target>
 
 </project>

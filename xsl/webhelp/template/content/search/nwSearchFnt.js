@@ -27,12 +27,12 @@ function Verifie(ditaSearch_Form) {
 
     expressionInput = document.ditaSearch_Form.textToSearch.value
     //Set a cookie to store the searched keywords
-    $.cookie('textToSearch', expressionInput); 
+    $.cookie('textToSearch', expressionInput);
 
 
     if (expressionInput.length < 1) {
 
-        // expression invalide (vide)       
+        // expression invalide (vide)
         alert(txt_enter_at_least_1_char);
         // reactive la fenetre de search (utile car cadres)
         document.ditaSearch_Form.textToSearch.focus();
@@ -47,6 +47,7 @@ function Verifie(ditaSearch_Form) {
     }
 }
 
+var stemQueryMap = new Array();  // A hashtable which maps stems to query words
 
 /* This function parses the search expression, loads the indices and displays the results*/
 function Effectuer_recherche(expressionInput) {
@@ -60,8 +61,8 @@ function Effectuer_recherche(expressionInput) {
     scriptLetterTab = new scriptfirstchar(); // Array containing the first letter of each word to look for
     var scriptsarray = new Array(); // Array with the name of the scripts to load
     var wordsList = new Array(); // Array with the words to look for
-    var stemmedWordsList = new Array(); // Array with the words to look for
-    var cleanwordsList = new Array(); // Array with the words to look for after removing spaces
+    var cleanwordsList = new Array(); // Array with the words to look for
+    var stemmedWordsList = new Array(); // Array with the words to look for after removing spaces
     var listNumerosDesFicStr = "";
     var ou_recherche = true;
     var linkTab = new Array();
@@ -69,56 +70,64 @@ function Effectuer_recherche(expressionInput) {
     var fileAndWordList = new Array();
     var txt_wordsnotfound = "";
 
+
     /*nqu: expressionInput, la recherche est lower cased, plus remplacement des char speciaux*/
     searchFor = expressionInput.toLowerCase().replace(/<\//g, "_st_").replace(/\$_/g, "_di_").replace(/\.|%2C|%3B|%21|%3A|@|\/|\*/g, " ").replace(/(%20)+/g, " ").replace(/_st_/g, "</").replace(/_di_/g, "%24_")
 
-    searchFor = searchFor.replace(/  +/g, " ")
-    searchFor = searchFor.replace(/ $/, "").replace(/^ /, "")
+    searchFor = searchFor.replace(/  +/g, " ");
+    searchFor = searchFor.replace(/ $/, "").replace(/^ /, "");
 
     wordsList = searchFor.split(" ");
+    wordsList.sort();
 
-    //Do the stemming using Porter's stemming algorithm
-    for(var i=0;i<wordsList.length;i++){
-        var stemWord = stemmer(wordsList[i]);
-        stemmedWordsList.push(stemWord);
+    for(var j in wordsList){
+        var word = wordsList[j];
+        stemQueryMap[stemmer(word)] = word;
     }
- 
-    stemmedWordsList.sort();
 
-    //stemmedWordsList is the stemmed list of words separated by spaces. 
-    for (t in stemmedWordsList) {
-        stemmedWordsList[t] = stemmedWordsList[t].replace(/(%22)|^-/g, "")
-        if (stemmedWordsList[t] != "%20") {
-            scriptLetterTab.add(stemmedWordsList[t].charAt(0));
-            cleanwordsList.push(stemmedWordsList[t]);
+     //stemmedWordsList is the stemmed list of words separated by spaces.
+    for (t in wordsList) {
+        wordsList[t] = wordsList[t].replace(/(%22)|^-/g, "")
+        if (wordsList[t] != "%20") {
+            scriptLetterTab.add(wordsList[t].charAt(0));
+            cleanwordsList.push(wordsList[t]);
         }
     }
+
+    //Do the stemming using Porter's stemming algorithm
+    for (var i = 0; i < cleanwordsList.length; i++) {
+        var stemWord = stemmer(cleanwordsList[i]);
+        stemmedWordsList.push(stemWord);
+    }
+
     //load the scripts with the indices: the following lines do not work on the server. To be corrected
     /*if (IEBrowser) {
      scriptsarray = loadTheIndexScripts (scriptLetterTab);
      } */
 
-
+    /**
+     * Compare with the indexed words (in the w[] array), and push words that are in it to tempTab.
+     */
     var tempTab = new Array();
-    for (t in cleanwordsList) {
-        if (w[cleanwordsList[t].toString()] == undefined) {
-            txt_wordsnotfound += cleanwordsList[t] + " ";
+    for (t in stemmedWordsList) {
+        if (w[stemmedWordsList[t].toString()] == undefined) {
+            txt_wordsnotfound += stemmedWordsList[t] + " ";
         } else {
-            tempTab.push(cleanwordsList[t]);
+            tempTab.push(stemmedWordsList[t]);
         }
     }
-    cleanwordsList = tempTab;
+    stemmedWordsList = tempTab;
 
-    if (cleanwordsList.length) {
+    if (stemmedWordsList.length) {
 
         // recherche 'et' et 'ou' en une fois
-        fileAndWordList = SortResults(cleanwordsList);
+        fileAndWordList = SortResults(stemmedWordsList);
 
         cpt = fileAndWordList.length;
         for (i = cpt - 1; i >= 0; i--) {
             if (fileAndWordList[i] != undefined) {
 
-                linkTab.push("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">" + fileAndWordList[i][0].motsliste + "</span>" + "</p>");
+                linkTab.push("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">" + fileAndWordList[i][0].motslisteDisplay + "</span>" + "</p>");
 
                 linkTab.push("<ul class='searchresult'>");
                 for (t in fileAndWordList[i]) {
@@ -148,7 +157,7 @@ function Effectuer_recherche(expressionInput) {
             }
         }
     }
-    
+
     var results="";
     if (linkTab.length > 0) {
 
@@ -374,7 +383,7 @@ function SortResults(mots) {
         //alert ("listNumerosDesFicStr "+listNumerosDesFicStr);
         tab = listNumerosDesFicStr.split(",");
 
-        //for each file (file's index): 
+        //for each file (file's index):
         for (t2 in tab) {
             temp = tab[t2].toString();
             if (fileAndWordList[temp] == undefined) {
@@ -393,16 +402,23 @@ function SortResults(mots) {
     var temptab = new Array();
     for (t in fileAndWordList) {
         tab = fileAndWordList[t].split(',');
-        temptab.push(new resultPerFile(t, fileAndWordList[t], tab.length));
+
+        var tempDisplay = new Array();
+        for (var x in tab) {
+            tempDisplay.push(stemQueryMap[tab[x]]); //get the original word from the stem word.
+        }
+        var tempDispString = tempDisplay.join(", ");
+
+        temptab.push(new resultPerFile(t, fileAndWordList[t], tab.length, tempDispString));
         fileAndWordListValuesOnly.push(fileAndWordList[t]);
     }
 
 
-    //alert("t"+fileAndWordListValuesOnly.toString()); 
+    //alert("t"+fileAndWordListValuesOnly.toString());
 
     fileAndWordListValuesOnly = unique(fileAndWordListValuesOnly);
     fileAndWordListValuesOnly = fileAndWordListValuesOnly.sort(compare_nbMots);
-    //alert("t: "+fileAndWordListValuesOnly.join(';')); 
+    //alert("t: "+fileAndWordListValuesOnly.join(';'));
 
     var listToOutput = new Array();
 
@@ -422,10 +438,11 @@ function SortResults(mots) {
     return listToOutput;
 }
 
-function resultPerFile(filenb, motsliste, motsnb) {
+function resultPerFile(filenb, motsliste, motsnb, motslisteDisplay) {
     this.filenb = filenb;
     this.motsliste = motsliste;
     this.motsnb = motsnb;
+    this.motslisteDisplay= motslisteDisplay;
 }
 
 function compare_nbMots(s1, s2) {
