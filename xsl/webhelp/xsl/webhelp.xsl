@@ -61,6 +61,7 @@
     </i18n>
 
     <xsl:template name="user.head.content">
+  	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--  <xsl:message>
             tree.cookie.id = <xsl:value-of select="$tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
             $indexer.language = <xsl:value-of select="$indexer.language"/> +++ <xsl:value-of select="count(//node())"/>
