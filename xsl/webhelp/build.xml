@@ -1,7 +1,7 @@
 <project default="help" name="mainbuild">
 
-  <loadproperties srcFile="build.properties"/>
   <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
+  <loadproperties srcFile="build.properties"/>
 
   <xmlcatalog id="catalog">
 	<catalogpath>
@@ -32,7 +32,7 @@
 	<xslt
 	  in="${input-xml}"
 	  out="${output-dir}/dummy.html"
-	  style="${ant.file.dir}/xsl/webhelp.xsl"
+	  style="${stylesheet-path}"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
