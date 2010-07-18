@@ -28,10 +28,10 @@
 
   <target name="chunk" depends="clean">
 	
-	<mkdir dir="${base-dir}"/>
+	<mkdir dir="${output-dir}"/>
 	<xslt
 	  in="${input-xml}"
-	  out="${base-dir}/dummy.html"
+	  out="${output-dir}/dummy.html"
 	  style="${ant.file.dir}/xsl/webhelp.xsl"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
@@ -40,45 +40,50 @@
 	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}"
 		if="exclude.search.from.chunked.html"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
-	  <param name="webhelp.base.dir" expression="${base-dir}" if="base-dir"/>
+	  <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
 	  <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
 	  <param name="chunk.frameset.start.filename" expression="${chunk.frameset.start.filename}"
 		if="chunk.frameset.start.filename"/>
 	</xslt>
 	
-	<delete file="${base-dir}/dummy.html"/>
+	<delete file="${output-dir}/dummy.html"/>
 
 	<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
-	<copy todir="${base-dir}">
+	<copy todir="${output-dir}">
+	  <fileset dir="${ant.file.dir}/template">
+		<include name="**/*"/>
+		<exclude name="**/content/search/**"/>
+	  </fileset>
+	</copy>
+
+	<!-- Very simple-minded copy to handle the source document's images -->
+	<!-- TODO: Look at html help code that produces a manifest file...list of images -->
+	<!--       Customize webhelp.xsl to produce ant file to copy images actually used? -->
+	<dirname property="input-images-basedir" file="${input-xml}"/>
+	<copy todir="${output-dir}/content" failonerror="false">
+	  <fileset dir="${input-images-basedir}" includes="${input-images-dirs}" />
+	</copy>
+  </target>
+
+  <target name="index" unless="skip-search-indexing">
+
+	<copy todir="${output-dir}">
 	  <fileset dir="${ant.file.dir}/template">
 		<include name="**/*"/>
 		<exclude name="**/content/search/*.props"/>
+		<exclude name="**/content/search/stemmers/*"/>
 	  </fileset>
 	</copy>
-	<!-- We separate this out so we only copy the stopwords list for the indexer language -->
-	<copy todir="${base-dir}">
+
+	<!-- We separate this out so we only copy the stopwords list and stemmer for the indexer language -->
+	<copy todir="${output-dir}">
 	  <fileset dir="${ant.file.dir}/template">
 		<include name="**/content/search/default.props"/>
 		<include name="**/content/search/punctuation.props"/>
 		<include name="**/content/search/${indexer-language}*.props"/>
+		<include name="**/content/search/stemmers/${indexer-language}_stemmer.js"/>
 	  </fileset>
 	</copy>
-	
-	<!--Deletes all the stemmers that are copied to doc/ folder. Then, adds only the needed stemmer-->
-	<delete dir="${base-dir}/content/search/stemmers"/>
-	<copy todir="doc/content/search/stemmers/"
-	  file="template/content/search/stemmers/${indexer-language}_stemmer.js"/>
-
-	<!-- Very simple-minded copy to handle the source document's images -->
-	<!-- TODO: Look at html help code that produces a manifest file...list of images -->
-	<!--       Customize webhelp.xsl to produce ant file to copy images used? -->
-	<copy todir="${base-dir}/content" failonerror="false">
-	  <fileset dir="${input-images-dir}"/>
-	</copy>	
-
-  </target>
-
-  <target name="index" unless="skip-search-indexing">
 
 	<path id="nw-cms.jar.path">
 	  <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar"/>
@@ -89,12 +94,12 @@
 	  <classpath refid="nw-cms.jar.path"/>
 	</taskdef>
 
-	<echo>Indexing html files in ${base-dir}/content</echo>
+	<echo>Indexing html files in ${output-dir}/content</echo>
 
-	<indexertask htmldir="${base-dir}/content" indexerLanguage="${indexer-language}"/>
+	<indexertask htmldir="${output-dir}/content" indexerLanguage="${indexer-language}"/>
 
 	<delete>
-	  <fileset dir="${base-dir}/content/search" includes="*.props"/>
+	  <fileset dir="${output-dir}/content/search" includes="*.props"/>
 	</delete>
 
 	<delete file="xx.html"/>
@@ -127,13 +132,12 @@
   </target>
 
   <target name="clean">
-	<delete dir="${base-dir}"/>
+	<delete dir="${output-dir}"/>
   </target>
 
   <target name="help">
 	<echo>Usage:</echo>
-	<echo>doc: Generate the documentation in the doc dir and index it.</echo>
-	<echo>chunk: Generate the frameset.</echo>
+	<echo>webhelp: Generate the document in webhelp format.</echo>
 	<echo>index: Index the content.</echo>
 	<echo>build-indexer: Rebuilds the indexer.</echo>
   </target>
