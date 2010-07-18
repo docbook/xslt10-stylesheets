@@ -1,280 +1,436 @@
-<?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <book>
   <title>Web-based Help from DocBook XML Readme</title>
+
   <bookinfo>
     <legalnotice>
       <para>Permission is hereby granted, free of charge, to any person
-        obtaining a copy of this software and associated documentation
-        files (the <quote>Software</quote>), to deal in the Software without
-        restriction, including without limitation the rights to use,
-        copy, modify, merge, publish, distribute, sublicense, and/or
-        sell copies of the Software, and to permit persons to whom the
-        Software is furnished to do so, subject to the following
-        conditions: <itemizedlist>
+      obtaining a copy of this software and associated documentation files
+      (the <quote>Software</quote>), to deal in the Software without
+      restriction, including without limitation the rights to use, copy,
+      modify, merge, publish, distribute, sublicense, and/or sell copies of
+      the Software, and to permit persons to whom the Software is furnished to
+      do so, subject to the following conditions: <itemizedlist>
           <listitem>
-            <para>The above copyright notice and this permission notice shall be
-              included in all copies or substantial portions of the Software.</para>
+            <para>The above copyright notice and this permission notice shall
+            be included in all copies or substantial portions of the
+            Software.</para>
           </listitem>
+
           <listitem>
             <para>Except as contained in this notice, the names of individuals
-              credited with contribution to this software shall not be used in
-              advertising or otherwise to promote the sale, use or other
-              dealings in this Software without prior written authorization
-              from the individuals in question.</para>
+            credited with contribution to this software shall not be used in
+            advertising or otherwise to promote the sale, use or other
+            dealings in this Software without prior written authorization from
+            the individuals in question.</para>
           </listitem>
+
           <listitem>
             <para>Any stylesheet derived from this Software that is publically
-              distributed will be identified with a different name and the
-              version strings in any derived Software will be changed so that
-              no possibility of confusion between the derived package and this
-              Software will exist.</para>
+            distributed will be identified with a different name and the
+            version strings in any derived Software will be changed so that no
+            possibility of confusion between the derived package and this
+            Software will exist.</para>
           </listitem>
-        </itemizedlist>
-      </para>
+        </itemizedlist></para>
+
       <formalpara>
         <title>Warranty:</title>
+
         <para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-          OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-          NONINFRINGEMENT.  IN NO EVENT SHALL NORMAN WALSH OR ANY OTHER
-          CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-          WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-          FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-          OTHER DEALINGS IN THE SOFTWARE.</para>
+        EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+        MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+        IN NO EVENT SHALL NORMAN WALSH OR ANY OTHER CONTRIBUTOR BE LIABLE FOR
+        ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+        CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+        WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
       </formalpara>
-      <para>This package is maintained by Kasun Gajasinghe, <email>kasunbg AT gmail DOT com</email> and David Cramer, <email>david AT thingbag DOT net</email>.</para>
-      <para>This package also includes the following software written and copyrighted by others:<itemizedlist>
+
+      <para>This package is maintained by Kasun Gajasinghe, <email>kasunbg AT
+      gmail DOT com</email> and David Cramer, <email>david AT thingbag DOT
+      net</email>.</para>
+
+      <para>This package also includes the following software written and
+      copyrighted by others:<itemizedlist>
           <listitem>
-            <para>Files in <filename class="directory">template/common/jquery</filename> are copyrighted by <ulink url="http://jquery.com/">JQuery</ulink> under the MIT License. The file <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus Hartl under the MIT license.</para>
+            <para>Files in <filename
+            class="directory">template/common/jquery</filename> are
+            copyrighted by <ulink url="http://jquery.com/">JQuery</ulink>
+            under the MIT License. The file
+            <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus
+            Hartl under the MIT license.</para>
+
             <indexterm>
               <primary>jquery</primary>
             </indexterm>
           </listitem>
+
           <listitem>
-            <para>All files in <filename class="directory">template/content/search</filename> and <filename class="directory">indexer</filename> are part of N. Quaine's htmlsearch DITA plugin, with modifications to fix bugs and make it work better with DocBook content. The htmlsearch DITA plugin is available from the <ulink url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files page</ulink> of the DITA-users yahoogroup. The htmlsearch plugin was released under a BSD-style license. See <filename>indexer/license.txt</filename> for details. 
-            <indexterm>
-              <primary>htmlsearch</primary>
-            </indexterm>
-            <indexterm>
-              <primary>DITA</primary>
-            <secondary>htmlsearch plugin</secondary>
-            </indexterm>
-            </para>
+            <para>All files in <filename
+            class="directory">template/content/search</filename> and <filename
+            class="directory">indexer</filename> are part of N. Quaine's
+            htmlsearch DITA plugin, with modifications to fix bugs and make it
+            work better with DocBook content. The htmlsearch DITA plugin is
+            available from the <ulink
+            url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files
+            page</ulink> of the DITA-users yahoogroup. The htmlsearch plugin
+            was released under a BSD-style license. See
+            <filename>indexer/license.txt</filename> for details. <indexterm>
+                <primary>htmlsearch</primary>
+              </indexterm> <indexterm>
+                <primary>DITA</primary>
+
+                <secondary>htmlsearch plugin</secondary>
+              </indexterm></para>
           </listitem>
-        </itemizedlist>
-      </para>
+        </itemizedlist></para>
     </legalnotice>
+
     <releaseinfo>Version .01/Alpha</releaseinfo>
+
     <copyright>
       <year>2008-2010</year>
-	  <holder>Kasun Gajasinghe</holder>
+
+      <holder>Kasun Gajasinghe</holder>
+
       <holder>David Cramer</holder>
     </copyright>
+
     <author>
       <firstname>David</firstname>
+
       <surname>Cramer</surname>
+
       <email>dcramer AT motive DOT com</email>
+
       <email>david AT thingbag DOT net</email>
     </author>
-	<author>
-	  <firstname>Kasun</firstname>
-	  <surname>Gajasinghe</surname>
-	  <email>kasunbg AT gmail DOT com</email>
-	</author>
+
+    <author>
+      <firstname>Kasun</firstname>
+
+      <surname>Gajasinghe</surname>
+
+      <email>kasunbg AT gmail DOT com</email>
+    </author>
+
     <pubdate>July 2010</pubdate>
   </bookinfo>
+
   <chapter>
     <chapterinfo>
       <abstract>
         <!-- This becomes the brief description that appears in search results UNLESS there's a para or phrase with role="summary". If there is, then the role="summary" text wins. -->
+
         <para>Overview of the package.</para>
       </abstract>
     </chapterinfo>
+
     <title>Introduction</title>
-    <para>A common requirement for technical publications groups is to produce a Web-based help format that includes a table of contents pane, a search feature, and an index similar to what you get from the Microsoft HTML Help (.chm) format or Eclipse help. If the content is help for a Web application that is not exposed to the Internet or requires that the user be logged in, then it is impossible to use services like Google to add search. 
-      <itemizedlist>
+
+    <para>A common requirement for technical publications groups is to produce
+    a Web-based help format that includes a table of contents pane, a search
+    feature, and an index similar to what you get from the Microsoft HTML Help
+    (.chm) format or Eclipse help. If the content is help for a Web
+    application that is not exposed to the Internet or requires that the user
+    be logged in, then it is impossible to use services like Google to add
+    search. <itemizedlist>
         <title>Features</title>
+
+        <listitem>
+          <para>Full text search with stemming support for English and German.
+          Stemming support can be added for other languages if a stemmer is
+          implemented.</para>
+        </listitem>
+
+        <listitem>
+          <para>Search results can include brief descriptions of the
+          target.</para>
+        </listitem>
+
         <listitem>
           <para>Table of contents pane with collapsable toc tree.</para>
         </listitem>
+
         <listitem>
-          <para>Full-text search. Search results can include brief descriptions of the target. </para>
+          <para>Autosynchronization of content pane and TOC.</para>
         </listitem>
+
         <listitem>
-          <para>Support for deep linking by simply linking to the page since no frameset is used.</para>
+          <para>TOC and search pane implemented without the use of a frameset.
+          </para>
         </listitem>
+
         <listitem>
-          <para>An Ant <filename>build.xml</filename> file to generate output. You can use this build file by importing it into your own or use it as a model for integrating this output format into your own build system.</para>
+          <para>An Ant <filename>build.xml</filename> file to generate output.
+          You can use this build file by importing it into your own or use it
+          as a model for integrating this output format into your own build
+          system.</para>
         </listitem>
-      </itemizedlist>
-      <!--itemizedlist>
-        <title>Limitations and annoyances</title>
-		<listitem>
-		  <para>You must use xhtml output because the search indexer cannot index html.</para>
-		</listitem>
-        <listitem>
-          <para>No support for stemming. If you search for "start" it will not find "started" and vice versa.</para>
-        </listitem>
-		<listitem>
-		  <para>No support for boolean operators in the search.</para>
-		</listitem>
-        <listitem>
-          <para>Limited support for Asian languages. The search is limited to terms that appear as <sgmltag>keyword</sgmltag>s or in <sgmltag>indexterm</sgmltag>s.</para>
-        </listitem>
-        <listitem>
-          <para>A customization to the xsls is included to put any <sgmltag>indexterm</sgmltag>s in the <sgmltag class="emptytag">meta name="keywords"...</sgmltag> element. The main reason for doing this is to improve support for Asian languages and help compensate for the lack of stemming in the indexer. As implmented, this customization only supports situations where all sections or sect* elements are chunked. For example, if you have chunk.first.sections set to 0, any indexterms in the first sections will not be appended to the keywords list.   </para>
-        </listitem>
-		<listitem>
-		  <para>By design, the indexer does not index <filename>index.html</filename> or <filename>ix01.html</filename>. Unfortunately, this is currently hard coded in the indexer. </para>
-		</listitem>
-      </itemizedlist-->
-      <itemizedlist>
+      </itemizedlist><itemizedlist>
         <title>Enhancements planned as part of GSOC 2010</title>
-		<listitem>
-		  <para>Add stemmming support for English and one major non-Asian language.</para>
-		</listitem>
-		<listitem>
-		  <para>Improve the support for Japanese and Chinese.</para>
-		</listitem>
-		<listitem>
-		  <para>Search highlighting.</para>
-		</listitem>
-		<listitem>
-		  <para>Documentation for skinning and customization options.</para>
-		</listitem>
-		<listitem>                                     
-		  <para>A show/hide toc button.</para>
-		</listitem>
-		<listitem>
-		  <para>Parameterize width of the TOC pane OR make the TOC pane resizable by the user.</para>
-		</listitem>
-		<listitem>
-		  <para>Support for ns and non-ns DocBook stylesheets.</para>
-		</listitem>
-		<listitem>
-		  <para>Skipping of next and prev links in the footer and header.</para>
-		</listitem>
-		<listitem>
-		  <para>Moving of the header Next and Prev links to the banner</para>
-		</listitem>
-	  </itemizedlist>
-      <itemizedlist>
-        <title>Future enhancements</title>
-		<listitem>
-		  <para>Add "Expand all" and "Collapse all" buttons to the toc. </para>
-		</listitem>
-		<listitem>
-		  <para>Add an option to use Lucene for server-side searches with toc state persisted on the server.</para>
-		</listitem>
-		<listitem>
-		  <para>Sort search results based on relevance</para>
-		</listitem>
+
         <listitem>
-		  <para>Automate search results summary text:</para>
-		  <itemizedlist>
-			<listitem>
-			  <para>Automatically use the first non-heading content as the summary in the search results.</para>
-			</listitem>
-			<listitem>
-			  <para>Automatically limit the size of the search description to something 140 characters.</para>
-			</listitem>
-		  </itemizedlist>
+          <para>[DONE] Implement the toc and serach pane without using
+          frames.</para>
         </listitem>
+
+        <listitem>
+          <para>[DONE] Add autosynchronization to the toc.</para>
+        </listitem>
+
+        <listitem>
+          <para>[DONE] Add stemmming support for English and one major
+          non-Asian language.</para>
+        </listitem>
+
+        <listitem>
+          <para>[DONE] Add a show/hide toc button.</para>
+        </listitem>
+
+        <listitem>
+          <para>[DONE] Move the header Next and Prev links to the
+          banner</para>
+        </listitem>
+
+        <listitem>
+          <para>[DONE] Make indexer skip next and prev links in the footer and
+          header.</para>
+        </listitem>
+
+        <listitem>
+          <para>Improve the support for Japanese and Chinese.</para>
+        </listitem>
+
+        <listitem>
+          <para>Add search highlighting.</para>
+        </listitem>
+
+        <listitem>
+          <para>Document skinning and customization options.</para>
+        </listitem>
+
+        <listitem>
+          <para>Support 5.x/ns and 4.x/non-ns DocBook stylesheets.</para>
+        </listitem>
+      </itemizedlist><itemizedlist>
+        <title>Future enhancements</title>
+
+        <listitem>
+          <para>Add "Expand all" and "Collapse all" buttons to the toc.</para>
+        </listitem>
+
+        <listitem>
+          <para>Add an option to use Lucene for server-side searches with toc
+          state persisted on the server.</para>
+        </listitem>
+
+        <listitem>
+          <para>Sort search results based on relevance</para>
+        </listitem>
+
+        <listitem>
+          <para>Parameterize width of the TOC pane OR make the TOC pane
+          resizable by the user.</para>
+        </listitem>
+
+        <listitem>
+          <para>Automate search results summary text:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Automatically use the first non-heading content as the
+              summary in the search results.</para>
+            </listitem>
+
+            <listitem>
+              <para>Automatically limit the size of the search description to
+              something 140 characters.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
         <listitem>
           <para>Support boolean operators in search.</para>
         </listitem>
-		<listitem>
-		  <para>Improve performance by moving the table of contents div out of each page and into a separate JavaScript file which then adds it to the page. </para>
-		</listitem>
+
         <listitem>
-          <para>Add to the indexer the ability to specify a list of files or file patterns not to index. Currently it does not index <filename>index.html</filename> or <filename>ix01.html</filename>, which is generally appropriate, but it should be up to the user to decide.</para>
+          <para>Parameterize list of files to exclude from indexing. Currently
+          it's hard coded that we don't index <filename>index.html
+          </filename>and <filename>ix01.html</filename> (the legal notice and
+          index topics). It should be smarter and automatically not index the
+          index file even if it's not named
+          <filename>ix01.html</filename>.</para>
         </listitem>
-		<listitem>
-		  <para>Add a parameter to make it possible to disable the search tab if it is not required.</para>
-		</listitem>
-		<listitem>
-		  <para>Add an (optional) index tab populated by a separate JavaScript file.</para>
-		</listitem>
-      </itemizedlist>
-	</para>
+
+        <listitem>
+          <para>Improve performance by moving the table of contents div out of
+          each page and into a separate JavaScript file which then adds it to
+          the page.</para>
+        </listitem>
+
+        <listitem>
+          <para>Add to the indexer the ability to specify a list of files or
+          file patterns not to index. Currently it does not index
+          <filename>index.html</filename> or <filename>ix01.html</filename>,
+          which is generally appropriate, but it should be up to the user to
+          decide.</para>
+        </listitem>
+
+        <listitem>
+          <para>Add a parameter to make it possible to disable the search tab
+          if it is not required.</para>
+        </listitem>
+
+        <listitem>
+          <para>Add an (optional) index tab populated by a separate JavaScript
+          file.</para>
+        </listitem>
+      </itemizedlist></para>
   </chapter>
+
   <chapter>
     <title>Using the package</title>
-    <para role="summary">The following sections describe how to install and use the package on Windows.</para>
+
+    <para role="summary">The following sections describe how to install and
+    use the package on Windows.</para>
+
     <section>
       <sectioninfo>
         <abstract>
           <para>Installation instructions</para>
         </abstract>
       </sectioninfo>
-      <title>Installation</title>
+
+      <title>Obtaining, installing, and running the package</title>
+
       <procedure>
         <title>To install the package on Windows</title>
-		<note>
-		  <para>The examples in this procedure assume a Windows installation, but the process is the same in other environments, <foreignphrase>mutatis mutandis</foreignphrase>.</para>
-		</note>
-		<step>
-		  <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java 1.5</ulink> or higher.  </para>
-		  <substeps>
-			<step>
-			  <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing the following at a command prompt: <programlisting>java -version</programlisting></para>
-			</step>
-		  </substeps>
-		</step>
+
+        <note>
+          <para>The examples in this procedure assume a Windows installation,
+          but the process is the same in other environments,
+          <foreignphrase>mutatis mutandis</foreignphrase>.</para>
+        </note>
+
         <step>
-          <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache Ant 1.6.5</ulink> or higher.</para>
-		  <substeps>
-			<step>
-			  <para>Unzip the Ant binary distribution to a convenient location on your system. For example: <filename>c:\Program Files</filename>.</para>
-			</step>
-			<step>
-			  <para>Set the environment variable <envar>ANT_HOME</envar> to the top-level Ant directory. For example: <filename>c:\Program Files\apache-ant-1.7.1</filename>. <tip>
-				  <para>See <ulink url="http://support.microsoft.com/kb/310519">How To Manage Environment Variables in Windows XP</ulink> for information on setting environment variables.</para>
-				</tip>
-</para>
-			</step>
-			<step>
-			  <para>Add the Ant <filename>bin</filename> directory to your <envar>PATH</envar>. For example: <filename>c:\Program Files\apache-ant-1.7.1\bin</filename></para>
-			</step>
-			<step>
-			  <para>Confirm that Ant is installed by typing the following at a command prompt: <programlisting>ant -version</programlisting></para>
-			  <note>
-				<para>If you see a message about the file <filename>tools.jar</filename> being missing, you can safely ignore it.</para>
-			  </note>
-			</step>
-		  </substeps>
+          <para>If necessary, install <ulink
+          url="http://www.java.com/en/download/manual.jsp">Java 1.5</ulink> or
+          higher.</para>
+
+          <substeps>
+            <step>
+              <para>Confirm that Java is installed and in your
+              <envar>PATH</envar> by typing the following at a command prompt:
+              <programlisting>java -version</programlisting></para>
+            </step>
+          </substeps>
         </step>
+
         <step>
-          <para>If necessary, download <ulink url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink> and add it to your <envar>CLASSPATH</envar>. 
-			<tip>
-			  <para>When adding jar files to your <envar>CLASSPATH</envar>, be sure to include the jar file. For example: <filename>C:\programs\xml-commons-resolver-1.2\resolver.jar</filename>. Note that on Windows, the <envar>CLASSPATH</envar> is a semicolon delimited list of jar files and paths to java class files.</para>
-			</tip>
-		  </para>
+          <para>If necessary, install <ulink
+          url="http://ant.apache.org/bindownload.cgi">Apache Ant 1.6.5</ulink>
+          or higher.</para>
+
+          <substeps>
+            <step>
+              <para>Unzip the Ant binary distribution to a convenient location
+              on your system. For example: <filename>c:\Program
+              Files</filename>.</para>
+            </step>
+
+            <step>
+              <para>Set the environment variable <envar>ANT_HOME</envar> to
+              the top-level Ant directory. For example: <filename>c:\Program
+              Files\apache-ant-1.7.1</filename>. <tip>
+                  <para>See <ulink
+                  url="http://support.microsoft.com/kb/310519">How To Manage
+                  Environment Variables in Windows XP</ulink> for information
+                  on setting environment variables.</para>
+                </tip></para>
+            </step>
+
+            <step>
+              <para>Add the Ant <filename>bin</filename> directory to your
+              <envar>PATH</envar>. For example: <filename>c:\Program
+              Files\apache-ant-1.7.1\bin</filename></para>
+            </step>
+
+            <step>
+              <para>Confirm that Ant is installed by typing the following at a
+              command prompt: <programlisting>ant -version</programlisting></para>
+
+              <note>
+                <para>If you see a message about the file
+                <filename>tools.jar</filename> being missing, you can safely
+                ignore it.</para>
+              </note>
+            </step>
+          </substeps>
         </step>
-		<step>
-		  <para>Download <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip">Saxon 6.5.x</ulink> and unzip the distribution to a convenient location on your filesystem. You will use the path to <filename>saxon.jar</filename> in <xref linkend="edit-build-properties"/> below.</para>
-		</step>
+
         <step>
-          <para>Obtain the package. <!--ulink url="http://www.thingbag.net/docbook/docbook-webhelp.zip">docbook-webhelp.zip</ulink--> Currently, the webhelp package is only available through Subversion.</para>
-		  <substeps>
-			<step>
-			  <para>If necessary, install a <ulink url="http://en.wikipedia.org/wiki/Comparison_of_Subversion_clients">Subversion client</ulink>.</para>
-			</step>
-			<step>
-			  <para>In a convenient location on your system, run the command <programlisting>svn co https://docbook.svn.sourceforge.net/svnroot/docbook/branches/webhelp/xsl/webhelp webhelp</programlisting></para>
-			</step>
-		  </substeps>
+          <para>If necessary, download <ulink
+          url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink>
+          and add it to your <envar>CLASSPATH</envar>. <tip>
+              <para>When adding jar files to your <envar>CLASSPATH</envar>, be
+              sure to include the jar file. For example:
+              <filename>C:\programs\xml-commons-resolver-1.2\resolver.jar</filename>.
+              Note that on Windows, the <envar>CLASSPATH</envar> is a
+              semicolon delimited list of jar files and paths to java class
+              files.</para>
+            </tip></para>
         </step>
-		<step>
-		  <para>To improve performance, download and extract DocBook XSLs to a convenient location on your file system. Currently, this package supports <ulink url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink> (i.e. it does not yet support the namespace version of the xsls and does not yet strip the namespace from DocBook 5.x documents. 
-			<note>
-			  <para>If you see the message <screen>Warning: catalogpath listing external catalogs will be ignored</screen> when you generate output, this indicates that your catalog resolver is not installed correctly and is not being used.</para>
-			</note>
- </para>
-		</step>
-		<step id="edit-build-properties">
-		  <para>In a text editor, edit the <filename>build.properties</filename> file in the webhelp directory and make the changes indicated by the comments:<programlisting>input-xml=docsrc/readme.xml
+
+        <step>
+          <para>Download <ulink
+          url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip">Saxon
+          6.5.x</ulink> and unzip the distribution to a convenient location on
+          your filesystem. You will use the path to
+          <filename>saxon.jar</filename> in <xref
+          linkend="edit-build-properties" /> below.</para>
+        </step>
+
+        <step>
+          <para>Obtain the package in one of two ways:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Download the <ulink
+              url="http://www.thingbag.net/docbook/gsoc2010/webhelp-gsoc2010-beta.zip">beta
+              version of the package</ulink>.</para>
+            </listitem>
+
+            <listitem>
+              <para>OR, if you prefer to have the bleeding edge, you can use a
+              <ulink
+              url="http://en.wikipedia.org/wiki/Comparison_of_Subversion_clients">Subversion
+              client</ulink> to download it directly from Subversion:
+              <programlisting>svn co https://docbook.svn.sourceforge.net/svnroot/docbook/branches/webhelp/xsl/webhelp webhelp</programlisting></para>
+            </listitem>
+          </itemizedlist>
+        </step>
+
+        <step>
+          <para>To improve performance, download and extract DocBook XSLs to a
+          convenient location on your file system. Currently, this package
+          supports <ulink
+          url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink>
+          (i.e. it does not yet support the namespace version of the xsls and
+          does not yet strip the namespace from DocBook 5.x documents. <note>
+              <para>If you see the message <screen>Warning: catalogpath listing external catalogs will be ignored</screen>
+              when you generate output, this indicates that your catalog
+              resolver is not installed correctly and is not being
+              used.</para>
+            </note></para>
+        </step>
+
+        <step id="edit-build-properties">
+          <para>In a text editor, edit the
+          <filename>build.properties</filename> file in the webhelp directory
+          and make the changes indicated by the comments:<programlisting>input-xml=docsrc/readme.xml
 frameset.base.dir=doc
 
 # Modify this so that it points to your copy of the Saxon 6.5 jar.
@@ -300,82 +456,132 @@ exclude.search.from.chunked.html=false
 #This will be used to identify the correct stemmer, and punctuations that differs from language to language.
 #see the documentation for details. en=English, cn=Chinese, jp=Japanese etc. 
 indexer-language=en</programlisting></para>
-		</step>
-        <step>
-          <para>Test the package by running the command <code>ant webhelp</code> at the command line in the webhelp directory. It should generate a copy of this documentation in the <filename class="directory">doc</filename> directory. Type <code>start doc\index.html</code> to open the output in a browser.</para>
         </step>
+
         <step>
-          <para>To process your own content: </para>
-		  <substeps>
-			<step>
-			  <para>
-				create a new <filename>build.xml</filename> file that defines the name of your source file, the desired output directory, and imports the <filename>build.xml</filename> from this package. For example:  
-            <programlisting>&lt;project>
-  &lt;property name="input-xml" value="<replaceable>path-to/yourfile.xml</replaceable>"/>
-  &lt;property name="frameset.base.dir" value="<replaceable>path-to/desired-output-dir</replaceable>"/>
-  &lt;import file="<replaceable>path-to/docbook-webhelp/</replaceable>build.xml"/>
-&lt;/project></programlisting>
-			  </para>
-			</step>
-			<step>
-			  <para>From the directory containing your newly created <filename>build.xml</filename> file, type <code>ant webhelp</code> to build your document. </para>
-			</step>
-			<step>
-			  <para>Add some code to the main ant script to copy your images to the output directory.</para>
-			</step>
-		  </substeps>
-		</step>
+          <para>Test the package by running the command <code>ant
+          webhelp</code> at the command line in the webhelp directory. It
+          should generate a copy of this documentation in the <filename
+          class="directory">doc</filename> directory. Type <code>start
+          doc\index.html</code> to open the output in a browser.</para>
+        </step>
+
+        <step>
+          <para>To process your own content:</para>
+
+          <substeps>
+            <step>
+              <para>create a new <filename>build.xml</filename> file that
+              defines the name of your source file, the desired output
+              directory, and imports the <filename>build.xml</filename> from
+              this package. For example: <programlisting>&lt;project&gt;
+  &lt;property name="input-xml" value="<replaceable>path-to/yourfile.xml</replaceable>"/&gt;
+  &lt;property name="frameset.base.dir" value="<replaceable>path-to/desired-output-dir</replaceable>"/&gt;
+  &lt;import file="<replaceable>path-to/docbook-webhelp/</replaceable>build.xml"/&gt;
+&lt;/project&gt;</programlisting></para>
+            </step>
+
+            <step>
+              <para>From the directory containing your newly created
+              <filename>build.xml</filename> file, type <code>ant
+              webhelp</code> to build your document.</para>
+            </step>
+
+            <step>
+              <para>Add some code to the main ant script to copy your images
+              to the output directory.</para>
+            </step>
+          </substeps>
+        </step>
       </procedure>
     </section>
+
     <section>
-	  <title>Using and customizing the output</title>
-	  <para>To deep link to a topic inside the help set, simply link directly to the page. This help system uses no frameset, so nothing further is necessary. <tip>
-		  <para>See <ulink url="http://www.sagehill.net/docbookxsl/Chunking.html">Chunking into multiple HTML files</ulink> in Bob Stayton's  <ulink url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The Complete Guide</ulink> for information on controlling output file names in DocBook.</para>
-		</tip>
-</para>
-	  <para>When you perform a search, the results can include brief summaries. These are populated in one of two ways:<itemizedlist>
-		  <listitem>
-			<para>By adding <sgmltag>role="summary"</sgmltag> to a <sgmltag>para</sgmltag> or <sgmltag>phrase</sgmltag> in the <sgmltag>chapter</sgmltag> or <sgmltag>section</sgmltag>.</para>
-			</listitem>
-		  <listitem>
-			<para>By adding an <sgmltag>abstract</sgmltag> to the <sgmltag>chapterinfo</sgmltag> or <sgmltag>sectioninfo</sgmltag> element.</para>
-		  </listitem>
-		</itemizedlist>
-		</para>
-	  <para>TODO: Document Apache config changes to improve performance of very long documents. </para>
+      <title>Using and customizing the output</title>
+
+      <para>To deep link to a topic inside the help set, simply link directly
+      to the page. This help system uses no frameset, so nothing further is
+      necessary. <tip>
+          <para>See <ulink
+          url="http://www.sagehill.net/docbookxsl/Chunking.html">Chunking into
+          multiple HTML files</ulink> in Bob Stayton's <ulink
+          url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The
+          Complete Guide</ulink> for information on controlling output file
+          names in DocBook.</para>
+        </tip></para>
+
+      <para>When you perform a search, the results can include brief
+      summaries. These are populated in one of two ways:<itemizedlist>
+          <listitem>
+            <para>By adding <sgmltag>role="summary"</sgmltag> to a
+            <sgmltag>para</sgmltag> or <sgmltag>phrase</sgmltag> in the
+            <sgmltag>chapter</sgmltag> or <sgmltag>section</sgmltag>.</para>
+          </listitem>
+
+          <listitem>
+            <para>By adding an <sgmltag>abstract</sgmltag> to the
+            <sgmltag>chapterinfo</sgmltag> or <sgmltag>sectioninfo</sgmltag>
+            element.</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <para>TODO: Document Apache config changes to improve performance of
+      very long documents.</para>
     </section>
+
     <section>
       <title>Building the indexer</title>
-      <para role="summary">To build the indexer, you must have installed the JDK version 1.5 or higher and set the <envar>ANT_HOME</envar> environment variable. Run <code>ant build-indexer</code> to recompile <filename>nw-cms.jar</filename></para>
+
+      <para role="summary">To build the indexer, you must have installed the
+      JDK version 1.5 or higher and set the ANT_HOME environment variable. Run
+      <code>ant build-indexer</code> to recompile
+      <filename>nw-cms.jar</filename></para>
+
       <indexterm>
         <primary>ANT_HOME</primary>
       </indexterm>
+
       <indexterm>
         <primary>indexer</primary>
+
         <secondary>building</secondary>
       </indexterm>
     </section>
   </chapter>
+
   <chapter>
-	<title>Design</title>
-	<para>This chapter provides an overview of how webhelp is implemented. <remark>WRITEME</remark></para>
-	<para>TODO: Document details about cookie use.</para>
+    <title>Design</title>
+
+    <para>This chapter provides an overview of how webhelp is implemented.
+    <remark>WRITEME</remark></para>
+
+    <para>TODO: Document details about cookie use.</para>
   </chapter>
+
   <chapter>
-	<chapterinfo>
-	  <abstract>
-		<para>Demo of Japanese text: ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
-	  </abstract>
-	</chapterinfo>
-	<title>ホスト</title>
-	<indexterm>
-	  <primary>ホスト</primary>
-	</indexterm>
-	<para>To test this page, search for the term: ホスト</para>
-	<formalpara>
-	  <title>ホスト</title>
-	  <para>ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。 </para> 
-	</formalpara>
+    <chapterinfo>
+      <abstract>
+        <para>Demo of Japanese text:
+        ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント
+        ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
+      </abstract>
+    </chapterinfo>
+
+    <title>ホスト</title>
+
+    <indexterm>
+      <primary>ホスト</primary>
+    </indexterm>
+
+    <para>To test this page, search for the term: ホスト</para>
+
+    <formalpara>
+      <title>ホスト</title>
+
+      <para>ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント
+      ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
+    </formalpara>
   </chapter>
-  <index/>
+
+  <index></index>
 </book>
