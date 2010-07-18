@@ -119,7 +119,7 @@
   </xsl:param>
 
   <xsl:value-of
-    select="document($l10n.xml/l:i18n/l:l10n[@language=$lang]/@href)/l:l10n/@english-language-name"/>
+    select="document(concat('../common/', $lang, '.xml'))/l:l10n/@english-language-name"/>
 </xsl:template>
 
 <xsl:template name="language.attribute">
@@ -222,7 +222,7 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
-  <xsl:for-each select="document(concat($lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
+  <xsl:for-each select="document(concat('../common/', $lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
     <xsl:variable name="local.l10n.gentext"
                   select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:gentext[@key=$key])[1]"/>
 
@@ -253,7 +253,7 @@
           </xsl:choose>
         </xsl:message>
 
-	<xsl:for-each select="document('en.xml')">  <!-- We need to switch context in order to make key() work -->
+	<xsl:for-each select="document('../common/en.xml')">  <!-- We need to switch context in order to make key() work -->
 	  <xsl:value-of select="key('l10n-gentext', $key)[1]/@text"/>
 	</xsl:for-each>
       </xsl:otherwise>
@@ -295,7 +295,7 @@
     <xsl:call-template name="l10n.language"/>
   </xsl:param>
 
-  <xsl:for-each select="document(concat($lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
+  <xsl:for-each select="document(concat('../common/', $lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
     <xsl:variable name="local.l10n.dingbat"
                   select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:dingbat[@key=$dingbat])[1]"/>
 
@@ -318,7 +318,7 @@
           <xsl:text> exists; using "en".</xsl:text>
         </xsl:message>
 	
-	<xsl:for-each select="document('en.xml')">  <!-- We need to switch context in order to make key() work -->
+	<xsl:for-each select="document('../common/en.xml')">  <!-- We need to switch context in order to make key() work -->
 	  <xsl:value-of select="key('l10n-dingbat', $dingbat)[1]/@text"/>
 	</xsl:for-each>
       </xsl:otherwise>
@@ -388,7 +388,7 @@
   </xsl:param>
   <xsl:param name="verbose" select="1"/>
 
-  <xsl:for-each select="document(concat($lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
+  <xsl:for-each select="document(concat('../common/', $lang, '.xml'))">  <!-- We need to switch context in order to make key() work -->
 
     <xsl:variable name="local.localization.node"
                   select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang])[1]"/>

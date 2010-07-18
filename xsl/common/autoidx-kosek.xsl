@@ -49,7 +49,7 @@
       select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:letters)[1]"/>
     
     <xsl:variable name="l10n.letters"
-      select="document(concat($lang, '.xml'))/l:l10n/l:letters[1]"/>
+      select="document(concat('../common/', $lang, '.xml'))/l:l10n/l:letters[1]"/>
     
     <xsl:choose>
       <xsl:when test="count($local.l10n.letters) &gt; 0">
@@ -73,7 +73,7 @@
           </xsl:choose>
         </xsl:message>
         
-        <xsl:copy-of select="document('en.xml')/l:l10n/l:letters[1]"/>
+        <xsl:copy-of select="document('../common/en.xml')/l:l10n/l:letters[1]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -109,7 +109,7 @@
       select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:letters)[1]"/>
     
     <xsl:variable name="l10n.letters"
-      select="document(concat($lang, '.xml'))/l:l10n/l:letters[1]"/>
+      select="document(concat('../common/', $lang, '.xml'))/l:l10n/l:letters[1]"/>
     
     <xsl:choose>
       <xsl:when test="count($local.l10n.letters) &gt; 0">
@@ -133,7 +133,7 @@
           </xsl:choose>
         </xsl:message>
         
-        <xsl:copy-of select="document('en.xml')/l:l10n/l:letters[1]"/>
+        <xsl:copy-of select="document('../common/en.xml')/l:l10n/l:letters[1]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
