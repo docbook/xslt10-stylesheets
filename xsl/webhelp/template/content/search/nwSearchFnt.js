@@ -56,7 +56,7 @@ function Effectuer_recherche(expressionInput) {
     //DisplayWaitingMessage();
 
     /*data initialisation*/
-    searchFor = ""       // expression en lowercase et sans les caracteres speciaux
+    searchFor = "";       // expression en lowercase et sans les caracteres speciaux
     //w = new Object();  // hashtable, key=word, value = list of the index of the html files
     scriptLetterTab = new scriptfirstchar(); // Array containing the first letter of each word to look for
     var scriptsarray = new Array(); // Array with the name of the scripts to load

@@ -5,8 +5,8 @@
  *
  */
 
-$(document).ready(function() {
-
+$(document).ready(function() {  
+    $("#showHideHighlight").button(); //add jquery button styling to 'Go' button
     //Generate tabs in nav-pane with JQuery
     $(function() {
             $("#tabs").tabs({
@@ -37,12 +37,14 @@ $(document).ready(function() {
 	});
 
     //'ui-tabs-1' is the cookie name which is used for the persistence of the tabs.(Content/Search tab)
-    if ($.cookie('ui-tabs-1') === '1') { 
+    if ($.cookie('ui-tabs-1') === '1') {    //search tab is visible 
         if ($.cookie('textToSearch') != undefined && $.cookie('textToSearch').length > 0) {
             document.getElementById('textToSearch').value = $.cookie('textToSearch');
             Verifie('diaSearch_Form');
+            searchHighlight($.cookie('textToSearch'));
+            $("#showHideHighlight").css("display","block");
         }
-    } 
+    }
 
     syncToc(); //Synchronize the toc tree with the content pane, when loading the page.
     $("#doSearch").button(); //add jquery button styling to 'Go' button
@@ -109,5 +111,46 @@ function showHideToc() {
         content.css("margin", "0 0 0 280px");
         leftNavigation.css("display","block");
         showHideButton.attr("title", "Show the TOC Tree");
+    }
+}
+
+/**
+ * Code for searh highlighting
+ */
+var highlightOn = true;
+function searchHighlight(searchText) {
+    highlightOn = true;
+    if (searchText != undefined) {
+        var wList;
+        var sList = new Array();    //stem list 
+        //Highlight the search terms
+        searchText = searchText.toLowerCase().replace(/<\//g, "_st_").replace(/\$_/g, "_di_").replace(/\.|%2C|%3B|%21|%3A|@|\/|\*/g, " ").replace(/(%20)+/g, " ").replace(/_st_/g, "</").replace(/_di_/g, "%24_")
+        searchText = searchText.replace(/  +/g, " ");
+        searchText = searchText.replace(/ $/, "").replace(/^ /, "");
+
+        wList = searchText.split(" ");
+        $("#content").highlight(wList); //Highlight the search input
+
+        //Highlight the stems
+        for (var i = 0; i < wList.length; i++) {
+            var stemW = stemmer(wList[i]);
+            sList.push(stemW);
+        }
+        $("#content").highlight(sList); //Highlight the search input's all stems
+    } 
+}
+
+function searchUnhighlight(){
+    highlightOn = false;
+     //unhighlight the search input's all stems
+    $("#content").unhighlight();
+    $("#content").unhighlight();
+}
+
+function toggleHighlight(){
+    if(highlightOn) {
+        searchUnhighlight();
+    } else {
+        searchHighlight($.cookie('textToSearch'));
     }
 }

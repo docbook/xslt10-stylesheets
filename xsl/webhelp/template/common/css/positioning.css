@@ -44,11 +44,11 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
 }
 
 #content h1, #content h2 { color: #cc0000; }
-
 .navfooter { bottom: 2%; }
+.highlight { background-color: #FFFF88; }
+.highlightButton{ font-size: 0; }
 
 /*  Show Hide TOC tree */
-
 .pointLeft {
     background: url("../images/showHideTreeIcons.png") 0 0 no-repeat;
     height: 28px;
@@ -57,7 +57,6 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     font-size: 0;
     cursor: pointer;
 }
-
 .pointRight {
     background: url("../images/showHideTreeIcons.png") -15px 0 no-repeat;
     height: 28px;
@@ -67,18 +66,15 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
 } 
 
 /* Search results Styling */
-
 .searchExpression {
     color: #0050A0;
     background-color: #EBEFF8;
     font-size: 12pt;
 }
-
 .searchresult li a {
     text-decoration: none;
     color: #0050A0;
 }
-
 .searchresult li {
     color: #0050A0;
 }

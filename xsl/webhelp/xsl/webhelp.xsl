@@ -185,8 +185,20 @@
     </xsl:template>
 
     <xsl:template name="user.header.content">
-            <a id="showHideButton" onclick="showHideToc();"
-               class="pointLeft" title="Hide TOC tree" style="padding-top:3px; padding-bottom:3px;">.</a>
+        <table>
+            <tr>
+                <td>
+                    <a id="showHideButton" onclick="showHideToc();"
+                       class="pointLeft" title="Hide TOC tree" style="padding-top:3px; padding-bottom:3px;">.
+                    </a>
+                </td>
+                <td>
+                    <input type="button" id="showHideHighlight"
+                           style="display:none;padding-top:3px; padding-bottom:3px;"
+                           class="highlightButton" value="H" onclick="toggleHighlight();"/>
+                </td>
+            </tr>
+        </table>
     </xsl:template>
 
     <xsl:template name="user.footer.navigation">
