@@ -5,6 +5,8 @@ import java.util.*;
 
 // specific dita ot
 import com.nexwave.nsidita.DocFileInfo;
+
+//Stemmers
 import com.nexwave.stemmer.snowball.SnowballStemmer;
 import com.nexwave.stemmer.snowball.ext.EnglishStemmer;
 import com.nexwave.stemmer.snowball.ext.GermanStemmer;
@@ -20,8 +22,7 @@ import com.nexwave.stemmer.snowball.ext.GermanStemmer;
  * @author Kasun Gajasinghe <http://kasunbg.blogspot.com>
  */
 public class SaxHTMLIndex extends SaxDocFileParser{
-	
-	//members
+
     //KasunBG: apparently tempDico stores all the keywords and a pointer to the files containing the index in a Map
     //example: ("keyword1", "0,2,4"), ("docbook", "1,2,5") 
 	private Map<String,String> tempDico;

@@ -162,113 +162,47 @@ public class WriteJSFiles {
 		tstr = (String)keyIt.next();
 		
 		File fileOut= new File(fileOutStr);
-		
-		/* if the key is not a letter, 
-		 * create an index file called 0.js in the output directory
-		 */
-		if (tstr.matches("^[^a-z]{1}.*$")) {
-			
-			try {
-				// open a outputstream, here a file
-				fOut= new FileOutputStream(fileOut.getParent()+	File.separator + "0" + fileOut.getName());
-				// open a buffer output stream
-				bout= new BufferedOutputStream(fOut);
-				// open a streamwriter
-		        out = new OutputStreamWriter(bout, "UTF-8");
-		        
-		        /* Populate a javascript hashmap: 
-		         The key is a word to look for in the index,
-		         The value is the numbers of the files in which the word exists.
-		         Example: w["key"]="file1,file2,file3";*/
-		        out.write("\n");
-				while ((keyIt.hasNext()) && (tstr.matches("^[^a-z]{1}.*$"))) {
-					out.write("w[\""+tstr+"\"]"+"= \""+indexMap.get(tstr)+"\";\n");
-					tstr = (String) keyIt.next();
-				}
 
-				out.write("\n");
-		        out.flush();  // Don't forget to flush!
-		        out.close();
-			}
-
-			catch (UnsupportedEncodingException e) {
-				System.out.println(txt_VM_encoding_not_supported);
-		        }
-		        catch (IOException e) {
-		          System.out.println(e.getMessage());        
-		    }
-		}
-		
-		
-		/* If the key is a letter, 
-		 * create an index file called letter.js in the output directory
+        /* Writes the index to Three JS files, namely: index-1.js, index-2.js, index-3.js
+		 * Index will be distributed evenly in these three files. 
 		 * tstr is the current key
-		 * keyIt is the iterator of the key set*/
-		
-		char tempLetter = tstr.charAt(0);
-		while (keyIt.hasNext() && (tstr.matches("^[a-z]{1}.*$")) ) {
-		
-			try {
-				// open a outputstream, here a file
-				fOut= new FileOutputStream(fileOut.getParent()+ File.separator + tempLetter + fileOut.getName());
-				bout= new BufferedOutputStream(fOut);
-		        out = new OutputStreamWriter(bout, "UTF-8");
-		        
-		        /* Populate a javascript hashmap: 
-		         The key is a word to look for in the index,
-		         The value is the numbers of the files in which the word exists.
-		         Example: w["key"]="file1,file2,file3";*/
-		        out.write("\n");
-				while ((keyIt.hasNext()) && (tempLetter == tstr.charAt(0))) {
-	
-					out.write("w[\""+tstr+"\"]"+"= \""+indexMap.get(tstr)+"\";\n");
-					tstr = (String) keyIt.next();
-				}
-				tempLetter = tstr.charAt(0);
-		        out.write("\n");
-		        out.flush();  // Don't forget to flush!
-		        out.close();
-			}
-		    catch (UnsupportedEncodingException e) {
-		          System.out.println(txt_VM_encoding_not_supported);
-		        }
-		        catch (IOException e) {
-		          System.out.println(e.getMessage());        
-		    }
-		}
-		
-		/* After processing the keys starting with a letter, 
-		 * do a last pass for other remaining char.
-		*/
-		
-		try {
-			// open a outputstream, here a file
-			fOut= new FileOutputStream(fileOut.getParent()+ File.separator + "1" + fileOut.getName());
-			bout= new BufferedOutputStream(fOut);
-	        out = new OutputStreamWriter(bout, "UTF-8");
-	        
-	        /* Populate a javascript hashmap: 
-	         The key is a word to look for in the index,
-	         The value is the numbers of the files in which the word exists.
-	         Example: w["key"]="file1,file2,file3";*/
-	        out.write("\n");
-			while ((keyIt.hasNext())) {
-				out.write("w[\""+tstr+"\"]"+"= \""+indexMap.get(tstr)+"\";\n");
-				tstr = (String) keyIt.next();
-			}
-			out.write("w[\""+tstr+"\"]"+"= \""+indexMap.get(tstr)+"\";\n");
-			tempLetter = tstr.charAt(0);
-	        out.write("\n");
-	        out.flush();  // Don't forget to flush!
-	        out.close();
-		}
-	    catch (UnsupportedEncodingException e) {
-	          System.out.println(txt_VM_encoding_not_supported);
-	        }
-	        catch (IOException e) {
-	          System.out.println(e.getMessage());        
-	    }
+		 * keyIt is the iterator of the key set
+		 * */
+        int indexSize = sortedKeys.size(); 
+        for (int i = 1; i <= 3; i++) {
+            try {
+                // open a outputstream, here a file
+                fOut = new FileOutputStream(fileOut.getParent() + File.separator + "index-" + i + fileOut.getName());
+                bout = new BufferedOutputStream(fOut);
+                out = new OutputStreamWriter(bout, "UTF-8");
 
+                try {
+                    /* Populate a javascript hashmap:
+                      The key is a word to look for in the index,
+                      The value is the numbers of the files in which the word exists.
+                      Example: w["key"]="file1,file2,file3";*/
+                    int count = 0;
+                    out.write("//Auto generated index for searching.\n");
+                    while (keyIt.hasNext()) {        //&& (tempLetter == tstr.charAt(0)) 
+                        out.write("w[\"" + tstr + "\"]" + "=\"" + indexMap.get(tstr) + "\";\n");
+                        tstr = (String) keyIt.next();
+                        count++;
+                        if (indexSize / count < 3){
+                            break;
+                        }
+                    } 
+                    out.write("\n");
+                    out.flush();  // Don't forget to flush!
+                    out.close();
+                }
+                catch (UnsupportedEncodingException e) {
+                    System.out.println(txt_VM_encoding_not_supported);
+                }
+            }
+            catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        } 
 	    System.out.println(txt_indices_location + fileOutStr);
 	}
 }

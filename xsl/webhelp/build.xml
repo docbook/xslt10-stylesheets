@@ -28,10 +28,10 @@
 
   <target name="chunk" depends="clean">
 	
-	<mkdir dir="${frameset.base.dir}"/>
+	<mkdir dir="${base-dir}"/>
 	<xslt
 	  in="${input-xml}"
-	  out="${frameset.base.dir}/dummy.html"
+	  out="${base-dir}/dummy.html"
 	  style="${ant.file.dir}/xsl/webhelp.xsl"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
@@ -40,23 +40,23 @@
 	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}"
 		if="exclude.search.from.chunked.html"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
-	  <param name="frameset.base.dir" expression="${frameset.base.dir}" if="frameset.base.dir"/>
+	  <param name="webhelp.base.dir" expression="${base-dir}" if="base-dir"/>
 	  <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
 	  <param name="chunk.frameset.start.filename" expression="${chunk.frameset.start.filename}"
 		if="chunk.frameset.start.filename"/>
 	</xslt>
 	
-	<delete file="${frameset.base.dir}/dummy.html"/>
+	<delete file="${base-dir}/dummy.html"/>
 
 	<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
-	<copy todir="${frameset.base.dir}">
+	<copy todir="${base-dir}">
 	  <fileset dir="${ant.file.dir}/template">
 		<include name="**/*"/>
 		<exclude name="**/content/search/*.props"/>
 	  </fileset>
 	</copy>
 	<!-- We separate this out so we only copy the stopwords list for the indexer language -->
-	<copy todir="${frameset.base.dir}">
+	<copy todir="${base-dir}">
 	  <fileset dir="${ant.file.dir}/template">
 		<include name="**/content/search/default.props"/>
 		<include name="**/content/search/punctuation.props"/>
@@ -65,14 +65,14 @@
 	</copy>
 	
 	<!--Deletes all the stemmers that are copied to doc/ folder. Then, adds only the needed stemmer-->
-	<delete dir="${frameset.base.dir}/content/search/stemmers"/>
+	<delete dir="${base-dir}/content/search/stemmers"/>
 	<copy todir="doc/content/search/stemmers/"
 	  file="template/content/search/stemmers/${indexer-language}_stemmer.js"/>
 
 	<!-- Very simple-minded copy to handle the source document's images -->
 	<!-- TODO: Look at html help code that produces a manifest file...list of images -->
 	<!--       Customize webhelp.xsl to produce ant file to copy images used? -->
-	<copy todir="${frameset.base.dir}/content" failonerror="false">
+	<copy todir="${base-dir}/content" failonerror="false">
 	  <fileset dir="${input-images-dir}"/>
 	</copy>	
 
@@ -89,12 +89,12 @@
 	  <classpath refid="nw-cms.jar.path"/>
 	</taskdef>
 
-	<echo>Indexing html files in ${frameset.base.dir}/content</echo>
+	<echo>Indexing html files in ${base-dir}/content</echo>
 
-	<indexertask htmldir="${frameset.base.dir}/content" indexerLanguage="${indexer-language}"/>
+	<indexertask htmldir="${base-dir}/content" indexerLanguage="${indexer-language}"/>
 
 	<delete>
-	  <fileset dir="${frameset.base.dir}/content/search" includes="*.props"/>
+	  <fileset dir="${base-dir}/content/search" includes="*.props"/>
 	</delete>
 
 	<delete file="xx.html"/>
@@ -127,7 +127,7 @@
   </target>
 
   <target name="clean">
-	<delete dir="${frameset.base.dir}"/>
+	<delete dir="${base-dir}"/>
   </target>
 
   <target name="help">

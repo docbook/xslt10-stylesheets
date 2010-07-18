@@ -19,7 +19,7 @@
     <xsl:param name="chunk.frameset.start.filename">index.html</xsl:param>
     <xsl:param name="output_file_name">readme</xsl:param>
     <xsl:param name="chunked.toc.all.open">1</xsl:param>
-    <xsl:param name="frameset.base.dir">doc</xsl:param>
+    <xsl:param name="webhelp.base.dir">doc</xsl:param>
     <xsl:param name="generate.web.xml">0</xsl:param>
     <xsl:param name="direction.align.start">left</xsl:param>
     <xsl:param name="direction.align.end">right</xsl:param>
@@ -31,7 +31,7 @@
     <xsl:param name="navig.showtitles">0</xsl:param>
 
     <xsl:param name="manifest.in.base.dir" select="0"/>
-    <xsl:param name="base.dir" select="concat($frameset.base.dir,'/content/')"/>
+    <xsl:param name="base.dir" select="concat($webhelp.base.dir,'/content/')"/>
     <xsl:param name="suppress.navigation">0</xsl:param>
     <xsl:param name="generate.index" select="1"/>
     <xsl:param name="inherit.keywords" select="'0'"/>
@@ -69,7 +69,7 @@
             //The id for tree cookie
             var treeCookieId = "<xsl:value-of select="$tree.cookie.id"/>";
             var language = "<xsl:value-of select="$indexer.language"/>";
-
+            var w = new Object();
             //Localization
             txt_filesfound = '<xsl:call-template name="gentext">
                 <xsl:with-param name="key" select="'txt_filesfound'"/>
@@ -111,29 +111,35 @@
         <link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/>
 
         <script type="text/javascript" src="../common/jquery/jquery-1.4.2.min.js">
-            <xsl:comment></xsl:comment>
+            <xsl:comment> </xsl:comment>
         </script>
         <script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js">
-            <xsl:comment></xsl:comment>
+            <xsl:comment> </xsl:comment>
         </script>
         <script type="text/javascript" src="../common/jquery/jquery.cookie.js">
-            <xsl:comment></xsl:comment>
+            <xsl:comment> </xsl:comment>
         </script>
         <script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js">
-            <xsl:comment></xsl:comment>
+            <xsl:comment> </xsl:comment>
         </script>
         <!--Scripts/css stylesheets for Search-->
-        <script type="text/javascript" src="search/addition.js">
+        <script type="text/javascript" src="search/htmlFileList.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        <script type="text/javascript" src="search/htmlFileInfoList.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        <script type="text/javascript" src="search/nwSearchFnt.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        
+        <!--script type="text/javascript" src="search/addition.js">
             <xsl:comment></xsl:comment>
         </script>
-
         <script type="text/javascript" src="search/indexLoader.js">
             <xsl:comment></xsl:comment>
-        </script>
+        </script-->
 
-        <script type="text/javascript" src="search/nwSearchFnt.js">
-            <xsl:comment></xsl:comment>
-        </script>
 
         <!--
            NOTE: Stemmer javascript files should be in format <language>_stemmer.js.
@@ -144,6 +150,20 @@
         <script type="text/javascript" src="{concat('search/stemmers/',$indexer.language,'_stemmer.js')}">
             <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
         </script>
+
+        <!--Index Files:
+            Index is broken in to three equal sized(number of index items) files. This is to help parallel downloading
+            of files to make it faster.-->
+        <script type="text/javascript" src="search/index-1.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        <script type="text/javascript" src="search/index-2.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        <script type="text/javascript" src="search/index-3.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        <!--End of index files -->
     </xsl:template>
 
     <xsl:template name="user.header.navigation">
@@ -165,9 +185,8 @@
     </xsl:template>
 
     <xsl:template name="user.header.content">
-        <div>
-            <a id="showHideButton" onclick="showHideToc();" class="pointLeft" title="Hide TOC tree">.</a>
-        </div>
+            <a id="showHideButton" onclick="showHideToc();"
+               class="pointLeft" title="Hide TOC tree" style="padding-top:3px; padding-bottom:3px;">.</a>
     </xsl:template>
 
     <xsl:template name="user.footer.navigation">
@@ -509,7 +528,7 @@
                     <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
                 </xsl:if>
                 <span class="file">
-                    <a href="{substring-after($href,concat($frameset.base.dir,'/content/'))}">
+                    <a href="{substring-after($href,concat($webhelp.base.dir,'/content/'))}">
                         <xsl:value-of select="$title"/>
                     </a>
                 </span>
@@ -566,7 +585,7 @@
                 <!--       </xsl:if> -->
                 <xsl:choose>
                     <xsl:when test="$chunk.frameset.start.filename">
-                        <xsl:value-of select="concat($frameset.base.dir,'/',$chunk.frameset.start.filename)"/>
+                        <xsl:value-of select="concat($webhelp.base.dir,'/',$chunk.frameset.start.filename)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="'index.html'"/>
@@ -593,7 +612,7 @@
     <xsl:template name="web.xml">
         <xsl:call-template name="write.chunk">
             <xsl:with-param name="filename">
-                <xsl:value-of select="concat($frameset.base.dir,'/web.xml')"/>
+                <xsl:value-of select="concat($webhelp.base.dir,'/web.xml')"/>
             </xsl:with-param>
             <xsl:with-param name="method" select="'xml'"/>
             <xsl:with-param name="encoding" select="'utf-8'"/>
