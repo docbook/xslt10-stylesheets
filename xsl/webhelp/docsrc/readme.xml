@@ -85,6 +85,12 @@
                 <secondary>htmlsearch plugin</secondary>
               </indexterm></para>
           </listitem>
+
+          <listitem>
+            <para>Stemmers from the <ulink
+            url="http://snowball.tartarus.org/texts/stemmersoverview.html">Snowball
+            project</ulink> released under a BSD license..</para>
+          </listitem>
         </itemizedlist></para>
     </legalnotice>
 
@@ -216,7 +222,7 @@
           <para>Support 5.x/ns and 4.x/non-ns DocBook stylesheets.</para>
         </listitem>
       </itemizedlist><itemizedlist>
-        <title>Future enhancements</title>
+        <title>Future enhancements (GSOC 2011?)</title>
 
         <listitem>
           <para>Add "Expand all" and "Collapse all" buttons to the toc.</para>
@@ -285,8 +291,9 @@
         </listitem>
 
         <listitem>
-          <para>Add an (optional) index tab populated by a separate JavaScript
-          file.</para>
+          <para>Add an index tab populated by a separate JavaScript file.
+          Include a param/property that allows the content creator to disable
+          the index. </para>
         </listitem>
       </itemizedlist></para>
   </chapter>
