@@ -15,7 +15,7 @@
             cdata-section-elements=""/>
 
     <!-- Custom params! -->
-    <xsl:param name="exclude.search.from.chunked.html">false</xsl:param>
+    <xsl:param name="exclude.search.from.webhelp">false</xsl:param>
     <xsl:param name="chunk.frameset.start.filename">index.html</xsl:param>
     <xsl:param name="output_file_name">readme</xsl:param>
     <xsl:param name="chunked.toc.all.open">1</xsl:param>
@@ -179,7 +179,7 @@
 
         <!--testing toc in the content page>
         <xsl:call-template name="webhelptoctoc"/>
-        <xsl:if test="$exclude.search.from.chunked.html != 'true'">
+        <xsl:if test="$exclude.search.from.webhelp != 'true'">
             <xsl:call-template name="search"/>
         </xsl:if-->
     </xsl:template>
@@ -445,7 +445,7 @@
                                         </em>
                                     </a>
                                 </li>
-                                <xsl:if test="$exclude.search.from.chunked.html != 'true'">
+                                <xsl:if test="$exclude.search.from.webhelp != 'true'">
                                     <li>
                                         <a href="#searchDiv">
                                             <em>
@@ -466,7 +466,7 @@
                                     </xsl:apply-templates>
                                 </ul>
                             </div>
-                            <xsl:if test="$exclude.search.from.chunked.html != 'true'">
+                            <xsl:if test="$exclude.search.from.webhelp != 'true'">
                                 <div id="searchDiv">
                                     <div id="search">
                                         <form onsubmit="Verifie(ditaSearch_Form);return false"

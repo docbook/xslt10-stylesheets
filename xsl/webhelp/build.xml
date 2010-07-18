@@ -17,7 +17,7 @@
 	<equals arg1="${validate}" arg2="true"/>
   </condition>
   <condition property="skip-search-indexing">
-	<equals arg1="${exclude.search.from.chunked.html}" arg2="true"/>
+	<equals arg1="${exclude.search.from.webhelp}" arg2="true"/>
   </condition>
 
   <target name="validate" if="perform-validation">
@@ -37,8 +37,8 @@
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
 	  <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
-	  <param name="exclude.search.from.chunked.html" expression="${exclude.search.from.chunked.html}"
-		if="exclude.search.from.chunked.html"/>
+	  <param name="exclude.search.from.webhelp" expression="${exclude.search.from.webhelp}"
+		if="exclude.search.from.webhelp"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
 	  <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
 	  <param name="indexer.language" expression="${indexer-language}" if="indexer-language"/>
