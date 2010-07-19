@@ -419,19 +419,6 @@
         </step>
 
         <step>
-          <para>If necessary, download <ulink
-          url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink>
-          and add it to your <envar>CLASSPATH</envar>. <tip>
-              <para>When adding jar files to your <envar>CLASSPATH</envar>, be
-              sure to include the jar file. For example:
-              <filename>C:\programs\xml-commons-resolver-1.2\resolver.jar</filename>.
-              Note that on Windows, the <envar>CLASSPATH</envar> is a
-              semicolon delimited list of jar files and paths to java class
-              files.</para>
-            </tip></para>
-        </step>
-
-        <step>
           <para>Download <ulink
           url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip">Saxon
           6.5.x</ulink> and unzip the distribution to a convenient location on
@@ -461,36 +448,71 @@
         </step>
 
         <step>
-          <para>To improve performance, download and extract DocBook XSLs to a
-          convenient location on your file system. Currently, this package
-          supports <ulink
-          url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink>
-          (i.e. it does not yet support the namespace version of the xsls and
-          does not yet strip the namespace from DocBook 5.x documents. <note>
-              <para>If you see the message <screen>Warning: catalogpath listing external catalogs will be ignored</screen>
-              when you generate output, this indicates that your catalog
-              resolver is not installed correctly and is not being
-              used.</para>
-            </note></para>
+          <para>To improve performance, you should use a catalog resolver to
+          cause webhelp.xsl to import a local version of the DocBook XSL
+          stylesheets. Alternatively, you can edit the <sgmltag
+          class="attribute">href</sgmltag> attribute in the
+          <sgmltag>xsl:import</sgmltag> element in
+          <filename>webhelp.xsl</filename>.</para>
+
+          <substeps>
+            <step>
+              <para>If necessary, download <ulink
+              url="http://xml.apache.org/commons/dist">xml-commons-resolver.jar</ulink>
+              and add it to your <envar>CLASSPATH</envar>. <tip>
+                  <para>When adding jar files to your
+                  <envar>CLASSPATH</envar>, be sure to include the jar file.
+                  For example:
+                  <filename>C:\programs\xml-commons-resolver-1.2\resolver.jar</filename>.
+                  Note that on Windows, the <envar>CLASSPATH</envar> is a
+                  semicolon delimited list of jar files and paths to java
+                  class files.</para>
+                </tip></para>
+            </step>
+
+            <step>
+              <para> Download and extract DocBook XSLs to a convenient
+              location on your file system. Currently, this package supports
+              <ulink
+              url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink>
+              (i.e. it does not yet support the namespace version of the xsls
+              and does not yet strip the namespace from DocBook 5.x documents.
+              <note>
+                  <para>If you see the message <screen>Warning: catalogpath listing external catalogs will be ignored</screen>
+                  when you generate output, this indicates that your catalog
+                  resolver is not installed correctly and is not being
+                  used.</para>
+                </note></para>
+            </step>
+          </substeps>
         </step>
 
         <step id="edit-build-properties">
           <para>In a text editor, edit the
           <filename>build.properties</filename> file in the webhelp directory
-          and make the changes indicated by the comments:<programlisting>input-xml=docsrc/readme.xml
+          and make the changes indicated by the comments:<programlisting># The path (relative to the build.xml file) to your input document.
+# To use your own input document, create a build.xml file of your own
+# and import this build.xml.
+input-xml=docsrc/readme.xml
+
+# The directory in which to put the output files. 
+# This directory is created if it does not exist.
 output-dir=doc
-stylesheet-path=xsl/webhelp.xsl
+
+# If you are using a customization layer that imports webhelp.xsl, use
+# this property to point to it. 
+stylesheet-path=${ant.file.dir}/xsl/webhelp.xsl
 
 # If your document has image directories that need to be copied
 # to the output directory, you can list patterns here. 
 # See the Ant documentation for fileset for documentation
 # on patterns.
-#input-images-dirs=images/** figures/** graphics/**
 
+#input-images-dirs=images/** figures/** graphics/**
 # By default, the ant script assumes your images are stored
 # in the same directory as the input-xml. If you store your
 # image directories in another directory, specify it here.
-# and uncomment this line. 
+# and uncomment this line.
 #input-images-basedir=/path/to/image/location
 
 # Modify this so that it points to your copy of the Saxon 6.5 jar.
@@ -499,14 +521,19 @@ xslt-processor-classpath=c:/workhead/export/saxon/6.5/lib/saxon.jar
 # To use this catalog, make sure the resolver is in your classpath.
 # Download xml-commons-resolver from http://xml.apache.org/commons/dist/
 # and add it to your CLASSPATH. Then use the following property to point 
-# to your docbook xsl stylesheets' catalog
+# to your docbook xsl stylesheets' catalog. Alternatively,
+# you can list the catalog file in your CatalogManager.properties file.
 docbook-xsl-catalog=c:/gsoc2010/docbook-xsl-1.75.2/catalog.xml
+#docbook-xsl-catalog=/media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/xsltmp/docbook-xsl-1.75.2/catalog.xml
 
 # If you wish to have the ant script validate the document before
 # building it, set this property to the location
 # of your DocBook DTD. The sample document is 
 # a DocBook 4.5 document and uncomment the line validate=true.
+# Alternatively, you can list the DTD's catalog file in your
+# CatalogManager.properties file.
 docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
+#docbookx.dtd=file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/defguide/en/schema/docbookx.dtd
 validate=true
 
 # Set this to true if you don't need a search tab.
@@ -531,11 +558,13 @@ indexer-language=en
         </step>
 
         <step>
-          <para>To process your own content:</para>
+          <para>To process your own content you simply refer to this package
+          from another <filename>build.xml</filename> in arbitrary location on
+          your system.</para>
 
           <substeps>
             <step>
-              <para>create a new <filename>build.xml</filename> file that
+              <para>Create a new <filename>build.xml</filename> file that
               defines the name of your source file, the desired output
               directory, and imports the <filename>build.xml</filename> from
               this package. For example: <programlisting>&lt;project&gt;
@@ -585,16 +614,88 @@ indexer-language=en
           </listitem>
         </itemizedlist></para>
 
-      <para>TODO: Document Apache config changes to improve performance of
-      very long documents.</para>
+      <para>To customize the look and feel of the help, study the following
+      css files:<itemizedlist>
+          <listitem>
+            <para><filename>doc/common/css/positioning.css</filename>: This
+            handles the Positioning of DIVs in appropriate positions. For
+            example, it causes the <code>leftnavigation</code> div to appear
+            on the left, the header on top, and so on. Use this if you need to
+            change the relative positions or need to change the width/height
+            etc.</para>
+          </listitem>
+
+          <listitem>
+            <para><filename>doc/common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css</filename>:
+            This is the theming part which adds colors and stuff. This is a
+            default theme comes with <ulink
+            url="http://jqueryui.com/download">jqueryui</ulink> unchanged. You
+            can get any theme based your interest from this. (Themes are on
+            right navigation bar.) Then replace the css theme folder
+            (theme-redmond) with it, and change the xsl to point to the new
+            css.</para>
+          </listitem>
+
+          <listitem>
+            <para><filename>doc/common/jquery/treeview/jquery.treeview.css</filename>:
+            This styles the toc Tree. Generally, you don't have to edit this
+            file.</para>
+          </listitem>
+        </itemizedlist></para>
+
+      <section>
+        <title>Recommended Apache configurations</title>
+
+        <para>If you are serving a long document from an Apache web server, we
+        recommend you make the following additions or changes to your
+        <filename>httpd.conf</filename> or <filename>.htaccess</filename>
+        file. <remark>TODO: Explain what each thing
+        does.</remark><programlisting>AddDefaultCharSet UTF-8
+
+# 480 weeks
+&lt;FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"&gt;
+Header set Cache-Control "max-age=290304000, public"
+&lt;/FilesMatch&gt;
+
+# 2 DAYS
+&lt;FilesMatch "\.(xml|txt)$"&gt;
+Header set Cache-Control "max-age=172800, public, must-revalidate"
+&lt;/FilesMatch&gt;
+
+# 2 HOURS
+&lt;FilesMatch "\.(html|htm)$"&gt;
+Header set Cache-Control "max-age=7200, must-revalidate"
+&lt;/FilesMatch&gt;
+
+ErrorDocument 404 http://www.thingbag.net/404.html
+
+IndexIgnore *
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+# Or, compress certain file types by extension:
+&lt;Files *.html&gt;
+SetOutputFilter DEFLATE
+&lt;/Files&gt;
+</programlisting></para>
+      </section>
     </section>
 
     <section>
       <title>Building the indexer</title>
 
       <para role="summary">To build the indexer, you must have installed the
-      JDK version 1.5 or higher and set the ANT_HOME environment variable. Run
-      <code>ant build-indexer</code> to recompile
+      JDK version 1.5 or higher and set the <envar>ANT_HOME</envar>
+      environment variable. Run <code>ant build-indexer</code> to recompile
       <filename>nw-cms.jar</filename></para>
 
       <indexterm>
@@ -609,9 +710,71 @@ indexer-language=en
     </section>
 
     <section>
-      <title>Adding support for other languages</title>
+      <title>Adding support for other (non-CJKV) languages</title>
 
-      <para>Currently, </para>
+      <para>To support stemming for a language, the search mechanism requires
+      a stemmer implemented in both Java and JavaScript. The Java version is
+      used by the indexer and the JavaScript verison is used to stem the
+      user's input on the search form. Currently the search mechanism supports
+      stemming for English and German. In addition, Java stemmers are included
+      for the following languages. Therefore, to support these languages, you
+      only need to implement the stemmer in JavaScript and add it to the
+      template. If you do undertake this task, please consider contributing
+      the JavaScript version back to this project and to <ulink
+      url="http://snowball.tartarus.org/texts/stemmersoverview.html">Martin
+      Porter's project</ulink>.<itemizedlist>
+          <listitem>
+            <para>Danish</para>
+          </listitem>
+
+          <listitem>
+            <para>Dutch</para>
+          </listitem>
+
+          <listitem>
+            <para>Finnish</para>
+          </listitem>
+
+          <listitem>
+            <para>French</para>
+          </listitem>
+
+          <listitem>
+            <para>Hungarian</para>
+          </listitem>
+
+          <listitem>
+            <para>Italian</para>
+          </listitem>
+
+          <listitem>
+            <para>Norwegian</para>
+          </listitem>
+
+          <listitem>
+            <para>Portuguese</para>
+          </listitem>
+
+          <listitem>
+            <para>Romanian</para>
+          </listitem>
+
+          <listitem>
+            <para>Russian</para>
+          </listitem>
+
+          <listitem>
+            <para>Spanish</para>
+          </listitem>
+
+          <listitem>
+            <para>Swedish</para>
+          </listitem>
+
+          <listitem>
+            <para>Turkish</para>
+          </listitem>
+        </itemizedlist></para>
     </section>
   </chapter>
 
@@ -621,33 +784,12 @@ indexer-language=en
     <para>This chapter provides an overview of how webhelp is implemented.
     <remark>WRITEME</remark></para>
 
-    <para>TODO: Document details about cookie use.</para>
+    <para>The table of contents and search panes are implemented as divs and
+    rendered as if they were the left pane in a frameset. As a result, the
+    page must save the state of the table of contents and the search in
+    cookies when you navigate away from a page. When you load a new page, the
+    page reads these cookies and restores the state of the table of contents
+    tree and search. The result is that the help system behaves exactly as if
+    it were a frameset. </para>
   </chapter>
-
-  <chapter>
-    <chapterinfo>
-      <abstract>
-        <para>Demo of Japanese text:
-        ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント
-        ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
-      </abstract>
-    </chapterinfo>
-
-    <title>ホスト</title>
-
-    <indexterm>
-      <primary>ホスト</primary>
-    </indexterm>
-
-    <para>To test this page, search for the term: ホスト</para>
-
-    <formalpara>
-      <title>ホスト</title>
-
-      <para>ネットワークに接続されているコンピュータ。加入者コンピュータは<emphasis>クライアント
-      ホスト</emphasis>であり、プロバイダ システムは<emphasis>サーバー ホスト</emphasis>です。</para>
-    </formalpara>
-  </chapter>
-
-  <index></index>
 </book>
