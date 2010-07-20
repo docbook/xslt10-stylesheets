@@ -1,7 +1,7 @@
 <project default="help" name="mainbuild">
 
   <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
-  <loadproperties srcFile="build.properties"/>
+  <loadproperties srcFile="${ant.file.dir}/build.properties"/>
 
   <xmlcatalog id="catalog">
 	<catalogpath>
