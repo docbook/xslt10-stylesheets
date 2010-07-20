@@ -568,10 +568,6 @@
 <template name="langcode">0x040e Hungarian</template>
 </context>
 
-<context name="htmlhelp">
-<template name="langcode">0x0409 English (UNITED STATES)</template>
-</context>
-
 <context name="index">
 <template name="term-separator">, </template>
 <template name="number-separator">, </template>
