@@ -188,7 +188,7 @@
     <xsl:template name="user.header.content">
         <table>
             <tr>
-                <td>
+                <td style="height: 28px; width: 16px;">
                     <a id="showHideButton" onclick="showHideToc();"
                        class="pointLeft" title="Hide TOC tree" style="padding-top:3px; padding-bottom:3px;">.
                     </a>
