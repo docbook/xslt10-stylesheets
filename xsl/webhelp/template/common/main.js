@@ -47,7 +47,7 @@ $(document).ready(function() {
     }
 
     syncToc(); //Synchronize the toc tree with the content pane, when loading the page.
-    $("#doSearch").button(); //add jquery button styling to 'Go' button
+    //$("#doSearch").button(); //add jquery button styling to 'Go' button
 });
 
 /**
