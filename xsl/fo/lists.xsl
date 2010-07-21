@@ -1194,7 +1194,7 @@
 
 <xsl:template match="segmentedlist" mode="seglist-table">
   <xsl:apply-templates select="title" mode="list.title.mode" />
-  <fo:table>
+  <fo:table table-layout="fixed">
     <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-header start-indent="0pt" end-indent="0pt">
