@@ -179,6 +179,7 @@
   </xsl:param>
 
   <fo:inline xsl:use-attribute-sets="monospace.properties">
+    <xsl:call-template name="anchor"/>
     <xsl:if test="@dir">
       <xsl:attribute name="direction">
         <xsl:choose>
