@@ -1463,11 +1463,9 @@
         <xsl:variable name="colwidth">
           <xsl:call-template name="calc.column.width"/>
         </xsl:variable>
-        <xsl:if test="$colwidth != 'proportional-column-width(1)'">
           <xsl:attribute name="column-width">
             <xsl:value-of select="$colwidth"/>
           </xsl:attribute>
-        </xsl:if>
       </fo:table-column>
     </xsl:when>
     <xsl:otherwise>
@@ -1503,11 +1501,9 @@
                 </xsl:with-param>
               </xsl:call-template>
             </xsl:variable>
-            <xsl:if test="$colwidth != 'proportional-column-width(1)'">
               <xsl:attribute name="column-width">
                 <xsl:value-of select="$colwidth"/>
               </xsl:attribute>
-            </xsl:if>
           </fo:table-column>
         </xsl:when>
         <xsl:otherwise>
