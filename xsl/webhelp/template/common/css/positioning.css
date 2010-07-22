@@ -39,8 +39,11 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     padding-left: 5px;
     padding-right: 30px;
     color: #000000;
-    border-left: 2px solid #cccccc; /*overflow :scroll;*/
+    /*border-left: 2px solid #cccccc; overflow :scroll;*/
     z-index: 1000;
+
+    max-width: 70em;
+    min-width:800px;
 }
 
 #content h1, #content h2 { color: #cc0000; }

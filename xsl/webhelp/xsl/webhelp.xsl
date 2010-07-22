@@ -107,6 +107,7 @@
             }
             <![endif]-->
         </style>
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/>
         <link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
         <link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/>
@@ -315,6 +316,10 @@
 
             <!-- Prev and Next links generation-->
             <div id="navheader" align="right">
+                <xsl:comment>
+                    <!-- keep this code. In case of neither prev nor next links are available, this will help to
+                    keep the integrity of the DOM tree-->
+                </xsl:comment>
                 <!--xsl:with-param name="prev" select="$prev"/>
                 <xsl:with-param name="next" select="$next"/>
                 <xsl:with-param name="nav.context" select="$nav.context"/-->
@@ -611,6 +616,7 @@
             <xsl:with-param name="content">
                 <html>
                     <head>
+			<link rel="shortcut icon" href="favicon.ico"/>
                         <meta http-equiv="Refresh" content="0; URL=content/ch01.html"/>
                         <title><xsl:value-of select="//title[1]"/>&#160;
                         </title>
