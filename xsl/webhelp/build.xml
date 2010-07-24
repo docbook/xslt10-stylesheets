@@ -21,7 +21,7 @@
   </condition>
 
   <target name="validate" if="perform-validation">
-	<xmlvalidate file="${input-xml}">
+	<xmlvalidate file="${input-xml}" classname="org.apache.xerces.parsers.SAXParser">
 	  <xmlcatalog refid="catalog"/>
 	</xmlvalidate>
   </target>
