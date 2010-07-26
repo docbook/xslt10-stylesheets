@@ -400,7 +400,7 @@
       <xsl:message>
         <xsl:text>Xref is only supported to listitems in an</xsl:text>
         <xsl:text> orderedlist: </xsl:text>
-        <xsl:value-of select="@id|@xml:id"/>
+        <xsl:value-of select=".//@id|.//@xml:id"/>
       </xsl:message>
       <xsl:text>???</xsl:text>
     </xsl:when>
