@@ -28,7 +28,7 @@
           </listitem>
 
           <listitem>
-            <para>Any stylesheet derived from this Software that is publically
+            <para>Any stylesheet derived from this Software that is publicly
             distributed will be identified with a different name and the
             version strings in any derived Software will be changed so that no
             possibility of confusion between the derived package and this
@@ -185,7 +185,7 @@
         </listitem>
 
         <listitem>
-          <para>Table of contents pane with collapsable toc tree.</para>
+          <para>Table of contents pane with collapsible toc tree.</para>
         </listitem>
 
         <listitem>
@@ -193,8 +193,8 @@
         </listitem>
 
         <listitem>
-          <para>TOC and search pane implemented without the use of a frameset.
-          </para>
+          <para>TOC and search pane implemented without the use of a
+          frameset.</para>
         </listitem>
 
         <listitem>
@@ -333,7 +333,13 @@
         <listitem>
           <para>Add an index tab populated by a separate JavaScript file.
           Include a param/property that allows the content creator to disable
-          the index. </para>
+          the index.</para>
+        </listitem>
+
+        <listitem>
+          <para>Add functionality to the <filename>build.xml</filename> file
+          so that when a property is set, the build generates a pdf version of
+          the document and includes a link to it from the header.</para>
         </listitem>
       </itemizedlist></para>
   </chapter>
@@ -424,7 +430,10 @@
           6.5.x</ulink> and unzip the distribution to a convenient location on
           your filesystem. You will use the path to
           <filename>saxon.jar</filename> in <xref
-          linkend="edit-build-properties" /> below.</para>
+          linkend="edit-build-properties" /> below.<important>
+              <para>Saxon 6.5 must not be in your <envar>CLASSPATH</envar>
+              when you generate webhelp. </para>
+            </important></para>
         </step>
 
         <step>
@@ -471,9 +480,8 @@
             </step>
 
             <step>
-              <para> Download and extract DocBook XSLs to a convenient
-              location on your file system. Currently, this package supports
-              <ulink
+              <para>Download and extract DocBook XSLs to a convenient location
+              on your file system. Currently, this package supports <ulink
               url="http://sourceforge.net/projects/docbook/files/#files">docbook-xsl</ulink>
               (i.e. it does not yet support the namespace version of the xsls
               and does not yet strip the namespace from DocBook 5.x documents.
@@ -667,10 +675,6 @@ Header set Cache-Control "max-age=172800, public, must-revalidate"
 Header set Cache-Control "max-age=7200, must-revalidate"
 &lt;/FilesMatch&gt;
 
-ErrorDocument 404 http://www.thingbag.net/404.html
-
-IndexIgnore *
-
 # compress text, html, javascript, css, xml:
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/html
@@ -790,6 +794,6 @@ SetOutputFilter DEFLATE
     cookies when you navigate away from a page. When you load a new page, the
     page reads these cookies and restores the state of the table of contents
     tree and search. The result is that the help system behaves exactly as if
-    it were a frameset. </para>
+    it were a frameset.</para>
   </chapter>
 </book>
