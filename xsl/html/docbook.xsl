@@ -135,6 +135,10 @@
     <xsl:copy-of select="$title"/>
   </title>
 
+  <xsl:if test="$html.base != ''">
+    <base href="{$html.base}"/>
+  </xsl:if>
+
   <!-- Insert links to CSS files or insert literal style elements -->
   <xsl:call-template name="generate.css"/>
 
@@ -147,10 +151,6 @@
   <xsl:if test="$link.mailto.url != ''">
     <link rev="made"
           href="{$link.mailto.url}"/>
-  </xsl:if>
-
-  <xsl:if test="$html.base != ''">
-    <base href="{$html.base}"/>
   </xsl:if>
 
   <meta name="generator" content="DocBook {$DistroTitle} V{$VERSION}"/>
