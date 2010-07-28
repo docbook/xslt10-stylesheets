@@ -480,7 +480,13 @@
     <xsl:when test="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
       <xsl:apply-templates/>
     </xsl:when>
-  
+
+    <xsl:when test="svg:*" xmlns:svg="http://www.w3.org/2000/svg">
+      <fo:instream-foreign-object>
+        <xsl:apply-templates mode="copy-all" select="*"/>
+      </fo:instream-foreign-object>
+    </xsl:when>
+
     <xsl:when test="@format='linespecific'">
       <xsl:choose>
         <xsl:when test="$use.extensions != '0'
