@@ -13,6 +13,13 @@
   <property environment="env"/>
   <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
 
+    <path id="classpath">
+        <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar"/>
+        <pathelement location="${ant.file.dir}/indexer/lib/lucene-analyzers-3.0.0.jar"/>
+        <pathelement location="${ant.file.dir}/indexer/lib/lucene-core-3.0.0.jar"/>
+        <pathelement path="${ant.jar}"/>  
+    </path>
+
   <condition property="perform-validation">
 	<equals arg1="${validate}" arg2="true"/>
   </condition>
@@ -84,14 +91,10 @@
 		<include name="**/content/search/stemmers/${indexer-language}_stemmer.js"/>
 	  </fileset>
 	</copy>
-
-	<path id="nw-cms.jar.path">
-	  <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar"/>
-	</path>
-
+ 
 	<taskdef name="indexertask"
 	  classname="com.nexwave.nquindexer.IndexerTask">
-	  <classpath refid="nw-cms.jar.path"/>
+	  <classpath refid="classpath"/>
 	</taskdef>
 
 	<echo>Indexing html files in ${output-dir}/content</echo>
@@ -110,18 +113,20 @@
 
   <target name="build-indexer">
 
+    <mkdir dir="indexer/lib/htmlsearch"/>  
 	<javac
 	  srcdir="indexer/src"
-	  destdir="indexer/lib"
-	  includes="com/nexwave/nsidita/*.java com/nexwave/nquindexer/*.java"
-	  classpath="${ant.jar}"/>
+	  destdir="indexer/lib/htmlsearch"
+	  includes="com/nexwave/nsidita/*.java com/nexwave/nquindexer/*.java">
+        <classpath refid="classpath"/>    
+    </javac>
 
 	<jar
 	  destfile="indexer/lib/nw-cms.jar"
-	  basedir="indexer/lib"
+	  basedir="indexer/lib/htmlsearch"
 	  includes="com/**"/>
 
-	<delete dir="indexer/lib/com"/>
+	<delete dir="indexer/lib/htmlsearch"/>
 
   </target>
 

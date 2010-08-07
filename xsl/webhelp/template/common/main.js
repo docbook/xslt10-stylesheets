@@ -131,10 +131,14 @@ function searchHighlight(searchText) {
         wList = searchText.split(" ");
         $("#content").highlight(wList); //Highlight the search input
 
-        //Highlight the stems
-        for (var i = 0; i < wList.length; i++) {
-            var stemW = stemmer(wList[i]);
-            sList.push(stemW);
+        if(typeof stemmer != "undefined" ){
+            //Highlight the stems
+            for (var i = 0; i < wList.length; i++) {
+                var stemW = stemmer(wList[i]);
+                sList.push(stemW);
+            }
+        } else {
+            sList = wList;
         }
         $("#content").highlight(sList); //Highlight the search input's all stems
     } 

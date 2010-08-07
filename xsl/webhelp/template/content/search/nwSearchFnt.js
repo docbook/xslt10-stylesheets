@@ -82,7 +82,11 @@ function Effectuer_recherche(expressionInput) {
 
     for(var j in wordsList){
         var word = wordsList[j];
-        stemQueryMap[stemmer(word)] = word;
+        if(typeof stemmer != "undefined" ){
+            stemQueryMap[stemmer(word)] = word;
+        } else {
+            stemQueryMap[word] = word;
+        }
     }
 
      //stemmedWordsList is the stemmed list of words separated by spaces.
@@ -94,10 +98,14 @@ function Effectuer_recherche(expressionInput) {
         }
     }
 
-    //Do the stemming using Porter's stemming algorithm
-    for (var i = 0; i < cleanwordsList.length; i++) {
-        var stemWord = stemmer(cleanwordsList[i]);
-        stemmedWordsList.push(stemWord);
+    if(typeof stemmer != "undefined" ){
+        //Do the stemming using Porter's stemming algorithm
+        for (var i = 0; i < cleanwordsList.length; i++) {
+            var stemWord = stemmer(cleanwordsList[i]);
+            stemmedWordsList.push(stemWord);
+        }
+    } else {
+        stemmedWordsList = cleanwordsList;
     }
 
     //load the scripts with the indices: the following lines do not work on the server. To be corrected

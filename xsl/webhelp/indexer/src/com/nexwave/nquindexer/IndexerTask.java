@@ -55,7 +55,8 @@ public class IndexerTask{
 
     //supported languages: add new additions to this. don't include country codes to the end such as en_US or en_UK,
     // as stemmers doesn't find a difference between them.
-    private String[] supportedLanguages= {"en", "de"}; //currently English & German only. Chinese(cn) to be added shortly.
+    private String[] supportedLanguages= {"en", "de", "cn", "ja", "ko"}; //currently extended support available for
+                                                    // English, German, and CJK (Chinese, Japanese, Korean) languages only.
 
 	// Indexing features: words to remove
 	private ArrayList<String> cleanUpStrings = null;	
@@ -96,8 +97,9 @@ public class IndexerTask{
             
             //if not in supported language list,
             if(i>=supportedLanguages.length){
-                System.out.println("The given language, \""+indexerLanguage+"\", is not supported or specified in a bad format. " +
-                        "Check documentation for details. Language now defaults to english.");
+                System.out.println("The given language, \""+indexerLanguage+"\", does not have extensive support for " +
+                        "searching or language code is specified in a bad format. Check documentation for details. " +
+                        "Language now defaults to english.");
                 this.indexerLanguage = "en";
             } 
         } else {
@@ -198,7 +200,7 @@ public class IndexerTask{
 		
 		// Retrieve the clean-up properties for indexing
 		RetrieveCleanUpProps();
-	    System.out.print("clean"+" " +cleanUpStrings);
+	   // System.out.print("clean"+" " +cleanUpStrings);
 	    
 		//create a default handler
 		//SaxHTMLIndex spe = new SaxHTMLIndex (); // do not use clean-up props files
