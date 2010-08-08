@@ -10,18 +10,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-
 import com.nexwave.nsidita.BlankRemover;
 import com.nexwave.nsidita.DocFileInfo;
+
 /**
  * Generic parser for populating a DocFileInfo object.
  * 
@@ -30,7 +21,7 @@ import com.nexwave.nsidita.DocFileInfo;
  * @author N. Quaine
  * @author Kasun Gajasinghe
  */
-public class SaxDocFileParser extends DefaultHandler {
+public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	
 	//members
 	protected DocFileInfo fileDesc = null;
@@ -75,15 +66,14 @@ public class SaxDocFileParser extends DefaultHandler {
 
 	public void parseDocument (File file) {
 		//get a factory
-		SAXParserFactory spf = SAXParserFactory.newInstance();
+		javax.xml.parsers.SAXParserFactory spf = javax.xml.parsers.SAXParserFactory.newInstance();
 		
 		spf.setValidating(false);
         addContent = false;
 		divCount = 0;
 		try {
-		
 			//get a new instance of parser
-			SAXParser sp = spf.newSAXParser();
+			javax.xml.parsers.SAXParser sp = spf.newSAXParser();
 			// deactivate the validation
 			sp.getXMLReader().setFeature("http://xml.org/sax/features/external-general-entities", false);
 			sp.getXMLReader().setFeature( "http://apache.org/xml/features/nonvalidating/load-external-dtd",	false);
@@ -101,11 +91,11 @@ public class SaxDocFileParser extends DefaultHandler {
 			//System.out.println("done parsing " + file.getName() + " >>> " + finish);
 			//System.out.println("time = " + (finish - start) + " milliseconds");
 			
-		}catch(SAXException se) {
+		}catch(org.xml.sax.SAXException se) {
 			System.out.println("SaxException");
 			se.printStackTrace();
 
-		}catch(ParserConfigurationException pce) {
+		}catch(javax.xml.parsers.ParserConfigurationException pce) {
 			pce.printStackTrace();
 		}catch (IOException ie) {
 			ie.printStackTrace();
@@ -117,7 +107,7 @@ public class SaxDocFileParser extends DefaultHandler {
     private boolean doNotIndex=false;
     private int divCount = 0;
 	//SAX parser Event Handlers:
-	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+	public void startElement(String uri, String localName, String qName, org.xml.sax.Attributes attributes) throws org.xml.sax.SAXException {
 
 		//dwc: capture current element name
 		currentElName = qName;
@@ -183,7 +173,7 @@ public class SaxDocFileParser extends DefaultHandler {
 	}
 
 	//triggers when there's character data inside an element.
-	public void characters(char[] ch, int start, int length) throws SAXException {
+	public void characters(char[] ch, int start, int length) throws org.xml.sax.SAXException {
 		
 		// dwc: Bug fix. Don't index contents of script tag.
 		// dwc: TODO: Add code here to conditionally index or not
@@ -198,7 +188,7 @@ public class SaxDocFileParser extends DefaultHandler {
 		}
 	}
 	
-	public void endElement(String uri, String localName, String qName) throws SAXException {
+	public void endElement(String uri, String localName, String qName) throws org.xml.sax.SAXException {
 		if(qName.equalsIgnoreCase("title")) {
 			//add it to the list
 			//myEmpls.add(tempEmp);
@@ -222,7 +212,7 @@ public class SaxDocFileParser extends DefaultHandler {
         } 
 	}
 	
-	public void processingInstruction(String target, String data) throws SAXException {
+	public void processingInstruction(String target, String data) throws org.xml.sax.SAXException {
 		//do nothing
 		
 	}
@@ -234,8 +224,8 @@ public class SaxDocFileParser extends DefaultHandler {
 		System.out.println("entities " + publicId + systemId);
 		return null;
 	}*/
-	public InputSource resolveEntity(String publicId, String systemId)
-	throws SAXException, IOException {
+	public org.xml.sax.InputSource resolveEntity(String publicId, String systemId)
+	throws org.xml.sax.SAXException, IOException {
 		//System.out.println("Entities " + publicId + "and" + systemId);
 		// use dita ot (dost.jar) for resolving dtd paths using the calatog
 		
