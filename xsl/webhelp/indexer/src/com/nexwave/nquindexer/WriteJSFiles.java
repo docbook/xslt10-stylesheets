@@ -182,6 +182,8 @@ public class WriteJSFiles {
                       The value is the numbers of the files in which the word exists.
                       Example: w["key"]="file1,file2,file3";*/
                     int count = 0;
+                    if(i==1)
+                        out.write("var indexerLanguage=\""+IndexerTask.indexerLanguage+"\";\n");
                     out.write("//Auto generated index for searching.\n");
                     while (keyIt.hasNext()) {        //&& (tempLetter == tstr.charAt(0)) 
                         out.write("w[\"" + tstr + "\"]" + "=\"" + indexMap.get(tstr) + "\";\n");

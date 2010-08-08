@@ -51,7 +51,7 @@ public class IndexerTask{
 
 	// ANT parameters
 	private String htmldir=null;
-    private String indexerLanguage="en";
+    public static String indexerLanguage="en";
 
     //supported languages: add new additions to this. don't include country codes to the end such as en_US or en_UK,
     // as stemmers doesn't find a difference between them.
@@ -90,7 +90,7 @@ public class IndexerTask{
             int i=0;
             for (;i<supportedLanguages.length;i++) {
                 if(indexerLanguage.equals(supportedLanguages[i])){
-                    this.indexerLanguage = supportedLanguages[i];
+                    IndexerTask.indexerLanguage = supportedLanguages[i];
                     break;
                 }
             }
@@ -100,10 +100,10 @@ public class IndexerTask{
                 System.out.println("The given language, \""+indexerLanguage+"\", does not have extensive support for " +
                         "searching or language code is specified in a bad format. Check documentation for details. " +
                         "Language now defaults to english.");
-                this.indexerLanguage = "en";
+                IndexerTask.indexerLanguage = "en";
             } 
         } else {
-            this.indexerLanguage = "en";
+            IndexerTask.indexerLanguage = "en";
         } 
     }
 

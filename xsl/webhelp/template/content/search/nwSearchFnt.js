@@ -8,11 +8,9 @@
  */
 
 //string initialization
-
-
-htmlfileList = "htmlFileList.js";
-htmlfileinfoList = "htmlFileInfoList.js";
-
+var htmlfileList = "htmlFileList.js";
+var htmlfileinfoList = "htmlFileInfoList.js";
+var useCJKTokenizing = false;
 
 /* Cette fonction verifie la validite de la recherche entrre par l utilisateur */
 function Verifie(ditaSearch_Form) {
@@ -56,13 +54,12 @@ function Effectuer_recherche(expressionInput) {
     //DisplayWaitingMessage();
 
     /*data initialisation*/
-    searchFor = "";       // expression en lowercase et sans les caracteres speciaux
+    searchFor = "";       // expression en lowercase et sans les caracte    res speciaux
     //w = new Object();  // hashtable, key=word, value = list of the index of the html files
     scriptLetterTab = new scriptfirstchar(); // Array containing the first letter of each word to look for
     var scriptsarray = new Array(); // Array with the name of the scripts to load
     var wordsList = new Array(); // Array with the words to look for
-    var cleanwordsList = new Array(); // Array with the words to look for
-    var stemmedWordsList = new Array(); // Array with the words to look for after removing spaces
+    var finalWordsList = new Array(); // Array with the words to look for after removing spaces
     var listNumerosDesFicStr = "";
     var ou_recherche = true;
     var linkTab = new Array();
@@ -80,6 +77,92 @@ function Effectuer_recherche(expressionInput) {
     wordsList = searchFor.split(" ");
     wordsList.sort();
 
+    //set the tokenizing method
+    if(typeof indexerLanguage != "undefined" && (indexerLanguage=="cn" || indexerLanguage=="ja" ||indexerLanguage=="ko")){
+        useCJKTokenizing=true;
+    } else {
+        useCJKTokenizing=false;
+    }
+    //If Lucene CJKTokenizer was used as the indexer, then useCJKTokenizing will be true. Else, do normal tokenizing.
+    // 2-gram tokenizinghappens in CJKTokenizing,  
+    if(useCJKTokenizing){
+        finalWordsList = cjkTokenize(wordsList);
+    } else { 
+        finalWordsList = tokenize(wordsList);
+    }
+
+    //load the scripts with the indices: the following lines do not work on the server. To be corrected
+    /*if (IEBrowser) {
+     scriptsarray = loadTheIndexScripts (scriptLetterTab);
+     } */
+
+    /**
+     * Compare with the indexed words (in the w[] array), and push words that are in it to tempTab.
+     */
+    var tempTab = new Array();
+    for (t in finalWordsList) {
+        if (w[finalWordsList[t].toString()] == undefined) {
+            txt_wordsnotfound += finalWordsList[t] + " ";
+        } else {
+            tempTab.push(finalWordsList[t]);
+        }
+    }
+    finalWordsList = tempTab;
+
+    if (finalWordsList.length) {
+
+        //search 'and' and 'or' one time
+        fileAndWordList = SortResults(finalWordsList);
+
+        cpt = fileAndWordList.length;
+        for (var i = cpt - 1; i >= 0; i--) {
+            if (fileAndWordList[i] != undefined) {
+                linkTab.push("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">" + fileAndWordList[i][0].motslisteDisplay + "</span>" + "</p>");
+
+                linkTab.push("<ul class='searchresult'>");
+                for (t in fileAndWordList[i]) {
+                    //DEBUG: alert(": "+ fileAndWordList[i][t].filenb+" " +fileAndWordList[i][t].motsliste);
+                    //linkTab.push("<li><a href=\"../"+fl[fileAndWordList[i][t].filenb]+"\">"+fl[fileAndWordList[i][t].filenb]+"</a></li>");
+                    tempInfo = fil[fileAndWordList[i][t].filenb];
+                    pos1 = tempInfo.indexOf("@@@");
+                    pos2 = tempInfo.lastIndexOf("@@@");
+                    tempPath = tempInfo.substring(0, pos1);
+                    tempTitle = tempInfo.substring(pos1 + 3, pos2);
+                    tempShortdesc = tempInfo.substring(pos2 + 3, tempInfo.length);
+
+                    //file:///home/kasun/docbook/WEBHELP/webhelp-draft-output-format-idea/src/main/resources/web/webhelp/installation.html
+                    var linkString = "<li><a href=" + tempPath + ">" + tempTitle + "</a>";
+                    // var linkString = "<li><a href=\"installation.html\">" + tempTitle + "</a>";
+                    if ((tempShortdesc != "null")) {
+                        linkString += "\n<div class=\"shortdesclink\">" + tempShortdesc + "</div>";
+                    }
+                    linkString += "</li>";
+                    linkTab.push(linkString);
+                }
+                linkTab.push("</ul>");
+            }
+        }
+    }
+
+    var results = "";
+    if (linkTab.length > 0) { 
+        /*writeln ("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">"  + cleanwordsList + "</span>" + "<br/>"+"</p>");*/
+        results = "<p>";
+        //write("<ul class='searchresult'>");
+        for (t in linkTab) {
+            results += linkTab[t].toString();
+        }
+        results += "</p>";
+    } else {
+        results = "<p>" + "Your search returned no results for " + "<span class=\"searchExpression\">" + txt_wordsnotfound + "</span>" + "</p>";
+    }
+    //alert(results);
+    document.getElementById('searchResults').innerHTML = results; 
+}
+
+function tokenize(wordsList){
+    var stemmedWordsList = new Array(); // Array with the words to look for after removing spaces
+    var cleanwordsList = new Array(); // Array with the words to look for
     for(var j in wordsList){
         var word = wordsList[j];
         if(typeof stemmer != "undefined" ){
@@ -87,8 +170,7 @@ function Effectuer_recherche(expressionInput) {
         } else {
             stemQueryMap[word] = word;
         }
-    }
-
+    } 
      //stemmedWordsList is the stemmed list of words separated by spaces.
     for (t in wordsList) {
         wordsList[t] = wordsList[t].replace(/(%22)|^-/g, "")
@@ -107,116 +189,97 @@ function Effectuer_recherche(expressionInput) {
     } else {
         stemmedWordsList = cleanwordsList;
     }
+    return stemmedWordsList;
+}
 
-    //load the scripts with the indices: the following lines do not work on the server. To be corrected
-    /*if (IEBrowser) {
-     scriptsarray = loadTheIndexScripts (scriptLetterTab);
-     } */
-
-    /**
-     * Compare with the indexed words (in the w[] array), and push words that are in it to tempTab.
-     */
-    var tempTab = new Array();
-    for (t in stemmedWordsList) {
-        if (w[stemmedWordsList[t].toString()] == undefined) {
-            txt_wordsnotfound += stemmedWordsList[t] + " ";
-        } else {
-            tempTab.push(stemmedWordsList[t]);
+function cjkTokenize(wordsList){
+    var allTokens= new Array();
+    var notCJKTokens= new Array();
+    var j=0;
+    for(j=0;j<wordsList.length;j++){
+        var word = wordsList[j];
+        if(getAvgAsciiValue(word) < 127){
+            notCJKTokens.push(word);
+        } else { 
+            var tokenizer = new CJKTokenizer(word);
+            var tokensTmp = tokenizer.getAllTokens();
+            allTokens = allTokens.concat(tokensTmp);
         }
     }
-    stemmedWordsList = tempTab;
+    allTokens = allTokens.concat(tokenize(notCJKTokens));
+    return allTokens;
+}
 
-    if (stemmedWordsList.length) {
-
-        // recherche 'et' et 'ou' en une fois
-        fileAndWordList = SortResults(stemmedWordsList);
-
-        cpt = fileAndWordList.length;
-        for (i = cpt - 1; i >= 0; i--) {
-            if (fileAndWordList[i] != undefined) {
-
-                linkTab.push("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">" + fileAndWordList[i][0].motslisteDisplay + "</span>" + "</p>");
-
-                linkTab.push("<ul class='searchresult'>");
-                for (t in fileAndWordList[i]) {
-                    //DEBUG: alert(": "+ fileAndWordList[i][t].filenb+" " +fileAndWordList[i][t].motsliste);
-                    //linkTab.push("<li><a href=\"../"+fl[fileAndWordList[i][t].filenb]+"\">"+fl[fileAndWordList[i][t].filenb]+"</a></li>");
-
-
-                    tempInfo = fil[fileAndWordList[i][t].filenb];
-                    pos1 = tempInfo.indexOf("@@@");
-                    pos2 = tempInfo.lastIndexOf("@@@");
-                    tempPath = tempInfo.substring(0, pos1);
-                    tempTitle = tempInfo.substring(pos1 + 3, pos2);
-                    tempShortdesc = tempInfo.substring(pos2 + 3, tempInfo.length);
-
-                    //file:///home/kasun/docbook/WEBHELP/webhelp-draft-output-format-idea/src/main/resources/web/webhelp/installation.html
-                   var linkString = "<li><a href=" + tempPath + ">" + tempTitle + "</a>";
-                   // var linkString = "<li><a href=\"installation.html\">" + tempTitle + "</a>";
-                    if ((tempShortdesc != "null")) {
-                        linkString += "\n<div class=\"shortdesclink\">" + tempShortdesc + "</div>";
-                    }
-                    linkString += "</li>";
-
-                    linkTab.push(linkString);
-
-                }
-                linkTab.push("</ul>");
-            }
-        }
+//A simple way to determine whether the query is in english or not.
+function getAvgAsciiValue(word){
+    var tmp = 0;
+    var num = word.length < 5 ? word.length:5;
+    for(i=0;i<num;i++){
+        if(i==5) break;
+        tmp += word.charCodeAt(i);
     }
+    return tmp/num;
+}
 
-    var results="";
-    if (linkTab.length > 0) {
+//CJKTokenizer
+function CJKTokenizer(input){
+    this.input = input;
+    this.offset=-1;
+    this.tokens = new Array(); 
+    this.incrementToken = incrementToken;
+    this.tokenize = tokenize;
+    this.getAllTokens = getAllTokens;
+    this.unique = unique;
 
-        /*writeln ("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">"  + cleanwordsList + "</span>" + "<br/>"+"</p>");*/
-        results = "<p>";
-        //write("<ul class='searchresult'>");
-        for (t in linkTab) {
-            results += linkTab[t].toString();
-        }
-        results += "</p>";
-    } else{
-         results = "<p>"+"Your search returned no results for "+ "<span class=\"searchExpression\">" + txt_wordsnotfound + "</span>" +"</p>";
-    }
-    //alert(results);
+    function incrementToken(){
+		if(this.input.length - 2 <= this.offset){
+		//	console.log("false "+offset);
+			return false;
+		}
+		else {
+			this.offset+=1;
+			return true;
+		}
+	}
 
-    document.getElementById('searchResults').innerHTML = results;
+	function tokenize(){
+		//document.getElementById("content").innerHTML += x.substring(offset,offset+2)+"<br>";
+		return this.input.substring(this.offset,this.offset+2);
+	}
 
-    /* Display results * /
-     with (parent.frames['searchresults'].document) {
-     writeln("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n<html><head>");
-     writeln("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">");
-     //writeln("<link href=\"css/commonltr.css\" type=\"text/css\" rel=\"stylesheet\">" );
-     //writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/search.css\">") ;
-     writeln("<style>body{\
-     font-family: verdana, sans-serif;\
-     font-size: .7em;\
-     background: #f3f3f3; }\
-     .searchExpression{ font-weight: bold;}</style>") ;
-     writeln("<title>"+txt_filesfound+"</title></head>");
-     writeln("<body onload = \"self.focus()\">");
-     //writeln("<h2>" + txt_search_result + " " + "<i>" + wordsList + "</i>" + "</h2>");
+	function getAllTokens(){
+		while(this.incrementToken()){
+			var tmp = this.tokenize();
+			this.tokens.push(tmp);
+		}
+		var sortedTokens = this.unique(this.tokens);
 
-     // If no results, display a message
-     if ( txt_wordsnotfound != "" ) {writeln("<p>"+"Your search returned no results for "+ "<span class=\"searchExpression\">" + txt_wordsnotfound + "</span>" +"</p>")}
+        return sortedTokens;    
+//		document.getElementById("content").innerHTML += tokens+" ";
+//		document.getElementById("content").innerHTML += "<br>dada"+sortedTokens+" ";
+//		console.log(tokens.length+"dsdsds");
+		/*for(i=0;i<tokens.length;i++){
+			console.log(tokens[i]);
+			var ss = tokens[i] == sortedTokens[i];
 
-     // If results: display them
-     if (linkTab.length > 0  ) {
+//			document.getElementById("content").innerHTML += "<br>dada"+un[i]+"- "+stems[i]+"&nbsp;&nbsp;&nbsp;"+ ss;
+			document.getElementById("content").innerHTML += "<br>"+sortedTokens[i];
+		}*/
+	}
 
-     /*writeln ("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">"  + cleanwordsList + "</span>" + "<br/>"+"</p>");* /
-     write("<p>");
-     //write("<ul class='searchresult'>");
-     for (t in linkTab) {
-     writeln(linkTab[t].toString())
-     }
-     writeln("</p>");
-     }
-
-     writeln ("</body></html>");
-     close() ;
-
-     }   */
+	function unique(a)
+	{
+	   var r = new Array();
+	   o:for(var i = 0, n = a.length; i < n; i++)
+	   {
+	      for(var x = 0, y = r.length; x < y; x++)
+	      {
+		 if(r[x]==a[i]) continue o;
+	      }
+	      r[r.length] = a[i];
+	   }
+	   return r;
+	} 
 }
 
 
@@ -316,9 +379,10 @@ function onScriptLoadedFunc(e) {
     }
 }
 
+/*
 function onLoadComplete() {
     alert("loaded !!");
-}
+} */
 
 /* End of scriptloader functions */
 
@@ -413,7 +477,11 @@ function SortResults(mots) {
 
         var tempDisplay = new Array();
         for (var x in tab) {
-            tempDisplay.push(stemQueryMap[tab[x]]); //get the original word from the stem word.
+            if(stemQueryMap[tab[x]] != undefined){
+                tempDisplay.push(stemQueryMap[tab[x]]); //get the original word from the stem word.
+            } else {
+                tempDisplay.push(tab[x]); //no stem is available. (probably a CJK language)
+            }
         }
         var tempDispString = tempDisplay.join(", ");
 
