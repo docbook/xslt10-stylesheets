@@ -3,7 +3,7 @@
 
 /********************************/
 /* start of styles in block.xsl */
-/********************************/
+
 .formalpara-title {
   font-weight: bold;
 }
@@ -44,17 +44,66 @@ span.msgexplan-title {
   font-weight: bold;
 }
 
-/********************************/
 /* end of styles in block.xsl */
 /********************************/
 
 /********************************/
 /* start of styles in autotoc.xsl */
-/********************************/
-div.toc-title {
+
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 
+
+/* end of styles in autotoc.xsl */
+/********************************/
+
+/********************************/
+/* start of styles in formal.xsl */
+
+div.figure-title {
+  font-weight: bold;
+}
+
+div.example-title {
+  font-weight: bold;
+}
+
+div.equation-title {
+  font-weight: bold;
+}
+
+div.table-title {
+  font-weight: bold;
+}
+
+div.sidebar-title {
+  font-weight: bold;
+}
+
+
+/* end of styles in formal.xsl */
+/********************************/
+
+/********************************/
+/* start of styles in verbatim.xsl */
+
+div.programlisting {
+  white-space: pre;
+  font-family: monospace;
+}
+
+div.screen {
+  white-space: pre;
+  font-family: monospace;
+}
+
+div.synopsis {
+  white-space: pre;
+  font-family: monospace;
+}
+
+/* end of styles in verbatim.xsl */
+/********************************/
 </style>
