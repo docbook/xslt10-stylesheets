@@ -240,7 +240,7 @@
         </listitem>
 
         <listitem>
-          <para>Improve the support for Japanese and Chinese.</para>
+          <para>[DONE] Improve the support for Japanese and Chinese.</para>
         </listitem>
 
         <listitem>
@@ -447,9 +447,11 @@
 
           <itemizedlist>
             <listitem>
-              <para>Download the <ulink
-              url="http://www.thingbag.net/docbook/gsoc2010/webhelp-gsoc2010-beta.zip">beta
-              version of the package</ulink>.</para>
+              <para>Download the beta version of the package: <ulink
+              url="http://www.thingbag.net/docbook/gsoc2010/webhelp-gsoc2010-beta.zip">for
+              DocBook 4.x</ulink> or <ulink
+              url="http://www.thingbag.net/docbook/gsoc2010/webhelp-gsoc2010-beta.zip">for
+              DocBook 5.x</ulink>.</para>
             </listitem>
 
             <listitem>
@@ -546,6 +548,9 @@ docbook-xsl-catalog=c:/gsoc2010/docbook-xsl-1.75.2/catalog.xml
 # a DocBook 4.5 document and uncomment the line validate=true.
 # Alternatively, you can list the DTD's catalog file in your
 # CatalogManager.properties file.
+# Note that the DTD is not releavant for DocBook 5.x ant
+# you must set validate=false for 5.x (validation 
+# is not yet included in the build file for 5.x).
 docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
 #docbookx.dtd=file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/defguide/en/schema/docbookx.dtd
 validate=true
