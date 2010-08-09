@@ -19,6 +19,9 @@
 
      ******************************************************************** -->
 
+<xsl:key name="glossentries" match="glossentry" use="normalize-space(glossterm)"/>
+<xsl:key name="glossentries" match="glossentry" use="normalize-space(glossterm/@baseform)"/>
+
 <xsl:template name="simple.xlink">
   <xsl:param name="node" select="."/>
   <xsl:param name="content">
@@ -842,9 +845,7 @@
       </xsl:variable>
 
       <xsl:variable name="targets"
-                    select="//glossentry[normalize-space(glossterm)=$term
-                            or normalize-space(glossterm/@baseform)=$term]"/>
-
+                    select="key('glossentries', $term)"/>
       <xsl:variable name="target" select="$targets[1]"/>
 
       <xsl:choose>
