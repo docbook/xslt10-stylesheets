@@ -24,7 +24,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="ancestor::tgroup">
+    <xsl:when test="ancestor::table or ancestor::informaltable">
       <sup>
         <xsl:text>[</xsl:text>
         <a name="{$name}" href="{$href}">
@@ -87,7 +87,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
     <xsl:when test="string-length(@label) != 0">
       <xsl:value-of select="@label"/>
     </xsl:when>
-    <xsl:when test="ancestor::tgroup">
+    <xsl:when test="ancestor::table or ancestor::informaltable">
       <xsl:variable name="tfnum">
         <xsl:number level="any" from="table|informaltable" format="1"/>
       </xsl:variable>
@@ -97,14 +97,15 @@ linkend/id: <xsl:value-of select="@linkend"/>
           <xsl:value-of select="substring($table.footnote.number.symbols, $tfnum, 1)"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:number level="any" from="tgroup"
+          <xsl:number level="any" from="table | informaltable"
                       format="{$table.footnote.number.format}"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="pfoot" select="preceding::footnote[not(@label)]"/>
-      <xsl:variable name="ptfoot" select="preceding::tgroup//footnote"/>
+      <xsl:variable name="ptfoot" select="preceding::table//footnote |
+                                          preceding::informaltable//footnote"/>
       <xsl:variable name="fnum" select="count($pfoot) - count($ptfoot) + 1"/>
 
       <xsl:choose>
@@ -239,7 +240,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
 <xsl:template name="process.footnotes">
   <xsl:variable name="footnotes" select=".//footnote"/>
   <xsl:variable name="table.footnotes"
-                select=".//tgroup//footnote"/>
+                select=".//table//footnote | .//informaltable//footnote"/>
 
   <!-- Only bother to do this if there's at least one non-table footnote -->
   <xsl:if test="count($footnotes)>count($table.footnotes)">
@@ -301,7 +302,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="tgroup//footnote"
+<xsl:template match="table//footnote | informaltable//footnote"
               mode="process.footnote.mode">
 </xsl:template>
 
