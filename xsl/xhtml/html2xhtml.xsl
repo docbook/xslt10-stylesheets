@@ -3,7 +3,7 @@
                 xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:saxon="http://icl.com/saxon"
-                exclude-result-prefixes="exsl"
+                exclude-result-prefixes="exsl saxon"
                 version="1.0">
 
 <xsl:include href="../lib/lib.xsl"/>
