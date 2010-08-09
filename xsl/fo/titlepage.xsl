@@ -234,15 +234,22 @@
 <xsl:template match="author" mode="titlepage.mode">
   <fo:block>
     <xsl:call-template name="anchor"/>
-    <xsl:call-template name="person.name"/>
-    <xsl:if test="affiliation/orgname">
-      <xsl:text>, </xsl:text>
-      <xsl:apply-templates select="affiliation/orgname" mode="titlepage.mode"/>
-    </xsl:if>
-    <xsl:if test="email|affiliation/address/email">
-      <xsl:text> </xsl:text>
-      <xsl:apply-templates select="(email|affiliation/address/email)[1]"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="orgname">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name"/>
+        <xsl:if test="affiliation/orgname">
+          <xsl:text>, </xsl:text>
+          <xsl:apply-templates select="affiliation/orgname" mode="titlepage.mode"/>
+        </xsl:if>
+        <xsl:if test="email|affiliation/address/email">
+          <xsl:text> </xsl:text>
+          <xsl:apply-templates select="(email|affiliation/address/email)[1]"/>
+        </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:block>
 </xsl:template>
 
