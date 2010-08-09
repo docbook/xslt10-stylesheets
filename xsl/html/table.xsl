@@ -700,6 +700,12 @@
     <xsl:choose>
       <xsl:when test="ancestor::thead">th</xsl:when>
       <xsl:when test="ancestor::tfoot">th</xsl:when>
+      <xsl:when test="ancestor::tbody and 
+                      (ancestor::table[@rowheader = 'firstcol'] or
+                      ancestor::informaltable[@rowheader = 'firstcol']) and
+                      ancestor-or-self::entry[1][count(preceding-sibling::entry) = 0]">
+        <xsl:text>th</xsl:text>
+      </xsl:when>
       <xsl:otherwise>td</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
