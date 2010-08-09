@@ -90,11 +90,22 @@
     </xsl:apply-templates>
   </xsl:param>
 
-  <p class="title">
-    <b>
-      <xsl:copy-of select="$title"/>
-    </b>
-  </p>
+
+  <xsl:choose>
+    <xsl:when test="$make.clean.html != 0">
+      <xsl:variable name="html.class" select="concat(local-name($object),'-title')"/>
+      <div class="{$html.class}">
+        <xsl:copy-of select="$title"/>
+      </div>
+    </xsl:when>
+    <xsl:otherwise>
+      <p class="title">
+        <b>
+          <xsl:copy-of select="$title"/>
+        </b>
+      </p>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="informal.object">
