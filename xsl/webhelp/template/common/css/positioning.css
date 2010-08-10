@@ -1,13 +1,13 @@
 body { font: 12px Verdana, Geneva, sans-serif; }
 p, ul, ol, li { font: 10pt Verdana, Geneva, sans-serif; }
-h1 { font: bold 15pt Arial, Helvetica, geneva; } 
+h1 { font: bold 15pt Arial, Helvetica, geneva; }
 h2 { font: bold 14pt Arial, Helvetica, geneva; }
 
 #header {
-    background: white url(../images/gov-header-bg.gif) repeat-x;
+    background: white url(../images/header-bg.gif) repeat-x;
     position: fixed;
     width: 100%;
-    height: 90px;
+    height: 95px;
     top: 0;
     right: 0;
     bottom: auto;
@@ -46,9 +46,15 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     min-width:800px;
 }
 
+#navheader {
+    position: fixed;
+    top: 65px;
+    right:4px;
+}
+
 #content h1, #content h2 { color: #cc0000; }
 .navfooter { bottom: 2%; }
-.highlight { background-color: #FFFF88; }
+.highlight { background-color: #c5d3c3; }
 .highlightButton{ font-size: 0; }
 
 /*  Show Hide TOC tree */
@@ -66,7 +72,7 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     display: block;
     font-size: 0;
     cursor: pointer;
-} 
+}
 
 /* Search results Styling */
 .searchExpression {

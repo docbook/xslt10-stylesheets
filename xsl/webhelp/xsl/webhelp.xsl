@@ -187,20 +187,7 @@
     </xsl:template>
 
     <xsl:template name="user.header.content">
-        <table>
-            <tr>
-                <td style="height: 28px; width: 16px;">
-                    <a id="showHideButton" onclick="showHideToc();"
-                       class="pointLeft" title="Hide TOC tree" style="padding-top:3px; padding-bottom:3px;">.
-                    </a>
-                </td>
-                <td>
-                    <input type="button" id="showHideHighlight"
-                           style="display:none;padding-top:3px; padding-bottom:3px;"
-                           class="highlightButton" value="H" onclick="toggleHighlight();"/>
-                </td>
-            </tr>
-        </table>
+        <xsl:comment> <!-- KEEP this code. --> </xsl:comment>
     </xsl:template>
 
     <xsl:template name="user.footer.navigation">
@@ -317,64 +304,82 @@
             <!-- Prev and Next links generation-->
             <div id="navheader" align="right">
                 <xsl:comment>
-                    <!-- keep this code. In case of neither prev nor next links are available, this will help to
+                    <!-- KEEP this code. In case of neither prev nor next links are available, this will help to
                     keep the integrity of the DOM tree-->
                 </xsl:comment>
                 <!--xsl:with-param name="prev" select="$prev"/>
                 <xsl:with-param name="next" select="$next"/>
                 <xsl:with-param name="nav.context" select="$nav.context"/-->
-                <xsl:if test="count($prev) &gt; 0
-                                or (count($up) &gt; 0
-                                    and generate-id($up) != generate-id($home)
-                                    and $navig.showtitles != 0)
-                                or count($next) &gt; 0">
-                    <xsl:if test="count($prev)>0">
-                        <a accesskey="p">
-                            <xsl:attribute name="href">
-                                <xsl:call-template name="href.target">
-                                    <xsl:with-param name="object" select="$prev"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                            <xsl:call-template name="navig.content">
-                                <xsl:with-param name="direction" select="'prev'"/>
-                            </xsl:call-template>
-                        </a>
-                    </xsl:if>
-
-                    <!-- "Up" link-->
-                    <xsl:choose>
-                        <xsl:when test="count($up)&gt;0
-                                  and generate-id($up) != generate-id($home)">
-                            |
-                            <a accesskey="u">
-                                <xsl:attribute name="href">
-                                    <xsl:call-template name="href.target">
-                                        <xsl:with-param name="object" select="$up"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                                <xsl:call-template name="navig.content">
-                                    <xsl:with-param name="direction" select="'up'"/>
-                                </xsl:call-template>
+                <table>
+                    <tr>
+                        <td style="height: 28px; width: 16px;">
+                            <a id="showHideButton" onclick="showHideToc();"
+                               class="pointLeft" title="Hide TOC tree">.
                             </a>
-                        </xsl:when>
-                        <xsl:otherwise>&#160;</xsl:otherwise>
-                    </xsl:choose>
+                        </td>
+                        <td>
+                            <img src="../common/images/highlight-blue.gif" alt="H" height="25px"
+                                 onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer"/>
+                        </td>
+                        <xsl:if test="count($prev) &gt; 0
+                                        or (count($up) &gt; 0
+                                        and generate-id($up) != generate-id($home)
+                                        and $navig.showtitles != 0)
+                                        or count($next) &gt; 0">
+                            <td>
+                                <xsl:if test="count($prev)>0">
+                                    <a accesskey="p">
+                                        <xsl:attribute name="href">
+                                            <xsl:call-template name="href.target">
+                                                <xsl:with-param name="object" select="$prev"/>
+                                            </xsl:call-template>
+                                        </xsl:attribute>
+                                        <xsl:call-template name="navig.content">
+                                            <xsl:with-param name="direction" select="'prev'"/>
+                                        </xsl:call-template>
+                                    </a>
+                                </xsl:if>
+
+                                <!-- "Up" link-->
+                                <xsl:choose>
+                                    <xsl:when test="count($up)&gt;0
+                                              and generate-id($up) != generate-id($home)">
+                                        |
+                                        <a accesskey="u">
+                                            <xsl:attribute name="href">
+                                                <xsl:call-template name="href.target">
+                                                    <xsl:with-param name="object" select="$up"/>
+                                                </xsl:call-template>
+                                            </xsl:attribute>
+                                            <xsl:call-template name="navig.content">
+                                                <xsl:with-param name="direction" select="'up'"/>
+                                            </xsl:call-template>
+                                        </a>
+                                    </xsl:when>
+                                    <xsl:otherwise>&#160;</xsl:otherwise>
+                                </xsl:choose>
+                                
+                                <xsl:if test="count($next)>0">
+                                    |
+                                    <a accesskey="n">
+                                        <xsl:attribute name="href">
+                                            <xsl:call-template name="href.target">
+                                                <xsl:with-param name="object" select="$next"/>
+                                            </xsl:call-template>
+                                        </xsl:attribute>
+                                        <xsl:call-template name="navig.content">
+                                            <xsl:with-param name="direction" select="'next'"/>
+                                        </xsl:call-template>
+                                    </a>
+                                </xsl:if>
+                            </td>
+                        </xsl:if>
+
+                    </tr>
+                </table>
 
 
-                    <xsl:if test="count($next)>0">
-                        |
-                        <a accesskey="n">
-                            <xsl:attribute name="href">
-                                <xsl:call-template name="href.target">
-                                    <xsl:with-param name="object" select="$next"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                            <xsl:call-template name="navig.content">
-                                <xsl:with-param name="direction" select="'next'"/>
-                            </xsl:call-template>
-                        </a>
-                    </xsl:if>
-                </xsl:if>
+
             </div>
 
         </div>
@@ -487,6 +492,7 @@
                                                 <center>
                                                     <input id="textToSearch" name="textToSearch" type="text"
                                                            class="searchText"/>
+                                                    <xsl:text disable-output-escaping="yes"> <![CDATA[&nbsp;]]> </xsl:text>
                                                     <input onclick="Verifie(ditaSearch_Form)" type="button"
                                                            class="searchButton"
                                                            value="Go" id="doSearch"/>
@@ -616,12 +622,15 @@
             <xsl:with-param name="content">
                 <html>
                     <head>
-			<link rel="shortcut icon" href="favicon.ico"/>
-                        <meta http-equiv="Refresh" content="0; URL=content/ch01.html"/>
+			            <link rel="shortcut icon" href="favicon.ico"/>
+                        <meta http-equiv="Refresh" content="1; URL=content/ch01.html"/>
                         <title><xsl:value-of select="//title[1]"/>&#160;
                         </title>
                         <!-- Call template "metatags" to add copyright and date meta tags:  -->
                     </head>
+                    <body>
+                        If not automatically redirected, click here: <a href="content/ch01.html">content/ch01.html</a>
+                    </body>
                 </html>
             </xsl:with-param>
         </xsl:call-template>

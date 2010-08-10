@@ -2,6 +2,7 @@
 
 package com.nexwave.stemmer.snowball;
 import com.nexwave.stemmer.snowball.ext.EnglishStemmer;
+import com.nexwave.stemmer.snowball.ext.frenchStemmer;
 
 public class TestApp {
     private static void usage()
@@ -18,7 +19,7 @@ public class TestApp {
 	Class stemClass = Class.forName("com.nexwave.stemmer.snowball.ext." +
 					args[0] + "Stemmer");*/
     //    SnowballStemmer stemmer = (SnowballStemmer) stemClass.newInstance();
-        SnowballStemmer stemmer =new EnglishStemmer();//= new GermanStemmer();
+        SnowballStemmer stemmer = new frenchStemmer();//new EnglishStemmer();//= new GermanStemmer();
 
         StringBuffer input = new StringBuffer();
 	/*Reader reader;
@@ -48,7 +49,9 @@ public class TestApp {
 	}*/
 
 	Object [] emptyArgs = new Object[0];
-    char[] charArr = "testing runnable dogs ".toCharArray();    
+    //char[] charArr = "testing runnable dogs ".toCharArray();
+    char[] charArr = "complément ,é compliment, compliments , condiments ,".toCharArray();
+//char[] charArr = "complément , c: compl s:complé compliment, c: compl s:compli compliments, c: compl s:compli condiments, c: cond s:condi".toCharArray();
 //	int character;
 	for (char ch : charArr) {
         //    char ch = (char) character;
@@ -58,7 +61,7 @@ public class TestApp {
 
                 stemmer.stem();
 
-                System.out.print(stemmer.getCurrent()+" ");
+                System.out.print(stemmer.getCurrent()+".");
               /*  output.write(stemmer.getCurrent());
                 output.write('\n');*/
                 input.delete(0, input.length());

@@ -6,7 +6,7 @@
  */
 
 $(document).ready(function() {  
-    $("#showHideHighlight").button(); //add jquery button styling to 'Go' button
+  //  $("#showHideHighlight").button(); //add jquery button styling to 'Go' button
     //Generate tabs in nav-pane with JQuery
     $(function() {
             $("#tabs").tabs({
