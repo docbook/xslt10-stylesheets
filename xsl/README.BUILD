@@ -46,7 +46,7 @@ contributions welcome...
 
    - xsltproc and xmllint
    - egrep and sed
-   - Perl and the XML::Path module
+   - Perl and the XML::XPath module
    - Java and Apache ant (for building the extension jar files)
 
    And if you want to build with Saxon instead of xsltproc:
