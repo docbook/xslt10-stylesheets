@@ -1,20 +1,72 @@
-How to run the tests?
+EPUB Output Test Suite
+======================
 
-0. Checkout https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/testdocs somewhere, 
-   and set and environment variable, $DOCBOOK_SVN, to point to the parent directory
-1. Have an 'epubcheck' shell command in your PATH that invokes the epubcheck Java utility   
-2. Get RSpec http://rspec.info/ version=~1.1
-3. Do this:
+The DocBook-XSL EPUB output is backed by an extensive automated test suite. It
+includes regression tests (epub_regressions_spec.rb), feature tests
+(epub_spec.rb), a test of "real" book-length content (epub_realbook_spec.rb),
+and a huge set of "smoke" tests, which check that *every* document in the
+DocBook test document repository can create a valid EPUB (currently at 90%+
+success).
 
-  $ cd epub/bin
-  $ spec spec/epub_spec.rb 
+Anyone considering developing, refactoring, or enhancing the EPUB output should
+run these tests before submitted changes to SVN. The test suite may also help
+improve bug reports.
+
+The tests were written in Ruby using RSpec.
+
+
+Prerequisites
+-------------
+
+The EPUB test suite requires the following software be installed and in your
+PATH (or equivalent for Windows):
+
+* xsltproc
+* ruby 1.8+
+* rspec (version=~1.1) http://rspec.info
+* zip
+* java
+* epubcheck (1.0.5+) http://code.google.com/p/epubcheck/
+  Note: a standalone epubcheck command is just a shell script or .bat as:
+
+  epubcheck (Linux/Mac), chmod 775'd:
+    #!/bin/sh
+    java -jar /path/to/epubcheck-1.0.5.jar $@ # Linux/Mac
+
+  epubcheck.bar (Windows):
+    java -jar "/path/to/epubcheck-1.0.5.jar" %1 
+
+
+Environment
+-----------
+
+Before running the test suite you must check out (all of) 
+https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/ and set the
+environment variable DOCBOOK_SVN to the location of the checkout.
+
+
+Running tests
+-------------
+
+    $ cd epub/bin
+    $ spec spec/epub_spec.rb 
+    # ditto with the other *_spec.rb
 
 Or, prettier:
 
-  $ cd epub/bin
-  $ spec --format specdoc --color spec/epub_spec.rb 
+    $ cd epub/bin
+    $ spec --format specdoc --color spec/epub_spec.rb 
 
-4. Repeat for other files in spec/*spec.rb
 
-How to make them more verbose?
-1. Set $DEBUG to true (near the top of each spec)
+The tests verbosity can be increased by seting $DEBUG to true (near the top of
+each spec file)
+
+
+Windows notes
+-------------
+
+Installing xsltproc can be trying. Please refer to http://www.sagehill.net/docbookxsl/InstallingAProcessor.html.
+
+The other dependencies should be (relatively) straightforward.
+
+You may have to "Unblock" the .dll and .jar files you downloaded in the File Properties (System) on some versions.
