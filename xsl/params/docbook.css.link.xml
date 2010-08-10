@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="docbook.css.link.frag">
-<xsl:param name="docbook.css.link" select="0"/>
+<xsl:param name="docbook.css.link" select="1"/>
 </src:fragment>
 </refsynopsisdiv>
 
