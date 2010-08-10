@@ -12,6 +12,7 @@ import com.nexwave.nsidita.DocFileInfo;
 //Stemmers
 import com.nexwave.stemmer.snowball.SnowballStemmer;
 import com.nexwave.stemmer.snowball.ext.EnglishStemmer;
+import com.nexwave.stemmer.snowball.ext.FrenchStemmer;
 import com.nexwave.stemmer.snowball.ext.GermanStemmer;
 
 //CJK Tokenizing
@@ -128,6 +129,8 @@ public class SaxHTMLIndex extends SaxDocFileParser{
                  stemmer = new EnglishStemmer();
             } else if (indexerLanguage.equalsIgnoreCase("de")){
                 stemmer= new GermanStemmer();
+            } else if (indexerLanguage.equalsIgnoreCase("fr")){
+                stemmer= new FrenchStemmer();
             } else {
                 stemmer = null;//Languages which stemming is not yet supproted.So, No stemmers will be used.
             }

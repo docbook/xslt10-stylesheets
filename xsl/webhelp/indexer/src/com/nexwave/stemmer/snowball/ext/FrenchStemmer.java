@@ -9,181 +9,181 @@ import com.nexwave.stemmer.snowball.Among;
   * It implements the stemming algorithm defined by a snowball script.
   */
 
-public class frenchStemmer extends com.nexwave.stemmer.snowball.SnowballStemmer {
+public class FrenchStemmer extends com.nexwave.stemmer.snowball.SnowballStemmer {
 
 private static final long serialVersionUID = 1L;
 
-        private final static frenchStemmer methodObject = new frenchStemmer ();
+        private final static FrenchStemmer METHOD_OBJECT = new FrenchStemmer();
 
                 private final static Among a_0[] = {
-                    new Among ( "col", -1, -1, "", methodObject ),
-                    new Among ( "par", -1, -1, "", methodObject ),
-                    new Among ( "tap", -1, -1, "", methodObject )
+                    new Among ( "col", -1, -1, "", METHOD_OBJECT),
+                    new Among ( "par", -1, -1, "", METHOD_OBJECT),
+                    new Among ( "tap", -1, -1, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_1[] = {
-                    new Among ( "", -1, 4, "", methodObject ),
-                    new Among ( "I", 0, 1, "", methodObject ),
-                    new Among ( "U", 0, 2, "", methodObject ),
-                    new Among ( "Y", 0, 3, "", methodObject )
+                    new Among ( "", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "I", 0, 1, "", METHOD_OBJECT),
+                    new Among ( "U", 0, 2, "", METHOD_OBJECT),
+                    new Among ( "Y", 0, 3, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_2[] = {
-                    new Among ( "iqU", -1, 3, "", methodObject ),
-                    new Among ( "abl", -1, 3, "", methodObject ),
-                    new Among ( "I\u00E8r", -1, 4, "", methodObject ),
-                    new Among ( "i\u00E8r", -1, 4, "", methodObject ),
-                    new Among ( "eus", -1, 2, "", methodObject ),
-                    new Among ( "iv", -1, 1, "", methodObject )
+                    new Among ( "iqU", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "abl", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "I\u00E8r", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "i\u00E8r", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "eus", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "iv", -1, 1, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_3[] = {
-                    new Among ( "ic", -1, 2, "", methodObject ),
-                    new Among ( "abil", -1, 1, "", methodObject ),
-                    new Among ( "iv", -1, 3, "", methodObject )
+                    new Among ( "ic", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "abil", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "iv", -1, 3, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_4[] = {
-                    new Among ( "iqUe", -1, 1, "", methodObject ),
-                    new Among ( "atrice", -1, 2, "", methodObject ),
-                    new Among ( "ance", -1, 1, "", methodObject ),
-                    new Among ( "ence", -1, 5, "", methodObject ),
-                    new Among ( "logie", -1, 3, "", methodObject ),
-                    new Among ( "able", -1, 1, "", methodObject ),
-                    new Among ( "isme", -1, 1, "", methodObject ),
-                    new Among ( "euse", -1, 11, "", methodObject ),
-                    new Among ( "iste", -1, 1, "", methodObject ),
-                    new Among ( "ive", -1, 8, "", methodObject ),
-                    new Among ( "if", -1, 8, "", methodObject ),
-                    new Among ( "usion", -1, 4, "", methodObject ),
-                    new Among ( "ation", -1, 2, "", methodObject ),
-                    new Among ( "ution", -1, 4, "", methodObject ),
-                    new Among ( "ateur", -1, 2, "", methodObject ),
-                    new Among ( "iqUes", -1, 1, "", methodObject ),
-                    new Among ( "atrices", -1, 2, "", methodObject ),
-                    new Among ( "ances", -1, 1, "", methodObject ),
-                    new Among ( "ences", -1, 5, "", methodObject ),
-                    new Among ( "logies", -1, 3, "", methodObject ),
-                    new Among ( "ables", -1, 1, "", methodObject ),
-                    new Among ( "ismes", -1, 1, "", methodObject ),
-                    new Among ( "euses", -1, 11, "", methodObject ),
-                    new Among ( "istes", -1, 1, "", methodObject ),
-                    new Among ( "ives", -1, 8, "", methodObject ),
-                    new Among ( "ifs", -1, 8, "", methodObject ),
-                    new Among ( "usions", -1, 4, "", methodObject ),
-                    new Among ( "ations", -1, 2, "", methodObject ),
-                    new Among ( "utions", -1, 4, "", methodObject ),
-                    new Among ( "ateurs", -1, 2, "", methodObject ),
-                    new Among ( "ments", -1, 15, "", methodObject ),
-                    new Among ( "ements", 30, 6, "", methodObject ),
-                    new Among ( "issements", 31, 12, "", methodObject ),
-                    new Among ( "it\u00E9s", -1, 7, "", methodObject ),
-                    new Among ( "ment", -1, 15, "", methodObject ),
-                    new Among ( "ement", 34, 6, "", methodObject ),
-                    new Among ( "issement", 35, 12, "", methodObject ),
-                    new Among ( "amment", 34, 13, "", methodObject ),
-                    new Among ( "emment", 34, 14, "", methodObject ),
-                    new Among ( "aux", -1, 10, "", methodObject ),
-                    new Among ( "eaux", 39, 9, "", methodObject ),
-                    new Among ( "eux", -1, 1, "", methodObject ),
-                    new Among ( "it\u00E9", -1, 7, "", methodObject )
+                    new Among ( "iqUe", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "atrice", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ance", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ence", -1, 5, "", METHOD_OBJECT),
+                    new Among ( "logie", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "able", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "isme", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "euse", -1, 11, "", METHOD_OBJECT),
+                    new Among ( "iste", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ive", -1, 8, "", METHOD_OBJECT),
+                    new Among ( "if", -1, 8, "", METHOD_OBJECT),
+                    new Among ( "usion", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "ation", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ution", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "ateur", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "iqUes", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "atrices", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ances", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ences", -1, 5, "", METHOD_OBJECT),
+                    new Among ( "logies", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "ables", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ismes", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "euses", -1, 11, "", METHOD_OBJECT),
+                    new Among ( "istes", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ives", -1, 8, "", METHOD_OBJECT),
+                    new Among ( "ifs", -1, 8, "", METHOD_OBJECT),
+                    new Among ( "usions", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "ations", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "utions", -1, 4, "", METHOD_OBJECT),
+                    new Among ( "ateurs", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ments", -1, 15, "", METHOD_OBJECT),
+                    new Among ( "ements", 30, 6, "", METHOD_OBJECT),
+                    new Among ( "issements", 31, 12, "", METHOD_OBJECT),
+                    new Among ( "it\u00E9s", -1, 7, "", METHOD_OBJECT),
+                    new Among ( "ment", -1, 15, "", METHOD_OBJECT),
+                    new Among ( "ement", 34, 6, "", METHOD_OBJECT),
+                    new Among ( "issement", 35, 12, "", METHOD_OBJECT),
+                    new Among ( "amment", 34, 13, "", METHOD_OBJECT),
+                    new Among ( "emment", 34, 14, "", METHOD_OBJECT),
+                    new Among ( "aux", -1, 10, "", METHOD_OBJECT),
+                    new Among ( "eaux", 39, 9, "", METHOD_OBJECT),
+                    new Among ( "eux", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "it\u00E9", -1, 7, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_5[] = {
-                    new Among ( "ira", -1, 1, "", methodObject ),
-                    new Among ( "ie", -1, 1, "", methodObject ),
-                    new Among ( "isse", -1, 1, "", methodObject ),
-                    new Among ( "issante", -1, 1, "", methodObject ),
-                    new Among ( "i", -1, 1, "", methodObject ),
-                    new Among ( "irai", 4, 1, "", methodObject ),
-                    new Among ( "ir", -1, 1, "", methodObject ),
-                    new Among ( "iras", -1, 1, "", methodObject ),
-                    new Among ( "ies", -1, 1, "", methodObject ),
-                    new Among ( "\u00EEmes", -1, 1, "", methodObject ),
-                    new Among ( "isses", -1, 1, "", methodObject ),
-                    new Among ( "issantes", -1, 1, "", methodObject ),
-                    new Among ( "\u00EEtes", -1, 1, "", methodObject ),
-                    new Among ( "is", -1, 1, "", methodObject ),
-                    new Among ( "irais", 13, 1, "", methodObject ),
-                    new Among ( "issais", 13, 1, "", methodObject ),
-                    new Among ( "irions", -1, 1, "", methodObject ),
-                    new Among ( "issions", -1, 1, "", methodObject ),
-                    new Among ( "irons", -1, 1, "", methodObject ),
-                    new Among ( "issons", -1, 1, "", methodObject ),
-                    new Among ( "issants", -1, 1, "", methodObject ),
-                    new Among ( "it", -1, 1, "", methodObject ),
-                    new Among ( "irait", 21, 1, "", methodObject ),
-                    new Among ( "issait", 21, 1, "", methodObject ),
-                    new Among ( "issant", -1, 1, "", methodObject ),
-                    new Among ( "iraIent", -1, 1, "", methodObject ),
-                    new Among ( "issaIent", -1, 1, "", methodObject ),
-                    new Among ( "irent", -1, 1, "", methodObject ),
-                    new Among ( "issent", -1, 1, "", methodObject ),
-                    new Among ( "iront", -1, 1, "", methodObject ),
-                    new Among ( "\u00EEt", -1, 1, "", methodObject ),
-                    new Among ( "iriez", -1, 1, "", methodObject ),
-                    new Among ( "issiez", -1, 1, "", methodObject ),
-                    new Among ( "irez", -1, 1, "", methodObject ),
-                    new Among ( "issez", -1, 1, "", methodObject )
+                    new Among ( "ira", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ie", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "isse", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issante", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "i", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "irai", 4, 1, "", METHOD_OBJECT),
+                    new Among ( "ir", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "iras", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "ies", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "\u00EEmes", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "isses", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issantes", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "\u00EEtes", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "is", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "irais", 13, 1, "", METHOD_OBJECT),
+                    new Among ( "issais", 13, 1, "", METHOD_OBJECT),
+                    new Among ( "irions", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issions", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "irons", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issons", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issants", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "it", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "irait", 21, 1, "", METHOD_OBJECT),
+                    new Among ( "issait", 21, 1, "", METHOD_OBJECT),
+                    new Among ( "issant", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "iraIent", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issaIent", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "irent", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issent", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "iront", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "\u00EEt", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "iriez", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issiez", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "irez", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "issez", -1, 1, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_6[] = {
-                    new Among ( "a", -1, 3, "", methodObject ),
-                    new Among ( "era", 0, 2, "", methodObject ),
-                    new Among ( "asse", -1, 3, "", methodObject ),
-                    new Among ( "ante", -1, 3, "", methodObject ),
-                    new Among ( "\u00E9e", -1, 2, "", methodObject ),
-                    new Among ( "ai", -1, 3, "", methodObject ),
-                    new Among ( "erai", 5, 2, "", methodObject ),
-                    new Among ( "er", -1, 2, "", methodObject ),
-                    new Among ( "as", -1, 3, "", methodObject ),
-                    new Among ( "eras", 8, 2, "", methodObject ),
-                    new Among ( "\u00E2mes", -1, 3, "", methodObject ),
-                    new Among ( "asses", -1, 3, "", methodObject ),
-                    new Among ( "antes", -1, 3, "", methodObject ),
-                    new Among ( "\u00E2tes", -1, 3, "", methodObject ),
-                    new Among ( "\u00E9es", -1, 2, "", methodObject ),
-                    new Among ( "ais", -1, 3, "", methodObject ),
-                    new Among ( "erais", 15, 2, "", methodObject ),
-                    new Among ( "ions", -1, 1, "", methodObject ),
-                    new Among ( "erions", 17, 2, "", methodObject ),
-                    new Among ( "assions", 17, 3, "", methodObject ),
-                    new Among ( "erons", -1, 2, "", methodObject ),
-                    new Among ( "ants", -1, 3, "", methodObject ),
-                    new Among ( "\u00E9s", -1, 2, "", methodObject ),
-                    new Among ( "ait", -1, 3, "", methodObject ),
-                    new Among ( "erait", 23, 2, "", methodObject ),
-                    new Among ( "ant", -1, 3, "", methodObject ),
-                    new Among ( "aIent", -1, 3, "", methodObject ),
-                    new Among ( "eraIent", 26, 2, "", methodObject ),
-                    new Among ( "\u00E8rent", -1, 2, "", methodObject ),
-                    new Among ( "assent", -1, 3, "", methodObject ),
-                    new Among ( "eront", -1, 2, "", methodObject ),
-                    new Among ( "\u00E2t", -1, 3, "", methodObject ),
-                    new Among ( "ez", -1, 2, "", methodObject ),
-                    new Among ( "iez", 32, 2, "", methodObject ),
-                    new Among ( "eriez", 33, 2, "", methodObject ),
-                    new Among ( "assiez", 33, 3, "", methodObject ),
-                    new Among ( "erez", 32, 2, "", methodObject ),
-                    new Among ( "\u00E9", -1, 2, "", methodObject )
+                    new Among ( "a", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "era", 0, 2, "", METHOD_OBJECT),
+                    new Among ( "asse", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "ante", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "\u00E9e", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ai", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "erai", 5, 2, "", METHOD_OBJECT),
+                    new Among ( "er", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "as", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "eras", 8, 2, "", METHOD_OBJECT),
+                    new Among ( "\u00E2mes", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "asses", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "antes", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "\u00E2tes", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "\u00E9es", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ais", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "erais", 15, 2, "", METHOD_OBJECT),
+                    new Among ( "ions", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "erions", 17, 2, "", METHOD_OBJECT),
+                    new Among ( "assions", 17, 3, "", METHOD_OBJECT),
+                    new Among ( "erons", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ants", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "\u00E9s", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ait", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "erait", 23, 2, "", METHOD_OBJECT),
+                    new Among ( "ant", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "aIent", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "eraIent", 26, 2, "", METHOD_OBJECT),
+                    new Among ( "\u00E8rent", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "assent", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "eront", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "\u00E2t", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "ez", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "iez", 32, 2, "", METHOD_OBJECT),
+                    new Among ( "eriez", 33, 2, "", METHOD_OBJECT),
+                    new Among ( "assiez", 33, 3, "", METHOD_OBJECT),
+                    new Among ( "erez", 32, 2, "", METHOD_OBJECT),
+                    new Among ( "\u00E9", -1, 2, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_7[] = {
-                    new Among ( "e", -1, 3, "", methodObject ),
-                    new Among ( "I\u00E8re", 0, 2, "", methodObject ),
-                    new Among ( "i\u00E8re", 0, 2, "", methodObject ),
-                    new Among ( "ion", -1, 1, "", methodObject ),
-                    new Among ( "Ier", -1, 2, "", methodObject ),
-                    new Among ( "ier", -1, 2, "", methodObject ),
-                    new Among ( "\u00EB", -1, 4, "", methodObject )
+                    new Among ( "e", -1, 3, "", METHOD_OBJECT),
+                    new Among ( "I\u00E8re", 0, 2, "", METHOD_OBJECT),
+                    new Among ( "i\u00E8re", 0, 2, "", METHOD_OBJECT),
+                    new Among ( "ion", -1, 1, "", METHOD_OBJECT),
+                    new Among ( "Ier", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "ier", -1, 2, "", METHOD_OBJECT),
+                    new Among ( "\u00EB", -1, 4, "", METHOD_OBJECT)
                 };
 
                 private final static Among a_8[] = {
-                    new Among ( "ell", -1, -1, "", methodObject ),
-                    new Among ( "eill", -1, -1, "", methodObject ),
-                    new Among ( "enn", -1, -1, "", methodObject ),
-                    new Among ( "onn", -1, -1, "", methodObject ),
-                    new Among ( "ett", -1, -1, "", methodObject )
+                    new Among ( "ell", -1, -1, "", METHOD_OBJECT),
+                    new Among ( "eill", -1, -1, "", METHOD_OBJECT),
+                    new Among ( "enn", -1, -1, "", METHOD_OBJECT),
+                    new Among ( "onn", -1, -1, "", METHOD_OBJECT),
+                    new Among ( "ett", -1, -1, "", METHOD_OBJECT)
                 };
 
                 private static final char g_v[] = {17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 130, 103, 8, 5 };
@@ -194,7 +194,7 @@ private static final long serialVersionUID = 1L;
         private int I_p1;
         private int I_pV;
 
-                private void copy_from(frenchStemmer other) {
+                private void copy_from(FrenchStemmer other) {
                     I_p2 = other.I_p2;
                     I_p1 = other.I_p1;
                     I_pV = other.I_pV;
@@ -1507,11 +1507,11 @@ private static final long serialVersionUID = 1L;
                 }
 
         public boolean equals( Object o ) {
-            return o instanceof frenchStemmer;
+            return o instanceof FrenchStemmer;
         }
 
         public int hashCode() {
-            return frenchStemmer.class.getName().hashCode();
+            return FrenchStemmer.class.getName().hashCode();
         }
 
 

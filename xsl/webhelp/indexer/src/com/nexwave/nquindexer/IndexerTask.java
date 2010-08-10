@@ -55,8 +55,8 @@ public class IndexerTask{
 
     //supported languages: add new additions to this. don't include country codes to the end such as en_US or en_UK,
     // as stemmers doesn't find a difference between them.
-    private String[] supportedLanguages= {"en", "de", "cn", "ja", "ko"}; //currently extended support available for
-                                                    // English, German, and CJK (Chinese, Japanese, Korean) languages only.
+    private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko"}; //currently extended support available for
+                // English, German, French and CJK (Chinese, Japanese, Korean) languages only.
 
 	// Indexing features: words to remove
 	private ArrayList<String> cleanUpStrings = null;	

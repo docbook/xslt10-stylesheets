@@ -1,8 +1,7 @@
 
 
 package com.nexwave.stemmer.snowball;
-import com.nexwave.stemmer.snowball.ext.EnglishStemmer;
-import com.nexwave.stemmer.snowball.ext.frenchStemmer;
+import com.nexwave.stemmer.snowball.ext.FrenchStemmer;
 
 public class TestApp {
     private static void usage()
@@ -19,7 +18,7 @@ public class TestApp {
 	Class stemClass = Class.forName("com.nexwave.stemmer.snowball.ext." +
 					args[0] + "Stemmer");*/
     //    SnowballStemmer stemmer = (SnowballStemmer) stemClass.newInstance();
-        SnowballStemmer stemmer = new frenchStemmer();//new EnglishStemmer();//= new GermanStemmer();
+        SnowballStemmer stemmer = new FrenchStemmer();//new EnglishStemmer();//= new GermanStemmer();
 
         StringBuffer input = new StringBuffer();
 	/*Reader reader;
