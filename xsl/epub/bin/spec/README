@@ -22,8 +22,9 @@ The EPUB test suite requires the following software be installed and in your
 PATH (or equivalent for Windows):
 
 * xsltproc
+* XML Catalogs for DocBook 4.4 & 4.5 (this can be a pain)
 * ruby 1.8+
-* rspec (version=~1.1) http://rspec.info
+* rspec version=1.1 http://rspec.info (gem install rspec --version 1.1)
 * zip
 * java
 * epubcheck (1.0.5+) http://code.google.com/p/epubcheck/
