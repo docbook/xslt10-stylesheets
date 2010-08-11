@@ -692,7 +692,11 @@
     </xsl:variable>
     <xsl:if test="not(../date)">
       <xsl:element name="dc:date">
-        <xsl:value-of select="$copyright.date"/>
+        <xsl:call-template name="copyright.years">
+          <xsl:with-param name="years" select="year[last()]"/>
+          <xsl:with-param name="print.ranges" select="0"/>
+          <xsl:with-param name="single.year.ranges" select="0"/>
+        </xsl:call-template>
       </xsl:element>
     </xsl:if>
     <xsl:element name="dc:rights">

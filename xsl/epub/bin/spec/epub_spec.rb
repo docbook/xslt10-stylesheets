@@ -170,7 +170,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubinclusiontest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
-      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o #{File.expand_path(@manygraphic_epubfile)}"))
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{File.expand_path(@manygraphic_epubfile)}"))
       raise "Could not unzip #{@manygraphic_epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.*"))
       pdfs_in_glob = glob.find_all {|file| file =~ /\.pdf/i}
@@ -357,6 +357,7 @@ describe DocBook::Epub do
       # include the title, so it should only appear in the part file and the
       # TOC
       files_including_part_title = glob.find_all {|html_file| File.open(html_file).readlines.to_s =~ />[^<]*Part One Title/}
+      p files_including_part_title if $DEBUG
       files_including_part_title.length.should == 2
     rescue => e
       raise e
