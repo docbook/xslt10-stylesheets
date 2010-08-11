@@ -170,7 +170,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubinclusiontest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{File.expand_path(@manygraphic_epubfile)}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o #{File.expand_path(@manygraphic_epubfile)}"))
       raise "Could not unzip #{@manygraphic_epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.*"))
       pdfs_in_glob = glob.find_all {|file| file =~ /\.pdf/i}
@@ -186,7 +186,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
       html_files = Dir.glob(File.join(tmpdir, "**", "*.html"))
       html_links = html_files.find_all {|html_file| File.open(html_file).readlines.to_s =~ /<link [^>]*#{@css_file_base}/}
@@ -202,7 +202,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubcssfiletest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
       css_files = Dir.glob(File.join(tmpdir, "**", "*.css"))
       css_files.should_not be_empty
@@ -217,7 +217,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       opf_links = opf_files.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /<(opf:item|item) [^>]*#{@css_file_base}/}
@@ -233,7 +233,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubfontman"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
 
@@ -252,7 +252,7 @@ describe DocBook::Epub do
     begin
       tmpdir = File.join(Dir::tmpdir(), "epubfontbundle"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{@css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
       @embedded_fonts.each {|font|
         font_files = Dir.glob(File.join(tmpdir, "**", File.basename(font)))
@@ -278,7 +278,7 @@ describe DocBook::Epub do
       epub.render_to_file(epubfile, $DEBUG)
       FileUtils.copy(epubfile, ".h1c.epub") if $DEBUG
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{epubfile}"))
       raise "Could not unzip #{epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.html"))
       glob.each {|html_file| 
@@ -302,7 +302,7 @@ describe DocBook::Epub do
       epub.render_to_file(epubfile, $DEBUG)
       FileUtils.copy(epubfile, ".h1c2.epub") if $DEBUG
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{epubfile}"))
       raise "Could not unzip #{epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.html"))
       glob.each {|html_file| 
@@ -326,7 +326,7 @@ describe DocBook::Epub do
       epub.render_to_file(epubfile, $DEBUG)
       FileUtils.copy(epubfile, ".tcl.epub") if $DEBUG
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{epubfile}"))
       raise "Could not unzip #{epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       toc_links = glob.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /type=["']toc["']/}
@@ -350,7 +350,7 @@ describe DocBook::Epub do
       epub.render_to_file(epubfile, $DEBUG)
       FileUtils.copy(epubfile, ".cust.epub") if $DEBUG
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{epubfile}"))
       raise "Could not unzip #{epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.html")) 
       # The customization layer changes the style of cross references to _not_

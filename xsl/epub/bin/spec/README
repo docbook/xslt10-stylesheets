@@ -25,7 +25,7 @@ PATH (or equivalent for Windows):
 * XML Catalogs for DocBook 4.4 & 4.5 (this can be a pain)
 * ruby 1.8+
 * rspec version=1.1 http://rspec.info (gem install rspec --version 1.1)
-* zip
+* zip & unzip
 * java
 * epubcheck (1.0.5+) http://code.google.com/p/epubcheck/
   Note: a standalone epubcheck command is just a shell script or .bat as:

@@ -34,7 +34,7 @@ describe DocBook::Epub do
     FileUtils.copy(epub_file, "./.t.epub") if $DEBUG
 
     itemref_tmpdir = File.join(Dir::tmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
-    system("unzip -q -o -d #{itemref_tmpdir} #{epub_file}")
+    system(%Q(unzip -q -o -d "#{itemref_tmpdir}" "#{epub_file}"))
     opf_file = File.join(itemref_tmpdir, "OEBPS", "content.opf")
     opf = REXML::Document.new(File.new(opf_file))
 
@@ -51,7 +51,7 @@ describe DocBook::Epub do
       epub.render_to_file(epubfile, $DEBUG)
       FileUtils.copy(epubfile, ".re.ded.epub") if $DEBUG
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{epubfile}"))
       raise "Could not unzip #{epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       index_html_links = glob.find_all {|opf_file| File.open(opf_file).readlines.to_s =~ /href=["']index.html["']/}
@@ -73,7 +73,7 @@ describe DocBook::Epub do
 
       tmpdir = File.join(Dir::tmpdir(), "epubcssreg"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{css_epubfile}")
       raise "Could not unzip #{css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       opf_files.find_all {|opf_file| 
@@ -97,10 +97,10 @@ describe DocBook::Epub do
     xhtml_dtd = "DTD XHTML 1.1"
 
     itemref_tmpdir = File.join(Dir::tmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
-    system("unzip -q -o -d #{itemref_tmpdir} #{epub_file}")
+    system(%Q(unzip -q -o -d "#{itemref_tmpdir}" "#{epub_file}"))
 
     opf_file = File.join(itemref_tmpdir, "OEBPS", "content.opf")
-    xhtml_dtd_in_opf_file = system("grep '#{xhtml_dtd}' #{opf_file}")
+    xhtml_dtd_in_opf_file = system(%Q(grep "#{xhtml_dtd}" "#{opf_file}"))
     xhtml_dtd_in_opf_file.should_not be_true
   end
 
@@ -160,7 +160,7 @@ describe DocBook::Epub do
     epubfile  = File.join(tmpdir, shortname + ".epub")
     epub.render_to_file(epubfile, $DEBUG)
     FileUtils.copy(epubfile, "." + shortname + ".epub") if $DEBUG
-    success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{File.expand_path(epubfile)}")
+    success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{File.expand_path(epubfile)}"))
     raise "Could not unzip #{epubfile}" unless success
     container_file = File.join(tmpdir, 'META-INF', 'container.xml')
     container_lines = File.open(container_file).readlines
@@ -199,7 +199,7 @@ describe DocBook::Epub do
       epub.render_to_file(epubfile, $DEBUG)
       FileUtils.copy(epubfile, ".b.epub") if $DEBUG
 
-      success = system("unzip -q -d #{File.expand_path(tmpdir)} -o #{epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{epubfile}"))
       raise "Could not unzip #{epubfile}" unless success
       glob = Dir.glob(File.join(tmpdir, "**", "*.html"))
       glob.each {|html_file| 
@@ -229,12 +229,12 @@ describe DocBook::Epub do
     ncx_epubfile.should be_valid_epub  
 
     ncx_tmpdir = File.join(Dir::tmpdir(), "epubncx"); Dir.mkdir(ncx_tmpdir) rescue Errno::EEXIST
-    system("unzip -q -o -d #{ncx_tmpdir} #{ncx_epubfile}")
+    system(%Q(unzip -q -o -d "#{ncx_tmpdir}" "#{ncx_epubfile}"))
 
     ncx_file = File.join(ncx_tmpdir, "OEBPS", "toc.ncx")
     ncx_default = '<ncx '
 
-    ncx_in_default_ns = system("grep '#{ncx_default}' #{ncx_file}")
+    ncx_in_default_ns = system(%Q(grep "#{ncx_default}" "#{ncx_file}"))
     ncx_in_default_ns.should be_true
   end
 

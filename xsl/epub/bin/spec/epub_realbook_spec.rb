@@ -29,7 +29,7 @@ describe DocBook::Epub do
     FileUtils.copy(@epub_file, "." + File.basename(@xml_file, ".xml") + ".epub") if $DEBUG
 
     @tmpdir2 = File.join(Dir::tmpdir(), "epubreal"); Dir.mkdir(@tmpdir2) rescue Errno::EEXIST
-    success = system("unzip -q -o -d #{@tmpdir2} #{@epub_file}")
+    success = system(%Q(unzip -q -o -d "#{@tmpdir2}" "#{@epub_file}"))
     raise "Could not unzip #{epub_file}" unless success
 
     @html_files = Dir.glob(File.join(@tmpdir2, "**", "*.html"))
