@@ -178,7 +178,9 @@
 
             <listitem>
               <para>Search highlighting shows where the searched for term
-              appears in the results.<indexterm class="singular">
+              appears in the results. Use the <guibutton>H</guibutton> button
+              to toggle the highlighting off and on. <indexterm
+                  class="singular">
                   <primary>search</primary>
 
                   <secondary>highlighting</secondary>
@@ -216,7 +218,7 @@
           system.</para>
         </listitem>
       </itemizedlist><itemizedlist>
-        <title>Enhancements planned as part of GSOC 2010</title>
+        <title>Features planned as part of GSOC 2010</title>
 
         <listitem>
           <para>[DONE] Implement the toc and search pane without using
