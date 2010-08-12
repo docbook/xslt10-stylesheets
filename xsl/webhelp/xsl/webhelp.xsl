@@ -6,8 +6,6 @@
 
     <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
 
-    <xsl:include href="keywords.xsl"/>
-
     <!--TODO check how html and xml behaves-->
     <xsl:output
             method="html"
