@@ -88,12 +88,19 @@
           <listitem>
             <para>Stemmers from the <ulink
             url="http://snowball.tartarus.org/texts/stemmersoverview.html">Snowball
-            project</ulink> released under a BSD license..</para>
+            project</ulink> released under a BSD license.</para>
+          </listitem>
+
+          <listitem>
+            <para>Code from the <ulink url="http://lucene.apache.org/">Apache
+            Lucene</ulink> search engine provides support for tokenizing
+            Chinese, Japanese, and Korean content released under the Apache
+            2.0 license. </para>
           </listitem>
         </itemizedlist></para>
     </legalnotice>
 
-    <releaseinfo>Version .01/Alpha</releaseinfo>
+    <releaseinfo>Version 0.9/Beta</releaseinfo>
 
     <copyright>
       <year>2008-2010</year>
@@ -155,13 +162,18 @@
 
           <itemizedlist>
             <listitem>
-              <para>Stemming support for English and German. Stemming support
-              can be added for other languages by implementing a
+              <para>Stemming support for English, French, and German. Stemming
+              support can be added for other languages by implementing a
               stemmer.<indexterm class="singular">
                   <primary>search</primary>
 
                   <secondary>stemming</secondary>
                 </indexterm></para>
+            </listitem>
+
+            <listitem>
+              <para>Support for Chinese, Japanese, and Korean using code from
+              the Lucene search engine. </para>
             </listitem>
 
             <listitem>
@@ -275,6 +287,10 @@
 
         <listitem>
           <para>Sort search results based on relevance</para>
+        </listitem>
+
+        <listitem>
+          <para>Support wildcard characters in the search query.</para>
         </listitem>
 
         <listitem>
@@ -577,9 +593,9 @@ indexer-language=en
         </step>
 
         <step>
-          <para>To process your own content you simply refer to this package
+          <para>To process your own document, simply refer to this package
           from another <filename>build.xml</filename> in arbitrary location on
-          your system.</para>
+          your system:</para>
 
           <substeps>
             <step>
