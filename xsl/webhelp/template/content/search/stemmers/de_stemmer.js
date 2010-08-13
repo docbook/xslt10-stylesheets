@@ -1,12 +1,12 @@
-/**
- * German Stemmer de_stemmer.js
- * Originally developed by Joder Illi
- * Adapted for DocBook WebHelp by Kasun Gajasinghe <kasunbg@gmail.com>
- * Date: 17-07-2010
- * This is the initial release of german stemmer in javascript.
- * Further refactoring would be needed to increase the performance.
- * For other languages, see: http://snowball.tartarus.org/otherlangs/index.html
- * Currently, only german is avaiable in JS
+/*
+ * Author: Joder Illi
+ *
+ * Copyright (c) 2010, FormBlitz AG
+ * All rights reserved.
+ * Implementation of the stemming algorithm from http://snowball.tartarus.org/algorithms/german/stemmer.html
+ * Copyright of the algorithm is: Copyright (c) 2001, Dr Martin Porter and can be found at http://snowball.tartarus.org/license.php
+ *
+ * Redistribution and use in source and binary forms, with or without modification, is covered by the standard BSD license.
  *
  */
 

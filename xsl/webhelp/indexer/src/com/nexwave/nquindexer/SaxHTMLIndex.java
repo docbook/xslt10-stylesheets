@@ -99,7 +99,7 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         //TODO currently, stemming support is for english and german only. Add support for other languages as well.
 
         String[] tokenizedItems;
-        if(indexerLanguage.equalsIgnoreCase("jp") || indexerLanguage.equalsIgnoreCase("cn")
+        if(indexerLanguage.equalsIgnoreCase("ja") || indexerLanguage.equalsIgnoreCase("cn")
                 || indexerLanguage.equalsIgnoreCase("ko")){
                 LinkedList<String> tokens = new LinkedList<String>();
             try{

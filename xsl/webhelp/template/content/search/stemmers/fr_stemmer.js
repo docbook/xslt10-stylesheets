@@ -1,6 +1,6 @@
 /*
  * Author: Kasun Gajasinghe
- * E-Mail: kasunbg@gmail.com
+ * E-Mail: kasunbg AT gmail DOT com
  * Date: 09.08.2010
  *
  * usage: stemmer(word);
