@@ -1,7 +1,8 @@
 <xsl:stylesheet
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         xmlns:exsl="http://exslt.org/common"
-        xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
+        xmlns:ng="http://docbook.org/docbook-ng" 
+        xmlns:db="http://docbook.org/ns/docbook"
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
 
     <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
@@ -14,20 +15,15 @@
 
     <!-- Custom params! -->
     <xsl:param name="exclude.search.from.webhelp">false</xsl:param>
-    <xsl:param name="chunk.frameset.start.filename">index.html</xsl:param>
-    <xsl:param name="output_file_name">readme</xsl:param>
-    <xsl:param name="chunked.toc.all.open">1</xsl:param>
+    <xsl:param name="webhelp.start.filename">index.html</xsl:param>
     <xsl:param name="webhelp.base.dir">doc</xsl:param>
-    <xsl:param name="generate.web.xml">0</xsl:param>
-    <xsl:param name="direction.align.start">left</xsl:param>
-    <xsl:param name="direction.align.end">right</xsl:param>
-    <xsl:variable name="tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
-    <xsl:param name="indexer.language">en</xsl:param>
+    <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
+    <xsl:param name="webhelp.indexer.language">en</xsl:param>
     <!-- Custom params! -->
 
+  <!-- Set some reasonable defaults for webhelp output -->
     <xsl:param name="chunker.output.indent">no</xsl:param>
     <xsl:param name="navig.showtitles">0</xsl:param>
-
     <xsl:param name="manifest.in.base.dir" select="0"/>
     <xsl:param name="base.dir" select="concat($webhelp.base.dir,'/content/')"/>
     <xsl:param name="suppress.navigation">0</xsl:param>
@@ -43,7 +39,6 @@
 
     <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
-            <!-- These are for the search stuff in chunked/plainhelp output -->
             <l:gentext key="Search" text="Search"/>
             <l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
             <l:gentext key="Go" text="Go"/>
@@ -56,18 +51,33 @@
             <l:gentext key="txt_results_for" text="Results for: "/>
             <l:gentext key="TableofContents" text="Contents"/>
         </l10n>
+	<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
+        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
+            <l:gentext key="Search" text="Search"/>
+            <l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+            <l:gentext key="Go" text="Go"/>
+            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
+            <l:gentext key="txt_filesfound" text="Results"/>
+            <l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+            <l:gentext key="txt_browser_not_supported"
+                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+            <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+            <l:gentext key="txt_results_for" text="Results for: "/>
+            <l:gentext key="TableofContents" text="Contents"/>
+        </l10n>
+
     </i18n>
 
     <xsl:template name="user.head.content">
   	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--  <xsl:message>
-            tree.cookie.id = <xsl:value-of select="$tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
-            $indexer.language = <xsl:value-of select="$indexer.language"/> +++ <xsl:value-of select="count(//node())"/>
+            webhelp.tree.cookie.id = <xsl:value-of select="$webhelp.tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
+            $webhelp.indexer.language = <xsl:value-of select="$webhelp.indexer.language"/> +++ <xsl:value-of select="count(//node())"/>
         </xsl:message>-->
         <script type="text/javascript">
             //The id for tree cookie
-            var treeCookieId = "<xsl:value-of select="$tree.cookie.id"/>";
-            var language = "<xsl:value-of select="$indexer.language"/>";
+            var treeCookieId = "<xsl:value-of select="$webhelp.tree.cookie.id"/>";
+            var language = "<xsl:value-of select="$webhelp.indexer.language"/>";
             var w = new Object();
             //Localization
             txt_filesfound = '<xsl:call-template name="gentext">
@@ -146,8 +156,8 @@
            For example, for English(en), source should be: "search/stemmers/en_stemmer.js"
            For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm
         -->
-        <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$indexer.language,'_stemmer.js')"/></xsl:message>-->
-        <script type="text/javascript" src="{concat('search/stemmers/',$indexer.language,'_stemmer.js')}">
+        <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')"/></xsl:message>-->
+        <script type="text/javascript" src="{concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')}">
             <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
         </script>
 
@@ -194,36 +204,102 @@
 	     </xsl:call-template>
     </xsl:template>
 
-    <xsl:template match="/">
-        <xsl:message>language: <xsl:value-of select="$indexer.language"/> </xsl:message>
-        <xsl:choose>
-            <xsl:when test="$rootid != ''">
-                <xsl:choose>
-                    <xsl:when test="count(key('id',$rootid)) = 0">
-                        <xsl:message terminate="yes">
-                            <xsl:text>ID '</xsl:text>
-                            <xsl:value-of select="$rootid"/>
-                            <xsl:text>' not found in document.</xsl:text>
-                        </xsl:message>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:message>Formatting from
-                            <xsl:value-of select="$rootid"/>
-                        </xsl:message>
-                        <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates select="/" mode="process.root"/>
-            </xsl:otherwise>
-        </xsl:choose>
+  <xsl:template match="/">
+	<xsl:message>language: <xsl:value-of select="$webhelp.indexer.language"/> </xsl:message>
+	<!-- * Get a title for current doc so that we let the user -->
+	<!-- * know what document we are processing at this point. -->
+	<xsl:variable name="doc.title">
+	  <xsl:call-template name="get.doc.title"/>
+	</xsl:variable>
+	<xsl:choose>
+	  <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
+	  toss the namespace and continue.  Use the docbook5 namespaced
+	  stylesheets for DocBook5 if you don't want to use this feature.-->
+	  <!-- include extra test for Xalan quirk -->
+	  <xsl:when test="$exsl.node.set.available != 0                     and (*/self::ng:* or */self::db:*)">
+		<xsl:call-template name="log.message">
+		  <xsl:with-param name="level">Note</xsl:with-param>
+		  <xsl:with-param name="source" select="$doc.title"/>
+		  <xsl:with-param name="context-desc">
+			<xsl:text>namesp. cut</xsl:text>
+		  </xsl:with-param>
+		  <xsl:with-param name="message">
+			<xsl:text>stripped namespace before processing</xsl:text>
+		  </xsl:with-param>
+		</xsl:call-template>
+		<xsl:variable name="nons">
+        <xsl:apply-templates mode="stripNS"/>
+      </xsl:variable>
+		<!--
+		<xsl:message>Saving stripped document.</xsl:message>
+		<xsl:call-template name="write.chunk">
+        <xsl:with-param name="filename" select="'/tmp/stripped.xml'"/>
+        <xsl:with-param name="method" select="'xml'"/>
+        <xsl:with-param name="content">
+		<xsl:copy-of select="exsl:node-set($nons)"/>
+	  </xsl:with-param>
+      </xsl:call-template>
+		-->
+		<xsl:call-template name="log.message">
+		  <xsl:with-param name="level">Note</xsl:with-param>
+		  <xsl:with-param name="source" select="$doc.title"/>
+		  <xsl:with-param name="context-desc">
+			<xsl:text>namesp. cut</xsl:text>
+		  </xsl:with-param>
+		  <xsl:with-param name="message">
+			<xsl:text>processing stripped document</xsl:text>
+		  </xsl:with-param>
+		</xsl:call-template>
+		<xsl:apply-templates select="exsl:node-set($nons)"/>
+	  </xsl:when>
+	  <!-- Can't process unless namespace removed -->
+	  <xsl:when test="*/self::ng:* or */self::db:*">
+		<xsl:message terminate="yes">
+		  <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+		  <xsl:text> cannot proceed.</xsl:text>
+		</xsl:message>
+	  </xsl:when>
+	  <xsl:otherwise>
+		<xsl:choose>
+		  <xsl:when test="$rootid != ''">
+			<xsl:choose>
+			  <xsl:when test="count(key('id',$rootid)) = 0">
+				<xsl:message terminate="yes">
+				  <xsl:text>ID '</xsl:text>
+				  <xsl:value-of select="$rootid"/>
+				  <xsl:text>' not found in document.</xsl:text>
+				</xsl:message>
+			  </xsl:when>
+			  <xsl:otherwise>
+				<xsl:if test="$collect.xref.targets = 'yes' or                             $collect.xref.targets = 'only'">
+				  <xsl:apply-templates select="key('id', $rootid)" mode="collect.targets"/>
+				</xsl:if>
+				<xsl:if test="$collect.xref.targets != 'only'">
+				  <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
+				  <xsl:if test="$tex.math.in.alt != ''">
+					<xsl:apply-templates select="key('id',$rootid)" mode="collect.tex.math"/>
+                </xsl:if>
+				</xsl:if>
+			  </xsl:otherwise>
+			</xsl:choose>
+		  </xsl:when>
+		  <xsl:otherwise>
+			<xsl:if test="$collect.xref.targets = 'yes' or                         $collect.xref.targets = 'only'">
+			  <xsl:apply-templates select="/" mode="collect.targets"/>
+			</xsl:if>
+			<xsl:if test="$collect.xref.targets != 'only'">
+			  <xsl:apply-templates select="/" mode="process.root"/>
+			  <xsl:if test="$tex.math.in.alt != ''">
+              <xsl:apply-templates select="/" mode="collect.tex.math"/>
+            </xsl:if>
+          </xsl:if>
+		  </xsl:otherwise>
+		</xsl:choose>
+	  </xsl:otherwise>
+	</xsl:choose>
+	
+	<xsl:call-template name="index.html"/>
 
-        <xsl:call-template name="index.html"/>
-
-        <xsl:if test="$generate.web.xml != '0'">
-            <xsl:call-template name="web.xml"/>
-        </xsl:if>
     </xsl:template>
 
     <xsl:template name="chunk-element-content">
@@ -606,8 +682,8 @@
                 <!--         <xsl:value-of select="$base.dir"/> -->
                 <!--       </xsl:if> -->
                 <xsl:choose>
-                    <xsl:when test="$chunk.frameset.start.filename">
-                        <xsl:value-of select="concat($webhelp.base.dir,'/',$chunk.frameset.start.filename)"/>
+                    <xsl:when test="$webhelp.start.filename">
+                        <xsl:value-of select="concat($webhelp.base.dir,'/',$webhelp.start.filename)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="'index.html'"/>
@@ -624,66 +700,11 @@
                         <meta http-equiv="Refresh" content="1; URL=content/ch01.html"/>
                         <title><xsl:value-of select="//title[1]"/>&#160;
                         </title>
-                        <!-- Call template "metatags" to add copyright and date meta tags:  -->
                     </head>
                     <body>
                         If not automatically redirected, click here: <a href="content/ch01.html">content/ch01.html</a>
                     </body>
                 </html>
-            </xsl:with-param>
-        </xsl:call-template>
-    </xsl:template>
-
-
-    <xsl:template name="web.xml">
-        <xsl:call-template name="write.chunk">
-            <xsl:with-param name="filename">
-                <xsl:value-of select="concat($webhelp.base.dir,'/web.xml')"/>
-            </xsl:with-param>
-            <xsl:with-param name="method" select="'xml'"/>
-            <xsl:with-param name="encoding" select="'utf-8'"/>
-            <xsl:with-param name="indent" select="'yes'"/>
-            <xsl:with-param name="content">
-                <web-app id="{$output_file_name}">
-
-                    <display-name>
-                        <xsl:value-of select="$output_file_name"/>
-                    </display-name>
-
-                    <welcome-file-list>
-                        <!-- TODO: Parameterise this -->
-                        <welcome-file>index.html</welcome-file>
-                    </welcome-file-list>
-
-                    <!-- 		  <security-constraint> -->
-
-                    <!-- 			<web-resource-collection> -->
-                    <!-- 			  <web-resource-name>All Pages</web-resource-name> -->
-                    <!-- 			  <url-pattern>*.*</url-pattern> -->
-                    <!-- 			  <http-method>POST</http-method> -->
-                    <!-- 			  <http-method>GET</http-method> -->
-                    <!-- 			</web-resource-collection> -->
-
-                    <!-- 			<auth-constraint> -->
-                    <!-- 			  <role-name>ReadTelemetry</role-name> -->
-                    <!-- 			</auth-constraint> -->
-
-                    <!-- 			<user-data-constraint> -->
-                    <!-- 			  <transport-guarantee>NONE</transport-guarantee> -->
-                    <!-- 			</user-data-constraint>	 -->
-
-                    <!-- 		  </security-constraint> -->
-
-                    <!-- 		  <login-config> -->
-                    <!-- 			<auth-method>BASIC</auth-method> -->
-                    <!-- 			<realm-name>Motive CSR Console</realm-name> -->
-                    <!-- 		  </login-config> -->
-
-                    <!-- 		  <security-role> -->
-                    <!-- 			<role-name>ReadTelemetry</role-name> -->
-                    <!-- 		  </security-role> -->
-
-                </web-app>
             </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
