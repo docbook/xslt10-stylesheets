@@ -524,10 +524,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="ackno|acknowledgements[parent::article]">
-  <p>
-    <xsl:call-template name="common.html.attributes"/>
-    <xsl:apply-templates/>
-  </p>
+  <xsl:call-template name="block.object"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
