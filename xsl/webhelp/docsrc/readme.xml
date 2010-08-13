@@ -541,8 +541,8 @@ stylesheet-path=${ant.file.dir}/xsl/webhelp.xsl
 # to the output directory, you can list patterns here. 
 # See the Ant documentation for fileset for documentation
 # on patterns.
+#input-images-dirs=images/**,figures/**,graphics/**
 
-#input-images-dirs=images/** figures/** graphics/**
 # By default, the ant script assumes your images are stored
 # in the same directory as the input-xml. If you store your
 # image directories in another directory, specify it here.
@@ -555,22 +555,17 @@ xslt-processor-classpath=c:/workhead/export/saxon/6.5/lib/saxon.jar
 # To use this catalog, make sure the resolver is in your classpath.
 # Download xml-commons-resolver from http://xml.apache.org/commons/dist/
 # and add it to your CLASSPATH. Then use the following property to point 
-# to your docbook xsl stylesheets' catalog. Alternatively,
+# to your docbook xsl stylesheets' catalog. Better yet,
 # you can list the catalog file in your CatalogManager.properties file.
 docbook-xsl-catalog=c:/gsoc2010/docbook-xsl-1.75.2/catalog.xml
-#docbook-xsl-catalog=/media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/maven/docbook-xsl/target/xsltmp/docbook-xsl-1.75.2/catalog.xml
 
 # If you wish to have the ant script validate the document before
 # building it, set this property to the location
 # of your DocBook DTD. The sample document is 
 # a DocBook 4.5 document and uncomment the line validate=true.
-# Alternatively, you can list the DTD's catalog file in your
+# Better yet, you can list the DTD's catalog file in your
 # CatalogManager.properties file.
-# Note that the DTD is not releavant for DocBook 5.x ant
-# you must set validate=false for 5.x (validation 
-# is not yet included in the build file for 5.x).
 docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
-#docbookx.dtd=file:///media/DATA/ACADEMIC/GSOC/docbook/repository/docbook/trunk/defguide/en/schema/docbookx.dtd
 validate=true
 
 # Set this to true if you don't need a search tab.
@@ -579,10 +574,9 @@ exclude.search.from.webhelp=false
 # indexer-language is used to tell the search indexer which language
 # the docbook is written.  This will be used to identify the correct
 # stemmer, and punctuations that differs from language to language.
-# see the documentation for details. en=English, de=German,
-# cn=Chinese, jp=Japanese etc.  Country codes are available at:
-# http://www.uspto.gov/patft/help/helpctry.htm
-indexer-language=en
+# see the documentation for details. en=English, fr=French, de=German,
+# zh=Chinese, ja=Japanese etc.  
+webhelp.indexer.language=en
 </programlisting></para>
         </step>
 

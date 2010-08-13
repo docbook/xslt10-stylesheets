@@ -78,7 +78,7 @@ function Effectuer_recherche(expressionInput) {
     wordsList.sort();
 
     //set the tokenizing method
-    if(typeof indexerLanguage != "undefined" && (indexerLanguage=="cn" || indexerLanguage=="ja" ||indexerLanguage=="ko")){
+    if(typeof indexerLanguage != "undefined" && (indexerLanguage=="zh" || indexerLanguage=="ja" ||indexerLanguage=="ko")){
         useCJKTokenizing=true;
     } else {
         useCJKTokenizing=false;
