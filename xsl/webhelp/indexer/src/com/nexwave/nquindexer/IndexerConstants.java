@@ -2,7 +2,7 @@ package com.nexwave.nquindexer;
 /**
  * Constants used for the indexer.
  * 
- * @version 1.0 2008-02-26
+ * @version 2.0 2008-02-26
  * 
  * @author N. Quaine
  */

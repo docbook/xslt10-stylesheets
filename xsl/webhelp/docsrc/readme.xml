@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <book>
   <title>Web-based Help from DocBook XML Readme</title>
 
@@ -683,39 +683,39 @@ webhelp.indexer.language=en
         file. <remark>TODO: Explain what each thing
         does.</remark><programlisting>AddDefaultCharSet UTF-8 # <co
               id="AddDefaultCharSet" />
-
-# 480 weeks
-&lt;FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"&gt; # <co
-              id="CachingSettings" />
-Header set Cache-Control "max-age=290304000, public"
-&lt;/FilesMatch&gt;
-
-# 2 DAYS
-&lt;FilesMatch "\.(xml|txt)$"&gt;
-Header set Cache-Control "max-age=172800, public, must-revalidate"
-&lt;/FilesMatch&gt;
-
-# 2 HOURS
-&lt;FilesMatch "\.(html|htm)$"&gt;
-Header set Cache-Control "max-age=7200, must-revalidate"
-&lt;/FilesMatch&gt;
-
-# compress text, html, javascript, css, xml:
-AddOutputFilterByType DEFLATE text/plain # <co id="CompressSetting" />
-AddOutputFilterByType DEFLATE text/html
-AddOutputFilterByType DEFLATE text/xml
-AddOutputFilterByType DEFLATE text/css
-AddOutputFilterByType DEFLATE application/xml
-AddOutputFilterByType DEFLATE application/xhtml+xml
-AddOutputFilterByType DEFLATE application/rss+xml
-AddOutputFilterByType DEFLATE application/javascript
-AddOutputFilterByType DEFLATE application/x-javascript
-
-# Or, compress certain file types by extension:
-&lt;Files *.html&gt; 
-SetOutputFilter DEFLATE
-&lt;/Files&gt;
-</programlisting><calloutlist>
+  
+      # 480 weeks
+      &lt;FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"&gt; # <co
+                    id="CachingSettings" />
+      Header set Cache-Control "max-age=290304000, public"
+      &lt;/FilesMatch&gt;
+      
+      # 2 DAYS
+      &lt;FilesMatch "\.(xml|txt)$"&gt;
+      Header set Cache-Control "max-age=172800, public, must-revalidate"
+      &lt;/FilesMatch&gt;
+      
+      # 2 HOURS
+      &lt;FilesMatch "\.(html|htm)$"&gt;
+      Header set Cache-Control "max-age=7200, must-revalidate"
+      &lt;/FilesMatch&gt;
+      
+      # compress text, html, javascript, css, xml:
+      AddOutputFilterByType DEFLATE text/plain # <co id="CompressSetting" />
+      AddOutputFilterByType DEFLATE text/html
+      AddOutputFilterByType DEFLATE text/xml
+      AddOutputFilterByType DEFLATE text/css
+      AddOutputFilterByType DEFLATE application/xml
+      AddOutputFilterByType DEFLATE application/xhtml+xml
+      AddOutputFilterByType DEFLATE application/rss+xml
+      AddOutputFilterByType DEFLATE application/javascript
+      AddOutputFilterByType DEFLATE application/x-javascript
+      
+      # Or, compress certain file types by extension:
+      &lt;Files *.html&gt; 
+      SetOutputFilter DEFLATE
+      &lt;/Files&gt;
+      </programlisting><calloutlist>
             <callout arearefs="AddDefaultCharSet">
               <para>See <ulink
               url="http://www.sagehill.net/docbookxsl/SpecialChars.html">Odd
@@ -826,10 +826,9 @@ SetOutputFilter DEFLATE
   </chapter>
 
   <chapter>
-    <title>Design</title>
+    <title>Developer Docs</title>
 
-    <para>This chapter provides an overview of how webhelp is implemented.
-    <remark>WRITEME</remark></para>
+    <para role="summary">This chapter provides an overview of how webhelp is implemented.</para>
 
     <para>The table of contents and search panes are implemented as divs and
     rendered as if they were the left pane in a frameset. As a result, the
@@ -838,5 +837,70 @@ SetOutputFilter DEFLATE
     page reads these cookies and restores the state of the table of contents
     tree and search. The result is that the help system behaves exactly as if
     it were a frameset.</para>
+    
+    <section>
+      <title>Design</title>
+      <para role="summary">An overview of webhelp page structure.</para>
+      <para>DocBook WebHelp page structure is fully built on css-based design
+        abandoning frameset structure. Overall page structure can be divided in to three main sections
+        <itemizedlist>
+          <listitem>
+            <para>Header: Header is a separate Div which include company logo, 
+              navigation button(prev, next etc.), page title and heading of parent topic.</para>
+          </listitem>
+          
+          <listitem>
+            <para>Content: This includes the content of the documentation. The processing of this part is
+              done by <ulink
+                url="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl">
+                DocBook XSL Chunking customization</ulink>. Few further css-styling applied from 
+              <filename>positioning.css</filename>.            
+            </para>
+          </listitem>
+          
+          <listitem>
+            <para>Left Navigation: This includes the table of contents and search tab. This 
+              is customized using <ulink url="http://jqueryui.com/">jquery-ui</ulink> styling.</para>
+            <itemizedlist>
+              <listitem>
+                <para>Tabbed Navigation: The navigation pane is organized in to two tabs. 
+                  Contents tab, and Search tab. Tabbed output is achieved using 
+                  <ulink url="http://docs.jquery.com/UI/Tabs">JQuery Tabs plugin</ulink>.
+                </para>  
+              </listitem>
+              
+              <listitem>
+                <para>Table of Contents (TOC) tree: When building the chunked html from the 
+                  docbook file, Table of Contents is generated as an Unordered List (a list 
+                  made from <code>&lt;ul> &lt;li></code> tags). When page loads in the browser,
+                  we apply styling to it to achieve the nice look that you see. Styling for TOC 
+                  tree is done by a JQuery UI plugin called 
+                  <ulink url="http://bassistance.de/jquery-plugins/jquery-plugin-treeview/">
+                  TreeView</ulink>. We can generate the tree easily by following javascript code:
+                  
+<programlisting>
+//Generate the tree
+$("#tree").treeview({
+collapsed: true,
+animated: "medium",
+control: "#sidetreecontrol",
+persist: "cookie"
+});
+</programlisting> 
+                  </para>
+              </listitem>
+              
+              <listitem>
+                <para>Search Tab: This includes the search feature.</para>
+              </listitem>
+              </itemizedlist>
+            
+          </listitem>
+        </itemizedlist> 
+      </para>       
+    </section>
+    
+    
+    
   </chapter>
 </book>

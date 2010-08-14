@@ -5,7 +5,7 @@ import java.io.File;
 /**
  * For running tests with the indexertask.
  * 
- * @version 1.0 2008-0226
+ * @version 2.0 2010-08-14
  * 
  * @author N. Quaine
  */

@@ -16,7 +16,7 @@ import com.nexwave.nsidita.DocFileInfo;
 /**
  * Generic parser for populating a DocFileInfo object.
  * 
- * @version 1.0 2008-02-26
+ * @version 2.0 2010-08-14
  * 
  * @author N. Quaine
  * @author Kasun Gajasinghe

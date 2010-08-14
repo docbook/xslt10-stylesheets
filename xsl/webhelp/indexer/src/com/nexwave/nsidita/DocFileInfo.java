@@ -4,7 +4,7 @@ import java.io.File;
 /**
  * Object for describing a dita or html file.
  * 
- * @version 1.0 2008-0226
+ * @version 2.0 2010-08-14
  * 
  * @author N. Quaine
  */

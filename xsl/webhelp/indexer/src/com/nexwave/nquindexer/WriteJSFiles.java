@@ -14,13 +14,14 @@ import java.util.TreeSet;
 
 import com.nexwave.nsidita.DocFileInfo;
 /**
- * Output the js files with:
+ * Outputs the js files with:
  * - the list of html files and their description
  * - the words retrieved from the html files and their location
  * 
- * @version 1.01 2008-04-08
+ * @version 2.0 2010-08-13
  * 
  * @author N. Quaine
+ * @author Kasun Gajasinghe
  */
 public class WriteJSFiles {
 	
