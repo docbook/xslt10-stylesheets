@@ -1,10 +1,10 @@
 <!-- Converted by db4-upgrade version 1.0 -->
 
 <article xmlns="http://docbook.org/ns/docbook" version="5.0"><info><title>DocBook API Reference</title></info>
-<!--   
-  <para>Elements:<itemizedlist spacing="compact"><listitem><simpara><link linkend="api.grammar.access">Element <tag>access</tag> - Declares an access specification for class members</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.api">Element <tag>api</tag> - Defines a DocBook API book</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.class">Element <tag>class</tag> - Declares a class or class template</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.class-specialization">Element <tag>class-specialization</tag> - A specialization (partial or full) of a class template</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.code">Element <tag>code</tag> - Mimics the <tag>code</tag> tag in HTML</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.compile-fail-test">Element <tag>compile-fail-test</tag> - A testcase that should fail to compile</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.compile-test">Element <tag>compile-test</tag> - A testcase that should compile correctly</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.complexity">Element <tag>complexity</tag> - The time/space/etc. complexity of a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.constructor">Element <tag>constructor</tag> - Declares a constructor of the enclosing class</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.copy-assignment">Element <tag>copy-assignment</tag> - Declares a copy-assignment operator</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.data-member">Element <tag>data-member</tag> - Declares a data member of a class</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.default">Element <tag>default</tag> - The default value of a function or template parameter</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.description">Element <tag>description</tag> - Detailed description of a construct</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.destructor">Element <tag>destructor</tag> - Declares a destructor for the enclosing class</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.effects">Element <tag>effects</tag> - Declares the side effects of a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.enum">Element <tag>enum</tag> - Declares an enumeration type</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.enumname">Element <tag>enumname</tag> - References an enumeration type with the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.enumvalue">Element <tag>enumvalue</tag> - A single value of an enumeration</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.free-function-group">Element <tag>free-function-group</tag> - A set of functions that are grouped together under one name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.function">Element <tag>function</tag> - Declares a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.functionname">Element <tag>functionname</tag> - References a function with the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.globalname">Element <tag>globalname</tag> - References a global with the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.header">Element <tag>header</tag> - Declares a C++ header with the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.headername">Element <tag>headername</tag> - References a C++ header with the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.if-fails">Element <tag>if-fails</tag> - What it means when a testcase fails</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.inherit">Element <tag>inherit</tag> - Declares a base class of the enclosing class or struct</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.lib">Element <tag>lib</tag> - A library dependency</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.library">Element <tag>library</tag> - Top-level element for a library</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.library-reference">Element <tag>library-reference</tag> - Declares the reference material for a library</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.librarycategory">Element <tag>librarycategory</tag> - Declares that the enclosing library is in this category</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.librarycategorydef">Element <tag>librarycategorydef</tag> - Defines a new library category</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.librarycategorylist">Element <tag>librarycategorylist</tag> - Categorized listing of libraries</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.libraryinfo">Element <tag>libraryinfo</tag> - Provides information about a library</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.librarylist">Element <tag>librarylist</tag> - Placeholder for an alphabetical list of libraries</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.libraryname">Element <tag>libraryname</tag> - References a library of the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.librarypurpose">Element <tag>librarypurpose</tag> - Describes in one short sentence or phrase the purpose of a library</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.link-fail-test">Element <tag>link-fail-test</tag> - Declares a test that should compile but fail to link</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.link-test">Element <tag>link-test</tag> - Declares a test that should compile and link</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.macroname">Element <tag>macroname</tag> - References a macro with the given name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.method">Element <tag>method</tag> - Declares a method, i.e., a member function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.method-group">Element <tag>method-group</tag> - A set of methods that are grouped together under one name</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.namespace">Element <tag>namespace</tag> - Declares a namespace</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.notes">Element <tag>notes</tag> - Non-normative notes about a function's semantics</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.overloaded-function">Element <tag>overloaded-function</tag> - An overloaded function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.overloaded-method">Element <tag>overloaded-method</tag> - An overloaded method</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.parameter">Element <tag>parameter</tag> - A function parameter</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.paramtype">Element <tag>paramtype</tag> - The type of a function parameter</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.postconditions">Element <tag>postconditions</tag> - Conditions that must hold after the function returns</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.precondition">Element <tag>precondition</tag> - Conditions that must be met prior to executing a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.programlisting">Element <tag>programlisting</tag> - A sample of program code</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.purpose">Element <tag>purpose</tag> - A short description of an entity's use</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.rationale">Element <tag>rationale</tag> - Describes the rationale for a particular function's design</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.requirement">Element <tag>requirement</tag> - A requirement/property in the Jamfile for a testcase</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.requires">Element <tag>requires</tag> - Declares the requirements of a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.returns">Element <tag>returns</tag> - Description of the return value of a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.run-fail-test">Element <tag>run-fail-test</tag> - A testcase that should compile and link, but fail on execution</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.run-test">Element <tag>run-test</tag> - A testcase that should compile, link, and execute</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.signature">Element <tag>signature</tag> - One signature of an overloaded function or method</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.snippet">Element <tag>snippet</tag> - Pulls in a code snippet from a <tag>programlisting</tag> element</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.source">Element <tag>source</tag> - Defines source code for a test</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.specialization">Element <tag>specialization</tag> - Defines the specialization arguments for a class specialization</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.static-constant">Element <tag>static-constant</tag> - Declares a static constant, e.g., <code>const int foo = 5;</code>.</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.struct">Element <tag>struct</tag> - Declares a C++ struct</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.struct-specialization">Element <tag>struct-specialization</tag> - A specialization (full or partial) of a struct template</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.template">Element <tag>template</tag> - Declares the template parameters of a class or function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.template-arg">Element <tag>template-arg</tag> - A template argument in a specialization</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.template-nontype-parameter">Element <tag>template-nontype-parameter</tag> - A nontype template parameter</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.template-type-parameter">Element <tag>template-type-parameter</tag> - Declares a template type parameter</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.template-varargs">Element <tag>template-varargs</tag> - Declares a variable-length list of template parameters</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.testsuite">Element <tag>testsuite</tag> - Describes a library testsuite</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.throws">Element <tag>throws</tag> - Description of the exceptions thrown by a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.type">Element <tag>type</tag> - The type of an element or return type of a function</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.typedef">Element <tag>typedef</tag> - Declares a typedef</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.union">Element <tag>union</tag> - Declares a C++ union or union template</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.union-specialization">Element <tag>union-specialization</tag> - A specialization (full or partial) of a union template</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.using-class">Element <tag>using-class</tag> - Injects the method and function names of a class into the local scope</link></simpara></listitem><listitem><simpara><link linkend="api.grammar.using-namespace">Element <tag>using-namespace</tag> - Injects the declared names from a namespace into the local scope</link></simpara></listitem></itemizedlist></para>
+  <!--  
+  <para>Elements:<itemizedlist spacing="compact"><listitem><simpara><link linkend="docbook.api.access">Element <tag>access</tag> - Declares an access specification for class members</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.api">Element <tag>api</tag> - Defines a DocBook API</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.class">Element <tag>class</tag> - Declares a class or class template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.class-specialization">Element <tag>class-specialization</tag> - A specialization (partial or full) of a class template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.code">Element <tag>code</tag> - Mimics the <tag>code</tag> tag in HTML</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.compile-fail-test">Element <tag>compile-fail-test</tag> - A testcase that should fail to compile</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.compile-test">Element <tag>compile-test</tag> - A testcase that should compile correctly</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.complexity">Element <tag>complexity</tag> - The time/space/etc. complexity of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.constructor">Element <tag>constructor</tag> - Declares a constructor of the enclosing class</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.copy-assignment">Element <tag>copy-assignment</tag> - Declares a copy-assignment operator</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.data-member">Element <tag>data-member</tag> - Declares a data member of a class</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.default">Element <tag>default</tag> - The default value of a function or template parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.description">Element <tag>description</tag> - Detailed description of a construct</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.destructor">Element <tag>destructor</tag> - Declares a destructor for the enclosing class</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.effects">Element <tag>effects</tag> - Declares the side effects of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.enum">Element <tag>enum</tag> - Declares an enumeration type</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.enumname">Element <tag>enumname</tag> - References an enumeration type with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.enumvalue">Element <tag>enumvalue</tag> - A single value of an enumeration</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.free-function-group">Element <tag>free-function-group</tag> - A set of functions that are grouped together under one name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.function">Element <tag>function</tag> - Declares a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.functionname">Element <tag>functionname</tag> - References a function with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.globalname">Element <tag>globalname</tag> - References a global with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.header">Element <tag>header</tag> - Declares a C++ header with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.headername">Element <tag>headername</tag> - References a C++ header with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.if-fails">Element <tag>if-fails</tag> - What it means when a testcase fails</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.inherit">Element <tag>inherit</tag> - Declares a base class of the enclosing class or struct</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.lib">Element <tag>lib</tag> - A library dependency</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.library">Element <tag>library</tag> - Top-level element for a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.library-reference">Element <tag>library-reference</tag> - Declares the reference material for a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarycategory">Element <tag>librarycategory</tag> - Declares that the enclosing library is in this category</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarycategorydef">Element <tag>librarycategorydef</tag> - Defines a new library category</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarycategorylist">Element <tag>librarycategorylist</tag> - Categorized listing of libraries</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.libraryinfo">Element <tag>libraryinfo</tag> - Provides information about a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarylist">Element <tag>librarylist</tag> - Placeholder for an alphabetical list of libraries</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.libraryname">Element <tag>libraryname</tag> - References a library of the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarypurpose">Element <tag>librarypurpose</tag> - Describes in one short sentence or phrase the purpose of a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.link-fail-test">Element <tag>link-fail-test</tag> - Declares a test that should compile but fail to link</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.link-test">Element <tag>link-test</tag> - Declares a test that should compile and link</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.macroname">Element <tag>macroname</tag> - References a macro with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.method">Element <tag>method</tag> - Declares a method, i.e., a member function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.method-group">Element <tag>method-group</tag> - A set of methods that are grouped together under one name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.namespace">Element <tag>namespace</tag> - Declares a namespace</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.notes">Element <tag>notes</tag> - Non-normative notes about a function's semantics</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.overloaded-function">Element <tag>overloaded-function</tag> - An overloaded function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.overloaded-method">Element <tag>overloaded-method</tag> - An overloaded method</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.parameter">Element <tag>parameter</tag> - A function parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.paramtype">Element <tag>paramtype</tag> - The type of a function parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.postconditions">Element <tag>postconditions</tag> - Conditions that must hold after the function returns</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.precondition">Element <tag>precondition</tag> - Conditions that must be met prior to executing a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.programlisting">Element <tag>programlisting</tag> - A sample of program code</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.purpose">Element <tag>purpose</tag> - A short description of an entity's use</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.rationale">Element <tag>rationale</tag> - Describes the rationale for a particular function's design</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.requirement">Element <tag>requirement</tag> - A requirement/property in the Jamfile for a testcase</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.requires">Element <tag>requires</tag> - Declares the requirements of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.returns">Element <tag>returns</tag> - Description of the return value of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.run-fail-test">Element <tag>run-fail-test</tag> - A testcase that should compile and link, but fail on execution</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.run-test">Element <tag>run-test</tag> - A testcase that should compile, link, and execute</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.signature">Element <tag>signature</tag> - One signature of an overloaded function or method</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.snippet">Element <tag>snippet</tag> - Pulls in a code snippet from a <tag>programlisting</tag> element</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.source">Element <tag>source</tag> - Defines source code for a test</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.specialization">Element <tag>specialization</tag> - Defines the specialization arguments for a class specialization</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.static-constant">Element <tag>static-constant</tag> - Declares a static constant, e.g., <code>const int foo = 5;</code>.</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.struct">Element <tag>struct</tag> - Declares a C++ struct</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.struct-specialization">Element <tag>struct-specialization</tag> - A specialization (full or partial) of a struct template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template">Element <tag>template</tag> - Declares the template parameters of a class or function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-arg">Element <tag>template-arg</tag> - A template argument in a specialization</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-nontype-parameter">Element <tag>template-nontype-parameter</tag> - A nontype template parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-type-parameter">Element <tag>template-type-parameter</tag> - Declares a template type parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-varargs">Element <tag>template-varargs</tag> - Declares a variable-length list of template parameters</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.testsuite">Element <tag>testsuite</tag> - Describes a library testsuite</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.throws">Element <tag>throws</tag> - Description of the exceptions thrown by a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.type">Element <tag>type</tag> - The type of an element or return type of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.typedef">Element <tag>typedef</tag> - Declares a typedef</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.union">Element <tag>union</tag> - Declares a C++ union or union template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.union-specialization">Element <tag>union-specialization</tag> - A specialization (full or partial) of a union template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.using-class">Element <tag>using-class</tag> - Injects the method and function names of a class into the local scope</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.using-namespace">Element <tag>using-namespace</tag> - Injects the declared names from a namespace into the local scope</link></simpara></listitem></itemizedlist></para>
  -->
-  <refentry xml:id="api.grammar.class-specialization">
+  <refentry xml:id="docbook.api.class-specialization">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>class-specialization</tag></refentrytitle>
@@ -15,7 +15,7 @@
       <refpurpose>A specialization (partial or full) of a class template</refpurpose>
     </refnamediv>
     <refsynopsisdiv>class-specialization ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.specialization">specialization</link>?, <link linkend="api.grammar.inherit">inherit</link>?, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, (<link linkend="api.grammar.access">access</link>| <link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.specialization">specialization</link>?, <link linkend="docbook.api.inherit">inherit</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -40,7 +40,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.link-test">
+  <refentry xml:id="docbook.api.link-test">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>link-test</tag></refentrytitle>
@@ -51,7 +51,7 @@
       <refpurpose>Declares a test that should compile and link</refpurpose>
     </refnamediv>
     <refsynopsisdiv>link-test ::= 
-  (<link linkend="api.grammar.source">source</link>*, <link linkend="api.grammar.lib">lib</link>*, <link linkend="api.grammar.requirement">requirement</link>*, <link linkend="api.grammar.purpose">purpose</link>, <link linkend="api.grammar.if-fails">if-fails</link>?)
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -74,7 +74,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.link-fail-test">
+  <refentry xml:id="docbook.api.link-fail-test">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>link-fail-test</tag></refentrytitle>
@@ -85,7 +85,7 @@
       <refpurpose>Declares a test that should compile but fail to link</refpurpose>
     </refnamediv>
     <refsynopsisdiv>link-fail-test ::= 
-  (<link linkend="api.grammar.source">source</link>*, <link linkend="api.grammar.lib">lib</link>*, <link linkend="api.grammar.requirement">requirement</link>*, <link linkend="api.grammar.purpose">purpose</link>, <link linkend="api.grammar.if-fails">if-fails</link>?)
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -108,7 +108,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.typedef">
+  <refentry xml:id="docbook.api.typedef">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>typedef</tag></refentrytitle>
@@ -119,7 +119,7 @@
       <refpurpose>Declares a typedef</refpurpose>
     </refnamediv>
     <refsynopsisdiv>typedef ::= 
-  (<link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?)
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -144,7 +144,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.static-constant">
+  <refentry xml:id="docbook.api.static-constant">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>static-constant</tag></refentrytitle>
@@ -155,7 +155,7 @@
       <refpurpose>Declares a static constant, e.g., <code>const int foo = 5;</code>.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>static-constant ::= 
-  (<link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.default">default</link>, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?)
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.default">default</link>, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -180,7 +180,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.code">
+  <refentry xml:id="docbook.api.code">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>code</tag></refentrytitle>
@@ -221,7 +221,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.destructor">
+  <refentry xml:id="docbook.api.destructor">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>destructor</tag></refentrytitle>
@@ -232,11 +232,11 @@
       <refpurpose>Declares a destructor for the enclosing class</refpurpose>
     </refnamediv>
     <refsynopsisdiv>destructor ::= 
-  (<link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>General documentation on functions in api is provided in
-  the <link linkend="api.grammar.function"><tag>function</tag></link>
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
   element documentation.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -262,7 +262,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.template-type-parameter">
+  <refentry xml:id="docbook.api.template-type-parameter">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>template-type-parameter</tag></refentrytitle>
@@ -273,7 +273,7 @@
       <refpurpose>Declares a template type parameter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>template-type-parameter ::= 
-  (<link linkend="api.grammar.default">default</link>?, <link linkend="api.grammar.purpose">purpose</link>?)
+  (<link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.purpose">purpose</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -299,7 +299,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.description">
+  <refentry xml:id="docbook.api.description">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>description</tag></refentrytitle>
@@ -343,7 +343,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.librarylist">
+  <refentry xml:id="docbook.api.librarylist">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>librarylist</tag></refentrytitle>
@@ -357,7 +357,7 @@
   EMPTY
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
-  <para>Developers aren't generally expected to use this element. Its existence is mainly as a placeholder in <filename>boost.xml</filename> for the alphabetical list of libraries.</para>
+  <para>Its existence is mainly as a placeholder in the main XML document for the alphabetical list of libraries.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
       
@@ -381,7 +381,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.library-reference">
+  <refentry xml:id="docbook.api.library-reference">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>library-reference</tag></refentrytitle>
@@ -392,7 +392,7 @@
       <refpurpose>Declares the reference material for a library</refpurpose>
     </refnamediv>
     <refsynopsisdiv>library-reference ::= 
-  (title?, section*, (<link linkend="api.grammar.header">header</link>| <link linkend="api.grammar.library-reference">library-reference</link>)*)
+  (title?, section*, (<link linkend="docbook.api.header">header</link>| <link linkend="docbook.api.library-reference">library-reference</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>Reference documentation for a library is contained with a
@@ -444,7 +444,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.api">
+  <refentry xml:id="docbook.api.api">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>api</tag></refentrytitle>
@@ -452,15 +452,14 @@
     </refmeta>
     <refnamediv>
       <refname>api</refname>
-      <refpurpose>Defines a api book</refpurpose>
+      <refpurpose>Defines an API</refpurpose>
     </refnamediv>
     <refsynopsisdiv>api ::= 
-  (title, (chapter| <link linkend="api.grammar.library">library</link>)*)
+  (title, (chapter| <link linkend="docbook.api.library">library</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <simpara>This element is the topmost level defined by
-  <filename>boost.xml</filename> for all Boost documentation. It will
-  not generally be used by developers.</simpara>
+  main XML file for all API documentation</simpara>
 </refsection>
     <refsection><info><title>Attributes</title></info>
       
@@ -484,7 +483,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.union">
+  <refentry xml:id="docbook.api.union">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>union</tag></refentrytitle>
@@ -495,7 +494,7 @@
       <refpurpose>Declares a C++ union or union template</refpurpose>
     </refnamediv>
     <refsynopsisdiv>union ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.inherit">inherit</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, (<link linkend="api.grammar.access">access</link>| <link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.inherit">inherit</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -520,7 +519,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.inherit">
+  <refentry xml:id="docbook.api.inherit">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>inherit</tag></refentrytitle>
@@ -531,7 +530,7 @@
       <refpurpose>Declares a base class of the enclosing class or struct</refpurpose>
     </refnamediv>
     <refsynopsisdiv>inherit ::= 
-  (<link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.purpose">purpose</link>?)
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.purpose">purpose</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>This element contains the type of the class inherited.</para>
@@ -560,7 +559,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.template-varargs">
+  <refentry xml:id="docbook.api.template-varargs">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>template-varargs</tag></refentrytitle>
@@ -602,7 +601,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.source">
+  <refentry xml:id="docbook.api.source">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>source</tag></refentrytitle>
@@ -613,7 +612,7 @@
       <refpurpose>Defines source code for a test</refpurpose>
     </refnamediv>
     <refsynopsisdiv>source ::= 
-  (#PCDATA| <link linkend="api.grammar.snippet">snippet</link>)*
+  (#PCDATA| <link linkend="docbook.api.snippet">snippet</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>This element will contain the source code for a testcase that
@@ -625,11 +624,11 @@
   </para>
 
   <para>In addition to CDATA sections, code snippets can be pulled in
-  from <tag>programlisting</tag> elements using the <link linkend="api.grammar.snippet"><tag>snippet</tag></link>
+  from <tag>programlisting</tag> elements using the <link linkend="docbook.api.snippet"><tag>snippet</tag></link>
   element.</para>
 </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.function">
+  <refentry xml:id="docbook.api.function">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>function</tag></refentrytitle>
@@ -640,7 +639,7 @@
       <refpurpose>Declares a function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>function ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.parameter">parameter</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>api functions are documented by specifying the
@@ -722,7 +721,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.macroname">
+  <refentry xml:id="docbook.api.macroname">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>macroname</tag></refentrytitle>
@@ -730,7 +729,7 @@
     </refmeta>
     <refnamediv>
       <refname>macroname</refname>
-      <refpurpose/>
+      <refpurpose>References a macro with the given name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>macroname ::= 
   (#PCDATA)
@@ -757,7 +756,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.postconditions">
+  <refentry xml:id="docbook.api.postconditions">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>postconditions</tag></refentrytitle>
@@ -792,7 +791,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.compile-test">
+  <refentry xml:id="docbook.api.compile-test">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>compile-test</tag></refentrytitle>
@@ -803,7 +802,7 @@
       <refpurpose>A testcase that should compile correctly</refpurpose>
     </refnamediv>
     <refsynopsisdiv>compile-test ::= 
-  (<link linkend="api.grammar.source">source</link>*, <link linkend="api.grammar.lib">lib</link>*, <link linkend="api.grammar.requirement">requirement</link>*, <link linkend="api.grammar.purpose">purpose</link>, <link linkend="api.grammar.if-fails">if-fails</link>?)
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -826,7 +825,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.method">
+  <refentry xml:id="docbook.api.method">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>method</tag></refentrytitle>
@@ -837,11 +836,11 @@
       <refpurpose>Declares a method, i.e., a member function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>method ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.parameter">parameter</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>General documentation on functions in api is provided in
-  the <link linkend="api.grammar.function"><tag>function</tag></link>
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
   element documentation.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -869,7 +868,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.snippet">
+  <refentry xml:id="docbook.api.snippet">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>snippet</tag></refentrytitle>
@@ -902,7 +901,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.constructor">
+  <refentry xml:id="docbook.api.constructor">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>constructor</tag></refentrytitle>
@@ -913,11 +912,11 @@
       <refpurpose>Declares a constructor of the enclosing class</refpurpose>
     </refnamediv>
     <refsynopsisdiv>constructor ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.parameter">parameter</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>General documentation on functions in api is provided in
-  the <link linkend="api.grammar.function"><tag>function</tag></link>
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
   element documentation.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -943,7 +942,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.namespace">
+  <refentry xml:id="docbook.api.namespace">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>namespace</tag></refentrytitle>
@@ -954,7 +953,7 @@
       <refpurpose>Declares a namespace</refpurpose>
     </refnamediv>
     <refsynopsisdiv>namespace ::= 
-  (<link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.namespace">namespace</link>)*
+  (<link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.namespace">namespace</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>api namespaces are declared via the &lt;namespace&gt;
@@ -995,7 +994,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.if-fails">
+  <refentry xml:id="docbook.api.if-fails">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>if-fails</tag></refentrytitle>
@@ -1018,7 +1017,7 @@
   </para>
 </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.headername">
+  <refentry xml:id="docbook.api.headername">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>headername</tag></refentrytitle>
@@ -1026,7 +1025,7 @@
     </refmeta>
     <refnamediv>
       <refname>headername</refname>
-      <refpurpose/>
+      <refpurpose>References a C++ header with the given name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>headername ::= 
   (#PCDATA)
@@ -1053,7 +1052,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.free-function-group">
+  <refentry xml:id="docbook.api.free-function-group">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>free-function-group</tag></refentrytitle>
@@ -1064,7 +1063,7 @@
       <refpurpose>A set of functions that are grouped together under one name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>free-function-group ::= 
-  (<link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>)*
+  (<link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1089,7 +1088,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.functionname">
+  <refentry xml:id="docbook.api.functionname">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>functionname</tag></refentrytitle>
@@ -1105,8 +1104,8 @@
     <refsection><info><title>Description</title></info>
   <para>If a function (or overloaded function) with the given,
   possibly-qualified name is found, this generates a link to that
-  function. Lookups obey currently-active <link linkend="api.grammar.using-class"><tag>using-class</tag></link>
-  and <link linkend="api.grammar.using-namespace"><tag>using-namespace</tag></link>
+  function. Lookups obey currently-active <link linkend="docbook.api.using-class"><tag>using-class</tag></link>
+  and <link linkend="docbook.api.using-namespace"><tag>using-namespace</tag></link>
   directives to aid in the search, along with searching within the
   current scope.</para>
 </refsection>
@@ -1133,7 +1132,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.librarycategory">
+  <refentry xml:id="docbook.api.librarycategory">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>librarycategory</tag></refentrytitle>
@@ -1169,7 +1168,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.notes">
+  <refentry xml:id="docbook.api.notes">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>notes</tag></refentrytitle>
@@ -1204,7 +1203,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.data-member">
+  <refentry xml:id="docbook.api.data-member">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>data-member</tag></refentrytitle>
@@ -1215,7 +1214,7 @@
       <refpurpose>Declares a data member of a class</refpurpose>
     </refnamediv>
     <refsynopsisdiv>data-member ::= 
-  (<link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?)
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1241,7 +1240,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.specialization">
+  <refentry xml:id="docbook.api.specialization">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>specialization</tag></refentrytitle>
@@ -1252,7 +1251,7 @@
       <refpurpose>Defines the specialization arguments for a class specialization</refpurpose>
     </refnamediv>
     <refsynopsisdiv>specialization ::= 
-  (<link linkend="api.grammar.template-arg">template-arg</link>)*
+  (<link linkend="docbook.api.template-arg">template-arg</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1276,7 +1275,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.union-specialization">
+  <refentry xml:id="docbook.api.union-specialization">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>union-specialization</tag></refentrytitle>
@@ -1287,7 +1286,7 @@
       <refpurpose>A specialization (full or partial) of a union template</refpurpose>
     </refnamediv>
     <refsynopsisdiv>union-specialization ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.specialization">specialization</link>?, <link linkend="api.grammar.inherit">inherit</link>?, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, (<link linkend="api.grammar.access">access</link>| <link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.specialization">specialization</link>?, <link linkend="docbook.api.inherit">inherit</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1312,7 +1311,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.throws">
+  <refentry xml:id="docbook.api.throws">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>throws</tag></refentrytitle>
@@ -1347,7 +1346,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.template-arg">
+  <refentry xml:id="docbook.api.template-arg">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>template-arg</tag></refentrytitle>
@@ -1383,7 +1382,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.globalname">
+  <refentry xml:id="docbook.api.globalname">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>globalname</tag></refentrytitle>
@@ -1391,7 +1390,7 @@
     </refmeta>
     <refnamediv>
       <refname>globalname</refname>
-      <refpurpose/>
+      <refpurpose>References a global with the given name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>globalname ::= 
   (#PCDATA)
@@ -1418,7 +1417,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.method-group">
+  <refentry xml:id="docbook.api.method-group">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>method-group</tag></refentrytitle>
@@ -1429,7 +1428,7 @@
       <refpurpose>A set of methods that are grouped together under one name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>method-group ::= 
-  (<link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>)*
+  (<link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1454,7 +1453,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.requirement">
+  <refentry xml:id="docbook.api.requirement">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>requirement</tag></refentrytitle>
@@ -1496,7 +1495,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.precondition">
+  <refentry xml:id="docbook.api.precondition">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>precondition</tag></refentrytitle>
@@ -1531,7 +1530,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.paramtype">
+  <refentry xml:id="docbook.api.paramtype">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>paramtype</tag></refentrytitle>
@@ -1566,7 +1565,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.using-class">
+  <refentry xml:id="docbook.api.using-class">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>using-class</tag></refentrytitle>
@@ -1602,7 +1601,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.run-test">
+  <refentry xml:id="docbook.api.run-test">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>run-test</tag></refentrytitle>
@@ -1613,7 +1612,7 @@
       <refpurpose>A testcase that should compile, link, and execute</refpurpose>
     </refnamediv>
     <refsynopsisdiv>run-test ::= 
-  (<link linkend="api.grammar.source">source</link>*, <link linkend="api.grammar.lib">lib</link>*, <link linkend="api.grammar.requirement">requirement</link>*, <link linkend="api.grammar.purpose">purpose</link>, <link linkend="api.grammar.if-fails">if-fails</link>?)
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1636,7 +1635,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.librarypurpose">
+  <refentry xml:id="docbook.api.librarypurpose">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>librarypurpose</tag></refentrytitle>
@@ -1647,7 +1646,7 @@
       <refpurpose>Describes in one short sentence or phrase the purpose of a library</refpurpose>
     </refnamediv>
     <refsynopsisdiv>librarypurpose ::= 
-  (#PCDATA| <link linkend="api.grammar.code">code</link>| ulink| <link linkend="api.grammar.functionname">functionname</link>| methodname| classname| <link linkend="api.grammar.macroname">macroname</link>| <link linkend="api.grammar.headername">headername</link>| <link linkend="api.grammar.enumname">enumname</link>| <link linkend="api.grammar.globalname">globalname</link>)*
+  (#PCDATA| <link linkend="docbook.api.code">code</link>| ulink| <link linkend="docbook.api.functionname">functionname</link>| methodname| classname| <link linkend="docbook.api.macroname">macroname</link>| <link linkend="docbook.api.headername">headername</link>| <link linkend="docbook.api.enumname">enumname</link>| <link linkend="docbook.api.globalname">globalname</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1671,7 +1670,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.copy-assignment">
+  <refentry xml:id="docbook.api.copy-assignment">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>copy-assignment</tag></refentrytitle>
@@ -1682,7 +1681,7 @@
       <refpurpose>Declares a copy-assignment operator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>copy-assignment ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.type">type</link>?, <link linkend="api.grammar.parameter">parameter</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>?, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>The return type of the copy-assignment operator does not need
@@ -1690,7 +1689,7 @@
   unqualified reference to the enclosing class type.</para>
 
   <para>General documentation on functions in api is provided in
-  the <link linkend="api.grammar.function"><tag>function</tag></link>
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
   element documentation.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -1717,7 +1716,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.run-fail-test">
+  <refentry xml:id="docbook.api.run-fail-test">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>run-fail-test</tag></refentrytitle>
@@ -1728,7 +1727,7 @@
       <refpurpose>A testcase that should compile and link, but fail on execution</refpurpose>
     </refnamediv>
     <refsynopsisdiv>run-fail-test ::= 
-  (<link linkend="api.grammar.source">source</link>*, <link linkend="api.grammar.lib">lib</link>*, <link linkend="api.grammar.requirement">requirement</link>*, <link linkend="api.grammar.purpose">purpose</link>, <link linkend="api.grammar.if-fails">if-fails</link>?)
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1751,7 +1750,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.template">
+  <refentry xml:id="docbook.api.template">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>template</tag></refentrytitle>
@@ -1762,7 +1761,7 @@
       <refpurpose>Declares the template parameters of a class or function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>template ::= 
-  (<link linkend="api.grammar.template-type-parameter">template-type-parameter</link>| <link linkend="api.grammar.template-nontype-parameter">template-nontype-parameter</link>| <link linkend="api.grammar.template-varargs">template-varargs</link>)*
+  (<link linkend="docbook.api.template-type-parameter">template-type-parameter</link>| <link linkend="docbook.api.template-nontype-parameter">template-nontype-parameter</link>| <link linkend="docbook.api.template-varargs">template-varargs</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1786,7 +1785,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.compile-fail-test">
+  <refentry xml:id="docbook.api.compile-fail-test">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>compile-fail-test</tag></refentrytitle>
@@ -1797,7 +1796,7 @@
       <refpurpose>A testcase that should fail to compile</refpurpose>
     </refnamediv>
     <refsynopsisdiv>compile-fail-test ::= 
-  (<link linkend="api.grammar.source">source</link>*, <link linkend="api.grammar.lib">lib</link>*, <link linkend="api.grammar.requirement">requirement</link>*, <link linkend="api.grammar.purpose">purpose</link>, <link linkend="api.grammar.if-fails">if-fails</link>?)
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1820,7 +1819,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.returns">
+  <refentry xml:id="docbook.api.returns">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>returns</tag></refentrytitle>
@@ -1855,7 +1854,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.default">
+  <refentry xml:id="docbook.api.default">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>default</tag></refentrytitle>
@@ -1890,7 +1889,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.parameter">
+  <refentry xml:id="docbook.api.parameter">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>parameter</tag></refentrytitle>
@@ -1901,7 +1900,7 @@
       <refpurpose>A function parameter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>parameter ::= 
-  (<link linkend="api.grammar.paramtype">paramtype</link>, <link linkend="api.grammar.default">default</link>?, <link linkend="api.grammar.description">description</link>?)
+  (<link linkend="docbook.api.paramtype">paramtype</link>, <link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.description">description</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -1924,7 +1923,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.signature">
+  <refentry xml:id="docbook.api.signature">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>signature</tag></refentrytitle>
@@ -1935,7 +1934,7 @@
       <refpurpose>One signature of an overloaded function or method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>signature ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.parameter">parameter</link>*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.parameter">parameter</link>*)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>
@@ -1970,7 +1969,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.overloaded-function">
+  <refentry xml:id="docbook.api.overloaded-function">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>overloaded-function</tag></refentrytitle>
@@ -1981,11 +1980,11 @@
       <refpurpose>An overloaded function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>overloaded-function ::= 
-  (<link linkend="api.grammar.signature">signature</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.signature">signature</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>General documentation on functions in api is provided in
-  the <link linkend="api.grammar.function"><tag>function</tag></link>
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
   element documentation.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -2011,7 +2010,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.access">
+  <refentry xml:id="docbook.api.access">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>access</tag></refentrytitle>
@@ -2022,7 +2021,7 @@
       <refpurpose>Declares an access specification for class members</refpurpose>
     </refnamediv>
     <refsynopsisdiv>access ::= 
-  (<link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)+
+  (<link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)+
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
     <para>The access specifications of class members (public, private, or protected) may be determined by enclosing them in an &lt;access&gt; element.</para>
@@ -2049,7 +2048,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.class">
+  <refentry xml:id="docbook.api.class">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>class</tag></refentrytitle>
@@ -2060,7 +2059,7 @@
       <refpurpose>Declares a class or class template</refpurpose>
     </refnamediv>
     <refsynopsisdiv>class ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.inherit">inherit</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, (<link linkend="api.grammar.access">access</link>| <link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.inherit">inherit</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>C++ classes and class templates are described via the
@@ -2130,7 +2129,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.librarycategorydef">
+  <refentry xml:id="docbook.api.librarycategorydef">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>librarycategorydef</tag></refentrytitle>
@@ -2144,7 +2143,7 @@
   (#PCDATA)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
-  <para>All library category definitions should be in <filename>doc/src/boost.xml</filename>, and the names of categories must be prefixed with "<code>category:</code>".</para>
+  <para>All library category definitions should be in the main xml file, and the names of categories must be prefixed with "<code>category:</code>".</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
       
@@ -2169,7 +2168,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.type">
+  <refentry xml:id="docbook.api.type">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>type</tag></refentrytitle>
@@ -2204,7 +2203,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.enumvalue">
+  <refentry xml:id="docbook.api.enumvalue">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>enumvalue</tag></refentrytitle>
@@ -2215,7 +2214,7 @@
       <refpurpose>A single value of an enumeration</refpurpose>
     </refnamediv>
     <refsynopsisdiv>enumvalue ::= 
-  (<link linkend="api.grammar.default">default</link>?, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?)
+  (<link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2240,7 +2239,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.overloaded-method">
+  <refentry xml:id="docbook.api.overloaded-method">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>overloaded-method</tag></refentrytitle>
@@ -2251,11 +2250,11 @@
       <refpurpose>An overloaded method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>overloaded-method ::= 
-  (<link linkend="api.grammar.signature">signature</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, <link linkend="api.grammar.requires">requires</link>?, <link linkend="api.grammar.effects">effects</link>?, <link linkend="api.grammar.postconditions">postconditions</link>?, <link linkend="api.grammar.returns">returns</link>?, <link linkend="api.grammar.throws">throws</link>?, <link linkend="api.grammar.complexity">complexity</link>?, <link linkend="api.grammar.notes">notes</link>?, <link linkend="api.grammar.rationale">rationale</link>?)
+  (<link linkend="docbook.api.signature">signature</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
   <para>General documentation on functions in api is provided in
-  the <link linkend="api.grammar.function"><tag>function</tag></link>
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
   element documentation.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -2281,7 +2280,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.programlisting">
+  <refentry xml:id="docbook.api.programlisting">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>programlisting</tag></refentrytitle>
@@ -2314,7 +2313,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.complexity">
+  <refentry xml:id="docbook.api.complexity">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>complexity</tag></refentrytitle>
@@ -2349,7 +2348,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.purpose">
+  <refentry xml:id="docbook.api.purpose">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>purpose</tag></refentrytitle>
@@ -2384,7 +2383,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.template-nontype-parameter">
+  <refentry xml:id="docbook.api.template-nontype-parameter">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>template-nontype-parameter</tag></refentrytitle>
@@ -2395,7 +2394,7 @@
       <refpurpose>A nontype template parameter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>template-nontype-parameter ::= 
-  (<link linkend="api.grammar.type">type</link>, <link linkend="api.grammar.default">default</link>?, <link linkend="api.grammar.purpose">purpose</link>?)
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.purpose">purpose</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2421,7 +2420,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.library">
+  <refentry xml:id="docbook.api.library">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>library</tag></refentrytitle>
@@ -2432,7 +2431,7 @@
       <refpurpose>Top-level element for a library</refpurpose>
     </refnamediv>
     <refsynopsisdiv>library ::= 
-  (<link linkend="api.grammar.libraryinfo">libraryinfo</link>, (title, ((section| <link linkend="api.grammar.library-reference">library-reference</link>| <link linkend="api.grammar.testsuite">testsuite</link>))+)?)
+  (<link linkend="docbook.api.libraryinfo">libraryinfo</link>, (title, ((section| <link linkend="docbook.api.library-reference">library-reference</link>| <link linkend="docbook.api.testsuite">testsuite</link>))+)?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2460,7 +2459,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.librarycategorylist">
+  <refentry xml:id="docbook.api.librarycategorylist">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>librarycategorylist</tag></refentrytitle>
@@ -2471,11 +2470,10 @@
       <refpurpose>Categorized listing of libraries</refpurpose>
     </refnamediv>
     <refsynopsisdiv>librarycategorylist ::= 
-  (<link linkend="api.grammar.librarycategorydef">librarycategorydef</link>)*
+  (<link linkend="docbook.api.librarycategorydef">librarycategorydef</link>)*
 </refsynopsisdiv>
     <refsection><info><title>Description</title></info>
-  <para>This element is not intended for use by developers, but is
-  used by <filename>doc/src/boost.xml</filename> as a
+  <para>This element is used by the main XML document as a
   placeholder.</para>
 </refsection>
     <refsection><info><title>Attributes</title></info>
@@ -2500,7 +2498,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.using-namespace">
+  <refentry xml:id="docbook.api.using-namespace">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>using-namespace</tag></refentrytitle>
@@ -2536,7 +2534,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.enumname">
+  <refentry xml:id="docbook.api.enumname">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>enumname</tag></refentrytitle>
@@ -2544,7 +2542,7 @@
     </refmeta>
     <refnamediv>
       <refname>enumname</refname>
-      <refpurpose/>
+      <refpurpose>References an enumeration type with the given name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>enumname ::= 
   (#PCDATA)
@@ -2571,7 +2569,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.struct-specialization">
+  <refentry xml:id="docbook.api.struct-specialization">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>struct-specialization</tag></refentrytitle>
@@ -2582,7 +2580,7 @@
       <refpurpose>A specialization (full or partial) of a struct template</refpurpose>
     </refnamediv>
     <refsynopsisdiv>struct-specialization ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.specialization">specialization</link>?, <link linkend="api.grammar.inherit">inherit</link>?, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, (<link linkend="api.grammar.access">access</link>| <link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.specialization">specialization</link>?, <link linkend="docbook.api.inherit">inherit</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2607,7 +2605,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.struct">
+  <refentry xml:id="docbook.api.struct">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>struct</tag></refentrytitle>
@@ -2618,7 +2616,7 @@
       <refpurpose>Declares a C++ struct</refpurpose>
     </refnamediv>
     <refsynopsisdiv>struct ::= 
-  (<link linkend="api.grammar.template">template</link>?, <link linkend="api.grammar.inherit">inherit</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?, (<link linkend="api.grammar.access">access</link>| <link linkend="api.grammar.static-constant">static-constant</link>| <link linkend="api.grammar.typedef">typedef</link>| <link linkend="api.grammar.enum">enum</link>| <link linkend="api.grammar.copy-assignment">copy-assignment</link>| <link linkend="api.grammar.constructor">constructor</link>| <link linkend="api.grammar.destructor">destructor</link>| <link linkend="api.grammar.method-group">method-group</link>| <link linkend="api.grammar.free-function-group">free-function-group</link>| <link linkend="api.grammar.function">function</link>| <link linkend="api.grammar.method">method</link>| <link linkend="api.grammar.overloaded-function">overloaded-function</link>| <link linkend="api.grammar.overloaded-method">overloaded-method</link>| <link linkend="api.grammar.data-member">data-member</link>| <link linkend="api.grammar.class">class</link>| <link linkend="api.grammar.class-specialization">class-specialization</link>| <link linkend="api.grammar.struct">struct</link>| <link linkend="api.grammar.struct-specialization">struct-specialization</link>| <link linkend="api.grammar.union">union</link>| <link linkend="api.grammar.union-specialization">union-specialization</link>)*)
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.inherit">inherit</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2643,7 +2641,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.lib">
+  <refentry xml:id="docbook.api.lib">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>lib</tag></refentrytitle>
@@ -2660,7 +2658,7 @@
   <para>Declares a library dependency on the library named by the content of this element, to be emitted in a Jamfile.</para>
 </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.enum">
+  <refentry xml:id="docbook.api.enum">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>enum</tag></refentrytitle>
@@ -2671,7 +2669,7 @@
       <refpurpose>Declares an enumeration type</refpurpose>
     </refnamediv>
     <refsynopsisdiv>enum ::= 
-  (<link linkend="api.grammar.enumvalue">enumvalue</link>*, <link linkend="api.grammar.purpose">purpose</link>?, <link linkend="api.grammar.description">description</link>?)
+  (<link linkend="docbook.api.enumvalue">enumvalue</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2696,7 +2694,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.requires">
+  <refentry xml:id="docbook.api.requires">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>requires</tag></refentrytitle>
@@ -2731,7 +2729,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.effects">
+  <refentry xml:id="docbook.api.effects">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>effects</tag></refentrytitle>
@@ -2766,7 +2764,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.libraryname">
+  <refentry xml:id="docbook.api.libraryname">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>libraryname</tag></refentrytitle>
@@ -2801,7 +2799,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.libraryinfo">
+  <refentry xml:id="docbook.api.libraryinfo">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>libraryinfo</tag></refentrytitle>
@@ -2812,7 +2810,7 @@
       <refpurpose>Provides information about a library</refpurpose>
     </refnamediv>
     <refsynopsisdiv>libraryinfo ::= 
-  (author+, copyright*, legalnotice*, <link linkend="api.grammar.librarypurpose">librarypurpose</link>, <link linkend="api.grammar.librarycategory">librarycategory</link>*)
+  (author+, copyright*, legalnotice*, <link linkend="docbook.api.librarypurpose">librarypurpose</link>, <link linkend="docbook.api.librarycategory">librarycategory</link>*)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2836,7 +2834,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.testsuite">
+  <refentry xml:id="docbook.api.testsuite">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>testsuite</tag></refentrytitle>
@@ -2847,7 +2845,7 @@
       <refpurpose>Describes a library testsuite</refpurpose>
     </refnamediv>
     <refsynopsisdiv>testsuite ::= 
-  ((<link linkend="api.grammar.compile-test">compile-test</link>| <link linkend="api.grammar.link-test">link-test</link>| <link linkend="api.grammar.run-test">run-test</link>| <link linkend="api.grammar.compile-fail-test">compile-fail-test</link>| <link linkend="api.grammar.link-fail-test">link-fail-test</link>| <link linkend="api.grammar.run-fail-test">run-fail-test</link>)+)
+  ((<link linkend="docbook.api.compile-test">compile-test</link>| <link linkend="docbook.api.link-test">link-test</link>| <link linkend="docbook.api.run-test">run-test</link>| <link linkend="docbook.api.compile-fail-test">compile-fail-test</link>| <link linkend="docbook.api.link-fail-test">link-fail-test</link>| <link linkend="docbook.api.run-fail-test">run-fail-test</link>)+)
 </refsynopsisdiv>
     <refsection><info><title>Attributes</title></info>
       
@@ -2871,7 +2869,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.header">
+  <refentry xml:id="docbook.api.header">
     <refmeta>
       <refentrytitle>
           DocBook API Element <tag>header</tag></refentrytitle>
@@ -2907,7 +2905,7 @@
       </informaltable>
     </refsection>
   </refentry>
-  <refentry xml:id="api.grammar.rationale">
+  <refentry xml:id="docbook.api.rationale">
     <refmeta>
       <refentrytitle>
           DocBook API element <tag>rationale</tag></refentrytitle>

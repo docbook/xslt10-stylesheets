@@ -15,27 +15,27 @@ version="1.0">
 <!-- <xsl:import href="relative-href.xsl"/> -->
  
    <!--
-      boost.defaults:
+      docbook.defaults:
         *custom  - only use explicitly set parameters
-         Boost   - use standard boost settings, can be overridden
+         API   - use standard API extension settings, can be overridden
    -->
-   <xsl:param name = "boost.defaults" select = "'none'"/>
+   <xsl:param name = "docbook.defaults" select = "'none'"/>
 
    <!--
       how to render the Home | Libraries | ... | More contents
         *none       - do not display ("standalone" mode)
-         horizontal - display in old-Boost style format (default for Boost)
+         horizontal - display in old-API style format (default for API)
          vertical   - like the new Getting Started layout
    -->
    <xsl:param name = "nav.layout">
       <xsl:choose>
-         <xsl:when test = "$boost.defaults='Boost'">horizontal</xsl:when>
+         <xsl:when test = "$docbook.defaults='API'">horizontal</xsl:when>
          <xsl:otherwise>none</xsl:otherwise>
       </xsl:choose>
    </xsl:param>
    <!--
       header border layout
-         Boost - place the old-Boost border around the header
+         API - place the old-API border around the header
         *none  - do not place a border around the header
    -->
    <xsl:param name = "nav.border" select = "'none'" />
@@ -48,34 +48,34 @@ version="1.0">
    -->
    <xsl:param name = "nav.flow" select = "'Spirit'"/>
    
-   <!-- location of the various Boost elements -->
+   <!-- location of the various DocBook API elements -->
 
-   <xsl:param name = "boost.root"      select = "'.'"/>
+   <xsl:param name = "api.root"      select = "'.'"/>
    <xsl:param name = "api.website"   select = "'http://wiki.docbook.org/topic/BoostBookIntegration'"/>
    <!-- Logo image location, leave empty for no logo -->
-   <xsl:param name = "boost.image.src">
-      <xsl:if test = "$boost.defaults = 'Boost'">
-         <xsl:value-of select = "concat($boost.root, '/db.png')"/>
+   <xsl:param name = "api.image.src">
+      <xsl:if test = "$docbook.defaults = 'API'">
+         <xsl:value-of select = "concat($api.root, '/images/db.png')"/>
       </xsl:if>
    </xsl:param>
-   <xsl:param name = "boost.image.alt">
-      <xsl:if test = "$boost.defaults = 'Boost'">
+   <xsl:param name = "api.image.alt">
+      <xsl:if test = "$docbook.defaults = 'API'">
          <xsl:value-of select = "'DocBook API Dcoumentation'"/>
       </xsl:if>
    </xsl:param>
-   <xsl:param name = "boost.image.w">
-      <xsl:if test = "$boost.defaults = 'Boost'">
+   <xsl:param name = "api.image.w">
+      <xsl:if test = "$docbook.defaults = 'API'">
          <xsl:value-of select = "177"/>
       </xsl:if>
    </xsl:param>
-   <xsl:param name = "boost.image.h">
-      <xsl:if test = "$boost.defaults = 'Boost'">
+   <xsl:param name = "api.image.h">
+      <xsl:if test = "$docbook.defaults = 'API'">
          <xsl:value-of select = "86"/>
       </xsl:if>
    </xsl:param>
-<!--    <xsl:param name = "boost.libraries">
-      <xsl:if test = "$boost.defaults = 'Boost'">
-         <xsl:value-of select = "concat($boost.root, '/libs/libraries.htm')"/>
+<!--    <xsl:param name = "api.libraries">
+      <xsl:if test = "$docbook.defaults = 'API'">
+         <xsl:value-of select = "concat($api.root, '/libs/libraries.htm')"/>
       </xsl:if>
    </xsl:param>
  -->
@@ -90,19 +90,19 @@ version="1.0">
       <xsl:variable name = "up"   select = "parent::*"/>
 
       <table cellpadding = "2" width = "100%"><tr>
-         <xsl:if test = "$nav.border = 'Boost'">
-            <xsl:attribute name = "class">boost-head</xsl:attribute>
+         <xsl:if test = "$nav.border = 'API'">
+            <xsl:attribute name = "class">api-head</xsl:attribute>
          </xsl:if>
 
          <td valign = "top">
-            <xsl:if test = "$nav.border = 'Boost'">
+            <xsl:if test = "$nav.border = 'API'">
                <xsl:attribute name = "style">background-color: white; width: 50%;</xsl:attribute>
             </xsl:if>
-            <xsl:if test = "boolean(normalize-space($boost.image.src))">
-               <img alt="{$boost.image.alt}" width="{$boost.image.w}" height="{$boost.image.h}">
+            <xsl:if test = "boolean(normalize-space($api.image.src))">
+               <img alt="{$api.image.alt}" width="{$api.image.w}" height="{$api.image.h}">
                    <xsl:attribute name="src">
                        <xsl:call-template name="href.target.relative">
-                           <xsl:with-param name="target" select="$boost.image.src"/>
+                           <xsl:with-param name="target" select="$api.image.src"/>
                        </xsl:call-template>
                    </xsl:attribute>
                </img>
@@ -143,43 +143,43 @@ version="1.0">
    <xsl:template name = "header.navdata-horiz">
       <xsl:variable name="home_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="concat( $boost.root, '/index.html' )"/>
+            <xsl:with-param name="target" select="concat( $api.root, '/index.html' )"/>
          </xsl:call-template>
       </xsl:variable>
 <!--       <xsl:variable name="libraries_link">
-         <xsl:if test = "boolean($boost.libraries)">
+         <xsl:if test = "boolean($api.libraries)">
             <xsl:call-template name="href.target.relative">
-               <xsl:with-param name="target" select="$boost.libraries"/>
+               <xsl:with-param name="target" select="$api.libraries"/>
             </xsl:call-template>
          </xsl:if>
       </xsl:variable>
        -->
       <xsl:variable name="project_link">
-         <xsl:call-template name="href.target.uri">
+         <xsl:call-template name="href.target.relative">
             <xsl:with-param name="target" select="'http://wiki.docbook.org/topic/BoostBookIntegration'"/> 
          </xsl:call-template>
       </xsl:variable>
 <!--       <xsl:variable name="faq_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="concat( $boost.website, '/users/faq.html' )"/> 
+            <xsl:with-param name="target" select="concat( $api.website, '/users/faq.html' )"/> 
          </xsl:call-template>
       </xsl:variable>
       <xsl:variable name="more_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="concat( $boost.root, '/more/index.htm' )"/>
+            <xsl:with-param name="target" select="concat( $api.root, '/more/index.htm' )"/>
          </xsl:call-template>
       </xsl:variable>
  -->      
       <xsl:choose>
-         <xsl:when test = "$nav.border = 'Boost'">
-            <td align = "center" class = "boost-headtd"><a href = "{$home_link}" class = "boost-headelem">Home</a></td>
+         <xsl:when test = "$nav.border = 'API'">
+            <td align = "center" class = "api-headtd"><a href = "{$home_link}" class = "api-headelem">Home</a></td>
 <!--             <xsl:if test = "boolean($libraries_link)">
-              <td align = "center" class = "boost-headtd"><a href = "{$libraries_link}" class = "boost-headelem">Libraries</a></td>
+              <td align = "center" class = "api-headtd"><a href = "{$libraries_link}" class = "api-headelem">Libraries</a></td>
             </xsl:if>
              -->
-            <td align = "center" class = "boost-headtd"><a href = "{$project_link}" class = "boost-headelem">Project</a></td>
-<!--             <td align = "center" class = "boost-headtd"><a href = "{$faq_link}" class = "boost-headelem">FAQ</a></td>
-            <td align = "center" class = "boost-headtd"><a href = "{$more_link}" class = "boost-headelem">More</a></td>  -->
+            <td align = "center" class = "api-headtd"><a href = "{$project_link}" class = "api-headelem">Project</a></td>
+<!--             <td align = "center" class = "api-headtd"><a href = "{$faq_link}" class = "api-headelem">FAQ</a></td>
+            <td align = "center" class = "api-headtd"><a href = "{$more_link}" class = "api-headelem">More</a></td>  -->
          </xsl:when><xsl:otherwise>
             <td align = "center"><a href = "{$home_link}">Home</a></td>
 <!--             <td align = "center"><a href = "{$libraries_link}">Libraries</a></td>  -->
@@ -193,12 +193,12 @@ version="1.0">
    <xsl:template name = "header.navdata-vert">
       <xsl:variable name="home_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="concat( $boost.root, '/index.html' )"/>
+            <xsl:with-param name="target" select="concat( $api.root, '/index.html' )"/>
          </xsl:call-template>
       </xsl:variable>
 <!--       <xsl:variable name="libraries_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="$boost.libraries"/>
+            <xsl:with-param name="target" select="$api.libraries"/>
          </xsl:call-template>
       </xsl:variable>
  -->
@@ -210,18 +210,18 @@ version="1.0">
 <!-- 
       <xsl:variable name="faq_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="concat( $boost.website, '/users/faq.html' )"/>
+            <xsl:with-param name="target" select="concat( $api.website, '/users/faq.html' )"/>
          </xsl:call-template>
       </xsl:variable>
       <xsl:variable name="more_link">
          <xsl:call-template name="href.target.relative">
-            <xsl:with-param name="target" select="concat( $boost.root, '/more/index.htm' )"/>
+            <xsl:with-param name="target" select="concat( $api.root, '/more/index.htm' )"/>
          </xsl:call-template>
       </xsl:variable>
  -->
       <td><div>
-         <xsl:if test = "$nav.border != 'Boost'">
-            <xsl:attribute name = "class">boost-toc</xsl:attribute>
+         <xsl:if test = "$nav.border != 'API'">
+            <xsl:attribute name = "class">api-toc</xsl:attribute>
          </xsl:if>
          <div><a href = "{$home_link}">Home</a></div>
 <!--          <div><a href = "{$libraries_link}">Libraries</a></div> -->

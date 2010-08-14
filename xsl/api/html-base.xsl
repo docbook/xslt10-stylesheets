@@ -14,19 +14,19 @@ xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
   
   <xsl:param name="html.stylesheet">
     <xsl:choose>
-      <xsl:when test = "$boost.defaults = 'Boost'">
-        <xsl:value-of select = "concat($boost.root, '/boostbook.css')"/>
+      <xsl:when test = "$docbook.defaults = 'API'">
+        <xsl:value-of select = "concat($api.root, '/api.css')"/>
       </xsl:when>
       <xsl:otherwise>
-        boostbook.css
+        api.css
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
 
-  <xsl:param name="boost.graphics.root">
+  <xsl:param name="api.graphics.root">
     <xsl:choose>
-      <xsl:when test = "$boost.defaults = 'Boost'">
-        <xsl:value-of select = "concat($boost.root, '/images/')"/>
+      <xsl:when test = "$docbook.defaults = 'API'">
+        <xsl:value-of select = "concat($api.root, '/images/')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select = "'images/'"/>
@@ -36,7 +36,7 @@ xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
 
   <xsl:param name="admon.style"/>
   <xsl:param name="admon.graphics">1</xsl:param>
-  <xsl:param name="boostbook.verbose" select="0"/>
+  <xsl:param name="api.verbose" select="0"/>
   <xsl:param name="navig.graphics" select="1"/>
   <xsl:param name="navig.graphics.extension" select="'.png'"/>
   <xsl:param name="chapter.autolabel" select="1"/>
@@ -49,13 +49,13 @@ xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
   <xsl:param name="doc.standalone">false</xsl:param>
   <xsl:param name="chunker.output.indent">yes</xsl:param>
   <xsl:param name="chunker.output.encoding">US-ASCII</xsl:param>
-  <xsl:param name="chunk.quietly" select="not(number($boostbook.verbose))"/>
+  <xsl:param name="chunk.quietly" select="not(number($api.verbose))"/>
   <xsl:param name="toc.max.depth">2</xsl:param>
   <xsl:param name="callout.graphics.number.limit">15</xsl:param>
-  <xsl:param name = "admon.graphics.path" select="$boost.graphics.root" />
-  <xsl:param name = "navig.graphics.path" select="$boost.graphics.root" />
+  <xsl:param name = "admon.graphics.path" select="$api.graphics.root" />
+  <xsl:param name = "navig.graphics.path" select="$api.graphics.root" />
   <xsl:param name = "callout.graphics.path"
-            select = "concat($boost.graphics.root, 'callouts/')"/>
+            select = "concat($api.graphics.root, 'callouts/')"/>
 
 
   <xsl:param name="admon.style">
@@ -185,7 +185,7 @@ set       toc,title
   </xsl:template>
 
   <!-- Footer Copyright -->
-  <xsl:template match="d:copyright" mode="boost.footer">
+  <xsl:template match="d:copyright" mode="api.footer">
     <xsl:if test="position() &gt; 1">
       <br/>
     </xsl:if>
@@ -208,7 +208,7 @@ set       toc,title
   </xsl:template>
 
   <!-- Footer License -->
-  <xsl:template match="d:legalnotice" mode="boost.footer">
+  <xsl:template match="d:legalnotice" mode="api.footer">
     <xsl:apply-templates select="d:para" mode="titlepage.mode" />
   </xsl:template>
 
@@ -250,9 +250,9 @@ set       toc,title
         <td align="right">
           <div class = "copyright-footer">
             <xsl:apply-templates select="ancestor::*/*/d:copyright"
-              mode="boost.footer"/>
+              mode="api.footer"/>
             <xsl:apply-templates select="ancestor::*/*/d:legalnotice"
-              mode="boost.footer"/>
+              mode="api.footer"/>
           </div>
         </td>
       </tr>

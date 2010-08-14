@@ -1,0 +1,154 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>DocBook API Element function</title>
+<link rel="stylesheet" href="../.././api.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="../../index.html" title="DocBook API Reference">
+<link rel="up" href="../../index.html" title="DocBook API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="DocBook API Dcoumentation" width="177" height="86" src="../.././images/db.png"></td>
+<td align="center"><a href="../.././index.html">Home</a></td>
+<td align="center"><a href="http://wiki.docbook.org/topic/BoostBookIntegration">Project</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="u" href="../../index.html"><img src="../.././images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../.././images/home.png" alt="Home"></a>
+</div>
+<div class="refentry">
+<a name="docbook.api.function"></a><div class="titlepage"></div>
+    
+    <div class="refnamediv">
+<h2><span class="refentrytitle">
+          DocBook API Element <code class="sgmltag-element">function</code></span></h2>
+<p>
+      function
+       &#8212; Declares a function
+    </p>
+</div>
+    <div class="refsynopsisdiv">
+<h2>Synopsis</h2>function ::= 
+  (<a class="link" href="template.html" title="DocBook API Element template">template</a>?, <a class="link" href="type.html" title="DocBook API Element type">type</a>, <a class="link" href="parameter.html" title="DocBook API Element parameter">parameter</a>*, <a class="link" href="purpose.html" title="DocBook API Element purpose">purpose</a>?, <a class="link" href="description.html" title="DocBook API Element description">description</a>?, <a class="link" href="requires.html" title="DocBook API Element requires">requires</a>?, <a class="link" href="effects.html" title="DocBook API Element effects">effects</a>?, <a class="link" href="postconditions.html" title="DocBook API Element postconditions">postconditions</a>?, <a class="link" href="returns.html" title="DocBook API Element returns">returns</a>?, <a class="link" href="throws.html" title="DocBook API Element throws">throws</a>?, <a class="link" href="complexity.html" title="DocBook API Element complexity">complexity</a>?, <a class="link" href="notes.html" title="DocBook API Element notes">notes</a>?, <a class="link" href="rationale.html" title="DocBook API element rationale">rationale</a>?)
+</div>
+    <div class="refsection">
+<a name="id1945958"></a><h2>Description</h2>
+  <p>api functions are documented by specifying the
+  function's interface (e.g., its C++ signature) and its
+  behavior. Constructors, destructors, member functions, and free
+  functions all use the same documentation method, although the
+  top-level tags differ.</p>
+
+  <p>The behavior of functions in api is documenting using a
+  style similar to that of the C++ standard, with clauses describing
+  the requirements, effects, postconditions, exception behavior, and
+  return values of functions.</p>
+
+  <p>The following example illustrates some constructors and a
+  destructor for <code class="classname">boost::any</code>. Note that one of
+  the constructors takes a single parameter whose name is "other" and
+  whose type, <code class="code">const any&amp;</code> is contained in the
+  &lt;paramtype&gt; element; any number of parameters may be specified
+  in this way.</p>
+
+  <pre class="programlisting">&lt;class name="any"&gt;
+  &lt;constructor&gt;
+    &lt;postconditions&gt;&lt;para&gt;&lt;this-&gt;empty()&gt;&lt;/para&gt;&lt;/postconditions&gt;
+  &lt;/constructor&gt;
+
+  &lt;constructor&gt;
+    &lt;parameter name="other"&gt;
+      &lt;paramtype&gt;const &lt;classname&gt;any&lt;/classname&gt;&amp;amp;&lt;/paramtype&gt;
+    &lt;/parameter&gt;
+
+    &lt;effects&gt;
+      &lt;simpara&gt; Copy constructor that copies
+        content of &lt;code&gt;other&lt;/code&gt; into the new instance,
+        so that any content is equivalent in both type and value to the
+        content of &lt;code&gt;other&lt;/code&gt;, or empty if
+        &lt;code&gt;other&lt;/code&gt; is
+        empty.
+      &lt;/simpara&gt;
+    &lt;/effects&gt;
+
+    &lt;throws&gt;
+      &lt;simpara&gt;May fail with a
+        &lt;classname&gt;std::bad_alloc&lt;/classname&gt; exception or any
+        exceptions arising from the copy constructor of the
+        contained type.
+      &lt;/simpara&gt;
+    &lt;/throws&gt;
+  &lt;/constructor&gt;
+
+  &lt;destructor&gt;
+     &lt;effects&gt;&lt;simpara&gt;Releases any and all resources used in
+     management of instance.&lt;/simpara&gt;&lt;/effects&gt;
+
+     &lt;throws&gt;&lt;simpara&gt;Nothing.&lt;/simpara&gt;&lt;/throws&gt;
+  &lt;/destructor&gt;
+&lt;/class&gt;</pre>
+</div>
+    <div class="refsection">
+<a name="id1946085"></a><h2>Attributes</h2>
+      
+      <div class="informaltable">
+        <table border="1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Purpose</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>last-revision</td>
+<td>#IMPLIED</td>
+<td>CDATA</td>
+<td>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</td>
+</tr>
+<tr>
+<td>specifiers</td>
+<td>#IMPLIED</td>
+<td>CDATA</td>
+<td>The specifiers for this function, e.g., inline, static, etc.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>#REQUIRED</td>
+<td>CDATA</td>
+<td>The name of the element being declared to referenced</td>
+</tr>
+<tr>
+<td>id</td>
+<td>#IMPLIED</td>
+<td>CDATA</td>
+<td>A global identifier for this element</td>
+</tr>
+<tr>
+<td>xml:base</td>
+<td>#IMPLIED</td>
+<td>CDATA</td>
+<td>Implementation detail used by XIncludes</td>
+</tr>
+</tbody>
+</table>
+      </div>
+    </div>
+  </div>
+<table width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer"></div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="u" href="../../index.html"><img src="../.././images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../.././images/home.png" alt="Home"></a>
+</div>
+</body>
+</html>

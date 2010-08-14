@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>DocBook API Element source</title>
+<link rel="stylesheet" href="../.././api.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.2">
+<link rel="home" href="../../index.html" title="DocBook API Reference">
+<link rel="up" href="../../index.html" title="DocBook API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="DocBook API Dcoumentation" width="177" height="86" src="../.././images/db.png"></td>
+<td align="center"><a href="../.././index.html">Home</a></td>
+<td align="center"><a href="http://wiki.docbook.org/topic/BoostBookIntegration">Project</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="u" href="../../index.html"><img src="../.././images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../.././images/home.png" alt="Home"></a>
+</div>
+<div class="refentry">
+<a name="docbook.api.source"></a><div class="titlepage"></div>
+    
+    <div class="refnamediv">
+<h2><span class="refentrytitle">
+          DocBook API Element <code class="sgmltag-element">source</code></span></h2>
+<p>
+      source
+       &#8212; Defines source code for a test
+    </p>
+</div>
+    <div class="refsynopsisdiv">
+<h2>Synopsis</h2>source ::= 
+  (#PCDATA| <a class="link" href="snippet.html" title="DocBook API Element snippet">snippet</a>)*
+</div>
+    <div class="refsection">
+<a name="id1945886"></a><h2>Description</h2>
+  <p>This element will contain the source code for a testcase that
+  will be generated from the documentation. To reduce the amount of escaping in the text, it is recommended to use CDATA sections, which look like this:
+
+    </p>
+<pre class="programlisting">&lt;![CDATA[
+&lt;your program text here: no escaping needed!&gt;
+]]&gt;</pre>
+<p>
+  </p>
+
+  <p>In addition to CDATA sections, code snippets can be pulled in
+  from <code class="sgmltag-element">programlisting</code> elements using the <a class="link" href="snippet.html" title="DocBook API Element snippet"><code class="sgmltag-element">snippet</code></a>
+  element.</p>
+</div>
+  </div>
+<table width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer"></div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="u" href="../../index.html"><img src="../.././images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../.././images/home.png" alt="Home"></a>
+</div>
+</body>
+</html>
