@@ -1,7 +1,7 @@
 /**
- * main.js
- *
- * Developed by: Kasun Gajasinghe, David Cramer
+ * Miscellaneous js functions for WebHelp
+ * Kasun Gajasinghe, http://kasunbg.blogspot.com
+ * David Cramer, http://www.thingbag.net
  *
  */
 

@@ -1,10 +1,10 @@
 /*----------------------------------------------------------------------------
- * NexWave javascript for NSI search
+ * JavaScript for webhelp search
  *----------------------------------------------------------------------------
- This file is part of the htmlsearch plugin for the DITA-OT
- adapted for NSI documentation.
+ This file is part of the webhelpsearch plugin for DocBook WebHelp
  Copyright (c) 2007-2008 NexWave Solutions All Rights Reserved.
  www.nexwave.biz Nadege Quaine
+ http://kasunbg.blogspot.com/ Kasun Gajasinghe
  */
 
 //string initialization
@@ -23,14 +23,14 @@ function Verifie(ditaSearch_Form) {
     }
 
 
-    expressionInput = document.ditaSearch_Form.textToSearch.value
+    var expressionInput = document.ditaSearch_Form.textToSearch.value;
     //Set a cookie to store the searched keywords
     $.cookie('textToSearch', expressionInput);
 
 
     if (expressionInput.length < 1) {
 
-        // expression invalide (vide)
+        // expression is invalid
         alert(txt_enter_at_least_1_char);
         // reactive la fenetre de search (utile car cadres)
         document.ditaSearch_Form.textToSearch.focus();
@@ -54,22 +54,18 @@ function Effectuer_recherche(expressionInput) {
     //DisplayWaitingMessage();
 
     /*data initialisation*/
-    searchFor = "";       // expression en lowercase et sans les caracte    res speciaux
+    var searchFor = "";       // expression en lowercase et sans les caracte    res speciaux
     //w = new Object();  // hashtable, key=word, value = list of the index of the html files
-    scriptLetterTab = new scriptfirstchar(); // Array containing the first letter of each word to look for
-    var scriptsarray = new Array(); // Array with the name of the scripts to load
+    scriptLetterTab = new Scriptfirstchar(); // Array containing the first letter of each word to look for
     var wordsList = new Array(); // Array with the words to look for
     var finalWordsList = new Array(); // Array with the words to look for after removing spaces
-    var listNumerosDesFicStr = "";
-    var ou_recherche = true;
     var linkTab = new Array();
-    var et_recherche = false;
     var fileAndWordList = new Array();
     var txt_wordsnotfound = "";
 
 
     /*nqu: expressionInput, la recherche est lower cased, plus remplacement des char speciaux*/
-    searchFor = expressionInput.toLowerCase().replace(/<\//g, "_st_").replace(/\$_/g, "_di_").replace(/\.|%2C|%3B|%21|%3A|@|\/|\*/g, " ").replace(/(%20)+/g, " ").replace(/_st_/g, "</").replace(/_di_/g, "%24_")
+    searchFor = expressionInput.toLowerCase().replace(/<\//g, "_st_").replace(/\$_/g, "_di_").replace(/\.|%2C|%3B|%21|%3A|@|\/|\*/g, " ").replace(/(%20)+/g, " ").replace(/_st_/g, "</").replace(/_di_/g, "%24_");
 
     searchFor = searchFor.replace(/  +/g, " ");
     searchFor = searchFor.replace(/ $/, "").replace(/^ /, "");
@@ -100,7 +96,7 @@ function Effectuer_recherche(expressionInput) {
      * Compare with the indexed words (in the w[] array), and push words that are in it to tempTab.
      */
     var tempTab = new Array();
-    for (t in finalWordsList) {
+    for (var t in finalWordsList) {
         if (w[finalWordsList[t].toString()] == undefined) {
             txt_wordsnotfound += finalWordsList[t] + " ";
         } else {
@@ -114,7 +110,7 @@ function Effectuer_recherche(expressionInput) {
         //search 'and' and 'or' one time
         fileAndWordList = SortResults(finalWordsList);
 
-        cpt = fileAndWordList.length;
+        var cpt = fileAndWordList.length;
         for (var i = cpt - 1; i >= 0; i--) {
             if (fileAndWordList[i] != undefined) {
                 linkTab.push("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">" + fileAndWordList[i][0].motslisteDisplay + "</span>" + "</p>");
@@ -123,12 +119,12 @@ function Effectuer_recherche(expressionInput) {
                 for (t in fileAndWordList[i]) {
                     //DEBUG: alert(": "+ fileAndWordList[i][t].filenb+" " +fileAndWordList[i][t].motsliste);
                     //linkTab.push("<li><a href=\"../"+fl[fileAndWordList[i][t].filenb]+"\">"+fl[fileAndWordList[i][t].filenb]+"</a></li>");
-                    tempInfo = fil[fileAndWordList[i][t].filenb];
-                    pos1 = tempInfo.indexOf("@@@");
-                    pos2 = tempInfo.lastIndexOf("@@@");
-                    tempPath = tempInfo.substring(0, pos1);
-                    tempTitle = tempInfo.substring(pos1 + 3, pos2);
-                    tempShortdesc = tempInfo.substring(pos2 + 3, tempInfo.length);
+                    var tempInfo = fil[fileAndWordList[i][t].filenb];
+                    var pos1 = tempInfo.indexOf("@@@");
+                    var pos2 = tempInfo.lastIndexOf("@@@");
+                    var tempPath = tempInfo.substring(0, pos1);
+                    var tempTitle = tempInfo.substring(pos1 + 3, pos2);
+                    var tempShortdesc = tempInfo.substring(pos2 + 3, tempInfo.length);
 
                     //file:///home/kasun/docbook/WEBHELP/webhelp-draft-output-format-idea/src/main/resources/web/webhelp/installation.html
                     var linkString = "<li><a href=" + tempPath + ">" + tempTitle + "</a>";
@@ -172,8 +168,8 @@ function tokenize(wordsList){
         }
     } 
      //stemmedWordsList is the stemmed list of words separated by spaces.
-    for (t in wordsList) {
-        wordsList[t] = wordsList[t].replace(/(%22)|^-/g, "")
+    for (var t in wordsList) {
+        wordsList[t] = wordsList[t].replace(/(%22)|^-/g, "");
         if (wordsList[t] != "%20") {
             scriptLetterTab.add(wordsList[t].charAt(0));
             cleanwordsList.push(wordsList[t]);
@@ -192,6 +188,7 @@ function tokenize(wordsList){
     return stemmedWordsList;
 }
 
+//Invoker of CJKTokenizer class methods.
 function cjkTokenize(wordsList){
     var allTokens= new Array();
     var notCJKTokens= new Array();
@@ -214,7 +211,7 @@ function cjkTokenize(wordsList){
 function getAvgAsciiValue(word){
     var tmp = 0;
     var num = word.length < 5 ? word.length:5;
-    for(i=0;i<num;i++){
+    for(var i=0;i<num;i++){
         if(i==5) break;
         tmp += word.charCodeAt(i);
     }
@@ -252,9 +249,7 @@ function CJKTokenizer(input){
 			var tmp = this.tokenize();
 			this.tokens.push(tmp);
 		}
-		var sortedTokens = this.unique(this.tokens);
-
-        return sortedTokens;    
+        return this.unique(this.tokens);
 //		document.getElementById("content").innerHTML += tokens+" ";
 //		document.getElementById("content").innerHTML += "<br>dada"+sortedTokens+" ";
 //		console.log(tokens.length+"dsdsds");
@@ -283,8 +278,8 @@ function CJKTokenizer(input){
 }
 
 
-/* scriptfirstchar: to gather the first letter of index js files to upload */
-function scriptfirstchar() {
+/* Scriptfirstchar: to gather the first letter of index js files to upload */
+function Scriptfirstchar() {
     this.strLetters = "";
     this.add = addLettre;
 }
@@ -306,9 +301,9 @@ function addLettre(caract) {
 function loadTheIndexScripts(tab) {
 
     //alert (tab.strLetters);
-    scriptsarray = new Array();
+    var scriptsarray = new Array();
 
-    for (i = 0; i < tab.strLetters.length; i++) {
+    for (var i = 0; i < tab.strLetters.length; i++) {
 
         scriptsarray[i] = "..\/search" + "\/" + tab.strLetters.charAt(i) + ".js";
     }
@@ -317,11 +312,11 @@ function loadTheIndexScripts(tab) {
     scriptsarray[i] = "..\/search" + "\/" + htmlfileList;
 
     //debug
-    for (t in scriptsarray) {
+    for (var t in scriptsarray) {
         //alert (scriptsarray[t]);
     }
 
-    tab = new scriptLoader();
+    tab = new ScriptLoader();
     for (t in scriptsarray) {
         tab.add(scriptsarray[t]);
     }
@@ -330,8 +325,8 @@ function loadTheIndexScripts(tab) {
     return (scriptsarray);
 }
 
-/* scriptloader: to load the scripts and wait that it's finished */
-function scriptLoader(aScriptList) {
+/* ScriptLoader: to load the scripts and wait that it's finished */
+function ScriptLoader() {
     this.cpt = 0;
     this.scriptTab = new Array();
     this.add = addAScriptInTheList;
@@ -351,7 +346,7 @@ function loadTheScripts() {
 
     //script = document.createElement('script');
 
-    for (el in this.scriptTab) {
+    for (var el in this.scriptTab) {
         //alert (el+this.scriptTab[el]);
         script = document.createElement('script');
         script.src = this.scriptTab[el];
@@ -385,18 +380,7 @@ function onLoadComplete() {
 } */
 
 /* End of scriptloader functions */
-
-/* Array functions */
-/*function unique (tab){
- for(var y=0;y<tab.length;++y){
- for(var z=(y+1);z<=tab.length;++z){
- if(tab[y]==tab[z]){
- tab.splice(z,1)
- }
- }
- }
- return tab;
- } */
+ 
 // Array.unique( strict ) - Remove duplicate values
 function unique(tab) {
     var a = new Array();
@@ -417,11 +401,8 @@ function unique(tab) {
     }
     return a;
 }
-;
-
-
 function indexof(tab, element, begin) {
-    for (i = begin; i < tab.length; i++) {
+    for (var i = begin; i < tab.length; i++) {
         if (tab[i] == element) {
             return i;
         }
@@ -443,21 +424,19 @@ function indexof(tab, element, begin) {
 function SortResults(mots) {
 
     var fileAndWordList = new Object();
-    var fileAndWordList2 = new Object();
-
     if (mots.length == 0) {
         return null;
     }
 
-    for (t in mots) {
+    for (var t in mots) {
         // get the list of the indices of the files.
-        listNumerosDesFicStr = w[mots[t].toString()];
+        var listNumerosDesFicStr = w[mots[t].toString()];
         //alert ("listNumerosDesFicStr "+listNumerosDesFicStr);
-        tab = listNumerosDesFicStr.split(",");
+        var tab = listNumerosDesFicStr.split(",");
 
         //for each file (file's index):
-        for (t2 in tab) {
-            temp = tab[t2].toString();
+        for (var t2 in tab) {
+            var temp = tab[t2].toString();
             if (fileAndWordList[temp] == undefined) {
 
                 fileAndWordList[temp] = "" + mots[t];
@@ -468,7 +447,7 @@ function SortResults(mots) {
         }
     }
 
-    fileAndWordListValuesOnly = new Array();
+    var fileAndWordListValuesOnly = new Array();
 
     // sort results according to values
     var temptab = new Array();
@@ -498,7 +477,7 @@ function SortResults(mots) {
 
     var listToOutput = new Array();
 
-    for (j in fileAndWordListValuesOnly) {
+    for (var j in fileAndWordListValuesOnly) {
         for (t in temptab) {
             if (temptab[t].motsliste == fileAndWordListValuesOnly[j]) {
                 if (listToOutput[j] == undefined) {
@@ -506,11 +485,9 @@ function SortResults(mots) {
                 } else {
                     listToOutput[j].push(temptab[t]);
                 }
-
             }
         }
     }
-
     return listToOutput;
 }
 
@@ -533,20 +510,4 @@ function compare_nbMots(s1, s2) {
         return -1;
     }
     //return t1.length - t2.length);
-}
-/* User interfaces functions */
-function DisplayWaitingMessage() {
-
-    with (parent.frames['searchresults'].document) {
-        writeln("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html><head>");
-        writeln("<meta content=\"text/html; charset=utf-8\" http-equiv=\"Content-Type\" />");
-        //writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/commonltr.css\">") ;
-        //writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/search.css\">");
-        writeln("<link rel=\"stylesheet\" type=\"text/css\" href=\"common/tabs.css\">");
-        writeln("<title>" + txt_please_wait + "</title></head>");
-        writeln("<body onload = \"self.focus()\">");
-        writeln("<h2>" + txt_please_wait + "</h2></body></html>");
-        close();
-    }
-
 }
