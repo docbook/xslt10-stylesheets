@@ -46,7 +46,7 @@ xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
   <xsl:param name="make.year.ranges" select="1"/>
   <xsl:param name="generate.manifest" select="1"/>
   <xsl:param name="generate.section.toc.level" select="3"/>
-  <xsl:param name="doc.standalone">false</xsl:param>
+  <xsl:param name="doc.standalone">true</xsl:param>
   <xsl:param name="chunker.output.indent">yes</xsl:param>
   <xsl:param name="chunker.output.encoding">US-ASCII</xsl:param>
   <xsl:param name="chunk.quietly" select="not(number($api.verbose))"/>
@@ -68,7 +68,6 @@ xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
   <xsl:param name="generate.toc">
 appendix  toc,title
 article/appendix  nop
-article   toc,title
 book      toc,title
 chapter   toc,title
 part      toc,title

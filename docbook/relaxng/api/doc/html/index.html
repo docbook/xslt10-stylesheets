@@ -7,333 +7,95 @@
 <link rel="home" href="index.html" title="DocBook API Reference">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table cellpadding="2" width="100%"><tr>
-<td valign="top"><img alt="DocBook API Dcoumentation" width="177" height="86" src="./images/db.png"></td>
-<td align="center"><a href="./index.html">Home</a></td>
-<td align="center"><a href="http://wiki.docbook.org/topic/BoostBookIntegration">Project</a></td>
-</tr></table>
+<table cellpadding="2" width="100%"><tr class="api-head"><td valign="top" style="background-color: rgb(0,165,165); width: 100%;"><a href="http://wiki.docbook.org/topic/BoostBookIntegration"><img alt="DocBook API Dcoumentation" width="300" height="100" src="./images/db-api.png"></a></td></tr></table>
 <hr>
 <div class="spirit-nav"></div>
 <div class="article">
 <div class="titlepage">
 <div><div><h2 class="title">
-<a name="id1943267"></a>DocBook API Reference</h2></div></div>
+<a name="id1945283"></a>DocBook API Reference</h2></div></div>
 <hr>
 </div>
-<div class="toc">
-<p><b>Table of Contents</b></p>
-<dl>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/class-specialization.html">
-          DocBook API Element <code class="sgmltag-element">class-specialization</code></a></span><span class="refpurpose"> &#8212; A specialization (partial or full) of a class template</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/link-test.html">
-          DocBook API Element <code class="sgmltag-element">link-test</code></a></span><span class="refpurpose"> &#8212; Declares a test that should compile and link</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/link-fail-test.html">
-          DocBook API Element <code class="sgmltag-element">link-fail-test</code></a></span><span class="refpurpose"> &#8212; Declares a test that should compile but fail to link</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/typedef.html">
-          DocBook API Element <code class="sgmltag-element">typedef</code></a></span><span class="refpurpose"> &#8212; Declares a typedef</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/static-constant.html">
-          DocBook API Element <code class="sgmltag-element">static-constant</code></a></span><span class="refpurpose"> &#8212; Declares a static constant, e.g., <code class="code">const int foo = 5;</code>.</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/code.html">
-          DocBook API Element <code class="sgmltag-element">code</code></a></span><span class="refpurpose"> &#8212; Mimics the <code class="sgmltag-element">code</code> tag in HTML</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/destructor.html">
-          DocBook API Element <code class="sgmltag-element">destructor</code></a></span><span class="refpurpose"> &#8212; Declares a destructor for the enclosing class</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/template-type-parameter.html">
-          DocBook API Element <code class="sgmltag-element">template-type-parameter</code></a></span><span class="refpurpose"> &#8212; Declares a template type parameter</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/description.html">
-          DocBook API Element <code class="sgmltag-element">description</code></a></span><span class="refpurpose"> &#8212; Detailed description of a construct</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/librarylist.html">
-          DocBook API Element <code class="sgmltag-element">librarylist</code></a></span><span class="refpurpose"> &#8212; Placeholder for an alphabetical list of libraries</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/library-reference.html">
-          DocBook API Element <code class="sgmltag-element">library-reference</code></a></span><span class="refpurpose"> &#8212; Declares the reference material for a library</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/api.html">
-          DocBook API Element <code class="sgmltag-element">api</code></a></span><span class="refpurpose"> &#8212; Defines an API</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/union.html">
-          DocBook API Element <code class="sgmltag-element">union</code></a></span><span class="refpurpose"> &#8212; Declares a C++ union or union template</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/inherit.html">
-          DocBook API Element <code class="sgmltag-element">inherit</code></a></span><span class="refpurpose"> &#8212; Declares a base class of the enclosing class or struct</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/template-varargs.html">
-          DocBook API Element <code class="sgmltag-element">template-varargs</code></a></span><span class="refpurpose"> &#8212; Declares a variable-length list of template parameters</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/source.html">
-          DocBook API Element <code class="sgmltag-element">source</code></a></span><span class="refpurpose"> &#8212; Defines source code for a test</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/function.html">
-          DocBook API Element <code class="sgmltag-element">function</code></a></span><span class="refpurpose"> &#8212; Declares a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/macroname.html">
-          DocBook API Element <code class="sgmltag-element">macroname</code></a></span><span class="refpurpose"> &#8212; References a macro with the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/postconditions.html">
-          DocBook API Element <code class="sgmltag-element">postconditions</code></a></span><span class="refpurpose"> &#8212; Conditions that must hold after the function returns</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/compile-test.html">
-          DocBook API Element <code class="sgmltag-element">compile-test</code></a></span><span class="refpurpose"> &#8212; A testcase that should compile correctly</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/method.html">
-          DocBook API Element <code class="sgmltag-element">method</code></a></span><span class="refpurpose"> &#8212; Declares a method, i.e., a member function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/snippet.html">
-          DocBook API Element <code class="sgmltag-element">snippet</code></a></span><span class="refpurpose"> &#8212; Pulls in a code snippet from a <code class="sgmltag-element">programlisting</code> element</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/constructor.html">
-          DocBook API Element <code class="sgmltag-element">constructor</code></a></span><span class="refpurpose"> &#8212; Declares a constructor of the enclosing class</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/namespace.html">
-          DocBook API Element <code class="sgmltag-element">namespace</code></a></span><span class="refpurpose"> &#8212; Declares a namespace</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/if-fails.html">
-          DocBook API Element <code class="sgmltag-element">if-fails</code></a></span><span class="refpurpose"> &#8212; What it means when a testcase fails</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/headername.html">
-          DocBook API Element <code class="sgmltag-element">headername</code></a></span><span class="refpurpose"> &#8212; References a C++ header with the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/free-function-group.html">
-          DocBook API Element <code class="sgmltag-element">free-function-group</code></a></span><span class="refpurpose"> &#8212; A set of functions that are grouped together under one name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/functionname.html">
-          DocBook API Element <code class="sgmltag-element">functionname</code></a></span><span class="refpurpose"> &#8212; References a function with the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/librarycategory.html">
-          DocBook API Element <code class="sgmltag-element">librarycategory</code></a></span><span class="refpurpose"> &#8212; Declares that the enclosing library is in this category</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/notes.html">
-          DocBook API Element <code class="sgmltag-element">notes</code></a></span><span class="refpurpose"> &#8212; Non-normative notes about a function's semantics</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/data-member.html">
-          DocBook API Element <code class="sgmltag-element">data-member</code></a></span><span class="refpurpose"> &#8212; Declares a data member of a class</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/specialization.html">
-          DocBook API Element <code class="sgmltag-element">specialization</code></a></span><span class="refpurpose"> &#8212; Defines the specialization arguments for a class specialization</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/union-specialization.html">
-          DocBook API Element <code class="sgmltag-element">union-specialization</code></a></span><span class="refpurpose"> &#8212; A specialization (full or partial) of a union template</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/throws.html">
-          DocBook API Element <code class="sgmltag-element">throws</code></a></span><span class="refpurpose"> &#8212; Description of the exceptions thrown by a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/template-arg.html">
-          DocBook API Element <code class="sgmltag-element">template-arg</code></a></span><span class="refpurpose"> &#8212; A template argument in a specialization</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/globalname.html">
-          DocBook API Element <code class="sgmltag-element">globalname</code></a></span><span class="refpurpose"> &#8212; References a global with the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/method-group.html">
-          DocBook API Element <code class="sgmltag-element">method-group</code></a></span><span class="refpurpose"> &#8212; A set of methods that are grouped together under one name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/requirement.html">
-          DocBook API Element <code class="sgmltag-element">requirement</code></a></span><span class="refpurpose"> &#8212; A requirement/property in the Jamfile for a testcase</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/precondition.html">
-          DocBook API Element <code class="sgmltag-element">precondition</code></a></span><span class="refpurpose"> &#8212; Conditions that must be met prior to executing a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/paramtype.html">
-          DocBook API Element <code class="sgmltag-element">paramtype</code></a></span><span class="refpurpose"> &#8212; The type of a function parameter</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/using-class.html">
-          DocBook API Element <code class="sgmltag-element">using-class</code></a></span><span class="refpurpose"> &#8212; Injects the method and function names of a class into the local scope</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/run-test.html">
-          DocBook API Element <code class="sgmltag-element">run-test</code></a></span><span class="refpurpose"> &#8212; A testcase that should compile, link, and execute</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/librarypurpose.html">
-          DocBook API Element <code class="sgmltag-element">librarypurpose</code></a></span><span class="refpurpose"> &#8212; Describes in one short sentence or phrase the purpose of a library</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/copy-assignment.html">
-          DocBook API Element <code class="sgmltag-element">copy-assignment</code></a></span><span class="refpurpose"> &#8212; Declares a copy-assignment operator</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/run-fail-test.html">
-          DocBook API Element <code class="sgmltag-element">run-fail-test</code></a></span><span class="refpurpose"> &#8212; A testcase that should compile and link, but fail on execution</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/template.html">
-          DocBook API Element <code class="sgmltag-element">template</code></a></span><span class="refpurpose"> &#8212; Declares the template parameters of a class or function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/compile-fail-test.html">
-          DocBook API Element <code class="sgmltag-element">compile-fail-test</code></a></span><span class="refpurpose"> &#8212; A testcase that should fail to compile</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/returns.html">
-          DocBook API Element <code class="sgmltag-element">returns</code></a></span><span class="refpurpose"> &#8212; Description of the return value of a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/default.html">
-          DocBook API Element <code class="sgmltag-element">default</code></a></span><span class="refpurpose"> &#8212; The default value of a function or template parameter</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/parameter.html">
-          DocBook API Element <code class="sgmltag-element">parameter</code></a></span><span class="refpurpose"> &#8212; A function parameter</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/signature.html">
-          DocBook API Element <code class="sgmltag-element">signature</code></a></span><span class="refpurpose"> &#8212; One signature of an overloaded function or method</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/overloaded-function.html">
-          DocBook API Element <code class="sgmltag-element">overloaded-function</code></a></span><span class="refpurpose"> &#8212; An overloaded function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/access.html">
-          DocBook API Element <code class="sgmltag-element">access</code></a></span><span class="refpurpose"> &#8212; Declares an access specification for class members</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/class.html">
-          DocBook API Element <code class="sgmltag-element">class</code></a></span><span class="refpurpose"> &#8212; Declares a class or class template</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/librarycategorydef.html">
-          DocBook API Element <code class="sgmltag-element">librarycategorydef</code></a></span><span class="refpurpose"> &#8212; Defines a new library category</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/type.html">
-          DocBook API Element <code class="sgmltag-element">type</code></a></span><span class="refpurpose"> &#8212; The type of an element or return type of a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/enumvalue.html">
-          DocBook API Element <code class="sgmltag-element">enumvalue</code></a></span><span class="refpurpose"> &#8212; A single value of an enumeration</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/overloaded-method.html">
-          DocBook API Element <code class="sgmltag-element">overloaded-method</code></a></span><span class="refpurpose"> &#8212; An overloaded method</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/programlisting.html">
-          DocBook API Element <code class="sgmltag-element">programlisting</code></a></span><span class="refpurpose"> &#8212; A sample of program code</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/complexity.html">
-          DocBook API Element <code class="sgmltag-element">complexity</code></a></span><span class="refpurpose"> &#8212; The time/space/etc. complexity of a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/purpose.html">
-          DocBook API Element <code class="sgmltag-element">purpose</code></a></span><span class="refpurpose"> &#8212; A short description of an entity's use</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/template-nontype-parameter.html">
-          DocBook API Element <code class="sgmltag-element">template-nontype-parameter</code></a></span><span class="refpurpose"> &#8212; A nontype template parameter</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/library.html">
-          DocBook API Element <code class="sgmltag-element">library</code></a></span><span class="refpurpose"> &#8212; Top-level element for a library</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/librarycategorylist.html">
-          DocBook API Element <code class="sgmltag-element">librarycategorylist</code></a></span><span class="refpurpose"> &#8212; Categorized listing of libraries</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/using-namespace.html">
-          DocBook API Element <code class="sgmltag-element">using-namespace</code></a></span><span class="refpurpose"> &#8212; Injects the declared names from a namespace into the local scope</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/enumname.html">
-          DocBook API Element <code class="sgmltag-element">enumname</code></a></span><span class="refpurpose"> &#8212; References an enumeration type with the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/struct-specialization.html">
-          DocBook API Element <code class="sgmltag-element">struct-specialization</code></a></span><span class="refpurpose"> &#8212; A specialization (full or partial) of a struct template</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/struct.html">
-          DocBook API Element <code class="sgmltag-element">struct</code></a></span><span class="refpurpose"> &#8212; Declares a C++ struct</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/lib.html">
-          DocBook API Element <code class="sgmltag-element">lib</code></a></span><span class="refpurpose"> &#8212; A library dependency</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/enum.html">
-          DocBook API Element <code class="sgmltag-element">enum</code></a></span><span class="refpurpose"> &#8212; Declares an enumeration type</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/requires.html">
-          DocBook API Element <code class="sgmltag-element">requires</code></a></span><span class="refpurpose"> &#8212; Declares the requirements of a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/effects.html">
-          DocBook API Element <code class="sgmltag-element">effects</code></a></span><span class="refpurpose"> &#8212; Declares the side effects of a function</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/libraryname.html">
-          DocBook API Element <code class="sgmltag-element">libraryname</code></a></span><span class="refpurpose"> &#8212; References a library of the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/libraryinfo.html">
-          DocBook API Element <code class="sgmltag-element">libraryinfo</code></a></span><span class="refpurpose"> &#8212; Provides information about a library</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/testsuite.html">
-          DocBook API Element <code class="sgmltag-element">testsuite</code></a></span><span class="refpurpose"> &#8212; Describes a library testsuite</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/header.html">
-          DocBook API Element <code class="sgmltag-element">header</code></a></span><span class="refpurpose"> &#8212; Declares a C++ header with the given name</span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="docbook/api/rationale.html">
-          DocBook API element <code class="sgmltag-element">rationale</code></a></span><span class="refpurpose"> &#8212; Describes the rationale for a particular function's design</span>
-</dt>
-</dl>
-</div>
-  
+  <p>Elements:</p>
+<div class="itemizedlist"><ul class="itemizedlist" type="disc" compact>
+<li class="listitem"><a class="link" href="docbook/api/access.html" title="DocBook API Element access">Element <code class="sgmltag-element">access</code> - Declares an access specification for class members</a></li>
+<li class="listitem"><a class="link" href="docbook/api/api.html" title="DocBook API Element api">Element <code class="sgmltag-element">api</code> - Defines a DocBook API</a></li>
+<li class="listitem"><a class="link" href="docbook/api/class.html" title="DocBook API Element class">Element <code class="sgmltag-element">class</code> - Declares a class or class template</a></li>
+<li class="listitem"><a class="link" href="docbook/api/class-specialization.html" title="DocBook API Element class-specialization">Element <code class="sgmltag-element">class-specialization</code> - A specialization (partial or full) of a class template</a></li>
+<li class="listitem"><a class="link" href="docbook/api/code.html" title="DocBook API Element code">Element <code class="sgmltag-element">code</code> - Mimics the <code class="sgmltag-element">code</code> tag in HTML</a></li>
+<li class="listitem"><a class="link" href="docbook/api/compile-fail-test.html" title="DocBook API Element compile-fail-test">Element <code class="sgmltag-element">compile-fail-test</code> - A testcase that should fail to compile</a></li>
+<li class="listitem"><a class="link" href="docbook/api/compile-test.html" title="DocBook API Element compile-test">Element <code class="sgmltag-element">compile-test</code> - A testcase that should compile correctly</a></li>
+<li class="listitem"><a class="link" href="docbook/api/complexity.html" title="DocBook API Element complexity">Element <code class="sgmltag-element">complexity</code> - The time/space/etc. complexity of a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/constructor.html" title="DocBook API Element constructor">Element <code class="sgmltag-element">constructor</code> - Declares a constructor of the enclosing class</a></li>
+<li class="listitem"><a class="link" href="docbook/api/copy-assignment.html" title="DocBook API Element copy-assignment">Element <code class="sgmltag-element">copy-assignment</code> - Declares a copy-assignment operator</a></li>
+<li class="listitem"><a class="link" href="docbook/api/data-member.html" title="DocBook API Element data-member">Element <code class="sgmltag-element">data-member</code> - Declares a data member of a class</a></li>
+<li class="listitem"><a class="link" href="docbook/api/default.html" title="DocBook API Element default">Element <code class="sgmltag-element">default</code> - The default value of a function or template parameter</a></li>
+<li class="listitem"><a class="link" href="docbook/api/description.html" title="DocBook API Element description">Element <code class="sgmltag-element">description</code> - Detailed description of a construct</a></li>
+<li class="listitem"><a class="link" href="docbook/api/destructor.html" title="DocBook API Element destructor">Element <code class="sgmltag-element">destructor</code> - Declares a destructor for the enclosing class</a></li>
+<li class="listitem"><a class="link" href="docbook/api/effects.html" title="DocBook API Element effects">Element <code class="sgmltag-element">effects</code> - Declares the side effects of a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/enum.html" title="DocBook API Element enum">Element <code class="sgmltag-element">enum</code> - Declares an enumeration type</a></li>
+<li class="listitem"><a class="link" href="docbook/api/enumname.html" title="DocBook API Element enumname">Element <code class="sgmltag-element">enumname</code> - References an enumeration type with the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/enumvalue.html" title="DocBook API Element enumvalue">Element <code class="sgmltag-element">enumvalue</code> - A single value of an enumeration</a></li>
+<li class="listitem"><a class="link" href="docbook/api/free-function-group.html" title="DocBook API Element free-function-group">Element <code class="sgmltag-element">free-function-group</code> - A set of functions that are grouped together under one name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/function.html" title="DocBook API Element function">Element <code class="sgmltag-element">function</code> - Declares a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/functionname.html" title="DocBook API Element functionname">Element <code class="sgmltag-element">functionname</code> - References a function with the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/globalname.html" title="DocBook API Element globalname">Element <code class="sgmltag-element">globalname</code> - References a global with the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/header.html" title="DocBook API Element header">Element <code class="sgmltag-element">header</code> - Declares a C++ header with the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/headername.html" title="DocBook API Element headername">Element <code class="sgmltag-element">headername</code> - References a C++ header with the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/if-fails.html" title="DocBook API Element if-fails">Element <code class="sgmltag-element">if-fails</code> - What it means when a testcase fails</a></li>
+<li class="listitem"><a class="link" href="docbook/api/inherit.html" title="DocBook API Element inherit">Element <code class="sgmltag-element">inherit</code> - Declares a base class of the enclosing class or struct</a></li>
+<li class="listitem"><a class="link" href="docbook/api/lib.html" title="DocBook API Element lib">Element <code class="sgmltag-element">lib</code> - A library dependency</a></li>
+<li class="listitem"><a class="link" href="docbook/api/library.html" title="DocBook API Element library">Element <code class="sgmltag-element">library</code> - Top-level element for a library</a></li>
+<li class="listitem"><a class="link" href="docbook/api/library-reference.html" title="DocBook API Element library-reference">Element <code class="sgmltag-element">library-reference</code> - Declares the reference material for a library</a></li>
+<li class="listitem"><a class="link" href="docbook/api/librarycategory.html" title="DocBook API Element librarycategory">Element <code class="sgmltag-element">librarycategory</code> - Declares that the enclosing library is in this category</a></li>
+<li class="listitem"><a class="link" href="docbook/api/librarycategorydef.html" title="DocBook API Element librarycategorydef">Element <code class="sgmltag-element">librarycategorydef</code> - Defines a new library category</a></li>
+<li class="listitem"><a class="link" href="docbook/api/librarycategorylist.html" title="DocBook API Element librarycategorylist">Element <code class="sgmltag-element">librarycategorylist</code> - Categorized listing of libraries</a></li>
+<li class="listitem"><a class="link" href="docbook/api/libraryinfo.html" title="DocBook API Element libraryinfo">Element <code class="sgmltag-element">libraryinfo</code> - Provides information about a library</a></li>
+<li class="listitem"><a class="link" href="docbook/api/librarylist.html" title="DocBook API Element librarylist">Element <code class="sgmltag-element">librarylist</code> - Placeholder for an alphabetical list of libraries</a></li>
+<li class="listitem"><a class="link" href="docbook/api/libraryname.html" title="DocBook API Element libraryname">Element <code class="sgmltag-element">libraryname</code> - References a library of the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/librarypurpose.html" title="DocBook API Element librarypurpose">Element <code class="sgmltag-element">librarypurpose</code> - Describes in one short sentence or phrase the purpose of a library</a></li>
+<li class="listitem"><a class="link" href="docbook/api/link-fail-test.html" title="DocBook API Element link-fail-test">Element <code class="sgmltag-element">link-fail-test</code> - Declares a test that should compile but fail to link</a></li>
+<li class="listitem"><a class="link" href="docbook/api/link-test.html" title="DocBook API Element link-test">Element <code class="sgmltag-element">link-test</code> - Declares a test that should compile and link</a></li>
+<li class="listitem"><a class="link" href="docbook/api/macroname.html" title="DocBook API Element macroname">Element <code class="sgmltag-element">macroname</code> - References a macro with the given name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/method.html" title="DocBook API Element method">Element <code class="sgmltag-element">method</code> - Declares a method, i.e., a member function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/method-group.html" title="DocBook API Element method-group">Element <code class="sgmltag-element">method-group</code> - A set of methods that are grouped together under one name</a></li>
+<li class="listitem"><a class="link" href="docbook/api/namespace.html" title="DocBook API Element namespace">Element <code class="sgmltag-element">namespace</code> - Declares a namespace</a></li>
+<li class="listitem"><a class="link" href="docbook/api/notes.html" title="DocBook API Element notes">Element <code class="sgmltag-element">notes</code> - Non-normative notes about a function's semantics</a></li>
+<li class="listitem"><a class="link" href="docbook/api/overloaded-function.html" title="DocBook API Element overloaded-function">Element <code class="sgmltag-element">overloaded-function</code> - An overloaded function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/overloaded-method.html" title="DocBook API Element overloaded-method">Element <code class="sgmltag-element">overloaded-method</code> - An overloaded method</a></li>
+<li class="listitem"><a class="link" href="docbook/api/parameter.html" title="DocBook API Element parameter">Element <code class="sgmltag-element">parameter</code> - A function parameter</a></li>
+<li class="listitem"><a class="link" href="docbook/api/paramtype.html" title="DocBook API Element paramtype">Element <code class="sgmltag-element">paramtype</code> - The type of a function parameter</a></li>
+<li class="listitem"><a class="link" href="docbook/api/postconditions.html" title="DocBook API Element postconditions">Element <code class="sgmltag-element">postconditions</code> - Conditions that must hold after the function returns</a></li>
+<li class="listitem"><a class="link" href="docbook/api/precondition.html" title="DocBook API Element precondition">Element <code class="sgmltag-element">precondition</code> - Conditions that must be met prior to executing a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/programlisting.html" title="DocBook API Element programlisting">Element <code class="sgmltag-element">programlisting</code> - A sample of program code</a></li>
+<li class="listitem"><a class="link" href="docbook/api/purpose.html" title="DocBook API Element purpose">Element <code class="sgmltag-element">purpose</code> - A short description of an entity's use</a></li>
+<li class="listitem"><a class="link" href="docbook/api/rationale.html" title="DocBook API element rationale">Element <code class="sgmltag-element">rationale</code> - Describes the rationale for a particular function's design</a></li>
+<li class="listitem"><a class="link" href="docbook/api/requirement.html" title="DocBook API Element requirement">Element <code class="sgmltag-element">requirement</code> - A requirement/property in the Jamfile for a testcase</a></li>
+<li class="listitem"><a class="link" href="docbook/api/requires.html" title="DocBook API Element requires">Element <code class="sgmltag-element">requires</code> - Declares the requirements of a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/returns.html" title="DocBook API Element returns">Element <code class="sgmltag-element">returns</code> - Description of the return value of a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/run-fail-test.html" title="DocBook API Element run-fail-test">Element <code class="sgmltag-element">run-fail-test</code> - A testcase that should compile and link, but fail on execution</a></li>
+<li class="listitem"><a class="link" href="docbook/api/run-test.html" title="DocBook API Element run-test">Element <code class="sgmltag-element">run-test</code> - A testcase that should compile, link, and execute</a></li>
+<li class="listitem"><a class="link" href="docbook/api/signature.html" title="DocBook API Element signature">Element <code class="sgmltag-element">signature</code> - One signature of an overloaded function or method</a></li>
+<li class="listitem"><a class="link" href="docbook/api/snippet.html" title="DocBook API Element snippet">Element <code class="sgmltag-element">snippet</code> - Pulls in a code snippet from a <code class="sgmltag-element">programlisting</code> element</a></li>
+<li class="listitem"><a class="link" href="docbook/api/source.html" title="DocBook API Element source">Element <code class="sgmltag-element">source</code> - Defines source code for a test</a></li>
+<li class="listitem"><a class="link" href="docbook/api/specialization.html" title="DocBook API Element specialization">Element <code class="sgmltag-element">specialization</code> - Defines the specialization arguments for a class specialization</a></li>
+<li class="listitem"><a class="link" href="docbook/api/static-constant.html" title="DocBook API Element static-constant">Element <code class="sgmltag-element">static-constant</code> - Declares a static constant, e.g., <code class="code">const int foo = 5;</code>.</a></li>
+<li class="listitem"><a class="link" href="docbook/api/struct.html" title="DocBook API Element struct">Element <code class="sgmltag-element">struct</code> - Declares a C++ struct</a></li>
+<li class="listitem"><a class="link" href="docbook/api/struct-specialization.html" title="DocBook API Element struct-specialization">Element <code class="sgmltag-element">struct-specialization</code> - A specialization (full or partial) of a struct template</a></li>
+<li class="listitem"><a class="link" href="docbook/api/template.html" title="DocBook API Element template">Element <code class="sgmltag-element">template</code> - Declares the template parameters of a class or function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/template-arg.html" title="DocBook API Element template-arg">Element <code class="sgmltag-element">template-arg</code> - A template argument in a specialization</a></li>
+<li class="listitem"><a class="link" href="docbook/api/template-nontype-parameter.html" title="DocBook API Element template-nontype-parameter">Element <code class="sgmltag-element">template-nontype-parameter</code> - A nontype template parameter</a></li>
+<li class="listitem"><a class="link" href="docbook/api/template-type-parameter.html" title="DocBook API Element template-type-parameter">Element <code class="sgmltag-element">template-type-parameter</code> - Declares a template type parameter</a></li>
+<li class="listitem"><a class="link" href="docbook/api/template-varargs.html" title="DocBook API Element template-varargs">Element <code class="sgmltag-element">template-varargs</code> - Declares a variable-length list of template parameters</a></li>
+<li class="listitem"><a class="link" href="docbook/api/testsuite.html" title="DocBook API Element testsuite">Element <code class="sgmltag-element">testsuite</code> - Describes a library testsuite</a></li>
+<li class="listitem"><a class="link" href="docbook/api/throws.html" title="DocBook API Element throws">Element <code class="sgmltag-element">throws</code> - Description of the exceptions thrown by a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/type.html" title="DocBook API Element type">Element <code class="sgmltag-element">type</code> - The type of an element or return type of a function</a></li>
+<li class="listitem"><a class="link" href="docbook/api/typedef.html" title="DocBook API Element typedef">Element <code class="sgmltag-element">typedef</code> - Declares a typedef</a></li>
+<li class="listitem"><a class="link" href="docbook/api/union.html" title="DocBook API Element union">Element <code class="sgmltag-element">union</code> - Declares a C++ union or union template</a></li>
+<li class="listitem"><a class="link" href="docbook/api/union-specialization.html" title="DocBook API Element union-specialization">Element <code class="sgmltag-element">union-specialization</code> - A specialization (full or partial) of a union template</a></li>
+<li class="listitem"><a class="link" href="docbook/api/using-class.html" title="DocBook API Element using-class">Element <code class="sgmltag-element">using-class</code> - Injects the method and function names of a class into the local scope</a></li>
+<li class="listitem"><a class="link" href="docbook/api/using-namespace.html" title="DocBook API Element using-namespace">Element <code class="sgmltag-element">using-namespace</code> - Injects the declared names from a namespace into the local scope</a></li>
+</ul></div>
   
   
   

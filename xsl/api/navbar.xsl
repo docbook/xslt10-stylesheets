@@ -29,7 +29,7 @@ version="1.0">
    -->
    <xsl:param name = "nav.layout">
       <xsl:choose>
-         <xsl:when test = "$docbook.defaults='API'">horizontal</xsl:when>
+         <xsl:when test = "$docbook.defaults='API'">none</xsl:when>
          <xsl:otherwise>none</xsl:otherwise>
       </xsl:choose>
    </xsl:param>
@@ -38,7 +38,7 @@ version="1.0">
          API - place the old-API border around the header
         *none  - do not place a border around the header
    -->
-   <xsl:param name = "nav.border" select = "'none'" />
+   <xsl:param name = "nav.border" select = "'API'" />
 
    <!--
       nav.flow:
@@ -55,7 +55,7 @@ version="1.0">
    <!-- Logo image location, leave empty for no logo -->
    <xsl:param name = "api.image.src">
       <xsl:if test = "$docbook.defaults = 'API'">
-         <xsl:value-of select = "concat($api.root, '/images/db.png')"/>
+         <xsl:value-of select = "concat($api.root, '/images/db-api.png')"/>
       </xsl:if>
    </xsl:param>
    <xsl:param name = "api.image.alt">
@@ -65,12 +65,12 @@ version="1.0">
    </xsl:param>
    <xsl:param name = "api.image.w">
       <xsl:if test = "$docbook.defaults = 'API'">
-         <xsl:value-of select = "177"/>
+         <xsl:value-of select = "300"/>
       </xsl:if>
    </xsl:param>
    <xsl:param name = "api.image.h">
       <xsl:if test = "$docbook.defaults = 'API'">
-         <xsl:value-of select = "86"/>
+         <xsl:value-of select = "100"/>
       </xsl:if>
    </xsl:param>
 <!--    <xsl:param name = "api.libraries">
@@ -96,8 +96,9 @@ version="1.0">
 
          <td valign = "top">
             <xsl:if test = "$nav.border = 'API'">
-               <xsl:attribute name = "style">background-color: white; width: 50%;</xsl:attribute>
+               <xsl:attribute name = "style">background-color: rgb(0,165,165); width: 100%;</xsl:attribute>
             </xsl:if>
+            <a href="{$api.website}">
             <xsl:if test = "boolean(normalize-space($api.image.src))">
                <img alt="{$api.image.alt}" width="{$api.image.w}" height="{$api.image.h}">
                    <xsl:attribute name="src">
@@ -106,7 +107,7 @@ version="1.0">
                        </xsl:call-template>
                    </xsl:attribute>
                </img>
-            </xsl:if>
+            </xsl:if></a>
          </td><xsl:choose>
             <xsl:when test = "$nav.layout = 'horizontal'">
                <xsl:call-template name = "header.navdata-horiz"/>
@@ -118,7 +119,7 @@ version="1.0">
       <hr/>
       <xsl:choose>
          <xsl:when test = "$nav.flow = 'DocBook'">
-            <table width = "100%" class = "navheader">
+            <table width = "100%" cellpadding = "2" class = "navheader">
                <xsl:call-template name = "navbar.docbook-homeinfo">
                   <xsl:with-param name = "prev" select = "$prev"/>
                   <xsl:with-param name = "next" select = "$next"/>
@@ -242,7 +243,7 @@ version="1.0">
       <hr/>
       <xsl:choose>
          <xsl:when test = "$nav.flow = 'DocBook'">
-            <table width = "100%" class = "navheader">
+            <table width = "100%" cellpadding = "2" class = "navheader">
                <xsl:call-template name = "navbar.docbook-prevnext">
                   <xsl:with-param name = "prev" select = "$prev"/>
                   <xsl:with-param name = "next" select = "$next"/>
