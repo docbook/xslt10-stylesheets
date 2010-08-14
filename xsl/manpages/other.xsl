@@ -223,7 +223,7 @@ manvolnum
   <xsl:call-template name="string.subst">
     <xsl:with-param name="string" select="$content"/>
     <xsl:with-param name="target">'</xsl:with-param>
-    <xsl:with-param name="replacement">\'</xsl:with-param>
+    <xsl:with-param name="replacement">\*(Aq</xsl:with-param>
   </xsl:call-template>
 </xsl:template>
 
@@ -654,6 +654,24 @@ manvolnum
     <xsl:if test="$man.output.quietly = 0">
       <xsl:message><xsl:text>&#10;</xsl:text></xsl:message>
     </xsl:if>
+  </xsl:template>
+
+  <!-- ============================================================== -->
+
+  <!-- There is some stuff, that is not portable between groff/troff. -->
+  <xsl:template name="define.portability.macros">
+    <xsl:text>.\" -----------------------------------------------------------------&#10;</xsl:text>
+    <xsl:text>.\" * Define some portability stuff&#10;</xsl:text>
+    <xsl:text>.\" -----------------------------------------------------------------&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>.\" http://bugs.debian.org/507673&#10;</xsl:text>
+    <xsl:text>.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html&#10;</xsl:text>
+    <xsl:text>.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&#10;</xsl:text>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.ie \n(.g .ds Aq \(aq</xsl:text>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:text>.el       .ds Aq '</xsl:text>
+    <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
   <!-- ============================================================== -->
