@@ -934,7 +934,7 @@ persist: "cookie"
                     <para><filename>htmlFileInfoList.js</filename> - This includes some meta data about the indexed files in an array 
                       named <code>fil</code>. It includes details about file name, file (html) title, a summary 
                       of the content.Format would look like, 
-                      <code>fil["4"]= "ch03.html@@@Developer Docs@@@This chapter provides an overview of how webhelp is implemented.";</code> 
+      <code>fil["4"]= "ch03.html@@@Developer Docs@@@This chapter provides an overview of how webhelp is implemented.";</code> 
                     </para>
                   </listitem>
                   
@@ -968,6 +968,101 @@ persist: "cookie"
         </itemizedlist>
       </para>
       
+      <section>
+        <title>New Stemmers</title>
+        <para role="summary">Adding new Stemmers is very simple.</para>
+        <para>Currently, only English, French, and German stemmers are integrated in to WebHelp. But the code is
+        extensible such that you can add new stemmers easily by few steps.</para>
+        <para>What you need:
+        <itemizedlist> 
+          <listitem>
+            <para>You'll need two versions of the stemmer; One written in JavaScript, and another in Java. But fortunately, 
+              Snowball contains Java stemmers for number of popular languages, and are already included with the package. 
+              You can see the full list in <ulink url="ch02s04.html">Adding support for other (non-CJKV) languages</ulink>. 
+              If your language is listed there,
+              Then you have to find javascript version of the stemmer. Generally, new stemmers are getting added in to
+              <ulink url="http://snowball.tartarus.org/otherlangs/index.html">Snowball Stemmers in other languages</ulink> location.
+              If javascript stemmer for your language is available, then download it. Else, you can write a new stemmer in 
+              JavaScript using SnowBall algorithm fairly easily. Algorithms are at  
+              <ulink url="http://snowball.tartarus.org/">Snowball</ulink>. 
+            </para>
+          </listitem>
+          <listitem>
+            <para>Then, name the JS stemmer exactly like this: <filename>{$language-code}_stemmer.js</filename>. For example, 
+              for Italian(it), name it as, <filename>it_stemmer.js</filename>. Then, copy it to the 
+              <filename>docbook-webhelp/template/content/search/stemmers/</filename> folder. (I assumed 
+              <filename>docbook-webhelp</filename> is the root folder for webhelp.)
+              <note>
+                <para>Make sure you changed the <code>webhelp.indexer.language</code> property in <filename>build.properties</filename>
+                to your language.
+                </para>
+              </note>
+
+            </para>
+            
+          </listitem>
+          <listitem>
+            <para>Now two easy changes needed for the indexer.</para>
+            <itemizedlist>
+              <listitem>
+                <para>Open <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/IndexerTask.java</filename> in 
+                  a text editor and add your language code to the <code>supportedLanguages</code> String Array. </para>
+                <example>
+                  <title>Add new language to supportedLanguages array</title>
+                  <para>
+                    change the Array from,
+<programlisting>
+private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko"}; 
+    //currently extended support available for
+    // English, German, French and CJK (Chinese, Japanese, Korean) languages only.
+</programlisting>
+                    To,</para>
+                    <programlisting>
+private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <emphasis>"it"</emphasis>}; 
+  //currently extended support available for
+  // English, German, French, CJK (Chinese, Japanese, Korean), and Italian languages only.
+                    </programlisting>
+                  
+                </example>
+              </listitem>
+              <listitem>
+                <para>
+                  Now, open <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/SaxHTMLIndex.java</filename> and 
+                  add the following line to the code where it initializes the Stemmer (Search for 
+                  <code>SnowballStemmer stemmer;</code>). Then add code to initialize the stemmer Object in your language. 
+                  It's self understandable. See the example. The class names are at: 
+                  <filename>docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</filename>.
+                </para>                  
+                  <example>
+                    <title>initialize correct stemmer based on the <code>webhelp.indexer.language</code> specified</title>
+<programlisting>
+      SnowballStemmer stemmer;
+      if(indexerLanguage.equalsIgnoreCase("en")){
+           stemmer = new EnglishStemmer();
+      } else if (indexerLanguage.equalsIgnoreCase("de")){
+          stemmer= new GermanStemmer();
+      } else if (indexerLanguage.equalsIgnoreCase("fr")){
+          stemmer= new FrenchStemmer();
+      }
+<emphasis>else if (indexerLanguage.equalsIgnoreCase("it")){ //If language code is "it" (Italian)
+          stemmer= new italianStemmer();  //Initialize the stemmer to <code>italianStemmer</code> object.
+      } </emphasis>      
+      else {
+          stemmer = null;
+      }
+</programlisting>
+                  </example>
+              </listitem>
+            </itemizedlist> 
+          </listitem>
+        </itemizedlist>
+        </para>
+        <para>That's all. Now run <code>ant build-indexer</code> to compile and build the java code. 
+          Then, run <code>ant webhelp</code> to generate the output from your docbook file. 
+          For any questions, contact us or email to the docbook mailing list 
+          <email>docbook-apps@lists.oasis-open.org</email>.
+        </para> 
+      </section>      
     </section> 
   </chapter>
 </book>
