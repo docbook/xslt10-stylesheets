@@ -7,15 +7,14 @@
    http://www.boost.org/LICENSE_1_0.txt)
   -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
                 xmlns:d="http://docbook.org/ns/docbook"
-				xmlns:exsl="http://exslt.org/common"
-				exclude-result-prefixes="suwl exsl d"
+xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
+                exclude-result-prefixes="suwl d"
                 version="1.0">
 
 <!-- Import the HTML chunking stylesheet -->
 <xsl:import
-    href="http://docbook.sourceforge.net/release/xsl-ns/current/html/xref.xsl"/>
+    href="http://docbook.sourceforge.net/release/xsl/current/html/xref.xsl"/>
 
 
 <xsl:template name="adjust-url">
@@ -36,12 +35,12 @@
 </xsl:template>
 
 
-<xsl:template match="ulink" name="ulink">
+<xsl:template match="d:link" name="ulink">
   <xsl:variable name="link">
     <a>
-      <xsl:if test="@id">
+      <xsl:if test="@xml:id">
         <xsl:attribute name="name">
-          <xsl:value-of select="@id"/>
+          <xsl:value-of select="@xml:id"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:attribute name="href">
@@ -49,9 +48,9 @@
           <xsl:with-param name="target" select="@url"/>
         </xsl:call-template>
       </xsl:attribute>
-      <xsl:if test="$ulink.target != ''">
+      <xsl:if test="$link.target != ''">
         <xsl:attribute name="target">
-          <xsl:value-of select="$ulink.target"/>
+          <xsl:value-of select="$link.target"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:choose>

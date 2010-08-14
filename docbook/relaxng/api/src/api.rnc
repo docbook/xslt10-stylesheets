@@ -1,10 +1,10 @@
 default namespace = "http://docbook.org/ns/docbook"
 # ========== Import DocBook Grammar ==========
-include "http://docbook.org/xml/5.0/rng/docbook.rnc"
-start |= header | library | boostbook | precondition
+include "../../../../../../../../docbook.rnc"
+start |= header | library | api | precondition
 local.common.attrib = attribute last-revision { text }?
 # ========== Define the API extensions ==========
-api.common.attrib = local.common.attrib, db.xml.id.attribute?
+api.common.attrib = local.common.attrib, db.common.attributes
 api.namespace.mix =
   class
   | class-specialization
@@ -78,13 +78,13 @@ library.attlist &=
   attribute html-only { text }?,
   attribute url { text }?,
   api.common.attrib
-boostbook =
-  element boostbook { api.attlist, db.title, (db.chapter | library)* }
+api =
+  element api { api.attlist, db.title, (db.chapter | library)* }
 api.attlist &= api.common.attrib
 libraryinfo =
   element libraryinfo {
     libraryinfo.attlist,
-    db.author+,
+    db.author+, 
     db.copyright*,
     db.legalnotice*,
     librarypurpose,

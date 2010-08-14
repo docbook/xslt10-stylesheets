@@ -6,20 +6,30 @@
    (See accompanying file LICENSE_1_0.txt or copy at
    http://www.boost.org/LICENSE_1_0.txt)
   -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:d="http://docbook.org/ns/docbook"
-				xmlns:exsl="http://exslt.org/common"
-				exclude-result-prefixes="exsl d"
+xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
                 version="1.0">
   
   <xsl:param name="html.stylesheet">
     <xsl:choose>
       <xsl:when test = "$boost.defaults = 'Boost'">
-        <xsl:value-of select = "concat($boost.root, '/doc/src/boostbook.css')"/>
+        <xsl:value-of select = "concat($boost.root, '/boostbook.css')"/>
       </xsl:when>
       <xsl:otherwise>
         boostbook.css
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
+  <xsl:param name="boost.graphics.root">
+    <xsl:choose>
+      <xsl:when test = "$boost.defaults = 'Boost'">
+        <xsl:value-of select = "concat($boost.root, '/images/')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select = "'images/'"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -42,12 +52,10 @@
   <xsl:param name="chunk.quietly" select="not(number($boostbook.verbose))"/>
   <xsl:param name="toc.max.depth">2</xsl:param>
   <xsl:param name="callout.graphics.number.limit">15</xsl:param>
-  <xsl:param name = "admon.graphics.path"
-            select = "concat($boost.root, '/doc/html/images/')"/>
-  <xsl:param name = "navig.graphics.path"
-            select = "concat($boost.root, '/doc/html/images/')"/>
+  <xsl:param name = "admon.graphics.path" select="$boost.graphics.root" />
+  <xsl:param name = "navig.graphics.path" select="$boost.graphics.root" />
   <xsl:param name = "callout.graphics.path"
-            select = "concat($boost.root, '/doc/src/images/callouts/')"/>
+            select = "concat($boost.graphics.root, 'callouts/')"/>
 
 
   <xsl:param name="admon.style">
@@ -177,7 +185,7 @@ set       toc,title
   </xsl:template>
 
   <!-- Footer Copyright -->
-  <xsl:template match="copyright" mode="boost.footer">
+  <xsl:template match="d:copyright" mode="boost.footer">
     <xsl:if test="position() &gt; 1">
       <br/>
     </xsl:if>
@@ -190,18 +198,18 @@ set       toc,title
     </xsl:call-template>
     <xsl:call-template name="gentext.space"/>
     <xsl:call-template name="copyright.years">
-      <xsl:with-param name="years" select="year"/>
+      <xsl:with-param name="years" select="d:year"/>
       <xsl:with-param name="print.ranges" select="$make.year.ranges"/>
       <xsl:with-param name="single.year.ranges"
         select="$make.single.year.ranges"/>
     </xsl:call-template>
     <xsl:call-template name="gentext.space"/>
-    <xsl:apply-templates select="holder" mode="titlepage.mode"/>
+    <xsl:apply-templates select="d:holder" mode="titlepage.mode"/>
   </xsl:template>
 
   <!-- Footer License -->
-  <xsl:template match="legalnotice" mode="boost.footer">
-    <xsl:apply-templates select="para" mode="titlepage.mode" />
+  <xsl:template match="d:legalnotice" mode="boost.footer">
+    <xsl:apply-templates select="d:para" mode="titlepage.mode" />
   </xsl:template>
 
   <xsl:template name="user.footer.content">
@@ -241,9 +249,9 @@ set       toc,title
         </td>
         <td align="right">
           <div class = "copyright-footer">
-            <xsl:apply-templates select="ancestor::*/*/copyright"
+            <xsl:apply-templates select="ancestor::*/*/d:copyright"
               mode="boost.footer"/>
-            <xsl:apply-templates select="ancestor::*/*/legalnotice"
+            <xsl:apply-templates select="ancestor::*/*/d:legalnotice"
               mode="boost.footer"/>
           </div>
         </td>
@@ -253,16 +261,16 @@ set       toc,title
 
   <!-- We don't want refentry's to show up in the TOC because they
        will merely be redundant with the synopsis. -->
-  <xsl:template match="refentry" mode="toc"/>
+  <xsl:template match="d:refentry" mode="toc"/>
 
   <!-- override the behaviour of some DocBook elements for better
        rendering facilities -->
 
-  <xsl:template match = "programlisting[ancestor::informaltable]">
+  <xsl:template match = "d:programlisting[ancestor::d:informaltable]">
      <pre class = "table-{name(.)}"><xsl:apply-templates/></pre>
   </xsl:template>
 
-  <xsl:template match = "refsynopsisdiv">
+  <xsl:template match = "d:refsynopsisdiv">
      <h2 class = "{name(.)}-title">Synopsis</h2>
      <div class = "{name(.)}">
         <xsl:apply-templates/>

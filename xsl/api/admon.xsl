@@ -6,13 +6,12 @@
    (See accompanying file LICENSE_1_0.txt or copy at
    http://www.boost.org/LICENSE_1_0.txt)
   -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:d="http://docbook.org/ns/docbook"
-				xmlns:exsl="http://exslt.org/common"
-				exclude-result-prefixes="exsl d"
-                version="1.0">
+version="1.0">
 
-<xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/html/admon.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/admon.xsl"/>
 
 <!-- Already included in the main style sheet -->
 <!-- <xsl:import href="relative-href.xsl"/> -->

@@ -7,38 +7,37 @@
    http://www.boost.org/LICENSE_1_0.txt)
   -->
 
-<xsl:stylesheet version = "1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version = "1.0"
    xmlns:xsl = "http://www.w3.org/1999/XSL/Transform"
-                xmlns:d="http://docbook.org/ns/docbook"
-				xmlns:exsl="http://exslt.org/common"
-				exclude-result-prefixes="exsl d"
+xmlns:d="http://docbook.org/ns/docbook"
 >
   <!-- needed for calsTable template -->
   
   <xsl:import
-    href="http://docbook.sourceforge.net/release/xsl-ns/current/html/formal.xsl"/>
+    href="http://docbook.sourceforge.net/release/xsl/current/html/formal.xsl"/>
 
   <!--
      Override the behaviour of some DocBook elements for better
      integration with the new look & feel.
   -->
 
-  <xsl:template match = "programlisting[ancestor::informaltable]">
+  <xsl:template match = "d:programlisting[ancestor::d:informaltable]">
      <pre class = "table-{name(.)}"><xsl:apply-templates/></pre>
   </xsl:template>
 
-  <xsl:template match = "refsynopsisdiv">
+  <xsl:template match = "d:refsynopsisdiv">
      <h2 class = "{name(.)}-title">Synopsis</h2>
      <div class = "{name(.)}"><xsl:apply-templates/></div>
   </xsl:template>
 
   <!-- table: remove border = '1' -->
 
-  <xsl:template match = "table|informaltable">
+  <xsl:template match = "d:table|d:informaltable">
      <xsl:choose>
-        <xsl:when test = "self::table and tgroup|mediaobject|graphic">
+        <xsl:when test = "self::d:table and d:tgroup|d:mediaobject|d:graphic">
            <xsl:apply-imports/>
-        </xsl:when><xsl:when test = "self::informaltable and tgroup|mediaobject|graphic">
+        </xsl:when><xsl:when test = "self::d:informaltable and d:tgroup|d:mediaobject|d:graphic">
            <xsl:call-template name = "informal.object">
               <xsl:with-param name = "class"><xsl:choose>
                  <xsl:when test = "@tabstyle">
@@ -56,7 +55,7 @@
      </xsl:choose>
   </xsl:template>
 
-  <xsl:template match = "tgroup" name = "tgroup">
+  <xsl:template match = "d:tgroup" name = "tgroup">
      <xsl:variable name="summary"><xsl:call-template name="dbhtml-attribute">
         <xsl:with-param name="pis" select="processing-instruction('dbhtml')"/>
         <xsl:with-param name="attribute" select="'table-summary'"/>
@@ -74,17 +73,17 @@
 
      <table class = "table">
         <xsl:choose>
-           <xsl:when test="../textobject/phrase">
+           <xsl:when test="../d:textobject/d:phrase">
               <xsl:attribute name="summary">
-                 <xsl:value-of select="../textobject/phrase"/>
+                 <xsl:value-of select="../d:textobject/d:phrase"/>
               </xsl:attribute>
            </xsl:when><xsl:when test="$summary != ''">
               <xsl:attribute name="summary">
                  <xsl:value-of select="$summary"/>
               </xsl:attribute>
-           </xsl:when><xsl:when test="../title">
+           </xsl:when><xsl:when test="../d:title">
               <xsl:attribute name="summary">
-                 <xsl:value-of select="string(../title)"/>
+                 <xsl:value-of select="string(../d:title)"/>
               </xsl:attribute>
            </xsl:when>
            <xsl:otherwise/>
@@ -165,13 +164,13 @@
            </xsl:otherwise>
         </xsl:choose>
 
-        <xsl:apply-templates select="thead"/>
-        <xsl:apply-templates select="tfoot"/>
-        <xsl:apply-templates select="tbody"/>
+        <xsl:apply-templates select="d:thead"/>
+        <xsl:apply-templates select="d:tfoot"/>
+        <xsl:apply-templates select="d:tbody"/>
 
-        <xsl:if test=".//footnote"><tbody class="footnotes">
+        <xsl:if test=".//d:footnote"><tbody class="footnotes">
            <tr><td colspan="{@cols}">
-              <xsl:apply-templates select=".//footnote" mode="table.footnote.mode"/>
+              <xsl:apply-templates select=".//d:footnote" mode="table.footnote.mode"/>
            </td></tr>
         </tbody></xsl:if>
      </table>
@@ -197,17 +196,17 @@
         <xsl:with-param name="toc-context" select="$toc-context"/>
         <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
         <xsl:with-param name="nodes" select="
-           section|sect1|sect2|sect3|sect4|sect5|
-           bridgehead[$bridgehead.in.toc != 0]
+           d:section|d:sect1|d:sect2|d:sect3|d:sect4|d:sect5|
+           d:bridgehead[$bridgehead.in.toc != 0]
         "/>
      </xsl:call-template>
   </xsl:template>
 
   <!-- When there is both a title and a caption for a table, only use the 
        title. -->
-  <xsl:template match="table" mode="title.markup">
+  <xsl:template match="d:table" mode="title.markup">
     <xsl:param name="allow-anchors" select="0"/>
-    <xsl:apply-templates select="(title|caption)[1]" mode="title.markup">
+    <xsl:apply-templates select="(d:title|d:caption)[1]" mode="title.markup">
       <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
     </xsl:apply-templates>
   </xsl:template>

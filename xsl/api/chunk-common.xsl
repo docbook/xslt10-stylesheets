@@ -6,11 +6,10 @@
    (See accompanying file LICENSE_1_0.txt or copy at
    http://www.boost.org/LICENSE_1_0.txt)
   -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:d="http://docbook.org/ns/docbook"
-				xmlns:exsl="http://exslt.org/common"
-				exclude-result-prefixes="exsl d"
-                version="1.0">
+version="1.0">
 
 <!-- Import the HTML chunking stylesheet -->
   
@@ -49,7 +48,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="navig.content">
-    <xsl:param name="direction" select="next"/>
+    <xsl:param name="direction" select="d:next"/>
     <xsl:variable name="navtext">
         <xsl:choose>
 	    <xsl:when test="$direction = 'prev'">

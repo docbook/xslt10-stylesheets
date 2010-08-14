@@ -6,23 +6,22 @@
    (See accompanying file LICENSE_1_0.txt or copy at
    http://www.boost.org/LICENSE_1_0.txt)
   -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:d="http://docbook.org/ns/docbook"
-				xmlns:exsl="http://exslt.org/common"
-				exclude-result-prefixes="exsl d"
-                 version="1.0">
+xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision"
+                version="1.0">
 
   <!-- Import the HTML chunking stylesheet -->
   <xsl:import
-    href="http://docbook.sourceforge.net/release/xsl-ns/current/html/chunk.xsl"/>
+    href="http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl"/>
   <xsl:import
-    href="http://docbook.sourceforge.net/release/xsl-ns/current/html/math.xsl"/>
+    href="http://docbook.sourceforge.net/release/xsl/current/html/math.xsl"/>
 
   <!-- Bring in the fast chunking overrides.  There's nothing
        that we need to override, so include instead of importing it. -->
   <xsl:include
-    href="http://docbook.sourceforge.net/release/xsl-ns/current/html/chunkfast.xsl"/>
+    href="http://docbook.sourceforge.net/release/xsl/current/html/chunkfast.xsl"/>
   
   <!-- We have to make sure that our templates override all
        docbook templates.  Therefore, we include our own templates
