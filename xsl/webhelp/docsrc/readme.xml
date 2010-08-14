@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <book>
   <title>Web-based Help from DocBook XML Readme</title>
 
@@ -900,7 +900,74 @@ persist: "cookie"
       </para>       
     </section>
     
-    
-    
+    <section>
+      <title>Search</title>
+      <para role="summary">Overview design of Search mechanism.</para>
+      <para>
+        The searching is a fully client-side implementation of querying texts for
+        content searching, and no server is involved. That means when a user enters a query, 
+        it is processed by JavaScript inside the browser, and displays the matching results by
+        comparing the query with a generated 'index', which too reside in the client-side web browser.
+        
+        Mainly the search mechanism has two parts.
+        <itemizedlist>
+          <listitem>
+            <para>Indexing: First we need to traverse the content in the doc/content folder and index 
+              the words in it. This is done by <filename>nw-cms.jar</filename>. You can invoke it by  
+            <code>ant index</code> command from the root of webhelp of directory. You can recompile it 
+              again and build the jar file by <code>ant build-indexer</code>. Indexer has some extensive 
+              support for such as stemming of words. Indexer has extensive support for English, German,
+              French languages. By extensive support, what I meant is that those texts are stemmed
+              first, to get the root word and then indexes them. For CJK (Chinese, Japanese, Korean)
+              languages, it uses bi-gram tokenizing to break up the words. (CJK languages does not have 
+              spaces between words.)                
+            </para>
+            <para>
+              When we run <code>ant index</code>, it generates five output files:
+                <itemizedlist>
+                  <listitem>
+                    <para><filename>htmlFileList.js</filename> - This contains an array named <code>fl</code> which stores details 
+                    all the files indexed by the indexer.  
+                    </para>
+                  </listitem>
+                  <listitem>
+                    <para><filename>htmlFileInfoList.js</filename> - This includes some meta data about the indexed files in an array 
+                      named <code>fil</code>. It includes details about file name, file (html) title, a summary 
+                      of the content.Format would look like, 
+                      <code>fil["4"]= "ch03.html@@@Developer Docs@@@This chapter provides an overview of how webhelp is implemented.";</code> 
+                    </para>
+                  </listitem>
+                  
+                  <listitem>
+                    <para><filename>index-*.js</filename> (Three index files) - These three files actually stores the index of the content. 
+                      Index is added to an array named <code>w</code>.</para>
+                  </listitem>
+                </itemizedlist>
+              
+            </para>
+          </listitem>
+          
+          <listitem>
+            <para>
+              Querying: Query processing happens totally in client side. Following JavaScript files handles them.
+              <itemizedlist>
+                <listitem>
+                  <para><filename>nwSearchFnt.js</filename> - This handles the user query and returns the search results. It does query 
+                    word tokenizing, drop unnecessary punctuations and common words, do stemming if docbook language 
+                    supports it, etc.</para>
+                </listitem>
+                <listitem>
+                  <para><filename>{$indexer-language-code}_stemmer.js</filename> - This includes the stemming library. 
+                    <filename>nwSearchFnt.js</filename> file calls <code>stemmer</code> method in this file for stemming.
+                    ex: <code>var stem = stemmer(foobar);</code>                    
+                  </para>
+                </listitem>
+              </itemizedlist>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </para>
+      
+    </section> 
   </chapter>
 </book>
