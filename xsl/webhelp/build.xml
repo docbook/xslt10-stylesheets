@@ -2,6 +2,7 @@
 
   <dirname property="ant.file.dir" file="${ant.file.mainbuild}"/>
   <loadproperties srcFile="${ant.file.dir}/build.properties"/>
+  <property name="webhelp.include.search.tab" value="true"/>
 
   <xmlcatalog id="catalog">
 	<catalogpath>
@@ -23,8 +24,8 @@
   <condition property="perform-validation">
 	<equals arg1="${validate}" arg2="true"/>
   </condition>
-  <condition property="skip-search-indexing">
-	<equals arg1="${exclude.search.from.webhelp}" arg2="true"/>
+  <condition property="do-search-indexing">
+	<equals arg1="${webhelp.include.search.tab}" arg2="true"/>
   </condition>
 
   <target name="validate" if="perform-validation">
@@ -44,8 +45,8 @@
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
 	  <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
-	  <param name="exclude.search.from.webhelp" expression="${exclude.search.from.webhelp}"
-		if="exclude.search.from.webhelp"/>
+	  <param name="webhelp.include.search.tab" expression="${webhelp.include.search.tab}"
+		if="webhelp.include.search.tab"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
 	  <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
 	  <param name="webhelp.indexer.language" expression="${webhelp.indexer.language}" if="webhelp.indexer.language"/>
@@ -72,7 +73,7 @@
 	</copy>
   </target>
 
-  <target name="index" unless="skip-search-indexing">
+  <target name="index" if="do-search-indexing">
 
 	<copy todir="${output-dir}">
 	  <fileset dir="${ant.file.dir}/template">
@@ -131,9 +132,20 @@
   </target>
 
   <target name="zip" depends="build-indexer,webhelp">
+
+	<xslt
+	  in="${ant.file.dir}/xsl/webhelp-common.xsl"
+	  out="${ant.file.dir}/xsl/profile-webhelp-common.xsl"
+	  force="yes"
+	  style="${ant.file.dir}/../profiling/xsl2profile.xsl"
+	  classpath="${xslt-processor-classpath}">
+	  <xmlcatalog refid="catalog"/>
+	</xslt>
+
 	<zip destfile="../webhelp-gsoc2010-beta.zip"
 	  basedir=".."
 	  includes="webhelp/**"/>
+
   </target>
 
   <target name="clean">
@@ -144,10 +156,10 @@
 	<echo>Usage:</echo>
 	<echo>webhelp: Generate the document in webhelp format.</echo>
 	<echo>index: Index the content.</echo>
-	<echo>build-indexer: Rebuilds the indexer.</echo>
+	<echo>build-indexer: Rebuilds the indexer jar.</echo>
   </target>
 
-  <target name="create-ns-version">
+  <target name="create-ns-version" depends="zip">
 
 	<!-- TODO: Prep for profiling, then run xslt over ../profiling/xsl2profile.xsl over webhelp-common.xsl -->
 
@@ -157,14 +169,12 @@
 
 	<xslt
 	  in="${input-xml}"
-	  out="${input-xml}.5x.xml"
+	  out="../webhelp-ns/${input-xml}"
+	  force="yes"
 	  style="${ant.file.dir}/../../docbook/relaxng/tools/db4-upgrade.xsl"
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
 	</xslt>
-
-	<copy file="${input-xml}" tofile="${input-xml}.orig"/>
-	<move file="${input-xml}.5x.xml" tofile="${input-xml}"/>
 
 	<replace 
 	  file="../webhelp-ns/build.properties" 
@@ -184,8 +194,6 @@
 	<zip destfile="../webhelp-ns-gsoc2010-beta.zip"
 	  basedir=".."
 	  includes="webhelp-ns/**"/>
-
-	<copy file="${input-xml}.orig" tofile="${input-xml}"/>
 
   </target>
 

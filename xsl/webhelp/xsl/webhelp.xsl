@@ -7,14 +7,13 @@
 
     <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
 
-    <!--TODO check how html and xml behaves-->
     <xsl:output
             method="html"
             encoding="utf-8"
             cdata-section-elements=""/>
 
     <!-- Custom params! -->
-    <xsl:param name="exclude.search.from.webhelp">false</xsl:param>
+    <xsl:param name="webhelp.include.search.tab">true</xsl:param>
     <xsl:param name="webhelp.start.filename">index.html</xsl:param>
     <xsl:param name="webhelp.base.dir">doc</xsl:param>
     <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
@@ -63,7 +62,42 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
-            <l:gentext key="TableofContents" text="Contents"/>
+        </l10n>
+        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de">
+            <l:gentext key="Search" text="Search"/>
+            <l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+            <l:gentext key="Go" text="Go"/>
+            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
+            <l:gentext key="txt_filesfound" text="Results"/>
+            <l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+            <l:gentext key="txt_browser_not_supported"
+                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+            <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+            <l:gentext key="txt_results_for" text="Results for: "/>
+        </l10n>
+        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
+            <l:gentext key="Search" text="Search"/>
+            <l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+            <l:gentext key="Go" text="Go"/>
+            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
+            <l:gentext key="txt_filesfound" text="Results"/>
+            <l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+            <l:gentext key="txt_browser_not_supported"
+                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+            <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+            <l:gentext key="txt_results_for" text="Results for: "/>
+        </l10n>
+        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh">
+            <l:gentext key="Search" text="Search"/>
+            <l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+            <l:gentext key="Go" text="Go"/>
+            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
+            <l:gentext key="txt_filesfound" text="Results"/>
+            <l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+            <l:gentext key="txt_browser_not_supported"
+                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+            <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+            <l:gentext key="txt_results_for" text="Results for: "/>
         </l10n>
 
     </i18n>
@@ -189,7 +223,7 @@
 
         <!--testing toc in the content page>
         <xsl:call-template name="webhelptoctoc"/>
-        <xsl:if test="$exclude.search.from.webhelp != 'true'">
+        <xsl:if test="$webhelp.include.search.tab != 'false'">
             <xsl:call-template name="search"/>
         </xsl:if-->
     </xsl:template>
@@ -530,7 +564,7 @@
                                         </em>
                                     </a>
                                 </li>
-                                <xsl:if test="$exclude.search.from.webhelp != 'true'">
+                                <xsl:if test="$webhelp.include.search.tab != 'false'">
                                     <li>
                                         <a href="#searchDiv">
                                             <em>
@@ -551,7 +585,7 @@
                                     </xsl:apply-templates>
                                 </ul>
                             </div>
-                            <xsl:if test="$exclude.search.from.webhelp != 'true'">
+                            <xsl:if test="$webhelp.include.search.tab != 'false'">
                                 <div id="searchDiv">
                                     <div id="search">
                                         <form onsubmit="Verifie(ditaSearch_Form);return false"
