@@ -78,11 +78,10 @@ public class IndexerTask{
     /**
      * setter for "indexerLanguage" attribute from ANT
      * @param indexerLanguage language for the search indexer. Used to differerentiate which stemmer to be used.
-     *              defaults to "en".
      * @throws InterruptedException for ant
      */
     public void setIndexerLanguage(String indexerLanguage){
-        if(indexerLanguage !=null) {
+        if(indexerLanguage !=null && !"".equals(indexerLanguage)) {
             int temp = indexerLanguage.indexOf('_');
             if( temp != -1){
                 indexerLanguage = indexerLanguage.substring(0,temp);
@@ -97,13 +96,12 @@ public class IndexerTask{
             
             //if not in supported language list,
             if(i>=supportedLanguages.length){
-                System.out.println("The given language, \""+indexerLanguage+"\", does not have extensive support for " +
-                        "searching or language code is specified in a bad format. Check documentation for details. " +
-                        "Language now defaults to english.");
-                IndexerTask.indexerLanguage = "en";
+//                System.out.println("The given language, \""+indexerLanguage+"\", does not have extensive support for " +
+//                        "searching. Check documentation for details. ");
+                IndexerTask.indexerLanguage = indexerLanguage;
             } 
         } else {
-            IndexerTask.indexerLanguage = "en";
+            IndexerTask.indexerLanguage = "nl"; //nl - NotALanguage - fail-safe mechanism, This shouldn't be executed.
         } 
     }
 

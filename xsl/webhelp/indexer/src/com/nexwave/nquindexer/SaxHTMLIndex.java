@@ -137,7 +137,6 @@ public class SaxHTMLIndex extends SaxDocFileParser{
                 System.out.println("Error tokenizing content using CJK Analyzer. IOException");
                 ex.printStackTrace();
             }
-
         } else {
             SnowballStemmer stemmer;
             if(indexerLanguage.equalsIgnoreCase("en")){
