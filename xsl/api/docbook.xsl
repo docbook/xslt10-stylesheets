@@ -59,13 +59,13 @@ xmlns:xi="http://www.w3.org/2001/XInclude"
       <xsl:otherwise>
         <section>
           <xsl:choose>
-            <xsl:when test="@id">
-              <xsl:attribute name="id">
-                <xsl:value-of select="@id"/>
+            <xsl:when test="@xml:id">
+              <xsl:attribute name="xml:id">
+                <xsl:value-of select="@xml:id"/>
               </xsl:attribute>
             </xsl:when>
             <xsl:when test="ancestor::d:library/attribute::xml:id">
-              <xsl:attribute name="id">
+              <xsl:attribute name="xml:id">
                 <xsl:value-of select="ancestor::d:library/attribute::xml:id"/>
                 <xsl:text>.reference</xsl:text>
               </xsl:attribute>
@@ -80,14 +80,14 @@ xmlns:xi="http://www.w3.org/2001/XInclude"
           <xsl:if test="d:concept">
             <section>
               <xsl:choose>
-                <xsl:when test="@id">
-                  <xsl:attribute name="id">
-                    <xsl:value-of select="@id"/>
+                <xsl:when test="@xml:id">
+                  <xsl:attribute name="xml:id">
+                    <xsl:value-of select="@xml:id"/>
                     <xsl:text>.concepts</xsl:text>
                   </xsl:attribute>
                 </xsl:when>
                 <xsl:when test="ancestor::d:library/attribute::xml:id">
-                  <xsl:attribute name="id">
+                  <xsl:attribute name="xml:id">
                     <xsl:value-of select="ancestor::d:library/attribute::xml:id"/>
                     <xsl:text>.concepts</xsl:text>
                   </xsl:attribute>
@@ -120,7 +120,7 @@ xmlns:xi="http://www.w3.org/2001/XInclude"
   <xsl:template match="d:header">
     <xsl:if test="*">
       <section>
-        <xsl:attribute name="id">
+        <xsl:attribute name="xml:id">
           <xsl:call-template name="generate.id"/>
         </xsl:attribute>
 
@@ -397,12 +397,12 @@ Error: XSL template 'link-or-anchor' called with invalid link-type '<xsl:value-o
   <xsl:template match="d:library">
     <xsl:if test="not(@html-only = 1) and
                   ($boost.include.libraries='' or
-                   contains($boost.include.libraries, @id))">
+                   contains($boost.include.libraries, @xml:id))">
       <chapter>
-        <xsl:attribute name="id">
+        <xsl:attribute name="xml:id">
           <xsl:choose>
-            <xsl:when test="@id">
-              <xsl:value-of select="@id"/>
+            <xsl:when test="@xml:id">
+              <xsl:value-of select="@xml:id"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="generate.id"/>
