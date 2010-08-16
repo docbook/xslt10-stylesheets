@@ -1,6 +1,6 @@
 default namespace = "http://docbook.org/ns/docbook"
 # ========== Import DocBook Grammar ==========
-include "../../../../../../../../docbook.rnc"
+include "http://docbook.org/xml/5.0/rng/docbook.rnc"
 start |= header | library | api | precondition
 local.common.attrib = attribute last-revision { text }?
 # ========== Define the API extensions ==========

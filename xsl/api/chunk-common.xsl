@@ -111,7 +111,7 @@ version="1.0">
 </xsl:template>
 
 
-<xsl:template match="@url">
+<xsl:template match="@href">
     <xsl:choose>
         <xsl:when test="contains(., ':')">
             <xsl:value-of select="."/>

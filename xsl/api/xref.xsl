@@ -38,14 +38,14 @@ xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
 <xsl:template match="d:link" name="ulink">
   <xsl:variable name="link">
     <a>
-      <xsl:if test="@xml:id">
+      <xsl:if test="@id">
         <xsl:attribute name="name">
-          <xsl:value-of select="@xml:id"/>
+          <xsl:value-of select="@id"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:attribute name="href">
         <xsl:call-template name="adjust-url">
-          <xsl:with-param name="target" select="@url"/>
+          <xsl:with-param name="target" select="@href"/>
         </xsl:call-template>
       </xsl:attribute>
       <xsl:if test="$link.target != ''">
@@ -55,7 +55,7 @@ xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks"
       </xsl:if>
       <xsl:choose>
         <xsl:when test="count(child::node())=0">
-          <xsl:value-of select="@url"/>
+          <xsl:value-of select="@href"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates/>
