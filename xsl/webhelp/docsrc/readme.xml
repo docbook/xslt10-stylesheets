@@ -394,7 +394,7 @@
 
         <step>
           <para>If necessary, install <ulink
-          url="http://www.java.com/en/download/manual.jsp">Java 1.5</ulink> or
+          url="http://www.java.com/en/download/manual.jsp">Java 1.6</ulink> or
           higher.</para>
 
           <substeps>
@@ -455,8 +455,8 @@
           your filesystem. You will use the path to
           <filename>saxon.jar</filename> in <xref
           linkend="edit-build-properties" /> below.<important>
-              <para>Saxon 6.5 must not be in your <envar>CLASSPATH</envar>
-              when you generate webhelp.</para>
+              <para>If you receive errors from the indexer when building documents, remove Saxon 6.5 from your <envar>CLASSPATH</envar>
+              when you generate webhelp output.</para>
             </important></para>
         </step>
 
