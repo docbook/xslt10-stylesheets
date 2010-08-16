@@ -101,7 +101,7 @@ public class IndexerTask{
                 IndexerTask.indexerLanguage = indexerLanguage;
             } 
         } else {
-            IndexerTask.indexerLanguage = "nl"; //nl - NotALanguage - fail-safe mechanism, This shouldn't be executed.
+            IndexerTask.indexerLanguage = "@@"; //fail-safe mechanism, This vm should not reach this point.
         } 
     }
 
