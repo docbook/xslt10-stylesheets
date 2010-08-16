@@ -87,7 +87,7 @@
     parameter conformance.</para>
   </section>
 
-  <section>
+  <section  xml:id="any.examples">
     <title>Examples</title>
 
     <using-namespace name="boost"/>
@@ -209,8 +209,8 @@ public:
   </section>
 
   <library-reference>
-    <section id="any.ValueType">
-      <title><emphasis>ValueType</emphasis> requirements</title>
+    <section xml:id="any.ValueType">
+      <title><bold>ValueType</bold> requirements</title>
 
       <para>Values are strongly informational objects for which
       identity is not significant, i.e. the focus is principally on
@@ -473,7 +473,7 @@ public:
     </header>
   </library-reference>
 
-  <section>
+  <section xml:id="any.acknowledgments">
     <title>Acknowledgements</title>
 
     <para>Doug Gregor ported the documentation to the BoostBook format.</para>
