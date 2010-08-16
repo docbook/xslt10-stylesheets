@@ -49,6 +49,7 @@
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
             <l:gentext key="TableofContents" text="Contents"/>
+	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
 	<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
@@ -62,6 +63,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
+	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de">
             <l:gentext key="Search" text="Search"/>
@@ -74,6 +76,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
+	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
             <l:gentext key="Search" text="Search"/>
@@ -86,6 +89,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
+	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh">
             <l:gentext key="Search" text="Search"/>
@@ -98,6 +102,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
+	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
 
     </i18n>
@@ -443,7 +448,13 @@ These problems go away when you add this IE=7 mode meta tag.
                         </td>
                         <td>
                             <img src="../common/images/highlight-blue.gif" alt="H" height="25px"
-                                 onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer"/>
+                                 onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer">
+				<xsl:attribute name="title">
+				  <xsl:call-template name="gentext">
+					<xsl:with-param name="key" select="'HighlightButton'"/>
+				  </xsl:call-template>				  
+				</xsl:attribute>
+			  </img>
                         </td>
                         <xsl:if test="count($prev) &gt; 0
                                         or (count($up) &gt; 0
