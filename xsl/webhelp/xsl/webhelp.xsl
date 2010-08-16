@@ -102,6 +102,22 @@
 
     </i18n>
 
+  <xsl:template name="system.head.content">
+  <xsl:param name="node" select="."/>
+<xsl:text>
+</xsl:text>
+<!-- 
+This avoids two problems in IE 8. We should someday figure out why this is happening and tweak the JavaScript so this <meta/> tag is not necessary:
+1. When you perform a search and click the Toggle Highlight button, IE 8 adds a line break before the highlighted word.
+2. If you click the show/hide toc button, the tab crashes.
+These problems go away when you add this IE=7 mode meta tag.
+ -->
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<xsl:text>
+</xsl:text>
+  </xsl:template>
+
+
     <xsl:template name="user.head.content">
   	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--  <xsl:message>
