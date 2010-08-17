@@ -606,11 +606,14 @@ These problems go away when you add this IE=7 mode meta tag.
                             <div id="treeDiv">
                                 <img src="../common/images/loading.gif" alt="loading table of contents..."
                                      id="tocLoading" style="display:block;"/>
-                                <ul id="tree" class="filetree" style="display:none;">
-                                    <xsl:apply-templates select="/*/*" mode="webhelptoc">
-                                        <xsl:with-param name="currentid" select="$currentid"/>
-                                    </xsl:apply-templates>
-                                </ul>
+                                <div id="ulTreeDiv" style="display:none">
+                                    <ul id="tree" class="filetree">
+                                        <xsl:apply-templates select="/*/*" mode="webhelptoc">
+                                            <xsl:with-param name="currentid" select="$currentid"/>
+                                        </xsl:apply-templates>
+                                    </ul>
+                                </div>
+
                             </div>
                             <xsl:if test="$webhelp.include.search.tab != 'false'">
                                 <div id="searchDiv">

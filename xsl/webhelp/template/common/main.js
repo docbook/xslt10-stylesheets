@@ -18,6 +18,7 @@ $(document).ready(function() {
         });
 
     //Generate the tree
+     $("#ulTreeDiv").attr("style","");
     $("#tree").treeview({
         collapsed: true,
         animated: "medium",
@@ -27,7 +28,7 @@ $(document).ready(function() {
 
     //after toc fully styled, display it. Until loading, a 'loading' image will be displayed
     $("#tocLoading").attr("style","display:none;");
-    $("#tree").attr("style","display:block;"); 
+//    $("#ulTreeDiv").attr("style","display:block;");
 
     //.searchButton is the css class applied to 'Go' button 
     $(function() {
