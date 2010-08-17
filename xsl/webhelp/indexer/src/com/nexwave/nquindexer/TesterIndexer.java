@@ -9,7 +9,7 @@ import java.io.File;
  * 
  * @author N. Quaine
  */
-public class TesterIndexer {
+    public class TesterIndexer {
 	public static IndexerTask IT = null; 
 	/**
 	 * @param args

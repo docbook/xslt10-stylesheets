@@ -112,6 +112,19 @@ public class IndexerTask{
 	 */
 //	public void execute() throws BuildException {
 	public void execute(){
+        try{
+            //Use Xerces as the parser. Does not support Saxon6.5.5 parser 
+           System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
+           System.setProperty("javax.xml.parsers.SAXParserFactory", "org.apache.xerces.jaxp.SAXParserFactoryImpl");
+//           System.setProperty("org.xml.sax.driver", "com.icl.saxon.aelfred.SAXDriver");
+//           System.setProperty("javax.xml.parsers.SAXParserFactory", "com.icl.saxon.aelfred.SAXParserFactoryImpl");
+        } catch (SecurityException se){
+            System.out.println("[WARNING] Default parser is not set to Xerces. Make sure Saxon6.5.5 " +
+                    "is not in your CLASSPATH.");
+        } catch (Exception e){
+            System.out.println("[WARNING] Default parser is not set to Xerces. Make sure Saxon6.5.5 " +
+                    "is not in your CLASSPATH");
+        }
 
 		ArrayList<DocFileInfo> filesDescription = null; // list of information about the topic files
 		ArrayList<File> htmlFiles = null; // topic files listed in the given directory

@@ -44,7 +44,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	 * Initializer
 	 */
 	public int init(String inputDir){
-		return 0;	
+		return 0;
 	}
 
 	/**
@@ -65,9 +65,12 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	}
 
 	public void parseDocument (File file) {
+//        System.out.println(System.getProperty("org.xml.sax.driver"));
+//        System.out.println(System.getProperty("javax.xml.parsers.SAXParserFactory"));
+        
 		//get a factory
 		javax.xml.parsers.SAXParserFactory spf = javax.xml.parsers.SAXParserFactory.newInstance();
-		
+
 		spf.setValidating(false);
         addContent = false;
 		divCount = 0;
@@ -77,7 +80,8 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			// deactivate the validation
 			sp.getXMLReader().setFeature("http://xml.org/sax/features/external-general-entities", false);
 			sp.getXMLReader().setFeature( "http://apache.org/xml/features/nonvalidating/load-external-dtd",	false);
-			//parse the file and also register this class for call backs
+
+            //parse the file and also register this class for call backs
 			System.out.println("Parsing: " + file);
 			
 			long start = System.currentTimeMillis();
@@ -92,16 +96,16 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			//System.out.println("time = " + (finish - start) + " milliseconds");
 			
 		}catch(org.xml.sax.SAXException se) {
-			System.out.println("SaxException");
-			se.printStackTrace();
-
+			System.out.println("SaxException. You may need to include Xerces in your classpath. " +
+                    "See documentation for details");
+			se.printStackTrace(); 
 		}catch(javax.xml.parsers.ParserConfigurationException pce) {
 			pce.printStackTrace();
 		}catch (IOException ie) {
 			ie.printStackTrace();
 		}
 	}
-   //kasun: TODO remove indexing of css styles
+    
     private boolean addContent = false;
     private boolean addHeaderInfo = false;
     private boolean doNotIndex=false;
