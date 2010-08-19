@@ -112,7 +112,11 @@
 
   <target name="webhelp" depends="validate,chunk,index"/>
 
-  <target name="build-indexer">
+  <uptodate property="indexerBuild.notRequired" targetfile="indexer/lib/nw-cms.jar" >
+    <srcfiles dir="indexer/src" includes="**/*"/>
+  </uptodate>
+
+  <target name="build-indexer" unless="indexerBuild.notRequired">
 
     <mkdir dir="indexer/lib/htmlsearch"/>  
 	<javac
@@ -133,14 +137,14 @@
 
   <target name="zip" depends="build-indexer,webhelp">
 
-	<xslt
+	<!--xslt
 	  in="${ant.file.dir}/xsl/webhelp-common.xsl"
 	  out="${ant.file.dir}/xsl/profile-webhelp-common.xsl"
 	  force="yes"
 	  style="${ant.file.dir}/../profiling/xsl2profile.xsl"
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
-	</xslt>
+	</xslt-->
 
 	<zip destfile="../webhelp-gsoc2010-beta.zip"
 	  basedir=".."
