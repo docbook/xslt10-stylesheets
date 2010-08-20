@@ -595,10 +595,11 @@ manvolnum
           <xsl:with-param name="message-prolog">Note: </xsl:with-param>
           <xsl:with-param name="message-epilog"> (soelim stub)</xsl:with-param>
           <xsl:with-param name="content">
-            <xsl:value-of select="concat('.so man', $section, '/')"/>
+            <xsl:value-of select="'.so '"/>
             <xsl:call-template name="make.adjusted.man.filename">
               <xsl:with-param name="name" select="$first.refname"/>
               <xsl:with-param name="section" select="$section"/>
+              <xsl:with-param name="lang" select="$lang"/>
             </xsl:call-template>
             <xsl:text>&#10;</xsl:text>
           </xsl:with-param>
