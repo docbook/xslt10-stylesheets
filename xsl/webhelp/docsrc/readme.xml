@@ -267,6 +267,10 @@
       </itemizedlist><itemizedlist>
         <title>Future enhancements (GSOC 2011?)</title>
 
+		<listitem>
+		  <para>Use <sgmltag class="attribute">tabindex</sgmltag> attributes to control the tab order in the output. The Contents and Search tabs should be first and second, then the search box and button, then the table of contents items, and so on.</para>
+		</listitem>
+
         <listitem>
           <para>Add "Expand all" and "Collapse all" buttons to the toc.</para>
         </listitem>
@@ -365,6 +369,10 @@
           url="http://www.comparenetworks.com/developers/jqueryplugins/jbreadcrumb.html">breadcrumbs</ulink>
           so the user will know what topics he's been to.</para>
         </listitem>
+
+		<listitem>
+		  <para>Consider using more advanced Lucene indexers for Chinese and Japanse than the CJKAnalyzer</para>
+		</listitem>
       </itemizedlist></para>
   </chapter>
 
