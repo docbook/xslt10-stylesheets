@@ -97,7 +97,9 @@
             Chinese, Japanese, and Korean content released under the Apache
             2.0 license. </para>
           </listitem>
-        </itemizedlist></para>
+        </itemizedlist>
+		Webhelp for DocBook was developed as a <ulink url="http://socghop.appspot.com">Google Summer of Code</ulink> project. 
+	  </para>
     </legalnotice>
 
     <releaseinfo>Version 0.9/Beta</releaseinfo>
@@ -128,7 +130,7 @@
       <email>kasunbg AT gmail DOT com</email>
     </author>
 
-    <pubdate>July 2010</pubdate>
+    <pubdate>August 2010</pubdate>
   </bookinfo>
 
   <chapter>
