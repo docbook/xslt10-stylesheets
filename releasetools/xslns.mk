@@ -28,9 +28,9 @@ zip-ns: zip
 
 # Run xslt on xsl/webhelp/docsrc/readme.xml
 	$(XSLT) \
-	-o $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml \
-	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml \
-	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl 
+	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/readme.xml \
+	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl \
+	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml 
 # Turn off validation in webhelp:
 	sed -i "s/validate=true/validate=false/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/build.properties
