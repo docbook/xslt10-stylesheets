@@ -26,11 +26,29 @@ zip-ns: zip
 	  docbook-$(DISTRO)-$(ZIPVER) \
 	  docbook-$(DISTRO)-ns-$(ZIPVER)); 
 
+# Run xslt on xsl/webhelp/docsrc/readme.xml
+	$(XSLT) \
+	-o $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml \
+	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml \
+	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl 
+# Turn off validation in webhelp:
+	sed -i "s/validate=true/validate=false/" \
+	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/build.properties
+
 # change branch info
 	sed -i "s/^\(.*\)<fm:Branch>XSL Stylesheets<\/fm:Branch>$$/\1<fm:Branch>XSL-NS Stylesheets<\/fm:Branch>/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/VERSION
 
 # change distro name
+
+
+
+
+
+
+
+
+
 	sed -i "s/^\(.*\)<xsl:param name=\"DistroName\">docbook-xsl<\/xsl:param>$$/\1<xsl:param name=\"DistroName\">docbook-xsl-ns<\/xsl:param>/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/VERSION
 

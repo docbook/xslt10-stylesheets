@@ -9,8 +9,8 @@ build-indexer:
 	$(ANT) build-indexer
 
 webhelp: docsrc/readme.xml
-	$(XSLT) $< xsl/webhelp.xsl 
-	$(ANT) index
+	#$(XSLT) $< xsl/webhelp.xsl 
+	#$(ANT) index
 
 # TODO: Still need to set things up for single pass profiling support.
 #profile-webhelp-common.xsl: webhelp-common.xsl ../profiling/xsl2profile.xsl

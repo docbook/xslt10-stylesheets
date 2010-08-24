@@ -44,14 +44,11 @@
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
 	  <xmlcatalog refid="catalog"/>
-	  <param name="chunked.toc.all.open" expression="${chunked.toc.all.open}" if="chunked.toc.all.open"/>
 	  <param name="webhelp.include.search.tab" expression="${webhelp.include.search.tab}"
 		if="webhelp.include.search.tab"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
 	  <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
 	  <param name="webhelp.indexer.language" expression="${webhelp.indexer.language}" if="webhelp.indexer.language"/>
-	  <param name="chunk.frameset.start.filename" expression="${chunk.frameset.start.filename}"
-		if="chunk.frameset.start.filename"/>
 	</xslt>
 	
 	<delete file="${output-dir}/dummy.html"/>

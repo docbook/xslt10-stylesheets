@@ -5,22 +5,22 @@
         xmlns:db="http://docbook.org/ns/docbook"
         version="1.0" xmlns="http://www.w3.org/1999/xhtml">
 
-    <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
+    <xsl:import href="../../xhtml/chunk.xsl"/>
 
     <xsl:output
             method="html"
             encoding="utf-8"
             cdata-section-elements=""/>
 
-    <!-- Custom params! -->
+    <!-- webhelp-specific params! -->
     <xsl:param name="webhelp.include.search.tab">true</xsl:param>
     <xsl:param name="webhelp.start.filename">index.html</xsl:param>
     <xsl:param name="webhelp.base.dir">doc</xsl:param>
     <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
     <xsl:param name="webhelp.indexer.language">en</xsl:param>
-    <!-- Custom params! -->
+    <!-- webhelp-specific params! -->
 
-  <!-- Set some reasonable defaults for webhelp output -->
+    <!-- Set some reasonable defaults for webhelp output -->
     <xsl:param name="chunker.output.indent">no</xsl:param>
     <xsl:param name="navig.showtitles">0</xsl:param>
     <xsl:param name="manifest.in.base.dir" select="0"/>
