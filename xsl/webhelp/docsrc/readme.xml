@@ -435,7 +435,7 @@ input-xml=docsrc/readme.xml
 
 # The directory in which to put the output files. 
 # This directory is created if it does not exist.
-output-dir=doc
+output-dir=docs
 
 # If you are using a customization layer that imports webhelp.xsl, use
 # this property to point to it. 
@@ -542,7 +542,7 @@ webhelp.indexer.language=en</programlisting></para>
       <para>To customize the look and feel of the help, study the following
       css files:<itemizedlist>
           <listitem>
-            <para><filename>doc/common/css/positioning.css</filename>: This
+            <para><filename>docs/common/css/positioning.css</filename>: This
             handles the Positioning of DIVs in appropriate positions. For
             example, it causes the <code>leftnavigation</code> div to appear
             on the left, the header on top, and so on. Use this if you need to
@@ -551,7 +551,7 @@ webhelp.indexer.language=en</programlisting></para>
           </listitem>
 
           <listitem>
-            <para><filename>doc/common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css</filename>:
+            <para><filename>docs/common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css</filename>:
             This is the theming part which adds colors and stuff. This is a
             default theme comes with <ulink
             url="http://jqueryui.com/download">jqueryui</ulink> unchanged. You
@@ -562,7 +562,7 @@ webhelp.indexer.language=en</programlisting></para>
           </listitem>
 
           <listitem>
-            <para><filename>doc/common/jquery/treeview/jquery.treeview.css</filename>:
+            <para><filename>docs/common/jquery/treeview/jquery.treeview.css</filename>:
             This styles the toc Tree. Generally, you don't have to edit this
             file.</para>
           </listitem>
@@ -806,7 +806,7 @@ persist: "cookie"
         Mainly the search mechanism has two parts.
         <itemizedlist>
           <listitem>
-            <para>Indexing: First we need to traverse the content in the doc/content folder and index 
+            <para>Indexing: First we need to traverse the content in the docs/content folder and index 
               the words in it. This is done by <filename>nw-cms.jar</filename>. You can invoke it by  
             <code>ant index</code> command from the root of webhelp of directory. You can recompile it 
               again and build the jar file by <code>ant build-indexer</code>. Indexer has some extensive 

@@ -13,11 +13,14 @@
             cdata-section-elements=""/>
 
     <!-- webhelp-specific params! -->
+    <!-- To be added to normal params file someday -->
     <xsl:param name="webhelp.include.search.tab">true</xsl:param>
     <xsl:param name="webhelp.start.filename">index.html</xsl:param>
-    <xsl:param name="webhelp.base.dir">doc</xsl:param>
+    <xsl:param name="webhelp.base.dir">docs</xsl:param>
     <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
     <xsl:param name="webhelp.indexer.language">en</xsl:param>
+    <xsl:param name="webhelp.default.topic"/>
+    <xsl:param name="webhelp.autolabel">0</xsl:param>
     <!-- webhelp-specific params! -->
 
     <!-- Set some reasonable defaults for webhelp output -->
@@ -32,7 +35,7 @@
     <xsl:param name="para.propagates.style" select="1"/>
     <xsl:param name="phrase.propagates.style" select="1"/>
     <xsl:param name="chunk.first.sections" select="1"/>
-    <xsl:param name="chapter.autolabel" select="0"/>
+    <xsl:param name="chapter.autolabel" select="1"/>
     <xsl:param name="section.autolabel" select="0"/>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
 
@@ -525,7 +528,7 @@ These problems go away when you add this IE=7 mode meta tag.
         <xsl:choose>
             <xsl:when test="$rootid != ''">
                 <xsl:variable name="title">
-                    <xsl:if test="$eclipse.autolabel=1">
+                    <xsl:if test="$webhelp.autolabel=1">
                         <xsl:variable name="label.markup">
                             <xsl:apply-templates select="key('id',$rootid)" mode="label.markup"/>
                         </xsl:variable>
@@ -553,7 +556,7 @@ These problems go away when you add this IE=7 mode meta tag.
 
             <xsl:otherwise>
                 <xsl:variable name="title">
-                    <xsl:if test="$eclipse.autolabel=1">
+                    <xsl:if test="$webhelp.autolabel=1">
                         <xsl:variable name="label.markup">
                             <xsl:apply-templates select="/*" mode="label.markup"/>
                         </xsl:variable>
@@ -656,7 +659,7 @@ These problems go away when you add this IE=7 mode meta tag.
             mode="webhelptoc">
         <xsl:param name="currentid"/>
         <xsl:variable name="title">
-            <xsl:if test="$eclipse.autolabel=1">
+            <xsl:if test="$webhelp.autolabel=1">
                 <xsl:variable name="label.markup">
                     <xsl:apply-templates select="." mode="label.markup"/>
                 </xsl:variable>
@@ -718,6 +721,9 @@ These problems go away when you add this IE=7 mode meta tag.
     <xsl:template name="index.html">
         <xsl:variable name="default.topic">
             <xsl:choose>
+                <xsl:when test="$webhelp.default.topic != ''">
+                    <xsl:value-of select="$htmlhelp.default.topic"/>
+                </xsl:when>
                 <xsl:when test="$htmlhelp.default.topic != ''">
                     <xsl:value-of select="$htmlhelp.default.topic"/>
                 </xsl:when>
@@ -761,7 +767,7 @@ These problems go away when you add this IE=7 mode meta tag.
                 <html>
                     <head>
 			            <link rel="shortcut icon" href="favicon.ico"/>
-                        <meta http-equiv="Refresh" content="1; URL=content/ch01.html"/>
+                        <meta http-equiv="Refresh" content="1; URL=content/{$default.topic}"/>
                         <title><xsl:value-of select="//title[1]"/>&#160;
                         </title>
                     </head>
