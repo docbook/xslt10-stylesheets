@@ -7,12 +7,14 @@ all: xsl-files profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
 
 remove-old:
 	for f in *.xsl; do if [ ! -f ../html/$$f -a "$$f" != "html2xhtml.xsl" ]; then rm $$f; fi; done
+	$(RM) docbook.css.xml
 
 add-new:
 	for f in ../html/*.xsl; do if [ ! -f `basename $$f` ]; then \
           echo $$f; \
           cp $$f .; \
           touch -t 197001010000 `basename $$f`; fi; done
+	cp ../html/docbook.css.xml .
 
 # Oh, come on! It must be possible to do this in Make, but I can't figure out how (ndw)
 
