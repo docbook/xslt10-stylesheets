@@ -1,13 +1,13 @@
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
-SOURCES=af.xml am.xml ar.xml az.xml bg.xml bn.xml bs.xml ca.xml cs.xml \
-	cy.xml da.xml de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml \
-	fa.xml fi.xml fr.xml ga.xml gl.xml gu.xml hi.xml he.xml hu.xml \
-	id.xml is.xml it.xml ja.xml ka.xml kn.xml ko.xml ky.xml la.xml lt.xml lv.xml \
-	mn.xml nl.xml nn.xml nb.xml pa.xml pl.xml hr.xml la.xml or.xml \
-	pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml \
-	sr_Latn.xml sv.xml ta.xml th.xml tl.xml tr.xml uk.xml vi.xml \
-	xh.xml zh.xml zh_cn.xml zh_tw.xml
+SOURCES=af.xml am.xml ar.xml as.xml ast.xml az.xml bg.xml bn.xml bn_in.xml bs.xml \
+	ca.xml cs.xml cy.xml da.xml de.xml el.xml en.xml eo.xml es.xml et.xml \
+	fa.xml fi.xml fr.xml ga.xml gu.xml he.xml hi.xml hr.xml hu.xml id.xml \
+	is.xml it.xml ja.xml ka.xml kn.xml ko.xml ky.xml la.xml lt.xml lv.xml \
+	ml.xml mn.xml mr.xml nb.xml nds.xml nl.xml nn.xml or.xml pa.xml pl.xml \
+	pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
+	ta.xml te.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml zh.xml zh_cn.xml \
+	zh_tw.xml
 
 GENSTYLE=$(DOCBOOK_SVN)/gentext/xsl/xsl.xsl $(DOCBOOK_SVN)/gentext/locale/en.xml
 
@@ -16,9 +16,12 @@ all: $(SOURCES)
 af.xml: $(DOCBOOK_SVN)/gentext/locale/af.xml $(GENSTYLE)
 am.xml: $(DOCBOOK_SVN)/gentext/locale/am.xml $(GENSTYLE)
 ar.xml: $(DOCBOOK_SVN)/gentext/locale/ar.xml $(GENSTYLE)
+as.xml: $(DOCBOOK_SVN)/gentext/locale/as.xml $(GENSTYLE)
+ast.xml: $(DOCBOOK_SVN)/gentext/locale/ast.xml $(GENSTYLE)
 az.xml: $(DOCBOOK_SVN)/gentext/locale/az.xml $(GENSTYLE)
 bg.xml: $(DOCBOOK_SVN)/gentext/locale/bg.xml $(GENSTYLE)
 bn.xml: $(DOCBOOK_SVN)/gentext/locale/bn.xml $(GENSTYLE)
+bn_in.xml: $(DOCBOOK_SVN)/gentext/locale/bn_in.xml $(GENSTYLE)
 bs.xml: $(DOCBOOK_SVN)/gentext/locale/bs.xml $(GENSTYLE)
 ca.xml: $(DOCBOOK_SVN)/gentext/locale/ca.xml $(GENSTYLE)
 cs.xml: $(DOCBOOK_SVN)/gentext/locale/cs.xml $(GENSTYLE)
@@ -52,10 +55,13 @@ ky.xml: $(DOCBOOK_SVN)/gentext/locale/ky.xml $(GENSTYLE)
 la.xml: $(DOCBOOK_SVN)/gentext/locale/la.xml $(GENSTYLE)
 lt.xml: $(DOCBOOK_SVN)/gentext/locale/lt.xml $(GENSTYLE)
 lv.xml: $(DOCBOOK_SVN)/gentext/locale/lv.xml $(GENSTYLE)
+ml.xml: $(DOCBOOK_SVN)/gentext/locale/ml.xml $(GENSTYLE)
 mn.xml: $(DOCBOOK_SVN)/gentext/locale/mn.xml $(GENSTYLE)
+mr.xml: $(DOCBOOK_SVN)/gentext/locale/mr.xml $(GENSTYLE)
+nb.xml: $(DOCBOOK_SVN)/gentext/locale/nb.xml $(GENSTYLE)
+nds.xml: $(DOCBOOK_SVN)/gentext/locale/nds.xml $(GENSTYLE)
 nl.xml: $(DOCBOOK_SVN)/gentext/locale/nl.xml $(GENSTYLE)
 nn.xml: $(DOCBOOK_SVN)/gentext/locale/nn.xml $(GENSTYLE)
-nb.xml: $(DOCBOOK_SVN)/gentext/locale/nb.xml $(GENSTYLE)
 or.xml: $(DOCBOOK_SVN)/gentext/locale/or.xml $(GENSTYLE)
 pa.xml: $(DOCBOOK_SVN)/gentext/locale/pa.xml $(GENSTYLE)
 pl.xml: $(DOCBOOK_SVN)/gentext/locale/pl.xml $(GENSTYLE)
@@ -70,8 +76,9 @@ sr.xml: $(DOCBOOK_SVN)/gentext/locale/sr.xml $(GENSTYLE)
 sr_Latn.xml: $(DOCBOOK_SVN)/gentext/locale/sr_Latn.xml $(GENSTYLE)
 sv.xml: $(DOCBOOK_SVN)/gentext/locale/sv.xml $(GENSTYLE)
 ta.xml: $(DOCBOOK_SVN)/gentext/locale/ta.xml $(GENSTYLE)
-tl.xml: $(DOCBOOK_SVN)/gentext/locale/tl.xml $(GENSTYLE)
+te.xml: $(DOCBOOK_SVN)/gentext/locale/te.xml $(GENSTYLE)
 th.xml: $(DOCBOOK_SVN)/gentext/locale/th.xml $(GENSTYLE)
+tl.xml: $(DOCBOOK_SVN)/gentext/locale/tl.xml $(GENSTYLE)
 tr.xml: $(DOCBOOK_SVN)/gentext/locale/tr.xml $(GENSTYLE)
 uk.xml: $(DOCBOOK_SVN)/gentext/locale/uk.xml $(GENSTYLE)
 vi.xml: $(DOCBOOK_SVN)/gentext/locale/vi.xml $(GENSTYLE)
