@@ -103,3 +103,7 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     font-weight: bold;
     font-size: 10pt
 }
+
+.title, div.toc>p{
+	font-weight: bold;
+	}	
