@@ -4,13 +4,6 @@
   <loadproperties srcFile="${ant.file.dir}/build.properties"/>
   <property name="webhelp.include.search.tab" value="true"/>
 
-  <xmlcatalog id="catalog">
-	<catalogpath>
-	  <pathelement location="${docbook-xsl-catalog}"/>
-	</catalogpath>
-	<dtd publicId="-//OASIS//DTD DocBook XML V4.5//EN" location="${docbookx.dtd}"/>
-  </xmlcatalog>
-
   <property environment="env"/>
   <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
 
@@ -21,17 +14,15 @@
         <pathelement path="${ant.jar}"/>  
     </path>
 
-  <condition property="perform-validation">
-	<equals arg1="${validate}" arg2="true"/>
+  <condition property="perform-validation-dtd">
+	<equals arg1="${validate-against-dtd}" arg2="true"/>
   </condition>
   <condition property="do-search-indexing">
 	<equals arg1="${webhelp.include.search.tab}" arg2="true"/>
   </condition>
 
-  <target name="validate" if="perform-validation">
-	<xmlvalidate file="${input-xml}" classname="org.apache.xerces.parsers.SAXParser">
-	  <xmlcatalog refid="catalog"/>
-	</xmlvalidate>
+  <target name="validate" if="perform-validation-dtd">
+    <xmlvalidate file="${input-xml}" classname="org.apache.xerces.parsers.SAXParser"/>
   </target>
 
   <target name="chunk" depends="clean">
@@ -43,7 +34,6 @@
 	  style="${stylesheet-path}"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
-	  <xmlcatalog refid="catalog"/>
 	  <param name="webhelp.include.search.tab" expression="${webhelp.include.search.tab}"
 		if="webhelp.include.search.tab"/>
 	  <param name="output_file_name" expression="${output_file_name}"/>
@@ -132,70 +122,18 @@
 
   </target>
 
-  <target name="zip" depends="build-indexer,webhelp">
-
-	<!--xslt
-	  in="${ant.file.dir}/xsl/webhelp-common.xsl"
-	  out="${ant.file.dir}/xsl/profile-webhelp-common.xsl"
-	  force="yes"
-	  style="${ant.file.dir}/../profiling/xsl2profile.xsl"
-	  classpath="${xslt-processor-classpath}">
-	  <xmlcatalog refid="catalog"/>
-	</xslt-->
-
-	<zip destfile="../webhelp-gsoc2010-beta.zip"
-	  basedir=".."
-	  includes="webhelp/**"/>
-
-  </target>
-
   <target name="clean">
 	<delete dir="${output-dir}"/>
   </target>
 
   <target name="help">
-	<echo>Usage:</echo>
-	<echo>webhelp: Generate the document in webhelp format.</echo>
-	<echo>index: Index the content.</echo>
-	<echo>build-indexer: Rebuilds the indexer jar.</echo>
-  </target>
-
-  <target name="create-ns-version" depends="zip">
-
-	<!-- TODO: Prep for profiling, then run xslt over ../profiling/xsl2profile.xsl over webhelp-common.xsl -->
-
-	<exec executable="perl" dir="${ant.file.dir}">
-	  <arg line="..\..\releasetools\xslns-build ../webhelp ../webhelp-ns"/>
-	</exec>
-
-	<xslt
-	  in="${input-xml}"
-	  out="../webhelp-ns/${input-xml}"
-	  force="yes"
-	  style="${ant.file.dir}/../../docbook/relaxng/tools/db4-upgrade.xsl"
-	  classpath="${xslt-processor-classpath}">
-	  <xmlcatalog refid="catalog"/>
-	</xslt>
-
-	<replace 
-	  file="../webhelp-ns/build.properties" 
-	  token="validate=true" 
-	  value="validate=false"/> 
-	<replace 
-	  file="../webhelp-ns/build.properties" 
-	  token="docbook-xsl-1." 
-	  value="docbook-xsl-ns-1."/> 
-	<replace 
-	  file="../webhelp-ns/xsl/webhelp.xsl" 
-	  token="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl" 
-	  value="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/chunk.xsl"/> 
-
-	<!-- TODO: Add xinclude step to build? -->
-
-	<zip destfile="../webhelp-ns-gsoc2010-beta.zip"
-	  basedir=".."
-	  includes="webhelp-ns/**"/>
-
+	<echo>
+Usage:
+webhelp:       Generates the document in webhelp format and indexes the content.
+clean:         Deletes webhelp output directory.
+index:         Indexes the content.
+build-indexer: Rebuilds the indexer jar if necessary (required JDK).
+	</echo>
   </target>
 
 </project>
