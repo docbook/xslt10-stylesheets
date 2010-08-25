@@ -2,7 +2,7 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <book>
-  <title>Web-based Help from DocBook XML Readme</title>
+  <title>README: Web-based Help from DocBook XML</title>
 
   <bookinfo>
     <legalnotice>
@@ -42,7 +42,7 @@
         <para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
         EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
         MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-        IN NO EVENT SHALL NORMAN WALSH OR ANY OTHER CONTRIBUTOR BE LIABLE FOR
+        IN NO EVENT SHALL DAVID CRAMER, KASUN GAJASINGHE, OR ANY OTHER CONTRIBUTOR BE LIABLE FOR
         ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
         CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
         WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
@@ -222,53 +222,6 @@
       </itemizedlist>
 
       <itemizedlist>
-        <title>Features completed as part of GSOC 2010</title>
-
-        <listitem>
-          <para>Implement the toc and search pane without using
-          frames.</para>
-        </listitem>
-
-        <listitem>
-          <para>Add autosynchronization to the toc.</para>
-        </listitem>
-
-        <listitem>
-          <para>Add stemmming support for English and one major
-          non-Asian language.</para>
-        </listitem>
-
-        <listitem>
-          <para>Add a show/hide toc button.</para>
-        </listitem>
-
-        <listitem>
-          <para>Move the header Next and Prev links to the
-          banner</para>
-        </listitem>
-
-        <listitem>
-          <para>Make indexer skip next and prev links in the footer and
-          header.</para>
-        </listitem>
-
-        <listitem>
-          <para>Add search highlighting with a button to toggle it on
-          an off.</para>
-        </listitem>
-
-        <listitem>
-          <para>Improve the support for Japanese and Chinese.</para>
-        </listitem>
-
-        <listitem>
-          <para>Document skinning and customization options.</para>
-        </listitem>
-
-        <listitem>
-          <para>Support 5.x/ns and 4.x/non-ns DocBook stylesheets.</para>
-        </listitem>
-      </itemizedlist><itemizedlist>
         <title>Possible future enhancements</title>
 
 		<listitem>
@@ -414,13 +367,16 @@
               <para>Confirm that Java is installed and in your
               <envar>PATH</envar> by typing the following at a command prompt:
               <programlisting>java -version</programlisting></para>
+	      <note>
+		<para>To build the indexer, you must have the JDK.</para>
+	      </note>
             </step>
           </substeps>
         </step>
 
         <step>
           <para>If necessary, install <ulink
-          url="http://ant.apache.org/bindownload.cgi">Apache Ant 1.6.5</ulink>
+          url="http://ant.apache.org/bindownload.cgi">Apache Ant</ulink> 1.6.5 
           or higher.</para>
 
           <substeps>
@@ -498,27 +454,21 @@ stylesheet-path=${ant.file.dir}/xsl/webhelp.xsl
 #input-images-basedir=/path/to/image/location
 
 # Modify this so that it points to your copy of the Saxon 6.5 jar.
-xslt-processor-classpath=c:/workhead/export/saxon/6.5/lib/saxon.jar
+xslt-processor-classpath=/usr/share/java/saxon-6.5.5.jar
 
-# If you wish to have the ant script validate the document before
-# building it, set this property to the location
-# of your DocBook DTD. The sample document is 
-# a DocBook 4.5 document and uncomment the line validate=true.
-# Better yet, you can list the DTD's catalog file in your
-# CatalogManager.properties file.
-docbookx.dtd=c:/workhead/export/DocBookDTD/4.5/docbookx.dtd
-validate=true
+# For non-ns version only, this validates the document 
+# against a dtd.
+validate-against-dtd=true
 
-# Set this to true if you don't need a search tab.
-exclude.search.from.webhelp=false
+# Set this to false if you don't need a search tab.
+webhelp.include.search.tab=true
 
 # indexer-language is used to tell the search indexer which language
 # the docbook is written.  This will be used to identify the correct
 # stemmer, and punctuations that differs from language to language.
 # see the documentation for details. en=English, fr=French, de=German,
 # zh=Chinese, ja=Japanese etc.  
-webhelp.indexer.language=en
-</programlisting></para>
+webhelp.indexer.language=en</programlisting></para>
         </step>
 
         <step>
@@ -551,6 +501,9 @@ webhelp.indexer.language=en
               <para>From the directory containing your newly created
               <filename>build.xml</filename> file, type <code>ant
               webhelp</code> to build your document.</para>
+	      <important>
+		<para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your CLASSPATH when you generate the webhelp output.</para>
+	      </important>
             </step>
           </substeps>
         </step>
