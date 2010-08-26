@@ -144,192 +144,146 @@
 
     <title>Introduction</title>
 
-    <para>A common requirement for technical publications groups is to produce
-    a Web-based help format that includes a table of contents pane, a search
-    feature, and an index similar to what you get from the Microsoft HTML Help
-    (.chm) format or Eclipse help. If the content is help for a Web
-    application that is not exposed to the Internet or requires that the user
-    be logged in, then it is impossible to use services like Google to add
-    search. <indexterm class="singular">
+    <para>A common requirement for technical publications groups is to produce a Web-based help
+      format that includes a table of contents pane, a search feature, and an index similar to what
+      you get from the Microsoft HTML Help (.chm) format or Eclipse help. If the content is help for
+      a Web application that is not exposed to the Internet or requires that the user be logged in,
+      then it is impossible to use services like Google to add search. <indexterm class="singular">
         <primary>features</primary>
-      </indexterm><itemizedlist>
+      </indexterm>
+      <itemizedlist>
         <title>Features</title>
-
         <listitem>
           <para>Full text search.<indexterm class="singular">
               <primary>search</primary>
-
               <secondary>features</secondary>
             </indexterm></para>
-
           <itemizedlist>
             <listitem>
-              <para>Stemming support for English, French, and German. Stemming
-              support can be added for other languages by implementing a
-              stemmer.<indexterm class="singular">
+              <para>Stemming support for English, French, and German. Stemming support can be added
+                for other languages by implementing a stemmer.<indexterm class="singular">
                   <primary>search</primary>
-
                   <secondary>stemming</secondary>
                 </indexterm></para>
             </listitem>
-
             <listitem>
-              <para>Support for Chinese, Japanese, and Korean using code from
-              the Lucene search engine. </para>
+              <para>Support for Chinese, Japanese, and Korean using code from the Lucene search
+                engine. </para>
             </listitem>
-
             <listitem>
-              <para>Search highlighting shows where the searched for term
-              appears in the results. Use the <guibutton>H</guibutton> button
-              to toggle the highlighting off and on. <indexterm
-                  class="singular">
+              <para>Search highlighting shows where the searched for term appears in the results.
+                Use the <guibutton>H</guibutton> button to toggle the highlighting off and on.
+                  <indexterm class="singular">
                   <primary>search</primary>
-
                   <secondary>highlighting</secondary>
                 </indexterm></para>
             </listitem>
-
             <listitem>
-              <para>Search results can include brief descriptions of the
-              target.<indexterm class="singular">
+              <para>Search results can include brief descriptions of the target.<indexterm
+                  class="singular">
                   <primary>search</primary>
-
                   <secondary>descriptions</secondary>
                 </indexterm></para>
             </listitem>
           </itemizedlist>
         </listitem>
-
         <listitem>
           <para>Table of contents pane with collapsible toc tree.</para>
         </listitem>
-
         <listitem>
           <para>Autosynchronization of content pane and TOC.</para>
         </listitem>
-
         <listitem>
-          <para>TOC and search pane implemented without the use of a
-          frameset.</para>
+          <para>TOC and search pane implemented without the use of a frameset.</para>
         </listitem>
-
         <listitem>
-          <para>An Ant <filename>build.xml</filename> file to generate output.
-          You can use this build file by importing it into your own or use it
-          as a model for integrating this output format into your own build
-          system.</para>
+          <para>An Ant <filename>build.xml</filename> file to generate output. You can use this
+            build file by importing it into your own or use it as a model for integrating this
+            output format into your own build system.</para>
         </listitem>
       </itemizedlist>
-
       <itemizedlist>
         <title>Possible future enhancements</title>
-
-		<listitem>
-		  <para>Use <sgmltag class="attribute">tabindex</sgmltag> attributes to control the tab order in the output. The Contents and Search tabs should be first and second, then the search box and button, then the table of contents items, and so on.</para>
-		</listitem>
-
+        <listitem>
+          <para>Use <sgmltag class="attribute">tabindex</sgmltag> attributes to control the tab
+            order in the output. The Contents and Search tabs should be first and second, then the
+            search box and button, then the table of contents items, and so on.</para>
+        </listitem>
         <listitem>
           <para>Add "Expand all" and "Collapse all" buttons to the toc.</para>
         </listitem>
-
         <listitem>
           <para>Add other search options:</para>
-
           <itemizedlist>
             <listitem>
-              <para>Add an option to use Lucene for server-side searches with
-              toc state persisted on the server.</para>
+              <para>Add an option to use Lucene for server-side searches with toc state persisted on
+                the server.</para>
             </listitem>
-
             <listitem>
-              <para>Add a simple form that uses a Google site:my.domain.com
-              based search.</para>
+              <para>Add a simple form that uses a Google site:my.domain.com based search.</para>
             </listitem>
           </itemizedlist>
         </listitem>
-
         <listitem>
           <para>Sort search results based on relevance</para>
         </listitem>
-
         <listitem>
-          <para>Support wildcard characters in the search query.</para>
+          <para>Support wild card characters in the search query.</para>
         </listitem>
-
         <listitem>
-          <para>Parameterize width of the TOC pane OR make the TOC pane
-          resizable by the user.</para>
+          <para>Parameterize width of the TOC pane OR make the TOC pane resizable by the
+            user.</para>
         </listitem>
-
         <listitem>
           <para>Automate search results summary text:</para>
-
           <itemizedlist>
             <listitem>
-              <para>Automatically use the first non-heading content as the
-              summary in the search results.</para>
+              <para>Automatically use the first non-heading content as the summary in the search
+                results.</para>
             </listitem>
-
             <listitem>
-              <para>Automatically limit the size of the search description to
-              something 140 characters.</para>
+              <para>Automatically limit the size of the search description to something 140
+                characters.</para>
             </listitem>
           </itemizedlist>
         </listitem>
-
         <listitem>
           <para>Support boolean operators in search.</para>
         </listitem>
-
         <listitem>
-          <para>Parameterize list of files to exclude from indexing. Currently
-          it's hard coded that we don't index <filename>index.html
-          </filename>and <filename>ix01.html</filename> (the legal notice and
-          index topics). It should be smarter and automatically not index the
-          index file even if it's not named
-          <filename>ix01.html</filename>.</para>
+          <para>Parameterize list of files to exclude from indexing. Currently it's hard coded that
+            we don't index <filename>index.html </filename>and <filename>ix01.html</filename> (the
+            legal notice and index topics). It should be smarter and automatically not index the
+            index file even if it's not named <filename>ix01.html</filename>.</para>
         </listitem>
-
         <listitem>
-          <para>Improve performance by moving the table of contents div out of
-          each page and into a separate JavaScript file which then adds it to
-          the page.</para>
+          <para>Improve performance by moving the table of contents div out of each page and into a
+            separate JavaScript file which then adds it to the page.</para>
         </listitem>
-
         <listitem>
-          <para>Add to the indexer the ability to specify a list of files or
-          file patterns not to index. Currently it does not index
-          <filename>index.html</filename> or <filename>ix01.html</filename>,
-          which is generally appropriate, but it should be up to the user to
-          decide.</para>
+          <para>Add to the indexer the ability to specify a list of files or file patterns not to
+            index. Currently it does not index <filename>index.html</filename> or
+              <filename>ix01.html</filename>, which is generally appropriate, but it should be up to
+            the user to decide.</para>
         </listitem>
-
         <listitem>
-          <para>Add a parameter to make it possible to disable the search tab
-          if it is not required.</para>
+          <para>Add an index tab populated by a separate JavaScript file. Include a param/property
+            that allows the content creator to disable the index.</para>
         </listitem>
-
         <listitem>
-          <para>Add an index tab populated by a separate JavaScript file.
-          Include a param/property that allows the content creator to disable
-          the index.</para>
+          <para>Add functionality to the <filename>build.xml</filename> file so that when a property
+            is set, the build generates a pdf version of the document and includes a link to it from
+            the header.</para>
         </listitem>
-
-        <listitem>
-          <para>Add functionality to the <filename>build.xml</filename> file
-          so that when a property is set, the build generates a pdf version of
-          the document and includes a link to it from the header.</para>
-        </listitem>
-
         <listitem>
           <para>Add <ulink
-          url="http://www.comparenetworks.com/developers/jqueryplugins/jbreadcrumb.html">breadcrumbs</ulink>
-          so the user will know what topics he's been to.</para>
+              url="http://www.comparenetworks.com/developers/jqueryplugins/jbreadcrumb.html"
+              >breadcrumbs</ulink> so the user will know what topics he's been to.</para>
         </listitem>
-
-		<listitem>
-		  <para>Consider using more advanced Lucene indexers for Chinese and Japanse than the CJKAnalyzer</para>
-		</listitem>
+        <listitem>
+          <para>Consider using more advanced Lucene indexers for Chinese and Japanse than the
+            CJKAnalyzer</para>
+        </listitem>
       </itemizedlist></para>
   </chapter>
 
@@ -417,12 +371,15 @@
         </step>
 
         <step>
-          <para>Download <ulink
-          url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip">Saxon
-          6.5.x</ulink> and unzip the distribution to a convenient location on
-          your filesystem. You will use the path to
-          <filename>saxon.jar</filename> in <xref
-          linkend="edit-build-properties" /> below.</para>
+          <para>Download <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip">Saxon
+              6.5.x</ulink> and unzip the distribution to a convenient location on your file system.
+            You will use the path to <filename>saxon.jar</filename> in <xref
+              linkend="edit-build-properties"/> below.<note>
+              <para>The <filename>build.xml</filename> has only been tested with Saxon 6.5, though
+                it could be adapted to work with other XSLT processors. However, when you generate
+                output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
+                  <envar>CLASSPATH</envar>.</para>
+            </note></para>
         </step>
 
         <step id="edit-build-properties">
