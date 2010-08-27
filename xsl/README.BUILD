@@ -134,9 +134,9 @@ contributions welcome...
      # set up some environment variables for DocBook/XML stuff
      . ~/docbk.sh
 
-4. ~/.xmlrc
+4. ~/.xmlc
 
-   You need an .xmlrc file with some system-specific data for Java
+   You need an .xmlc file with some system-specific data for Java
    and XML tools in your environment. For example:
 
    <?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
