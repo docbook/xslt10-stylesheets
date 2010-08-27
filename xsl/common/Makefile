@@ -1,6 +1,6 @@
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
-SOURCES=af.xml am.xml ar.xml as.xml ast.xml az.xml bg.xml bn.xml bn_IN.xml bs.xml \
+SOURCES=af.xml am.xml ar.xml as.xml ast.xml az.xml bg.xml bn.xml bn_in.xml bs.xml \
 	ca.xml cs.xml cy.xml da.xml de.xml el.xml en.xml eo.xml es.xml et.xml \
 	fa.xml fi.xml fr.xml ga.xml gu.xml he.xml hi.xml hr.xml hu.xml id.xml \
 	is.xml it.xml ja.xml ka.xml kn.xml ko.xml ky.xml la.xml lt.xml lv.xml \
@@ -21,7 +21,7 @@ ast.xml: $(DOCBOOK_SVN)/gentext/locale/ast.xml $(GENSTYLE)
 az.xml: $(DOCBOOK_SVN)/gentext/locale/az.xml $(GENSTYLE)
 bg.xml: $(DOCBOOK_SVN)/gentext/locale/bg.xml $(GENSTYLE)
 bn.xml: $(DOCBOOK_SVN)/gentext/locale/bn.xml $(GENSTYLE)
-bn_IN.xml: $(DOCBOOK_SVN)/gentext/locale/bn_IN.xml $(GENSTYLE)
+bn_in.xml: $(DOCBOOK_SVN)/gentext/locale/bn_in.xml $(GENSTYLE)
 bs.xml: $(DOCBOOK_SVN)/gentext/locale/bs.xml $(GENSTYLE)
 ca.xml: $(DOCBOOK_SVN)/gentext/locale/ca.xml $(GENSTYLE)
 cs.xml: $(DOCBOOK_SVN)/gentext/locale/cs.xml $(GENSTYLE)
