@@ -300,7 +300,7 @@
         </abstract>
       </sectioninfo>
 
-      <title>Obtaining, installing, and running the package</title>
+      <title>Generating webhelp output</title>
 
       <procedure>
         <title>To install the package on Windows</title>
@@ -429,11 +429,16 @@ webhelp.indexer.language=en</programlisting></para>
         </step>
 
         <step>
-          <para>Test the package by running the command <code>ant
-          webhelp</code> at the command line in the webhelp directory. It
-          should generate a copy of this documentation in the <filename
-          class="directory">doc</filename> directory. Type <code>start
-          doc\index.html</code> to open the output in a browser.</para>
+          <para>Test the package by running the command <code>ant webhelp
+              -Doutput-dir=test-ouput</code> at the command line in the webhelp directory. It should
+            generate a copy of this documentation in the <filename class="directory">doc</filename>
+            directory. Type <code>start test-output\index.html</code> to open the output in a
+            browser. Once you have confirmed that the process worked, you can delete the <filename
+              class="directory">test-output</filename> directory. <important>
+              <para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your
+                  <envar>CLASSPATH</envar> when you generate the webhelp output. If you have any
+                problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
+            </important></para>
         </step>
 
         <step>
@@ -458,9 +463,11 @@ webhelp.indexer.language=en</programlisting></para>
               <para>From the directory containing your newly created
               <filename>build.xml</filename> file, type <code>ant
               webhelp</code> to build your document.</para>
-	      <important>
-		<para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your CLASSPATH when you generate the webhelp output.</para>
-	      </important>
+              <important>
+                <para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your
+                    <envar>CLASSPATH</envar> when you generate the webhelp output. If you have any
+                  problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
+              </important>
             </step>
           </substeps>
         </step>
