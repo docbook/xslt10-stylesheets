@@ -102,8 +102,6 @@
 	  </para>
     </legalnotice>
 
-    <releaseinfo>Version 0.9/Beta</releaseinfo>
-
     <copyright>
       <year>2008-2010</year>
 
@@ -191,7 +189,7 @@
           <para>Table of contents pane with collapsible toc tree.</para>
         </listitem>
         <listitem>
-          <para>Autosynchronization of content pane and TOC.</para>
+          <para>Auto-synchronization of content pane and TOC.</para>
         </listitem>
         <listitem>
           <para>TOC and search pane implemented without the use of a frameset.</para>
@@ -205,19 +203,23 @@
       <itemizedlist>
         <title>Possible future enhancements</title>
         <listitem>
+          <para>Move webhelp-specific parameters and gentext strings into base DocBook stylesheets.
+          </para>
+        </listitem>
+        <listitem>
           <para>Use <sgmltag class="attribute">tabindex</sgmltag> attributes to control the tab
             order in the output. The Contents and Search tabs should be first and second, then the
             search box and button, then the table of contents items, and so on.</para>
         </listitem>
         <listitem>
-          <para>Add "Expand all" and "Collapse all" buttons to the toc.</para>
+          <para>Add "Expand all" and "Collapse all" buttons to the table of contents.</para>
         </listitem>
         <listitem>
           <para>Add other search options:</para>
           <itemizedlist>
             <listitem>
-              <para>Add an option to use Lucene for server-side searches with toc state persisted on
-                the server.</para>
+              <para>Add an option to use Lucene for server-side searches with table of contents
+                state persisted on the server.</para>
             </listitem>
             <listitem>
               <para>Add a simple form that uses a Google site:my.domain.com based search.</para>
@@ -231,7 +233,7 @@
           <para>Support wild card characters in the search query.</para>
         </listitem>
         <listitem>
-          <para>Parameterize width of the TOC pane OR make the TOC pane resizable by the
+          <para>Parameterize width of the TOC pane OR make the TOC pane resizeable by the
             user.</para>
         </listitem>
         <listitem>
@@ -281,7 +283,7 @@
               >breadcrumbs</ulink> so the user will know what topics he's been to.</para>
         </listitem>
         <listitem>
-          <para>Consider using more advanced Lucene indexers for Chinese and Japanse than the
+          <para>Consider using more advanced Lucene indexers for Chinese and Japanese than the
             CJKAnalyzer</para>
         </listitem>
       </itemizedlist></para>
