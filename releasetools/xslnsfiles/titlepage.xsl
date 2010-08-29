@@ -1309,7 +1309,7 @@ text of the select attribute.</para>
         <xsl:with-param name="orlist">
           <xsl:value-of select="$orlist"/>
           <xsl:if test="not($orlist='')">|</xsl:if>
-          <xsl:value-of select="name($elements[position()=$count])"/>
+          <xsl:value-of select="concat('d:', name($elements[position()=$count]))"/>
         </xsl:with-param>
       </xsl:call-template>
     </xsl:otherwise>
