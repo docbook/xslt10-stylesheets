@@ -2464,7 +2464,7 @@
                               self::bookinfo or
                               self::info or
                               self::dedication or
-                              self::d:acknowledgements or
+                              self::acknowledgements or
                               self::preface or
                               self::toc or
                               self::lot)][1]"/>
