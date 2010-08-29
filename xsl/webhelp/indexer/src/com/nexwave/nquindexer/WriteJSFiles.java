@@ -34,7 +34,7 @@ public class WriteJSFiles {
 	 */
 	public static void WriteHTMLList (String fileO,ArrayList<String> list) {
 		int i = 0;
-		Iterator it = null;
+		Iterator it;
 		
 		if (list == null) {
 			return;

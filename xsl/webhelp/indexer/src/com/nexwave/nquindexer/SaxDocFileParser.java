@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 
 import com.nexwave.nsidita.BlankRemover;
 import com.nexwave.nsidita.DocFileInfo;
+import org.xml.sax.SAXParseException;
 
 /**
  * Generic parser for populating a DocFileInfo object.
@@ -95,7 +96,10 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			//System.out.println("done parsing " + file.getName() + " >>> " + finish);
 			//System.out.println("time = " + (finish - start) + " milliseconds");
 			
-		}catch(org.xml.sax.SAXException se) {
+		}catch(SAXParseException spe){
+            System.out.println("SaxParseException: The indexing file contains incorrect xml syntax.");
+            spe.printStackTrace();
+        }catch(org.xml.sax.SAXException se) {
 			System.out.println("SaxException. You may need to include Xerces in your classpath. " +
                     "See documentation for details");
 			se.printStackTrace(); 
