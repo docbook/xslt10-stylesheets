@@ -2445,6 +2445,7 @@
     <xsl:when test="$element = 'toc' and self::book">i</xsl:when>
     <xsl:when test="$element = 'preface'">i</xsl:when>
     <xsl:when test="$element = 'dedication'">i</xsl:when>
+    <xsl:when test="$element = 'acknowledgements'">i</xsl:when>
     <xsl:otherwise>1</xsl:otherwise>
   </xsl:choose>
 </xsl:template>
@@ -2463,6 +2464,7 @@
                               self::bookinfo or
                               self::info or
                               self::dedication or
+                              self::d:acknowledgements or
                               self::preface or
                               self::toc or
                               self::lot)][1]"/>
