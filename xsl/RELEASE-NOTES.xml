@@ -63,6 +63,12 @@ public APIs (user-configurable parameters).</para>
 significant feature changes:</para>
 <variablelist>
 <varlistentry>
+<term>Webhelp</term>
+<listitem><para>A new browser-based, cross-platform help format with full-text search and other features typically found in help systems. See <filename>webhelp/docs/content/ch01.html</filename> for more information and a demo. </para></listitem>
+
+</varlistentry>
+
+<varlistentry>
 <term>Gentext</term>
 <listitem><para>Many updates and additions to translation/locales thanks to Red Hat, the Fedora Project, and other contributors.</para></listitem>
 </varlistentry>
