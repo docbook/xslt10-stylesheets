@@ -23,8 +23,8 @@
 <xsl:key name="l10n-gentext" match="l:l10n/l:gentext" use="@key"/>
 <xsl:key name="l10n-dingbat" match="l:l10n/l:dingbat" use="@key"/>
 <xsl:key name="l10n-context" match="l:l10n/l:context" use="@name"/>
-<xsl:key name="l10n-template" match="l:l10n/l:context/l:template[not(@style)]" use="@name"/>
-<xsl:key name="l10n-template-style" match="l:l10n/l:context/l:template[@style]" use="concat(@name, '#', @style)"/>
+<xsl:key name="l10n-template" match="l:l10n/l:context/l:template[not(@style)]" use="concat(../@name, '#', @name)"/>
+<xsl:key name="l10n-template-style" match="l:l10n/l:context/l:template[@style]" use="concat(../@name, '#', @name, '#', @style)"/>
 
 <xsl:template name="l10n.language">
   <xsl:param name="target" select="."/>
@@ -421,8 +421,8 @@
 
 	  <xsl:for-each select="$context.node">
 	    <xsl:variable name="template.node"
-			  select="(key('l10n-template-style', concat($name, '#', $xrefstyle))
-				   |key('l10n-template', $name))[1]"/>
+			  select="(key('l10n-template-style', concat($context, '#', $name, '#', $xrefstyle))
+				   |key('l10n-template', concat($context, '#', $name)))[1]"/>
 
 	    <xsl:choose>
 	      <xsl:when test="$template.node/@text">
@@ -510,8 +510,8 @@
 
 	  <xsl:for-each select="$context.node">
 	    <xsl:variable name="template.node"
-			  select="(key('l10n-template-style', concat($name, '#', $xrefstyle))
-				   |key('l10n-template', $name))[1]"/>
+			  select="(key('l10n-template-style', concat($context, '#', $name, '#', $xrefstyle))
+				   |key('l10n-template', concat($context, '#', $name)))[1]"/>
 
 	    <xsl:choose>
 	      <xsl:when test="$local.template.node/@text">
