@@ -209,7 +209,7 @@ module DocBook
           image_refs << el[1]['fileref'] 
         end  
       end
-      return image_refs
+      return image_refs.uniq
     end  
 
     # Returns true if the document has code callouts
