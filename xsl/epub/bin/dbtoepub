@@ -33,7 +33,7 @@ otf_files = []
 customization_layer = nil
 output_file = nil
 
-$DEBUG=true
+#$DEBUG=true
 
 # Set up the OptionParser
 opts = OptionParser.new
