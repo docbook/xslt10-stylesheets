@@ -364,20 +364,6 @@
               <xsl:attribute name="name">dtb:uid</xsl:attribute>
               <xsl:attribute name="content"><xsl:call-template name="package-identifier"/></xsl:attribute>
             </xsl:element>
-
-            <xsl:comment>Default values for unused, legacy attributes</xsl:comment>
-            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
-              <xsl:attribute name="name">dtb:depth</xsl:attribute>
-              <xsl:attribute name="content">-1</xsl:attribute>
-            </xsl:element>
-            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
-              <xsl:attribute name="name">dtb:totalPageCount</xsl:attribute>
-              <xsl:attribute name="content">0</xsl:attribute>
-            </xsl:element>
-            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
-              <xsl:attribute name="name">dtb:maxPageNumber</xsl:attribute>
-              <xsl:attribute name="content">0</xsl:attribute>
-            </xsl:element>
           </xsl:element>
 
           <xsl:choose>
