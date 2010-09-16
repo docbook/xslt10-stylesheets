@@ -31,6 +31,7 @@
 
   <xsl:param name="ade.extensions" select="0"/>
   <xsl:param name="epub.autolabel" select="'1'"/> 
+  <xsl:param name="epub.ncx.depth">4</xsl:param> <!-- Not functional until http://code.google.com/p/epubcheck/issues/detail?id=70 is resolved -->
 
 
   <xsl:param name="manifest.in.base.dir" select="'1'"/> 
@@ -187,32 +188,56 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template name="package-identifier">  
+    <xsl:choose>
+      <xsl:when test="/*/*[contains(name(.), 'info')]/biblioid">
+        <xsl:if test="/*/*[contains(name(.), 'info')][1]/biblioid[1][@class = 'doi' or 
+                                                                      @class = 'isbn' or
+                                                                      @class = 'isrn' or
+                                                                      @class = 'issn']">
+          <xsl:text>urn:</xsl:text>
+          <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/biblioid[1]/@class"/>
+          <xsl:text>:</xsl:text>
+        </xsl:if>
+        <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/biblioid[1]"/>
+      </xsl:when>
+      <xsl:when test="/*/*[contains(name(.), 'info')]/isbn">
+        <xsl:text>urn:isbn:</xsl:text>
+        <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/isbn[1]"/>
+      </xsl:when>
+      <xsl:when test="/*/*[contains(name(.), 'info')]/issn">
+        <xsl:text>urn:issn:</xsl:text>
+        <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/issn[1]"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="/*/*[contains(name(.), 'info')]/invpartnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/invpartnumber[1]"/> </xsl:when>
+          <xsl:when test="/*/*[contains(name(.), 'info')]/issuenum">      <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/issuenum[1]"/> </xsl:when>
+          <xsl:when test="/*/*[contains(name(.), 'info')]/productnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/productnumber[1]"/> </xsl:when>
+          <xsl:when test="/*/*[contains(name(.), 'info')]/seriesvolnums"> <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/seriesvolnums[1]"/> </xsl:when>
+          <xsl:when test="/*/*[contains(name(.), 'info')]/volumenum">     <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/volumenum[1]"/> </xsl:when>
+          <!-- Deprecated -->
+          <xsl:when test="/*/*[contains(name(.), 'info')]/pubsnumber">    <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/pubsnumber[1]"/> </xsl:when>
+        </xsl:choose>  
+        <xsl:text>_</xsl:text>
+        <xsl:choose>
+          <xsl:when test="/*/@id">
+            <xsl:value-of select="/*/@id"/>
+          </xsl:when>
+          <xsl:when test="/*/@xml:id">
+            <xsl:value-of select="/*/@xml:id"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- TODO: Do UUIDs here -->
+            <xsl:value-of select="generate-id(/*)"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template name="opf">
-    <xsl:variable name="package-id"><xsl:value-of select="concat(name(/*), 'id')"/></xsl:variable>
-    <xsl:variable name="unique-id">
-      <xsl:choose>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/biblioid"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/biblioid"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/isbn"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/isbn"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/issn"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/issn"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/invpartnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/invpartnumber"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/issuenum"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/issuenum"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/productnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/productnumber"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/seriesvolnums"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/seriesvolnums"/> </xsl:when>
-        <xsl:when test="/*/*[contains(name(.), 'info')]/volumenum"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/volumenum"/> </xsl:when>
-        <!-- Deprecated -->
-        <xsl:when test="/*/*[contains(name(.), 'info')]/pubsnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')]/pubsnumber"/> </xsl:when>
-      </xsl:choose>  
-      <xsl:text>_</xsl:text>
-      <xsl:choose>
-        <xsl:when test="/*/@id">
-          <xsl:value-of select="/*/@id"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <!-- TODO: Do UUIDs here -->
-          <xsl:value-of select="generate-id(/*)"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
+    <xsl:variable name="package-identifier-id"><xsl:value-of select="concat(name(/*), 'id')"/></xsl:variable>
     <xsl:variable name="doc.title">
       <xsl:call-template name="get.doc.title" />
     </xsl:variable>
@@ -229,96 +254,13 @@
       <xsl:with-param name="content">
         <xsl:element namespace="http://www.idpf.org/2007/opf" name="package">
           <xsl:attribute name="version">2.0</xsl:attribute>
-          <xsl:attribute name="unique-identifier"> <xsl:value-of select="$package-id"/> </xsl:attribute>
+          <xsl:attribute name="unique-identifier"> <xsl:value-of select="$package-identifier-id"/> </xsl:attribute>
 
           <xsl:element namespace="http://www.idpf.org/2007/opf" name="metadata">
             <xsl:element name="dc:identifier">
-              <xsl:attribute name="id"><xsl:value-of select="$package-id"/></xsl:attribute>
-              <xsl:choose>
-                <xsl:when test="/appendix/appendixinfo/biblioid|
-                                /article/articleinfo/biblioid|
-                                /book/bookinfo/biblioid|
-                                /chapter/chapterinfo/biblioid|
-                                /glossary/glossaryinfo/biblioid|
-                                /part/partinfo/biblioid|
-                                /preface/prefaceinfo/biblioid|
-                                /refentry/refentryinfo/biblioid|
-                                /reference/referenceinfo/biblioid|
-                                /refsect1/refsect1info/biblioid|
-                                /refsect2/refsect2info/biblioid|
-                                /refsect3/refsect3info/biblioid|
-                                /refsection/refsectioninfo/biblioid|
-                                /refsynopsisdiv/refsynopsisdivinfo/biblioid|
-                                /sect1/sect1info/biblioid|
-                                /sect2/sect2info/biblioid|
-                                /sect3/sect3info/biblioid|
-                                /sect4/sect4info/biblioid|
-                                /sect5/sect5info/biblioid|
-                                /section/sectioninfo/biblioid|
-                                /setindex/setindexinfo/biblioid|
-                                /set/setinfo/biblioid">
-                  <xsl:if test="/*/*/biblioid[1]/@class = 'doi' or /*/*/biblioid[1]/@class = 'isbn' or /*/*/biblioid[1]/@class = 'isrn' or /*/*/biblioid[1]/@class = 'issn'">
-                    <xsl:text>urn:</xsl:text>
-                    <xsl:value-of select="/*/*/biblioid[1]/@class"/>
-                    <xsl:text>:</xsl:text>
-                  </xsl:if>
-                  <xsl:value-of select="/*/*/biblioid[1]"/>
-                </xsl:when>
-                <xsl:when test="/appendix/appendixinfo/isbn|
-                                /article/articleinfo/isbn|
-                                /book/bookinfo/isbn|
-                                /chapter/chapterinfo/isbn|
-                                /glossary/glossaryinfo/isbn|
-                                /part/partinfo/isbn|
-                                /preface/prefaceinfo/isbn|
-                                /refentry/refentryinfo/isbn|
-                                /reference/referenceinfo/isbn|
-                                /refsect1/refsect1info/isbn|
-                                /refsect2/refsect2info/isbn|
-                                /refsect3/refsect3info/isbn|
-                                /refsection/refsectioninfo/isbn|
-                                /refsynopsisdiv/refsynopsisdivinfo/isbn|
-                                /sect1/sect1info/isbn|
-                                /sect2/sect2info/isbn|
-                                /sect3/sect3info/isbn|
-                                /sect4/sect4info/isbn|
-                                /sect5/sect5info/isbn|
-                                /section/sectioninfo/isbn|
-                                /setindex/setindexinfo/isbn|
-                                /set/setinfo/isbn">
-                  <xsl:text>urn:isbn:</xsl:text>
-                  <xsl:value-of select="/*/*/isbn"/>
-                </xsl:when>
-                <xsl:when test="/appendix/appendixinfo/issn|
-                                /article/articleinfo/issn|
-                                /book/bookinfo/issn|
-                                /chapter/chapterinfo/issn|
-                                /glossary/glossaryinfo/issn|
-                                /part/partinfo/issn|
-                                /preface/prefaceinfo/issn|
-                                /refentry/refentryinfo/issn|
-                                /reference/referenceinfo/issn|
-                                /refsect1/refsect1info/issn|
-                                /refsect2/refsect2info/issn|
-                                /refsect3/refsect3info/issn|
-                                /refsection/refsectioninfo/issn|
-                                /refsynopsisdiv/refsynopsisdivinfo/issn|
-                                /sect1/sect1info/issn|
-                                /sect2/sect2info/issn|
-                                /sect3/sect3info/issn|
-                                /sect4/sect4info/issn|
-                                /sect5/sect5info/issn|
-                                /section/sectioninfo/issn|
-                                /setindex/setindexinfo/issn|
-                                /set/setinfo/issn">
-                  <xsl:text>urn:issn:</xsl:text>
-                  <xsl:value-of select="/*/*/issn"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$unique-id"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:element>
+              <xsl:attribute name="id"><xsl:value-of select="$package-identifier-id"/></xsl:attribute>
+              <xsl:call-template name="package-identifier"/>
+            </xsl:element>  
 
             <xsl:element name="dc:title">
               <xsl:value-of select="normalize-space($doc.title)"/>
@@ -418,18 +360,12 @@
                 </xsl:attribute>
               </xsl:element>
             </xsl:if>
-            <xsl:if test="/*/*[contains(name(.), 'info')]/isbn"> 
-              <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
-                <xsl:attribute name="name">dtb:uid</xsl:attribute>
-                <xsl:attribute name="content">
-                  <xsl:text>isbn:</xsl:text>
-                  <xsl:value-of select="/*/*[contains(name(.), 'info')]/isbn"/> 
-                </xsl:attribute>
-              </xsl:element>
-            </xsl:if>
-            <!-- TODO: be nice to have a name="cover" here for .mobi-->
+            <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
+              <xsl:attribute name="name">dtb:uid</xsl:attribute>
+              <xsl:attribute name="content"><xsl:call-template name="package-identifier"/></xsl:attribute>
+            </xsl:element>
 
-            <!-- TODO What are these hardcoded values? -->
+            <xsl:comment>Default values for unused, legacy attributes</xsl:comment>
             <xsl:element name="meta" namespace="http://www.daisy.org/z3986/2005/ncx/">
               <xsl:attribute name="name">dtb:depth</xsl:attribute>
               <xsl:attribute name="content">-1</xsl:attribute>
@@ -443,6 +379,7 @@
               <xsl:attribute name="content">0</xsl:attribute>
             </xsl:element>
           </xsl:element>
+
           <xsl:choose>
             <xsl:when test="$rootid != ''">
               <xsl:variable name="title">

@@ -73,7 +73,7 @@ describe DocBook::Epub do
 
       tmpdir = File.join(Dir::tmpdir(), "epubcssreg"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
-      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{css_epubfile}")
+      success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{css_epubfile}"))
       raise "Could not unzip #{css_epubfile}" unless success
       opf_files = Dir.glob(File.join(tmpdir, "**", "*.opf"))
       opf_files.find_all {|opf_file| 
