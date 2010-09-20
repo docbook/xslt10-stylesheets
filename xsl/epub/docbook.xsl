@@ -85,6 +85,9 @@
       <xsl:when test="/book[*[last()][self::bookinfo]]|book[bookinfo]">
         <xsl:text>1</xsl:text>
       </xsl:when>
+      <xsl:when test="/book[*[last()][self::info]]|book[info]">
+        <xsl:text>1</xsl:text>
+      </xsl:when>
       <xsl:when test="/bibliography">
         <xsl:text>1</xsl:text>
       </xsl:when>
@@ -247,7 +250,7 @@
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
-      <xsl:with-param name="indent" select="'yes'" />
+      <xsl:with-param name="indent" select="'no'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
       <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
@@ -301,7 +304,7 @@
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
-      <xsl:with-param name="indent" select="'yes'" />
+      <xsl:with-param name="indent" select="'no'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
       <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
@@ -334,7 +337,7 @@
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
-      <xsl:with-param name="indent" select="'yes'" />
+      <xsl:with-param name="indent" select="'no'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
       <xsl:with-param name="doctype-public" select="''"/> <!-- intentionally blank -->
       <xsl:with-param name="doctype-system" select="''"/> <!-- intentionally blank -->
@@ -1457,7 +1460,7 @@
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
-      <xsl:with-param name="indent" select="'yes'" />
+      <xsl:with-param name="indent" select="'no'" />
       <xsl:with-param name="quiet" select="$chunk.quietly" />
       <xsl:with-param name="content">
         <xsl:element namespace="http://www.w3.org/1999/xhtml" name="html">
