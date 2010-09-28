@@ -167,8 +167,15 @@
 <!-- "The following HTML elements specify font information. 
       Although they are not all deprecated, their use is discouraged in 
       favor of style sheets." -->
-<xsl:template match="b|i">
-  <xsl:apply-templates/>
+<xsl:template match="b">
+  <strong xmlns="http://www.w3.org/1999/xhtml">
+    <xsl:apply-templates select="@*|node()"/>
+  </strong>
+</xsl:template>  
+<xsl:template match="i">
+  <em xmlns="http://www.w3.org/1999/xhtml">
+    <xsl:apply-templates select="@*|node()"/>
+  </em>
 </xsl:template>  
 
 <!-- this only occurs in docbook.xsl to identify errors -->
