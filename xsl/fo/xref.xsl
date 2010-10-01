@@ -1207,6 +1207,16 @@
         </xsl:when>
         <xsl:when test="$href != ''">
           <xsl:choose>
+            <xsl:when test="$fop1.extensions != 0">
+              <xsl:variable name="mybeg" select="substring-before($href,'#')"/>
+              <xsl:variable name="myend" select="substring-after($href,'#')"/>
+              <fo:basic-link external-destination="url({concat($mybeg,'#dest=',$myend)})"
+                             xsl:use-attribute-sets="olink.properties">
+                <xsl:copy-of select="$hottext"/>
+              </fo:basic-link>
+              <xsl:copy-of select="$olink.page.citation"/>
+              <xsl:copy-of select="$olink.docname.citation"/>
+            </xsl:when>
             <xsl:when test="$xep.extensions != 0">
               <fo:basic-link external-destination="url({$href})"
                              xsl:use-attribute-sets="olink.properties">

@@ -283,6 +283,8 @@
           <xsl:copy-of select="$bookmarks"/>
         </fo:bookmark-tree>
       </xsl:if>
+      <xsl:apply-templates select="$document.element" 
+                           mode="fop1.foxdest"/>
     </xsl:if>
 
     <xsl:if test="$xep.extensions != 0">
