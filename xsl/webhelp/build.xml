@@ -93,8 +93,6 @@
 	  <fileset dir="${output-dir}/content/search" includes="*.props"/>
 	</delete>
 
-	<delete file="xx.html"/>
-
   </target>
 
   <target name="webhelp" depends="validate,chunk,index"/>

@@ -11,12 +11,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
-/*
-
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
-
-*/
 
 
 import com.nexwave.nsidita.DirList;
@@ -30,8 +26,7 @@ import com.nexwave.nsidita.DocFileInfo;
  * @author N. Quaine
  * @author Kasun Gajasinghe <http://kasunbg.blogspot.com>
  */
-public class IndexerTask{
-//public class IndexerTask extends Task {
+public class IndexerTask extends Task {
 
 	// messages
 	private String txt_no_inputdir = "Input directory not found:";
@@ -61,11 +56,13 @@ public class IndexerTask{
 	// Indexing features: words to remove
 	private ArrayList<String> cleanUpStrings = null;	
 	private ArrayList<String> cleanUpChars = null;
+
+	//Html extension
+	private String htmlExtension = "html";
 	
 	// Constructor
 	public IndexerTask() {
 		super();
-
 	}
 	/** The setter for the "htmldir" attribute (parameter of the task)
 	 * @param htmldir
@@ -74,6 +71,18 @@ public class IndexerTask{
     public void setHtmldir(String htmldir) {
         this.htmldir = htmldir;
     }
+
+     /**
+     * Set the extension in which html files are generated
+     * @param htmlExtension The extension in wich html files are generated
+     */
+    public void setHtmlextension(String htmlExtension) {
+		this.htmlExtension = htmlExtension;
+		//Trim the starting "."
+		if(this.htmlExtension.startsWith(".")) {
+			this.htmlExtension = this.htmlExtension.substring(1);
+		}
+	}
 
     /**
      * setter for "indexerLanguage" attribute from ANT
@@ -104,14 +113,11 @@ public class IndexerTask{
             IndexerTask.indexerLanguage = "@@"; //fail-safe mechanism, This vm should not reach this point.
         } 
     }
-
-
 	
 	/**
 	 * Implementation of the execute function (Task interface)
 	 */
-//	public void execute() throws BuildException {
-	public void execute(){
+	public void execute() throws BuildException {
         try{
             //Use Xerces as the parser. Does not support Saxon6.5.5 parser 
            System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
@@ -184,8 +190,7 @@ public class IndexerTask{
 		
 
 		// Get the list of all html files but the tocs, covers and indexes
-		//DirList nsiDoc = new DirList(inputDir, "^(?!(toc|index|search|frameset|ix01)).*\\.html$", 1);
-		DirList nsiDoc = new DirList(inputDir, "^.*\\.html?$", 1);
+        DirList nsiDoc = new DirList(inputDir, "^.*\\." + htmlExtension + "?$", 1);
 		htmlFiles = nsiDoc.getListFiles();
 		// Check if found html files
 		if (htmlFiles.isEmpty()) {
@@ -211,7 +216,7 @@ public class IndexerTask{
 		
 		// Retrieve the clean-up properties for indexing
 		RetrieveCleanUpProps();
-	   // System.out.print("clean"+" " +cleanUpStrings);
+	   	// System.out.print("clean"+" " +cleanUpStrings);
 	    
 		//create a default handler
 		//SaxHTMLIndex spe = new SaxHTMLIndex (); // do not use clean-up props files

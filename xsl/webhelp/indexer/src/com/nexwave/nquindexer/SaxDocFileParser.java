@@ -1,17 +1,11 @@
 package com.nexwave.nquindexer;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 
 import com.nexwave.nsidita.BlankRemover;
 import com.nexwave.nsidita.DocFileInfo;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXParseException;
 
 /**
@@ -88,8 +82,11 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			long start = System.currentTimeMillis();
 			//System.out.println("about to parse " + file.getName() + " >>> " + start);
 
-			if ( RemoveValidationPI (file) == 0){
-			    sp.parse("xx.html", this);
+			String content = RemoveValidationPI (file);
+			if (content != null){
+				InputSource is = new InputSource(new StringReader(content));
+				is.setSystemId(file.toURI().toURL().toString());
+			    sp.parse(is, this);
 			}
 			
 			long finish = System.currentTimeMillis();
@@ -182,12 +179,9 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 
 	//triggers when there's character data inside an element.
 	public void characters(char[] ch, int start, int length) throws org.xml.sax.SAXException {
-		
-		// dwc: Bug fix. Don't index contents of script tag.
-		// dwc: TODO: Add code here to conditionally index or not
+
 		// index certain elements. E.g. Use this to implement a
-		// "titles only" index, say if you wanted to use <span/>s to
-		// create space breaks in ja_JP lines to indicate word breaks.
+		// "titles only" index,
         
 		if((addContent || addHeaderInfo) && !doNotIndex && !currentElName.equalsIgnoreCase("script")){
 			String text = new String(ch,start,length);
@@ -245,17 +239,14 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
      * @param file
      * @return int: returns 0 if no IOException occurs, else 1.
      */
-	public int RemoveValidationPI (File file) {
-		
+	public String RemoveValidationPI (File file) {
+        StringBuilder sb = new StringBuilder();
+         //The content that needs to be indexed after removing validation will be written to sb. This StringBuilder will
+         //  be the source to index the content of the particular html page.
 		try {
 			BufferedReader br = new BufferedReader(
 	                new InputStreamReader(
 	                 new FileInputStream(file),"UTF-8"));
-			
-			//PrintWriter pw = new PrintWriter(new FileOutputStream(new File("xx.html")));
-			PrintWriter pw = new PrintWriter(new  OutputStreamWriter (new FileOutputStream(new File("xx.html")),"UTF-8"));
-			 //writes the content to xx.html after removing validation. This temp file will be source to index the
-            // content of the particular html page.
 
 			while(true)
 			{
@@ -278,7 +269,8 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 						if (line.contains("<?xml version")) {
 							line = line.replaceAll("\\x3C\\x3Fxml[^\\x3E]*\\x3F\\x3E","\n");
 						}
-						pw.write(line + "\n");
+
+                        sb.append(line + "\n");
 					} else  
 					{
 						//dwc: What is this trying to do? Nuke the DOCTYPE? Why?
@@ -296,7 +288,8 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 							line = line.replaceAll("\\x3C\\x3Fxml[^\\x3E]*\\x3F\\x3E","\n");
 						}
 						line = line.replaceAll("\\x3C\\x21DOCTYPE[^\\x3E]*\\x3E","\n");
-						pw.write(line);
+
+                        sb.append(line);
 					}
 				}
 				catch (IOException e)
@@ -304,18 +297,15 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 					break;
 				}
 			}
-	
-			
-			pw.flush();
-			pw.close();
+
 			br.close();
 		}
 		catch (IOException e)
 		{
-			return 1;
+			return null;
 		}
 		
-		return 0; // return status
+		return sb.toString(); // return status
 
 	}
 
