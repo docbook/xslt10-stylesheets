@@ -3,10 +3,7 @@ include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 ANT = ant
 ANT_OPTS = 
 
-all: build-indexer webhelp
-
-build-indexer: 
-	$(ANT) build-indexer
+all: webhelp
 
 webhelp: docsrc/readme.xml
 	$(MAKE) -C ../xhtml
@@ -18,5 +15,5 @@ webhelp: docsrc/readme.xml
 #	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
-	$(RM) -r doc/* indexer/lib/nw-cms.jar
+	$(RM) -r doc/*
 

@@ -4,14 +4,12 @@
   <loadproperties srcFile="${ant.file.dir}/build.properties"/>
   <property name="webhelp.include.search.tab" value="true"/>
 
-  <property environment="env"/>
-  <property name="ant.jar" value="${env.ANT_HOME}/lib/ant.jar"/>
+  <property name="extensions.dir" value="${ant.file.dir}/../extensions"/>
 
     <path id="classpath">
-        <pathelement location="${ant.file.dir}/indexer/lib/nw-cms.jar"/>
-        <pathelement location="${ant.file.dir}/indexer/lib/lucene-analyzers-3.0.0.jar"/>
-        <pathelement location="${ant.file.dir}/indexer/lib/lucene-core-3.0.0.jar"/>
-        <pathelement path="${ant.jar}"/>  
+        <pathelement location="${extensions.dir}/webhelpindexer.jar"/>
+	<pathelement location="${extensions.dir}/lucene-analyzers-3.0.0.jar"/>
+	<pathelement location="${extensions.dir}/lucene-core-3.0.0.jar"/>
     </path>
 
   <condition property="perform-validation-dtd">
@@ -97,28 +95,10 @@
 
   <target name="webhelp" depends="validate,chunk,index"/>
 
-  <uptodate property="indexerBuild.notRequired" targetfile="indexer/lib/nw-cms.jar" >
+  <uptodate property="indexerBuild.notRequired" targetfile="${extensions.dir}/webhelpindexer.jar" >
     <srcfiles dir="indexer/src" includes="**/*"/>
   </uptodate>
 
-  <target name="build-indexer" unless="indexerBuild.notRequired">
-
-    <mkdir dir="indexer/lib/htmlsearch"/>  
-	<javac
-	  srcdir="indexer/src"
-	  destdir="indexer/lib/htmlsearch"
-	  includes="com/nexwave/nsidita/*.java com/nexwave/nquindexer/*.java">
-        <classpath refid="classpath"/>    
-    </javac>
-
-	<jar
-	  destfile="indexer/lib/nw-cms.jar"
-	  basedir="indexer/lib/htmlsearch"
-	  includes="com/**"/>
-
-	<delete dir="indexer/lib/htmlsearch"/>
-
-  </target>
 
   <target name="clean">
 	<delete dir="${output-dir}"/>
@@ -130,7 +110,6 @@ Usage:
 webhelp:       Generates the document in webhelp format and indexes the content.
 clean:         Deletes webhelp output directory.
 index:         Indexes the content.
-build-indexer: Rebuilds the indexer jar if necessary (required JDK).
 	</echo>
   </target>
 
