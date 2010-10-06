@@ -95,10 +95,6 @@
 
   <target name="webhelp" depends="validate,chunk,index"/>
 
-  <uptodate property="indexerBuild.notRequired" targetfile="${extensions.dir}/webhelpindexer.jar" >
-    <srcfiles dir="indexer/src" includes="**/*"/>
-  </uptodate>
-
 
   <target name="clean">
 	<delete dir="${output-dir}"/>
