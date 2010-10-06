@@ -13,7 +13,7 @@ DISTRO=xsl
 # value of DISTRIB_CHANGELOG_INCLUDES is a space-separated list of
 # any other top-level modules from which to log changes in the
 # NEWS and RELEASE-NOTES.* files for this distro
-DISTRIB_CHANGELOG_INCLUDES = gentext xsl-saxon xsl-xalan xsl-libxslt
+DISTRIB_CHANGELOG_INCLUDES = gentext xsl-saxon xsl-xalan xsl-libxslt xsl-webhelpindexer
 
 # value of DISTRIB_DEPENDS is a space-separated list of any
 # targets for this distro's "distrib" target to depend on
