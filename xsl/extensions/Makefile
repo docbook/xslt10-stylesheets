@@ -11,7 +11,7 @@ xalan27.jar: $(DOCBOOK_SVN)/xsl-xalan/xalan27.jar
 webhelpindexer.jar: $(DOCBOOK_SVN)/xsl-webhelpindexer/webhelpindexer.jar
 	cp -p $^ $@
 	cp -p $(DOCBOOK_SVN)/xsl-webhelpindexer/lib/*.jar .
-	cp -p $(DOCBOOK_SVN)/xsl-webhelpindexer/lib/*.txt .
+	cp -p $(DOCBOOK_SVN)/xsl-webhelpindexer/*.txt .
 
 $(DOCBOOK_SVN)/xsl-saxon/saxon65.jar: $(wildcard $(DOCBOOK_SVN)/xsl-saxon/src/com/nwalsh/saxon/*.java) 
 	$(MAKE) -C $(dir $@)
