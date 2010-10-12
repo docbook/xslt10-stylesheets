@@ -1,8 +1,8 @@
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
 SOURCES=af.xml am.xml ar.xml as.xml ast.xml az.xml bg.xml bn.xml bn_in.xml bs.xml \
-	ca.xml cs.xml cy.xml da.xml de.xml el.xml en.xml eo.xml es.xml et.xml \
-	fa.xml fi.xml fr.xml ga.xml gu.xml he.xml hi.xml hr.xml hu.xml id.xml \
+	ca.xml cs.xml cy.xml da.xml de.xml el.xml en.xml eo.xml es.xml et.xml eu.xml \
+	fa.xml fi.xml fr.xml ga.xml gl.xml gu.xml he.xml hi.xml hr.xml hu.xml id.xml \
 	is.xml it.xml ja.xml ka.xml kn.xml ko.xml ky.xml la.xml lt.xml lv.xml \
 	ml.xml mn.xml mr.xml nb.xml nds.xml nl.xml nn.xml or.xml pa.xml pl.xml \
 	pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
