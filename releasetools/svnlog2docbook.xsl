@@ -86,7 +86,7 @@
   <!-- * for the subdirectory or sibling directory. -->
   <xsl:param
       name="subsections"
-      >Gentext Common FO HTML Manpages Epub HTMLHelp Eclipse JavaHelp Roundtrip Slides Website Params Highlighting Profiling Lib Tools Template Extensions XSL-Java XSL-Saxon XSL-Xalan XSL-libxslt</xsl:param>
+      >Gentext Common FO HTML Manpages Epub HTMLHelp Eclipse JavaHelp Roundtrip Slides Website Webhelp Params Highlighting Profiling Lib Tools Template Extensions XSL-Java XSL-Saxon XSL-Xalan XSL-libxslt</xsl:param>
   <sf:users>
     <!-- * The sf:users structure associates Sourceforge usernames -->
     <!-- * with the real names of the people they correspond to -->

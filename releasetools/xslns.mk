@@ -32,11 +32,11 @@ zip-ns: zip
 	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl \
 	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml 
 # Turn off validation in webhelp:
-	sed -i "s/validate-against-dtd=true/validate-against-dtd=false/" \
+	sed -i "" "s/validate-against-dtd=true/validate-against-dtd=false/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/build.properties
 
 # change branch info
-	sed -i "s/^\(.*\)<fm:Branch>XSL Stylesheets<\/fm:Branch>$$/\1<fm:Branch>XSL-NS Stylesheets<\/fm:Branch>/" \
+	sed -i "" "s/^\(.*\)<fm:Branch>XSL Stylesheets<\/fm:Branch>$$/\1<fm:Branch>XSL-NS Stylesheets<\/fm:Branch>/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/VERSION
 
 # change distro name
@@ -49,7 +49,7 @@ zip-ns: zip
 
 
 
-	sed -i "s/^\(.*\)<xsl:param name=\"DistroName\">docbook-xsl<\/xsl:param>$$/\1<xsl:param name=\"DistroName\">docbook-xsl-ns<\/xsl:param>/" \
+	sed -i "" "s/^\(.*\)<xsl:param name=\"DistroName\">docbook-xsl<\/xsl:param>$$/\1<xsl:param name=\"DistroName\">docbook-xsl-ns<\/xsl:param>/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/VERSION
 
 # fix catalog.xml file
