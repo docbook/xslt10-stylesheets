@@ -357,6 +357,20 @@
 <xsl:template match="colophon/subtitle"></xsl:template>
 <xsl:template match="colophon/titleabbrev"></xsl:template>
 
+<!-- article/colophon has no page sequence -->
+<xsl:template match="article/colophon">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+
+  <fo:block id="{$id}">
+    <fo:block xsl:use-attribute-sets="component.titlepage.properties">
+      <xsl:call-template name="colophon.titlepage"/>
+    </fo:block>
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="preface">
