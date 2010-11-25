@@ -17,6 +17,7 @@
     <xsl:param name="webhelp.include.search.tab">true</xsl:param>
     <xsl:param name="webhelp.start.filename">index.html</xsl:param>
     <xsl:param name="webhelp.base.dir">docs</xsl:param>
+    <xsl:param name="webhelp.common.dir">../common/</xsl:param>
     <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
     <xsl:param name="webhelp.indexer.language">en</xsl:param>
     <xsl:param name="webhelp.default.topic"/>
@@ -164,7 +165,7 @@ These problems go away when you add this IE=7 mode meta tag.
             display: block;
             height: 22px;
             padding-left: 20px;
-            background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
+            background: transparent url(<xsl:value-of select="$webhelp.common.dir"/>jquery/treeview/images/folder.gif) 0 0px no-repeat;
             }
             <!--[if IE]>
             input {
@@ -174,20 +175,20 @@ These problems go away when you add this IE=7 mode meta tag.
             <![endif]-->
         </style>
 	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
-        <link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/>
-        <link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
-        <link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/>
+        <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}css/positioning.css"/>
+        <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
+        <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}jquery/treeview/jquery.treeview.css"/>
 
-        <script type="text/javascript" src="../common/jquery/jquery-1.4.2.min.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-1.4.2.min.js">
             <xsl:comment> </xsl:comment>
         </script>
-        <script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-ui-1.8.2.custom.min.js">
             <xsl:comment> </xsl:comment>
         </script>
-        <script type="text/javascript" src="../common/jquery/jquery.cookie.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery.cookie.js">
             <xsl:comment> </xsl:comment>
         </script>
-        <script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/treeview/jquery.treeview.min.js">
             <xsl:comment> </xsl:comment>
         </script>
         <!--Scripts/css stylesheets for Search-->
@@ -418,7 +419,7 @@ These problems go away when you add this IE=7 mode meta tag.
 
         <div id="header">
             <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-                 src='../common/images/logo.png' alt="Company Logo"/>
+                 src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
 
             <!-- Display the page title and the main heading(parent) of it-->
             <h1 align="center">
@@ -450,7 +451,7 @@ These problems go away when you add this IE=7 mode meta tag.
                             </a>
                         </td>
                         <td>
-                            <img src="../common/images/highlight-blue.gif" alt="H" height="25px"
+                            <img src="{$webhelp.common.dir}images/highlight-blue.gif" alt="H" height="25px"
                                  onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer">
 				<xsl:attribute name="title">
 				  <xsl:call-template name="gentext">
@@ -605,9 +606,10 @@ These problems go away when you add this IE=7 mode meta tag.
                                         </a>
                                     </li>
                                 </xsl:if>
+				<xsl:call-template name="user.webhelp.tabs.title"/>
                             </ul>
                             <div id="treeDiv">
-                                <img src="../common/images/loading.gif" alt="loading table of contents..."
+                                <img src="{$webhelp.common.dir}images/loading.gif" alt="loading table of contents..."
                                      id="tocLoading" style="display:block;"/>
                                 <div id="ulTreeDiv" style="display:none">
                                     <ul id="tree" class="filetree">
@@ -646,13 +648,17 @@ These problems go away when you add this IE=7 mode meta tag.
                                     </div>
                                 </div>
                             </xsl:if>
-
+			    <xsl:call-template name="user.webhelp.tabs.content"/>
                         </div>
                     </div>
                 </div>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
+    <!-- Hooks for adding customs tabs -->
+    <xsl:template name="user.webhelp.tabs.title"/>
+    <xsl:template name="user.webhelp.tabs.content"/>
 
     <xsl:template
             match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
@@ -693,7 +699,7 @@ These problems go away when you add this IE=7 mode meta tag.
                     <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
                 </xsl:if>
                 <span class="file">
-                    <a href="{substring-after($href,concat($webhelp.base.dir,'/content/'))}">
+                    <a href="{substring-after($href, $base.dir)}">
                         <xsl:value-of select="$title"/>
                     </a>
                 </span>
@@ -713,7 +719,7 @@ These problems go away when you add this IE=7 mode meta tag.
     <xsl:template match="text()" mode="webhelptoc"/>
 
     <xsl:template name="user.footer.content">
-        <script type="text/javascript" src="../common/main.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}main.js">
             <xsl:comment></xsl:comment>
         </script>
     </xsl:template>
