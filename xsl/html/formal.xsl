@@ -109,7 +109,9 @@
 </xsl:template>
 
 <xsl:template name="informal.object">
-  <xsl:param name="class" select="local-name(.)"/>
+  <xsl:param name="class">
+    <xsl:apply-templates select="." mode="class.value"/>
+  </xsl:param>
 
   <xsl:variable name="content">
     <div class="{$class}">
@@ -233,18 +235,18 @@
 
   <xsl:call-template name="formal.object">
     <xsl:with-param name="placement" select="$placement"/>
-    <xsl:with-param name="class">
-      <xsl:choose>
-        <xsl:when test="@tabstyle">
-          <!-- hack, this will only ever occur on table, not example -->
-          <xsl:value-of select="@tabstyle"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="local-name(.)"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:with-param>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="table|informaltable" mode="class.value">
+  <xsl:choose>
+    <xsl:when test="@tabstyle">
+      <xsl:value-of select="@tabstyle"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="local-name(.)"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="htmlTable">
@@ -334,18 +336,7 @@
 <xsl:template match="informaltable">
   <xsl:choose>
     <xsl:when test="tgroup|mediaobject|graphic">
-      <xsl:call-template name="informal.object">
-        <xsl:with-param name="class">
-          <xsl:choose>
-            <xsl:when test="@tabstyle">
-              <xsl:value-of select="@tabstyle"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="local-name(.)"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
-      </xsl:call-template>
+      <xsl:call-template name="informal.object"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:element name="table" namespace="">
