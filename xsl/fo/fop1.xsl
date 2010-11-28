@@ -52,7 +52,7 @@
 	  <xsl:value-of select="$bookmarks.state"/>
 	</xsl:attribute>
         <fo:bookmark-title>
-          <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
         </fo:bookmark-title>
         <xsl:apply-templates select="*" mode="fop1.outline"/>
       </fo:bookmark>
@@ -63,7 +63,7 @@
 	  <xsl:value-of select="$bookmarks.state"/>
 	</xsl:attribute>
         <fo:bookmark-title>
-          <xsl:value-of select="normalize-space(translate($bookmark-label, $a-dia, $a-asc))"/>
+          <xsl:value-of select="normalize-space($bookmark-label)"/>
         </fo:bookmark-title>
       </fo:bookmark>
 
