@@ -108,7 +108,20 @@
             <l:gentext key="txt_results_for" text="Results for: "/>
 	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
-
+        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="cs">
+            <l:gentext key="Search" text="Hledání"/>
+            <l:gentext key="Enter_a_term_and_click" text="Zadejte pojem a klikněte "/>
+            <l:gentext key="Go" text="Přejdi"/>
+            <l:gentext key="to_perform_a_search" text=" pro hledání."/>
+            <l:gentext key="txt_filesfound" text="Výsledky"/>
+            <l:gentext key="txt_enter_at_least_1_char" text="Musíte zadat alespoň jeden znak."/>
+            <l:gentext key="txt_browser_not_supported"
+                       text="Váš prohlížeč není podporován. Použití prohlížeče Mozilla Firefox je doporučeno."/>
+            <l:gentext key="txt_please_wait" text="Prosím čekejte. Probíhá hledání..."/>
+            <l:gentext key="txt_results_for" text="Výsledky pro: "/>
+            <l:gentext key="TableofContents" text="Obsah"/>
+           <l:gentext key="HighlightButton" text="Přepnout zvýrazňování výsledků hledání"/>
+        </l10n>
     </i18n>
 
   <xsl:template name="system.head.content">
@@ -191,49 +204,55 @@ These problems go away when you add this IE=7 mode meta tag.
         <script type="text/javascript" src="{$webhelp.common.dir}jquery/treeview/jquery.treeview.min.js">
             <xsl:comment> </xsl:comment>
         </script>
-        <!--Scripts/css stylesheets for Search-->
-        <script type="text/javascript" src="search/htmlFileList.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/htmlFileInfoList.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/nwSearchFnt.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        
-        <!--script type="text/javascript" src="search/addition.js">
-            <xsl:comment></xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/indexLoader.js">
-            <xsl:comment></xsl:comment>
-        </script-->
+
+	<xsl:if test="$webhelp.include.search.tab = 'true'">
+	  <!--Scripts/css stylesheets for Search-->
+	  <script type="text/javascript" src="search/htmlFileList.js">
+	      <xsl:comment> </xsl:comment>
+	  </script>
+	  <script type="text/javascript" src="search/htmlFileInfoList.js">
+	      <xsl:comment> </xsl:comment>
+	  </script>
+	  <script type="text/javascript" src="search/nwSearchFnt.js">
+	      <xsl:comment> </xsl:comment>
+	  </script>
+
+	  <!--script type="text/javascript" src="search/addition.js">
+	      <xsl:comment></xsl:comment>
+	  </script>
+	  <script type="text/javascript" src="search/indexLoader.js">
+	      <xsl:comment></xsl:comment>
+	  </script-->
 
 
-        <!--
-           NOTE: Stemmer javascript files should be in format <language>_stemmer.js.
-           For example, for English(en), source should be: "search/stemmers/en_stemmer.js"
-           For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm
-        -->
-        <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')"/></xsl:message>-->
-        <script type="text/javascript" src="{concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')}">
-            <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
-        </script>
+	  <!--
+	     NOTE: Stemmer javascript files should be in format <language>_stemmer.js.
+	     For example, for English(en), source should be: "search/stemmers/en_stemmer.js"
+	     For country codes, see: http://www.uspto.gov/patft/help/helpctry.htm
+	  -->
+	  <!--<xsl:message><xsl:value-of select="concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')"/></xsl:message>-->
+	  <script type="text/javascript" src="{concat('search/stemmers/',$webhelp.indexer.language,'_stemmer.js')}">
+	      <xsl:comment>//make this scalable to other languages as well.</xsl:comment>
+	  </script>
 
-        <!--Index Files:
-            Index is broken in to three equal sized(number of index items) files. This is to help parallel downloading
-            of files to make it faster.-->
-        <script type="text/javascript" src="search/index-1.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/index-2.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <script type="text/javascript" src="search/index-3.js">
-            <xsl:comment> </xsl:comment>
-        </script>
-        <!--End of index files -->
+	  <!--Index Files:
+	      Index is broken in to three equal sized(number of index items) files. This is to help parallel downloading
+	      of files to make it faster.-->
+	  <script type="text/javascript" src="search/index-1.js">
+	      <xsl:comment> </xsl:comment>
+	  </script>
+	  <script type="text/javascript" src="search/index-2.js">
+	      <xsl:comment> </xsl:comment>
+	  </script>
+	  <script type="text/javascript" src="search/index-3.js">
+	      <xsl:comment> </xsl:comment>
+	  </script>
+	  <!--End of index files -->
+	</xsl:if>
+	<xsl:call-template name="user.webhelp.head.content"/>
     </xsl:template>
+
+    <xsl:template name="user.webhelp.head.content"/>
 
     <xsl:template name="user.header.navigation">
         <xsl:param name="prev"/>
@@ -400,6 +419,8 @@ These problems go away when you add this IE=7 mode meta tag.
                         <xsl:with-param name="next" select="$next"/>
                         <xsl:with-param name="nav.context" select="$nav.context"/>
                     </xsl:call-template>
+
+		    <xsl:call-template name="user.webhelp.content.footer"/>
                 </div>
 
                 <xsl:call-template name="user.footer.navigation"/>
@@ -407,6 +428,8 @@ These problems go away when you add this IE=7 mode meta tag.
         </html>
         <xsl:value-of select="$chunk.append"/>
     </xsl:template>
+
+    <xsl:template name="user.webhelp.content.footer"/>
 
     <!-- The Header with the company logo -->
     <xsl:template name="webhelpheader">
@@ -418,8 +441,7 @@ These problems go away when you add this IE=7 mode meta tag.
         <xsl:variable name="up" select="parent::*"/>
 
         <div id="header">
-            <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-                 src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
+	    <xsl:call-template name="webhelpheader.logo"/>
 
             <!-- Display the page title and the main heading(parent) of it-->
             <h1 align="center">
@@ -451,6 +473,7 @@ These problems go away when you add this IE=7 mode meta tag.
                             </a>
                         </td>
                         <td>
+			  <xsl:if test="$webhelp.include.search.tab = 'true'">
                             <img src="{$webhelp.common.dir}images/highlight-blue.gif" alt="H" height="25px"
                                  onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer">
 				<xsl:attribute name="title">
@@ -458,7 +481,8 @@ These problems go away when you add this IE=7 mode meta tag.
 					<xsl:with-param name="key" select="'HighlightButton'"/>
 				  </xsl:call-template>				  
 				</xsl:attribute>
-			  </img>
+			    </img>
+			  </xsl:if>
                         </td>
                         <xsl:if test="count($prev) &gt; 0
                                         or (count($up) &gt; 0
@@ -522,6 +546,11 @@ These problems go away when you add this IE=7 mode meta tag.
             </div>
 
         </div>
+    </xsl:template>
+
+    <xsl:template name="webhelpheader.logo">
+      <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
+	   src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
     </xsl:template>
 
     <xsl:template name="webhelptoc">
