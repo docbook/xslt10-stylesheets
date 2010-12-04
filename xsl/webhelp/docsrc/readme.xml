@@ -683,6 +683,40 @@ webhelp.indexer.language=en</programlisting></para>
           </listitem>
         </itemizedlist></para>
     </section>
+    <section>
+      <title>Adding images</title>
+      <para>This section shows how to add images to WebHelp. For that, follow the simple procedure given.<itemizedlist>
+          <listitem>
+            <para>Add all the images to template/content folder.</para>
+          </listitem>
+          <listitem>
+            <para>Then refer to those images from your docbook document.</para>
+            <para>Following image is from <emphasis role="bold">webhelp/template/content/images/sample.jpg</emphasis>. The
+              docbook code is shown below.</para>
+            <para>
+              <figure>
+                <title>Sample Image</title>
+                <mediaobject>
+                  <imageobject>
+                    <imagedata fileref="images/sample.jpg" format="JPG"/>
+                  </imageobject>
+                </mediaobject>
+              </figure>
+            </para>
+            <example>
+              <title>Example code for adding images. Note down the relative path used</title>
+              <programlisting>&lt;figure>
+  &lt;title>Sample&lt;/title>
+  &lt;mediaobject>
+    &lt;imageobject>
+      &lt;imagedata fileref="<emphasis role="bold">images/sample.jpg</emphasis>" format="JPG"/>
+    &lt;/imageobject>
+  &lt;/mediaobject>
+&lt;/figure></programlisting>
+            </example>
+          </listitem>
+        </itemizedlist></para>
+    </section>
   </chapter>
 
   <chapter>
