@@ -588,7 +588,11 @@ site (http://docbook.sourceforge.net/release/).
 5. Extract the contents of the docbook-xsl-doc package into the 
    xsl/<version> and xsl-ns/<version> directories. 
 
-6. Delete ZIP files and temporary directories.
+6. The documentation packages contain reference.txt.gz and 
+   reference.pdf.gz. Unzip these archives (to ensure working links 
+   on the documentation index page).
+
+7. Delete ZIP files and temporary directories.
 
 For more information about file management and shell services at 
 SourceForge, see
