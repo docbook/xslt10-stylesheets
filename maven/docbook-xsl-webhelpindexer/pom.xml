@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.docbook</groupId>
+  <artifactId>docbook-xsl-webhelpindexer</artifactId>
+  <name>DocBook XSL WebHelp Indexer extension</name>
+  <packaging>jar</packaging>
+  <version>1.0.0</version>
+  <description>DocBook XSL WebHelp Indexer extension
+  </description>
+  <url>http://sourceforge.net/projects/docbook/</url>
+
+  <parent>
+    <groupId>net.sf.docbook</groupId>
+    <artifactId>docbook</artifactId>
+    <version>5.0</version>
+  </parent>
+
+
+  <properties>
+    <docbook.xsl.webhelpindexer.release>docbook-xsl-webhelpindexer-1.00</docbook.xsl.webhelpindexer.release>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-analyzers</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.7.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>wagon-maven-plugin</artifactId>
+        <version>1.0-beta-3</version>
+        <executions>
+          <execution>
+            <id>download-xsl-webhelpindexer</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <url>http://prdownloads.sourceforge.net/docbook/${docbook.xsl.webhelpindexer.release}.zip?download</url>
+              <toDir>${project.build.directory}/lib</toDir>
+              <fromFile>${docbook.xsl.webhelpindexer.release}.zip</fromFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <echo>Extracting docbook xsl webhelpindexer sources ${docbook.xsl.webhelpindexer.release}.zip.</echo>
+
+                <unzip dest="${project.build.directory}/tmp">
+                  <fileset dir="${project.build.directory}/lib" includes="${docbook.xsl.webhelpindexer.release}.zip"/>
+                  <patternset>
+                    <include name="${docbook.xsl.webhelpindexer.release}/src/**"/>
+                  </patternset>
+                </unzip>
+
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/tmp/${docbook.xsl.webhelpindexer.release}/src/</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

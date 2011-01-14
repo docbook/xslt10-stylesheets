@@ -5,7 +5,7 @@
   <artifactId>docbook</artifactId>
   <name>DocBook</name>
   <packaging>pom</packaging>
-  <version>5.0</version>
+  <version>5.0-1</version>
   <description>Docbook</description>
 
   <scm>
@@ -67,6 +67,7 @@
     <module>docbook-xsl-saxon</module>
     <module>docbook-xsl-xalan</module>
     <module>docbook-xml</module>
+    <module>docbook-xsl-webhelpindexer</module>
   </modules>
 
 
