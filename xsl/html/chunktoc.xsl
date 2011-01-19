@@ -1,10 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                xmlns:exsl="http://exslt.org/common"
-                xmlns:ng="http://docbook.org/docbook-ng"
-                xmlns:db="http://docbook.org/ns/docbook"
-                version="1.0"
-                exclude-result-prefixes="doc exsl ng db">
+		version="1.0"
+                exclude-result-prefixes="doc">
 
 <!-- ********************************************************************
      $Id$
@@ -134,7 +131,7 @@
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
-<xsl:template match="appendix">
+<xsl:template match="book/appendix">
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
@@ -167,6 +164,10 @@
 </xsl:template>
 
 <xsl:template match="article">
+  <xsl:call-template name="process-chunk"/>
+</xsl:template>
+
+<xsl:template match="article/appendix">
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
