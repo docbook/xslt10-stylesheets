@@ -467,7 +467,7 @@ GlossEntry ::=
       <xsl:choose>
         <xsl:when test="$glossary.sort != 0">
           <xsl:for-each select="glossentry">
-				<xsl:sort lang="{$language}" select="normalize-space(translate(concat(@sortas, glossterm[not(parent::glossentry/@sortas) or parent::glossentry/@sortas = '']), &lowercase;, &uppercase;))"/>!
+				<xsl:sort lang="{$language}" select="normalize-space(translate(concat(@sortas, glossterm[not(parent::glossentry/@sortas) or parent::glossentry/@sortas = '']), &lowercase;, &uppercase;))"/>
             <xsl:variable name="cterm" select="glossterm"/>
             <xsl:if test="$terms[@baseform = $cterm or . = $cterm]">
               <xsl:apply-templates select="." mode="auto-glossary"/>
