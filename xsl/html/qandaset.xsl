@@ -57,9 +57,7 @@
     <xsl:call-template name="qanda.section.level"/>
   </xsl:variable>
   <xsl:element name="h{string(number($qalevel)+1)}">
-    <xsl:attribute name="class">
-      <xsl:value-of select="local-name(.)"/>
-    </xsl:attribute>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select=".."/>
       <xsl:with-param name="conditional" select="0"/>
@@ -122,9 +120,7 @@
   </xsl:variable>
 
   <xsl:element name="h{string(number($qalevel)+1)}">
-    <xsl:attribute name="class">
-      <xsl:value-of select="local-name(.)"/>
-    </xsl:attribute>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select=".."/>
       <xsl:with-param name="conditional" select="0"/>
@@ -208,7 +204,8 @@
     <xsl:apply-templates select="." mode="qanda.defaultlabel"/>
   </xsl:variable>
 
-  <tr class="{local-name(.)}">
+  <tr>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
     <td align="{$direction.align.start}" valign="top">
       <xsl:call-template name="anchor"/>
       <xsl:variable name="answer.label">
