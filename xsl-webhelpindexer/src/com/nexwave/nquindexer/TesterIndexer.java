@@ -1,5 +1,7 @@
+/*
 package com.nexwave.nquindexer;
 
+*/
 /**
  * For running tests with the indexertask.
  * 
@@ -7,17 +9,20 @@ package com.nexwave.nquindexer;
  * 
  * @author N. Quaine
  * @author Kasun Gajasinghe
- */
+ *//*
+
     public class TesterIndexer {
 	public static IndexerTask IT = null; 
-	/**
+	*/
+/**
 	 * @param args
 	 * @throws InterruptedException 
-	 */
+	 *//*
+
 	public static void main(String[] args) throws InterruptedException {
         if (args.length != 0) {
             IT = new IndexerTask();
-            IT.setHtmldir(args[0]);
+            IT.setHtmlDir(args[0]);
             IT.setIndexerLanguage(args[1]);
             IT.execute();
         } else {
@@ -27,7 +32,7 @@ package com.nexwave.nquindexer;
             String dir = "../doc/content";
             String lang = "en";
             IT = new IndexerTask();
-            IT.setHtmldir(dir);
+            IT.setHtmlDir(dir);
             IT.setIndexerLanguage(lang);
             IT.execute();
         }
@@ -36,3 +41,4 @@ package com.nexwave.nquindexer;
 	
 }
 
+*/

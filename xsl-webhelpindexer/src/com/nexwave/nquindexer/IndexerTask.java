@@ -1,3 +1,4 @@
+/*
 package com.nexwave.nquindexer;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import org.apache.tools.ant.Task;
 import com.nexwave.nsidita.DirList;
 import com.nexwave.nsidita.DocFileInfo;
 
+*/
 /**
  * Indexer ant task.
  * 
@@ -25,7 +27,8 @@ import com.nexwave.nsidita.DocFileInfo;
  * 
  * @author N. Quaine
  * @author Kasun Gajasinghe <http://kasunbg.blogspot.com>
- */
+ *//*
+
 public class IndexerTask extends Task {
 
 	// messages
@@ -36,7 +39,7 @@ public class IndexerTask extends Task {
 	private String txt_no_relative_files_found= "No relative html files calculated.";
 	private String txt_no_words_gathered= "No words have been indexed in";
 	private String txt_no_html_files="No HTML Files found in";
-	private String txt_no_args="No argument given: you must provide an htmldir to the IndexerTask";
+	private String txt_no_args="No argument given: you must provide an htmlDir to the IndexerTask";
 	
 	//working directories
 	private String searchdir = "search";
@@ -45,7 +48,7 @@ public class IndexerTask extends Task {
 	private String projectDir = null;
 
 	// ANT parameters
-	private String htmldir=null;
+	private String htmlDir=null;
     public static String indexerLanguage="en";
 
     //supported languages: add new additions to this. don't include country codes to the end such as en_US or en_UK,
@@ -64,18 +67,22 @@ public class IndexerTask extends Task {
 	public IndexerTask() {
 		super();
 	}
-	/** The setter for the "htmldir" attribute (parameter of the task)
+	*/
+/** The setter for the "htmlDir" attribute (parameter of the task)
 	 * @param htmldir
 	 * @throws InterruptedException 
-	 */
-    public void setHtmldir(String htmldir) {
-        this.htmldir = htmldir;
+	 *//*
+
+    public void setHtmlDir(String htmlDir) {
+        this.htmlDir = htmlDir;
     }
 
-     /**
+     */
+/**
      * Set the extension in which html files are generated
      * @param htmlExtension The extension in wich html files are generated
-     */
+     *//*
+
     public void setHtmlextension(String htmlExtension) {
 		this.htmlExtension = htmlExtension;
 		//Trim the starting "."
@@ -84,11 +91,13 @@ public class IndexerTask extends Task {
 		}
 	}
 
-    /**
+    */
+/**
      * setter for "indexerLanguage" attribute from ANT
      * @param indexerLanguage language for the search indexer. Used to differerentiate which stemmer to be used.
      * @throws InterruptedException for ant
-     */
+     *//*
+
     public void setIndexerLanguage(String indexerLanguage){
         if(indexerLanguage !=null && !"".equals(indexerLanguage)) {
             int temp = indexerLanguage.indexOf('_');
@@ -114,9 +123,11 @@ public class IndexerTask extends Task {
         } 
     }
 	
-	/**
+	*/
+/**
 	 * Implementation of the execute function (Task interface)
-	 */
+	 *//*
+
 	public void execute() throws BuildException {
         try{
             //Use Xerces as the parser. Does not support Saxon6.5.5 parser 
@@ -146,12 +157,12 @@ public class IndexerTask extends Task {
 		//timing
 		Date dateStart = new Date();
 		
-		if (htmldir == null) {
+		if (htmlDir == null) {
 			System.out.println(txt_no_args + ".");
 			return;
 		}
 		// Init input directory
-		inputDir = new File(htmldir);
+		inputDir = new File(htmlDir);
 
 		// Begin of init
 		// check if inputdir initialized
@@ -252,7 +263,9 @@ public class IndexerTask extends Task {
 				
 				filesDescription.add(docFileInfoTemp);
 			}
-			/*remove empty strings from the map*/
+			*/
+/*remove empty strings from the map*//*
+
 			if (tempDico.containsKey("")) {
 				tempDico.remove("");
 			}
@@ -281,9 +294,11 @@ public class IndexerTask extends Task {
 		}
 	}
 	
-	/**
+	*/
+/**
      * Prints the usage information for this class to <code>System.out</code>.
-     */
+     *//*
+
     private static void DisplayHelp() {
     	String lSep = System.getProperty("line.separator");
         StringBuffer msg = new StringBuffer();
@@ -354,3 +369,4 @@ public class IndexerTask extends Task {
     }
 
 }
+*/
