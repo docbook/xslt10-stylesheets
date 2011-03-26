@@ -77,15 +77,25 @@
 		<include name="**/content/search/stemmers/${webhelp.indexer.language}_stemmer.js"/>
 	  </fileset>
 	</copy>
- 
-	<taskdef name="indexertask"
-	  classname="com.nexwave.nquindexer.IndexerTask">
+
+	<!--taskdef name="indexertask"
+	  classname="com.nexwave.nquindexer.IndexerMain">
 	  <classpath refid="classpath"/>
-	</taskdef>
+	</taskdef-->
 
 	<echo>Indexing html files in ${output-dir}/content</echo>
 
-	<indexertask htmldir="${output-dir}/content" indexerLanguage="${webhelp.indexer.language}"/>
+       <java classname="com.nexwave.nquindexer.IndexerMain"> 
+	 <arg value="${output-dir}/content"/>
+	 <arg value="${webhelp.indexer.language}"/>	
+         <classpath>
+	    <path refid="classpath"/>
+	    <pathelement location="/usr/share/java/xercesImpl.jar"/>  	
+	    <pathelement location="/usr/share/java/xml-apis.jar"/>  	 
+         </classpath>
+       </java>	
+ 
+	<!--indexertask htmldir="${output-dir}/content" indexerLanguage="${webhelp.indexer.language}"/-->
 
 	<delete>
 	  <fileset dir="${output-dir}/content/search" includes="*.props"/>
