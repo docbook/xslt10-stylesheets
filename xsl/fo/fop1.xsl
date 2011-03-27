@@ -168,6 +168,9 @@
                 <xsl:when test="$authors[self::corpauthor]">
                   <xsl:value-of select="$authors"/>
                 </xsl:when>
+                <xsl:when test="$authors[orgname]">
+                  <xsl:value-of select="$authors/orgname"/>
+                </xsl:when>
                 <xsl:otherwise>
                   <xsl:call-template name="person.name">
                     <xsl:with-param name="node" select="$authors"/>
