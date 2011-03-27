@@ -219,14 +219,14 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 			tempStrBuf.append("\\ba\\b");
 			Iterator it = cleanUpList.iterator();
 			while (it.hasNext()){
-				tempStrBuf.append("|\\b"+it.next()+"\\b");
+				tempStrBuf.append("|\\b").append(it.next()).append("\\b");
 			}
 		}
 		if ((cleanUpPunctuation != null) && (!cleanUpPunctuation.isEmpty())){
 			tempCharBuf.append("\\u3002");
 			Iterator it = cleanUpPunctuation.iterator();
 			while (it.hasNext()){
-				tempCharBuf.append("|"+it.next());
+				tempCharBuf.append("|").append(it.next());
 			}
 		}
 

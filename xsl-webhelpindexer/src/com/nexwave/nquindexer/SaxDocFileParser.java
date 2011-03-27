@@ -122,7 +122,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
             addHeaderInfo = true;
 			String attrName = attributes.getValue("name");
 			if(attrName != null && (attrName.equalsIgnoreCase("keywords") || attrName.equalsIgnoreCase("description"))){
-				strbf.append(" " + attributes.getValue("content") + " ");
+				strbf.append(" ").append(attributes.getValue("content")).append(" ");
 			}
 			// dwc: adding this to make the docbook <abstract> element
 			// (which becomes <meta name="description".../> in html)

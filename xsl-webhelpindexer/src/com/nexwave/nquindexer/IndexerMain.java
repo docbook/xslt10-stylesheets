@@ -1,18 +1,3 @@
-/**
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 package com.nexwave.nquindexer;
 
 import com.nexwave.nsidita.DirList;
@@ -24,8 +9,10 @@ import java.io.IOException;
 import java.util.*;
 
 /**
+ * Main class of Stand-alone version of WebHelpIndexer
  * User: Kasun Gajasinghe, University of Moratuwa, http://kasunbg.blogspot.com
  * Date: Feb 10, 2011
+ * @author Kasun Gajasinghe
  */
 
 public class IndexerMain {
@@ -150,9 +137,12 @@ public class IndexerMain {
         } else if (args.length >= 2) {
 
             indexer = new IndexerMain(args[0], args[1]);                        
-        } else {
-            throw new ArrayIndexOutOfBoundsException("Please specify the parameters htmlDirectory and (optional) " +
-                    "indexerLanguage");
+        } else { 
+            throw new  RuntimeException("Please specify the parameters htmlDirectory and " +
+                    "indexerLanguage (optional). \n "+
+                    "ex: java -jar webhelpindexer.jar docs/content en \n" +
+                    "The program will exit now."
+                    );
         }
 
         indexer.execute();
@@ -333,17 +323,17 @@ public class IndexerMain {
      */
     private static void DisplayHelp() {
         String lSep = System.getProperty("line.separator");
-        StringBuffer msg = new StringBuffer();
-        msg.append("USAGE:" + lSep);
-        msg.append("   java -classpath TesterIndexer inputDir outputDir projectDir" + lSep);
-        msg.append("with:" + lSep);
-        msg.append("   inputDir (mandatory) :  specify the html files ' directory to index" + lSep);
-        msg.append("   outputDir (optional) : specify where to output the index files" + lSep);
-        msg.append("   projectDir (optional) : specify the root of the documentation directory" + lSep);
-        msg.append("Example:" + lSep);
-        msg.append("   java -classpath TesterIndexer /home/$USER/DITA/doc" + lSep);
-        msg.append("Example 2:" + lSep);
-        msg.append("   java -classpath TesterIndexer /home/$USER/DITA/doc/customer/concepts /home/$USER/temp/search /home/$USER/DITA/doc/" + lSep);
+        StringBuilder msg = new StringBuilder();
+        msg.append("USAGE:").append(lSep);
+        msg.append("   java -classpath TesterIndexer inputDir outputDir projectDir").append(lSep);
+        msg.append("with:").append(lSep);
+        msg.append("   inputDir (mandatory) :  specify the html files ' directory to index").append(lSep);
+        msg.append("   outputDir (optional) : specify where to output the index files").append(lSep);
+        msg.append("   projectDir (optional) : specify the root of the documentation directory").append(lSep);
+        msg.append("Example:").append(lSep);
+        msg.append("   java -classpath TesterIndexer /home/$USER/DITA/doc").append(lSep);
+        msg.append("Example 2:").append(lSep);
+        msg.append("   java -classpath TesterIndexer /home/$USER/webhelp/docs/content /home/$USER/docs/content/search /home/$USER/webhelp/docs").append(lSep);
         System.out.println(msg.toString());
     }
 
