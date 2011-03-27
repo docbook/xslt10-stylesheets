@@ -801,13 +801,13 @@ These problems go away when you add this IE=7 mode meta tag.
             <xsl:with-param name="content">
                 <html>
                     <head>
-			            <link rel="shortcut icon" href="favicon.ico"/>
-                        <meta http-equiv="Refresh" content="1; URL=content/{$default.topic}"/>
-                        <title><xsl:value-of select="//title[1]"/>&#160;
-                        </title>
+		      <link rel="shortcut icon" href="favicon.ico"/>
+		      <meta http-equiv="Refresh" content="1; URL=content/{$default.topic}"/>
+		      <title><xsl:value-of select="//title[1]"/>&#160;
+		      </title>
                     </head>
                     <body>
-                        If not automatically redirected, click here: <a href="content/ch01.html">content/ch01.html</a>
+		      If not automatically redirected, click <a href="content/{$default.topic}">content/<xsl:value-of select="$default.topic"/></a>
                     </body>
                 </html>
             </xsl:with-param>
