@@ -510,7 +510,7 @@
 
 <xsl:template match="*" mode="process.root">
   <xsl:apply-templates select="."/>
-  <xsl:call-template name="generate.css"/>
+  <xsl:call-template name="generate.css.files"/>
 </xsl:template>
 
 <!-- ====================================================================== -->
