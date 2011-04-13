@@ -7,6 +7,7 @@
 
     <xsl:import href="../../xhtml/chunk.xsl"/>
 
+
     <xsl:output
             method="html"
             encoding="utf-8"
@@ -17,8 +18,16 @@
     <xsl:param name="webhelp.include.search.tab">true</xsl:param>
     <xsl:param name="webhelp.start.filename">index.html</xsl:param>
     <xsl:param name="webhelp.base.dir">docs</xsl:param>
+    <!-- webhelp.common.dir includes the files including jquery, css files
+	 which are required for general functionality of webhelp -->
     <xsl:param name="webhelp.common.dir">../common/</xsl:param>
+    <!-- webhelp.tree.cookie.id preserves the TOC tree. 
+	i.e. opened tree/sub-tree nodes and closed tree nodes. 
+	Needed for jquery.treeview plugin -->
     <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
+    <!-- Specify the language of your docbook document. 
+	This is needed for stemming support and to filter the subtle differences in the languages 
+	'en' (english) is the default. Refer the NOTE: on stemmers given below for more info. -->
     <xsl:param name="webhelp.indexer.language">en</xsl:param>
     <xsl:param name="webhelp.default.topic"/>
     <xsl:param name="webhelp.autolabel">0</xsl:param>
@@ -30,6 +39,7 @@
     <xsl:param name="manifest.in.base.dir" select="0"/>
     <xsl:param name="base.dir" select="concat($webhelp.base.dir,'/content/')"/>
     <xsl:param name="suppress.navigation">0</xsl:param>
+    <!-- Generate the end-of-the-book index -->
     <xsl:param name="generate.index" select="1"/>
     <xsl:param name="inherit.keywords" select="'0'"/>
     <xsl:param name="local.l10n.xml" select="document('')"/>
@@ -40,6 +50,8 @@
     <xsl:param name="section.autolabel" select="0"/>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
 
+    <!-- Localizations of webhelp specific words. Your contributions for other languages are appreciated.
+	Currently, only around 10 translations needed. -->
     <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
             <l:gentext key="Search" text="Search"/>
@@ -53,7 +65,7 @@
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
             <l:gentext key="TableofContents" text="Contents"/>
-	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
 	<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
@@ -67,7 +79,7 @@
                        text="お使いのブラウザがサポートされていません。 Mozilla Firefoxの使用が推奨されます"/>
             <l:gentext key="txt_please_wait" text="しばらくお待ちください。検索が進行中です..."/>
             <l:gentext key="txt_results_for" text="次の検索語の結果： "/>
-	        <l:gentext key="HighlightButton" text="強調表示の切り替えの検索結果"/>
+	    <l:gentext key="HighlightButton" text="強調表示の切り替えの検索結果"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de">
             <l:gentext key="Search" text="suchen"/>
@@ -80,7 +92,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="Bitte warten Sie. Die Suche ist im Gange ..."/>
             <l:gentext key="txt_results_for" text="Ergebnisse für: "/>
-	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
             <l:gentext key="Search" text="rechercher"/>
@@ -93,7 +105,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="S'il vous plaît attendre. La recherche est en cours ..."/>
             <l:gentext key="txt_results_for" text="Résultats pour: "/>
-	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh">
             <l:gentext key="Search" text="搜索"/>
@@ -106,7 +118,7 @@
                        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
             <l:gentext key="txt_please_wait" text="请稍候。搜索中..."/>
             <l:gentext key="txt_results_for" text="结果： "/>
-	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
         </l10n>
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="cs">
             <l:gentext key="Search" text="Hledání"/>
@@ -139,7 +151,7 @@ These problems go away when you add this IE=7 mode meta tag.
 </xsl:text>
   </xsl:template>
 
-
+    <!-- HTML <head> section customizations -->	
     <xsl:template name="user.head.content">
   	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--  <xsl:message>
@@ -180,12 +192,6 @@ These problems go away when you add this IE=7 mode meta tag.
             padding-left: 20px;
             background: transparent url(<xsl:value-of select="$webhelp.common.dir"/>jquery/treeview/images/folder.gif) 0 0px no-repeat;
             }
-            <!--[if IE]>
-            input {
-                margin-bottom: 5px;
-                margin-top: 2px;
-            }
-            <![endif]-->
         </style>
 	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}css/positioning.css"/>
@@ -207,6 +213,8 @@ These problems go away when you add this IE=7 mode meta tag.
 
 	<xsl:if test="$webhelp.include.search.tab = 'true'">
 	  <!--Scripts/css stylesheets for Search-->
+	  <!-- TODO: Why THREE files? There's absolutely no need for having separate files. 
+		These should have been identified at the optimization phase! --> 
 	  <script type="text/javascript" src="search/htmlFileList.js">
 	      <xsl:comment> </xsl:comment>
 	  </script>
@@ -216,14 +224,6 @@ These problems go away when you add this IE=7 mode meta tag.
 	  <script type="text/javascript" src="search/nwSearchFnt.js">
 	      <xsl:comment> </xsl:comment>
 	  </script>
-
-	  <!--script type="text/javascript" src="search/addition.js">
-	      <xsl:comment></xsl:comment>
-	  </script>
-	  <script type="text/javascript" src="search/indexLoader.js">
-	      <xsl:comment></xsl:comment>
-	  </script-->
-
 
 	  <!--
 	     NOTE: Stemmer javascript files should be in format <language>_stemmer.js.
@@ -237,7 +237,10 @@ These problems go away when you add this IE=7 mode meta tag.
 
 	  <!--Index Files:
 	      Index is broken in to three equal sized(number of index items) files. This is to help parallel downloading
-	      of files to make it faster.-->
+	      of files to make it faster.
+		TODO: Generate webhelp index for largest docbook document that can be find, and analyze the file sizes.
+		IF the file size is still around ~50KB for a given file, we should consider merging these files together. again.     	
+	  -->
 	  <script type="text/javascript" src="search/index-1.js">
 	      <xsl:comment> </xsl:comment>
 	  </script>
@@ -252,6 +255,7 @@ These problems go away when you add this IE=7 mode meta tag.
 	<xsl:call-template name="user.webhelp.head.content"/>
     </xsl:template>
 
+    <!-- This is for the USERS. Users who want to customize webhelp may over-ride this template to add content to <head>. -->
     <xsl:template name="user.webhelp.head.content"/>
 
     <xsl:template name="user.header.navigation">
@@ -356,7 +360,7 @@ These problems go away when you add this IE=7 mode meta tag.
 				  <xsl:apply-templates select="key('id',$rootid)" mode="process.root"/>
 				  <xsl:if test="$tex.math.in.alt != ''">
 					<xsl:apply-templates select="key('id',$rootid)" mode="collect.tex.math"/>
-                </xsl:if>
+                                  </xsl:if>
 				</xsl:if>
 			  </xsl:otherwise>
 			</xsl:choose>
@@ -380,6 +384,21 @@ These problems go away when you add this IE=7 mode meta tag.
 
     </xsl:template>
 
+
+    <!-- The WebHelp output structure. similar to main() method.
+	basic format:
+	<html>
+		<head> calls-appropriate-template </head>
+		<body> 
+   		       some-generic-content
+		       <div id="content"> 
+		       		All your docbook document content goes here
+				....
+		       </div>
+		       some-other-generic-content-at-footer		
+		</body>
+	</html>
+    -->	
     <xsl:template name="chunk-element-content">
         <xsl:param name="prev"/>
         <xsl:param name="next"/>
@@ -405,7 +424,6 @@ These problems go away when you add this IE=7 mode meta tag.
                     <xsl:with-param name="nav.context" select="$nav.context"/>
                 </xsl:call-template>
 
-
                 <div id="content">
 
                     <xsl:call-template name="user.header.content"/>
@@ -429,6 +447,8 @@ These problems go away when you add this IE=7 mode meta tag.
         <xsl:value-of select="$chunk.append"/>
     </xsl:template>
 
+    <!-- This is for the USERS. Users who want to customize webhelp may over-ride this template to add content to the footer of the content DIV. 
+  	 i.e. within <div id="content"> ... </div> -->
     <xsl:template name="user.webhelp.content.footer"/>
 
     <!-- The Header with the company logo -->
@@ -537,14 +557,9 @@ These problems go away when you add this IE=7 mode meta tag.
                                 </xsl:if>
                             </td>
                         </xsl:if>
-
                     </tr>
                 </table>
-
-
-
             </div>
-
         </div>
     </xsl:template>
 
@@ -689,6 +704,7 @@ These problems go away when you add this IE=7 mode meta tag.
     <xsl:template name="user.webhelp.tabs.title"/>
     <xsl:template name="user.webhelp.tabs.content"/>
 
+    <!-- Generates the webhelp table-of-contents (TOC). -->
     <xsl:template
             match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
             mode="webhelptoc">
@@ -717,9 +733,6 @@ These problems go away when you add this IE=7 mode meta tag.
         </xsl:variable>
 
         <xsl:variable name="id" select="generate-id(.)"/>
-        <!--xsl:message>
-            <xsl: select="name(ancestor-or-self::*) "/>
-        </xsl:message-->
 
         <xsl:if test="not(self::index) or (self::index and not($generate.index = 0))">
             <!--li style="white-space: pre; line-height: 0em;"-->
@@ -752,7 +765,8 @@ These problems go away when you add this IE=7 mode meta tag.
             <xsl:comment></xsl:comment>
         </script>
     </xsl:template>
-
+ 
+    <!-- Generates index.html file at docs/. This is simply a redirection to content/$default.topic -->	
     <xsl:template name="index.html">
         <xsl:variable name="default.topic">
             <xsl:choose>
