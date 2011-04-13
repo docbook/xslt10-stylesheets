@@ -35,7 +35,7 @@ public class DirList {
           for (File f: inputdir.listFiles(new DirFilter(regex))) {
         	  listFiles.add(f);
           }
-          for (File f: inputdir.listFiles(new DirFilter("^[^\\.]*$"))) {
+          for (File f: inputdir.listFiles(new DirFilter("^[^\\.].*$"))) {
         	  if (f.isDirectory()){
         		  if (depth < MAX_DEPTH ) {
         			DirList nsiDoc = new DirList(f,regex, depth+1);
