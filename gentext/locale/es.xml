@@ -100,8 +100,8 @@
 <gentext key="Reference" text="Referencia"/>
 <gentext key="reference" text="referencia"/>
 <gentext key="References" text="Referencias"/>
-<gentext key="RefName" text="Nombre de referencia"/>
-<gentext key="refname" text="nombre de referencia"/>
+<gentext key="RefName" text="Nombre"/>
+<gentext key="refname" text="nombre"/>
 <gentext key="RefSection" text="Sección de referencia"/>
 <gentext key="refsection" text="sección de referencia"/>
 <gentext key="RefSynopsisDiv" text="Sinopsis"/>
