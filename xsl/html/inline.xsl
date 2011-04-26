@@ -823,7 +823,6 @@
   </xsl:variable>
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:call-template name="anchor"/>
     <xsl:choose>
       <xsl:when test="$depth mod 2 = 0">
         <xsl:call-template name="gentext.startquote"/>
