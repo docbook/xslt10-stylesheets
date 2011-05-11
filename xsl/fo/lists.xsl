@@ -1195,9 +1195,8 @@
 <xsl:template match="segmentedlist" mode="seglist-table">
   <xsl:apply-templates select="title" mode="list.title.mode" />
   <fo:table table-layout="fixed">
-    <xsl:call-template name="segmentedlist.table.columns">
-      <xsl:with-param name="cols" select="count(segtitle)"/>
-    </xsl:call-template>
+    <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
+    <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-header start-indent="0pt" end-indent="0pt">
       <fo:table-row>
         <xsl:apply-templates select="segtitle" mode="seglist-table"/>
@@ -1207,20 +1206,6 @@
       <xsl:apply-templates select="seglistitem" mode="seglist-table"/>
     </fo:table-body>
   </fo:table>
-</xsl:template>
-
-<xsl:template name="segmentedlist.table.columns">
-  <xsl:param name="cols" select="1"/>
-  <xsl:param name="curcol" select="1"/>
-
-  <fo:table-column column-number="{$curcol}"
-                   column-width="proportional-column-width(1)"/>
-  <xsl:if test="$curcol &lt; $cols">
-    <xsl:call-template name="segmentedlist.table.columns">
-      <xsl:with-param name="cols" select="$cols"/>
-      <xsl:with-param name="curcol" select="$curcol+1"/>
-    </xsl:call-template>
-  </xsl:if>
 </xsl:template>
 
 <xsl:template match="segtitle" mode="seglist-table">
