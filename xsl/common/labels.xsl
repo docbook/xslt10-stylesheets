@@ -794,6 +794,14 @@ element label.</para>
   <!-- nop -->
 </xsl:template>
 
+<xsl:template match="glossdiv|glosslist" mode="label.markup">
+  <!-- nop -->
+</xsl:template>
+
+<xsl:template match="glossentry" mode="label.markup">
+  <!-- nop -->
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template name="label.this.section">
