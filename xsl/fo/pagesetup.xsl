@@ -1956,6 +1956,9 @@
           <xsl:call-template name="header.footer.width">
             <xsl:with-param name="location">header</xsl:with-param>
             <xsl:with-param name="position" select="$column1"/>
+            <xsl:with-param name="pageclass" select="$pageclass"/>
+            <xsl:with-param name="sequence" select="$sequence"/>
+            <xsl:with-param name="gentext-key" select="$gentext-key"/>
           </xsl:call-template>
           <xsl:text>)</xsl:text>
         </xsl:attribute>
@@ -1966,6 +1969,9 @@
           <xsl:call-template name="header.footer.width">
             <xsl:with-param name="location">header</xsl:with-param>
             <xsl:with-param name="position" select="2"/>
+            <xsl:with-param name="pageclass" select="$pageclass"/>
+            <xsl:with-param name="sequence" select="$sequence"/>
+            <xsl:with-param name="gentext-key" select="$gentext-key"/>
           </xsl:call-template>
           <xsl:text>)</xsl:text>
         </xsl:attribute>
@@ -1976,6 +1982,9 @@
           <xsl:call-template name="header.footer.width">
             <xsl:with-param name="location">header</xsl:with-param>
             <xsl:with-param name="position" select="$column3"/>
+            <xsl:with-param name="pageclass" select="$pageclass"/>
+            <xsl:with-param name="sequence" select="$sequence"/>
+            <xsl:with-param name="gentext-key" select="$gentext-key"/>
           </xsl:call-template>
           <xsl:text>)</xsl:text>
         </xsl:attribute>
@@ -2118,6 +2127,18 @@
 <xsl:template name="header.footer.width">
   <xsl:param name="location" select="'header'"/>
   <xsl:param name="position" select="1"/>
+  <xsl:param name="pageclass" select="''"/>
+  <xsl:param name="sequence" select="''"/>
+  <xsl:param name="gentext-key" select="''"/>
+
+  <!-- The location param is either 'header' or 'footer'.
+       The position param is one of '1', '2', or '3' to indicate
+       which column of the header or footer table. -->
+       
+  <!-- The pageclass, sequence, and gentext-key values are passed
+       from the header.table or footer.table template.  They are
+       not currently used, but are made available here
+       for customization of this template. -->
 
   <xsl:variable name="width.set">
     <xsl:choose>
@@ -2280,6 +2301,9 @@
           <xsl:call-template name="header.footer.width">
             <xsl:with-param name="location">footer</xsl:with-param>
             <xsl:with-param name="position" select="$column1"/>
+            <xsl:with-param name="pageclass" select="$pageclass"/>
+            <xsl:with-param name="sequence" select="$sequence"/>
+            <xsl:with-param name="gentext-key" select="$gentext-key"/>
           </xsl:call-template>
           <xsl:text>)</xsl:text>
         </xsl:attribute>
@@ -2290,6 +2314,9 @@
           <xsl:call-template name="header.footer.width">
             <xsl:with-param name="location">footer</xsl:with-param>
             <xsl:with-param name="position" select="2"/>
+            <xsl:with-param name="pageclass" select="$pageclass"/>
+            <xsl:with-param name="sequence" select="$sequence"/>
+            <xsl:with-param name="gentext-key" select="$gentext-key"/>
           </xsl:call-template>
           <xsl:text>)</xsl:text>
         </xsl:attribute>
@@ -2300,6 +2327,9 @@
           <xsl:call-template name="header.footer.width">
             <xsl:with-param name="location">footer</xsl:with-param>
             <xsl:with-param name="position" select="$column3"/>
+            <xsl:with-param name="pageclass" select="$pageclass"/>
+            <xsl:with-param name="sequence" select="$sequence"/>
+            <xsl:with-param name="gentext-key" select="$gentext-key"/>
           </xsl:call-template>
           <xsl:text>)</xsl:text>
         </xsl:attribute>
