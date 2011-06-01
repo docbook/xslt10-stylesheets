@@ -646,19 +646,19 @@ Defaults to the context node.</para>
      documentation for DocBook V3.0
 -->
 
-<xsl:variable name="arg.choice.opt.open.str">[</xsl:variable>
-<xsl:variable name="arg.choice.opt.close.str">]</xsl:variable>
-<xsl:variable name="arg.choice.req.open.str">{</xsl:variable>
-<xsl:variable name="arg.choice.req.close.str">}</xsl:variable>
-<xsl:variable name="arg.choice.plain.open.str"><xsl:text> </xsl:text></xsl:variable>
-<xsl:variable name="arg.choice.plain.close.str"><xsl:text> </xsl:text></xsl:variable>
-<xsl:variable name="arg.choice.def.open.str">[</xsl:variable>
-<xsl:variable name="arg.choice.def.close.str">]</xsl:variable>
-<xsl:variable name="arg.rep.repeat.str">...</xsl:variable>
-<xsl:variable name="arg.rep.norepeat.str"></xsl:variable>
-<xsl:variable name="arg.rep.def.str"></xsl:variable>
-<xsl:variable name="arg.or.sep"> | </xsl:variable>
-<xsl:variable name="cmdsynopsis.hanging.indent">4pi</xsl:variable>
+<xsl:param name="arg.choice.opt.open.str">[</xsl:param>
+<xsl:param name="arg.choice.opt.close.str">]</xsl:param>
+<xsl:param name="arg.choice.req.open.str">{</xsl:param>
+<xsl:param name="arg.choice.req.close.str">}</xsl:param>
+<xsl:param name="arg.choice.plain.open.str"><xsl:text> </xsl:text></xsl:param>
+<xsl:param name="arg.choice.plain.close.str"><xsl:text> </xsl:text></xsl:param>
+<xsl:param name="arg.choice.def.open.str">[</xsl:param>
+<xsl:param name="arg.choice.def.close.str">]</xsl:param>
+<xsl:param name="arg.rep.repeat.str">...</xsl:param>
+<xsl:param name="arg.rep.norepeat.str"></xsl:param>
+<xsl:param name="arg.rep.def.str"></xsl:param>
+<xsl:param name="arg.or.sep"> | </xsl:param>
+<xsl:param name="cmdsynopsis.hanging.indent">4pi</xsl:param>
 
 <!-- ====================================================================== -->
 
