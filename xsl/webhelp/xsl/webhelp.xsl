@@ -511,7 +511,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                         or count($next) &gt; 0">
                             <td>
                                 <xsl:if test="count($prev)>0">
-                                    <a accesskey="p">
+                                    <a accesskey="p" tabindex="5">
                                         <xsl:attribute name="href">
                                             <xsl:call-template name="href.target">
                                                 <xsl:with-param name="object" select="$prev"/>
@@ -528,7 +528,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                     <xsl:when test="count($up)&gt;0
                                               and generate-id($up) != generate-id($home)">
                                         |
-                                        <a accesskey="u">
+                                        <a accesskey="u" tabindex="5">
                                             <xsl:attribute name="href">
                                                 <xsl:call-template name="href.target">
                                                     <xsl:with-param name="object" select="$up"/>
@@ -544,7 +544,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                 
                                 <xsl:if test="count($next)>0">
                                     |
-                                    <a accesskey="n">
+                                    <a accesskey="n" tabindex="5">
                                         <xsl:attribute name="href">
                                             <xsl:call-template name="href.target">
                                                 <xsl:with-param name="object" select="$next"/>
@@ -631,7 +631,7 @@ These problems go away when you add this IE=7 mode meta tag.
                         <div id="tabs">
                             <ul>
                                 <li>
-                                    <a href="#treeDiv">
+                                    <a href="#treeDiv" tabindex="1">
                                         <em>
                                             <xsl:call-template name="gentext">
                                                 <xsl:with-param name="key" select="'TableofContents'"/>
@@ -641,7 +641,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                 </li>
                                 <xsl:if test="$webhelp.include.search.tab != 'false'">
                                     <li>
-                                        <a href="#searchDiv">
+                                        <a href="#searchDiv" tabindex="1">
                                             <em>
                                                 <xsl:call-template name="gentext">
                                                     <xsl:with-param name="key" select="'Search'"/>
@@ -678,11 +678,11 @@ These problems go away when you add this IE=7 mode meta tag.
                                                 </legend>
                                                 <center>
                                                     <input id="textToSearch" name="textToSearch" type="text"
-                                                           class="searchText"/>
+                                                           class="searchText" tabindex="1"/>
                                                     <xsl:text disable-output-escaping="yes"> <![CDATA[&nbsp;]]> </xsl:text>
                                                     <input onclick="Verifie(ditaSearch_Form)" type="button"
                                                            class="searchButton"
-                                                           value="Go" id="doSearch"/>
+                                                           value="Go" id="doSearch" tabindex="1"/>
                                                 </center>
                                             </fieldset>
                                         </form>
@@ -741,7 +741,7 @@ These problems go away when you add this IE=7 mode meta tag.
                     <xsl:attribute name="id">webhelp-currentid</xsl:attribute>
                 </xsl:if>
                 <span class="file">
-                    <a href="{substring-after($href, $base.dir)}">
+                    <a href="{substring-after($href, $base.dir)}"  tabindex="1">
                         <xsl:value-of select="$title"/>
                     </a>
                 </span>
