@@ -18,153 +18,153 @@
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Аннотация"/>
-<gentext key="abstract" text="аннотация"/>
+<gentext key="abstract" text="Аннотация"/>
 <gentext key="Acknowledgements" text="Благодарность"/>
-<gentext key="acknowledgements" text="благодарность"/>
+<gentext key="acknowledgements" text="Благодарность"/>
 <gentext key="Answer" text="Ответ:"/>
-<gentext key="answer" text="ответ:"/>
+<gentext key="answer" text="Ответ:"/>
 <gentext key="Appendix" text="Приложение"/>
-<gentext key="appendix" text="приложение"/>
+<gentext key="appendix" text="Приложение"/>
 <gentext key="Article" text="Статья"/>
-<gentext key="article" text="статья"/>
+<gentext key="article" text="Статья"/>
 <gentext key="Author" text="Автор"/>
 <gentext key="Bibliography" text="Библиография"/>
-<gentext key="bibliography" text="библиография"/>
+<gentext key="bibliography" text="Библиография"/>
 <gentext key="Book" text="Книга"/>
-<gentext key="book" text="книга"/>
+<gentext key="book" text="Книга"/>
 <gentext key="CAUTION" text="ВНИМАНИЕ"/>
 <gentext key="Caution" text="Внимание"/>
-<gentext key="caution" text="внимание"/>
+<gentext key="caution" text="Внимание"/>
 <gentext key="Chapter" text="Глава"/>
-<gentext key="chapter" text="глава"/>
+<gentext key="chapter" text="Глава"/>
 <gentext key="Colophon" text="Издание"/>
-<gentext key="colophon" text="издание"/> 
+<gentext key="colophon" text="Издание"/> 
 <gentext key="Copyright" text="Авторские права"/>
-<gentext key="copyright" text="авторские права"/> 
+<gentext key="copyright" text="Авторские права"/> 
 <gentext key="Dedication" text="Посвящается"/>
-<gentext key="dedication" text="посвящается"/>
+<gentext key="dedication" text="Посвящается"/>
 <gentext key="Edition" text="Редакция"/>
-<gentext key="edition" text="редакция"/>
+<gentext key="edition" text="Редакция"/>
 <gentext key="Editor" text="Редактор"/>
 <gentext key="Equation" text="Формула"/>
-<gentext key="equation" text="формула"/>
+<gentext key="equation" text="Формула"/>
 <gentext key="Example" text="Пример"/>
-<gentext key="example" text="пример"/>
+<gentext key="example" text="Пример"/>
 <gentext key="Figure" text="Рисунок"/>
-<gentext key="figure" text="рисунок"/>
+<gentext key="figure" text="Рисунок"/>
 <gentext key="Glossary" text="Глоссарий"/>
-<gentext key="glossary" text="глоссарий"/>
+<gentext key="glossary" text="Глоссарий"/>
 <gentext key="GlossSee" text="См."/>
 <gentext key="glosssee" text="см."/>
 <gentext key="GlossSeeAlso" text="См. также"/>
 <gentext key="glossseealso" text="см. также"/>
 <gentext key="IMPORTANT" text="ВАЖНО"/>
 <gentext key="Important" text="Важно"/>
-<gentext key="important" text="важно"/>
+<gentext key="important" text="Важно"/>
 <gentext key="Index" text="Предметный указатель"/>
 <gentext key="index" text="Предметный указатель"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/> 
 <gentext key="LegalNotice" text="Юридическое уведомление"/>
-<gentext key="legalnotice" text="юридическое уведомление"/>
+<gentext key="legalnotice" text="Юридическое уведомление"/>
 <gentext key="MsgAud" text="Аудитория"/>
-<gentext key="msgaud" text="аудитория"/>
+<gentext key="msgaud" text="Аудитория"/>
 <gentext key="MsgLevel" text="Уровень"/>
-<gentext key="msglevel" text="уровень"/> 
+<gentext key="msglevel" text="Уровень"/> 
 <gentext key="MsgOrig" text="Источник"/>
-<gentext key="msgorig" text="источник"/> 
+<gentext key="msgorig" text="Источник"/> 
 <gentext key="NOTE" text="ПРИМЕЧАНИЕ"/>
 <gentext key="Note" text="Примечание"/>
-<gentext key="note" text="примечание"/>
+<gentext key="note" text="Примечание"/>
 <gentext key="Part" text="Часть"/>
-<gentext key="part" text="часть"/>
+<gentext key="part" text="Часть"/>
 <gentext key="Preface" text="Предисловие"/>
-<gentext key="preface" text="предисловие"/>
+<gentext key="preface" text="Предисловие"/>
 <gentext key="Procedure" text="Процедура"/>
-<gentext key="procedure" text="процедура"/>
+<gentext key="procedure" text="Процедура"/>
 <gentext key="ProductionSet" text="Производство"/> 
 <gentext key="PubDate" text="Дата публикации"/>
-<gentext key="pubdate" text="дата публикации"/>
+<gentext key="pubdate" text="Дата публикации"/>
 <gentext key="Published" text="Опубликовано"/>
-<gentext key="published" text="опубликовано"/>
+<gentext key="published" text="Опубликовано"/>
 <gentext key="Publisher" text="Издатель"/>
 <gentext key="Qandadiv" text="Вопросы и ответы"/>
-<gentext key="qandadiv" text="вопросы и ответы"/>
+<gentext key="qandadiv" text="Вопросы и ответы"/>
 <gentext key="QandASet" text="Часто задаваемые вопросы"/>
 <gentext key="Question" text="Вопрос:"/>
-<gentext key="question" text="вопрос:"/>
+<gentext key="question" text="Вопрос:"/>
 <gentext key="RefEntry" text="Страница"/>
-<gentext key="refentry" text="страница"/>
+<gentext key="refentry" text="Страница"/>
 <gentext key="Reference" text="Ссылка"/>
-<gentext key="reference" text="ссылка"/>
+<gentext key="reference" text="Ссылка"/>
 <gentext key="References" text="Ссылки"/>
 <gentext key="RefName" text="Имя"/>
-<gentext key="refname" text="имя"/>
+<gentext key="refname" text="Имя"/>
 <gentext key="RefSection" text="Раздел"/>
-<gentext key="refsection" text="раздел"/>
+<gentext key="refsection" text="Раздел"/>
 <gentext key="RefSynopsisDiv" text="Синопсис"/>
-<gentext key="refsynopsisdiv" text="синопсис"/>
+<gentext key="refsynopsisdiv" text="Синопсис"/>
 <gentext key="RevHistory" text="История переиздания"/>
-<gentext key="revhistory" text="история переиздания"/>
+<gentext key="revhistory" text="История переиздания"/>
 <gentext key="Revision" text="Издание"/>
-<gentext key="revision" text="издание"/>
+<gentext key="revision" text="Издание"/>
 <gentext key="sect1" text="Раздел"/>
 <gentext key="sect2" text="Раздел"/>
 <gentext key="sect3" text="Раздел"/>
 <gentext key="sect4" text="Раздел"/>
 <gentext key="sect5" text="Раздел"/>
 <gentext key="Section" text="Раздел"/>
-<gentext key="section" text="раздел"/>
+<gentext key="section" text="Раздел"/>
 <gentext key="See" text="См."/>
 <gentext key="see" text="см."/>
 <gentext key="SeeAlso" text="См. также"/>
 <gentext key="Seealso" text="См. также"/>
 <gentext key="seealso" text="см. также"/>
 <gentext key="Set" text="Подборка"/>
-<gentext key="set" text="подборка"/>
+<gentext key="set" text="Подборка"/>
 <gentext key="SetIndex" text="Индекс подборки"/>
-<gentext key="setindex" text="индекс подборки"/>
+<gentext key="setindex" text="Индекс подборки"/>
 <gentext key="Sidebar" text="Боковое поле"/>
-<gentext key="sidebar" text="боковое поле"/>
+<gentext key="sidebar" text="Боковое поле"/>
 <gentext key="Step" text="Шаг"/>
-<gentext key="step" text="шаг"/>
+<gentext key="step" text="Шаг"/>
 <gentext key="Table" text="Таблица"/>
-<gentext key="table" text="таблица"/>
-<gentext key="task" text="задача"/>
+<gentext key="table" text="Таблица"/>
+<gentext key="task" text="Задача"/>
 <gentext key="Task" text="Задача"/>
 <gentext key="TIP" text="ПОДСКАЗКА"/>
 <gentext key="Tip" text="Подсказка"/>
 <gentext key="tip" text="Подсказка"/>
 <gentext key="WARNING" text="ПРЕДУПРЕЖДЕНИЕ"/>
 <gentext key="Warning" text="Предупреждение"/>
-<gentext key="warning" text="предупреждение"/>
+<gentext key="warning" text="Предупреждение"/>
 
 <gentext key="Appendix.abr" text="Прил."/>
-<gentext key="appendix.abr" text="прил."/>
+<gentext key="appendix.abr" text="Прил."/>
 <gentext key="Audience" text="Аудитория"/>
-<gentext key="audience" text="аудитория"/>
+<gentext key="audience" text="Аудитория"/>
 <gentext key="Chapter.abr" text="Гл."/>
-<gentext key="chapter.abr" text="гл."/>
+<gentext key="chapter.abr" text="Гл."/>
 <gentext key="Equation.abr" text="Ф."/>
-<gentext key="equation.abr" text="ф."/>
+<gentext key="equation.abr" text="Ф."/>
 <gentext key="Example.abr" text="Прим."/>
-<gentext key="example.abr" text="прим."/>
+<gentext key="example.abr" text="Прим."/>
 <gentext key="Figure.abr" text="Рис."/>
-<gentext key="figure.abr" text="рис."/>
+<gentext key="figure.abr" text="Рис."/>
 <gentext key="Level" text="Уровень"/>
 <gentext key="level" text="Уровень"/>
 <gentext key="Name" text="Имя"/>
 <gentext key="name" text="Имя"/>
 <gentext key="Origin" text="Источник"/>
-<gentext key="origin" text="источник"/>
+<gentext key="origin" text="Источник"/>
 <gentext key="Part.abr" text="Ч."/>
-<gentext key="part.abr" text="ч."/>
+<gentext key="part.abr" text="Ч."/>
 <gentext key="Procedure.abr" text="Проц."/>
-<gentext key="procedure.abr" text="проц."/>
+<gentext key="procedure.abr" text="Проц."/>
 <gentext key="Section.abr" text="Разд."/>
-<gentext key="section.abr" text="разд."/>
+<gentext key="section.abr" text="Разд."/>
 <gentext key="Table.abr" text="Табл."/>
-<gentext key="table.abr" text="табл."/>
+<gentext key="table.abr" text="Табл."/>
 
 <gentext key="and" text=""/> <!-- as far as it's seen "and" is used only in 
                                the list of author names, but "and" in such 
@@ -173,23 +173,24 @@
 
 <gentext key="by" text=""/>
 <gentext key="edited" text="Под редакцией"/>
-<gentext key="Edited" text="под редакцией"/>
+<gentext key="Edited" text="Под редакцией"/>
 <gentext key="Editedby" text="Под редакцией"/>
-<gentext key="editedby" text="под редакцией"/>
+<gentext key="editedby" text="Под редакцией"/>
 <gentext key="in" text="в"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="Notes" text="Примечания"/>
-<gentext key="notes" text="примечания"/>
+<gentext key="notes" text="Примечания"/>
 <gentext key="pgs" text="Стр."/>
-<gentext key="Pgs" text="стр."/>
+<gentext key="Pgs" text="Стр."/>
 <gentext key="Revisedby" text="Проверено: "/>
-<gentext key="revisedby" text="проверено: "/> 
+<gentext key="revisedby" text="Проверено: "/> 
 <gentext key="TableNotes" text="Примечания"/>
-<gentext key="tablenotes" text="примечания"/>
+<gentext key="tablenotes" text="Примечания"/>
 <gentext key="TableofContents" text="Содержание"/>
-<gentext key="tableofcontents" text="содержание"/>
-<!-- Suggestion of I. Kouznetsov: Error messages are better in English -->
+<gentext key="tableofcontents" text="Содержание"/>
+<!-- Suggestion of I. Kouznetsov: Error messages are better in English
+     -->
 <gentext key="unexpectedelementname" text="unexpected element name"/>
 <gentext key="unsupported" text="unsupported"/>
 <gentext key="xrefto" text="xref to"/>
@@ -206,18 +207,18 @@
 <gentext key="technicaleditor" text="Технический редактор"/>
 <gentext key="translator" text="Перевод"/>
 
-<gentext key="listofequations" text="список выражений"/>
+<gentext key="listofequations" text="Список выражений"/>
 <gentext key="ListofEquations" text="Список выражений"/>
 <gentext key="ListofExamples" text="Список примеров"/>
-<gentext key="listofexamples" text="список примеров"/>
+<gentext key="listofexamples" text="Список примеров"/>
 <gentext key="ListofFigures" text="Список иллюстраций"/>
-<gentext key="listoffigures" text="список иллюстраций"/>
+<gentext key="listoffigures" text="Список иллюстраций"/>
 <gentext key="ListofProcedures" text="Список процедур"/>
-<gentext key="listofprocedures" text="список процедур"/>
-<gentext key="listoftables" text="список таблиц"/>
+<gentext key="listofprocedures" text="Список процедур"/>
+<gentext key="listoftables" text="Список таблиц"/>
 <gentext key="ListofTables" text="Список таблиц"/>
 <gentext key="ListofUnknown" text="Список других"/>
-<gentext key="listofunknown" text="список других"/>
+<gentext key="listofunknown" text="Список других"/>
 
 <gentext key="nav-home" text="Начало"/>
 <gentext key="nav-next" text="След."/>
