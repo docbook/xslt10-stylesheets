@@ -150,7 +150,7 @@ function Effectuer_recherche(expressionInput) {
         }
         results += "</p>";
     } else {
-        results = "<p>" + "Your search returned no results for " + "<span class=\"searchExpression\">" + txt_wordsnotfound + "</span>" + "</p>";
+        results = "<p>" + localeresource.search_no_results + "</p>";
     }
     //alert(results);
     document.getElementById('searchResults').innerHTML = results; 

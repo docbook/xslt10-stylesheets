@@ -66,6 +66,7 @@
             <l:gentext key="txt_results_for" text="Results for: "/>
             <l:gentext key="TableofContents" text="Contents"/>
 	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+	    <l:gentext key="Your_search_returned_no_results" text="Your search returned no results."/>
         </l10n>
 	<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
@@ -382,6 +383,7 @@ These problems go away when you add this IE=7 mode meta tag.
 	
 	<xsl:call-template name="index.html"/>
 
+	<xsl:call-template name="l10n.js"/>
     </xsl:template>
 
 
@@ -826,6 +828,24 @@ These problems go away when you add this IE=7 mode meta tag.
                 </html>
             </xsl:with-param>
         </xsl:call-template>
+    </xsl:template>
+
+    <xsl:template name="l10n.js">
+        <xsl:call-template name="write.chunk">
+            <xsl:with-param name="filename">
+	      <xsl:value-of select="concat($base.dir,'search/l10n.js')"/>
+            </xsl:with-param>
+            <xsl:with-param name="method" select="'text'"/>
+            <xsl:with-param name="encoding" select="'utf-8'"/>
+            <xsl:with-param name="indent" select="'no'"/>
+            <xsl:with-param name="content">
+	      //Resource strings for localization
+	      var localeresource = new Object;
+	      localeresource["search_no_results"]="<xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'Your_search_returned_no_results'"/>
+                </xsl:call-template>";
+            </xsl:with-param>
+        </xsl:call-template>    
     </xsl:template>
 
 </xsl:stylesheet> 
