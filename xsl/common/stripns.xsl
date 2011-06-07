@@ -168,6 +168,11 @@
 	  <xsl:copy-of select="@*[not(name(.) = 'xml:id')
 			       and not(name(.) = 'version')
 			       and not(local-name(.) = 'href')]"/>
+          <xsl:if test="@xml:id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="@xml:id"/>
+            </xsl:attribute>
+          </xsl:if>
 	  <xsl:apply-templates mode="stripNS"/>
 	</sgmltag>
       </ulink>
@@ -175,7 +180,12 @@
     <xsl:otherwise>
       <sgmltag>
 	<xsl:copy-of select="@*[not(name(.) = 'xml:id')
-			     and not(name(.) = 'version')]"/>
+                                and not(name(.) = 'version')]"/>
+          <xsl:if test="@xml:id">
+            <xsl:attribute name="id">
+              <xsl:value-of select="@xml:id"/>
+            </xsl:attribute>
+          </xsl:if>
 	<xsl:apply-templates mode="stripNS"/>
       </sgmltag>
     </xsl:otherwise>
@@ -199,6 +209,11 @@
       <xsl:copy-of select="@*[not(name(.) = 'xml:id')
 			   and not(name(.) = 'version')
 			   and not(local-name(.) = 'href')]"/>
+      <xsl:if test="@xml:id">
+        <xsl:attribute name="id">
+          <xsl:value-of select="@xml:id"/>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates mode="stripNS"/>
     </citetitle>
   </ulink>
@@ -210,6 +225,11 @@
 			 and not(name(.) = 'version')
 			 and not(name(.) = 'linkend')
 			 and not(local-name(.) = 'href')]"/>
+    <xsl:if test="@xml:id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:attribute>
+    </xsl:if>
       <xsl:apply-templates mode="stripNS"/>
   </citetitle>
 </xsl:template>
