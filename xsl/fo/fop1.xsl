@@ -137,7 +137,9 @@
     <xsl:apply-templates select="/*[1]" mode="label.markup"/>
     <xsl:apply-templates select="/*[1]" mode="title.markup"/>
     <xsl:variable name="subtitle">
-      <xsl:apply-templates select="/*[1]" mode="subtitle.markup"/>
+      <xsl:apply-templates select="/*[1]" mode="subtitle.markup">
+        <xsl:with-param name="verbose" select="0"/>
+      </xsl:apply-templates>
     </xsl:variable>
     <xsl:if test="$subtitle !=''">
       <xsl:text> - </xsl:text>
