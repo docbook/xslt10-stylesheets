@@ -773,7 +773,7 @@ These problems go away when you add this IE=7 mode meta tag.
         <xsl:variable name="default.topic">
             <xsl:choose>
                 <xsl:when test="$webhelp.default.topic != ''">
-                    <xsl:value-of select="$htmlhelp.default.topic"/>
+                    <xsl:value-of select="$webhelp.default.topic"/>
                 </xsl:when>
                 <xsl:when test="$htmlhelp.default.topic != ''">
                     <xsl:value-of select="$htmlhelp.default.topic"/>
