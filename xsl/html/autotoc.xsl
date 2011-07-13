@@ -160,7 +160,7 @@
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
-    <xsl:with-param name="nodes" select="book|setindex"/>
+    <xsl:with-param name="nodes" select="book|setindex|set"/>
   </xsl:call-template>
 </xsl:template>
 
