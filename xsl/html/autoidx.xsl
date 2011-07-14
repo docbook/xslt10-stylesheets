@@ -561,13 +561,15 @@
             <xsl:when test="$index.links.to.section = 1">
               <xsl:call-template name="href.target">
                 <xsl:with-param name="object" select="&section;"/>
-                <xsl:with-param name="context" select="//index[&scope;][1]"/>
+                <xsl:with-param name="context" 
+                                select="(//index[&scope;] | //setindex[&scope;])[1]"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="href.target">
                 <xsl:with-param name="object" select="."/>
-                <xsl:with-param name="context" select="//index[&scope;][1]"/>
+                <xsl:with-param name="context" 
+                                select="(//index[&scope;] | //setindex[&scope;])[1]"/>
               </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
