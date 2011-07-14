@@ -203,6 +203,51 @@ the empty string.</para>
 </refsect1>
 </refentry>
 
+<!-- ================================================================== -->
+
+<refentry xml:id="idref">
+<refnamediv>
+<refname>idref</refname>
+<refpurpose>Extract IDREF from a linking element</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>The <function>idref</function> template accepts 
+any <tag>xref</tag> or universally linking element as a parameter
+and returns the local
+ID that it points to.
+If it has a <tag class="attribute">linkend</tag> attribute,
+it returns that value.
+If it has a <tag class="attribute">xlink:href</tag>, it
+returns that value, parsed as needed to extract just
+the id reference.  Otherwise it returns an empty string.</para>
+
+<src:fragment xml:id='idref.frag'>
+<xsl:template name="idref">
+  <xsl:param name="xref" select="."/>
+  <xsl:param name="linkend" select="$xref/@linkend"/>
+  <xsl:param name="xpointer">
+    <xsl:call-template name="xpointer.idref">
+      <xsl:with-param name="xpointer" select="$xref/@xlink:href"/>
+    </xsl:call-template>
+  </xsl:param> 
+
+  <xsl:choose>
+    <xsl:when test="string-length($linkend) != 0">
+      <xsl:value-of select="$linkend"/>
+    </xsl:when>
+    <xsl:when test="string-length($xpointer) != 0">
+      <xsl:value-of select="$xpointer"/>
+    </xsl:when>
+    <!-- otherwise it's a pointer to some other document -->
+  </xsl:choose>
+</xsl:template>
+</src:fragment>
+
+</refsect1>
+</refentry>
+
 
 <!-- ================================================================== -->
 
@@ -957,22 +1002,34 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
   <xsl:param name="uriB" select="''"/>
   <xsl:param name="return" select="'A'"/>
 
+  <!-- Resolve any ../ in the path -->
+  <xsl:variable name="trimmed.uriA">
+    <xsl:call-template name="strippath">
+      <xsl:with-param name="filename" select="$uriA"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="trimmed.uriB">
+    <xsl:call-template name="strippath">
+      <xsl:with-param name="filename" select="$uriB"/>
+    </xsl:call-template>
+  </xsl:variable>
+
   <xsl:choose>
-    <xsl:when test="contains($uriA, '/') and contains($uriB, '/')
-                    and substring-before($uriA, '/') = substring-before($uriB, '/')">
+    <xsl:when test="contains($trimmed.uriA, '/') and contains($trimmed.uriB, '/')                     and substring-before($trimmed.uriA, '/') = substring-before($trimmed.uriB, '/')">
       <xsl:call-template name="trim.common.uri.paths">
-        <xsl:with-param name="uriA" select="substring-after($uriA, '/')"/>
-        <xsl:with-param name="uriB" select="substring-after($uriB, '/')"/>
+        <xsl:with-param name="uriA" select="substring-after($trimmed.uriA, '/')"/>
+        <xsl:with-param name="uriB" select="substring-after($trimmed.uriB, '/')"/>
         <xsl:with-param name="return" select="$return"/>
       </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="$return = 'A'">
-          <xsl:value-of select="$uriA"/>
+          <xsl:value-of select="$trimmed.uriA"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$uriB"/>
+          <xsl:value-of select="$trimmed.uriB"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
