@@ -204,10 +204,10 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzàèéíòóúñç"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÀÈÉÍÒÓÚÑÇ"/>
 
-<dingbat key="startquote" text="“"/>
-<dingbat key="endquote" text="”"/>
-<dingbat key="nestedstartquote" text="‘"/>
-<dingbat key="nestedendquote" text="’"/>
+<dingbat key="startquote" text="«"/>
+<dingbat key="endquote" text="»"/>
+<dingbat key="nestedstartquote" text="“"/>
+<dingbat key="nestedendquote" text="”"/>
 <dingbat key="bullet" text="•"/>
 
 <context name="styles">
