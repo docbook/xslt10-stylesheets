@@ -145,10 +145,11 @@ sub makeOverlay {
     my $black = $orig->colorAllocate(0,0,0);
 
     while (@coords) {
-	while (split(/\s+/, shift @coords)) {
-	    my $conumber = shift || die "Can't parse callout data.\n";
-	    my $llcorner = shift || die "Can't parse callout data.\n";
-	    my $urcorner = shift || die "Can't parse callout data.\n";
+      my @tmp = (split(/\s+/, shift @coords));
+      while (@tmp) {
+        my $conumber = shift @tmp || die "Can't parse callout data.\n";
+        my $llcorner = shift @tmp || die "Can't parse callout data.\n";
+        my $urcorner = shift @tmp || die "Can't parse callout data.\n";
 
 	    die "Can't parse callout data.\n"
 		if ($conumber !~ /^\d+$/
