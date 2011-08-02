@@ -230,7 +230,7 @@
 <xsl:template match="*" mode="endterm">
   <!-- Process the children of the endterm element -->
   <xsl:variable name="endterm">
-    <xsl:apply-templates select="child::node()"/>
+    <xsl:apply-templates select="child::node()" mode="no.anchor.mode"/>
   </xsl:variable>
 
   <xsl:choose>
@@ -478,7 +478,7 @@
                           level="any" format="1"/>
             </xsl:when>
             <xsl:when test="local-name($entry/*[1]) = 'abbrev'">
-              <xsl:apply-templates select="$entry/*[1]"/>
+              <xsl:apply-templates select="$entry/*[1]" mode="no.anchor.mode"/>
             </xsl:when>
             <xsl:otherwise>
               <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -503,7 +503,7 @@
                       level="any" format="1"/>
         </xsl:when>
         <xsl:when test="local-name(*[1]) = 'abbrev'">
-          <xsl:apply-templates select="*[1]"/>
+          <xsl:apply-templates select="*[1]" mode="no.anchor.mode"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -534,7 +534,7 @@
     <xsl:when test="$glossentry.show.acronym = 'primary'">
       <xsl:choose>
         <xsl:when test="acronym|abbrev">
-          <xsl:apply-templates select="(acronym|abbrev)[1]"/>
+          <xsl:apply-templates select="(acronym|abbrev)[1]" mode="no.anchor.mode"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="glossterm[1]" mode="xref-to">
@@ -556,7 +556,7 @@
 </xsl:template>
 
 <xsl:template match="glossterm|firstterm" mode="xref-to">
-  <xsl:apply-templates/>
+  <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
 
 <xsl:template match="index" mode="xref-to">
@@ -692,13 +692,13 @@
 
   <xsl:choose>
     <xsl:when test="refmeta/refentrytitle">
-      <xsl:apply-templates select="refmeta/refentrytitle"/>
+      <xsl:apply-templates select="refmeta/refentrytitle" mode="no.anchor.mode"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="refnamediv/refname[1]"/>
+      <xsl:apply-templates select="refnamediv/refname[1]" mode="no.anchor.mode"/>
     </xsl:otherwise>
   </xsl:choose>
-  <xsl:apply-templates select="refmeta/manvolnum"/>
+  <xsl:apply-templates select="refmeta/manvolnum" mode="no.anchor.mode"/>
 </xsl:template>
 
 <xsl:template match="refnamediv" mode="xref-to">
@@ -756,8 +756,7 @@
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
 
-  <!-- to avoid the comma that will be generated if there are several terms -->
-  <xsl:apply-templates/>
+  <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
 
 <xsl:template match="co" mode="xref-to">
@@ -891,7 +890,7 @@
     <xsl:text>[</xsl:text>
     <xsl:choose>
       <xsl:when test="local-name(*[1]) = 'abbrev'">
-        <xsl:apply-templates select="*[1]"/>
+        <xsl:apply-templates select="*[1]" mode="no.anchor.mode"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -939,7 +938,7 @@
     <xsl:choose>
       <xsl:when test="count(child::node()) &gt; 0">
         <!-- If it has content, use it -->
-        <xsl:apply-templates/>
+        <xsl:apply-templates mode="no.anchor.mode"/>
       </xsl:when>
       <!-- else look for an endterm -->
       <xsl:when test="@endterm">
@@ -1005,7 +1004,7 @@
           <xsl:value-of select="$url"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates/>
+          <xsl:apply-templates mode="no.anchor.mode"/>
         </xsl:otherwise>
       </xsl:choose>
     </a>
@@ -1285,7 +1284,7 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="title" mode="xref">
-  <xsl:apply-templates/>
+  <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
 
 <xsl:template match="command" mode="xref">
