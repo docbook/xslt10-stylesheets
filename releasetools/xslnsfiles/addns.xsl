@@ -16,6 +16,12 @@
   <xsl:element name="{local-name()}" 
           namespace="http://docbook.org/ns/docbook">
     <xsl:copy-of select="@*"/>
+
+    <!-- Add xml:base so relative paths don't get lost -->
+    <xsl:if test="not(../..)">
+      <xsl:call-template name="add-xml-base"/>
+    </xsl:if>
+
     <xsl:apply-templates select="node()" mode="addNS"/>
   </xsl:element>
 </xsl:template>
