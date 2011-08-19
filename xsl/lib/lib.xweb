@@ -1004,13 +1004,13 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
 
   <!-- Resolve any ../ in the path -->
   <xsl:variable name="trimmed.uriA">
-    <xsl:call-template name="strippath">
+    <xsl:call-template name="resolve.path">
       <xsl:with-param name="filename" select="$uriA"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="trimmed.uriB">
-    <xsl:call-template name="strippath">
+    <xsl:call-template name="resolve.path">
       <xsl:with-param name="filename" select="$uriB"/>
     </xsl:call-template>
   </xsl:variable>
@@ -1035,6 +1035,75 @@ which would effectively move <quote>up</quote> the hierarchy.</para>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+</src:fragment>
+
+</refsect1>
+</refentry>
+
+<refentry xml:id="resolve.path">
+<refnamediv>
+<refname>resolve.path</refname>
+<refpurpose>Resolve any ../ in path, except leading ../</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>This function resolves any relative ../ parts of a file path.</para>
+
+<src:fragment xml:id='resolve.path.frag'>
+<xsl:template name="resolve.path">
+  <xsl:param name="filename" select="''"/>
+  <xsl:choose>
+    <!-- Leading .. are not eliminated -->
+    <xsl:when test="starts-with($filename, '../')">
+      <xsl:value-of select="'../'"/>
+      <xsl:call-template name="resolve.path">
+        <xsl:with-param name="filename" select="substring-after($filename, '../')"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="contains($filename, '/../')">
+      <xsl:call-template name="resolve.path">
+        <xsl:with-param name="filename">
+          <xsl:call-template name="dirname">
+            <xsl:with-param name="filename" select="substring-before($filename, '/../')"/>
+          </xsl:call-template>
+          <xsl:value-of select="substring-after($filename, '/../')"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$filename"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+</src:fragment>
+
+</refsect1>
+</refentry>
+
+<refentry xml:id="dirname">
+<refnamediv>
+<refname>dirname</refname>
+<refpurpose>Return directory part of a path</refpurpose>
+</refnamediv>
+
+<refsect1><title>Description</title>
+
+<para>This function returns the directory part of a path.</para>
+
+<src:fragment xml:id='dirname.frag'>
+
+<xsl:template name="dirname">
+  <xsl:param name="filename" select="''"/>
+  <xsl:if test="contains($filename, '/')">
+    <xsl:value-of select="substring-before($filename, '/')"/>
+    <xsl:text>/</xsl:text>
+    <xsl:call-template name="dirname">
+      <xsl:with-param name="filename" select="substring-after($filename, '/')"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
 </src:fragment>
 
 </refsect1>
@@ -1085,6 +1154,8 @@ around these functions.</para>
 <src:fragref linkend="apply-string-subst-map.frag"/>
 <src:fragref linkend="count.uri.path.depth.frag"/>
 <src:fragref linkend="trim.common.uri.paths.frag"/>
+<src:fragref linkend="resolve.path.frag"/>
+<src:fragref linkend="dirname.frag"/>
 <src:fragref linkend="trim.text.frag"/>
 
 </xsl:stylesheet>
