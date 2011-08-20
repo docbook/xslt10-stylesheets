@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="WARNING"/>
 
 <gentext key="and" text="and"/>
+<gentext key="or" text="or"/>
 <gentext key="by" text="by"/>
 <gentext key="Edited" text="Edited"/>
 <gentext key="edited" text="Edited"/>
