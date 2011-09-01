@@ -52,61 +52,47 @@
       gmail DOT com</email> and David Cramer, <email>david AT thingbag DOT
       net</email>.</para>
 
-      <para>This package also includes the following software written and
-      copyrighted by others:<itemizedlist>
+      <para>This package also includes the following software written and copyrighted by others:<itemizedlist>
           <listitem>
-            <para>Files in <filename
-            class="directory">template/common/jquery</filename> are
-            copyrighted by <ulink url="http://jquery.com/">JQuery</ulink>
-            under the MIT License. The file
-            <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus
-            Hartl under the MIT license.</para>
-
+            <para>Files in <filename class="directory">template/common/jquery</filename> are
+              copyrighted by <ulink url="http://jquery.com/">JQuery</ulink> under the MIT License.
+              The file <filename>jquery.cookie.js</filename> Copyright (c) 2006 Klaus Hartl under
+              the MIT license.</para>
             <indexterm>
               <primary>jquery</primary>
             </indexterm>
           </listitem>
-
           <listitem>
-            <para>Some files in the <filename
-            class="directory">template/content/search</filename> and <filename
-            class="directory">indexer</filename> directories were originally
-            part of N. Quaine's htmlsearch DITA plugin. The htmlsearch DITA
-            plugin is available from the <ulink
-            url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files
-            page</ulink> of the DITA-users yahoogroup. The htmlsearch plugin
-            was released under a BSD-style license. See
-            <filename>indexer/license.txt</filename> for details. <indexterm>
+            <para>Some files in the <filename class="directory">template/content/search</filename>
+              and <filename class="directory">indexer</filename> directories were originally part of
+              N. Quaine's htmlsearch DITA plugin. The htmlsearch DITA plugin is available from the
+                <ulink url="http://tech.groups.yahoo.com/group/dita-users/files/Demos/">files
+                page</ulink> of the DITA-users yahoogroup. The htmlsearch plugin was released under
+              a BSD-style license. See <filename>indexer/license.txt</filename> for details. <indexterm>
                 <primary>htmlsearch</primary>
-              </indexterm> <indexterm>
+              </indexterm>
+              <indexterm>
                 <primary>DITA</primary>
-
                 <secondary>htmlsearch plugin</secondary>
               </indexterm></para>
           </listitem>
-
           <listitem>
             <para>Stemmers from the <ulink
-            url="http://snowball.tartarus.org/texts/stemmersoverview.html">Snowball
-            project</ulink> released under a BSD license.</para>
+                url="http://snowball.tartarus.org/texts/stemmersoverview.html">Snowball
+                project</ulink> released under a BSD license.</para>
           </listitem>
-
           <listitem>
-            <para>Code from the <ulink url="http://lucene.apache.org/">Apache
-            Lucene</ulink> search engine provides support for tokenizing
-            Chinese, Japanese, and Korean content released under the Apache
-            2.0 license. </para>
+            <para>Code from the <ulink url="http://lucene.apache.org/">Apache Lucene</ulink> search
+              engine provides support for tokenizing Chinese, Japanese, and Korean content released
+              under the Apache 2.0 license. </para>
           </listitem>
-        </itemizedlist>
-		Webhelp for DocBook was developed as a <ulink url="http://socghop.appspot.com">Google Summer of Code</ulink> project. 
-	  </para>
+        </itemizedlist> Webhelp for DocBook was first developed as a <ulink
+          url="http://code.google.com/soc/">Google Summer of Code</ulink> project. </para>
     </legalnotice>
 
     <copyright>
-      <year>2008-2010</year>
-
+      <year>2008-2011</year>
       <holder>Kasun Gajasinghe</holder>
-
       <holder>David Cramer</holder>
     </copyright>
 
@@ -128,7 +114,7 @@
       <email>kasunbg AT gmail DOT com</email>
     </author>
 
-    <pubdate>August 2010</pubdate>
+    <pubdate>September 2011</pubdate>
   </bookinfo>
 
   <chapter>
@@ -158,6 +144,11 @@
             </indexterm></para>
           <itemizedlist>
             <listitem>
+              <para>Provides content search of the documentation. Shows the search results with
+                links to chunked pages, and descriptions taken from the abstract in the chapters or
+                from a para with <code>role="summary"</code></para>
+            </listitem>
+            <listitem>
               <para>Stemming support for English, French, and German. Stemming support can be added
                 for other languages by implementing a stemmer.<indexterm class="singular">
                   <primary>search</primary>
@@ -177,7 +168,7 @@
                 </indexterm></para>
             </listitem>
             <listitem>
-              <para>Search results can include brief descriptions of the target.<indexterm
+              <para>Search results can include brief descriptions of the target<indexterm
                   class="singular">
                   <primary>search</primary>
                   <secondary>descriptions</secondary>
@@ -186,7 +177,7 @@
           </itemizedlist>
         </listitem>
         <listitem>
-          <para>Table of contents pane with collapsible toc tree.</para>
+          <para>Table of contents (TOC) pane with collapsible toc tree.</para>
         </listitem>
         <listitem>
           <para>Auto-synchronization of content pane and TOC.</para>
@@ -195,12 +186,13 @@
           <para>TOC and search pane implemented without the use of a frameset.</para>
         </listitem>
         <listitem>
-          <para>An Ant <filename>build.xml</filename> file to generate output. You can use this
-            build file by importing it into your own or use it as a model for integrating this
-            output format into your own build system.</para>
+          <para>An Ant script to generate output. You can use this build file by importing it into
+            your own or use it as a model for integrating this output format into your own build
+            system.</para>
         </listitem>
-      </itemizedlist>
-      <itemizedlist>
+      </itemizedlist></para>
+    <para>Following are possible enhancements that can be applied to webhelp. You are welcome to
+      send us new suggestions, code contributions etc.<itemizedlist>
         <title>Possible future enhancements</title>
         <listitem>
           <para>Move webhelp-specific parameters and gentext strings into base DocBook stylesheets.
@@ -286,6 +278,11 @@
           <para>Consider using more advanced Lucene indexers for Chinese and Japanese than the
             CJKAnalyzer</para>
         </listitem>
+        <listitem>
+          <para>And, a lot more (with duplicates) from <ulink
+              url="http://docbook.xmlpress.net/tiki-index.php?page=WebHelp2011">WebHelp Wiki at
+              XMLPress </ulink></para>
+        </listitem>
       </itemizedlist></para>
   </chapter>
 
@@ -331,9 +328,10 @@
         </step>
 
         <step>
-          <para>If necessary, install <ulink
-          url="http://ant.apache.org/bindownload.cgi">Apache Ant</ulink> 1.6.5 
-          or higher.</para>
+          <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache
+              Ant</ulink> 1.6.5 or higher. See <ulink
+              url="http://ant.apache.org/manual/install.html">Ant installation instructions</ulink>.
+            2.x gives brief instructions.</para>
 
           <substeps>
             <step>
@@ -381,6 +379,15 @@
                 it could be adapted to work with other XSLT processors. However, when you generate
                 output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
                   <envar>CLASSPATH</envar>.</para>
+            </note></para>
+        </step>
+        <step>
+          <para>If you are using Ant 1.8.1 or higher, you may need to add
+              <filename>xercesImpl.jar</filename>, and <filename>xml-apis.jar</filename> to the
+            classpath. See <function>index</function> target in the Ant script to see how it's
+            currently added. <note>
+              <para>The way webhelp indexer get invoked is made easier after the XSL-1.76.1 release.
+              </para>
             </note></para>
         </step>
 
@@ -464,12 +471,7 @@ webhelp.indexer.language=en</programlisting></para>
             <step>
               <para>From the directory containing your newly created
               <filename>build.xml</filename> file, type <code>ant
-              webhelp</code> to build your document.</para>
-              <important>
-                <para>The Saxon 6.5 jar should <emphasis>not</emphasis> be in your
-                    <envar>CLASSPATH</envar> when you generate the webhelp output. If you have any
-                  problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
-              </important>
+              webhelp</code> to build your document.</para>              
             </step>
           </substeps>
         </step>
