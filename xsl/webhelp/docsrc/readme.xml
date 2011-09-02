@@ -3,55 +3,41 @@
 "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <book>
   <title>README: Web-based Help from DocBook XML</title>
-
   <bookinfo>
     <legalnotice>
-      <para>Permission is hereby granted, free of charge, to any person
-      obtaining a copy of this software and associated documentation files
-      (the <quote>Software</quote>), to deal in the Software without
-      restriction, including without limitation the rights to use, copy,
-      modify, merge, publish, distribute, sublicense, and/or sell copies of
-      the Software, and to permit persons to whom the Software is furnished to
-      do so, subject to the following conditions: <itemizedlist>
+      <para>Permission is hereby granted, free of charge, to any person obtaining a copy of this
+        software and associated documentation files (the <quote>Software</quote>), to deal in the
+        Software without restriction, including without limitation the rights to use, copy, modify,
+        merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+        persons to whom the Software is furnished to do so, subject to the following conditions: <itemizedlist>
           <listitem>
-            <para>The above copyright notice and this permission notice shall
-            be included in all copies or substantial portions of the
-            Software.</para>
+            <para>The above copyright notice and this permission notice shall be included in all
+              copies or substantial portions of the Software.</para>
           </listitem>
-
           <listitem>
-            <para>Except as contained in this notice, the names of individuals
-            credited with contribution to this software shall not be used in
-            advertising or otherwise to promote the sale, use or other
-            dealings in this Software without prior written authorization from
-            the individuals in question.</para>
+            <para>Except as contained in this notice, the names of individuals credited with
+              contribution to this software shall not be used in advertising or otherwise to promote
+              the sale, use or other dealings in this Software without prior written authorization
+              from the individuals in question.</para>
           </listitem>
-
           <listitem>
-            <para>Any stylesheet derived from this Software that is publicly
-            distributed will be identified with a different name and the
-            version strings in any derived Software will be changed so that no
-            possibility of confusion between the derived package and this
-            Software will exist.</para>
+            <para>Any stylesheet derived from this Software that is publicly distributed will be
+              identified with a different name and the version strings in any derived Software will
+              be changed so that no possibility of confusion between the derived package and this
+              Software will exist.</para>
           </listitem>
         </itemizedlist></para>
-
       <formalpara>
         <title>Warranty:</title>
-
-        <para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-        EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-        MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-        IN NO EVENT SHALL DAVID CRAMER, KASUN GAJASINGHE, OR ANY OTHER CONTRIBUTOR BE LIABLE FOR
-        ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-        CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-        WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
+        <para>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+          INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+          PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL DAVID CRAMER, KASUN GAJASINGHE, OR ANY
+          OTHER CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+          ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+          SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
       </formalpara>
-
-      <para>This package is maintained by Kasun Gajasinghe, <email>kasunbg AT
-      gmail DOT com</email> and David Cramer, <email>david AT thingbag DOT
-      net</email>.</para>
-
+      <para>This package is maintained by Kasun Gajasinghe, <email>kasunbg AT gmail DOT com</email>
+        and David Cramer, <email>david AT thingbag DOT net</email>.</para>
       <para>This package also includes the following software written and copyrighted by others:<itemizedlist>
           <listitem>
             <para>Files in <filename class="directory">template/common/jquery</filename> are
@@ -89,45 +75,32 @@
         </itemizedlist> Webhelp for DocBook was first developed as a <ulink
           url="http://code.google.com/soc/">Google Summer of Code</ulink> project. </para>
     </legalnotice>
-
     <copyright>
       <year>2008-2011</year>
       <holder>Kasun Gajasinghe</holder>
       <holder>David Cramer</holder>
     </copyright>
-
     <author>
       <firstname>David</firstname>
-
       <surname>Cramer</surname>
-
       <email>dcramer AT motive DOT com</email>
-
       <email>david AT thingbag DOT net</email>
     </author>
-
     <author>
       <firstname>Kasun</firstname>
-
       <surname>Gajasinghe</surname>
-
       <email>kasunbg AT gmail DOT com</email>
     </author>
-
     <pubdate>September 2011</pubdate>
   </bookinfo>
-
   <chapter>
     <chapterinfo>
       <abstract>
         <!-- This becomes the brief description that appears in search results UNLESS there's a para or phrase with role="summary". If there is, then the role="summary" text wins. -->
-
         <para>Overview of the package.</para>
       </abstract>
     </chapterinfo>
-
     <title>Introduction</title>
-
     <para>A common requirement for technical publications groups is to produce a Web-based help
       format that includes a table of contents pane, a search feature, and an index similar to what
       you get from the Microsoft HTML Help (.chm) format or Eclipse help. If the content is help for
@@ -285,91 +258,68 @@
         </listitem>
       </itemizedlist></para>
   </chapter>
-
   <chapter>
     <title>Using the package</title>
-
-    <para role="summary">The following sections describe how to install and
-    use the package on Windows.</para>
-
+    <para role="summary">The following sections describe how to install and use the package on
+      Windows.</para>
     <section>
       <sectioninfo>
         <abstract>
           <para>Installation instructions</para>
         </abstract>
       </sectioninfo>
-
       <title>Generating webhelp output</title>
-
       <procedure>
         <title>To install the package on Windows</title>
-
         <note>
-          <para>The examples in this procedure assume a Windows installation,
-          but the process is the same in other environments,
-          <foreignphrase>mutatis mutandis</foreignphrase>.</para>
+          <para>The examples in this procedure assume a Windows installation, but the process is the
+            same in other environments, <foreignphrase>mutatis mutandis</foreignphrase>.</para>
         </note>
-
         <step>
-          <para>If necessary, install <ulink
-          url="http://www.java.com/en/download/manual.jsp">Java 1.6</ulink> or
-          higher.</para>
-
+          <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java
+              1.6</ulink> or higher.</para>
           <substeps>
             <step>
-              <para>Confirm that Java is installed and in your
-              <envar>PATH</envar> by typing the following at a command prompt:
-              <programlisting>java -version</programlisting></para>
-	      <note>
-		<para>To build the indexer, you must have the JDK.</para>
-	      </note>
+              <para>Confirm that Java is installed and in your <envar>PATH</envar> by typing the
+                following at a command prompt: <programlisting>java -version</programlisting></para>
+              <note>
+                <para>To build the indexer, you must have the JDK.</para>
+              </note>
             </step>
           </substeps>
         </step>
-
         <step>
           <para>If necessary, install <ulink url="http://ant.apache.org/bindownload.cgi">Apache
               Ant</ulink> 1.6.5 or higher. See <ulink
               url="http://ant.apache.org/manual/install.html">Ant installation instructions</ulink>.
             2.x gives brief instructions.</para>
-
           <substeps>
             <step>
-              <para>Unzip the Ant binary distribution to a convenient location
-              on your system. For example: <filename>c:\Program
-              Files</filename>.</para>
+              <para>Unzip the Ant binary distribution to a convenient location on your system. For
+                example: <filename>c:\Program Files</filename>.</para>
             </step>
-
             <step>
-              <para>Set the environment variable <envar>ANT_HOME</envar> to
-              the top-level Ant directory. For example: <filename>c:\Program
-              Files\apache-ant-1.7.1</filename>. <tip>
-                  <para>See <ulink
-                  url="http://support.microsoft.com/kb/310519">How To Manage
-                  Environment Variables in Windows XP</ulink> for information
-                  on setting environment variables.</para>
+              <para>Set the environment variable <envar>ANT_HOME</envar> to the top-level Ant
+                directory. For example: <filename>c:\Program Files\apache-ant-1.7.1</filename>. <tip>
+                  <para>See <ulink url="http://support.microsoft.com/kb/310519">How To Manage
+                      Environment Variables in Windows XP</ulink> for information on setting
+                    environment variables.</para>
                 </tip></para>
             </step>
-
             <step>
-              <para>Add the Ant <filename>bin</filename> directory to your
-              <envar>PATH</envar>. For example: <filename>c:\Program
-              Files\apache-ant-1.7.1\bin</filename></para>
+              <para>Add the Ant <filename>bin</filename> directory to your <envar>PATH</envar>. For
+                example: <filename>c:\Program Files\apache-ant-1.7.1\bin</filename></para>
             </step>
-
             <step>
-              <para>Confirm that Ant is installed by typing the following at a
-              command prompt: <programlisting>ant -version</programlisting></para>
-
+              <para>Confirm that Ant is installed by typing the following at a command prompt:
+                <programlisting>ant -version</programlisting></para>
               <note>
-                <para>If you see a message about the file
-                <filename>tools.jar</filename> being missing, you can safely
-                ignore it.</para>
+                <para>If you see a message about the file <filename>tools.jar</filename> being
+                  missing, you can safely ignore it.</para>
               </note>
             </step>
           </substeps>
         </step>
-
         <step>
           <para>Download <ulink url="http://prdownloads.sourceforge.net/saxon/saxon6-5-5.zip">Saxon
               6.5.x</ulink> and unzip the distribution to a convenient location on your file system.
@@ -390,11 +340,10 @@
               </para>
             </note></para>
         </step>
-
         <step id="edit-build-properties">
-          <para>In a text editor, edit the
-          <filename>build.properties</filename> file in the webhelp directory
-          and make the changes indicated by the comments:<programlisting># The path (relative to the build.xml file) to your input document.
+          <para>In a text editor, edit the <filename>build.properties</filename> file in the webhelp
+            directory and make the changes indicated by the
+            comments:<programlisting># The path (relative to the build.xml file) to your input document.
 # To use your own input document, create a build.xml file of your own
 # and import this build.xml.
 input-xml=docsrc/readme.xml
@@ -436,7 +385,6 @@ webhelp.include.search.tab=true
 # zh=Chinese, ja=Japanese etc.  
 webhelp.indexer.language=en</programlisting></para>
         </step>
-
         <step>
           <para>Test the package by running the command <code>ant webhelp
               -Doutput-dir=test-ouput</code> at the command line in the webhelp directory. It should
@@ -449,106 +397,81 @@ webhelp.indexer.language=en</programlisting></para>
                 problems, try running ant with an empty <envar>CLASSPATH</envar>.</para>
             </important></para>
         </step>
-
         <step>
-          <para>To process your own document, simply refer to this package
-          from another <filename>build.xml</filename> in arbitrary location on
-          your system:</para>
-
+          <para>To process your own document, simply refer to this package from another
+              <filename>build.xml</filename> in arbitrary location on your system:</para>
           <substeps>
             <step>
-              <para>Create a new <filename>build.xml</filename> file that
-              defines the name of your source file, the desired output
-              directory, and imports the <filename>build.xml</filename> from
-              this package. For example: <programlisting>&lt;project&gt;
+              <para>Create a new <filename>build.xml</filename> file that defines the name of your
+                source file, the desired output directory, and imports the
+                  <filename>build.xml</filename> from this package. For example:
+                <programlisting>&lt;project&gt;
   &lt;property name="input-xml" value="<replaceable>path-to/yourfile.xml</replaceable>"/&gt;
   &lt;property name="input-images-dirs" value="<replaceable>images/** figures/** graphics/**</replaceable>"/&gt;
   &lt;property name="output-dir" value="<replaceable>path-to/desired-output-dir</replaceable>"/&gt;
   &lt;import file="<replaceable>path-to/docbook-webhelp/</replaceable>build.xml"/&gt;
 &lt;/project&gt;</programlisting></para>
             </step>
-
             <step>
-              <para>From the directory containing your newly created
-              <filename>build.xml</filename> file, type <code>ant
-              webhelp</code> to build your document.</para>              
+              <para>From the directory containing your newly created <filename>build.xml</filename>
+                file, type <code>ant webhelp</code> to build your document.</para>
             </step>
           </substeps>
         </step>
       </procedure>
     </section>
-
     <section>
       <title>Using and customizing the output</title>
-
-      <para>To deep link to a topic inside the help set, simply link directly
-      to the page. This help system uses no frameset, so nothing further is
-      necessary. <tip>
-          <para>See <ulink
-          url="http://www.sagehill.net/docbookxsl/Chunking.html">Chunking into
-          multiple HTML files</ulink> in Bob Stayton's <ulink
-          url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The
-          Complete Guide</ulink> for information on controlling output file
-          names and which files are chunked in DocBook.</para>
+      <para>To deep link to a topic inside the help set, simply link directly to the page. This help
+        system uses no frameset, so nothing further is necessary. <tip>
+          <para>See <ulink url="http://www.sagehill.net/docbookxsl/Chunking.html">Chunking into
+              multiple HTML files</ulink> in Bob Stayton's <ulink
+              url="http://www.sagehill.net/docbookxsl/index.html">DocBook XSL: The Complete
+              Guide</ulink> for information on controlling output file names and which files are
+            chunked in DocBook.</para>
         </tip></para>
-
-      <para>When you perform a search, the results can include brief
-      summaries. These are populated in one of two ways:<itemizedlist>
+      <para>When you perform a search, the results can include brief summaries. These are populated
+        in one of two ways:<itemizedlist>
           <listitem>
-            <para>By adding <sgmltag>role="summary"</sgmltag> to a
-            <sgmltag>para</sgmltag> or <sgmltag>phrase</sgmltag> in the
-            <sgmltag>chapter</sgmltag> or <sgmltag>section</sgmltag>.</para>
+            <para>By adding <sgmltag>role="summary"</sgmltag> to a <sgmltag>para</sgmltag> or
+                <sgmltag>phrase</sgmltag> in the <sgmltag>chapter</sgmltag> or
+                <sgmltag>section</sgmltag>.</para>
           </listitem>
-
           <listitem>
-            <para>By adding an <sgmltag>abstract</sgmltag> to the
-            <sgmltag>chapterinfo</sgmltag> or <sgmltag>sectioninfo</sgmltag>
-            element.</para>
+            <para>By adding an <sgmltag>abstract</sgmltag> to the <sgmltag>chapterinfo</sgmltag> or
+                <sgmltag>sectioninfo</sgmltag> element.</para>
           </listitem>
         </itemizedlist></para>
-
-      <para>To customize the look and feel of the help, study the following
-      css files:<itemizedlist>
+      <para>To customize the look and feel of the help, study the following css files:<itemizedlist>
           <listitem>
-            <para><filename>docs/common/css/positioning.css</filename>: This
-            handles the Positioning of DIVs in appropriate positions. For
-            example, it causes the <code>leftnavigation</code> div to appear
-            on the left, the header on top, and so on. Use this if you need to
-            change the relative positions or need to change the width/height
-            etc.</para>
+            <para><filename>docs/common/css/positioning.css</filename>: This handles the Positioning
+              of DIVs in appropriate positions. For example, it causes the
+                <code>leftnavigation</code> div to appear on the left, the header on top, and so on.
+              Use this if you need to change the relative positions or need to change the
+              width/height etc.</para>
           </listitem>
-
           <listitem>
             <para><filename>docs/common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css</filename>:
-            This is the theming part which adds colors and stuff. This is a
-            default theme comes with <ulink
-            url="http://jqueryui.com/download">jqueryui</ulink> unchanged. You
-            can get any theme based your interest from this. (Themes are on
-            right navigation bar.) Then replace the css theme folder
-            (theme-redmond) with it, and change the xsl to point to the new
-            css.</para>
+              This is the theming part which adds colors and stuff. This is a default theme comes
+              with <ulink url="http://jqueryui.com/download">jqueryui</ulink> unchanged. You can get
+              any theme based your interest from this. (Themes are on right navigation bar.) Then
+              replace the css theme folder (theme-redmond) with it, and change the xsl to point to
+              the new css.</para>
           </listitem>
-
           <listitem>
-            <para><filename>docs/common/jquery/treeview/jquery.treeview.css</filename>:
-            This styles the toc Tree. Generally, you don't have to edit this
-            file.</para>
+            <para><filename>docs/common/jquery/treeview/jquery.treeview.css</filename>: This styles
+              the toc Tree. Generally, you don't have to edit this file.</para>
           </listitem>
         </itemizedlist></para>
-
       <section>
         <title>Recommended Apache configurations</title>
-
-        <para>If you are serving a long document from an Apache web server, we
-        recommend you make the following additions or changes to your
-        <filename>httpd.conf</filename> or <filename>.htaccess</filename>
-        file. <remark>TODO: Explain what each thing
-        does.</remark><programlisting>AddDefaultCharSet UTF-8 # <co
-              id="AddDefaultCharSet" />
+        <para>If you are serving a long document from an Apache web server, we recommend you make
+          the following additions or changes to your <filename>httpd.conf</filename> or
+            <filename>.htaccess</filename> file. <remark>TODO: Explain what each thing
+            does.</remark><programlisting>AddDefaultCharSet UTF-8 # <co id="AddDefaultCharSet"/>
   
       # 480 weeks
-      &lt;FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"&gt; # <co
-                    id="CachingSettings" />
+      &lt;FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"&gt; # <co id="CachingSettings"/>
       Header set Cache-Control "max-age=290304000, public"
       &lt;/FilesMatch&gt;
       
@@ -563,7 +486,7 @@ webhelp.indexer.language=en</programlisting></para>
       &lt;/FilesMatch&gt;
       
       # compress text, html, javascript, css, xml:
-      AddOutputFilterByType DEFLATE text/plain # <co id="CompressSetting" />
+      AddOutputFilterByType DEFLATE text/plain # <co id="CompressSetting"/>
       AddOutputFilterByType DEFLATE text/html
       AddOutputFilterByType DEFLATE text/xml
       AddOutputFilterByType DEFLATE text/css
@@ -579,111 +502,151 @@ webhelp.indexer.language=en</programlisting></para>
       &lt;/Files&gt;
       </programlisting><calloutlist>
             <callout arearefs="AddDefaultCharSet">
-              <para>See <ulink
-              url="http://www.sagehill.net/docbookxsl/SpecialChars.html">Odd
-              characters in HTML output</ulink> in Bob Stayton's book
-              <citetitle>DocBook XSL: The Complete Guide</citetitle> for more
-              information about this setting.</para>
+              <para>See <ulink url="http://www.sagehill.net/docbookxsl/SpecialChars.html">Odd
+                  characters in HTML output</ulink> in Bob Stayton's book <citetitle>DocBook XSL:
+                  The Complete Guide</citetitle> for more information about this setting.</para>
             </callout>
-
             <callout arearefs="CachingSettings">
-              <para>These lines and those that follow cause the browser to
-              cache various resources such as bitmaps and JavaScript files.
-              Note that caching JavaScript files could cause your users to
-              have stale search indexes if you update your document since the
-              search index is stored in JavaScript files.</para>
+              <para>These lines and those that follow cause the browser to cache various resources
+                such as bitmaps and JavaScript files. Note that caching JavaScript files could cause
+                your users to have stale search indexes if you update your document since the search
+                index is stored in JavaScript files.</para>
             </callout>
-
             <callout arearefs="CompressSetting">
-              <para>These lines cause the the server to compress html, css,
-              and JavaScript files and the brower to uncompress them to
-              improve download performance.</para>
+              <para>These lines cause the the server to compress html, css, and JavaScript files and
+                the brower to uncompress them to improve download performance.</para>
             </callout>
           </calloutlist></para>
       </section>
     </section>
-
     <section>
-      <title>Building the indexer</title>
-
-      <para role="summary">To build the indexer, you must have installed the
-      JDK version 1.5 or higher and set the <envar>ANT_HOME</envar>
-      environment variable. Run <code>ant build-indexer</code> to recompile
-      <filename>nw-cms.jar</filename></para>
-
+      <title>Search indexing</title>
+      <para>Run <command>ant index</command> in the webhelp directory to index the content. Running
+          <command>ant webhelp</command> will do the indexing as part of the process as well.</para>
+      <para>Here's some detailed information about invoking the indexer. The indexing process is
+        pretty smooth, so probably you doesn't need to be concerned with following details. Webhelp
+        Ant script does all the needed bits.</para>
+      <itemizedlist>
+        <listitem>
+          <para>Following should be in the CLASSPATH.</para>
+          <para>
+            <itemizedlist>
+              <listitem>
+                <para><filename>webhelpindexer.jar</filename>,
+                    <filename>lucene-analyzers-3.0.0.jar</filename>,
+                    <filename>lucene-core-3.0.0.jar</filename> - These three are available in the
+                  extensions/ directory of docsbook-xsl-1.76.1, and is automatically fetched to the
+                  webhelp's Ant script. Go for a XSL snapshot if you can which contains the latest
+                  version http://docbook.sourceforge.net/snapshot/</para>
+              </listitem>
+              <listitem>
+                <para><filename>xercesImpl.jar</filename>, <filename> xml-apis.jar</filename> -
+                  These two comes by default with Ant 1.8.0 or prior versions. These are available
+                  under /usr/share/java directory of Linux distributions as well. Else, you may have
+                  to download, and put them to <filename>jre/lib/endorsed</filename>.</para>
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+        <listitem>
+          <para>The main class is <classname>com.nexwave.nquindexer.IndexerMain</classname> for the
+            version 1.76.1+. It's <classname>com.nexwave.nquindexer.IndexerTask</classname> for the
+            versions 1.76.0 and 1.76.1.</para>
+          <para>
+            <itemizedlist>
+              <listitem>
+                <para>Needs two parameters as command-line arguments:</para>
+                <para>
+                  <itemizedlist>
+                    <listitem>
+                      <para>The folder where the files to be indexed reside</para>
+                    </listitem>
+                  </itemizedlist>
+                  <itemizedlist>
+                    <listitem>
+                      <para>(Optional) language. defaults to "en". See build.properties for
+                        details</para>
+                    </listitem>
+                  </itemizedlist>
+                </para>
+              </listitem>
+            </itemizedlist>
+            <note>
+              <para>We have changed the way we invoke the webhelp indexer from the Ant Task to
+                  <code>indexertask</code> to direct invocation. This seems to have remove the
+                  <envar>CLASSPATH</envar> issue some people were having.</para>
+            </note>
+          </para>
+        </listitem>
+      </itemizedlist>
+      <indexterm>
+        <primary>search</primary>
+        <secondary>indexing</secondary>
+      </indexterm>
+      <indexterm>
+        <primary>indexer</primary>
+        <secondary>CLASSPATH</secondary>
+      </indexterm>
+      <para role="summary">To build the indexer, you must have installed the JDK version 1.5 or
+        higher and set the <envar>ANT_HOME</envar> environment variable. </para>
       <indexterm>
         <primary>ANT_HOME</primary>
       </indexterm>
-
       <indexterm>
         <primary>indexer</primary>
-
         <secondary>building</secondary>
       </indexterm>
     </section>
-
     <section>
       <title>Adding support for other (non-CJKV) languages</title>
-
-      <para>To support stemming for a language, the search mechanism requires
-      a stemmer implemented in both Java and JavaScript. The Java version is
-      used by the indexer and the JavaScript verison is used to stem the
-      user's input on the search form. Currently the search mechanism supports
-      stemming for English and German. In addition, Java stemmers are included
-      for the following languages. Therefore, to support these languages, you
-      only need to implement the stemmer in JavaScript and add it to the
-      template. If you do undertake this task, please consider contributing
-      the JavaScript version back to this project and to <ulink
-      url="http://snowball.tartarus.org/texts/stemmersoverview.html">Martin
-      Porter's project</ulink>.<itemizedlist>
+      <para>To support stemming for a language, the search mechanism requires a stemmer implemented
+        in both Java and JavaScript. The Java version is used by the indexer and the JavaScript
+        verison is used to stem the user's input on the search form. Currently the search mechanism
+        supports stemming for English and German. In addition, Java stemmers are included for the
+        following languages. Therefore, to support these languages, you only need to implement the
+        stemmer in JavaScript and add it to the template. If you do undertake this task, please
+        consider contributing the JavaScript version back to this project and to <ulink
+          url="http://snowball.tartarus.org/texts/stemmersoverview.html">Martin Porter's
+          project</ulink>.<itemizedlist>
           <listitem>
             <para>Danish</para>
           </listitem>
-
           <listitem>
             <para>Dutch</para>
           </listitem>
-
           <listitem>
             <para>Finnish</para>
           </listitem>
-
           <listitem>
             <para>Hungarian</para>
           </listitem>
-
           <listitem>
             <para>Italian</para>
           </listitem>
-
           <listitem>
             <para>Norwegian</para>
           </listitem>
-
           <listitem>
             <para>Portuguese</para>
           </listitem>
-
           <listitem>
             <para>Romanian</para>
           </listitem>
-
           <listitem>
             <para>Russian</para>
           </listitem>
-
           <listitem>
             <para>Spanish</para>
           </listitem>
-
           <listitem>
             <para>Swedish</para>
           </listitem>
-
           <listitem>
             <para>Turkish</para>
           </listitem>
-        </itemizedlist></para>
+        </itemizedlist><indexterm>
+          <primary>stemming</primary>
+        </indexterm></para>
     </section>
     <section>
       <title>Adding images</title>
@@ -693,8 +656,9 @@ webhelp.indexer.language=en</programlisting></para>
           </listitem>
           <listitem>
             <para>Then refer to those images from your docbook document.</para>
-            <para>Following image is from <emphasis role="bold">webhelp/template/content/images/sample.jpg</emphasis>. The
-              docbook code is shown below.</para>
+            <para>Following image is from <emphasis role="bold"
+                >webhelp/template/content/images/sample.jpg</emphasis>. The docbook code is shown
+              below.</para>
             <para>
               <figure>
                 <title>Sample Image</title>
@@ -720,61 +684,48 @@ webhelp.indexer.language=en</programlisting></para>
         </itemizedlist></para>
     </section>
   </chapter>
-
   <chapter>
     <title>Developer Docs</title>
-
     <para role="summary">This chapter provides an overview of how webhelp is implemented.</para>
-
-    <para>The table of contents and search panes are implemented as divs and
-    rendered as if they were the left pane in a frameset. As a result, the
-    page must save the state of the table of contents and the search in
-    cookies when you navigate away from a page. When you load a new page, the
-    page reads these cookies and restores the state of the table of contents
-    tree and search. The result is that the help system behaves exactly as if
-    it were a frameset.</para>
-    
+    <para>The table of contents and search panes are implemented as divs and rendered as if they
+      were the left pane in a frameset. As a result, the page must save the state of the table of
+      contents and the search in cookies when you navigate away from a page. When you load a new
+      page, the page reads these cookies and restores the state of the table of contents tree and
+      search. The result is that the help system behaves exactly as if it were a frameset.</para>
     <section>
       <title>Design</title>
       <para role="summary">An overview of webhelp page structure.</para>
-      <para>DocBook WebHelp page structure is fully built on css-based design
-        abandoning frameset structure. Overall page structure can be divided in to three main sections
-        <itemizedlist>
+      <para>DocBook WebHelp page structure is fully built on css-based design abandoning frameset
+        structure. Overall page structure can be divided in to three main sections <itemizedlist>
           <listitem>
-            <para>Header: Header is a separate Div which include company logo, 
-              navigation button(prev, next etc.), page title and heading of parent topic.</para>
+            <para>Header: Header is a separate Div which include company logo, navigation
+              button(prev, next etc.), page title and heading of parent topic.</para>
           </listitem>
-          
           <listitem>
-            <para>Content: This includes the content of the documentation. The processing of this part is
-              done by <ulink
-                url="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl">
-                DocBook XSL Chunking customization</ulink>. Few further css-styling applied from 
-              <filename>positioning.css</filename>.            
-            </para>
+            <para>Content: This includes the content of the documentation. The processing of this
+              part is done by <ulink
+                url="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"> DocBook
+                XSL Chunking customization</ulink>. Few further css-styling applied from
+                <filename>positioning.css</filename>. </para>
           </listitem>
-          
           <listitem>
-            <para>Left Navigation: This includes the table of contents and search tab. This 
-              is customized using <ulink url="http://jqueryui.com/">jquery-ui</ulink> styling.</para>
+            <para>Left Navigation: This includes the table of contents and search tab. This is
+              customized using <ulink url="http://jqueryui.com/">jquery-ui</ulink> styling.</para>
             <itemizedlist>
               <listitem>
-                <para>Tabbed Navigation: The navigation pane is organized in to two tabs. 
-                  Contents tab, and Search tab. Tabbed output is achieved using 
-                  <ulink url="http://docs.jquery.com/UI/Tabs">JQuery Tabs plugin</ulink>.
-                </para>  
+                <para>Tabbed Navigation: The navigation pane is organized in to two tabs. Contents
+                  tab, and Search tab. Tabbed output is achieved using <ulink
+                    url="http://docs.jquery.com/UI/Tabs">JQuery Tabs plugin</ulink>. </para>
               </listitem>
-              
               <listitem>
-                <para>Table of Contents (TOC) tree: When building the chunked html from the 
-                  docbook file, Table of Contents is generated as an Unordered List (a list 
-                  made from <code>&lt;ul> &lt;li></code> tags). When page loads in the browser,
-                  we apply styling to it to achieve the nice look that you see. Styling for TOC 
-                  tree is done by a JQuery UI plugin called 
-                  <ulink url="http://bassistance.de/jquery-plugins/jquery-plugin-treeview/">
-                  TreeView</ulink>. We can generate the tree easily by following javascript code:
-                  
-<programlisting>
+                <para>Table of Contents (TOC) tree: When building the chunked html from the docbook
+                  file, Table of Contents is generated as an Unordered List (a list made from
+                    <code>&lt;ul> &lt;li></code> tags). When page loads in the browser, we apply
+                  styling to it to achieve the nice look that you see. Styling for TOC tree is done
+                  by a JQuery UI plugin called <ulink
+                    url="http://bassistance.de/jquery-plugins/jquery-plugin-treeview/">
+                    TreeView</ulink>. We can generate the tree easily by following javascript code:
+                  <programlisting>
 //Generate the tree
 $("#tree").treeview({
 collapsed: true,
@@ -782,156 +733,148 @@ animated: "medium",
 control: "#sidetreecontrol",
 persist: "cookie"
 });
-</programlisting> 
-                  </para>
+</programlisting>
+                </para>
               </listitem>
-              
               <listitem>
                 <para>Search Tab: This includes the search feature.</para>
               </listitem>
-              </itemizedlist>
-            
+            </itemizedlist>
           </listitem>
-        </itemizedlist> 
-      </para>       
+        </itemizedlist>
+        <indexterm>
+          <primary>design</primary>
+        </indexterm></para>
     </section>
-    
     <section>
       <title>Search</title>
       <para role="summary">Overview design of Search mechanism.</para>
-      <para>
-        The searching is a fully client-side implementation of querying texts for
-        content searching, and no server is involved. That means when a user enters a query, 
-        it is processed by JavaScript inside the browser, and displays the matching results by
-        comparing the query with a generated 'index', which too reside in the client-side web browser.
-        
-        Mainly the search mechanism has two parts.
-        <itemizedlist>
+      <para> The searching is a fully client-side implementation of querying texts for content
+        searching, and no server is involved. That means when a user enters a query, it is processed
+        by JavaScript inside the browser, and displays the matching results by comparing the query
+        with a generated 'index', which too reside in the client-side web browser. Mainly the search
+        mechanism has two parts. <itemizedlist>
           <listitem>
-            <para>Indexing: First we need to traverse the content in the docs/content folder and index 
-              the words in it. This is done by <filename>nw-cms.jar</filename>. You can invoke it by  
-            <code>ant index</code> command from the root of webhelp of directory. You can recompile it 
-              again and build the jar file by <code>ant build-indexer</code>. Indexer has some extensive 
-              support for such as stemming of words. Indexer has extensive support for English, German,
-              French languages. By extensive support, what I meant is that those texts are stemmed
-              first, to get the root word and then indexes them. For CJK (Chinese, Japanese, Korean)
-              languages, it uses bi-gram tokenizing to break up the words. (CJK languages does not have 
-              spaces between words.)                
-            </para>
-            <para>
-              When we run <code>ant index</code>, it generates five output files:
-                <itemizedlist>
-                  <listitem>
-                    <para><filename>htmlFileList.js</filename> - This contains an array named <code>fl</code> which stores details 
-                    all the files indexed by the indexer.  
-                    </para>
-                  </listitem>
-                  <listitem>
-                    <para><filename>htmlFileInfoList.js</filename> - This includes some meta data about the indexed files in an array 
-                      named <code>fil</code>. It includes details about file name, file (html) title, a summary 
-                      of the content.Format would look like, 
-      <code>fil["4"]= "ch03.html@@@Developer Docs@@@This chapter provides an overview of how webhelp is implemented.";</code> 
-                    </para>
-                  </listitem>
-                  
-                  <listitem>
-                    <para><filename>index-*.js</filename> (Three index files) - These three files actually stores the index of the content. 
-                      Index is added to an array named <code>w</code>.</para>
-                  </listitem>
-                </itemizedlist>
-              
-            </para>
-          </listitem>
-          
-          <listitem>
-            <para>
-              Querying: Query processing happens totally in client side. Following JavaScript files handles them.
-              <itemizedlist>
+            <para>Indexing: First we need to traverse the content in the docs/content folder and
+              index the words in it. This is done by <filename>nw-cms.jar</filename>. You can invoke
+              it by <code>ant index</code> command from the root of webhelp of directory. You can
+              recompile it again and build the jar file by <code>ant build-indexer</code>. Indexer
+              has some extensive support for such as stemming of words. Indexer has extensive
+              support for English, German, French languages. By extensive support, what I meant is
+              that those texts are stemmed first, to get the root word and then indexes them. For
+              CJK (Chinese, Japanese, Korean) languages, it uses bi-gram tokenizing to break up the
+              words. (CJK languages does not have spaces between words.) </para>
+            <para> When we run <code>ant index</code>, it generates five output files: <itemizedlist>
                 <listitem>
-                  <para><filename>nwSearchFnt.js</filename> - This handles the user query and returns the search results. It does query 
-                    word tokenizing, drop unnecessary punctuations and common words, do stemming if docbook language 
-                    supports it, etc.</para>
+                  <para><filename>htmlFileList.js</filename> - This contains an array named
+                      <code>fl</code> which stores details all the files indexed by the indexer.
+                  </para>
                 </listitem>
                 <listitem>
-                  <para><filename>{$indexer-language-code}_stemmer.js</filename> - This includes the stemming library. 
-                    <filename>nwSearchFnt.js</filename> file calls <code>stemmer</code> method in this file for stemming.
-                    ex: <code>var stem = stemmer(foobar);</code>                    
+                  <para><filename>htmlFileInfoList.js</filename> - This includes some meta data
+                    about the indexed files in an array named <code>fil</code>. It includes details
+                    about file name, file (html) title, a summary of the content.Format would look
+                    like, <code>fil["4"]= "ch03.html@@@Developer Docs@@@This chapter provides an
+                      overview of how webhelp is implemented.";</code>
+                  </para>
+                </listitem>
+                <listitem>
+                  <para><filename>index-*.js</filename> (Three index files) - These three files
+                    actually stores the index of the content. Index is added to an array named
+                      <code>w</code>.</para>
+                </listitem>
+              </itemizedlist>
+            </para>
+          </listitem>
+          <listitem>
+            <para> Querying: Query processing happens totally in client side. Following JavaScript
+              files handles them. <itemizedlist>
+                <listitem>
+                  <para><filename>nwSearchFnt.js</filename> - This handles the user query and
+                    returns the search results. It does query word tokenizing, drop unnecessary
+                    punctuations and common words, do stemming if docbook language supports it,
+                    etc.</para>
+                </listitem>
+                <listitem>
+                  <para><filename>{$indexer-language-code}_stemmer.js</filename> - This includes the
+                    stemming library. <filename>nwSearchFnt.js</filename> file calls
+                      <code>stemmer</code> method in this file for stemming. ex: <code>var stem =
+                      stemmer(foobar);</code>
                   </para>
                 </listitem>
               </itemizedlist>
             </para>
           </listitem>
         </itemizedlist>
-      </para>
-      
+        <indexterm>
+          <primary>search</primary>
+        </indexterm></para>
       <section>
         <title>New Stemmers</title>
         <para role="summary">Adding new Stemmers is very simple.</para>
-        <para>Currently, only English, French, and German stemmers are integrated in to WebHelp. But the code is
-        extensible such that you can add new stemmers easily by few steps.</para>
-        <para>What you need:
-        <itemizedlist> 
-          <listitem>
-            <para>You'll need two versions of the stemmer; One written in JavaScript, and another in Java. But fortunately, 
-              Snowball contains Java stemmers for number of popular languages, and are already included with the package. 
-              You can see the full list in <ulink url="ch02s04.html">Adding support for other (non-CJKV) languages</ulink>. 
-              If your language is listed there,
-              Then you have to find javascript version of the stemmer. Generally, new stemmers are getting added in to
-              <ulink url="http://snowball.tartarus.org/otherlangs/index.html">Snowball Stemmers in other languages</ulink> location.
-              If javascript stemmer for your language is available, then download it. Else, you can write a new stemmer in 
-              JavaScript using SnowBall algorithm fairly easily. Algorithms are at  
-              <ulink url="http://snowball.tartarus.org/">Snowball</ulink>. 
-            </para>
-          </listitem>
-          <listitem>
-            <para>Then, name the JS stemmer exactly like this: <filename>{$language-code}_stemmer.js</filename>. For example, 
-              for Italian(it), name it as, <filename>it_stemmer.js</filename>. Then, copy it to the 
-              <filename>docbook-webhelp/template/content/search/stemmers/</filename> folder. (I assumed 
-              <filename>docbook-webhelp</filename> is the root folder for webhelp.)
-              <note>
-                <para>Make sure you changed the <code>webhelp.indexer.language</code> property in <filename>build.properties</filename>
-                to your language.
-                </para>
-              </note>
-
-            </para>
-            
-          </listitem>
-          <listitem>
-            <para>Now two easy changes needed for the indexer.</para>
-            <itemizedlist>
-              <listitem>
-                <para>Open <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/IndexerTask.java</filename> in 
-                  a text editor and add your language code to the <code>supportedLanguages</code> String Array. </para>
-                <example>
-                  <title>Add new language to supportedLanguages array</title>
-                  <para>
-                    change the Array from,
-<programlisting>
+        <para>Currently, only English, French, and German stemmers are integrated in to WebHelp. But
+          the code is extensible such that you can add new stemmers easily by few steps.</para>
+        <para>What you need: <itemizedlist>
+            <listitem>
+              <para>You'll need two versions of the stemmer; One written in JavaScript, and another
+                in Java. But fortunately, Snowball contains Java stemmers for number of popular
+                languages, and are already included with the package. You can see the full list in
+                  <ulink url="ch02s04.html">Adding support for other (non-CJKV) languages</ulink>.
+                If your language is listed there, Then you have to find javascript version of the
+                stemmer. Generally, new stemmers are getting added in to <ulink
+                  url="http://snowball.tartarus.org/otherlangs/index.html">Snowball Stemmers in
+                  other languages</ulink> location. If javascript stemmer for your language is
+                available, then download it. Else, you can write a new stemmer in JavaScript using
+                SnowBall algorithm fairly easily. Algorithms are at <ulink
+                  url="http://snowball.tartarus.org/">Snowball</ulink>. </para>
+            </listitem>
+            <listitem>
+              <para>Then, name the JS stemmer exactly like this:
+                  <filename>{$language-code}_stemmer.js</filename>. For example, for Italian(it),
+                name it as, <filename>it_stemmer.js</filename>. Then, copy it to the
+                  <filename>docbook-webhelp/template/content/search/stemmers/</filename> folder. (I
+                assumed <filename>docbook-webhelp</filename> is the root folder for webhelp.) <note>
+                  <para>Make sure you changed the <code>webhelp.indexer.language</code> property in
+                      <filename>build.properties</filename> to your language. </para>
+                </note>
+              </para>
+            </listitem>
+            <listitem>
+              <para>Now two easy changes needed for the indexer.</para>
+              <itemizedlist>
+                <listitem>
+                  <para>Open
+                      <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/IndexerTask.java</filename>
+                    in a text editor and add your language code to the
+                      <code>supportedLanguages</code> String Array. </para>
+                  <example>
+                    <title>Add new language to supportedLanguages array</title>
+                    <para> change the Array from,
+                      <programlisting>
 private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko"}; 
     //currently extended support available for
     // English, German, French and CJK (Chinese, Japanese, Korean) languages only.
 </programlisting>
-                    To,</para>
+                      To,</para>
                     <programlisting>
 private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <emphasis>"it"</emphasis>}; 
   //currently extended support available for
   // English, German, French, CJK (Chinese, Japanese, Korean), and Italian languages only.
                     </programlisting>
-                  
-                </example>
-              </listitem>
-              <listitem>
-                <para>
-                  Now, open <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/SaxHTMLIndex.java</filename> and 
-                  add the following line to the code where it initializes the Stemmer (Search for 
-                  <code>SnowballStemmer stemmer;</code>). Then add code to initialize the stemmer Object in your language. 
-                  It's self understandable. See the example. The class names are at: 
-                  <filename>docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</filename>.
-                </para>                  
+                  </example>
+                </listitem>
+                <listitem>
+                  <para> Now, open
+                      <filename>docbook-webhelp/indexer/src/com/nexwave/nquindexer/SaxHTMLIndex.java</filename>
+                    and add the following line to the code where it initializes the Stemmer (Search
+                    for <code>SnowballStemmer stemmer;</code>). Then add code to initialize the
+                    stemmer Object in your language. It's self understandable. See the example. The
+                    class names are at:
+                      <filename>docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</filename>. </para>
                   <example>
-                    <title>initialize correct stemmer based on the <code>webhelp.indexer.language</code> specified</title>
-<programlisting>
+                    <title>initialize correct stemmer based on the
+                        <code>webhelp.indexer.language</code> specified</title>
+                    <programlisting>
       SnowballStemmer stemmer;
       if(indexerLanguage.equalsIgnoreCase("en")){
            stemmer = new EnglishStemmer();
@@ -948,17 +891,54 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <empha
       }
 </programlisting>
                   </example>
-              </listitem>
-            </itemizedlist> 
-          </listitem>
-        </itemizedlist>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
         </para>
-        <para>That's all. Now run <code>ant build-indexer</code> to compile and build the java code. 
-          Then, run <code>ant webhelp</code> to generate the output from your docbook file. 
-          For any questions, contact us or email to the docbook mailing list 
-          <email>docbook-apps@lists.oasis-open.org</email>.
-        </para> 
-      </section>      
-    </section> 
+        <para>That's all. Now run <code>ant build-indexer</code> to compile and build the java code.
+          Then, run <code>ant webhelp</code> to generate the output from your docbook file. For any
+          questions, contact us or email to the docbook mailing list
+            <email>docbook-apps@lists.oasis-open.org</email>.</para>
+        <indexterm>
+          <primary>stemmer</primary>
+        </indexterm>
+      </section>
+    </section>
+  </chapter>
+  <chapter>
+    <chapterinfo>
+      <abstract>
+        <para>Frequently Asked Questions</para>
+      </abstract>
+    </chapterinfo>
+    <title>FAQ</title>
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Does WebHelp Indexer can index HTML transformation as well?</para>
+        </question>
+        <answer>
+          <para>Currently, it only supports XHTML transformation only. But the work is in progress
+            to add the HTML support. The reason we need XHTML is for indexing the documentation
+            content for the search. See the <ulink
+              url="http://sourceforge.net/tracker/?func=detail&amp;aid=3401185&amp;group_id=21935&amp;atid=373750"
+              >issue tracker</ulink> for this feature</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>I need more information about webhelp-indexer. Where can I find it?</para>
+        </question>
+        <answer>
+          <para>The DocBook Webhelp Indexer is based on the HTMLSearch plugin for DITA. See <ulink
+              url="http://www.helpml.com:8088/help/index.jsp?topic=/org.sample.help.doc/htmlsearch/DHSC_BestPractices_htmlsearch.html"
+              >HTMLSearch documentation </ulink> for more information.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+    <indexterm>
+      <primary>FAQ</primary>
+    </indexterm>
   </chapter>
 </book>
