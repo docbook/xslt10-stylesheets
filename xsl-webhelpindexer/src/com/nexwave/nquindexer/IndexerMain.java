@@ -51,6 +51,12 @@ public class IndexerMain {
     //Html extension
     private String htmlExtension = "html";
 
+	// OXYGEN PATCH START
+	//Table of contents file name
+	private String tocfile;
+	private boolean stem;
+	// OXYGEN PATCH END
+
     // Constructors
     public IndexerMain(String htmlDir, String indexerLanguage) {
         super();
@@ -236,6 +242,15 @@ public class IndexerMain {
         // Get the list of all html files with relative paths
         htmlFilesPathRel = nsiDoc.getListFilesRelTo(projectDir);
 
+		// OXYGEN PATCH START. 
+		// Remove the table of content file 
+		Iterator<String> iterator = htmlFilesPathRel.iterator();
+		while (iterator.hasNext()) {
+			if (iterator.next().endsWith(tocfile + "." + htmlExtension)) {
+				iterator.remove();
+			}
+		}
+		// OXYGEN PATCH END
         if (htmlFiles == null) {
             System.out.println(txt_no_files_found);
             return;
@@ -245,7 +260,7 @@ public class IndexerMain {
         }
 
         // Create the list of the existing html files (index starts at 0)
-        WriteJSFiles.WriteHTMLList(outputDir.concat(File.separator).concat(htmlList), htmlFilesPathRel);
+		WriteJSFiles.WriteHTMLList(outputDir.concat(File.separator).concat(htmlList), htmlFilesPathRel, stem);
 
         // Parse each html file to retrieve the words:
         // ------------------------------------------
@@ -269,9 +284,12 @@ public class IndexerMain {
             // parse each html files
             while (it.hasNext()) {
                 File ftemp = (File) it.next();
+				// OXYGEN PATCH START. Remove table of content file
+				if (!ftemp.getAbsolutePath().endsWith(tocfile + "." + htmlExtension)) {
+				// OXYGEN PATCH END
                 //tempMap.put(key, value);
                 //The HTML file information are added in the list of FileInfoObject
-                DocFileInfo docFileInfoTemp = new DocFileInfo(spe.runExtractData(ftemp, this.indexerLanguage));
+					DocFileInfo docFileInfoTemp = new DocFileInfo(spe.runExtractData(ftemp,indexerLanguage, stem));
 
                 ftemp = docFileInfoTemp.getFullpath();
                 String stemp = ftemp.toString();
@@ -287,7 +305,13 @@ public class IndexerMain {
                 docFileInfoTemp.setFullpath(ftemp);
 
                 filesDescription.add(docFileInfoTemp);
+				// OXYGEN PATCH START
+				// Remove the table of content file
+				} else {
+					it.remove();
             }
+				// OXYGEN PATCH END					
+			}
             /*remove empty strings from the map*/
             if (tempDico.containsKey("")) {
                 tempDico.remove("");
@@ -391,4 +415,14 @@ public class IndexerMain {
         return 0;
     }
 
+	// OXYGEN PATCH START
+	// Set table of content file
+    public void setTocfile(String tocfile) {
+    	this.tocfile = tocfile;
+    }
+    // If true then generate js files with stemming words
+    public void setStem(boolean stem) {
+    	this.stem = stem;
+    }
+   	// OXYGEN PATCH END
 }

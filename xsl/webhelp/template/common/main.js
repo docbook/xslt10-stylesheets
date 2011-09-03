@@ -67,7 +67,7 @@ $(document).ready(function() {
     if ($.cookie('ui-tabs-1') === '1') {    //search tab is visible 
         if ($.cookie('textToSearch') != undefined && $.cookie('textToSearch').length > 0) {
             document.getElementById('textToSearch').value = $.cookie('textToSearch');
-            Verifie('diaSearch_Form');
+            Verifie('searchForm');
             searchHighlight($.cookie('textToSearch'));
             $("#showHideHighlight").css("display", "block");
         }

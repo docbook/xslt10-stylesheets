@@ -24,4 +24,21 @@ public abstract class SnowballStemmer extends SnowballProgram {
          }
         return stemmedWords;
     }
+    //OXYGEN PATCH START, Stem only one word
+    /**
+     * Do stemming of a given String and returns the stemmed word.
+     * @param word Word to be stemmed
+     * @return stemmed word
+     */
+    public String doStem(String word){
+        word = word.trim().toLowerCase();
+
+        //Do the stemming of the given word.
+        setCurrent(word);   //set the word to be stemmed
+        stem();             //tell stemmer to stem
+
+        String stemmedWord = getCurrent(); //Get the stemmed word.
+        return stemmedWord;
+    }
+    //OXYGEN PATCH END    
 }

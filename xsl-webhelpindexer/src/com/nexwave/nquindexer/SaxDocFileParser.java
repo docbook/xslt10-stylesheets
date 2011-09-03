@@ -2,6 +2,9 @@ package com.nexwave.nquindexer;
 
 
 import java.io.*;
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.nexwave.nsidita.BlankRemover;
 import com.nexwave.nsidita.DocFileInfo;
@@ -27,6 +30,8 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	private boolean shortdescBool = false;
 	private int shortTagCpt = 0;
 
+	// OXYGEN PATCH. Keep the stack of elements
+	Stack<String> stack = new Stack<String>();
 	//methods
 	/**
 	 * Constructor
@@ -77,7 +82,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			sp.getXMLReader().setFeature( "http://apache.org/xml/features/nonvalidating/load-external-dtd",	false);
 
             //parse the file and also register this class for call backs
-			System.out.println("Parsing: " + file);
+			//System.out.println("Parsing: " + file);
 			
 			long start = System.currentTimeMillis();
 			//System.out.println("about to parse " + file.getName() + " >>> " + start);
@@ -115,15 +120,35 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	public void startElement(String uri, String localName, String qName, org.xml.sax.Attributes attributes) throws org.xml.sax.SAXException {
 
 		//dwc: capture current element name
+		// START OXYGEN PATCH, add current element in stack
+		stack.add(qName);
+		// END OXYGEN PATCH
 		currentElName = qName;
 
 		// dwc: Adding contents of some meta tags to the index
 		if((qName.equalsIgnoreCase("meta")) ) {
             addHeaderInfo = true;
 			String attrName = attributes.getValue("name");
-			if(attrName != null && (attrName.equalsIgnoreCase("keywords") || attrName.equalsIgnoreCase("description"))){
-				strbf.append(" ").append(attributes.getValue("content")).append(" ");
-			}
+			// OXYGEN PATCH START EXM-20576 - add scoring for keywords
+			if(attrName != null && (attrName.equalsIgnoreCase("keywords") 
+				|| attrName.equalsIgnoreCase("description")
+				|| attrName.equalsIgnoreCase("indexterms")
+				)){
+			    if (attrName.equalsIgnoreCase("keywords")) {
+			        String[] keywords = attributes.getValue("content").split(", ");
+				for (int i = 0; i < keywords.length; i++) {
+				    strbf.append(" " + keywords[i] + "@@@elem_meta_keywords@@@ ");
+				}
+			    } else if (attrName.equalsIgnoreCase("indexterms")) {
+			        String[] indexterms = attributes.getValue("content").split(", ");
+				for (int i = 0; i < indexterms.length; i++) {
+				    strbf.append(" " + indexterms[i] + "@@@elem_meta_indexterms@@@ ");
+				}
+			    } else {
+				strbf.append(" " + attributes.getValue("content") + " ");
+			    }
+			} 
+			// OXYGEN PATCH END EXM-20576 - add scoring for indexterms
 			// dwc: adding this to make the docbook <abstract> element
 			// (which becomes <meta name="description".../> in html)
 			// into the brief description that shows up in search
@@ -183,14 +208,81 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 		// index certain elements. E.g. Use this to implement a
 		// "titles only" index,
         
-		if((addContent || addHeaderInfo) && !doNotIndex && !currentElName.equalsIgnoreCase("script")){
+        //OXYGEN PATCH, gather more keywords.
+		if(
+//				(addContent || addHeaderInfo) && 
+				!doNotIndex && !currentElName.equalsIgnoreCase("script")){
 			String text = new String(ch,start,length);
+			// START OXYGEN PATCH, append a marker after each word
+			// The marker is used to compute the scoring
+			// Create the marker
+			String originalText = text.replaceAll("\\s+"," ");
+			text = text.trim();
+			// Do a minimal clean
+			text = minimalClean(text, null, null);
+			text = text.replaceAll("\\s+"," ");
+			String marker = "@@@elem_" + stack.peek() + "@@@ ";
+			Matcher m = Pattern.compile("(\\w|-|:)+").matcher(text);
+			if (text.trim().length() > 0 && m.find()) {
+			    String copyText = new String(originalText);
+			    text = duplicateWords(copyText, text, "-");
+			    copyText = new String(originalText);
+			    text = duplicateWords(copyText, text, ":");
+			    copyText = new String(originalText);
+			    text = duplicateWords(copyText, text, ".");
+				// Replace whitespace with the marker
+				text = text.replace(" ", marker);
+				text = text + marker;
+			}
+			// END OXYGEN PATCH
 			strbf.append(text);
-			if (tempVal != null) { tempVal.append(text);}
+//			System.out.println("=== marked text: " + text);
+			// START OXYGEN PATCH, append the original text
+			if (tempVal != null) { tempVal.append(originalText);}
+			// END OXYGEN PATCH
 		}
 	}
 	
+	// START OXYGEN PATCH EXM-20414
+	private String duplicateWords(String sourceText, String acumulator, String separator) {
+//	    System.out.println("sourceText: " + sourceText + "   separator: " + separator);
+	    int index = sourceText.indexOf(separator);
+	    while (index >= 0) {
+		int indexSpaceAfter = sourceText.indexOf(" ", index);
+		String substring = null;
+		if (indexSpaceAfter >= 0) {
+		    substring = sourceText.substring(0, indexSpaceAfter);
+		    sourceText = sourceText.substring(indexSpaceAfter);
+		} else {
+		    substring = sourceText;
+		    sourceText = "";
+		}
+		
+		int indexSpaceBefore = substring.lastIndexOf(" ");
+		if (indexSpaceBefore >= 0) {
+		    substring = substring.substring(indexSpaceBefore + 1);
+		}
+		if (separator.indexOf(".") >= 0) {
+		    separator = separator.replaceAll("\\.", "\\\\.");
+//		    System.out.println("++++++++++ separator: " + separator);
+		}
+		String[] tokens = substring.split(separator);
+
+		for (int i = 0; i < tokens.length; i++) {
+		    acumulator = acumulator + " " + tokens[i];
+//		    System.out.println("added token: " + tokens[i] + "  new text: " + acumulator);
+		}
+		
+		index = sourceText.indexOf(separator);
+	    }
+	    
+	    return acumulator;
+	}
+	// END OXYGEN PATCH EXM-20414
 	public void endElement(String uri, String localName, String qName) throws org.xml.sax.SAXException {
+		// START OXYGEN PATCH, remove element from stack
+		stack.pop();
+		// END OXYGEN PATCH
 		if(qName.equalsIgnoreCase("title")) {
 			//add it to the list
 			//myEmpls.add(tempEmp);
@@ -200,7 +292,10 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 		else if (shortdescBool) {
 			shortTagCpt --;
 			if (shortTagCpt == 0) {
-			fileDesc.setShortdesc(BlankRemover.rmWhiteSpace(tempVal.toString().replace('\n', ' ')));
+				String shortdesc = tempVal.toString().replace('\n', ' ');
+				if(shortdesc.trim().length() > 0) {
+					fileDesc.setShortdesc(BlankRemover.rmWhiteSpace(shortdesc));
+				}
 			tempVal = null;
 			shortdescBool = false;
 			}
@@ -309,4 +404,40 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 
 	}
 
+	// START OXYGEN PATCH, moved from subclass
+	protected String minimalClean(String str, StringBuffer tempStrBuf, StringBuffer tempCharBuf) {
+		String tempPunctuation = null;
+		if (tempCharBuf!= null) {
+			tempPunctuation = new String(tempCharBuf);
+		}
+
+		str = str.replaceAll("\\s+", " ");
+		str = str.replaceAll("->", " ");
+		str = str.replaceAll(IndexerConstants.EUPUNCTUATION1, " ");
+		str = str.replaceAll(IndexerConstants.EUPUNCTUATION2, " ");
+		str = str.replaceAll(IndexerConstants.JPPUNCTUATION1, " ");
+		str = str.replaceAll(IndexerConstants.JPPUNCTUATION2, " ");
+		str = str.replaceAll(IndexerConstants.JPPUNCTUATION3, " ");
+		if (tempPunctuation != null && tempPunctuation.length() > 0)
+		{
+			str = str.replaceAll(tempPunctuation, " ");
+		}
+
+		if (tempStrBuf != null) {
+			//remove useless words
+			str = str.replaceAll(tempStrBuf.toString(), " ");
+		}
+
+		// Redo punctuation after removing some words: (TODO: useful?)
+		str = str.replaceAll(IndexerConstants.EUPUNCTUATION1, " ");
+		str = str.replaceAll(IndexerConstants.EUPUNCTUATION2, " ");
+		str = str.replaceAll(IndexerConstants.JPPUNCTUATION1, " ");
+		str = str.replaceAll(IndexerConstants.JPPUNCTUATION2, " ");
+		str = str.replaceAll(IndexerConstants.JPPUNCTUATION3, " ");
+		if (tempPunctuation != null && tempPunctuation.length() > 0)
+		{
+			str = str.replaceAll(tempPunctuation, " ");
+		}		return str;
+	}
+	// END OXYGEN PATCH
 }

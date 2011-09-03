@@ -107,3 +107,38 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
 .title, div.toc>p{
 	font-weight: bold;
 	}	
+
+/* OXYGEN ADDITION FOR SEARCH RESULT RATING */
+
+#star ul.star { 
+    LIST-STYLE: none; 
+    MARGIN: 0; 
+    PADDING: 0; 
+    WIDTH: 85px;
+    /* was 100 */ 
+    HEIGHT: 20px;
+    LEFT: 1px; 
+    TOP: -5px; 
+    POSITION: relative; 
+    FLOAT: right; 
+    BACKGROUND: url('../images/starsSmall.png') repeat-x 0 -25px;
+}
+#star li { 
+    PADDING: 0; 
+    MARGIN: 0; 
+    FLOAT: right; 
+    DISPLAY: block; 
+    WIDTH: 85px;
+    /* was 100 */
+    HEIGHT: 20px; 
+    TEXT-DECORATION: none; 
+    text-indent: -9000px; 
+    Z-INDEX: 20; 
+    POSITION: absolute; 
+    PADDING: 0; 
+}
+#star li.curr { 
+    BACKGROUND: url('../images/starsSmall.png') left 25px; 
+    FONT-SIZE: 1px; 
+}
+ 
