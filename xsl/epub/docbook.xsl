@@ -1271,8 +1271,7 @@
   
   <!-- OVERRIDES xhtml-1_1/chunk-common.xsl   -->
   <!-- make a bibliography always a chunk -->
-  <xsl:template name="chunk"
-                priority="1">       
+  <xsl:template name="chunk">       
     <xsl:param name="node" select="."/>
     <!-- returns 1 if $node is a chunk -->
 
