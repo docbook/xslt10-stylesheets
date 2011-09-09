@@ -21,10 +21,34 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     overflow: auto;
     position: fixed;
     height: auto;
-    top: 90px;
+    top: 92px;
     bottom: 0;
     left: 0;
     width: 280px;
+    z-index: 1500;
+    border-right:2px solid #CCCCCC;
+}
+
+#treeDiv {
+    overflow: auto;
+    position: fixed;
+    height: auto;
+    top: 140px;
+    bottom: 0;
+    left: 0;
+    width: 243px;
+    z-index: 1500;
+    border-right:2px solid #CCCCCC;
+}
+
+#searchDiv {
+    overflow: auto;
+    position: fixed;
+    height: auto;
+    top: 140px;
+    bottom: 0;
+    left: 0;
+    width: 243px;
     z-index: 1500;
     border-right:2px solid #CCCCCC;
 }
@@ -141,4 +165,4 @@ h2 { font: bold 14pt Arial, Helvetica, geneva; }
     BACKGROUND: url('../images/starsSmall.png') left 25px; 
     FONT-SIZE: 1px; 
 }
- 
+
