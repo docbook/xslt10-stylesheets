@@ -117,9 +117,14 @@
             </indexterm></para>
           <itemizedlist>
             <listitem>
-              <para>Provides content search of the documentation. Shows the search results with
+              <para>Provides full content search of the documentation. Shows the search results with
                 links to chunked pages, and descriptions taken from the abstract in the chapters or
                 from a para with <code>role="summary"</code></para>
+            </listitem>
+            <listitem>
+              <para>Word scoring/rating - For a particular word, the pages are weighted according to
+                how much that word appears in it, is it bold or not, is in index terms etc. The
+                score out of 5 is shown by small colored boxes after each search-result</para>
             </listitem>
             <listitem>
               <para>Stemming support for English, French, and German. Stemming support can be added
@@ -130,7 +135,7 @@
             </listitem>
             <listitem>
               <para>Support for Chinese, Japanese, and Korean using code from the Lucene search
-                engine. </para>
+                engine </para>
             </listitem>
             <listitem>
               <para>Search highlighting shows where the searched for term appears in the results.
@@ -749,26 +754,31 @@ persist: "cookie"
     <section>
       <title>Search</title>
       <para role="summary">Overview design of Search mechanism.</para>
-      <para> The searching is a fully client-side implementation of querying texts for content
-        searching, and no server is involved. That means when a user enters a query, it is processed
-        by JavaScript inside the browser, and displays the matching results by comparing the query
-        with a generated 'index', which too reside in the client-side web browser. Mainly the search
-        mechanism has two parts. <itemizedlist>
+      <para>The serching is a fully client-side implementation of querying texts for content
+        searching. There's no server involved. So, the search queries by the users are processed by
+        JavaScript inside the browser, and displays the matching results by comparing the query with
+        a simplified 'index' that too resides in JavaScript. Mainly the search mechanism has two
+        parts. <itemizedlist>
           <listitem>
             <para>Indexing: First we need to traverse the content in the docs/content folder and
-              index the words in it. This is done by <filename>nw-cms.jar</filename>. You can invoke
-              it by <code>ant index</code> command from the root of webhelp of directory. You can
-              recompile it again and build the jar file by <code>ant build-indexer</code>. Indexer
-              has some extensive support for such as stemming of words. Indexer has extensive
-              support for English, German, French languages. By extensive support, what I meant is
-              that those texts are stemmed first, to get the root word and then indexes them. For
-              CJK (Chinese, Japanese, Korean) languages, it uses bi-gram tokenizing to break up the
-              words. (CJK languages does not have spaces between words.) </para>
-            <para> When we run <code>ant index</code>, it generates five output files: <itemizedlist>
+              index the words in it. This is done by <filename>webhelpindexer.jar</filename> in
+                <filename>xsl/extentions/</filename> folder. You can invoke it by <code>ant
+                index</code> command from the root of webhelp of directory. The source of
+              webhelpindexer is now moved to it's own location at
+                <filename>trunk/xsl-webhelpindexer/</filename>. Checkout the Docbook trunk svn
+              directory to get this source. Then, do your changes and recompile it by simply running
+                <code>ant</code> command. My assumption is that it can be opened by Netbeans IDE by
+              one click. Or if you are using IntelliJ Idea, you can simply create a new project from
+              existing sources. Indexer has extensive support for features such as word scoring,
+              stemming of words, and support for languages English, German, French. For CJK
+              (Chinese, Japanese, Korean) languages, it uses bi-gram tokenizing to break up the
+              words (since CJK languages does not have spaces between words).</para>
+            <para> When <code>ant index</code> is run, it generates five output files: <itemizedlist>
                 <listitem>
                   <para><filename>htmlFileList.js</filename> - This contains an array named
                       <code>fl</code> which stores details all the files indexed by the indexer.
-                  </para>
+                    Further, the doStem in it defines whether stemming should be used. It defaults
+                    to false.</para>
                 </listitem>
                 <listitem>
                   <para><filename>htmlFileInfoList.js</filename> - This includes some meta data
@@ -783,8 +793,7 @@ persist: "cookie"
                     actually stores the index of the content. Index is added to an array named
                       <code>w</code>.</para>
                 </listitem>
-              </itemizedlist>
-            </para>
+              </itemizedlist></para>
           </listitem>
           <listitem>
             <para> Querying: Query processing happens totally in client side. Following JavaScript
@@ -872,7 +881,7 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <empha
                     class names are at:
                       <filename>docbook-webhelp/indexer/src/com/nexwave/stemmer/snowball/ext/</filename>. </para>
                   <example>
-                    <title>initialize correct stemmer based on the
+                    <title>Initialize correct stemmer based on the
                         <code>webhelp.indexer.language</code> specified</title>
                     <programlisting>
       SnowballStemmer stemmer;
