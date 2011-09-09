@@ -92,14 +92,17 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 	}
 	/**
 	 * Constructor
-	 */
+     * @param cleanUpStrings
+     */
 	public SaxHTMLIndex (ArrayList <String> cleanUpStrings) {
 		super();
 		cleanUpList = cleanUpStrings;
 	}
 	/**
 	 * Constructor
-	 */
+     * @param cleanUpStrings
+     * @param cleanUpChars
+     */
 	public SaxHTMLIndex (ArrayList <String> cleanUpStrings, ArrayList <String> cleanUpChars) {
 		super();
 		cleanUpList = cleanUpStrings;
@@ -108,7 +111,8 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 
 	/**
 	 * Initializer
-	 */
+     * @param tempMap
+     */
 	public int init(Map<String,String> tempMap){
 		tempDico = tempMap;
 		return 0;
@@ -164,17 +168,17 @@ public class SaxHTMLIndex extends SaxDocFileParser{
                     tokens.add(term);
                     WordAndScoring ws = new WordAndScoring(term, term, 1);
                     boolean found = false;
-    				for (int i = 0; i < wsList.size(); i++) { 
-    					// If the stem of the current word is already in list, 
-    					// do not add the word in the list, just recompute scoring
-    					if (wsList.get(i).getStem().equals(ws.getStem())) {
-    						found = true;
-    						int scoring = wsList.get(i).getScoring();
-    						wsList.get(i).setScoring(scoring + ws.getScoring());
-    						break;
-                }
+                    for (WordAndScoring aWsList : wsList) {
+                        // If the stem of the current word is already in list,
+                        // do not add the word in the list, just recompute scoring
+                        if (aWsList.getStem().equals(ws.getStem())) {
+                            found = true;
+                            int scoring = aWsList.getScoring();
+                            aWsList.setScoring(scoring + ws.getScoring());
+                            break;
+                        }
 
-					}
+                    }
     				if (!found) {
     					wsList.add(ws);
     				}
@@ -199,7 +203,7 @@ public class SaxHTMLIndex extends SaxDocFileParser{
             } else if (indexerLanguage.equalsIgnoreCase("fr")){
                 stemmer= new FrenchStemmer();
             } else {
-                stemmer = null;//Languages which stemming is not yet supproted.So, No stemmers will be used.
+                stemmer = null;//Languages which stemming is not yet supported.So, No stemmers will be used.
             }
             // START OXYGEN PATCH
             wsList = new ArrayList<WordAndScoring>();
@@ -210,16 +214,16 @@ public class SaxHTMLIndex extends SaxDocFileParser{
     			WordAndScoring ws = getWordAndScoring(token, stemmer, stem);
     			if (ws != null) {
     				boolean found = false;
-    				for (int i = 0; i < wsList.size(); i++) { 
-    					// If the stem of the current word is already in list, 
-    					// do not add the word in the list, just recompute scoring
-    					if (wsList.get(i).getStem().equals(ws.getStem())) {
-    						found = true;
-    						int scoring = wsList.get(i).getScoring();
-    						wsList.get(i).setScoring(scoring + ws.getScoring());
-    						break;
-    					}
-					}
+                    for (WordAndScoring aWsList : wsList) {
+                        // If the stem of the current word is already in list,
+                        // do not add the word in the list, just recompute scoring
+                        if (aWsList.getStem().equals(ws.getStem())) {
+                            found = true;
+                            int scoring = aWsList.getScoring();
+                            aWsList.setScoring(scoring + ws.getScoring());
+                            break;
+                        }
+                    }
     				if (!found) {
     					wsList.add(ws);
     				}
@@ -256,10 +260,11 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         		;
         		//System.out.println("temp="+s+"="+temp);
         		tempDico.put(s.getStem(), temp);
-        	}else {
-        		String temp = Integer.toString(i).concat("*").concat(Integer.toString(s.getScoring()));
-        		tempDico.put(s.getStem(), temp);
-        	}
+        	}else if (s != null) {
+                    String temp = null;
+                    temp = Integer.toString(i).concat("*").concat(Integer.toString(s.getScoring()));
+                    tempDico.put(s.getStem(), temp);
+            }
         	// END OXYGEN PATCH
         }
 
@@ -363,17 +368,15 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 		}else {
 			// Clean-up using the props files
 			tempStrBuf.append("\\ba\\b");
-			Iterator it = cleanUpList.iterator();
-			while (it.hasNext()){
-				tempStrBuf.append("|\\b").append(it.next()).append("\\b");
-			}
+            for (String aCleanUp : cleanUpList) {
+                tempStrBuf.append("|\\b").append(aCleanUp ).append("\\b");
+            }
 		}
 		if ((cleanUpPunctuation != null) && (!cleanUpPunctuation.isEmpty())){
 			tempCharBuf.append("\\u3002");
-			Iterator it = cleanUpPunctuation.iterator();
-			while (it.hasNext()){
-				tempCharBuf.append("|"+it.next());
-			}
+            for (String aCleanUpPunctuation : cleanUpPunctuation) {
+                tempCharBuf.append("|").append(aCleanUpPunctuation);
+            }
 		}
 
 		str = minimalClean(str, tempStrBuf, tempCharBuf);

@@ -13,34 +13,34 @@ public class DirList {
 	String [] topicFiles = null;
    	public static final int MAX_DEPTH = 10;
     
-  public DirList(File inputdir, String regex, int depth) {
+  public DirList(File inputDir, String regexp, int depth) {
     try {
       
       listFiles = new ArrayList<File> ();
     	
     // not yet implemented	
-      if(regex == null) {
-          for (File f: inputdir.listFiles()) {
+      if(regexp == null) {
+          for (File f: inputDir.listFiles()) {
         	  if (!f.isDirectory()){
         		  listFiles.add(f);
         	  }else {
         		  if (depth < MAX_DEPTH ) {
-           			DirList nsiDoc = new DirList(f,regex,depth+1);
+           			DirList nsiDoc = new DirList(f,regexp,depth+1);
          			listFiles.addAll(new ArrayList<File>(nsiDoc.getListFiles()));
         		  }
         	  }
           }
       }
       else {
-          for (File f: inputdir.listFiles(new DirFilter(regex))) {
+          for (File f: inputDir.listFiles(new DirFilter(regexp))) {
         	  listFiles.add(f);
           }
 // Patch from Oxygen to address problem where directories
 // containing . were not traversed.
-          for (File f: inputdir.listFiles(new DirFilter(".*"))) {
+          for (File f: inputDir.listFiles(new DirFilter(".*"))) {
         	  if (f.isDirectory()){
         		  if (depth < MAX_DEPTH ) {
-        			DirList nsiDoc = new DirList(f,regex, depth+1);
+        			DirList nsiDoc = new DirList(f,regexp, depth+1);
          			listFiles.addAll(new ArrayList<File>(nsiDoc.getListFiles()));
         		  }
         	  }

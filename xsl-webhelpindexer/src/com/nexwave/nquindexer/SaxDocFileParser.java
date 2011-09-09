@@ -13,14 +13,14 @@ import org.xml.sax.SAXParseException;
 
 /**
  * Generic parser for populating a DocFileInfo object.
- * 
+ *
  * @version 2.0 2010-08-14
- * 
+ *
  * @author N. Quaine
  * @author Kasun Gajasinghe
  */
 public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
-	
+
 	//members
 	protected DocFileInfo fileDesc = null;
 	protected String projectDir = null;
@@ -39,7 +39,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	public SaxDocFileParser () {
 
 	}
-	
+
 	/**
 	 * Initializer
 	 */
@@ -48,16 +48,16 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	}
 
 	/**
-	 * Parses the file to extract all the words for indexing and 
-	 * some data characterizing the file. 
-	 * @param file contains the fullpath of the document to parse  
+	 * Parses the file to extract all the words for indexing and
+	 * some data characterizing the file.
+	 * @param file contains the fullpath of the document to parse
 	 * @return a DitaFileInfo object filled with data describing the file
 	 */
 	public DocFileInfo runExtractData(File file) {
 		//initialization
 		fileDesc = new DocFileInfo(file);
 		strbf = new StringBuffer("");
-		
+
 		// Fill strbf by parsing the file
 		parseDocument(file);
 
@@ -67,7 +67,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	public void parseDocument (File file) {
 //        System.out.println(System.getProperty("org.xml.sax.driver"));
 //        System.out.println(System.getProperty("javax.xml.parsers.SAXParserFactory"));
-        
+
 		//get a factory
 		javax.xml.parsers.SAXParserFactory spf = javax.xml.parsers.SAXParserFactory.newInstance();
 
@@ -83,7 +83,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 
             //parse the file and also register this class for call backs
 			//System.out.println("Parsing: " + file);
-			
+
 			long start = System.currentTimeMillis();
 			//System.out.println("about to parse " + file.getName() + " >>> " + start);
 
@@ -93,25 +93,25 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 				is.setSystemId(file.toURI().toURL().toString());
 			    sp.parse(is, this);
 			}
-			
+
 			long finish = System.currentTimeMillis();
 			//System.out.println("done parsing " + file.getName() + " >>> " + finish);
 			//System.out.println("time = " + (finish - start) + " milliseconds");
-			
+
 		}catch(SAXParseException spe){
             System.out.println("SaxParseException: The indexing file contains incorrect xml syntax.");
             spe.printStackTrace();
         }catch(org.xml.sax.SAXException se) {
 			System.out.println("SaxException. You may need to include Xerces in your classpath. " +
                     "See documentation for details");
-			se.printStackTrace(); 
+			se.printStackTrace();
 		}catch(javax.xml.parsers.ParserConfigurationException pce) {
 			pce.printStackTrace();
 		}catch (IOException ie) {
 			ie.printStackTrace();
 		}
 	}
-    
+
     private boolean addContent = false;
     private boolean addHeaderInfo = false;
     private boolean doNotIndex=false;
@@ -130,24 +130,24 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
             addHeaderInfo = true;
 			String attrName = attributes.getValue("name");
 			// OXYGEN PATCH START EXM-20576 - add scoring for keywords
-			if(attrName != null && (attrName.equalsIgnoreCase("keywords") 
+			if(attrName != null && (attrName.equalsIgnoreCase("keywords")
 				|| attrName.equalsIgnoreCase("description")
 				|| attrName.equalsIgnoreCase("indexterms")
 				)){
 			    if (attrName.equalsIgnoreCase("keywords")) {
 			        String[] keywords = attributes.getValue("content").split(", ");
-				for (int i = 0; i < keywords.length; i++) {
-				    strbf.append(" " + keywords[i] + "@@@elem_meta_keywords@@@ ");
-				}
+                    for (String keyword : keywords) {
+                        strbf.append(" ").append(keyword).append("@@@elem_meta_keywords@@@ ");
+                    }
 			    } else if (attrName.equalsIgnoreCase("indexterms")) {
 			        String[] indexterms = attributes.getValue("content").split(", ");
-				for (int i = 0; i < indexterms.length; i++) {
-				    strbf.append(" " + indexterms[i] + "@@@elem_meta_indexterms@@@ ");
-				}
+                    for (String indexterm : indexterms) {
+                        strbf.append(" ").append(indexterm).append("@@@elem_meta_indexterms@@@ ");
+                    }
 			    } else {
-				strbf.append(" " + attributes.getValue("content") + " ");
+				strbf.append(" ").append(attributes.getValue("content") ).append(" ");
 			    }
-			} 
+			}
 			// OXYGEN PATCH END EXM-20576 - add scoring for indexterms
 			// dwc: adding this to make the docbook <abstract> element
 			// (which becomes <meta name="description".../> in html)
@@ -163,13 +163,9 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			tempVal = new StringBuffer();
 		}
 
-        if(qName.equalsIgnoreCase("meta") || qName.equalsIgnoreCase("title") || qName.equalsIgnoreCase("shortdesc")){
-            addHeaderInfo = true;
-        } else {
-            addHeaderInfo = false;
-        }
+        addHeaderInfo = qName.equalsIgnoreCase("meta") || qName.equalsIgnoreCase("title") || qName.equalsIgnoreCase("shortdesc");
 
-        String elementId = attributes.getValue("id"); 
+        String elementId = attributes.getValue("id");
         if("content".equals(elementId)) addContent = true;
 
         if(addContent) {
@@ -193,11 +189,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
             }
 
             String accessKey = attributes.getValue("accesskey");
-            if(accessKey!=null && ("n".equals(accessKey) || "p".equals(accessKey) || "h".equals(accessKey))){
-                doNotIndex = true;
-            } else {
-                doNotIndex = false;
-            }
+            doNotIndex = accessKey != null && ("n".equals(accessKey) || "p".equals(accessKey) || "h".equals(accessKey));
         }
 		strbf.append(" ");
 	}
@@ -207,7 +199,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 
 		// index certain elements. E.g. Use this to implement a
 		// "titles only" index,
-        
+
         //OXYGEN PATCH, gather more keywords.
 		if(
 //				(addContent || addHeaderInfo) && 
@@ -242,7 +234,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			// END OXYGEN PATCH
 		}
 	}
-	
+
 	// START OXYGEN PATCH EXM-20414
 	private String duplicateWords(String sourceText, String acumulator, String separator) {
 //	    System.out.println("sourceText: " + sourceText + "   separator: " + separator);
@@ -257,7 +249,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 		    substring = sourceText;
 		    sourceText = "";
 		}
-		
+
 		int indexSpaceBefore = substring.lastIndexOf(" ");
 		if (indexSpaceBefore >= 0) {
 		    substring = substring.substring(indexSpaceBefore + 1);
@@ -268,14 +260,14 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 		}
 		String[] tokens = substring.split(separator);
 
-		for (int i = 0; i < tokens.length; i++) {
-		    acumulator = acumulator + " " + tokens[i];
+            for (String token : tokens) {
+                acumulator = acumulator + " " + token;
 //		    System.out.println("added token: " + tokens[i] + "  new text: " + acumulator);
-		}
-		
-		index = sourceText.indexOf(separator);
+            }
+
+            index = sourceText.indexOf(separator);
 	    }
-	    
+
 	    return acumulator;
 	}
 	// END OXYGEN PATCH EXM-20414
@@ -300,23 +292,23 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 			shortdescBool = false;
 			}
 		}
-        
+
         if(qName.equalsIgnoreCase("div") && addContent){
             divCount--;
             if (divCount == 0) {
                 addContent = false;
             }
-        } 
+        }
 	}
-	
+
 	public void processingInstruction(String target, String data) throws org.xml.sax.SAXException {
 		//do nothing
-		
+
 	}
-	
-	/*public InputSource resolveEntity(String publicId, String systemId) 
+
+	/*public InputSource resolveEntity(String publicId, String systemId)
 		throws IOException, SAXException {
-		
+
 		// use the catalog to solve the doctype
 		System.out.println("entities " + publicId + systemId);
 		return null;
@@ -325,13 +317,13 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 	throws org.xml.sax.SAXException, IOException {
 		//System.out.println("Entities " + publicId + "and" + systemId);
 		// use dita ot (dost.jar) for resolving dtd paths using the calatog
-		
+
 	return null;
 	}
 
     /**
-     * Removes the validation in html files, such as xml version and DTDs  
-     * @param file
+     * Removes the validation in html files, such as xml version and DTDs
+     * @param file the html file
      * @return int: returns 0 if no IOException occurs, else 1.
      */
 	public String RemoveValidationPI (File file) {
@@ -348,36 +340,35 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 				int i1, i2;
 				boolean ok = true;
 				try {
-	
+
 					String line = br.readLine();
-	
-			        
+
 					if (line == null) {
 						break;
 					}
 					//ok = line.matches("(.)*\\x26nbsp\\x3B(.)*");
-					
+
 					line = line.replaceAll("\\x26nbsp\\x3B", "&#160;");
-	
+
 					if (!line.contains("<!DOCTYPE html PUBLIC")) {
 						//dwc: This doesn't really apply to me. I already omit the xml pi for other reasons.
 						if (line.contains("<?xml version")) {
 							line = line.replaceAll("\\x3C\\x3Fxml[^\\x3E]*\\x3F\\x3E","\n");
 						}
 
-                        sb.append(line + "\n");
-					} else  
+                        sb.append(line).append("\n");
+					} else
 					{
 						//dwc: What is this trying to do? Nuke the DOCTYPE? Why?
 						i1 = line.indexOf("<!DOCTYPE");
 						i2 = line.indexOf(">", i1);
 						while (i2 < 0) {
-							
+
 							line = line.concat(br.readLine());
 							i2 = line.indexOf(">", i1);
 						}
 						String temp = line.substring(i1, i2);
-						
+
 						//ok = line.matches("(.)*\\x3C\\x21DOCTYPE[^\\x3E]*\\x3E(.)*");
 						if (line.contains("<?xml version")) {
 							line = line.replaceAll("\\x3C\\x3Fxml[^\\x3E]*\\x3F\\x3E","\n");
@@ -399,7 +390,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 		{
 			return null;
 		}
-		
+
 		return sb.toString(); // return status
 
 	}

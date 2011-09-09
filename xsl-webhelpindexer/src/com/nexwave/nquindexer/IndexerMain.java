@@ -66,7 +66,7 @@ public class IndexerMain {
 
     /**
      * The content language defaults to English "en" 
-     * @param htmlDir The directory where html files resides.
+     * @param htmlDir The directory where html files reside.
      */
     public IndexerMain(String htmlDir) {
         super();
@@ -338,7 +338,6 @@ public class IndexerMain {
                 System.out.println("Delay = " + diff / 1000 + " seconds");
         } else {
             System.out.println(txt_wrong_dita_basedir);
-            return;
         }
     }
 
