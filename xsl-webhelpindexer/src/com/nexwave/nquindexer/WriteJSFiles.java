@@ -18,9 +18,9 @@ import com.nexwave.nsidita.DocFileInfo;
  * Outputs the js files with:
  * - the list of html files and their description
  * - the words retrieved from the html files and their location
- *
+ * <p/>
  * 20110803: Adding improvements from Radu/Oxygen.
- * 
+ *
  * @author N. Quaine
  * @author Kasun Gajasinghe
  * @version 2.0 2010-08-13
@@ -30,12 +30,14 @@ public class WriteJSFiles {
     private static String txt_VM_encoding_not_supported = "This VM does not support the specified encoding.";
     private static String txt_indices_location = "The created index files are located in ";
 
-	/** Create a javascript array listing the html files with their paths relative to the project root
-     * @param fileO path and name of the file in which to output the list of html files
-     * @param list  of the html files, relative to the doc root directory
-	 * @param doStem If true then js files will generate words stemmed
+    /**
+     * Create a javascript array listing the html files with their paths relative to the project root
+     *
+     * @param fileO  path and name of the file in which to output the list of html files
+     * @param list   of the html files, relative to the doc root directory
+     * @param doStem If true then js files will generate words stemmed
      */
-	public static void WriteHTMLList (String fileO,ArrayList<String> list, boolean doStem) {
+    public static void WriteHTMLList(String fileO, ArrayList<String> list, boolean doStem) {
         int i = 0;
         Iterator it;
 
@@ -64,7 +66,7 @@ public class WriteJSFiles {
                 i++;
             }
 
-	        out.write("var doStem = " + doStem + "");
+            out.write("var doStem = " + doStem + "");
             out.flush();  // Don't forget to flush!
             out.close();
 //	        System.out.println("the array of html is in " +	fileO);
@@ -79,8 +81,10 @@ public class WriteJSFiles {
 
     }
 
-	/** Create a javascript array listing the html files with 
+    /**
+     * Create a javascript array listing the html files with
      * their paths relative to project root, their titles and shortdescs
+     *
      * @param fileO path and name of the file in which to output the list of html files
      * @param list  of the html files, relative to the doc root directory
      */
@@ -120,27 +124,27 @@ public class WriteJSFiles {
                 if (tempTitle != null) {
                     tempTitle = tempTitle.replaceAll("\\s+", " ");
                     tempTitle = tempTitle.replaceAll("['�\"]", " ");
-	        		//EXM-21239 Escape "\"
-	        		tempTitle = tempTitle.replaceAll("\\\\", "\\\\\\\\");
+                    //EXM-21239 Escape "\"
+                    tempTitle = tempTitle.replaceAll("\\\\", "\\\\\\\\");
                 }
                 if (tempShortdesc != null) {
                     tempShortdesc = tempShortdesc.replaceAll("\\s+", " ");
                     tempShortdesc = tempShortdesc.replaceAll("['�\"]", " ");
-	        		//EXM-21239 Escape "\"
-	        		tempShortdesc = tempShortdesc.replaceAll("\\\\", "\\\\\\\\");
+                    //EXM-21239 Escape "\"
+                    tempShortdesc = tempShortdesc.replaceAll("\\\\", "\\\\\\\\");
                 }
-	        	if (tempShortdesc != null) {
-	        		String stripNonAlphabeticalChars = stripNonAlphabeticalChars(tempShortdesc);	        	
-	        		//stripNonAlphabeticalChars = stripWords(stripNonAlphabeticalChars);	        		
-	        		stripNonAlphabeticalChars = stripNonAlphabeticalChars + "...";	        	
-	        		out.write("fil[\""+i+"\"]"+"= \""+tempPath+"@@@"+tempTitle+"@@@"+stripNonAlphabeticalChars+"\";\n");
-                i++;
-	        	}else{
-	        		out.write("fil[\""+i+"\"]"+"= \""+tempPath+"@@@"+tempTitle+"@@@null"+"\";\n");
-				i++;
+                if (tempShortdesc != null) {
+                    String stripNonAlphabeticalChars = stripNonAlphabeticalChars(tempShortdesc);
+                    //stripNonAlphabeticalChars = stripWords(stripNonAlphabeticalChars);
+                    stripNonAlphabeticalChars = stripNonAlphabeticalChars + "...";
+                    out.write("fil[\"" + i + "\"]" + "= \"" + tempPath + "@@@" + tempTitle + "@@@" + stripNonAlphabeticalChars + "\";\n");
+                    i++;
+                } else {
+                    out.write("fil[\"" + i + "\"]" + "= \"" + tempPath + "@@@" + tempTitle + "@@@null" + "\";\n");
+                    i++;
 
 
-			}
+                }
             }
 
             out.flush();  // Don't forget to flush!
@@ -156,7 +160,9 @@ public class WriteJSFiles {
 
     }
 
-	/** Create javascript index files alphabetically.
+    /**
+     * Create javascript index files alphabetically.
+     *
      * @param fileOutStr      contains the path and the suffix of the index files to create.
      *                        The first letter of the key is added to the given suffix. For example: e.g. a.js, b.js etc...
      * @param indexMap        its keys are the indexed words and
@@ -228,30 +234,31 @@ public class WriteJSFiles {
     }
 
 
-	/**
-	 * Remove all non alphabetical chars from the end of a text.
-	 * @param input The text who will be striped.
-	 * @return The striped text.
-	 */
-	private static String stripNonAlphabeticalChars(String input) {
-		String output = input;
-		for (int i = input.length() - 1; i > 0 ; i--) {
-			char charAt = input.charAt(i);
-			int k = (int)charAt;
-			if ((k > 65 && k < 91) || (k > 97 && k < 123) || (k > 48 && k < 58)) {
-				return output;
-			} else {
-				output = output.substring(0, output.length() - 1);
-			}
-		}
-		return output;
-	}
-	
-	private static String stripWords(String input) {
-		int idx = input.lastIndexOf(" ");
-		if (idx != -1) {
-			return input.substring(0, idx);
-		} else {
+    /**
+     * Remove all non alphabetical chars from the end of a text.
+     *
+     * @param input The text who will be striped.
+     * @return The striped text.
+     */
+    private static String stripNonAlphabeticalChars(String input) {
+        String output = input;
+        for (int i = input.length() - 1; i > 0; i--) {
+            char charAt = input.charAt(i);
+            int k = (int) charAt;
+            if ((k > 65 && k < 91) || (k > 97 && k < 123) || (k > 48 && k < 58)) {
+                return output;
+            } else {
+                output = output.substring(0, output.length() - 1);
+            }
+        }
+        return output;
+    }
+
+    private static String stripWords(String input) {
+        int idx = input.lastIndexOf(" ");
+        if (idx != -1) {
+            return input.substring(0, idx);
+        } else {
 			return input;
 		}
 	}

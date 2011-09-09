@@ -15,6 +15,7 @@ import com.nexwave.stemmer.snowball.ext.EnglishStemmer;
 import com.nexwave.stemmer.snowball.ext.FrenchStemmer;
 import com.nexwave.stemmer.snowball.ext.GermanStemmer;
 
+//client-side support is yet to come for these stemmers
 import com.nexwave.stemmer.snowball.ext.danishStemmer;
 import com.nexwave.stemmer.snowball.ext.dutchStemmer;
 import com.nexwave.stemmer.snowball.ext.finnishStemmer;
@@ -43,99 +44,106 @@ import org.apache.lucene.analysis.tokenattributes.TermAttribute;
  * NOTE: This indexes only the content under a tag with ID "content".
  * Wrap html content with a div tag with id "content" to index relevant parts of your page.
  *
- * @version 2.0 2010
- *
  * @author N. Quaine
  * @author Kasun Gajasinghe <http://kasunbg.blogspot.com>
+ * @version 2.0 2010
  */
-public class SaxHTMLIndex extends SaxDocFileParser{
+public class SaxHTMLIndex extends SaxDocFileParser {
 
     //KasunBG: apparently tempDico stores all the keywords and a pointer to the files containing the index in a Map
     //example: ("keyword1", "0,2,4"), ("docbook", "1,2,5") 
-	private Map<String,String> tempDico;
-	private int i = 0;
-	private ArrayList <String> cleanUpList = null;
-	private ArrayList <String> cleanUpPunctuation = null;
+    private Map<String, String> tempDico;
+    private int i = 0;
+    private ArrayList<String> cleanUpList = null;
+    private ArrayList<String> cleanUpPunctuation = null;
 
-	// START OXYGEN PATCH, scoring for HTML elements
-	private int SCORING_FOR_H1 = 50;
-	private int SCORING_FOR_H2 = 45;
-	private int SCORING_FOR_H3 = 40;
-	private int SCORING_FOR_H4 = 35;
-	private int SCORING_FOR_H5 = 30;
-	private int SCORING_FOR_H6 = 25;
-	private int SCORING_FOR_BOLD = 5;
-	private int SCORING_FOR_ITALIC = 3;
-	private int SCORING_FOR_NORMAL_TEXT = 1;
-	private int SCORING_FOR_KEYWORD = 100;
-	private int SCORING_FOR_INDEXTERM = 75;
-	
-	/**
-	 * The list with the word and scoring object
-	 */
-	private List<WordAndScoring> wsList = null;
+    // START OXYGEN PATCH, scoring for HTML elements
+    private int SCORING_FOR_H1 = 50;
+    private int SCORING_FOR_H2 = 45;
+    private int SCORING_FOR_H3 = 40;
+    private int SCORING_FOR_H4 = 35;
+    private int SCORING_FOR_H5 = 30;
+    private int SCORING_FOR_H6 = 25;
+    private int SCORING_FOR_BOLD = 5;
+    private int SCORING_FOR_ITALIC = 3;
+    private int SCORING_FOR_NORMAL_TEXT = 1;
+    private int SCORING_FOR_KEYWORD = 100;
+    private int SCORING_FOR_INDEXTERM = 75;
 
-	/**
-	 * Used for Oxygen TestCases
-	 * @return the wsList
-	 */
-	public List<WordAndScoring> getWsList() {
-		return wsList;
-	}
-	// END OXYGEN PATCH
-	//methods
-	/**
-	 * Constructor
-	 */
-	public SaxHTMLIndex () {
-		super();
-	}
-	/**
-	 * Constructor
+    /**
+     * The list with the word and scoring object
+     */
+    private List<WordAndScoring> wsList = null;
+
+    /**
+     * Used for Oxygen TestCases
+     *
+     * @return the wsList
+     */
+    public List<WordAndScoring> getWsList() {
+        return wsList;
+    }
+    // END OXYGEN PATCH
+    //methods
+
+    /**
+     * Constructor
+     */
+    public SaxHTMLIndex() {
+        super();
+    }
+
+    /**
+     * Constructor
+     *
      * @param cleanUpStrings
      */
-	public SaxHTMLIndex (ArrayList <String> cleanUpStrings) {
-		super();
-		cleanUpList = cleanUpStrings;
-	}
-	/**
-	 * Constructor
+    public SaxHTMLIndex(ArrayList<String> cleanUpStrings) {
+        super();
+        cleanUpList = cleanUpStrings;
+    }
+
+    /**
+     * Constructor
+     *
      * @param cleanUpStrings
      * @param cleanUpChars
      */
-	public SaxHTMLIndex (ArrayList <String> cleanUpStrings, ArrayList <String> cleanUpChars) {
-		super();
-		cleanUpList = cleanUpStrings;
-		cleanUpPunctuation = cleanUpChars;
-	}
+    public SaxHTMLIndex(ArrayList<String> cleanUpStrings, ArrayList<String> cleanUpChars) {
+        super();
+        cleanUpList = cleanUpStrings;
+        cleanUpPunctuation = cleanUpChars;
+    }
 
-	/**
-	 * Initializer
+    /**
+     * Initializer
+     *
      * @param tempMap
      */
-	public int init(Map<String,String> tempMap){
-		tempDico = tempMap;
-		return 0;
-	}
+    public int init(Map<String, String> tempMap) {
+        tempDico = tempMap;
+        return 0;
+    }
 
-	/**
-	 * Parses the file to extract all the words for indexing and
-	 * some data characterizing the file.
-	 * @param file contains the fullpath of the document to parse
+    /**
+     * Parses the file to extract all the words for indexing and
+     * some data characterizing the file.
+     *
+     * @param file            contains the fullpath of the document to parse
      * @param indexerLanguage this will be used to tell the program which stemmer to be used.
-     * @param stem if true then generate js files with words stemmed
-	 * @return a DitaFileInfo object filled with data describing the file
-	 */
-	public DocFileInfo runExtractData(File file, String indexerLanguage, boolean stem) {
-		//initialization
-		fileDesc = new DocFileInfo(file);
-		strbf = new StringBuffer("");
+     * @param stem            if true then generate js files with words stemmed
+     * @return a DitaFileInfo object filled with data describing the file
+     */
+    public DocFileInfo runExtractData(File file, String indexerLanguage, boolean stem) {
+        //initialization
+        fileDesc = new DocFileInfo(file);
+        strbf = new StringBuffer("");
 
-		// Fill strbf by parsing the file
-		parseDocument(file);
+        // Fill strbf by parsing the file
+        parseDocument(file);
 
-		String str = cleanBuffer(strbf);
-        str = str.replaceAll("\\s+"," ");   //there's still redundant spaces in the middle
+        String str = cleanBuffer(strbf);
+        str = str.replaceAll("\\s+", " ");   //there's still redundant spaces in the middle
 //		System.out.println(file.toString()+" "+ str +"\n");
         // START OXYGEN PATCH
 //		String[] items = str.split("\\s");      //contains all the words in the array
@@ -151,12 +159,12 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         // START OXYGEN PATCH, create the words and scoring list
 //        String[] tokenizedItems;
         // END OXYGEN PATCH
-        if(indexerLanguage.equalsIgnoreCase("ja") || indexerLanguage.equalsIgnoreCase("zh")
-                || indexerLanguage.equalsIgnoreCase("ko")){
-                LinkedList<String> tokens = new LinkedList<String>();
-            try{
-            	//EXM-21501 Oxygen patch, replace the extra "@@@"s.
-            	str = str.replaceAll("@@@([^\\s]*)@@@", "");
+        if (indexerLanguage.equalsIgnoreCase("ja") || indexerLanguage.equalsIgnoreCase("zh")
+                || indexerLanguage.equalsIgnoreCase("ko")) {
+            LinkedList<String> tokens = new LinkedList<String>();
+            try {
+                //EXM-21501 Oxygen patch, replace the extra "@@@"s.
+                str = str.replaceAll("@@@([^\\s]*)@@@", "");
                 CJKAnalyzer analyzer = new CJKAnalyzer(org.apache.lucene.util.Version.LUCENE_30);
                 Reader reader = new StringReader(str);
                 TokenStream stream = analyzer.tokenStream("", reader);
@@ -179,29 +187,29 @@ public class SaxHTMLIndex extends SaxDocFileParser{
                         }
 
                     }
-    				if (!found) {
-    					wsList.add(ws);
-    				}
+                    if (!found) {
+                        wsList.add(ws);
+                    }
                 }
                 // START OXYGEN PATCH
                 //tokenizedItems = tokens.toArray(new String[tokens.size()]);
                 // END OXYGEN PATCH
 
-            }catch (IOException ex){
-            	// START OXYGEN PATCH
+            } catch (IOException ex) {
+                // START OXYGEN PATCH
 //                tokenizedItems = items;
-            	// END OXYGEN PATCH
+                // END OXYGEN PATCH
                 System.out.println("Error tokenizing content using CJK Analyzer. IOException");
                 ex.printStackTrace();
             }
         } else {
             SnowballStemmer stemmer;
-            if(indexerLanguage.equalsIgnoreCase("en")){
-                 stemmer = new EnglishStemmer();
-            } else if (indexerLanguage.equalsIgnoreCase("de")){
-                stemmer= new GermanStemmer();
-            } else if (indexerLanguage.equalsIgnoreCase("fr")){
-                stemmer= new FrenchStemmer();
+            if (indexerLanguage.equalsIgnoreCase("en")) {
+                stemmer = new EnglishStemmer();
+            } else if (indexerLanguage.equalsIgnoreCase("de")) {
+                stemmer = new GermanStemmer();
+            } else if (indexerLanguage.equalsIgnoreCase("fr")) {
+                stemmer = new FrenchStemmer();
             } else {
                 stemmer = null;//Languages which stemming is not yet supported.So, No stemmers will be used.
             }
@@ -210,10 +218,10 @@ public class SaxHTMLIndex extends SaxDocFileParser{
             StringTokenizer st = new StringTokenizer(str, " ");
             // Tokenize the string and populate the words and scoring list
             while (st.hasMoreTokens()) {
-    			String token  = st.nextToken();
-    			WordAndScoring ws = getWordAndScoring(token, stemmer, stem);
-    			if (ws != null) {
-    				boolean found = false;
+                String token = st.nextToken();
+                WordAndScoring ws = getWordAndScoring(token, stemmer, stem);
+                if (ws != null) {
+                    boolean found = false;
                     for (WordAndScoring aWsList : wsList) {
                         // If the stem of the current word is already in list,
                         // do not add the word in the list, just recompute scoring
@@ -224,11 +232,11 @@ public class SaxHTMLIndex extends SaxDocFileParser{
                             break;
                         }
                     }
-    				if (!found) {
-    					wsList.add(ws);
-    				}
-    			}			
-    		}        
+                    if (!found) {
+                        wsList.add(ws);
+                    }
+                }
+            }
 //            if(stemmer != null)             //If a stemmer available
 //                tokenizedItems = stemmer.doStem(items.toArray(new String[0]));
 //            else                            //if no stemmer available for the particular language
@@ -237,7 +245,7 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 
         }
 
-       /* for(String stemmedItem: tokenizedItems){
+        /* for(String stemmedItem: tokenizedItems){
             System.out.print(stemmedItem+"| ");
         }*/
 
@@ -250,140 +258,142 @@ public class SaxHTMLIndex extends SaxDocFileParser{
         Iterator<WordAndScoring> it = wsList.iterator();
         WordAndScoring s;
         while (it.hasNext()) {
-        	s = it.next();
-        	// Do not add results from 'toc.html'
-        	if (s != null && tempDico.containsKey(s.getStem())) {
-        		String temp = tempDico.get(s.getStem());
-        		temp = temp.concat(",").concat(Integer.toString(i))
-        		// Concat also the scoring for the stem
-        		.concat("*").concat(Integer.toString(s.getScoring()))
-        		;
-        		//System.out.println("temp="+s+"="+temp);
-        		tempDico.put(s.getStem(), temp);
-        	}else if (s != null) {
-                    String temp = null;
-                    temp = Integer.toString(i).concat("*").concat(Integer.toString(s.getScoring()));
-                    tempDico.put(s.getStem(), temp);
+            s = it.next();
+            // Do not add results from 'toc.html'
+            if (s != null && tempDico.containsKey(s.getStem())) {
+                String temp = tempDico.get(s.getStem());
+                temp = temp.concat(",").concat(Integer.toString(i))
+                        // Concat also the scoring for the stem
+                        .concat("*").concat(Integer.toString(s.getScoring()))
+                        ;
+                //System.out.println("temp="+s+"="+temp);
+                tempDico.put(s.getStem(), temp);
+            } else if (s != null) {
+                String temp = null;
+                temp = Integer.toString(i).concat("*").concat(Integer.toString(s.getScoring()));
+                tempDico.put(s.getStem(), temp);
             }
-        	// END OXYGEN PATCH
+            // END OXYGEN PATCH
         }
 
         i++;
-		return fileDesc;
-	}
+        return fileDesc;
+    }
 
-	// START OXYGEN PATCH
-	/**
-	 * Get the word, stem and scoring for the given token.
-	 * @param token The token to parse.
-	 * @param stemmer The stemmer.
-	 * @param doStemming If true then generate js files with words stemmed.
-	 * @return the word, stem and scoring for the given token.
-	 */
-	private WordAndScoring getWordAndScoring(String token, SnowballStemmer stemmer, boolean doStemming) {
-		WordAndScoring wordScoring = null;
-		if (token.indexOf("@@@") != -1 && token.indexOf("@@@") != token.lastIndexOf("@@@")) {
-			// Extract the word from token
-			String word = token.substring(0, token.indexOf("@@@"));
-			if (word.length() > 0) {
-				// Extract the element name from token
-				String elementName = token.substring(token.indexOf("@@@elem_") + "@@@elem_".length(), token.lastIndexOf("@@@"));
-				// Compute scoring
-				int scoring = SCORING_FOR_NORMAL_TEXT;
-				if ("h1".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_H1;
-				} else if ("h2".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_H2;
-				} else if ("h3".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_H3;
-				} else if ("h4".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_H4;
-				}  else if ("h5".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_H5;
-				} else if ("h6".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_H6;
-				} else if ("em".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_ITALIC;
-				} else if ("strong".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_BOLD;
-				} else if ("meta_keywords".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_KEYWORD;
-				} else if ("meta_indexterms".equalsIgnoreCase(elementName)) {
-					scoring = SCORING_FOR_INDEXTERM;
-				}
-				// Get the stemmed word
-				String stemWord = word;
-				if (stemmer != null && doStemming) {
-					 stemWord = stemmer.doStem(word);
-				}
-				wordScoring = new WordAndScoring(word, stemWord, scoring);
-			}
-		} else {
-			// The token contains only the word
-			String stemWord = token;
-			// Stem the word
-			if (stemmer != null && doStemming) {
-				 stemWord = stemmer.doStem(token);
-			}
-			wordScoring = new WordAndScoring(token, stemWord, SCORING_FOR_NORMAL_TEXT);
-		}
-		return wordScoring;
-	}
-	// END OXYGEN PATCH
+    // START OXYGEN PATCH
 
-	/**
-	 * Cleans the string buffer containing all the text retrieved from
-	 * the html file:  remove punctuation, clean white spaces, remove the words
-	 * which you do not want to index.
-	 * NOTE: You may customize this function:
-	 * This version takes into account english and japanese. Depending on your
-	 * needs,
-	 * you may have to add/remove some characters/words through props files
-	 *    or by modifying tte default code,
-	 * you may want to separate the language processing (doc only in japanese,
-	 * doc only in english, check the language metadata ...).
-	 */
-	private String cleanBuffer (StringBuffer strbf) {
-		String str = strbf.toString().toLowerCase();
-		StringBuffer tempStrBuf = new StringBuffer("");
-		StringBuffer tempCharBuf = new StringBuffer("");
-		if ((cleanUpList == null) || (cleanUpList.isEmpty())){
-			// Default clean-up
+    /**
+     * Get the word, stem and scoring for the given token.
+     *
+     * @param token      The token to parse.
+     * @param stemmer    The stemmer.
+     * @param doStemming If true then generate js files with words stemmed.
+     * @return the word, stem and scoring for the given token.
+     */
+    private WordAndScoring getWordAndScoring(String token, SnowballStemmer stemmer, boolean doStemming) {
+        WordAndScoring wordScoring = null;
+        if (token.indexOf("@@@") != -1 && token.indexOf("@@@") != token.lastIndexOf("@@@")) {
+            // Extract the word from token
+            String word = token.substring(0, token.indexOf("@@@"));
+            if (word.length() > 0) {
+                // Extract the element name from token
+                String elementName = token.substring(token.indexOf("@@@elem_") + "@@@elem_".length(), token.lastIndexOf("@@@"));
+                // Compute scoring
+                int scoring = SCORING_FOR_NORMAL_TEXT;
+                if ("h1".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_H1;
+                } else if ("h2".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_H2;
+                } else if ("h3".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_H3;
+                } else if ("h4".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_H4;
+                } else if ("h5".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_H5;
+                } else if ("h6".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_H6;
+                } else if ("em".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_ITALIC;
+                } else if ("strong".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_BOLD;
+                } else if ("meta_keywords".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_KEYWORD;
+                } else if ("meta_indexterms".equalsIgnoreCase(elementName)) {
+                    scoring = SCORING_FOR_INDEXTERM;
+                }
+                // Get the stemmed word
+                String stemWord = word;
+                if (stemmer != null && doStemming) {
+                    stemWord = stemmer.doStem(word);
+                }
+                wordScoring = new WordAndScoring(word, stemWord, scoring);
+            }
+        } else {
+            // The token contains only the word
+            String stemWord = token;
+            // Stem the word
+            if (stemmer != null && doStemming) {
+                stemWord = stemmer.doStem(token);
+            }
+            wordScoring = new WordAndScoring(token, stemWord, SCORING_FOR_NORMAL_TEXT);
+        }
+        return wordScoring;
+    }
+    // END OXYGEN PATCH
 
-			// Should perhaps eliminate the words at the end of the table?
-			tempStrBuf.append("(?i)\\bthe\\b|\\ba\\b|\\ban\\b|\\bto\\b|\\band\\b|\\bor\\b");//(?i) ignores the case
-			tempStrBuf.append("|\\bis\\b|\\bare\\b|\\bin\\b|\\bwith\\b|\\bbe\\b|\\bcan\\b");
-			tempStrBuf.append("|\\beach\\b|\\bhas\\b|\\bhave\\b|\\bof\\b|\\b\\xA9\\b|\\bnot\\b");
-			tempStrBuf.append("|\\bfor\\b|\\bthis\\b|\\bas\\b|\\bit\\b|\\bhe\\b|\\bshe\\b");
-			tempStrBuf.append("|\\byou\\b|\\bby\\b|\\bso\\b|\\bon\\b|\\byour\\b|\\bat\\b");
-			tempStrBuf.append("|\\b-or-\\b|\\bso\\b|\\bon\\b|\\byour\\b|\\bat\\b");
+    /**
+     * Cleans the string buffer containing all the text retrieved from
+     * the html file:  remove punctuation, clean white spaces, remove the words
+     * which you do not want to index.
+     * NOTE: You may customize this function:
+     * This version takes into account english and japanese. Depending on your
+     * needs,
+     * you may have to add/remove some characters/words through props files
+     * or by modifying tte default code,
+     * you may want to separate the language processing (doc only in japanese,
+     * doc only in english, check the language metadata ...).
+     */
+    private String cleanBuffer(StringBuffer strbf) {
+        String str = strbf.toString().toLowerCase();
+        StringBuffer tempStrBuf = new StringBuffer("");
+        StringBuffer tempCharBuf = new StringBuffer("");
+        if ((cleanUpList == null) || (cleanUpList.isEmpty())) {
+            // Default clean-up
+
+            // Should perhaps eliminate the words at the end of the table?
+            tempStrBuf.append("(?i)\\bthe\\b|\\ba\\b|\\ban\\b|\\bto\\b|\\band\\b|\\bor\\b");//(?i) ignores the case
+            tempStrBuf.append("|\\bis\\b|\\bare\\b|\\bin\\b|\\bwith\\b|\\bbe\\b|\\bcan\\b");
+            tempStrBuf.append("|\\beach\\b|\\bhas\\b|\\bhave\\b|\\bof\\b|\\b\\xA9\\b|\\bnot\\b");
+            tempStrBuf.append("|\\bfor\\b|\\bthis\\b|\\bas\\b|\\bit\\b|\\bhe\\b|\\bshe\\b");
+            tempStrBuf.append("|\\byou\\b|\\bby\\b|\\bso\\b|\\bon\\b|\\byour\\b|\\bat\\b");
+            tempStrBuf.append("|\\b-or-\\b|\\bso\\b|\\bon\\b|\\byour\\b|\\bat\\b");
             tempStrBuf.append("|\\bI\\b|\\bme\\b|\\bmy\\b");
 
-			str = str.replaceFirst("Copyright � 1998-2007 NexWave Solutions.", " ");
+            str = str.replaceFirst("Copyright � 1998-2007 NexWave Solutions.", " ");
 
 
-			//nqu 25.01.2008 str = str.replaceAll("\\b.\\b|\\\\", " ");
-			// remove contiguous white charaters
-			//nqu 25.01.2008 str = str.replaceAll("\\s+", " ");
-		}else {
-			// Clean-up using the props files
-			tempStrBuf.append("\\ba\\b");
+            //nqu 25.01.2008 str = str.replaceAll("\\b.\\b|\\\\", " ");
+            // remove contiguous white charaters
+            //nqu 25.01.2008 str = str.replaceAll("\\s+", " ");
+        } else {
+            // Clean-up using the props files
+            tempStrBuf.append("\\ba\\b");
             for (String aCleanUp : cleanUpList) {
-                tempStrBuf.append("|\\b").append(aCleanUp ).append("\\b");
+                tempStrBuf.append("|\\b").append(aCleanUp).append("\\b");
             }
-		}
-		if ((cleanUpPunctuation != null) && (!cleanUpPunctuation.isEmpty())){
-			tempCharBuf.append("\\u3002");
+        }
+        if ((cleanUpPunctuation != null) && (!cleanUpPunctuation.isEmpty())) {
+            tempCharBuf.append("\\u3002");
             for (String aCleanUpPunctuation : cleanUpPunctuation) {
                 tempCharBuf.append("|").append(aCleanUpPunctuation);
             }
-		}
+        }
 
-		str = minimalClean(str, tempStrBuf, tempCharBuf);
-		return str;
-	}
+        str = minimalClean(str, tempStrBuf, tempCharBuf);
+        return str;
+    }
 
-	// OXYGEN PATCH, moved method in superclass
+    // OXYGEN PATCH, moved method in superclass
 //	private String minimalClean(String str, StringBuffer tempStrBuf, StringBuffer tempCharBuf) {
 //		String tempPunctuation = new String(tempCharBuf);
 //
@@ -413,6 +423,6 @@ public class SaxHTMLIndex extends SaxDocFileParser{
 //			str = str.replaceAll(tempPunctuation, " ");
 //		}		return str;
 //	}
-	// END OXYGEN PATCH
+    // END OXYGEN PATCH
 
 }

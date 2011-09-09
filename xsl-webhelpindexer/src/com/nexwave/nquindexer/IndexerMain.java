@@ -10,8 +10,10 @@ import java.util.*;
 
 /**
  * Main class of Stand-alone version of WebHelpIndexer
+ *
  * User: Kasun Gajasinghe, University of Moratuwa, http://kasunbg.blogspot.com
  * Date: Feb 10, 2011
+ *
  * @author Kasun Gajasinghe
  */
 
@@ -26,8 +28,8 @@ public class IndexerMain {
     private String txt_no_words_gathered = "No words have been indexed in";
     private String txt_no_html_files = "No HTML Files found in";
     private String txt_no_args = "No argument given: you must provide an htmlDir to the IndexerMain";
-    
-    private static String txt_no_lang_specified ="Language of the content is not specified. Defaults to English.";
+
+    private static String txt_no_lang_specified = "Language of the content is not specified. Defaults to English.";
 
     //working directories
     private String searchdir = "search";
@@ -51,13 +53,14 @@ public class IndexerMain {
     //Html extension
     private String htmlExtension = "html";
 
-	// OXYGEN PATCH START
-	//Table of contents file name
-	private String tocfile;
-	private boolean stem;
-	// OXYGEN PATCH END
+    // OXYGEN PATCH START
+    //Table of contents file name
+    private String tocfile;
+    private boolean stem;
+    // OXYGEN PATCH END
 
     // Constructors
+
     public IndexerMain(String htmlDir, String indexerLanguage) {
         super();
         setHtmlDir(htmlDir);
@@ -65,7 +68,8 @@ public class IndexerMain {
     }
 
     /**
-     * The content language defaults to English "en" 
+     * The content language defaults to English "en"
+     *
      * @param htmlDir The directory where html files reside.
      */
     public IndexerMain(String htmlDir) {
@@ -142,13 +146,13 @@ public class IndexerMain {
             indexer = new IndexerMain(args[0]);
         } else if (args.length >= 2) {
 
-            indexer = new IndexerMain(args[0], args[1]);                        
-        } else { 
-            throw new  RuntimeException("Please specify the parameters htmlDirectory and " +
-                    "indexerLanguage (optional). \n "+
+            indexer = new IndexerMain(args[0], args[1]);
+        } else {
+            throw new RuntimeException("Please specify the parameters htmlDirectory and " +
+                    "indexerLanguage (optional). \n " +
                     "ex: java -jar webhelpindexer.jar docs/content en \n" +
                     "The program will exit now."
-                    );
+            );
         }
 
         indexer.execute();
@@ -242,15 +246,15 @@ public class IndexerMain {
         // Get the list of all html files with relative paths
         htmlFilesPathRel = nsiDoc.getListFilesRelTo(projectDir);
 
-		// OXYGEN PATCH START. 
-		// Remove the table of content file 
-		Iterator<String> iterator = htmlFilesPathRel.iterator();
-		while (iterator.hasNext()) {
-			if (iterator.next().endsWith(tocfile + "." + htmlExtension)) {
-				iterator.remove();
-			}
-		}
-		// OXYGEN PATCH END
+        // OXYGEN PATCH START.
+        // Remove the table of content file
+        Iterator<String> iterator = htmlFilesPathRel.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().endsWith(tocfile + "." + htmlExtension)) {
+                iterator.remove();
+            }
+        }
+        // OXYGEN PATCH END
         if (htmlFiles == null) {
             System.out.println(txt_no_files_found);
             return;
@@ -260,7 +264,7 @@ public class IndexerMain {
         }
 
         // Create the list of the existing html files (index starts at 0)
-		WriteJSFiles.WriteHTMLList(outputDir.concat(File.separator).concat(htmlList), htmlFilesPathRel, stem);
+        WriteJSFiles.WriteHTMLList(outputDir.concat(File.separator).concat(htmlList), htmlFilesPathRel, stem);
 
         // Parse each html file to retrieve the words:
         // ------------------------------------------
@@ -284,34 +288,34 @@ public class IndexerMain {
             // parse each html files
             while (it.hasNext()) {
                 File ftemp = (File) it.next();
-				// OXYGEN PATCH START. Remove table of content file
-				if (!ftemp.getAbsolutePath().endsWith(tocfile + "." + htmlExtension)) {
-				// OXYGEN PATCH END
-                //tempMap.put(key, value);
-                //The HTML file information are added in the list of FileInfoObject
-					DocFileInfo docFileInfoTemp = new DocFileInfo(spe.runExtractData(ftemp,indexerLanguage, stem));
+                // OXYGEN PATCH START. Remove table of content file
+                if (!ftemp.getAbsolutePath().endsWith(tocfile + "." + htmlExtension)) {
+                    // OXYGEN PATCH END
+                    //tempMap.put(key, value);
+                    //The HTML file information are added in the list of FileInfoObject
+                    DocFileInfo docFileInfoTemp = new DocFileInfo(spe.runExtractData(ftemp, indexerLanguage, stem));
 
-                ftemp = docFileInfoTemp.getFullpath();
-                String stemp = ftemp.toString();
-                int i = stemp.indexOf(projectDir);
-                if (i != 0) {
-                    System.out.println("the documentation root does not match with the documentation input!");
-                    return;
+                    ftemp = docFileInfoTemp.getFullpath();
+                    String stemp = ftemp.toString();
+                    int i = stemp.indexOf(projectDir);
+                    if (i != 0) {
+                        System.out.println("the documentation root does not match with the documentation input!");
+                        return;
+                    }
+                    int ad = 1;
+                    if (stemp.equals(projectDir)) ad = 0;
+                    stemp = stemp.substring(i + projectDir.length() + ad);  //i is redundant (i==0 always)
+                    ftemp = new File(stemp);
+                    docFileInfoTemp.setFullpath(ftemp);
+
+                    filesDescription.add(docFileInfoTemp);
+                    // OXYGEN PATCH START
+                    // Remove the table of content file
+                } else {
+                    it.remove();
                 }
-                int ad = 1;
-                if (stemp.equals(projectDir)) ad = 0;
-                stemp = stemp.substring(i + projectDir.length() + ad);  //i is redundant (i==0 always)
-                ftemp = new File(stemp);
-                docFileInfoTemp.setFullpath(ftemp);
-
-                filesDescription.add(docFileInfoTemp);
-				// OXYGEN PATCH START
-				// Remove the table of content file
-				} else {
-					it.remove();
+                // OXYGEN PATCH END
             }
-				// OXYGEN PATCH END					
-			}
             /*remove empty strings from the map*/
             if (tempDico.containsKey("")) {
                 tempDico.remove("");
@@ -414,14 +418,16 @@ public class IndexerMain {
         return 0;
     }
 
-	// OXYGEN PATCH START
-	// Set table of content file
+    // OXYGEN PATCH START
+    // Set table of content file
+
     public void setTocfile(String tocfile) {
-    	this.tocfile = tocfile;
+        this.tocfile = tocfile;
     }
     // If true then generate js files with stemming words
+
     public void setStem(boolean stem) {
-    	this.stem = stem;
+        this.stem = stem;
     }
-   	// OXYGEN PATCH END
+    // OXYGEN PATCH END
 }

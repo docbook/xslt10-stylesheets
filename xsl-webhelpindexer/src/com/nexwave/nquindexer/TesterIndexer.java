@@ -4,9 +4,9 @@ package com.nexwave.nquindexer;
 */
 /**
  * For running tests with the indexertask.
- * 
+ *
  * @version 2.0 2010-08-14
- * 
+ *
  * @author N. Quaine
  * @author Kasun Gajasinghe
  *//*
@@ -15,9 +15,9 @@ package com.nexwave.nquindexer;
 	public static IndexerTask IT = null; 
 	*/
 /**
-	 * @param args
-	 * @throws InterruptedException 
-	 *//*
+ * @param args
+ * @throws InterruptedException
+ *//*
 
 	public static void main(String[] args) throws InterruptedException {
         if (args.length != 0) {
