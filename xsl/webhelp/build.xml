@@ -92,7 +92,10 @@
 	    <path refid="classpath"/>
 	    <pathelement location="/usr/share/java/xercesImpl.jar"/>  	
 	    <pathelement location="/usr/share/java/xml-apis.jar"/>  	 
-         </classpath>
+	    <!-- Gentoo Linux friendly default classpath-->
+	    <pathelement location="/usr/share/xerces-2/lib/xercesImpl.jar"/>  	
+	    <pathelement location="/usr/share/xml-commons/lib/xml-apis.jar"/>  	 
+	  </classpath>
        </java>	
  
 	<!--indexertask htmldir="${output-dir}/content" indexerLanguage="${webhelp.indexer.language}"/-->
