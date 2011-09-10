@@ -66,4 +66,13 @@
     nbproject/build-impl.xml file. 
 
     -->
+    <target depends="init" name="-do-clean">
+        <delete dir="${build.dir}/classes"/>
+        <delete dir="${build.dir}/javadoc"/>
+        <delete dir="${build.dir}/empty"/>
+        <delete file="${build.dir}/webhelpindexer.jar" />
+	<delete file="${build.dir}/built-clean.properties"/>
+	<delete file="${build.dir}/built-jar.properties"/>
+    </target>
+
 </project>
