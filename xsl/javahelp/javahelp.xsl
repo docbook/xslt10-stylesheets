@@ -91,11 +91,7 @@
 </xsl:choose>
 </xsl:template>
 
-<xsl:template name="header.navigation">
-</xsl:template>
-
-<xsl:template name="footer.navigation">
-</xsl:template>
+<xsl:param name="suppress.navigation" select="1"/>
 
 <!-- ==================================================================== -->
 
