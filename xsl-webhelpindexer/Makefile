@@ -28,7 +28,7 @@ ANT_OPTS =
 
 all: webhelpindexer.jar
 
-webhelpindexer.jar: $(wildcard src/)
+webhelpindexer.jar: $(wildcard src/com/nexwave/nquindexer/*.java)
 	$(ANT) jar
 
 javadoc:
