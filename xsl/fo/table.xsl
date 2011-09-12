@@ -1422,6 +1422,7 @@
 
       <xsl:variable name="colspec.colwidth">
         <xsl:choose>
+          <xsl:when test="normalize-space($colspec/@colwidth)='*'">1*</xsl:when>
           <xsl:when test="$colspec/@colwidth">
             <xsl:value-of select="$colspec/@colwidth"/>
           </xsl:when>
