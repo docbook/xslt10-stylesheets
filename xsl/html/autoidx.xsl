@@ -317,7 +317,8 @@
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:for-each select="$refs[&scope;]">
+        <xsl:for-each select="$refs[not(see) 
+                              and not(secondary)][&scope;]">
           <xsl:apply-templates select="." mode="reference">
             <xsl:with-param name="position" select="position()"/>
             <xsl:with-param name="scope" select="$scope"/>
@@ -389,7 +390,8 @@
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:for-each select="$refs[&scope;]">
+        <xsl:for-each select="$refs[not(see) 
+                                and not(tertiary)][&scope;]">
           <xsl:apply-templates select="." mode="reference">
             <xsl:with-param name="position" select="position()"/>
             <xsl:with-param name="scope" select="$scope"/>
@@ -461,7 +463,7 @@
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:for-each select="$refs[&scope;]">
+        <xsl:for-each select="$refs[not(see)][&scope;]">
           <xsl:apply-templates select="." mode="reference">
             <xsl:with-param name="position" select="position()"/>
             <xsl:with-param name="scope" select="$scope"/>
