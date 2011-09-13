@@ -72,6 +72,11 @@
               engine provides support for tokenizing Chinese, Japanese, and Korean content released
               under the Apache 2.0 license. </para>
           </listitem>
+	  <listitem>
+	    <para>Code that provides weighted search results and other improvments was graciously 
+	    donated by <ulink url="http://www.oxygenxml.com">SyncRO Soft Ltd.</ulink>, the 
+	    publishers of the oXygen XML Editor.</para>
+	  </listitem>
         </itemizedlist> Webhelp for DocBook was first developed as a <ulink
           url="http://code.google.com/soc/">Google Summer of Code</ulink> project. </para>
     </legalnotice>
