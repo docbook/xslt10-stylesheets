@@ -193,6 +193,16 @@ These problems go away when you add this IE=7 mode meta tag.
             padding-left: 20px;
             background: transparent url(<xsl:value-of select="$webhelp.common.dir"/>jquery/treeview/images/folder.gif) 0 0px no-repeat;
             }
+
+			/* Overide jquery treeview's defaults for ul. */
+			.treeview ul {
+			    background-color: #F0F0F0 !important;
+			    margin-top: 4px;
+			}
+		
+			#webhelp-currentid {
+				 background-color: #D8D8D8 !important;
+			}
         </style>
 	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}css/positioning.css"/>
@@ -444,11 +454,15 @@ These problems go away when you add this IE=7 mode meta tag.
 
                     <xsl:call-template name="user.footer.content"/>
 
-                    <xsl:call-template name="footer.navigation">
+					<hr/>
+					<div class="legal"><a href="index.html">Legal notices</a></div>
+
+					<!-- Redundant since the upper navigation bar always visible -->
+                    <!--xsl:call-template name="footer.navigation">
                         <xsl:with-param name="prev" select="$prev"/>
                         <xsl:with-param name="next" select="$next"/>
                         <xsl:with-param name="nav.context" select="$nav.context"/>
-                    </xsl:call-template>
+                    </xsl:call-template-->
 
 		    <xsl:call-template name="user.webhelp.content.footer"/>
                 </div>
@@ -473,8 +487,9 @@ These problems go away when you add this IE=7 mode meta tag.
         <xsl:variable name="up" select="parent::*"/>
 
         <div id="header">
-	    <xsl:call-template name="webhelpheader.logo"/>
-
+	    <!--xsl:call-template name="webhelpheader.logo"/-->
+		<img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
+		   src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
             <!-- Display the page title and the main heading(parent) of it-->
             <h1 align="center">
                 <xsl:apply-templates select="." mode="object.title.markup"/>
@@ -492,20 +507,20 @@ These problems go away when you add this IE=7 mode meta tag.
             <div id="navheader" align="right">
                 <xsl:comment>
                     <!-- KEEP this code. In case of neither prev nor next links are available, this will help to
-                    keep the integrity of the DOM tree-->
+                        keep the integrity of the DOM tree-->
                 </xsl:comment>
                 <!--xsl:with-param name="prev" select="$prev"/>
                 <xsl:with-param name="next" select="$next"/>
                 <xsl:with-param name="nav.context" select="$nav.context"/-->
-                <table>
+                <table class="navLinks">
                     <tr>
-                        <td style="height: 28px; width: 16px;">
+                        <td>
                             <a id="showHideButton" onclick="showHideToc();"
-                               class="pointLeft" title="Hide TOC tree">.
+                                class="pointLeft" title="Hide TOC tree">Sidebar
                             </a>
                         </td>
                         <td>
-			  <xsl:if test="$webhelp.include.search.tab = 'true'">
+			  <!--xsl:if test="$webhelp.include.search.tab = 'true'">
                             <img src="{$webhelp.common.dir}images/highlight-blue.gif" alt="H" height="25px"
                                  onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer">
 				<xsl:attribute name="title">
@@ -514,16 +529,16 @@ These problems go away when you add this IE=7 mode meta tag.
 				  </xsl:call-template>				  
 				</xsl:attribute>
 			    </img>
-			  </xsl:if>
+			  </xsl:if-->
                         </td>
                         <xsl:if test="count($prev) &gt; 0
-                                        or (count($up) &gt; 0
-                                        and generate-id($up) != generate-id($home)
-                                        and $navig.showtitles != 0)
-                                        or count($next) &gt; 0">
+                            or (count($up) &gt; 0
+                            and generate-id($up) != generate-id($home)
+                            and $navig.showtitles != 0)
+                            or count($next) &gt; 0">
                             <td>
                                 <xsl:if test="count($prev)>0">
-                                    <a accesskey="p" tabindex="5">
+                                    <a accesskey="p" class="navLinkPrevious" tabindex="5">
                                         <xsl:attribute name="href">
                                             <xsl:call-template name="href.target">
                                                 <xsl:with-param name="object" select="$prev"/>
@@ -540,7 +555,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                     <xsl:when test="count($up)&gt;0
                                               and generate-id($up) != generate-id($home)">
                                         |
-                                        <a accesskey="u" tabindex="5">
+                                        <a accesskey="u" class="navLinkUp" tabindex="5">
                                             <xsl:attribute name="href">
                                                 <xsl:call-template name="href.target">
                                                     <xsl:with-param name="object" select="$up"/>
@@ -556,7 +571,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                 
                                 <xsl:if test="count($next)>0">
                                     |
-                                    <a accesskey="n" tabindex="5">
+                                    <a accesskey="n" class="navLinkNext" tabindex="5">
                                         <xsl:attribute name="href">
                                             <xsl:call-template name="href.target">
                                                 <xsl:with-param name="object" select="$next"/>
@@ -702,6 +717,7 @@ These problems go away when you add this IE=7 mode meta tag.
                                     <div id="searchResults">
                                            <center> </center>
                                     </div>
+                                    <p class="searchHighlight"><a href="#" onclick="toggleHighlight()">Search Highlighter (On/Off)</a></p>
                                 </div>
                             </xsl:if>
 			    <xsl:call-template name="user.webhelp.tabs.content"/>

@@ -103,10 +103,10 @@ function syncToc() {
             var ulNode = a.getElementsByTagName("ul")[0];
             if (ulNode != undefined) {
                 if (ulNode.hasAttribute("style")) {
-                    ulNode.setAttribute("style", "display: block;");
+                    ulNode.setAttribute("style", "display: block; background-color: #D8D8D8 !important;");
                 } else {
                     var ulStyle = document.createAttribute("style");
-                    ulStyle.nodeValue = "display: block;";
+                    ulStyle.nodeValue = "display: block; background-color: #D8D8D8 !important;";
                     ulNode.setAttributeNode(ulStyle);
             }   }
             //adjust tree's + sign to -
@@ -128,15 +128,16 @@ function syncToc() {
             //Setting the background for selected node.
             var style = a.getAttribute("style", 2);
             if (style != null && !style.match(/background-color: Background;/)) {
-                a.setAttribute("style", "background-color: #6495ed;  " + style);
-                b.setAttribute("style", "color: white;");
+                a.setAttribute("style", "background-color: #D8D8D8;  " + style);
+                b.setAttribute("style", "color: black;");
             } else if (style != null || style != "") {
-                a.setAttribute("style", "background-color: #6495ed;  " + style);
-                b.setAttribute("style", "color: white;");
+                a.setAttribute("style", "background-color: #D8D8D8;  " + style);
+                b.setAttribute("style", "color: black;");
             } else {
-                a.setAttribute("style", "background-color: #6495ed;  ");
-                b.setAttribute("style", "color: white;");
-    }   }
+                a.setAttribute("style", "background-color: #D8D8D8;  ");
+                b.setAttribute("style", "color: black;");
+            }
+        }
 
         //shows the node related to current content.
         //goes a recursive call from current node to ancestor nodes, displaying all of them.
@@ -194,13 +195,13 @@ function showHideToc() {
     if (showHideButton != undefined && showHideButton.hasClass("pointLeft")) {
         //Hide TOC
         showHideButton.removeClass('pointLeft').addClass('pointRight');
-        content.css("margin", "0 0 0 0");
+        content.css("margin", "125px 0 0 0");
         leftNavigation.css("display", "none");
         showHideButton.attr("title", "Show the TOC tree");
     } else {
         //Show the TOC
         showHideButton.removeClass('pointRight').addClass('pointLeft');
-        content.css("margin", "0 0 0 280px");
+        content.css("margin", "125px 0 0 280px");
         leftNavigation.css("display", "block");
         showHideButton.attr("title", "Hide the TOC Tree");
     }
