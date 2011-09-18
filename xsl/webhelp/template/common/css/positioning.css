@@ -38,9 +38,19 @@ h2 { font: normal 12pt Arial, Helvetica, geneva;
 #header h1 {
     color: #fff;
     margin-left: 310px;
+    position: fixed;
+    top: 10px;
+    left: -15px;
+    color: white!important;
 }
 
-#header h1, p.breadcrumbs {
+/*
+#header h1 {
+	margin-top: 2px;
+}
+*/
+
+p.breadcrumbs {
     margin-top: 30px;
     margin-left: 310px;
 }
@@ -282,12 +292,6 @@ p.breadcrumbs a:hover {
     FONT-SIZE: 1px; 
 }
 
-<!--
-#header h1 {
-	margin-top: 2px;
-}
--->
-
 table.navLinks {
 	margin-right: 20px;
 }
@@ -391,15 +395,6 @@ body #content {
 	margin-top: 126px;
 	top: 0px;
 }
-
-<!--
-#header h1 {
-    position: fixed;
-    top: 35px;
-    left: -15px;
-    color: white!important;
-}
--->
 
 body.sidebar #toolbar{
    left: 0px;

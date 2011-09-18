@@ -209,12 +209,14 @@ span.searchTab {
 
 /* Overide jquery treeview's defaults for ul. */
 .treeview ul {
-    background-color: #F0F0F0 !important;
+    background-color: transparent;
     margin-top: 4px;
 }		
 #webhelp-currentid {
     background-color: #D8D8D8 !important;
 }
+.treeview .hover { color: black; }
+.filetree li span a { text-decoration: none; font-size: 12px; color: #517291; }
 
 /* Override jquery-ui's default css customizations. These are supposed to take precedence over those.*/
 .ui-widget-content {
@@ -248,6 +250,11 @@ border: none; background: none; font-weight: none; color: none; }
     -webkit-border-radius:15px; -moz-border-radius:10px;
     border: 1px solid #f1f1f1;
 }    
+.ui-corner-all { border-radius: 0 0 0 0; }
+
+.ui-tabs { padding: .2em;}
+.ui-tabs .ui-tabs-nav li { top: 0px; margin: -2px 0 1px; text-transform: uppercase; font-size: 10.5px;}
+.ui-tabs .ui-tabs-nav li a { padding: .25em 2em .25em 1em; margin: .5em; text-shadow: 0 1px 0 rgba(255,255,255,.5); }
         </style>
 
 	<!-- 
