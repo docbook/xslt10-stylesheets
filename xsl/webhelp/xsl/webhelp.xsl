@@ -540,15 +540,7 @@ border: none; background: none; font-weight: none; color: none; }
 		   src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
             <!-- Display the page title and the main heading(parent) of it-->
             <h1 align="center">
-                <xsl:apply-templates select="." mode="object.title.markup"/>
-                <br/>
-                <xsl:choose>
-                    <xsl:when
-                            test="count($up) &gt; 0 and generate-id($up) != generate-id($home)">
-                        <xsl:apply-templates select="$up" mode="object.title.markup"/>
-                    </xsl:when>
-                    <xsl:otherwise>&#160;</xsl:otherwise>
-                </xsl:choose>
+	      <xsl:call-template name="get.doc.title"/>
             </h1>
 
             <!-- Prev and Next links generation-->
