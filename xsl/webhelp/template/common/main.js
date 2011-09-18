@@ -27,7 +27,7 @@ $(document).ready(function() {
 		    $target = $target.length && $target
 			|| $('[name=' + this.hash.slice(1) +']');
 		    if ($target.length) {
-			var targetOffset = $target.offset().top - 105;
+			var targetOffset = $target.offset().top - 110;
 			$('html,body')
 			    .animate({scrollTop: targetOffset}, 200);
 			return false;
