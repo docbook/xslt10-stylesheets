@@ -181,39 +181,80 @@ These problems go away when you add this IE=7 mode meta tag.
                 <xsl:with-param name="key" select="'txt_results_for'"/>
                 </xsl:call-template>";
         </script>
-        <style type="text/css">
-            input {
-            margin-bottom: 5px;
-            margin-top: 2px;
-            }
 
-            .folder {
-            display: block;
-            height: 22px;
-            padding-left: 20px;
-            background: transparent url(<xsl:value-of select="$webhelp.common.dir"/>jquery/treeview/images/folder.gif) 0 0px no-repeat;
-            }
-
-			/* Overide jquery treeview's defaults for ul. */
-			.treeview ul {
-			    background-color: #F0F0F0 !important;
-			    margin-top: 4px;
-			}
-		
-			#webhelp-currentid {
-				 background-color: #D8D8D8 !important;
-			}
-        </style>
 	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}css/positioning.css"/>
         <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/>
         <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}jquery/treeview/jquery.treeview.css"/>
 
+        <style type="text/css">
+input {
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+.folder {
+    display: block;
+    height: 22px;
+    padding-left: 20px;
+    background: transparent url(<xsl:value-of select="$webhelp.common.dir"/>jquery/treeview/images/folder.gif) 0 0px no-repeat;
+}
+span.contentsTab {
+    padding-left: 20px;
+    background: url(<xsl:value-of select="$webhelp.common.dir"/>images/toc-icon.png) no-repeat 0 center;
+}
+span.searchTab {
+    padding-left: 20px;
+    background: url(<xsl:value-of select="$webhelp.common.dir"/>images/search-icon.png) no-repeat 0 center;
+}
+
+/* Overide jquery treeview's defaults for ul. */
+.treeview ul {
+    background-color: #F0F0F0 !important;
+    margin-top: 4px;
+}		
+#webhelp-currentid {
+    background-color: #D8D8D8 !important;
+}
+
+/* Override jquery-ui's default css customizations. These are supposed to take precedence over those.*/
+.ui-widget-content {
+    border: 0px; 
+    background: none; 
+    color: none;     
+}
+.ui-widget-header {
+    color: #e9e8e9;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #bbc4c5;
+    border-top: 4px solid #e5e5e5;
+    background: #F4F4F4; /* old browsers */
+    background: -moz-linear-gradient(top, #F4F4F4 0%, #E6E4E5 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F4F4F4), color-stop(100%,#E6E4E5)); /* webkit */    
+    font-weight: none;
+}
+.ui-widget-header a { color: none; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { 
+border: none; background: none; font-weight: none; color: none; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: black; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: none; background: none; font-weight: none; color: none; }
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: none; background: none; font-weight: none; color: none; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { 
+    color: black; text-decoration: none; 	
+    background: #C6C6C6; /* old browsers */
+    background: -moz-linear-gradient(top, #C6C6C6 0%, #D8D8D8 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#C6C6C6), color-stop(100%,#D8D8D8)); /* webkit */
+    -webkit-border-radius:15px; -moz-border-radius:10px;
+    border: 1px solid #f1f1f1;
+}    
+        </style>
+
 	<!-- 
 	     browserDetect is an Oxygen addition to warn the user if they're using chrome from the file system.
 	     This breaks the Oxygen search highlighting.
 	-->
-	<script type="text/javascript" src="../common/browserDetect.js">
+	<script type="text/javascript" src="{$webhelp.common.dir}browserDetect.js">
             <xsl:comment> </xsl:comment>
 	</script>
         <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-1.4.2.min.js">
@@ -659,21 +700,21 @@ These problems go away when you add this IE=7 mode meta tag.
                             <ul>
                                 <li>
                                     <a href="#treeDiv" tabindex="1">
-                                        <em>
+                                        <span class="contentsTab">
                                             <xsl:call-template name="gentext">
                                                 <xsl:with-param name="key" select="'TableofContents'"/>
                                             </xsl:call-template>
-                                        </em>
+                                        </span>
                                     </a>
                                 </li>
                                 <xsl:if test="$webhelp.include.search.tab != 'false'">
                                     <li>
                                         <a href="#searchDiv" tabindex="1">
-                                            <em>
+                                            <span class="searchTab">
                                                 <xsl:call-template name="gentext">
                                                     <xsl:with-param name="key" select="'Search'"/>
                                                 </xsl:call-template>
-                                            </em>
+                                            </span>
                                         </a>
                                     </li>
                                 </xsl:if>
