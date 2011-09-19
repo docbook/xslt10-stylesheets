@@ -88,8 +88,10 @@
        <java classname="com.nexwave.nquindexer.IndexerMain"> 
          <sysproperty key="htmlDir" value="${output-dir}/content"/>
          <sysproperty key="indexerLanguage" value="${webhelp.indexer.language}"/>
+         <sysproperty key="htmlExtension" value="${html.extension}"/>
          <sysproperty key="doStem" value="${enable.stemming}"/>
          <sysproperty key="tocFile" value="${toc.file}"/>
+
          <classpath>
 	    <path refid="classpath"/>
 	    <pathelement location="/usr/share/java/xercesImpl.jar"/>  	

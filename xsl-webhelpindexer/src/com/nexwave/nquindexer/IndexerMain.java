@@ -76,9 +76,12 @@ public class IndexerMain {
         setIndexerLanguage(indexerLanguage);
         setHtmlextension(htmlExtension);
 
-        if(doStem.toUpperCase().trim().equals("TRUE") || doStem.toUpperCase().trim().equals("YES")) {
+        if( !doStem.toUpperCase().trim().equals("FALSE") && !doStem.toUpperCase().trim().equals("NO")) {
             System.out.println("Stemming enabled");                    
             setStem(true);
+        } else {
+            System.out.println("Stemming disabled");
+            setStem(false);            
         }
 
         setTocfile(tocfile);
