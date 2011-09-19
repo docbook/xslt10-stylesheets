@@ -19,7 +19,7 @@ $(DOCBOOK_SVN)/xsl-saxon/saxon65.jar: $(wildcard $(DOCBOOK_SVN)/xsl-saxon/src/co
 $(DOCBOOK_SVN)/xsl-xalan/xalan27.jar: $(wildcard $(DOCBOOK_SVN)/xsl-xalan/src/com/nwalsh/xalan/*.java) 
 	$(MAKE) -C $(dir $@)
 
-$(DOCBOOK_SVN)/xsl-webhelpindexer/webhelpindexer.jar: $(wildcard $(DOCBOOK_SVN)/xsl-webhelpindexer/src/com/nexwave/nquindexer/*.java) 
+$(DOCBOOK_SVN)/xsl-webhelpindexer/webhelpindexer.jar: $(wildcard $(DOCBOOK_SVN)/xsl-webhelpindexer/src/com/nexwave/*/*.java) 
 	$(MAKE) -C $(dir $@)
 
 xslt.py: $(DOCBOOK_SVN)/xsl-libxslt/python/xslt.py

@@ -61,12 +61,36 @@ public class IndexerMain {
 
     // Constructors
 
+    /**
+     * Create indexer object
+     * The content language defaults to English "en"
+     *
+     * @param htmlDir The directory where html files reside.
+     * @param indexerLanguage the language of the html content
+     * @param htmlExtension the extension for files (.html/.htm/.xhtml etc.)
+     * @param doStem true if the content should be stemmed
+     * @param tocfile table of contents file. 
+     */
+    public IndexerMain(String htmlDir, String indexerLanguage, String htmlExtension, String doStem, String tocfile) {
+        setHtmlDir(htmlDir);
+        setIndexerLanguage(indexerLanguage);
+        setHtmlextension(htmlExtension);
+
+        if(doStem.toUpperCase().trim().equals("TRUE") || doStem.toUpperCase().trim().equals("YES")) {
+            System.out.println("Stemming enabled");                    
+            setStem(true);
+        }
+
+        setTocfile(tocfile);
+
+    }
+
     public IndexerMain(String htmlDir, String indexerLanguage) {
         super();
         setHtmlDir(htmlDir);
         setIndexerLanguage(indexerLanguage);
     }
-
+    
     /**
      * The content language defaults to English "en"
      *
@@ -135,22 +159,21 @@ public class IndexerMain {
      * The main class without Ant dependencies.
      * This can be used as a standalone jar.
      *
-     * @param args need two parameters for this array. htmlDirectory indexerLanguage
-     *             If only one parameter is there (htmlDir), indexerLanguage defaults to english
      */
     public static void main(String[] args) {
 
         IndexerMain indexer;
-        if (args.length == 1) {
-            System.out.println(txt_no_lang_specified);
-            indexer = new IndexerMain(args[0]);
-        } else if (args.length >= 2) {
-
-            indexer = new IndexerMain(args[0], args[1]);
+        if (System.getProperty("htmlDir") != null) {
+            indexer = new IndexerMain(
+                    System.getProperty("htmlDir"),
+                    System.getProperty("indexerLanguage", "en"), //defaults to "en"
+                    System.getProperty("htmlExtension", "html"),
+                    System.getProperty("doStem", "true"), //defaults to true
+                    System.getProperty("tocFile")
+            );
         } else {
-            throw new RuntimeException("Please specify the parameters htmlDirectory and " +
-                    "indexerLanguage (optional). \n " +
-                    "ex: java -jar webhelpindexer.jar docs/content en \n" +
+            throw new RuntimeException("Specify at least the the directory containing html files (htmlDir)\n " +
+                    "ex: java -jar webhelpindexer.jar -DhtmlDir=docs/content -DindexerLanguage=en \n" +
                     "The program will exit now."
             );
         }
@@ -158,7 +181,6 @@ public class IndexerMain {
         indexer.execute();
 
     }
-
 
     /**
      * Implementation of the execute function (Task interface)
