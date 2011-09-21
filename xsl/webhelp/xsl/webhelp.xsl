@@ -695,7 +695,7 @@ border: none; background: none; font-weight: none; color: none; }
                 </xsl:variable>
 
                 <div>
-                    <div id="leftnavigation" style="padding-top:3px; background-color:white;">
+                    <div id="leftnavigation" style="padding-top:3px;">
                         <div id="tabs">
                             <ul>
                                 <li>
