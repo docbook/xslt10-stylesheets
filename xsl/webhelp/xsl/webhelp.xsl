@@ -230,6 +230,7 @@ span.searchTab {
     border-right: 1px solid #e5e5e5;
     border-bottom: 1px solid #bbc4c5;
     border-top: 4px solid #e5e5e5;
+    border: medium none;
     background: #F4F4F4; /* old browsers */
     background: -moz-linear-gradient(top, #F4F4F4 0%, #E6E4E5 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F4F4F4), color-stop(100%,#E6E4E5)); /* webkit */    
