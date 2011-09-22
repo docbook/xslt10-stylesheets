@@ -621,7 +621,6 @@ book  toc,title
 <xsl:template match="*" mode="epub.type" priority="-1"/>
 
 <xsl:template match="chapter
-                    |section
                     |appendix
                     |epigraph
                     |warning
@@ -642,6 +641,18 @@ book  toc,title
     <xsl:attribute name="epub:type">
       <xsl:value-of select="$type"/>
     </xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="section[parent::chapter]" mode="epub.type">
+  <xsl:if test="$epub.output.epub.types != 0">
+    <xsl:attribute name="epub:type">subchapter</xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="section[not(parent::chapter)]" mode="epub.type">
+  <xsl:if test="$epub.output.epub.types != 0">
+    <xsl:attribute name="epub:type">division</xsl:attribute>
   </xsl:if>
 </xsl:template>
 
