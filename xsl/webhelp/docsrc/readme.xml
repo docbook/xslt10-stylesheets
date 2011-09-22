@@ -116,6 +116,9 @@
       <itemizedlist>
         <title>Features</title>
         <listitem>
+          <para>Sophisticated CSS-based page layout</para>
+        </listitem>
+        <listitem>
           <para>Full text search.<indexterm class="singular">
               <primary>search</primary>
               <secondary>features</secondary>
@@ -123,13 +126,12 @@
           <itemizedlist>
             <listitem>
               <para>Provides full content search of the documentation. Shows the search results with
-                links to chunked pages, and descriptions taken from the abstract in the chapters or
-                from a para with <code>role="summary"</code></para>
+                links to chunked pages, and a small description.</para>
             </listitem>
             <listitem>
               <para>Word scoring/rating - For a particular word, the pages are weighted according to
-                how much that word appears in it, is it bold or not, is in index terms etc. The
-                score out of 5 is shown by small colored boxes after each search-result</para>
+                how many times that word appears in it, is it bold or not, is in index terms etc.
+                The score out of 5 is shown by small colored boxes after each search-result</para>
             </listitem>
             <listitem>
               <para>Stemming support for English, French, and German. Stemming support can be added
@@ -143,8 +145,7 @@
                 engine </para>
             </listitem>
             <listitem>
-              <para>Search highlighting shows where the searched for term appears in the results.
-                Use the <guibutton>H</guibutton> button to toggle the highlighting off and on.
+              <para>Search highlighting shows where the searched term appears in the results.
                   <indexterm class="singular">
                   <primary>search</primary>
                   <secondary>highlighting</secondary>
@@ -164,6 +165,9 @@
         </listitem>
         <listitem>
           <para>Auto-synchronization of content pane and TOC.</para>
+        </listitem>
+        <listitem>
+          <para>Nicely placed small forward, backward, top links</para>
         </listitem>
         <listitem>
           <para>TOC and search pane implemented without the use of a frameset.</para>
@@ -200,9 +204,6 @@
               <para>Add a simple form that uses a Google site:my.domain.com based search.</para>
             </listitem>
           </itemizedlist>
-        </listitem>
-        <listitem>
-          <para>Sort search results based on relevance</para>
         </listitem>
         <listitem>
           <para>Support wild card characters in the search query.</para>
@@ -262,7 +263,7 @@
             CJKAnalyzer</para>
         </listitem>
         <listitem>
-          <para>And, a lot more (with duplicates) from <ulink
+          <para>And, a lot more (with duplicates) at <ulink
               url="http://docbook.xmlpress.net/tiki-index.php?page=WebHelp2011">WebHelp Wiki at
               XMLPress </ulink></para>
         </listitem>
