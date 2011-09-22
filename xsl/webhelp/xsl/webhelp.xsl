@@ -3,7 +3,8 @@
         xmlns:exsl="http://exslt.org/common"
         xmlns:ng="http://docbook.org/docbook-ng" 
         xmlns:db="http://docbook.org/ns/docbook"
-        version="1.0" xmlns="http://www.w3.org/1999/xhtml">
+        version="1.0" xmlns="http://www.w3.org/1999/xhtml"
+	exclude-result-prefixes="exsl ng db">
 
     <xsl:import href="../../xhtml/chunk.xsl"/>
 
@@ -150,11 +151,13 @@ These problems go away when you add this IE=7 mode meta tag.
 	<meta http-equiv="X-UA-Compatible" content="IE=7" />
 <xsl:text>
 </xsl:text>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<xsl:text>
+</xsl:text>
   </xsl:template>
 
     <!-- HTML <head> section customizations -->	
     <xsl:template name="user.head.content">
-  	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <!--  <xsl:message>
             webhelp.tree.cookie.id = <xsl:value-of select="$webhelp.tree.cookie.id"/> +++ <xsl:value-of select="count(//node())"/>
             $webhelp.indexer.language = <xsl:value-of select="$webhelp.indexer.language"/> +++ <xsl:value-of select="count(//node())"/>
@@ -545,7 +548,8 @@ border: none; background: none; font-weight: none; color: none; }
             </h1>
 
             <!-- Prev and Next links generation-->
-            <div id="navheader" align="right">
+            <div id="navheader">
+	      <xsl:call-template name="user.webhelp.navheader.content"/>
                 <xsl:comment>
                     <!-- KEEP this code. In case of neither prev nor next links are available, this will help to
                         keep the integrity of the DOM tree-->
@@ -635,6 +639,8 @@ border: none; background: none; font-weight: none; color: none; }
       <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
 	   src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
     </xsl:template>
+
+    <xsl:template name="user.webhelp.navheader.content"/>
 
     <xsl:template name="webhelptoc">
         <xsl:param name="currentid"/>

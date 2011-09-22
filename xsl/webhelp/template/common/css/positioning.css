@@ -131,6 +131,7 @@ p.breadcrumbs {
     padding-left: 10px;
     right: 0px;
     top: 37px;
+    text-align: right;
 }
 
 #content h1, #content h2 { color: black; }
