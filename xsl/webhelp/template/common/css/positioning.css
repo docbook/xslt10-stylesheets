@@ -162,12 +162,12 @@ p.breadcrumbs {
 }
 .searchresult li { color: #0050A0; }
 .shortdesclink { color: gray; font-size: 9pt; }
-.searchText { border: #BFCEE9 solid 1pt; width: 11em }
+.searchText { width: 12em }
 .searchButton {
     margin-left: 3px;
-    background: #EBEFF8;
-    color: #0050A0;
-    border: #BFCEE9 solid 1pt;
+    background: #F4F4F4;
+    color: #black;
+    border: #ACCEAF solid 1pt;
     font-weight: bold;
     font-size: 10pt
 }
