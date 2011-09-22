@@ -712,8 +712,11 @@ book  toc,title
     <xsl:call-template name="manifest.css"/>
     <xsl:call-template name="manifest.cover"/>
     <xsl:call-template name="manifest.content.items"/>
+    <xsl:call-template name="user.manifest.items"/>
   </xsl:element>
 </xsl:template>
+
+<xsl:template name="user.manifest.items"/>
 
 <xsl:template name="manifest.css">
   <xsl:if test="$html.stylesheet != ''">
