@@ -289,8 +289,7 @@ function Effectuer_recherche(expressionInput) {
                     }
                     arrayString = arrayString.substring(0,arrayString.length - 1) + ")";
                     var idLink = 'foundLink' + no;
-                    var link = 'openAndHighlight(\'' + tempPath + '\', ' + arrayString + ', \'' + idLink + '\')';
-                    var linkString = '<li><a id="' + idLink + '" href="' + tempPath + '" class="foundResult" onclick="'+link+'">' + tempTitle + '</a>';
+                    var linkString = '<li><a id="' + idLink + '" href="' + tempPath + '" class="foundResult">' + tempTitle + '</a>';
                     var starWidth = (ttScore * 100/ hundredProcent)/(ttScore_first/hundredProcent) * (numberOfWords/maxNumberOfWords);
                     starWidth = starWidth < 10 ? (starWidth + 5) : starWidth;
                     // Keep the 5 stars format
