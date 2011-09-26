@@ -78,10 +78,12 @@ book  toc,title
 <!-- optional ncx for backwards compatibility -->
 <xsl:param name="epub.include.ncx" select="1"/>
 <xsl:param name="epub.ncx.depth">4</xsl:param> <!-- Not functional until http://code.google.com/p/epubcheck/issues/detail?id=70 is resolved -->
-<!-- optional dcterms properties, for future compatibility -->
+<!-- currently optional duplicate dcterms properties, may be required in future -->
 <xsl:param name="epub.include.metadata.dcterms" select="1"/>
 <!-- currently required, to be replaced in future version -->
 <xsl:param name="epub.include.metadata.dc.elements" select="1"/>
+<!-- Some dc: elements will remain optional according to the spec -->
+<xsl:param name="epub.include.optional.metadata.dc.elements" select="1"/>
 <xsl:param name="epub.autolabel" select="0"/>
 <xsl:param 
   name="epub.vocabulary.profile.content">http://www.idpf.org/epub/30/profile/content/</xsl:param>
@@ -379,13 +381,22 @@ book  toc,title
       <xsl:with-param name="date" select="$local.datetime"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:if test="string-length($utc.datetime) != 0">
-    <xsl:element name="meta" namespace="{$opf.namespace}">
-      <xsl:attribute name="property">dcterms:modified</xsl:attribute>
-      <xsl:value-of select="$utc.datetime"/>
-    </xsl:element>
-    <xsl:comment>The preceding date value is actually local time (not UTC) in UTC format because there is no function in XSLT 1.0 to generate a correct UTC time</xsl:comment>
-  </xsl:if>
+  <xsl:choose>
+    <xsl:when test="string-length($utc.datetime) != 0">
+      <xsl:element name="meta" namespace="{$opf.namespace}">
+        <xsl:attribute name="property">dcterms:modified</xsl:attribute>
+        <xsl:value-of select="$utc.datetime"/>
+      </xsl:element>
+      <xsl:comment>The preceding date value is actually local time (not UTC) in UTC format because there is no function in XSLT 1.0 to generate a correct UTC time</xsl:comment>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message terminate="yes">
+        <xsl:text>ERROR: no last-modified date value could be determined, </xsl:text>
+        <xsl:text>so cannot output required meta element with </xsl:text>
+        <xsl:text>dcterms:modified attribute. Exiting.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="convert.date.to.utc">
@@ -423,18 +434,6 @@ book  toc,title
   </xsl:variable>
 
   <xsl:if test="string-length($n) != 0">
-    <dc:creator>
-      <xsl:attribute name="id">
-        <xsl:value-of select="concat($epub.dc.creator.id, position())"/>
-      </xsl:attribute>
-      <!--
-      <xsl:attribute name="prefer">
-        <xsl:value-of select="concat($epub.meta.creator.id, position())"/>
-      </xsl:attribute>
-      -->
-      <xsl:value-of select="$n"/>
-    </dc:creator>
-
     <xsl:element name="meta" namespace="{$opf.namespace}">
       <xsl:attribute name="id">
         <xsl:value-of select="concat($epub.meta.creator.id, position())"/>
@@ -442,22 +441,77 @@ book  toc,title
       <xsl:attribute name="property">dcterms:creator</xsl:attribute>
       <xsl:value-of select="normalize-space(string($n))"/>
     </xsl:element>
+
+    <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+      <dc:creator>
+        <xsl:attribute name="id">
+          <xsl:value-of select="concat($epub.dc.creator.id, position())"/>
+        </xsl:attribute>
+        <xsl:value-of select="$n"/>
+      </dc:creator>
+    </xsl:if>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="date" mode="opf.metadata">
+<xsl:template match="editor" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:creator</xsl:attribute>
+    <xsl:value-of select="normalize-space(.)"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:creator>
+      <xsl:value-of select="normalize-space(.)"/>
+    </dc:creator>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="othercredit|collab" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:contributor</xsl:attribute>
+    <xsl:value-of select="normalize-space(.)"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:contributor>
+      <xsl:value-of select="normalize-space(.)"/>
+    </dc:contributor>
+  </xsl:if>
+
+</xsl:template>
+
+<xsl:template match="editor" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:creator</xsl:attribute>
+    <xsl:value-of select="normalize-space(.)"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:creator>
+      <xsl:value-of select="normalize-space(.)"/>
+    </dc:creator>
+  </xsl:if>
+
+</xsl:template>
+
+<xsl:template match="date|pubdate" mode="opf.metadata">
   <xsl:element name="meta" namespace="{$opf.namespace}">
     <xsl:attribute name="property">dcterms:date</xsl:attribute>
     <xsl:value-of select="normalize-space(.)"/>
   </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:date>
+      <xsl:value-of select="normalize-space(.)"/>
+    </dc:date>
+  </xsl:if>
 
 </xsl:template>
 
 
 <!-- Space separate the compontents of the abstract (dropping the inline markup, sadly) -->
 <xsl:template match="abstract" mode="opf.metadata">
-  <xsl:element name="meta" namespace="{$opf.namespace}">
-    <xsl:attribute name="property">dcterms:description</xsl:attribute>
+  <xsl:variable name="content">
     <xsl:for-each select="formalpara|para|simpara|title">
       <xsl:choose>
         <xsl:when test="self::formalpara">
@@ -476,7 +530,18 @@ book  toc,title
         <xsl:text> </xsl:text>
       </xsl:if>
     </xsl:for-each>  
+  </xsl:variable>
+
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:description</xsl:attribute>
+    <xsl:copy-of select="$content"/>
   </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:description>
+      <xsl:copy-of select="$content"/>
+    </dc:description>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="subjectset" mode="opf.metadata">
@@ -488,6 +553,29 @@ book  toc,title
     <xsl:attribute name="property">dcterms:subject</xsl:attribute>
     <xsl:value-of select="normalize-space(string(.))"/>
   </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:subject>
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </dc:subject>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="keywordset" mode="opf.metadata">
+  <xsl:apply-templates select="keyword" mode="opf.metadata"/>
+</xsl:template>
+
+<xsl:template match="keyword" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:subject</xsl:attribute>
+    <xsl:value-of select="normalize-space(string(.))"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:subject>
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </dc:subject>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="publisher" mode="opf.metadata">
@@ -499,6 +587,51 @@ book  toc,title
     <xsl:attribute name="property">dcterms:publisher</xsl:attribute>
     <xsl:value-of select="normalize-space(string(.))"/>
   </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:publisher>
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </dc:publisher>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="bibliocoverage" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:coverage</xsl:attribute>
+    <xsl:value-of select="normalize-space(string(.))"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:coverage>
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </dc:coverage>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="bibliorelation" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:relation</xsl:attribute>
+    <xsl:value-of select="normalize-space(string(.))"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:relation>
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </dc:relation>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="bibliosource" mode="opf.metadata">
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:source</xsl:attribute>
+    <xsl:value-of select="normalize-space(string(.))"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:source>
+      <xsl:value-of select="normalize-space(string(.))"/>
+    </dc:source>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="copyright" mode="opf.metadata">
@@ -509,18 +642,28 @@ book  toc,title
       <xsl:with-param name="single.year.ranges" select="$make.single.year.ranges"/>
     </xsl:call-template>
   </xsl:variable>
+
+  <!-- if no docbook date element, use copyright year for single date metadata -->
   <xsl:if test="not(../date)">
-    <xsl:element name="meta" namespace="{$opf.namespace}">
-      <xsl:attribute name="property">dcterms:date</xsl:attribute>
+    <xsl:variable name="date.content">
       <xsl:call-template name="copyright.years">
         <xsl:with-param name="years" select="year[last()]"/>
         <xsl:with-param name="print.ranges" select="0"/>
         <xsl:with-param name="single.year.ranges" select="0"/>
       </xsl:call-template>
+    </xsl:variable>
+    <xsl:element name="meta" namespace="{$opf.namespace}">
+      <xsl:attribute name="property">dcterms:date</xsl:attribute>
+      <xsl:copy-of select="$date.content"/>
     </xsl:element>
+    <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+      <dc:date>
+        <xsl:copy-of select="$date.content"/>
+      </dc:date>
+    </xsl:if>
   </xsl:if>
-  <xsl:element name="meta" namespace="{$opf.namespace}">
-    <xsl:attribute name="property">dcterms:rights</xsl:attribute>
+
+  <xsl:variable name="rights.content">
     <xsl:call-template name="gentext">
       <xsl:with-param name="key" select="'Copyright'"/>
     </xsl:call-template>
@@ -530,7 +673,18 @@ book  toc,title
     <xsl:value-of select="$copyright.date"/>
     <xsl:call-template name="gentext.space"/>
     <xsl:apply-templates select="holder" mode="titlepage.mode"/>
+  </xsl:variable>
+
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:rights</xsl:attribute>
+    <xsl:copy-of select="$rights.content"/>
   </xsl:element>
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:rights>
+      <xsl:copy-of select="$rights.content"/>
+    </dc:rights>
+  </xsl:if>
+
   <xsl:element name="meta" namespace="{$opf.namespace}">
     <xsl:attribute name="property">dcterms:rightsHolder</xsl:attribute>
     <xsl:apply-templates select="holder" mode="titlepage.mode"/>
