@@ -954,6 +954,7 @@ book  toc,title
     <xsl:call-template name="manifest.toc"/>
     <xsl:call-template name="manifest.css"/>
     <xsl:call-template name="manifest.cover"/>
+    <xsl:call-template name="manifest.other.items"/>
     <xsl:call-template name="manifest.content.items"/>
     <xsl:call-template name="user.manifest.items"/>
   </xsl:element>
@@ -1016,7 +1017,11 @@ book  toc,title
 </xsl:template>
 
 <xsl:template name="manifest.fonts"/>
-<xsl:template name="manifest.other.items"/>
+
+<!--Misc items in the manifest based on content -->
+<xsl:template name="manifest.other.items">
+</xsl:template>
+
 
 <xsl:template name="manifest.cover">
   <xsl:variable name="info" select="./*[contains(local-name(.), 'info')][1]"/>
@@ -1219,6 +1224,7 @@ book  toc,title
                     function-available('set:distinct')">
       <xsl:for-each select="set:distinct(exsl:node-set($imagelist)/*)">
         <xsl:if test="string-length(href) != 0">
+          <!-- convert the child elements to attributes -->
           <xsl:element name="item" namespace="{$opf.namespace}">
             <xsl:attribute name="id">
               <xsl:value-of select="generate-id()"/>
