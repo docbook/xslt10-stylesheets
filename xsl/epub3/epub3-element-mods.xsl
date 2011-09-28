@@ -80,7 +80,9 @@ book  toc,title
 <xsl:param name="epub.ncx.depth">4</xsl:param> <!-- Not functional until http://code.google.com/p/epubcheck/issues/detail?id=70 is resolved -->
 <!-- currently optional duplicate dcterms properties, may be required in future -->
 <xsl:param name="epub.include.metadata.dcterms" select="1"/>
-<!-- currently required, to be replaced in future version -->
+<!-- optional guide element for backwards compatibility -->
+<xsl:param name="epub.include.guide" select="1"/>
+<!-- some dc: currently required, to be replaced in future version -->
 <xsl:param name="epub.include.metadata.dc.elements" select="1"/>
 <!-- Some dc: elements will remain optional according to the spec -->
 <xsl:param name="epub.include.optional.metadata.dc.elements" select="1"/>
@@ -98,6 +100,7 @@ book  toc,title
 <xsl:param name="epub.container.filename" select="'container.xml'"/> 
 <xsl:param name="epub.package.filename" select="'package.opf'"/> 
 <xsl:param name="epub.cover.filename" select="concat('cover', $html.ext)"/> 
+<xsl:param name="epub.cover.linear" select="0" />
 
 <!-- names of id attributes used in package files -->
 <xsl:param name="epub.meta.identifier.id">meta-identifier</xsl:param> 
@@ -115,7 +118,6 @@ book  toc,title
 <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
 <xsl:param name="epub.cover.filename.id" select="'cover'"/> 
 <xsl:param name="epub.cover.image.id" select="'cover-image'"/> 
-<xsl:param name="epub.cover.linear" select="0" />
 
 <xsl:param name="epub.embedded.fonts"></xsl:param>
 <xsl:param name="epub.namespace">http://www.idpf.org/2007/ops</xsl:param>
@@ -249,7 +251,10 @@ book  toc,title
       <xsl:call-template name="package.metadata"/>
       <xsl:call-template name="package.manifest"/>
       <xsl:call-template name="package.spine"/>
-      <xsl:call-template name="package.guide"/>
+
+      <xsl:if test="$epub.include.guide != 0">
+        <xsl:call-template name="package.guide"/>
+      </xsl:if>
 
     </xsl:element>
   </xsl:variable>
@@ -495,16 +500,56 @@ book  toc,title
 </xsl:template>
 
 <xsl:template match="date|pubdate" mode="opf.metadata">
-  <xsl:element name="meta" namespace="{$opf.namespace}">
-    <xsl:attribute name="property">dcterms:date</xsl:attribute>
-    <xsl:value-of select="normalize-space(.)"/>
-  </xsl:element>
+  <xsl:variable name="date">
+    <xsl:call-template name="format.meta.date">
+      <xsl:with-param name="string" select="normalize-space(.)"/>
+    </xsl:call-template>
+  </xsl:variable>
 
-  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
-    <dc:date>
-      <xsl:value-of select="normalize-space(.)"/>
-    </dc:date>
+  <xsl:if test="string-length($date) != 0">
+    <xsl:element name="meta" namespace="{$opf.namespace}">
+      <xsl:attribute name="property">dcterms:date</xsl:attribute>
+      <xsl:value-of select="$date"/>
+    </xsl:element>
+  
+    <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+      <dc:date>
+        <xsl:value-of select="$date"/>
+      </dc:date>
+    </xsl:if>
   </xsl:if>
+
+</xsl:template>
+
+<!-- EPUB3 meta date should be of the form:
+  YYYY, YYYY-MM or YYYY-MM-DD -->
+<xsl:template name="format.meta.date">
+  <xsl:param name="string" select="''"/>
+  
+  <xsl:variable name="date">
+    <xsl:choose>
+      <xsl:when test="string-length($string) = 0">
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- construct a date one digit at a time until it fails to match format -->
+        <xsl:if test="contains('1234567890', substring($string,1,1))">
+          <xsl:value-of select="substring($string,1,1)"/>
+        </xsl:if>
+        <xsl:if test="contains('1234567890', substring($string,2,1))">
+          <xsl:value-of select="substring($string,2,1)"/>
+        </xsl:if>
+        <xsl:if test="contains('1234567890', substring($string,3,1))">
+          <xsl:value-of select="substring($string,3,1)"/>
+        </xsl:if>
+        <xsl:if test="contains('1234567890', substring($string,4,1))">
+          <xsl:value-of select="substring($string,4,1)"/>
+        </xsl:if>
+        <!-- FIXME: continue -->
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:value-of select="$date"/>
 
 </xsl:template>
 
@@ -646,10 +691,14 @@ book  toc,title
   <!-- if no docbook date element, use copyright year for single date metadata -->
   <xsl:if test="not(../date)">
     <xsl:variable name="date.content">
-      <xsl:call-template name="copyright.years">
-        <xsl:with-param name="years" select="year[last()]"/>
-        <xsl:with-param name="print.ranges" select="0"/>
-        <xsl:with-param name="single.year.ranges" select="0"/>
+      <xsl:call-template name="format.meta.date">
+        <xsl:with-param name="string">
+          <xsl:call-template name="copyright.years">
+            <xsl:with-param name="years" select="year[last()]"/>
+            <xsl:with-param name="print.ranges" select="0"/>
+            <xsl:with-param name="single.year.ranges" select="0"/>
+          </xsl:call-template>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
     <xsl:element name="meta" namespace="{$opf.namespace}">
@@ -691,7 +740,47 @@ book  toc,title
   </xsl:element>
 </xsl:template>
 
-<xsl:template name="package.guide"/>
+<xsl:template name="package.guide">
+
+  <xsl:variable name="info" select="./*[contains(local-name(.), 'info')][1]"/>
+
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="node" select="."/>
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="contains($toc.params, 'toc') or 
+                $info/cover or 
+                $info//mediaobject[@role='cover' or ancestor::cover]"> 
+    <xsl:element namespace="{$opf.namespace}" name="guide">
+      <xsl:if test="$info/cover or 
+                    $info//mediaobject[@role='cover' or ancestor::cover]"> 
+        <xsl:element namespace="{$opf.namespace}" name="reference">
+          <xsl:attribute name="href">
+            <xsl:value-of select="$epub.cover.filename" />
+          </xsl:attribute>
+          <xsl:attribute name="type">cover</xsl:attribute>
+          <xsl:attribute name="title">Cover</xsl:attribute>
+        </xsl:element>
+      </xsl:if>  
+
+      <xsl:if test="contains($toc.params, 'toc')">
+        <xsl:element namespace="{$opf.namespace}" name="reference">
+          <xsl:attribute name="href">
+            <xsl:call-template name="toc-href">
+              <xsl:with-param name="node" select="."/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="type">toc</xsl:attribute>
+          <xsl:attribute name="title">Table of Contents</xsl:attribute>
+        </xsl:element>
+      </xsl:if>  
+    </xsl:element>  
+  </xsl:if>  
+</xsl:template>
+
 
 <xsl:template name="package-identifier">  
 
