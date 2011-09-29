@@ -16,6 +16,7 @@
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns:opf="http://www.idpf.org/2007/opf"
   xmlns:dc="http://purl.org/dc/elements/1.1/"  
+  xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
   xmlns:date="http://exslt.org/dates-and-times"
   xmlns:dcterms="http://purl.org/dc/terms/"
   xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/"
@@ -25,7 +26,7 @@
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
 
   extension-element-prefixes="stext xtext"
-  exclude-result-prefixes="#default date db dc dcterms epub exsl m ncx opf pls set ssml stext str svg xtext"
+  exclude-result-prefixes="#default cf date db dc dcterms epub exsl m ncx opf pls set ssml stext str svg xtext"
   version="1.0">
 
 <!-- $Id: epub3-element-mods.xsl,v 1.1 2011-09-16 21:43:45 bobs Exp $ -->
@@ -141,6 +142,16 @@ book  toc,title
            select="concat($base.dir, $epub.cover.filename)"/>
 <xsl:param name="epub.mimetype.pathname"
            select="concat($epub.package.dir, $epub.mimetype.filename)"/>
+
+<!--==============================================================-->
+<!--  Internal variables used for computing certain metadata      -->
+<!--==============================================================-->
+<xsl:variable name="epub3.chunk.hierarchy">
+  <xsl:apply-templates select="/*" mode="find.chunks"/>
+</xsl:variable>
+
+<xsl:variable name="chunkset" select="exsl:node-set($epub3.chunk.hierarchy)//cf:div"/>
+
 <!--==============================================================-->
 <!--  Template customizations                                     -->
 <!--==============================================================-->
@@ -526,6 +537,7 @@ book  toc,title
 <xsl:template name="format.meta.date">
   <xsl:param name="string" select="''"/>
   
+  <!-- FIXME: this needs further work, so just return the date string for now -->
   <xsl:variable name="date">
     <xsl:choose>
       <xsl:when test="string-length($string) = 0">
@@ -549,7 +561,7 @@ book  toc,title
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:value-of select="$date"/>
+  <xsl:value-of select="$string"/>
 
 </xsl:template>
 
@@ -1188,6 +1200,14 @@ book  toc,title
   
     <xsl:variable name="id" select="concat($epub.package.id.prefix, generate-id())"/>
 
+    <xsl:variable name="properties.set">
+      <xsl:call-template name="svg.property"/>
+      <xsl:text> </xsl:text>
+      <xsl:call-template name="mathml.property"/>
+    </xsl:variable>
+
+    <xsl:variable name="properties" select="normalize-space($properties.set)"/>
+
     <xsl:element namespace="{$opf.namespace}" name="item">
       <xsl:attribute name="id">
         <xsl:value-of select="$id"/>
@@ -1196,10 +1216,81 @@ book  toc,title
         <xsl:value-of select="$href"/>
       </xsl:attribute>
       <xsl:attribute name="media-type">application/xhtml+xml</xsl:attribute>
+      <xsl:if test="string-length($properties) != 0">
+        <xsl:attribute name="properties">
+          <xsl:value-of select="$properties"/>
+        </xsl:attribute>
+      </xsl:if>
     </xsl:element>
   </xsl:if>  
   <xsl:apply-templates mode="package.manifest"/>
 
+</xsl:template>
+
+<xsl:template name="svg.property">
+  <xsl:param name="this.chunk" select="."/>
+
+  <xsl:variable name="genid" select="generate-id($this.chunk)"/>
+
+  <!-- get the chunkfast div element for this chunk -->
+  <xsl:variable name="div" select="$chunkset[@id=$genid or @xml:id=$genid]"/>
+
+  <!-- get the chunkfast div element the next chunk -->
+  <xsl:variable name="nextdiv"
+                select="($div/following-sibling::cf:div|
+                         $div/following::cf:div|
+                         $div/cf:div)[1]"/>
+
+  <!-- get the element corresponding to the next chunk -->
+  <xsl:variable name="next.chunk" select="key('genid', ($nextdiv/@id|$nextdiv/@xml:id)[1])"/>
+
+  <xsl:variable name="this.imagedata"
+                select="$this.chunk//imagedata"/>
+  <xsl:variable name="before.next"
+                select="$next.chunk/preceding::imagedata"/>
+  
+  <!-- select for an SVG imagedata in the intersection of them -->
+  <xsl:variable name="intersection"
+      select="$this.imagedata[count(.|$before.next) = count($before.next)]"/>
+
+  <xsl:variable name="svg.imagedata"
+      select="$intersection[contains(
+                  substring(@fileref, string-length(@fileref)-3,4), '.svg')]"/>
+
+  <xsl:if test="count($svg.imagedata) != 0">
+    <xsl:text>svg</xsl:text>
+ </xsl:if>
+</xsl:template>
+
+<xsl:template name="mathml.property">
+  <xsl:param name="this.chunk" select="."/>
+
+  <xsl:variable name="genid" select="generate-id($this.chunk)"/>
+
+  <!-- get the chunkfast div element for this chunk -->
+  <xsl:variable name="div" select="$chunkset[@id=$genid or @xml:id=$genid]"/>
+
+  <!-- get the chunkfast div element the next chunk -->
+  <xsl:variable name="nextdiv"
+                select="($div/following-sibling::cf:div|
+                         $div/following::cf:div|
+                         $div/cf:div)[1]"/>
+
+  <!-- get the element corresponding to the next chunk -->
+  <xsl:variable name="next.chunk" select="key('genid', ($nextdiv/@id|$nextdiv/@xml:id)[1])"/>
+
+  <xsl:variable name="this.math"
+                select="$this.chunk//m:*"/>
+  <xsl:variable name="before.next"
+                select="$next.chunk/preceding::m:*"/>
+  
+  <!-- select for an SVG imagedata in the intersection of them -->
+  <xsl:variable name="intersection"
+      select="$this.math[count(.|$before.next) = count($before.next)]"/>
+
+  <xsl:if test="count($intersection) != 0">
+    <xsl:text>mathml</xsl:text>
+ </xsl:if>
 </xsl:template>
 
 <xsl:template name="manifest.image.item">
