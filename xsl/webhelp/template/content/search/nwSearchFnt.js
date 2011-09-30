@@ -671,26 +671,31 @@ function SortResults(mots) {
     var scoringArr = Array();
     for (var t in mots) {
         // get the list of the indices of the files.
-        var listNumerosDesFicStr = w[mots[t].toString()];        
-        //alert ("listNumerosDesFicStr "+listNumerosDesFicStr);
-        var tab = listNumerosDesFicStr.split(",");
-        //for each file (file's index):
-        for (var t2 in tab) {
-            var tmp = '';
-            var idx = '';
-            var temp = tab[t2].toString();
-            if (temp.indexOf('*') != -1){
-                idx = temp.indexOf('*');
-                tmp = temp.substring(idx + 3, temp.length);
-                temp = temp.substring(0,idx);
+        var listNumerosDesFicStr = w[mots[t].toString()];
+
+        if (listNumerosDesFicStr != undefined) {
+
+            //alert ("listNumerosDesFicStr "+listNumerosDesFicStr);
+            var tab = listNumerosDesFicStr.split(",");
+            //for each file (file's index):
+            for (var t2 in tab) {
+                var tmp = '';
+                var idx = '';
+                var temp = tab[t2].toString();
+                if (temp.indexOf('*') != -1) {
+                    idx = temp.indexOf('*');
+                    tmp = temp.substring(idx + 3, temp.length);
+                    temp = temp.substring(0, idx);
+                }
+                scoringArr.push(tmp);
+                if (fileAndWordList[temp] == undefined) {
+                    fileAndWordList[temp] = "" + mots[t];
+                } else {
+                    fileAndWordList[temp] += "," + mots[t];
+                }
+                //console.info("fileAndWordList[" + temp + "]=" + fileAndWordList[temp] + " : " + tmp);
             }
-            scoringArr.push(tmp);
-            if (fileAndWordList[temp] == undefined) {
-                fileAndWordList[temp] = "" + mots[t];
-            } else {
-                fileAndWordList[temp] += "," + mots[t];
-            }
-            //console.info("fileAndWordList[" + temp + "]=" + fileAndWordList[temp] + " : " + tmp);
+
         }
     }
     var fileAndWordListValuesOnly = new Array();
