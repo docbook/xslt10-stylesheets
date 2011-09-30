@@ -704,7 +704,11 @@ function SortResults(mots) {
     finalObj = new Array();
     for (t in fileAndWordList) {    	
     	finalObj.push(new newObj(t,fileAndWordList[t]));
-    }    
+    }
+
+    if ( finalObj.length == 0 ) {   // None of the queried words are not in the index (stemmed or not)
+        return null;
+    }
     finalObj = removeDerivates(finalObj);
     for (t in finalObj) {
         tab = finalObj[t].wordList.split(',');
