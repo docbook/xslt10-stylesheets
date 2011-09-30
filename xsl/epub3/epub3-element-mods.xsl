@@ -127,6 +127,8 @@ book  toc,title
 <xsl:param name="dc.namespace">http://purl.org/dc/elements/1.1/</xsl:param>
 <!-- prefix generated ids in package elements so they differ from content ids -->
 <xsl:param name="epub.package.id.prefix">id-</xsl:param>
+<!-- editor is either a creator or contributor -->
+<xsl:param name="editor.property">contributor</xsl:param> 
 
 <!-- Generate full output path -->
 <xsl:param name="epub.package.dir" select="concat($base.dir, '../')"/>
@@ -439,7 +441,7 @@ book  toc,title
 </xsl:template>
 
 <xsl:template match="authorgroup" mode="opf.metadata">
-  <xsl:apply-templates select="author|corpauthor" mode="opf.metadata"/>
+  <xsl:apply-templates select="*" mode="opf.metadata"/>
 </xsl:template>
 
 <xsl:template match="author|corpauthor" mode="opf.metadata">
@@ -470,19 +472,48 @@ book  toc,title
 </xsl:template>
 
 <xsl:template match="editor" mode="opf.metadata">
+  <xsl:variable name="name">
+    <xsl:choose>
+      <xsl:when test="string-length($editor.property) != 0">
+        <xsl:value-of select="$editor.property"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>contributor</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:element name="meta" namespace="{$opf.namespace}">
-    <xsl:attribute name="property">dcterms:creator</xsl:attribute>
+    <xsl:attribute name="property">
+      <xsl:text>dcterms:</xsl:text>
+      <xsl:value-of select="$name"/>
+    </xsl:attribute>
     <xsl:value-of select="normalize-space(.)"/>
   </xsl:element>
 
   <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
-    <dc:creator>
-      <xsl:value-of select="normalize-space(.)"/>
-    </dc:creator>
+    <xsl:choose>
+      <xsl:when test="$name = 'creator'">
+        <dc:creator>
+          <xsl:value-of select="normalize-space(.)"/>
+        </dc:creator>
+      </xsl:when>
+      <xsl:when test="$name = 'contributor'">
+        <dc:contributor>
+          <xsl:value-of select="normalize-space(.)"/>
+        </dc:contributor>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:element namespace="{$dc.namespace}" name="{$name}">
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:element>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:if>
+
 </xsl:template>
 
-<xsl:template match="othercredit|collab" mode="opf.metadata">
+<xsl:template match="othercredit|corpcredit|collab" mode="opf.metadata">
   <xsl:element name="meta" namespace="{$opf.namespace}">
     <xsl:attribute name="property">dcterms:contributor</xsl:attribute>
     <xsl:value-of select="normalize-space(.)"/>
@@ -492,20 +523,6 @@ book  toc,title
     <dc:contributor>
       <xsl:value-of select="normalize-space(.)"/>
     </dc:contributor>
-  </xsl:if>
-
-</xsl:template>
-
-<xsl:template match="editor" mode="opf.metadata">
-  <xsl:element name="meta" namespace="{$opf.namespace}">
-    <xsl:attribute name="property">dcterms:creator</xsl:attribute>
-    <xsl:value-of select="normalize-space(.)"/>
-  </xsl:element>
-
-  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
-    <dc:creator>
-      <xsl:value-of select="normalize-space(.)"/>
-    </dc:creator>
   </xsl:if>
 
 </xsl:template>
