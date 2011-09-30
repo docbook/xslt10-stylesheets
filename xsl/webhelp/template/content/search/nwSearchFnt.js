@@ -732,20 +732,20 @@ function SortResults(mots) {
     fileAndWordListValuesOnly = fileAndWordListValuesOnly.sort(compare_nbMots);
 
     var listToOutput = new Array();
-    for (var j in fileAndWordListValuesOnly) {
+    for (var fawlvoIdx in fileAndWordListValuesOnly) {
         for (t in temptab) {
-            if (temptab[t].motsliste == fileAndWordListValuesOnly[j]) {
-                if (listToOutput[j] == undefined) {
-                    listToOutput[j] = new Array(temptab[t]);
+            if (temptab[t].motsliste == fileAndWordListValuesOnly[fawlvoIdx]) {
+                if (listToOutput[fawlvoIdx] == undefined) {
+                    listToOutput[fawlvoIdx] = new Array(temptab[t]);
                 } else {
-                    listToOutput[j].push(temptab[t]);
+                    listToOutput[fawlvoIdx].push(temptab[t]);
                 }
             }
         }
     }		
   // Sort results by scoring, descending on the same group
-	for (var i in listToOutput) {
-	    listToOutput[i].sort(function(a, b){
+	for (var ltoIdx in listToOutput) {
+	    listToOutput[ltoIdx].sort(function(a, b){
 			return b.scoring - a.scoring;
 		});
 	}
