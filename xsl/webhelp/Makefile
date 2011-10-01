@@ -15,5 +15,5 @@ webhelp: docsrc/readme.xml
 #	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
 clean:
-	$(RM) -r doc/*
+	$(RM) -r docs/*
 
