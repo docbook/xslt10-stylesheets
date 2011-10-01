@@ -37,6 +37,8 @@
 	  <param name="output_file_name" expression="${output_file_name}"/>
 	  <param name="webhelp.base.dir" expression="${output-dir}" if="output-dir"/>
 	  <param name="webhelp.indexer.language" expression="${webhelp.indexer.language}" if="webhelp.indexer.language"/>
+	  <param name="branding" expression="${branding}" if="branding"/>
+	  <param name="brandname" expression="${brandname}" if="brandname"/>
 	</xslt>
 	
 	<delete file="${output-dir}/dummy.html"/>

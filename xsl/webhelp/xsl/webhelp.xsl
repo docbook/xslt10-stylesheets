@@ -47,11 +47,44 @@
     <xsl:param name="para.propagates.style" select="1"/>
     <xsl:param name="phrase.propagates.style" select="1"/>
     <xsl:param name="chunk.first.sections" select="1"/>
-    <xsl:param name="chunk.section.depth" select="100"/>
+    <xsl:param name="chunk.section.depth" select="1"/>
+    <xsl:param name="use.id.as.filename" select="1"/>
+    <xsl:param name="branding">not set</xsl:param>
+    <xsl:param name="brandname"> </xsl:param>
+
+    <xsl:param name="section.autolabel" select="1"/>
     <xsl:param name="chapter.autolabel" select="1"/>
-    <xsl:param name="section.autolabel" select="0"/>
+    <xsl:param name="appendix.autolabel" select="1"/>
+    <xsl:param name="qandadiv.autolabel" select="1"/>
+    <xsl:param name="reference.autolabel" select="1"/>
+    <xsl:param name="part.autolabel" select="1"/>    
+    <xsl:param name="section.autolabel.max.depth" select="3"/>
+    <xsl:param name="section.label.includes.component.label" select="1"/>
+
     <xsl:param name="generate.section.toc.level" select="5"/>
+    <xsl:param name="component.label.includes.part.label" select="1"/>
+    <xsl:param name="suppress.footer.navigation">1</xsl:param>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
+
+<xsl:param name="generate.toc">
+appendix  toc,title
+article/appendix  nop
+article   toc,title
+book      title,figure,table,example,equation
+chapter   toc,title
+part      toc,title
+preface   toc,title
+qandadiv  toc
+qandaset  toc
+reference toc,title
+sect1     toc
+sect2     toc
+sect3     toc
+sect4     toc
+sect5     toc
+section   toc
+set       toc,title
+</xsl:param>
 
     <!-- Localizations of webhelp specific words. Your contributions for other languages are appreciated.
 	Currently, only around 10 translations needed. -->
@@ -543,9 +576,16 @@ border: none; background: none; font-weight: none; color: none; }
         <xsl:variable name="up" select="parent::*"/>
 
         <div id="header">
-            <!--xsl:call-template name="webhelpheader.logo"/-->
+            <a target="_blank">
+                <xsl:attribute name="href">
+                    <xsl:choose>
+                        <xsl:when test="$branding = 'docbook'">http://docbook.org/</xsl:when>
+                        <xsl:otherwise>#</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
             <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-                src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
+                src='{$webhelp.common.dir}images/logo.png' alt="{$brandname} Documentation"/>
+            </a>
             <!-- Display the page title and the main heading(parent) of it-->
             <h1 align="center">
                 <xsl:call-template name="get.doc.title"/>
