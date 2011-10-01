@@ -47,8 +47,10 @@
     <xsl:param name="para.propagates.style" select="1"/>
     <xsl:param name="phrase.propagates.style" select="1"/>
     <xsl:param name="chunk.first.sections" select="1"/>
+    <xsl:param name="chunk.section.depth" select="100"/>
     <xsl:param name="chapter.autolabel" select="1"/>
     <xsl:param name="section.autolabel" select="0"/>
+    <xsl:param name="generate.section.toc.level" select="5"/>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
 
     <!-- Localizations of webhelp specific words. Your contributions for other languages are appreciated.
@@ -66,8 +68,8 @@
             <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
             <l:gentext key="txt_results_for" text="Results for: "/>
             <l:gentext key="TableofContents" text="Contents"/>
-	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
-	    <l:gentext key="Your_search_returned_no_results" text="Your search returned no results."/>
+	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
+	        <l:gentext key="Your_search_returned_no_results" text="Your search returned no results."/>
         </l10n>
 	<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
@@ -541,12 +543,21 @@ border: none; background: none; font-weight: none; color: none; }
         <xsl:variable name="up" select="parent::*"/>
 
         <div id="header">
-	    <!--xsl:call-template name="webhelpheader.logo"/-->
-		<img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-		   src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
+            <!--xsl:call-template name="webhelpheader.logo"/-->
+            <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
+                src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
             <!-- Display the page title and the main heading(parent) of it-->
             <h1 align="center">
-	      <xsl:call-template name="get.doc.title"/>
+                <xsl:call-template name="get.doc.title"/>
+                <br/>
+                <xsl:choose>
+                    <xsl:when
+                            test="count($up) &gt; 0 and generate-id($up) != generate-id($home)">
+                        <xsl:apply-templates select="$up" mode="object.title.markup"/>
+                    </xsl:when>
+                    <xsl:otherwise>&#160;</xsl:otherwise>
+                </xsl:choose>
+
             </h1>
 
             <!-- Prev and Next links generation-->
@@ -565,18 +576,6 @@ border: none; background: none; font-weight: none; color: none; }
                             <a id="showHideButton" onclick="showHideToc();"
                                 class="pointLeft" title="Hide TOC tree">Sidebar
                             </a>
-                        </td>
-                        <td>
-			  <!--xsl:if test="$webhelp.include.search.tab = 'true'">
-                            <img src="{$webhelp.common.dir}images/highlight-blue.gif" alt="H" height="25px"
-                                 onclick="toggleHighlight()" id="showHideHighlight" style="cursor:pointer">
-				<xsl:attribute name="title">
-				  <xsl:call-template name="gentext">
-					<xsl:with-param name="key" select="'HighlightButton'"/>
-				  </xsl:call-template>				  
-				</xsl:attribute>
-			    </img>
-			  </xsl:if-->
                         </td>
                         <xsl:if test="count($prev) &gt; 0
                             or (count($up) &gt; 0

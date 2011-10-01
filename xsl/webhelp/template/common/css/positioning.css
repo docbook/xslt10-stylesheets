@@ -141,12 +141,12 @@ p.breadcrumbs {
 
 /*  Show Hide TOC tree */
 .pointLeft {
-    padding-right: 5px;
+    padding-right: 15px;
     display: block;
     cursor: pointer;
 }
 .pointRight {
-    padding-right: 5px;
+    padding-right: 15px;
     display: block;
     cursor: pointer;
 }
