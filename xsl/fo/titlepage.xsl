@@ -280,6 +280,10 @@
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
+<xsl:template match="collabname" mode="titlepage.mode">
+  <xsl:apply-templates mode="titlepage.mode"/>
+</xsl:template>
+
 <xsl:template match="confgroup" mode="titlepage.mode">
   <fo:block>
     <xsl:apply-templates mode="titlepage.mode"/>
