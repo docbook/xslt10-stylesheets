@@ -37,10 +37,11 @@ txt_please_wait = "Please wait. Search in progress...";
 txt_results_for = "Results for: ";
 //-------------------------OXYGEN PATCH END-------------------------
 
-/* Cette fonction verifie la validite de la recherche entrre par l utilisateur */
-function Verifie(ditaSearch_Form) {
+/* This function verify the validity of search input by the user
+  Cette fonction verifie la validite de la recherche entrre par l utilisateur */
+function Verifie(searchForm) {
 
-    // Check browser compatibitily
+    // Check browser compatibility
     if (navigator.userAgent.indexOf("Konquerer") > -1) {
 
         alert(txt_browser_not_supported);
@@ -48,17 +49,10 @@ function Verifie(ditaSearch_Form) {
     }
 
     //-------------------------OXYGEN PATCH START-------------------------
-    /*
-    var expressionInput = document.ditaSearch_Form.textToSearch.value
-    */
     searchTextField = trim(document.searchForm.textToSearch.value);
-	var expressionInput = searchTextField;	
-
-
+	var expressionInput = searchTextField;
     $.cookie('textToSearch', expressionInput);
-
     //-------------------------OXYGEN PATCH END-------------------------
-
 
     if (expressionInput.length < 1) {
 
@@ -66,10 +60,7 @@ function Verifie(ditaSearch_Form) {
         alert(txt_enter_at_least_1_char);
         // reactive la fenetre de search (utile car cadres)
 
-        //-------------------------OXYGEN PATCH START-------------------------
-        /*
-        document.ditaSearch_Form.textToSearch.focus();
-        */
+        //-------------------------OXYGEN PATCH START------------------------
         document.searchForm.textToSearch.focus();
         //-------------------------OXYGEN PATCH END-------------------------
     }
@@ -113,9 +104,6 @@ function Verifie(ditaSearch_Form) {
              // OXYGEN PATCH END - EXM-20996
 	        Effectuer_recherche(expressionInput);
 	        // reactive la fenetre de search (utile car cadres)
-	        /*
-	        document.ditaSearch_Form.textToSearch.focus();
-	        */
 	        document.searchForm.textToSearch.focus();        
 	        //-------------------------OXYGEN PATCH END-------------------------
     	}
@@ -141,7 +129,9 @@ function Effectuer_recherche(expressionInput) {
     var txt_wordsnotfound = "";
 
 
-    /*nqu: expressionInput, la recherche est lower cased, plus remplacement des char speciaux*/
+    /* expressionInput, search input is lower cased, plus replacement of special chars
+    * nqu: expressionInput, la recherche est lower cased, plus remplacement des char speciaux
+    * */
     searchFor = expressionInput.toLowerCase().replace(/<\//g, "_st_").replace(/\$_/g, "_di_").replace(/\.|%2C|%3B|%21|%3A|@|\/|\*/g, " ").replace(/(%20)+/g, " ").replace(/_st_/g, "</").replace(/_di_/g, "%24_");
 
     searchFor = searchFor.replace(/  +/g, " ");
@@ -151,11 +141,7 @@ function Effectuer_recherche(expressionInput) {
     wordsList.sort();
 
     //set the tokenizing method
-    if(typeof indexerLanguage != "undefined" && (indexerLanguage=="zh" || indexerLanguage=="ja" ||indexerLanguage=="ko")){
-        useCJKTokenizing=true;
-    } else {
-        useCJKTokenizing=false;
-    }
+    useCJKTokenizing = typeof indexerLanguage != "undefined" && (indexerLanguage == "zh" || indexerLanguage == "ja" || indexerLanguage == "ko");
     //If Lucene CJKTokenizer was used as the indexer, then useCJKTokenizing will be true. Else, do normal tokenizing.
     // 2-gram tokenizinghappens in CJKTokenizing, 
     // OXYGEN PATCH START. If doStem then make tokenize with Stemmer

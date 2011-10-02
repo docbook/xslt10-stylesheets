@@ -5,19 +5,10 @@
  *
  */
 
-var treesettings = {
-    collapsed: true,
-    animated: "medium",
-    control: "#sidetreecontrol",
-    persist: "cookie"
-};
-
 //Turn ON and OFF the animations for Show/Hide Sidebar. Extend this to other anime as well if any.
 var noAnimations=false;
 
 $(document).ready(function() {
-
-
 	// When you click on a link to an anchor, scroll down 
 	// 105 px to cope with the fact that the banner
 	// hides the top 95px or so of the page.
@@ -43,15 +34,19 @@ $(document).ready(function() {
     $(function() {
         $("#tabs").tabs({
             cookie: {
-                // store cookie for 2 days.
-                expires: 2
+                expires: 2 // store cookie for 2 days.
             }
         });
     });
 
     //Generate the tree
     $("#ulTreeDiv").attr("style", "");
-    $("#tree").treeview(treesettings);
+    $("#tree").treeview({
+        collapsed: true,
+        animated: "medium",
+        control: "#sidetreecontrol",
+        persist: "cookie"
+    });
 
     //after toc fully styled, display it. Until loading, a 'loading' image will be displayed
     $("#tocLoading").attr("style", "display:none;");
@@ -133,7 +128,7 @@ function syncToc() {
             if (style != null && !style.match(/background-color: Background;/)) {
                 a.setAttribute("style", "background-color: #D8D8D8;  " + style);
                 b.setAttribute("style", "color: black;");
-            } else if (style != null || style != "") {
+            } else if (style != null) {
                 a.setAttribute("style", "background-color: #D8D8D8;  " + style);
                 b.setAttribute("style", "color: black;");
             } else {
@@ -192,7 +187,7 @@ function syncToc() {
  */
 function showHideToc() {
     var showHideButton = $("#showHideButton");
-    var leftNavigation = $("#sidebar");
+    var leftNavigation = $("#sidebar"); //hide the parent div of leftnavigation, ie sidebar
     var content = $("#content");
     var animeTime=75
 
@@ -200,10 +195,10 @@ function showHideToc() {
         //Hide TOC
         showHideButton.removeClass('pointLeft').addClass('pointRight');
 	
-	if(noAnimations) {
-	    leftNavigation.css("display", "none");
-	    content.css("margin", "125px 0 0 0");
-	} else {
+        if(noAnimations) {
+            leftNavigation.css("display", "none");
+            content.css("margin", "125px 0 0 0");
+        } else {
             leftNavigation.hide(animeTime);
             content.animate( { "margin-left": 0 }, animeTime);
         }
@@ -211,10 +206,10 @@ function showHideToc() {
     } else {
         //Show the TOC
         showHideButton.removeClass('pointRight').addClass('pointLeft');
-	if(noAnimations) {
+        if(noAnimations) {
             content.css("margin", "125px 0 0 280px");
             leftNavigation.css("display", "block");
-	} else {
+        } else {
             content.animate( { "margin-left": '280px' }, animeTime);
             leftNavigation.show(animeTime);
         }
