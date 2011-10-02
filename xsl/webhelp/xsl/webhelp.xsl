@@ -64,6 +64,8 @@
     <xsl:param name="generate.section.toc.level" select="5"/>
     <xsl:param name="component.label.includes.part.label" select="1"/>
     <xsl:param name="suppress.footer.navigation">1</xsl:param>
+    <xsl:param name="callout.graphics.path"><xsl:value-of select="$webhelp.common.dir"/>images/callouts/</xsl:param>
+    <xsl:param name="callouts.extension">1</xsl:param>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
 
 <xsl:param name="generate.toc">
@@ -878,7 +880,7 @@ border: none; background: none; font-weight: none; color: none; }
 
     <xsl:template name="user.footer.content">
         <script type="text/javascript" src="{$webhelp.common.dir}main.js">
-            <xsl:comment></xsl:comment>
+            <xsl:comment> </xsl:comment>
         </script>
     </xsl:template>
  
