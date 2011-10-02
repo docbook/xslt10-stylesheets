@@ -18,9 +18,7 @@ p, ul, ol, li { font: 10pt Verdana, Geneva, sans-serif; }
 h1 { font: 15pt Arial, Helvetica, geneva;
      color: black!important!;
 }
-h2 { font: normal 12pt Arial, Helvetica, geneva;
-	color: black!important;
-}
+h2 { font: normal 12pt Arial, Helvetica, geneva; }
 
 #header {
     background: url("../images/header-bg.png") scroll top left repeat-x #4d8c83;
@@ -36,12 +34,11 @@ h2 { font: normal 12pt Arial, Helvetica, geneva;
 }
 
 #header h1 {
-    color: #fff;
     margin-left: 310px;
     position: fixed;
     top: 10px;
     left: -15px;
-    color: black!important;
+    color: #404040 !important;
 }
 
 /*
@@ -134,7 +131,11 @@ p.breadcrumbs {
     text-align: right;
 }
 
-#content h1, #content h2 { color: black; }
+#content h1, #content h2 { 
+color: #404040 !important; 
+font-size: 170%;
+font-weight: normal;
+}
 .navfooter { bottom: 2%; }
 .highlight { background-color: #c5d3c3; }
 .highlightButton{ font-size: 0; }

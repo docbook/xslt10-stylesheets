@@ -741,7 +741,7 @@ border: none; background: none; font-weight: none; color: none; }
                     </xsl:choose>
                 </xsl:variable>
 
-                <div>
+                <div id="sidebar"> <!--#sidebar id is used for showing and hiding the side bar -->
                     <div id="leftnavigation" style="padding-top:3px;">
                         <div id="tabs">
                             <ul>
@@ -933,8 +933,7 @@ border: none; background: none; font-weight: none; color: none; }
                     <head>
 		      <link rel="shortcut icon" href="favicon.ico"/>
 		      <meta http-equiv="Refresh" content="1; URL=content/{$default.topic}"/>
-		      <title><xsl:value-of select="//title[1]"/>&#160;
-		      </title>
+		      <title><xsl:value-of select="//title[1]"/>&#160;</title>
                     </head>
                     <body>
 		      If not automatically redirected, click <a href="content/{$default.topic}">content/<xsl:value-of select="$default.topic"/></a>

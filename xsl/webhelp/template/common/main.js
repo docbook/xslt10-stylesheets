@@ -12,6 +12,9 @@ var treesettings = {
     persist: "cookie"
 };
 
+//Turn ON and OFF the animations for Show/Hide Sidebar. Extend this to other anime as well if any.
+var noAnimations=false;
+
 $(document).ready(function() {
 
 
@@ -189,21 +192,33 @@ function syncToc() {
  */
 function showHideToc() {
     var showHideButton = $("#showHideButton");
-    var leftNavigation = $("#leftnavigation");
+    var leftNavigation = $("#sidebar");
     var content = $("#content");
+    var animeTime=75
 
     if (showHideButton != undefined && showHideButton.hasClass("pointLeft")) {
         //Hide TOC
         showHideButton.removeClass('pointLeft').addClass('pointRight');
-        content.css("margin", "125px 0 0 0");
-        leftNavigation.css("display", "none");
-        showHideButton.attr("title", "Show the TOC tree");
+	
+	if(noAnimations) {
+	    leftNavigation.css("display", "none");
+	    content.css("margin", "125px 0 0 0");
+	} else {
+            leftNavigation.hide(animeTime);
+            content.animate( { "margin-left": 0 }, animeTime);
+        }
+        showHideButton.attr("title", "Show Sidebar");
     } else {
         //Show the TOC
         showHideButton.removeClass('pointRight').addClass('pointLeft');
-        content.css("margin", "125px 0 0 280px");
-        leftNavigation.css("display", "block");
-        showHideButton.attr("title", "Hide the TOC Tree");
+	if(noAnimations) {
+            content.css("margin", "125px 0 0 280px");
+            leftNavigation.css("display", "block");
+	} else {
+            content.animate( { "margin-left": '280px' }, animeTime);
+            leftNavigation.show(animeTime);
+        }
+        showHideButton.attr("title", "Hide Sidebar");
     }
 }
 
