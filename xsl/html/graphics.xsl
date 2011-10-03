@@ -1159,8 +1159,32 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <xsl:template match="imageobjectco">
   <xsl:call-template name="anchor"/>
-  <xsl:apply-templates select="imageobject"/>
+  <xsl:choose>
+    <!-- select one imageobject? -->
+    <xsl:when test="$use.role.for.mediaobject != 0 and
+                    count(imageobject) &gt; 1 and
+                    imageobject[@role]">
+      <xsl:variable name="olist" select="imageobject"/>
+    
+      <xsl:variable name="object.index">
+        <xsl:call-template name="select.mediaobject.index">
+          <xsl:with-param name="olist" select="$olist"/>
+          <xsl:with-param name="count" select="1"/>
+        </xsl:call-template>
+      </xsl:variable>
+    
+      <xsl:variable name="object" select="$olist[position() = $object.index]"/>
+    
+      <xsl:apply-templates select="$object"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- otherwise process them all -->
+      <xsl:apply-templates select="imageobject"/>
+    </xsl:otherwise>
+  </xsl:choose>
+
   <xsl:apply-templates select="calloutlist"/>
+
 </xsl:template>
 
 <xsl:template match="imageobject">
