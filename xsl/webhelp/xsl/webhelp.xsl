@@ -14,6 +14,14 @@
             encoding="utf-8"
             cdata-section-elements=""/>
 
+    <xsl:param name="chunker.output.method">
+        <xsl:choose>
+            <xsl:when test="contains(system-property('xsl:vendor'), 'SAXON 6')">saxon:xhtml</xsl:when>
+            <xsl:otherwise>html</xsl:otherwise>
+        </xsl:choose>
+    </xsl:param>
+    
+
     <!-- webhelp-specific params! -->
     <!-- To be added to normal params file someday -->
     <xsl:param name="webhelp.include.search.tab">true</xsl:param>
@@ -35,7 +43,7 @@
     <!-- webhelp-specific params! -->
 
     <!-- Set some reasonable defaults for webhelp output -->
-    <xsl:param name="chunker.output.indent">no</xsl:param>
+    <xsl:param name="chunker.output.indent">yes</xsl:param>
     <xsl:param name="navig.showtitles">0</xsl:param>
     <xsl:param name="manifest.in.base.dir" select="0"/>
     <xsl:param name="base.dir" select="concat($webhelp.base.dir,'/content/')"/>
