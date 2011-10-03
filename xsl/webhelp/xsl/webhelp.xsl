@@ -8,7 +8,6 @@
 
     <xsl:import href="../../xhtml/chunk.xsl"/>
 
-
     <xsl:output
             method="html"
             encoding="utf-8"
@@ -20,7 +19,6 @@
             <xsl:otherwise>html</xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-    
 
     <!-- webhelp-specific params! -->
     <!-- To be added to normal params file someday -->
