@@ -11,10 +11,10 @@ import java.util.*;
 /**
  * Main class of Stand-alone version of WebHelpIndexer
  *
- * User: Kasun Gajasinghe, University of Moratuwa, http://kasunbg.blogspot.com
+ * User: Kasun Gajasinghe, University of Moratuwa, http://kasunbg.org
  * Date: Feb 10, 2011
  *
- * @author Kasun Gajasinghe
+ * @author Kasun Gajasinghe, University of Moratuwa, http://kasunbg.org
  */
 
 public class IndexerMain {
@@ -37,7 +37,7 @@ public class IndexerMain {
     private String outputDir = null;
     private String projectDir = null;
 
-    // ANT parameters
+    // two of the input parameters
     public String htmlDir = null;
     public String indexerLanguage = "en";
 
@@ -93,7 +93,7 @@ public class IndexerMain {
         setHtmlDir(htmlDir);
         setIndexerLanguage(indexerLanguage);
     }
-    
+
     /**
      * The content language defaults to English "en"
      *
@@ -175,7 +175,7 @@ public class IndexerMain {
                     System.getProperty("tocFile")
             );
         } else {
-            throw new RuntimeException("Specify at least the the directory containing html files (htmlDir)\n " +
+            throw new RuntimeException("Specify at least the directory containing html files (htmlDir)\n " +
                     "ex: java -jar webhelpindexer.jar -DhtmlDir=docs/content -DindexerLanguage=en \n" +
                     "The program will exit now."
             );
@@ -186,13 +186,24 @@ public class IndexerMain {
     }
 
     /**
-     * Implementation of the execute function (Task interface)
+     * The main execution happens here.
      */
     public void execute() {
+
+/*
+        //These system properties are set via command-line/ant-script now. See xsl/webhelp/build.xml#index target for
+        details.
         try {
+            //TagSoup SAX HTML Parser which supports parsing even the bad non-xml-conformed HTML
+            System.setProperty("org.xml.sax.driver", "org.ccil.cowan.tagsoup.Parser");
+                                            //org.ccil.cowan.tagsoup.jaxp.SAXParserImpl
+            System.setProperty("javax.xml.parsers.SAXParserFactory", "org.ccil.cowan.tagsoup.jaxp.SAXFactoryImpl");
+
             //Use Xerces as the parser. Does not support Saxon6.5.5 parser
-            System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
-            System.setProperty("javax.xml.parsers.SAXParserFactory", "org.apache.xerces.jaxp.SAXParserFactoryImpl");
+//            System.setProperty("org.xml.sax.driver", "org.apache.xerces.parsers.SAXParser");
+//            System.setProperty("javax.xml.parsers.SAXParserFactory", "org.apache.xerces.jaxp.SAXParserFactoryImpl");
+
+            //saxon
 //           System.setProperty("org.xml.sax.driver", "com.icl.saxon.aelfred.SAXDriver");
 //           System.setProperty("javax.xml.parsers.SAXParserFactory", "com.icl.saxon.aelfred.SAXParserFactoryImpl");
         } catch (SecurityException se) {
@@ -202,6 +213,7 @@ public class IndexerMain {
             System.out.println("[WARNING] Default parser is not set to Xerces. Make sure Saxon6.5.5 " +
                     "is not in your CLASSPATH");
         }
+        */
 
         ArrayList<DocFileInfo> filesDescription = null; // list of information about the topic files
         ArrayList<File> htmlFiles = null; // topic files listed in the given directory

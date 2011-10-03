@@ -1,12 +1,6 @@
 package com.nexwave.nquindexer;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -31,7 +25,7 @@ public class WriteJSFiles {
     private static String txt_indices_location = "The created index files are located in ";
 
     /**
-     * Create a javascript array listing the html files with their paths relative to the project root
+     * Create a JavaScript array listing the html files with their paths relative to the project root
      *
      * @param fileO  path and name of the file in which to output the list of html files
      * @param list   of the html files, relative to the doc root directory
@@ -161,7 +155,7 @@ public class WriteJSFiles {
     }
 
     /**
-     * Create javascript index files alphabetically.
+     * Create JavaScript index files alphabetically.
      *
      * @param fileOutStr      contains the path and the suffix of the index files to create.
      *                        The first letter of the key is added to the given suffix. For example: e.g. a.js, b.js etc...
@@ -207,9 +201,11 @@ public class WriteJSFiles {
                       The value is the numbers of the files in which the word exists.
                       Example: w["key"]="file1,file2,file3";*/
                     int count = 0;
-                    if (i == 1)
+                    if (i == 1) {
                         out.write("var indexerLanguage=\"" + indexerLanguage + "\";\n");
-                    out.write("//Auto generated index for searching.\n");
+                    }
+                    out.write("//Auto generated index for searching by xsl-webhelpindexer for DocBook Webhelp." +
+                            "# Kasun Gajasinghe, University of Moratuwa\n");
                     while (keyIt.hasNext()) {        //&& (tempLetter == tstr.charAt(0))
                         out.write("w[\"" + tstr + "\"]" + "=\"" + indexMap.get(tstr) + "\";\n");
                         tstr = (String) keyIt.next();

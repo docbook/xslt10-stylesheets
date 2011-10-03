@@ -80,7 +80,8 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
             javax.xml.parsers.SAXParser sp = spf.newSAXParser();
             // deactivate the validation
             sp.getXMLReader().setFeature("http://xml.org/sax/features/external-general-entities", false);
-            sp.getXMLReader().setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+//            sp.getXMLReader().setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+//          this feature isn't supported in TagSoup  
 
             //parse the file and also register this class for call backs
             //System.out.println("Parsing: " + file);
