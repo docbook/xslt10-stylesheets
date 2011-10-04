@@ -77,7 +77,12 @@ endif
 
 
 titlepage.templates.xsl: titlepage.templates.xml $(NESTLEVEL)../template/titlepage.xsl
+ifdef TARGETNS
+	$(XSLT) $< $(NESTLEVEL)../template/titlepage.xsl $@ ns=$(TARGETNS)
+else
 	$(XSLT) $< $(NESTLEVEL)../template/titlepage.xsl $@
+endif
+
 
 Makefile.param:
 ifneq ($(shell uname -s | grep -i cygwin),)

@@ -1,5 +1,7 @@
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
+TARGETNS=http://www.w3.org/1999/xhtml
+
 all: xsl-files profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
 
 remove-old:
