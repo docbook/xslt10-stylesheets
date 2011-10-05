@@ -1273,14 +1273,10 @@
                    |comment()[not(preceding-sibling::callout)]
                    |processing-instruction()[not(preceding-sibling::callout)]"/>
 
-    <fo:list-block space-before.optimum="1em"
-                   space-before.minimum="0.8em"
-                   space-before.maximum="1.2em"
-                   provisional-distance-between-starts="2.2em"
-                   provisional-label-separation="0.2em">
+    <fo:list-block xsl:use-attribute-sets="calloutlist.properties">
 
       <xsl:if test="$pi-label-width != ''">
-              <xsl:attribute name="provisional-distance-between-starts">
+        <xsl:attribute name="provisional-distance-between-starts">
           <xsl:value-of select="$pi-label-width"/>
         </xsl:attribute>
       </xsl:if>
@@ -1302,7 +1298,7 @@
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
-  <fo:list-item id="{$id}">
+  <fo:list-item id="{$id}" xsl:use-attribute-sets="callout.properties">
     <xsl:if test="$keep.together != ''">
       <xsl:attribute name="keep-together.within-column"><xsl:value-of
                       select="$keep.together"/></xsl:attribute>

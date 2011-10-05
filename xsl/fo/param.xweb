@@ -47,6 +47,8 @@ $Id$
 &nongraphical.admonition.properties;
 </reference>
 <reference xml:id="callouts"><title>Callouts</title>
+&calloutlist.properties;
+&callout.properties;
 &callout.defaultcolumn;
 &callout.graphics;
 &callout.graphics.extension;
@@ -573,6 +575,8 @@ around all these parameters.</para>
 <src:fragref linkend="body.end.indent.frag"/>
 <src:fragref linkend="bookmarks.collapse.frag"/>
 <src:fragref linkend="bridgehead.in.toc.frag"/>
+<src:fragref linkend="calloutlist.properties.frag"/>
+<src:fragref linkend="callout.properties.frag"/>
 <src:fragref linkend="callout.defaultcolumn.frag"/>
 <src:fragref linkend="callout.graphics.extension.frag"/>
 <src:fragref linkend="callout.graphics.frag"/>
