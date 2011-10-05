@@ -2473,6 +2473,8 @@
 
   <xsl:choose>
     <xsl:when test="$element = 'toc' and self::book">i</xsl:when>
+    <xsl:when test="$element = 'set'">i</xsl:when>
+    <xsl:when test="$element = 'book'">i</xsl:when>
     <xsl:when test="$element = 'preface'">i</xsl:when>
     <xsl:when test="$element = 'dedication'">i</xsl:when>
     <xsl:when test="$element = 'acknowledgements'">i</xsl:when>
