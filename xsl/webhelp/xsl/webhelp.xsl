@@ -621,8 +621,8 @@ border: none; background: none; font-weight: none; color: none; }
                 <table class="navLinks">
                     <tr>
                         <td>
-                            <a id="showHideButton" onclick="showHideToc();"
-                                class="pointLeft" title="Hide TOC tree">Sidebar
+                            <a id="showHideButton" href="javascript:showHideToc();"
+                                class="pointLeft" tabindex="5" title="Hide TOC tree">Sidebar
                             </a>
                         </td>
                         <xsl:if test="count($prev) &gt; 0
@@ -754,7 +754,7 @@ border: none; background: none; font-weight: none; color: none; }
                         <div id="tabs">
                             <ul>
                                 <li>
-                                    <a href="#treeDiv" tabindex="1">
+                                    <a href="#treeDiv" style="outline:0;" tabindex="1">
                                         <span class="contentsTab">
                                             <xsl:call-template name="gentext">
                                                 <xsl:with-param name="key" select="'TableofContents'"/>
@@ -764,7 +764,7 @@ border: none; background: none; font-weight: none; color: none; }
                                 </li>
                                 <xsl:if test="$webhelp.include.search.tab != 'false'">
                                     <li>
-                                        <a href="#searchDiv" tabindex="1">
+                                        <a href="#searchDiv" style="outline:0;" tabindex="1">
                                             <span class="searchTab">
                                                 <xsl:call-template name="gentext">
                                                     <xsl:with-param name="key" select="'Search'"/>
