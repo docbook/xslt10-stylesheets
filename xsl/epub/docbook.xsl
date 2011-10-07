@@ -787,6 +787,8 @@
       <xsl:apply-templates select="//part|
                                    //book[*[last()][self::bookinfo]]|
                                    //book[bookinfo]|
+                                   //book[*[last()][self::info]]|
+                                   //book[info]|
                                    /set|
                                    /set/book|
                                    //reference|
@@ -1080,6 +1082,8 @@
             book[parent::set]|
             book[*[last()][self::bookinfo]]|
             book[bookinfo]|
+            book[*[last()][self::info]]|
+            book[info]|
             article|
             part|
             reference|
