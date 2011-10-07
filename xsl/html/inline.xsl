@@ -795,13 +795,18 @@
   <span>
     <xsl:call-template name="locale.html.attributes"/>
     <!-- We don't want empty @class values, so do not propagate empty @roles -->
-    <xsl:if test="@role and 
-                  normalize-space(@role) != '' and
-                  $phrase.propagates.style != 0">
-      <xsl:apply-templates select="." mode="class.attribute">
-        <xsl:with-param name="class" select="@role"/>
-      </xsl:apply-templates>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@role and 
+                     normalize-space(@role) != '' and
+                     $phrase.propagates.style != 0">
+        <xsl:apply-templates select="." mode="class.attribute">
+          <xsl:with-param name="class" select="@role"/>
+        </xsl:apply-templates>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="." mode="class.attribute"/>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:call-template name="dir"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
