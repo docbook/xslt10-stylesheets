@@ -128,10 +128,15 @@ public class WriteJSFiles {
                     tempShortdesc = tempShortdesc.replaceAll("\\\\", "\\\\\\\\");
                 }
                 if (tempShortdesc != null) {
-                    String stripNonAlphabeticalChars = stripNonAlphabeticalChars(tempShortdesc);
-                    //stripNonAlphabeticalChars = stripWords(stripNonAlphabeticalChars);
-                    stripNonAlphabeticalChars = stripNonAlphabeticalChars + "...";
-                    out.write("fil[\"" + i + "\"]" + "= \"" + tempPath + "@@@" + tempTitle + "@@@" + stripNonAlphabeticalChars + "\";\n");
+                    String strippedNonAlphaCharsShortDesc = stripNonAlphabeticalChars(tempShortdesc);
+                    //Limit the characters to 140
+                    if (strippedNonAlphaCharsShortDesc.length() > 140) { //why 140? Think Twitter ;-)
+                        strippedNonAlphaCharsShortDesc = strippedNonAlphaCharsShortDesc.substring(0,137);
+                            //another 3 letters "..." get added at next execution line
+                    }
+                    //strippedNonAlphaCharsShortDesc = stripWords(strippedNonAlphaCharsShortDesc);
+                    strippedNonAlphaCharsShortDesc = strippedNonAlphaCharsShortDesc + "...";
+                    out.write("fil[\"" + i + "\"]" + "= \"" + tempPath + "@@@" + tempTitle + "@@@" + strippedNonAlphaCharsShortDesc + "\";\n");
                     i++;
                 } else {
                     out.write("fil[\"" + i + "\"]" + "= \"" + tempPath + "@@@" + tempTitle + "@@@null" + "\";\n");

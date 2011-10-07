@@ -219,10 +219,6 @@
               <para>Automatically use the first non-heading content as the summary in the search
                 results.</para>
             </listitem>
-            <listitem>
-              <para>Automatically limit the size of the search description to something 140
-                characters.</para>
-            </listitem>
           </itemizedlist>
         </listitem>
         <listitem>
