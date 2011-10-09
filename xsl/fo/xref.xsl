@@ -26,7 +26,16 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-  <fo:inline id="{$id}"/>
+
+  <xsl:variable name="wrapper.name">
+    <xsl:call-template name="inline.or.block"/>
+  </xsl:variable>
+
+  <xsl:element name="{$wrapper.name}">
+    <xsl:attribute name="id">
+      <xsl:value-of select="$id"/>
+    </xsl:attribute>
+  </xsl:element>
 </xsl:template>
 
 <!-- ==================================================================== -->
