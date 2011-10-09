@@ -125,7 +125,7 @@
   <xsl:if test="contains($toc.params, 'table')">
     <xsl:call-template name="list.of.titles">
       <xsl:with-param name="titles" select="'table'"/>
-      <xsl:with-param name="nodes" select=".//table"/>
+      <xsl:with-param name="nodes" select=".//table[not(@tocentry = 0)]"/>
     </xsl:call-template>
   </xsl:if>
 
