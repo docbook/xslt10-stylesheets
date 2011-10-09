@@ -33,7 +33,6 @@
 <xsl:param name="chunker.output.doctype-system" select="''"/>
 <xsl:param name="chunker.output.media-type" select="''"/>
 <xsl:param name="chunker.output.cdata-section-elements" select="''"/>
-<xsl:param name="chunker.output.quiet" select="0"/>
 
 <xsl:param name="saxon.character.representation" select="'entity;decimal'"/>
 
@@ -75,7 +74,7 @@
 
 <xsl:template name="write.chunk">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="quiet" select="$chunker.output.quiet"/>
+  <xsl:param name="quiet" select="$chunk.quietly"/>
   <xsl:param name="suppress-context-node-name" select="0"/>
   <xsl:param name="message-prolog"/>
   <xsl:param name="message-epilog"/>
@@ -373,7 +372,7 @@
 
 <xsl:template name="write.chunk.with.doctype">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="quiet" select="$chunker.output.quiet"/>
+  <xsl:param name="quiet" select="$chunk.quietly"/>
 
   <xsl:param name="method" select="$chunker.output.method"/>
   <xsl:param name="encoding" select="$chunker.output.encoding"/>
@@ -407,7 +406,7 @@
 
 <xsl:template name="write.text.chunk">
   <xsl:param name="filename" select="''"/>
-  <xsl:param name="quiet" select="$chunker.output.quiet"/>
+  <xsl:param name="quiet" select="$chunk.quietly"/>
   <xsl:param name="suppress-context-node-name" select="0"/>
   <xsl:param name="message-prolog"/>
   <xsl:param name="message-epilog"/>

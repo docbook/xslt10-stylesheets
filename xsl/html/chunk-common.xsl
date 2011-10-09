@@ -30,13 +30,13 @@
   <xsl:if test="$chunk.fast != 0">
     <xsl:choose>
       <xsl:when test="$exsl.node.set.available != 0">
-        <xsl:if test="$chunker.output.quiet = 0">
+        <xsl:if test="$chunk.quietly = 0">
           <xsl:message>Computing chunks...</xsl:message>
         </xsl:if>
         <xsl:apply-templates select="/*" mode="find.chunks"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:if test="$chunker.output.quiet = 0">
+        <xsl:if test="$chunk.quietly = 0">
           <xsl:message>
             <xsl:text>Fast chunking requires exsl:node-set(). </xsl:text>
             <xsl:text>Using "slow" chunking.</xsl:text>
