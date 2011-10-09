@@ -45,7 +45,7 @@
   </xsl:variable>
 
   <fo:block id="{$id}"
-            xsl:use-attribute-sets="formal.object.properties">
+            xsl:use-attribute-sets="task.properties">
 
     <xsl:if test="$keep.together != ''">
       <xsl:attribute name="keep-together.within-column"><xsl:value-of

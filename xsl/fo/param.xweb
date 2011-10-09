@@ -455,6 +455,7 @@ zero by default, so this is simply the page-master margin-right.
 &equation.properties;
 &equation.number.properties;
 &table.properties;
+&task.properties;
 &informalfigure.properties;
 &informalexample.properties;
 &informalequation.properties;
@@ -854,6 +855,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.table.properties.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="targets.filename.frag"/>
+<src:fragref linkend="task.properties.frag"/>
 <src:fragref linkend="textdata.default.encoding.frag"/>
 <src:fragref linkend="tex.math.delims.frag"/>
 <src:fragref linkend="tex.math.in.alt.frag"/>

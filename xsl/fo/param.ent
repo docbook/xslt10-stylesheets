@@ -343,3 +343,4 @@
 <!ENTITY bookmarks.collapse SYSTEM "../params/bookmarks.collapse.xml">
 <!ENTITY callout.properties SYSTEM "../params/callout.properties.xml">
 <!ENTITY calloutlist.properties SYSTEM "../params/calloutlist.properties.xml">
+<!ENTITY task.properties SYSTEM "../params/task.properties.xml">
