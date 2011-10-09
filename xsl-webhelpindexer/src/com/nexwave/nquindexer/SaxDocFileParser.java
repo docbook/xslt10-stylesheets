@@ -206,7 +206,7 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
 
         //OXYGEN PATCH, gather more keywords.
         if (
-//				(addContent || addHeaderInfo) && 
+	    (addContent || addHeaderInfo) &&  // DWC: Oxygen Patch had this line commented out but we need it for DocBook to keep toc from being indexed.
                 !doNotIndex && !currentElName.equalsIgnoreCase("script")) {
             String text = new String(ch, start, length);
             // START OXYGEN PATCH, append a marker after each word
