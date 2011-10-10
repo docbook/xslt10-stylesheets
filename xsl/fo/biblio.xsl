@@ -344,8 +344,15 @@
 
 <xsl:template match="author" mode="bibliography.mode">
   <fo:inline>
-    <xsl:call-template name="person.name"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
+    <xsl:choose>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname" mode="bibliography.mode"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name"/>
+        <xsl:value-of select="$biblioentry.item.separator"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:inline>
 </xsl:template>
 
@@ -849,7 +856,14 @@
 
 <xsl:template match="author" mode="bibliomixed.mode">
   <fo:inline>
-    <xsl:call-template name="person.name"/>
+    <xsl:choose>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname" mode="bibliomixed.mode"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:inline>
 </xsl:template>
 
