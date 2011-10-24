@@ -316,3 +316,4 @@
 <!ENTITY generate.css.header SYSTEM "../params/generate.css.header.xml">
 <!ENTITY make.clean.html SYSTEM "../params/make.clean.html.xml">
 <!ENTITY custom.css.source SYSTEM "../params/custom.css.source.xml">
+<!ENTITY generate.consistent.ids SYSTEM "../params/generate.consistent.ids.xml">

@@ -277,6 +277,7 @@ generate.section.toc.level;
 &monospace.verbatim.font.width;
 &exsl.node.set.available;
 &bookmarks.collapse;
+&generate.consistent.ids;
 </reference>
 <reference xml:id="graphics"><title>Graphics</title>
 &graphic.default.extension;
@@ -657,6 +658,7 @@ around all these parameters.</para>
 <src:fragref linkend="funcsynopsis.decoration.frag"/>
 <src:fragref linkend="funcsynopsis.style.frag"/>
 <src:fragref linkend="function.parens.frag"/>
+<src:fragref linkend="generate.consistent.ids.frag"/>
 <src:fragref linkend="generate.index.frag"/>
 <src:fragref linkend="generate.section.toc.level.frag"/>
 <src:fragref linkend="generate.toc.frag"/>

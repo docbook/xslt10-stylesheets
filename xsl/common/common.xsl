@@ -458,6 +458,13 @@ Defaults to the context node.</para>
     <xsl:when test="$object/@xml:id">
       <xsl:value-of select="$object/@xml:id"/>
     </xsl:when>
+    <xsl:when test="$generate.consistent.ids != 0">
+      <!-- Make $object the current node -->
+      <xsl:for-each select="$object">
+        <xsl:text>id-</xsl:text>
+        <xsl:number level="multiple" count="*"/>
+      </xsl:for-each>
+    </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="generate-id($object)"/>
     </xsl:otherwise>
@@ -1326,8 +1333,10 @@ pointed to by the link is one of the elements listed in
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="prevlist"
-        select="$list/preceding::orderedlist[1]"/>
+      <!-- match on previous list at same nesting level -->
+      <xsl:variable name="prevlist" 
+       select="$list/preceding::orderedlist
+                [count($list/ancestor::orderedlist) = count(ancestor::orderedlist)][1]"/>
       <xsl:choose>
         <xsl:when test="count($prevlist) = 0">2</xsl:when>
         <xsl:otherwise>
