@@ -341,7 +341,7 @@
         </xsl:when>
 
         <xsl:when test="local-name() = 'align'">
-          <xsl:text>align: </xsl:text>
+          <xsl:text>text-align: </xsl:text>
           <xsl:value-of select="."/>
           <xsl:text>; </xsl:text>
         </xsl:when>
@@ -515,7 +515,7 @@
     <div class="footnotes">
       <xsl:call-template name="footnotes.attributes"/>
       <br/>
-      <hr style="width: 100; align: {$direction.align.start};"/>
+      <hr style="width: 100; text-align: {$direction.align.start};"/>
       <xsl:apply-templates select="$footnotes" mode="process.footnote.mode"/>
     </div>
   </xsl:if>
