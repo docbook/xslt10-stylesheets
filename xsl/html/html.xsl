@@ -52,7 +52,16 @@
   <xsl:apply-templates select="." mode="html.title.attribute"/>
 </xsl:template>
 
+<xsl:template match="acronym|abbrev" mode="html.title.attribute">
+  <xsl:if test="alt">
+    <xsl:attribute name="title">
+      <xsl:value-of select="normalize-space(alt)"/>
+    </xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
 <!-- Generate a title attribute for the context node -->
+<!-- This may be the target of an xref -->
 <xsl:template match="*" mode="html.title.attribute">
   <xsl:variable name="is.title">
     <xsl:call-template name="gentext.template.exists">
@@ -321,7 +330,6 @@
   <xsl:apply-templates select="." mode="class.attribute">
     <xsl:with-param name="class" select="$class"/>
   </xsl:apply-templates>
-  <xsl:call-template name="generate.html.title"/>
 </xsl:template>
 
 <!-- Apply common attributes not including class -->
@@ -332,7 +340,6 @@
 <xsl:template match="*" mode="locale.html.attributes">
   <xsl:call-template name="generate.html.lang"/>
   <xsl:call-template name="dir"/>
-  <xsl:call-template name="generate.html.title"/>
 </xsl:template>
 
 <!-- Pass through any lang attributes -->
