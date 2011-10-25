@@ -686,10 +686,20 @@ straight through into the result tree.</para>
 </doc:template>
 
 <xsl:template match="*" mode="copy">
-  <xsl:copy>
-    <xsl:apply-templates select="@*" mode="copy"/>
-    <xsl:apply-templates mode="copy"/>
-  </xsl:copy>
+  <xsl:choose>
+    <xsl:when test="(name(.) = local-name(.)) and namespace-uri(.) != ''">
+      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+	<xsl:apply-templates select="@*" mode="copy"/>
+	<xsl:apply-templates mode="copy"/>
+      </xsl:element>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:element name="{name(.)}">
+	<xsl:apply-templates select="@*" mode="copy"/>
+	<xsl:apply-templates mode="copy"/>
+      </xsl:element>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -704,9 +714,20 @@ straight through into the result tree.</para>
 </doc:template>
 
 <xsl:template match="@*" mode="copy">
-  <xsl:copy>
-    <xsl:value-of select="."/>
-  </xsl:copy>
+  <xsl:choose>
+    <xsl:when test="(name(.) = local-name(.)) and namespace-uri(.) != ''">
+      <xsl:attribute name="{name(.)}" namespace="{namespace-uri(.)}">
+	<xsl:apply-templates select="@*" mode="copy"/>
+	<xsl:apply-templates mode="copy"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:attribute name="{name(.)}">
+	<xsl:apply-templates select="@*" mode="copy"/>
+	<xsl:apply-templates mode="copy"/>
+      </xsl:attribute>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <!-- ==================================================================== -->
