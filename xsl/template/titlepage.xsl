@@ -686,10 +686,10 @@ straight through into the result tree.</para>
 </doc:template>
 
 <xsl:template match="*" mode="copy">
-  <xsl:element name="{name(.)}">
+  <xsl:copy>
     <xsl:apply-templates select="@*" mode="copy"/>
     <xsl:apply-templates mode="copy"/>
-  </xsl:element>
+  </xsl:copy>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -704,9 +704,9 @@ straight through into the result tree.</para>
 </doc:template>
 
 <xsl:template match="@*" mode="copy">
-  <xsl:attribute name="{name(.)}">
+  <xsl:copy>
     <xsl:value-of select="."/>
-  </xsl:attribute>
+  </xsl:copy>
 </xsl:template>
 
 <!-- ==================================================================== -->
