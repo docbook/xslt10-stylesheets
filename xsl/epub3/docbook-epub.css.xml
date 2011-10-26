@@ -99,17 +99,17 @@ div.sidebar-title {
 /* start of styles in verbatim.xsl */
 
 div.programlisting {
-  white-space: pre;
+  white-space: pre-wrap;
   font-family: monospace;
 }
 
 div.screen {
-  white-space: pre;
+  white-space: pre-wrap;
   font-family: monospace;
 }
 
 div.synopsis {
-  white-space: pre;
+  white-space: pre-wrap;
   font-family: monospace;
 }
 
