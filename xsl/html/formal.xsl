@@ -197,6 +197,9 @@
     <xsl:when test="tgroup|mediaobject|graphic">
       <xsl:call-template name="calsTable"/>
     </xsl:when>
+    <xsl:when test="caption">
+      <xsl:call-template name="htmlTable.with.caption"/>
+    </xsl:when>
     <xsl:otherwise>
       <!-- do not use xsl:copy because of XHTML's needs -->
       <xsl:element name="table" namespace="">
@@ -208,6 +211,87 @@
       </xsl:element>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- Handle html markup table like formal.object -->
+<xsl:template name="htmlTable.with.caption">
+  <xsl:param name="class">
+    <xsl:apply-templates select="." mode="class.value"/>
+  </xsl:param>
+
+  <xsl:variable name="param.placement"
+                select="substring-after(normalize-space($formal.title.placement),
+                                        concat(local-name(.), ' '))"/>
+
+  <xsl:variable name="placement">
+    <xsl:choose>
+      <xsl:when test="contains($param.placement, ' ')">
+        <xsl:value-of select="substring-before($param.placement, ' ')"/>
+      </xsl:when>
+      <xsl:when test="$param.placement = ''">before</xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$param.placement"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:call-template name="id.warning"/>
+
+  <xsl:variable name="content">
+    <div class="{$class}">
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
+    
+      <xsl:choose>
+        <xsl:when test="$placement = 'before'">
+
+          <xsl:call-template name="formal.object.heading"/>
+
+          <div class="{$class}-contents">
+            <xsl:apply-templates select="." mode="htmlTable"/>
+          </div>
+
+          <xsl:call-template name="table.longdesc"/>
+    
+          <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
+
+          <div class="{$class}-contents">
+            <xsl:apply-templates select="." mode="htmlTable"/>
+          </div>
+
+          <xsl:call-template name="table.longdesc"/>
+    
+          <xsl:call-template name="formal.object.heading"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </div>
+    <xsl:if test="not($formal.object.break.after = '0')">
+      <br class="{$class}-break"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <xsl:variable name="floatstyle">
+    <xsl:call-template name="floatstyle"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$floatstyle != ''">
+      <xsl:call-template name="floater">
+        <xsl:with-param name="class"><xsl:value-of 
+                     select="$class"/>-float</xsl:with-param>
+        <xsl:with-param name="floatstyle" select="$floatstyle"/>
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$content"/>
+    </xsl:otherwise>
+  </xsl:choose>
+
 </xsl:template>
 
 <xsl:template name="calsTable">
