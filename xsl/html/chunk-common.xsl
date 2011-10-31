@@ -29,10 +29,19 @@
 <xsl:variable name="chunk.hierarchy">
   <xsl:if test="$chunk.fast != 0">
     <xsl:choose>
+      <!-- Are we handling a docbook5 document? -->
+      <xsl:when test="$exsl.node.set.available != 0
+                      and (*/self::ng:* or */self::db:*)">
+        <xsl:if test="$chunk.quietly = 0">
+          <xsl:message>Computing stripped namespace chunks...</xsl:message>
+        </xsl:if>
+        <xsl:apply-templates mode="find.chunks" select="exsl:node-set($no.namespace)"/>
+      </xsl:when>
       <xsl:when test="$exsl.node.set.available != 0">
         <xsl:if test="$chunk.quietly = 0">
           <xsl:message>Computing chunks...</xsl:message>
         </xsl:if>
+
         <xsl:apply-templates select="/*" mode="find.chunks"/>
       </xsl:when>
       <xsl:otherwise>

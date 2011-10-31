@@ -328,6 +328,16 @@ body { background-image: url('</xsl:text>
   <xsl:param name="node" select="."/>
 </xsl:template>
 
+<!-- To use the same stripped nodeset everywhere, it should
+be created as a global variable here.
+Used by docbook.xsl, chunk-code.xsl and chunkfast.xsl -->
+<xsl:variable name="no.namespace">
+  <xsl:if test="$exsl.node.set.available != 0
+                    and (*/self::ng:* or */self::db:*)">
+    <xsl:apply-templates select="/*" mode="stripNS"/>
+  </xsl:if>
+</xsl:variable>
+
 <xsl:template match="/">
   <!-- * Get a title for current doc so that we let the user -->
   <!-- * know what document we are processing at this point. -->
@@ -351,16 +361,13 @@ body { background-image: url('</xsl:text>
           <xsl:text>stripped namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:variable name="nons">
-        <xsl:apply-templates mode="stripNS"/>
-      </xsl:variable>
-      <!--
+      <!-- DEBUG: to save stripped document.
       <xsl:message>Saving stripped document.</xsl:message>
       <xsl:call-template name="write.chunk">
         <xsl:with-param name="filename" select="'/tmp/stripped.xml'"/>
         <xsl:with-param name="method" select="'xml'"/>
         <xsl:with-param name="content">
-          <xsl:copy-of select="exsl:node-set($nons)"/>
+          <xsl:copy-of select="exsl:node-set($no.namespace)"/>
         </xsl:with-param>
       </xsl:call-template>
       -->
@@ -374,7 +381,7 @@ body { background-image: url('</xsl:text>
           <xsl:text>processing stripped document</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:apply-templates select="exsl:node-set($nons)"/>
+      <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
     </xsl:when>
     <!-- Can't process unless namespace removed -->
     <xsl:when test="*/self::ng:* or */self::db:*">
