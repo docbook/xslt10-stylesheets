@@ -301,16 +301,18 @@
     <xsl:call-template name="toc.line">
       <xsl:with-param name="toc-context" select="$toc-context"/>
     </xsl:call-template>
-    <xsl:if test="$toc.listitem.type = 'li'
-                  and $toc.section.depth > $depth and 
+    <xsl:if test="$toc.listitem.type = 'li' and
+                  ( (self::set or self::book or self::part) or 
+                        $toc.section.depth > $depth) and 
                   ( ($qanda.in.toc = 0 and count($nodes)&gt;0) or
                     ($qanda.in.toc != 0 and count($nodes.plus)&gt;0) )
                   and $toc.max.depth > $depth.from.context">
       <xsl:copy-of select="$subtoc.list"/>
     </xsl:if>
   </xsl:element>
-  <xsl:if test="$toc.listitem.type != 'li'
-                and $toc.section.depth > $depth and 
+  <xsl:if test="$toc.listitem.type != 'li' and
+                  ( (self::set or self::book or self::part) or 
+                        $toc.section.depth > $depth) and 
                 ( ($qanda.in.toc = 0 and count($nodes)&gt;0) or
                   ($qanda.in.toc != 0 and count($nodes.plus)&gt;0) )
                 and $toc.max.depth > $depth.from.context">
