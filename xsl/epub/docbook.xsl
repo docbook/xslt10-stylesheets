@@ -99,7 +99,7 @@
 
   <xsl:key name="image-filerefs" match="graphic|inlinegraphic|imagedata" use="@fileref"/>
 
-  <xsl:template match="/">
+  <xsl:template match="/" priority="1">
     <!-- * Get a title for current doc so that we let the user -->
     <!-- * know what document we are processing at this point. -->
     <xsl:variable name="doc.title">
