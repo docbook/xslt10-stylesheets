@@ -204,7 +204,7 @@
   <xsl:param name="context" select="."/>
   <xsl:param name="object" select="."/>
   <xsl:if test="$manifest.in.base.dir = 0">
-    <xsl:value-of select="$base.dir"/>
+    <xsl:value-of select="$chunk.base.dir"/>
   </xsl:if>
   <xsl:call-template name="href.target">
     <xsl:with-param name="context" select="$context"/>
@@ -610,7 +610,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="path" select="concat($base.dir, $file)"/>
+  <xsl:variable name="path" select="concat($chunk.base.dir, $file)"/>
   <xsl:value-of select="$path"/>
   
 </xsl:template>

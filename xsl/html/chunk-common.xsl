@@ -143,7 +143,7 @@
 
   <xsl:variable name="filename">
     <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
       <xsl:with-param name="base.name" select="$chunkfn"/>
     </xsl:call-template>
   </xsl:variable>
@@ -613,9 +613,10 @@
         <xsl:call-template name="write.chunk">
           <xsl:with-param name="filename">
             <xsl:call-template name="make-relative-filename">
-              <xsl:with-param name="base.dir" select="$base.dir"/>
+              <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
               <xsl:with-param name="base.name">
                 <xsl:call-template name="dbhtml-dir"/>
+                <xsl:value-of select="$chunked.filename.prefix"/>
                 <xsl:apply-templates select="." mode="recursive-chunk-filename">
                   <xsl:with-param name="recursive" select="true()"/>
                 </xsl:apply-templates>
@@ -656,7 +657,7 @@
   <xsl:if test="string($lot) != ''">
     <xsl:variable name="filename">
       <xsl:call-template name="make-relative-filename">
-        <xsl:with-param name="base.dir" select="$base.dir"/>
+        <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
         <xsl:with-param name="base.name">
           <xsl:call-template name="dbhtml-dir"/>
           <xsl:value-of select="$type"/>
@@ -1694,6 +1695,7 @@
                 <xsl:if test="$chunk.tocs.and.lots != 0 and $nav.context != 'toc'">
                   <a accesskey="t">
                     <xsl:attribute name="href">
+                      <xsl:value-of select="$chunked.filename.prefix"/>
                       <xsl:apply-templates select="/*[1]"
                                            mode="recursive-chunk-filename">
                         <xsl:with-param name="recursive" select="true()"/>
@@ -1883,7 +1885,7 @@
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="$manifest"/>
     </xsl:with-param>

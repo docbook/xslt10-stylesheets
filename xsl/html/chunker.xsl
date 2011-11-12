@@ -34,6 +34,20 @@
 <xsl:param name="chunker.output.media-type" select="''"/>
 <xsl:param name="chunker.output.cdata-section-elements" select="''"/>
 
+<!-- Make sure base.dir has a trailing slash now -->
+<xsl:param name="chunk.base.dir">
+  <xsl:choose>
+    <xsl:when test="string-length($base.dir) = 0"></xsl:when>
+    <!-- make sure to add trailing slash if omitted by user -->
+    <xsl:when test="substring($base.dir, string-length($base.dir), 1) = '/'">
+      <xsl:value-of select="$base.dir"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat($base.dir, '/')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
+
 <xsl:param name="saxon.character.representation" select="'entity;decimal'"/>
 
 <!-- ==================================================================== -->
@@ -46,13 +60,13 @@
     <!-- put Saxon first to work around a bug in libxslt -->
     <xsl:when test="element-available('saxon:output')">
       <!-- Saxon doesn't make the chunks relative -->
-      <xsl:value-of select="concat($base.dir,$base.name)"/>
+      <xsl:value-of select="concat($chunk.base.dir,$base.name)"/>
     </xsl:when>
     <xsl:when test="element-available('exsl:document')">
       <!-- EXSL document does make the chunks relative, I think -->
       <xsl:choose>
         <xsl:when test="count(parent::*) = 0">
-          <xsl:value-of select="concat($base.dir,$base.name)"/>
+          <xsl:value-of select="concat($chunk.base.dir,$base.name)"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$base.name"/>
@@ -61,7 +75,7 @@
     </xsl:when>
     <xsl:when test="element-available('redirect:write')">
       <!-- Xalan doesn't make the chunks relative -->
-      <xsl:value-of select="concat($base.dir,$base.name)"/>
+      <xsl:value-of select="concat($chunk.base.dir,$base.name)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message terminate="yes">

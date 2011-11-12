@@ -54,6 +54,8 @@
     <xsl:call-template name="dbhtml-dir"/>
   </xsl:if>
 
+  <xsl:value-of select="$chunked.filename.prefix"/>
+
   <xsl:value-of select="$fn"/>
   <!-- You can't add the html.ext here because dbhtml filename= may already -->
   <!-- have added it. It really does have to be handled in the recursive template -->
@@ -590,7 +592,7 @@
     <xsl:call-template name="make-relative-filename">
       <xsl:with-param name="base.dir">
         <xsl:if test="$manifest.in.base.dir = 0">
-          <xsl:value-of select="$base.dir"/>
+          <xsl:value-of select="$chunk.base.dir"/>
         </xsl:if>
       </xsl:with-param>
       <xsl:with-param name="base.name">
@@ -610,7 +612,7 @@
       <xsl:call-template name="make-relative-filename">
         <xsl:with-param name="base.dir">
           <xsl:if test="$manifest.in.base.dir = 0">
-            <xsl:value-of select="$base.dir"/>
+            <xsl:value-of select="$chunk.base.dir"/>
           </xsl:if>
         </xsl:with-param>
         <xsl:with-param name="base.name">
@@ -629,7 +631,7 @@
     <xsl:call-template name="make-relative-filename">
       <xsl:with-param name="base.dir">
         <xsl:if test="$manifest.in.base.dir = 0">
-          <xsl:value-of select="$base.dir"/>
+          <xsl:value-of select="$chunk.base.dir"/>
         </xsl:if>
       </xsl:with-param>
       <xsl:with-param name="base.name">

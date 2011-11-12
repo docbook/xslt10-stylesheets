@@ -96,7 +96,7 @@
 
   <xsl:variable name="filename">
     <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
       <xsl:with-param name="base.name" select="$chunkfn"/>
     </xsl:call-template>
   </xsl:variable>
@@ -443,7 +443,7 @@
         <xsl:call-template name="write.chunk">
           <xsl:with-param name="filename">
             <xsl:call-template name="make-relative-filename">
-              <xsl:with-param name="base.dir" select="$base.dir"/>
+              <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
               <xsl:with-param name="base.name">
                 <xsl:call-template name="dbhtml-dir"/>
                 <xsl:apply-templates select="." mode="recursive-chunk-filename">
@@ -484,7 +484,7 @@
   <xsl:if test="string($lot) != ''">
     <xsl:variable name="filename">
       <xsl:call-template name="make-relative-filename">
-        <xsl:with-param name="base.dir" select="$base.dir"/>
+        <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
         <xsl:with-param name="base.name">
           <xsl:call-template name="dbhtml-dir"/>
           <xsl:value-of select="$type"/>
@@ -496,6 +496,7 @@
 
     <xsl:variable name="href">
       <xsl:call-template name="make-relative-filename">
+        <xsl:with-param name="base.dir" select="''"/>
         <xsl:with-param name="base.name">
           <xsl:call-template name="dbhtml-dir"/>
           <xsl:value-of select="$type"/>

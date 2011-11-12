@@ -1284,7 +1284,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                 <xsl:value-of select="$dbhtml.dir"/>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:value-of select="$base.dir"/>
+                <xsl:value-of select="$chunk.base.dir"/>
               </xsl:otherwise>
             </xsl:choose>
           </xsl:with-param>
@@ -1363,7 +1363,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
   <xsl:variable name="this.uri">
     <xsl:call-template name="make-relative-filename">
-      <xsl:with-param name="base.dir" select="$base.dir"/>
+      <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
       <xsl:with-param name="base.name">
         <xsl:call-template name="href.target.uri"/>
       </xsl:with-param>

@@ -555,7 +555,7 @@
 
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
-          <xsl:with-param name="base.dir" select="$base.dir"/>
+          <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
 	  <xsl:with-param name="base.name" select="$file"/>
         </xsl:call-template>
       </xsl:variable>
@@ -806,7 +806,7 @@
 
       <xsl:variable name="filename">
         <xsl:call-template name="make-relative-filename">
-          <xsl:with-param name="base.dir" select="$base.dir"/>
+          <xsl:with-param name="base.dir" select="$chunk.base.dir"/>
           <xsl:with-param name="base.name" select="$file"/>
         </xsl:call-template>
       </xsl:variable>
