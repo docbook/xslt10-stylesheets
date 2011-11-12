@@ -317,3 +317,4 @@
 <!ENTITY make.clean.html SYSTEM "../params/make.clean.html.xml">
 <!ENTITY custom.css.source SYSTEM "../params/custom.css.source.xml">
 <!ENTITY generate.consistent.ids SYSTEM "../params/generate.consistent.ids.xml">
+<!ENTITY chunked.filename.prefix SYSTEM "../params/chunked.filename.prefix.xml">

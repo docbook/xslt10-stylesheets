@@ -313,6 +313,7 @@ $Id$
 &html.extra.head.links;
 &root.filename;
 &base.dir;
+&chunked.filename.prefix;
 &generate.manifest;
 &manifest;
 &manifest.in.base.dir;
@@ -485,6 +486,7 @@ around all these parameters.</para>
 <src:fragref linkend="chunk.toc.frag"/>
 <src:fragref linkend="chunk.tocs.and.lots.frag"/>
 <src:fragref linkend="chunk.tocs.and.lots.has.title.frag"/>
+<src:fragref linkend="chunked.filename.prefix.frag"/>
 <src:fragref linkend="citerefentry.link.frag"/>
 <src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="component.label.includes.part.label.frag"/>
