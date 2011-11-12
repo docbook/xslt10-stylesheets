@@ -35,7 +35,7 @@
       <xsl:call-template name="write.chunk">
 	<xsl:with-param name="filename">
 	  <xsl:if test="$manifest.in.base.dir != 0">
-	    <xsl:value-of select="$base.dir" />
+	    <xsl:value-of select="$chunk.base.dir" />
 	  </xsl:if>
 	  <xsl:value-of select="'plugin.xml'" />
 	</xsl:with-param>
@@ -60,7 +60,7 @@
 	      <xsl:call-template name="write.chunk">
 		<xsl:with-param name="filename">
 		  <xsl:if test="$manifest.in.base.dir != 0">
-		    <xsl:value-of select="$base.dir" />
+		    <xsl:value-of select="$chunk.base.dir" />
 		  </xsl:if>
 		  <xsl:value-of select="'META-INF/'" />
 		  <xsl:value-of select="'MANIFEST.MF'" />

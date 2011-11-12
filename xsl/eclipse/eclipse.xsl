@@ -106,7 +106,7 @@
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="'toc.xml'"/>
     </xsl:with-param>
@@ -199,7 +199,7 @@
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename">
       <xsl:if test="$manifest.in.base.dir != 0">
-        <xsl:value-of select="$base.dir"/>
+        <xsl:value-of select="$chunk.base.dir"/>
       </xsl:if>
       <xsl:value-of select="'plugin.xml'"/>
     </xsl:with-param>
@@ -229,7 +229,7 @@
 
 <xsl:template name="helpidx">
   <xsl:call-template name="write.chunk.with.doctype">
-    <xsl:with-param name="filename" select="concat($base.dir, 'index.xml')"/>
+    <xsl:with-param name="filename" select="concat($chunk.base.dir, 'index.xml')"/>
     <xsl:with-param name="method" select="'xml'"/>
     <xsl:with-param name="indent" select="'yes'"/>
     <xsl:with-param name="doctype-public" select="''"/>
