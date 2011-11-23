@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="region.outer.extent.frag">
-<xsl:param name="region.outer.extent">0.4in</xsl:param>
+<xsl:param name="region.outer.extent">0in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -40,5 +40,11 @@ be sure to also enlarge the <parameter>body.margin.outer</parameter>
 parameter to make room for its content, otherwise any text in
 the side region may overlap with the body text.</para>
 
+<para>See also <parameter>
+<parameter>region.inner.extent</parameter>,
+<parameter>body.margin.inner</parameter>,
+<parameter>body.margin.outer</parameter>,
+<parameter>side.region.precedence</parameter>.
+</para>
 </refsection>
 </refentry>

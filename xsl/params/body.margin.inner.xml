@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="body.margin.inner.frag">
-<xsl:param name="body.margin.inner">0.5in</xsl:param>
+<xsl:param name="body.margin.inner">0in</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
@@ -41,5 +41,12 @@ is <literal>fo:region-start</literal> for all pages.</para>
 both left-to-right and right-to-left writing modes.</para>
 
 <para>The default value is zero.</para>
+
+<para>See also <parameter>
+<parameter>region.inner.extent</parameter>,
+<parameter>region.outer.extent</parameter>,
+<parameter>body.margin.outer</parameter>,
+<parameter>side.region.precedence</parameter>.
+</para>
 </refsection>
 </refentry>
