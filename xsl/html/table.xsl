@@ -847,11 +847,18 @@
         </xsl:if>
 
         <xsl:call-template name="locale.html.attributes"/>
-        <xsl:if test="$entry.propagates.style != 0 and @role">
-          <xsl:apply-templates select="." mode="class.attribute">
-            <xsl:with-param name="class" select="@role"/>
-          </xsl:apply-templates>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="$entry.propagates.style != 0 and @role">
+            <xsl:apply-templates select="." mode="class.attribute">
+              <xsl:with-param name="class" select="@role"/>
+            </xsl:apply-templates>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="class.attribute">
+              <xsl:with-param name="class" select="''"/>
+            </xsl:apply-templates>
+          </xsl:otherwise>
+        </xsl:choose>
 
         <xsl:if test="$show.revisionflag and @revisionflag">
           <xsl:attribute name="class">

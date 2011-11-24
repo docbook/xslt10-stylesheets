@@ -64,7 +64,9 @@
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="locale.html.attributes"/>
+          <xsl:call-template name="common.html.attributes">
+            <xsl:with-param name="class" select="''"/>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:copy-of select="$content"/>

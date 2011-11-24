@@ -296,11 +296,17 @@
   <xsl:param name="class" select="local-name(.)"/>
   <!-- permit customization of class attributes -->
   <!-- Use element name by default -->
-  <xsl:attribute name="class">
+  <xsl:variable name="class.value">
     <xsl:apply-templates select="." mode="class.value">
       <xsl:with-param name="class" select="$class"/>
     </xsl:apply-templates>
-  </xsl:attribute>
+  </xsl:variable>
+
+  <xsl:if test="string-length(normalize-space($class.value)) != 0">
+    <xsl:attribute name="class">
+      <xsl:value-of select="$class.value"/>
+    </xsl:attribute>
+  </xsl:if> 
 </xsl:template>
 
 <xsl:template match="*" mode="class.value">
