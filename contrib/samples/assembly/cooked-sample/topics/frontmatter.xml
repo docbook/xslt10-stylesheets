@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:id="user.guide"><info><title>DocBook XSL: The Incomplete Sample</title><author><personname>
+                <firstname>Bob</firstname>
+                <surname>Stayton</surname>
+            </personname></author><publishername>Sagehill Enterprises</publishername><copyright><year>2002</year><year>2003</year><year>2004</year><year>2005</year><year>2006</year><year>2007</year><holder>Sagehill
+Enterprises</holder></copyright><biblioid class="isbn">ISBN: 978-0-9741521-3-4</biblioid><edition>Fourth</edition><pubdate>September, 2007</pubdate><releaseinfo>A PDF version of this document is available for purchase
+from <link xlink:href="http://www.sagehill.net">Sagehill Enterprises</link>.
+</releaseinfo><legalnotice><para>All rights reserved. No part of this book may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, recording, or by any information storage and retrieval system, without written permission from the publisher, except for the inclusion of brief quotations in a review.</para></legalnotice><legalnotice><title>Warning and Disclaimer</title><para>Every effort has been made to make this book as complete and accurate as possible, but Sagehill Enterprises makes no warranties, either express or implied, regarding the content or its fitness for any particular purpose.  The information is provided on an as-is basis. The author and Sagehill Enterprises shall have neither liability nor responsibility to any person or entity with respect to any loss or damages arising from the information contained in this book.</para><para>This guide contains links to third-party Web sites that are not under the control of Sagehill Enterprises, and Sagehill Enterprises and the author are not responsible for the content of any linked site. If you access a third-party website mentioned in this guide, then you do so at your own risk. Sagehill Enterprises provides these links only as a convenience, and the inclusion of the link does not imply that Sagehill Enterprises or the author endorses or accepts any responsibility for the content of those third-party sites.</para></legalnotice><legalnotice><title>Trademarks</title><para>All terms mentioned in this book that are known to be trademarks or service marks have been appropriately capitalized. Use of a term in this book should not be regarded as affecting the validity of any trademark or service mark.</para></legalnotice><publisher><publishername>Sagehill
+Enterprises</publishername><address><street>PO Box 2911</street>
+<city>Santa Cruz</city> <state>CA</state>
+<postcode>95063-2911</postcode>
+<otheraddr>Website: 
+<link xlink:href="http://www.sagehill.net"/></otheraddr>
+<email>info@sagehill.net</email></address></publisher></info></book>

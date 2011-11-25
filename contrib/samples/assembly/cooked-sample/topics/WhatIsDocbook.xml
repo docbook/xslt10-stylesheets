@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="WhatIsDocbook"><title>What is DocBook?</title><para>DocBook is a collection of standards and tools for technical publishing. DocBook
+        was originally created by a consortium of software companies as a standard for
+        computer documentation. But the basic <quote>book</quote> features of DocBook can be
+        used for other kinds of content, so it has been adapted to many purposes.</para><para>The core DocBook standard is the <glossterm>DocBook Document Type Definition
+            (DTD)</glossterm> maintained by the DocBook Technical Committee in <indexterm><primary>OASIS</primary></indexterm><link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.oasis-open.org/docbook">OASIS</link>. The DTD
+        defines the vocabulary of content elements that an author can use and how they
+        relate to each other. For example, a <literal>book</literal> element can contain a
+            <literal>title</literal> element, any number of <literal>para</literal> elements
+        for paragraphs, and any number of <literal>chapter</literal> elements. Using the DTD
+        and XML syntax, authors mark up their text content with tag names enclosed in angle
+        brackets like <literal>&lt;chapter&gt;</literal>. The markup is similar to
+        HTML, but with more tags and tighter rules.</para><para>Text that is marked up in this standard way can be processed by any number of
+        software tools. A major advantage of DocBook is the availability of DocBook tools
+        from many sources, not just from a single vendor of a proprietary file format. You
+        can mix and match components for editing, typesetting, version control, and HTML
+        conversion. You can assemble a custom system that is well suited to your needs, and
+        many of the components are available for free.</para><para>The other major advantage of DocBook is the set of free stylesheets that are
+        available for it. Written by Norman Walsh in the Extensible Stylesheet Language
+        (XSL), these stylesheets enable anyone to publish their DocBook content in print and
+        HTML. The stylesheets are now developed and maintained as an open-source project on
+        <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://sourceforge.net/projects/docbook">SourceForge</link><indexterm><primary>SourceForge</primary></indexterm>. An active community of users and contributors keeps up the development
+        of the stylesheets and answers questions.</para><para>As a publishing system, DocBook is best suited for any of these situations:</para><itemizedlist><listitem><para>Large quantities of content.</para></listitem><listitem><para>Highly structured content.</para></listitem><listitem><para>Content that needs to be interchanged among otherwise incompatible
+                systems.</para></listitem><listitem><para>Content that needs automated batch processing.</para></listitem><listitem><para>Content to be rendered in multiple output forms and versions.</para></listitem></itemizedlist><para>DocBook is not a WYSIWYG word processor (although graphical editors are available
+        for DocBook). DocBook is hardly worth the trouble for short or one-off documents.
+        And since the formatting is strictly by batch process with stylesheets, DocBook is
+        not well matched to highly designed layout-driven content like magazines.</para><para>DocBook is well suited to any collection of technical documentation that is
+        regularly maintained and published. Because you are not locked into a single vendor,
+        you have flexibility in your choice of processes and tools, both now and in the
+        future. Multiple authors can contribute, and their content can easily be merged
+        because all the authors are using a standard markup language. The files are plain
+        text, not binary, so they also work well with most version control systems.</para><para>Setting up a DocBook system will take some time and effort. But the payoff will be
+        an efficient, flexible, and inexpensive publishing system that can grow with your
+        needs.</para></topic>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="Portability"><title>Portability considerations</title><para><indexterm><primary>portability</primary></indexterm>If you need to be able to process XML files on more than one
+            operating system, you need to consider how portable the XSL processors
+            are.</para><itemizedlist><listitem><para>Java-based processors are highly portable, as long as each platform
+                    has a modern Java interpreter. (How modern depends on the individual
+                    processor and version. Check the processor's requirements list.) With
+                    Saxon, Xalan-Java, FOP, and other Java-based processors, you can install
+                    a few Java archives without any compiling and produce identical results
+                    on Linux, Unix, Windows, and Macintosh.</para></listitem><listitem><para>Processors written in C such as xsltproc and Sablotron are less
+                    portable. You need a version compiled for each platform you want to run
+                    it on. Many are available in precompiled packages, such as RPMs for
+                    Linux or Zip files for Windows. But the packaged versions can lag behind
+                    the latest version, so you may need to compile it yourself for a given
+                    platform. The C code is written to be portable, but there are always
+                    issues that come up when you have to compile.</para></listitem><listitem><para>The PassiveTeX FO processor is unique in that it is written in TeX, a
+                    typesetting language. TeX is also very portable, but it is currently
+                    difficult to get PassiveTeX to work properly with the DocBook XSL
+                    stylesheets</para></listitem></itemizedlist><para>Another portability consideration is file permissions. Some packages may try
+            to install files into areas of a filesystem controlled by a system
+            administrator. If you do not have the necessary permissions, you may not be able
+            to install a given package. All of the processors can be installed elsewhere,
+            but you may need to spend time figuring out how to do so.</para></topic>

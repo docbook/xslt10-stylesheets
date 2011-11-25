@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="introchapter"><title>Introduction</title><para>The <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/Style/XSL/">
+                <citetitle>Extensible Stylesheet Language (XSL)</citetitle>
+                </link> is a formal Recommendation put forward by the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org">World Wide Web Consortium (W3C)</link> as a language
+        for expressing stylesheets. It complements the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/XML/">
+                <citetitle>Extensible Markup Language (XML)</citetitle>
+                </link> by providing the methods for formatting content written in XML. One of the
+        major goals of XML was keeping content and its semantic markup separate from its
+        formatting, so that formatting could be applied independently. An XSL stylesheet
+        describes the formatting that can be applied to XML files using an XSL processor.
+        The XSL standard and XSL processors are described more fully in <xref linkend="XSLprocessors"/>.</para><para>The DocBook XSL stylesheets were written by Norman Walsh to help people publish
+        their DocBook content with XSL. The stylesheets are now an open-source project
+        maintained on <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://sourceforge.net/projects/docbook/">SourceForge</link>. The stylesheet distribution consists of a collection of
+        modular XSL files that are assembled into several complete XSL stylesheets. There is
+        a stylesheet for generating a single HTML file, and one for generating multiple
+        smaller HTML files from a single DocBook document. There are stylesheets for print
+        output, XHTML output, HTML Help output, and JavaHelp output. The stylesheet
+        collection is freely available for download. Since there are XSL processors for all
+        major computer types, you can use DocBook on Unix, Linux, Windows, and Macintosh
+        computers.</para><para>This book shows you how to use and customize the DocBook XSL stylesheets. It
+        unlocks the power of these stylesheets by documenting all of their features and
+        making them easy to use.</para></topic>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="Audience"><title>Audience</title><para>This book is for people who want to publish DocBook XML files using the DocBook
+        XSL stylesheets. It is a "how to" guide that gets you up and running quickly, and
+        then provides the details you need to gain access to the full power of DocBook. The
+        book covers:</para><itemizedlist><listitem><para>Obtaining and setting up XSL tools and the DocBook XSL stylesheets.</para></listitem><listitem><para>Using the built-in options to control the XSL stylesheets.</para></listitem><listitem><para>Customizing the XSL stylesheets to match your design needs.</para></listitem></itemizedlist><para>(This book does not cover the SGML version of DocBook, nor the DocBook DSSSL
+        stylesheets.) </para><para>You do not need to be an XML expert to use DocBook XSL. You will need to know
+        about XML elements and attributes, since you will be working with DocBook XML files.
+        And you will need to know how to execute commands by typing them on a command line
+        rather than through a point-and-click interface. If you know nothing about XSL, you
+        can still use the stylesheets to generate high-quality output. You can also
+        customize to a degree using the built-in stylesheet parameters. Learning some XSL
+        will enable you to more fully customize the output. This book can teach you basic
+        XSL, and provides dozens of examples that you can use and learn from.</para><para>This book will not show you how to write DocBook documents. The best reference for
+        writing in DocBook is <citetitle>DocBook: The Definitive Guide</citetitle> by Norman
+        Walsh. That book has been made available by O'Reilly Books for reading from the web
+        at <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://docbook.org/tdg/en/html/docbook.html"/>. Keep that link
+        bookmarked for future reference. A printed and bound version of the book is also
+        available from O'Reilly Books, but it is a bit out of date now. The online book
+        documents the most recent version of the DTD.</para></topic>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="XSLTprocessors"><title>XSLT processors</title><para><indexterm><primary>XSLT processor</primary></indexterm>Currently there are three processors that are widely used for XSLT
+        processing because they most closely conform to the XSLT specification: <variablelist><varlistentry><term>Saxon</term><listitem><para><indexterm><primary>Saxon</primary></indexterm>Saxon (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://saxon.sourceforge.net/"/>)
+                        was written by Michael Kay, the author of <citetitle>XSLT
+                            Reference</citetitle>, one of the best books on XSLT. Saxon
+                        is a free processor written in Java, so it can be run on any
+                        operating system with a modern Java interpreter. Saxon now comes
+                        in two flavors: Saxon 6 which handles the XSLT 1.0 standard, and
+                        Saxon 8 which handles the newly emerging XSLT 2.0 and other new
+                        XML standards.</para></listitem></varlistentry><varlistentry><term>Xalan</term><listitem><para><indexterm><primary>Xalan</primary></indexterm>Xalan (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://xml.apache.org/xalan-j/index.html"/>) is part of
+                        the Apache XML Project. It has versions written in both Java and
+                        C++, both of them free. The Java version is described in this
+                        book because it is highly portable and easier to set up.
+                        Generally Xalan is used with the Xerces XML parser, also
+                        available from the Apache XML Project.</para></listitem></varlistentry><varlistentry><term>xsltproc</term><listitem><indexterm><primary>xsltproc</primary></indexterm><para>The xsltproc (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://xmlsoft.org/XSLT/"/>)
+                        processor is written in C by Daniel Veillard. It is free, as
+                        part of the open source libxml2 library from the Gnome
+                        development project. It is considered the fastest of the
+                        processors, and is highly conformant to the specification. It is
+                        much faster than either of the Java processors. It also
+                        processes XIncludes.</para></listitem></varlistentry></variablelist></para><para>There are a few other XSLT processors that should also be mentioned: <variablelist><varlistentry><term>XT</term><listitem><para>James Clark's XT (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.blnz.com/xt/index.html"/>) was the first
+                        useful XSLT engine, and it is still in use. It is written in
+                        Java, so it runs on many platforms, and it is free. XT comes
+                        with James Clark's nonvalidating parser XP, but you can
+                        substitute a different Java parser.</para></listitem></varlistentry><varlistentry><term>MSXML</term><listitem><para>Microsoft's MSXML (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://msdn.microsoft.com/xml/"/>) engine includes an XSLT processor. It is reported to be
+                        fast, but only runs on Windows.</para></listitem></varlistentry><varlistentry><term>Sablotron</term><listitem><para>Sablotron (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.gingerall.com/charlie/ga/xml/p_sab.xml"/>),
+                        written in C++, from Ginger Alliance.</para></listitem></varlistentry><varlistentry><term>4XSLT</term><listitem><para>4XSLT (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://sourceforge.net/projects/foursuite/"/>), written in Python, now an open project on
+                        SourceForge.</para></listitem></varlistentry></variablelist></para></topic>

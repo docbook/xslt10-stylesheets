@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="HowOrganized"><title>How this book is organized</title><para>Applying an XSL stylesheet to an XML file is a very straightforward process,
+        once you get the tools working. <emphasis role="bold">Part I</emphasis> of this
+        book tells you how to obtain and set up the XSL tools. It covers several XSL
+        processors, and provides essential details for each one. It also covers XML
+        Catalogs, which are used to map file references to actual directory locations on
+        your system. XML Catalogs make the tools more versatile and portable.</para><para> Once you have the tools working, you can generate formatted print and HTML
+        output from your DocBook XML documents. As you use the stylesheets, you will
+        probably want to change certain aspects about the format or processing. The
+        DocBook stylesheets provide a large number of options. The options are in the
+        form of stylesheet parameters, which let you assign a value to a named variable
+        that is used in the stylesheet. You can do quite a bit of customization of your
+        output using just the parameters. <emphasis role="bold">Part II</emphasis> of
+        this book describes the various stylesheet parameters and how to use them. </para><para>You will turn to <emphasis role="bold">Part III</emphasis> when you want to
+        change something but you cannot find a parameter to do it. At that point you
+        will need to do some stylesheet customization, which is done using the XSL
+        language. You'll need to learn the syntax and methods of XSL, so that you can
+        write a customization file with it. The chapters in Part III describe the
+        methods of customization, as well as many applications for HTML and print
+        output. You can use the appendix introducing XSL  to get started with XSL, but it
+        is beyond the scope of this book to teach you all about XSL. You will need a
+        good XSL reference book to create extensive customization. You can also use
+            the appendix on debugging XSL  for help with debugging your
+        customizations.</para><para><emphasis role="bold">Part IV</emphasis> of this book covers all of the
+        special features of DocBook that require extra attention. That part is an
+        encyclopedia of special topics, from bibliographies to websites. Use it as a
+        reference when you need to process a certain feature, or browse it for new
+        possibilities that you did not know DocBook could do.</para><note><title>Note on examples</title><para><indexterm><primary>backslash</primary><secondary>in examples</secondary></indexterm>Some examples of commands and code in this book are too long to
+            fit on one line. Where a long line is broken to fit, the line will end with
+            a backslash character "\". If you are using Microsoft Windows, you should
+            omit the backslash character and join such a line to the following line. If
+            you are using a Unix shell, you can use the example "as is".</para></note></topic>

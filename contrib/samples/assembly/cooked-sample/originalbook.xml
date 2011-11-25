@@ -1,0 +1,649 @@
+<?xml version="1.0"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="user.guide">
+    <info>
+        <title>DocBook XSL: The Incomplete Sample</title>
+        <author>
+            <personname>
+                <firstname>Bob</firstname>
+                <surname>Stayton</surname>
+            </personname>
+        </author>
+        <publishername>Sagehill Enterprises</publishername>
+        <copyright>
+            <year>2002</year>
+            <year>2003</year>
+            <year>2004</year>
+            <year>2005</year>
+            <year>2006</year>
+            <year>2007</year>
+            <holder>Sagehill
+Enterprises</holder>
+        </copyright>
+        <biblioid class="isbn">ISBN: 978-0-9741521-3-4</biblioid>
+        <edition>Fourth</edition>
+        <pubdate>September, 2007</pubdate>
+        <releaseinfo>A PDF version of this document is available for purchase
+from <link
+            xlink:href="http://www.sagehill.net">Sagehill Enterprises</link>.
+</releaseinfo>
+        <legalnotice>
+            <para>All rights reserved. No part of this book may be reproduced or transmitted in any form or by any means, electronic or mechanical, including photocopying, recording, or by any information storage and retrieval system, without written permission from the publisher, except for the inclusion of brief quotations in a review.</para>
+        </legalnotice>
+        <legalnotice>
+            <title>Warning and Disclaimer</title>
+            <para>Every effort has been made to make this book as complete and accurate as possible, but Sagehill Enterprises makes no warranties, either express or implied, regarding the content or its fitness for any particular purpose.  The information is provided on an as-is basis. The author and Sagehill Enterprises shall have neither liability nor responsibility to any person or entity with respect to any loss or damages arising from the information contained in this book.</para>
+            <para>This guide contains links to third-party Web sites that are not under the control of Sagehill Enterprises, and Sagehill Enterprises and the author are not responsible for the content of any linked site. If you access a third-party website mentioned in this guide, then you do so at your own risk. Sagehill Enterprises provides these links only as a convenience, and the inclusion of the link does not imply that Sagehill Enterprises or the author endorses or accepts any responsibility for the content of those third-party sites.</para>
+        </legalnotice>
+        <legalnotice>
+            <title>Trademarks</title>
+            <para>All terms mentioned in this book that are known to be trademarks or service marks have been appropriately capitalized. Use of a term in this book should not be regarded as affecting the validity of any trademark or service mark.</para>
+        </legalnotice>
+        <publisher>
+            <publishername>Sagehill
+Enterprises</publishername>
+            <address><street>PO Box 2911</street>
+<city>Santa Cruz</city> <state>CA</state>
+<postcode>95063-2911</postcode>
+<otheraddr>Website: 
+<link xlink:href="http://www.sagehill.net"/></otheraddr>
+<email>info@sagehill.net</email></address>
+        </publisher>
+
+
+    </info>
+    <preface xml:id="preface">
+        <title>Preface</title>
+        <para>The nature of publishing has changed so much over the last twenty years that anybody
+    can be a publisher these days. Now you can reach a world-wide audience by putting a few
+    HTML pages up on your website. Or you can use desktop publishing software to produce
+    beautifully typeset material that can be printed on demand or downloaded to a printer
+    anywhere in the world. With DocBook, you can publish both ways from the same source
+    material.</para>
+        <section xml:id="WhatIsDocbook">
+            <title>What is DocBook?</title>
+            <para>DocBook is a collection of standards and tools for technical publishing. DocBook
+        was originally created by a consortium of software companies as a standard for
+        computer documentation. But the basic <quote>book</quote> features of DocBook can be
+        used for other kinds of content, so it has been adapted to many purposes.</para>
+            <para>The core DocBook standard is the <glossterm>DocBook Document Type Definition
+            (DTD)</glossterm> maintained by the DocBook Technical Committee in <indexterm>
+                <primary>OASIS</primary> </indexterm><link
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="http://www.oasis-open.org/docbook"
+                >OASIS</link>. The DTD
+        defines the vocabulary of content elements that an author can use and how they
+        relate to each other. For example, a <literal>book</literal> element can contain a
+            <literal>title</literal> element, any number of <literal>para</literal> elements
+        for paragraphs, and any number of <literal>chapter</literal> elements. Using the DTD
+        and XML syntax, authors mark up their text content with tag names enclosed in angle
+        brackets like <literal>&lt;chapter&gt;</literal>. The markup is similar to
+        HTML, but with more tags and tighter rules.</para>
+            <para>Text that is marked up in this standard way can be processed by any number of
+        software tools. A major advantage of DocBook is the availability of DocBook tools
+        from many sources, not just from a single vendor of a proprietary file format. You
+        can mix and match components for editing, typesetting, version control, and HTML
+        conversion. You can assemble a custom system that is well suited to your needs, and
+        many of the components are available for free.</para>
+            <para>The other major advantage of DocBook is the set of free stylesheets that are
+        available for it. Written by Norman Walsh in the Extensible Stylesheet Language
+        (XSL), these stylesheets enable anyone to publish their DocBook content in print and
+        HTML. The stylesheets are now developed and maintained as an open-source project on
+        <link
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="http://sourceforge.net/projects/docbook">SourceForge</link><indexterm>
+                <primary>SourceForge</primary>
+                </indexterm>. An active community of users and contributors keeps up the development
+        of the stylesheets and answers questions.</para>
+            <para>As a publishing system, DocBook is best suited for any of these situations:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Large quantities of content.</para>
+                </listitem>
+                <listitem>
+                    <para>Highly structured content.</para>
+                </listitem>
+                <listitem>
+                    <para>Content that needs to be interchanged among otherwise incompatible
+                systems.</para>
+                </listitem>
+                <listitem>
+                    <para>Content that needs automated batch processing.</para>
+                </listitem>
+                <listitem>
+                    <para>Content to be rendered in multiple output forms and versions.</para>
+                </listitem>
+            </itemizedlist>
+            <para>DocBook is not a WYSIWYG word processor (although graphical editors are available
+        for DocBook). DocBook is hardly worth the trouble for short or one-off documents.
+        And since the formatting is strictly by batch process with stylesheets, DocBook is
+        not well matched to highly designed layout-driven content like magazines.</para>
+            <para>DocBook is well suited to any collection of technical documentation that is
+        regularly maintained and published. Because you are not locked into a single vendor,
+        you have flexibility in your choice of processes and tools, both now and in the
+        future. Multiple authors can contribute, and their content can easily be merged
+        because all the authors are using a standard markup language. The files are plain
+        text, not binary, so they also work well with most version control systems.</para>
+            <para>Setting up a DocBook system will take some time and effort. But the payoff will be
+        an efficient, flexible, and inexpensive publishing system that can grow with your
+        needs.</para>
+        </section>
+        <section xml:id="Audience">
+            <title>Audience</title>
+            <para>This book is for people who want to publish DocBook XML files using the DocBook
+        XSL stylesheets. It is a "how to" guide that gets you up and running quickly, and
+        then provides the details you need to gain access to the full power of DocBook. The
+        book covers:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Obtaining and setting up XSL tools and the DocBook XSL stylesheets.</para>
+                </listitem>
+                <listitem>
+                    <para>Using the built-in options to control the XSL stylesheets.</para>
+                </listitem>
+                <listitem>
+                    <para>Customizing the XSL stylesheets to match your design needs.</para>
+                </listitem>
+            </itemizedlist>
+            <para>(This book does not cover the SGML version of DocBook, nor the DocBook DSSSL
+        stylesheets.) </para>
+            <para>You do not need to be an XML expert to use DocBook XSL. You will need to know
+        about XML elements and attributes, since you will be working with DocBook XML files.
+        And you will need to know how to execute commands by typing them on a command line
+        rather than through a point-and-click interface. If you know nothing about XSL, you
+        can still use the stylesheets to generate high-quality output. You can also
+        customize to a degree using the built-in stylesheet parameters. Learning some XSL
+        will enable you to more fully customize the output. This book can teach you basic
+        XSL, and provides dozens of examples that you can use and learn from.</para>
+            <para>This book will not show you how to write DocBook documents. The best reference for
+        writing in DocBook is <citetitle>DocBook: The Definitive Guide</citetitle> by Norman
+        Walsh. That book has been made available by O'Reilly Books for reading from the web
+        at <link
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="http://docbook.org/tdg/en/html/docbook.html"
+                />. Keep that link
+        bookmarked for future reference. A printed and bound version of the book is also
+        available from O'Reilly Books, but it is a bit out of date now. The online book
+        documents the most recent version of the DTD.</para>
+        </section>
+    </preface>
+    <part xml:id="ToolsPart">
+        <title>Setting up the tools</title>
+        <chapter xml:id="introchapter">
+            <title>Introduction</title>
+            <para>The <link xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="http://www.w3.org/Style/XSL/">
+                <citetitle>Extensible Stylesheet Language (XSL)</citetitle>
+                </link> is a formal Recommendation put forward by the <link
+                xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org"
+                >World Wide Web Consortium (W3C)</link> as a language
+        for expressing stylesheets. It complements the <link
+                xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/XML/">
+                <citetitle>Extensible Markup Language (XML)</citetitle>
+                </link> by providing the methods for formatting content written in XML. One of the
+        major goals of XML was keeping content and its semantic markup separate from its
+        formatting, so that formatting could be applied independently. An XSL stylesheet
+        describes the formatting that can be applied to XML files using an XSL processor.
+        The XSL standard and XSL processors are described more fully in <xref
+                linkend="XSLprocessors"/>.</para>
+            <para>The DocBook XSL stylesheets were written by Norman Walsh to help people publish
+        their DocBook content with XSL. The stylesheets are now an open-source project
+        maintained on <link
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="http://sourceforge.net/projects/docbook/"
+                >SourceForge</link>. The stylesheet distribution consists of a collection of
+        modular XSL files that are assembled into several complete XSL stylesheets. There is
+        a stylesheet for generating a single HTML file, and one for generating multiple
+        smaller HTML files from a single DocBook document. There are stylesheets for print
+        output, XHTML output, HTML Help output, and JavaHelp output. The stylesheet
+        collection is freely available for download. Since there are XSL processors for all
+        major computer types, you can use DocBook on Unix, Linux, Windows, and Macintosh
+        computers.</para>
+            <para>This book shows you how to use and customize the DocBook XSL stylesheets. It
+        unlocks the power of these stylesheets by documenting all of their features and
+        making them easy to use.</para>
+            <section xml:id="HowOrganized">
+                <title>How this book is organized</title>
+                <para>Applying an XSL stylesheet to an XML file is a very straightforward process,
+        once you get the tools working. <emphasis
+                    role="bold"
+                    >Part I</emphasis> of this
+        book tells you how to obtain and set up the XSL tools. It covers several XSL
+        processors, and provides essential details for each one. It also covers XML
+        Catalogs, which are used to map file references to actual directory locations on
+        your system. XML Catalogs make the tools more versatile and portable.</para>
+                <para> Once you have the tools working, you can generate formatted print and HTML
+        output from your DocBook XML documents. As you use the stylesheets, you will
+        probably want to change certain aspects about the format or processing. The
+        DocBook stylesheets provide a large number of options. The options are in the
+        form of stylesheet parameters, which let you assign a value to a named variable
+        that is used in the stylesheet. You can do quite a bit of customization of your
+        output using just the parameters. <emphasis
+                    role="bold"
+                    >Part II</emphasis> of
+        this book describes the various stylesheet parameters and how to use them. </para>
+                <para>You will turn to <emphasis role="bold"
+                    >Part III</emphasis> when you want to
+        change something but you cannot find a parameter to do it. At that point you
+        will need to do some stylesheet customization, which is done using the XSL
+        language. You'll need to learn the syntax and methods of XSL, so that you can
+        write a customization file with it. The chapters in Part III describe the
+        methods of customization, as well as many applications for HTML and print
+        output. You can use the appendix introducing XSL  to get started with XSL, but it
+        is beyond the scope of this book to teach you all about XSL. You will need a
+        good XSL reference book to create extensive customization. You can also use
+            the appendix on debugging XSL  for help with debugging your
+        customizations.</para>
+                <para><emphasis role="bold"
+                    >Part IV</emphasis> of this book covers all of the
+        special features of DocBook that require extra attention. That part is an
+        encyclopedia of special topics, from bibliographies to websites. Use it as a
+        reference when you need to process a certain feature, or browse it for new
+        possibilities that you did not know DocBook could do.</para>
+                <note>
+                    <title>Note on examples</title>
+                    <para><indexterm> <primary>backslash</primary>
+                        <secondary>in examples</secondary>
+                        </indexterm>Some examples of commands and code in this book are too long to
+            fit on one line. Where a long line is broken to fit, the line will end with
+            a backslash character "\". If you are using Microsoft Windows, you should
+            omit the backslash character and join such a line to the following line. If
+            you are using a Unix shell, you can use the example "as is".</para>
+                </note>
+            </section>
+            <section xml:id="OnlineResources">
+                <title>Online resources for finding solutions to problems</title>
+                <para><indexterm> <primary>online resources</primary>
+                    </indexterm>If you run into problems with the DocBook XSL stylesheets that are
+            not addressed anywhere in this guide, you can use a number of online resources
+            to find solutions. <itemizedlist>
+                    <listitem> <para><indexterm> <primary>mailing lists</primary>
+                    </indexterm><indexterm> <primary>docbook-apps mailing list</primary>
+                    </indexterm>First try searching the archives of the <systemitem
+                    role="mailinglist"
+                    >docbook-apps</systemitem> mailing list for
+                        keywords related to the problem. There is a good chance that someone
+                        else has run into something similar. Archives of the list are
+                        available at two different sites: an <link
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://lists.oasis-open.org/archives/docbook-apps/"
+                    >archive
+                            at OASIS</link> (which also hosts the actual mailing list) and
+                        an <link
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://sources.redhat.com/ml/docbook-apps/"
+                    >archive
+                            at Red Hat</link>.</para>
+                    <para>If, for example, you are seeing a specific error message, trying
+                        cutting and pasting the error message (or some part of it) into the
+                        search form for the mailing list archives.</para>
+                    </listitem> <listitem> <para><indexterm> <primary>chat channel</primary>
+                    </indexterm><indexterm> <primary>IRC channel</primary>
+                    </indexterm>You can get help in real time on the <systemitem role="channel"
+                    >#docbook</systemitem> channel on <systemitem class="fqdomainname"
+                    >irc.openprojects.net</systemitem>. If your
+                        browser supports IRC URLs (or, like Mozilla, has a built-in IRC
+                        client), you can access the channel by entering the following URL in
+                        your browser: <blockquote>
+                    <simpara> <link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="irc://irc.openprojects.net#docbook"/> </simpara> </blockquote>
+                    </para> </listitem> <listitem>
+                    <para>If you cannot find a solution in the <systemitem role="mailinglist"
+                    >docbook-apps</systemitem> or on the
+                            <systemitem
+                    role="channel"
+                    >#docbook</systemitem>, you should try
+                        posting a question to <systemitem
+                    role="mailinglist"
+                    >docbook-apps</systemitem>. To subscribe to the list, send a
+                        message from your email account to: <blockquote>
+                    <simpara> <email>docbook-apps-subscribe@lists.oasis-open.org</email> </simpara>
+                    </blockquote> To post a message to the list, send it to: <blockquote> <simpara>
+                    <email>docbook-apps@lists.oasis-open.org</email> </simpara> </blockquote>
+                    </para> <para>Please read the <link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://www.oasis-open.org/docbook/mailinglist/guidelines.html"
+                    >list guidelines</link> first, and to include examples of your
+                        DocBook source document and your output (for example, HTML or FO
+                        output) along with details about the tools you're using (including
+                        version numbers of the tools). <note>
+                    <simpara>Do not include attachments when you post to <systemitem
+                    role="mailinglist"
+                    >docbook-apps</systemitem>—the mailing
+                                list management software automatically strips out
+                                attachments. If you have a long example or an output format
+                                that you cannot paste into your message, post it to a Web
+                                site, and then include the URL in your message to the
+                                list.</simpara>
+                    </note> </para> </listitem> <listitem> <para>The <link
+                    xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://wiki.docbook.org"
+                    >DocBook Wiki</link>
+                        website collects contributions from DocBook users and makes them
+                        available to the world.</para>
+                    </listitem> <listitem> <para><indexterm> <primary>SourceForge</primary>
+                    </indexterm><indexterm> <primary>DocBook</primary>
+                    <secondary>SourceForge</secondary>
+                    </indexterm>If you find something that seems to be a legitimate bug
+                        in the DocBook XSL stylesheets, you can file a bug report from the
+                            <link
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://sourceforge.net/tracker/?group_id=21935"
+                    >Tracker page</link> at the <link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="https://sourceforge.net/projects/docbook/"
+                    >DocBook Open
+                            Repository</link> site at SourceForge. If instead you want to
+                        request an enhancement to the stylesheets, file a <emphasis>feature
+                            request</emphasis> from the same Tracker page at the SourceForge
+                        site. <note>
+                    <simpara>You will need to have a SourceForge user account to
+                                file a bug report or feature request. This requirement makes
+                                it easier follow up on bug reports. If the DocBook XSL
+                                stylesheet developers need to get more details about a
+                                specific bug report, it's difficult to follow up on it if it
+                                was submitted anonymously.</simpara>
+                    <simpara>You can <link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="https://sourceforge.net/account/registration"
+                    >register for an account</link> at the SourceForge
+                                site.</simpara>
+                    </note> </para> </listitem> </itemizedlist> </para>
+            </section>
+        </chapter>
+        <chapter xml:id="XSLprocessors">
+            <title>XSL processors</title>
+            <para><indexterm> <primary>XSL</primary> <secondary>processors</secondary>
+                </indexterm>An <emphasis>XSL processor</emphasis> is the software that transforms an
+        XML file into formatted output. There is a growing list of XSL processors to choose
+        from. Each tool implements parts or all of the XSL standard, which actually has
+        several components: <variablelist>
+                <title>The XSL Standards</title> <varlistentry>
+                <term>Extensible Stylesheet Language (XSL)</term> <listitem>
+                <para>A language for expressing stylesheets written in XML. It includes
+                        the XSL formatting objects (XSL-FO) language, but refers to separate
+                        documents for the transformation language and the path
+                        language.</para>
+                </listitem> </varlistentry> <varlistentry> <term>XSL Transformation (XSLT)</term>
+                <listitem>
+                <para>The part of XSL for transforming XML documents into other XML
+                        documents, HTML, or text. It can be used to rearrange the content
+                        and generate new content.</para>
+                </listitem> </varlistentry> <varlistentry> <term>XML Path Language (XPath)</term>
+                <listitem>
+                <para>A language for addressing parts of an XML document. It is used to
+                        find the parts of your document to apply different styles to. All
+                        XSL processors use this component.</para>
+                </listitem> </varlistentry> </variablelist></para>
+            <para>To publish HTML from your XML documents, you just need an XSLT processor. It will include the XPath
+        language since that is used extensively in XSLT. To get to print, you need an XSLT
+        processor to produce an intermediate formatting objects (FO) file, and then you need
+        an XSL-FO processor to produce
+        PostScript or PDF output from the FO file. A diagram of the <link
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink:href="http://nwalsh.com/docbook/procdiagram/index.html"
+                >DocBook Publishing
+            Model</link> <indexterm>
+                <primary>publishing model</primary>
+                </indexterm>is available if you want to see how all the components flow
+        together.</para>
+            <section xml:id="XSLTprocessors">
+                <title>XSLT processors</title>
+                <para><indexterm> <primary>XSLT processor</primary>
+                    </indexterm>Currently there are three processors that are widely used for XSLT
+        processing because they most closely conform to the XSLT specification: <variablelist>
+                    <varlistentry> <term>Saxon</term> <listitem> <para><indexterm>
+                    <primary>Saxon</primary> </indexterm>Saxon (<link
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://saxon.sourceforge.net/"
+                    />)
+                        was written by Michael Kay, the author of <citetitle>XSLT
+                            Reference</citetitle>, one of the best books on XSLT. Saxon
+                        is a free processor written in Java, so it can be run on any
+                        operating system with a modern Java interpreter. Saxon now comes
+                        in two flavors: Saxon 6 which handles the XSLT 1.0 standard, and
+                        Saxon 8 which handles the newly emerging XSLT 2.0 and other new
+                        XML standards.</para>
+                    </listitem> </varlistentry> <varlistentry> <term>Xalan</term> <listitem>
+                    <para><indexterm> <primary>Xalan</primary> </indexterm>Xalan (<link
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://xml.apache.org/xalan-j/index.html"
+                    />) is part of
+                        the Apache XML Project. It has versions written in both Java and
+                        C++, both of them free. The Java version is described in this
+                        book because it is highly portable and easier to set up.
+                        Generally Xalan is used with the Xerces XML parser, also
+                        available from the Apache XML Project.</para>
+                    </listitem> </varlistentry> <varlistentry> <term>xsltproc</term> <listitem>
+                    <indexterm> <primary>xsltproc</primary> </indexterm> <para>The xsltproc (<link
+                    xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://xmlsoft.org/XSLT/"
+                    />)
+                        processor is written in C by Daniel Veillard. It is free, as
+                        part of the open source libxml2 library from the Gnome
+                        development project. It is considered the fastest of the
+                        processors, and is highly conformant to the specification. It is
+                        much faster than either of the Java processors. It also
+                        processes XIncludes.</para>
+                    </listitem> </varlistentry> </variablelist></para>
+                <para>There are a few other XSLT processors that should also be mentioned: <variablelist>
+                    <varlistentry> <term>XT</term> <listitem> <para>James Clark's XT (<link
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://www.blnz.com/xt/index.html"
+                    />) was the first
+                        useful XSLT engine, and it is still in use. It is written in
+                        Java, so it runs on many platforms, and it is free. XT comes
+                        with James Clark's nonvalidating parser XP, but you can
+                        substitute a different Java parser.</para>
+                    </listitem> </varlistentry> <varlistentry> <term>MSXML</term> <listitem>
+                    <para>Microsoft's MSXML (<link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://msdn.microsoft.com/xml/"
+                    />) engine includes an XSLT processor. It is reported to be
+                        fast, but only runs on Windows.</para>
+                    </listitem> </varlistentry> <varlistentry> <term>Sablotron</term> <listitem>
+                    <para>Sablotron (<link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://www.gingerall.com/charlie/ga/xml/p_sab.xml"
+                    />),
+                        written in C++, from Ginger Alliance.</para>
+                    </listitem> </varlistentry> <varlistentry> <term>4XSLT</term> <listitem>
+                    <para>4XSLT (<link xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="http://sourceforge.net/projects/foursuite/"
+                    />), written in Python, now an open project on
+                        SourceForge.</para>
+                    </listitem> </varlistentry> </variablelist></para>
+            </section>
+            <section xml:id="FOprocessors">
+                <title>XSL-FO processors</title>
+                <para><indexterm> <primary>XSL-FO processor</primary>
+                    </indexterm>XSL-FO processors are really typesetting engines. An XSL-FO file is
+        a mixture of text from your XML source document and XSL-FO tags that suggest how
+        the text should be formatted. It is the XSL-FO processor that actually creates
+        the typeset lines of text and lays them out on pages. An XSL-FO processor
+        typically generates a PDF or PostScript file which can be fed to a printer to
+        produce hardcopy output.</para>
+                <para>Currently there are many XSL-FO processors, but few of them have completely
+        implemented the standard. There are at least three reasons for this: <itemizedlist>
+                    <listitem>
+                    <para>The XSL-FO standard was finalized almost two years after the XSLT
+                    standard.</para>
+                    </listitem> <listitem> <para>The XSL-FO standard is big and complicated.</para>
+                    </listitem> <listitem> <para>Typesetting is hard.</para> </listitem>
+                    </itemizedlist></para>
+                <para>The authors of the XSL-FO standard recognized how difficult it would be to
+        implement, and so divided it into three levels of conformance: basic, extended,
+        and complete. That way a processor can claim conformance to the lower
+        conformance levels and produce useful output, while still be under development
+        for the higher conformance levels.</para>
+                <para>Here are some of the currently available XSL-FO processors, listed in
+        alphabetical order. FOP, PassiveTeX, and xmlroff are the free processors, but
+        the commercial products implement more of the XSL-FO standard.</para>
+                <variablelist>
+                    <varlistentry>
+                        <term>E3</term>
+                        <listitem>
+                            <para><indexterm> <primary>E3 FO processor</primary>
+                                </indexterm><indexterm> <primary>Arbortext</primary>
+                                </indexterm>High end publishing server from Arbortext, Inc. (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.arbortext.com"
+                                />). It runs on Windows and
+                    Unix.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>FOP</term>
+                        <listitem>
+                            <para><indexterm> <primary>FOP</primary>
+                                </indexterm>FOP is a Java-based processor available free from the
+                    Apache XML Project (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://xml.apache.org/fop/"
+                                />). FOP
+                    can produce usable output, but it is still under development and has
+                    some limitations. </para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>PassiveTeX</term>
+                        <listitem>
+                            <para><indexterm> <primary>PassiveTeX</primary>
+                                </indexterm>PassiveTeX from Sebastian Rahtz (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.tei-c.org.uk/Software/passivetex/"
+                                />) is a free
+                    XSL-FO processor based on TeX. It has fallen behind in its
+                    implementation of the XSL-FO specification, and many features of
+                    DocBook XSL do not work in PassiveTeX. Not recommended.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>Unicorn Formatting Objects</term>
+                        <listitem>
+                            <para><indexterm> <primary>Unicorn Formatting Objects</primary>
+                                </indexterm>A commercial product from Unicorn Enterprises SA (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.unicorn-enterprises.com"
+                                />). Implements only a
+                    subset of the XSL-FO standard. For Windows only.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>XEP</term>
+                        <listitem>
+                            <para><indexterm> <primary>XEP</primary>
+                                </indexterm>A commercial product from RenderX <indexterm>
+                                <primary>RenderX</primary> </indexterm>(<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.renderx.com"
+                                />). It is a
+                    Java-based product that runs on most platforms.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>Xinc</term>
+                        <listitem>
+                            <para><indexterm> <primary>Xinc FO processor</primary>
+                                </indexterm>A commercial product from Lunasil LTD (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.lunasil.com/"
+                                />). It is a Java-based product
+                    that runs on Linux and Windows. </para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>XML2PDF</term>
+                        <listitem>
+                            <para><indexterm> <primary>XML2PDF</primary>
+                                </indexterm>A commercial product from Altsoft (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.alt-soft.com/"/>). For Windows only.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term> XML Professional Publisher (XPP)</term>
+                        <listitem>
+                            <para><indexterm> <primary>XPP FO processor</primary>
+                                </indexterm>A high-end XML publishing environment from XyEnterprise
+                        (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.xyenterprise.com/"
+                                />). It runs on
+                    Windows and Unix.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>xmlroff</term>
+                        <listitem>
+                            <para><indexterm> <primary>xmlroff</primary> </indexterm>xmlroff (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://xmlroff.sourceforge.net/"
+                                />)
+                    is a free open source project based on libxml2 and other GNOME
+                    libraries. It is written in C.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>XSL Formatter</term>
+                        <listitem>
+                            <para><indexterm> <primary>XSL Formatter</primary>
+                                <see>Antenna House</see> </indexterm><indexterm>
+                                <primary>Antenna House</primary>
+                                </indexterm>A commercial product from Antenna House (<link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.antennahouse.com"
+                                />). It runs on Windows, Unix,
+                    and Linux.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>other</term>
+                        <listitem>
+                            <para>Other XSL-FO processors are listed on the <link
+                                xmlns:xlink="http://www.w3.org/1999/xlink"
+                                xlink:href="http://www.w3.org/Style/XSL/"
+                                >W3C's XSL information
+                        page</link>. </para>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+                <para>A useful method for evaluating an XSL-FO processor is to review its compliance
+        to the XSL-FO standard. Most processor vendors can provide a summary of which
+        XSL-FO elements and properties their processor supports. Scan the list for
+        features you need to see if they are supported. Such summaries are also useful
+        in comparing different processors.</para>
+            </section>
+            <section xml:id="Portability">
+                <title>Portability considerations</title>
+                <para><indexterm> <primary>portability</primary>
+                    </indexterm>If you need to be able to process XML files on more than one
+            operating system, you need to consider how portable the XSL processors
+            are.</para>
+                <itemizedlist>
+                    <listitem>
+                        <para>Java-based processors are highly portable, as long as each platform
+                    has a modern Java interpreter. (How modern depends on the individual
+                    processor and version. Check the processor's requirements list.) With
+                    Saxon, Xalan-Java, FOP, and other Java-based processors, you can install
+                    a few Java archives without any compiling and produce identical results
+                    on Linux, Unix, Windows, and Macintosh.</para>
+                    </listitem>
+                    <listitem>
+                        <para>Processors written in C such as xsltproc and Sablotron are less
+                    portable. You need a version compiled for each platform you want to run
+                    it on. Many are available in precompiled packages, such as RPMs for
+                    Linux or Zip files for Windows. But the packaged versions can lag behind
+                    the latest version, so you may need to compile it yourself for a given
+                    platform. The C code is written to be portable, but there are always
+                    issues that come up when you have to compile.</para>
+                    </listitem>
+                    <listitem>
+                        <para>The PassiveTeX FO processor is unique in that it is written in TeX, a
+                    typesetting language. TeX is also very portable, but it is currently
+                    difficult to get PassiveTeX to work properly with the DocBook XSL
+                    stylesheets</para>
+                    </listitem>
+                </itemizedlist>
+                <para>Another portability consideration is file permissions. Some packages may try
+            to install files into areas of a filesystem controlled by a system
+            administrator. If you do not have the necessary permissions, you may not be able
+            to install a given package. All of the processors can be installed elsewhere,
+            but you may need to spend time figuring out how to do so.</para>
+            </section>
+        </chapter>
+    </part>
+</book>
