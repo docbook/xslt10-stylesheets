@@ -411,7 +411,7 @@
 </xsl:template>
 
 <xsl:template match="itermset" mode="titlepage.mode">
-  <!-- discard -->
+  <xsl:apply-templates select="indexterm"/>
 </xsl:template>
 
 <xsl:template match="invpartnumber" mode="titlepage.mode">

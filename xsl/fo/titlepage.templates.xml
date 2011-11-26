@@ -70,6 +70,7 @@
 	      margin-left="0.5in"
               margin-right="0.5in"
               font-family="{$body.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -111,6 +112,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -154,6 +156,7 @@
            because only the first editor generates the list of editors.
       <editor t:predicate="[position() = 1]"/>
       -->
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -208,6 +211,7 @@
 	      font-weight='bold'
 	      font-style='italic'
 	      font-family="{$title.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -248,6 +252,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -289,6 +294,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -310,6 +316,7 @@
   <t:titlepage-content t:side="recto">
     <title
 	   font-family="{$title.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -331,6 +338,7 @@
   <t:titlepage-content t:side="recto">
     <title
 	   font-family="{$title.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -352,6 +360,7 @@
   <t:titlepage-content t:side="recto">
     <title
 	   font-family="{$title.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -373,6 +382,7 @@
   <t:titlepage-content t:side="recto">
     <title
 	   font-family="{$title.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -394,6 +404,7 @@
   <t:titlepage-content t:side="recto">
     <title
 	   font-family="{$title.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -423,6 +434,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -453,6 +465,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -494,6 +507,7 @@
       <revision/>
       <revhistory/>
       <abstract/>
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -544,6 +558,7 @@
       <revision/>
       <revhistory/>
       <abstract/>
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -583,6 +598,7 @@
       <revision/>
       <revhistory/>
       <abstract/>
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -618,6 +634,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -651,6 +668,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -684,6 +702,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -717,6 +736,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -750,6 +770,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -783,6 +804,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -816,6 +838,7 @@
     <revision/>
     <revhistory/>
     <abstract/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -845,6 +868,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -872,6 +896,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -901,6 +926,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -928,6 +954,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -958,6 +985,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -986,6 +1014,7 @@
 	     param:title="title"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -1016,6 +1045,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -1045,6 +1075,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
@@ -1069,6 +1100,7 @@
 	     font-weight="bold"/>
       <subtitle
 		font-family="{$title.fontset}"/>
+      <itermset/>
     </t:titlepage-content>
 
     <t:titlepage-content t:side="verso">
@@ -1122,6 +1154,7 @@
 	      margin-left="0.5in"
               margin-right="0.5in"
               font-family="{$body.fontset}"/>
+    <itermset/>
   </t:titlepage-content>
 
   <t:titlepage-content t:side="verso">
