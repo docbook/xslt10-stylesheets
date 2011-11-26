@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="सावधानता"/>
 
 <gentext key="and" text="व"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="द्वारे"/>
 <gentext key="Edited" text="संपादीत"/>
 <gentext key="edited" text="संपादीत"/>

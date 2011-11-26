@@ -128,6 +128,7 @@
 <gentext key="WARNING" text="ማስጠንቀቂያ"/>
 
 <gentext key="and" text="እና"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="በ"/>
 <gentext key="called" text="መጠሪያ"/>
 <gentext key="Edited" text="የተዘጋጀ"/>

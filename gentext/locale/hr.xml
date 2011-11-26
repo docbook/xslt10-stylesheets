@@ -151,6 +151,7 @@
 <gentext key="WARNING" text="UPOZORENJE"/>
 
 <gentext key="and" text="i"/>
+<gentext key="or" text="ili"/>
 <gentext key="by" text="po"/><!-- ? uz ? -->
 <gentext key="Edited" text="Uredio/la"/><!-- ? -->
 <gentext key="edited" text="uredio/la"/><!-- ? -->

@@ -140,6 +140,7 @@
 <gentext key="warning" text="figyelem"/>
 
 <gentext key="and" text="és"/>
+<gentext key="or" text="vagy"/>
 <gentext key="by" text="írta"/>
 <gentext key="Edited" text="Szerk."/>
 <gentext key="edited" text="szerk."/>

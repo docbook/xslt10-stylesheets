@@ -125,6 +125,7 @@
 <gentext key="WARNING" text="אזהרה"/>
 
 <gentext key="and" text="ו"/>
+<gentext key="or" text="או"/>
 <gentext key="by" text="מאת"/>
 <gentext key="Edited" text="נערך"/>
 <gentext key="edited" text="נערך"/>

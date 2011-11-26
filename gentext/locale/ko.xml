@@ -125,6 +125,7 @@
 <gentext key="warning" text="주의"/>
 
 <gentext key="and" text="그리고"/>
+<gentext key="or" text="또는"/>
 <gentext key="by" text="지은이"/>
 <gentext key="Edited" text="엮음"/>
 <gentext key="edited" text="엮음"/>

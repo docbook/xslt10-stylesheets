@@ -122,6 +122,7 @@
 <gentext key="WARNING" text="MONITUS"/>
 
 <gentext key="and" text="et"/>
+<gentext key="or" text="aut"/>
 <gentext key="by" text="a"/>
 <gentext key="Edited" text="Editum"/>
 <gentext key="edited" text="editum"/>

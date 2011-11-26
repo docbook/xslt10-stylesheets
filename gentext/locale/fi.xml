@@ -146,6 +146,7 @@
 <gentext key="warning" text="varoitus"/>
 
 <gentext key="and" text="ja"/>
+<gentext key="or" text="tai"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Toim."/>
 <gentext key="edited" text="toim."/>

@@ -148,6 +148,7 @@
 <gentext key="WARNING" text="ВНИМАНИЕ"/>
 
 <gentext key="and" text="и"/>
+<gentext key="or" text="или"/>
 <gentext key="by" text="от"/>
 <gentext key="Edited" text="Редактирано от"/>
 <gentext key="edited" text="редактирано от"/>

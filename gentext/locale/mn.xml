@@ -140,6 +140,7 @@
 <gentext key="WARNING" text="САНУУЛГА"/>
 
 <gentext key="and" text="ба"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Хянасан"/>
 <gentext key="edited" text="хянасан"/>

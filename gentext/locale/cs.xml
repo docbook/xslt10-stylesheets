@@ -141,6 +141,7 @@
 <gentext key="warning" text="Varování"/>
 
 <gentext key="and" text="a"/>
+<gentext key="or" text="nebo"/>
 <gentext key="by" text=""/>
 <gentext key="Edited" text="Vydáno"/>
 <gentext key="edited" text="Vydáno"/>

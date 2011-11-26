@@ -144,6 +144,7 @@
 <gentext key="WARNING" text="ADVARSEL"/>
 
 <gentext key="and" text="og"/>
+<gentext key="or" text="eller"/>
 <gentext key="by" text="af"/>
 <gentext key="Edited" text="Redigeret"/>
 <gentext key="edited" text="redigeret"/>

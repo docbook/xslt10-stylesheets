@@ -127,6 +127,7 @@
 <gentext key="warning" text="Varning"/>
 
 <gentext key="and" text="och"/>
+<gentext key="or" text="eller"/>
 <gentext key="by" text="av"/>
 <gentext key="called" text="kallas"/>
 <gentext key="Edited" text="Redigerad"/>

@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="AVERTO"/>
 
 <gentext key="and" text="kaj"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="fare de"/>
 <gentext key="Edited" text="Redaktita"/>
 <gentext key="edited" text="Redaktita"/>

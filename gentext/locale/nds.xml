@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="WARNUNG"/>
 
 <gentext key="and" text="un"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="vun"/>
 <gentext key="Edited" text="Bewarkt"/>
 <gentext key="edited" text="bewarkt"/>

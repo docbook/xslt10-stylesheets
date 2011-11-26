@@ -170,7 +170,7 @@
                                the list of author names, but "and" in such 
                                lists of Russian books is not traditionally 
                                used (I. Kouznetsov) -->
-
+<gentext key="or" text="или"/>
 <gentext key="by" text=""/>
 <gentext key="edited" text="Под редакцией"/>
 <gentext key="Edited" text="Под редакцией"/>

@@ -146,6 +146,7 @@
 <gentext key="WARNING" text="AVVERTIMENTO"/>
 
 <gentext key="and" text="e"/>
+<gentext key="or" text="o"/>
 <gentext key="by" text="di"/>
 <gentext key="Edited" text="A cura"/>
 <gentext key="edited" text="A cura"/>

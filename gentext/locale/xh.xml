@@ -126,7 +126,8 @@
 <gentext key="WARNING" text="ISILUMKISO"/>
 
 <gentext key="and" text="no"/>
-<gentext key="by" text="by"/>
+<gentext key="or" text="or" lang="en"/>
+<gentext key="by" text="by" lang="en"/>
 <gentext key="Edited" text="Ihleliwe"/>
 <gentext key="edited" text="Ihleliwe"/>
 <gentext key="Editedby" text="Ihlelwe"/>

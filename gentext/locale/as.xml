@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="সকিয়নি"/>
 
 <gentext key="and" text="আৰু"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="-ৰ দ্বাৰা"/>
 <gentext key="Edited" text="সম্পাদিত"/>
 <gentext key="edited" text="সম্পাদিত"/>

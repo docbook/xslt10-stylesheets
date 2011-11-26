@@ -133,6 +133,7 @@
 <gentext key="WARNING" text="ĮSPĖJIMAS"/>
 
 <gentext key="and" text="ir"/>
+<gentext key="or" text="arba"/>
 <gentext key="by" text=""/>
 <gentext key="called" text="called"/>		<!-- en -->
 <gentext key="Edited" text="Redaguotas"/>

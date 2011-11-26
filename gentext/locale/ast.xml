@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="AVISU"/>
 
 <gentext key="and" text="y"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="por"/>
 <gentext key="Edited" text="Editáu"/>
 <gentext key="edited" text="editáu"/>

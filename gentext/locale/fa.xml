@@ -147,7 +147,8 @@
   <gentext key="WARNING" text="هشدار"/>
 
   <gentext key="and" text="و"/>
-  <gentext key="by" text="توسط"/>
+  <gentext key="or" text="or" lang="en"/>
+<gentext key="by" text="توسط"/>
   <gentext key="called" text="بنام"/>
   <gentext key="Edited" text="ویرایش شده"/>
   <gentext key="edited" text="ویرایش شده"/>

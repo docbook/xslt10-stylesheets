@@ -140,6 +140,7 @@
 <gentext key="warning" text="ostrzeżenie"/>
 
 <gentext key="and" text="i"/>
+<gentext key="or" text="lub"/>
 <gentext key="by" text="autorstwa"/>
 <gentext key="Edited" text="Redakcja"/>
 <gentext key="edited" text="redakcja"/>

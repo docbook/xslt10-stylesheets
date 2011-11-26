@@ -141,6 +141,7 @@
 <gentext key="warning" text="waarschuwing"/>
 
 <gentext key="and" text="en"/>
+<gentext key="or" text="of"/>
 <gentext key="by" text="door"/>
 <gentext key="Edited" text="Redactie"/>
 <gentext key="edited" text="redactie"/>

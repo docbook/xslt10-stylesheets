@@ -136,6 +136,7 @@
 <gentext key="WARNING" text="മുന്നറിയിപ്പു്"/>
 
 <gentext key="and" text=","/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="."/>
 <gentext key="Edited" text="ചിട്ടപ്പെടുത്തിയിരിക്കുന്നു"/>
 <gentext key="edited" text="ചിട്ടപ്പെടുത്തിയിരിക്കുന്നു"/>

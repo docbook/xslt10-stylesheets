@@ -132,6 +132,7 @@
 <gentext key="WARNING" text="คำเตือน"/>
 
 <gentext key="and" text="และ"/>
+<gentext key="or" text="หรือ"/>
 <gentext key="by" text="โดย"/>
 <gentext key="Edited" text="เรียบเรียง"/>
 <gentext key="edited" text="เรียบเรียง"/>

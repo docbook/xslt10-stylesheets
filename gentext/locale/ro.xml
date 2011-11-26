@@ -131,6 +131,7 @@
 <gentext key="warning" text="Avertisment"/>
 
 <gentext key="and" text="și"/>
+<gentext key="or" text="sau"/>
 <gentext key="by" text="de"/>
 <gentext key="Edited" text="Publicat"/>
 <gentext key="edited" text="Publicat"/>

@@ -148,6 +148,7 @@
 <gentext key="WARNING" text="警告"/>
 
 <gentext key="and" text="和"/>
+<gentext key="or" text="或"/>
 <gentext key="by" text="由"/>
 <gentext key="Edited" text="编辑时间"/>
 <gentext key="edited" text="编辑时间"/>

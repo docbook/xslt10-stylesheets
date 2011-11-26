@@ -139,6 +139,7 @@
 <gentext key="Editedby" text="Redigert av"/>
 <gentext key="editedby" text="redigert av"/>
 <gentext key="and" text="og"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="listcomma" text=","/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="Notes" text="Merknader"/>

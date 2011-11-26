@@ -140,6 +140,7 @@
 <gentext key="WARNING" text="ଚେତାବନୀ"/>
 
 <gentext key="and" text="ଓ"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="ଦ୍ବାରା"/>
 <gentext key="Edited" text="ସମ୍ପାଦିତ"/>
 <gentext key="edited" text="ସମ୍ପାଦିତ"/>

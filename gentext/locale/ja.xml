@@ -152,6 +152,7 @@
 <gentext key="warning" text="警告"/>
 
 <gentext key="and" text="、"/>
+<gentext key="or" text="や"/>
 <gentext key="by" text="："/>
 <gentext key="Edited" text="編集者"/>
 <gentext key="edited" text="編集者"/>

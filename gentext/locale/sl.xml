@@ -126,6 +126,7 @@
 <gentext key="warning" text="Pozor"/>
 
 <gentext key="and" text="in"/>
+<gentext key="or" text="ali"/>
 <gentext key="by" text="od"/>              <!-- ? -->
 <gentext key="Edited" text="Urejeno"/>
 <gentext key="edited" text="Urejeno"/>         <!-- ? -->

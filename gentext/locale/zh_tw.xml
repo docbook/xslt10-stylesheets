@@ -139,6 +139,7 @@
 
 
 <gentext key="and" text="且"/>
+<gentext key="or" text="或"/>
 <gentext key="by" text="由"/>
 <gentext key="Edited" text="編輯"/>
 <gentext key="edited" text="編輯"/>

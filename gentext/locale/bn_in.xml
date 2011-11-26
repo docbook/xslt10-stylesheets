@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
-<locale language="en"
-        english-language-name="English"
+<locale language="bn_in"
+        english-language-name="Indian Bangla"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
 <doc:localeinfo>
@@ -137,6 +137,7 @@
 <gentext key="WARNING" text="সতর্কবার্তা"/>
 
 <gentext key="and" text="এবং"/>
+<gentext key="or" text="বা"/>
 <gentext key="by" text="দ্বারা"/>
 <gentext key="Edited" text="সম্পাদিত"/>
 <gentext key="edited" text="সম্পাদিত"/>

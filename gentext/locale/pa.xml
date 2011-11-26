@@ -144,6 +144,7 @@
 <gentext key="WARNING" text="ਸਾਵਧਾਨ"/>
 
 <gentext key="and" text="ਅਤੇ"/>
+<gentext key="or" text="or" lang="en"/>
 <gentext key="by" text="ਲਈ"/>
 <gentext key="Edited" text="ਸੰਪਾਦਨ"/>
 <gentext key="edited" text="ਸੰਪਾਦਨ"/>
