@@ -830,7 +830,7 @@ border: none; background: none; font-weight: none; color: none; }
 
     <!-- Generates the webhelp table-of-contents (TOC). -->
     <xsl:template
-            match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index"
+            match="book|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|simplesect|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv|index|setindex"
             mode="webhelptoc">
         <xsl:param name="currentid"/>
         <xsl:variable name="title">
