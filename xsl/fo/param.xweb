@@ -375,6 +375,8 @@ zero by default, so this is simply the page-master margin-right.
 &double.sided;
 &body.margin.bottom;
 &body.margin.top;
+&body.margin.inner;
+&body.margin.outer;
 &body.start.indent;
 &body.end.indent;
 &alignment;
@@ -394,6 +396,8 @@ zero by default, so this is simply the page-master margin-right.
 &column.gap.titlepage;
 &region.after.extent;
 &region.before.extent;
+&region.inner.extent;
+&region.outer.extent;
 &default.units;
 &normal.para.spacing;
 &body.font.master;
@@ -415,6 +419,11 @@ zero by default, so this is simply the page-master margin-right.
 &header.content.properties;
 &footer.content.properties;
 &marker.section.level;
+&side.region.precedence;
+&region.inner.properties;
+&region.outer.properties;
+&inner.region.content.properties;
+&outer.region.content.properties;
 </reference>
 <reference xml:id="fonts"><title>Font Families</title>
 &body.font.family;
@@ -896,6 +905,15 @@ around all these parameters.</para>
 <src:fragref linkend="xref.properties.frag"/>
 <src:fragref linkend="xref.title-page.separator.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
+<src:fragref linkend="region.inner.extent.frag"/>
+<src:fragref linkend="region.outer.extent.frag"/>
+<src:fragref linkend="body.margin.inner.frag"/>
+<src:fragref linkend="body.margin.outer.frag"/>
+<src:fragref linkend="side.region.precedence.frag"/>
+<src:fragref linkend="inner.region.content.properties.frag"/>
+<src:fragref linkend="outer.region.content.properties.frag"/>
+<src:fragref linkend="region.inner.properties.frag"/>
+<src:fragref linkend="region.outer.properties.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
