@@ -704,7 +704,7 @@ border: none; background: none; font-weight: none; color: none; }
                             <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
                         </xsl:if>
                     </xsl:if>
-                    <xsl:apply-templates select="key('id',$rootid)" mode="title.markup"/>
+                    <xsl:apply-templates select="key('id',$rootid)" mode="titleabbrev.markup"/>
                 </xsl:variable>
                 <xsl:variable name="href">
                     <xsl:choose>
@@ -732,7 +732,7 @@ border: none; background: none; font-weight: none; color: none; }
                             <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
                         </xsl:if>
                     </xsl:if>
-                    <xsl:apply-templates select="/*" mode="title.markup"/>
+                    <xsl:apply-templates select="/*" mode="titleabbrev.markup"/>
                 </xsl:variable>
                 <xsl:variable name="href">
                     <xsl:choose>
@@ -842,7 +842,7 @@ border: none; background: none; font-weight: none; color: none; }
                     <xsl:value-of select="concat($label.markup,$autotoc.label.separator)"/>
                 </xsl:if>
             </xsl:if>
-            <xsl:apply-templates select="." mode="title.markup"/>
+            <xsl:apply-templates select="." mode="titleabbrev.markup"/>
         </xsl:variable>
 
         <xsl:variable name="href">
