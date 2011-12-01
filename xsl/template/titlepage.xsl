@@ -717,14 +717,12 @@ straight through into the result tree.</para>
   <xsl:choose>
     <xsl:when test="(name(.) = local-name(.)) and namespace-uri(.) != ''">
       <xsl:attribute name="{name(.)}" namespace="{namespace-uri(.)}">
-	<xsl:apply-templates select="@*" mode="copy"/>
-	<xsl:apply-templates mode="copy"/>
+	<xsl:value-of select="."/>
       </xsl:attribute>
     </xsl:when>
     <xsl:otherwise>
       <xsl:attribute name="{name(.)}">
-	<xsl:apply-templates select="@*" mode="copy"/>
-	<xsl:apply-templates mode="copy"/>
+	<xsl:value-of select="."/>
       </xsl:attribute>
     </xsl:otherwise>
   </xsl:choose>
