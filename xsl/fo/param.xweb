@@ -278,6 +278,8 @@ generate.section.toc.level;
 &exsl.node.set.available;
 &bookmarks.collapse;
 &generate.consistent.ids;
+&base.dir;
+&chunk.quietly;
 </reference>
 <reference xml:id="graphics"><title>Graphics</title>
 &graphic.default.extension;
@@ -566,6 +568,7 @@ around all these parameters.</para>
 <src:fragref linkend="admon.textlabel.frag"/>
 <src:fragref linkend="admonition.properties.frag"/>
 <src:fragref linkend="admonition.title.properties.frag"/>
+<src:fragref linkend="base.dir.frag"/>
 <src:fragref linkend="graphical.admonition.properties.frag"/>
 <src:fragref linkend="nongraphical.admonition.properties.frag"/>
 <src:fragref linkend="alignment.frag"/>
@@ -604,6 +607,7 @@ around all these parameters.</para>
 <src:fragref linkend="callout.unicode.start.character.frag"/>
 <src:fragref linkend="callouts.extension.frag"/>
 <src:fragref linkend="chapter.autolabel.frag"/>
+<src:fragref linkend="chunk.quietly.frag"/>
 <src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="column.count.back.frag"/>
 <src:fragref linkend="column.count.body.frag"/>
