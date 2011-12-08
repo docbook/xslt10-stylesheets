@@ -97,7 +97,7 @@ class DirFilter implements FilenameFilter {
     public boolean accept(File dir, String name) {
         String thisname = new File(name).getName();
         //System.out.println("Testing: "+ thisname);
-        if (thisname.equals("index.html") || thisname.equals("ix01.html")) {
+        if ( thisname.equals("ix01.html")) { 
             return false;
         } else {
             // Strip path information, search for regex:
