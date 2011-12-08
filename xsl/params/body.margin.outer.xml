@@ -43,7 +43,7 @@ both left-to-right and right-to-left writing modes.</para>
 
 <para>The default value is zero.</para>
 
-<para>See also <parameter>
+<para>See also
 <parameter>region.inner.extent</parameter>,
 <parameter>region.outer.extent</parameter>,
 <parameter>body.margin.inner</parameter>,

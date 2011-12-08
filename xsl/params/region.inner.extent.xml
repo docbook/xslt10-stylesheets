@@ -40,7 +40,7 @@ be sure to also enlarge the <parameter>body.margin.inner</parameter>
 parameter to make room for its content, otherwise any text in
 the side region may overlap with the body text.</para>
 
-<para>See also <parameter>
+<para>See also
 <parameter>region.outer.extent</parameter>,
 <parameter>body.margin.inner</parameter>,
 <parameter>body.margin.outer</parameter>,
