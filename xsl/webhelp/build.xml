@@ -27,9 +27,35 @@
   <target name="chunk" depends="clean">
 	
 	<mkdir dir="${output-dir}"/>
+	<tempfile destdir="${output-dir}" deleteonexit="true" property="xincluded-profiled.xml"/>
+	<tempfile destdir="${output-dir}" deleteonexit="true" property="dummy.html"/>
 	<xslt
 	  in="${input-xml}"
-	  out="${output-dir}/dummy.html"
+	    out="${xincluded-profiled.xml}"
+	    style="../profiling/profile.xsl">
+	  <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration"
+		       value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+	  <param name="profile.arch" expression="${profile.arch}" if="profile.arch"/>
+	  <param name="profile.audience" expression="${profile.audience}" if="profile.audience"/>
+	  <param name="profile.condition" expression="${profile.condition}" if="profile.condition"/>
+	  <param name="profile.conformance" expression="${profile.conformance}" if="profile.conformance"/>
+	  <param name="profile.lang" expression="${profile.lang}" if="profile.lang"/>
+	  <param name="profile.os" expression="${profile.os}" if="profile.os"/>
+	  <param name="profile.revision" expression="${profile.revision}" if="profile.revision"/>
+	  <param name="profile.revisionflag" expression="${profile.revisionflag}" if="profile.revisionflag"/>
+	  <param name="profile.role" expression="${profile.role}" if="profile.role"/>
+	  <param name="profile.security" expression="${profile.security}" if="profile.security"/>
+	  <param name="profile.status" expression="${profile.status}" if="profile.status"/>
+	  <param name="profile.userlevel" expression="${profile.userlevel}" if="profile.userlevel"/>
+	  <param name="profile.vendor" expression="${profile.vendor}" if="profile.vendor"/>
+	  <param name="profile.wordsize" expression="${profile.wordsize}" if="profile.wordsize"/>
+	  <param name="profile.attribute" expression="${profile.attribute}" if="profile.attribute"/>
+	  <param name="profile.value" expression="${profile.value}" if="profile.value"/>
+	</xslt>
+
+	<xslt
+	  in="${xincluded-profiled.xml}"
+	  out="${dummy.html}"
 	  style="${stylesheet-path}"
 	  scanincludeddirectories="false"
 	  classpath="${xslt-processor-classpath}">
@@ -42,8 +68,6 @@
 	  <param name="brandname" expression="${brandname}" if="brandname"/>
 	</xslt>
 	
-	<delete file="${output-dir}/dummy.html"/>
-
 	<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
 	<copy todir="${output-dir}">
 	  <fileset dir="${ant.file.dir}/template">
