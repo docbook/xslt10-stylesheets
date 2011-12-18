@@ -36,7 +36,7 @@
 	This is needed for stemming support and to filter the subtle differences in the languages 
 	'en' (english) is the default. Refer the NOTE: on stemmers given below for more info. -->
     <xsl:param name="webhelp.indexer.language">en</xsl:param>
-    <xsl:param name="webhelp.default.topic"/>
+    <xsl:param name="webhelp.default.topic">index.html</xsl:param>
     <xsl:param name="webhelp.autolabel">0</xsl:param>
     <!-- webhelp-specific params! -->
 
