@@ -5,7 +5,7 @@
   <artifactId>docbook-xml</artifactId>
   <name>DocBook XML</name>
   <packaging>pom</packaging>
-  <version>5.0-all</version>
+  <version>5.1b4-all</version>
   <description>Docbook XML</description>
   <url>http://www.docbook.org/</url>
 
@@ -16,7 +16,7 @@
    </parent>
 
   <properties>
-    <docbook.xml.release>docbook-5.0</docbook.xml.release>
+    <docbook.xml.release>docbook-5.1b4</docbook.xml.release>
   </properties>
 
   <build>
