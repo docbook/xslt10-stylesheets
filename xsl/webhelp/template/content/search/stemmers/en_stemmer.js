@@ -105,7 +105,7 @@ var stemmer = (function(){
 		}
 
 		// Step 1c
-		re = /^(.+?)y$/;
+		re = /^(....+?)y$/;
 		if (re.test(w)) {
 			var fp = re.exec(w);
 			stem = fp[1];
