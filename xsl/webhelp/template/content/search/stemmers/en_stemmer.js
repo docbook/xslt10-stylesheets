@@ -105,12 +105,13 @@ var stemmer = (function(){
 		}
 
 		// Step 1c
-		re = /^(....+?)y$/;
+	        re = new RegExp("^(.+?" + C + ")y$");
 		if (re.test(w)) {
 			var fp = re.exec(w);
 			stem = fp[1];
-			re = new RegExp(s_v);
-			if (re.test(stem)) { w = stem + "i"; }
+			//re = new RegExp(s_v);
+			//if (re.test(stem)) { w = stem + "i"; }
+		    w = stem + "i";
 		}
 
 		// Step 2
