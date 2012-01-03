@@ -106,7 +106,7 @@ var stemmer = (function(){
 
 		// Step 1c
 	        re = new RegExp("^(.+?" + C + ")y$");
-		if (re.test(w)) {
+		if (re.test(w) && w != "say") {
 			var fp = re.exec(w);
 			stem = fp[1];
 			//re = new RegExp(s_v);
