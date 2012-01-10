@@ -40,7 +40,7 @@
 </xsl:template>
 
 <xsl:template match="equation/graphic | informalequation/graphic">
-  <xsl:if test="$passivetex.extensions = 0 or $tex.math.in.alt = ''">
+  <xsl:if test="$tex.math.in.alt = ''">
     <fo:block>
       <xsl:call-template name="process.image"/>
     </fo:block>
