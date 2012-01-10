@@ -88,7 +88,6 @@
     <author>
       <firstname>David</firstname>
       <surname>Cramer</surname>
-      <email>dcramer AT motive DOT com</email>
       <email>david AT thingbag DOT net</email>
     </author>
     <author>
@@ -951,5 +950,16 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <empha
     <indexterm>
       <primary>FAQ</primary>
     </indexterm>
+  </chapter>
+  <chapter>
+    <title>Test section</title>
+    <section>
+      <title>Some problematic search words</title>
+      <para>buy, say, by, vary, try, sky, nucleus, day, key, currency, currencies, build.xml, foo</para>
+    </section>
+    <section>
+      <title>Some problematic search words (inflected)</title>
+      <para>buys, says, varies, tries, skies, nuclei, days, keys, currencies, build.xml, foo.</para>
+    </section>    
   </chapter>
 </book>
