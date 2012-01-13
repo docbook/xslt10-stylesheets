@@ -76,6 +76,8 @@
     <xsl:param name="suppress.footer.navigation">0</xsl:param>
     <xsl:param name="callout.graphics.path"><xsl:value-of select="$webhelp.common.dir"/>images/callouts/</xsl:param>
     <xsl:param name="callouts.extension">1</xsl:param>
+    <xsl:param name="admon.graphics.path"><xsl:value-of select="$webhelp.common.dir"/>images/admon/</xsl:param>
+    <xsl:param name="admon.graphics" select="0"/>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
 
 <xsl:param name="generate.toc">
