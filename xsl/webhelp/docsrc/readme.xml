@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"[
+<!ELEMENT xi:include (xi:fallback?) >
+<!ATTLIST xi:include
+    xmlns:xi   CDATA       #FIXED    "http://www.w3.org/2001/XInclude"
+    href       CDATA       #IMPLIED
+    parse      (xml|text)  "xml"
+    xpointer   CDATA       #IMPLIED
+    encoding   CDATA       #IMPLIED 
+    accept     CDATA       #IMPLIED
+    accept-language CDATA  #IMPLIED >
+
+<!ELEMENT xi:fallback ANY>
+<!ATTLIST xi:fallback
+    xmlns:xi   CDATA   #FIXED   "http://www.w3.org/2001/XInclude" >
+
+<!ENTITY % local.chapter.class "| xi:include">
+]>
 <book>
   <title>README: Web-based Help from DocBook XML</title>
   <bookinfo>
@@ -185,9 +201,7 @@
           </para>
         </listitem>
         <listitem>
-          <para>Use <sgmltag class="attribute">tabindex</sgmltag> attributes to control the tab
-            order in the output. The Contents and Search tabs should be first and second, then the
-            search box and button, then the table of contents items, and so on.</para>
+          <para>Adjust css so that there is a visual indication that you have move the focus from the contents to the search tab using the tab key.</para>
         </listitem>
         <listitem>
           <para>Add "Expand all" and "Collapse all" buttons to the table of contents.</para>
@@ -951,15 +965,5 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <empha
       <primary>FAQ</primary>
     </indexterm>
   </chapter>
-  <chapter>
-    <title>Test section</title>
-    <section>
-      <title>Some problematic search words</title>
-      <para>buy, say, by, vary, try, sky, nucleus, day, key, currency, currencies, build.xml, foo</para>
-    </section>
-    <section>
-      <title>Some problematic search words (inflected)</title>
-      <para>buys, says, varies, tries, skies, nuclei, days, keys, currencies, build.xml, foo.</para>
-    </section>    
-  </chapter>
+  <xi:include href="xinclude-test.xml"  xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </book>

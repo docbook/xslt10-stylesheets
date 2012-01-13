@@ -1,0 +1,16 @@
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+  <chapter>
+    <title>Test section</title>
+    <section>
+      <title>Some problematic search words</title>
+      <para>buy, say, by, vary, try, sky, nucleus, day, key, currency, currencies, build.xml, foo</para>
+    </section>
+    <section>
+      <title>Some problematic search words (inflected)</title>
+      <para>buys, says, varies, tries, skies, nuclei, days, keys, currencies, build.xml, foo.</para>
+      <note>
+	<para>Test of admon graphics</para>
+      </note>
+    </section>    
+  </chapter>
