@@ -66,6 +66,7 @@
 	  <param name="webhelp.indexer.language" expression="${webhelp.indexer.language}" if="webhelp.indexer.language"/>
 	  <param name="branding" expression="${branding}" if="branding"/>
 	  <param name="brandname" expression="${brandname}" if="brandname"/>
+	  <param name="admon.graphics" expression="${admon.graphics}" if="admon.graphics"/>
 	</xslt>
 	
 	<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
