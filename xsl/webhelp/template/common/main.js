@@ -20,7 +20,7 @@ $(document).ready(function() {
 		    var $target = $(this.hash);
 		    $target = $target.length && $target
 			|| $('[name=' + this.hash.slice(1) +']');
-		if (!(this.hash == "#searchDiv" || this.hash == "#treeDiv") && $target.length) {
+		if (!(this.hash == "#searchDiv" || this.hash == "#treeDiv"  || this.hash == "") && $target.length) {
 			var targetOffset = $target.offset().top - 110;
 			$('html,body')
 			    .animate({scrollTop: targetOffset}, 200);
