@@ -351,6 +351,6 @@ div.note *, div.caution *, div.important *, div.tip *, div.warning * {
 
 *[align = 'center']{ text-align: center;}
 
-#content .navfooter table, #content .navfooter table td {
+#content .calloutlist table, #content .calloutlist table td, #content .navfooter table, #content .navfooter table td {
     border: 0px solid;
 }
