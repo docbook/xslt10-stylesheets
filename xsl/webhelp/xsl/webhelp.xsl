@@ -20,6 +20,10 @@
         </xsl:choose>
     </xsl:param>
 
+    <xsl:param name="doc.title">
+      <xsl:call-template name="get.doc.title"/>
+    </xsl:param>
+
     <!-- webhelp-specific params! -->
     <!-- To be added to normal params file someday -->
     <xsl:param name="webhelp.include.search.tab">true</xsl:param>
@@ -408,9 +412,6 @@ border: none; background: none; font-weight: none; color: none; }
 	<xsl:message>language: <xsl:value-of select="$webhelp.indexer.language"/> </xsl:message>
 	<!-- * Get a title for current doc so that we let the user -->
 	<!-- * know what document we are processing at this point. -->
-	<xsl:variable name="doc.title">
-	  <xsl:call-template name="get.doc.title"/>
-	</xsl:variable>
 	<xsl:choose>
 	  <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
 	  toss the namespace and continue.  Use the docbook5 namespaced
