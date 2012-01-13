@@ -73,7 +73,7 @@
 
     <xsl:param name="generate.section.toc.level" select="5"/>
     <xsl:param name="component.label.includes.part.label" select="1"/>
-    <xsl:param name="suppress.footer.navigation">1</xsl:param>
+    <xsl:param name="suppress.footer.navigation">0</xsl:param>
     <xsl:param name="callout.graphics.path"><xsl:value-of select="$webhelp.common.dir"/>images/callouts/</xsl:param>
     <xsl:param name="callouts.extension">1</xsl:param>
     <!--xsl:param name="generate.toc">book toc</xsl:param-->
@@ -552,15 +552,12 @@ border: none; background: none; font-weight: none; color: none; }
 
                     <xsl:call-template name="user.footer.content"/>
 
-					<hr/>
-					<div class="legal"><a href="index.html">Legal notices</a></div>
-
 					<!-- Redundant since the upper navigation bar always visible -->
-                    <!--xsl:call-template name="footer.navigation">
+                    <xsl:call-template name="footer.navigation">
                         <xsl:with-param name="prev" select="$prev"/>
                         <xsl:with-param name="next" select="$next"/>
                         <xsl:with-param name="nav.context" select="$nav.context"/>
-                    </xsl:call-template-->
+                    </xsl:call-template>
 
 		    <xsl:call-template name="user.webhelp.content.footer"/>
                 </div>
