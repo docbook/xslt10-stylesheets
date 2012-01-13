@@ -67,6 +67,7 @@
 	  <param name="branding" expression="${branding}" if="branding"/>
 	  <param name="brandname" expression="${brandname}" if="brandname"/>
 	  <param name="admon.graphics" expression="${admon.graphics}" if="admon.graphics"/>
+	  <param name="suppress.footer.navigation" expression="${suppress.footer.navigation}" if="suppress.footer.navigation"/>
 	</xslt>
 	
 	<!-- Copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
