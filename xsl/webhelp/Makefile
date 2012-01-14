@@ -7,10 +7,13 @@ all: webhelp
 
 webhelp: docsrc/readme.xml
 	$(MAKE) -C ../xhtml
+ifeq ($(XSLTENGINE),xsltproc)
+	$(XSLT) --xinclude $< ../profiling/profile.xsl webhelp-temp.xml 
+else
 	$(XSLT) $< ../profiling/profile.xsl webhelp-temp.xml 
-	$(XSLT) webhelp-temp.xml xsl/webhelp.xsl webhelp.include.search.tab="true" webhelp.indexer.language="en" branding="docbook" brandname="DocBook" show.comments=0
+endif
+	$(XSLT) webhelp-temp.xml xsl/webhelp.xsl
 	$(ANT) index
-
 clean:
 	$(RM) -r docs/*
 
