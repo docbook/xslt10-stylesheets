@@ -206,8 +206,7 @@ var stemmer = (function(){
 	    	w = origword;
 	    }
 
-	    // These are all overstemmed as gener-
-	    // What about commun- words?
+	    // Address words overstemmed as gener-
 	    re = /.*generate?s?d?(ing)?$/;
 	    if( re.test(origword) ){
 		w = w + 'at';
@@ -224,7 +223,7 @@ var stemmer = (function(){
 	    if( re.test(origword) ){
 		w = w + 'ous';
 	    }
-	    // These are overstemmed as commun-
+	    // Address words overstemmed as commun-
 	    re = /.*communit(ies)?y?/;
 	    if( re.test(origword) ){
 		w = w + 'iti';
