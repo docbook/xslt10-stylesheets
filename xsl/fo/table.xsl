@@ -103,6 +103,9 @@
     </xsl:for-each>
 
   </xsl:for-each>
+
+  <xsl:apply-templates select="caption"/>
+
 </xsl:template>
 
 <!-- ==================================================================== -->
