@@ -87,8 +87,6 @@ p.breadcrumbs {
     z-index: 1500;
     border-right:2px solid #CCCCCC;
     background-color: #f0f0f0!important;
-    -webkit-box-shadow: inset 0px 1px 2px 0px #bdd1e5;
-    -moz-box-shadow: inset 0px 1px 2px 0px #bdd1e5;
 }
 
 #searchDiv {
@@ -102,8 +100,6 @@ p.breadcrumbs {
     z-index: 1500;
     border-right:2px solid #CCCCCC;
     background-color: #f0f0f0!important;
-    -webkit-box-shadow: inset 0px 1px 2px 0px #bdd1e5;
-    -moz-box-shadow: inset 0px 1px 2px 0px #bdd1e5;
 }
 
 #content {
@@ -123,11 +119,10 @@ p.breadcrumbs {
 
 #navheader {
     position: fixed;
-    background: #fff;
-    border-radius: 5px 0px 0px 5px;
+    background: #DCDCDC;
     padding-left: 10px;
     right: 0px;
-    top: 37px;
+    top: 10px;
     text-align: right;
 }
 
