@@ -765,7 +765,7 @@ border: none; background: none; font-weight: none; color: none; }
                                 </li>
                                 <xsl:if test="$webhelp.include.search.tab != 'false'">
                                     <li>
-                                        <a href="#searchDiv" style="outline:0;" tabindex="1">
+                                        <a href="#searchDiv" style="outline:0;" tabindex="1" onclick="doSearch()">
                                             <span class="searchTab">
                                                 <xsl:call-template name="gentext">
                                                     <xsl:with-param name="key" select="'Search'"/>

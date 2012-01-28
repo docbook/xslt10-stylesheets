@@ -62,7 +62,7 @@ $(document).ready(function() {
     });
 
     //'ui-tabs-1' is the cookie name which is used for the persistence of the tabs.(Content/Search tab)
-    if ($.cookie('ui-tabs-1') === '1') {    //search tab is visible 
+    if ($.cookie('ui-tabs-1') === '1') {    //search tab is active
         if ($.cookie('textToSearch') != undefined && $.cookie('textToSearch').length > 0) {
             document.getElementById('textToSearch').value = $.cookie('textToSearch');
             Verifie('searchForm');
@@ -86,6 +86,19 @@ $(document).ready(function() {
 	return false;
     }
 });
+
+
+/**
+ * If an user moved to another page by clicking on a toc link, and then clicked on #searchDiv,
+ * search should be performed if the cookie textToSearch is not empty.
+ */
+function doSearch() {
+//'ui-tabs-1' is the cookie name which is used for the persistence of the tabs.(Content/Search tab)
+    if ($.cookie('textToSearch') != undefined && $.cookie('textToSearch').length > 0) {
+        document.getElementById('textToSearch').value = $.cookie('textToSearch');
+        Verifie('searchForm');
+    }
+}
 
 /**
  * Synchronize with the tableOfContents
