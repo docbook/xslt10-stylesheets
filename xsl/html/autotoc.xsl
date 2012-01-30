@@ -551,7 +551,7 @@
         <!-- * DocBook 5 says inlinemediaobject (among other things) -->
         <!-- * is allowed in refpurpose; so we need to run -->
         <!-- * apply-templates on refpurpose here, instead of value-of  -->
-        <xsl:apply-templates select="refnamediv/refpurpose"/>
+        <xsl:apply-templates select="refnamediv/refpurpose" mode="no.anchor.mode"/>
       </xsl:if>
     </span>
   </xsl:element>
