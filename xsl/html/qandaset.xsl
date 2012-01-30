@@ -404,19 +404,21 @@
       </xsl:attribute>
     </xsl:if>
 
-    <col align="{$direction.align.start}">
-      <xsl:attribute name="width">
-        <xsl:choose>
-          <xsl:when test="$label-width != ''">
-            <xsl:value-of select="$label-width"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text>1%</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-    </col>
-    <col/>
+    <colgroup>
+      <col align="{$direction.align.start}">
+        <xsl:attribute name="width">
+          <xsl:choose>
+            <xsl:when test="$label-width != ''">
+              <xsl:value-of select="$label-width"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>1%</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </col>
+      <col/>
+    </colgroup>
     <tbody>
       <xsl:apply-templates select="qandaentry|qandadiv"/>
     </tbody>
