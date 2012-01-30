@@ -318,3 +318,5 @@
 <!ENTITY custom.css.source SYSTEM "../params/custom.css.source.xml">
 <!ENTITY generate.consistent.ids SYSTEM "../params/generate.consistent.ids.xml">
 <!ENTITY chunked.filename.prefix SYSTEM "../params/chunked.filename.prefix.xml">
+<!ENTITY html.script SYSTEM "../params/html.script.xml">
+<!ENTITY html.script.type SYSTEM "../params/html.script.type.xml">

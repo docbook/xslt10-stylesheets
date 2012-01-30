@@ -120,9 +120,11 @@ $Id$
 -->
 <reference xml:id="html"><title>HTML</title>
 &html.base;
-&html.stylesheet.type;
 &html.stylesheet;
+&html.stylesheet.type;
 &css.decoration;
+&html.script;
+&html.script.type;
 &spacing.paras;
 &emphasis.propagates.style;
 &para.propagates.style;
@@ -556,6 +558,8 @@ around all these parameters.</para>
 <src:fragref linkend="html.head.legalnotice.link.types.frag"/>
 <src:fragref linkend="html.longdesc.frag"/>
 <src:fragref linkend="html.longdesc.link.frag"/>
+<src:fragref linkend="html.script.frag"/>
+<src:fragref linkend="html.script.type.frag"/>
 <src:fragref linkend="html.stylesheet.frag"/>
 <src:fragref linkend="html.stylesheet.type.frag"/>
 <src:fragref linkend="htmlhelp.alias.file.frag"/>
