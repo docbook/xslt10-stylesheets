@@ -2227,6 +2227,7 @@ book  toc,title,figure,table,example,equation
         <!-- * DocBook 5 says inlinemediaobject (among other things) -->
         <!-- * is allowed in refpurpose; so we need to run -->
         <!-- * apply-templates on refpurpose here, instead of value-of  -->
+        <!-- Set allow-anchors=0 to avoid indexterms and other links -->
         <xsl:apply-templates select="refnamediv/refpurpose" mode="title.markup">
           <xsl:with-param name="allow-anchors" select="0"/>
         </xsl:apply-templates>
