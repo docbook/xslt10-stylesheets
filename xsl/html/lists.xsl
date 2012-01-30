@@ -175,7 +175,9 @@
           <xsl:call-template name="generate.class.attribute">
             <xsl:with-param name="class" select="$default.class"/>
           </xsl:call-template>
-          <col align="{$direction.align.start}" valign="top"/>
+          <colgroup>
+            <col align="{$direction.align.start}" valign="top"/>
+          </colgroup>
           <tbody>
             <xsl:apply-templates 
                 mode="orderedlist-table"
@@ -338,13 +340,15 @@
               <xsl:value-of select="$table-summary"/>
             </xsl:attribute>
           </xsl:if>
-          <col align="{$direction.align.start}" valign="top">
-            <xsl:if test="$term-width != ''">
-              <xsl:attribute name="width">
-                <xsl:value-of select="$term-width"/>
-              </xsl:attribute>
-            </xsl:if>
-          </col>
+          <colgroup>
+            <col align="{$direction.align.start}" valign="top">
+              <xsl:if test="$term-width != ''">
+                <xsl:attribute name="width">
+                  <xsl:value-of select="$term-width"/>
+                </xsl:attribute>
+              </xsl:if>
+            </col>
+          </colgroup>
           <tbody>
             <xsl:apply-templates mode="varlist-table"
               select="varlistentry
