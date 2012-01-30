@@ -103,7 +103,7 @@
   <!-- Now convert to @style -->
   <xsl:variable name="colgroup">
     <xsl:call-template name="colgroup.with.style">
-      <xsl:with-param name="colgroup" select="colgroup.with.extension"/>
+      <xsl:with-param name="colgroup" select="$colgroup.with.extension"/>
     </xsl:call-template>
   </xsl:variable>
 
@@ -439,6 +439,10 @@
   <xsl:call-template name="convert.styles"/>
 </xsl:template>
 
+<xsl:template match="qandaset">
+  <xsl:call-template name="convert.styles"/>
+</xsl:template>
+
 <xsl:template match="calloutlist|revhistory|footnote|figure|co">
   <xsl:call-template name="convert.styles"/>
 </xsl:template>
@@ -447,7 +451,19 @@
   <xsl:call-template name="convert.styles"/>
 </xsl:template>
 
+<xsl:template match="variablelist">
+  <xsl:call-template name="convert.styles"/>
+</xsl:template>
+
+<xsl:template match="orderedlist[@inheritnum = 'inherit']">
+  <xsl:call-template name="convert.styles"/>
+</xsl:template>
+
 <xsl:template match="simplelist">
+  <xsl:call-template name="convert.styles"/>
+</xsl:template>
+
+<xsl:template match="blockquote">
   <xsl:call-template name="convert.styles"/>
 </xsl:template>
 
@@ -460,6 +476,106 @@
   <xsl:apply-templates mode="convert.to.style" select="$nodes"/>
 </xsl:template>
 
+<!-- Remove table summary and set border="" -->
+
+<xsl:template match="segmentedlist" mode="seglist-table">
+  <xsl:variable name="table-summary">
+    <xsl:call-template name="pi.dbhtml_table-summary"/>
+  </xsl:variable>
+
+  <xsl:variable name="list-width">
+    <xsl:call-template name="pi.dbhtml_list-width"/>
+  </xsl:variable>
+
+  <xsl:apply-templates select="title"/>
+
+  <table border="">
+    <xsl:if test="$list-width != ''">
+      <xsl:attribute name="width">
+        <xsl:value-of select="$list-width"/>
+      </xsl:attribute>
+    </xsl:if>
+    <!--
+    <xsl:if test="$table-summary != ''">
+      <xsl:attribute name="summary">
+        <xsl:value-of select="$table-summary"/>
+      </xsl:attribute>
+    </xsl:if>
+    -->
+    <thead>
+      <tr class="segtitle">
+        <xsl:call-template name="tr.attributes">
+          <xsl:with-param name="row" select="segtitle[1]"/>
+          <xsl:with-param name="rownum" select="1"/>
+        </xsl:call-template>
+        <xsl:apply-templates select="segtitle" mode="seglist-table"/>
+      </tr>
+    </thead>
+    <tbody>
+      <xsl:apply-templates select="seglistitem" mode="seglist-table"/>
+    </tbody>
+  </table>
+</xsl:template>
+
+<xsl:template name="graphical.admonition">
+  <xsl:variable name="admon.type">
+    <xsl:choose>
+      <xsl:when test="local-name(.)='note'">Note</xsl:when>
+      <xsl:when test="local-name(.)='warning'">Warning</xsl:when>
+      <xsl:when test="local-name(.)='caution'">Caution</xsl:when>
+      <xsl:when test="local-name(.)='tip'">Tip</xsl:when>
+      <xsl:when test="local-name(.)='important'">Important</xsl:when>
+      <xsl:otherwise>Note</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="alt">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="$admon.type"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <div>
+    <xsl:call-template name="common.html.attributes"/>
+    <xsl:if test="$admon.style != ''">
+      <xsl:attribute name="style">
+        <xsl:value-of select="$admon.style"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:variable name="content">
+      <table border="">
+        <tr>
+          <td rowspan="2" align="center" valign="top">
+            <xsl:attribute name="width">
+              <xsl:apply-templates select="." mode="admon.graphic.width"/>
+            </xsl:attribute>
+            <img alt="[{$alt}]">
+              <xsl:attribute name="src">
+                <xsl:call-template name="admon.graphic"/>
+              </xsl:attribute>
+            </img>
+          </td>
+          <th align="{$direction.align.start}">
+            <xsl:call-template name="anchor"/>
+            <xsl:if test="$admon.textlabel != 0 or title or info/title">
+              <xsl:apply-templates select="." mode="object.title.markup"/>
+            </xsl:if>
+          </th>
+        </tr>
+        <tr>
+          <td align="{$direction.align.start}" valign="top">
+            <xsl:apply-templates/>
+          </td>
+        </tr>
+      </table>
+    </xsl:variable>
+
+    <xsl:variable name="table.nodes" select="exsl:node-set($content)"/>
+
+    <xsl:apply-templates select="$table.nodes" mode="convert.to.style"/>
+  </div>
+</xsl:template>
 
 <!-- HTML5: needs special doctype -->
 <xsl:template name="user.preroot">
@@ -799,6 +915,76 @@
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
   </section>
+</xsl:template>
+
+<!-- HTML5: each dt must have a dd -->
+<xsl:template match="question" mode="qandatoc.mode">
+  <xsl:variable name="firstch">
+    <!-- Use a titleabbrev or title if available -->
+    <xsl:choose>
+      <xsl:when test="../blockinfo/titleabbrev">
+        <xsl:apply-templates select="../blockinfo/titleabbrev[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../blockinfo/title">
+        <xsl:apply-templates select="../blockinfo/title[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../info/titleabbrev">
+        <xsl:apply-templates select="../info/titleabbrev[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../titleabbrev">
+        <xsl:apply-templates select="../titleabbrev[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../info/title">
+        <xsl:apply-templates select="../info/title[1]/node()"/>
+      </xsl:when>
+      <xsl:when test="../title">
+        <xsl:apply-templates select="../title[1]/node()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="(*[local-name(.)!='label'])[1]/node()"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="deflabel">
+    <xsl:choose>
+      <xsl:when test="ancestor-or-self::*[@defaultlabel]">
+        <xsl:value-of select="(ancestor-or-self::*[@defaultlabel])[last()]
+                              /@defaultlabel"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$qanda.defaultlabel"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <dt>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:if test="contains($deflabel,'number') and not(label)">
+      <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+    </xsl:if>
+    <xsl:text> </xsl:text>
+    <a>
+      <xsl:attribute name="href">
+        <xsl:call-template name="href.target">
+          <xsl:with-param name="object" select=".."/>
+        </xsl:call-template>
+      </xsl:attribute>
+      <xsl:value-of select="$firstch"/>
+    </a>
+  </dt>
+  <dd>
+    <!-- * include nested qandaset/qandaentry in TOC if user wants it -->
+
+    <xsl:if test="not($qanda.nested.in.toc = 0)">
+      <xsl:apply-templates select="following-sibling::answer" mode="qandatoc.mode"/>
+    </xsl:if>
+  </dd>
+</xsl:template>
+
+<xsl:template match="answer" mode="qandatoc.mode">
+  <xsl:if test="descendant::question">
+    <xsl:call-template name="process.qanda.toc"/>
+  </xsl:if>
 </xsl:template>
 
 <!-- HTML5: each dt must have a dd -->
