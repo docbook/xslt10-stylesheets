@@ -475,7 +475,54 @@
 <xsl:template name="make.css.link">
   <xsl:param name="css.filename" select="''"/>
 
-  <xsl:variable name="href.to.uri" select="$css.filename"/>
+  <xsl:variable name="href">
+    <xsl:call-template name="relative.path.link">
+      <xsl:with-param name="target.pathname" select="$css.filename"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="string-length($css.filename) != 0">
+    <link rel="stylesheet" 
+          type="text/css"
+          href="{$href}"/>
+  </xsl:if>
+</xsl:template>
+
+<!-- And the same applies to script links -->
+<xsl:template name="make.script.link">
+  <xsl:param name="script.filename" select="''"/>
+
+  <xsl:variable name="src">
+    <xsl:call-template name="relative.path.link">
+      <xsl:with-param name="target.pathname" select="$script.filename"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="string-length($script.filename) != 0">
+    <script>
+      <xsl:attribute name="src">
+        <xsl:value-of select="$src"/>
+      </xsl:attribute>
+      <xsl:attribute name="type">
+        <xsl:value-of select="$html.script.type"/>
+      </xsl:attribute>
+      <xsl:call-template name="other.script.attributes">
+        <xsl:with-param name="script.filename" select="$script.filename"/>
+      </xsl:call-template>
+    </script>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template name="other.script.attributes">
+  <xsl:param name="script.filename"/>
+  <!-- Placeholder template to allow customization to 
+       insert additional script element attributes if needed -->
+</xsl:template>
+
+<xsl:template name="relative.path.link">
+  <xsl:param name="target.pathname"/>
+  
+  <xsl:variable name="href.to.uri" select="$target.pathname"/>
 
   <xsl:variable name="href.from.uri">
     <xsl:call-template name="href.target.uri">
@@ -511,11 +558,7 @@
     <xsl:value-of select="$href.to"/>
   </xsl:variable>
 
-  <xsl:if test="string-length($css.filename) != 0">
-    <link rel="stylesheet" 
-          type="text/css"
-          href="{$href}"/>
-  </xsl:if>
+  <xsl:value-of select="$href"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
