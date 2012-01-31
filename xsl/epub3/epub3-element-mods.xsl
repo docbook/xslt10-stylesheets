@@ -1359,14 +1359,14 @@ book  toc,title,figure,table,example,equation
     <xsl:when test="$exsl.node.set.available != 0 and 
                     function-available('set:distinct')">
       <xsl:for-each select="set:distinct(exsl:node-set($imagelist)/*)">
-        <xsl:if test="string-length(href) != 0">
+        <xsl:if test="string-length(tmp-href) != 0">
           <!-- convert the child elements to attributes -->
           <xsl:element name="item" namespace="{$opf.namespace}">
             <xsl:attribute name="id">
               <xsl:value-of select="generate-id()"/>
             </xsl:attribute>
             <xsl:attribute name="href">
-              <xsl:value-of select="href"/>
+              <xsl:value-of select="tmp-href"/>
             </xsl:attribute>
             <xsl:attribute name="media-type">
               <xsl:value-of select="media-type"/>
@@ -1381,7 +1381,12 @@ book  toc,title,figure,table,example,equation
           <xsl:attribute name="id">
             <xsl:value-of select="generate-id()"/>
           </xsl:attribute>
-          <xsl:copy-of select="@*"/>
+          <xsl:attribute name="href">
+            <xsl:value-of select="tmp-href"/>
+          </xsl:attribute>
+          <xsl:attribute name="media-type">
+            <xsl:value-of select="media-type"/>
+          </xsl:attribute>
         </xsl:element>
       </xsl:for-each>
     </xsl:when>
@@ -1445,8 +1450,8 @@ book  toc,title,figure,table,example,equation
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:element name="filename" namespace="">
-      <xsl:element name="href" namespace="">
+    <xsl:element name="tmp-filename" namespace="">
+      <xsl:element name="tmp-href" namespace="">
         <xsl:value-of select="$image.filename"/>
       </xsl:element>
       <xsl:element name="media-type" namespace="">
@@ -1472,8 +1477,8 @@ book  toc,title,figure,table,example,equation
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:element name="filename" namespace="">
-      <xsl:element name="href" namespace="">
+    <xsl:element name="tmp-filename" namespace="">
+      <xsl:element name="tmp-href" namespace="">
         <xsl:value-of select="$image.filename"/>
       </xsl:element>
       <xsl:element name="media-type" namespace="">
@@ -1506,8 +1511,8 @@ book  toc,title,figure,table,example,equation
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:element name="filename" namespace="">
-        <xsl:element name="href" namespace="">
+      <xsl:element name="tmp-filename" namespace="">
+        <xsl:element name="tmp-href" namespace="">
           <xsl:value-of select="$image.filename"/>
         </xsl:element>
         <xsl:element name="media-type" namespace="">
