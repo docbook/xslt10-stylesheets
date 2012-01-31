@@ -2233,7 +2233,6 @@ book  toc,title,figure,table,example,equation
         <!-- * is allowed in refpurpose; so we need to run -->
         <!-- * apply-templates on refpurpose here, instead of value-of  -->
         <!-- Set allow-anchors=0 to avoid indexterms and other links -->
-        <
         <xsl:text> - </xsl:text>
         <xsl:apply-templates select="refnamediv/refpurpose" mode="no.anchor.mode"/>
       </xsl:if>
