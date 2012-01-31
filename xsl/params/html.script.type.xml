@@ -14,7 +14,7 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment xml:id="html.script.type.frag"><xsl:param name="html.stylesheet.type">text/javascript</xsl:param></src:fragment>
+<src:fragment xml:id="html.script.type.frag"><xsl:param name="html.script.type">text/javascript</xsl:param></src:fragment>
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
