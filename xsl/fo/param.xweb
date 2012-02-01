@@ -163,6 +163,7 @@ generate.section.toc.level;
 &table.cell.border.style;
 &table.cell.border.color;
 &table.table.properties;
+&table.caption.properties;
 </reference>
 <reference xml:id="links"><title>Linking</title>
 &current.docid;
@@ -872,6 +873,7 @@ around all these parameters.</para>
 <src:fragref linkend="table.properties.frag"/>
 <src:fragref linkend="tablecolumns.extension.frag"/>
 <src:fragref linkend="table.table.properties.frag"/>
+<src:fragref linkend="table.caption.properties.frag"/>
 <src:fragref linkend="target.database.document.frag"/>
 <src:fragref linkend="targets.filename.frag"/>
 <src:fragref linkend="task.properties.frag"/>

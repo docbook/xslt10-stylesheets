@@ -356,3 +356,4 @@
 <!ENTITY outer.region.content.properties SYSTEM "../params/outer.region.content.properties.xml">
 <!ENTITY region.inner.properties SYSTEM "../params/region.inner.properties.xml">
 <!ENTITY region.outer.properties SYSTEM "../params/region.outer.properties.xml">
+<!ENTITY table.caption.properties SYSTEM "../params/table.caption.properties.xml">
