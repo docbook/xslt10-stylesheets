@@ -1551,4 +1551,20 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
   <xsl:apply-templates select="."/>
 </xsl:template>
 
+<xsl:template match="link|olink|xref" mode="ansi-nontabular">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="link|olink|xref" mode="ansi-tabular">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="link|olink|xref" mode="kr-nontabular">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
+<xsl:template match="link|olink|xref" mode="kr-tabular">
+  <xsl:apply-templates select="."/>
+</xsl:template>
+
 </xsl:stylesheet>
