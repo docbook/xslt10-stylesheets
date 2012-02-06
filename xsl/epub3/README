@@ -1,0 +1,137 @@
+DocBook stylesheets for EPUB 3 output 
+=============================================
+
+This directory contains XSL stylesheets
+for generating EPUB3 output from DocBook content.
+For more information on EPUB3, see:
+
+http://idpf.org/epub/30
+
+These EPUB3 stylesheets are a customization layer on
+top of the xhtml5/ stylesheets in this distribution, which
+are in turn a customization layer on top of the 
+xhtml/ stylesheets in this distribution. 
+Using a customization layer enables the EPUB3
+stylesheets to inherit all the features of the
+XHTML stylesheets while making the minimum changes
+for them to produce valid EPUB3.
+
+Usage
+-----------
+The general process for creating an EPUB3 ebook is:
+
+1.  Generate chunked XHTML5 content that validates against
+the EPUB3 schemas, and generate the EPUB3 package
+files.
+
+2.  Copy any image files into the output directory.
+
+3.  Run a zip command to create an .epub file.
+
+4.  Validate the .epub file.
+
+
+Following are the steps in more detail.
+
+1.  Create the XHTML5 files.
+-----------------------------
+
+The first step is handled by these stylesheets.
+To generate EPUB3-compatible XHTML5 files,
+use one of the following stylesheets as you would any
+other DocBook XSL stylesheet:
+
+epub3/chunk.xsl           - Chunked output.
+epub3/profile-chunk.xsl   - Profiled chunk output.
+
+Although the stylesheet directory contains a docbook.xsl
+stylesheet for single file output, that is not useful for
+generated EPUB3.  
+
+You should set the $base.dir stylesheet param to the 
+subdirectory that will contain the .xhtml files and
+the epub package files.  Here is an example using xsltproc:
+
+xsltproc \
+  --stringparam base.dir ebook1/OEBPS/  \
+  epub3/chunk.xsl \
+  mybook.xml
+
+After processing a document with this setting, you should find
+the following output:
+
+ebook1/mimetype                - required mimetype file.
+ebook1/META-INF/container.xml  - required container file
+ebook1/OEBPS/package.opf       - required package file
+ebook1/OEBPS/toc.ncx           - optional NCX file for backwards compatibility
+ebook1/OEBPS/docbook-epub.css  - CSS file
+ebook1/OEBPS/*.xhtml           - The chunked content files.
+
+
+2.  Copy image files
+---------------------------
+
+Manually copy any image files used in the document
+into the corresponding locations in the $base.dir
+directory.  For example, if your document contains:
+
+  <imagedata fileref="images/caution.png"/>
+
+In this example base.dir, you would copy the file to:
+
+  ebook1/OEBPS/images/caution.png
+
+You can get a list of image files from the manifest file
+named ebook1/OEBPS/package.opf that is created by the
+stylesheet.  It includes references to image files for
+callouts and admonitions if they are used in the output.
+Note that the header and footer images are turned off for
+EPUB3 output.
+
+
+3.  Create the epub3 file.
+-----------------------------
+Change to the directory containing the base.dir (ebook1
+in this example), and run the following zip command to
+create the epub file:
+
+zip -r -X mybook.epub mimetype META-INF OEBPS 
+
+The -r option means recursively include all directories.
+The -X option excludes extra file attributes (required by epub3).
+The "mybook.epub" in this example is the output file.
+The other three arguments must appear in this order.
+
+
+4.  Validating with epubcheck 3
+-----------------------------------
+
+There is a java program that can be used to check an
+epub3 file for conformance.  It is currently available 
+from this website:
+
+  http://code.google.com/p/epubcheck/wiki/EPUBCheck30
+
+That website provides a download link, and information on
+how to run the command.
+
+
+Testing with EPUB readers
+----------------------------
+The EPUB3 standard is not yet widely supported.  The output of
+these stylesheets has been tested in the following readers:
+
+Apple iBooks on an iPod and iPad.
+   - Handles videodata and audiodata.
+   - Does not format MathML yet.
+   - Handles SVG.
+
+Firefox browser with the EPUBReader version 1.4.10 add-on.
+   - Formats MathML nicely.
+   - Does not handle videodata or audiodata yet.
+   - Handles SVG.
+
+Ibis EPUB3 preview version
+   - Does not format MathML yet.
+   - Does not handle videodata or audiodata yet.
+   - Handles SVG with external viewer.
