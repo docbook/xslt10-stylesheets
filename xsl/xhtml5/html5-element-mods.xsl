@@ -917,7 +917,7 @@
   </section>
 </xsl:template>
 
-<!-- HTML5: each dt must have a dd -->
+<!-- HTML5: uses <ul> instead of <dl> for TOC -->
 <xsl:template match="question" mode="qandatoc.mode">
   <xsl:variable name="firstch">
     <!-- Use a titleabbrev or title if available -->
@@ -957,28 +957,26 @@
     </xsl:choose>
   </xsl:variable>
 
-  <dt>
-    <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:if test="contains($deflabel,'number') and not(label)">
-      <xsl:apply-templates select="." mode="intralabel.punctuation"/>
-    </xsl:if>
-    <xsl:text> </xsl:text>
+  <li>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target">
           <xsl:with-param name="object" select=".."/>
         </xsl:call-template>
       </xsl:attribute>
+      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:if test="contains($deflabel,'number') and not(label)">
+        <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+      </xsl:if>
+      <xsl:text> </xsl:text>
       <xsl:value-of select="$firstch"/>
     </a>
-  </dt>
-  <dd>
     <!-- * include nested qandaset/qandaentry in TOC if user wants it -->
 
     <xsl:if test="not($qanda.nested.in.toc = 0)">
       <xsl:apply-templates select="following-sibling::answer" mode="qandatoc.mode"/>
     </xsl:if>
-  </dd>
+  </li>
 </xsl:template>
 
 <xsl:template match="answer" mode="qandatoc.mode">
@@ -1417,5 +1415,8 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<!-- HTML5: no body attributes -->
+<xsl:template name="body.attributes"/>
 
 </xsl:stylesheet>
