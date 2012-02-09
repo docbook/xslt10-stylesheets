@@ -1290,22 +1290,37 @@ article  toc,title,figure,table,example,equation
   <!-- get the element corresponding to the next chunk -->
   <xsl:variable name="next.chunk" select="key('genid', ($nextdiv/@id|$nextdiv/@xml:id)[1])"/>
 
-  <xsl:variable name="this.imagedata"
-                select="$this.chunk//imagedata"/>
-  <xsl:variable name="before.next"
-                select="$next.chunk/preceding::imagedata"/>
-  
-  <!-- select for an SVG imagedata in the intersection of them -->
-  <xsl:variable name="intersection"
-      select="$this.imagedata[count(.|$before.next) = count($before.next)]"/>
-
-  <xsl:variable name="svg.imagedata"
-      select="$intersection[contains(
-                  substring(@fileref, string-length(@fileref)-3,4), '.svg')]"/>
-
-  <xsl:if test="count($svg.imagedata) != 0">
-    <xsl:text>svg</xsl:text>
- </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$next.chunk">
+      <xsl:variable name="this.imagedata"
+                    select="$this.chunk//imagedata"/>
+      <xsl:variable name="before.next"
+                    select="$next.chunk/preceding::imagedata"/>
+      
+      <!-- select for an SVG imagedata in the intersection of them -->
+      <xsl:variable name="intersection"
+          select="$this.imagedata[count(.|$before.next) = count($before.next)]"/>
+    
+      <xsl:variable name="svg.imagedata"
+          select="$intersection[contains(
+                      substring(@fileref, string-length(@fileref)-3,4), '.svg')]"/>
+    
+      <xsl:if test="count($svg.imagedata) != 0">
+        <xsl:text>svg</xsl:text>
+     </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:variable name="this.imagedata"
+                    select="$this.chunk//imagedata"/>
+      <xsl:variable name="svg.imagedata"
+          select="$this.imagedata[contains(
+                      substring(@fileref, string-length(@fileref)-3,4), '.svg')]"/>
+      <xsl:if test="count($svg.imagedata) != 0">
+        <xsl:text>svg</xsl:text>
+     </xsl:if>
+    
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="mathml.property">
