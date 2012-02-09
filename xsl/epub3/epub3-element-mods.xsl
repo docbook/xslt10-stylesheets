@@ -1954,32 +1954,32 @@ article  toc,title,figure,table,example,equation
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="$qanda.in.toc != 0">
-          <xsl:if test="$nodes.plus">
-            <div class="toc">
-              <xsl:copy-of select="$toc.title"/>
-              <nav epub:type="toc">
-                <xsl:element name="{$toc.list.type}">
+          <div class="toc">
+            <xsl:copy-of select="$toc.title"/>
+            <nav epub:type="toc">
+              <xsl:element name="{$toc.list.type}">
+                <xsl:if test="$nodes.plus">
                   <xsl:apply-templates select="$nodes.plus" mode="toc">
                     <xsl:with-param name="toc-context" select="$toc-context"/>
                   </xsl:apply-templates>
-                </xsl:element>
-              </nav>
-            </div>
-          </xsl:if>
+                </xsl:if>
+              </xsl:element>
+            </nav>
+          </div>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:if test="$nodes">
-            <div class="toc">
-              <xsl:copy-of select="$toc.title"/>
-              <nav epub:type="toc">
-                <xsl:element name="{$toc.list.type}">
+          <div class="toc">
+            <xsl:copy-of select="$toc.title"/>
+            <nav epub:type="toc">
+              <xsl:element name="{$toc.list.type}">
+                <xsl:if test="$nodes">
                   <xsl:apply-templates select="$nodes" mode="toc">
                     <xsl:with-param name="toc-context" select="$toc-context"/>
                   </xsl:apply-templates>
-                </xsl:element>
-              </nav>
-            </div>
-          </xsl:if>
+                </xsl:if>
+              </xsl:element>
+            </nav>
+          </div>
         </xsl:otherwise>
       </xsl:choose>
 
