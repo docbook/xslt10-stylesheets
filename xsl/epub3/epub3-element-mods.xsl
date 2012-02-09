@@ -45,6 +45,7 @@
 <xsl:param name="toc.section.depth" select="2"/>
 <xsl:param name="generate.toc">
 book  toc,title,figure,table,example,equation
+article  toc,title,figure,table,example,equation
 </xsl:param>
 <xsl:param name="generate.manifest" select="0"/>
 <xsl:param name="manifest.in.base.dir" select="1"/>
