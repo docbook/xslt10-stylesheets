@@ -114,7 +114,7 @@ p.breadcrumbs {
     color: #000000;
     /*border-left: 2px solid #cccccc; overflow :scroll;*/
     z-index: 1000;
-    min-width:800px;
+    min-width:200px;
 }
 
 #navheader {
