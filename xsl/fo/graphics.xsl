@@ -314,14 +314,27 @@
 </xsl:template>
 
 <xsl:template name="image.valign">
-  <xsl:choose>
-    <xsl:when test="@valign = 'top'">before</xsl:when>
-    <xsl:when test="@valign = 'middle'">center</xsl:when>
-    <xsl:when test="@valign = 'bottom'">after</xsl:when>
-    <xsl:otherwise>auto</xsl:otherwise>
-  </xsl:choose>
+  <xsl:if test="@valign">
+    <xsl:choose>
+      <xsl:when test="ancestor::inlinemediaobject or ancestor-or-self::inlinegraphic">
+        <xsl:choose>
+          <xsl:when test="@valign = 'top'">baseline</xsl:when>
+          <xsl:when test="@valign = 'middle'">central</xsl:when>
+          <xsl:when test="@valign = 'bottom'">text-before-edge</xsl:when>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="@valign = 'top'">before</xsl:when>
+          <xsl:when test="@valign = 'middle'">center</xsl:when>
+          <xsl:when test="@valign = 'bottom'">after</xsl:when>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:if>
 </xsl:template>
 
+  
 <xsl:template name="process.image">
   <!-- When this template is called, the current node should be  -->
   <!-- a graphic, inlinegraphic, imagedata, or videodata. All    -->
@@ -450,7 +463,17 @@
     </xsl:if>
 
     <xsl:if test="$valign != ''">
-      <xsl:attribute name="display-align">
+      <xsl:variable name="att.name">
+        <xsl:choose>
+          <xsl:when test="ancestor::inlinemediaobject or ancestor-or-self::inlinegraphic">
+            <xsl:text>alignment-baseline</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>display-align</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:attribute name="{$att.name}">
         <xsl:value-of select="$valign"/>
       </xsl:attribute>
     </xsl:if>
