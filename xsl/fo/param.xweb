@@ -403,6 +403,7 @@ zero by default, so this is simply the page-master margin-right.
 &region.outer.extent;
 &default.units;
 &normal.para.spacing;
+&para.properties;
 &body.font.master;
 &body.font.size;
 &footnote.font.size;
@@ -920,6 +921,7 @@ around all these parameters.</para>
 <src:fragref linkend="outer.region.content.properties.frag"/>
 <src:fragref linkend="region.inner.properties.frag"/>
 <src:fragref linkend="region.outer.properties.frag"/>
+<src:fragref linkend="para.properties.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
