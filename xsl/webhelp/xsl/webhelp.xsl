@@ -102,6 +102,7 @@ set       toc,title
 
     <!-- Localizations of webhelp specific words. Your contributions for other languages are appreciated.
 	Currently, only around 10 translations needed. -->
+    <!-- To be moved to files under 'gentext/locale/' -->
     <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
         <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
             <l:gentext key="Search" text="Search"/>
