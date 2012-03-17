@@ -187,6 +187,9 @@ occur in precisely the order they occur in your database.</para>
 customization layer or directly through your processor's interface) to
 point to your global glossary.</para>
 
+<para>A relative path in the parameter is interpreted as relative
+to the file containing the empty glossary element in your document.</para>
+
 <para>The stylesheets will format the glossary in your document as if
 all of the entries implicilty referenced appeared there literally.</para>
 </refsection>
