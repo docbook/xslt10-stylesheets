@@ -33,5 +33,11 @@ simpara
 simplelist
 </literallayout>
 <para>To customize the spacing, you need to reset all three attributes.</para>
+
+<para>To specify properties on just <tag>para</tag> elements without
+affecting these other elements,
+use the
+<link linkend="para.properties">para.properties</link>
+attribute-set. </para>
 </refsection>
 </refentry>
