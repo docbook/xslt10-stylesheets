@@ -1019,11 +1019,13 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     </xsl:attribute>
   </xsl:if>
 
+  <!-- Turn off longdesc attribute since not supported by browsers
   <xsl:if test="$longdesc != ''">
     <xsl:attribute name="longdesc">
       <xsl:value-of select="$longdesc"/>
     </xsl:attribute>
   </xsl:if>
+  -->
 
   <xsl:if test="@align and $viewport = 0">
     <xsl:attribute name="align">
