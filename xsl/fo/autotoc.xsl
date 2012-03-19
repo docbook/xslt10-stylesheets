@@ -869,22 +869,22 @@
     <fo:block id="lot...{$titles}...{$id}">
       <xsl:choose>
         <xsl:when test="$titles='table'">
-          <xsl:call-template name="component.list.of.tables.titlepage"/>
+          <xsl:call-template name="list.of.tables.titlepage"/>
         </xsl:when>
         <xsl:when test="$titles='figure'">
-          <xsl:call-template name="component.list.of.figures.titlepage"/>
+          <xsl:call-template name="list.of.figures.titlepage"/>
         </xsl:when>
         <xsl:when test="$titles='equation'">
-          <xsl:call-template name="component.list.of.equations.titlepage"/>
+          <xsl:call-template name="list.of.equations.titlepage"/>
         </xsl:when>
         <xsl:when test="$titles='example'">
-          <xsl:call-template name="component.list.of.examples.titlepage"/>
+          <xsl:call-template name="list.of.examples.titlepage"/>
         </xsl:when>
         <xsl:when test="$titles='procedure'">
-          <xsl:call-template name="component.list.of.procedures.titlepage"/>
+          <xsl:call-template name="list.of.procedures.titlepage"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="component.list.of.unknowns.titlepage"/>
+          <xsl:call-template name="list.of.unknowns.titlepage"/>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:apply-templates select="$nodes" mode="toc">
