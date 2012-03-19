@@ -440,19 +440,7 @@
         <xsl:call-template name="preface.titlepage"/>
       </fo:block>
 
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" 
-                          select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" 
-                          select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
+      <xsl:call-template name="make.component.tocs"/>
 
       <xsl:apply-templates/>
     </fo:flow>
@@ -533,18 +521,8 @@
         <xsl:call-template name="chapter.titlepage"/>
       </fo:block>
 
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" 
-                          select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
+      <xsl:call-template name="make.component.tocs"/>
+
       <xsl:apply-templates/>
     </fo:flow>
   </fo:page-sequence>
@@ -624,19 +602,8 @@
         <xsl:call-template name="appendix.titlepage"/>
       </fo:block>
 
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
+      <xsl:call-template name="make.component.tocs"/>
 
-      <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" 
-                          select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
       <xsl:apply-templates/>
     </fo:flow>
   </fo:page-sequence>
@@ -716,19 +683,8 @@
         <xsl:call-template name="article.titlepage"/>
       </fo:block>
 
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
+      <xsl:call-template name="make.component.tocs"/>
 
-      <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" 
-                          select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
       <xsl:apply-templates/>
     </fo:flow>
   </fo:page-sequence>
@@ -787,19 +743,7 @@
       <xsl:copy-of select="$title"/>
     </fo:block>
 
-    <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:if test="contains($toc.params, 'toc')">
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" 
-                          select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
+    <xsl:call-template name="make.component.tocs"/>
 
     <xsl:apply-templates/>
   </fo:block>
@@ -895,6 +839,72 @@
 
     </fo:flow>
   </fo:page-sequence>
+</xsl:template>
+
+<xsl:template name="make.component.tocs">
+
+  <xsl:variable name="toc.params">
+    <xsl:call-template name="find.path.params">
+      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="contains($toc.params, 'toc')">
+    <xsl:call-template name="component.toc">
+      <xsl:with-param name="toc.title.p" 
+                      select="contains($toc.params, 'title')"/>
+    </xsl:call-template>
+  </xsl:if>
+
+  <xsl:if test="contains($toc.params,'figure') and .//figure">
+    <xsl:call-template name="component.list.of.titles">
+      <xsl:with-param name="titles" select="'figure'"/>
+      <xsl:with-param name="nodes" select=".//figure"/>
+    </xsl:call-template>
+  </xsl:if>
+
+  <xsl:if test="contains($toc.params,'table') and .//table">
+    <xsl:call-template name="component.list.of.titles">
+      <xsl:with-param name="titles" select="'table'"/>
+      <xsl:with-param name="nodes" select=".//table[not(@tocentry = 0)]"/>
+    </xsl:call-template>
+  </xsl:if>
+
+  <xsl:if test="contains($toc.params,'example') and .//example">
+    <xsl:call-template name="component.list.of.titles">
+      <xsl:with-param name="titles" select="'example'"/>
+      <xsl:with-param name="nodes" select=".//example"/>
+    </xsl:call-template>
+  </xsl:if>
+
+  <xsl:if test="contains($toc.params,'equation') and 
+                 .//equation[title or info/title]">
+    <xsl:call-template name="component.list.of.titles">
+      <xsl:with-param name="titles" select="'equation'"/>
+      <xsl:with-param name="nodes" 
+                      select=".//equation[title or info/title]"/>
+    </xsl:call-template>
+  </xsl:if>
+
+  <xsl:if test="contains($toc.params,'procedure') and 
+                 .//procedure[title or info/title]">
+    <xsl:call-template name="component.list.of.titles">
+      <xsl:with-param name="titles" select="'procedure'"/>
+      <xsl:with-param name="nodes" 
+                      select=".//procedure[title or info/title]"/>
+    </xsl:call-template>
+  </xsl:if>
+
+  <xsl:choose>
+    <xsl:when test="$toc.params = ''">
+    </xsl:when>
+    <xsl:when test="$toc.params = 'nop'">
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="component.toc.separator"/>
+    </xsl:otherwise>
+  </xsl:choose>
+
 </xsl:template>
 
 </xsl:stylesheet>
