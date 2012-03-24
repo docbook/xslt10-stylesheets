@@ -181,6 +181,24 @@
 <xsl:attribute-set name="list.of.unknowns.titlepage.recto.style"/>
 <xsl:attribute-set name="list.of.unknowns.contents.titlepage.verso.style"/>
 
+<xsl:attribute-set name="component.list.of.tables.titlepage.recto.style"/>
+<xsl:attribute-set name="component.list.of.tables.contents.titlepage.verso.style"/>
+
+<xsl:attribute-set name="component.list.of.figures.titlepage.recto.style"/>
+<xsl:attribute-set name="component.list.of.figures.contents.titlepage.verso.style"/>
+
+<xsl:attribute-set name="component.list.of.equations.titlepage.recto.style"/>
+<xsl:attribute-set name="component.list.of.equations.contents.titlepage.verso.style"/>
+
+<xsl:attribute-set name="component.list.of.examples.titlepage.recto.style"/>
+<xsl:attribute-set name="component.list.of.examples.contents.titlepage.verso.style"/>
+
+<xsl:attribute-set name="component.list.of.procedures.titlepage.recto.style"/>
+<xsl:attribute-set name="component.list.of.procedures.contents.titlepage.verso.style"/>
+
+<xsl:attribute-set name="component.list.of.unknowns.titlepage.recto.style"/>
+<xsl:attribute-set name="component.list.of.unknowns.contents.titlepage.verso.style"/>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="*" mode="titlepage.mode">
