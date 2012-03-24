@@ -110,7 +110,6 @@ of two ways:</para>
     then the path is relative to the file containing
     the first such link element in the document.</para>
   </listitem>
-  </listitem>
 </orderedlist>
 <para>Once the collection file is opened by the first instance described
 above, it stays open for the current document
