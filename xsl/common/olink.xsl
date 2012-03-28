@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:d="http://docbook.org/ns/docbook"
                 version="1.0">
 
 <!-- ********************************************************************
@@ -14,16 +13,10 @@
      ******************************************************************** -->
 
 <!-- Create keys for quickly looking up olink targets -->
-<!-- Support elements in DB namespace in case that's used on the olink database -->
-<xsl:key name="targetdoc-key" match="document|d:document" use="@targetdoc" />
-<xsl:key name="targetptr-key"  match="div|d:div|obj|d:obj"
-         use="concat(ancestor::document/@targetdoc, 
-                     ancestor::d:document/@targetdoc, 
-                     '/',
-                     @targetptr, 
-                     '/', 
-                     ancestor::document/@lang,
-                     ancestor::d:document/@lang)" />
+<xsl:key name="targetdoc-key" match="document" use="@targetdoc" />
+<xsl:key name="targetptr-key"  match="div|obj"
+         use="concat(ancestor::document/@targetdoc, '/',
+                     @targetptr, '/', ancestor::document/@lang)" />
 
 <!-- Return filename of database -->
 <xsl:template name="select.target.database">
