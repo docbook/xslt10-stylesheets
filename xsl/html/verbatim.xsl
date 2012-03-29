@@ -34,12 +34,7 @@
 
   <xsl:call-template name="anchor"/>
 
-  <xsl:variable name="div.element">
-    <xsl:choose>
-      <xsl:when test="$make.clean.html != 0">div</xsl:when>
-      <xsl:otherwise>pre</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:variable name="div.element">pre</xsl:variable>
 
   <xsl:if test="$shade.verbatim != 0">
     <xsl:message>
