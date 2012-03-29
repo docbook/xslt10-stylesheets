@@ -218,6 +218,21 @@
 <dingbat key="singleendquote" text="&#x2018;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
+<!-- WebHelp -->
+<gentext key="Search" text="Hledání"/>
+<gentext key="Enter_a_term_and_click" text="Zadejte pojem a klikněte "/>
+<gentext key="Go" text="Přejdi"/>
+<gentext key="to_perform_a_search" text=" pro hledání."/>
+<gentext key="txt_filesfound" text="Výsledky"/>
+<gentext key="txt_enter_at_least_1_char" text="Musíte zadat alespoň jeden znak."/>
+<gentext key="txt_browser_not_supported"
+        text="Váš prohlížeč není podporován. Použití prohlížeče Mozilla Firefox je doporučeno."/>
+<gentext key="txt_please_wait" text="Prosím čekejte. Probíhá hledání..."/>
+<gentext key="txt_results_for" text="Výsledky pro: "/>
+<gentext key="TableofContents" text="Obsah"/>
+<gentext key="HighlightButton" text="Přepnout zvýrazňování výsledků hledání"/>
+
+
 <context name="styles">
 
 <template name="person-name">first-last</template>

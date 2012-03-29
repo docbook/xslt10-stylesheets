@@ -218,6 +218,21 @@
 <gentext key="hyphenation-push-character-count" text="2"/>
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
+<!-- WebHelp -->
+<gentext key="Search" text="Search"/>
+<gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
+<gentext key="Go" text="Go"/>
+<gentext key="to_perform_a_search" text=" to perform a search."/>
+<gentext key="txt_filesfound" text="Results"/>
+<gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+<gentext key="txt_browser_not_supported"
+        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+<gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
+<gentext key="txt_results_for" text="Results for: "/>
+<gentext key="TableofContents" text="Contents"/>
+<gentext key="HighlightButton" text="Toggle search result highlighting"/>
+<gentext key="Your_search_returned_no_results" text="Your search returned no results."/>  
+
 <context name="styles">
 
 <template name="person-name">first-last</template>
@@ -600,6 +615,7 @@
 <context name="htmlhelp">
 <template name="langcode">0x0409 English (UNITED STATES)</template>
 </context>
+
 
 <context name="index">
 <template name="term-separator">, </template>

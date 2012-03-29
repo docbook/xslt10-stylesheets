@@ -242,8 +242,20 @@
      ich verschiedene Bu"cher durchgebla"ttert habe.
      Oliver Fischer
      -->
- 
-  
+
+<!-- WebHelp --> 
+<gentext key="Search" text="suchen"/>
+<gentext key="Enter_a_term_and_click" text="Geben Sie einen Begriff ein und klicken Sie "/>
+<gentext key="Go" text="Go"/>
+<gentext key="to_perform_a_search" text=" to perform a search."/>
+<gentext key="txt_filesfound" text="Ergebnisse"/>
+<gentext key="txt_enter_at_least_1_char" text="Sie müssen mindestens ein Zeichen."/>
+<gentext key="txt_browser_not_supported"
+        text="Ihr Browser ist nicht unterstütz. Es wird empfohlen, Mozilla Firefox zu verwenden."/>
+<gentext key="txt_please_wait" text="Bitte warten Sie. Die Suche ist im Gange ..."/>
+<gentext key="txt_results_for" text="Ergebnisse für: "/>
+<gentext key="HighlightButton" text="Markierte Suchergebnisse ein/ausschalten"/>
+
 <context name="styles">
 
 <template name="person-name">first-last</template>

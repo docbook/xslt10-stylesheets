@@ -53,7 +53,6 @@
     <!-- Generate the end-of-the-book index -->
     <xsl:param name="generate.index" select="1"/>
     <xsl:param name="inherit.keywords" select="'0'"/>
-    <xsl:param name="local.l10n.xml" select="document('')"/>
     <xsl:param name="para.propagates.style" select="1"/>
     <xsl:param name="phrase.propagates.style" select="1"/>
     <xsl:param name="chunk.first.sections" select="1"/>
@@ -102,91 +101,8 @@ set       toc,title
 
     <!-- Localizations of webhelp specific words. Your contributions for other languages are appreciated.
 	Currently, only around 10 translations needed. -->
-    <!-- To be moved to files under 'gentext/locale/' -->
-    <i18n xmlns="http://docbook.sourceforge.net/xmlns/l10n/1.0">
-        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="en">
-            <l:gentext key="Search" text="Search"/>
-            <l:gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
-            <l:gentext key="Go" text="Go"/>
-            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
-            <l:gentext key="txt_filesfound" text="Results"/>
-            <l:gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
-            <l:gentext key="txt_browser_not_supported"
-                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-            <l:gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
-            <l:gentext key="txt_results_for" text="Results for: "/>
-            <l:gentext key="TableofContents" text="Contents"/>
-	        <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
-	        <l:gentext key="Your_search_returned_no_results" text="Your search returned no results."/>
-        </l10n>
-	<!-- The fallback mechansim doesn't seem to work for local l10n stuff -->
-        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="ja">
-            <l:gentext key="Search" text="検索"/>
-            <l:gentext key="Enter_a_term_and_click" text="用語をクリックして入力してください。"/>
-            <l:gentext key="Go" text="移動"/>
-            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
-            <l:gentext key="txt_filesfound" text="検索結果"/>
-            <l:gentext key="txt_enter_at_least_1_char" text="あなたは、少なくとも1つの文字を入力する必要があります。"/>
-            <l:gentext key="txt_browser_not_supported"
-                       text="お使いのブラウザがサポートされていません。 Mozilla Firefoxの使用が推奨されます"/>
-            <l:gentext key="txt_please_wait" text="しばらくお待ちください。検索が進行中です..."/>
-            <l:gentext key="txt_results_for" text="次の検索語の結果： "/>
-	    <l:gentext key="HighlightButton" text="強調表示の切り替えの検索結果"/>
-        </l10n>
-        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="de">
-            <l:gentext key="Search" text="suchen"/>
-            <l:gentext key="Enter_a_term_and_click" text="Geben Sie einen Begriff ein und klicken Sie "/>
-            <l:gentext key="Go" text="Go"/>
-            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
-            <l:gentext key="txt_filesfound" text="Ergebnisse"/>
-            <l:gentext key="txt_enter_at_least_1_char" text="Sie müssen mindestens ein Zeichen."/>
-            <l:gentext key="txt_browser_not_supported"
-                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-            <l:gentext key="txt_please_wait" text="Bitte warten Sie. Die Suche ist im Gange ..."/>
-            <l:gentext key="txt_results_for" text="Ergebnisse für: "/>
-	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
-        </l10n>
-        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="fr">
-            <l:gentext key="Search" text="rechercher"/>
-            <l:gentext key="Enter_a_term_and_click" text="Saisissez un terme et cliquer "/>
-            <l:gentext key="Go" text="Go"/>
-            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
-            <l:gentext key="txt_filesfound" text="résultats"/>
-            <l:gentext key="txt_enter_at_least_1_char" text="Vous devez entrer au moins un caractère."/>
-            <l:gentext key="txt_browser_not_supported"
-                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-            <l:gentext key="txt_please_wait" text="S'il vous plaît attendre. La recherche est en cours ..."/>
-            <l:gentext key="txt_results_for" text="Résultats pour: "/>
-	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
-        </l10n>
-        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="zh">
-            <l:gentext key="Search" text="搜索"/>
-            <l:gentext key="Enter_a_term_and_click" text="输入字词，然后点击 "/>
-            <l:gentext key="Go" text="去"/>
-            <l:gentext key="to_perform_a_search" text=" to perform a search."/>
-            <l:gentext key="txt_filesfound" text="条结果"/>
-            <l:gentext key="txt_enter_at_least_1_char" text="您必须输入至少一个字符。"/>
-            <l:gentext key="txt_browser_not_supported"
-                       text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-            <l:gentext key="txt_please_wait" text="请稍候。搜索中..."/>
-            <l:gentext key="txt_results_for" text="结果： "/>
-	    <l:gentext key="HighlightButton" text="Toggle search result highlighting"/>
-        </l10n>
-        <l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="cs">
-            <l:gentext key="Search" text="Hledání"/>
-            <l:gentext key="Enter_a_term_and_click" text="Zadejte pojem a klikněte "/>
-            <l:gentext key="Go" text="Přejdi"/>
-            <l:gentext key="to_perform_a_search" text=" pro hledání."/>
-            <l:gentext key="txt_filesfound" text="Výsledky"/>
-            <l:gentext key="txt_enter_at_least_1_char" text="Musíte zadat alespoň jeden znak."/>
-            <l:gentext key="txt_browser_not_supported"
-                       text="Váš prohlížeč není podporován. Použití prohlížeče Mozilla Firefox je doporučeno."/>
-            <l:gentext key="txt_please_wait" text="Prosím čekejte. Probíhá hledání..."/>
-            <l:gentext key="txt_results_for" text="Výsledky pro: "/>
-            <l:gentext key="TableofContents" text="Obsah"/>
-           <l:gentext key="HighlightButton" text="Přepnout zvýrazňování výsledků hledání"/>
-        </l10n>
-    </i18n>
+    <!-- Moved to files under 'gentext/locale/', search for WebHelp -->
+    
 
   <xsl:template name="system.head.content">
   <xsl:param name="node" select="."/>
