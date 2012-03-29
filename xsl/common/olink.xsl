@@ -57,6 +57,13 @@
         <xsl:text>and targetptr attributes.</xsl:text>
       </xsl:message>
     </xsl:when>
+    <xsl:when test="namespace-uri($target.database/*) != ''">
+      <xsl:message>
+        <xsl:text>Olink error: the targetset element and children in '</xsl:text>
+        <xsl:value-of select="$target.database.document"/>
+        <xsl:text>' should not be in any namespace.</xsl:text>
+      </xsl:message>
+    </xsl:when>
     <!-- Did it not open? Should be a targetset element -->
     <xsl:when test="not($target.database/*)">
       <xsl:message>
