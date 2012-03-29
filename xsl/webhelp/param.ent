@@ -1,0 +1,11 @@
+<!ENTITY webhelp.include.search.tab SYSTEM "../params/webhelp.include.search.tab.xml">
+<!ENTITY webhelp.start.filename SYSTEM "../params/webhelp.start.filename.xml">
+<!ENTITY webhelp.base.dir SYSTEM "../params/webhelp.base.dir.xml">
+<!ENTITY webhelp.common.dir SYSTEM "../params/webhelp.common.dir.xml">
+<!ENTITY webhelp.tree.cookie.id SYSTEM "../params/webhelp.tree.cookie.id.xml">
+<!ENTITY webhelp.indexer.language SYSTEM "../params/webhelp.indexer.language.xml">
+<!ENTITY webhelp.default.topic SYSTEM "../params/webhelp.default.topic.xml">
+<!ENTITY webhelp.autolabel SYSTEM "../params/webhelp.autolabel.xml">
+<!ENTITY branding SYSTEM "../params/webhelp.branding.xml">
+<!ENTITY brandname SYSTEM "../params/webhelp.brandname.xml">
+

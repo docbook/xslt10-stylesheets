@@ -1,0 +1,77 @@
+<!DOCTYPE book [
+<!ENTITY % param.ent SYSTEM "param.ent">
+%param.ent;
+]>
+
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+   xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+   <info>
+      <title>WebHelp Parameter Reference</title>
+      <releaseinfo role="meta"> $Id: $ </releaseinfo>
+      <authorgroup>
+         <author>
+            <personname>
+               <surname>Kasun</surname>
+               <firstname>Gajasinghe</firstname>
+            </personname>
+            <email>kasunbg AT gmail DOT com</email>
+         </author>
+         <author>
+            <personname>
+               <surname>David</surname>
+               <firstname>Cramer</firstname>
+            </personname>
+            <email>david AT thingbag DOT net</email>
+         </author>
+      </authorgroup>
+
+      
+      <abstract>
+         <para>This is reference documentation for all user-configurable
+            parameters in the DocBook XSL WebHelp stylesheet (for
+            generating websites from DocBook XML sources). Note that the
+            WebHelp stylesheet is a customization layer of the DocBook
+            XSL (X)HTML stylesheet. Therefore, in addition to the
+            WebHelp-specific parameters listed in this section, you can
+            also use a number of <link xlink:href="../html/">(X)HTML
+               stylesheet parameters</link> to control WebHelp
+            output.</para>
+      </abstract>
+   </info>
+   <reference xml:id="webhelp.general">
+      <title>General Parameters</title>
+      &webhelp.include.search.tab;
+   </reference>
+   
+   <appendix xml:id="stylesheet">
+      <title>The Stylesheet</title>
+
+      <para>The <filename>param.xsl</filename> stylesheet is just a
+         wrapper around all these parameters.</para>
+
+      <src:fragment xml:id="top" mundane-result-prefixes="xsl">
+
+         <!-- This file is generated from param.xweb -->
+         <xsl:stylesheet exclude-result-prefixes="src" version="1.0">
+
+            <src:fragref linkend="webhelp.include.search.tab.frag"/>
+            <src:fragref linkend="webhelp.start.filename.frag"/>
+            <src:fragref linkend="webhelp.base.dir.frag"/>
+            <src:fragref linkend="webhelp.common.dir.frag"/>
+            <src:fragref linkend="webhelp.tree.cookie.id.frag"/>
+            <src:fragref linkend="webhelp.indexer.language.frag"/>
+            <src:fragref linkend="webhelp.default.topic.frag"/>
+            <src:fragref linkend="webhelp.autolabel.frag"/>
+            <!-- FIXME:
+               What about brandname and branding? Shouldn't they
+               better renamed to webhelp.brandname and webhelp.branding?
+            <src:fragref linkend="webhelp.branding.frag"/>
+            <src:fragref linkend="webhelp.brandname.frag"/>
+            -->
+         </xsl:stylesheet>
+      </src:fragment>
+
+   </appendix>
+</book>
