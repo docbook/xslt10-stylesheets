@@ -43,6 +43,13 @@
    <reference xml:id="webhelp.general">
       <title>General Parameters</title>
       &webhelp.include.search.tab;
+      &webhelp.start.filename;
+      &webhelp.base.dir;
+      &webhelp.common.dir;
+      &webhelp.tree.cookie.id;
+      &webhelp.indexer.language;
+      &webhelp.default.topic;
+      &webhelp.autolabel;
    </reference>
    
    <appendix xml:id="stylesheet">
