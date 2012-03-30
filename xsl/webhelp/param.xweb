@@ -74,8 +74,10 @@
             <!-- FIXME:
                What about brandname and branding? Shouldn't they
                better renamed to webhelp.brandname and webhelp.branding?
-            <src:fragref linkend="webhelp.branding.frag"/>
-            <src:fragref linkend="webhelp.brandname.frag"/>
+             Rename Fragref -> fragref (was needed to pass the 
+             checking script)
+             <src:Fragref linkend="webhelp.branding.frag"/>
+             <src:Fragref linkend="webhelp.brandname.frag"/>
             -->
          </xsl:stylesheet>
       </src:fragment>
