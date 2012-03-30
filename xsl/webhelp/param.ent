@@ -6,6 +6,7 @@
 <!ENTITY webhelp.indexer.language SYSTEM "../params/webhelp.indexer.language.xml">
 <!ENTITY webhelp.default.topic SYSTEM "../params/webhelp.default.topic.xml">
 <!ENTITY webhelp.autolabel SYSTEM "../params/webhelp.autolabel.xml">
-<!ENTITY branding SYSTEM "../params/webhelp.branding.xml">
-<!ENTITY brandname SYSTEM "../params/webhelp.brandname.xml">
-
+<!--
+<! ENTITY branding SYSTEM "../params/webhelp.branding.xml">
+<! ENTITY brandname SYSTEM "../params/webhelp.brandname.xml">
+-->
