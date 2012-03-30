@@ -1,9 +1,8 @@
-PARAMS=../params/webhelp.autolabel.xml \
-../params/webhelp.base.dir.xml \
-../params/webhelp.common.dir.xml \
-../params/webhelp.default.topic.xml \
-../params/webhelp.include.search.tab.xml \
-../params/webhelp.indexer.language.xml \
-../params/webhelp.start.filename.xml \
-../params/webhelp.tree.cookie.id.xml
-
+PARAMS=../params/webhelp.include.search.tab.xml \
+       ../params/webhelp.start.filename.xml \
+       ../params/webhelp.base.dir.xml \
+       ../params/webhelp.common.dir.xml \
+       ../params/webhelp.tree.cookie.id.xml \
+       ../params/webhelp.indexer.language.xml \
+       ../params/webhelp.default.topic.xml \
+       ../params/webhelp.autolabel.xml
