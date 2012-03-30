@@ -3,7 +3,7 @@
           xmlns:xi="http://www.w3.org/2001/XInclude"
           xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
           xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-          version="5.0" xml:id="autolayout-file">
+          version="5.0" xml:id="webhelp.tree.cookie.id">
 <refmeta>
 <refentrytitle>webhelp.tree.cookie.id</refentrytitle>
 <refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
