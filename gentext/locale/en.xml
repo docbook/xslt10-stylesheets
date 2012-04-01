@@ -219,19 +219,20 @@
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
 <!-- WebHelp -->
-<gentext key="Search" text="Search"/>
-<gentext key="Enter_a_term_and_click" text="Enter a term and click "/>
-<gentext key="Go" text="Go"/>
-<gentext key="to_perform_a_search" text=" to perform a search."/>
-<gentext key="txt_filesfound" text="Results"/>
-<gentext key="txt_enter_at_least_1_char" text="You must enter at least one character."/>
-<gentext key="txt_browser_not_supported"
-        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-<gentext key="txt_please_wait" text="Please wait. Search in progress..."/>
-<gentext key="txt_results_for" text="Results for: "/>
-<gentext key="TableofContents" text="Contents"/>
-<gentext key="HighlightButton" text="Toggle search result highlighting"/>
-<gentext key="Your_search_returned_no_results" text="Your search returned no results."/>  
+<context name="webhelp">
+  <template name="Search" text="Search"/>
+  <template name="Enter_a_term_and_click" text="Enter a term and click "/>
+  <template name="Go" text="Go"/>
+  <template name="to_perform_a_search" text=" to perform a search."/>
+  <template name="txt_filesfound" text="Results"/>
+  <template name="txt_enter_at_least_1_char" text="You must enter at least one character."/>
+  <template name="txt_browser_not_supported" text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
+  <template name="txt_please_wait" text="Please wait. Search in progress..."/>
+  <template name="txt_results_for" text="Results for: "/>
+  <template name="TableofContents" text="Contents"/>
+  <template name="HighlightButton" text="Toggle search result highlighting"/>
+  <template name="Your_search_returned_no_results" text="Your search returned no results."/>
+</context>
 
 <context name="styles">
 

@@ -134,20 +134,25 @@ These problems go away when you add this IE=7 mode meta tag.
             var language = "<xsl:value-of select="$webhelp.indexer.language"/>";
             var w = new Object();
             //Localization
-            txt_filesfound = '<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_filesfound'"/>
+            txt_filesfound = '<xsl:call-template name="gentext.template">
+                <xsl:with-param name="name" select="'txt_filesfound'"/>
+		<xsl:with-param name="context" select="'webhelp'"/>
                 </xsl:call-template>';
-            txt_enter_at_least_1_char = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_enter_at_least_1_char'"/>
+            txt_enter_at_least_1_char = "<xsl:call-template name="gentext.template">
+                <xsl:with-param name="name" select="'txt_enter_at_least_1_char'"/>
+		<xsl:with-param name="context" select="'webhelp'"/>
                 </xsl:call-template>";
-            txt_browser_not_supported = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_browser_not_supported'"/>
+            txt_browser_not_supported = "<xsl:call-template name="gentext.template">
+                <xsl:with-param name="name" select="'txt_browser_not_supported'"/>
+		<xsl:with-param name="context" select="'webhelp'"/>
                 </xsl:call-template>";
-            txt_please_wait = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_please_wait'"/>
+            txt_please_wait = "<xsl:call-template name="gentext.template">
+                <xsl:with-param name="name" select="'txt_please_wait'"/>
+		<xsl:with-param name="context" select="'webhelp'"/>
                 </xsl:call-template>";
-            txt_results_for = "<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'txt_results_for'"/>
+            txt_results_for = "<xsl:call-template name="gentext.template">
+                <xsl:with-param name="name" select="'txt_results_for'"/>
+		<xsl:with-param name="context" select="'webhelp'"/>
                 </xsl:call-template>";
         </script>
 
@@ -674,8 +679,9 @@ border: none; background: none; font-weight: none; color: none; }
                                 <li>
                                     <a href="#treeDiv" style="outline:0;" tabindex="1">
                                         <span class="contentsTab">
-                                            <xsl:call-template name="gentext">
-                                                <xsl:with-param name="key" select="'TableofContents'"/>
+                                            <xsl:call-template name="gentext.template">
+                                                <xsl:with-param name="name" select="'TableofContents'"/>
+						<xsl:with-param name="context" select="'webhelp'"/>
                                             </xsl:call-template>
                                         </span>
                                     </a>
@@ -684,8 +690,9 @@ border: none; background: none; font-weight: none; color: none; }
                                     <li>
                                         <a href="#searchDiv" style="outline:0;" tabindex="1" onclick="doSearch()">
                                             <span class="searchTab">
-                                                <xsl:call-template name="gentext">
-                                                    <xsl:with-param name="key" select="'Search'"/>
+                                                <xsl:call-template name="gentext.template">
+                                                    <xsl:with-param name="name" select="'Search'"/>
+						    <xsl:with-param name="context" select="'webhelp'"/>
                                                 </xsl:call-template>
                                             </span>
                                         </a>
@@ -713,8 +720,9 @@ border: none; background: none; font-weight: none; color: none; }
                                               class="searchForm">
                                             <fieldset class="searchFieldSet">
                                                 <legend>
-                                                    <xsl:call-template name="gentext">
-                                                        <xsl:with-param name="key" select="'Search'"/>
+                                                    <xsl:call-template name="gentext.template">
+                                                        <xsl:with-param name="name" select="'Search'"/>
+							<xsl:with-param name="context" select="'webhelp'"/>
                                                     </xsl:call-template>
                                                 </legend>
                                                 <center>
@@ -880,8 +888,9 @@ border: none; background: none; font-weight: none; color: none; }
             <xsl:with-param name="content">
 	      //Resource strings for localization
 	      var localeresource = new Object;
-	      localeresource["search_no_results"]="<xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'Your_search_returned_no_results'"/>
+	      localeresource["search_no_results"]="<xsl:call-template name="gentext.template">
+                <xsl:with-param name="name" select="'Your_search_returned_no_results'"/>
+		<xsl:with-param name="context" select="'webhelp'"/>
                 </xsl:call-template>";
             </xsl:with-param>
         </xsl:call-template>    
