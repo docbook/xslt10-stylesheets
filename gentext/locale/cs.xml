@@ -219,6 +219,7 @@
 <dingbat key="bullet" text="&#x2022;"/>
 
 <!-- WebHelp -->
+<context name="webhelp">
 <gentext key="Search" text="Hledání"/>
 <gentext key="Enter_a_term_and_click" text="Zadejte pojem a klikněte "/>
 <gentext key="Go" text="Přejdi"/>
@@ -231,6 +232,7 @@
 <gentext key="txt_results_for" text="Výsledky pro: "/>
 <gentext key="TableofContents" text="Obsah"/>
 <gentext key="HighlightButton" text="Přepnout zvýrazňování výsledků hledání"/>
+</context>
 
 
 <context name="styles">
