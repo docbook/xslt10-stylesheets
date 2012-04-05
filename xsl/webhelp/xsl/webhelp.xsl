@@ -506,16 +506,7 @@ border: none; background: none; font-weight: none; color: none; }
         <xsl:variable name="up" select="parent::*"/>
 
         <div id="header">
-            <a target="_blank">
-                <xsl:attribute name="href">
-                    <xsl:choose>
-                        <xsl:when test="$branding = 'docbook'">http://docbook.org/</xsl:when>
-                        <xsl:otherwise>#</xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-            <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-                src='{$webhelp.common.dir}images/logo.png' alt="{$brandname} Documentation"/>
-            </a>
+  	    <xsl:call-template name="webhelpheader.logo"/>
             <!-- Display the page title and the main heading(parent) of it-->
             <h1>
 	      <xsl:call-template name="get.doc.title"/>
@@ -608,8 +599,16 @@ border: none; background: none; font-weight: none; color: none; }
     </xsl:template>
 
     <xsl:template name="webhelpheader.logo">
-      <img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
-	   src='{$webhelp.common.dir}images/logo.png' alt="Company Logo"/>
+	<a target="_blank">
+	    <xsl:attribute name="href">
+		<xsl:choose>
+		    <xsl:when test="$branding = 'docbook'">http://docbook.org/</xsl:when>
+		    <xsl:otherwise>#</xsl:otherwise>
+		</xsl:choose>
+	    </xsl:attribute>
+	<img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
+	    src='{$webhelp.common.dir}images/logo.png' alt="{$brandname} Documentation"/>
+	</a>
     </xsl:template>
 
     <xsl:template name="user.webhelp.navheader.content"/>
