@@ -22,7 +22,8 @@
 <refsection><info><title>Description</title></info>
 
 <para>The HTML Help Compiler is not UTF-8 aware, so you should always use an
-appropriate single-byte encoding here. IANA provides <link xlink:href="http://www.iana.org/assignments/character-sets">a registry of character sets</link>.</para>
+appropriate single-byte encoding here. See also <link xlink:href="HtmlHelp.html#HelpProcOptions" 
+role="tcg">Processing options</link>.</para>
 
 </refsection>
 </refentry>
