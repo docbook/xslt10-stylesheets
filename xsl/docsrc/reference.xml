@@ -156,8 +156,9 @@
       </partintro>
       <xi:include href="../webhelp/param.xml" xpointer="xpointer(/book/reference)" />
     </part>
+   -->
   </book>
-  -->
+ 
   <book xml:id="pi"><title>DocBook XSL Stylesheets User Reference: PIs</title>
     <?dbhtml dir="pi"?>
     <?dbhtml filename="index.html"?>
