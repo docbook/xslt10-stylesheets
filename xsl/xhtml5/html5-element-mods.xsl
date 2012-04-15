@@ -1274,7 +1274,7 @@
 
     <xsl:call-template name="video.poster"/>
 
-    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates select="@*[local-name() != 'fileref']"/>
     <xsl:apply-templates select="../multimediaparam"/>
     
     <!-- add any fallback content -->
