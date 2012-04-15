@@ -985,6 +985,25 @@
   </xsl:if>
 </xsl:template>
 
+<!-- html5 uses <ul> instead of <dl> for toc -->
+<xsl:template name="process.qanda.toc">
+  <ul>
+    <xsl:apply-templates select="qandadiv" mode="qandatoc.mode"/>
+    <xsl:apply-templates select="qandaset|qandaentry" mode="qandatoc.mode"/>
+  </ul>
+</xsl:template>
+
+<xsl:template match="qandadiv" mode="qandatoc.mode">
+  <!--
+  <dt><xsl:apply-templates select="title" mode="qandatoc.mode"/></dt>
+  <dd><xsl:call-template name="process.qanda.toc"/></dd>
+  -->
+  <li>
+    <xsl:apply-templates select="title" mode="qandatoc.mode"/>
+    <xsl:call-template name="process.qanda.toc"/>
+  </li>
+</xsl:template>
+
 <!-- HTML5: each dt must have a dd -->
 <xsl:template match="indexterm" mode="index-primary">
   <xsl:param name="scope" select="."/>
@@ -1224,18 +1243,21 @@
   </xsl:variable>
 
   <audio>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
+
     <xsl:attribute name="src">
       <xsl:value-of select="$filename"/>
     </xsl:attribute>
-    <xsl:attribute name="controls">controls</xsl:attribute>
-    <xsl:attribute name="autoplay"></xsl:attribute>
+
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates select="../multimediaparam"/>
 
     <!-- add any fallback content -->
     <xsl:call-template name="audio.fallback"/>
   </audio>
 </xsl:template>
 
+<!-- generate <video> element for html5 -->
 <xsl:template match="videodata">
   <xsl:variable name="filename">
     <xsl:call-template name="mediaobject.filename">
@@ -1244,16 +1266,102 @@
   </xsl:variable>
 
   <video>
-    <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="common.html.attributes"/>
+
     <xsl:attribute name="src">
       <xsl:value-of select="$filename"/>
     </xsl:attribute>
-    <xsl:attribute name="controls">controls</xsl:attribute>
-    <xsl:attribute name="autoplay"></xsl:attribute>
+
+    <xsl:call-template name="video.poster"/>
+
+    <xsl:apply-templates select="@*"/>
+    <xsl:apply-templates select="../multimediaparam"/>
     
     <!-- add any fallback content -->
     <xsl:call-template name="video.fallback"/>
   </video>
+</xsl:template>
+
+<!-- use only an imageobject with @role = 'poster' -->
+<xsl:template name="video.poster">
+  <xsl:variable name="imageobject" select="../../imageobject[@role = 'poster'][1]"/>
+  <xsl:if test="$imageobject">
+    <xsl:attribute name="poster">
+      <xsl:value-of select="$imageobject/imagedata/@fileref"/>
+    </xsl:attribute> 
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="videodata/@fileref">
+  <!-- already handled by videodata template -->
+</xsl:template>
+
+<xsl:template match="audiodata/@fileref">
+  <!-- already handled by audiodata template -->
+</xsl:template>
+
+<xsl:template match="videodata/@contentwidth">
+  <xsl:attribute name="width">
+    <xsl:value-of select="."/>
+  </xsl:attribute>
+</xsl:template>
+
+<xsl:template match="videodata/@contentdepth">
+  <xsl:attribute name="height">
+    <xsl:value-of select="."/>
+  </xsl:attribute>
+</xsl:template>
+
+<xsl:template match="videodata/@depth">
+  <xsl:attribute name="height">
+    <xsl:value-of select="."/>
+  </xsl:attribute>
+</xsl:template>
+
+<!-- pass through these attributes -->
+<xsl:template match="videodata/@autoplay |
+                     videodata/@controls |
+                     audiodata/@autoplay |
+                     audiodata/@controls">
+  <xsl:copy-of select="."/>
+</xsl:template>
+
+<xsl:template match="videodata/@*">
+  <!-- Do nothing with the rest of the attributes -->
+</xsl:template>
+
+<xsl:template match="audiodata/@*">
+  <!-- Do nothing with the rest of the attributes -->
+</xsl:template>
+
+<xsl:template match="multimediaparam">
+  <xsl:call-template name="process.multimediaparam">
+    <xsl:with-param name="object" select=".."/>
+    <xsl:with-param name="param.name" select="@name"/>
+    <xsl:with-param name="param.value" select="@value"/>
+  </xsl:call-template>
+</xsl:template>
+
+<!-- Determines the best value of a media attribute from the
+  attributes and multimediaparam elements -->
+<xsl:template name="process.multimediaparam">
+  <xsl:param name="object" select="NOTANELEMENT"/>
+  <xsl:param name="param.name"/>
+  <xsl:param name="param.value"/>
+
+  <xsl:choose>
+    <xsl:when test="$object/*/@*[local-name(.) = $param.name]">
+      <!-- explicit attribute with that name takes precedence -->
+      <xsl:attribute name="{$param.name}">
+        <xsl:value-of select="$object/*/@*[local-name(.) = $param.name]"/>
+      </xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:attribute name="{$param.name}">
+        <xsl:value-of select="$param.value"/>
+      </xsl:attribute>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="video.fallback">
