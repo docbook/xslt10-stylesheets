@@ -1326,11 +1326,11 @@
   <xsl:copy-of select="."/>
 </xsl:template>
 
-<xsl:template match="videodata/@*">
+<xsl:template match="videodata/@*" priority="-1">
   <!-- Do nothing with the rest of the attributes -->
 </xsl:template>
 
-<xsl:template match="audiodata/@*">
+<xsl:template match="audiodata/@*" priority="-1">
   <!-- Do nothing with the rest of the attributes -->
 </xsl:template>
 
