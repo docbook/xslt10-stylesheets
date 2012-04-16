@@ -12,7 +12,7 @@
 <!-- This stylesheet convert DocBook elements into topic element.
      The chunking takes place elsewhere.  -->
 
-<xsl:import href="file:///c:/xml/docbook-xsl-ns-1.75.2/xhtml/docbook.xsl"/>
+<xsl:import href="../xhtml/docbook.xsl"/>
     
     
 <xsl:param name="assembly.filename">myassembly.xml</xsl:param>

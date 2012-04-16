@@ -13,9 +13,9 @@
 
 <xsl:import href="topic-maker.xsl"/>
 
-<xsl:import href="file:///c:/xml/docbook-xsl-ns-1.75.2/xhtml/chunk-common.xsl"/>
+<xsl:import href="../xhtml/chunk-common.xsl"/>
 
-<xsl:include href="file:///c:/xml/docbook-xsl-ns-1.75.2/xhtml/chunk-code.xsl"/>
+<xsl:include href="../xhtml/chunk-code.xsl"/>
 
 <xsl:param name="root.id.suffix">-info</xsl:param>
 <xsl:param name="root.as.resourceref" select="1"/>
