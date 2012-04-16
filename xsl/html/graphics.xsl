@@ -53,9 +53,21 @@
              or $lcext = 'jpg'
              or $lcext = 'avi'
              or $lcext = 'mpg'
+             or $lcext = 'mp4'
              or $lcext = 'mpeg'
              or $lcext = 'qt'
              or $lcext = 'gif'
+             or $lcext = 'acc'
+             or $lcext = 'mp1'
+             or $lcext = 'mp2'
+             or $lcext = 'mp3'
+             or $lcext = 'mp4'
+             or $lcext = 'm4v'
+             or $lcext = 'm4a'
+             or $lcext = 'wav'
+             or $lcext = 'ogv'
+             or $lcext = 'ogg'
+             or $lcext = 'webm'
              or $lcext = 'bmp'">1</xsl:if>
 </xsl:template>
 

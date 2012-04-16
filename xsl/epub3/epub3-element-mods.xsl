@@ -1156,25 +1156,6 @@ article  toc,title,figure,table,example,equation
   </xsl:if>
 </xsl:template>
 
-<xsl:template name="graphic.format.content-type">
-  <xsl:param name="format" select="''"/>
-  <xsl:choose>
-    <xsl:when test="$format = ''"></xsl:when>
-    <xsl:when test="$format = 'linespecific'"></xsl:when>
-    <xsl:when test="$format = 'PS'">application/postscript</xsl:when>
-    <xsl:when test="$format = 'PDF'">application/pdf</xsl:when>
-    <xsl:when test="$format = 'PNG'">image/png</xsl:when>
-    <xsl:when test="$format = 'SVG'">image/svg+xml</xsl:when>
-    <xsl:when test="$format = 'JPG'">image/jpeg</xsl:when>
-    <xsl:when test="$format = 'GIF87a'">image/gif</xsl:when>
-    <xsl:when test="$format = 'GIF89a'">image/gif</xsl:when>
-    <xsl:otherwise>
-        <xsl:value-of select="concat('image/', 
-          translate($format, &uppercase;, &lowercase;))"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xsl:template name="manifest.toc">
   <xsl:variable name="toc.params">
     <xsl:call-template name="find.path.params">
@@ -1433,9 +1414,12 @@ article  toc,title,figure,table,example,equation
 
 <xsl:template match="mediaobject|inlinemediaobject" mode="enumerate-images">
 
-  <xsl:variable name="olist" select="imageobject|imageobjectco|
-                     videoobject|audioobject|
-                     textobject"/>
+  <xsl:variable name="olist" 
+                select="imageobject[not(@role = 'poster')] 
+                       |imageobjectco
+                       |videoobject
+                       |audioobject
+                       |textobject"/>
  
   <xsl:variable name="object.index">
     <xsl:call-template name="select.mediaobject.index">
@@ -1445,6 +1429,16 @@ article  toc,title,figure,table,example,equation
   </xsl:variable>
   
   <xsl:variable name="object" select="$olist[position() = $object.index]"/>
+
+  <xsl:apply-templates select="$object" mode="enumerate-images"/>
+
+  <!-- also include a poster image if present -->
+  <xsl:apply-templates select="imageobject[@role = 'poster']" mode="enumerate-images"/>
+
+</xsl:template>
+
+<xsl:template match="imageobject|videoobject|audioobject" mode="enumerate-images">
+  <xsl:param name="object" select="."/>
 
   <xsl:if test="$object">
     <xsl:variable name="image.filename">
@@ -1477,7 +1471,7 @@ article  toc,title,figure,table,example,equation
 
   </xsl:if>
 </xsl:template>
-
+ 
 <!-- Add in the generated images -->
 <xsl:template match="note|caution|warning|important|tip" mode="enumerate-images">
   <xsl:if test="$admon.graphics != 0">
