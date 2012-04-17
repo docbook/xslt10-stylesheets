@@ -1,7 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:d="http://docbook.org/ns/docbook"
                 xmlns="http://docbook.org/ns/docbook"
 		version="1.0"
                 exclude-result-prefixes="exsl">
@@ -77,7 +76,7 @@
           <xsl:value-of select="$root.resourceref"/>
         </xsl:attribute>
     
-        <xsl:copy-of select="($root/d:title | $root/d:info/d:title)[1]"/>
+        <xsl:copy-of select="($root/title | $root/info/title)[1]"/>
     
         <!-- Put the title and info stuff in a content-only module -->
         <module resourceref="{$root.resourceref}{$root.id.suffix}" contentonly="true"/>

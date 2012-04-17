@@ -50,7 +50,7 @@
    </xsl:copy>
 </xsl:template>
 
-<xsl:template match="d:preface|d:chapter|d:appendix|d:section|d:article">
+<xsl:template match="preface|chapter|appendix|section|article">
   <xsl:variable name="element.name">
     <xsl:call-template name="element.name"/>
   </xsl:variable>

@@ -15,14 +15,14 @@ features will be supported as it is further developed.
 
 Content of this directory:
 --------------------------
-topic-maker-chunk.xsl        - stylesheet to modularize an existing document.
+topic-maker-chunk.xsl        - stylesheet to modularize an existing DB5 document.
 topic-maker.xsl              - imported by topic-maker-chunk.xsl.
 assemble.xsl                 - stylesheet to process an <assembly> into a document.
 
 
 The toolkit consists of an assemble.xsl XSL stylesheet
 to process a DocBook <assembly> element to convert it
-to an assembled DocBook document ready to be formatted.
+to an assembled DocBook 5 document ready to be formatted.
 This stylesheet will enable users to structure a book from
 modular files.
 
@@ -37,11 +37,12 @@ back together as a single DocBook document.
 To create an assembly and topic files from a book or article document
 =======================================================================
 
-If you have an existing DocBook book or article document,
+If you have an existing DocBook 5 book or article document,
 you can convert it to an assembly and a collection of
-modular topic files.
+modular topic files.  If you want to convert a DocBook 4
+document, you must first convert it to version 5.
 
-For example, to disassemble a book document named book.xml:
+For example, to disassemble a DocBook 5 book document named book.xml:
 
 xsltproc --xinclude \
          --stringparam assembly.filename myassembly.xml \
