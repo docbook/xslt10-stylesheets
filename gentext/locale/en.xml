@@ -337,6 +337,7 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="topic">%t</template>
 <template name="part">%t</template>
 
 </context>
@@ -398,6 +399,7 @@
 <template name="setindex">%s</template>
 <template name="sidebar">%s</template>
 <template name="simplesect">%s</template>
+<template name="topic">%t</template>
 <template name="toc">%s</template>
 
 </context>
@@ -474,6 +476,7 @@
 <template name="docnamelong"> in the document titled %o</template>
 <template name="pageabbrev">(p. %p)</template>
 <template name="Page">Page %p</template>
+<template name="topic">%t</template>
 
 <template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
