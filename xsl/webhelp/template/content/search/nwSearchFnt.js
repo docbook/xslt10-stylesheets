@@ -50,6 +50,7 @@ function Verifie(searchForm) {
 
     //-------------------------OXYGEN PATCH START-------------------------
     searchTextField = trim(document.searchForm.textToSearch.value);
+    searchTextField = searchTextField.replace(/['"]/g,'');
 	var expressionInput = searchTextField;
     $.cookie('textToSearch', expressionInput);
     //-------------------------OXYGEN PATCH END-------------------------
