@@ -174,6 +174,7 @@
     <xsl:with-param name="nodes" select="part|reference
                                          |preface|chapter|appendix
                                          |article
+                                         |topic
                                          |bibliography|glossary|index
                                          |refentry
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
@@ -376,6 +377,7 @@
     <xsl:with-param name="nodes" select="part|reference
                                          |preface|chapter|appendix
                                          |article
+                                         |topic
                                          |bibliography|glossary|index
                                          |refentry
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
@@ -398,14 +400,14 @@
 
   <xsl:call-template name="subtoc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
-    <xsl:with-param name="nodes" select="appendix|chapter|article
+    <xsl:with-param name="nodes" select="appendix|chapter|article|topic
                                          |index|glossary|bibliography
                                          |preface|reference|refentry
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="preface|chapter|appendix|article" mode="toc">
+<xsl:template match="preface|chapter|appendix|article|topic" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="subtoc">
