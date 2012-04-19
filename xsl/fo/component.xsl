@@ -916,7 +916,9 @@
     <xsl:attribute name="id"><xsl:value-of 
                         select="$id"/></xsl:attribute>
     <xsl:call-template name="topic.titlepage"/>
+
     <xsl:apply-templates/>
+
   </xsl:element>
 </xsl:template>
 
@@ -930,6 +932,11 @@
                     select="$master-reference"/>
   </xsl:apply-templates> 
 </xsl:template>
+
+<xsl:template match="topic/info"></xsl:template>
+<xsl:template match="topic/title"></xsl:template>
+<xsl:template match="topic/subtitle"></xsl:template>
+<xsl:template match="topic/titleabbrev"></xsl:template>
 
 </xsl:stylesheet>
 
