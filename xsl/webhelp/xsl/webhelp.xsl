@@ -164,6 +164,9 @@ These problems go away when you add this IE=7 mode meta tag.
         <link rel="stylesheet" type="text/css" href="{$webhelp.common.dir}jquery/treeview/jquery.treeview.css"/>
 
         <style type="text/css">
+noscript{
+      font-weight:bold;
+}
 input {
     margin-bottom: 5px;
     margin-top: 2px;
@@ -469,7 +472,11 @@ border: none; background: none; font-weight: none; color: none; }
                 </xsl:call-template>
 
                 <div id="content">
-
+                     <noscript> <!-- Show a notification if the user has disabled javascript -->
+                
+						        Javascript is disabled on your browser. Please enable Javascript to navigate the interface properly.
+                   
+                     </noscript>
                     <xsl:call-template name="user.header.content"/>
 
                     <xsl:copy-of select="$content"/>
@@ -725,7 +732,7 @@ border: none; background: none; font-weight: none; color: none; }
                                                     </xsl:call-template>
                                                 </legend>
                                                 <center>
-                                                    <input id="textToSearch" name="textToSearch" type="text"
+                                                    <input id="textToSearch" name="textToSearch" type="search" 
                                                            class="searchText" tabindex="1"/>
                                                     <xsl:text disable-output-escaping="yes"> <![CDATA[&nbsp;]]> </xsl:text>
                                                     <input onclick="Verifie(searchForm)" type="button"
@@ -896,3 +903,4 @@ border: none; background: none; font-weight: none; color: none; }
     </xsl:template>
 
 </xsl:stylesheet> 
+
