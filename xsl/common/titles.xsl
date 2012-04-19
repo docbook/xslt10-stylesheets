@@ -251,6 +251,7 @@ title of the element. This does not include the label.
 <xsl:template match="section
                      |sect1|sect2|sect3|sect4|sect5
                      |refsect1|refsect2|refsect3|refsection
+                     |topic
                      |simplesect"
               mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
@@ -602,6 +603,7 @@ title of the element. This does not include the label.
 <xsl:template match="section
                      |sect1|sect2|sect3|sect4|sect5
                      |refsect1|refsect2|refsect3
+                     |topic
                      |simplesect"
               mode="titleabbrev.markup">
   <xsl:param name="allow-anchors" select="0"/>

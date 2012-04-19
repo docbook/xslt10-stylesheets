@@ -90,7 +90,7 @@
 </xsl:template>
 
 <xsl:template match="section|sect1|sect2|sect3|sect4|sect5|simplesect
-                     |bridgehead"
+                     |bridgehead|topic"
               mode="object.title.template">
   <xsl:variable name="is.numbered">
     <xsl:call-template name="label.this.section"/>

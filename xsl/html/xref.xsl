@@ -601,6 +601,19 @@
   <!-- FIXME: What about "in Chapter X"? -->
 </xsl:template>
 
+<xsl:template match="topic" mode="xref-to">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
+
+  <xsl:apply-templates select="." mode="object.xref.markup">
+    <xsl:with-param name="purpose" select="'xref'"/>
+    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+    <xsl:with-param name="referrer" select="$referrer"/>
+    <xsl:with-param name="verbose" select="$verbose"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <xsl:template match="bridgehead" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
@@ -792,6 +805,7 @@
                                        |ancestor::sect3
                                        |ancestor::sect4
                                        |ancestor::sect5
+                                       |ancestor::topic
                                        |ancestor::refsection
                                        |ancestor::refsect1
                                        |ancestor::refsect2

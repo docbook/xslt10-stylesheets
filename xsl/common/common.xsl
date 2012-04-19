@@ -68,7 +68,7 @@ sectioninfo seglistitem segmentedlist seriesinfo set setindex setinfo
 shortcut sidebar simplelist simplesect spanspec step subject
 subjectset substeps synopfragment table tbody textobject tfoot tgroup
 thead tip toc tocchap toclevel1 toclevel2 toclevel3 toclevel4
-toclevel5 tocpart varargs variablelist varlistentry videodata
+toclevel5 tocpart topic varargs variablelist varlistentry videodata
 videoobject void warning subjectset
 
 classsynopsis

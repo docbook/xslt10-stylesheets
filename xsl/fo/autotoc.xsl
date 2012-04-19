@@ -543,6 +543,7 @@
   <xsl:variable name="nodes" select="section|sect1
                                      |qandaset[$qanda.in.toc != 0]
                                      |simplesect[$simplesect.in.toc != 0]
+                                     |topic
                                      |refentry|appendix"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
@@ -717,7 +718,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect5|simplesect" mode="toc">
+<xsl:template match="sect5|simplesect|topic" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="toc.line">

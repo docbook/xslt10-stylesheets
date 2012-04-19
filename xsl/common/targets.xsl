@@ -230,6 +230,10 @@ document output.
   <xsl:call-template name="div"/>
 </xsl:template>
 
+<xsl:template match="topic" mode="olink.mode">
+  <xsl:call-template name="div"/>
+</xsl:template>
+
 <xsl:template match="bibliography|bibliodiv" mode="olink.mode">
   <xsl:call-template name="div"/>
 </xsl:template>

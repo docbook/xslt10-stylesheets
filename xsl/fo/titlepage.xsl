@@ -130,6 +130,9 @@
 <xsl:attribute-set name="simplesect.titlepage.verso.style"
                    use-attribute-sets="section.titlepage.verso.style"/>
 
+<xsl:attribute-set name="topic.titlepage.recto.style"/>
+<xsl:attribute-set name="topic.titlepage.verso.style"/>
+
 <xsl:attribute-set name="refnamediv.titlepage.recto.style"
                    use-attribute-sets="section.titlepage.recto.style"/>
 <xsl:attribute-set name="refnamediv.titlepage.verso.style"

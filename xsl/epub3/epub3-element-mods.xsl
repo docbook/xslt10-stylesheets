@@ -1645,6 +1645,7 @@ article  toc,title,figure,table,example,equation
 
 <xsl:template match="book|
                      article|
+                     topic|
                      part|
                      reference|
                      preface|
@@ -1698,6 +1699,7 @@ article  toc,title,figure,table,example,equation
                                 preceding::bibliography|
                                 preceding::appendix|
                                 preceding::article|
+                                preceding::topic|
                                 preceding::glossary|
                                 preceding::section[not(parent::partintro)]|
                                 preceding::sect1[not(parent::partintro)]|
@@ -1737,7 +1739,7 @@ article  toc,title,figure,table,example,equation
         <xsl:value-of select="$href"/>
       </xsl:attribute>
     </xsl:element>
-    <xsl:apply-templates select="book[parent::set]|part|reference|preface|chapter|bibliography|appendix|article|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv[title]|setindex|index" mode="ncx"/>
+    <xsl:apply-templates select="book[parent::set]|part|reference|preface|chapter|bibliography|appendix|article|topic|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv[title]|setindex|index" mode="ncx"/>
   </xsl:element>
 
 </xsl:template>

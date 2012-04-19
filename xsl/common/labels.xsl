@@ -382,6 +382,7 @@ element label.</para>
   <xsl:variable name="contsec"
                 select="(ancestor::section
                          |ancestor::simplesect
+                         |ancestor::topic
                          |ancestor::sect1
                          |ancestor::sect2
                          |ancestor::sect3
@@ -500,6 +501,10 @@ element label.</para>
       <xsl:number format="{$format}" count="simplesect"/>
     </xsl:when>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template match="topic" mode="label.markup">
+  <!-- topics are not numbered by default -->
 </xsl:template>
 
 <xsl:template match="qandadiv" mode="label.markup">

@@ -57,6 +57,7 @@ span.off     {  }
 		    or local-name(.) = 'sect3'
 		    or local-name(.) = 'sect4'
 		    or local-name(.) = 'sect5'
+		    or local-name(.) = 'topic'                    
 		    or local-name(.) = 'chapter'
 		    or local-name(.) = 'preface'
 		    or local-name(.) = 'itemizedlist'

@@ -421,5 +421,51 @@
 
 <!-- ==================================================================== -->
 
+<xsl:template match="topic">
+  <xsl:call-template name="id.warning"/>
+
+  <div>
+    <xsl:call-template name="common.html.attributes">
+      <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
+    <xsl:if test="$generate.id.attributes != 0">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:call-template name="topic.titlepage"/>
+
+    <xsl:variable name="toc.params">
+      <xsl:call-template name="find.path.params">
+        <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:apply-templates/>
+
+    <xsl:call-template name="process.footnotes"/>
+  </div>
+</xsl:template>
+
+<xsl:template match="topic/title|topic/info/title" mode="titlepage.mode" priority="2">
+  <xsl:call-template name="component.title">
+    <xsl:with-param name="node" select="ancestor::topic[1]"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="topic/subtitle
+                     |topic/info/subtitle"
+              mode="titlepage.mode" priority="2">
+  <xsl:call-template name="component.subtitle">
+    <xsl:with-param name="node" select="ancestor::topic[1]"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="topic/info"></xsl:template>
+<xsl:template match="topic/title"></xsl:template>
+<xsl:template match="topic/titleabbrev"></xsl:template>
+<xsl:template match="topic/subtitle"></xsl:template>
+
 </xsl:stylesheet>
 

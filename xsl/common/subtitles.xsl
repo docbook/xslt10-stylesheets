@@ -154,6 +154,7 @@ subtitle of the element.
 <xsl:template match="section
                      |sect1|sect2|sect3|sect4|sect5
                      |refsect1|refsect2|refsect3
+                     |topic
                      |simplesect"
               mode="subtitle.markup">
   <xsl:param name="allow-anchors" select="'0'"/>

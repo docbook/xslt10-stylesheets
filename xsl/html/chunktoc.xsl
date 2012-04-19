@@ -167,6 +167,10 @@
   <xsl:call-template name="process-chunk"/>
 </xsl:template>
 
+<xsl:template match="topic">
+  <xsl:call-template name="process-chunk"/>
+</xsl:template>
+
 <xsl:template match="article/appendix">
   <xsl:call-template name="process-chunk"/>
 </xsl:template>

@@ -190,6 +190,7 @@
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
     <xsl:with-param name="nodes" select="section|sect1
                                          |simplesect[$simplesect.in.toc != 0]
+                                         |topic
                                          |refentry
                                          |article|bibliography|glossary
                                          |appendix|index
@@ -261,6 +262,7 @@
       <xsl:when test="local-name(.) = 'refsect1'">1</xsl:when>
       <xsl:when test="local-name(.) = 'refsect2'">2</xsl:when>
       <xsl:when test="local-name(.) = 'refsect3'">3</xsl:when>
+      <xsl:when test="local-name(.) = 'topic'">1</xsl:when>
       <xsl:when test="local-name(.) = 'simplesect'">
         <!-- sigh... -->
         <xsl:choose>
@@ -272,6 +274,7 @@
           <xsl:when test="local-name(..) = 'sect3'">4</xsl:when>
           <xsl:when test="local-name(..) = 'sect4'">5</xsl:when>
           <xsl:when test="local-name(..) = 'sect5'">6</xsl:when>
+          <xsl:when test="local-name(..) = 'topic'">2</xsl:when>
           <xsl:when test="local-name(..) = 'refsect1'">2</xsl:when>
           <xsl:when test="local-name(..) = 'refsect2'">3</xsl:when>
           <xsl:when test="local-name(..) = 'refsect3'">4</xsl:when>
@@ -409,6 +412,7 @@
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="nodes" select="section|sect1
                                          |simplesect[$simplesect.in.toc != 0]
+                                         |topic
                                          |refentry
                                          |glossary|bibliography|index
                                          |bridgehead[$bridgehead.in.toc != 0]"/>
@@ -471,6 +475,17 @@
 </xsl:template>
 
 <xsl:template match="section" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="nodes" select="section|refentry
+                                         |simplesect[$simplesect.in.toc != 0]
+                                         |bridgehead[$bridgehead.in.toc != 0]"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="topic" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="subtoc">

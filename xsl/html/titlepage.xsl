@@ -65,6 +65,9 @@
 <xsl:attribute-set name="sidebar.titlepage.recto.style"/>
 <xsl:attribute-set name="sidebar.titlepage.verso.style"/>
 
+<xsl:attribute-set name="topic.titlepage.recto.style"/>
+<xsl:attribute-set name="topic.titlepage.verso.style"/>
+
 <xsl:attribute-set name="section.titlepage.recto.style"/>
 <xsl:attribute-set name="section.titlepage.verso.style"/>
 

@@ -773,6 +773,7 @@ names.</para>
       <xsl:when test="ancestor::t:titlepage/@t:element='sect5'"></xsl:when>
       <xsl:when test="ancestor::t:titlepage/@t:element='book'"></xsl:when>
       <xsl:when test="ancestor::t:titlepage/@t:element='set'"></xsl:when>
+      <xsl:when test="ancestor::t:titlepage/@t:element='topic'"></xsl:when>
       <xsl:otherwise>docinfo</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -880,6 +881,7 @@ names.</para>
       <xsl:when test="ancestor::t:titlepage/@t:element='sect5'"></xsl:when>
       <xsl:when test="ancestor::t:titlepage/@t:element='book'"></xsl:when>
       <xsl:when test="ancestor::t:titlepage/@t:element='set'"></xsl:when>
+      <xsl:when test="ancestor::t:titlepage/@t:element='topic'"></xsl:when>
       <xsl:otherwise>docinfo</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>

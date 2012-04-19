@@ -253,6 +253,7 @@
              |preceding::refentry[1]
              |preceding::colophon[1]
              |preceding::article[1]
+             |preceding::topic[1]
              |preceding::bibliography[parent::article or parent::book or parent::part][1]
              |preceding::glossary[parent::article or parent::book or parent::part][1]
              |preceding::index[$generate.index != 0]
@@ -266,6 +267,7 @@
              |ancestor::part[1]
              |ancestor::reference[1]
              |ancestor::article[1]
+             |ancestor::topic[1]
              |$prev-v1
              |$prev-v2)[last()]"/>
 
@@ -355,12 +357,14 @@
              |following::index[$generate.index != 0]
                                [parent::article or parent::book or parent::part][1]
              |following::article[1]
+             |following::topic[1]
              |following::setindex[$generate.index != 0][1]
              |descendant::book[1]
              |descendant::preface[1]
              |descendant::chapter[1]
              |descendant::appendix[1]
              |descendant::article[1]
+             |descendant::topic[1]
              |descendant::bibliography[parent::article or parent::book or parent::part][1]
              |descendant::glossary[parent::article or parent::book or parent::part][1]
              |descendant::index[$generate.index != 0]
@@ -411,6 +415,7 @@
              |preceding::refentry[1]
              |preceding::colophon[1]
              |preceding::article[1]
+             |preceding::topic[1]
              |preceding::bibliography[parent::article or parent::book or parent::part][1]
              |preceding::glossary[parent::article or parent::book or parent::part][1]
              |preceding::index[$generate.index != 0]
@@ -424,6 +429,7 @@
              |ancestor::part[1]
              |ancestor::reference[1]
              |ancestor::article[1]
+             |ancestor::topic[1]
              |$prev-v1
              |$prev-v2)[last()]"/>
 
@@ -458,12 +464,14 @@
              |following::index[$generate.index != 0]
                                [parent::article or parent::book][1]
              |following::article[1]
+             |following::topic[1]
              |following::setindex[$generate.index != 0][1]
              |descendant::book[1]
              |descendant::preface[1]
              |descendant::chapter[1]
              |descendant::appendix[1]
              |descendant::article[1]
+             |descendant::topic[1]
              |descendant::bibliography[parent::article or parent::book][1]
              |descendant::glossary[parent::article or parent::book or parent::part][1]
              |descendant::index[$generate.index != 0]
@@ -941,6 +949,7 @@
        section          if position()>1 && depth < chunk.section.depth
        set
        setindex
+       topic
                                                                             -->
   <!-- ==================================================================== -->
 
@@ -1017,6 +1026,7 @@
     <xsl:when test="local-name($node)='chapter'">1</xsl:when>
     <xsl:when test="local-name($node)='appendix'">1</xsl:when>
     <xsl:when test="local-name($node)='article'">1</xsl:when>
+    <xsl:when test="local-name($node)='topic'">1</xsl:when>
     <xsl:when test="local-name($node)='part'">1</xsl:when>
     <xsl:when test="local-name($node)='reference'">1</xsl:when>
     <xsl:when test="local-name($node)='refentry'">1</xsl:when>
