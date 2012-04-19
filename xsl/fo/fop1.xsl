@@ -28,7 +28,7 @@
 </xsl:template>
 
 <xsl:template match="set|book|part|reference|
-                     preface|chapter|appendix|article
+                     preface|chapter|appendix|article|topic
                      |glossary|bibliography|index|setindex
                      |refentry
                      |sect1|sect2|sect3|sect4|sect5|section"
@@ -74,7 +74,7 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')
-                    and (book|part|reference|preface|chapter|appendix|article
+                    and (book|part|reference|preface|chapter|appendix|article|topic
                          |glossary|bibliography|index|setindex
                          |refentry
                          |sect1|sect2|sect3|sect4|sect5|section)">
@@ -99,7 +99,7 @@
 </xsl:template>
 
 <xsl:template match="set|book|part|reference|
-                     preface|chapter|appendix|article
+                     preface|chapter|appendix|article|topic
                      |glossary|bibliography|index|setindex
                      |refentry
                      |sect1|sect2|sect3|sect4|sect5|section"

@@ -69,6 +69,7 @@
                         |$toc-context/chapter
                         |$toc-context/appendix
                         |$toc-context/article
+                        |$toc-context/topic
                         |$toc-context/bibliography
                         |$toc-context/glossary
                         |$toc-context/index"/>
@@ -110,7 +111,7 @@
   </xsl:variable>
 
   <xsl:variable name="nodes" select="section|sect1|refentry
-                                     |article|bibliography|glossary
+                                     |article|topic|bibliography|glossary
                                      |qandaset[$qanda.in.toc != 0]
                                      |appendix|index"/>
   <xsl:if test="$nodes">
@@ -390,7 +391,7 @@
   </xsl:call-template>
 
   <xsl:variable name="nodes" select="glossary|bibliography|preface|chapter
-                                     |reference|part|article|appendix|index"/>
+                                     |reference|part|article|topic|appendix|index"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
@@ -461,7 +462,7 @@
   </xsl:call-template>
 
   <xsl:variable name="nodes" select="chapter|appendix|preface|reference|
-                                     refentry|article|index|glossary|
+                                     refentry|article|topic|index|glossary|
                                      bibliography"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
@@ -718,7 +719,15 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect5|simplesect|topic" mode="toc">
+<xsl:template match="sect5|simplesect" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="toc.line">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="topic" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="toc.line">

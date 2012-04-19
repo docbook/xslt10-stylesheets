@@ -926,11 +926,23 @@
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
 
   <xsl:apply-templates select="." mode="page.sequence">
-    <xsl:with-param name="master-reference"
-                    select="$master-reference"/>
-  </xsl:apply-templates> 
+    <xsl:with-param name="master-reference" select="$master-reference"/>
+    <xsl:with-param name="content">
+      <xsl:element name="fo:{$section.container.element}">
+        <xsl:attribute name="id"><xsl:value-of 
+                            select="$id"/></xsl:attribute>
+        <xsl:call-template name="topic.titlepage"/>
+    
+        <xsl:apply-templates/>
+
+      </xsl:element>
+    </xsl:with-param>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="topic/info"></xsl:template>

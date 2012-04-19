@@ -857,6 +857,9 @@
 <t:titlepage t:element="topic" t:wrapper="fo:block">
   <t:titlepage-content t:side="recto">
     <title
+	   t:force="1"
+	   t:named-template="component.title"
+	   param:node="ancestor-or-self::topic[1]"
 	   margin-left="{$title.margin.left}"
 	   font-family="{$title.fontset}"/>
     <subtitle
