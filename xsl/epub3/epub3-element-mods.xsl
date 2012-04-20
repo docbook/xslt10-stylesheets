@@ -450,9 +450,22 @@ article  toc,title,figure,table,example,equation
 
 <xsl:template match="author|corpauthor" mode="opf.metadata">
   <xsl:variable name="n">
-    <xsl:call-template name="person.name">
-      <xsl:with-param name="node" select="."/>
-    </xsl:call-template>
+    <xsl:choose>
+      <xsl:when test="self::corpauthor">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:when test="org/orgname">
+        <xsl:apply-templates select="org/orgname"/>
+      </xsl:when>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name">
+          <xsl:with-param name="node" select="."/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:if test="string-length($n) != 0">
@@ -476,6 +489,19 @@ article  toc,title,figure,table,example,equation
 </xsl:template>
 
 <xsl:template match="editor" mode="opf.metadata">
+  <xsl:variable name="n">
+    <xsl:choose>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="person.name">
+          <xsl:with-param name="node" select="."/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:variable name="name">
     <xsl:choose>
       <xsl:when test="string-length($editor.property) != 0">
@@ -492,24 +518,24 @@ article  toc,title,figure,table,example,equation
       <xsl:text>dcterms:</xsl:text>
       <xsl:value-of select="$name"/>
     </xsl:attribute>
-    <xsl:value-of select="normalize-space(.)"/>
+    <xsl:value-of select="normalize-space($n)"/>
   </xsl:element>
 
   <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
     <xsl:choose>
       <xsl:when test="$name = 'creator'">
         <dc:creator>
-          <xsl:value-of select="normalize-space(.)"/>
+          <xsl:value-of select="normalize-space($n)"/>
         </dc:creator>
       </xsl:when>
       <xsl:when test="$name = 'contributor'">
         <dc:contributor>
-          <xsl:value-of select="normalize-space(.)"/>
+          <xsl:value-of select="normalize-space($n)"/>
         </dc:contributor>
       </xsl:when>
       <xsl:otherwise>
         <xsl:element namespace="{$dc.namespace}" name="{$name}">
-          <xsl:value-of select="normalize-space(.)"/>
+          <xsl:value-of select="normalize-space($n)"/>
         </xsl:element>
       </xsl:otherwise>
     </xsl:choose>
@@ -517,7 +543,7 @@ article  toc,title,figure,table,example,equation
 
 </xsl:template>
 
-<xsl:template match="othercredit|corpcredit|collab" mode="opf.metadata">
+<xsl:template match="corpcredit" mode="opf.metadata">
   <xsl:element name="meta" namespace="{$opf.namespace}">
     <xsl:attribute name="property">dcterms:contributor</xsl:attribute>
     <xsl:value-of select="normalize-space(.)"/>
@@ -526,6 +552,39 @@ article  toc,title,figure,table,example,equation
   <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
     <dc:contributor>
       <xsl:value-of select="normalize-space(.)"/>
+    </dc:contributor>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="collab|othercredit" mode="opf.metadata">
+  <xsl:variable name="content">
+    <xsl:choose>
+      <xsl:when test="collabname">
+        <xsl:apply-templates select="collabname"/>
+      </xsl:when>
+      <xsl:when test="org/orgname">
+        <xsl:apply-templates select="org/orgname"/>
+      </xsl:when>
+      <xsl:when test="orgname">
+        <xsl:apply-templates select="orgname"/>
+      </xsl:when>
+      <xsl:when test="personname|firstname|surname|othername">
+        <xsl:call-template name="person.name"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="."/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:element name="meta" namespace="{$opf.namespace}">
+    <xsl:attribute name="property">dcterms:contributor</xsl:attribute>
+    <xsl:value-of select="normalize-space($content)"/>
+  </xsl:element>
+
+  <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+    <dc:contributor>
+      <xsl:value-of select="normalize-space($content)"/>
     </dc:contributor>
   </xsl:if>
 
