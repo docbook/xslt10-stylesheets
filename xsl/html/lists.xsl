@@ -26,6 +26,7 @@
   
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -89,6 +90,7 @@
 
   <li>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:if test="$css.decoration = '1' and $cssmark != ''">
       <xsl:attribute name="style">
         <xsl:text>list-style-type: </xsl:text>
@@ -155,6 +157,7 @@
 
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title">
@@ -177,6 +180,7 @@
           </xsl:call-template>
           <colgroup>
             <col align="{$direction.align.start}" valign="top"/>
+            <col/>
           </colgroup>
           <tbody>
             <xsl:apply-templates 
@@ -219,6 +223,7 @@
 <xsl:template match="orderedlist/listitem">
   <li>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:if test="@override">
       <xsl:attribute name="value">
         <xsl:value-of select="@override"/>
@@ -253,6 +258,7 @@
     </td>
     <td>
       <xsl:if test="local-name(child::*[1]) != 'para'">
+        <xsl:call-template name="id.attribute"/>
         <xsl:call-template name="anchor"/>
       </xsl:if>
 
@@ -312,6 +318,7 @@
 
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -348,6 +355,7 @@
                 </xsl:attribute>
               </xsl:if>
             </col>
+            <col/>
           </colgroup>
           <tbody>
             <xsl:apply-templates mode="varlist-table"
@@ -407,6 +415,7 @@
     </xsl:when>
     <xsl:otherwise>
       <p>
+        <xsl:call-template name="id.attribute"/>
         <xsl:choose>
           <xsl:when test="@role and $para.propagates.style != 0">
             <xsl:call-template name="common.html.attributes">
@@ -427,6 +436,7 @@
 
 <xsl:template match="varlistentry">
   <dt>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="term"/>
   </dt>
@@ -455,6 +465,7 @@
     </xsl:call-template>
 
     <td>
+      <xsl:call-template name="id.attribute"/>
       <p>
       <xsl:call-template name="anchor"/>
       <xsl:choose>
@@ -494,6 +505,7 @@
 <xsl:template match="varlistentry/term">
   <span>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content">
@@ -543,6 +555,7 @@
   <xsl:call-template name="anchor"/>
   <table border="0" summary="Simple list">
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="simplelist.vert">
       <xsl:with-param name="cols">
         <xsl:choose>
@@ -559,6 +572,7 @@
 <xsl:template match="simplelist[@type='inline']">
   <span>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <!-- if dbchoice PI exists, use that to determine the choice separator -->
     <!-- (that is, equivalent of "and" or "or" in current locale), or literal -->
     <!-- value of "choice" otherwise -->
@@ -599,6 +613,7 @@
   <xsl:call-template name="anchor"/>
   <table border="0" summary="Simple list">
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="simplelist.horiz">
       <xsl:with-param name="cols">
         <xsl:choose>
@@ -616,6 +631,7 @@
   <xsl:call-template name="anchor"/>
   <table border="0" summary="Simple list">
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="simplelist.vert">
       <xsl:with-param name="cols">
         <xsl:choose>
@@ -777,6 +793,14 @@
 
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional">
+        <xsl:choose>
+          <xsl:when test="title">0</xsl:when>
+          <xsl:otherwise>1</xsl:otherwise>
+        </xsl:choose>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="anchor">
       <xsl:with-param name="conditional">
         <xsl:choose>
@@ -835,6 +859,7 @@
 
   <ol type="{$numeration}">
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </ol>
 </xsl:template>
@@ -842,6 +867,7 @@
 <xsl:template match="step">
   <li>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </li>
@@ -851,6 +877,7 @@
   <xsl:call-template name="anchor"/>
   <ul>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </ul>
 </xsl:template>
@@ -873,6 +900,7 @@
 
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:choose>
@@ -914,6 +942,7 @@
 <xsl:template match="seglistitem">
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
@@ -932,6 +961,7 @@
 
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <strong>
       <span class="segtitle">
         <xsl:apply-templates select="$segtitles[$segnum=position()]"
@@ -991,6 +1021,7 @@
 
   <tr>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="tr.attributes">
       <xsl:with-param name="rownum" select="$seglinum + 1"/>
     </xsl:call-template>
@@ -1001,6 +1032,7 @@
 <xsl:template match="seg" mode="seglist-table">
   <td>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </td>
 </xsl:template>
@@ -1008,6 +1040,7 @@
 <xsl:template match="seg[1]" mode="seglist-table">
   <td>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select="ancestor::seglistitem"/>
     </xsl:call-template>
@@ -1020,6 +1053,7 @@
 <xsl:template match="calloutlist">
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>
@@ -1065,6 +1099,7 @@
         </xsl:call-template>
 
         <td width="5%" valign="top" align="{$direction.align.start}">
+          <xsl:call-template name="id.attribute"/>
           <p>
             <xsl:call-template name="anchor"/>
             <xsl:call-template name="callout.arearefs">
@@ -1079,6 +1114,7 @@
     </xsl:when>
     <xsl:otherwise>
       <dt>
+        <xsl:call-template name="id.attribute"/>
         <xsl:call-template name="anchor"/>
         <xsl:call-template name="callout.arearefs">
           <xsl:with-param name="arearefs" select="@arearefs"/>
@@ -1101,6 +1137,7 @@
     </xsl:when>
     <xsl:otherwise>
       <p>
+        <xsl:call-template name="id.attribute"/>
         <xsl:if test="@role and $para.propagates.style != 0">
           <xsl:choose>
             <xsl:when test="@role and $para.propagates.style != 0">

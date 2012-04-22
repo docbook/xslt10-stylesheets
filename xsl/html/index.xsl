@@ -26,11 +26,9 @@
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div>
       <xsl:apply-templates select="." mode="common.html.attributes"/>
-      <xsl:if test="$generate.id.attributes != 0">
-        <xsl:attribute name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
 
       <xsl:call-template name="index.titlepage"/>
       <xsl:choose>
@@ -81,11 +79,9 @@
   <xsl:if test="count(*)>0 or $generate.index != '0'">
     <div>
       <xsl:apply-templates select="." mode="common.html.attributes"/>
-      <xsl:if test="$generate.id.attributes != 0">
-        <xsl:attribute name="id">
-          <xsl:call-template name="object.id"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
 
       <xsl:call-template name="setindex.titlepage"/>
       <xsl:apply-templates/>
@@ -116,12 +112,7 @@
 
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
-
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates select="*[not(self::indexentry)]"/>
     <dl>

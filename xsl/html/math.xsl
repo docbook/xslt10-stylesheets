@@ -24,6 +24,7 @@
 <xsl:template match="mathphrase">
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>

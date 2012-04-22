@@ -37,6 +37,7 @@
 
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:if test="title and $placement = 'before'">

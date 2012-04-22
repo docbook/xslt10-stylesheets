@@ -123,6 +123,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
           </a>
         </xsl:when>
         <xsl:otherwise>
+          <xsl:call-template name="id.attribute"/>
           <xsl:call-template name="anchor"/>
           <xsl:apply-templates select="lhs"/>
         </xsl:otherwise>
@@ -315,6 +316,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="constraintdef">
   <div>
     <xsl:apply-templates select="." mode="class.attribute"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>

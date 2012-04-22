@@ -62,6 +62,7 @@
 
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:if test="$admon.style != ''">
       <xsl:attribute name="style">
         <xsl:value-of select="$admon.style"/>
@@ -108,6 +109,7 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
+    <xsl:call-template name="id.attribute"/>
     <xsl:if test="$admon.style">
       <xsl:attribute name="style">
         <xsl:value-of select="$admon.style"/>

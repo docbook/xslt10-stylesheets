@@ -24,6 +24,9 @@
 
   <xsl:variable name="content">
     <div class="{$class}">
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
       <xsl:call-template name="anchor">
         <xsl:with-param name="conditional" select="0"/>
       </xsl:call-template>
@@ -115,6 +118,7 @@
 
   <xsl:variable name="content">
     <div class="{$class}">
+      <xsl:call-template name="id.attribute"/>
       <xsl:if test="$spacing.paras != 0"><p/></xsl:if>
       <xsl:call-template name="anchor"/>
       <xsl:apply-templates/>
@@ -239,6 +243,9 @@
 
   <xsl:variable name="content">
     <div class="{$class}">
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
       <xsl:call-template name="anchor">
         <xsl:with-param name="conditional" select="0"/>
       </xsl:call-template>

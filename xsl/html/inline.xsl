@@ -103,6 +103,7 @@
               <xsl:otherwise>
                 <a>
                   <xsl:apply-templates select="." mode="common.html.attributes"/>
+                  <xsl:call-template name="id.attribute"/>
 
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
@@ -139,6 +140,7 @@
           <xsl:otherwise>
             <a>
               <xsl:apply-templates select="." mode="common.html.attributes"/>
+              <xsl:call-template name="id.attribute"/>
               <xsl:attribute name="href">
                 <xsl:value-of select="$xhref"/>
               </xsl:attribute>
@@ -178,6 +180,7 @@
 
         <a>
           <xsl:apply-templates select="." mode="common.html.attributes"/>
+          <xsl:call-template name="id.attribute"/>
           <xsl:attribute name="href">
             <xsl:call-template name="href.target">
               <xsl:with-param name="object" select="$target"/>
@@ -223,6 +226,7 @@
     <xsl:attribute name="class">
       <xsl:value-of select="local-name(.)"/>
     </xsl:attribute>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="dir"/>
     <xsl:call-template name="generate.html.title"/>
     <xsl:copy-of select="$content"/>
@@ -241,6 +245,7 @@
   </xsl:param>
   <code>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </code>
@@ -258,6 +263,7 @@
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
 
     <!-- don't put <strong> inside figure, example, or table titles -->
     <xsl:choose>
@@ -288,6 +294,7 @@
   </xsl:param>
   <em>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
   </em>
@@ -312,6 +319,7 @@
                          or local-name(../..) = 'formalpara')">
       <code>
         <xsl:call-template name="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
         <xsl:copy-of select="$content"/>
         <xsl:call-template name="apply-annotations"/>
       </code>
@@ -319,6 +327,7 @@
     <xsl:otherwise>
       <strong>
         <xsl:call-template name="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
         <code>
           <xsl:call-template name="generate.html.title"/>
           <xsl:call-template name="dir"/>
@@ -341,6 +350,7 @@
   </xsl:param>
   <em>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <code>
       <xsl:call-template name="generate.html.title"/>
       <xsl:call-template name="dir"/>
@@ -361,6 +371,7 @@
   </xsl:param>
   <sup>
     <xsl:call-template name="generate.html.title"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="dir"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
@@ -378,6 +389,7 @@
   </xsl:param>
   <sub>
     <xsl:call-template name="generate.html.title"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="dir"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
@@ -400,6 +412,7 @@
 
   <span>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -417,6 +430,7 @@
 
   <span>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -434,6 +448,7 @@
 
   <span>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -735,6 +750,7 @@
 
 <xsl:template match="emphasis">
   <span>
+    <xsl:call-template name="id.attribute"/>
     <xsl:choose>
       <!-- We don't want empty @class values, so do not propagate empty @roles -->
       <xsl:when test="@role  and
@@ -793,6 +809,7 @@
 
 <xsl:template match="phrase">
   <span>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="locale.html.attributes"/>
     <!-- We don't want empty @class values, so do not propagate empty @roles -->
     <xsl:choose>
@@ -1172,6 +1189,7 @@
       </xsl:if>
       <a>
         <xsl:apply-templates select="." mode="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
         <xsl:attribute name="href">
           <xsl:text>mailto:</xsl:text>
           <xsl:value-of select="."/>
@@ -1281,6 +1299,7 @@
 
         <xsl:choose>
           <xsl:when test="$bibliography.numbered != 0">
+            <xsl:call-template name="id.attribute"/>
             <xsl:apply-templates select="$target" mode="citation"/>
           </xsl:when>
           <xsl:otherwise>
@@ -1393,6 +1412,7 @@
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -1410,6 +1430,7 @@
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -1429,6 +1450,7 @@
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -1446,6 +1468,7 @@
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>
@@ -1480,6 +1503,7 @@
 
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:copy-of select="$content"/>
   </span>
 </xsl:template>

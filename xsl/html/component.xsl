@@ -36,13 +36,12 @@
 
   <xsl:element name="h{$level+1}">
     <xsl:attribute name="class">title</xsl:attribute>
-    <xsl:if test="$generate.id.attributes = 0">
-      <xsl:call-template name="anchor">
-	<xsl:with-param name="node" select="$node"/>
-	<xsl:with-param name="conditional" select="0"/>
-      </xsl:call-template>
-    </xsl:if>
-      <xsl:apply-templates select="$node" mode="object.title.markup">
+    <xsl:call-template name="id.attribute"/>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select="$node"/>
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
+    <xsl:apply-templates select="$node" mode="object.title.markup">
       <xsl:with-param name="allow-anchors" select="1"/>
     </xsl:apply-templates>
   </xsl:element>
@@ -62,6 +61,7 @@
 
   <xsl:if test="$subtitle">
     <h3 class="subtitle">
+      <xsl:call-template name="id.attribute"/>
       <i>
         <xsl:apply-templates select="$node" mode="object.subtitle.markup"/>
       </i>
@@ -80,6 +80,9 @@
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
     <xsl:call-template name="dedication.titlepage"/>
     <xsl:apply-templates/>
@@ -115,6 +118,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
     <xsl:call-template name="acknowledgements.titlepage"/>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -149,11 +155,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="component.title"/>
@@ -177,11 +181,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="preface.titlepage"/>
@@ -234,11 +236,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="chapter.titlepage"/>
@@ -295,11 +295,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:choose>
       <xsl:when test="parent::article and $ischunk = 0">
@@ -369,11 +367,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:call-template name="article.titlepage"/>
 
@@ -428,11 +424,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:call-template name="topic.titlepage"/>
 

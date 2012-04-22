@@ -172,14 +172,38 @@
 <xsl:template name="anchor">
   <xsl:param name="node" select="."/>
   <xsl:param name="conditional" select="1"/>
-  <xsl:variable name="id">
-    <xsl:call-template name="object.id">
-      <xsl:with-param name="object" select="$node"/>
-    </xsl:call-template>
-  </xsl:variable>
-  <xsl:if test="$conditional = 0 or $node/@id or $node/@xml:id">
-    <a name="{$id}"/>
-  </xsl:if>
+
+  <xsl:choose>
+    <xsl:when test="$generate.id.attributes != 0">
+      <!-- No named anchors output when this param is set -->
+    </xsl:when>
+    <xsl:when test="$conditional = 0 or $node/@id or $node/@xml:id">
+      <a>
+        <xsl:attribute name="name">
+          <xsl:call-template name="object.id">
+            <xsl:with-param name="object" select="$node"/>
+          </xsl:call-template>
+        </xsl:attribute>
+      </a>
+    </xsl:when>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="id.attribute">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="conditional" select="1"/>
+  <xsl:choose>
+    <xsl:when test="$generate.id.attributes = 0">
+      <!-- No id attributes when this param is zero -->
+    </xsl:when>
+    <xsl:when test="$conditional = 0 or $node/@id or $node/@xml:id">
+      <xsl:attribute name="id">
+        <xsl:call-template name="object.id">
+          <xsl:with-param name="object" select="$node"/>
+        </xsl:call-template>
+      </xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="href.target.uri">

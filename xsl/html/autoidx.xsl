@@ -301,7 +301,16 @@
   <dt>
     <xsl:for-each select="$refs/primary">
       <xsl:if test="@id or @xml:id">
-        <a name="{(@id|@xml:id)[1]}"/>
+        <xsl:choose>
+          <xsl:when test="$generate.id.attributes = 0">
+            <a name="{(@id|@xml:id)[1]}"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <span>
+              <xsl:call-template name="id.attribute"/>
+            </span>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
     </xsl:for-each>
     <xsl:value-of select="primary"/>
@@ -374,7 +383,16 @@
   <dt>
     <xsl:for-each select="$refs/secondary">
       <xsl:if test="@id or @xml:id">
-        <a name="{(@id|@xml:id)[1]}"/>
+        <xsl:choose>
+          <xsl:when test="$generate.id.attributes = 0">
+            <a name="{(@id|@xml:id)[1]}"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <span>
+              <xsl:call-template name="id.attribute"/>
+            </span>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
     </xsl:for-each>
     <xsl:value-of select="secondary"/>
@@ -447,7 +465,16 @@
   <dt>
     <xsl:for-each select="$refs/tertiary">
       <xsl:if test="@id or @xml:id">
-        <a name="{(@id|@xml:id)[1]}"/>
+        <xsl:choose>
+          <xsl:when test="$generate.id.attributes = 0">
+            <a name="{(@id|@xml:id)[1]}"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <span>
+              <xsl:call-template name="id.attribute"/>
+            </span>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:if>
     </xsl:for-each>
     <xsl:value-of select="tertiary"/>
@@ -547,6 +574,7 @@
     <xsl:otherwise>
       <a>
         <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:call-template name="id.attribute"/>
         <xsl:variable name="title">
           <xsl:choose>
             <xsl:when test="&section;/titleabbrev and $index.prefer.titleabbrev != 0">
@@ -609,6 +637,7 @@
 
       <a>
         <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:call-template name="id.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target[1]"/>
@@ -632,6 +661,7 @@
 
       <a>
         <xsl:apply-templates select="." mode="class.attribute"/>
+        <xsl:call-template name="id.attribute"/>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target[1]"/>

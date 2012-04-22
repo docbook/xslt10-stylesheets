@@ -24,6 +24,7 @@
 <xsl:template name="block.object">
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
@@ -57,6 +58,7 @@
 
   <xsl:variable name="p">
     <p>
+      <xsl:call-template name="id.attribute"/>
       <xsl:choose>
         <xsl:when test="$class != ''">
           <xsl:call-template name="common.html.attributes">
@@ -69,6 +71,17 @@
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
+
+      <!-- need to capture the id of the listitem -->
+      <xsl:if test="position() = 1 and 
+                   (parent::listitem/@id or parent::listitem/@xml:id)">
+        <span>
+          <xsl:call-template name="id.attribute">
+            <xsl:with-param name="node" select="parent::listitem"/>
+          </xsl:call-template>
+        </span>
+      </xsl:if>
+
       <xsl:copy-of select="$content"/>
     </p>
   </xsl:variable>
@@ -88,6 +101,7 @@
 <xsl:template match="simpara">
   <!-- see also listitem/simpara in lists.xsl -->
   <p>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="locale.html.attributes"/>
     <xsl:if test="@role and $para.propagates.style != 0">
       <xsl:apply-templates select="." mode="class.attribute">
@@ -162,6 +176,7 @@
 <xsl:template match="blockquote">
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:choose>
@@ -218,18 +233,20 @@
 <xsl:template match="epigraph">
   <div>
     <xsl:call-template name="common.html.attributes"/>
-      <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
-      <xsl:if test="attribution">
-        <div class="attribution">
-          <span>&#x2014;<xsl:apply-templates select="attribution"/></span>
-        </div>
-      </xsl:if>
+    <xsl:call-template name="id.attribute"/>
+    <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
+    <xsl:if test="attribution">
+      <div class="attribution">
+        <span>&#x2014;<xsl:apply-templates select="attribution"/></span>
+      </div>
+    </xsl:if>
   </div>
 </xsl:template>
 
 <xsl:template match="attribution">
   <span>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>
@@ -239,6 +256,7 @@
 <xsl:template match="abstract|sidebar">
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="sidebar.titlepage"/>
     <xsl:apply-templates/>
@@ -436,6 +454,7 @@
 <xsl:template match="revhistory">
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <table border="0" width="100%" summary="Revision history">
       <tr>
         <th align="{$direction.align.start}" valign="top" colspan="3">

@@ -608,6 +608,7 @@
   </xsl:variable>
 
   <tr>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="tr.attributes">
       <xsl:with-param name="rownum">
         <xsl:number from="tgroup" count="row"/>
@@ -840,6 +841,7 @@
       </xsl:variable>
 
       <xsl:element name="{$cellgi}">
+        <xsl:call-template name="id.attribute"/>
         <xsl:if test="$bgcolor != ''">
           <xsl:attribute name="bgcolor">
             <xsl:value-of select="$bgcolor"/>

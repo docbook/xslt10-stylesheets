@@ -25,6 +25,7 @@
 <xsl:template match="corpauthor">
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>
@@ -34,6 +35,7 @@
 <xsl:template match="jobtitle">
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>

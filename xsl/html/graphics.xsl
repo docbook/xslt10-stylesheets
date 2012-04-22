@@ -76,6 +76,7 @@
 <xsl:template match="screenshot">
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
@@ -1056,11 +1057,15 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <xsl:template match="graphic">
   <xsl:choose>
     <xsl:when test="parent::inlineequation">
-      <xsl:call-template name="anchor"/>
-      <xsl:call-template name="process.image"/>
+      <span>
+        <xsl:call-template name="id.attribute"/>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="process.image"/>
+      </span>
     </xsl:when>
     <xsl:otherwise>
       <div>
+        <xsl:call-template name="id.attribute"/>
         <xsl:if test="@align">
           <xsl:attribute name="align">
             <xsl:value-of select="@align"/>
@@ -1148,6 +1153,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         <xsl:value-of select="$align"/>
       </xsl:attribute>
     </xsl:if>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
     <xsl:apply-templates select="$object"/>
@@ -1158,6 +1164,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <xsl:template match="inlinemediaobject">
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="select.mediaobject"/>
   </span>
@@ -1492,6 +1499,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 <xsl:template match="caption">
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:if test="@align = 'right' or @align = 'left' or @align='center'">
       <xsl:attribute name="align"><xsl:value-of
                          select="@align"/></xsl:attribute>
