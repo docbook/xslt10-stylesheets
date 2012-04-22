@@ -272,7 +272,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
 
 <xsl:template match="footnote" name="process.footnote" mode="process.footnote.mode">
   <xsl:variable name="id">
-    <xsl:text>#ftn.</xsl:text>
+    <xsl:text>ftn.</xsl:text>
     <xsl:call-template name="object.id">
       <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>

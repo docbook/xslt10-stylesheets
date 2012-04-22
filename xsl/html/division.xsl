@@ -198,10 +198,6 @@
 
   <h1>
     <xsl:attribute name="class">title</xsl:attribute>
-    <xsl:call-template name="id.attribute">
-      <xsl:with-param name="node" select="$node"/>
-      <xsl:with-param name="conditional" select="0"/>
-    </xsl:call-template>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="conditional" select="0"/>

@@ -480,10 +480,6 @@
       </xsl:if>
     </xsl:if>
     <xsl:if test="$allow-anchors != 0">
-      <xsl:call-template name="id.attribute">
-        <xsl:with-param name="node" select="$section"/>
-        <xsl:with-param name="conditional" select="0"/>
-      </xsl:call-template>
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select="$section"/>
         <xsl:with-param name="conditional" select="0"/>

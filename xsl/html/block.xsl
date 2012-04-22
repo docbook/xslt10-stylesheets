@@ -72,16 +72,6 @@
         </xsl:otherwise>
       </xsl:choose>
 
-      <!-- need to capture the id of the listitem -->
-      <xsl:if test="position() = 1 and 
-                   (parent::listitem/@id or parent::listitem/@xml:id)">
-        <span>
-          <xsl:call-template name="id.attribute">
-            <xsl:with-param name="node" select="parent::listitem"/>
-          </xsl:call-template>
-        </span>
-      </xsl:if>
-
       <xsl:copy-of select="$content"/>
     </p>
   </xsl:variable>
