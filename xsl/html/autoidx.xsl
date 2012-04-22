@@ -574,7 +574,6 @@
     <xsl:otherwise>
       <a>
         <xsl:apply-templates select="." mode="class.attribute"/>
-        <xsl:call-template name="id.attribute"/>
         <xsl:variable name="title">
           <xsl:choose>
             <xsl:when test="&section;/titleabbrev and $index.prefer.titleabbrev != 0">

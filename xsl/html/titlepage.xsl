@@ -1033,9 +1033,6 @@
         <a name="{$id}"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:attribute name="id">
-          <xsl:value-of select="$id"/>
-        </xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:choose>
