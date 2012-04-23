@@ -21,7 +21,7 @@ $(document).ready(function() {
 		    $target = $target.length && $target
 			|| $('[name=' + this.hash.slice(1) +']');
 		if (!(this.hash == "#searchDiv" || this.hash == "#treeDiv"  || this.hash == "") && $target.length) {
-			var targetOffset = $target.offset().top - 110;
+			var targetOffset = $target.offset().top - 120;
 			$('html,body')
 			    .animate({scrollTop: targetOffset}, 200);
 			return false;
