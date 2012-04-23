@@ -584,8 +584,18 @@
 
 <!-- HTML5: @type not permitted on lists -->
 <xsl:template match="itemizedlist">
+  <!-- Handle spacing="compact" as multiple class attribute instead
+       of the deprecated HTML compact attribute -->
+  <xsl:variable name="default.class">
+    <xsl:value-of select="local-name()"/>
+    <xsl:if test="@spacing = 'compact'">
+      <xsl:text> compact</xsl:text>
+    </xsl:if>
+  </xsl:variable>
+  
   <div>
     <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="title">
       <xsl:call-template name="formal.object.heading"/>
@@ -611,7 +621,9 @@
                 |processing-instruction()[not(preceding-sibling::listitem)]"/>
 
     <ul>
-      <xsl:call-template name="generate.class.attribute"/>
+      <xsl:call-template name="generate.class.attribute">
+        <xsl:with-param name="class" select="$default.class"/>
+      </xsl:call-template>
 
       <xsl:apply-templates 
             select="listitem
@@ -661,11 +673,9 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:if test="$generate.id.attributes != 0">
-      <xsl:attribute name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
 
     <xsl:call-template name="component.separator"/>
     <xsl:call-template name="chapter.titlepage"/>
@@ -750,6 +760,9 @@
   <section>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
+    </xsl:call-template>
+    <xsl:call-template name="id.attribute">
+      <xsl:with-param name="conditional" select="0"/>
     </xsl:call-template>
     <xsl:call-template name="section.titlepage"/>
 
