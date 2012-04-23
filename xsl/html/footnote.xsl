@@ -30,8 +30,12 @@ footnote text gets an id of #ftn.@id. They cross link to each other. -->
     <xsl:apply-templates select="." mode="class.attribute"/>
     <sup>
       <xsl:apply-templates select="." mode="class.attribute"/>
-      <xsl:call-template name="id.attribute"/>
-      <xsl:call-template name="anchor"/>
+      <xsl:call-template name="id.attribute">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
+      <xsl:call-template name="anchor">
+        <xsl:with-param name="conditional" select="0"/>
+      </xsl:call-template>
       <xsl:text>[</xsl:text>
       <xsl:apply-templates select="." mode="footnote.number"/>
       <xsl:text>]</xsl:text>
