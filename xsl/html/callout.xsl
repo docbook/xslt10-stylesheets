@@ -102,6 +102,7 @@
         <xsl:apply-templates select="." mode="common.html.attributes"/>
         <xsl:choose>
           <xsl:when test="$generate.id.attributes = 0">
+            <!-- force an id attribute here -->
             <xsl:if test="@id or @xml:id">
               <xsl:attribute name="name">
                 <xsl:value-of select="(@id|@xml:id)[1]"/>
@@ -121,7 +122,15 @@
       </a>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:call-template name="id.attribute"/>
+      <xsl:if test="$generate.id.attributes != 0">
+        <xsl:if test="@id or @xml:id">
+          <span>
+             <xsl:attribute name="id">
+                <xsl:value-of select="(@id|@xml:id)[1]"/>
+              </xsl:attribute>
+          </span>
+        </xsl:if>
+      </xsl:if>
       <xsl:call-template name="anchor"/>
       <xsl:apply-templates select="." mode="callout-bug"/>
     </xsl:otherwise>
