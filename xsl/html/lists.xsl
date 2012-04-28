@@ -24,11 +24,21 @@
     </xsl:if>
   </xsl:variable>
   
+  <xsl:variable name="style.value">
+    <xsl:variable name="type">
+      <xsl:call-template name="list.itemsymbol"/>
+    </xsl:variable>
+
+    <xsl:text>list-style-type: </xsl:text>
+    <xsl:value-of select="$type"/>
+    <xsl:text>; </xsl:text>
+  </xsl:variable>
+
   <div>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
-    <xsl:if test="title">
+    <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
@@ -44,11 +54,22 @@
       <xsl:call-template name="generate.class.attribute">
         <xsl:with-param name="class" select="$default.class"/>
       </xsl:call-template>
-      <xsl:if test="$css.decoration != 0">
-        <xsl:attribute name="type">
-          <xsl:call-template name="list.itemsymbol"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$css.decoration != 0">
+          <xsl:attribute name="style">
+            <xsl:value-of select="$style.value"/>
+          </xsl:attribute>
+        </xsl:when>
+        <xsl:when test="$make.clean.html != 0">
+          <!-- styled by separate css only -->
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- use the old @type attribute -->
+          <xsl:attribute name="type">
+            <xsl:call-template name="list.itemsymbol"/>
+          </xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
 
       <xsl:apply-templates 
             select="listitem
@@ -160,7 +181,7 @@
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
-    <xsl:if test="title">
+    <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
@@ -174,7 +195,7 @@
 
     <xsl:choose>
       <xsl:when test="@inheritnum='inherit' and ancestor::listitem[parent::orderedlist]">
-        <table border="0">
+        <table border="{$table.border.off}">
           <xsl:call-template name="generate.class.attribute">
             <xsl:with-param name="class" select="$default.class"/>
           </xsl:call-template>
@@ -320,7 +341,7 @@
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
-    <xsl:if test="title">
+    <xsl:if test="title|info/title">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
@@ -333,7 +354,7 @@
                     or self::titleabbrev)]
                   |comment()[not(preceding-sibling::varlistentry)]
                   |processing-instruction()[not(preceding-sibling::varlistentry)]"/>
-        <table border="0">
+        <table border="{$table.border.off}">
           <xsl:call-template name="generate.class.attribute">
             <xsl:with-param name="class" select="$default.class"/>
           </xsl:call-template>
@@ -553,7 +574,10 @@
 <xsl:template match="simplelist">
   <!-- with no type specified, the default is 'vert' -->
   <xsl:call-template name="anchor"/>
-  <table border="0" summary="Simple list">
+  <table border="{$table.border.off}">
+    <xsl:if test="$div.element != 'section'">
+      <xsl:attribute name="summary">Simple list</xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="simplelist.vert">
@@ -611,7 +635,10 @@
 
 <xsl:template match="simplelist[@type='horiz']">
   <xsl:call-template name="anchor"/>
-  <table border="0" summary="Simple list">
+  <table border="{$table.border.off}">
+    <xsl:if test="$div.element != 'section'">
+      <xsl:attribute name="summary">Simple list</xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="simplelist.horiz">
@@ -629,7 +656,10 @@
 
 <xsl:template match="simplelist[@type='vert']">
   <xsl:call-template name="anchor"/>
-  <table border="0" summary="Simple list">
+  <table border="{$table.border.off}">
+    <xsl:if test="$div.element != 'section'">
+      <xsl:attribute name="summary">Simple list</xsl:attribute>
+    </xsl:if>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="simplelist.vert">
@@ -810,7 +840,7 @@
       </xsl:with-param>
     </xsl:call-template>
 
-    <xsl:if test="title and $placement = 'before'">
+    <xsl:if test="(title or info/title) and $placement = 'before'">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
@@ -840,7 +870,7 @@
       </xsl:otherwise>
     </xsl:choose>
 
-    <xsl:if test="title and $placement != 'before'">
+    <xsl:if test="(title or info/title) and $placement != 'before'">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
   </div>
@@ -984,13 +1014,13 @@
 
   <xsl:apply-templates select="title"/>
 
-  <table border="0">
+  <table border="{$table.border.off}">
     <xsl:if test="$list-width != ''">
       <xsl:attribute name="width">
         <xsl:value-of select="$list-width"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="$table-summary != ''">
+    <xsl:if test="$table-summary != '' and $div.element != 'section'">
       <xsl:attribute name="summary">
         <xsl:value-of select="$table-summary"/>
       </xsl:attribute>
@@ -1067,7 +1097,10 @@
 
     <xsl:choose>
       <xsl:when test="$callout.list.table != 0">
-        <table border="0" summary="Callout list">
+        <table border="{$table.border.off}">
+          <xsl:if test="$div.element != 'section'">
+            <xsl:attribute name="summary">Callout list</xsl:attribute>
+          </xsl:if>
           <xsl:apply-templates select="callout
                                 |comment()[preceding-sibling::callout]
                                 |processing-instruction()[preceding-sibling::callout]"/>
