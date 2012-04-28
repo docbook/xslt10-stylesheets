@@ -39,6 +39,12 @@
   </xsl:choose>
 </xsl:variable>
 
+<!-- Support switching to <section> for HTML5 stylesheet -->
+<!-- This is an internal variable that does not need to be set by a user -->
+<xsl:variable name="div.element">div</xsl:variable>
+<!-- Support turning off table  border with border="" for HTML5 -->
+<xsl:variable name="table.border.off">0</xsl:variable>
+
 <!-- The generate.html.title template is currently used for generating HTML -->
 <!-- "title" attributes for some inline elements only, but not for any -->
 <!-- block elements. It is called in eleven places in the inline.xsl -->
