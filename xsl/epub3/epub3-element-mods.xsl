@@ -1593,6 +1593,40 @@ article  toc,title,figure,table,example,equation
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="co" mode="enumerate-images">
+  <!-- process co to get name of callout bug image file -->
+  <xsl:if test="$callout.graphics != 0">
+    <xsl:variable name="result">
+      <xsl:apply-templates select="." mode="callout-bug"/>
+    </xsl:variable>
+
+    <xsl:variable name="nodes" select="exsl:node-set($result)"/>
+
+    <xsl:for-each select="$nodes//*[@src]">
+      <xsl:variable name="image.filename" select="@src"/>
+
+      <xsl:variable name="image.type">
+        <xsl:call-template name="graphic.format.content-type">
+          <xsl:with-param name="format" select="translate(
+                 substring-after($callout.graphics.extension,'.'), 
+                     &lowercase;, &uppercase;)"/>
+        </xsl:call-template>
+      </xsl:variable>
+
+      <xsl:element name="tmp-filename" namespace="">
+        <xsl:element name="tmp-href" namespace="">
+          <xsl:value-of select="$image.filename"/>
+        </xsl:element>
+        <xsl:element name="media-type" namespace="">
+          <xsl:value-of select="$image.type"/>
+        </xsl:element>
+      </xsl:element>
+    </xsl:for-each>
+
+  </xsl:if>
+
+</xsl:template>
+
 <!-- ======================================================== -->
 <!-- NCX templates are for backwards compatibility with EPUB2 -->
 <!-- ======================================================== -->
