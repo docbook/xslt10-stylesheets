@@ -149,6 +149,8 @@ article  toc,title,figure,table,example,equation
 <xsl:param name="epub.mimetype.pathname"
            select="concat($epub.package.dir, $epub.mimetype.filename)"/>
 
+<xsl:param name="kindle.extensions" select="0"/>
+
 <!--==============================================================-->
 <!--  Internal variables used for computing certain metadata      -->
 <!--==============================================================-->
@@ -298,6 +300,7 @@ article  toc,title,figure,table,example,equation
     <xsl:call-template name="metadata.title"/>
     <xsl:call-template name="metadata.language"/>
     <xsl:call-template name="metadata.modified"/>
+    <xsl:call-template name="metadata.cover"/>
     <xsl:call-template name="metadata.other.info"/>
     
   </xsl:element>
@@ -377,9 +380,11 @@ article  toc,title,figure,table,example,equation
 
   <xsl:if test="$epub.include.metadata.dc.elements != 0">
     <dc:language>
-      <xsl:attribute name="id">
-        <xsl:value-of select="$epub.dc.language.id"/>
-      </xsl:attribute>
+      <xsl:if test="$kindle.extensions = 0">
+        <xsl:attribute name="id">
+          <xsl:value-of select="$epub.dc.language.id"/>
+        </xsl:attribute>
+      </xsl:if>
       <xsl:value-of select="$lang"/>
     </dc:language>
   </xsl:if>
@@ -431,6 +436,22 @@ article  toc,title,figure,table,example,equation
   <!-- Currently it just converts the local time to this format, which is
        not the correct UTC time. -->
   <xsl:value-of select="concat(substring($date,1,19), 'Z')"/>
+</xsl:template>
+
+<!-- This cover meta element used by kindlegen, at least -->
+<xsl:template name="metadata.cover">
+  <xsl:variable name="info" select="./*[contains(local-name(.), 'info')][1]"/>
+  <xsl:variable name="cover.image" 
+                select="$info//mediaobject[@role='cover' or ancestor::cover]"/>
+
+  <xsl:if test="$cover.image">
+    <xsl:element name="meta" namespace="{$opf.namespace}">
+      <xsl:attribute name="content">
+        <xsl:value-of select="$epub.cover.image.id"/>
+      </xsl:attribute>
+      <xsl:attribute name="name">cover</xsl:attribute>
+    </xsl:element>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="metadata.other.info">
