@@ -37,8 +37,9 @@ public class FormatGraphicCallout extends FormatCallout {
   int graphicsMax = 0;
   String iconSize = "";
 
-  public FormatGraphicCallout(NamePool nPool, String path, String ext, int max, String size, boolean fo) {
-    super(nPool, fo);
+  public FormatGraphicCallout(NamePool nPool, String path, String ext, int max, 
+			      String size, boolean fo, boolean xhtml) {
+    super(nPool, fo, xhtml);
     graphicsPath = path;
     graphicsExt = ext;
     graphicsMax = max;
@@ -72,9 +73,15 @@ public class FormatGraphicCallout extends FormatCallout {
 	  imgAttr.addAttribute("", "", "content-width", "CDATA", iconSize);
 	  imgAttr.addAttribute("", "", "width", "CDATA", iconSize);
 	  
-	  // HTML
-	} else {
-	  imgName = namePool.allocate("", "", "img");
+	  // XHTML/HTML
+	} else {  
+	  if (xhStylesheet) {
+	    imgName = namePool.allocate("", xhURI, "img");
+	  }
+	  else {
+	    imgName = namePool.allocate("", "", "img");
+	  }
+
 	  imgAttr = new AttributeCollection(namePool);
 	  imgAttr.addAttribute("", "", "src", "CDATA",
 			       graphicsPath + num + graphicsExt);

@@ -39,8 +39,9 @@ public class FormatUnicodeCallout extends FormatCallout {
 			      String font,
 			      int start,
 			      int max,
-			      boolean fo) {
-    super(nPool, fo);
+			      boolean fo,
+			      boolean xhtml) {
+    super(nPool, fo, xhtml);
     unicodeFont = font;
     unicodeMax = max;
     unicodeStart = start;
@@ -72,7 +73,12 @@ public class FormatUnicodeCallout extends FormatCallout {
 	    inAttr.addAttribute("", "", "id", "ID", id);
 
 	  } else {
-	    inName = namePool.allocate("", "", "font");
+	    if (xhStylesheet) {
+	      inName = namePool.allocate("", xhURI, "font");
+	    } else {
+	      inName = namePool.allocate("", "", "font");
+	    }
+	    
 	    inAttr = new AttributeCollection(namePool);
 	    inAttr.addAttribute("", "", "face", "CDATA", unicodeFont);
 	    inAttr.addAttribute("", "", "id", "ID", id);

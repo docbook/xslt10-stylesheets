@@ -56,6 +56,8 @@ import com.nwalsh.saxon.CalloutEmitter;
 public class Verbatim {
   /** True if the stylesheet is producing formatting objects */
   private static boolean foStylesheet = false;
+ /** True if the stylesheet is producing XHTML */
+  private static boolean xhStylesheet = false;
   /** The modulus for line numbering (every 'modulus' line is numbered). */
   private static int modulus = 0;
   /** The width (in characters) of line numbers (for padding). */
@@ -246,7 +248,7 @@ public class Verbatim {
       LineCountEmitter lcEmitter = new LineCountEmitter();
       rtf.replay(lcEmitter);
       int numLines = lcEmitter.lineCount();
-
+    
       int listingModulus = numLines < modulus ? 1 : modulus;
 
       double log10numLines = Math.log(numLines) / Math.log(10);
@@ -326,6 +328,7 @@ public class Verbatim {
     graphicsMax = 0;
     iconSize = "7pt";
     foStylesheet = false;
+    xhStylesheet = false;
     calloutsSetup = true;
 
     Value variable = null;
@@ -334,6 +337,7 @@ public class Verbatim {
     // Get the stylesheet type
     varString = getVariable(context, "stylesheet.result.type");
     foStylesheet = (varString.equals("fo"));
+    xhStylesheet = (varString.equals("xhtml"));
 
     // Get the default column
     varString = getVariable(context, "callout.defaultcolumn");
@@ -382,7 +386,8 @@ public class Verbatim {
 					  graphicsExt,
 					  graphicsMax,
 					  iconSize,
-					  foStylesheet);
+					  foStylesheet,
+					  xhStylesheet);
     } else if (useUnicode) {
       // Get the starting character
       varString = getVariable(context, "callout.unicode.start.character");
@@ -414,9 +419,10 @@ public class Verbatim {
 					  unicodeFont,
 					  unicodeStart,
 					  unicodeMax,
-					  foStylesheet);
+					  foStylesheet,
+					  xhStylesheet);
     } else {
-      fCallout = new FormatTextCallout(namePool, foStylesheet);
+      fCallout = new FormatTextCallout(namePool, foStylesheet, xhStylesheet);
     }
   }
 

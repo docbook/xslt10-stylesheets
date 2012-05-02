@@ -34,12 +34,15 @@ import com.nwalsh.saxon.Callout;
 public abstract class FormatCallout {
   protected static final String foURI = "http://www.w3.org/1999/XSL/Format";
   protected static final String xhURI = "http://www.w3.org/1999/xhtml";
+  protected String uri = "";
   protected boolean foStylesheet = false;
+  protected boolean xhStylesheet = false;
   protected NamePool namePool = null;
 
-  public FormatCallout(NamePool nPool, boolean fo) {
+  public FormatCallout(NamePool nPool, boolean fo, boolean xhtml) {
     namePool = nPool;
     foStylesheet = fo;
+    xhStylesheet = xhtml;
   }
 
   public String areaLabel(Element area) {
@@ -82,26 +85,33 @@ public abstract class FormatCallout {
     return id;
   }
   
-
   public void startSpan(Emitter rtf, String id)
     throws TransformerException {
-
+       
     if (!foStylesheet && namePool != null) {
-      int spanName = namePool.allocate("", "", "span");
+      if(xhStylesheet) {
+	uri = xhURI;
+      }
+      
+  
+      int spanName = namePool.allocate("", uri, "span");
+
       AttributeCollection spanAttr = new AttributeCollection(namePool);
       int namespaces[] = new int[1];
-      spanAttr.addAttribute("", "", "class", "CDATA", "co");
-      spanAttr.addAttribute("", "", "id", "CDATA", id);
+      spanAttr.addAttribute("", uri, "class", "CDATA", "co");
+      spanAttr.addAttribute("", uri, "id", "CDATA", id);
       rtf.startElement(spanName, spanAttr, namespaces, 0);
     }
-   
   }
 
   public void endSpan(Emitter rtf)
     throws TransformerException {
 
     if (!foStylesheet && namePool != null) {
-      int spanName = namePool.allocate("", "", "span");
+      if (xhStylesheet) {
+	uri = xhURI;
+	}
+      int spanName = namePool.allocate("", uri, "span");
       rtf.endElement(spanName);
     }
   }

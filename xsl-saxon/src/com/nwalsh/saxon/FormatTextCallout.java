@@ -27,8 +27,8 @@ import com.nwalsh.saxon.Callout;
  **/
 
 public class FormatTextCallout extends FormatCallout {
-  public FormatTextCallout(NamePool nPool, boolean fo) {
-    super(nPool, fo);
+  public FormatTextCallout(NamePool nPool, boolean fo, boolean xhtml) {
+    super(nPool, fo, xhtml);
   }
 
   public void formatCallout(Emitter rtfEmitter,
