@@ -419,13 +419,6 @@
 
 <!-- ================================================== -->
 
-<xsl:template match="bookbiblio" mode="bibliography.mode">
-  <fo:inline>
-    <xsl:apply-templates mode="bibliography.mode"/>
-    <xsl:value-of select="$biblioentry.item.separator"/>
-  </fo:inline>
-</xsl:template>
-
 <xsl:template match="citetitle" mode="bibliography.mode">
   <fo:inline>
     <xsl:choose>
