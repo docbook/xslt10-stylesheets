@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>webhelp.indexer.language</refname>
-<refpurpose></refpurpose>
+<refpurpose>The language to use for creating the webhelp search index.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -20,6 +20,31 @@
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
-<para></para>
+<para>To support stemming in the client-side webhelp stemmer, you must provide the language code. By default, the following languages are supported:
+<itemizedlist>
+  <listitem>
+    <para><code>en</code>: English</para>
+  </listitem>
+  <listitem>
+    <para><code>de</code>: German</para>
+  </listitem>
+  <listitem>
+    <para><code>fr</code>: French</para>
+  </listitem>
+  <listitem>
+    <para><code>it</code>: Italian</para>
+  </listitem>
+  <listitem>
+    <para><code>cn</code>: Chinese</para>
+  </listitem>
+  <listitem>
+    <para><code>ja</code>: Japanese</para>
+  </listitem>
+  <listitem>
+    <para><code>ko</code>: Korean</para>
+  </listitem>
+</itemizedlist>
+See the webhelp documentation for information on adding support for additional languages.
+</para>
 </refsection>
 </refentry>

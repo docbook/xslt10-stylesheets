@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>webhelp.base.dir</refname>
-<refpurpose></refpurpose>
+<refpurpose>The base directory for webhelp output.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -20,6 +20,10 @@
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
-<para></para>
+<para>If specified, the <parameter>webhelp.base.dir</parameter>
+parameter identifies the output directory for webhelp. (If not
+specified, the output directory is system dependent.) By default, this
+parameter is set to <filename>docs</filename>.</para>
+
 </refsection>
 </refentry>

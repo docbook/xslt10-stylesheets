@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>webhelp.default.topic</refname>
-<refpurpose></refpurpose>
+<refpurpose>The name of the file to which the start file in the webhelp base directory redirects</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -20,6 +20,17 @@
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
-<para></para>
+<para>Currently webhelp creates a base directory and puts the output
+files in a <filename>content</filename> subdirectory. It creates a
+file in the base directory that redirects to a configured file in the
+<filename>content</filename> directory. The
+<parameter>webhelp.default.topic</parameter> parameter lets you
+configure the name of the file that is redirected to.
+<note>
+  <para>This parameter will be removed from a future version of
+  webhelp along with the <filename>content</filename>
+  directory.</para>
+</note>
+</para>
 </refsection>
 </refentry>

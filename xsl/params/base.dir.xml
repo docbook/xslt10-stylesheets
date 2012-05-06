@@ -21,7 +21,7 @@
 
 <refsection><info><title>Description</title></info>
 
-<para>If specified, the <parameter>base.dir</parameter> identifies
+<para>If specified, the <parameter>base.dir</parameter> parameter identifies
 the output directory for chunks. (If not specified, the output directory
 is system dependent.)</para>
 

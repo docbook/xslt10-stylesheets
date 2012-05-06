@@ -10,7 +10,7 @@
 </refmeta>
 <refnamediv>
 <refname>webhelp.include.search.tab</refname>
-<refpurpose></refpurpose>
+<refpurpose>Should the webhelp output include a Search tab?</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -20,6 +20,6 @@
 </refsynopsisdiv>
 
 <refsection><info><title>Description</title></info>
-<para></para>
+<para>Set this parameter to 0 to suppress the search tab from webhelp output.</para>
 </refsection>
 </refentry>

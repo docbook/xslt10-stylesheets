@@ -6,6 +6,15 @@
         version="1.0" xmlns="http://www.w3.org/1999/xhtml"
 	exclude-result-prefixes="exsl ng db">
 
+<!-- ********************************************************************
+     $Id$
+     ******************************************************************** 
+
+     This file is part customization layer on top of the XSL DocBook
+     Stylesheet distribution that generates webhelp output.
+
+     ******************************************************************** -->
+
     <xsl:import href="../../xhtml/chunk.xsl"/>
 
     <xsl:output
@@ -23,26 +32,6 @@
     <xsl:param name="doc.title">
       <xsl:call-template name="get.doc.title"/>
     </xsl:param>
-
-    <!-- webhelp-specific params! -->
-    <!-- To be added to normal params file someday -->
-    <xsl:param name="webhelp.include.search.tab">true</xsl:param>
-    <xsl:param name="webhelp.start.filename">index.html</xsl:param>
-    <xsl:param name="webhelp.base.dir">docs</xsl:param>
-    <!-- webhelp.common.dir includes the files including jquery, css files
-	 which are required for general functionality of webhelp -->
-    <xsl:param name="webhelp.common.dir">../common/</xsl:param>
-    <!-- webhelp.tree.cookie.id preserves the TOC tree. 
-	i.e. opened tree/sub-tree nodes and closed tree nodes. 
-	Needed for jquery.treeview plugin -->
-    <xsl:param name="webhelp.tree.cookie.id" select="concat( 'treeview-', count(//node()) )"/>
-    <!-- Specify the language of your docbook document. 
-	This is needed for stemming support and to filter the subtle differences in the languages 
-	'en' (english) is the default. Refer the NOTE: on stemmers given below for more info. -->
-    <xsl:param name="webhelp.indexer.language">en</xsl:param>
-    <xsl:param name="webhelp.default.topic">index.html</xsl:param>
-    <xsl:param name="webhelp.autolabel">0</xsl:param>
-    <!-- webhelp-specific params! -->
 
     <!-- Set some reasonable defaults for webhelp output -->
     <xsl:param name="chunker.output.indent">yes</xsl:param>

@@ -413,6 +413,16 @@ profiling of your document. For more information about profiling, see
 &eclipse.plugin.id;
 &eclipse.plugin.provider;
 </reference>
+<reference xml:id="webhelp"><title>WebHelp</title>
+&webhelp.autolabel;
+&webhelp.base.dir;
+&webhelp.common.dir;
+&webhelp.default.topic;
+&webhelp.include.search.tab;
+&webhelp.indexer.language;
+&webhelp.start.filename;
+&webhelp.tree.cookie.id;
+</reference>
 <reference xml:id="javahelp"><title>JavaHelp</title>
 &javahelp.encoding;
 </reference>
@@ -753,6 +763,14 @@ around all these parameters.</para>
 <src:fragref linkend="variablelist.as.table.frag"/>
 <src:fragref linkend="variablelist.term.break.after.frag"/>
 <src:fragref linkend="variablelist.term.separator.frag"/>
+<src:fragref linkend="webhelp.autolabel.frag"/>
+<src:fragref linkend="webhelp.base.dir.frag"/>
+<src:fragref linkend="webhelp.common.dir.frag"/>
+<src:fragref linkend="webhelp.default.topic.frag"/>
+<src:fragref linkend="webhelp.include.search.tab.frag"/>
+<src:fragref linkend="webhelp.indexer.language.frag"/>
+<src:fragref linkend="webhelp.start.filename.frag"/>
+<src:fragref linkend="webhelp.tree.cookie.id.frag"/>
 <src:fragref linkend="writing.mode.frag"/>
 <src:fragref linkend="xref.label-page.separator.frag"/>
 <src:fragref linkend="xref.label-title.separator.frag"/>
