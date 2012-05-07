@@ -15,7 +15,7 @@
 
      ******************************************************************** -->
 
-<xsl:import href="../../html/chunk.xsl"/>
+<xsl:import href="../../xhtml/chunk.xsl"/>
 <xsl:include href="webhelp-common.xsl"/>
 
 </xsl:stylesheet>
