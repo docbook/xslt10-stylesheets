@@ -243,18 +243,20 @@
      Oliver Fischer
      -->
 
-<!-- WebHelp --> 
-<gentext key="Search" text="suchen"/>
-<gentext key="Enter_a_term_and_click" text="Geben Sie einen Begriff ein und klicken Sie "/>
-<gentext key="Go" text="Go"/>
-<gentext key="to_perform_a_search" text=" to perform a search."/>
-<gentext key="txt_filesfound" text="Ergebnisse"/>
-<gentext key="txt_enter_at_least_1_char" text="Sie müssen mindestens ein Zeichen."/>
-<gentext key="txt_browser_not_supported"
-        text="Ihr Browser ist nicht unterstütz. Es wird empfohlen, Mozilla Firefox zu verwenden."/>
-<gentext key="txt_please_wait" text="Bitte warten Sie. Die Suche ist im Gange ..."/>
-<gentext key="txt_results_for" text="Ergebnisse für: "/>
-<gentext key="HighlightButton" text="Markierte Suchergebnisse ein/ausschalten"/>
+<context name="webhelp">
+  <template name="Search">Suchen</template>
+  <template name="Enter_a_term_and_click">Geben Sie einen Begriff ein und klicken Sie. </template>
+  <template name="Go">Go</template>
+  <template name="to_perform_a_search"> to perform a search.</template>
+  <template name="txt_filesfound">Ergebnisse</template>
+  <template name="txt_enter_at_least_1_char">Sie müssen mindestens ein Zeichen.</template>
+  <template name="txt_browser_not_supported">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
+  <template name="txt_please_wait">Bitte warten Sie. Die Suche ist im Gange ...</template>
+  <template name="txt_results_for">Ergebnisse für: </template>
+  <template name="TableofContents">Contents</template>
+  <template name="HighlightButton">Markierte Suchergebnisse ein/ausschalten</template>
+  <template name="Your_search_returned_no_results">Your search returned no results.</template>
+</context>
 
 <context name="styles">
 

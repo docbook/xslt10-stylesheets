@@ -231,17 +231,20 @@
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
 <!-- WebHelp -->
-<gentext key="Search" text="搜索"/>
-<gentext key="Enter_a_term_and_click" text="输入字词，然后点击 "/>
-<gentext key="Go" text="去"/>
-<gentext key="to_perform_a_search" text=" to perform a search."/>
-<gentext key="txt_filesfound" text="条结果"/>
-<gentext key="txt_enter_at_least_1_char" text="您必须输入至少一个字符。"/>
-<gentext key="txt_browser_not_supported"
-        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-<gentext key="txt_please_wait" text="请稍候。搜索中..."/>
-<gentext key="txt_results_for" text="结果： "/>
-<gentext key="HighlightButton" text="Toggle search result highlighting"/>
+<context name="webhelp">
+  <template name="Search">搜索</template>
+  <template name="Enter_a_term_and_click">输入字词，然后点击 </template>
+  <template name="Go">去</template>
+  <template name="to_perform_a_search"> to perform a search.</template>
+  <template name="txt_filesfound">条结果</template>
+  <template name="txt_enter_at_least_1_char">您必须输入至少一个字符。</template>
+  <template name="txt_browser_not_supported">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
+  <template name="txt_please_wait">请稍候。搜索中...</template>
+  <template name="txt_results_for">结果： </template>
+  <template name="TableofContents">Contents</template>
+  <template name="HighlightButton">Toggle search result highlighting</template>
+  <template name="Your_search_returned_no_results">Your search returned no results.</template>
+</context>
 
 <context name="styles">
 

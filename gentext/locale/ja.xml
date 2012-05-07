@@ -221,18 +221,20 @@
 <dingbat key="nestedendquote" text="』"/>
 <dingbat key="bullet" text="●"/>
 
-<!-- WebHelp -->
-<gentext key="Search" text="検索"/>
-<gentext key="Enter_a_term_and_click" text="用語をクリックして入力してください。"/>
-<gentext key="Go" text="移動"/>
-<gentext key="to_perform_a_search" text=" to perform a search."/>
-<gentext key="txt_filesfound" text="検索結果"/>
-<gentext key="txt_enter_at_least_1_char" text="あなたは、少なくとも1つの文字を入力する必要があります。"/>
-<gentext key="txt_browser_not_supported"
-        text="お使いのブラウザがサポートされていません。 Mozilla Firefoxの使用が推奨されます"/>
-<gentext key="txt_please_wait" text="しばらくお待ちください。検索が進行中です..."/>
-<gentext key="txt_results_for" text="次の検索語の結果： "/>
-<gentext key="HighlightButton" text="強調表示の切り替えの検索結果"/>
+<context name="webhelp">
+  <template name="Search">検索</template>
+  <template name="Enter_a_term_and_click">用語をクリックして入力してください。</template>
+  <template name="Go">移動</template>
+  <template name="to_perform_a_search"> to perform a search.</template>
+  <template name="txt_filesfound">検索結果</template>
+  <template name="txt_enter_at_least_1_char">あなたは、少なくとも1つの文字を入力する必要があります。</template>
+  <template name="txt_browser_not_supported">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
+  <template name="txt_please_wait">しばらくお待ちください。検索が進行中です...</template>
+  <template name="txt_results_for">次の検索語の結果： </template>
+  <template name="TableofContents">Contents</template>
+  <template name="HighlightButton">強調表示の切り替えの検索結果</template>
+  <template name="Your_search_returned_no_results">Your search returned no results.</template>
+</context>
 
 <context name="styles">
 

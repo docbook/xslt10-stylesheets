@@ -226,7 +226,7 @@
   <template name="to_perform_a_search"> to perform a search.</template>
   <template name="txt_filesfound">Results</template>
   <template name="txt_enter_at_least_1_char">You must enter at least one character.</template>
-  <template name="txt_browser_not_supported">Your browser is not supported. Use of Mozilla Firefox is recommended.</template>
+  <template name="txt_browser_not_supported">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
   <template name="txt_please_wait">Please wait. Search in progress...</template>
   <template name="txt_results_for">Results for: </template>
   <template name="TableofContents">Contents</template>

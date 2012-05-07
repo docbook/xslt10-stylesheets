@@ -224,19 +224,20 @@
 <gentext key="hyphenation-push-character-count" text="2"/>
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
-<!-- WebHelp -->
-<gentext key="Search" text="rechercher"/>
-<gentext key="Enter_a_term_and_click" text="Saisissez un terme et cliquer "/>
-<gentext key="Go" text="Go"/>
-<gentext key="to_perform_a_search" text=" to perform a search."/>
-<gentext key="txt_filesfound" text="résultats"/>
-<gentext key="txt_enter_at_least_1_char" text="Vous devez entrer au moins un caractère."/>
-<gentext key="txt_browser_not_supported"
-        text="Your browser is not supported. Use of Mozilla Firefox is recommended."/>
-<gentext key="txt_please_wait" text="S'il vous plaît attendre. La recherche est en cours ..."/>
-<gentext key="txt_results_for" text="Résultats pour: "/>
-<gentext key="HighlightButton" text="Toggle search result highlighting"/>
-
+<context name="webhelp">
+  <template name="Search">Rechercher</template>
+  <template name="Enter_a_term_and_click">Saisissez un terme et cliquer </template>
+  <template name="Go">Go</template>
+  <template name="to_perform_a_search"> to perform a search.</template>
+  <template name="txt_filesfound">Résultats</template>
+  <template name="txt_enter_at_least_1_char">Vous devez entrer au moins un caractère.x</template>
+  <template name="txt_browser_not_supported">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
+  <template name="txt_please_wait">S'il vous plaît attendre. La recherche est en cours ...</template>
+  <template name="txt_results_for">Résultats pour: </template>
+  <template name="TableofContents">Contents</template>
+  <template name="HighlightButton">Toggle search result highlighting</template>
+  <template name="Your_search_returned_no_results">Your search returned no results.</template>
+</context>
 
 <context name="styles">
 
