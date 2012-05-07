@@ -15,13 +15,6 @@
 
      ******************************************************************** -->
 
-    <xsl:import href="../../xhtml/chunk.xsl"/>
-
-    <xsl:output
-            method="html"
-            encoding="utf-8"
-            cdata-section-elements=""/>
-
     <xsl:param name="chunker.output.method">
         <xsl:choose>
             <xsl:when test="contains(system-property('xsl:vendor'), 'SAXON 6')">saxon:xhtml</xsl:when>
@@ -461,11 +454,12 @@ border: none; background: none; font-weight: none; color: none; }
                 </xsl:call-template>
 
                 <div id="content">
-                     <noscript> <!-- Show a notification if the user has disabled javascript -->
-                
-						        Javascript is disabled on your browser. Please enable Javascript to navigate the interface properly.
-                   
-                     </noscript>
+                     <noscript>
+		       <xsl:call-template name="gentext.template">
+			 <xsl:with-param name="name" select="'txt_browser_not_supported'"/>
+			 <xsl:with-param name="context" select="'webhelp'"/>
+		       </xsl:call-template>
+		     </noscript>
                     <xsl:call-template name="user.header.content"/>
 
                     <xsl:copy-of select="$content"/>
