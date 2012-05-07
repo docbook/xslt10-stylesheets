@@ -43,13 +43,12 @@
     <xsl:param name="branding">not set</xsl:param>
     <xsl:param name="brandname"> </xsl:param>
 
-    <xsl:param name="section.autolabel" select="1"/>
-    <xsl:param name="chapter.autolabel" select="1"/>
-    <xsl:param name="appendix.autolabel" select="1"/>
-    <xsl:param name="qandadiv.autolabel" select="1"/>
-    <xsl:param name="reference.autolabel" select="1"/>
-    <xsl:param name="part.autolabel" select="1"/>    
-    <xsl:param name="section.autolabel.max.depth" select="3"/>
+    <xsl:param name="section.autolabel" select="0"/>
+    <xsl:param name="chapter.autolabel" select="0"/>
+    <xsl:param name="appendix.autolabel" select="0"/>
+    <xsl:param name="qandadiv.autolabel" select="0"/>
+    <xsl:param name="reference.autolabel" select="0"/>
+    <xsl:param name="part.autolabel" select="0"/>    
     <xsl:param name="section.label.includes.component.label" select="1"/>
 
     <xsl:param name="generate.section.toc.level" select="5"/>
