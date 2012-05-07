@@ -359,11 +359,22 @@
             </note></para>
         </step>-->
         <step id="edit-build-properties">
-          <para>In a text editor, edit the <filename>build.properties</filename> file in the webhelp
-            directory and make the changes indicated by the comments.<important>
-              <para>You must set appropriate values for <code>xslt-processor-classpath</code>,
-                  <code>xercesImpl.jar</code>, and <code>xml-apis.jar</code>.</para>
-            </important><programlisting>
+          <para>In a text editor, edit the
+              <filename>build.properties</filename> file in the
+            webhelp directory and make the changes indicated by the comments.<important>
+              <para>You must set appropriate values for
+                  <code>xslt-processor-classpath</code>,
+                  <code>xercesImpl.jar</code>, and
+                  <code>xml-apis.jar</code>.</para>
+            </important>See the DocBook <ulink
+              url="../../../doc/html/webhelp.html">reference
+              documentation</ulink> for detailed information about the
+            available webhelp and other parameters. Note that not all
+            DocBook parameters are passed in to the xsls by the
+              <filename>build.xml</filename> by default. You may need
+            to modify the <filename>build.xml</filename> to pass in
+            some DocBook
+            parameters.<programlisting>
 # The path (relative to the build.xml file) to your input document.
 # To use your own input document, create a build.xml file of your own
 # and import this build.xml.
