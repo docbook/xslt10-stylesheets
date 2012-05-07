@@ -13,6 +13,7 @@ else
 	$(XSLT) $< ../profiling/profile.xsl webhelp-temp.xml 
 endif
 	$(XSLT) webhelp-temp.xml xsl/webhelp.xsl
+	rm webhelp-temp.xml
 	$(ANT) index
 clean:
 	$(RM) -r docs/*
