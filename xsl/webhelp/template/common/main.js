@@ -81,7 +81,7 @@ $(document).ready(function() {
     // you click on a link from another page. 
     var hash = window.location.hash;
     if(hash){ 
-	var targetOffset = $(hash).offset().top - 105;
+	var targetOffset = $(hash).offset().top - 120;
 	$('html,body').animate({scrollTop: targetOffset}, 200);
 	return false;
     }
