@@ -47,7 +47,7 @@
 abstract affiliation anchor answer appendix area areaset areaspec
 artheader article audiodata audioobject author authorblurb authorgroup
 beginpage bibliodiv biblioentry bibliography biblioset blockquote book
-bookbiblio bookinfo callout calloutlist caption caution chapter
+bookinfo callout calloutlist caption caution chapter
 citerefentry cmdsynopsis co collab colophon colspec confgroup
 copyright dedication docinfo editor entrytbl epigraph equation
 example figure footnote footnoteref formalpara funcprototype
@@ -973,6 +973,20 @@ recursive process.</para>
     
         <xsl:variable name="useobject">
           <xsl:choose>
+            <!-- select videoobject or audioobject before textobject -->
+            <xsl:when test="local-name($object) = 'videoobject'">
+              <xsl:text>1</xsl:text> 
+            </xsl:when>
+            <xsl:when test="local-name($object) = 'audioobject'">
+              <xsl:text>1</xsl:text> 
+            </xsl:when>
+            <!-- skip textobject if also video, audio, or image out of order -->
+            <xsl:when test="local-name($object) = 'textobject' and
+                            ../imageobject or
+                            ../audioobject or
+                            ../videoobject">
+              <xsl:text>0</xsl:text> 
+            </xsl:when>
             <!-- The phrase is used only when contains TeX Math and output is FO -->
             <xsl:when test="local-name($object)='textobject' and $object/phrase
                             and $object/@role='tex' and $stylesheet.result.type = 'fo'
