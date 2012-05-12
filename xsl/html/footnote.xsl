@@ -250,8 +250,27 @@ linkend/id: <xsl:value-of select="@linkend"/>
   <!-- Only bother to do this if there's at least one non-table footnote -->
   <xsl:if test="count($footnotes)>count($table.footnotes)">
     <div class="footnotes">
+      <xsl:call-template name="footnotes.attributes"/>
       <br/>
-      <hr width="100" align="{$direction.align.start}"/>
+      <hr>
+        <xsl:choose>
+          <xsl:when test="$make.clean.html != 0">
+            <xsl:attribute name="class">footnote-hr</xsl:attribute>
+          </xsl:when>
+          <xsl:when test="$css.decoration != 0">
+            <xsl:attribute name="style">
+              <xsl:value-of select="concat('width:100; align:',
+                                            $direction.align.start,
+                                            ';')"/>
+            </xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:attribute name="width">100</xsl:attribute>
+            <xsl:attribute name="align"><xsl:value-of 
+                      select="$direction.align.start"/></xsl:attribute>
+          </xsl:otherwise>
+        </xsl:choose>
+      </hr>
       <xsl:apply-templates select="$footnotes" mode="process.footnote.mode"/>
     </div>
   </xsl:if>
@@ -268,6 +287,10 @@ linkend/id: <xsl:value-of select="@linkend"/>
 			   mode="annotation-popup"/>
     </div>
   </xsl:if>
+</xsl:template>
+
+<xsl:template name="footnotes.attributes">
+  <!-- customizable for footnotes attributes -->
 </xsl:template>
 
 <xsl:template name="process.chunk.footnotes">
