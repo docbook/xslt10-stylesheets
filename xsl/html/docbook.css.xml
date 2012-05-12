@@ -101,4 +101,10 @@ div.synopsis {
 
 /* end of styles in verbatim.xsl */
 /********************************/
+
+/* footnote rule */
+hr.footnote-hr {
+  width: 100;
+}
+
 </style>
