@@ -40,13 +40,13 @@
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
 
-    <xsl:if test="title and $placement = 'before'">
+    <xsl:if test="(title or info/title) and $placement = 'before'">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
     <xsl:apply-templates select="$preamble"/>
 
-    <xsl:if test="title and $placement != 'before'">
+    <xsl:if test="(title or info/title) and $placement != 'before'">
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
   </div>
