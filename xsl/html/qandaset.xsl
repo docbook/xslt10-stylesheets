@@ -402,7 +402,10 @@
     <xsl:call-template name="pi.dbhtml_cellspacing"/>
   </xsl:variable>
 
-  <table border="0" width="100%" summary="Q and A Set">
+  <table border="{$table.border.off}">
+    <xsl:if test="$css.decoration != 0">
+      <xsl:attribute name="style">width: 100%;</xsl:attribute>
+    </xsl:if>
     <xsl:if test="$table-summary != ''">
       <xsl:attribute name="summary">
         <xsl:value-of select="$table-summary"/>
