@@ -360,9 +360,13 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- funcprototype: kr, tabular -->
 
 <xsl:template match="funcprototype" mode="kr-tabular">
-  <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0"
-    class="funcprototype-table"
-    >
+  <table border="{$table.border.off}" class="funcprototype-table">
+    <xsl:if test="$div.element != 'section'">
+      <xsl:attribute name="summary">Function synopsis</xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$css.decoration != 0">
+      <xsl:attribute name="style">cellspacing: 0; cellpadding: 0;</xsl:attribute>
+    </xsl:if>
     <tr>
       <td>
         <xsl:apply-templates select="funcdef" mode="kr-tabular"/>
@@ -620,9 +624,15 @@ paramdef      ::= (#PCDATA|type|replaceable|parameter|funcparams)*
 <!-- funcprototype: ansi, tabular -->
 
 <xsl:template match="funcprototype" mode="ansi-tabular">
-  <table border="0" summary="Function synopsis" cellspacing="0" cellpadding="0"
+  <table border="{$table.border.off}" 
     class="funcprototype-table"
     >
+    <xsl:if test="$div.element != 'section'">
+      <xsl:attribute name="summary">Function synopsis</xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$css.decoration != 0">
+      <xsl:attribute name="style">cellspacing: 0; cellpadding: 0;</xsl:attribute>
+    </xsl:if>
     <tr>
       <td>
         <xsl:apply-templates select="funcdef" mode="ansi-tabular"/>
