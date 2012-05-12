@@ -690,8 +690,13 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
   <xsl:choose>
     <xsl:when test="$use.viewport">
-      <table border="0" summary="manufactured viewport for HTML img"
-             cellspacing="0" cellpadding="0">
+      <table border="{$table.border.off}">
+        <xsl:if test="$div.element != 'section'">
+          <xsl:attribute name="summary">manufactured viewport for HTML img</xsl:attribute>
+        </xsl:if>
+        <xsl:if test="$css.decoration != ''">
+          <xsl:attribute name="style">cellpadding: 0; cellspacing: 0;</xsl:attribute>
+        </xsl:if>
         <xsl:if test="$html.width != ''">
           <xsl:attribute name="width">
             <xsl:value-of select="$html.width"/>
