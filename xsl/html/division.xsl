@@ -17,7 +17,7 @@
 <xsl:template match="set">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:call-template name="id.attribute">
       <xsl:with-param name="conditional" select="0"/>
@@ -50,7 +50,7 @@
     </xsl:call-template>
 
     <xsl:apply-templates/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="set/setinfo"></xsl:template>
