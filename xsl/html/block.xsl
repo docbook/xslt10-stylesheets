@@ -171,9 +171,15 @@
 
     <xsl:choose>
       <xsl:when test="attribution">
-        <table border="0" width="100%"
-               cellspacing="0" cellpadding="0" class="blockquote"
-               summary="Block quote">
+        <table border="{$table.border.off}" class="blockquote">
+          <xsl:if test="$css.decoration != 0">
+            <xsl:attribute name="style">
+              <xsl:text>width: 100%; cellspacing: 0; cellpadding: 0;</xsl:text>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="$div.element != 'section'">
+            <xsl:attribute name="summary">Block quote</xsl:attribute>
+          </xsl:if>
           <tr>
             <td width="10%" valign="top">&#160;</td>
             <td width="80%" valign="top">
