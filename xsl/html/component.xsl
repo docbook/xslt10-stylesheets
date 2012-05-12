@@ -14,11 +14,20 @@
 
 <!-- ==================================================================== -->
 
+<!-- Set to 2 for backwards compatibility -->
+<xsl:param name="component.heading.level" select="2"/>
+
 <xsl:template name="component.title">
   <xsl:param name="node" select="."/>
 
+  <!-- This handles the case where a component (bibliography, for example)
+       occurs inside a section; will we need parameters for this? -->
+
+  <!-- This "level" is a section level.  To compute <h> level, add 1. -->
   <xsl:variable name="level">
     <xsl:choose>
+      <!-- chapters and other book children should get <h1> -->
+      <xsl:when test="$node/parent::book">0</xsl:when>
       <xsl:when test="ancestor::section">
         <xsl:value-of select="count(ancestor::section)+1"/>
       </xsl:when>
@@ -30,9 +39,6 @@
       <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-
-  <!-- Let's handle the case where a component (bibliography, for example)
-       occurs inside a section; will we need parameters for this? -->
 
   <xsl:element name="h{$level+1}">
     <xsl:attribute name="class">title</xsl:attribute>
@@ -177,7 +183,7 @@
 <xsl:template match="preface">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -202,7 +208,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="preface/title" mode="titlepage.mode" priority="2">
@@ -232,7 +238,7 @@
 <xsl:template match="chapter">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -256,7 +262,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="chapter/title|chapter/chapterinfo/title|chapter/info/title"
@@ -291,7 +297,7 @@
 
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -332,7 +338,7 @@
     <xsl:if test="not(parent::article) or $ischunk != 0">
       <xsl:call-template name="process.footnotes"/>
     </xsl:if>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="appendix/title|appendix/appendixinfo/title"
@@ -363,7 +369,7 @@
 <xsl:template match="article">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -390,7 +396,7 @@
 
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="article/title|article/articleinfo/title" mode="titlepage.mode" priority="2">
@@ -420,7 +426,7 @@
 <xsl:template match="topic">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -439,7 +445,7 @@
     <xsl:apply-templates/>
 
     <xsl:call-template name="process.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="topic/title|topic/info/title" mode="titlepage.mode" priority="2">
