@@ -445,7 +445,20 @@
   <div>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
-    <table border="0" width="100%" summary="Revision history">
+    <table>
+      <xsl:if test="$css.decoration != 0">
+        <xsl:attribute name="style">
+          <xsl:text>border-style:solid; width:100%;</xsl:text>
+        </xsl:attribute>
+      </xsl:if>
+      <!-- include summary attribute if not HTML5 -->
+      <xsl:if test="$div.element != 'section'">
+        <xsl:attribute name="summary">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key">revhistory</xsl:with-param>
+          </xsl:call-template>
+        </xsl:attribute>
+      </xsl:if>
       <tr>
         <th align="{$direction.align.start}" valign="top" colspan="3">
           <b>
