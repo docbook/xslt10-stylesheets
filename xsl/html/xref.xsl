@@ -209,7 +209,7 @@
 
       <a href="{$href}">
         <xsl:apply-templates select="." mode="class.attribute"/>
-        <xsl:if test="$target/title or $target/*/title">
+        <xsl:if test="$target/title or $target/info/title">
           <xsl:attribute name="title">
             <xsl:apply-templates select="$target" mode="xref-title"/>
           </xsl:attribute>
