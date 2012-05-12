@@ -69,14 +69,17 @@
       </xsl:attribute>
     </xsl:if>
 
-    <table border="0">
-      <xsl:attribute name="summary">
-        <xsl:value-of select="$admon.type"/>
-        <xsl:if test="title|info/title">
-          <xsl:text>: </xsl:text>
-          <xsl:value-of select="(title|info/title)[1]"/>
-        </xsl:if>
-      </xsl:attribute>
+    <table border="{$table.border.off}">
+      <!-- omit summary attribute in html5 output -->
+      <xsl:if test="$div.element != 'section'">
+        <xsl:attribute name="summary">
+          <xsl:value-of select="$admon.type"/>
+          <xsl:if test="title|info/title">
+            <xsl:text>: </xsl:text>
+            <xsl:value-of select="(title|info/title)[1]"/>
+          </xsl:if>
+        </xsl:attribute>
+      </xsl:if>
       <tr>
         <td rowspan="2" align="center" valign="top">
           <xsl:attribute name="width">
