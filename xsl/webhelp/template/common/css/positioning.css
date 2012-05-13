@@ -349,3 +349,23 @@ div.note *, div.caution *, div.important *, div.tip *, div.warning * {
 #content .qandaset>table, #content .qandaset>table td, #content .calloutlist table, #content .calloutlist table td, #content .navfooter table, #content .navfooter table td {
     border: 0px solid;
 }
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #content, #content * {
+        visibility: visible;
+    }
+
+   #sidebar, .navfooter {
+       display: none;
+   }
+
+   #content {
+	margin: 0 0 0 0;
+    }
+
+}
