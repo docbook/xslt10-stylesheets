@@ -528,7 +528,7 @@ you're not a project member, you can safely ignore this part.
 =================================================================
 
 -----------------------------------------------------------------
-Part 5: Tag and install a release
+Part 5: Install a release
 -----------------------------------------------------------------
 This section explains how to install/upload an actual docbook-xsl
 release.
@@ -539,16 +539,6 @@ release.
    - ssh
    - scp
 
-1. To tag the release and upload all the release packages
-   (including all docbook-xsl, docbook-xsl-ns, and docbook-xsl-doc
-   packages) to the Sourceforge "incoming" area and to the DocBook
-   Project webspace, run "make install-ns":
-
-*****************************************************************
-* NOTE: The part of the build that installs releases at the
-* Sourceforge project site is currently NOT working (due to SF
-* disabling non-interactive ssh access).
-
 -----------------------------------------------------------------
 Manual upload of release packages
 -----------------------------------------------------------------
@@ -556,37 +546,51 @@ Below are instructions for manually uploading and installing
 release packages in order to make them available at the project
 site (http://docbook.sourceforge.net/release/).
 
-1. Transfer the following files 
+1. Use scp or equivalent to transfer the following files 
 
    - docbook-xsl-<version>.zip
    - docbook-xsl-ns-<version>.zip
    - docbook-xsl-doc-<version>.zip 
 
-   to the /home/groups/d/do/docbook/htdocs/release/xsl 
+   to the /home/project-web/docbook/htdocs/release/xsl 
    directory at web.sourceforge.net using scp, WinSCP, or another 
    equivalent tool. The login string is 
 
      <username>,docbook@web.sourceforge.net
 
+     For example, using scp:
+
+     scp docbook-xsl-1.77.1.zip bobstayton,docbook@web.sourceforge.net:htdocs/release/xsl
+
+
 2. Start a SourceForge shell session, like so:
 
      ssh -t <username>,docbook@shell.sourceforge.net create
 
-3. In the shell, execute commands as follows for the docbook-xsl 
-   package (the 1.75.2 version is used as an example):
+     After logging in, you should see the files you uploaded in this directory:
 
-     cd /home/groups/d/do/docbook/htdocs/release/xsl
-     rm -rf current
-     unzip docbook-xsl-1.75.2.zip
-     mv docbook-xsl-1.75.2 1.75.2
-     chmod -R g+w 1.75.2
-     ln -s 1.75.2 current
+     /home/project-web/docbook/htdocs/release/xsl
 
-4. Repeat (and modify where applicable) the commands in step 3 for 
+3. Unzip the distribution.
+
+   In the shell, execute commands as follows for the docbook-xsl 
+   package (the 1.77.1 version is used as an example):
+
+     cd /home/project-web/docbook/htdocs/release/xsl
+     unzip docbook-xsl-1.77.1.zip
+     # and unzip the documentation into the same directory
+     unzip docbook-xsl-doc-1.77.1.zip
+     mv docbook-xsl-1.77.1 1.77.1
+     chmod -R g+w 1.77.1
+
+4. If the release is not a .0 release, then make it the "current" release.
+
+     # current is a symlink, so just use rm
+     rm current
+     ln -s 1.77.1 current
+
+5. Repeat (and modify where applicable) the commands in step 3 for 
    the docbook-xsl-ns package.
-
-5. Extract the contents of the docbook-xsl-doc package into the 
-   xsl/<version> and xsl-ns/<version> directories. 
 
 6. The documentation packages contain reference.txt.gz and 
    reference.pdf.gz. Unzip these archives (to ensure working links 
@@ -601,7 +605,6 @@ SourceForge, see
 
 *****************************************************************
 
-     make install-ns
 
 -----------------------------------------------------------------
 Part 6: Manage release files
@@ -615,133 +618,31 @@ the SF file-management Web interface.
 The file-management Web interface has been updated. Please ee:
 https://sourceforge.net/apps/trac/sourceforge/wiki/Release%20files%20for%20download
 
-Here are the legacy instructions for reference *only*:
+1.  On the SourceForge DocBook page, select Files.
 
-NOTE: Try hard to make sure you've got everything prepared OK,
-because the SF file-management system is extremely unwieldy, and
-it makes unwinding an upload mistake a major PITA. If you do make
-a mistake, see the next section for details on how to fix it.
+2.  Select docbook-xsl.
 
-01. Go to the DocBook Project master File Release System page:
+3.  Select Add Folder, and enter the new release number.
 
-    http://sourceforge.net/project/admin/editpackages.php?group_id=21935
+4.  Change to the new folder, and select Add File.
+Here you can upload these files:
 
-02. Click the "Add Release" link for the docbook-xsl package.
-    The "Create a File Release" form appears.
+  docbook-xsl-1.XX.X.zip
+  docbook-xsl-1.XX.X.tar.bz2
 
-03. In the "New Release Name" input box, type just the version
-    number of this release.
+5.  Upload a README text file, which will be displayed at the bottom
+of that folder's page.
 
-04. Click "Create This Release".
+6.  Repeat the process for the namespaced stylesheets
+docbook-xsl-ns-1.XX.X by putting
+the files under the docbook-xsl-ns folder.
 
-    Another form appears.
+7.  Repeat the process for the stylesheet documentation
+package docbook-xsl-doc-1.XX.X.
 
-05. Under "Step 1. Edit Existing Release", click the Choose button
-    next to the "Upload Release Notes" input box, and browse for
-    the location of the generated RELEASE-NOTES-PARTIAL.txt file
-    on your system.
-
-06. Under "Step 1. Edit Existing Release", click the Choose button
-    next to the "Upload Change Log" input box, and browse for the
-    location of the generated NEWS file on your system.
-
-07. Click the "Preserve my pre-formatted text." checkbox.
-
-08. Click the "Submit/Refresh" button.
-
-09. In the "Step 2: Add Files To This Release" section, scroll
-    down and find the docbook-xsl-1.NN.N packages (just the
-    docbook-xsl packages -- not the docbook-xsl-doc or
-    docbook-xsl-ns ones), and click the checkboxes next to them,
-    then click the "Add Files and/or Refresh View" button.
-
-10. In the "Step 3: Edit Files In This Release" area, for each of
-    the packages, select the appropriate values from the
-    Processor and File Type select boxes, and click the
-    corresponding "Update/Refresh" button.
-
-    For Processor, just choose "Any".
-
-    For File Type, just choose either .bz2, .gz, or .zip -- don't
-    choose the "Source" versions of those (these are not source
-    packages).
-
-11. In the "Step 4: Email Release Notice" area, click the "I'm
-    sure" checkbox, then click the "Send Notice" button.
-
-12. Repeat steps 1 through 11 above for the docbook-xsl-ns and
-    docbook-xsl-doc packages.
-
-13. Go to the project "Latest File Releases" page and confirm
-    that releases you have created appear there.
-
-      https://sourceforge.net/projects/docbook/files/
 
 -----------------------------------------------------------------
-Part 7: Fix upload mistakes
------------------------------------------------------------------
-This section explains what to do in case you've made a mistake
-and need to upload replacements for packages you've uploaded
-previously.
-
-If you make a mistake and need to upload new/replacement packages
-to the SF incoming area, complete the following steps to upload
-the new packages.
-
-1. Go to the DocBook Project master File Release System page:
-
-   http://sourceforge.net/project/admin/editpackages.php?group_id=21935
-
-2. Click the "Edit Releases" link next to whatever package(s) you
-   want to delete and/or re-upload files for.
-
-   The list of active releases for that package appears.
-
-3. Click the "Edit this Release" link next to the whatever version
-   you have uploaded.
-
-   Another form appears.
-
-4. Scroll down to "Step 3: Edit Files In This Release" section and
-   for each of the items there, click the "I'm Sure" checkbox and
-   then the "Delete File" button, and repeat until all the items
-   have been deleted.
-
-5. If the "bad" packages that you want to replace are
-   still/already in the incoming area, then:
-
-     a. Scroll back up to the "Step 2: Add Files To This Release"
-        section
-     b. Click the checkboxes next to the "bad" packages
-     c. Click the "Add Files and/or Refresh View" button.
-     d. Scroll back down to the "Step 3: Edit Files In This Release"
-        section and immediately repeat step 4 to delete them.
-
-6. Re-run the "Release Install" step above, after you have built
-   the new packages.
-
-7. Scroll back up to the "Step 2: Add Files To This Release"
-   section, and click the "Add Files and/or Refresh View" button.
-
-   The packages you uploaded in step 6 will now appear in the list
-   of files in the "Step 2: Add Files To This Release" section.
-
-8. Click the checkboxes next to the updated packages you uploaded
-   in step 6, and click the "Add Files and/or Refresh View" button.
-
-9. Scroll back down to the "Step 3: Edit Files In This Release"
-   section and for each of the packages, select the appropriate
-   values from the Processor and File Type select boxes, and click
-   the corresponding "Update/Refresh" button.
-
-   For Processor, just choose "Any".
-
-   For File Type, just choose either .bz2, .gz, or .zip -- don't
-   choose the "Source" versions of those (these are not source
-   packages).
-
------------------------------------------------------------------
-Part 8: Announce a release
+Part 7: Announce a release
 -----------------------------------------------------------------
 This section explains how to announce a release.
 
@@ -804,7 +705,7 @@ This section explains how to announce a release.
         http://sourceforge.net/news/?group_id=21935
 
 -----------------------------------------------------------------
-Part 11: Do post-release wrap-up
+Part 8: Do post-release wrap-up
 -----------------------------------------------------------------
 This section explains the "wrap up" steps you need to do
 following an official release.
