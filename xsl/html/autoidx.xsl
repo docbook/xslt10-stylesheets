@@ -551,6 +551,7 @@
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
   <xsl:param name="position"/>
+  <xsl:param name="separator" select="''"/>
   
   <xsl:variable name="term.separator">
     <xsl:call-template name="index.separator">
@@ -571,6 +572,9 @@
   </xsl:variable>
 
   <xsl:choose>
+    <xsl:when test="$separator != ''">
+      <xsl:value-of select="$separator"/>
+    </xsl:when>
     <xsl:when test="$position = 1">
       <xsl:value-of select="$term.separator"/>
     </xsl:when>
