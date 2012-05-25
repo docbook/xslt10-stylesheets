@@ -191,8 +191,6 @@ p.breadcrumbs a:first-child {background: url(../images/breadcrumb-arrow-white.pn
 
 p.breadcrumbs a:hover {text-decoration: underline;}
 
-/* OXYGEN ADDITION FOR SEARCH RESULT RATING */
-
 #star ul.star { 
     LIST-STYLE: none; 
     MARGIN: 0; 

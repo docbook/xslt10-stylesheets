@@ -12,7 +12,6 @@ var htmlfileList = "htmlFileList.js";
 var htmlfileinfoList = "htmlFileInfoList.js";
 var useCJKTokenizing = false;
 
-//-------------------------OXYGEN PATCH START-------------------------
 var w = new Object();
 var scoring = new Object();
 
@@ -35,7 +34,6 @@ txt_enter_more_than_10_words = "Only first 10 words will be processed.";
 txt_browser_not_supported = "Your browser is not supported. Use of Mozilla Firefox is recommended.";
 txt_please_wait = "Please wait. Search in progress...";
 txt_results_for = "Results for: ";
-//-------------------------OXYGEN PATCH END-------------------------
 
 /* This function verify the validity of search input by the user
   Cette fonction verifie la validite de la recherche entrre par l utilisateur */
@@ -48,12 +46,10 @@ function Verifie(searchForm) {
         return;
     }
 
-    //-------------------------OXYGEN PATCH START-------------------------
     searchTextField = trim(document.searchForm.textToSearch.value);
     searchTextField = searchTextField.replace(/['"]/g,'');
 	var expressionInput = searchTextField;
     $.cookie('textToSearch', expressionInput);
-    //-------------------------OXYGEN PATCH END-------------------------
 
     if (expressionInput.length < 1) {
 
@@ -61,13 +57,9 @@ function Verifie(searchForm) {
         alert(txt_enter_at_least_1_char);
         // reactive la fenetre de search (utile car cadres)
 
-        //-------------------------OXYGEN PATCH START------------------------
         document.searchForm.textToSearch.focus();
-        //-------------------------OXYGEN PATCH END-------------------------
     }
     else {
-        //-------------------------OXYGEN PATCH START-------------------------
-       // OXYGEN PATCH START - EXM-20996 - split by " ", ".", ":", "-"
     var splitSpace = searchTextField.split(" ");
        var splitWords = [];
         for (var i = 0 ; i < splitSpace.length ; i++) {
@@ -85,7 +77,6 @@ function Verifie(searchForm) {
           }
        }
        noWords = splitWords;
-       // OXYGEN PATCH END - EXM-20996 - split by " ", ".", ":", "-"
     	if (noWords.length > 9){
           // Allow to search maximum 10 words
     		alert(txt_enter_more_than_10_words);
@@ -97,16 +88,13 @@ function Verifie(searchForm) {
     		document.searchForm.textToSearch.focus();
     	} else {
 	        // Effectuer la recherche
-             // OXYGEN PATCH START - EXM-20996
              expressionInput = '';
           for (var x = 0 ; x < noWords.length ; x++) {
                  expressionInput = expressionInput + " " + noWords[x]; 
              }
-             // OXYGEN PATCH END - EXM-20996
 	        Effectuer_recherche(expressionInput);
 	        // reactive la fenetre de search (utile car cadres)
 	        document.searchForm.textToSearch.focus();        
-	        //-------------------------OXYGEN PATCH END-------------------------
     	}
     }
 }
@@ -155,10 +143,9 @@ function Effectuer_recherche(expressionInput) {
     useCJKTokenizing = typeof indexerLanguage != "undefined" && (indexerLanguage == "zh" || indexerLanguage == "ja" || indexerLanguage == "ko");
     //If Lucene CJKTokenizer was used as the indexer, then useCJKTokenizing will be true. Else, do normal tokenizing.
     // 2-gram tokenizinghappens in CJKTokenizing, 
-    // OXYGEN PATCH START. If doStem then make tokenize with Stemmer
+    //If doStem then make tokenize with Stemmer
     var finalArray;
     if (doStem){
-    // OXYGEN PATCH END.
 	    if(useCJKTokenizing){
 	        finalWordsList = cjkTokenize(wordsList);
           finalArray = finalWordsList;
@@ -203,15 +190,15 @@ function Effectuer_recherche(expressionInput) {
     // Thu's Patch 
     // -------------------------------------------
 
-    //-------------------------OXYGEN PATCH START-----------------------
+    
     txt_wordsnotfound = expressionInput;
 	finalWordsList = removeDuplicate(finalWordsList);
-    //-------------------------OXYGEN PATCH END-------------------------
+    
    }
     if (finalWordsList.length) {
       //search 'and' and 'or' one time
       fileAndWordList = SortResults(finalWordsList);
-      //-------------------------OXYGEN PATCH START-----------------------
+      
       if (fileAndWordList == undefined){
         	var cpt = 0;
       } else {
@@ -227,32 +214,32 @@ function Effectuer_recherche(expressionInput) {
 		}
 	  }
 	  
-      //-------------------------OXYGEN PATCH END-----------------------
+      
       for (var i = 0; i < cpt; i++) {
-			//-------------------------OXYGEN PATCH START-----------------------
+			
 			var hundredProcent = fileAndWordList[i][0].scoring + 100 * fileAndWordList[i][0].motsnb;
 			var ttScore_first = fileAndWordList[i][0].scoring;
 			var numberOfWords = fileAndWordList[i][0].motsnb;
-			//-------------------------OXYGEN PATCH END-----------------------
+			
             if (fileAndWordList[i] != undefined) {
                 linkTab.push("<p>" + txt_results_for + " " + "<span class=\"searchExpression\">" + fileAndWordList[i][0].motslisteDisplay + "</span>" + "</p>");
 
                 linkTab.push("<ul class='searchresult'>");
                 for (t in fileAndWordList[i]) {
                     //linkTab.push("<li><a href=\"../"+fl[fileAndWordList[i][t].filenb]+"\">"+fl[fileAndWordList[i][t].filenb]+"</a></li>");
-				    //-------------------------OXYGEN PATCH START-----------------------                    
+				                        
                     var ttInfo = fileAndWordList[i][t].filenb;
                     // Get scoring
                     var ttScore = fileAndWordList[i][t].scoring;
                     var tempInfo = fil[ttInfo];
-				    //-------------------------OXYGEN PATCH END-----------------------
+				    
                     var pos1 = tempInfo.indexOf("@@@");
                     var pos2 = tempInfo.lastIndexOf("@@@");
                     var tempPath = tempInfo.substring(0, pos1);
                     var tempTitle = tempInfo.substring(pos1 + 3, pos2);
                     var tempShortdesc = tempInfo.substring(pos2 + 3, tempInfo.length);
 
-                    //-------------------------OXYGEN PATCH START-------------------------
+                    
                     // toc.html will not be displayed on search result
                     if (tempPath == 'toc.html'){
                         continue;
@@ -295,11 +282,11 @@ function Effectuer_recherche(expressionInput) {
 					*/
                     // Also check if we have a valid description
                     if ((tempShortdesc != "null" && tempShortdesc != '...')) {
-                    //-------------------------OXYGEN PATCH END-------------------------
+                    
                         linkString += "\n<div class=\"shortdesclink\">" + tempShortdesc + "</div>";
                     }
                     linkString += "</li>";
-                    //-------------------------OXYGEN PATCH START-------------------------
+                    
                     // Add rating values for scoring at the list of matches	
 					linkString += "<div id=\"rightDiv\">";
 					linkString += "<div id=\"star\">";
@@ -313,7 +300,7 @@ function Effectuer_recherche(expressionInput) {
 	                linkString += "</div>";
 					linkString += "</div>";
                     //linkString += '<b>Rating: ' + ttScore + '</b>';
-                    //-------------------------OXYGEN PATCH END-------------------------                       
+                                           
                     linkTab.push(linkString);
                     no++;
                 }
@@ -335,7 +322,7 @@ function Effectuer_recherche(expressionInput) {
         results = "<p>" + localeresource.search_no_results + " <span class=\"searchExpression\">" + txt_wordsnotfound + "</span>" + "</p>";
     }
     
-    //-------------------------OXYGEN PATCH START-------------------------
+    
     // Verify if the browser is Google Chrome and the WebHelp is used on a local machine
     // If browser is Google Chrome and WebHelp is used on a local machine a warning message will appear
     // Highlighting will not work in this conditions. There is 2 workarounds
@@ -344,10 +331,10 @@ function Effectuer_recherche(expressionInput) {
     } else {
         document.getElementById('searchResults').innerHTML = warningMsg + results;
     }
-    //-------------------------OXYGEN PATCH END-------------------------
+    
 }
 
-//-------------------------OXYGEN PATCH START-------------------------
+
 // Verify if the stemmed word is aproximately the same as the searched word
 function verifyWord(word, arr){
 	for (var i = 0 ; i < arr.length ; i++){
@@ -375,7 +362,7 @@ function wordsStartsWith(searchedValue){
 	}
 	return toReturn.length > 0 ? toReturn : undefined;
 }
-//-------------------------OXYGEN PATCH END-------------------------
+
 
 function tokenize(wordsList){
     var stemmedWordsList = new Array(); // Array with the words to look for after removing spaces
@@ -670,7 +657,7 @@ function SortResults(mots) {
         return null;
     }
     
-    //-------------------------OXYGEN PATCH START-------------------------
+    
     // In generated js file we add scoring at the end of the word
     // Example word1*scoringForWord1,word2*scoringForWord2 and so on
     // Split after * to obtain the right values
@@ -807,23 +794,20 @@ function newObj(filesNo, wordList){
 	this.filesNo = filesNo;
 	this.wordList = wordList;
 }
-//-------------------------OXYGEN PATCH END-------------------------
 
-
-// Object.
-// Oxygen. Add a new parameter. Scoring.
+// Add a new parameter. Scoring.
 function resultPerFile(filenb, motsliste, motsnb, motslisteDisplay, scoring, group) {
 	//10 - spring,time - 2 - spring, time - 55 - 3
     this.filenb = filenb;
     this.motsliste = motsliste;
     this.motsnb = motsnb;
     this.motslisteDisplay= motslisteDisplay;
-    //-------------------------OXYGEN PATCH START-------------------------
+    
     this.scoring = scoring;
-    //-------------------------OXYGEN PATCH END-------------------------
+    
 }
 
-//-------------------------OXYGEN PATCH START-------------------------
+
 function findRating(words, nr){
     var sum = 0;
     var xx = words.split(',');
@@ -838,7 +822,7 @@ function findRating(words, nr){
     }
     return sum;
 }
-//-------------------------OXYGEN PATCH END-------------------------
+
 function compare_nbMots(s1, s2) {
     var t1 = s1.split(',');
     var t2 = s2.split(',');
@@ -852,7 +836,7 @@ function compare_nbMots(s1, s2) {
     }
     //return t1.length - t2.length);
 }
-//-------------------------OXYGEN PATCH START-------------------------
+
 // return false if browser is Google Chrome and WebHelp is used on a local machine, not a web server 
 function verifyBrowser(){
     var returnedValue = true;    
@@ -895,5 +879,3 @@ function rtrim(str, chars) {
 	chars = chars || "\\s";
 	return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
 }
-
-//-------------------------OXYGEN PATCH END-------------------------
