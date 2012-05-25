@@ -17,5 +17,6 @@
 
 <xsl:import href="../../xhtml/chunk.xsl"/>
 <xsl:include href="webhelp-common.xsl"/>
+<xsl:include href="titlepage.templates.xsl"/>
 
 </xsl:stylesheet>
