@@ -89,10 +89,17 @@
               under the Apache 2.0 license. </para>
           </listitem>
 	  <listitem>
-	    <para>Code that provides weighted search results and some other improvements was graciously 
-	    donated by <ulink url="http://www.oxygenxml.com">SyncRO Soft Ltd.</ulink>, the 
-	    publishers of the oXygen XML Editor.</para>
-	  </listitem>
+            <para>Code that provides weighted search results and some
+              other improvements was graciously donated by <ulink
+                url="http://www.oxygenxml.com">SyncRO Soft
+                Ltd.</ulink>, the publishers of the oXygen XML
+              Editor.</para>
+          </listitem>
+          <listitem>
+            <para>Cosmetic improvements provided by <ulink
+                url="http://docs.openstack.org"
+              >OpenStack</ulink>.</para>
+          </listitem>
         </itemizedlist> Webhelp for DocBook was first developed as a <ulink
           url="http://code.google.com/soc/">Google Summer of Code</ulink> project. </para>
     </legalnotice>
@@ -134,7 +141,7 @@
           <para>Sophisticated CSS-based page layout</para>
         </listitem>
         <listitem>
-          <para>Full text search.<indexterm class="singular">
+          <para>Client-side search.<indexterm class="singular">
               <primary>search</primary>
               <secondary>features</secondary>
             </indexterm></para>
@@ -188,38 +195,24 @@
           <para>TOC and search pane implemented without the use of a frameset.</para>
         </listitem>
         <listitem>
-          <para>An Ant script to generate output. You can use this build file by importing it into
-            your own or use it as a model for integrating this output format into your own build
-            system.</para>
+          <para>An Ant script to generate output. You can use this
+            build file by importing it into your own or use it as a
+            model for integrating this output format into your own
+            build system. Alternatively, you can use this Ant script
+            as a template for creating your own build script or you
+            can use the <ulink
+              url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html"
+              >Docbkx Maven plugin</ulink>.</para>
         </listitem>
       </itemizedlist></para>
-    <para>Following are possible enhancements that can be applied to webhelp. You are welcome to
+<!--    <para>Following are possible enhancements that can be applied to webhelp. You are welcome to
       send us new suggestions, code contributions etc.<itemizedlist>
         <title>Possible future enhancements</title>
-        <listitem>
-          <para>Move webhelp-specific parameters and gentext strings into base DocBook stylesheets.
-          </para>
-        </listitem>
         <listitem>
           <para>Adjust css so that there is a visual indication that you have move the focus from the contents to the search tab using the tab key.</para>
         </listitem>
         <listitem>
           <para>Add "Expand all" and "Collapse all" buttons to the table of contents.</para>
-        </listitem>
-        <listitem>
-          <para>Add other search options:</para>
-          <itemizedlist>
-            <listitem>
-              <para>Add an option to use Lucene for server-side searches with table of contents
-                state persisted on the server.</para>
-            </listitem>
-            <listitem>
-              <para>Add a simple form that uses a Google site:my.domain.com based search.</para>
-            </listitem>
-          </itemizedlist>
-        </listitem>
-        <listitem>
-          <para>Support wild card characters in the search query.</para>
         </listitem>
         <listitem>
           <para>Parameterize width of the TOC pane OR make the TOC pane resizeable by the
@@ -236,22 +229,6 @@
         </listitem>
         <listitem>
           <para>Support boolean operators in search.</para>
-        </listitem>
-        <listitem>
-          <para>Parameterize list of files to exclude from indexing. Currently it's hard coded that
-            we don't index <filename>index.html </filename>and <filename>ix01.html</filename> (the
-            legal notice and index topics). It should be smarter and automatically not index the
-            index file even if it's not named <filename>ix01.html</filename>.</para>
-        </listitem>
-        <listitem>
-          <para>Improve performance by moving the table of contents div out of each page and into a
-            separate JavaScript file which then adds it to the page.</para>
-        </listitem>
-        <listitem>
-          <para>Add to the indexer the ability to specify a list of files or file patterns not to
-            index. Currently it does not index <filename>index.html</filename> or
-              <filename>ix01.html</filename>, which is generally appropriate, but it should be up to
-            the user to decide.</para>
         </listitem>
         <listitem>
           <para>Add an index tab populated by a separate JavaScript file. Include a param/property
@@ -276,12 +253,12 @@
               url="http://docbook.xmlpress.net/tiki-index.php?page=WebHelp2011">WebHelp Wiki at
               XMLPress </ulink></para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist></para>-->
   </chapter>
   <chapter>
     <title>Using the package</title>
-    <para role="summary">The following sections describe how to install and use the package on
-      Windows.</para>
+    <para role="summary">The following sections describe how to
+      install and use the package on Windows. </para>
     <section>
       <sectioninfo>
         <abstract>
@@ -294,6 +271,10 @@
         <note>
           <para>The examples in this procedure assume a Windows installation, but the process is the
             same in other environments, <foreignphrase>mutatis mutandis</foreignphrase>.</para>
+          <para>In addition to using the ant
+              <filename>build.xml</filename> provided,  you can also
+            use the <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html">Docbkx Maven plugin</ulink> to generate
+            webhelp.</para>
         </note>
         <step>
           <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java
@@ -429,14 +410,6 @@ webhelp.indexer.language=en
 # Enables/Disables stemming
 # Stemming allows better querying for the search
 enable.stemming=true
-
-#Set the table of contents file. This file will not be indexed.
-#toc.file=dummy.html
-
-#Used for adding branding specific contents to the html files.
-#For example, the url docbook.org, Google Analytics id etc.
-branding=docbook
-brandname=DocBook
 
 # Set admon.graphics to 1 to user graphics for note, tip, etc.
 admon.graphics=0
