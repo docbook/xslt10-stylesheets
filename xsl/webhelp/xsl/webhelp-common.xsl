@@ -245,10 +245,7 @@ border: none; background: none; font-weight: none; color: none; }
 	  <script type="text/javascript" src="search/l10n.js">
 	    <xsl:comment></xsl:comment>
 	  </script>
-	  <script type="text/javascript" src="search/htmlFileList.js">
-	      <xsl:comment> </xsl:comment>
-	  </script>
-	  <script type="text/javascript" src="search/htmlFileInfoList.js">
+      <script type="text/javascript" src="search/htmlFileInfoList.js">
 	      <xsl:comment> </xsl:comment>
 	  </script>
 	  <script type="text/javascript" src="search/nwSearchFnt.js">

@@ -8,7 +8,7 @@
  */
 
 //string initialization
-var htmlfileList = "htmlFileList.js";
+var htmlfileList = "htmlFileInfoList.js";
 var htmlfileinfoList = "htmlFileInfoList.js";
 var useCJKTokenizing = false;
 
