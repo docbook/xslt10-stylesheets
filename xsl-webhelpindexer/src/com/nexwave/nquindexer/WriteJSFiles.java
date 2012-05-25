@@ -1,12 +1,18 @@
 package com.nexwave.nquindexer;
 
-import java.io.*;
+import com.nexwave.nsidita.DocFileInfo;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeSet;
-
-import com.nexwave.nsidita.DocFileInfo;
 
 /**
  * Outputs the js files with:
@@ -44,13 +50,14 @@ public class WriteJSFiles {
         it = list.iterator();
 
         try {
-            // open a outputstream, here a file
+            // open an outputStream, here a file. File is replaced rather than appending
             OutputStream fOut = new FileOutputStream(fileO);
             OutputStream bout = new BufferedOutputStream(fOut);
             OutputStreamWriter out = new OutputStreamWriter(bout, "UTF-8");
 
             /*fl : file list*/
-            out.write("//List of files which are indexed.\n");
+            out.write("var doStem = " + doStem + ";\n");
+            out.write("//List of indexed files.\n");
             out.write("fl = new Array();\n");
             String temp;
             while (it.hasNext()) {
@@ -60,7 +67,6 @@ public class WriteJSFiles {
                 i++;
             }
 
-            out.write("var doStem = " + doStem + "");
             out.flush();  // Don't forget to flush!
             out.close();
 //	        System.out.println("the array of html is in " +	fileO);
@@ -94,8 +100,8 @@ public class WriteJSFiles {
         }
         it = list.iterator();
         try {
-            // open a outputstream, here a file
-            OutputStream fOut = new FileOutputStream(fileO);
+            // open a outputstream, here a file. The file get appended
+            OutputStream fOut = new FileOutputStream(fileO, true);
             // open a buffer output stream
             OutputStream bout = new BufferedOutputStream(fOut);
             OutputStreamWriter out

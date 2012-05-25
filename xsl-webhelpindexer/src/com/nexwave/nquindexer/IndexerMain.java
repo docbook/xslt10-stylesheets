@@ -162,6 +162,7 @@ public class IndexerMain {
      * The main class without Ant dependencies.
      * This can be used as a standalone jar.
      *
+     * @param args
      */
     public static void main(String[] args) {
 
@@ -222,7 +223,7 @@ public class IndexerMain {
         Iterator it;
 
         //File name initialization
-        String htmlList = "htmlFileList.js";
+        String htmlList = "htmlFileInfoList.js";
         String htmlInfoList = "htmlFileInfoList.js";
         String indexName = ".js";
 
@@ -258,7 +259,7 @@ public class IndexerMain {
         // check if outputdir exists
         File tempfile = new File(outputDir);
         if (!tempfile.exists()) {
-            boolean b = (new File(outputDir)).mkdir();
+            boolean b = tempfile.mkdirs();
             if (!b) {
                 System.out.println(txt_cannot_create_outputdir + " " + outputDir + ".");
                 return;
@@ -270,7 +271,6 @@ public class IndexerMain {
             projectDir = inputDir.getPath();
         }
         //end of init
-
 
         // Get the list of all html files but the tocs, covers and indexes
         DirList nsiDoc = new DirList(inputDir, "^.*\\." + htmlExtension + "?$", 1);
@@ -374,9 +374,9 @@ public class IndexerMain {
             Date dateEnd = new Date();
             long diff = dateEnd.getTime() - dateStart.getTime();
             if (diff < 1000)
-                System.out.println("Delay = " + diff + " milliseconds");
+                System.out.println("Indexed the contents in " + diff + " milliseconds");
             else
-                System.out.println("Delay = " + diff / 1000 + " seconds");
+                System.out.println("Indexed the contents in " + diff / 1000 + " seconds");
         } else {
             System.out.println(txt_wrong_dita_basedir);
         }
