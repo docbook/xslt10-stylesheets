@@ -498,7 +498,7 @@ border: none; background: none; font-weight: none; color: none; }
   	    <xsl:call-template name="webhelpheader.logo"/>
             <!-- Display the page title and the main heading(parent) of it-->
             <h1>
-	      <xsl:call-template name="get.doc.title"/>
+              <xsl:apply-templates select="/*[1]" mode="title.markup"/>
 	      <br/>
                 <xsl:choose>
                     <xsl:when
