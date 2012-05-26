@@ -151,10 +151,18 @@
                 links to chunked pages, and a small description.</para>
             </listitem>
             <listitem>
-              <para>Word scoring/rating - For a particular word, the pages are weighted according to
-                how many times that word appears in it, is it bold or not, is in index terms etc.
-                The score out of 5 is shown by small colored boxes after each search-result</para>
+              <para>Search results scoring/rating - The results are weighted according to how many
+                times the words in search query appears in it, is it bold or not, is in index terms
+                etc. The score out of 5 is shown by small colored boxes after each
+                search-result.</para>
             </listitem>
+            <listitem>
+              <para>Search results can include brief descriptions of the target.<indexterm
+                class="singular">
+                <primary>search</primary>
+                <secondary>description</secondary>
+              </indexterm></para>
+            </listitem>         
             <listitem>
               <para>Stemming support for English, French, and German. Stemming support can be added
                 for other languages by implementing a stemmer.<indexterm class="singular">
@@ -163,21 +171,14 @@
                 </indexterm></para>
             </listitem>
             <listitem>
-              <para>Support for Chinese, Japanese, and Korean using code from the Lucene search
-                engine </para>
+              <para>Support for Chinese, Japanese, and Korean languages using code from the Lucene search
+                engine.</para>
             </listitem>
             <listitem>
               <para>Search highlighting shows where the searched term appears in the results.
                   <indexterm class="singular">
                   <primary>search</primary>
                   <secondary>highlighting</secondary>
-                </indexterm></para>
-            </listitem>
-            <listitem>
-              <para>Search results can include brief descriptions of the target<indexterm
-                  class="singular">
-                  <primary>search</primary>
-                  <secondary>descriptions</secondary>
                 </indexterm></para>
             </listitem>
           </itemizedlist>
@@ -250,7 +251,7 @@
         </listitem>
         <listitem>
           <para>And, a lot more (with duplicates) at <ulink
-              url="http://docbook.xmlpress.net/tiki-index.php?page=WebHelp2011">WebHelp Wiki at
+              url="http://docbook.xmlpress.net/tiki-index.php?page=WebHelpIdeas">WebHelp Ideas Wiki at
               XMLPress </ulink></para>
         </listitem>
       </itemizedlist></para>-->
@@ -960,14 +961,49 @@ private String[] supportedLanguages= {"en", "de", "fr", "cn", "ja", "ko", <empha
     <qandaset>
       <qandaentry>
         <question>
+          <para>On what browsers and operating systems WebHelp has tested extensively?</para>
+        </question>
+        <answer>
+          <para>We tested it with versions of most browsers including Firefox 3.x+, IE 7+, Chrome,
+            Safari, and iPod/iPhone. The JavaScript codes are mostly jquery plugins, so you’d want
+            to check the jquery support matrix for details.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Apart from this demo, where can I find other demos or production deployments of
+            WebHelp?</para>
+        </question>
+        <answer>
+          <para>There are four production deployments provided in <ulink
+              url="http://wiki.docbook.org/WebHelp">WebHelp wiki</ulink> currently.</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>When building the webhelp output, I'm getting the following error. What's the reason
+            for this?</para>
+          <programlisting>[xslt] : Warning! file:/C:/Users/kasun/docbook-xsl-1.77.0/xhtml/autoidx.xsl:
+            line 596: Attribute 'href' outside of element.
+[xslt] : Warning! file:/C:/Users/kasun/docbook-xsl-1.77.0/xhtml/autoidx.xsl: 
+            line 596: Attribute 'href' outside of element.</programlisting>
+          <para>----</para>
+        </question>
+        <answer>
+          <para>This happens if you haven't done the step 3 and 4 of webhelp build guide "Generating
+            webhelp output" in the documentation. Basically, you need to correctly set the following
+            folder
+            paths.<programlisting>xslt-processor-classpath=/usr/share/java/saxon-6.5.5.jar
+xercesImpl.jar=/usr/share/java/xercesImpl.jar
+xml-apis.jar=/usr/share/java/xml-apis.jar</programlisting></para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
           <para>Does WebHelp Indexer can index HTML transformation as well?</para>
         </question>
         <answer>
-          <para>Currently, it only supports XHTML transformation only. But the work is in progress
-            to add the HTML support. The reason we need XHTML is for indexing the documentation
-            content for the search. See the <ulink
-              url="http://sourceforge.net/tracker/?func=detail&amp;aid=3401185&amp;group_id=21935&amp;atid=373750"
-              >issue tracker</ulink> for this feature</para>
+          <para>Yes, WebHelp supports HTML transformations as well in addition to XHTML.</para>
         </answer>
       </qandaentry>
       <qandaentry>
