@@ -362,6 +362,25 @@
   </fo:block>
 </xsl:template>
 
+<!-- Turn off para space-before if sidebar starts with a para, not title -->
+<xsl:template match="sidebar/*[1][self::para]">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+  <fo:block xsl:use-attribute-sets="para.properties">
+    <xsl:attribute name="space-before.maximum">0pt</xsl:attribute>
+    <xsl:attribute name="space-before.minimum">0pt</xsl:attribute>
+    <xsl:attribute name="space-before.optimum">0pt</xsl:attribute>
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates/>
+  </fo:block>
+
+</xsl:template>
+
 <xsl:template name="margin.note">
   <xsl:param name="content">
     <fo:block xsl:use-attribute-sets="margin.note.properties">
