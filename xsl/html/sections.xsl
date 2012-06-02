@@ -19,7 +19,7 @@
 
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -43,7 +43,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template name="section.title">
@@ -101,7 +101,7 @@
 <xsl:template match="sect1">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -142,7 +142,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="sect1/title
@@ -155,7 +155,7 @@
 <xsl:template match="sect2">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -196,7 +196,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="sect2/title
@@ -209,7 +209,7 @@
 <xsl:template match="sect3">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -250,7 +250,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="sect3/title
@@ -263,7 +263,7 @@
 <xsl:template match="sect4">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -304,7 +304,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="sect4/title
@@ -317,7 +317,7 @@
 <xsl:template match="sect5">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -358,7 +358,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="sect5/title
@@ -371,7 +371,7 @@
 <xsl:template match="simplesect">
   <xsl:call-template name="id.warning"/>
 
-  <div>
+  <xsl:element name="{$div.element}">
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
@@ -381,7 +381,7 @@
 
     <xsl:call-template name="simplesect.titlepage"/>
     <xsl:apply-templates/>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="simplesect/title|simplesect/info/title" 
