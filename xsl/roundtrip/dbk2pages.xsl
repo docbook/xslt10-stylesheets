@@ -23,7 +23,7 @@
 
        ******************************************************************** -->
 
-  <xsl:include href='../VERSION'/>
+  <xsl:include href='../VERSION.xsl'/>
   <xsl:include href='param.xsl'/>
 
   <xsl:variable name='templatedoc' select='document($pages.template)'/>

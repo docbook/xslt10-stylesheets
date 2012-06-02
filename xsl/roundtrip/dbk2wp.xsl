@@ -20,7 +20,7 @@
 
     -->
 
-  <xsl:include href='../VERSION'/>
+  <xsl:include href='../VERSION.xsl'/>
 
   <!-- doc:docprop.author mode is for creating document metadata -->
 

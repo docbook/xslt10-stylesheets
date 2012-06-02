@@ -19,7 +19,7 @@
 
 <xsl:import href="../html/docbook.xsl"/>
 <xsl:import href="xbel.xsl"/>
-<xsl:include href="../VERSION"/>
+<xsl:include href="../VERSION.xsl"/>
 <xsl:include href="param.xsl"/>
 <xsl:include href="head.xsl"/>
 <xsl:include href="rss.xsl"/>

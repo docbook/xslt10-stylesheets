@@ -40,7 +40,7 @@
 
        ******************************************************************** -->
 
-  <xsl:include href='../VERSION'/>
+  <xsl:include href='../VERSION.xsl'/>
 
   <xsl:template match="/" name='ooo.top'>
     <xsl:param name='doc' select='/'/>
