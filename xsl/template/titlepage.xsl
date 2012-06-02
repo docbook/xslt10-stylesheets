@@ -181,10 +181,7 @@ and <quote>verso</quote> sides of the title page.</para>
       <xsl:text>.titlepage</xsl:text>
     </xsl:attribute>
     <xsl:text>&#xA;  </xsl:text>
-    <xsl:element name="{@t:wrapper}">
-      <xsl:if test="$ns != ''">
-        <xsl:attribute name="namespace"><xsl:value-of select="$ns"/></xsl:attribute>
-      </xsl:if>
+    <xsl:element name="{@t:wrapper}" namespace="{$ns}">
       <xsl:apply-templates select="@*" mode="copy.literal.atts"/>
       <xsl:text>&#xA;    </xsl:text>
       <xsl:element name="xsl:variable">
@@ -238,10 +235,7 @@ and <quote>verso</quote> sides of the title page.</para>
       <xsl:element name="xsl:if">
         <xsl:attribute name="test">(normalize-space($recto.content) != '') or ($recto.elements.count > 0)</xsl:attribute>
         <xsl:text>&#xA;      </xsl:text>
-        <xsl:element name="{@t:wrapper}">
-          <xsl:if test="$ns != ''">
-            <xsl:attribute name="namespace"><xsl:value-of select="$ns"/></xsl:attribute>
-          </xsl:if>
+        <xsl:element name="{@t:wrapper}" namespace="{$ns}">
           <xsl:apply-templates select="t:titlepage-content[@t:side='recto']/@*"
                                mode="copy.literal.atts"/>
           <xsl:element name="xsl:copy-of">
@@ -302,10 +296,7 @@ and <quote>verso</quote> sides of the title page.</para>
       <xsl:element name="xsl:if">
         <xsl:attribute name="test">(normalize-space($verso.content) != '') or ($verso.elements.count > 0)</xsl:attribute>
         <xsl:text>&#xA;      </xsl:text>
-        <xsl:element name="{@t:wrapper}">
-          <xsl:if test="$ns != ''">
-            <xsl:attribute name="namespace"><xsl:value-of select="$ns"/></xsl:attribute>
-          </xsl:if>
+        <xsl:element name="{@t:wrapper}" namespace="{$ns}">
           <xsl:apply-templates select="t:titlepage-content[@t:side='verso']/@*"
                                mode="copy.literal.atts"/>
           <xsl:element name="xsl:copy-of">
@@ -394,10 +385,7 @@ and <quote>verso</quote> sides of the title page.</para>
           <xsl:text>.auto.mode</xsl:text>
         </xsl:attribute>
         <xsl:text>&#xA;</xsl:text>
-        <xsl:element name="{../../@t:wrapper}">
-          <xsl:if test="$ns != ''">
-            <xsl:attribute name="namespace"><xsl:value-of select="$ns"/></xsl:attribute>
-          </xsl:if>
+        <xsl:element name="{../../@t:wrapper}" namespace="{$ns}">
           <xsl:attribute name="xsl:use-attribute-sets">
             <xsl:value-of select="../../@t:element"/>
             <xsl:text>.titlepage.</xsl:text>
@@ -920,10 +908,7 @@ names.</para>
     <xsl:when test="@t:force and @t:force != '0'">
       <xsl:choose>
         <xsl:when test="@t:named-template">
-          <xsl:element name="{../../@t:wrapper}">
-            <xsl:if test="$ns != ''">
-              <xsl:attribute name="namespace"><xsl:value-of select="$ns"/></xsl:attribute>
-            </xsl:if>
+          <xsl:element name="{../../@t:wrapper}" namespace="{$ns}">
             <xsl:attribute name="xsl:use-attribute-sets">
               <xsl:value-of select="../../@t:element"/>
               <xsl:text>.titlepage.</xsl:text>
