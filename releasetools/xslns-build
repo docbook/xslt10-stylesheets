@@ -68,6 +68,7 @@ my @PassthruFiles = (
 'html-rtf.xsl',
 'html2xhtml.xsl',
 'xsl2profile.xsl',
+'olink.xsl',
 );
 
 umask 002;
@@ -485,6 +486,8 @@ sub addFiles {
   copy("$miscdir/README", "$destdir/README");
   copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
   copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
+  # Copy the ns VERSION file, not the copy from non-ns
+  copy("$destdir/VERSION", "$destdir/VERSION.xsl");
 
   # delete these obsolete files.
 
