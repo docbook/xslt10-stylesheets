@@ -237,9 +237,8 @@ public class WriteJSFiles {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println(txt_indices_location + fileOutStr);
+        System.out.println(txt_indices_location + fileOut.getParent());
     }
-
 
     /**
      * Remove all non alphabetical chars from the end of a text.
