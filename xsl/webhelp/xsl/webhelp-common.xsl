@@ -84,19 +84,6 @@ set       toc,title
 	Currently, only around 10 translations needed. -->
     <!-- Moved to files under 'gentext/locale/', search for WebHelp -->
     
-    <xsl:template name="user.head.title">
-      <xsl:param name="node" select="."/>
-      <xsl:param name="title">
-	<xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
-      </xsl:param>
-      <xsl:param name="document-title">
-	<xsl:apply-templates select="/*" mode="object.title.markup.textonly"/>
-      </xsl:param>
-
-      <title>
-	<xsl:copy-of select="$title"/> <xsl:if test="parent::*"> - <xsl:copy-of select="$document-title"/></xsl:if>
-      </title>
-    </xsl:template>
 
   <xsl:template name="system.head.content">
   <xsl:param name="node" select="."/>
