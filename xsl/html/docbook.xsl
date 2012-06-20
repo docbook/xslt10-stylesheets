@@ -127,13 +127,10 @@
 
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
-  <xsl:param name="title">
-    <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
-  </xsl:param>
 
-  <title>
-    <xsl:copy-of select="$title"/>
-  </title>
+  <xsl:call-template name="user.head.title">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
 
   <xsl:if test="$html.base != ''">
     <base href="{$html.base}"/>
@@ -335,6 +332,17 @@ body { background-image: url('</xsl:text>
 <xsl:template name="user.preroot">
   <!-- Pre-root output, can be used to output comments and PIs. -->
   <!-- This must not output any element content! -->
+</xsl:template>
+
+<xsl:template name="user.head.title">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="title">
+    <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
+  </xsl:param>
+
+  <title>
+    <xsl:copy-of select="$title"/>
+  </title>
 </xsl:template>
 
 <xsl:template name="user.head.content">
