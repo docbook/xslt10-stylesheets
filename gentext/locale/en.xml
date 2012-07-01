@@ -306,6 +306,7 @@
 <template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="refsynopsisdivinfo">%t</template>
+<template name="screenshot">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
@@ -458,6 +459,7 @@
 <template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
 <template name="refsynopsisdiv">%t</template>
+<template name="screenshot">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>

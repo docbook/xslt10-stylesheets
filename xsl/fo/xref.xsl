@@ -318,7 +318,7 @@
                      |constraintdef|formalpara|glossdiv|important|indexdiv
                      |itemizedlist|legalnotice|lot|msg|msgexplan|msgmain
                      |msgrel|msgset|msgsub|note|orderedlist|partintro
-                     |productionset|qandadiv|refsynopsisdiv|segmentedlist
+                     |productionset|qandadiv|refsynopsisdiv|screenshot|segmentedlist
                      |set|setindex|sidebar|tip|toc|variablelist|warning"
               mode="xref-to">
   <xsl:param name="referrer"/>
