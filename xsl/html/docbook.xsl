@@ -127,9 +127,11 @@
 
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
+  <xsl:param name="title"/> 
 
   <xsl:call-template name="user.head.title">
     <xsl:with-param name="node" select="$node"/>
+    <xsl:with-param name="title" select="$title"/>
   </xsl:call-template>
 
   <xsl:if test="$html.base != ''">
