@@ -127,11 +127,13 @@
 
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
-  <xsl:param name="title"/> 
+  <xsl:param name="title">
+    <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
+  </xsl:param>
 
   <xsl:call-template name="user.head.title">
-    <xsl:with-param name="node" select="$node"/>
     <xsl:with-param name="title" select="$title"/>
+    <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
 
   <xsl:if test="$html.base != ''">
@@ -338,9 +340,7 @@ body { background-image: url('</xsl:text>
 
 <xsl:template name="user.head.title">
   <xsl:param name="node" select="."/>
-  <xsl:param name="title">
-    <xsl:apply-templates select="$node" mode="object.title.markup.textonly"/>
-  </xsl:param>
+  <xsl:param name="title"/>
 
   <title>
     <xsl:copy-of select="$title"/>
