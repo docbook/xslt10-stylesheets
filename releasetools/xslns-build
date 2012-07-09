@@ -483,7 +483,7 @@ sub addFiles {
   $miscdir .= '/xslnsfiles';
   print STDOUT "miscdir is $miscdir" . "\n";
   copy("$miscdir/addns.xsl", "$destdir/common");
-  copy("$miscdir/README", "$destdir/README");
+  copy("$miscdir/README.ns", "$destdir/README.ns");
   copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
   copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
   # Copy the ns VERSION file, not the copy from non-ns
