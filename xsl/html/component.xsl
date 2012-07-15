@@ -42,7 +42,6 @@
 
   <xsl:element name="h{$level+1}">
     <xsl:attribute name="class">title</xsl:attribute>
-    <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="conditional" select="0"/>
