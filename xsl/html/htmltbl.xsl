@@ -17,9 +17,6 @@
 <xsl:template match="table" mode="htmlTable">
   <xsl:element name="table" namespace="">
     <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
-    <xsl:attribute name="id">
-      <xsl:call-template name="object.id"/>
-    </xsl:attribute>
     <xsl:call-template name="htmlTable"/>
   </xsl:element>
 </xsl:template>
