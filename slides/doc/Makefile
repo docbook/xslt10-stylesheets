@@ -1,14 +1,17 @@
 include ../../buildtools/Makefile.incl
-VPATH = ../xsl/html
-all: index.html param.html
+all: index.html s5.html slidy.html
+	cp ../files ./
+	cp ../images ./
 
 index.html: slides.xml
-	$(XSLT) $< ../../xsl/html/docbook.xsl $@
+	$(XSLT) $< ${XSLNS}/slides/xhtml/plain.xsl $@
 
-param.html: param.xweb
-	$(MAKE) -C ../xsl/html param.html
-	cp ../xsl/html/param.html .
+s5.html: slides.xml
+	$(XSLT) $< ${XSLNS}/slides/xhtml/s5.xsl $@
+
+slidy.html: slides.xml
+	$(XSLT) $< ${XSLNS}/slides/xhtml/slidy.xsl $@
 
 clean:
 	rm -f *.html
-
+	rm -rf images files
