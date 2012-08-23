@@ -1036,7 +1036,7 @@ var w3c_slidy = {
              if (this.has_class(node, "slide"))
                break;
 
-             if (this.has_class(node, "handout"))
+             if (this.has_class(node, "handout") || this.has_class(node, "notes"))
                break;
            }
         }
@@ -1091,7 +1091,7 @@ var w3c_slidy = {
     {
       div = divs.item(i);
 
-      if (this.has_class(div, "handout"))
+      if (this.has_class(div, "handout") || this.has_class(div, "notes"))
       {
         // add note to collection
         notes[notes.length] = div;
