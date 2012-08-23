@@ -8,8 +8,10 @@
 <!-- the root element of the document -->
 
 <locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
-  <documentElement prefix="" localName="slides" uri="schema/relaxng/slides.rnc"/>
-<!--   <documentElement prefix="" localName="slides" uri="schema/relaxng/slides-full.rnc"/> -->
+  <namespace ns="http://docbook.org/ns/docbook-slides" uri="schema/relaxng/slides.rnc"/>
+  <documentElement localName="slides" uri="schema/relaxng/slides.rnc"/>
+
+  <namespace ns="http://docbook.org/ns/docbook" uri="schema/relaxng/docbook.rnc"/>
 </locatingRules>
 
 <!-- To use this file with Emacs/nXML mode, either: -->

@@ -12,7 +12,7 @@
 <fm:project>
   <fm:Project>DocBook</fm:Project>
   <fm:Branch>Slides</fm:Branch>
-  <fm:Version>3.4.0</fm:Version>
+  <fm:Version>5.0</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
