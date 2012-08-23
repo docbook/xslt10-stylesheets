@@ -1,34 +1,34 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
+
 <?dbhtml graphics-dir="../graphics"?>
 <?dbhtml css-stylesheet="../browser/slides.css"?>
 <?dbhtml script-dir="../browser"?>
-<slides>
-<slidesinfo>
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
   <title>Test Slides Title That's Really Really Long and Would Never Really Be Used Exactly Like This</title>
   <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
-</slidesinfo>
+</info>
 
-<speakernotes>
+<dbs:speakernotes>
 <para>Welcome the audience</para>
-</speakernotes>
+</dbs:speakernotes>
 
-<foilgroup><title>Foilgroup 1</title>
+<dbs:foilgroup><info><title>Foilgroup 1</title></info>
 
-<speakernotes>
+<dbs:speakernotes>
 <para>Introduce the foilgroup</para>
-</speakernotes>
+</dbs:speakernotes>
 
-<foil><title>Test Slides Title 1</title>
+<dbs:foil><info><title>Test Slides Title 1</title></info>
 
-<speakernotes>
+<dbs:speakernotes>
 <para>Tell a funny joke. Remember, I said a funny one.</para>
-</speakernotes>
+</dbs:speakernotes>
 
 <para>...</para>
-</foil>
+</dbs:foil>
 
-<foil><title>Test Slides Title 2</title>
+<dbs:foil><info><title>Test Slides Title 2</title></info>
 <para>...</para>
 <screen>
 this is a screen
@@ -103,22 +103,22 @@ this is a long screen
 this is a long screen
 this is a long screen
 </screen>
-</foil>
+</dbs:foil>
 
-</foilgroup>
-<foilgroup><title>Foilgroup 2</title>
+</dbs:foilgroup>
+<dbs:foilgroup><info><title>Foilgroup 2</title></info>
 
-<foil><title>Test Slides Title 1</title>
+<dbs:foil><info><title>Test Slides Title 1</title></info>
 <para>...<footnote><para>This is a footnote.</para></footnote></para>
-</foil>
+</dbs:foil>
 
-<foil><title>Test Slides Title 2</title>
+<dbs:foil><info><title>Test Slides Title 2</title></info>
 <para>...</para>
 <screen>
 this is a screen
 </screen>
-</foil>
+</dbs:foil>
 
-</foilgroup>
+</dbs:foilgroup>
 
-</slides>
+</dbs:slides>

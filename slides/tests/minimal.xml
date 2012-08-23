@@ -1,16 +1,16 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
-<slides>
-<slidesinfo>
+
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
 <title>Presentation Title</title>
-</slidesinfo>
-<foilgroup><title>Foilgroup Title</title>
-<subtitle>Foilgroup Subtitle</subtitle>
+</info>
+<dbs:foilgroup><info><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle></info>
 <para>Some premable.</para>
-<foil><title>Foil Title</title>
-<subtitle>Foil Subtitle</subtitle>
+<dbs:foil><info><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle></info>
 <para>Foil content</para>
-</foil>
-</foilgroup>
-</slides>
+</dbs:foil>
+</dbs:foilgroup>
+</dbs:slides>
 

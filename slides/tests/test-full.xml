@@ -1,38 +1,38 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "../schema/dtd/slides-full.dtd">
-<slides>
-<slidesinfo>
+
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
   <title>Test Slides Title</title>
   <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
-</slidesinfo>
+</info>
 
-<foilgroup><title>Section 1</title>
+<dbs:foilgroup><info><title>Section 1</title></info>
 
-<foil><title>Test Slides Title 1</title>
+<dbs:foil><info><title>Test Slides Title 1</title></info>
 <para>...<keycombo><keycap>X</keycap></keycombo></para>
-</foil>
+</dbs:foil>
 
-<foil><title>Test Slides Title 2</title>
+<dbs:foil><info><title>Test Slides Title 2</title></info>
 <para>...</para>
 <screen>
 this is a screen
 </screen>
-</foil>
+</dbs:foil>
 
-</foilgroup>
-<foilgroup><title>Section 2</title>
+</dbs:foilgroup>
+<dbs:foilgroup><info><title>Section 2</title></info>
 
-<foil><title>Test Slides Title 1</title>
+<dbs:foil><info><title>Test Slides Title 1</title></info>
 <para>...</para>
-</foil>
+</dbs:foil>
 
-<foil><title>Test Slides Title 2</title>
+<dbs:foil><info><title>Test Slides Title 2</title></info>
 <para>...</para>
 <screen>
 this is a screen
 </screen>
-</foil>
+</dbs:foil>
 
-</foilgroup>
+</dbs:foilgroup>
 
-</slides>
+</dbs:slides>

@@ -1,14 +1,14 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
+
 <!--
 <?dbhtml graphics-dir="../graphics" css-stylesheet-dir="../browser"?>
 <?dbhtml script-dir="../browser"?>
 -->
-<slides><?dbhtml dir="dbhtml-dir-test" ?>
-<slidesinfo>
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides" xmlns:xlink="http://www.w3.org/1999/xlink"><?dbhtml dir="dbhtml-dir-test" ?>
+<info>
   <title>Supporting Localized Generated Text</title>
   <titleabbrev>Generated Text</titleabbrev>
-  <author><firstname>Norman</firstname><surname>Walsh</surname></author>
+  <author><personname><firstname>Norman</firstname><surname>Walsh</surname></personname></author>
   <pubdate>Sunday, 08 Apr 2001</pubdate>
   <confgroup>
     <conftitle>XSLTUK-01</conftitle>
@@ -19,26 +19,26 @@
   <releaseinfo role="version">Version TEST</releaseinfo>
   <copyright><year>2001</year>
              <holder>Sun Microsystems, Inc.</holder></copyright>
-</slidesinfo>
+</info>
 
-<foil><title>Introduction</title>
+<dbs:foil><info><title>Introduction</title></info>
 
-<speakernotes>
+<dbs:speakernotes>
 <para>Say something pithy in the introduction</para>
-</speakernotes>
+</dbs:speakernotes>
 
 <para>This is the introductory slide</para>
-</foil>
+</dbs:foil>
 
-<foilgroup><title>The Problem</title>
+<dbs:foilgroup><info><title>The Problem</title></info>
+
+<dbs:speakernotes>
+<para>Remember to describe the use-caess</para>
+</dbs:speakernotes>
 
 <para>This is on the foilgroup slide.</para>
 
-<speakernotes>
-<para>Remember to describe the use-caess</para>
-</speakernotes>
-
-<foil><title>Generated Text</title>
+<dbs:foil><info><title>Generated Text</title></info>
 <itemizedlist>
 <listitem><para>Semantic markup often omits text that can be generated
 automatically
@@ -49,9 +49,9 @@ naturally
 <listitem><para>Generated text is locale-specific
 </para></listitem>
 </itemizedlist>
-</foil>
+</dbs:foil>
 
-<foil><title>An Example</title>
+<dbs:foil><info><title>An Example</title></info>
 <para>An obvious, common example is chapter title markup. Consider:</para>
 
 <programlisting><emphasis
@@ -69,12 +69,12 @@ naturally
 <para><emphasis>Chapitre 3. Some Title</emphasis></para>
 </listitem>
 </itemizedlist>
-</foil>
+</dbs:foil>
 
-</foilgroup>
-<foilgroup><title>A Solution</title>
+</dbs:foilgroup>
+<dbs:foilgroup><info><title>A Solution</title></info>
 
-<foil><title>The Old Solution</title>
+<dbs:foil><info><title>The Old Solution</title></info>
 
 <para>Replace this</para>
 
@@ -100,10 +100,10 @@ naturally
     <xsl:apply-templates select="title"/>
   </h1>
 </xsl:template>]]></screen>
-</foil>
+</dbs:foil>
 
-<foil><title>Generated from Localization Data</title>
-<titleabbrev>L10N Data</titleabbrev>
+<dbs:foil><info><title>Generated from Localization Data</title>
+<titleabbrev>L10N Data</titleabbrev></info>
 
 <para>Where the generated text for words like <quote>Chapter</quote>
 is taken from an independently maintained lookup table:</para>
@@ -116,9 +116,9 @@ is taken from an independently maintained lookup table:</para>
 ...
 <localization language="cs">
 ...]]></screen>
-</foil>
+</dbs:foil>
 
-<foil><title>Problems</title>
+<dbs:foil><info><title>Problems</title></info>
 <itemizedlist>
 <listitem><para>Single-word localization (doesn't support Japanese)
 </para></listitem>
@@ -129,12 +129,12 @@ is taken from an independently maintained lookup table:</para>
 <listitem><para>Hard-coded number format
 </para></listitem>
 </itemizedlist>
-</foil>
+</dbs:foil>
 
-</foilgroup>
-<foilgroup><title>A Better Solution</title>
+</dbs:foilgroup>
+<dbs:foilgroup><info><title>A Better Solution</title></info>
 
-<foil><title>Use Markup Templates</title>
+<dbs:foil><info><title>Use Markup Templates</title></info>
 
 <para>Use a lookup function to determine the markup template in addition
 to the keywords. For example, the <quote>markup template</quote> lookup
@@ -157,9 +157,9 @@ table for a chapter title looks something like this:</para>
 <literal>%s</literal> (not shown) are replaced by the lable, title, and
 subtitle of the component, respectively.</para>
 
-</foil>
+</dbs:foil>
 
-<foil><title>The <quote>New</quote> Solution</title>
+<dbs:foil><info><title>The <quote>New</quote> Solution</title></info>
 
 <para>Find the template and fill it in:</para>
 
@@ -173,10 +173,10 @@ subtitle of the component, respectively.</para>
     <xsl:with-param name="template" select="$template"/>
   </xsl:call-template>
 </xsl:template>]]></screen>
-</foil>
+</dbs:foil>
 
-<foil><title>Generated from Localization Data</title>
-<titleabbrev>L10N Data</titleabbrev>
+<dbs:foil><info><title>Generated from Localization Data</title>
+<titleabbrev>L10N Data</titleabbrev></info>
 
 <para>In order to make this work, the localization data is extended:</para>
 
@@ -191,17 +191,17 @@ subtitle of the component, respectively.</para>
 <template name="chapter">]]><?Pub _font green?><![CDATA[<Chapter/>]]><?Pub /_font?><![CDATA[ %n. %t</template>
 ]]><?Pub /_font?><![CDATA[...
 ]]></screen>
-</foil>
+</dbs:foil>
 
-</foilgroup>
+</dbs:foilgroup>
 
-<foilgroup><title>Resources</title>
-<foil><title>Resources</title>
+<dbs:foilgroup><info><title>Resources</title></info>
+<dbs:foil><info><title>Resources</title></info>
 <itemizedlist>
-<listitem><para><ulink url="http://www.oasis-open.org/docbook/"/>, the
+<listitem><para><uri xlink:href="http://www.oasis-open.org/docbook/"/>, the
 DocBook Home Page.
 </para></listitem>
-<listitem><para><ulink url="http://sourceforge.net/projects/docbook/"/>, the
+<listitem><para><uri xlink:href="http://sourceforge.net/projects/docbook/"/>, the
 stylesheets and related document types (including the slides layer that
 was used to produce this presentation.)
 </para></listitem>
@@ -211,6 +211,6 @@ for questions about DocBook applications, stylesheets, and other tool-related
 queries.
 </para></listitem>
 </itemizedlist>
-</foil>
-</foilgroup>
-</slides>
+</dbs:foil>
+</dbs:foilgroup>
+</dbs:slides>

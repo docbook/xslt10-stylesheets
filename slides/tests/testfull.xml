@@ -1,19 +1,19 @@
 <?xml version='1.0'?>
-<!DOCTYPE slides SYSTEM "../schema/dtd/slides-full.dtd">
+
 <?dbhtml graphics-dir="../graphics"?>
 <?dbhtml css-stylesheet="../browser/slides.css"?>
 <?dbhtml script-dir="../browser"?>
-<slides>
-<slidesinfo>
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
 <title>Test Slides Title</title>
-</slidesinfo>
-<foil><title>Test Slides Title</title>
+</info>
+<dbs:foil><info><title>Test Slides Title</title></info>
 <para>...</para>
-</foil>
-<foil><title>Test Slides Title</title>
+</dbs:foil>
+<dbs:foil><info><title>Test Slides Title</title></info>
 <para>...</para>
 <screen>
 this is a screen
 </screen>
-</foil>
-</slides>
+</dbs:foil>
+</dbs:slides>
