@@ -1,9 +1,16 @@
+SUBDIRS= relaxng xsd
+
 all:
-	$(MAKE) -C dtd
-	$(MAKE) -C relaxng
+	for d in ${SUBDIRS}; do \
+		${MAKE} -C $${d}; \
+	done
 
 clean:
-	$(MAKE) -C relaxng clean
+	for d in ${SUBDIRS}; do \
+		${MAKE} -C $${d} clean; \
+	done
 
-maintainer-clean: clean
-	$(MAKE) -C dtd maintainer-clean
+maintainer-clean:
+	for d in ${SUBDIRS}; do \
+		${MAKE} -C $${d} maintainer-clean; \
+	done

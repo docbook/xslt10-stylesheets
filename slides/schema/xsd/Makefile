@@ -1,11 +1,11 @@
 include ../../../buildtools/Makefile.incl
 
-all: slides.rng
+all: slides.xsd
 
-%.rng: %.rnc
+slides.xsd: ../relaxng/slides.rnc
 	trang $< $@
 
 clean:
 
 maintainer-clean: clean
-	rm -f slides.rng
+	rm -f *.xsd
