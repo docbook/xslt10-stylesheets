@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl-webhelpindexer</artifactId>
   <name>DocBook XSL WebHelp Indexer extension</name>
   <packaging>jar</packaging>
-  <version>1.0.0</version>
+  <version>1.0.1-pre</version>
   <description>DocBook XSL WebHelp Indexer extension
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -13,12 +13,12 @@
   <parent>
     <groupId>net.sf.docbook</groupId>
     <artifactId>docbook</artifactId>
-    <version>5.0-1</version>
+    <version>5.0-2</version>
   </parent>
 
 
   <properties>
-    <docbook.xsl.webhelpindexer.release>docbook-xsl-webhelpindexer-1.00</docbook.xsl.webhelpindexer.release>
+    <docbook.xsl.webhelpindexer.release>docbook-xsl-webhelpindexer-1.01-snapshot-08232012</docbook.xsl.webhelpindexer.release>
   </properties>
 
   <dependencies>
@@ -42,7 +42,7 @@
 
   <build>
     <plugins>
-      <plugin>
+      <!--plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>wagon-maven-plugin</artifactId>
         <version>1.0-beta-3</version>
@@ -60,7 +60,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin-->
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
@@ -74,7 +74,7 @@
                 <echo>Extracting docbook xsl webhelpindexer sources ${docbook.xsl.webhelpindexer.release}.zip.</echo>
 
                 <unzip dest="${project.build.directory}/tmp">
-                  <fileset dir="${project.build.directory}/lib" includes="${docbook.xsl.webhelpindexer.release}.zip"/>
+                  <fileset dir="lib/" includes="${docbook.xsl.webhelpindexer.release}.zip"/>
                   <patternset>
                     <include name="${docbook.xsl.webhelpindexer.release}/src/**"/>
                   </patternset>
@@ -104,6 +104,15 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8.1</version>
+        <configuration>
+          <sourcepath>${project.build.directory}/tmp/${docbook.xsl.webhelpindexer.release}/src/</sourcepath>
+        </configuration>
       </plugin>
 
       <plugin>

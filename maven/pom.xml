@@ -5,8 +5,18 @@
   <artifactId>docbook</artifactId>
   <name>DocBook</name>
   <packaging>pom</packaging>
-  <version>5.0-1</version>
-  <description>Docbook</description>
+  <version>5.0-2</version>
+  <description>DocBook is an XML vocabulary that lets you create documents in a presentation-neutral form that captures
+    the logical structure of your content. Using free tools along with the DocBook XSL stylesheets, you can publish your
+    content as HTML pages and PDF files, and in many other formats.
+  </description>
+  <url>http://docbook.sourceforge.net/</url>
+  <licenses>
+    <license>
+      <name>MIT like</name>
+      <url>http://wiki.docbook.org/DocBookLicense</url>
+    </license>
+  </licenses>
 
   <scm>
     <connection>scm:svn:https://docbook.svn.sourceforge.net/svnroot/docbook/trunk</connection>
@@ -33,18 +43,6 @@
     <system>sourceforge</system>
     <url>http://sourceforge.net/tracker/?group_id=21935</url>
   </issueManagement>
-  <distributionManagement>
-    <repository>
-      <id>docbook-sourceforge</id>
-      <name>Docbook Repository</name>
-      <url>sftp://web.sourceforge.net/home/groups/d/do/docbook/htdocs/maven/repository</url>
-    </repository>
-    <snapshotRepository>
-      <id>docbook-snapshot-sourceforge</id>
-      <name>Docbook Snapshot Repository</name>
-      <url>sftp://web.sourceforge.net/home/groups/d/do/docbook/htdocs/maven/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <developers>
     <developer>
@@ -61,6 +59,12 @@
     </developer>
   </developers>
 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
 
   <modules>
     <module>docbook-xsl</module>
@@ -70,5 +74,21 @@
     <module>docbook-xsl-webhelpindexer</module>
   </modules>
 
-
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

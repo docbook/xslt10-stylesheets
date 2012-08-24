@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl</artifactId>
   <name>DocBook XSL Stylesheets</name>
   <packaging>pom</packaging>
-  <version>1.76.1</version>
+  <version>1.77.1</version>
   <description>These are XSL stylesheets for transforming DocBook XML document instances into various output formats.
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -13,13 +13,13 @@
   <parent>
     <groupId>net.sf.docbook</groupId>
     <artifactId>docbook</artifactId>
-    <version>5.0-1</version>
+    <version>5.0-2</version>
   </parent>
 
 
   <properties>
-    <docbook.xsl.release>docbook-xsl-1.76.1</docbook.xsl.release>
-    <docbook.xslns.release>docbook-xsl-ns-1.76.1</docbook.xslns.release>
+    <docbook.xsl.release>docbook-xsl-1.77.1</docbook.xsl.release>
+    <docbook.xslns.release>docbook-xsl-ns-1.77.1</docbook.xslns.release>
   </properties>
 
   <build>

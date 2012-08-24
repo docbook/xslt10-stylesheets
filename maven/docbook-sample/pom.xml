@@ -5,28 +5,28 @@
   <artifactId>docbook-sample</artifactId>
   <name>DocBook XSL sample</name>
   <packaging>pom</packaging>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>Sample of DocBook maven artifacts</description>
   <url>http://sourceforge.net/projects/docbook/</url>
 
   <parent>
     <groupId>net.sf.docbook</groupId>
     <artifactId>docbook</artifactId>
-    <version>5.0</version>
+    <version>5.0-2</version>
   </parent>
 
   <dependencies>
     <dependency>
       <groupId>net.sf.docbook</groupId>
       <artifactId>docbook-xsl</artifactId>
-      <version>1.75.2</version>
+      <version>1.77.1</version>
       <type>zip</type>
       <classifier>ns-resources</classifier>
     </dependency>
     <dependency>
       <groupId>net.sf.docbook</groupId>
       <artifactId>docbook-xml</artifactId>
-      <version>5.0-all</version>
+      <version>5.1b4-all</version>
       <type>zip</type>
       <classifier>resources</classifier>
     </dependency>
@@ -111,7 +111,7 @@
               <dependency>
                 <groupId>net.sf.docbook</groupId>
                 <artifactId>docbook-xsl-saxon</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.1-pre</version>
               </dependency>
             </dependencies>
           </plugin>
