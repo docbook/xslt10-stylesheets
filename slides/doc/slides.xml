@@ -531,24 +531,32 @@
       </info>
       
       <para>This is only supported in XHTML-based output.</para>
-      
-      <mediaobject dbs:incremental="1" dbs:style="face_container">
-        <imageobject>
-	  <imagedata dbs:style="face_first" fileref="images/face1.gif"/>
-	</imageobject>
 
-        <imageobject>
-	  <imagedata dbs:style="face_other" fileref="images/face2.gif"/>
-	</imageobject>
-	
-        <imageobject>
-	  <imagedata dbs:style="face_other" fileref="images/face3.gif"/>
-	</imageobject>
+      <dbs:block dbs:incremental="1" dbs:style="face_container">
+        <mediaobject>
+          <imageobject>
+	    <imagedata dbs:style="face_first" fileref="images/face1.gif"/>
+	  </imageobject>
+        </mediaobject>
 
-        <imageobject>
-	  <imagedata dbs:style="face_other" fileref="images/face4.gif"/>
-	</imageobject>
-      </mediaobject>
+        <mediaobject>
+          <imageobject>
+	    <imagedata dbs:style="face_other" fileref="images/face2.gif"/>
+  	  </imageobject>
+        </mediaobject>
+
+        <mediaobject>	
+          <imageobject>
+	    <imagedata dbs:style="face_other" fileref="images/face3.gif"/>
+	  </imageobject>
+        </mediaobject>
+
+        <mediaobject>
+          <imageobject>
+	    <imagedata dbs:style="face_other" fileref="images/face4.gif"/>
+	  </imageobject>
+        </mediaobject>
+      </dbs:block>
     </dbs:foil>
     
     <dbs:foil>
