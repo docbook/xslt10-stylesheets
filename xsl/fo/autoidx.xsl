@@ -1145,7 +1145,7 @@
         </xsl:call-template>
       </xsl:variable>
 
-      <xsl:text>&lt;phrase fole="pageno"&gt;</xsl:text>
+      <xsl:text>&lt;phrase role="pageno"&gt;</xsl:text>
       <xsl:if test="$target[1]/@id or $target[1]/@xml:id">
         <xsl:text>&lt;link linkend="</xsl:text>
         <xsl:value-of select="$id"/>
