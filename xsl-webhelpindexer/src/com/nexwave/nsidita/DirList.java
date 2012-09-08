@@ -11,13 +11,16 @@ public class DirList {
     ArrayList<File> listFiles = null;
     ArrayList<String> listFilesRelTo = null;
     String[] topicFiles = null;
+    String[] regexp = null;
+    
     public static final int MAX_DEPTH = 10;
 
-    public DirList(File inputDir, String regexp, int depth) {
+    public DirList(File inputDir, String[] regexpr, int depth) {
         try {
 
             listFiles = new ArrayList<File>();
-
+            this.regexp = regexpr;
+            
             // not yet implemented
             if (regexp == null) {
                 for (File f : inputDir.listFiles()) {
@@ -31,12 +34,12 @@ public class DirList {
                     }
                 }
             } else {
-                for (File f : inputDir.listFiles(new DirFilter(regexp))) {
+                for (File f : inputDir.listFiles(new DirFilter(regexp, regexp[regexp.length-1]))) {
                     listFiles.add(f);
                 }
 // Patch from Oxygen to address problem where directories
 // containing . were not traversed.
-                for (File f : inputDir.listFiles(new DirFilter(".*"))) {
+                for (File f : inputDir.listFiles(new DirFilter(regexp,".*"))) {
                     if (f.isDirectory()) {
                         if (depth < MAX_DEPTH) {
                             DirList nsiDoc = new DirList(f, regexp, depth + 1);
@@ -89,19 +92,36 @@ public class DirList {
 
 class DirFilter implements FilenameFilter {
     private Pattern pattern;
-
+    private String[] regexp = null;
+    private ArrayList<Pattern> patternlist;
+    
     public DirFilter(String regex) {
         pattern = Pattern.compile(regex);
+    }
+    public DirFilter(String[] regexx, String regex) {
+    	patternlist = new ArrayList<Pattern>();
+    	this.regexp = regexx;
+    	
+    	for(int i = 0; i < regexp.length-1; i++){
+    		Pattern pattern;
+    		pattern = Pattern.compile(regexp[i]);
+    		patternlist.add(pattern);
+    	}
+    	pattern = Pattern.compile(regexp[regexp.length-1]);
     }
 
     public boolean accept(File dir, String name) {
         String thisname = new File(name).getName();
-        //System.out.println("Testing: "+ thisname);
-        if ( thisname.equals("ix01.html")) { 
-            return false;
-        } else {
-            // Strip path information, search for regex:
-            return pattern.matcher(new File(name).getName()).matches();
-        }
+        boolean result = false;
+//        System.out.println("all files : "+ name);
+        for(int i = 0; i < patternlist.size(); i++){
+        	if(patternlist.get(i).matcher(new File(name).getName()).matches()){
+            	result = false;
+            	break;
+            }else{
+            	result = pattern.matcher(new File(name).getName()).matches();
+            }
+    	}
+        return result;
     }
 } 

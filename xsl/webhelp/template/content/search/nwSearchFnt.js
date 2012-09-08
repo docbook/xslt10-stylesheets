@@ -62,8 +62,13 @@ function Verifie(searchForm) {
     else {
     var splitSpace = searchTextField.split(" ");
        var splitWords = [];
-        for (var i = 0 ; i < splitSpace.length ; i++) {
+        for (var i = 0 ; i < splitSpace.length ; i++) {     
           var splitDot = splitSpace[i].split(".");
+          
+          if(!(splitDot.length == 1)){
+            splitWords.push(splitSpace[i]);
+          }
+          
           for (var i1 = 0; i1 < splitDot.length; i1++) {
                var splitColon = splitDot[i1].split(":");
             for (var i2 = 0; i2 < splitColon.length; i2++) {

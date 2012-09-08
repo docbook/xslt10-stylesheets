@@ -55,6 +55,11 @@ public class IndexerMain {
 
     // OXYGEN PATCH START
     //Table of contents file name
+    public String indexerExcludedFiles = null;
+    // This String array is for keep splitted reg expression names entered by user
+    public String[] splitedStrings = null;
+	public String[] regStrings = null;
+	
     private String tocfile;
     private boolean stem;
     // OXYGEN PATCH END
@@ -71,11 +76,18 @@ public class IndexerMain {
      * @param doStem true if the content should be stemmed
      * @param tocfile table of contents file. 
      */
-    public IndexerMain(String htmlDir, String indexerLanguage, String htmlExtension, String doStem, String tocfile) {
+    public IndexerMain(String htmlDir, String indexerLanguage, String htmlExtension, String doStem, String tocfile, String indexerExcludedFiles) {
         setHtmlDir(htmlDir);
         setIndexerLanguage(indexerLanguage);
         setHtmlextension(htmlExtension);
-
+        setIndexerExcludedFiles(indexerExcludedFiles);
+        
+        splitedStrings = indexerExcludedFiles.split(",");	
+    	regStrings = new String[splitedStrings.length+1];
+    	for(int i = 0; i < splitedStrings.length; i++){
+    		regStrings[i] = splitedStrings[i];
+    	}
+    	
         if( !doStem.toUpperCase().trim().equals("FALSE") && !doStem.toUpperCase().trim().equals("NO")) {
             System.out.println("Stemming enabled");                    
             setStem(true);
@@ -85,7 +97,7 @@ public class IndexerMain {
         }
 
         setTocfile(tocfile);
-
+       
     }
 
     public IndexerMain(String htmlDir, String indexerLanguage) {
@@ -113,7 +125,9 @@ public class IndexerMain {
     public void setHtmlDir(String htmlDir) {
         this.htmlDir = htmlDir;
     }
-
+    public void setIndexerExcludedFiles(String excludedFiles) {
+        this.indexerExcludedFiles = excludedFiles;
+    }
     /**
      * Set the extension in which html files are generated
      *
@@ -173,7 +187,8 @@ public class IndexerMain {
                     System.getProperty("indexerLanguage", "en"), //defaults to "en"
                     System.getProperty("htmlExtension", "html"),
                     System.getProperty("doStem", "true"), //defaults to true
-                    System.getProperty("tocFile")
+                    System.getProperty("tocFile"),
+                    System.getProperty("indexerExcludedFiles")
             );
         } else {
             throw new RuntimeException("Specify at least the directory containing html files (htmlDir)\n " +
@@ -272,8 +287,10 @@ public class IndexerMain {
         }
         //end of init
 
+        String regold = "^.*\\." + htmlExtension + "?$";
+        regStrings[regStrings.length-1] = regold;
         // Get the list of all html files but the tocs, covers and indexes
-        DirList nsiDoc = new DirList(inputDir, "^.*\\." + htmlExtension + "?$", 1);
+        DirList nsiDoc = new DirList(inputDir, regStrings, 1);
         htmlFiles = nsiDoc.getListFiles();
         // Check if found html files
         if (htmlFiles.isEmpty()) {
@@ -307,7 +324,7 @@ public class IndexerMain {
         // ------------------------------------------
 
         // Retrieve the clean-up properties for indexing
-        RetrieveCleanUpProps();
+//        RetrieveCleanUpProps();
         // System.out.print("clean"+" " +cleanUpStrings);
 
         //create a default handler
@@ -411,7 +428,8 @@ public class IndexerMain {
         Collection c = new ArrayList<String>();
 
         // Get the list of the props file containing the words to remove (not the punctuation)
-        DirList props = new DirList(inputDir, "^(?!(punctuation)).*\\.props$", 1);
+        //DirList props = new DirList(inputDir, "^(?!(punctuation)).*\\.props$", 1);
+        DirList props = new DirList(inputDir, punctuationFiles, 1);
         ArrayList<File> wordsList = props.getListFiles();
 //		System.out.println("props files:"+wordsList);
         //TODO all properties are taken to a single arraylist. does it ok?.

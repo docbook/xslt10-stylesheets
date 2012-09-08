@@ -159,6 +159,10 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
             if (attrName != null && (attrName.equalsIgnoreCase("description"))) {
                 fileDesc.setShortdesc(BlankRemover.rmWhiteSpace(attributes.getValue("content").replace('\n', ' ')));
             }
+            
+            if (attrName != null && (attrName.equalsIgnoreCase("Section-Title"))) {
+                fileDesc.setTitle(BlankRemover.rmWhiteSpace(attributes.getValue("content").replace('\n', ' ')));
+            }
         } // dwc: End addition
 
         // dwc: commenting out DITA specific lines
@@ -283,12 +287,12 @@ public class SaxDocFileParser extends org.xml.sax.helpers.DefaultHandler {
         // START OXYGEN PATCH, remove element from stack
         stack.pop();
         // END OXYGEN PATCH
-        if (qName.equalsIgnoreCase("title")) {
+        /*if (qName.equalsIgnoreCase("title")) {
             //add it to the list
             //myEmpls.add(tempEmp);
             fileDesc.setTitle(BlankRemover.rmWhiteSpace(tempVal.toString()));
             tempVal = null;
-        } else if (shortdescBool) {
+        }*/ if (shortdescBool) {
             shortTagCpt--;
             if (shortTagCpt == 0) {
                 String shortdesc = tempVal.toString().replace('\n', ' ');
