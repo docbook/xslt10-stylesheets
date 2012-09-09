@@ -647,13 +647,7 @@ border: none; background: none; font-weight: none; color: none; }
     </xsl:template>
 
     <xsl:template name="webhelpheader.logo">
-	<a target="_blank">
-	    <xsl:attribute name="href">
-		<xsl:choose>
-		    <xsl:when test="$branding = 'docbook'">http://docbook.org/</xsl:when>
-		    <xsl:otherwise>#</xsl:otherwise>
-		</xsl:choose>
-	    </xsl:attribute>
+	<a href="index.html">
 	<img style='margin-right: 2px; height: 59px; padding-right: 25px; padding-top: 8px' align="right"
 	    src='{$webhelp.common.dir}images/logo.png' alt="{$brandname} Documentation"/>
 	</a>
