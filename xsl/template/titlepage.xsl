@@ -21,7 +21,13 @@
 <!-- ==================================================================== -->
 
 <!-- Namespace for wrapper elements. Please set it for XHTML. -->
-<xsl:param name="ns"/>
+<xsl:param name="ns">
+  <!-- Guess correct setting for cases where parameter is not supplied -->
+  <xsl:choose>
+    <xsl:when test="//*[namespace-uri() = 'http://www.w3.org/1999/XSL/Format']">http://www.w3.org/1999/XSL/Format</xsl:when>
+    <xsl:when test="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']">http://www.w3.org/1999/xhtml</xsl:when>
+  </xsl:choose>
+</xsl:param>
 
 <xsl:template match="/">
   <xsl:text>&#x0a;</xsl:text>
