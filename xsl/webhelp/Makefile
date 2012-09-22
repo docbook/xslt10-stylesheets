@@ -6,7 +6,7 @@ DOCBOOK_EXTENSIONS_DIR = $(DOCBOOK_DIST)/extensions
 INPUT_XML = docsrc/readme.xml
 USER_IMAGES_PARENT_DIR=docsrc
 OUTPUT_DIR = docs
-INDEXER_EXCLUDED_FILES = ch02.*.html,ch03.*.html
+INDEXER_EXCLUDED_FILES = ix01.html
 
 INDEXER_JAR   := $(DOCBOOK_EXTENSIONS_DIR)/webhelpindexer.jar
 TAGSOUP_JAR   := $(DOCBOOK_EXTENSIONS_DIR)/tagsoup-1.2.1.jar
