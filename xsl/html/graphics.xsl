@@ -1062,7 +1062,11 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       </xsl:choose>
     </xsl:attribute>
   </xsl:if>
+
+  <xsl:call-template name="extension.process.image.attributes"/>
 </xsl:template>
+
+<xsl:template name="extension.process.image.attributes"/>
 
 <!-- ==================================================================== -->
 
