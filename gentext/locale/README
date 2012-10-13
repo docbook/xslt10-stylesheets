@@ -53,14 +53,14 @@ ABOUT THE <letters> PART
 The content in the <letters> part of the file is used
 for building of sorted indexes.
 
-You can find more information at:
+You can find more information in this article:
 
-  http://www.idealliance.org/proceedings/xml04/papers/77/xslindex.html#S5.
+  http://www.kosek.cz/xml/2004xmlconf/
 
-And the easiest way to understand it is to probably to
-at the <letters> part of the Czech locale file:
+And the easiest way to understand it is probably to examine
+the <letters> part of the Czech locale file:
 
-  http://cvs.sourceforge.net/viewcvs.py/*checkout*/docbook/gentext/locale/cs.xml
+  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/cs.xml
 
 Basically:
 
@@ -90,7 +90,7 @@ of the file UNLESS, in your locale:
     than other words starting with "c").
 
 If you need more help with understanding the <letters>
-part, post a request to docbook-apps@lists.oasis-open.org
+part, post a request to docbook-apps@lists.oasis-open.org.
 
 -------------------------------------------------------
 ABOUT ENCODINGS
@@ -105,21 +105,17 @@ character entities.
 SUBMITTING A NEW OR CHANGED LOCALE FILE
 -------------------------------------------------------
 After you have finished creating or changing a locale
-file, please zip it (using zip or gzip or bzip2) and
-e-mail it to:
+file, please submit the updated file (or a diff) to 
+either the "Bugs" or "Patches" tracker available via
 
-  Michael Smith <smith@xml-doc.org>
-
-And/or mail it to:
-
-  docbook-developers@lists.sourceforge.net
-
-NOTE: It's important to zip/compress/tar the file to
-prevent the possibility of the file being corrupted by
-mail programs.
+  https://sourceforge.net/projects/docbook
 
 That's all you need to know in order to create, change,
 and submit locale files.
+
+You can ask questions at the docbook-apps mailing list:
+
+  docbook-apps@lists.oasis-open.org
 
 If you want more info, read on.
 
