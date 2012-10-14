@@ -4,15 +4,26 @@
         english-language-name="Norwegian Bokmål"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
+<!-- Earlier this was language code 'no' -->
+
+<!-- Sources for Norwegian quote rules: 
+ http://www.sprakrad.no/Aktuelt-ord/Anforselstegn/
+ http://www.sprakrad.no/nb-NO/Sprakhjelp/Skriveregler_og_grammatikk/Hermeteikn-bokmal-anforselstegn/
+-->
+
 <doc:localeinfo>
-<!-- FIXME: list the real contributors
 <authorgroup>
+<!-- FIXME: list the real contributors 
   <author><firstname>Hans Fredrik</firstname><surname>Nordhaug</surname>
           <affiliation><address><email>hans@nordhaug.priv.no</email></address>
           </affiliation>
   </author>
-</authorgroup>
 -->
+  <author><firstname>Petter</firstname><surname>Reinholdtsen</surname>
+          <affiliation><address><email>pere@hungry.com</email></address>
+          </affiliation>
+  </author>
+</authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Sammendrag"/>
@@ -55,8 +66,8 @@
 <gentext key="IMPORTANT" text="VIKTIG"/>
 <gentext key="Important" text="Viktig"/>
 <gentext key="important" text="viktig"/>
-<gentext key="Index" text="Indeks"/>
-<gentext key="index" text="Indeks"/>
+<gentext key="Index" text="Register"/>
+<gentext key="index" text="register"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Rettslig merknad"/>
@@ -178,12 +189,12 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzæøå"/>
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"/>
 
-<dingbat key="startquote" text="“"/>
-<dingbat key="endquote" text="”"/>
-<dingbat key="nestedstartquote" text="‘"/>
-<dingbat key="nestedendquote" text="’"/>
-<dingbat key="singlestartquote" text="‘" lang="en"/>
-<dingbat key="singleendquote" text="’" lang="en"/>
+<dingbat key="startquote" text="«"/>
+<dingbat key="endquote" text="»"/>
+<dingbat key="nestedstartquote" text="“"/>
+<dingbat key="nestedendquote" text="”"/>
+<dingbat key="singlestartquote" text="‘"/>
+<dingbat key="singleendquote" text="’"/>
 <dingbat key="bullet" text="•"/>
 <gentext key="hyphenation-character" text="-" lang="en"/>
 <gentext key="hyphenation-push-character-count" text="2" lang="en"/>

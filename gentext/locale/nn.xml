@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
 <!-- there is no doctype for these files, they are WF only -->
 <locale language="nn"
-        english-language-name="Nynorsk"
+        english-language-name="Norwegian Nynorsk"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
+
+<!-- Sources for Norwegian quote rules: 
+ http://www.sprakrad.no/Aktuelt-ord/Anforselstegn/
+ http://www.sprakrad.no/nn-NO/Sprakhjelp/Skriveregler_og_grammatikk/Hermeteikn-bokmal-anforselstegn/
+-->
 
 <doc:localeinfo>
 <authorgroup>
   <author><firstname>Frederik</firstname><surname>Fouvry</surname>
           <affiliation><address><email>fouvry@CoLi.Uni-SB.DE</email></address>
+          </affiliation>
+  </author>
+  <author><firstname>Petter</firstname><surname>Reinholdtsen</surname>
+          <affiliation><address><email>pere@hungry.com</email></address>
           </affiliation>
   </author>
 </authorgroup>
@@ -55,8 +64,8 @@
 <gentext key="Important" text="Viktig"/>
 <gentext key="important" text="viktig"/>
 <gentext key="important" text="viktig"/>
-<gentext key="Index" text="Indeks"/>
-<gentext key="index" text="indeks"/>
+<gentext key="Index" text="Register"/>
+<gentext key="index" text="register"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text=""/>
@@ -181,10 +190,12 @@
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> <!--en-->
 <gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> <!--en-->
 
-<dingbat key="startquote" text="“"/>
-<dingbat key="endquote" text="”"/>
-<dingbat key="nestedstartquote" text="‘"/>
-<dingbat key="nestedendquote" text="’"/>
+<dingbat key="startquote" text="«"/>
+<dingbat key="endquote" text="»"/>
+<dingbat key="nestedstartquote" text="“"/>
+<dingbat key="nestedendquote" text="”"/>
+<dingbat key="singlestartquote" text="‘"/>
+<dingbat key="singleendquote" text="’"/>
 <dingbat key="bullet" text="•"/>
 
 <context name="styles">
