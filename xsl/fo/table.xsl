@@ -173,6 +173,11 @@
     <xsl:otherwise>
       <fo:block id="{$id}"
                 xsl:use-attribute-sets="informaltable.properties">
+        <xsl:if test="$keep.together != ''">
+          <xsl:attribute name="keep-together.within-column">
+            <xsl:value-of select="$keep.together"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:copy-of select="$table.layout"/>
         <xsl:call-template name="table.footnote.block"/>
       </fo:block>
