@@ -208,6 +208,7 @@ $Id$
 &use.local.olink.style;
 &current.docid;
 &olink.doctitle;
+&activate.external.olinks;
 &olink.debug;
 &olink.properties;
 &olink.lang.fallback.sequence;
@@ -457,6 +458,7 @@ around all these parameters.</para>
      ******************************************************************** -->
 
 <src:fragref linkend="abstract.notitle.enabled.frag"/>
+<src:fragref linkend="activate.external.olinks.frag"/>
 <src:fragref linkend="admon.graphics.extension.frag"/>
 <src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>

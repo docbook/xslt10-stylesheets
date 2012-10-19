@@ -328,3 +328,4 @@
 <!ENTITY webhelp.indexer.language   SYSTEM "../params/webhelp.indexer.language.xml">
 <!ENTITY webhelp.start.filename     SYSTEM "../params/webhelp.start.filename.xml">
 <!ENTITY webhelp.tree.cookie.id     SYSTEM "../params/webhelp.tree.cookie.id.xml">
+<!ENTITY activate.external.olinks     SYSTEM "../params/activate.external.olinks.xml">

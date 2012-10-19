@@ -52,6 +52,9 @@ article  toc,title,figure,table,example,equation
 <xsl:param name="base.dir" select="'OEBPS/'"/>
 <xsl:param name="index.links.to.section" select="0"/>
 
+<!-- Epub does not yet support external links -->
+<xsl:param name="activate.external.olinks" select="0"/>
+
 <!-- Turning this on crashes ADE, which is unbelievably awesome -->
 <xsl:param name="formal.object.break.after">0</xsl:param>
 

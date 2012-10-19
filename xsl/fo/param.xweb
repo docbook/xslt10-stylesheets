@@ -167,6 +167,7 @@ generate.section.toc.level;
 </reference>
 <reference xml:id="links"><title>Linking</title>
 &current.docid;
+&activate.external.olinks;
 &collect.xref.targets;
 &insert.olink.page.number;
 &insert.olink.pdf.frag;
@@ -564,6 +565,7 @@ around all these parameters.</para>
 
 <src:fragref linkend="abstract.properties.frag"/>
 <src:fragref linkend="abstract.title.properties.frag"/>
+<src:fragref linkend="activate.external.olinks.frag"/>
 <src:fragref linkend="admon.graphics.extension.frag"/>
 <src:fragref linkend="admon.graphics.frag"/>
 <src:fragref linkend="admon.graphics.path.frag"/>
