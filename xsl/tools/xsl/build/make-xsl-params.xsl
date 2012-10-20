@@ -18,7 +18,7 @@
   <!-- ==================================================================== -->
 
   <!-- * This stylesheet expects itself as input  -->
-  <xsl:param name="param.dirs">html fo manpages roundtrip slides/fo slides/html website</xsl:param>
+  <xsl:param name="param.dirs">html fo manpages roundtrip slides/fo slides/xhtml website</xsl:param>
 
   <xsl:template match="/">
     <xslt:stylesheet version="1.0"> 

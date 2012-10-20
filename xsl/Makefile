@@ -63,11 +63,11 @@ DISTRIB_PACKAGES = doc
 URILIST = \
 .\ http://docbook.sourceforge.net/release/xsl/current/
 
-DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website extensions webhelp xhtml5 epub3
+DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website extensions xhtml webhelp xhtml5 epub3
 
 .PHONY: distrib clean doc docsrc xhtml
 
-all: base xhtml
+all: base
 # If you're annoyed about getting the reminder that it's possible
 # to use xsltproc to build, delete the following conditional from
 # this makefile.

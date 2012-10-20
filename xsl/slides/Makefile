@@ -11,3 +11,4 @@ clean:
 	for i in $(DIRS); do \
 	  echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 	done
+	rm xhtml/params.xsl

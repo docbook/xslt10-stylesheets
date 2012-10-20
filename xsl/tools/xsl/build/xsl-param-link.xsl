@@ -13,7 +13,7 @@
   <xsl:param name="fo-baseuri" select="concat($doc-baseuri,'fo/')"/>
   <xsl:param name="manpages-baseuri" select="concat($doc-baseuri,'manpages/')"/>
   <xsl:param name="roundtrip-baseuri" select="concat($doc-baseuri,'roundtrip/')"/>
-  <xsl:param name="slides-html-baseuri" select="concat($doc-baseuri,'slides/')"/>
+  <xsl:param name="slides-xhtml-baseuri" select="concat($doc-baseuri,'slides/')"/>
   <xsl:param name="slides-fo-baseuri" select="concat($doc-baseuri,'slides/')"/>
   <xsl:param name="website-baseuri" select="concat($doc-baseuri,'website/')"/>
 
@@ -44,7 +44,7 @@
       </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="isslideshtml">
-      <xsl:call-template name="is-slides-html-parameter">
+      <xsl:call-template name="is-slides-xhtml-parameter">
         <xsl:with-param name="param" select="normalize-space(.)"/>
       </xsl:call-template>
     </xsl:variable>
@@ -80,7 +80,7 @@
         </a>
       </xsl:when>
       <xsl:when test="$isslideshtml != 0">
-        <a href="{concat($slides-html-baseuri, normalize-space(.))}.html">
+        <a href="{concat($slides-xhtml-baseuri, normalize-space(.))}.html">
           <xsl:copy-of select="$markup"/>
         </a>
       </xsl:when>
