@@ -2,7 +2,7 @@ include $(DOCBOOK_SVN)/releasetools/Variables.mk
 
 XJPARSEFLAGS= -E 0 -w
 
-PARAM_DIRS=html fo manpages roundtrip slides/fo slides/html website
+PARAM_DIRS=html fo manpages roundtrip slides/fo slides/xhtml website
 PI_DIRS=html fo manpages common
 
 PARAM_XML_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xml)
