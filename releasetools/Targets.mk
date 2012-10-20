@@ -117,7 +117,7 @@ ifeq ($(SFRELID),)
 	@echo "You must specify the sourceforge release identifier in SFRELID"
 	exit 1
 else
-	$(XSLT) VERSION VERSION $(TMP)/fm-docbook-$(DISTRO) sf-relid=$(SFRELID)
+	$(XSLT) VERSION.xsl VERSION.xsl $(TMP)/fm-docbook-$(DISTRO) sf-relid=$(SFRELID)
 	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | $(FRESHMEAT_SUBMIT) $(FMGO)
 endif
 

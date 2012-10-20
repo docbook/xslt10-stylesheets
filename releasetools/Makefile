@@ -39,7 +39,7 @@ refentry.007.xml: ../testdocs/tests/refentry.007.xml
 clean:
 	$(RM) modified-markup.xsl
 	$(RM) docbook.rng
-	$(RM) VERSION
+	$(RM) VERSION.xsl
 	$(RM) xtangle.xsl w2docbook.xsl
 	$(RM) freshmeat-submit
 	$(RM) refentry.007.xml refentry.007.ns.xml
