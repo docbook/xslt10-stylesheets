@@ -12,12 +12,12 @@
 
 <!-- ==================================================================== -->
 
-<xsl:include href="VERSION"/>
+<xsl:include href="VERSION.xsl"/>
 <xsl:param name="PROJECT">
-  <xsl:value-of select="string(document('VERSION')//fm:Project[1])"/>
+  <xsl:value-of select="string(document('VERSION.xsl')//fm:Project[1])"/>
 </xsl:param>
 <xsl:param name="BRANCH">
-  <xsl:value-of select="string(document('VERSION')//fm:Branch[1])"/>
+  <xsl:value-of select="string(document('VERSION.xsl')//fm:Branch[1])"/>
 </xsl:param>
 <xsl:param name="URI_BASE">http://docbook.sourceforge.net/release</xsl:param>
 <xsl:param name="DISTRO"/>
