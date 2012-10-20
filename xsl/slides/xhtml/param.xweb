@@ -1,0 +1,155 @@
+<!DOCTYPE book [
+<!ENTITY % param.ent SYSTEM "param.ent">
+%param.ent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xml:id="slides_xhtml_doc">
+<info>
+<title>Slides XHTML Parameter Reference</title>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<author>
+  <personname>
+    <surname>Kovesdan</surname>
+    <firstname>Gabor</firstname>
+  </personname>
+</author>
+<copyright>
+  <year>2012</year>
+  <holder>Gabor Kovesdan</holder>
+</copyright>
+<abstract>
+  <para>This is reference documentation for all user-configurable
+    parameters in the DocBook XSL Slides XHTML stylesheet.
+    Note that the Slides stylesheet for XHTML output is a
+    customization layer of the DocBook XSL XHTML stylesheet.
+    Therefore, in addition to the slides-specific parameters
+    listed in this section, you can also use a number of
+    <link xlink:href="../fo/" >XHTML stylesheet
+    parameters</link> to control Slides XHTML output.</para>
+</abstract>
+</info>
+<reference xml:id="xhtml">
+  <title>XHTML: General Params</title>
+
+&disable.collapsible;
+&disable.incremental;
+&generate.copyright;
+&generate.foilgroup.numbered.toc;
+&generate.foilgroup.toc;
+&generate.handoutnotes;
+&generate.pubdate;
+&generate.speakernotes;
+&generate.titlepage;
+&mml.embedding.mode;
+&svg.embedding.mode;
+&user.css;
+&wrap.slidecontent;
+</reference>
+
+<reference xml:id="s5">
+  <title>XHTML: S5 Params</title>
+
+&s5.controls;
+&s5.defaultview;
+&s5.opera.css;
+&s5.outline.css;
+&s5.path.prefix;
+&s5.print.css;
+&s5.slides.css;
+&s5.slides.js;
+</reference>
+
+<reference xml:id="slidy">
+  <title>XHTML: Slidy Params</title>
+
+&slidy.duration;
+&slidy.path.prefix;
+&slidy.slidy.css;
+&slidy.slidy.js;
+&slidy.user.css;
+</reference>
+
+<!--
+<refentry xml:id="">
+<refmeta>
+<refentrytitle></refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname></refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment xml:id='.frag'>
+<xsl:param name="" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+-->
+<appendix xml:id="styleheet"><title>The Stylesheet</title>
+
+<para>The <filename>param.xsl</filename> stylesheet is just a wrapper
+around all these parameters.</para>
+
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
+
+<!-- This file is generated from param.xweb -->
+
+<xsl:stylesheet exclude-result-prefixes="src" version="1.0">
+
+<!-- ********************************************************************
+     $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
+     ********************************************************************
+
+     This file is part of the DocBook Slides Stylesheet distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+<src:fragref linkend="disable.collapsible.frag"/>
+<src:fragref linkend="disable.incremental.frag"/>
+<src:fragref linkend="generate.copyright.frag"/>
+<src:fragref linkend="generate.foilgroup.numbered.toc.frag"/>
+<src:fragref linkend="generate.foilgroup.toc.frag"/>
+<src:fragref linkend="generate.handoutnotes.frag"/>
+<src:fragref linkend="generate.pubdate.frag"/>
+<src:fragref linkend="generate.speakernotes.frag"/>
+<src:fragref linkend="generate.titlepage.frag"/>
+<src:fragref linkend="mml.embedding.mode.frag"/>
+<src:fragref linkend="svg.embedding.mode.frag"/>
+<src:fragref linkend="user.css.frag"/>
+<src:fragref linkend="wrap.slidecontent.frag"/>
+
+<src:fragref linkend="s5.controls.frag"/>
+<src:fragref linkend="s5.defaultview.frag"/>
+<src:fragref linkend="s5.opera.css.frag"/>
+<src:fragref linkend="s5.outline.css.frag"/>
+<src:fragref linkend="s5.path.prefix.frag"/>
+<src:fragref linkend="s5.print.css.frag"/>
+<src:fragref linkend="s5.slides.css.frag"/>
+<src:fragref linkend="s5.slides.js.frag"/>
+
+<src:fragref linkend="slidy.duration.frag"/>
+<src:fragref linkend="slidy.path.prefix.frag"/>
+<src:fragref linkend="slidy.slidy.css.frag"/>
+<src:fragref linkend="slidy.slidy.js.frag"/>
+<src:fragref linkend="slidy.user.css.frag"/>
+
+</xsl:stylesheet>
+</src:fragment>
+
+</appendix>
+</book>

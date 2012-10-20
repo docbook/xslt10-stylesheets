@@ -1,17 +1,13 @@
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 
-DIRS = fo html xhtml
+DIRS = fo xhtml
 
 base:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
-		fi \
+	for i in $(DIRS); do \
+	  echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
 	done
 
 clean:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
-		fi \
+	for i in $(DIRS); do \
+	  echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
 	done

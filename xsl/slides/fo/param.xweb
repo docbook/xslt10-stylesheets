@@ -14,13 +14,13 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </releaseinfo>
 <author>
   <personname>
-    <surname>Walsh</surname>
-    <firstname>Norman</firstname>
+    <surname>Kovesdan</surname>
+    <firstname>Gabor</firstname>
   </personname>
 </author>
 <copyright>
-  <year>2002-2011</year>
-  <holder>Norman Walsh</holder>
+  <year>2012</year>
+  <holder>Gabor Kovesdan</holder>
 </copyright>
 <abstract>
   <para>This is reference documentation for all user-configurable
@@ -35,19 +35,45 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </info>
 <reference xml:id="fo">
   <title>FO: General Params</title>
-&slide.title.font.family;
-&slide.font.family;
+
 &foil.title.master;
 &foil.title.size;
+&generate.copyright;
+&generate.foilgroup.numbered.toc;
+&generate.foilgroup.toc;
+&generate.handoutnotes;
+&generate.page.number;
+&generate.pubdate;
+&generate.speakernotes;
+&generate.titlepage;
+&mml.embedding.mode.fo;
+&slide.font.family;
+&slide.title.font.family;
+&svg.embedding.mode.fo;
 </reference>
 <reference xml:id="propsets">
   <title>FO: Property Sets</title>
-&slides.properties;
-&foilgroup.properties;
-&foil.subtitle.properties;
+&foil.header.properties;
+&foil.master.properties;
+&foil.page-sequence.properties;
 &foil.properties;
-&speakernote.properties;
-&running.foot.properties;
+&foil.region-after.properties;
+&foil.region-before.properties;
+&foil.region-body.properties;
+&foil.subtitle.properties;
+&foil.title.properties;
+&foil.footer.properties;
+&handoutnotes.properties;
+&slides.properties;
+&slides.titlepage.master.properties;
+&slides.titlepage.region-body.properties;
+&slides.titlepage.corpauthor.properties;
+&slides.titlepage.title.properties;
+&slides.titlepage.subtitle.properties;
+&slides.titlepage.author.properties;
+&slides.titlepage.pubdate.properties;
+&slides.titlepage.authorgroup.properties;
+&speakernotes.properties;
 </reference>
 <!--
 <refentry xml:id="">
@@ -94,16 +120,43 @@ around all these parameters.</para>
 
      ******************************************************************** -->
 
-<src:fragref linkend="slide.font.family.frag"/>
-<src:fragref linkend="slide.title.font.family.frag"/>
 <src:fragref linkend="foil.title.master.frag"/>
 <src:fragref linkend="foil.title.size.frag"/>
-<src:fragref linkend="foilgroup.properties.frag"/>
+<src:fragref linkend="generate.copyright.frag"/>
+<src:fragref linkend="generate.foilgroup.numbered.toc.frag"/>
+<src:fragref linkend="generate.foilgroup.toc.frag"/>
+<src:fragref linkend="generate.handoutnotes.frag"/>
+<src:fragref linkend="generate.page.number.frag"/>
+<src:fragref linkend="generate.pubdate.frag"/>
+<src:fragref linkend="generate.speakernotes.frag"/>
+<src:fragref linkend="generate.titlepage.frag"/>
+<src:fragref linkend="mml.embedding.mode.fo.frag"/>
+<src:fragref linkend="slide.font.family.frag"/>
+<src:fragref linkend="slide.title.font.family.frag"/>
+<src:fragref linkend="svg.embedding.mode.fo.frag"/>
+
+<src:fragref linkend="foil.header.properties.frag"/>
+<src:fragref linkend="foil.master.properties.frag"/>
+<src:fragref linkend="foil.page-sequence.properties.frag"/>
 <src:fragref linkend="foil.properties.frag"/>
+<src:fragref linkend="foil.region-after.properties.frag"/>
+<src:fragref linkend="foil.region-before.properties.frag"/>
+<src:fragref linkend="foil.region-body.properties.frag"/>
 <src:fragref linkend="foil.subtitle.properties.frag"/>
-<src:fragref linkend="running.foot.properties.frag"/>
-<src:fragref linkend="speakernote.properties.frag"/>
+<src:fragref linkend="foil.title.properties.frag"/>
+<src:fragref linkend="handoutnotes.properties.frag"/>
 <src:fragref linkend="slides.properties.frag"/>
+<src:fragref linkend="slides.titlepage.master.properties.frag"/>
+<src:fragref linkend="slides.titlepage.region-body.properties.frag"/>
+<src:fragref linkend="speakernotes.properties.frag"/>
+
+<src:fragref linkend="slides.titlepage.corpauthor.properties.frag"/>
+<src:fragref linkend="slides.titlepage.title.properties.frag"/>
+<src:fragref linkend="slides.titlepage.subtitle.properties.frag"/>
+<src:fragref linkend="foil.footer.properties.frag"/>
+<src:fragref linkend="slides.titlepage.author.properties.frag"/>
+<src:fragref linkend="slides.titlepage.pubdate.properties.frag"/>
+<src:fragref linkend="slides.titlepage.authorgroup.properties.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
