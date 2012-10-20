@@ -49,6 +49,7 @@ clean:
 	$(RM) $(PI_XML_FILES)
 	$(RM) $(OTHER_XML_FILES)
 	$(RM) reference.xml.included
+	$(RM) reference.xml.included.tmp
 
 ifneq ($(shell uname -s | grep -i cygwin),)
 ifeq ($(XSLTENGINE),saxon)

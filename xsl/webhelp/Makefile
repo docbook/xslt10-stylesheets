@@ -33,6 +33,8 @@ chunk:
                   ${INPUT_XML}
 
 	xsltproc --xinclude xsl/webhelp.xsl xincluded-profiled.xml      
+
+	rm xincluded-profiled.xml
 index:
 	java \
                 -DhtmlDir=$(OUTPUT_DIR) \
