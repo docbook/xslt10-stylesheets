@@ -16,5 +16,3 @@ include ../../Makefile.incl
 titlepage-clean:
 	$(RM) plain-titlepage.xsl
 
-clean: titlepage-clean
-	rm -f .param.xmlid param.xml param.xsl

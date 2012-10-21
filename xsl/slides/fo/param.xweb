@@ -14,13 +14,13 @@ $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
 </releaseinfo>
 <author>
   <personname>
-    <surname>Kovesdan</surname>
-    <firstname>Gabor</firstname>
+    <surname>Kövesdán</surname>
+    <firstname>Gábor</firstname>
   </personname>
 </author>
 <copyright>
   <year>2012</year>
-  <holder>Gabor Kovesdan</holder>
+  <holder>Gábor Kövesdán</holder>
 </copyright>
 <abstract>
   <para>This is reference documentation for all user-configurable

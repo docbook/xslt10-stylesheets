@@ -171,30 +171,34 @@ endif
 # -----------------------------------------------------------------
 ifneq ($(DISTRIB_PACKAGES),)
 	for part in $(DISTRIB_PACKAGES); do \
-	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
-	$(RM)  $(TMP)/tar.exclude; \
-	$(RM)  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz; \
-	$(RM)  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2; \
-	$(RM)  $(TMP)/docbook-$(DISTRO)-$$part-$(ZIPVER).zip; \
-	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
-	touch $(TMP)/tar.exclude; \
-	if [ -n "$(DISTRIB_EXCLUDES)" ]; then \
-	for file in $(DISTRIB_EXCLUDES); do \
-	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
-	done; \
-	fi; \
-	for file in $(ZIP_EXCLUDES); do \
-	  find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
-	done; \
-	$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part images | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -); \
-	umask 022; (cd $(TMP) && \
-	if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
-	  then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
-	fi) ; \
-	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.gz); \
-	umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$$part-$(ZIPVER).tar.bz2); \
-	umask 022; (cd $(TMP) && $(ZIP) $(ZIPFLAGS) docbook-$(DISTRO)-$$part-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)); \
-	$(RM) $(TMP)/tar.exclude; \
+          package_name=docbook-$(DISTRO)-$$part-$(ZIPVER) \
+          if [ "$$part" = slides ]; then \
+            package_name=docbook-$(DISTRO)-slides-ns-$(ZIPVER) \
+          fi \
+	  rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
+	  $(RM)  $(TMP)/tar.exclude; \
+	  $(RM)  $(TMP)/$$package_name.tar.gz; \
+	  $(RM)  $(TMP)/$$package_name.tar.bz2; \
+	  $(RM)  $(TMP)/$$package_name.zip; \
+	  umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
+	  touch $(TMP)/tar.exclude; \
+	  if [ -n "$(DISTRIB_EXCLUDES)" ]; then \
+	    for file in $(DISTRIB_EXCLUDES); do \
+	      find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
+	    done; \
+	  fi; \
+	  for file in $(ZIP_EXCLUDES); do \
+	    find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
+	  done; \
+	  $(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part images | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -); \
+	  umask 022; (cd $(TMP) && \
+	  if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
+	    then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
+	  fi) ; \
+	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > $$package_name.tar.gz); \
+	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > $$package_name.tar.bz2); \
+	  umask 022; (cd $(TMP) && $(ZIP) $(ZIPFLAGS) $$package_name.zip docbook-$(DISTRO)-$(ZIPVER)); \
+	  $(RM) $(TMP)/tar.exclude; \
 	done
 endif
 endif
