@@ -171,16 +171,18 @@ endif
 # -----------------------------------------------------------------
 ifneq ($(DISTRIB_PACKAGES),)
 	for part in $(DISTRIB_PACKAGES); do \
+          dirname=docbook-$(DISTRO)-$(ZIPVER) \
           package_name=docbook-$(DISTRO)-$$part-$(ZIPVER) \
           if [ "$$part" = slides ]; then \
-            package_name=docbook-$(DISTRO)-slides-ns-$(ZIPVER) \
+            dirname=docbook-$(DISTRO)-ns-$(ZIPVER) \
+            package_name=docbook-$(DISTRO)-ns-slides-$(ZIPVER) \
           fi \
-	  rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
+	  rm -rf $(TMP)/$$dirname; \
 	  $(RM)  $(TMP)/tar.exclude; \
 	  $(RM)  $(TMP)/$$package_name.tar.gz; \
 	  $(RM)  $(TMP)/$$package_name.tar.bz2; \
 	  $(RM)  $(TMP)/$$package_name.zip; \
-	  umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER); \
+	  umask 022; mkdir -p $(TMP)/$$dirname; \
 	  touch $(TMP)/tar.exclude; \
 	  if [ -n "$(DISTRIB_EXCLUDES)" ]; then \
 	    for file in $(DISTRIB_EXCLUDES); do \
@@ -190,14 +192,14 @@ ifneq ($(DISTRIB_PACKAGES),)
 	  for file in $(ZIP_EXCLUDES); do \
 	    find . -print  | grep $$file   | cut -c3- >> $(TMP)/tar.exclude; \
 	  done; \
-	  $(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part images | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -); \
+	  $(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude --ignore-failed-read $$part images | (cd $(TMP)/$$dirname; $(TAR) xf$(TARFLAGS) -); \
 	  umask 022; (cd $(TMP) && \
-	  if [ -d docbook-$(DISTRO)-$(ZIPVER)/images ]; \
-	    then mv docbook-$(DISTRO)-$(ZIPVER)/images docbook-$(DISTRO)-$(ZIPVER)/doc/; \
+	  if [ -d $$dirname/images ]; \
+	    then mv $$dirname/images $$dirname/doc/; \
 	  fi) ; \
-	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > $$package_name.tar.gz); \
-	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > $$package_name.tar.bz2); \
-	  umask 022; (cd $(TMP) && $(ZIP) $(ZIPFLAGS) $$package_name.zip docbook-$(DISTRO)-$(ZIPVER)); \
+	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - $$dirname | gzip > $$package_name.tar.gz); \
+	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - $$dirname | bzip2 > $$package_name.tar.bz2); \
+	  umask 022; (cd $(TMP) && $(ZIP) $(ZIPFLAGS) $$package_name.zip $$dirname); \
 	  $(RM) $(TMP)/tar.exclude; \
 	done
 endif
