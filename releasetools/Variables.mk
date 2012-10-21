@@ -143,7 +143,7 @@ PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision 
 
 TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
 
-RELVER=$(shell if [ -f VERSION.xsl ]; then xsltproc --stringparam get VERSION.xsl VERSION.xsl VERSION.xsl | grep -v "xml version="; fi)
+RELVER=$(shell if [ -f VERSION.xsl ]; then xsltproc --stringparam get VERSION VERSION.xsl VERSION.xsl | grep -v "xml version="; fi)
 ZIPVER=$(RELVER)
 
 ifeq (snapshot,$(findstring snapshot,$(RELVER)))
