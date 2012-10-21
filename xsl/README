@@ -77,10 +77,8 @@ schema/DTD, use one of the following stylesheets:
 To transform documents created with the DocBook Slides schema/DTD,
 use one of the following stylesheets:
 
-  slides/html/*.xsl           - for HTML slides of various kinds
   slides/xhtml/*.xsl          - for XHTML slides of various kinds
   slides/fo/plain.xsl         - for XSL-FO slides
-  slides/htmlhelp/...         - for HTML Help slides
 
 To transform documents created with the DocBook Website
 schema/DTD, use one of the following stylesheets:

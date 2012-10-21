@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include ../../buildtools/Makefile.incl
 
 DIRS = fo xhtml
 
