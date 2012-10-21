@@ -107,8 +107,8 @@ endif
 
 SVN_INFO_FILE=.svninfo.xml
 
-PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
-DISTRO_TITLE=$(shell $(XSLTPROC) --stringparam get DistroTitle VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
+PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
+DISTRO_TITLE=$(shell $(XSLTPROC) --stringparam get DistroTitle VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
 
 REPOSITORY_ROOT=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
 DISTRO_URL=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
@@ -139,11 +139,11 @@ DBLATEX_FLAGS = -b pdftex
 # file containing "What's New" info generated from Subversion log
 NEWSFILE=NEWS
 
-PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
+PREVIOUS_REVISION=$(shell $(XSLTPROC) --stringparam get PreviousReleaseRevision VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
 
-TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION VERSION | $(GREP) $(GREPFLAGS) -v "xml version=")
+TAG=$(shell $(XSLTPROC) --stringparam get Tag VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
 
-RELVER=$(shell if [ -f VERSION ]; then xsltproc --stringparam get VERSION VERSION VERSION | grep -v "xml version="; fi)
+RELVER=$(shell if [ -f VERSION.xsl ]; then xsltproc --stringparam get VERSION.xsl VERSION.xsl VERSION.xsl | grep -v "xml version="; fi)
 ZIPVER=$(RELVER)
 
 ifeq (snapshot,$(findstring snapshot,$(RELVER)))
