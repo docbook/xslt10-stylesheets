@@ -27,7 +27,7 @@ zip-ns: zip
 	  docbook-$(DISTRO)-ns-$(ZIPVER)); 
 
 # Remove Slides from non-ns version
-	$(RM) -r docbook-$(DISTRO)-$(ZIPVER)/slides/
+	$(RM) -r $(TMP)/docbook-$(DISTRO)-$(ZIPVER)/slides/
 
 # Run xslt on xsl/webhelp/docsrc/readme.xml
 	$(XSLT) \
