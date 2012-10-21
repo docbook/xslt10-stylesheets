@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include ../../../buildtools/Makefile.incl
 
 PARAMBASE=param
 XSLFILES=param.xsl
@@ -15,3 +15,6 @@ include ../../Makefile.incl
 
 titlepage-clean:
 	$(RM) plain-titlepage.xsl
+
+clean: titlepage-clean
+	rm -f .param.xmlid param.xml param.xsl
