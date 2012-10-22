@@ -1,4 +1,4 @@
-include ../../../buildtools/Makefile.incl
+include ../../../../buildtools/Makefile.incl
 
 all: slides.rng
 
