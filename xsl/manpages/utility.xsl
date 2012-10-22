@@ -286,6 +286,7 @@
                     self::address or
                     self::literallayout or
                     self::programlisting or
+                    self::synopsis or
                     self::screen or
                     self::table or
                     self::informaltable
