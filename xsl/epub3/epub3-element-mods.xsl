@@ -1399,34 +1399,60 @@ article  toc,title,figure,table,example,equation
   <xsl:choose>
     <xsl:when test="$next.chunk">
       <xsl:variable name="this.imagedata"
-                    select="$this.chunk//imagedata"/>
+                    select="$this.chunk//mediaobject"/>
       <xsl:variable name="before.next"
-                    select="$next.chunk/preceding::imagedata"/>
+                    select="$next.chunk/preceding::mediaobject"/>
       
       <!-- select for an SVG imagedata in the intersection of them -->
-      <xsl:variable name="intersection"
+      <xsl:variable name="mediaobject.set"
           select="$this.imagedata[count(.|$before.next) = count($before.next)]"/>
+      <xsl:variable name="svg.imagedata">
+        <xsl:for-each select="$mediaobject.set">
+          <xsl:variable name="olist" select="imageobject[not(@role = 'poster')] |
+                                             imageobjectco"/>
+          <xsl:variable name="mediaobject.index">
+            <xsl:call-template name="select.mediaobject.index">
+              <xsl:with-param name="olist" select="$olist"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:variable name="object" select="$olist[position() = $mediaobject.index]"/>
+          <xsl:if test="$object/imagedata[contains(
+                      substring(@fileref, string-length(@fileref)-3,4), '.svg')]">
+            <xsl:text>svg</xsl:text>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
     
-      <xsl:variable name="svg.imagedata"
-          select="$intersection[contains(
-                      substring(@fileref, string-length(@fileref)-3,4), '.svg')]"/>
-    
-      <xsl:if test="count($svg.imagedata) != 0">
+      <xsl:if test="contains($svg.imagedata, 'svg')">
         <xsl:text>svg</xsl:text>
      </xsl:if>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:variable name="this.imagedata"
-                    select="$this.chunk//imagedata"/>
-      <xsl:variable name="svg.imagedata"
-          select="$this.imagedata[contains(
-                      substring(@fileref, string-length(@fileref)-3,4), '.svg')]"/>
-      <xsl:if test="count($svg.imagedata) != 0">
+      <xsl:variable name="mediaobject.set"
+                    select="$this.chunk//mediaobject"/>
+      <xsl:variable name="svg.imagedata">
+        <xsl:for-each select="$mediaobject.set">
+          <xsl:variable name="olist" select="imageobject[not(@role = 'poster')] |
+                                             imageobjectco"/>
+          <xsl:variable name="mediaobject.index">
+            <xsl:call-template name="select.mediaobject.index">
+              <xsl:with-param name="olist" select="$olist"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:variable name="object" select="$olist[position() = $mediaobject.index]"/>
+          <xsl:if test="$object/imagedata[contains(
+                      substring(@fileref, string-length(@fileref)-3,4), '.svg')]">
+            <xsl:text>svg</xsl:text>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:variable>
+    
+      <xsl:if test="contains($svg.imagedata, 'svg')">
         <xsl:text>svg</xsl:text>
      </xsl:if>
-    
     </xsl:otherwise>
   </xsl:choose>
+
 </xsl:template>
 
 <xsl:template name="mathml.property">
