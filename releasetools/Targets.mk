@@ -171,12 +171,12 @@ endif
 # -----------------------------------------------------------------
 ifneq ($(DISTRIB_PACKAGES),)
 	for part in $(DISTRIB_PACKAGES); do \
-          dirname=docbook-$(DISTRO)-$(ZIPVER) \
-          package_name=docbook-$(DISTRO)-$$part-$(ZIPVER) \
+          dirname=docbook-$(DISTRO)-$(ZIPVER); \
+          package_name=docbook-$(DISTRO)-$$part-$(ZIPVER); \
           if [ "$$part" = slides ]; then \
-            dirname=docbook-$(DISTRO)-ns-$(ZIPVER) \
-            package_name=docbook-$(DISTRO)-ns-slides-$(ZIPVER) \
-          fi \
+            dirname=docbook-$(DISTRO)-ns-$(ZIPVER); \
+            package_name=docbook-$(DISTRO)-ns-slides-$(ZIPVER); \
+          fi; \
 	  rm -rf $(TMP)/$$dirname; \
 	  $(RM)  $(TMP)/tar.exclude; \
 	  $(RM)  $(TMP)/$$package_name.tar.gz; \
