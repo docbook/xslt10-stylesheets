@@ -1,5 +1,5 @@
 all:
-	cp ../files/slidy/graphics/face* ./
+	cp ../slidy/graphics/face* ./
 	cd callouts && make all
 
 clean:

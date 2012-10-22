@@ -1,14 +1,14 @@
 include ../../buildtools/Makefile.incl
 
-DIRS = fo xhtml
+subdirs:=schema images fo xhtml
 
 base:
-	for i in $(DIRS); do \
-	  echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
+	for d in $(subdirs); do \
+	  $(MAKE) -C $$d; \
 	done
 
 clean:
-	for i in $(DIRS); do \
-	  echo "$(MAKE) -C $$i clean"; $(MAKE) -C $$i clean; \
+	for d in $(subdirs); do \
+	  $(MAKE) -C $$d clean; \
 	done
 	rm xhtml/params.xsl
