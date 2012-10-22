@@ -32,7 +32,8 @@
 	<xslt
 	  in="${input-xml}"
 	    out="${xincluded-profiled.xml}"
-	    style="${ant.file.dir}/../profiling/profile.xsl">
+	    style="${ant.file.dir}/../profiling/profile.xsl"
+            classpath="${xercesImpl.jar}">
 	  <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration"
 		       value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
 	  <param name="profile.arch" expression="${profile.arch}" if="profile.arch"/>
