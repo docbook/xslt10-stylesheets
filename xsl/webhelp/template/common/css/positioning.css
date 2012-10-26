@@ -353,6 +353,8 @@ div.note *, div.caution *, div.important *, div.tip *, div.warning * {
     border: 0px solid;
 }
 
+#sidebar { display: none }
+
 @media print {
 
     body * {
