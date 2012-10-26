@@ -80,7 +80,6 @@
 
 <xsl:include href="fop.xsl"/>
 <xsl:include href="fop1.xsl"/>
-<xsl:include href="passivetex.xsl"/>
 <xsl:include href="xep.xsl"/>
 <xsl:include href="axf.xsl"/>
 <xsl:include href="ptc.xsl"/>

@@ -637,14 +637,6 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:if test="$passivetex.extensions != 0">
-      <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex" 
-                      fotex-bookmark-level="{$level + 2 + $offset}" 
-                      fotex-bookmark-label="{$id}">
-        <xsl:value-of select="$title"/>
-      </fotex:bookmark>
-    </xsl:if>
-
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:outline-level">
         <xsl:value-of select="count(ancestor::*)-1 + $offset"/>

@@ -202,8 +202,7 @@
   <xsl:param name="table.block"/>
   <xsl:choose>
     <xsl:when test="@orient='land' and 
-                    $fop.extensions = 0 and 
-                    $passivetex.extensions = 0" >
+                    $fop.extensions = 0" >
       <fo:block-container reference-orientation="90"
             padding="6pt"
             xsl:use-attribute-sets="list.block.spacing">

@@ -3349,7 +3349,7 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$fop.extensions != 0 or $passivetex.extensions != 0">
+    <xsl:when test="$fop.extensions != 0">
       <!-- body.start.indent does not work well with these processors -->
     </xsl:when>
     <xsl:when test="starts-with($pageclass, 'body') or

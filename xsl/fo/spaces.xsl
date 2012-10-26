@@ -12,23 +12,10 @@
      ******************************************************************** -->
 
 <xsl:template match="text()[namespace-uri(..) = '' or 
-		     namespace-uri(..) = 'http://docbook.org/ns/docbook']">
-  <xsl:choose>
-    <xsl:when test="$passivetex.extensions != 0">
-      <xsl:call-template name="passivetex.dash.subst">
-        <xsl:with-param name="string">
-	  <xsl:call-template name="space.2000.subst">
-	    <xsl:with-param name="string" select="."/>
-	  </xsl:call-template>
-	</xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="space.2000.subst">
-	<xsl:with-param name="string" select="."/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+                     namespace-uri(..) = 'http://docbook.org/ns/docbook']">
+  <xsl:call-template name="space.2000.subst">
+    <xsl:with-param name="string" select="."/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:param name="space.enquad.width">0.5em</xsl:param>   <!-- U+2000 -->

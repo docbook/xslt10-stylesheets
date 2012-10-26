@@ -334,16 +334,7 @@
           </xsl:for-each>
         </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="$passivetex.extensions != '0'">
-            <fotex:sort xmlns:fotex="http://www.tug.org/fotex">
-              <xsl:copy-of select="$page-number-citations"/>
-            </fotex:sort>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$page-number-citations"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$page-number-citations"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -461,16 +452,7 @@
           </xsl:for-each>
         </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="$passivetex.extensions != '0'">
-            <fotex:sort xmlns:fotex="http://www.tug.org/fotex">
-              <xsl:copy-of select="$page-number-citations"/>
-            </fotex:sort>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$page-number-citations"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$page-number-citations"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -591,16 +573,7 @@
           </xsl:for-each>
         </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="$passivetex.extensions != '0'">
-            <fotex:sort xmlns:fotex="http://www.tug.org/fotex">
-              <xsl:copy-of select="$page-number-citations"/>
-            </fotex:sort>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:copy-of select="$page-number-citations"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:copy-of select="$page-number-citations"/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -733,9 +706,7 @@
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
 
-      <xsl:if test="$passivetex.extensions = '0'">
-        <xsl:copy-of select="$number.separator"/>
-      </xsl:if>
+      <xsl:copy-of select="$number.separator"/>
       <xsl:call-template name="reference">
         <xsl:with-param name="zones" select="substring-after($zones, ' ')"/>
         <xsl:with-param name="scope" select="$scope"/>

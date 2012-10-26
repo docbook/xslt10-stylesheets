@@ -33,9 +33,6 @@
 <xsl:param name="graphic.notations">
   <!-- n.b. exactly one leading space, one trailing space, and one inter-word space -->
   <xsl:choose>
-    <xsl:when test="$passivetex.extensions != 0">
-      <xsl:text> PNG PDF JPG JPEG linespecific </xsl:text>
-    </xsl:when>
     <xsl:when test="$fop1.extensions != 0">
       <xsl:text> BMP GIF TIFF SVG PNG EPS JPG JPEG linespecific </xsl:text>
     </xsl:when>
@@ -62,9 +59,6 @@
 <xsl:param name="graphic.extensions">
   <!-- n.b. exactly one leading space, one trailing space, and one inter-word space -->
   <xsl:choose>
-    <xsl:when test="$passivetex.extensions != 0">
-      <xsl:text> png pdf jpg jpeg </xsl:text>
-    </xsl:when>
     <xsl:when test="$fop1.extensions != 0">
       <xsl:text> bmp gif tif tiff svg png pdf jpg jpeg eps </xsl:text>
     </xsl:when>
@@ -787,8 +781,7 @@
   <xsl:param name="filename"/>
 
   <xsl:choose>
-    <xsl:when test="$passivetex.extensions != 0
-                    or $fop.extensions != 0">
+    <xsl:when test="$fop.extensions != 0">
       <xsl:value-of select="$filename"/>
     </xsl:when>
     <xsl:otherwise>

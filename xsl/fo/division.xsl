@@ -29,14 +29,6 @@
     </xsl:apply-templates>
   </xsl:variable>
 
-  <xsl:if test="$passivetex.extensions != 0">
-    <fotex:bookmark xmlns:fotex="http://www.tug.org/fotex"
-                    fotex-bookmark-level="1"
-                    fotex-bookmark-label="{$id}">
-      <xsl:value-of select="$title"/>
-    </fotex:bookmark>
-  </xsl:if>
-
   <fo:block keep-with-next.within-column="always"
             hyphenate="false">
     <xsl:if test="$axf.extensions != 0">
