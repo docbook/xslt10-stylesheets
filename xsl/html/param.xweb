@@ -217,11 +217,6 @@ $Id$
 &prefer.internal.olink;
 &link.mailto.url;
 &ulink.target;
-&olink.fragid;
-&olink.outline.ext;
-&olink.pubid;
-&olink.sysid;
-&olink.resolver;
 </reference>
 <reference xml:id="xrefs"><title>Cross References</title>
 &collect.xref.targets;

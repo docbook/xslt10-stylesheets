@@ -1098,8 +1098,6 @@
   <!-- olink content may be passed in from xlink olink -->
   <xsl:param name="content" select="NOTANELEMENT"/>
 
-  <xsl:variable name="localinfo" select="@localinfo"/>
-
   <xsl:choose>
     <!-- olinks resolved by stylesheet and target database -->
     <xsl:when test="@targetdoc or @targetptr or
@@ -1341,14 +1339,6 @@
 
 </xsl:template>
 
-
-<xsl:template name="olink.outline">
-  <xsl:param name="outline.base.uri"/>
-  <xsl:param name="localinfo"/>
-  <xsl:param name="return" select="href"/>
-
-  <xsl:message terminate="yes">Fatal error: olink.outline template: what is this supposed to do?</xsl:message>
-</xsl:template>
 
 <!-- ==================================================================== -->
 

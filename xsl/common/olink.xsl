@@ -1008,7 +1008,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
-    <xsl:when test="@targetdoc != '' or @targetptr != ''">
+    <xsl:otherwise>
       <xsl:if test="$olink.key != ''">
         <xsl:message>
           <xsl:text>Olink error: no generated text for </xsl:text>
@@ -1018,15 +1018,6 @@
         </xsl:message>
       </xsl:if>
       <xsl:text>????</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <!-- old style olink -->
-      <xsl:call-template name="olink.outline">
-        <xsl:with-param name="outline.base.uri"
-                        select="unparsed-entity-uri(@targetdocent)"/>
-        <xsl:with-param name="localinfo" select="@localinfo"/>
-        <xsl:with-param name="return" select="'xreftext'"/>
-      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
