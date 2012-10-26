@@ -61,21 +61,27 @@
         <o:Author>
           <xsl:choose>
             <xsl:when test='$authors'>
-              <xsl:apply-templates select='$authors[1]' mode='doc:docprop.author'/>
+              <xsl:variable name="content">
+                <xsl:apply-templates select='$authors[1]' mode='doc:docprop.author'/>
+              </xsl:variable>
+              <xsl:value-of select="$content"/>
             </xsl:when>
             <xsl:otherwise>Unknown</xsl:otherwise>
           </xsl:choose>
         </o:Author>
         <o:LastAuthor>
-          <xsl:choose>
-            <xsl:when test='$info/revhistory/revision[1]/*[self::author|self::authorinitials]'>
-              <xsl:apply-templates select='$info/revhistory/revision[1]/*[self::author|self::authorinitials]' mode='doc:docprop.author'/>
-            </xsl:when>
-            <xsl:when test='$authors'>
-              <xsl:apply-templates select='$authors[1]' mode='doc:docprop.author'/>
-            </xsl:when>
-            <xsl:otherwise>Unknown</xsl:otherwise>
-          </xsl:choose>
+          <xsl:variable name="content">
+            <xsl:choose>
+              <xsl:when test='$info/revhistory/revision[1]/*[self::author|self::authorinitials]'>
+                <xsl:apply-templates select='$info/revhistory/revision[1]/*[self::author|self::authorinitials]' mode='doc:docprop.author'/>
+              </xsl:when>
+              <xsl:when test='$authors'>
+                <xsl:apply-templates select='$authors[1]' mode='doc:docprop.author'/>
+              </xsl:when>
+              <xsl:otherwise>Unknown</xsl:otherwise>
+            </xsl:choose>
+          </xsl:variable>
+          <xsl:value-of select="$content"/>
         </o:LastAuthor>
         <o:Revision>1</o:Revision>
         <o:TotalTime></o:TotalTime>
