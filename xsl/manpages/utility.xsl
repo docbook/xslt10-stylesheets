@@ -63,8 +63,11 @@
   </xsl:template>
 
   <xsl:template name="inline.monoseq">
+    <xsl:param name="content">
+      <xsl:apply-templates/>
+    </xsl:param>
     <xsl:call-template name="code-inline-start"/>
-    <xsl:apply-templates/>
+    <xsl:copy-of select="$content"/>
     <xsl:call-template name="code-inline-end"/>
   </xsl:template>
 
