@@ -512,8 +512,7 @@
                 select=".//colspec[contains(@colwidth, '*')]"/>
   <xsl:if test="count($prop-columns) != 0 or
                 $fop.extensions != 0 or
-                $fop1.extensions != 0 or
-                $passivetex.extensions != 0">
+                $fop1.extensions != 0">
     <xsl:attribute name="table-layout">fixed</xsl:attribute>
   </xsl:if>
  
@@ -646,8 +645,7 @@
         <xsl:choose>
           <!-- These processors don't support table-layout="auto" -->
           <xsl:when test="$fop.extensions != 0 or
-                          $fop1.extensions != 0 or
-                          $passivetex.extensions != 0">
+                          $fop1.extensions != 0">
             <xsl:text>100%</xsl:text>
           </xsl:when>
           <!-- Proportional columns imply 100% width -->
@@ -1136,7 +1134,7 @@
 -->
 
         <xsl:choose>
-          <xsl:when test="$fop.extensions = 0 and $passivetex.extensions = 0
+          <xsl:when test="$fop.extensions = 0
                           and $orientation != ''">
             <fo:block-container reference-orientation="{$orientation}">
               <xsl:if test="$rotated-width != ''">
