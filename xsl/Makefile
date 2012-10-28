@@ -57,7 +57,7 @@ DISTRIB_EXCLUDES = \
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
 # files for the release
-DISTRIB_PACKAGES = doc slides
+DISTRIB_PACKAGES = doc
 
 # list of pathname+URIs to test for catalog support
 URILIST = \
