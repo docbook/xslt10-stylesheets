@@ -145,7 +145,34 @@
       <xsl:copy-of select="$content"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
 
+<xsl:template name="inline.sansseq">
+  <xsl:param name="content">
+    <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content">
+          <xsl:apply-templates/>
+        </xsl:with-param>
+    </xsl:call-template>
+  </xsl:param>
+
+  <fo:inline font-family="{$sans.font.family}">
+    <xsl:choose>
+    <xsl:when test="@dir">
+      <fo:inline>
+        <xsl:attribute name="direction">
+          <xsl:choose>
+            <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+            <xsl:otherwise>rtl</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        <xsl:copy-of select="$content"/>
+      </fo:inline>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$content"/>
+    </xsl:otherwise>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.charseq">
