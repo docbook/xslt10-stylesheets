@@ -50,11 +50,22 @@
 <xsl:template match="xsl:import">
   <xsl:copy>
     <xsl:attribute name="href">
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="@href"/>
-        <xsl:with-param name="target">/html/</xsl:with-param>
-        <xsl:with-param name="replacement">/xhtml/</xsl:with-param>
-      </xsl:call-template>
+      <xsl:choose>
+        <!-- Fix problem of hardwired doctype in the xsl:output
+        of docbook.xsl, replacing it with an identical file
+        but with no doctype in the xsl:output element. The
+        chunking stylesheet adds the doctype for the chunks. -->
+        <xsl:when test="@href = 'docbook.xsl'">
+          <xsl:text>docbook-no-doctype.xsl</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="string.subst">
+            <xsl:with-param name="string" select="@href"/>
+            <xsl:with-param name="target">/html/</xsl:with-param>
+            <xsl:with-param name="replacement">/xhtml/</xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:attribute>
   </xsl:copy>
 </xsl:template>
