@@ -60,13 +60,13 @@
     <!-- put Saxon first to work around a bug in libxslt -->
     <xsl:when test="element-available('saxon:output')">
       <!-- Saxon doesn't make the chunks relative -->
-      <xsl:value-of select="concat($chunk.base.dir,$base.name)"/>
+      <xsl:value-of select="concat($base.dir,$base.name)"/>
     </xsl:when>
     <xsl:when test="element-available('exsl:document')">
       <!-- EXSL document does make the chunks relative, I think -->
       <xsl:choose>
         <xsl:when test="count(parent::*) = 0">
-          <xsl:value-of select="concat($chunk.base.dir,$base.name)"/>
+          <xsl:value-of select="concat($base.dir,$base.name)"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$base.name"/>
@@ -75,7 +75,7 @@
     </xsl:when>
     <xsl:when test="element-available('redirect:write')">
       <!-- Xalan doesn't make the chunks relative -->
-      <xsl:value-of select="concat($chunk.base.dir,$base.name)"/>
+      <xsl:value-of select="concat($base.dir,$base.name)"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:message terminate="yes">
