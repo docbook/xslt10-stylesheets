@@ -11,6 +11,7 @@
   encoding="ASCII"
   saxon:character-representation="decimal"
   />
+<xsl:param name="include.output.doctype" select="1"/>
 
 <xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
 
@@ -39,8 +40,10 @@
     <xsl:copy-of select="@*"/>
     <xsl:attribute name="method">xml</xsl:attribute>
     <xsl:attribute name="encoding">UTF-8</xsl:attribute>
-    <xsl:attribute name="doctype-public">-//W3C//DTD XHTML 1.0 Transitional//EN</xsl:attribute>
-    <xsl:attribute name="doctype-system">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</xsl:attribute>
+    <xsl:if test="$include.output.doctype != 0">
+      <xsl:attribute name="doctype-public">-//W3C//DTD XHTML 1.0 Transitional//EN</xsl:attribute>
+      <xsl:attribute name="doctype-system">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</xsl:attribute>
+    </xsl:if>
   </xsl:copy>
 </xsl:template>
 

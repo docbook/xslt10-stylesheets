@@ -25,6 +25,10 @@ xsl-files: remove-old add-new
 	 fi; \
 	done
 
+	# Also Generate special docbook-no-doctype.xsl file
+	$(XSLT) ../html/docbook.xsl html2xhtml.xsl docbook-no-doctype.xsl \
+	        include.output.doctype=0 ;  \
+
 profile-docbook.xsl: docbook.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 
