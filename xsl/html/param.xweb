@@ -665,13 +665,8 @@ around all these parameters.</para>
 <src:fragref linkend="olink.base.uri.frag"/>
 <src:fragref linkend="olink.debug.frag"/>
 <src:fragref linkend="olink.doctitle.frag"/>
-<src:fragref linkend="olink.fragid.frag"/>
 <src:fragref linkend="olink.lang.fallback.sequence.frag"/>
-<src:fragref linkend="olink.outline.ext.frag"/>
 <src:fragref linkend="olink.properties.frag"/>
-<src:fragref linkend="olink.pubid.frag"/>
-<src:fragref linkend="olink.resolver.frag"/>
-<src:fragref linkend="olink.sysid.frag"/>
 <src:fragref linkend="othercredit.like.author.enabled.frag"/>
 <src:fragref linkend="para.propagates.style.frag"/>
 <src:fragref linkend="part.autolabel.frag"/>
