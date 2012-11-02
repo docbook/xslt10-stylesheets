@@ -664,7 +664,10 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                   <xsl:copy-of select="$alt"/>
                 </xsl:when>
                 <xsl:when test="ancestor::figure">
-                  <xsl:value-of select="normalize-space(ancestor::figure/title)"/>
+                  <xsl:variable name="fig.title">
+                    <xsl:apply-templates select="ancestor::figure/title/node()"/>
+                  </xsl:variable>
+                  <xsl:value-of select="normalize-space($fig.title)"/>
                 </xsl:when>
               </xsl:choose>
             </xsl:with-param>
@@ -1284,7 +1287,14 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
       <xsl:call-template name="process.image">
         <xsl:with-param name="alt">
-          <xsl:apply-templates select="$phrases[not(@role) or @role!='tex'][1]"/>
+          <xsl:choose>
+            <xsl:when test="ancestor::mediaobject/alt">
+              <xsl:apply-templates select="ancestor::mediaobject/alt"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="$phrases[not(@role) or @role!='tex'][1]"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:with-param>
         <xsl:with-param name="longdesc">
           <xsl:call-template name="write.longdesc">
@@ -1427,6 +1437,10 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <!-- ==================================================================== -->
 
+<xsl:template match="mediaobject/alt">
+  <xsl:apply-templates/>
+</xsl:template>
+
 <xsl:template match="videoobject">
   <xsl:apply-templates select="videodata"/>
 </xsl:template>
@@ -1435,7 +1449,14 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:call-template name="process.image">
     <xsl:with-param name="tag" select="'embed'"/>
     <xsl:with-param name="alt">
-      <xsl:apply-templates select="(../../textobject/phrase)[1]"/>
+      <xsl:choose>
+        <xsl:when test="ancestor::mediaobject/alt">
+          <xsl:apply-templates select="ancestor::mediaobject/alt"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="(ancestor::mediaobject/textobject/phrase)[1]"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -1450,7 +1471,14 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:call-template name="process.image">
     <xsl:with-param name="tag" select="'embed'"/>
     <xsl:with-param name="alt">
-      <xsl:apply-templates select="(../../textobject/phrase)[1]"/>
+      <xsl:choose>
+        <xsl:when test="ancestor::mediaobject/alt">
+          <xsl:apply-templates select="ancestor::mediaobject/alt"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="(ancestor::mediaobject/textobject/phrase)[1]"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
