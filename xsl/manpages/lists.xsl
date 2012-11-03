@@ -177,14 +177,17 @@
   <xsl:text>.RE&#10;</xsl:text>
 </xsl:template>
 
+<xsl:template match="orderedlist/listitem/title|
+                     procedure/step/title">
+  <xsl:call-template name="bold">
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="context" select=".."/>
+  </xsl:call-template>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:text>.PP&#10;</xsl:text>
+</xsl:template>
+
 <xsl:template match="orderedlist/listitem|procedure/step">
-  <xsl:if test="title">
-    <xsl:text>.PP&#10;</xsl:text>
-    <xsl:call-template name="bold">
-      <xsl:with-param name="node" select="title"/>
-      <xsl:with-param name="context" select="."/>
-    </xsl:call-template>
-  </xsl:if>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>.sp</xsl:text>
   <xsl:text>&#10;</xsl:text>
