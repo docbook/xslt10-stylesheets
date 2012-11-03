@@ -640,31 +640,41 @@ article  toc,title,figure,table,example,equation
   YYYY, YYYY-MM or YYYY-MM-DD -->
 <xsl:template name="format.meta.date">
   <xsl:param name="string" select="''"/>
+  <xsl:param name="node" select="."/>
   
-  <!-- FIXME: this needs further work, so just return the date string for now -->
-  <xsl:variable name="date">
+  <!-- FIXME: this needs further work, so just check the
+  string format and return the date string for now -->
+  <xsl:variable name="normalized" 
+                select="translate($string, '0123456789', '##########')"/>
+
+  <xsl:variable name="date.ok">
     <xsl:choose>
-      <xsl:when test="string-length($string) = 0">
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- construct a date one digit at a time until it fails to match format -->
-        <xsl:if test="contains('1234567890', substring($string,1,1))">
-          <xsl:value-of select="substring($string,1,1)"/>
-        </xsl:if>
-        <xsl:if test="contains('1234567890', substring($string,2,1))">
-          <xsl:value-of select="substring($string,2,1)"/>
-        </xsl:if>
-        <xsl:if test="contains('1234567890', substring($string,3,1))">
-          <xsl:value-of select="substring($string,3,1)"/>
-        </xsl:if>
-        <xsl:if test="contains('1234567890', substring($string,4,1))">
-          <xsl:value-of select="substring($string,4,1)"/>
-        </xsl:if>
-        <!-- FIXME: continue -->
-      </xsl:otherwise>
+      <xsl:when test="string-length($string) = 4 and
+                      $normalized = '####'">1</xsl:when>
+      <xsl:when test="string-length($string) = 7 and
+                      $normalized = '####-##'">1</xsl:when>
+      <xsl:when test="string-length($string) = 10 and
+                      $normalized = '####-##-##'">1</xsl:when>
+      <xsl:when test="string-length($string) = 10 and
+                      $normalized = '####-##-##'">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
+  <xsl:if test="$date.ok = 0">
+    <xsl:message>
+      <xsl:text>WARNING: wrong metadata date format: '</xsl:text>
+      <xsl:value-of select="$string"/>
+      <xsl:text>' in element </xsl:text>
+      <xsl:value-of select="local-name($node/..)"/>
+      <xsl:text>/</xsl:text>
+      <xsl:value-of select="local-name($node)"/>
+      <xsl:text>. It must be in one of these forms: </xsl:text>
+      <xsl:text>YYYY, YYYY-MM, or YYYY-MM-DD.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
+  <!-- return the string anyway -->
   <xsl:value-of select="$string"/>
 
 </xsl:template>
@@ -1814,6 +1824,7 @@ article  toc,title,figure,table,example,equation
               <xsl:choose>
                 <xsl:when test="$root.is.a.chunk != '0'">
                   <xsl:apply-templates select="/*" mode="ncx" />
+                  <xsl:apply-templates select="/*/*" mode="ncx" />
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:apply-templates select="/*/*" mode="ncx" />
@@ -1924,7 +1935,11 @@ article  toc,title,figure,table,example,equation
         <xsl:value-of select="$href"/>
       </xsl:attribute>
     </xsl:element>
-    <xsl:apply-templates select="book[parent::set]|part|reference|preface|chapter|bibliography|appendix|article|topic|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv[title]|setindex|index" mode="ncx"/>
+    <xsl:if test="$depth != 0">
+      <!-- Don't recurse on root element, but treat it as a single point so
+      the progress bar shows all top level children -->
+      <xsl:apply-templates select="book[parent::set]|part|reference|preface|chapter|bibliography|appendix|article|topic|glossary|section|sect1|sect2|sect3|sect4|sect5|refentry|colophon|bibliodiv[title]|setindex|index" mode="ncx"/>
+    </xsl:if>
   </xsl:element>
 
 </xsl:template>
