@@ -791,6 +791,10 @@ element label.</para>
   <xsl:number value="$item-number" format="{$type}"/>
 </xsl:template>
 
+<xsl:template match="production" mode="label.markup">
+  <xsl:number count="production" level="any"/>
+</xsl:template>
+
 <xsl:template match="abstract" mode="label.markup">
   <!-- nop -->
 </xsl:template>
