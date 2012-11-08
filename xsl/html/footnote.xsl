@@ -265,9 +265,10 @@ linkend/id: <xsl:value-of select="@linkend"/>
           </xsl:when>
           <xsl:when test="$css.decoration != 0">
             <xsl:attribute name="style">
-              <xsl:value-of select="concat('width:100; align:',
+              <xsl:value-of select="concat('width:100; text-align:',
                                             $direction.align.start,
-                                            ';')"/>
+                                            ';',
+					    'margin-', $direction.align.start, ': 0')"/>
             </xsl:attribute>
           </xsl:when>
           <xsl:otherwise>
