@@ -674,7 +674,7 @@
   <fo:table-header start-indent="0pt" end-indent="0pt">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|ro/entrytbl/@morerows">
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
         <xsl:apply-templates select="row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
@@ -704,7 +704,7 @@
   <fo:table-footer start-indent="0pt" end-indent="0pt">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|ro/entrytbl/@morerows">
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
         <xsl:apply-templates select="row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
@@ -734,7 +734,7 @@
   <fo:table-body start-indent="0pt" end-indent="0pt">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|ro/entrytbl/@morerows">
+      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
         <xsl:apply-templates select="row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
