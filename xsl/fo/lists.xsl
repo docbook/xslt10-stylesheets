@@ -1320,7 +1320,9 @@
       <xsl:text>: ???</xsl:text>
     </xsl:when>
     <xsl:when test="local-name($target)='co'">
-      <xsl:apply-templates select="$target" mode="callout-bug"/>
+      <fo:basic-link internal-destination="{$arearef}">
+        <xsl:apply-templates select="$target" mode="callout-bug"/>
+      </fo:basic-link>
     </xsl:when>
     <xsl:when test="local-name($target)='areaset'">
       <xsl:call-template name="callout-bug">

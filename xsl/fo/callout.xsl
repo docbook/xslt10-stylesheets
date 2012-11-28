@@ -84,14 +84,64 @@
 </xsl:template>
 
 <xsl:template match="co">
-  <fo:inline>
-    <xsl:call-template name="anchor"/>
-    <xsl:apply-templates select="." mode="callout-bug"/>
-  </fo:inline>
+  <xsl:param name="coref"/> 
+  <!-- link to the callout? -->
+  <xsl:variable name="linkend">
+    <xsl:choose>
+      <!-- if more than one target, choose the first -->
+      <xsl:when test="contains(normalize-space(@linkends), ' ')">
+        <xsl:value-of select="substring-before(normalize-space(@linkends), ' ')"/>
+      </xsl:when>
+      <xsl:when test="string-length(normalize-space(@linkends)) != 0">
+        <xsl:value-of select="normalize-space(@linkends)"/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="string-length($linkend) != 0">
+      <fo:basic-link internal-destination="{$linkend}">
+        <xsl:choose>
+          <xsl:when test="$coref">
+            <xsl:call-template name="anchor">
+              <xsl:with-param name="node" select="$coref"/>
+              <xsl:with-param name="conditional" select="0"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="anchor">
+              <xsl:with-param name="conditional" select="0"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:apply-templates select="." mode="callout-bug"/>
+      </fo:basic-link>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:inline>
+        <xsl:choose>
+          <xsl:when test="$coref">
+            <xsl:call-template name="anchor">
+              <xsl:with-param name="node" select="$coref"/>
+              <xsl:with-param name="conditional" select="0"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="anchor">
+              <xsl:with-param name="conditional" select="0"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:apply-templates select="." mode="callout-bug"/>
+      </fo:inline>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="coref">
-  <!-- tricky; this relies on the fact that we can process the "co" that's -->
+  <!-- this relies on the fact that we can process the "co" that's -->
   <!-- "over there" as if it were "right here" -->
 
   <xsl:variable name="co" select="key('id', @linkend)"/>
@@ -109,10 +159,10 @@
       </xsl:message>
     </xsl:when>
     <xsl:otherwise>
-      <fo:inline>
-        <xsl:call-template name="anchor"/>
-        <xsl:apply-templates select="$co" mode="callout-bug"/>
-      </fo:inline>
+      <!-- process it as if it were the co itself -->
+      <xsl:apply-templates select="$co">
+        <xsl:with-param name="coref" select="."/>
+      </xsl:apply-templates>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
