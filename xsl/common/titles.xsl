@@ -274,7 +274,7 @@ title of the element. This does not include the label.
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="title.markup">
-  <xsl:apply-templates mode="title.markup"/>
+  <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv" mode="title.markup">
