@@ -158,20 +158,21 @@
 
   <fo:inline font-family="{$sans.font.family}">
     <xsl:choose>
-    <xsl:when test="@dir">
-      <fo:inline>
-        <xsl:attribute name="direction">
-          <xsl:choose>
-            <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
-            <xsl:otherwise>rtl</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+      <xsl:when test="@dir">
+        <fo:inline>
+          <xsl:attribute name="direction">
+            <xsl:choose>
+              <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+              <xsl:otherwise>rtl</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:copy-of select="$content"/>
+        </fo:inline>
+      </xsl:when>
+      <xsl:otherwise>
         <xsl:copy-of select="$content"/>
-      </fo:inline>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:copy-of select="$content"/>
-    </xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
   </fo:inline>
 </xsl:template>
 
