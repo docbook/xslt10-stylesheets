@@ -377,6 +377,7 @@ zero by default, so this is simply the page-master margin-right.
 &page.width.portrait;
 &paper.type;
 &double.sided;
+&force.blank.pages;
 &body.margin.bottom;
 &body.margin.top;
 &body.margin.inner;
@@ -668,6 +669,7 @@ around all these parameters.</para>
 <src:fragref linkend="footnote.sep.leader.properties.frag"/>
 <src:fragref linkend="fop.extensions.frag"/>
 <src:fragref linkend="fop1.extensions.frag"/>
+<src:fragref linkend="force.blank.pages.frag"/>
 <src:fragref linkend="formal.object.properties.frag"/>
 <src:fragref linkend="formal.procedures.frag"/>
 <src:fragref linkend="formal.title.placement.frag"/>

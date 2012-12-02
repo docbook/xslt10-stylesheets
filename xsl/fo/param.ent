@@ -359,3 +359,4 @@
 <!ENTITY table.caption.properties SYSTEM "../params/table.caption.properties.xml">
 <!ENTITY para.properties SYSTEM "../params/para.properties.xml">
 <!ENTITY activate.external.olinks SYSTEM "../params/activate.external.olinks.xml">
+<!ENTITY force.blank.pages SYSTEM "../params/force.blank.pages.xml">
