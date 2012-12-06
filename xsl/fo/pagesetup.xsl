@@ -3307,9 +3307,9 @@
     <xsl:when test="$double.sided != 0">
       <xsl:choose>
         <xsl:when test="$element = 'toc'"><xsl:value-of select="$first"/></xsl:when>
-        <xsl:when test="$element = 'book'">1</xsl:when>
+        <xsl:when test="$element = 'book'"><xsl:value-of select="$first"/></xsl:when>
         <!-- preface typically continues TOC roman numerals -->
-        <!-- Change page.number.format if not -->
+        <!-- If changed to 1 here, then change page.number.format too -->
         <xsl:when test="$element = 'preface'"><xsl:value-of select="$first"/></xsl:when>
         <xsl:when test="($element = 'dedication' or $element = 'article') 
                     and not(preceding::chapter
@@ -3329,7 +3329,7 @@
     <xsl:otherwise>
       <xsl:choose>
         <xsl:when test="$element = 'toc'">auto</xsl:when>
-        <xsl:when test="$element = 'book'">1</xsl:when>
+        <xsl:when test="$element = 'book'">auto</xsl:when>
         <xsl:when test="$element = 'preface'">auto</xsl:when>
        <xsl:when test="($element = 'dedication' or $element = 'article') and
                         not(preceding::chapter
