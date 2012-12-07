@@ -30,7 +30,7 @@ default namespace dbs = "http://docbook.org/ns/docbook-slides"
 # 
 # ======================================================================
 
-include "../../../docbook/relaxng/docbook/docbook/docbook.rnc" inherit = db {
+include "../../../../docbook/relaxng/docbook/docbook/docbook.rnc" inherit = db {
   start = dbs.slides
   
   # Avoid ID clashes
