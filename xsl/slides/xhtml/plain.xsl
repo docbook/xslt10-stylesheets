@@ -453,13 +453,6 @@
 
       <exsl:document href="{$fname}">
 	<xsl:copy-of select="."/>
-
-	<xsl:fallback>
-	  <xsl:message terminate="yes">
-	    Your XSLT processor does not support exsl:document.
-	    You can only use inline SVG images.
-	  </xsl:message>
-	</xsl:fallback>
       </exsl:document>
 
       <xsl:choose>
