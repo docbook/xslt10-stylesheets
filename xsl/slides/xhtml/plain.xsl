@@ -396,20 +396,6 @@
   <xsl:call-template name="get.title"/>
 </xsl:template>
 
-<xsl:template match="db:biblioentry" mode="xref-to">
-  <xsl:variable name="id" select="@xml:id"/>
-
-  <xsl:choose>
-    <xsl:when test="$bibliography.numbered != 0">
-      <xsl:number from="db:bibliography" count="db:biblioentry|db:bibliomixed" level="any" format="1"/>
-    </xsl:when>
-
-    <xsl:otherwise>
-      <xsl:value-of select="$id"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
-
 <xsl:template name="extension.process.image.attributes">
   <xsl:variable name="classValue">
     <xsl:call-template name="process.dbs.attributes">
