@@ -370,6 +370,22 @@
   </span>
 </xsl:template>
 
+<xsl:template name="href.target.uri">
+  <xsl:param name="object" select="."/>
+  <xsl:variable name="ischunk">
+    <xsl:call-template name="chunk">
+      <xsl:with-param name="node" select="$object"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="$ischunk='0'">
+    <xsl:text>#</xsl:text>
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="$object"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="dbs:foil|dbs:foilgroup" mode="xref-to">
   <xsl:call-template name="gentext">
     <xsl:with-param name="key" select="'Foil'"/>
@@ -382,22 +398,16 @@
 
 <xsl:template match="db:biblioentry" mode="xref-to">
   <xsl:variable name="id" select="@xml:id"/>
-  <xsl:variable name="entry" select="//db:bibliography/*[@xml:id=$id][1]"/>
 
-  <a>
-    <xsl:attribute name="href">
-      <xsl:value-of select="concat('#', $id)"/>
-    </xsl:attribute>
-    <xsl:choose>
-      <xsl:when test="$bibliography.numbered != 0">
-        <xsl:number from="db:bibliography" count="db:biblioentry|db:bibliomixed" level="any" format="1"/>
-      </xsl:when>
+  <xsl:choose>
+    <xsl:when test="$bibliography.numbered != 0">
+      <xsl:number from="db:bibliography" count="db:biblioentry|db:bibliomixed" level="any" format="1"/>
+    </xsl:when>
 
-      <xsl:otherwise>
-        <xsl:value-of select="$id"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </a>
+    <xsl:otherwise>
+      <xsl:value-of select="$id"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="extension.process.image.attributes">
