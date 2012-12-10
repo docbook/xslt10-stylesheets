@@ -66,7 +66,7 @@
 	</xsl:call-template>
       </h2>
 
-      <xsl:apply-templates select="dbs:speakernotes/*"/>
+      <xsl:apply-templates select="dbs:speakernotes" mode="notes.mode"/>
     </div>
   </xsl:if>
 
@@ -78,7 +78,7 @@
         </xsl:call-template>
       </h2>
 
-      <xsl:apply-templates select="dbs:handoutnotes/*"/>
+      <xsl:apply-templates select="dbs:handoutnotes" mode="notes.mode"/>
     </div>
   </xsl:if>
 </xsl:template>
@@ -110,7 +110,7 @@
 </xsl:template>
 
 <xsl:template name="foilgroup.content">
-      <xsl:apply-templates select="*[not(self::dbs:foil)][not(self::dbs:speakernotes)][not(self::dbs:handoutnotes)]"/>
+      <xsl:apply-templates select="*[not(self::dbs:foil)]"/>
 
       <xsl:if test="($generate.foilgroup.toc != 0)">
         <xsl:choose>
@@ -188,7 +188,7 @@
       </xsl:when>
 
       <xsl:otherwise>
-	<xsl:apply-templates select="*[not(self::dbs:speakernotes)][not(self::dbs:handoutnotes)]"/>
+	<xsl:apply-templates/>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -198,13 +198,17 @@
   </div>
 </xsl:template>
 
-<xsl:template match="dbs:handoutnotes">
+<xsl:template match="dbs:handoutnotes"/>
+
+<xsl:template match="dbs:speakernotes"/>
+
+<xsl:template match="dbs:handoutnotes" mode="notes.mode">
   <div class="handoutnotes">
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
-<xsl:template match="dbs:speakernotes">
+<xsl:template match="dbs:speakernotes" mode="notes.mode">
   <div class="speakernotes">
     <xsl:apply-templates/>
   </div>
