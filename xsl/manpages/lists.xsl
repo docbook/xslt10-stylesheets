@@ -52,6 +52,7 @@
 </xsl:template>
 
 <xsl:template match="variablelist|glosslist">
+  <xsl:text>&#10;</xsl:text>
   <xsl:if test="title">
     <xsl:text>.PP&#10;</xsl:text>
     <xsl:call-template name="bold">
