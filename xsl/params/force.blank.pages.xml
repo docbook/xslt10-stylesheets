@@ -28,6 +28,8 @@ on an odd-numbered page, which is a standard convention
 for printed and bound books.</para>
 
 <para>If zero, then such blank pages will not be inserted.
+Chapters will start on the next available page,
+regardless of whether it is an even or odd number.
 This is useful when publishing online where blank
 pages are not needed.
 </para>
