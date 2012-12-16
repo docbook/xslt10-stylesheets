@@ -614,6 +614,8 @@
 <xsl:template name="manual-toc">
   <xsl:param name="toc-context" select="."/>
   <xsl:param name="tocentry"/>
+  <xsl:param name="toc.title.p" select="true()"/>
+  <xsl:param name="nodes" select="/NOT-AN-ELEMENT"/>
 
   <!-- be careful, we don't want to change the current document to the other tree! -->
 
