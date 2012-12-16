@@ -47,7 +47,7 @@ index:
                 -classpath $(classpath) \
                 com.nexwave.nquindexer.IndexerMain
 
-	cp -r template/content/search/* ${OUTPUT_DIR}/search
+	cp -r template/search/* ${OUTPUT_DIR}/search
 
 clean:
 	$(RM) -r docs/*
