@@ -243,14 +243,21 @@
       <title>Generating webhelp output using the Ant build.xml
         file</title>
       <procedure>
-        <title>To install the package on Windows</title>
+        <title>To install the package</title>
         <note>
-          <para>The examples in this procedure assume a Windows installation, but the process is the
-            same in other environments, <foreignphrase>mutatis mutandis</foreignphrase>.</para>
-          <para>In addition to using the ant
-              <filename>build.xml</filename> provided,  you can also
-            use the <ulink url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html">Docbkx Maven plugin</ulink> to generate
-            webhelp.</para>
+          <para>The examples in this procedure assume a Windows
+            installation, but the process is the same in other
+            environments, <foreignphrase>mutatis
+              mutandis</foreignphrase>. In an environment where unix
+            shell command are available, you can also use the
+              <filename>Makefile.sample</filename> as a starting point
+            for  creating your build script. To use
+              <filename>Makefile.sample</filename> you must have
+              <command>xsltproc</command> and <command>java</command>
+            available in your <envar>PATH</envar>. You can also use
+            the <ulink
+              url="http://docbkx-tools.sourceforge.net/docbkx-samples/manual.html"
+              >Docbkx Maven plugin</ulink> to generate webhelp.</para>
         </note>
         <step>
           <para>If necessary, install <ulink url="http://www.java.com/en/download/manual.jsp">Java
@@ -306,6 +313,15 @@
                 output, the Saxon jar must <emphasis role="bold">not</emphasis> be in your
                   <envar>CLASSPATH</envar>.</para>
             </note></para>
+        </step>
+        <step>
+          <para>Download <ulink
+              url="https://xerces.apache.org/xerces2-j/">Xerces2
+              Java</ulink> and extract it to a convenient location on
+            your file system. You will need the
+              <filename>xercesImpl.jar</filename> and
+              <filename>xml-apis.jar</filename> from this distribution
+            in in <xref linkend="edit-build-properties"/>. </para>
         </step>
         <step id="edit-build-properties">
           <para>In a text editor, edit the
