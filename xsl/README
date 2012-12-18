@@ -74,6 +74,9 @@ schema/DTD, use one of the following stylesheets:
                               - converts a DocBook document into an assembly
                                 with topic files.
 
+  webhelp/build.xml           - Ant script to generate webhelp output.  
+  webhelp/Makefile            - Makefile to generate webhelp output.
+
 To transform documents created with the DocBook Slides schema/DTD,
 use one of the following stylesheets:
 
@@ -136,6 +139,7 @@ roundtrip/    for "round trip" conversion among DocBook and
 slides/       for producing slides output (from Slides source)
 template/     templates for building stylesheet customization layers
 tools/        assorted supplementary tools
+webhelp/      templates and scripts for generating webhelp output
 website/      for producing website output (from Website source)
 xhtml/        for producing XHTML
 xhtml-1_1/    for producing (stricter) XHTML 1.1
