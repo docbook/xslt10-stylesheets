@@ -27,12 +27,12 @@ copyfiles:
 	cp template/favicon.ico ${OUTPUT_DIR}/
 
 chunk:
-	xsltproc  --output  xincluded-profiled.xml  \
+	xsltproc  --xinclude --output  xincluded-profiled.xml  \
                   --stringparam  profile.os  "linux" \
                   ../profiling/profile.xsl  \
                   ${INPUT_XML}
 
-	xsltproc --xinclude xsl/webhelp.xsl xincluded-profiled.xml      
+	xsltproc xsl/webhelp.xsl xincluded-profiled.xml      
 
 	rm xincluded-profiled.xml
 index:
