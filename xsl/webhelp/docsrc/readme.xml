@@ -1025,6 +1025,6 @@ xml-apis.jar=/usr/share/java/xml-apis.jar</programlisting></para>
       <primary>FAQ</primary>
     </indexterm>
   </chapter>
-  <!--<xi:include href="xinclude-test.xml"  xmlns:xi="http://www.w3.org/2001/XInclude"/>-->
+  <xi:include href="xinclude-test.xml"  xmlns:xi="http://www.w3.org/2001/XInclude"/>
   <index/>
 </book>

@@ -32,6 +32,11 @@ zip-ns: zip
 	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/readme.xml \
 	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl \
 	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml 
+	$(XSLT) \
+	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/xinclude-test.xml \
+	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl \
+	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/xinclude-test.xml 
+
 # Turn off validation in webhelp:
 	sed -i"" "s/validate-against-dtd=true/validate-against-dtd=false/" \
 	  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/build.properties
