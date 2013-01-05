@@ -2060,7 +2060,7 @@ article  toc,title,figure,table,example,equation
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template name="mimetype">'
+<xsl:template name="mimetype">
   <xsl:call-template name="write.text.chunk">
     <xsl:with-param name="filename" select="$epub.mimetype.pathname"/>
     <xsl:with-param name="content" select="$epub.mimetype.value"/>
