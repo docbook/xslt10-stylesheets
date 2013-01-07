@@ -306,7 +306,7 @@
                     or following-sibling::node()[1][self::processing-instruction()]
                     ">
             <xsl:if test="normalize-space($content) != ''
-                          or concat(normalize-space($content), ' ') = ' '">
+                          or concat(normalize-space($content), ' ') != ' '">
               <xsl:text>&#10;</xsl:text>
             </xsl:if>
           </xsl:if>
