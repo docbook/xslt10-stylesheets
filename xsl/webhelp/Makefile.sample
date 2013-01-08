@@ -69,7 +69,7 @@ copyfiles:
 	cp template/favicon.ico ${OUTPUT_DIR}/
 
 chunk:
-	xsltproc  --output --xinclude xincluded-profiled.xml  \
+	xsltproc  --xinclude --output xincluded-profiled.xml  \
                   --stringparam  profile.arch ${PROFILE.ARCH} \
                   --stringparam  profile.audience ${PROFILE.AUDIENCE} \
                   --stringparam  profile.condition ${PROFILE.CONDITION} \
