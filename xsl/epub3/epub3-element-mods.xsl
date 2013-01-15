@@ -138,17 +138,17 @@ article  toc,title,figure,table,example,equation
 <xsl:param name="editor.property">contributor</xsl:param> 
 
 <!-- Generate full output path -->
-<xsl:param name="epub.package.dir" select="concat($base.dir, '../')"/>
+<xsl:param name="epub.package.dir" select="concat($chunk.base.dir, '../')"/>
 
 <xsl:param name="epub.ncx.pathname" 
-           select="concat($base.dir, $epub.ncx.filename)"/>
+           select="concat($chunk.base.dir, $epub.ncx.filename)"/>
 <xsl:param name="epub.container.pathname"
            select="concat($epub.package.dir, $epub.metainf.dir, 
            $epub.container.filename)"/>
 <xsl:param name="epub.package.pathname"
-           select="concat($base.dir, $epub.package.filename)"/>
+           select="concat($chunk.base.dir, $epub.package.filename)"/>
 <xsl:param name="epub.cover.pathname"
-           select="concat($base.dir, $epub.cover.filename)"/>
+           select="concat($chunk.base.dir, $epub.cover.filename)"/>
 <xsl:param name="epub.mimetype.pathname"
            select="concat($epub.package.dir, $epub.mimetype.filename)"/>
 
@@ -2030,6 +2030,12 @@ article  toc,title,figure,table,example,equation
 </xsl:template>
 
 <xsl:template name="container">
+  <!-- The path in rootfile does not include all of base.dir, only the last part -->
+  <xsl:variable name="full-path-dir">
+    <xsl:call-template name="filename-basename">
+      <xsl:with-param name="filename" select="$chunk.base.dir"/>
+    </xsl:call-template>
+  </xsl:variable>
   <xsl:call-template name="write.chunk">
     <xsl:with-param name="filename">
       <xsl:value-of select="$epub.container.pathname" />
@@ -2048,7 +2054,7 @@ article  toc,title,figure,table,example,equation
           <xsl:element namespace="urn:oasis:names:tc:opendocument:xmlns:container" name="rootfile">
             <xsl:attribute name="full-path">
               <xsl:value-of 
-                     select="concat($epub.oebps.dir, '/', $epub.package.filename)"/>
+                     select="concat($full-path-dir, $epub.package.filename)"/>
             </xsl:attribute>
             <xsl:attribute name="media-type">
               <xsl:text>application/oebps-package+xml</xsl:text>
