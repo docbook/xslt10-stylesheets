@@ -378,24 +378,7 @@ element label.</para>
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="label.markup">
-  <!-- FIXME: could we do a better job here? -->
-  <xsl:variable name="contsec"
-                select="(ancestor::section
-                         |ancestor::simplesect
-                         |ancestor::topic
-                         |ancestor::sect1
-                         |ancestor::sect2
-                         |ancestor::sect3
-                         |ancestor::sect4
-                         |ancestor::sect5
-                         |ancestor::refsect1
-                         |ancestor::refsect2
-                         |ancestor::refsect3
-                         |ancestor::chapter
-                         |ancestor::appendix
-                         |ancestor::preface)[last()]"/>
-
-  <xsl:apply-templates select="$contsec" mode="label.markup"/>
+  <!-- bridgeheads are not normally numbered -->
 </xsl:template>
 
 <xsl:template match="refsect1" mode="label.markup">
@@ -821,6 +804,8 @@ element label.</para>
   </xsl:variable>
 
   <xsl:choose>
+    <!-- bridgeheads are not numbered -->
+    <xsl:when test="$section/self::bridgehead">0</xsl:when>
     <xsl:when test="$level &lt;= $section.autolabel.max.depth">      
       <xsl:value-of select="$section.autolabel"/>
     </xsl:when>

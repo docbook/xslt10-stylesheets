@@ -196,7 +196,8 @@
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="is.autonumber">
-  <xsl:value-of select="$section.autolabel"/>
+  <!-- bridgeheads are not numbered -->
+  <xsl:text>0</xsl:text>
 </xsl:template>
 
 <xsl:template match="procedure" mode="is.autonumber">
