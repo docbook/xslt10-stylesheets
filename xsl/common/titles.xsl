@@ -61,6 +61,15 @@ title of the element. This does not include the label.
               <xsl:value-of select="@xml:id"/>
               <xsl:text>")</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+              <xsl:text> (contained in </xsl:text>
+              <xsl:value-of select="local-name(..)"/>
+              <xsl:if test="../@id or ../@xml:id">
+                <xsl:text> with id </xsl:text>
+                <xsl:value-of select="../@id | ../@xml:id"/>
+              </xsl:if>
+              <xsl:text>)</xsl:text>
+            </xsl:otherwise>
           </xsl:choose>
         </xsl:message>
       </xsl:if>
@@ -274,7 +283,7 @@ title of the element. This does not include the label.
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="title.markup">
-  <xsl:apply-templates/>
+  <xsl:apply-templates mode="title.markup"/>
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv" mode="title.markup">
