@@ -477,6 +477,12 @@
                 <xsl:when test="$title != ''">
                   <xsl:copy-of select="$title"/>
                 </xsl:when>
+                <xsl:when test="$purpose = 'xref'">
+                  <xsl:apply-templates select="." mode="titleabbrev.markup">
+                    <xsl:with-param name="allow-anchors" select="$allow-anchors"/>
+                    <xsl:with-param name="verbose" select="$verbose"/>
+                  </xsl:apply-templates>
+                </xsl:when>
                 <xsl:otherwise>
                   <xsl:apply-templates select="." mode="title.markup">
                     <xsl:with-param name="allow-anchors" select="$allow-anchors"/>

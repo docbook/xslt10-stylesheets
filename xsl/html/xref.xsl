@@ -1240,9 +1240,8 @@
   <xsl:param name="title"/>
 
   <xsl:choose>
-    <!-- FIXME: what about the case where titleabbrev is inside the info? -->
-    <xsl:when test="$purpose = 'xref' and titleabbrev">
-      <xsl:apply-templates select="." mode="titleabbrev.markup"/>
+    <xsl:when test="$purpose = 'xref'">
+      <xsl:copy-of select="$title"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:copy-of select="$title"/>
