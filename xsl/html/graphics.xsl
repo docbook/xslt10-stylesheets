@@ -395,7 +395,7 @@
           <xsl:with-param name="em.size" select="$points.per.em"/>
         </xsl:call-template>
       </xsl:variable>
-      <xsl:value-of select="$cwidth.in.points div 72.0 * $pixels.per.inch * $scale"/>
+      <xsl:value-of select="round($cwidth.in.points div 72.0 * $pixels.per.inch * $scale)"/>
     </xsl:if>
   </xsl:variable>
 
@@ -462,7 +462,7 @@
           <xsl:with-param name="em.size" select="$points.per.em"/>
         </xsl:call-template>
       </xsl:variable>
-      <xsl:value-of select="$cdepth.in.points div 72.0 * $pixels.per.inch * $scale"/>
+      <xsl:value-of select="round($cdepth.in.points div 72.0 * $pixels.per.inch * $scale)"/>
     </xsl:if>
   </xsl:variable>
 
