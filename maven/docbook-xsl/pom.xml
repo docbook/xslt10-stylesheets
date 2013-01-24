@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl</artifactId>
   <name>DocBook XSL Stylesheets</name>
   <packaging>pom</packaging>
-  <version>1.77.1</version>
+  <version>1.78.0</version>
   <description>These are XSL stylesheets for transforming DocBook XML document instances into various output formats.
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -18,8 +18,8 @@
 
 
   <properties>
-    <docbook.xsl.release>docbook-xsl-1.77.1</docbook.xsl.release>
-    <docbook.xslns.release>docbook-xsl-ns-1.77.1</docbook.xslns.release>
+    <docbook.xsl.release>docbook-xsl-1.78.0</docbook.xsl.release>
+    <docbook.xslns.release>docbook-xsl-ns-1.78.0</docbook.xslns.release>
   </properties>
 
   <build>
@@ -57,6 +57,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
         <executions>
           <execution>
             <phase>generate-resources</phase>
