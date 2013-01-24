@@ -283,7 +283,7 @@ title of the element. This does not include the label.
 </xsl:template>
 
 <xsl:template match="bridgehead" mode="title.markup">
-  <xsl:apply-templates mode="title.markup"/>
+  <xsl:apply-templates/> 
 </xsl:template>
 
 <xsl:template match="refsynopsisdiv" mode="title.markup">
@@ -561,7 +561,7 @@ title of the element. This does not include the label.
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="book|preface|chapter|appendix" mode="titleabbrev.markup">
+<xsl:template match="book|part|set|preface|chapter|appendix" mode="titleabbrev.markup">
   <xsl:param name="allow-anchors" select="0"/>
   <xsl:param name="verbose" select="1"/>
 
@@ -569,6 +569,8 @@ title of the element. This does not include the label.
                                            |bookinfo/titleabbrev
                                            |info/titleabbrev
                                            |prefaceinfo/titleabbrev
+                                           |setinfo/titleabbrev
+                                           |partinfo/titleabbrev
                                            |chapterinfo/titleabbrev
                                            |appendixinfo/titleabbrev
                                            |titleabbrev)[1]"/>
