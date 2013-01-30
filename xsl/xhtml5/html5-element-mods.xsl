@@ -415,6 +415,7 @@
         <xsl:when test="local-name(.) = 'cellpadding'"/>
         <xsl:when test="local-name(.) = 'style'"/>
         <xsl:when test="local-name(.) = 'align'"/>
+        <xsl:when test="local-name(.) = 'valign'"/>
         <xsl:otherwise>
           <xsl:copy-of select="."/>
         </xsl:otherwise>
