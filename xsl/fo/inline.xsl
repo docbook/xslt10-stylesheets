@@ -911,7 +911,7 @@
 
           <fo:basic-link internal-destination="{$termid}"
                          xsl:use-attribute-sets="xref.properties">
-            <xsl:call-template name="inline.charseq"/>
+            <xsl:call-template name="inline.italicseq"/>
           </fo:basic-link>
         </xsl:otherwise>
       </xsl:choose>
