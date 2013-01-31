@@ -19,14 +19,21 @@
   <xsl:value-of select="$body.font.family"/>
   <xsl:if test="$body.font.family != ''
                 and $symbol.font.family  != ''">,</xsl:if>
-    <xsl:value-of select="$symbol.font.family"/>
+  <xsl:value-of select="$symbol.font.family"/>
 </xsl:param>
 
 <xsl:param name="title.fontset">
   <xsl:value-of select="$title.font.family"/>
   <xsl:if test="$title.font.family != ''
                 and $symbol.font.family  != ''">,</xsl:if>
-    <xsl:value-of select="$symbol.font.family"/>
+  <xsl:value-of select="$symbol.font.family"/>
+</xsl:param>
+
+<xsl:param name="dingbat.fontset">
+  <xsl:value-of select="$dingbat.font.family"/>
+  <xsl:if test="$dingbat.font.family != ''
+                and $symbol.font.family  != ''">,</xsl:if>
+  <xsl:value-of select="$symbol.font.family"/>
 </xsl:param>
 
 <!-- These are internal parameters are for the individual precedence attributes -->

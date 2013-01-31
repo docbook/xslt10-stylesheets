@@ -93,11 +93,11 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$dingbat.font.family = ''">
+    <xsl:when test="$dingbat.fontset = ''">
       <xsl:copy-of select="$symbol"/>
     </xsl:when>
     <xsl:otherwise>
-      <fo:inline font-family="{$dingbat.font.family}">
+      <fo:inline font-family="{$dingbat.fontset}">
         <xsl:copy-of select="$symbol"/>
       </fo:inline>
     </xsl:otherwise>
