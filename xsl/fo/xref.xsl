@@ -987,7 +987,7 @@
     <!-- * and the value of its content is not a URL that is the same as -->
     <!-- * URL it links to, and if ulink.show is non-zero. -->
     <xsl:choose>
-      <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote)">
+      <xsl:when test="$ulink.footnotes != 0 and not(ancestor::footnote) and not(ancestor::*[@floatstyle='before'])">
         <!-- * ulink.show and ulink.footnote are both non-zero; that -->
         <!-- * means we display the URL as a footnote (instead of inline) -->
         <fo:footnote>
