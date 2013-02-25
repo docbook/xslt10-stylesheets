@@ -295,7 +295,7 @@ border: none; background: none; font-weight: none; color: none; }
          <script type="text/javascript" src="{$webhelp.common.dir}jquery/layout/jquery.layout.js">
             <xsl:comment> </xsl:comment>
         </script>
-        <xsl:if test="$webhelp.include.search.tab = 'true'">
+        <xsl:if test="$webhelp.include.search.tab != '0'">
             <!--Scripts/css stylesheets for Search-->
             <!-- TODO: Why THREE files? There's absolutely no need for having separate files. 
 		These should have been identified at the optimization phase! -->
@@ -355,7 +355,7 @@ border: none; background: none; font-weight: none; color: none; }
 
         <!--testing toc in the content page>
         <xsl:call-template name="webhelptoctoc"/>
-        <xsl:if test="$webhelp.include.search.tab != 'false'">
+        <xsl:if test="$webhelp.include.search.tab != '0'">
             <xsl:call-template name="search"/>
         </xsl:if-->
     </xsl:template>
@@ -727,7 +727,7 @@ border: none; background: none; font-weight: none; color: none; }
                                         </span>
                                     </a>
                                 </li>
-                                <xsl:if test="$webhelp.include.search.tab != 'false'">
+                                <xsl:if test="$webhelp.include.search.tab != '0'">
                                     <li>
                                         <a href="#searchDiv" style="outline:0;" tabindex="1" onclick="doSearch()">
                                             <span class="searchTab">
@@ -753,7 +753,7 @@ border: none; background: none; font-weight: none; color: none; }
                                 </div>
 
                             </div>
-                            <xsl:if test="$webhelp.include.search.tab != 'false'">
+                            <xsl:if test="$webhelp.include.search.tab != '0'">
                                 <div id="searchDiv">
                                     <div id="search">
                                         <form onsubmit="Verifie(searchForm);return false"
