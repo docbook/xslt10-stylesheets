@@ -1237,12 +1237,20 @@ article  toc,title,figure,table,example,equation
   
     <xsl:variable name="object" select="$olist[position() = $object.index]"/>
 
-    <xsl:variable name="image.filename">
+    <xsl:variable name="output_filename">
       <xsl:call-template name="mediaobject.filename">
         <xsl:with-param name="object" select="$object"/>
       </xsl:call-template>
     </xsl:variable>
 
+    <xsl:variable name="image.filename">
+       <xsl:if test="$img.src.path != '' and
+                       not(starts-with($output_filename, '/')) and
+                       not(contains($output_filename, '://'))">
+         <xsl:value-of select="$img.src.path"/>
+       </xsl:if>
+       <xsl:value-of select="$output_filename"/>
+    </xsl:variable>
     <xsl:variable name="image.extension">
       <xsl:call-template name="filename-extension">
         <xsl:with-param name="filename" select="$image.filename"/>
@@ -1602,10 +1610,19 @@ article  toc,title,figure,table,example,equation
   <xsl:param name="object" select="."/>
 
   <xsl:if test="$object">
-    <xsl:variable name="image.filename">
+    <xsl:variable name="output_filename">
       <xsl:call-template name="mediaobject.filename">
         <xsl:with-param name="object" select="$object"/>
       </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:variable name="image.filename">
+       <xsl:if test="$img.src.path != '' and
+                       not(starts-with($output_filename, '/')) and
+                       not(contains($output_filename, '://'))">
+         <xsl:value-of select="$img.src.path"/>
+       </xsl:if>
+       <xsl:value-of select="$output_filename"/>
     </xsl:variable>
 
     <xsl:variable name="image.extension">
