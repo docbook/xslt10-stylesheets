@@ -493,14 +493,14 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="nodes" select="reference|
-                                     preface|
-                                     chapter|
-                                     appendix|
-                                     article|
-                                     bibliography|
-                                     glossary|
-                                     index"/>
+  <xsl:variable name="nodes" select="$part/reference|
+                                     $part/preface|
+                                     $part/chapter|
+                                     $part/appendix|
+                                     $part/article|
+                                     $part/bibliography|
+                                     $part/glossary|
+                                     $part/index"/>
 
   <xsl:if test="count($nodes) &gt; 0 and contains($toc.params, 'toc')">
     <fo:page-sequence hyphenate="{$hyphenate}"
