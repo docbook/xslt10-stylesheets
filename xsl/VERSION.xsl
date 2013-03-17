@@ -14,8 +14,8 @@
 <xsl:param name="sf-relid" select="0"/>
 
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
-<xsl:param name="PreviousRelease">1.77.0</xsl:param>
-<xsl:param name="PreviousReleaseRevision">9371</xsl:param>
+<xsl:param name="PreviousRelease">1.78.0</xsl:param>
+<xsl:param name="PreviousReleaseRevision">9696</xsl:param>
 <xsl:param name="Revision">$Revision$</xsl:param>
 <xsl:param name="VersionFileURL">$URL$</xsl:param>
 
@@ -26,7 +26,7 @@
   <fm:Branch>XSL Stylesheets</fm:Branch>
   <!-- * set/keep fm:version as N.NN.N-pre except for official releases, -->
   <!-- * then after the release, revert it to N.NN.N-pre & check back in -->
-  <fm:Version>1.77.1</fm:Version>
+  <fm:Version>1.78.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
