@@ -259,11 +259,16 @@
 
   <fo:list-item id="{$entry.id}" xsl:use-attribute-sets="list.item.spacing">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
-        <xsl:if test="string-length($label.content) &gt; 0">
-			<fo:block font-weight="bold">
-			  <xsl:copy-of select="$label.content"/>          
-			</fo:block>
-        </xsl:if>
+      <xsl:choose>
+        <xsl:when test="string-length($label.content) &gt; 0">
+          <fo:block font-weight="bold">
+            <xsl:copy-of select="$label.content"/>          
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block/>
+        </xsl:otherwise>
+      </xsl:choose>
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <xsl:choose>
@@ -302,12 +307,12 @@
     <fo:list-item-label id="{$id}" end-indent="label-end()">
       <xsl:choose>
         <xsl:when test="string-length($answer.label) &gt; 0">
-			<fo:block font-weight="bold">
-			  <xsl:copy-of select="$answer.label"/>
-			</fo:block>
+          <fo:block font-weight="bold">
+            <xsl:copy-of select="$answer.label"/>
+          </fo:block>
         </xsl:when>
         <xsl:otherwise>
-			<fo:block/>
+          <fo:block/>
         </xsl:otherwise>
       </xsl:choose>
     </fo:list-item-label>
