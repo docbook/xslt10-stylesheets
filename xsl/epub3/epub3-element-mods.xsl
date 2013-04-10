@@ -49,7 +49,34 @@ article  toc,title,figure,table,example,equation
 </xsl:param>
 <xsl:param name="generate.manifest" select="0"/>
 <xsl:param name="manifest.in.base.dir" select="1"/>
-<xsl:param name="base.dir" select="'OEBPS/'"/>
+<!-- assemble base.dir from two epub params -->
+<xsl:variable name="default.base.dir">
+  <xsl:choose>
+    <xsl:when test="string-length($epub.base.dir) = 0"></xsl:when>
+    <!-- make sure to add trailing slash if omitted by user -->
+    <xsl:when test="substring($epub.base.dir, string-length($epub.base.dir), 1) = '/'">
+      <xsl:value-of select="$epub.base.dir"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="concat($epub.base.dir, '/')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:value-of select="$epub.oebps.dir"/>
+</xsl:variable>
+
+<!-- This setup allows comparison to a base.dir set on the command line -->
+<xsl:param name="base.dir" select="$default.base.dir"/>
+<!-- This param only has a side effect of checking for base.dir usage -->
+<xsl:param name="debug.base.dir">
+  <xsl:if test="$base.dir != $default.base.dir">
+    <xsl:message terminate="yes">
+      <xsl:text>ERROR: for epub output, set the $epub.base.dir parameter </xsl:text>
+      <xsl:text>instead of $base.dir. Exiting.&#10;</xsl:text>
+      <xsl:text>Set $epub.base.dir to the directory that is to contain OEBPS.</xsl:text>
+    </xsl:message>
+  </xsl:if>
+</xsl:param>
+
 <xsl:param name="index.links.to.section" select="0"/>
 
 <!-- Epub does not yet support external links -->
@@ -100,11 +127,12 @@ article  toc,title,figure,table,example,equation
 <xsl:param 
   name="epub.vocabulary.profile.package">http://www.idpf.org/epub/30/profile/package/</xsl:param>
 <xsl:param name="epub.output.epub.types" select="1"/>
+<xsl:param name="epub.base.dir" select="''"/> 
 <xsl:param name="epub.oebps.dir" select="'OEBPS'"/> 
-<xsl:param name="epub.metainf.dir" select="'META-INF/'"/> 
+<xsl:variable name="epub.metainf.dir" select="'META-INF/'"/> 
 <xsl:param name="epub.ncx.filename" select="'toc.ncx'"/> 
-<xsl:param name="epub.mimetype.filename" select="'mimetype'"/> 
-<xsl:param name="epub.mimetype.value" select="'application/epub+zip'"/> 
+<xsl:variable name="epub.mimetype.filename" select="'mimetype'"/> 
+<xsl:variable name="epub.mimetype.value" select="'application/epub+zip'"/> 
 <xsl:param name="epub.container.filename" select="'container.xml'"/> 
 <xsl:param name="epub.package.filename" select="'package.opf'"/> 
 <xsl:param name="epub.cover.filename" select="concat('cover', $html.ext)"/> 
