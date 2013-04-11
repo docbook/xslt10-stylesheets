@@ -1063,6 +1063,31 @@
   </fo:block>
 </xsl:template>
 
+<!-- Add (Optional) when the step is optional -->
+<xsl:template match="step[@performance = 'optional']/*[1][self::para]" priority="3">
+  <xsl:variable name="keep.together">
+    <xsl:call-template name="pi.dbfo_keep-together"/>
+  </xsl:variable>
+  <fo:block xsl:use-attribute-sets="para.properties">
+    <xsl:if test="$keep.together != ''">
+      <xsl:attribute name="keep-together.within-column"><xsl:value-of
+                      select="$keep.together"/></xsl:attribute>
+    </xsl:if>
+    <xsl:call-template name="anchor"/>
+    <xsl:if test="$mark.optional.procedure.steps != 0">
+      <xsl:call-template name="optional.step.marker"/>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template name="optional.step.marker">
+  <fo:inline>
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key">optional-step</xsl:with-param>
+    </xsl:call-template>
+  </fo:inline>
+</xsl:template>
 <!-- ==================================================================== -->
 
 <xsl:template match="segmentedlist">

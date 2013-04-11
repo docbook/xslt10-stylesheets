@@ -360,3 +360,4 @@
 <!ENTITY para.properties SYSTEM "../params/para.properties.xml">
 <!ENTITY activate.external.olinks SYSTEM "../params/activate.external.olinks.xml">
 <!ENTITY force.blank.pages SYSTEM "../params/force.blank.pages.xml">
+<!ENTITY mark.optional.procedure.steps" SYSTEM "../params/mark.optional.procedure.steps.xml">
