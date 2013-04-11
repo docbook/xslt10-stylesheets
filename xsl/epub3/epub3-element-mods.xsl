@@ -52,7 +52,7 @@ article  toc,title,figure,table,example,equation
 
 <!-- HTML chunk output goes to $base.dir/OEPBS -->
 <xsl:variable name="chunk.base.dir">
-  <xsl:if test="contains($base.dir, $epub.oebps.dir)">
+  <xsl:if test="$base.dir != '' and contains($base.dir, $epub.oebps.dir)">
     <xsl:message terminate="yes">
       <xsl:text>ERROR: the $base.dir param must not include the </xsl:text>
       <xsl:value-of select="$epub.oebps.dir"/>
