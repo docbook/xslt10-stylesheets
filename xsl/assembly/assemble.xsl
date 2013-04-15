@@ -336,21 +336,21 @@
     </xsl:when>
   </xsl:choose>
 
-  <xsl:variable name="fileref.att" select="$resource/@fileref"/>
+  <xsl:variable name="href.att" select="$resource/@fileref | $resource/@href"/>
 
   <xsl:variable name="fragment.id">
-    <xsl:if test="contains($fileref.att, '#')">
-      <xsl:value-of select="substring-after($fileref.att, '#')"/>
+    <xsl:if test="contains($href.att, '#')">
+      <xsl:value-of select="substring-after($href.att, '#')"/>
     </xsl:if>
   </xsl:variable>
 
   <xsl:variable name="filename">
     <xsl:choose>
       <xsl:when test="string-length($fragment.id) != 0">
-        <xsl:value-of select="substring-before($fileref.att, '#')"/>
+        <xsl:value-of select="substring-before($href.att, '#')"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$fileref.att"/>
+        <xsl:value-of select="$href.att"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -526,17 +526,17 @@
         </xsl:when>
       </xsl:choose>
 
-      <xsl:variable name="fileref.att" select="$resource/@fileref"/>
+      <xsl:variable name="href.att" select="$resource/@fileref | $resource/@href"/>
 
       <xsl:variable name="fileref">
         <xsl:choose>
           <xsl:when test="$resource/ancestor::d:resources/@xml:base">
             <xsl:value-of 
                 select="concat($resource/ancestor::d:resources[@xml:base][1]/@xml:base,
-                               '/', $fileref.att)"/>
+                               '/', $href.att)"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="$fileref.att"/>
+            <xsl:value-of select="$href.att"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
