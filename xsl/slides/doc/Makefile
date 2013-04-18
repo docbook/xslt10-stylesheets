@@ -1,4 +1,4 @@
-include ../../buildtools/Makefile.incl
+include ../../../buildtools/Makefile.incl
 all: index.html s5.html slidy.html
 	cp ../files ./
 	cp ../images ./
