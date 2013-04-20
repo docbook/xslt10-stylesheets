@@ -33,22 +33,48 @@
   <xsl:param name="epub.autolabel" select="'1'"/> 
   <xsl:param name="epub.ncx.depth">4</xsl:param> <!-- Not functional until http://code.google.com/p/epubcheck/issues/detail?id=70 is resolved -->
 
-
   <xsl:param name="manifest.in.base.dir" select="'1'"/> 
-  <xsl:param name="base.dir" select="$epub.oebps.dir"/>
+  <xsl:param name="base.dir" select="''"/>
+  <xsl:param name="epub.oebps.dir" select="'OEBPS/'"/>
 
-  <xsl:param name="epub.oebps.dir" select="'OEBPS/'"/> 
+  <!-- HTML chunk output goes to $base.dir/OEPBS -->
+  <xsl:variable name="chunk.base.dir">
+    <xsl:if test="$base.dir != '' and contains($base.dir, $epub.oebps.dir)">
+      <xsl:message terminate="yes">
+        <xsl:text>ERROR: the $base.dir param must not include the </xsl:text>
+        <xsl:value-of select="$epub.oebps.dir"/>
+        <xsl:text> directory in its path. Exiting.</xsl:text>
+      </xsl:message>
+    </xsl:if>
+    <xsl:choose>
+     <xsl:when test="string-length($base.dir) = 0"></xsl:when>
+     <!-- make sure to add trailing slash if omitted by user -->
+     <xsl:when test="substring($base.dir, string-length($base.dir), 1) = '/'">
+       <xsl:value-of select="$base.dir"/>
+     </xsl:when>
+     <xsl:otherwise>
+       <xsl:value-of select="concat($base.dir, '/')"/>
+     </xsl:otherwise>
+   </xsl:choose>
+   <xsl:value-of select="$epub.oebps.dir"/>
+    <xsl:if test="substring($epub.oebps.dir, string-length($epub.oebps.dir), 1) != '/'">
+      <xsl:text>/</xsl:text>
+    </xsl:if>
+ </xsl:variable>
+ 
+ <!-- This param only has a side effect of checking for base.dir usage -->
+
   <xsl:param name="epub.ncx.filename" select="'toc.ncx'"/> 
   <xsl:param name="epub.container.filename" select="'container.xml'"/> 
   <xsl:param name="epub.opf.filename" select="concat($epub.oebps.dir, 'content.opf')"/> 
-  <xsl:param name="epub.cover.filename" select="concat($epub.oebps.dir, 'cover', $html.ext)"/> 
+  <xsl:param name="epub.cover.filename" select="concat($chunk.base.dir, 'cover', $html.ext)"/> 
   <xsl:param name="epub.cover.id" select="'cover'"/> 
   <xsl:param name="epub.cover.html" select="'cover.html'" />
   <xsl:param name="epub.cover.image.id" select="'cover-image'"/> 
   <xsl:param name="epub.cover.linear" select="0" />
   <xsl:param name="epub.ncx.toc.id">ncxtoc</xsl:param>
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
-  <xsl:param name="epub.metainf.dir" select="'META-INF/'"/> 
+  <xsl:variable name="epub.metainf.dir" select="concat($base.dir, 'META-INF/')"/> 
 
   <xsl:param name="epub.embedded.fonts"></xsl:param>
 
@@ -246,7 +272,7 @@
     </xsl:variable>
     <xsl:call-template name="write.chunk">
       <xsl:with-param name="filename">
-        <xsl:value-of select="$epub.opf.filename" />
+        <xsl:value-of select="concat($base.dir, $epub.opf.filename)" />
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
@@ -299,8 +325,7 @@
   <xsl:template name="container">
     <xsl:call-template name="write.chunk">
       <xsl:with-param name="filename">
-        <xsl:value-of select="$epub.metainf.dir" />
-        <xsl:value-of select="$epub.container.filename" />
+        <xsl:value-of select="concat($epub.metainf.dir, $epub.container.filename)" />
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
