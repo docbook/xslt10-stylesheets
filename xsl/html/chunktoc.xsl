@@ -1,7 +1,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
+                xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:ng="http://docbook.org/docbook-ng"
 		version="1.0"
-                exclude-result-prefixes="doc">
+                exclude-result-prefixes="doc db ng">
 
 <!-- ********************************************************************
      $Id$
