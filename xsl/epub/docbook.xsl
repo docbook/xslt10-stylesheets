@@ -217,53 +217,68 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="package-identifier">  
+  <xsl:template name="package-identifier">
+    <xsl:variable name="info" select="*/*[contains(local-name(.), 'info')][1]"/>
+
     <xsl:choose>
-      <xsl:when test="/*/*[contains(name(.), 'info')]/biblioid">
-        <xsl:if test="/*/*[contains(name(.), 'info')][1]/biblioid[1][@class = 'doi' or 
-                                                                      @class = 'isbn' or
-                                                                      @class = 'isrn' or
-                                                                      @class = 'issn']">
+      <xsl:when test="$info/biblioid">
+        <xsl:if test="$info/biblioid[1][@class = 'doi' or 
+                                          @class = 'isbn' or
+                                          @class = 'isrn' or
+                                          @class = 'issn']">
           <xsl:text>urn:</xsl:text>
-          <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/biblioid[1]/@class"/>
+          <xsl:value-of select="$info/biblioid[1]/@class"/>
           <xsl:text>:</xsl:text>
         </xsl:if>
-        <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/biblioid[1]"/>
+        <xsl:value-of select="$info/biblioid[1]"/>
       </xsl:when>
-      <xsl:when test="/*/*[contains(name(.), 'info')]/isbn">
+      <xsl:when test="$info/isbn">
         <xsl:text>urn:isbn:</xsl:text>
-        <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/isbn[1]"/>
+        <xsl:value-of select="$info/isbn[1]"/>
       </xsl:when>
-      <xsl:when test="/*/*[contains(name(.), 'info')]/issn">
+      <xsl:when test="$info/issn">
         <xsl:text>urn:issn:</xsl:text>
-        <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/issn[1]"/>
+        <xsl:value-of select="$info/issn[1]"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <xsl:when test="/*/*[contains(name(.), 'info')]/invpartnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/invpartnumber[1]"/> </xsl:when>
-          <xsl:when test="/*/*[contains(name(.), 'info')]/issuenum">      <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/issuenum[1]"/> </xsl:when>
-          <xsl:when test="/*/*[contains(name(.), 'info')]/productnumber"> <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/productnumber[1]"/> </xsl:when>
-          <xsl:when test="/*/*[contains(name(.), 'info')]/seriesvolnums"> <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/seriesvolnums[1]"/> </xsl:when>
-          <xsl:when test="/*/*[contains(name(.), 'info')]/volumenum">     <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/volumenum[1]"/> </xsl:when>
+          <xsl:when test="$info/invpartnumber"> 
+            <xsl:value-of select="$info/invpartnumber[1]"/>
+          </xsl:when>
+          <xsl:when test="$info/issuenum">      
+            <xsl:value-of select="$info[1]/issuenum[1]"/> 
+          </xsl:when>
+          <xsl:when test="$info/productnumber"> 
+            <xsl:value-of select="$info[1]/productnumber[1]"/> 
+          </xsl:when>
+          <xsl:when test="$info/seriesvolnums">
+            <xsl:value-of select="$info[1]/seriesvolnums[1]"/>
+          </xsl:when>
+          <xsl:when test="$info/volumenum">
+            <xsl:value-of select="$info[1]/volumenum[1]"/> 
+          </xsl:when>
           <!-- Deprecated -->
-          <xsl:when test="/*/*[contains(name(.), 'info')]/pubsnumber">    <xsl:value-of select="/*/*[contains(name(.), 'info')][1]/pubsnumber[1]"/> </xsl:when>
+          <xsl:when test="$info/pubsnumber">
+            <xsl:value-of select="$info[1]/pubsnumber[1]"/>
+          </xsl:when>
         </xsl:choose>  
         <xsl:text>_</xsl:text>
         <xsl:choose>
-          <xsl:when test="/*/@id">
-            <xsl:value-of select="/*/@id"/>
+          <xsl:when test="@id">
+            <xsl:value-of select="@id"/>
           </xsl:when>
-          <xsl:when test="/*/@xml:id">
-            <xsl:value-of select="/*/@xml:id"/>
+          <xsl:when test="@xml:id">
+            <xsl:value-of select="@xml:id"/>
           </xsl:when>
           <xsl:otherwise>
             <!-- TODO: Do UUIDs here -->
-            <xsl:value-of select="generate-id(/*)"/>
+            <xsl:value-of select="generate-id(.)"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
 
   <xsl:template name="opf">
     <xsl:variable name="package-identifier-id"><xsl:value-of select="concat(name(/*), 'id')"/></xsl:variable>
@@ -853,7 +868,7 @@
         <xsl:with-param name="ext" select="$callout.graphics.extension"/>
       </xsl:call-template>
     </xsl:variable>  
-    <xsl:if test="(//calloutlist|//co)">
+    <xsl:if test="$callout.graphics != 0 and (//calloutlist|//co)">
       <xsl:call-template name="opf.reference.callout">
         <xsl:with-param name="conum" select="1"/>
         <xsl:with-param name="format" select="$format"/>
