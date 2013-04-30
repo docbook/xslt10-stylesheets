@@ -282,8 +282,8 @@
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:for-each>
+            <xsl:apply-templates mode="remove-ids"/>
           </xsl:copy>
-          <xsl:apply-templates mode="remove-ids"/>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
