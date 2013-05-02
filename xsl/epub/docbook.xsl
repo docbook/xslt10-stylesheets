@@ -717,22 +717,7 @@
         <xsl:value-of select="$epub.ncx.toc.id"/>
       </xsl:attribute>
 
-      <xsl:if test="$info/cover or $info//mediaobject[@role='cover' or ancestor::cover]"> 
-        <xsl:element namespace="http://www.idpf.org/2007/opf" name="itemref">
-          <xsl:attribute name="idref">
-            <xsl:value-of select="$epub.cover.id"/>
-          </xsl:attribute>
-          <xsl:attribute name="linear">
-          <xsl:choose>
-            <xsl:when test="$epub.cover.linear">
-              <xsl:text>yes</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>no</xsl:otherwise>
-          </xsl:choose>
-          </xsl:attribute>
-        </xsl:element>
-      </xsl:if>
-
+      <xsl:call-template name="spine.cover"/>
 
       <xsl:if test="contains($toc.params, 'toc')">
         <xsl:element namespace="http://www.idpf.org/2007/opf" name="itemref">
@@ -750,9 +735,31 @@
           <xsl:apply-templates select="/*/*" mode="opf.spine"/>
         </xsl:otherwise>
       </xsl:choose>
-                                   
     </xsl:element>
   </xsl:template>
+  
+  <xsl:template name="spine.cover">
+    <xsl:variable name="info" select="*/*[contains(local-name(.), 'info')][1]"/>
+    <xsl:variable name="cover.image" 
+                  select="$info//mediaobject[@role='cover' or ancestor::cover]"/>
+    
+    <xsl:if test="$cover.image">
+      <xsl:element namespace="http://www.idpf.org/2007/opf" name="itemref">
+        <xsl:attribute name="idref">
+          <xsl:value-of select="$epub.cover.id"/>
+        </xsl:attribute>
+        <xsl:attribute name="linear">
+          <xsl:choose>
+            <xsl:when test="$epub.cover.linear">
+              <xsl:text>yes</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>no</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:if>
+  </xsl:template>
+  
 
   <xsl:template match="*" mode="opf.spine">
     <xsl:variable name="is.chunk">
