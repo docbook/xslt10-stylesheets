@@ -233,7 +233,7 @@
   <template name="insert">Ins</template>
   <template name="left">&#x2190;</template><!-- larr -->
   <template name="meta">Meta</template>
-  <template name="option">???</template><!-- What's this? -->
+  <template name="option">&#x2325;</template><!-- on Apple keyboards -->
   <template name="pagedown">Page &#x02193;</template>
   <template name="pageup">Page &#x02191;</template>
   <template name="right">&#x2192;</template><!-- rarr -->
