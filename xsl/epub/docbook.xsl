@@ -711,13 +711,13 @@
   </xsl:template>
 
   <xsl:template name="opf.spine">
-
+    <xsl:variable name="info" select="*/*[contains(local-name(.), 'info')][1]"/>
     <xsl:element namespace="http://www.idpf.org/2007/opf" name="spine">
       <xsl:attribute name="toc">
         <xsl:value-of select="$epub.ncx.toc.id"/>
       </xsl:attribute>
 
-      <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
+      <xsl:if test="$info/cover or $info//mediaobject[@role='cover' or ancestor::cover]"> 
         <xsl:element namespace="http://www.idpf.org/2007/opf" name="itemref">
           <xsl:attribute name="idref">
             <xsl:value-of select="$epub.cover.id"/>
