@@ -767,7 +767,7 @@
           <xsl:value-of select="generate-id(.)"/>
         </xsl:attribute>
       </xsl:element>
-      <xsl:apply-templates select="*|.//refentry" mode="opf.spine"/>
+      <xsl:apply-templates select="*" mode="opf.spine"/>
     </xsl:if>
   </xsl:template>
 
