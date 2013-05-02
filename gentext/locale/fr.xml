@@ -224,6 +224,30 @@
 <gentext key="hyphenation-push-character-count" text="2"/>
 <gentext key="hyphenation-remain-character-count" text="2"/>
 
+<context name="keycap">
+  <template name="alt">Alt</template>
+  <template name="backspace">Suppr arrière</template><!-- mdash -->
+  <template name="command">&#x2318;</template><!-- Apple key -->
+  <template name="control">Ctrl</template>
+  <template name="delete">Suppr</template>
+  <template name="down">&#x2193;</template><!-- darr -->
+  <template name="end">Fin</template>
+  <template name="enter">Entrée</template>
+  <template name="escape">Echap</template>
+  <template name="home">Home</template>
+  <template name="insert">Inser</template>
+  <template name="left">&#x2190;</template><!-- larr -->
+  <template name="meta">Meta</template>
+  <template name="option">&#x2325;</template><!-- on Apple keyboards -->
+  <template name="pagedown">&#x02193;</template>
+  <template name="pageup">&#x02191;</template>
+  <template name="right">&#x2192;</template><!-- rarr -->
+  <template name="shift">Maj</template>
+  <template name="space">Espace</template>
+  <template name="tab">&#x02192;|</template>
+  <template name="up">&#x02191;</template><!-- uarr -->
+</context>
+
 <context name="webhelp">
   <template name="Search">Rechercher</template>
   <template name="Enter_a_term_and_click">Saisissez un terme et cliquer </template>

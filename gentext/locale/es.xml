@@ -214,6 +214,32 @@
 <dingbat key="nestedendquote" text="’"/>
 <dingbat key="bullet" text="•"/>
 
+
+<context name="keycap">
+  <template name="alt">Alt</template>
+  <template name="backspace">&lt;&#x2014;</template><!-- mdash -->
+  <template name="command">&#x2318;</template><!-- Apple key -->
+  <template name="control">Ctrl</template>
+  <template name="delete">Supr</template>
+  <template name="down">&#x2193;</template><!-- darr -->
+  <template name="end">Fin</template>
+  <template name="enter">Enter</template>
+  <template name="escape">Esc</template>
+  <template name="home">Inicio</template>
+  <template name="insert">Insert</template>
+  <template name="left">&#x2190;</template><!-- larr -->
+  <template name="meta">Meta</template>
+  <template name="option">&#x2325;</template><!-- on Apple keyboards -->
+  <template name="pagedown">Av&#xa0;Pág</template>
+  <template name="pageup">Re&#xa0;Pág</template>
+  <template name="right">&#x2192;</template><!-- rarr -->
+  <template name="shift">&#x21e7;</template>
+  <template name="space">Espacio</template>
+  <template name="tab">&#x21b9;</template>
+  <template name="up">&#x02191;</template><!-- uarr -->
+</context>
+
+
 <context name="styles">
 
 <template name="person-name">first-last</template>

@@ -184,6 +184,31 @@
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
 
+<context name="keycap">
+   <template name="alt">Alt</template>
+   <template name="backspace">&lt;&#x2014;</template><!-- mdash -->
+   <template name="command">&#x2318;</template><!-- Apple key -->
+   <template name="control">Ctrl</template>
+   <template name="delete">Del</template>
+   <template name="down">&#x2193;</template><!-- darr -->
+   <template name="end">End</template>
+   <template name="enter">Enter</template>
+   <template name="escape">Esc</template>
+   <template name="home">Home</template>
+   <template name="insert">Ins</template>
+   <template name="left">&#x2190;</template><!-- larr -->
+   <template name="meta">Meta</template>
+   <template name="option">???</template><!-- What's this? -->
+   <template name="pagedown">Page &#x02193;</template>
+   <template name="pageup">Page &#x02191;</template>
+   <template name="right">&#x2192;</template><!-- rarr -->
+   <template name="shift">Shift</template>
+   <template name="space">Space</template>
+   <template name="tab">&#x02192;|</template>
+   <template name="up">&#x02191;</template><!-- uarr -->
+</context>
+  
+
 <context name="styles">
 
 <template name="person-name">first-last</template>
