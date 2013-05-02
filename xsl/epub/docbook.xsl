@@ -682,10 +682,13 @@
   </xsl:template>
 
   <xsl:template name="opf.guide">
+    <xsl:variable name="info" select="*/*[contains(local-name(.), 'info')][1]"/>
+    
     <xsl:if test="contains($toc.params, 'toc') or 
-                  /*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
+                  $info/cover or 
+                  $info//mediaobject[@role='cover' or ancestor::cover]"> 
       <xsl:element namespace="http://www.idpf.org/2007/opf" name="guide">
-        <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
+        <xsl:if test="$info/cover or $info//mediaobject[@role='cover' or ancestor::cover]"> 
           <xsl:element namespace="http://www.idpf.org/2007/opf" name="reference">
             <xsl:attribute name="href">
               <xsl:value-of select="$epub.cover.html" />
