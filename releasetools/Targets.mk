@@ -32,11 +32,12 @@ RELEASE-NOTES.pdf: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
 ifeq ($(PDF_MAKER),xep)
 	$(XSLT) RELEASE-NOTES-TMP.xml $(FO_STYLE) $(basename $<).fo $(PDF_MAKER).extensions=1 \
+	profile.condition="$(RELEASE_TYPE)" \
 	&& $(XEP) $(XEP_FLAGS) $(basename $<).fo
 	$(RM) RELEASE-NOTES-TMP.xml
 else
 ifeq ($(PDF_MAKER),dblatex)
-	$(XSLT) RELEASE-NOTES-TMP.xml $(STRIP_NS) RELEASE-NOTES-STRIPPED-TMP.xml
+	$(XSLT) RELEASE-NOTES-TMP.xml $(STRIP_NS) RELEASE-NOTES-STRIPPED-TMP.xml \
 	-$(DBLATEX) $(DBLATEX_FLAGS) \
 	  -p $(DBX_STYLE) \
 	  -o $@ \

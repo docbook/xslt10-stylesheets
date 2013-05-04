@@ -1,9 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # vim: number
 
 # docbook-build - Build script for generating DocBook project snapshots
 # $Id$
-#
 
 # fail if no CLASSPATH set
 if [ -z "$CLASSPATH" ]; then
@@ -39,14 +38,15 @@ fi
 
 umask 002
 # set up some defaults
+SVNCHECK=no
 ENGINE=xsltproc
 PDF_MAKER=dblatex
 TAR=tar
 TARFLAGS=P
 ZIPTARG=zip
-SITEUSER=`whoami`
-SITEBASE=/home/groups/d/do/docbook/htdocs/snapshots
-SITEHOST=web.sourceforge.net
+SITEBASE=/var/www
+#SITEUSER=`whoami`
+#SITEHOST=web.sourceforge.net
 RELEASEVERSION=snapshot
 if [ -z "$TMP" ]; then
   TMP=/tmp
@@ -107,7 +107,8 @@ Options:
      If specified, read commit message from standard input.
 
   -s
-     If specified, scp the distro to upload site (after tar/zipping).
+     If specified, do an svn check to see if the workspace is up
+     to date, and if it is, stop the build.
 
   -t TMPDIR
      Specifies the directory to which the script writes temporary
@@ -160,7 +161,7 @@ while getopts ":a:b:e:f:d:hl:p:rst:u:v:x:z:" opt; do
     u  ) SITEUSER=$OPTARG ;;
     d  ) SITEHOST=$OPTARG ;;
     p  ) SITEBASE=$OPTARG ;;
-    s  ) UPLOAD="yes" ;;
+    s  ) SVNCHECK="yes" ;;
     x  ) ZIPTARG=$OPTARG ;;
     z  ) TZ=$OPTARG
          alias date="TZ=$TZ date" ;;
@@ -190,7 +191,17 @@ if [ -z "$DISTROS" ]; then
   printf "$opts_admon"
   exit 1;
 else
+  svn cleanup
+  REVISION=$(svn update > /dev/null 2>&1 && svn info | grep "^Revision:" | sed -r 's/^Revision: (.+)$/\1/')
   for DISTRO in $DISTROS; do
+    printf "Running svn update in gentext and $DISTRO working directories...\n" 1>&2
+    if test "$SVNCHECK" = "yes"; then
+      if test $(cat $DISTRO/REVISION) = $REVISION; then
+        printf "$DISTRO distro is up to date. Skipping.\n" 1>&2
+        break
+      fi
+    fi
+    echo $REVISION > $DISTRO/REVISION
     lock_timer=0
     # wait for lock file (if any) to clear
     printf "Waiting for lock file to clear..." 1>&2
@@ -243,8 +254,17 @@ else
     cp -p $DISTRO/VERSION $DISTRO/VERSION.tmp
     # FIXME: we really should be doing this using a modifiled XSLT identity
     # transform, but anyway, this works OK for now...
-    sed "s/Version>.\+</Version>$RELEASEVERSION\_$REVISION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+    if test "$SVNCHECK" = "yes"; then
+      sed "s/Version>.\+</Version>$RELEASEVERSION\_$REVISION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+    else
+      # forced builds omit $REVISION suffix 
+      sed "s/Version>.\+</Version>$RELEASEVERSION\</" $DISTRO/VERSION.tmp > $DISTRO/VERSION
+    fi
     rm $DISTRO/VERSION.tmp
+
+    # copy VERSION to VERSION.xsl
+    cp $DISTRO/VERSION $DISTRO/VERSION.xsl
+
     printf "Done.\n" 1>&2
 
     # start re-directing stout and stderr to log file (if logging enabled)
@@ -260,18 +280,22 @@ else
     set | grep "^CHANGE\|REVISION"
     echo
 
-    echo "Running svn update in gentext and $DISTRO working directories..."
-    svn cleanup
-    svn update gentext || exit 1
-    svn update $DISTRO || exit 1
-    echo
-
+    #echo "Running svn update in gentext and $DISTRO working directories..."
+    #svn cleanup
+    #svn update gentext || exit 1
+    #svn update $DISTRO || exit 1
+    #echo
+#
     echo
     date
     echo "Building $DISTRO distribution..."
     echo
 
-    make distrib -C $DISTRO XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+    if test "$SVNCHECK" = "yes"; then
+      make distrib -C $DISTRO XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+    else
+      make release -C $DISTRO XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+    fi
 
     cat <<- EOF > HEADER.txt
 The snapshot for a particular distribution is re-built automatically each time
@@ -282,8 +306,6 @@ on $DATE at $TIME $ZONE.
 These snapshots are intended for testing purposes only and otherwise come with
 no guarantees. Any of them may in fact be broken at any given time.
 EOF
-
-    if [ "$UPLOAD" = "yes" ]; then
 
     make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER || exit 1
 
@@ -321,12 +343,11 @@ EOF
       cp -pR $TMP/docbook-$DISTRO-$ADDEDSUFFIX-$RELEASEVERSION/* $DISTRO-$ADDEDSUFFIX; \
     fi; \
     )
-
-    scp \
+    cp \
       $TMP/docbook*-$DISTRO*$RELEASEVERSION.zip \
       README.txt \
       LatestChanges \
-      $SITEUSER@$SITEHOST:$SITEBASE
+      $SITEBASE
 
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.bz2
     rm -rf $TMP/docbook-$DISTRO*$RELEASEVERSION.tar.gz
@@ -337,17 +358,6 @@ EOF
     rm -f $DISTRO/LatestChanges HEADER.txt README.txt LatestChanges
 
     date
-
-    if [ -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp ]; then
-      # filter raw log and copy to site
-      cat $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp \
-      | grep -v '^cvs log: \|cvs update\|^tar: \|^tar \|^  adding: \|^find \|^cd \|rm \|^mkdir \|^touch \|cvs2log\|mergechangelogs\|\s*(\|^  inflating: docbook-\|^ extracting: docbook-\|^docbook-' \
-        > $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
-      scp $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log $SITEUSER@$SITEHOST:$SITEBASE
-    fi
-    # FIXME: uncomment below when SF fixes their shell server
-    #ssh -l $SITEUSER $SITEHOST "(cd $SITEBASE; chmod 664 *.zip *.log; touch $DISTRO)"
-    fi
 
     # set up the e-mail From and To headers for buildbot message
     cat <<- EOF > $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
@@ -401,7 +411,7 @@ EOF
     # send the buildbot message
     /usr/sbin/sendmail -f buildbot@sideshowbarker.net docbook-snapshots@lists.sourceforge.net < $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
 
-    rm -f $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log
+    cp $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp $SITEBASE/docbook-$DISTRO-$RELEASEVERSION.log
     rm -f $TMP/docbook-$DISTRO-$RELEASEVERSION.lock
 
     cd -
