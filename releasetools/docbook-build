@@ -3,6 +3,7 @@
 
 # docbook-build - Build script for generating DocBook project snapshots
 # $Id$
+#
 
 # fail if no CLASSPATH set
 if [ -z "$CLASSPATH" ]; then
