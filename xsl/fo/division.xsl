@@ -602,5 +602,6 @@
   <xsl:number from="book" count="part" format="I."/>
 </xsl:template>
 
+<!-- ==================================================================== -->
 </xsl:stylesheet>
 
