@@ -51,6 +51,7 @@
 <xsl:include href="inline.xsl"/>
 <xsl:include href="footnote.xsl"/>
 <xsl:include href="html.xsl"/>
+<xsl:include href="its.xsl"/>
 <xsl:include href="info.xsl"/>
 <xsl:include href="keywords.xsl"/>
 <xsl:include href="division.xsl"/>
