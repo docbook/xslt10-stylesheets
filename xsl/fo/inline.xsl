@@ -1114,8 +1114,9 @@
   <xsl:variable name="mm.separator">
     <xsl:choose>
       <xsl:when test="($fop.extensions != 0 or $fop1.extensions != 0 ) and
-                contains($menuchoice.menu.separator, '&#x2192;')">
-        <fo:inline font-family="Symbol">
+                contains($menuchoice.menu.separator, '&#x2192;') and
+                $symbol.font.family != ''">
+        <fo:inline font-size=".75em" font-family="{$symbol.font.family}">
           <xsl:copy-of select="$menuchoice.menu.separator"/>
         </fo:inline>
       </xsl:when>
