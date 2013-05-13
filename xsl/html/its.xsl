@@ -34,7 +34,7 @@
   <xsl:choose>
     <!-- Handle inheritance; especially necessary for chunking -->
     <xsl:when test="$inherit = 1">
-      <xsl:variable name="attrs" select="ancestor-or-self::*/@its:*"/>
+      <xsl:variable name="attrs" select="ancestor-or-self::*/@*[namespace-uri() = 'http://www.w3.org/2005/11/its']"/>
       <xsl:for-each select="$attrs">
 	<xsl:variable name="name" select="local-name(.)"/>
 	<xsl:if test="not(..//*/@*[local-name(.) = $name and (count(. | $attrs) = 1)])">
@@ -43,7 +43,7 @@
       </xsl:for-each>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:apply-templates select="@its:*"/>
+      <xsl:apply-templates select="@*[namespace-uri() = 'http://www.w3.org/2005/11/its']"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
