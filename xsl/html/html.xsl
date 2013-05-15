@@ -366,6 +366,9 @@
   <xsl:apply-templates select="." mode="class.attribute">
     <xsl:with-param name="class" select="$class"/>
   </xsl:apply-templates>
+  <xsl:call-template name="its.attributes">
+    <xsl:with-param name="inherit" select="$inherit"/>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- Apply common attributes not including class -->
@@ -376,6 +379,7 @@
 <xsl:template match="*" mode="locale.html.attributes">
   <xsl:call-template name="generate.html.lang"/>
   <xsl:call-template name="dir"/>
+  <xsl:call-template name="its.attributes"/>
 </xsl:template>
 
 <!-- Pass through any lang attributes -->
