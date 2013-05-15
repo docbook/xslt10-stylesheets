@@ -223,11 +223,8 @@
   <!-- * for the 'wrapper-name' param -->
   <xsl:param name="wrapper-name">span</xsl:param>
   <xsl:element name="{$wrapper-name}">
-    <xsl:attribute name="class">
-      <xsl:value-of select="local-name(.)"/>
-    </xsl:attribute>
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
-    <xsl:call-template name="dir"/>
     <xsl:call-template name="generate.html.title"/>
     <xsl:copy-of select="$content"/>
     <xsl:call-template name="apply-annotations"/>
