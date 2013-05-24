@@ -666,6 +666,25 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="revhistory" mode="enumerate-files">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+  <xsl:if test="$generate.revhistory.link != 0">
+    <xsl:call-template name="make-relative-filename">
+      <xsl:with-param name="base.dir">
+        <xsl:if test="$manifest.in.base.dir = 0">
+          <xsl:value-of select="$chunk.base.dir"/>
+        </xsl:if>
+      </xsl:with-param>
+      <xsl:with-param name="base.name">
+	<xsl:call-template name="ln.or.rh.filename">
+	  <xsl:with-param name="is.ln" select="false()"/>
+	</xsl:call-template>
+      </xsl:with-param>
+    </xsl:call-template>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="mediaobject[imageobject] | inlinemediaobject[imageobject]" mode="enumerate-files">
   <xsl:variable name="longdesc.uri">
     <xsl:call-template name="longdesc.uri">
