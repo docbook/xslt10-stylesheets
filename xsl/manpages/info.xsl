@@ -577,7 +577,7 @@
               <xsl:with-param name="source" select="$refname"/>
               <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:text>see see http://docbook.sf.net/el/contrib</xsl:text>
+                <xsl:text>see http://docbook.sf.net/el/contrib</xsl:text>
               </xsl:with-param>
             </xsl:call-template>
             <xsl:call-template name="log.message">
@@ -585,7 +585,7 @@
               <xsl:with-param name="source" select="$refname"/>
               <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:text>see see http://docbook.sf.net/el/personblurb</xsl:text>
+                <xsl:text>see http://docbook.sf.net/el/personblurb</xsl:text>
               </xsl:with-param>
             </xsl:call-template>
           </xsl:if>
