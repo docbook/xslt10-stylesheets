@@ -118,7 +118,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.8.1</version>
         <configuration>
-          <sourcepath>${project.build.directory}/tmp/${docbook.xsl.webhelpindexer.release}/src/</sourcepath>
+          <sourcepath>${project.build.directory}/tmp/xsl-webhelpindexer/src/</sourcepath>
         </configuration>
       </plugin>
 
