@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl-webhelpindexer</artifactId>
   <name>DocBook XSL WebHelp Indexer extension</name>
   <packaging>jar</packaging>
-  <version>1.0.1-pre</version>
+  <version>1.0.1</version>
   <description>DocBook XSL WebHelp Indexer extension
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -18,7 +18,7 @@
 
 
   <properties>
-    <docbook.xsl.webhelpindexer.release>docbook-xsl-webhelpindexer-1.01-snapshot-08232012</docbook.xsl.webhelpindexer.release>
+    <docbook.xsl.webhelpindexer.release>xsl-webhelpindexer/?view=tar&amp;pathrev=9777</docbook.xsl.webhelpindexer.release>
   </properties>
 
   <dependencies>
@@ -33,6 +33,11 @@
       <version>3.0.0</version>
     </dependency>
     <dependency>
+      <groupId>org.ccil.cowan.tagsoup</groupId>
+      <artifactId>tagsoup</artifactId>
+      <version>1.2.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
       <version>1.7.0</version>
@@ -42,7 +47,7 @@
 
   <build>
     <plugins>
-      <!--plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>wagon-maven-plugin</artifactId>
         <version>1.0-beta-3</version>
@@ -54,13 +59,13 @@
               <goal>download-single</goal>
             </goals>
             <configuration>
-              <url>http://prdownloads.sourceforge.net/docbook/${docbook.xsl.webhelpindexer.release}.zip?download</url>
-              <toDir>${project.build.directory}/lib</toDir>
-              <fromFile>${docbook.xsl.webhelpindexer.release}.zip</fromFile>
+              <url>http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/</url>
+              <fromFile>${docbook.xsl.webhelpindexer.release}</fromFile>
+              <toFile>${project.build.directory}/lib/webhelpindexer.tgz</toFile>
             </configuration>
           </execution>
         </executions>
-      </plugin-->
+      </plugin>
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
@@ -71,14 +76,16 @@
             </goals>
             <configuration>
               <tasks>
-                <echo>Extracting docbook xsl webhelpindexer sources ${docbook.xsl.webhelpindexer.release}.zip.</echo>
+                <echo>Extracting docbook xsl webhelpindexer sources webhelpindexer.tgz.</echo>
 
-                <unzip dest="${project.build.directory}/tmp">
-                  <fileset dir="lib/" includes="${docbook.xsl.webhelpindexer.release}.zip"/>
+                <gunzip src="${project.build.directory}/lib/webhelpindexer.tgz" dest="${project.build.directory}/lib/webhelpindexer.tar"/>
+
+                <untar dest="${project.build.directory}/tmp">
+                  <fileset dir="${project.build.directory}/lib/" includes="webhelpindexer.tar"/>
                   <patternset>
-                    <include name="${docbook.xsl.webhelpindexer.release}/src/**"/>
+                    <include name="xsl-webhelpindexer/src/**"/>
                   </patternset>
-                </unzip>
+                </untar>
 
               </tasks>
             </configuration>
@@ -99,7 +106,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>${project.build.directory}/tmp/${docbook.xsl.webhelpindexer.release}/src/</source>
+                <source>${project.build.directory}/tmp/xsl-webhelpindexer/src/</source>
               </sources>
             </configuration>
           </execution>
