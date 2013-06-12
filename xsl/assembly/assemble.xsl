@@ -126,6 +126,7 @@
     </xsl:attribute>
     <xsl:copy-of select="@xml:id"/>
 
+    <!-- use the merge element if present -->
     <xsl:call-template name="merge.info">
       <xsl:with-param name="merge.element" select="d:merge"/>
     </xsl:call-template>
