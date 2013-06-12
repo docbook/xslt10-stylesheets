@@ -126,6 +126,10 @@
     </xsl:attribute>
     <xsl:copy-of select="@xml:id"/>
 
+    <xsl:call-template name="merge.info">
+      <xsl:with-param name="merge.element" select="d:merge"/>
+    </xsl:call-template>
+
     <xsl:apply-templates> 
       <xsl:with-param name="parent" select="$output.root.element"/>
     </xsl:apply-templates>
