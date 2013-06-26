@@ -838,7 +838,8 @@
   </xsl:variable>
 
   <xsl:if test="$nodes">
-    <fo:block id="lot...{$titles}...{$id}">
+    <fo:block id="lot...{$titles}...{$id}"
+        xsl:use-attribute-sets="toc.margin.properties">
       <xsl:choose>
         <xsl:when test="$titles='table'">
           <xsl:call-template name="list.of.tables.titlepage"/>
