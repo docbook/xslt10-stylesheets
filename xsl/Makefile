@@ -1,4 +1,4 @@
-# $Id$
+: Makefile 9654 2012-10-28 22:54:32Z stefan $
 
 include $(DOCBOOK_SVN)/buildtools/Makefile.incl
 include $(DOCBOOK_SVN)/releasetools/Variables.mk
@@ -52,7 +52,9 @@ DISTRIB_EXCLUDES = \
   .param.xmlid \
   .lib.dbkns \
   .lib.stripped \
-  .lib.xmlid
+  .lib.xmlid \
+  RELEASE-NOTES-TMP.xml \
+  svn-commit.tmp
 
 # value of DISTRIB_PACKAGES is a space-separated list of any
 # directory names that should be packaged as separate zip/tar
