@@ -634,6 +634,13 @@
   </xsl:param>
   <xsl:param name="target.elem" select="local-name(.)"/>
 
+  <!-- Referrer's local name, if any -->
+  <xsl:variable name="referrer.local.name">
+    <xsl:if test="$referrer">
+      <xsl:value-of select="local-name($referrer)"/>
+    </xsl:if>
+  </xsl:variable>
+
   <!-- parse xrefstyle to get parts -->
   <xsl:variable name="parts"
       select="substring-after(normalize-space($xrefstyle), 'select:')"/>
@@ -666,11 +673,11 @@
   <xsl:variable name="pagetype">
     <xsl:choose>
       <xsl:when test="$insert.olink.page.number = 'no' and
-                      local-name($referrer) = 'olink'">
+                      $referrer.local.name = 'olink'">
         <!-- suppress page numbers -->
       </xsl:when>
       <xsl:when test="$insert.xref.page.number = 'no' and
-                      local-name($referrer) != 'olink'">
+                      $referrer.local.name != 'olink'">
         <!-- suppress page numbers -->
       </xsl:when>
       <xsl:when test="contains($parts, 'nopage')">
@@ -695,7 +702,7 @@
     <xsl:choose>
       <xsl:when test="($olink.doctitle = 0 or
                        $olink.doctitle = 'no') and
-                      local-name($referrer) = 'olink'">
+                       $referrer.local.name = 'olink'">
         <!-- suppress docname -->
       </xsl:when>
       <xsl:when test="contains($parts, 'nodocname')">
@@ -716,7 +723,7 @@
         <xsl:call-template name="gentext">
           <xsl:with-param name="key">
             <xsl:choose>
-              <xsl:when test="local-name($referrer) = 'olink'">
+              <xsl:when test="$referrer.local.name = 'olink'">
                 <xsl:value-of select="$target.elem"/>
               </xsl:when>
               <xsl:otherwise>
@@ -734,7 +741,7 @@
           <xsl:with-param name="context" select="'xref-number'"/>
           <xsl:with-param name="name">
             <xsl:choose>
-              <xsl:when test="local-name($referrer) = 'olink'">
+              <xsl:when test="$referrer.local.name = 'olink'">
                 <xsl:value-of select="$target.elem"/>
               </xsl:when>
               <xsl:otherwise>
@@ -784,7 +791,7 @@
   
   <!-- special case: use regular xref template if just turning off page -->
   <xsl:if test="($pagetype = 'nopage' or $docnametype = 'nodocname')
-                  and local-name($referrer) != 'olink'
+                  and $referrer.local.name != 'olink'
                   and $labeltype = '' 
                   and $titletype = ''">
     <xsl:apply-templates select="." mode="object.xref.template">
@@ -822,7 +829,7 @@
   </xsl:if>
 
   <!-- Add reference to other document title -->
-  <xsl:if test="$docnametype != '' and local-name($referrer) = 'olink'">
+  <xsl:if test="$docnametype != '' and $referrer.local.name = 'olink'">
     <!-- Any separator should be in the gentext template -->
     <xsl:choose>
       <xsl:when test="$docnametype = 'docnamelong'">
