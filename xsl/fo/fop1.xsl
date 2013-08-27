@@ -107,18 +107,9 @@
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
-  <xsl:variable name="bookmark-label">
-    <xsl:apply-templates select="." mode="object.title.markup"/>
-  </xsl:variable>
-  <!--xsl:if test="$id != ''">
-    <fox:destination internal-destination="{$id}"/>
-  </xsl:if-->
-
-  <!-- Put the root element bookmark at the same level as its children -->
-  <!-- If the object is a set or book, generate a bookmark for the toc -->
 
   <xsl:choose>
-    <xsl:when test="self::index and $generate.index = 0"/>	
+    <xsl:when test="self::index and $generate.index = 0"/>
     <xsl:when test="parent::*">
       <fox:destination internal-destination="{$id}"/>
         <xsl:apply-templates select="*" mode="fop1.foxdest"/>
