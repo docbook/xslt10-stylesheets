@@ -95,31 +95,21 @@
 </xsl:template>
 
 <xsl:template match="*" mode="fop1.foxdest">
-  <xsl:apply-templates select="*" mode="fop1.foxdest"/>
-</xsl:template>
-
-<xsl:template match="set|book|part|reference|
-                     preface|chapter|appendix|article|topic
-                     |glossary|bibliography|index|setindex
-                     |refentry
-                     |sect1|sect2|sect3|sect4|sect5|section"
-              mode="fop1.foxdest">
   <xsl:variable name="id">
-    <xsl:call-template name="object.id"/>
+    <xsl:value-of select="(@id|@xml:id)[1]"/>
   </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="self::index and $generate.index = 0"/>
-    <xsl:when test="parent::*">
+    <xsl:when test="$id != ''">
       <fox:destination internal-destination="{$id}"/>
-        <xsl:apply-templates select="*" mode="fop1.foxdest"/>
+      <xsl:apply-templates select="*" mode="fop1.foxdest"/>
     </xsl:when>
     <xsl:otherwise>
-      <fox:destination internal-destination="{$id}"/>
       <xsl:apply-templates select="*" mode="fop1.foxdest"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
 <!-- Metadata support ("Document Properties" in Adobe Reader) -->
 <xsl:template name="fop1-document-information">
   <xsl:variable name="authors" select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
