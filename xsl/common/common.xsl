@@ -479,7 +479,7 @@ Defaults to the context node.</para>
   <!-- Formats a personal name. Handles corpauthor as a special case. -->
   <xsl:param name="node" select="."/>
 
-  <xsl:variable name="style">
+  <xsl:param name="style">
     <xsl:choose>
       <xsl:when test="$node/@role">
         <xsl:value-of select="$node/@role"/>
@@ -491,7 +491,7 @@ Defaults to the context node.</para>
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:variable>
+  </xsl:param>
 
   <xsl:choose>
     <!-- the personname element is a specialcase -->
