@@ -951,7 +951,7 @@
                         |processing-instruction()[preceding-sibling::step]"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="procedure.properties list.block.spacing">
-    <xsl:if test="./title and $placement = 'before'">
+    <xsl:if test="(title or blockinfo/title or info/title) and $placement = 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
       <xsl:call-template name="formal.object.heading"/>
@@ -965,7 +965,7 @@
       <xsl:apply-templates select="$steps"/>
     </fo:list-block>
 
-    <xsl:if test="./title and $placement != 'before'">
+    <xsl:if test="(title or blockinfo/title or info/title) and $placement != 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
       <xsl:call-template name="formal.object.heading"/>
