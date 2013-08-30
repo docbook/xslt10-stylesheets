@@ -237,8 +237,9 @@
 
   <xsl:variable name="title">
     <xsl:choose>
-      <xsl:when test="$document.element/title[1]">
-        <xsl:value-of select="$document.element/title[1]"/>
+      <xsl:when test="$document.element/title | $document.element/info/title">
+        <xsl:value-of 
+             select="($document.element/title | $document.element/info/title)[1]"/>
       </xsl:when>
       <xsl:otherwise>[could not find document title]</xsl:otherwise>
     </xsl:choose>
