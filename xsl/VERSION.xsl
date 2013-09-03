@@ -14,8 +14,8 @@
 <xsl:param name="sf-relid" select="0"/>
 
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
-<xsl:param name="PreviousRelease">1.78.0</xsl:param>
-<xsl:param name="PreviousReleaseRevision">9696</xsl:param>
+<xsl:param name="PreviousRelease">1.78.1</xsl:param>
+<xsl:param name="PreviousReleaseRevision">9732</xsl:param>
 <xsl:param name="Revision">$Revision$</xsl:param>
 <xsl:param name="VersionFileURL">$URL$</xsl:param>
 
