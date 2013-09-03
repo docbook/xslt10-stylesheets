@@ -167,9 +167,11 @@
 </xsl:template>
 
 <xsl:template match="tocentry|lotentry|tocdiv|tocfront|tocback">
-  <fo:block text-align-last="justify"
-            end-indent="2pc"
+  <fo:block end-indent="2pc"
             last-line-end-indent="-2pc">
+    <xsl:if test="@linkend or @pagenum">
+      <xsl:attribute name="text-align-last">justify</xsl:attribute>
+    </xsl:if>
     <fo:inline keep-with-next.within-line="always">
       <xsl:choose>
         <xsl:when test="@linkend">
@@ -223,19 +225,19 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="toc/title">
+<xsl:template match="toc/title | tocdiv/title">
   <fo:block font-weight="bold">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="toc/subtitle">
+<xsl:template match="toc/subtitle | tocdiv/subtitle">
   <fo:block font-weight="bold">
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="toc/titleabbrev">
+<xsl:template match="toc/titleabbrev |tocdiv/titleabbrev">
 </xsl:template>
 
 <!-- ==================================================================== -->

@@ -245,21 +245,21 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="toc/title">
+<xsl:template match="toc/title | tocdiv/title">
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
-<xsl:template match="toc/subtitle">
+<xsl:template match="toc/subtitle | tocdiv/subtitle">
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:apply-templates/>
   </div>
 </xsl:template>
 
-<xsl:template match="toc/titleabbrev">
+<xsl:template match="toc/titleabbrev | tocdiv/titleabbrev">
 </xsl:template>
 
 <!-- ==================================================================== -->
