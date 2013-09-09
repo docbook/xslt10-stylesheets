@@ -150,6 +150,35 @@
   </xsl:call-template>
 </xsl:template>
 
+<doc:pi name="dbfo_font-size" xmlns="">
+  <refpurpose>Specifies “font-size” for block verbatim elements</refpurpose>
+  <refdescription>
+    <para>Use the <tag class="xmlpi">dbfo font-size</tag> PI as a child of a
+      verbatim element (<tag>screen</tag>, <tag>programlisting</tag>, or
+      <tag>synopsis</tag>) to specify the “font-size”.</para>
+  </refdescription>
+  <refsynopsisdiv>
+    <synopsis><tag class="xmlpi">dbfo font-size="SIZE"</tag></synopsis>
+  </refsynopsisdiv>
+  <refparameter>
+    <variablelist>
+      <varlistentry><term>font-size="SIZE"</term>
+        <listitem>
+          <para>Specifies the font size (usually in points)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refparameter>
+  
+</doc:pi>
+<xsl:template name="pi.dbfo_font-size">
+  <xsl:param name="node" select="."/>
+  <xsl:call-template name="dbfo-attribute">
+    <xsl:with-param name="pis" select="$node/processing-instruction('dbfo')"/>
+    <xsl:with-param name="attribute" select="'font-size'"/>
+  </xsl:call-template>
+</xsl:template>
+
 <doc:pi name="dbfo_funcsynopsis-style" xmlns="">
   <refpurpose>Specifies presentation style for a funcsynopsis</refpurpose>
   <refdescription>
