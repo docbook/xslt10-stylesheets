@@ -2108,6 +2108,12 @@ engine does not support it.
 </xsl:template>
 
 <xsl:template match="*" mode="xrefstyle">
+  <xsl:param name="referrer" select="."/>
+  <xsl:param name="target"/>
+  <xsl:param name="olink.key"/>
+
+  <!-- normally uses the @xrefstyle attribute in xref, but could
+       be customized based on the target element type -->
   <xsl:choose>
     <xsl:when test="@role and not(@xrefstyle) 
                     and $use.role.as.xrefstyle != 0">

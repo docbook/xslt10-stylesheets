@@ -640,7 +640,10 @@
   <xsl:param name="olink.key" select="''"/>
   <xsl:param name="referrer" select="."/>
   <xsl:param name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="olink.key" select="$olink.key"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:param>
 
   <xsl:choose>
@@ -1071,10 +1074,14 @@
 <xsl:template name="olink.page.citation">
   <xsl:param name="olink.key" select="''"/>
   <xsl:param name="olink.lang" select="'en'"/>
+  <xsl:param name="referrer" select="."/>
   <xsl:param name="target.database"/>
   <xsl:param name="linkend" select="''"/>
   <xsl:param name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="olink.key" select="$olink.key"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:param>
 
   <xsl:variable name="targetdoc">
@@ -1122,11 +1129,15 @@
 </xsl:template>
 
 <xsl:template name="olink.document.citation">
+  <xsl:param name="referrer" select="."/>
   <xsl:param name="olink.key" select="''"/>
   <xsl:param name="olink.lang" select="'en'"/>
   <xsl:param name="target.database"/>
   <xsl:param name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="olink.key" select="$olink.key"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:param>
 
   <xsl:variable name="page">
@@ -1186,10 +1197,14 @@
 <xsl:template name="xref.page.citation">
   <!-- Determine if this xref should have a page citation.
        Context node is the xref or local olink element -->
+  <xsl:param name="referrer" select="."/>
   <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="target" select="key('id', $linkend)"/>
   <xsl:param name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="target" select="$target"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:param>
 
   <xsl:if test="not(starts-with(normalize-space($xrefstyle),'select:')

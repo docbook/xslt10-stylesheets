@@ -52,9 +52,13 @@
   <xsl:param name="xlink.targets" select="key('id',$xlink.idref)"/>
   <xsl:param name="linkend.targets" select="key('id',@linkend)"/>
   <xsl:param name="target" select="($xlink.targets | $linkend.targets)[1]"/>
+  <xsl:param name="referrer" select="."/>
 
   <xsl:param name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="target" select="$target"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:param>
 
   <xsl:call-template name="anchor"/>
@@ -132,8 +136,12 @@
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
+  <xsl:variable name="referrer" select="."/>
   <xsl:variable name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="target" select="$target"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:variable>
 
   <xsl:call-template name="check.id.unique">

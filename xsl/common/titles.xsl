@@ -736,11 +736,15 @@ title of the element. This does not include the label.
 </xsl:template>
 
 <xsl:template match="xref" mode="no.anchor.mode">
+  <xsl:variable name="referrer" select="."/>
   <xsl:variable name="targets" select="key('id',@linkend)|key('id',substring-after(@xlink:href,'#'))"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
   <xsl:variable name="xrefstyle">
-    <xsl:apply-templates select="." mode="xrefstyle"/>
+    <xsl:apply-templates select="." mode="xrefstyle">
+      <xsl:with-param name="target" select="$target"/>
+      <xsl:with-param name="referrer" select="$referrer"/>
+    </xsl:apply-templates>
   </xsl:variable>
   
   <xsl:call-template name="check.id.unique">
