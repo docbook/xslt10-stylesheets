@@ -98,7 +98,10 @@
   
         <xsl:when test="$target">
           <xsl:if test="not(parent::citation)">
-            <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+            <xsl:apply-templates select="$target" mode="xref-to-prefix">
+              <xsl:with-param name="referrer" select="."/>
+              <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            </xsl:apply-templates>
           </xsl:if>
   
           <xsl:apply-templates select="$target" mode="xref-to">
@@ -107,7 +110,10 @@
           </xsl:apply-templates>
   
           <xsl:if test="not(parent::citation)">
-            <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+            <xsl:apply-templates select="$target" mode="xref-to-suffix">
+              <xsl:with-param name="referrer" select="."/>
+              <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+            </xsl:apply-templates>
           </xsl:if>
         </xsl:when>
         <xsl:otherwise>
@@ -269,14 +275,21 @@
 
 <!--- ==================================================================== -->
 
-<xsl:template match="*" mode="xref-to-prefix"/>
-<xsl:template match="*" mode="xref-to-suffix"/>
+<xsl:template match="*" mode="xref-to-prefix">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
+</xsl:template>
+<xsl:template match="*" mode="xref-to-suffix">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
+  <xsl:param name="verbose" select="1"/>
+</xsl:template>
 
 <xsl:template match="*" mode="xref-to">
   <xsl:param name="referrer"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="verbose" select="1"/>
-
 
   <xsl:if test="$verbose != 0">
     <xsl:message>
