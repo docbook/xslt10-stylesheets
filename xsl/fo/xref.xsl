@@ -56,18 +56,9 @@
   <xsl:param name="linkend.targets" select="key('id',@linkend)"/>
   <xsl:param name="target" select="($xlink.targets | $linkend.targets)[1]"/>
   <xsl:param name="refelem" select="local-name($target)"/>
-
-  <xsl:variable name="xrefstyle">
-    <xsl:choose>
-      <xsl:when test="@role and not(@xrefstyle) 
-                      and $use.role.as.xrefstyle != 0">
-        <xsl:value-of select="@role"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@xrefstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:param name="xrefstyle">
+    <xsl:apply-templates select="." mode="xrefstyle"/>
+  </xsl:param>
 
   <xsl:variable name="content">
     <fo:inline xsl:use-attribute-sets="xref.properties">
@@ -166,6 +157,10 @@
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
 
+  <xsl:variable name="xrefstyle">
+    <xsl:apply-templates select="." mode="xrefstyle"/>
+  </xsl:variable>
+
   <xsl:call-template name="check.id.unique">
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
@@ -211,28 +206,25 @@
 
     <xsl:otherwise>
       <xsl:if test="not(parent::citation)">
-        <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
+        <xsl:apply-templates select="$target" mode="xref-to-prefix">
+          <xsl:with-param name="referrer" select="."/>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        </xsl:apply-templates>
       </xsl:if>
 
       <fo:basic-link internal-destination="{@linkend}"
                      xsl:use-attribute-sets="xref.properties">
         <xsl:apply-templates select="$target" mode="xref-to">
           <xsl:with-param name="referrer" select="."/>
-          <xsl:with-param name="xrefstyle">
-            <xsl:choose>
-              <xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
-                <xsl:value-of select="@role"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:value-of select="@xrefstyle"/>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:with-param>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         </xsl:apply-templates>
       </fo:basic-link>
 
       <xsl:if test="not(parent::citation)">
-        <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+        <xsl:apply-templates select="$target" mode="xref-to-suffix">
+          <xsl:with-param name="referrer" select="."/>
+          <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+        </xsl:apply-templates>
       </xsl:if>
     </xsl:otherwise>
   </xsl:choose>
@@ -445,10 +437,14 @@
 </xsl:template>
 
 <xsl:template match="biblioentry|bibliomixed" mode="xref-to-prefix">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
   <xsl:text>[</xsl:text>
 </xsl:template>
 
 <xsl:template match="biblioentry|bibliomixed" mode="xref-to-suffix">
+  <xsl:param name="referrer"/>
+  <xsl:param name="xrefstyle"/>
   <xsl:text>]</xsl:text>
 </xsl:template>
 
@@ -859,18 +855,9 @@
   <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="targets" select="key('id',$linkend)"/>
   <xsl:param name="target" select="$targets[1]"/>
-
-  <xsl:variable name="xrefstyle">
-    <xsl:choose>
-      <xsl:when test="@role and not(@xrefstyle) 
-                      and $use.role.as.xrefstyle != 0">
-        <xsl:value-of select="@role"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@xrefstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+  <xsl:param name="xrefstyle">
+    <xsl:apply-templates select="." mode="xrefstyle"/>
+  </xsl:param>
 
   <xsl:variable name="content">
     <fo:inline xsl:use-attribute-sets="xref.properties">

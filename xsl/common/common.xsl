@@ -2107,4 +2107,16 @@ engine does not support it.
   </xsl:choose>
 </xsl:template>
 
+<xsl:template match="*" mode="xrefstyle">
+  <xsl:choose>
+    <xsl:when test="@role and not(@xrefstyle) 
+                    and $use.role.as.xrefstyle != 0">
+      <xsl:value-of select="@role"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="@xrefstyle"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>

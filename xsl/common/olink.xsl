@@ -640,15 +640,7 @@
   <xsl:param name="olink.key" select="''"/>
   <xsl:param name="referrer" select="."/>
   <xsl:param name="xrefstyle">
-    <xsl:choose>
-      <xsl:when test="@role and not(@xrefstyle) 
-                      and $use.role.as.xrefstyle != 0">
-        <xsl:value-of select="@role"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@xrefstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="." mode="xrefstyle"/>
   </xsl:param>
 
   <xsl:choose>
@@ -1082,15 +1074,7 @@
   <xsl:param name="target.database"/>
   <xsl:param name="linkend" select="''"/>
   <xsl:param name="xrefstyle">
-    <xsl:choose>
-      <xsl:when test="@role and not(@xrefstyle) 
-                      and $use.role.as.xrefstyle != 0">
-        <xsl:value-of select="@role"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@xrefstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="." mode="xrefstyle"/>
   </xsl:param>
 
   <xsl:variable name="targetdoc">
@@ -1142,15 +1126,7 @@
   <xsl:param name="olink.lang" select="'en'"/>
   <xsl:param name="target.database"/>
   <xsl:param name="xrefstyle">
-    <xsl:choose>
-      <xsl:when test="@role and not(@xrefstyle) 
-                      and $use.role.as.xrefstyle != 0">
-        <xsl:value-of select="@role"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@xrefstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="." mode="xrefstyle"/>
   </xsl:param>
 
   <xsl:variable name="page">
@@ -1213,15 +1189,7 @@
   <xsl:param name="linkend" select="@linkend"/>
   <xsl:param name="target" select="key('id', $linkend)"/>
   <xsl:param name="xrefstyle">
-    <xsl:choose>
-      <xsl:when test="@role and not(@xrefstyle) 
-                      and $use.role.as.xrefstyle != 0">
-        <xsl:value-of select="@role"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="@xrefstyle"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:apply-templates select="." mode="xrefstyle"/>
   </xsl:param>
 
   <xsl:if test="not(starts-with(normalize-space($xrefstyle),'select:')

@@ -739,6 +739,9 @@ title of the element. This does not include the label.
   <xsl:variable name="targets" select="key('id',@linkend)|key('id',substring-after(@xlink:href,'#'))"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
+  <xsl:variable name="xrefstyle">
+    <xsl:apply-templates select="." mode="xrefstyle"/>
+  </xsl:variable>
   
   <xsl:call-template name="check.id.unique">
     <xsl:with-param name="linkend" select="@linkend"/>
@@ -785,24 +788,20 @@ title of the element. This does not include the label.
 	     a title. See bugs #1811721 and #1838136. -->
 	<xsl:when test="not(ancestor::*[@id = $target/@id] or ancestor::*[@xml:id = $target/@xml:id])">
 
-	  <xsl:apply-templates select="$target" mode="xref-to-prefix"/>
-	  
-	  <xsl:apply-templates select="$target" mode="xref-to">
-	    
+	  <xsl:apply-templates select="$target" mode="xref-to-prefix">
 	    <xsl:with-param name="referrer" select="."/>
-	    <xsl:with-param name="xrefstyle">
-	      <xsl:choose>
-		<xsl:when test="@role and not(@xrefstyle) and $use.role.as.xrefstyle != 0">
-		  <xsl:value-of select="@role"/>
-		</xsl:when>
-		<xsl:otherwise>
-		  <xsl:value-of select="@xrefstyle"/>
-		</xsl:otherwise>
-	      </xsl:choose>
-	    </xsl:with-param>
+	    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
 	  </xsl:apply-templates>
 	  
-	  <xsl:apply-templates select="$target" mode="xref-to-suffix"/>
+	  <xsl:apply-templates select="$target" mode="xref-to">
+	    <xsl:with-param name="referrer" select="."/>
+	    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+	  </xsl:apply-templates>
+	  
+	  <xsl:apply-templates select="$target" mode="xref-to-suffix">
+	    <xsl:with-param name="referrer" select="."/>
+	    <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
+	  </xsl:apply-templates>
 	</xsl:when>
 	
 	<xsl:otherwise>
