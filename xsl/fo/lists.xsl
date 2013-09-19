@@ -321,7 +321,7 @@
                                    local-name()='simpara' or 
                                    local-name()='formalpara']"
               priority="2">
-  <fo:block xsl:use-attribute-set="para.properties">
+  <fo:block xsl:use-attribute-sets="para.properties">
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </fo:block>
