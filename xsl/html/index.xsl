@@ -128,6 +128,13 @@
   </h3>
 </xsl:template>
 
+<xsl:template match="indexdiv/subtitle">
+  <h4>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:apply-templates/>
+  </h4>
+</xsl:template>
+
 <!-- ==================================================================== -->
 
 <xsl:template match="indexterm">
