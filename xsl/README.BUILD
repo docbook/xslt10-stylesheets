@@ -20,7 +20,7 @@ this file, if you are not a DocBook Project member and can't submit
 them directly). Note that the DocBook Wiki contains a page where
 you can contribute notes and/or post comments about the build.
 
-  http://wiki.docbook.org/topic/DocBookXslBuild
+  http://wiki.docbook.org/DocBookXslBuild
 
 Part 2 and the Parts following it provide how-instructions for
 performing tasks related to DocBook XSL Stylesheets releases.
