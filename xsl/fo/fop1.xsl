@@ -101,7 +101,8 @@
   </xsl:variable>
   <xsl:choose>
     <xsl:when test="self::index and $generate.index = 0"/>
-    <xsl:when test="$id != ''">
+    <!-- ID on the footnote is not passed to the output FO -->
+    <xsl:when test="not(self::footnote) and $id != ''">
       <fox:destination internal-destination="{$id}"/>
       <xsl:apply-templates select="*" mode="fop1.foxdest"/>
     </xsl:when>
