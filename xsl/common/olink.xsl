@@ -1212,7 +1212,8 @@
                          or contains($xrefstyle, 'Page')))
                 and ( $insert.xref.page.number = 'yes' 
                    or $insert.xref.page.number = '1')
-                or local-name($target) = 'para'">
+                or ( local-name($target) = 'para'
+                   and $insert.xref.page.number.para = 'yes')">
     <xsl:apply-templates select="$target" mode="page.citation">
       <xsl:with-param name="id" select="$linkend"/>
     </xsl:apply-templates>

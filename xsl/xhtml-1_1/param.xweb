@@ -206,6 +206,7 @@ $Id: param.xweb 7583 2007-12-03 17:02:33Z mzjn $
 <reference xml:id="xrefs"><title>Cross References</title>
 &collect.xref.targets;
 &insert.xref.page.number;
+&insert.xref.page.number.para;
 &use.role.as.xrefstyle;
 &xref.with.number.and.title;
 &xref.label-page.separator;
@@ -590,6 +591,7 @@ around all these parameters.</para>
 <src:fragref linkend="ignore.image.scaling.frag"/>
 <src:fragref linkend="inherit.keywords.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
+<src:fragref linkend="insert.xref.page.number.para.frag"/>
 <src:fragref linkend="javahelp.encoding.frag"/>
 <src:fragref linkend="keep.relative.image.uris.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>

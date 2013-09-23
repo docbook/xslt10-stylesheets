@@ -137,14 +137,18 @@
                   and contains($xrefstyle, 'nopage')">
       <!-- negative xrefstyle in instance turns it off -->
     </xsl:when>
+    <xsl:when test="starts-with(normalize-space($xrefstyle), 'template:')">
+      <!-- if page citation were wanted, it would've been in the template as %p -->
+    </xsl:when>
     <!-- positive xrefstyle already handles it -->
     <xsl:when test="not(starts-with(normalize-space($xrefstyle), 'select:') 
                   and (contains($xrefstyle, 'page')
                        or contains($xrefstyle, 'Page')))
                   and ( $insert.xref.page.number = 'yes' 
                      or $insert.xref.page.number = '1')
-                  or (local-name($target) = 'para' and
-		      $xrefstyle = '')">
+                  or (local-name($target) = 'para'
+                     and $xrefstyle = ''
+                     and $insert.xref.page.number.para = 'yes')">
       <xsl:apply-templates select="$target" mode="page.citation">
         <xsl:with-param name="id" select="$target/@id|$target/@xml:id"/>
       </xsl:apply-templates>
@@ -937,8 +941,7 @@
                   and (contains($xrefstyle, 'page')
                        or contains($xrefstyle, 'Page')))
                   or ( $insert.link.page.number = 'yes' 
-                     or $insert.link.page.number = '1')
-                  or local-name($target) = 'para'">
+                     or $insert.link.page.number = '1')">
       <xsl:apply-templates select="$target" mode="page.citation">
         <xsl:with-param name="id" select="$linkend"/>
       </xsl:apply-templates>

@@ -221,6 +221,7 @@ $Id$
 <reference xml:id="xrefs"><title>Cross References</title>
 &collect.xref.targets;
 &insert.xref.page.number;
+&insert.xref.page.number.para;
 &use.role.as.xrefstyle;
 &xref.with.number.and.title;
 &xref.label-page.separator;
@@ -633,6 +634,7 @@ around all these parameters.</para>
 <src:fragref linkend="insert.olink.page.number.frag"/>
 <src:fragref linkend="insert.olink.pdf.frag.frag"/>
 <src:fragref linkend="insert.xref.page.number.frag"/>
+<src:fragref linkend="insert.xref.page.number.para.frag"/>
 <src:fragref linkend="javahelp.encoding.frag"/>
 <src:fragref linkend="keep.relative.image.uris.frag"/>
 <src:fragref linkend="l10n.gentext.default.language.frag"/>

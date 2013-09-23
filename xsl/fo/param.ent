@@ -110,6 +110,7 @@
 <!ENTITY informal.object.properties SYSTEM "../params/informal.object.properties.xml">
 <!ENTITY index.preferred.page.properties SYSTEM "../params/index.preferred.page.properties.xml">
 <!ENTITY insert.xref.page.number SYSTEM "../params/insert.xref.page.number.xml">
+<!ENTITY insert.xref.page.number.para SYSTEM "../params/insert.xref.page.number.para.xml">
 <!ENTITY itemizedlist.properties SYSTEM "../params/itemizedlist.properties.xml">
 <!ENTITY itemizedlist.label.properties SYSTEM "../params/itemizedlist.label.properties.xml">
 <!ENTITY label.from.part SYSTEM "../params/label.from.part.xml">
