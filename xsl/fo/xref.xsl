@@ -1178,14 +1178,10 @@
       </xsl:variable>
     
       <xsl:if test="string-length($olink.key) = 0">
-        <xsl:message>
-          <xsl:text>Error: unresolved olink: </xsl:text>
-          <xsl:text>targetdoc/targetptr = '</xsl:text>
-          <xsl:value-of select="$targetdoc.att"/>
-          <xsl:text>/</xsl:text>
-          <xsl:value-of select="$targetptr.att"/>
-          <xsl:text>'.</xsl:text>
-        </xsl:message>
+        <xsl:call-template name="olink.unresolved">
+          <xsl:with-param name="targetdoc.att" select="$targetdoc.att"/>
+          <xsl:with-param name="targetptr.att" select="$targetptr.att"/>
+        </xsl:call-template>
       </xsl:if>
 
       <xsl:variable name="href">
@@ -1557,11 +1553,13 @@
       <fo:page-number-citation ref-id="{$linkend}"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:message>
-        <xsl:text>Olink error: no page number linkend for local olink '</xsl:text>
-        <xsl:value-of select="$olink.key"/>
-        <xsl:text>'</xsl:text>
-      </xsl:message>
+      <xsl:call-template name="olink.error">
+        <xsl:with-param name="message">
+          <xsl:text>no page number linkend for local olink '</xsl:text>
+          <xsl:value-of select="$olink.key"/>
+          <xsl:text>'</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>

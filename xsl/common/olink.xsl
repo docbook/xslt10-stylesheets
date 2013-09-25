@@ -18,6 +18,40 @@
          use="concat(ancestor::document/@targetdoc, '/',
                      @targetptr, '/', ancestor::document/@lang)" />
 
+<!-- Customize this template if you want olink errors to be fatal -->
+<xsl:template name="olink.error">
+  <xsl:param name="message"/>
+
+  <xsl:message>
+    <xsl:text>Olink error: </xsl:text>
+    <xsl:value-of select="$message"/>
+  </xsl:message>
+</xsl:template>
+
+<!-- Customize this template if you want olink warnings to be fatal -->
+<xsl:template name="olink.warning">
+  <xsl:param name="message"/>
+
+  <xsl:message>
+    <xsl:text>Olink warning: </xsl:text>
+    <xsl:value-of select="$message"/>
+  </xsl:message>
+</xsl:template>
+
+<!-- Customize this template if you want unresolved olink pointers to be fatal -->
+<xsl:template name="olink.unresolved">
+  <xsl:param name="targetdoc.att"/>
+  <xsl:param name="targetptr.att"/>
+
+  <xsl:message>
+    <xsl:text>Error: unresolved olink: targetdoc/targetptr = '</xsl:text>
+    <xsl:value-of select="$targetdoc.att"/>
+    <xsl:text>/</xsl:text>
+    <xsl:value-of select="$targetptr.att"/>
+    <xsl:text>'.</xsl:text>
+  </xsl:message>
+</xsl:template>
+
 <!-- Return filename of database -->
 <xsl:template name="select.target.database">
   <xsl:param name="targetdoc.att" select="''"/>
@@ -50,27 +84,33 @@
   <xsl:choose>
     <!-- Was the database document parameter not set? -->
     <xsl:when test="$target.database.document = ''">
-      <xsl:message>
-        <xsl:text>Olinks not processed: must specify a </xsl:text>
-        <xsl:text>$target.database.document parameter&#10;</xsl:text>
-        <xsl:text>when using olinks with targetdoc </xsl:text>
-        <xsl:text>and targetptr attributes.</xsl:text>
-      </xsl:message>
+      <xsl:call-template name="olink.error">
+        <xsl:with-param name="message">
+          <xsl:text>olinks not processed: must specify a </xsl:text>
+          <xsl:text>$target.database.document parameter&#10;</xsl:text>
+          <xsl:text>when using olinks with targetdoc </xsl:text>
+          <xsl:text>and targetptr attributes.</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <xsl:when test="namespace-uri($target.database/*) != ''">
-      <xsl:message>
-        <xsl:text>Olink error: the targetset element and children in '</xsl:text>
-        <xsl:value-of select="$target.database.document"/>
-        <xsl:text>' should not be in any namespace.</xsl:text>
-      </xsl:message>
+      <xsl:call-template name="olink.error">
+        <xsl:with-param name="message">
+          <xsl:text>the targetset element and children in '</xsl:text>
+          <xsl:value-of select="$target.database.document"/>
+          <xsl:text>' should not be in any namespace.</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <!-- Did it not open? Should be a targetset element -->
     <xsl:when test="not($target.database/*)">
-      <xsl:message>
-        <xsl:text>Olink error: could not open target database '</xsl:text>
-        <xsl:value-of select="$target.database.filename"/>
-        <xsl:text>'.</xsl:text>
-      </xsl:message>
+      <xsl:call-template name="olink.error">
+        <xsl:with-param name="message">
+          <xsl:text>could not open target database '</xsl:text>
+          <xsl:value-of select="$target.database.filename"/>
+          <xsl:text>'.</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="$target.database.filename"/>
@@ -504,23 +544,27 @@
                           select="key('targetdoc-key', $current.docid)[1]/parent::dir"/>
                       <xsl:with-param name="targetdoc" select="$targetdoc"/>
                     </xsl:call-template>
-                  </xsl:for-each >
+                  </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:message>
-                    <xsl:text>Olink error: cannot compute relative </xsl:text>
-                    <xsl:text>sitemap path because $current.docid '</xsl:text>
-                    <xsl:value-of select="$current.docid"/>
-                    <xsl:text>' not found in target database.</xsl:text>
-                  </xsl:message>
+                  <xsl:call-template name="olink.error">
+                    <xsl:with-param name="message">
+                      <xsl:text>cannot compute relative </xsl:text>
+                      <xsl:text>sitemap path because $current.docid '</xsl:text>
+                      <xsl:value-of select="$current.docid"/>
+                      <xsl:text>' not found in target database.</xsl:text>
+                    </xsl:with-param>
+                  </xsl:call-template>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:message>
-                <xsl:text>Olink warning: cannot compute relative </xsl:text>
-                <xsl:text>sitemap path without $current.docid parameter</xsl:text>
-              </xsl:message>
+              <xsl:call-template name="olink.error">
+                <xsl:with-param name="message">
+                  <xsl:text>cannot compute relative </xsl:text>
+                  <xsl:text>sitemap path without $current.docid parameter</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose> 
           <!-- In either case, add baseuri from its document entry-->
@@ -808,63 +852,71 @@
                     <xsl:value-of 
                             select="$xref-number-and-title-context"/>
                     <xsl:if test="$olink.debug">
-                      <xsl:message>
-                        <xsl:text>Olink error: no gentext template</xsl:text>
-                        <xsl:text> exists for xrefstyle '</xsl:text>
-                        <xsl:value-of select="$xrefstyle"/>
-                        <xsl:text>' for element '</xsl:text>
-                        <xsl:value-of select="$target.elem"/>
-                        <xsl:text>' in language '</xsl:text>
-                        <xsl:value-of select="$lang"/>
-                        <xsl:text>' in context 'xref-number-and-title</xsl:text>
-                        <xsl:text>'. Using template without @style.</xsl:text>
-                      </xsl:message>
+                      <xsl:call-template name="olink.warning">
+                        <xsl:with-param name="message">
+                          <xsl:text>no gentext template</xsl:text>
+                          <xsl:text> exists for xrefstyle '</xsl:text>
+                          <xsl:value-of select="$xrefstyle"/>
+                          <xsl:text>' for element '</xsl:text>
+                          <xsl:value-of select="$target.elem"/>
+                          <xsl:text>' in language '</xsl:text>
+                          <xsl:value-of select="$lang"/>
+                          <xsl:text>' in context 'xref-number-and-title</xsl:text>
+                          <xsl:text>'. Using template without @style.</xsl:text>
+                        </xsl:with-param>
+                      </xsl:call-template>
                     </xsl:if>
                   </xsl:when>
                   <xsl:when test="$xref-number-context != '' and
                                  $xref.number != ''">
                     <xsl:value-of select="$xref-number-context"/>
                     <xsl:if test="$olink.debug">
-                      <xsl:message>
-                        <xsl:text>Olink error: no gentext template</xsl:text>
-                        <xsl:text> exists for xrefstyle '</xsl:text>
-                        <xsl:value-of select="$xrefstyle"/>
-                        <xsl:text>' for element '</xsl:text>
-                        <xsl:value-of select="$target.elem"/>
-                        <xsl:text>' in language '</xsl:text>
-                        <xsl:value-of select="$lang"/>
-                        <xsl:text>' in context 'xref-number</xsl:text>
-                        <xsl:text>'. Using template without @style.</xsl:text>
-                      </xsl:message>
+                      <xsl:call-template name="olink.warning">
+                        <xsl:with-param name="message">
+                          <xsl:text>no gentext template</xsl:text>
+                          <xsl:text> exists for xrefstyle '</xsl:text>
+                          <xsl:value-of select="$xrefstyle"/>
+                          <xsl:text>' for element '</xsl:text>
+                          <xsl:value-of select="$target.elem"/>
+                          <xsl:text>' in language '</xsl:text>
+                          <xsl:value-of select="$lang"/>
+                          <xsl:text>' in context 'xref-number</xsl:text>
+                          <xsl:text>'. Using template without @style.</xsl:text>
+                        </xsl:with-param>
+                      </xsl:call-template>
                     </xsl:if>
                   </xsl:when>
                   <xsl:when test="$xref-context != ''">
                     <xsl:value-of select="$xref-context"/>
                     <xsl:if test="$olink.debug">
-                      <xsl:message>
-                        <xsl:text>Olink error: no gentext template</xsl:text>
+                      <xsl:call-template name="olink.warning">
+                        <xsl:with-param name="message">
+                          <xsl:text>no gentext template</xsl:text>
+                          <xsl:text> exists for xrefstyle '</xsl:text>
+                          <xsl:value-of select="$xrefstyle"/>
+                          <xsl:text>' for element '</xsl:text>
+                          <xsl:value-of select="$target.elem"/>
+                          <xsl:text>' in language '</xsl:text>
+                          <xsl:value-of select="$lang"/>
+                          <xsl:text>' in context 'xref</xsl:text>
+                          <xsl:text>'. Using template without @style.</xsl:text>
+                        </xsl:with-param>
+                      </xsl:call-template>
+                    </xsl:if>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:call-template name="olink.warning">
+                      <xsl:with-param name="message">
+                        <xsl:text>no gentext template</xsl:text>
                         <xsl:text> exists for xrefstyle '</xsl:text>
                         <xsl:value-of select="$xrefstyle"/>
                         <xsl:text>' for element '</xsl:text>
                         <xsl:value-of select="$target.elem"/>
                         <xsl:text>' in language '</xsl:text>
                         <xsl:value-of select="$lang"/>
-                        <xsl:text>' in context 'xref</xsl:text>
-                        <xsl:text>'. Using template without @style.</xsl:text>
-                      </xsl:message>
-                    </xsl:if>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:message>
-                      <xsl:text>Olink error: no gentext template</xsl:text>
-                      <xsl:text> exists for xrefstyle '</xsl:text>
-                      <xsl:value-of select="$xrefstyle"/>
-                      <xsl:text>' for element '</xsl:text>
-                      <xsl:value-of select="$target.elem"/>
-                      <xsl:text>' in language '</xsl:text>
-                      <xsl:value-of select="$lang"/>
-                      <xsl:text>'. Trying '%t'.</xsl:text>
-                    </xsl:message>
+                        <xsl:text>'. Trying '%t'.</xsl:text>
+                      </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:value-of select="'%t'"/>
                   </xsl:otherwise>
                 </xsl:choose>
@@ -993,24 +1045,26 @@
           <xsl:copy-of select="$xref.text"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>
-            <xsl:text>Olink error: no generated text for </xsl:text>
-            <xsl:text>targetdoc/targetptr/lang = '</xsl:text>
-            <xsl:value-of select="$olink.key"/>
-            <xsl:text>'.</xsl:text>
-          </xsl:message>
+          <xsl:call-template name="olink.error">
+            <xsl:with-param name="message">
+              <xsl:text>no generated text for targetdoc/targetptr/lang = '</xsl:text>
+              <xsl:value-of select="$olink.key"/>
+              <xsl:text>'.</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
           <xsl:text>????</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:if test="$olink.key != ''">
-        <xsl:message>
-          <xsl:text>Olink error: no generated text for </xsl:text>
-          <xsl:text>targetdoc/targetptr/lang = '</xsl:text>
-          <xsl:value-of select="$olink.key"/>
-          <xsl:text>'.</xsl:text>
-        </xsl:message>
+        <xsl:call-template name="olink.error">
+          <xsl:with-param name="message">
+            <xsl:text>no generated text for targetdoc/targetptr/lang = '</xsl:text>
+            <xsl:value-of select="$olink.key"/>
+            <xsl:text>'.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
       </xsl:if>
       <xsl:text>????</xsl:text>
     </xsl:otherwise>
@@ -1043,7 +1097,13 @@
     </xsl:when>
     <!-- Have we reached the top without a match? -->
     <xsl:when test="local-name($dirnode) != 'dir'" >
-        <xsl:message>Olink error: cannot locate targetdoc <xsl:value-of select="$targetdoc"/> in sitemap</xsl:message>
+      <xsl:call-template name="olink.error">
+        <xsl:with-param name="message">
+          <xsl:text>cannot locate targetdoc </xsl:text>
+          <xsl:value-of select="$targetdoc"/>
+          <xsl:text> in sitemap</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
     </xsl:when>
     <!-- Is the target in a descendant? -->
     <xsl:when test="$dirnode/descendant::document/@targetdoc = $targetdoc">
