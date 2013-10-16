@@ -797,6 +797,7 @@
               <xsl:with-param name="spans" select="$spans"/>
             </xsl:call-template>
           </xsl:with-param>
+          <xsl:with-param name="browserows" select="$browserows"/>
         </xsl:apply-templates>
       </xsl:if>
     </xsl:otherwise>
