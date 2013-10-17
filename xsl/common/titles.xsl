@@ -694,7 +694,15 @@ title of the element. This does not include the label.
 </xsl:template>
 
 <xsl:template match="ulink" mode="no.anchor.mode">
-  <xsl:apply-templates/>
+  <xsl:param name="url" select="@url"/>
+  <xsl:choose>
+    <xsl:when test="count(child::node())=0">
+      <xsl:value-of select="$url"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="link" mode="no.anchor.mode">
