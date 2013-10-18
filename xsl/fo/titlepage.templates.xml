@@ -13,9 +13,10 @@
 <!ENTITY hsize5space "18.6624pt"> <!-- 0.75 * hsize5 -->
 ]>
 <t:templates xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
-	     xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
+             xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
              xmlns:fo="http://www.w3.org/1999/XSL/Format"
-             xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+             xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+             t:copy-namespaces="fo">
 
 <!-- ********************************************************************
      $Id$
