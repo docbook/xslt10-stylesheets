@@ -188,10 +188,7 @@
     <xsl:choose>
       <xsl:when test="@linkend">
         <fo:inline keep-together.within-line="always">
-          <xsl:text> </xsl:text>
-          <fo:leader leader-pattern="dots"
-                     keep-with-next.within-line="always"/>
-          <xsl:text> </xsl:text>
+          <fo:leader xsl:use-attribute-sets="toc.leader.properties"/>
           <fo:basic-link internal-destination="{@linkend}">
             <xsl:choose>
               <xsl:when test="@pagenum">
@@ -206,21 +203,10 @@
       </xsl:when>
       <xsl:when test="@pagenum">
         <fo:inline keep-together.within-line="always">
-          <xsl:text> </xsl:text>
-          <fo:leader leader-pattern="dots"
-                     keep-with-next.within-line="always"/>
-          <xsl:text> </xsl:text>
+          <fo:leader xsl:use-attribute-sets="toc.leader.properties"/>
           <xsl:value-of select="@pagenum"/>
         </fo:inline>
       </xsl:when>
-      <xsl:otherwise>
-        <!-- just the leaders, what else can I do? -->
-        <fo:inline keep-together.within-line="always">
-          <xsl:text> </xsl:text>
-          <fo:leader leader-pattern="space"
-                     keep-with-next.within-line="always"/>
-        </fo:inline>
-      </xsl:otherwise>
     </xsl:choose>
   </fo:block>
 </xsl:template>

@@ -86,6 +86,7 @@ $Id$
 &toc.max.depth;
 &toc.indent.width;
 &toc.line.properties;
+&toc.leader.properties;
 &toc.margin.properties;
 &bridgehead.in.toc;
 &simplesect.in.toc;
@@ -893,6 +894,7 @@ around all these parameters.</para>
 <src:fragref linkend="title.margin.left.frag"/>
 <src:fragref linkend="toc.indent.width.frag"/>
 <src:fragref linkend="toc.line.properties.frag"/>
+<src:fragref linkend="toc.leader.properties.frag"/>
 <src:fragref linkend="toc.margin.properties.frag"/>
 <src:fragref linkend="toc.max.depth.frag"/>
 <src:fragref linkend="toc.section.depth.frag"/>

@@ -214,6 +214,7 @@
 <!ENTITY title.font.family SYSTEM "../params/title.font.family.xml">
 <!ENTITY title.margin.left SYSTEM "../params/title.margin.left.xml">
 <!ENTITY toc.indent.width SYSTEM "../params/toc.indent.width.xml">
+<!ENTITY toc.leader.properties SYSTEM "../params/toc.leader.properties.xml">
 <!ENTITY toc.margin.properties SYSTEM "../params/toc.margin.properties.xml">
 <!ENTITY toc.max.depth SYSTEM "../params/toc.max.depth.xml">
 <!ENTITY toc.section.depth SYSTEM "../params/toc.section.depth.xml">

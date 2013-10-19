@@ -207,12 +207,7 @@
       </fo:basic-link>
     </fo:inline>
     <fo:inline keep-together.within-line="always">
-      <xsl:text> </xsl:text>
-      <fo:leader leader-pattern="dots"
-                 leader-pattern-width="3pt"
-                 leader-alignment="reference-area"
-                 keep-with-next.within-line="always"/>
-      <xsl:text> </xsl:text> 
+      <fo:leader xsl:use-attribute-sets="toc.leader.properties"/>
       <fo:basic-link internal-destination="{$id}">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
@@ -357,12 +352,7 @@
       </fo:basic-link>
     </fo:inline>
     <fo:inline keep-together.within-line="always">
-      <xsl:text> </xsl:text>
-      <fo:leader leader-pattern="dots"
-                 leader-pattern-width="3pt"
-                 leader-alignment="reference-area"
-                 keep-with-next.within-line="always"/>
-      <xsl:text> </xsl:text> 
+      <fo:leader xsl:use-attribute-sets="toc.leader.properties"/>
       <fo:basic-link internal-destination="{$id}">
         <fo:page-number-citation ref-id="{$id}"/>
       </fo:basic-link>
