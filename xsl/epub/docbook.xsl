@@ -9,11 +9,12 @@
   xmlns:opf="http://www.idpf.org/2007/opf"
   xmlns:stext="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.TextFactory"
   xmlns:str="http://exslt.org/strings"
+  xmlns:date="http://exslt.org/dates-and-times"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
 
-  extension-element-prefixes="stext xtext"
-  exclude-result-prefixes="exsl db dc h ncx ng opf stext str xtext"
+  extension-element-prefixes="date stext xtext"
+  exclude-result-prefixes="exsl date db dc h ncx ng opf stext str xtext"
 
   version="1.0">
 
@@ -602,7 +603,28 @@
 
   <xsl:template match="date" mode="opf.metadata">
     <xsl:element name="dc:date">
-      <xsl:value-of select="normalize-space(string(.))"/>
+      <xsl:choose>
+        <xsl:when test="processing-instruction('dbtimestamp')">
+          <xsl:call-template name="datetime.format">
+            <xsl:with-param name="date">
+              <xsl:choose>
+                <xsl:when test="function-available('date:date-time')">
+                  <xsl:value-of select="date:date-time()"/>
+                </xsl:when>
+                <xsl:when test="function-available('date:dateTime')">
+                  <!-- Xalan quirk -->
+                  <xsl:value-of select="date:dateTime()"/>
+                </xsl:when>
+              </xsl:choose>
+            </xsl:with-param>
+            <!-- We need an ISO date -->
+            <xsl:with-param name="format">Y-m-d</xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="normalize-space(string(.))"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:element>
   </xsl:template>
 
