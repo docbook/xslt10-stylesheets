@@ -1244,9 +1244,17 @@
         <xsl:when test="$href != ''">
           <xsl:choose>
             <xsl:when test="$fop1.extensions != 0">
-              <xsl:variable name="mybeg" select="substring-before($href,'#')"/>
-              <xsl:variable name="myend" select="substring-after($href,'#')"/>
-              <fo:basic-link external-destination="url({concat($mybeg,'#dest=',$myend)})"
+              <xsl:variable name="href.mangled">
+                <xsl:choose>
+                  <xsl:when test="contains($href, '#')">
+                    <xsl:value-of select="concat(substring-before($href,'#'), '#dest=', substring-after($href,'#'))"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="$href"/>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
+              <fo:basic-link external-destination="{$href.mangled}"
                              xsl:use-attribute-sets="olink.properties">
                 <xsl:copy-of select="$hottext"/>
               </fo:basic-link>
