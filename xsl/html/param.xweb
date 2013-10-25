@@ -293,6 +293,7 @@ $Id$
 &use.embed.for.svg;
 &make.graphic.viewport;
 &preferred.mediaobject.role;
+&link.to.self.for.mediaobject;
 &use.role.for.mediaobject;
 &ignore.image.scaling;
 </reference>

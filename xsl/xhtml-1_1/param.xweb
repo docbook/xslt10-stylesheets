@@ -276,6 +276,7 @@ $Id: param.xweb 7583 2007-12-03 17:02:33Z mzjn $
 &use.embed.for.svg;
 &make.graphic.viewport;
 &preferred.mediaobject.role;
+&link.to.self.for.mediaobject;
 &use.role.for.mediaobject;
 &ignore.image.scaling;
 </reference>

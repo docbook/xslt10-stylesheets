@@ -147,6 +147,7 @@
 <!ENTITY linenumbering.separator SYSTEM "../params/linenumbering.separator.xml">
 <!ENTITY linenumbering.width SYSTEM "../params/linenumbering.width.xml">
 <!ENTITY link.mailto.url SYSTEM "../params/link.mailto.url.xml">
+<!ENTITY link.to.self.for.mediaobject SYSTEM "../params/link.to.self.for.mediaobject.xml">
 <!ENTITY make.graphic.viewport SYSTEM "../params/make.graphic.viewport.xml">
 <!ENTITY make.single.year.ranges SYSTEM "../params/make.single.year.ranges.xml">
 <!ENTITY make.valid.html SYSTEM "../params/make.valid.html.xml">

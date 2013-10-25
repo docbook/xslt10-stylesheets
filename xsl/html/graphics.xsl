@@ -609,6 +609,18 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
         </object>
       </xsl:when>
       <xsl:otherwise>
+        <xsl:variable name="src">
+          <xsl:choose>
+             <xsl:when test="$img.src.path != '' and
+                             $tag = 'img' and
+                             not(starts-with($output_filename, '/')) and
+                             not(contains($output_filename, '://'))">
+               <xsl:value-of select="$img.src.path"/>
+             </xsl:when>
+           </xsl:choose>
+           <xsl:value-of select="$output_filename"/>
+        </xsl:variable>
+        <xsl:variable name="imgcontents">
         <xsl:element name="{$tag}">
          <xsl:if test="$tag = 'img' and ../../self::imageobjectco">
            <xsl:variable name="mapname">
@@ -635,15 +647,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
          </xsl:if>
 
           <xsl:attribute name="src">
-           <xsl:choose>
-             <xsl:when test="$img.src.path != '' and
-                           $tag = 'img' and
-                             not(starts-with($output_filename, '/')) and
-                           not(contains($output_filename, '://'))">
-               <xsl:value-of select="$img.src.path"/>
-             </xsl:when>
-           </xsl:choose>
-            <xsl:value-of select="$output_filename"/>
+            <xsl:value-of select="$src"/>
           </xsl:attribute>
 
           <xsl:if test="@align">
@@ -681,6 +685,18 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             <xsl:with-param name="viewport" select="$viewport"/>
           </xsl:call-template>
         </xsl:element>
+        </xsl:variable>
+        
+        <xsl:choose>
+          <xsl:when test="$link.to.self.for.mediaobject = 0">
+            <xsl:copy-of select="$imgcontents"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <a href="{$src}">
+              <xsl:copy-of select="$imgcontents"/>
+            </a>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
