@@ -1307,6 +1307,9 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             <xsl:when test="ancestor::mediaobject/alt">
               <xsl:apply-templates select="ancestor::mediaobject/alt"/>
             </xsl:when>
+            <xsl:when test="ancestor::inlinemediaobject/alt">
+              <xsl:apply-templates select="ancestor::inlinemediaobject/alt"/>
+            </xsl:when>
             <xsl:otherwise>
               <xsl:apply-templates select="$phrases[not(@role) or @role!='tex'][1]"/>
             </xsl:otherwise>
@@ -1453,6 +1456,10 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <!-- ==================================================================== -->
 
+<xsl:template match="inlinemediaobject/alt">
+  <xsl:apply-templates/>
+</xsl:template>
+  
 <xsl:template match="mediaobject/alt">
   <xsl:apply-templates/>
 </xsl:template>
