@@ -28,17 +28,24 @@
       <xsl:call-template name="id.attribute">
         <xsl:with-param name="conditional" select="0"/>
       </xsl:call-template>
-      <xsl:if test="..//processing-instruction('dbcmdlist')">
-        <!-- * Placing a dbcmdlist PI as a child of a particular element -->
-        <!-- * creates a hyperlinked list of all cmdsynopsis instances -->
-        <!-- * that are descendants of that element; so for any -->
-        <!-- * cmdsynopsis that is a descendant of an element containing -->
-        <!-- * a dbcmdlist PI, we need to output an a@id instance so that -->
-        <!-- * we will have something to link to -->
-        <xsl:call-template name="anchor">
-          <xsl:with-param name="conditional" select="0"/>
-        </xsl:call-template>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="..//processing-instruction('dbcmdlist')">
+          <!-- * Placing a dbcmdlist PI as a child of a particular element -->
+          <!-- * creates a hyperlinked list of all cmdsynopsis instances -->
+          <!-- * that are descendants of that element; so for any -->
+          <!-- * cmdsynopsis that is a descendant of an element containing -->
+          <!-- * a dbcmdlist PI, we need to output an a@id instance so that -->
+          <!-- * we will have something to link to -->
+          <xsl:call-template name="anchor">
+            <xsl:with-param name="conditional" select="0"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="anchor">
+            <xsl:with-param name="conditional" select="1"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:apply-templates/>
     </p>
   </div>
