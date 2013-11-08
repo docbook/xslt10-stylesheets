@@ -565,7 +565,7 @@
 
   <xsl:variable name="omittitles.boolean">
     <xsl:choose>
-      <xsl:when test="$omittitles = 'yes' or $omittitles = 'true' or omittitles = '1'">
+      <xsl:when test="$omittitles = 'yes' or $omittitles = 'true' or $omittitles = '1'">
         <xsl:value-of select="1"/>
       </xsl:when>
       <xsl:otherwise>
