@@ -53,9 +53,11 @@ subdirectory that will contain the .xhtml files and
 the epub package files.  Here is an example using xsltproc:
 
 xsltproc \
-  --stringparam base.dir ebook1/OEBPS/  \
+  --stringparam base.dir ebook1/  \
   epub3/chunk.xsl \
   mybook.xml
+
+Make sure you don't include the OEBPS directory in base.dir.
 
 After processing a document with this setting, you should find
 the following output:
