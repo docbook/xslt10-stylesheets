@@ -239,11 +239,26 @@
 <gentext key="lowercase.alpha" text="абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"/>
 <gentext key="uppercase.alpha" text="АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ"/>
 
-<dingbat key="startquote" text="“"/>
-<dingbat key="endquote" text="”"/>
-<dingbat key="nestedstartquote" text="‘"/>
-<dingbat key="nestedendquote" text="’"/>
+<dingbat key="startquote" text="«"/>
+<dingbat key="endquote" text="»"/>
+<dingbat key="nestedstartquote" text="„"/>
+<dingbat key="nestedendquote" text="“"/>
 <dingbat key="bullet" text="•"/>
+
+<context name="webhelp">
+  <template name="Search">Пошук</template>
+  <template name="Enter_a_term_and_click">Введіть критерій пошуку і натисніть </template>
+  <template name="Go">Шукати</template>
+  <template name="to_perform_a_search">, щоб розпочати пошук.</template>
+  <template name="txt_filesfound">Результати</template>
+  <template name="txt_enter_at_least_1_char">Вам слід ввести принаймні один символ</template>
+  <template name="txt_browser_not_supported">У вашій програмі для перегляду вимкнено JavaScript. Будь ласка, увімкніть JavaScript, щоб мати змогу скористатися усіма можливостями цього сайта.</template>
+  <template name="txt_please_wait">Зачекайте. Виконуємо пошук...</template>
+  <template name="txt_results_for">Результати для: </template>
+  <template name="TableofContents">Вміст</template>
+  <template name="HighlightButton">Увімкнути або вимкнути підсвічування знайдених відповідників</template>
+  <template name="Your_search_returned_no_results">Відповідників не знайдено.</template>
+</context>
 
 <context name="styles">
 
