@@ -246,6 +246,22 @@
 <dingbat key="nestedendquote" text="“"/>
 <dingbat key="bullet" text="•"/>
 
+<!-- WebHelp -->
+<context name="webhelp">
+  <template name="Search">Поиск</template>
+  <template name="Enter_a_term_and_click">Введите запрос и нажмите </template>
+  <template name="Go">Искать</template>
+  <template name="to_perform_a_search">, чтобы выполнить поиск.</template>
+  <template name="txt_filesfound">Результаты</template>
+  <template name="txt_enter_at_least_1_char">Вам следует ввести хотя бы один символ.</template>
+  <template name="txt_browser_not_supported">В вашем браузере выключено использование JavaScript. Пожалуйста, включите JavaScript, чтобы пользоваться этим сайтом полноценно.</template>
+  <template name="txt_please_wait">Подождите. Выполняется поиск...</template>
+  <template name="txt_results_for">Результаты для: </template>
+  <template name="TableofContents">Содержание</template>
+  <template name="HighlightButton">Включить или выключить подсвечивание результатов поиска</template>
+  <template name="Your_search_returned_no_results">Ничего не найдено для поискового запроса.</template>
+</context>
+
 <context name="styles">
 
 <template name="person-name">first-last</template>
