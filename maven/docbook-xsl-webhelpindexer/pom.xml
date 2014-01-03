@@ -5,7 +5,7 @@
   <artifactId>docbook-xsl-webhelpindexer</artifactId>
   <name>DocBook XSL WebHelp Indexer extension</name>
   <packaging>jar</packaging>
-  <version>1.0.1</version>
+  <version>1.0.0-9777</version>
   <description>DocBook XSL WebHelp Indexer extension
   </description>
   <url>http://sourceforge.net/projects/docbook/</url>
@@ -18,7 +18,7 @@
 
 
   <properties>
-    <docbook.xsl.webhelpindexer.release>xsl-webhelpindexer/?view=tar&amp;pathrev=9777</docbook.xsl.webhelpindexer.release>
+    <docbook.xsl.webhelpindexer.release>docbook-code-9777-trunk</docbook.xsl.webhelpindexer.release>
   </properties>
 
   <dependencies>
@@ -59,9 +59,9 @@
               <goal>download-single</goal>
             </goals>
             <configuration>
-              <url>http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/</url>
-              <fromFile>${docbook.xsl.webhelpindexer.release}</fromFile>
-              <toFile>${project.build.directory}/lib/webhelpindexer.tgz</toFile>
+              <url>http://sourceforge.net/code-snapshots/svn/d/do/docbook/code/</url>
+              <fromFile>${docbook.xsl.webhelpindexer.release}.zip</fromFile>
+              <toFile>${project.build.directory}/lib/webhelpindexer.zip</toFile>
             </configuration>
           </execution>
         </executions>
@@ -77,16 +77,9 @@
             <configuration>
               <tasks>
                 <echo>Extracting docbook xsl webhelpindexer sources webhelpindexer.tgz.</echo>
+                <mkdir dir="${project.build.directory}/tmp"/>
 
-                <gunzip src="${project.build.directory}/lib/webhelpindexer.tgz" dest="${project.build.directory}/lib/webhelpindexer.tar"/>
-
-                <untar dest="${project.build.directory}/tmp">
-                  <fileset dir="${project.build.directory}/lib/" includes="webhelpindexer.tar"/>
-                  <patternset>
-                    <include name="xsl-webhelpindexer/src/**"/>
-                  </patternset>
-                </untar>
-
+                <unzip src="${project.build.directory}/lib/webhelpindexer.zip" dest="${project.build.directory}/tmp/"/>
               </tasks>
             </configuration>
           </execution>
@@ -96,7 +89,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.1</version>
+        <version>1.8</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -106,7 +99,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>${project.build.directory}/tmp/xsl-webhelpindexer/src/</source>
+                <source>${project.build.directory}/tmp/${docbook.xsl.webhelpindexer.release}/xsl-webhelpindexer/src/</source>
               </sources>
             </configuration>
           </execution>
@@ -118,7 +111,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.8.1</version>
         <configuration>
-          <sourcepath>${project.build.directory}/tmp/xsl-webhelpindexer/src/</sourcepath>
+          <sourcepath>${project.build.directory}/tmp/${docbook.xsl.webhelpindexer.release}/xsl-webhelpindexer/src/</sourcepath>
         </configuration>
       </plugin>
 
