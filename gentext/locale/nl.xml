@@ -14,6 +14,10 @@
           <affiliation><orgname>The Fedora Project</orgname><address><email>geert.warrink@onsnet.nu</email></address>
           </affiliation>
   </author>
+  <author><firstname>Marja</firstname><surname>van Waes</surname>
+	  <affiliation><orgname>mageia.org</orgname><address><email>marja@mageia.org</email></address>
+	  </affiliation>
+  </author>
 </authorgroup>
 </doc:localeinfo>
 
@@ -213,6 +217,22 @@
 <dingbat key="nestedstartquote" text="&#x2018;"/>
 <dingbat key="nestedendquote" text="&#x2019;"/>
 <dingbat key="bullet" text="&#x2022;"/>
+
+<!-- WebHelp -->
+<context name="webhelp">
+  <template name="Search">Zoeken</template>
+  <template name="Enter_a_term_and_click">Voer een zoekterm in en klik op </template>
+  <template name="Go">Ga</template>
+  <template name="to_perform_a_search"> om te zoeken.</template>
+  <template name="txt_filesfound">Resultaten</template>
+  <template name="txt_enter_at_least_1_char">U moet minstens één teken invoeren.</template>
+  <template name="txt_browser_not_supported">JavaScript is uitgeschakeld in uw browser. Schakel het a.u.b. in om van alle mogelijkheden van deze site te genieten.</template>
+  <template name="txt_please_wait">A.u.b. wachten. Er wordt gezocht...</template>
+  <template name="txt_results_for">Resultaten voor: </template>
+  <template name="TableofContents">Inhoud</template>
+  <template name="HighlightButton">Zet het markeren van resultaten aan of uit</template>
+  <template name="Your_search_returned_no_results">Uw zoekopdracht leverde geen resultaten op.</template>
+</context>
 
 <context name="styles">
 
@@ -730,3 +750,4 @@
 </letters>
 
 </locale>
+
