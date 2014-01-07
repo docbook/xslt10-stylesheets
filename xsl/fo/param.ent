@@ -364,3 +364,4 @@
 <!ENTITY force.blank.pages SYSTEM "../params/force.blank.pages.xml">
 <!ENTITY mark.optional.procedure.steps SYSTEM "../params/mark.optional.procedure.steps.xml">
 <!ENTITY xsl1.1.bookmarks SYSTEM "../params/xsl1.1.bookmarks.xml">
+<!ENTITY show.bookmarks SYSTEM "../params/show.bookmarks.xml">

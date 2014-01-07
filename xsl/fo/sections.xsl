@@ -294,7 +294,9 @@
       </xsl:apply-templates>
     </xsl:variable>
 
-    <xsl:if test="$axf.extensions != 0 and $xsl1.1.bookmarks = 0">
+    <xsl:if test="$axf.extensions != 0 and 
+                  $xsl1.1.bookmarks = 0 and 
+                  $show.bookmarks != 0">
       <xsl:attribute name="axf:outline-level">
         <xsl:value-of select="count(ancestor::*)-1"/>
       </xsl:attribute>

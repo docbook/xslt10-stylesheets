@@ -284,8 +284,11 @@
 <xsl:template name="generate.bookmarks">
   <xsl:variable name="document.element" select="self::*"/>
   <xsl:choose>
-    <!-- use standard bookmark elements? -->
+    <xsl:when test="$show.bookmarks = 0">
+      <!-- omit bookmarks  -->
+    </xsl:when>
     <xsl:when test="$xsl1.1.bookmarks != 0">
+      <!-- use standard bookmark elements -->
       <xsl:variable name="bookmarks">
         <xsl:apply-templates select="$document.element" 
                              mode="bookmark"/>

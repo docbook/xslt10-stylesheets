@@ -281,6 +281,7 @@ generate.section.toc.level;
 &section.container.element;
 &monospace.verbatim.font.width;
 &exsl.node.set.available;
+&show.bookmarks;
 &bookmarks.collapse;
 &xsl1.1.bookmarks;
 &generate.consistent.ids;
@@ -934,6 +935,7 @@ around all these parameters.</para>
 <src:fragref linkend="para.properties.frag"/>
 <src:fragref linkend="mark.optional.procedure.steps.frag"/>
 <src:fragref linkend="xsl1.1.bookmarks.frag"/>
+<src:fragref linkend="show.bookmarks.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>

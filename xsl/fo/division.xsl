@@ -31,7 +31,9 @@
 
   <fo:block keep-with-next.within-column="always"
             hyphenate="false">
-    <xsl:if test="$axf.extensions != 0 and $xsl1.1.bookmarks = 0">
+    <xsl:if test="$axf.extensions != 0 and 
+                  $xsl1.1.bookmarks = 0 and 
+                  $show.bookmarks != 0">
       <xsl:attribute name="axf:outline-level">
         <xsl:choose>
           <xsl:when test="count($node/ancestor::*) > 0">
