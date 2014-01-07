@@ -282,6 +282,7 @@
 </xsl:template>
 
 <xsl:template name="generate.bookmarks">
+  <xsl:variable name="document.element" select="self::*"/>
   <xsl:choose>
     <!-- use standard bookmark elements? -->
     <xsl:when test="$xsl1.1.bookmarks != 0">
