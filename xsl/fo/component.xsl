@@ -774,59 +774,69 @@
     </xsl:call-template>
   </xsl:param>
 
-  <fo:page-sequence hyphenate="{$hyphenate}"
-                    master-reference="{$master-reference}">
-    <xsl:attribute name="language">
-      <xsl:value-of select="$language"/>
-    </xsl:attribute>
-    <xsl:attribute name="format">
-      <xsl:value-of select="$format"/>
-    </xsl:attribute>
-
-    <xsl:attribute name="initial-page-number">
-      <xsl:value-of select="$initial-page-number"/>
-    </xsl:attribute>
-
-    <xsl:attribute name="force-page-count">
-      <xsl:value-of select="$force-page-count"/>
-    </xsl:attribute>
-
-    <xsl:attribute name="hyphenation-character">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'hyphenation-character'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="hyphenation-push-character-count">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-    <xsl:attribute name="hyphenation-remain-character-count">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
-      </xsl:call-template>
-    </xsl:attribute>
-
-    <xsl:apply-templates select="." mode="running.head.mode">
-      <xsl:with-param name="master-reference" select="$master-reference"/>
-      <xsl:with-param name="gentext-key" select="$gentext-key"/>
-    </xsl:apply-templates>
-
-    <xsl:apply-templates select="." mode="running.foot.mode">
-      <xsl:with-param name="master-reference" select="$master-reference"/>
-      <xsl:with-param name="gentext-key" select="$gentext-key"/>
-    </xsl:apply-templates>
-
-    <fo:flow flow-name="xsl-region-body">
-      <xsl:call-template name="set.flow.properties">
-        <xsl:with-param name="element" select="local-name(.)"/>
-        <xsl:with-param name="master-reference" select="$master-reference"/>
-      </xsl:call-template>
-
-      <xsl:copy-of select="$content"/>
-
-    </fo:flow>
-  </fo:page-sequence>
+  <xsl:choose>
+    <xsl:when test="string-length($content) != 0">
+      <fo:page-sequence hyphenate="{$hyphenate}"
+                        master-reference="{$master-reference}">
+        <xsl:attribute name="language">
+          <xsl:value-of select="$language"/>
+        </xsl:attribute>
+        <xsl:attribute name="format">
+          <xsl:value-of select="$format"/>
+        </xsl:attribute>
+    
+        <xsl:attribute name="initial-page-number">
+          <xsl:value-of select="$initial-page-number"/>
+        </xsl:attribute>
+    
+        <xsl:attribute name="force-page-count">
+          <xsl:value-of select="$force-page-count"/>
+        </xsl:attribute>
+    
+        <xsl:attribute name="hyphenation-character">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'hyphenation-character'"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:attribute name="hyphenation-push-character-count">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:attribute name="hyphenation-remain-character-count">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
+          </xsl:call-template>
+        </xsl:attribute>
+    
+        <xsl:apply-templates select="." mode="running.head.mode">
+          <xsl:with-param name="master-reference" select="$master-reference"/>
+          <xsl:with-param name="gentext-key" select="$gentext-key"/>
+        </xsl:apply-templates>
+    
+        <xsl:apply-templates select="." mode="running.foot.mode">
+          <xsl:with-param name="master-reference" select="$master-reference"/>
+          <xsl:with-param name="gentext-key" select="$gentext-key"/>
+        </xsl:apply-templates>
+    
+        <fo:flow flow-name="xsl-region-body">
+          <xsl:call-template name="set.flow.properties">
+            <xsl:with-param name="element" select="local-name(.)"/>
+            <xsl:with-param name="master-reference" select="$master-reference"/>
+          </xsl:call-template>
+    
+          <xsl:copy-of select="$content"/>
+    
+        </fo:flow>
+      </fo:page-sequence>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:message>
+        <xsl:text>WARNING: call to template 'page.sequence' </xsl:text>
+        <xsl:text>has zero length content; no page-sequence generated.</xsl:text>
+      </xsl:message>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="make.component.tocs">
