@@ -282,6 +282,7 @@ generate.section.toc.level;
 &monospace.verbatim.font.width;
 &exsl.node.set.available;
 &bookmarks.collapse;
+&xsl1.1.bookmarks;
 &generate.consistent.ids;
 &base.dir;
 &chunk.quietly;
@@ -932,6 +933,7 @@ around all these parameters.</para>
 <src:fragref linkend="region.outer.properties.frag"/>
 <src:fragref linkend="para.properties.frag"/>
 <src:fragref linkend="mark.optional.procedure.steps.frag"/>
+<src:fragref linkend="xsl1.1.bookmarks.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>

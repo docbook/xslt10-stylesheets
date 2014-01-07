@@ -35,7 +35,7 @@
   <xsl:if test="$nodes">
     <fo:block id="toc...{$id}"
               xsl:use-attribute-sets="toc.margin.properties">
-      <xsl:if test="$axf.extensions != 0">
+      <xsl:if test="$axf.extensions != 0 and $xsl1.1.bookmarks = 0">
         <xsl:attribute name="axf:outline-level">1</xsl:attribute>
         <xsl:attribute name="axf:outline-expand">false</xsl:attribute>
         <xsl:attribute name="axf:outline-title">
@@ -77,7 +77,7 @@
   <xsl:if test="$nodes">
     <fo:block id="toc...{$cid}"
               xsl:use-attribute-sets="toc.margin.properties">
-      <xsl:if test="$axf.extensions != 0">
+      <xsl:if test="$axf.extensions != 0 and $xsl1.1.bookmarks = 0">
         <xsl:attribute name="axf:outline-level">1</xsl:attribute>
         <xsl:attribute name="axf:outline-expand">false</xsl:attribute>
         <xsl:attribute name="axf:outline-title">
