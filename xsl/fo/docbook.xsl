@@ -345,6 +345,13 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:variable name="bookmarks.state">
+  <xsl:choose>
+    <xsl:when test="$bookmarks.collapse != 0">hide</xsl:when>
+    <xsl:otherwise>show</xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
 <xsl:template match="*" mode="bookmark">
   <xsl:apply-templates select="*" mode="bookmark"/>
 </xsl:template>
