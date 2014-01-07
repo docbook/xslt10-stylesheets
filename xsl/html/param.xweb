@@ -771,6 +771,7 @@ around all these parameters.</para>
 <src:fragref linkend="xref.label-title.separator.frag"/>
 <src:fragref linkend="xref.title-page.separator.frag"/>
 <src:fragref linkend="xref.with.number.and.title.frag"/>
+<src:fragref linkend="link.to.self.for.mediaobject.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
