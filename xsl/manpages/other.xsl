@@ -164,6 +164,14 @@ manvolnum
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="//refentry//text()" mode="no.anchor.mode">
+  <xsl:call-template name="escape.roff.specials">
+    <xsl:with-param name="content">
+      <xsl:value-of select="."/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="escape.roff.specials">
   <xsl:param name="content"/>
   <xsl:call-template name="convert.nobreak-space">
