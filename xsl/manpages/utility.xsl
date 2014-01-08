@@ -305,10 +305,16 @@
                     or following-sibling::node()[1][self::comment()]
                     or following-sibling::node()[1][self::processing-instruction()]
                     ">
-            <xsl:if test="normalize-space($content) != ''
-                          or concat(normalize-space($content), ' ') != ' '">
-              <xsl:text>&#10;</xsl:text>
-            </xsl:if>
+            <xsl:choose>
+              <xsl:when test="normalize-space($content) != ''">
+                <xsl:text>&#10;</xsl:text>
+              </xsl:when>
+              <!-- whitespace node adds line break space only if not first -->
+              <xsl:when test="concat(normalize-space($content), ' ') = ' '
+                              and preceding-sibling::node()">
+                <xsl:text>&#10;</xsl:text>
+              </xsl:when>
+            </xsl:choose>
           </xsl:if>
         </xsl:when>
         <xsl:otherwise>
