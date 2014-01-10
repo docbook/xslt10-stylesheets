@@ -604,11 +604,22 @@ manvolnum
           <xsl:with-param name="message-epilog"> (soelim stub)</xsl:with-param>
           <xsl:with-param name="content">
             <xsl:value-of select="'.so '"/>
-            <xsl:call-template name="make.adjusted.man.filename">
-              <xsl:with-param name="name" select="$first.refname"/>
-              <xsl:with-param name="section" select="$section"/>
-              <xsl:with-param name="lang" select="$lang"/>
-            </xsl:call-template>
+            <xsl:variable name="full.filename">
+              <xsl:call-template name="make.adjusted.man.filename">
+                <xsl:with-param name="name" select="$first.refname"/>
+                <xsl:with-param name="section" select="$section"/>
+                <xsl:with-param name="lang" select="$lang"/>
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:choose>
+              <xsl:when test="starts-with($full.filename, $man.output.base.dir)">
+                <xsl:value-of 
+                   select="substring-after($full.filename,$man.output.base.dir)"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$full.filename"/>
+              </xsl:otherwise>
+            </xsl:choose>
             <xsl:text>&#10;</xsl:text>
           </xsl:with-param>
         </xsl:call-template>
