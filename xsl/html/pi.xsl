@@ -1076,7 +1076,7 @@ specifications in one processing instruction:
   </xsl:param>
   <xsl:choose>
     <xsl:when test="$href != ''">
-      <xsl:variable name="content" select="document($href,/)"/>
+      <xsl:variable name="content" select="document($href,.)"/>
       <xsl:choose>
         <xsl:when test="$content/*">
           <xsl:choose>
