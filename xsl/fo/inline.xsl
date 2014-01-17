@@ -34,6 +34,9 @@
   <xsl:if test="$node/ancestor::*[@xlink:href or @linkend]">
     <xsl:message>
       <xsl:text>WARNING: nested link may be undefined in output: </xsl:text>
+      <xsl:text>&lt;</xsl:text>
+      <xsl:value-of select="name($node)"/>
+      <xsl:text> </xsl:text>
       <xsl:choose>
         <xsl:when test="$linkend">
           <xsl:text>@linkend = '</xsl:text>
