@@ -30,6 +30,25 @@
   <xsl:param name="linkend" select="$node/@linkend"/>
   <xsl:param name="xhref" select="$node/@xlink:href"/>
 
+  <!-- check for nested links, which are undefined in the output -->
+  <xsl:if test="$node/ancestor::*[@xlink:href or @linkend]">
+    <xsl:message>
+      <xsl:text>WARNING: nested link may be undefined in output: </xsl:text>
+      <xsl:choose>
+        <xsl:when test="$linkend">
+          <xsl:text>@linkend = '</xsl:text>
+          <xsl:value-of select="$linkend"/>
+          <xsl:text>'.</xsl:text>
+        </xsl:when>
+        <xsl:when test="$xhref">
+          <xsl:text>@xlink:href = '</xsl:text>
+          <xsl:value-of select="$xhref"/>
+          <xsl:text>'.</xsl:text>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="$xhref
                     and (not($node/@xlink:type) or 
