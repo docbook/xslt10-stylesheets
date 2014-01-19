@@ -85,6 +85,7 @@ $Id$
 &index.on.role;
 &index.links.to.section;
 &index.prefer.titleabbrev;
+&autolink.index.see;
 &index.term.separator;
 &index.number.separator;
 &index.range.separator;
@@ -471,6 +472,7 @@ around all these parameters.</para>
 <src:fragref linkend="author.othername.in.middle.frag"/>
 <src:fragref linkend="autotoc.label.in.hyperlink.frag"/>
 <src:fragref linkend="autotoc.label.separator.frag"/>
+<src:fragref linkend="autolink.index.see.frag"/>
 <src:fragref linkend="base.dir.frag"/>
 <src:fragref linkend="biblioentry.item.separator.frag"/>
 <src:fragref linkend="bibliography.collection.frag"/>
