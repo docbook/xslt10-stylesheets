@@ -6,6 +6,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:rx="http://www.renderx.com/XSL/Extensions"
+                xmlns:xlink='http://www.w3.org/1999/xlink'
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 xmlns:exslt="http://exslt.org/common"
                 extension-element-prefixes="exslt"
