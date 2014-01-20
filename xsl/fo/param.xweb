@@ -78,6 +78,7 @@ $Id$
 &index.preferred.page.properties;
 &index.entry.properties;
 &index.div.title.properties;
+&autolink.index.see;
 &index.number.separator;
 &index.range.separator;
 &index.term.separator;
@@ -936,6 +937,7 @@ around all these parameters.</para>
 <src:fragref linkend="mark.optional.procedure.steps.frag"/>
 <src:fragref linkend="xsl1.1.bookmarks.frag"/>
 <src:fragref linkend="show.bookmarks.frag"/>
+<src:fragref linkend="autolink.index.see.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
