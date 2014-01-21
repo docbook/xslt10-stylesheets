@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?><locale xmlns:doc="http://nwalsh.com/xsl/documentation/1.0" language="ur" english-language-name="Urdu">
+
+	<doc:localeinfo>
+		<authorgroup>
+			<author>
+				<firstname>Wasif Hasan</firstname>
+				<surname>Baig</surname>
+				<affiliation>
+					<address><email/></address>
+				</affiliation>
+			</author>
+		</authorgroup>
+	</doc:localeinfo>
+	
+<gentext key="Abstract" text="خلاصہ"/>
+<gentext key="abstract" text="خلاصہ"/>
+<gentext key="Acknowledgements" text="عرفان"/>
+<gentext key="acknowledgements" text="عرفان"/>
+<gentext key="Answer" text=":جواب"/>
+<gentext key="answer" text=":جواب"/>
+<gentext key="Appendix" text="ضمیمہ"/>
+<gentext key="appendix" text="ضمیمہ"/>
+<gentext key="Article" text="مقالہ"/>
+<gentext key="article" text="مقالہ"/>
+<gentext key="Author" text="مصنف"/>
+<gentext key="Bibliography" text="حوالہ جات"/>
+<gentext key="bibliography" text="حوالہ جات"/>
+<gentext key="Book" text="كتاب"/>
+<gentext key="book" text="كتاب"/>
+<gentext key="CAUTION" text="تنبیہ"/>
+<gentext key="Caution" text="تنبیہ"/>
+<gentext key="caution" text="تنبیہ"/>
+<gentext key="Chapter" text="باب"/>
+<gentext key="chapter" text="باب"/>
+<gentext key="Colophon" text="ختم شد"/>
+<gentext key="colophon" text="ختم شد"/>
+<gentext key="Copyright" text="حقوق طباعت و اشاعت"/>
+<gentext key="copyright" text="حقوق طباعت و اشاعت"/>
+<gentext key="Dedication" text="انتساب"/>
+<gentext key="dedication" text="انتساب"/>
+<gentext key="Edition" text="اشاعت"/>
+<gentext key="edition" text="اشاعت"/>
+<gentext key="Editor" text="مدیر"/>
+<gentext key="Equation" text="مساوات"/>
+<gentext key="equation" text="مساوات"/>
+<gentext key="Example" text="مثال"/>
+<gentext key="example" text="مثال"/>
+<gentext key="Figure" text="صورت"/>
+<gentext key="figure" text="صورت"/>
+<gentext key="Glossary" text="فرہنگ"/>
+<gentext key="glossary" text="فرہنگ"/>
+<gentext key="GlossSee" text="دیکھیں"/>
+<gentext key="glosssee" text="دیکھیں"/>
+<gentext key="GlossSeeAlso" text="یہ بھی دیکھیں"/>
+<gentext key="glossseealso" text="یہ بھی دیکھیں"/>
+<gentext key="IMPORTANT" text="اہم"/>
+<gentext key="important" text="اہم"/>
+<gentext key="Important" text="اہم"/>
+<gentext key="Index" text="اشاریہ"/>
+<gentext key="index" text="اشاریہ"/>
+<gentext key="ISBN" text="عالمی معیاری کتاب نمبر"/>
+<gentext key="isbn" text="عالمی معیاری کتاب نمبر"/>
+<gentext key="LegalNotice" text="قانونی انتباہ"/>
+<gentext key="legalnotice" text="قانونی انتباہ"/>
+<gentext key="MsgAud" text="سامعین"/>
+<gentext key="msgaud" text="سامعین"/>
+<gentext key="MsgLevel" text="سطح"/>
+<gentext key="msglevel" text="سطح"/>
+<gentext key="MsgOrig" text="ماخذ"/>
+<gentext key="msgorig" text="ماخذ"/>
+<gentext key="NOTE" text="توجہ فرمائیں"/>
+<gentext key="Note" text="توجہ فرمائیں"/>
+<gentext key="note" text="توجہ فرمائیں"/>
+<gentext key="Part" text="جزو"/>
+<gentext key="part" text="جزو"/>
+<gentext key="Preface" text="پیش لفظ"/>
+<gentext key="preface" text="پیش لفظ"/>
+<gentext key="Procedure" text="اجرا"/>
+<gentext key="procedure" text="اجرا"/>
+<gentext key="ProductionSet" text="پیشکش"/>
+<gentext key="PubDate" text="تاریخ اشاعت"/>
+<gentext key="pubdate" text="تاریخ اشاعت"/>
+<gentext key="Published" text="شائع شدہ"/>
+<gentext key="published" text="شائع شدہ"/>
+<gentext key="Publisher" text="ناشر"/>
+<gentext key="Qandadiv" text="سوال و جواب"/>
+<gentext key="qandadiv" text="سوال و جواب"/>
+<gentext key="QandASet" text="Frequently Asked Questions" lang="en"/>
+<gentext key="Question" text=":سوال"/>
+<gentext key="question" text=":سوال"/>
+<gentext key="RefEntry" text="صفحہ"/>
+<gentext key="refentry" text="صفحہ"/>
+<gentext key="Reference" text="حوالہ"/>
+<gentext key="reference" text="حوالہ"/>
+<gentext key="References" text="حوالہ جات"/>
+<gentext key="RefName" text="نام"/>
+<gentext key="refname" text="نام"/>
+<gentext key="RefSection" text="قسم"/>
+<gentext key="refsection" text="قسم"/>
+<gentext key="RefSynopsisDiv" text="اختصاریہ"/>
+<gentext key="refsynopsisdiv" text="اختصاریہ"/>
+<gentext key="RevHistory" text="نظر ثانی کی تاریخ وار تفصیل"/>
+<gentext key="revhistory" text="نظر ثانی کی تاریخ وار تفصیل"/>
+<gentext key="revision" text="نظر ثانی"/>
+<gentext key="Revision" text="نظر ثانی"/>
+<gentext key="sect1" text="حصہ"/>
+<gentext key="sect2" text="حصہ"/>
+<gentext key="sect3" text="حصہ"/>
+<gentext key="sect4" text="حصہ"/>
+<gentext key="sect5" text="حصہ"/>
+<gentext key="section" text="حصہ"/>
+<gentext key="Section" text="حصہ"/>
+<gentext key="see" text="ملاحظہ فرمائیں"/>
+<gentext key="See" text="ملاحظہ فرمائیں"/>
+<gentext key="seealso" text="یہ بھی دیکھیں"/>
+<gentext key="Seealso" text="یہ بھی دیکھیں"/>
+<gentext key="SeeAlso" text="یہ بھی دیکھیں"/>
+<gentext key="set" text="مجموعہ"/>
+<gentext key="Set" text="مجموعہ"/>
+<gentext key="setindex" text="اشاریاتی مجموعہ"/>
+<gentext key="SetIndex" text="اشاریاتی مجموعہ"/>
+<gentext key="Sidebar" text="حاشیہ"/>
+<gentext key="sidebar" text="حاشیہ"/>
+<gentext key="step" text="قدم"/>
+<gentext key="Step" text="قدم"/>
+<gentext key="table" text="جدول"/>
+<gentext key="Table" text="جدول"/>
+<gentext key="task" text="مہم"/>
+<gentext key="Task" text="مہم"/>
+<gentext key="tip" text="اشارہ"/>
+<gentext key="TIP" text="اشارہ"/>
+<gentext key="Tip" text="اشارہ"/>
+<gentext key="Warning" text="انتباہ"/>
+<gentext key="warning" text="انتباہ"/>
+<gentext key="WARNING" text="انتباہ"/>
+<gentext key="and" text="اور"/>
+<gentext key="or" text="یا"/>
+<gentext key="by" text="از"/>
+<gentext key="Edited" text="تدوین شدہ"/>
+<gentext key="edited" text="تدوین شدہ"/>
+<gentext key="Editedby" text="تدوین از"/>
+<gentext key="editedby" text="تدوین از"/>
+<gentext key="in" text="میں"/>
+<gentext key="lastlistcomma" text="،"/>
+<gentext key="listcomma" text="،"/>
+<gentext key="notes" text="ملاحظات"/>
+<gentext key="Notes" text="ملاحظات"/>
+<gentext key="Pgs" text="صفحات"/>
+<gentext key="pgs" text="صفحات"/>
+<gentext key="Revisedby" text=" :نظر ثانی از"/>
+<gentext key="revisedby" text=" :نظر ثانی از"/>
+<gentext key="TableNotes" text="ملاحظات"/>
+<gentext key="tablenotes" text="ملاحظات"/>
+<gentext key="TableofContents" text="فہرست"/>
+<gentext key="tableofcontents" text="فہرست"/>
+<gentext key="unexpectedelementname" text="اسم عنصر غير متوقع"/>
+<gentext key="unsupported" text="غير مدعوم"/>
+<gentext key="xrefto" text="بحوالہ"/>
+<gentext key="Authors" text="مصنفین"/>
+<gentext key="copyeditor" text="نقل محرر"/>
+<gentext key="graphicdesigner" text="ترسیم تراش"/>
+<gentext key="productioneditor" text="پیشکش محرر"/>
+<gentext key="technicaleditor" text="فنی محرر"/>
+<gentext key="translator" text="مترجم"/>
+<gentext key="listofequations" text="فہرست مساوات"/>
+<gentext key="ListofEquations" text="فہرست مساوات"/>
+<gentext key="ListofExamples" text="فہرست امثال"/>
+<gentext key="listofexamples" text="فہرست امثال"/>
+<gentext key="ListofFigures" text="فہرست صورات"/>
+<gentext key="listoffigures" text="فہرست صورات"/>
+<gentext key="ListofProcedures" text="فہرست اجرا"/>
+<gentext key="listofprocedures" text="فہرست اجرا"/>
+<gentext key="listoftables" text="فہرست جدول"/>
+<gentext key="ListofTables" text="فہرست جدول"/>
+<gentext key="ListofUnknown" text="فہرست نامعلوم"/>
+<gentext key="listofunknown" text="فہرست نامعلوم"/>
+<gentext key="nav-home" text="سرورق"/>
+<gentext key="nav-next" text="اگلا"/>
+<gentext key="nav-next-sibling" text="آخر"/>
+<gentext key="nav-prev" text="پچھلا"/>
+<gentext key="nav-prev-sibling" text="اول"/>
+<gentext key="nav-up" text="اوپر"/>
+<gentext key="nav-toc" text="فہرست"/>
+<gentext key="Draft" text="مسودہ"/>
+<gentext key="above" text="اوپر"/>
+<gentext key="below" text="نیچے"/>
+<gentext key="sectioncalled" text="حصے کا نام ہے"/>
+<gentext key="index symbols" text="رموز"/>
+<gentext key="writing-mode" text="rl-tb"/>
+<gentext key="lowercase.alpha" text="ا آ ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ہ ء ی ے"/>
+<gentext key="uppercase.alpha" text="ا آ ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ہ ء ی ے"/>
+<gentext key="normalize.sort.input" text="اآب بھ پ پھ ت تھ ٹ ٹھ ث ج جھ چ چھ ح خ د دھ ڈ ڈھ ذ ر رھ ڑ ڑھ ز ژ س ش ص ض ط ظ ع غ ف ق ک کھ گ گھ ل لھ م مھ ں ںھ ن نھ و وھ ہ ۃ ء ی ے"/>
+<gentext key="normalize.sort.output" text="اآب بھ پ پھ ت تھ ٹ ٹھ ث ج جھ چ چھ ح خ د دھ ڈ ڈھ ذ ر رھ ڑ ڑھ ز ژ س ش ص ض ط ظ ع غ ف ق ک کھ گ گھ ل لھ م مھ ں ںھ ن نھ و وھ ہ ۃ ء ی ے"/>
+<dingbat key="startquote" text="”"/>
+<dingbat key="endquote" text="“"/>
+<dingbat key="nestedstartquote" text="’"/>
+<dingbat key="nestedendquote" text="‘"/>
+<dingbat key="singlestartquote" text="’"/>
+<dingbat key="singleendquote" text="‘"/>
+<dingbat key="bullet" text="•"/>
+<gentext key="hyphenation-character" text="‐"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
+
+<context name="webhelp">
+	<template name="Search">تلاش</template>
+	<template name="Enter_a_term_and_click" lang="en">Enter a term and click </template>
+	<template name="Go">تلاش</template>
+	<template name="to_perform_a_search">تلاش کے لئے۔ </template>
+	<template name="txt_filesfound" lang="en">Results</template>
+	<template name="txt_enter_at_least_1_char" lang="en">You must enter at least one character.</template>
+	<template name="txt_browser_not_supported" lang="en">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
+	<template name="txt_please_wait">انتظار فرمائیے، تلاش جاری ہے۔۔۔</template>
+	<template name="txt_results_for" lang="en">Results for: </template>
+	<template name="TableofContents">فہرست</template>
+	<template name="HighlightButton" lang="en">Toggle search result highlighting</template>
+	<template name="Your_search_returned_no_results">تلاش ناکام رہی۔</template>
+</context>
+
+<context name="styles">
+	<template name="person-name">first-last</template>
+</context>
+
+<context name="title">
+	<template name="abstract">%t</template>
+	<template name="acknowledgements" lang="en">%t</template>
+	<template name="answer">%t</template>
+	<template name="appendix">ضمیمہ %n. %t</template>
+	<template name="article">%t</template>
+	<template name="authorblurb">%t</template>
+	<template name="bibliodiv">%t</template>
+	<template name="biblioentry">%t</template>
+	<template name="bibliography">%t</template>
+	<template name="bibliolist" lang="en">%t</template>
+	<template name="bibliomixed">%t</template>
+	<template name="bibliomset">%t</template>
+	<template name="biblioset">%t</template>
+	<template name="blockquote">%t</template>
+	<template name="book">%t</template>
+	<template name="calloutlist">%t</template>
+	<template name="caution">%t</template>
+	<template name="chapter">باب %n. %t</template>
+	<template name="colophon">%t</template>
+	<template name="dedication">%t</template>
+	<template name="equation">مساوات %n. %t</template>
+	<template name="example">مثال %n. %t</template>
+	<template name="figure">صورت %n. %t</template>
+	<template name="foil" lang="en">%t</template>
+	<template name="foilgroup" lang="en">%t</template>
+	<template name="formalpara">%t</template>
+	<template name="glossary">%t</template>
+	<template name="glossdiv">%t</template>
+	<template name="glosslist" lang="en">%t</template>
+	<template name="glossentry">%t</template>
+	<template name="important">%t</template>
+	<template name="index">%t</template>
+	<template name="indexdiv">%t</template>
+	<template name="itemizedlist">%t</template>
+	<template name="legalnotice">%t</template>
+	<template name="listitem"/>
+	<template name="lot">%t</template>
+	<template name="msg">%t</template>
+	<template name="msgexplan">%t</template>
+	<template name="msgmain">%t</template>
+	<template name="msgrel">%t</template>
+	<template name="msgset">%t</template>
+	<template name="msgsub">%t</template>
+	<template name="note">%t</template>
+	<template name="orderedlist">%t</template>
+	<template name="part">جزو %n. %t</template>
+	<template name="partintro">%t</template>
+	<template name="preface">%t</template>
+	<template name="procedure">%t</template>
+	<template name="procedure.formal">اجرا %n. %t</template>
+	<template name="productionset">%t</template>
+	<template name="productionset.formal">پیشکش %n</template>
+	<template name="qandadiv">%t</template>
+	<template name="qandaentry">%t</template>
+	<template name="qandaset">%t</template>
+	<template name="question">%t</template>
+	<template name="refentry">%t</template>
+	<template name="reference">%t</template>
+	<template name="refsection">%t</template>
+	<template name="refsect1">%t</template>
+	<template name="refsect2">%t</template>
+	<template name="refsect3">%t</template>
+	<template name="refsynopsisdiv">%t</template>
+	<template name="refsynopsisdivinfo">%t</template>
+	<template name="segmentedlist">%t</template>
+	<template name="set">%t</template>
+	<template name="setindex">%t</template>
+	<template name="sidebar">%t</template>
+	<template name="step">%t</template>
+	<template name="table">جدول %n. %t</template>
+	<template name="task" lang="en">%t</template>
+	<template name="tasksummary" lang="en">%t</template>
+	<template name="taskprerequisites" lang="en">%t</template>
+	<template name="taskrelated" lang="en">%t</template>
+	<template name="tip">%t</template>
+	<template name="toc">%t</template>
+	<template name="variablelist">%t</template>
+	<template name="varlistentry"/>
+	<template name="warning">%t</template>
+</context>
+
+<context name="title-unnumbered">
+	<template name="appendix">%t</template>
+	<template name="article/appendix">%t</template>
+	<template name="bridgehead">%t</template>
+	<template name="chapter">%t</template>
+	<template name="sect1">%t</template>
+	<template name="sect2">%t</template>
+	<template name="sect3">%t</template>
+	<template name="sect4">%t</template>
+	<template name="sect5">%t</template>
+	<template name="section">%t</template>
+	<template name="simplesect">%t</template>
+	<template name="topic" lang="en">%t</template>
+	<template name="part" lang="en">%t</template>
+</context>
+
+<context name="title-numbered">
+	<template name="appendix">ضمیمہ %n. %t</template>
+	<template name="article/appendix">%n. %t</template>
+	<template name="bridgehead">%n. %t</template>
+	<template name="chapter">باب %n. %t</template>
+	<template name="part">جزو %n. %t</template>
+	<template name="sect1">%n. %t</template>
+	<template name="sect2">%n. %t</template>
+	<template name="sect3">%n. %t</template>
+	<template name="sect4">%n. %t</template>
+	<template name="sect5">%n. %t</template>
+	<template name="section">%n. %t</template>
+	<template name="simplesect">%t</template>
+	<template name="topic" lang="en">%t</template>
+</context>
+
+<context name="subtitle">
+	<template name="appendix">%s</template>
+	<template name="acknowledgements" lang="en">%s</template>
+	<template name="article">%s</template>
+	<template name="bibliodiv">%s</template>
+	<template name="biblioentry">%s</template>
+	<template name="bibliography">%s</template>
+	<template name="bibliomixed">%s</template>
+	<template name="bibliomset">%s</template>
+	<template name="biblioset">%s</template>
+	<template name="book">%s</template>
+	<template name="chapter">%s</template>
+	<template name="colophon">%s</template>
+	<template name="dedication">%s</template>
+	<template name="glossary">%s</template>
+	<template name="glossdiv">%s</template>
+	<template name="index">%s</template>
+	<template name="indexdiv">%s</template>
+	<template name="lot">%s</template>
+	<template name="part">%s</template>
+	<template name="partintro">%s</template>
+	<template name="preface">%s</template>
+	<template name="refentry">%s</template>
+	<template name="reference">%s</template>
+	<template name="refsection">%s</template>
+	<template name="refsect1">%s</template>
+	<template name="refsect2">%s</template>
+	<template name="refsect3">%s</template>
+	<template name="refsynopsisdiv">%s</template>
+	<template name="sect1">%s</template>
+	<template name="sect2">%s</template>
+	<template name="sect3">%s</template>
+	<template name="sect4">%s</template>
+	<template name="sect5">%s</template>
+	<template name="section">%s</template>
+	<template name="set">%s</template>
+	<template name="setindex">%s</template>
+	<template name="sidebar">%s</template>
+	<template name="simplesect">%s</template>
+	<template name="topic" lang="en">%t</template>
+	<template name="toc">%s</template>
+</context>
+
+<context name="xref">
+	<template name="abstract">%t</template>
+	<template name="acknowledgements" lang="en">%t</template>
+	<template name="answer">جواب: %n</template>
+	<template name="appendix">%t</template>
+	<template name="article">%t</template>
+	<template name="authorblurb">%t</template>
+	<template name="bibliodiv">%t</template>
+	<template name="bibliography">%t</template>
+	<template name="bibliomset">%t</template>
+	<template name="biblioset">%t</template>
+	<template name="blockquote">%t</template>
+	<template name="book">%t</template>
+	<template name="calloutlist">%t</template>
+	<template name="caution">%t</template>
+	<template name="chapter">%t</template>
+	<template name="colophon">%t</template>
+	<template name="constraintdef">%t</template>
+	<template name="dedication">%t</template>
+	<template name="equation">%t</template>
+	<template name="example">%t</template>
+	<template name="figure">%t</template>
+	<template name="foil" lang="en">%t</template>
+	<template name="foilgroup" lang="en">%t</template>
+	<template name="formalpara">%t</template>
+	<template name="glossary">%t</template>
+	<template name="glossdiv">%t</template>
+	<template name="important">%t</template>
+	<template name="index">%t</template>
+	<template name="indexdiv">%t</template>
+	<template name="itemizedlist">%t</template>
+	<template name="legalnotice">%t</template>
+	<template name="listitem">%n</template>
+	<template name="lot">%t</template>
+	<template name="msg">%t</template>
+	<template name="msgexplan">%t</template>
+	<template name="msgmain">%t</template>
+	<template name="msgrel">%t</template>
+	<template name="msgset">%t</template>
+	<template name="msgsub">%t</template>
+	<template name="note">%t</template>
+	<template name="orderedlist">%t</template>
+	<template name="part">%t</template>
+	<template name="partintro">%t</template>
+	<template name="preface">%t</template>
+	<template name="procedure">%t</template>
+	<template name="productionset">%t</template>
+	<template name="qandadiv">%t</template>
+	<template name="qandaentry">سوال: %n</template>
+	<template name="qandaset">%t</template>
+	<template name="question">سوال: %n</template>
+	<template name="reference">%t</template>
+	<template name="refsynopsisdiv">%t</template>
+	<template name="segmentedlist">%t</template>
+	<template name="set">%t</template>
+	<template name="setindex">%t</template>
+	<template name="sidebar">%t</template>
+	<template name="table">%t</template>
+	<template name="task" lang="en">%t</template>
+	<template name="tip">%t</template>
+	<template name="toc">%t</template>
+	<template name="variablelist">%t</template>
+	<template name="varlistentry">%n</template>
+	<template name="warning">%t</template>
+	<template name="olink.document.citation" lang="en"> in %o</template>
+	<template name="olink.page.citation" lang="en"> (page %p)</template>
+	<template name="page.citation"> [%p]</template>
+	<template name="page" lang="en">(page %p)</template>
+	<template name="docname" lang="en"> in %o</template>
+	<template name="docnamelong" lang="en"> in the document titled %o</template>
+	<template name="pageabbrev" lang="en">(p. %p)</template>
+	<template name="Page">صفحہ %p</template>
+	<template name="topic" lang="en">%t</template>
+	<template name="bridgehead">حصہ کا نام “%t”</template>
+	<template name="refsection">حصہ کا نام “%t”</template>
+	<template name="refsect1">حصہ کا نام “%t”</template>
+	<template name="refsect2">حصہ کا نام “%t”</template>
+	<template name="refsect3">حصہ کا نام “%t”</template>
+	<template name="sect1">حصہ کا نام “%t”</template>
+	<template name="sect2">حصہ کا نام “%t”</template>
+	<template name="sect3">حصہ کا نام “%t”</template>
+	<template name="sect4">حصہ کا نام “%t”</template>
+	<template name="sect5">حصہ کا نام “%t”</template>
+	<template name="section">حصہ کا نام “%t”</template>
+	<template name="simplesect">حصہ کا نام “%t”</template>
+</context>
+
+<context name="xref-number">
+	<template name="answer">جواب: %n</template>
+	<template name="appendix">ضمیمہ %n</template>
+	<template name="bridgehead">قسم %n</template>
+	<template name="chapter">باب %n</template>
+	<template name="equation">مساوات %n</template>
+	<template name="example">مثال %n</template>
+	<template name="figure">صورت %n</template>
+	<template name="part">جزو %n</template>
+	<template name="procedure">اجرا %n</template>
+	<template name="productionset">پیشکش %n</template>
+	<template name="qandadiv">سوال و جواب %n</template>
+	<template name="qandaentry">سوال: %n</template>
+	<template name="question">سوال: %n</template>
+	<template name="sect1">حصہ %n</template>
+	<template name="sect2">حصہ %n</template>
+	<template name="sect3">حصہ %n</template>
+	<template name="sect4">حصہ %n</template>
+	<template name="sect5">حصہ %n</template>
+	<template name="section">حصہ %n</template>
+	<template name="table">جدول %n</template>
+</context>
+
+<context name="xref-number-and-title">
+	<template name="appendix">ضمیمہ %n, %t</template>
+	<template name="bridgehead">قسم %n, “%t”</template>
+	<template name="chapter">باب %n, %t</template>
+	<template name="equation">مساوات %n, “%t”</template>
+	<template name="example">مثال %n, “%t”</template>
+	<template name="figure">صورت %n, “%t”</template>
+	<template name="part">جزو %n, “%t”</template>
+	<template name="procedure">اجرا %n, “%t”</template>
+	<template name="productionset">پیشکش %n, “%t”</template>
+	<template name="qandadiv">سوال و جواب %n, “%t”</template>
+	<template name="refsect1">حصے کا نام “%t”</template>
+	<template name="refsect2">حصے کا نام “%t”</template>
+	<template name="refsect3">حصے کا نام “%t”</template>
+	<template name="refsection">حصے کا نام “%t”</template>
+	<template name="sect1">حصہ %n, “%t”</template>
+	<template name="sect2">حصہ %n, “%t”</template>
+	<template name="sect3">حصہ %n, “%t”</template>
+	<template name="sect4">حصہ %n, “%t”</template>
+	<template name="sect5">حصہ %n, “%t”</template>
+	<template name="section">حصہ %n, “%t”</template>
+	<template name="simplesect">حصے کا نام “%t”</template>
+	<template name="table">جدول %n, “%t”</template>
+</context>
+
+<context name="authorgroup">
+	<template name="sep">، </template>
+	<template name="sep2"> اور </template>
+	<template name="seplast">، اور </template>
+</context>
+
+<context name="glossary">
+	<template name="see">دیکھیں %t.</template>
+	<template name="seealso">یہ بھی دیکھیں %t.</template>
+	<template name="seealso-separator">، </template>
+</context>
+
+<context name="msgset">
+	<template name="MsgAud">سامعین: </template>
+	<template name="MsgLevel">سطح: </template>
+	<template name="MsgOrig">ماخذ: </template>
+</context>
+
+<context name="datetime">
+	<template name="format">d/m/Y</template>
+</context>
+
+<context name="termdef">
+	<template name="prefix">[تعریف: </template>
+	<template name="suffix" lang="en">]</template>
+</context>
+
+<context name="datetime-full">
+	<template name="January">جنوری</template>
+	<template name="February">فروری</template>
+	<template name="March">مارچ</template>
+	<template name="April">اپریل</template>
+	<template name="May">مئی</template>
+	<template name="June">جون</template>
+	<template name="July">جولائی</template>
+	<template name="August">اگست</template>
+	<template name="September">ستمبر</template>
+	<template name="October">اکتوبر</template>
+	<template name="November">نومبر</template>
+	<template name="December">دسمبر</template>
+	<template name="Monday">پیر</template>
+	<template name="Tuesday">منگل</template>
+	<template name="Wednesday">بدھ</template>
+	<template name="Thursday">جمعرات</template>
+	<template name="Friday">جمعہ</template>
+	<template name="Saturday">ہفتہ</template>
+	<template name="Sunday">اتوار</template>
+</context>
+
+<context name="datetime-abbrev">
+	<template name="Jan">جنوری</template>
+	<template name="Feb">فروری</template>
+	<template name="Mar">مارچ</template>
+	<template name="Apr">اپریل</template>
+	<template name="May">مئی</template>
+	<template name="Jun">جون</template>
+	<template name="Jul">جولائی</template>
+	<template name="Aug">اگست</template>
+	<template name="Sep">ستمبر</template>
+	<template name="Oct">اکتوبر</template>
+	<template name="Nov">نومبر</template>
+	<template name="Dec">دسمبر</template>
+	<template name="Mon">پیر</template>
+	<template name="Tue">منگل</template>
+	<template name="Wed">بدھ</template>
+	<template name="Thu">جمعرات</template>
+	<template name="Fri">جمعہ</template>
+	<template name="Sat">ہفتہ</template>
+	<template name="Sun">اتوار</template>
+</context>
+
+<context name="htmlhelp">
+	<template name="langcode">0x0420 Urdu (PAKISTAN)</template>
+</context>
+
+<context name="index">
+	<template name="term-separator" lang="en">, </template>
+	<template name="number-separator" lang="en">, </template>
+	<template name="range-separator" lang="en">-</template>
+</context>
+
+<context name="iso690">
+	<template name="lastfirst.sep" lang="en">, </template>
+	<template name="alt.person.two.sep" lang="en"> – </template>
+	<template name="alt.person.last.sep" lang="en"> – </template>
+	<template name="alt.person.more.sep" lang="en"> – </template>
+	<template name="primary.editor" lang="en"> (ed.)</template>
+	<template name="primary.many" lang="en">, et al.</template>
+	<template name="primary.sep" lang="en">. </template>
+	<template name="submaintitle.sep" lang="en">: </template>
+	<template name="title.sep" lang="en">. </template>
+	<template name="othertitle.sep" lang="en">, </template>
+	<template name="medium1" lang="en"> [</template>
+	<template name="medium2" lang="en">]</template>
+	<template name="secondary.person.sep" lang="en">; </template>
+	<template name="secondary.sep" lang="en">. </template>
+	<template name="respons.sep" lang="en">. </template>
+	<template name="edition.sep" lang="en">. </template>
+	<template name="edition.serial.sep" lang="en">, </template>
+	<template name="issuing.range" lang="en">-</template>
+	<template name="issuing.div" lang="en">, </template>
+	<template name="issuing.sep" lang="en">. </template>
+	<template name="partnr.sep" lang="en">. </template>
+	<template name="placepubl.sep" lang="en">: </template>
+	<template name="publyear.sep" lang="en">, </template>
+	<template name="pubinfo.sep" lang="en">. </template>
+	<template name="spec.pubinfo.sep" lang="en">, </template>
+	<template name="upd.sep" lang="en">, </template>
+	<template name="datecit1" lang="en"> [cited </template>
+	<template name="datecit2" lang="en">]</template>
+	<template name="extent.sep" lang="en">. </template>
+	<template name="locs.sep" lang="en">, </template>
+	<template name="location.sep" lang="en">. </template>
+	<template name="serie.sep" lang="en">. </template>
+	<template name="notice.sep" lang="en">. </template>
+	<template name="access" lang="en">Available </template>
+	<template name="acctoo" lang="en">Also available </template>
+	<template name="onwww" lang="en">from World Wide Web</template>
+	<template name="oninet" lang="en">from Internet</template>
+	<template name="access.end" lang="en">: </template>
+	<template name="link1" lang="en">&lt;</template>
+	<template name="link2" lang="en">&gt;</template>
+	<template name="access.sep" lang="en">. </template>
+	<template name="isbn" lang="en">ISBN </template>
+	<template name="issn" lang="en">ISSN </template>
+	<template name="stdnum.sep" lang="en">. </template>
+	<template name="patcountry.sep" lang="en">. </template>
+	<template name="pattype.sep" lang="en">, </template>
+	<template name="patnum.sep" lang="en">. </template>
+	<template name="patdate.sep" lang="en">. </template>
+</context>
+
+<letters>
+	<l i="-1"/>
+	<l i="0">Symbols</l>
+	<l i="10">ا</l>
+	<l i="10">آ</l>
+	<l i="20">ب</l>
+	<l i="20">بھ</l>
+	<l i="30">پ</l>
+	<l i="30">پھ</l>
+	<l i="40">ت</l>
+	<l i="40">تھ</l>
+	<l i="50">ٹ</l>
+	<l i="50">ٹھ</l>
+	<l i="60">ث</l>
+	<l i="70">ج</l>
+	<l i="70">جھ</l>
+	<l i="80">چ</l>
+	<l i="80">چھ</l>
+	<l i="90">ح</l>
+	<l i="100">خ</l>
+	<l i="110">د</l>
+	<l i="110">دھ</l>
+	<l i="120">ڈ</l>
+	<l i="120">ڈھ</l>
+	<l i="130">ذ</l>
+	<l i="140">ر</l>
+	<l i="140">رھ</l>
+	<l i="150">ڑ</l>
+	<l i="150">ڑھ</l>
+	<l i="160">ز</l>
+	<l i="170">ژ</l>
+	<l i="180">س</l>
+	<l i="190">ش</l>
+	<l i="200">ص</l>
+	<l i="210">ض</l>
+	<l i="220">ط</l>
+	<l i="230">ظ</l>
+	<l i="240">ع</l>
+	<l i="250">غ</l>
+	<l i="260">ف</l>
+	<l i="270">ق</l>
+	<l i="280">ک</l>
+	<l i="280">کھ</l>
+	<l i="290">گ</l>
+	<l i="290">گھ</l>
+	<l i="300">ل</l>
+	<l i="300">لھ</l>
+	<l i="310">م</l>
+	<l i="310">مھ</l>
+	<l i="320">ن</l>
+	<l i="320">نھ</l>
+	<l i="330">و</l>
+	<l i="330">وھ</l>
+	<l i="340">ہ</l>
+	<l i="350">ء</l>
+	<l i="360">ی</l>
+	<l i="370">ے</l>
+</letters>
+
+</locale>
