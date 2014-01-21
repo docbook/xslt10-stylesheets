@@ -48,8 +48,11 @@
     </xsl:when>
     <xsl:when test="$fop1.extensions != 0 and
                     starts-with($writing.mode, 'rl')">
-      <xsl:message>WARNING: FOP does not support right-to-left writing-mode</xsl:message>
-      <xsl:text>lr-tb</xsl:text>
+      <xsl:message>
+        <xsl:text>WARNING: FOP 1.0 does not support right-to-left writing-mode; </xsl:text>
+        <xsl:text>FOP 1.1 has limited support for right-to-left writing-mode.</xsl:text>
+      </xsl:message>
+      <xsl:text>rl-tb</xsl:text>
     </xsl:when>
     <xsl:when test="starts-with($writing.mode, 'lr')">lr-tb</xsl:when>
     <xsl:when test="starts-with($writing.mode, 'rl')">rl-tb</xsl:when>
