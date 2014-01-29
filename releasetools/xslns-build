@@ -55,10 +55,10 @@ my @PassthruDirs = (
 'extensions',
 'profiling',
 'images',
-'template',
 'tools',
 'build',
 'slides',
+'template',
 'website',
 'wordml',
 );
@@ -69,6 +69,9 @@ my @PassthruFiles = (
 'html2xhtml.xsl',
 'xsl2profile.xsl',
 'olink.xsl',
+'addns.xsl',
+'stripns.xsl',
+'tbl.xsl',
 );
 
 umask 002;
@@ -204,9 +207,6 @@ sub copyXsl {
     if ( grep /^$basename$/,@PassthruFiles ) {
       copy($f, $dest);
     }
-    elsif ( $f =~ /stripns\.xsl/ ) {
-      # skip it
-    }
     elsif ( grep /^$dir$/, @PassthruDirs ) {
       copy($f, $dest);
     }
@@ -253,17 +253,6 @@ sub nsfilter {
   
   s|(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform"(?!>))(\s*\n?)(\s*)|$1$2$3xmlns:d="http://docbook.org/ns/docbook"\n$3|s;
   
-  # Convert stripNS to addNS
-  s|href="../common/stripns.xsl"|href="../common/addns.xsl"|sg;
-  
-  # Convert stripNS to addNS for profiling stylesheets
-  s|(<xslo?:variable[^>]*name="profiled-content").*?mode="profile".*?(</xslo?:variable>)|<xslo:variable xmlns:xslo="http://www.w3.org/1999/XSL/Transform" name="profiled-content"> <xslo:choose> <xslo:when test="namespace-uri(*[1]) != 'http://docbook.org/ns/docbook'"> <xsl:message>Adding DocBook namespace to version 4 DocBook document</xsl:message> <xsl:variable name="addns"> <xsl:apply-templates mode="addNS" select="/"/> </xsl:variable> <xsl:apply-templates select="exsl:node-set(\$addns)" mode="profile"/> </xslo:when> <xslo:otherwise> <xslo:apply-templates select="/" mode="profile"/> </xslo:otherwise> </xslo:choose> </xslo:variable>|sg;
-
-  s|(\s*\n*)(\s*)(<xslo?:when)\s+test\s*=\s*"[^"]*?self::db:[^"]*?">.*?(</xslo?:when>)|$1$2$3 test="namespace-uri\(\*\[1\]\) != 'http://docbook.org/ns/docbook'">\n$2 <xsl:call-template name="log.message">\n$2 <xsl:with-param name="level">Note</xsl:with-param>\n$2 <xsl:with-param name="source"><xsl:call-template name="get.doc.title"/></xsl:with-param>\n$2 <xsl:with-param name="context-desc">\n$2 <xsl:text>namesp. add</xsl:text>\n$2 </xsl:with-param>\n$2 <xsl:with-param name="message">\n$2 <xsl:text>added namespace before processing</xsl:text>\n$2 </xsl:with-param>\n$2 </xsl:call-template>\n$2 <xsl:variable name="addns">\n$2    <xsl:apply-templates mode="addNS"/>\n$2  </xsl:variable>\n$2  <xsl:apply-templates select="exsl:node-set\(\$addns\)"/>\n$2$4|sg;
-  
-  # Remove the "Hack!" message -->
-  s|<!-- Hack! If someone hands us a.*?-->||sg;
-
   # Add namespace d to exclude-result-prefixes
   
   if ( $_ =~ /exclude-result-prefixes\s*=/ ) {
@@ -273,6 +262,18 @@ sub nsfilter {
     s|(<xsl:stylesheet)|$1 exclude-result-prefixes="d"\n                |s;
   }
 
+  # Convert stripNS to addNS
+  s|stripns\.xsl|addns.xsl|sg;
+  s|no\.namespace|with.namespace|sg;
+  s|stripNS|addNS|sg;
+  s|(namesp\.\s+)cut|$1add|sg;
+  s|stripped namespace before|added namespace before|sg;
+  s|(Unable to )strip( the namespace from )DB5( document)|$1add$2DB4$3|sg;
+
+  # change namespace test from = to != 
+  s|(namespace-uri\(/\*\)\s*)=(\s*['"]http://docbook.org/ns/docbook['"])|$1!=$2|sg;
+
+   
   # Add d: prefix to literal tocentry in maketoc.xsl
   if ($infile =~ /maketoc/) {
     s/(<\/?)(tocentry)/$1d:$2/sg;
@@ -482,10 +483,8 @@ sub addFiles {
   my $miscdir = dirname $0;
   $miscdir .= '/xslnsfiles';
   print STDOUT "miscdir is $miscdir" . "\n";
-  copy("$miscdir/addns.xsl", "$destdir/common");
-  copy("$miscdir/README.ns", "$destdir/README.ns");
-  copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
-  copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
+  # copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
+  # copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
   # Copy the ns VERSION file, not the copy from non-ns
   copy("$destdir/VERSION", "$destdir/VERSION.xsl");
 
