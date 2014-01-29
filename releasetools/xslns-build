@@ -58,7 +58,6 @@ my @PassthruDirs = (
 'tools',
 'build',
 'slides',
-'template',
 'website',
 'wordml',
 );
@@ -273,6 +272,9 @@ sub nsfilter {
   # change namespace test from = to != 
   s|(namespace-uri\(/\*\)\s*)=(\s*['"]http://docbook.org/ns/docbook['"])|$1!=$2|sg;
 
+  # Set the db.prefix for template/titlepage.xsl
+  s|(<xsl:variable name="db.prefix">)(</xsl:variable>)|$1d:$2|sg;
+
    
   # Add d: prefix to literal tocentry in maketoc.xsl
   if ($infile =~ /maketoc/) {
@@ -440,7 +442,7 @@ sub namespacefilter {
     $newstring .= $pre;
 
     # pass through XSL key words and mixed case names and olink elements
-    if ( $name =~ /(^mod$|^div$|^and$|^or$|^ttl$|^xreftext$|^dir$|^sitemap$|^obj$|^document$|^.*[A-Z].*$)/ ) {
+    if ( $name =~ /(^mod$|^div$|^and$|^or$|^ttl$|^xreftext$|^dir$|^sitemap$|^obj$|^document$|^exsl$|^.*[A-Z].*$)/ ) {
 
       # pass this name through
       $newstring .= $name;
