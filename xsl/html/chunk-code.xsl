@@ -2,9 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
-                xmlns:ng="http://docbook.org/docbook-ng"
-                xmlns:db="http://docbook.org/ns/docbook"
-                exclude-result-prefixes="exsl cf ng db"
+                exclude-result-prefixes="exsl cf"
                 version="1.0">
 
 <!-- ********************************************************************
@@ -440,12 +438,8 @@
     <xsl:call-template name="get.doc.title"/>
   </xsl:variable>
   <xsl:choose>
-    <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-         toss the namespace and continue.  Use the docbook5 namespaced
-	 stylesheets for DocBook5 if you don't want to use this feature.-->
-    <xsl:when test="$exsl.node.set.available != 0 
-                    and (*/self::ng:* or */self::db:*)">
-
+    <xsl:when test="$exsl.node.set.available != 0 and 
+                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$doc.title"/>
@@ -453,14 +447,14 @@
           <xsl:text>namesp. cut</xsl:text>
         </xsl:with-param>
         <xsl:with-param name="message">
-          <xsl:text>processing stripped document</xsl:text>
+          <xsl:text>stripped namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
 
       <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
     </xsl:when>
-    <!-- Can't process unless namespace removed -->
-    <xsl:when test="*/self::ng:* or */self::db:*">
+    <!-- Can't process unless namespace fixed with exsl node-set()-->
+    <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
       <xsl:message terminate="yes">
         <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
         <xsl:text> cannot proceed.</xsl:text>

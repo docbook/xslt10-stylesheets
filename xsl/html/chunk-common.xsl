@@ -1,10 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:exsl="http://exslt.org/common"
                 xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
-                xmlns:ng="http://docbook.org/docbook-ng"
-                xmlns:db="http://docbook.org/ns/docbook"
                 version="1.0"
-                exclude-result-prefixes="exsl cf ng db">
+                exclude-result-prefixes="exsl cf">
 
 <!-- ********************************************************************
      $Id$
@@ -29,11 +27,11 @@
 <xsl:variable name="chunk.hierarchy">
   <xsl:if test="$chunk.fast != 0">
     <xsl:choose>
-      <!-- Are we handling a docbook5 document? -->
-      <xsl:when test="$exsl.node.set.available != 0
-                      and (*/self::ng:* or */self::db:*)">
+      <!-- Do we need to fix namespace? -->
+      <xsl:when test="$exsl.node.set.available != 0 and 
+                    namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
         <xsl:if test="$chunk.quietly = 0">
-          <xsl:message>Computing stripped namespace chunks...</xsl:message>
+          <xsl:message>Computing chunks...</xsl:message>
         </xsl:if>
         <xsl:apply-templates mode="find.chunks" select="exsl:node-set($no.namespace)"/>
       </xsl:when>
@@ -41,7 +39,6 @@
         <xsl:if test="$chunk.quietly = 0">
           <xsl:message>Computing chunks...</xsl:message>
         </xsl:if>
-
         <xsl:apply-templates select="/*" mode="find.chunks"/>
       </xsl:when>
       <xsl:otherwise>

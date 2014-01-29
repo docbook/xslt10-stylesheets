@@ -1,9 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-                xmlns:db="http://docbook.org/ns/docbook"
-                xmlns:ng="http://docbook.org/docbook-ng"
 		version="1.0"
-                exclude-result-prefixes="doc db ng">
+                exclude-result-prefixes="doc">
 
 <!-- ********************************************************************
      $Id$
@@ -225,12 +223,8 @@
         <xsl:text>The chunk.toc file is not set.</xsl:text>
       </xsl:message>
     </xsl:when>
-    <!-- Hack! If someone hands us a DocBook V5.x or DocBook NG document,
-         toss the namespace and continue.  Use the docbook5 namespaced
-	 stylesheets for DocBook5 if you don't want to use this feature.-->
-    <!-- include extra test for Xalan quirk -->
-    <xsl:when test="$exsl.node.set.available != 0
-                    and (*/self::ng:* or */self::db:*)">
+    <xsl:when test="$exsl.node.set.available != 0 and 
+                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$doc.title"/>
@@ -241,23 +235,10 @@
           <xsl:text>stripped namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
-      <xsl:variable name="nons">
-        <xsl:apply-templates mode="stripNS"/>
-      </xsl:variable>
-      <xsl:call-template name="log.message">
-        <xsl:with-param name="level">Note</xsl:with-param>
-        <xsl:with-param name="source" select="$doc.title"/>
-        <xsl:with-param name="context-desc">
-          <xsl:text>namesp. cut</xsl:text>
-        </xsl:with-param>
-        <xsl:with-param name="message">
-          <xsl:text>processing stripped document</xsl:text>
-        </xsl:with-param>
-      </xsl:call-template>
-      <xsl:apply-templates select="exsl:node-set($nons)"/>
+      <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
     </xsl:when>
-    <!-- Can't process unless namespace removed -->
-    <xsl:when test="*/self::ng:* or */self::db:*">
+    <!-- Can't process unless namespace is correct -->
+    <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
       <xsl:message terminate="yes">
         <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
         <xsl:text> cannot proceed.</xsl:text>
