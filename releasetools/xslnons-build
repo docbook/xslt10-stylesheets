@@ -1,0 +1,514 @@
+#!/usr/bin/perl -w -- #  -*- Perl -*-
+#
+#    xslns-build - generate a parallel set of DocBook5 namespaced 
+#                  stylesheet directories from a directory of
+#                  non-namespaced stylesheets.
+#
+# $Id: xslns-build 9483 2012-07-09 21:38:55Z bobstayton $
+#
+
+my $Usage = "
+USAGE:
+  $0 input-dir output-dir
+
+  where:
+    input-dir  is the directory containing namespaced stylesheets
+    output-dir is the destination for the non-namespaced stylesheets
+
+  Note: an existing output-dir will be completely removed
+        before creating new output.
+";
+
+#######################################################
+# Modules to use
+# 
+use strict;
+use IO::File;
+use File::Basename;
+use File::Path;
+use File::Find;
+use File::Copy;
+
+#######################################################
+# Global variables
+# 
+my $srcdir;
+my $destdir;
+
+my @dirlist;
+my @passthru;
+my @xslfiles;
+
+# Regular expressions
+
+# namespace name regexp
+my $ns = "[A-Za-z]+";
+# other names
+my $n = "[A-Za-z][A-Za-z0-9]+";
+# xml names
+my $w = "[A-Za-z][-A-Za-z0-9._#]+";
+# docbook element names (lowercase and numbers)
+my $dbname = "[a-z][a-z0-9]+";
+
+# Don't add namespace to any xsl files in these directories
+my @PassthruDirs = (
+'extensions',
+'profiling',
+'images',
+'tools',
+'build',
+'slides',
+'template',
+'website',
+'wordml',
+);
+
+# Don't add namespace to these particular files
+my @PassthruFiles = (
+'html-rtf.xsl',
+'html2xhtml.xsl',
+'xsl2profile.xsl',
+'olink.xsl',
+'addns.xsl',
+'stripns.xsl',
+);
+
+umask 002;
+
+#######################################################
+#   main
+# 
+
+# Get the source and output directories
+
+$srcdir = $ARGV[0];
+$destdir = $ARGV[1];
+
+unless ( $srcdir ) {
+  print "ERROR: must specify input directory of non-namespaced "
+        . " stylesheets. Exiting.\n";
+  die "$Usage\n";
+}
+
+unless ( -d $srcdir ) {
+  print "ERROR: specified input directory does not exist. Exiting.\n";
+  die "$Usage\n";
+}
+
+unless ( $destdir ) {
+  print "ERROR: must specify output directory. Exiting.\n";
+  die "$Usage\n";
+  
+}
+
+# Remove any previous output completely
+
+if ( -d $destdir) {
+  print "Removing old output directory $destdir.\n";
+
+  unless ( rmtree($destdir) ) {
+    die "ERROR: cannot remove previous output directory. Exiting.\n";
+  }
+}
+
+# Create new output directory.
+print "Creating the output directory $destdir.\n";
+
+unless ( mkpath($destdir)  ) {
+  die "ERROR: cannot create output directory $destdir.\n";
+}
+
+copyDirectories($srcdir);
+
+copyPassthru();
+
+copyXsl();
+
+addFiles();
+
+
+#######################################################
+# copyDirectories - create the output directories
+# 
+sub copyDirectories {
+
+  my ($src) = @_;
+  
+  # populate @dirlist
+  find(\&dirlist, $src );
+
+  foreach my $d (@dirlist) {
+    $d =~ s/$srcdir/$destdir/;
+    print "$d\n";
+    mkdir $d;
+  }
+
+
+}
+
+#######################################################
+# dirlist - list directories (used by find)
+# 
+sub dirlist {
+
+  if ( -d $_  ) {
+    push(@dirlist, $File::Find::name);
+  }
+}
+
+#######################################################
+# copyPassthru - copy non-XSL files to output
+# 
+sub copyPassthru {
+
+  # populate @passthru
+  find(\&passthruFiles, $srcdir );
+
+  foreach my $f (@passthru) {
+    my $dest = $f;
+    $dest =~ s/$srcdir/$destdir/;
+    print STDOUT "$f\n";
+    copy ($f, $dest);
+  }
+
+
+}
+
+#######################################################
+# passthruFiles - list non-xsl files to copy
+# 
+sub passthruFiles {
+
+  if ( -f $_ ) {
+    unless ( /\.xsl$/ or /\.ent$/ ) {
+      push(@passthru, $File::Find::name);
+    }
+  }
+}
+
+#######################################################
+# copyXsl - copy XSL files to output, possibly filtering
+# 
+sub copyXsl {
+
+  # populate @xslfiles
+  find(\&xslFiles, $srcdir );
+
+  foreach my $f (@xslfiles) {
+    my $dest = $f;
+    $dest =~ s/$srcdir/$destdir/;
+    print STDOUT "$f\n";
+
+    my $basename = basename $f;
+    my $dirname = dirname $f;
+    $dest =~ m|^$destdir/(.*?)/|;
+    my $dir = $1;
+    if ( grep /^$basename$/,@PassthruFiles ) {
+      copy($f, $dest);
+    }
+    elsif ( grep /^$dir$/, @PassthruDirs ) {
+      copy($f, $dest);
+    }
+    else {
+      nsfilter($f, $dest);
+    }
+  }
+
+
+}
+
+#######################################################
+# xslFiles - list xsl files to process
+# 
+sub xslFiles {
+
+  if ( -f $_ ) {
+    if ( /\.xsl$/ or /\.ent$/ ) {
+      push(@xslfiles, $File::Find::name);
+    }
+  }
+}
+
+#######################################################
+# nsfilter - delete namespace prefix to element names
+# 
+sub nsfilter {
+
+  my ($infile, $outfile) = @_;
+  
+  # Open and read the whole file into $_ variable for parsing
+  my $Filehandle = IO::File->new($infile)
+      or die "Can't open file $infile $!\n";
+  read ($Filehandle, $_, -s $infile);
+  $Filehandle->close;
+  
+  my $Output = IO::File->new("> $outfile") 
+     or die "Cannot write to output file $outfile.\n";
+  
+  # Set to autoflush 
+  select($Output); $| = 1;
+  
+  # delete the docbook5 namespace declaration in root element
+  
+  s|xmlns:d="http://docbook.org/ns/docbook"\n?||s;
+  
+  # remove namespace d from exclude-result-prefixes
+  # This version if only "d"
+  s| exclude-result-prefixes\s*=\s*"d"\n||s;
+  # This version if d added to others at end
+  s|(exclude-result-prefixes\s*=\s*".*?) d"|$1"|s;
+
+  # Convert stripNS to addNS
+  s|href="../common/addns.xsl"|href="../common/stripns.xsl"|sg;
+  
+  # Convert addNS to stripNS
+  s|addns\.xsl|stripns.xsl|sg;
+  s|with\.namespace|no.namespace|sg;
+  s|addNS|stripNS|sg;
+  s|(namesp\.\s+)add|$1cut|sg;
+  s|added namespace before|stripped namespace before|sg;
+  s|(Unable to )add( the namespace from )DB4( document)|$1strip$2DB5$3|sg;
+
+  # change namespace test from != to = 
+  s|(namespace-uri\(/\*\)\s*)!=(\s*['"]http://docbook.org/ns/docbook['"])|$1=$2|sg;
+
+  
+  # remove d: prefix to literal tocentry in maketoc.xsl
+  if ($infile =~ /maketoc/) {
+    s|d:(tocentry)|$1|sg;
+  }
+
+  # Process certain XSL attributes to remove d: namespace if needed
+  # and output everything using this while loop.
+  
+  while ( /^(.*?)((match|select|test|count|from|use|elements)(\s*=\s*("|'))(.*?)(\5)|(select)(\s*=\s*("|'))(.*?)(\5))/sg ) {
+  
+    my $notname = $1;
+    my $attname = $3;
+    my $prefix =  $4;
+    my $attvalue = $6;
+    my $post = $7;
+    my $rest = $';
+    
+    &filter($notname, $Output);
+
+    print $Output $attname . $prefix;
+    
+    # parse the attribute value
+    while ( $attvalue =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
+  
+      # process the leading content which is not pass through
+      &addnamespace($1, $Output);
+  
+      if ( $2 eq 'd:' ) {
+        print $Output $3;
+        
+      }
+      else {
+        print $Output $2;
+        print $Output $3;
+      }
+
+      $attvalue = $4;    # and recurse
+    }
+  
+    &addnamespace($attvalue, $Output);
+  
+    print $Output $post;
+  
+    $_ = $rest;
+  
+  }
+  
+  # print the leftovers
+  &filter($_, $Output);
+
+  close $Output;
+
+}
+
+
+# fix any special case params like certain manpage params
+# that put element names inside param string
+
+sub filter {
+  my ($string, $Output) = @_;
+
+  # Fix up index ENTITY declarations
+  $string = &indexentitydecl($string);
+  
+  while ( $string =~ m|^(.*?)(<xsl:param([^>]+[^/])>)(.*?)(</xsl:param>)|sg  ) {
+    my $before = $1;
+    my $starttag = $2;
+    my $startstuff = $3;
+    my $value =  $4;
+    my $endtag = $5;
+    my $rest = $';
+
+    $startstuff =~ /name="(.*?)"/;
+    my $pname = $1;
+
+    print $Output $before;
+    print $Output $starttag;
+
+    # add namespace to elements inside these params
+    if ( $pname =~ /(^refentry.manual.fallback.profile$|^refentry.source.fallback.profile$|^refentry.version.profile$|^refentry.date.profile$)/ ) {
+
+      # while ( $value =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
+
+      while ( $value =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
+  
+        # process the leading content which is not pass through
+        &addnamespace($1, $Output);
+  
+        if ( $2 eq 'd:' ) {
+          print $Output $3;
+        }
+        else {
+          print $Output $2;
+          print $Output $3;
+        }
+        $value = $4;    # and recurse
+      }
+  
+      &addnamespace($value, $Output);
+    }
+    else {
+      print $Output $value;
+    }
+
+    print $Output $endtag;
+
+    $string = $rest;
+    
+  }
+
+  print $Output $string;
+
+}
+
+sub indexentitydecl {
+  my ($string) = @_;
+
+  my $newstring = '';
+
+  while ( $string =~ m@^(.*?)(<!ENTITY\s+([\w.]+)\s+('|"))(.*?)(\4\s*>)@sg  ) {
+    my $before = $1;
+    my $entitystart = $2;
+    my $entityname = $3;
+    my $value =  $5;
+    my $entityend = $6;
+    my $rest = $';
+
+    $newstring .= $before;
+    $newstring .= $entitystart;
+
+    while ( $value =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
+
+      # process the leading content which is not pass through
+      $newstring .= &namespacefilter($1);
+
+      if ( $2 eq 'd:' ) {
+        $newstring .= $3;
+        
+      }
+      else {
+        $newstring .= $2;
+        $newstring .= $3;
+      }
+
+      $value = $4;    # and recurse
+
+    }
+
+    $newstring .= &namespacefilter($value);
+
+    $newstring .= $entityend;
+
+    $string = $rest;
+    
+  }
+
+  $newstring .= $string;
+
+  return $newstring;
+}
+
+
+# prints a filtered string to the designated output
+sub addnamespace {
+  my ($string, $Output) = @_;
+
+  my $newstring = &namespacefilter($string);
+  print $Output $newstring;
+}
+
+# Returns a new string with namespace prefixes added
+sub namespacefilter {
+
+  my ($string) = @_;
+
+  my $newstring = '';
+
+  while ( $string =~ /^(.*?)d:($dbname)(.*$)/s ) {
+
+    my $pre = $1;
+    my $name = $2;
+    my $rest = $3;
+
+    $newstring .= $pre;
+
+    # pass through XSL key words and mixed case names and olink elements
+    if ( $name =~ /(^mod$|^div$|^and$|^or$|^ttl$|^xreftext$|^dir$|^sitemap$|^obj$|^document$|^.*[A-Z].*$)/ ) {
+
+      # pass this name through
+      $newstring .= $name;
+    }
+    # pass through man template temporary elements
+    elsif ( $name =~ /(^cell$|^notesource$|^bold$|^italic$|^div$|^p$|^substitution$)/ ) {
+
+      # pass this name through
+      $newstring .= $name;
+    }
+    # pass through references to man temporary elements
+    elsif ( $name =~ /(^date$|^title$|^manual$|^source$)/ and $pre =~ /refentry\.metadata/ ) {
+
+      # pass this name through
+      $newstring .= $name;
+    }
+    # Pass through if preceded or followed by uppercase letters
+    elsif ($pre =~ /[-._A-Z]$/ || $rest =~ /^[-._A-Z]/) {
+      $newstring .= "d:" . $name;
+    }
+    else {
+      # remove the namespace prefix
+      $newstring .= $name;
+    }
+
+    $string = $rest;
+  }
+
+  # print any leftovers
+  $newstring .= $string;
+
+  return $newstring;
+}
+
+
+#######################################################
+# addFiles - add some new files to db5xsl
+# 
+sub addFiles {
+  my $miscdir = dirname $0;
+  $miscdir .= '/xslnsfiles';
+  print STDOUT "miscdir is $miscdir" . "\n";
+  # copy("$miscdir/manpages.table.xsl", "$destdir/manpages/table.xsl");
+  # copy("$miscdir/titlepage.xsl", "$destdir/template/titlepage.xsl");
+  # Copy the ns VERSION file, not the copy from non-ns
+  copy("$destdir/VERSION", "$destdir/VERSION.xsl");
+
+  # delete these obsolete files.
+
+  # Replace stripns.xsl with addns.xsl in profiling module
+  &nsfilter("$srcdir/profiling/profile.xsl", "$destdir/profiling/profile.xsl");
+}
