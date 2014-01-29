@@ -19,6 +19,7 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
+<xsl:variable name="db.prefix"></xsl:variable>
 
 <xsl:template match="/">
   <xsl:text>&#x0a;</xsl:text>
@@ -485,6 +486,7 @@ and <quote>verso</quote> sides of the title page.</para>
       <xsl:text>&#xA;&#xA;</xsl:text>
       <xsl:element name="xsl:template">
         <xsl:attribute name="match">
+          <xsl:value-of select="$db.prefix"/>
           <xsl:value-of select="name(.)"/>
         </xsl:attribute>
         <xsl:attribute name="mode">
@@ -518,7 +520,7 @@ and <quote>verso</quote> sides of the title page.</para>
                           <xsl:value-of select="local-name(.)"/>
                         </xsl:attribute>
                         <xsl:attribute name="select">
-                          <xsl:value-of select="."/>
+                          <xsl:call-template name="param.node"/>
                         </xsl:attribute>
                       </xsl:element>
                     </xsl:if>
@@ -883,8 +885,10 @@ names.</para>
     <xsl:text>|</xsl:text>
   </xsl:if>
 
+  <xsl:value-of select="$db.prefix"/>
   <xsl:value-of select="$docinfo"/>
   <xsl:text>/</xsl:text>
+  <xsl:value-of select="$db.prefix"/>
   <xsl:value-of select="name(.)"/>
   <xsl:if test="@t:predicate">
     <xsl:value-of select="@t:predicate"/>
@@ -892,8 +896,10 @@ names.</para>
 
   <xsl:if test="$altinfo != ''">
     <xsl:text>|</xsl:text>
+    <xsl:value-of select="$db.prefix"/>
     <xsl:value-of select="$altinfo"/>
     <xsl:text>/</xsl:text>
+    <xsl:value-of select="$db.prefix"/>
     <xsl:value-of select="name(.)"/>
     <xsl:if test="@t:predicate">
       <xsl:value-of select="@t:predicate"/>
@@ -901,8 +907,11 @@ names.</para>
   </xsl:if>
 
   <!-- info -->
-  <xsl:text>|info</xsl:text>
+  <xsl:text>|</xsl:text>
+  <xsl:value-of select="$db.prefix"/>
+  <xsl:text>info</xsl:text>
   <xsl:text>/</xsl:text>
+  <xsl:value-of select="$db.prefix"/>
   <xsl:value-of select="name(.)"/>
   <xsl:if test="@t:predicate">
     <xsl:value-of select="@t:predicate"/>
@@ -912,6 +921,7 @@ names.</para>
                 or local-name(.) = 'subtitle'
                 or local-name(.) = 'titleabbrev'">
     <xsl:text>|</xsl:text>
+    <xsl:value-of select="$db.prefix"/>
     <xsl:value-of select="name(.)"/>
     <xsl:if test="@t:predicate">
       <xsl:value-of select="@t:predicate"/>
@@ -1012,7 +1022,7 @@ names.</para>
                         <xsl:value-of select="local-name(.)"/>
                       </xsl:attribute>
                       <xsl:attribute name="select">
-                        <xsl:value-of select="."/>
+                        <xsl:call-template name="param.node"/>
                       </xsl:attribute>
                     </xsl:element>
                   </xsl:if>
@@ -1040,8 +1050,10 @@ names.</para>
             <xsl:text>&#xA;    </xsl:text>
             <xsl:element name="xsl:when">
               <xsl:attribute name="test">
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="$docinfo"/>
                 <xsl:text>/</xsl:text>
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="name(.)"/>
               </xsl:attribute>
               <xsl:text>&#xA;      </xsl:text>
@@ -1050,8 +1062,10 @@ names.</para>
                   <xsl:value-of select="$mode"/>
                 </xsl:attribute>
                 <xsl:attribute name="select">
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="$docinfo"/>
                   <xsl:text>/</xsl:text>
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="name(.)"/>
                   <xsl:if test="@t:predicate">
                     <xsl:value-of select="@t:predicate"/>
@@ -1065,8 +1079,10 @@ names.</para>
               <xsl:text>&#xA;    </xsl:text>
               <xsl:element name="xsl:when">
                 <xsl:attribute name="test">
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="$altinfo"/>
                   <xsl:text>/</xsl:text>
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="name(.)"/>
                 </xsl:attribute>
                 <xsl:text>&#xA;      </xsl:text>
@@ -1075,8 +1091,10 @@ names.</para>
                     <xsl:value-of select="$mode"/>
                   </xsl:attribute>
                   <xsl:attribute name="select">
+                    <xsl:value-of select="$db.prefix"/>
                     <xsl:value-of select="$altinfo"/>
                     <xsl:text>/</xsl:text>
+                    <xsl:value-of select="$db.prefix"/>
                     <xsl:value-of select="name(.)"/>
                     <xsl:if test="@t:predicate">
                       <xsl:value-of select="@t:predicate"/>
@@ -1091,8 +1109,10 @@ names.</para>
             <xsl:text>&#xA;    </xsl:text>
             <xsl:element name="xsl:when">
               <xsl:attribute name="test">
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="'info'"/>
                 <xsl:text>/</xsl:text>
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="name(.)"/>
               </xsl:attribute>
               <xsl:text>&#xA;      </xsl:text>
@@ -1101,8 +1121,10 @@ names.</para>
                   <xsl:value-of select="$mode"/>
                 </xsl:attribute>
                 <xsl:attribute name="select">
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="'info'"/>
                   <xsl:text>/</xsl:text>
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="name(.)"/>
                   <xsl:if test="@t:predicate">
                     <xsl:value-of select="@t:predicate"/>
@@ -1115,6 +1137,7 @@ names.</para>
             <xsl:text>&#xA;    </xsl:text>
             <xsl:element name="xsl:when">
               <xsl:attribute name="test">
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="name(.)"/>
               </xsl:attribute>
               <xsl:text>&#xA;      </xsl:text>
@@ -1123,6 +1146,7 @@ names.</para>
                   <xsl:value-of select="$mode"/>
                 </xsl:attribute>
                 <xsl:attribute name="select">
+                  <xsl:value-of select="$db.prefix"/>
                   <xsl:value-of select="name(.)"/>
                   <xsl:if test="@t:predicate">
                     <xsl:value-of select="@t:predicate"/>
@@ -1143,8 +1167,10 @@ names.</para>
               <xsl:value-of select="$mode"/>
             </xsl:attribute>
             <xsl:attribute name="select">
+              <xsl:value-of select="$db.prefix"/>
               <xsl:value-of select="$docinfo"/>
               <xsl:text>/</xsl:text>
+              <xsl:value-of select="$db.prefix"/>
               <xsl:value-of select="name(.)"/>
               <xsl:if test="@t:predicate">
                 <xsl:value-of select="@t:predicate"/>
@@ -1160,8 +1186,10 @@ names.</para>
                 <xsl:value-of select="$mode"/>
               </xsl:attribute>
               <xsl:attribute name="select">
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="$altinfo"/>
                 <xsl:text>/</xsl:text>
+                <xsl:value-of select="$db.prefix"/>
                 <xsl:value-of select="name(.)"/>
                 <xsl:if test="@t:predicate">
                   <xsl:value-of select="@t:predicate"/>
@@ -1177,8 +1205,10 @@ names.</para>
               <xsl:value-of select="$mode"/>
             </xsl:attribute>
             <xsl:attribute name="select">
+              <xsl:value-of select="$db.prefix"/>
               <xsl:value-of select="'info'"/>
               <xsl:text>/</xsl:text>
+              <xsl:value-of select="$db.prefix"/>
               <xsl:value-of select="name(.)"/>
               <xsl:if test="@t:predicate">
                 <xsl:value-of select="@t:predicate"/>
@@ -1377,5 +1407,40 @@ text of the select attribute.</para>
 </xsl:template>
 
 <!-- ==================================================================== -->
+
+<xsl:template name="param.node">
+  <xsl:param name="value" select="string(.)"/>
+
+  <xsl:choose>
+    <xsl:when test="local-name(.) = 'title'">
+      <xsl:choose>
+        <xsl:when test="$value = 'title'">
+          <xsl:text>title</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$value"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:when test="local-name(.) = 'node'">
+      <xsl:choose>
+        <xsl:when test="starts-with($value, 'ancestor-or-self::')">
+          <xsl:variable name="new">
+            <xsl:text>ancestor-or-self::</xsl:text>
+            <xsl:value-of select="$db.prefix"/>
+            <xsl:value-of select="substring-after($value, 'ancestor-or-self::')"/>
+          </xsl:variable>
+          <xsl:value-of select="$new"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$value"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$value"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 
 </xsl:stylesheet>
