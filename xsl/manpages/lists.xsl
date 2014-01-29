@@ -32,7 +32,8 @@
 
 <xsl:template match="para[ancestor::listitem or ancestor::step or ancestor::glossdef]|
   simpara[ancestor::listitem or ancestor::step or ancestor::glossdef]|
-  remark[ancestor::listitem or ancestor::step or ancestor::glossdef]">
+  remark[ancestor::listitem or ancestor::step or ancestor::glossdef]"
+  priority="1">
   <xsl:call-template name="mixed-block"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:if test="following-sibling::*[1][
