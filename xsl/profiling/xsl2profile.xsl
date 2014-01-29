@@ -61,12 +61,19 @@
   <xslo:include href="../profiling/profile-mode.xsl"/>
   <xslo:variable name="profiled-content">
     <xslo:choose>
-      <xslo:when test="*/self::ng:* or */self::db:*">
-        <xslo:message>Note: namesp. cut : stripped namespace before processing</xslo:message>
-        <xslo:variable name="stripped-content">
-          <xslo:apply-templates select="/" mode="stripNS"/>
-        </xslo:variable>
-        <xslo:message>Note: namesp. cut : processing stripped document</xslo:message>
+
+      <xslo:when test="$exsl.node.set.available != 0 and 
+                    namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+        <xslo:call-template name="log.message">
+          <xslo:with-param name="level">Note</xslo:with-param>
+          <xslo:with-param name="source" select="$doc.title"/>
+          <xslo:with-param name="context-desc">
+            <xslo:text>namesp. cut</xslo:text>
+          </xslo:with-param>
+          <xslo:with-param name="message">
+            <xslo:text>stripped namespace before processing</xslo:text>
+          </xslo:with-param>
+        </xslo:call-template>
         <xslo:apply-templates select="exslt:node-set($stripped-content)" mode="profile"/>
       </xslo:when>
       <xslo:otherwise>
