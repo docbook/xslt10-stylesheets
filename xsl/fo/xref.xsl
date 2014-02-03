@@ -151,6 +151,7 @@
                      and $insert.xref.page.number.para = 'yes')">
       <xsl:apply-templates select="$target" mode="page.citation">
         <xsl:with-param name="id" select="$target/@id|$target/@xml:id"/>
+        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
       </xsl:apply-templates>
     </xsl:when>
   </xsl:choose>
@@ -944,6 +945,7 @@
                      or $insert.link.page.number = '1')">
       <xsl:apply-templates select="$target" mode="page.citation">
         <xsl:with-param name="id" select="$linkend"/>
+        <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
       </xsl:apply-templates>
     </xsl:when>
   </xsl:choose>
@@ -1419,6 +1421,7 @@
 
 <xsl:template match="*" mode="page.citation">
   <xsl:param name="id" select="'???'"/>
+  <xsl:param name="xrefstyle" select="''"/>
 
   <fo:basic-link internal-destination="{$id}"
                  xsl:use-attribute-sets="xref.properties">
@@ -1428,6 +1431,7 @@
           <xsl:call-template name="gentext.template">
             <xsl:with-param name="name" select="'page.citation'"/>
             <xsl:with-param name="context" select="'xref'"/>
+            <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
           </xsl:call-template>
         </xsl:with-param>
       </xsl:call-template>
