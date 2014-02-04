@@ -1,11 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
+                xmlns:d="http://docbook.org/ns/docbook"
+xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
                 xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="doc t param exsl"
+                exclude-result-prefixes="doc t param exsl d"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -19,7 +20,7 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-<xsl:variable name="db.prefix"></xsl:variable>
+<xsl:variable name="db.prefix">d:</xsl:variable>
 
 <xsl:template match="/">
   <xsl:text>&#x0a;</xsl:text>
@@ -171,6 +172,12 @@ to the resulting stylesheet. Default namespace is always copied.</para>
 <xsl:template match="t:templates">
   <xsl:element name="xsl:stylesheet">
 
+    <xsl:if test="$db.prefix = 'd:'">
+      <xsl:for-each select="document('')/xsl:stylesheet/namespace::d">
+        <xsl:copy/>
+      </xsl:for-each>
+    </xsl:if>
+
     <xsl:for-each select="document('')/xsl:stylesheet/namespace::exsl">
       <xsl:copy/>
     </xsl:for-each>
@@ -184,7 +191,13 @@ to the resulting stylesheet. Default namespace is always copied.</para>
     </xsl:for-each>
 
     <xsl:attribute name="version">1.0</xsl:attribute>
-    <xsl:attribute name="exclude-result-prefixes">exsl</xsl:attribute>
+
+    <xsl:attribute name="exclude-result-prefixes">
+      <xsl:choose>
+        <xsl:when test="$db.prefix = 'd:'">exsl d</xsl:when>
+        <xsl:otherwise>exsl</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
 
     <xsl:text>&#xA;&#xA;</xsl:text>
     <xsl:comment>
