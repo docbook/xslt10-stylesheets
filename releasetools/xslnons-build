@@ -253,7 +253,7 @@ sub nsfilter {
   
   # remove namespace d from exclude-result-prefixes
   # This version if only "d"
-  s| exclude-result-prefixes\s*=\s*"d"\n||s;
+  s|\s*exclude-result-prefixes\s*=\s*"d"\s*| |s;
   # This version if d added to others at end
   s|(exclude-result-prefixes\s*=\s*".*?) d"|$1"|s;
 
