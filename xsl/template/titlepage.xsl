@@ -20,7 +20,7 @@ xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
-<xsl:variable name="db.prefix">d:</xsl:variable>
+<xsl:variable name="db.prefix"></xsl:variable>
 
 <xsl:template match="/">
   <xsl:text>&#x0a;</xsl:text>
