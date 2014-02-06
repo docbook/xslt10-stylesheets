@@ -379,7 +379,8 @@ border: none; background: none; font-weight: none; color: none; }
 	  toss the namespace and continue.  Use the docbook5 namespaced
 	  stylesheets for DocBook5 if you don't want to use this feature.-->
 	  <!-- include extra test for Xalan quirk -->
-	  <xsl:when test="$exsl.node.set.available != 0                     and (*/self::ng:* or */self::db:*)">
+          <xsl:when test="$exsl.node.set.available != 0 and 
+                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
 		<xsl:call-template name="log.message">
 		  <xsl:with-param name="level">Note</xsl:with-param>
 		  <xsl:with-param name="source" select="$doc.title"/>
