@@ -404,16 +404,6 @@ border: none; background: none; font-weight: none; color: none; }
 	  </xsl:with-param>
       </xsl:call-template>
 		-->
-		<xsl:call-template name="log.message">
-		  <xsl:with-param name="level">Note</xsl:with-param>
-		  <xsl:with-param name="source" select="$doc.title"/>
-		  <xsl:with-param name="context-desc">
-			<xsl:text>namesp. cut</xsl:text>
-		  </xsl:with-param>
-		  <xsl:with-param name="message">
-			<xsl:text>processing stripped document</xsl:text>
-		  </xsl:with-param>
-		</xsl:call-template>
 		<xsl:apply-templates select="exsl:node-set($nons)"/>
 	  </xsl:when>
           <!-- Can't process unless namespace fixed with exsl node-set()-->
