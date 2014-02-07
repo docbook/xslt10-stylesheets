@@ -53,7 +53,6 @@ my $dbname = "[a-z][a-z0-9]+";
 # Don't add namespace to any xsl files in these directories
 my @PassthruDirs = (
 'extensions',
-'profiling',
 'images',
 'tools',
 'build',
@@ -66,11 +65,11 @@ my @PassthruDirs = (
 my @PassthruFiles = (
 'html-rtf.xsl',
 'html2xhtml.xsl',
-'xsl2profile.xsl',
 'olink.xsl',
 'addns.xsl',
 'stripns.xsl',
 'tbl.xsl',
+'xsl.xsl'
 );
 
 umask 002;
@@ -442,7 +441,7 @@ sub namespacefilter {
     $newstring .= $pre;
 
     # pass through XSL key words and mixed case names and olink elements
-    if ( $name =~ /(^mod$|^div$|^and$|^or$|^ttl$|^xreftext$|^dir$|^sitemap$|^obj$|^document$|^exsl$|^.*[A-Z].*$)/ ) {
+    if ( $name =~ /(^mod$|^div$|^and$|^or$|^ttl$|^xreftext$|^dir$|^id$|^sitemap$|^obj$|^document$|^exsl$|^.*[A-Z].*$)/ ) {
 
       # pass this name through
       $newstring .= $name;
