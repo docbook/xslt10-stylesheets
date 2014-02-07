@@ -416,13 +416,13 @@ border: none; background: none; font-weight: none; color: none; }
 		</xsl:call-template>
 		<xsl:apply-templates select="exsl:node-set($nons)"/>
 	  </xsl:when>
-	  <!-- Can't process unless namespace removed -->
-	  <xsl:when test="*/self::ng:* or */self::db:*">
-		<xsl:message terminate="yes">
-		  <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
-		  <xsl:text> cannot proceed.</xsl:text>
-		</xsl:message>
-	  </xsl:when>
+          <!-- Can't process unless namespace fixed with exsl node-set()-->
+          <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+            <xsl:message terminate="yes">
+              <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+              <xsl:text> cannot proceed.</xsl:text>
+            </xsl:message>
+          </xsl:when>
 	  <xsl:otherwise>
 		<xsl:choose>
 		  <xsl:when test="$rootid != ''">
