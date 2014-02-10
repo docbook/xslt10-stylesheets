@@ -1,6 +1,5 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:d="http://docbook.org/ns/docbook"
 xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
                 xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
