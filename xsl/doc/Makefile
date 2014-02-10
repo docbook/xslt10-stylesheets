@@ -6,7 +6,7 @@ XSLTOPT=
 PROCOPT=
 
 XEP=xep
-XEPFLAGS=
+XEPFLAGS= -valid -quiet
 
 # TXT_MAKER is the Web browser to use for dumping a text version
 # of the reference docs; text output from w3m looks better than
