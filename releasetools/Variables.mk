@@ -131,7 +131,7 @@ BROWSER_OPTS = -dump
 PDF_MAKER=dblatex
 
 XEP = xep
-XEP_FLAGS =
+XEP_FLAGS = -valid -quiet
 
 DBLATEX = dblatex
 DBLATEX_FLAGS = -b pdftex
