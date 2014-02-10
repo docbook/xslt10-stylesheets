@@ -395,6 +395,11 @@
 
 <xsl:template match="biblioset" mode="bibliography.mode">
   <fo:inline>
+    <xsl:if test="@id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="@id"/>
+      </xsl:attribute>
+    </xsl:if>
     <xsl:apply-templates mode="bibliography.mode"/>
   </fo:inline>
 </xsl:template>
