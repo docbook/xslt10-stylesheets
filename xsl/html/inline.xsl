@@ -31,7 +31,7 @@
   <xsl:param name="xhref" select="$node/@xlink:href"/>
 
   <!-- check for nested links, which are undefined in the output -->
-  <xsl:if test="$node/ancestor::*[@xlink:href or @linkend]">
+  <xsl:if test="($linkend or $xhref) and $node/ancestor::*[@xlink:href or @linkend]">
     <xsl:message>
       <xsl:text>WARNING: nested link may be undefined in output: </xsl:text>
       <xsl:text>&lt;</xsl:text>
@@ -41,14 +41,16 @@
         <xsl:when test="$linkend">
           <xsl:text>@linkend = '</xsl:text>
           <xsl:value-of select="$linkend"/>
-          <xsl:text>'.</xsl:text>
+          <xsl:text>'&gt;</xsl:text>
         </xsl:when>
         <xsl:when test="$xhref">
           <xsl:text>@xlink:href = '</xsl:text>
           <xsl:value-of select="$xhref"/>
-          <xsl:text>'.</xsl:text>
+          <xsl:text>'&gt;</xsl:text>
         </xsl:when>
       </xsl:choose>
+      <xsl:text> nested inside parent element </xsl:text>
+      <xsl:value-of select="name($node/parent::*)"/>
     </xsl:message>
   </xsl:if>
 
