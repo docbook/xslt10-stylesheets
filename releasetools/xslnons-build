@@ -259,7 +259,7 @@ sub nsfilter {
   # This version if d added at beginning 
   s|(exclude-result-prefixes\s*=\s*")d\s+(.*?")|$1$2|s;
   # This version if d added in middle
-  s|(exclude-result-prefixes\s*=\s*".*?)\s+d\s+(.*?")|$1$2|s;
+  s|(exclude-result-prefixes\s*=\s*".*?)\s+d\s+(.*?")|$1 $2|s;
 
   # Convert stripNS to addNS
   s|href="../common/addns.xsl"|href="../common/stripns.xsl"|sg;
