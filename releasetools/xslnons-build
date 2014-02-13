@@ -50,19 +50,18 @@ my $w = "[A-Za-z][-A-Za-z0-9._#]+";
 # docbook element names (lowercase and numbers)
 my $dbname = "[a-z][a-z0-9]+";
 
-# Don't add namespace to any xsl files in these directories
+# Don't delete namespace to any xsl files in these directories
 my @PassthruDirs = (
 'extensions',
 'profiling',
 'images',
 'tools',
 'build',
-'slides',
 'website',
 'wordml',
 );
 
-# Don't add namespace to these particular files
+# Don't remove namespace to these particular files
 my @PassthruFiles = (
 'html-rtf.xsl',
 'html2xhtml.xsl',
@@ -261,10 +260,9 @@ sub nsfilter {
   # This version if d added in middle
   s|(exclude-result-prefixes\s*=\s*".*?)\s+d\s+(.*?")|$1 $2|s;
 
-  # Convert stripNS to addNS
+  # Convert addNS to stripNS 
   s|href="../common/addns.xsl"|href="../common/stripns.xsl"|sg;
   
-  # Convert addNS to stripNS
   s|addns\.xsl|stripns.xsl|sg;
   s|with\.namespace|no.namespace|sg;
   s|addNS|stripNS|sg;
@@ -303,7 +301,7 @@ sub nsfilter {
     while ( $attvalue =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
   
       # process the leading content which is not pass through
-      &addnamespace($1, $Output);
+      &fixnamespace($1, $Output);
   
       if ( $2 eq 'd:' ) {
         print $Output $3;
@@ -317,7 +315,7 @@ sub nsfilter {
       $attvalue = $4;    # and recurse
     }
   
-    &addnamespace($attvalue, $Output);
+    &fixnamespace($attvalue, $Output);
   
     print $Output $post;
   
@@ -364,7 +362,7 @@ sub filter {
       while ( $value =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
   
         # process the leading content which is not pass through
-        &addnamespace($1, $Output);
+        &fixnamespace($1, $Output);
   
         if ( $2 eq 'd:' ) {
           print $Output $3;
@@ -376,7 +374,7 @@ sub filter {
         $value = $4;    # and recurse
       }
   
-      &addnamespace($value, $Output);
+      &fixnamespace($value, $Output);
     }
     else {
       print $Output $value;
@@ -441,7 +439,7 @@ sub indexentitydecl {
 
 
 # prints a filtered string to the designated output
-sub addnamespace {
+sub fixnamespace {
   my ($string, $Output) = @_;
 
   my $newstring = &namespacefilter($string);
