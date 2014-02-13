@@ -8,12 +8,12 @@
 <xsl:template name="get.title">
   <xsl:param name="ctx" select="."/>
 
-  <xsl:value-of select="($ctx/db:info/db:titleabbrev|$ctx/db:titleabbrev|$ctx/db:info/db:title|$ctx/db:title)[1]"/>
+  <xsl:value-of select="($ctx/d:info/d:titleabbrev|$ctx/d:titleabbrev|$ctx/d:info/d:title|$ctx/d:title)[1]"/>
 </xsl:template>
 
 <xsl:template name="get.subtitle">
   <xsl:param name="ctx" select="."/>
 
-  <xsl:value-of select="($ctx/db:info/db:subtitle|$ctx/db:subtitle)[1]"/>
+  <xsl:value-of select="($ctx/d:info/d:subtitle|$ctx/d:subtitle)[1]"/>
 </xsl:template>
 </xsl:stylesheet>

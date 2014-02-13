@@ -13,7 +13,7 @@
 <xsl:template name="xhtml.head">
   <meta name="copyright">
     <xsl:attribute name="content">
-      <xsl:if test="/dbs:slides/db:info/db:copyright">
+      <xsl:if test="/dbs:slides/d:info/d:copyright">
 	<xsl:call-template name="slide.copyright"/>
       </xsl:if>
     </xsl:attribute>
@@ -43,7 +43,7 @@
   <xsl:apply-templates select="/dbs:slides/dbs:foil|dbs:slides/dbs:foilgroup"/>
 </xsl:template>
 
-<xsl:template match="db:xref">
+<xsl:template match="d:xref">
   <xsl:variable name="target" select="id(./@linkend)"/>
 
   <xsl:choose>
@@ -62,9 +62,9 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="db:biblioentry" mode="xref-to">
+<xsl:template match="d:biblioentry" mode="xref-to">
   <xsl:variable name="id" select="@xml:id"/>
-  <xsl:variable name="entry" select="//db:bibliography/*[@xml:id=$id][1]"/>
+  <xsl:variable name="entry" select="//d:bibliography/*[@xml:id=$id][1]"/>
 
   <a>
     <xsl:attribute name="href">
@@ -72,7 +72,7 @@
     </xsl:attribute>
     <xsl:choose>
       <xsl:when test="$bibliography.numbered != 0">
-        <xsl:number from="db:bibliography" count="db:biblioentry|db:bibliomixed" level="any" format="1"/>
+        <xsl:number from="d:bibliography" count="d:biblioentry|d:bibliomixed" level="any" format="1"/>
       </xsl:when>
 
       <xsl:otherwise>

@@ -50,7 +50,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="db:xref">
+<xsl:template match="d:xref">
   <xsl:variable name="target" select="id(./@linkend)"/>
 
   <xsl:choose>
@@ -66,12 +66,12 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="db:biblioentry" mode="xref-to">
+<xsl:template match="d:biblioentry" mode="xref-to">
   <xsl:variable name="id" select="@xml:id"/>
 
   <xsl:choose>
     <xsl:when test="$bibliography.numbered != 0">
-      <xsl:number from="db:bibliography" count="db:biblioentry|db:bibliomixed" level="any" format="1"/>
+      <xsl:number from="d:bibliography" count="d:biblioentry|d:bibliomixed" level="any" format="1"/>
     </xsl:when>
 
     <xsl:otherwise>
@@ -80,7 +80,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="db:mediaobject">
+<xsl:template match="d:mediaobject">
   <p>
     <xsl:if test="@dbs:style">
       <xsl:attribute name="class">
