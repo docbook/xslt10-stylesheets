@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:db="http://docbook.org/ns/docbook"
+		xmlns:d="http://docbook.org/ns/docbook"
 		xmlns:dbs="http://docbook.org/ns/docbook-slides"
-		exclude-result-prefixes="dbs db"
+		exclude-result-prefixes="dbs d"
 		version="1.0">
 
 <xsl:import href="plain.xsl"/>

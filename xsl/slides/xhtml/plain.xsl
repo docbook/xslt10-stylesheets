@@ -2,10 +2,10 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
-		xmlns:db="http://docbook.org/ns/docbook"
+		xmlns:d="http://docbook.org/ns/docbook"
 		xmlns:dbs="http://docbook.org/ns/docbook-slides"
 		xmlns:exsl="http://exslt.org/common"
-		exclude-result-prefixes="dbs db xlink"
+		exclude-result-prefixes="dbs d xlink"
 		extension-element-prefixes="exsl"
 		version="1.0">
 

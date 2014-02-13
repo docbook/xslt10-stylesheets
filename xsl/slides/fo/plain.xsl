@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
-		xmlns:db="http://docbook.org/ns/docbook"
+		xmlns:d="http://docbook.org/ns/docbook"
 		xmlns:dbs="http://docbook.org/ns/docbook-slides"
 		xmlns:exsl="http://exslt.org/common"
-		exclude-result-prefixes="dbs db"
+		exclude-result-prefixes="dbs d"
 		extension-element-prefixes="exsl"
                 version="1.0">
 
@@ -109,7 +109,7 @@
 
 <xsl:template name="bibliography.titlepage"/>
 
-<!-- Do not add db namespace to dbs elements -->
+<!-- Do not add d namespace to dbs elements -->
 <xsl:template match="*[namespace-uri() = 'http://docbook.org/ns/docbook-slides']" mode="addNS">
   <xsl:copy-of select="."/>
 </xsl:template>
