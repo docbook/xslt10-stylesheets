@@ -65,7 +65,7 @@ DISTRIB_PACKAGES = doc
 URILIST = \
 .\ http://docbook.sourceforge.net/release/xsl/current/
 
-DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website extensions xhtml webhelp xhtml5 epub3
+DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website extensions xhtml xhtml-1_1 webhelp xhtml5 epub3
 
 .PHONY: distrib clean doc docsrc xhtml
 
