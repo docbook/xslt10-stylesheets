@@ -219,7 +219,9 @@
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
-    <xsl:if test="self::editor[position()=1] and not($editedby.enabled = 0)">
+    <xsl:if test="self::editor and 
+                  count(preceding-sibling::editor) = 0 and 
+                  not($editedby.enabled = 0)">
       <h4 class="editedby"><xsl:call-template name="gentext.edited.by"/></h4>
     </xsl:if>
     <h3>
