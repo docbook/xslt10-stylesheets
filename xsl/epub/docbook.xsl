@@ -36,13 +36,28 @@
 
   <xsl:param name="manifest.in.base.dir" select="'1'"/> 
   <xsl:param name="base.dir" select="''"/>
+  <!-- epub.oebps.dir must be the html path relative to base.dir -->
   <xsl:param name="epub.oebps.dir" select="'OEBPS/'"/>
+  <!-- This version has no trailing slash -->
+  <xsl:variable name="clean.oebps.dir">
+    <xsl:choose>
+      <xsl:when test="substring($epub.oebps.dir, 
+                      string-length($epub.oebps.dir), 1) = '/'">
+        <xsl:value-of select="substring($epub.oebps.dir, 1,
+                              string-length($epub.oebps.dir) - 1)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$epub.oebps.dir"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
 
   <!-- HTML chunk output goes to $base.dir/OEPBS -->
   <xsl:variable name="chunk.base.dir">
     <xsl:choose>
-      <xsl:when test="$base.dir != '' and contains($base.dir, $epub.oebps.dir)">
-        <xsl:value-of select="substring-before($base.dir, $epub.oebps.dir)"/>
+      <xsl:when test="$base.dir != '' and contains($base.dir, $clean.oebps.dir)">
+        <xsl:value-of select="substring-before($base.dir, $clean.oebps.dir)"/>
       </xsl:when>
       <!-- If epub.oebps.dir reset but base.dir still has OEBPS: -->
       <xsl:when test="$base.dir != '' and contains($base.dir, 'OEBPS')">
@@ -57,17 +72,20 @@
         <xsl:value-of select="concat($base.dir, '/')"/>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:value-of select="$epub.oebps.dir"/>
-    <xsl:if test="substring($epub.oebps.dir, string-length($epub.oebps.dir), 1) != '/'">
-      <xsl:text>/</xsl:text>
-    </xsl:if>
+    <xsl:value-of select="$clean.oebps.dir"/>
+    <xsl:text>/</xsl:text>
   </xsl:variable>
 
  <!-- This param only has a side effect of checking for base.dir usage -->
 
   <xsl:param name="epub.ncx.filename" select="'toc.ncx'"/> 
+  <xsl:param name="epub.package.filename" select="'content.opf'"/>
   <xsl:param name="epub.container.filename" select="'container.xml'"/> 
-  <xsl:param name="epub.opf.filename" select="concat($epub.oebps.dir, 'content.opf')"/> 
+  <xsl:param name="epub.opf.filename">
+    <xsl:value-of select="$clean.oebps.dir"/>
+    <xsl:text>/</xsl:text>
+    <xsl:value-of select="$epub.package.filename"/>
+  </xsl:param>
   <xsl:param name="epub.cover.filename" select="concat($chunk.base.dir, 'cover', $html.ext)"/> 
   <xsl:param name="epub.cover.id" select="'cover'"/> 
   <xsl:param name="epub.cover.html" select="'cover.html'" />
@@ -75,7 +93,7 @@
   <xsl:param name="epub.cover.linear" select="0" />
   <xsl:param name="epub.ncx.toc.id">ncxtoc</xsl:param>
   <xsl:param name="epub.html.toc.id">htmltoc</xsl:param>
-  <xsl:variable name="epub.metainf.dir" select="concat($base.dir, 'META-INF/')"/> 
+  <xsl:variable name="epub.metainf.dir" select="concat($chunk.base.dir, '../META-INF/')"/> 
 
   <xsl:param name="epub.embedded.fonts"></xsl:param>
 
@@ -289,7 +307,9 @@
     </xsl:variable>
     <xsl:call-template name="write.chunk">
       <xsl:with-param name="filename">
-        <xsl:value-of select="concat($base.dir, $epub.opf.filename)" />
+        <xsl:value-of select="$chunk.base.dir"/>
+        <xsl:text>../</xsl:text>
+        <xsl:value-of select="$epub.opf.filename" />
       </xsl:with-param>
       <xsl:with-param name="method" select="'xml'" />
       <xsl:with-param name="encoding" select="'utf-8'" />
