@@ -40,29 +40,29 @@
 
   <!-- HTML chunk output goes to $base.dir/OEPBS -->
   <xsl:variable name="chunk.base.dir">
-    <xsl:if test="$base.dir != '' and contains($base.dir, $epub.oebps.dir)">
-      <xsl:message terminate="yes">
-        <xsl:text>ERROR: the $base.dir param must not include the </xsl:text>
-        <xsl:value-of select="$epub.oebps.dir"/>
-        <xsl:text> directory in its path. Exiting.</xsl:text>
-      </xsl:message>
-    </xsl:if>
     <xsl:choose>
-     <xsl:when test="string-length($base.dir) = 0"></xsl:when>
-     <!-- make sure to add trailing slash if omitted by user -->
-     <xsl:when test="substring($base.dir, string-length($base.dir), 1) = '/'">
-       <xsl:value-of select="$base.dir"/>
-     </xsl:when>
-     <xsl:otherwise>
-       <xsl:value-of select="concat($base.dir, '/')"/>
-     </xsl:otherwise>
-   </xsl:choose>
-   <xsl:value-of select="$epub.oebps.dir"/>
+      <xsl:when test="$base.dir != '' and contains($base.dir, $epub.oebps.dir)">
+        <xsl:value-of select="substring-before($base.dir, $epub.oebps.dir)"/>
+      </xsl:when>
+      <!-- If epub.oebps.dir reset but base.dir still has OEBPS: -->
+      <xsl:when test="$base.dir != '' and contains($base.dir, 'OEBPS')">
+        <xsl:value-of select="substring-before($base.dir, 'OEBPS')"/>
+      </xsl:when>
+      <xsl:when test="string-length($base.dir) = 0"></xsl:when>
+      <!-- make sure to add trailing slash if omitted by user -->
+      <xsl:when test="substring($base.dir, string-length($base.dir), 1) = '/'">
+        <xsl:value-of select="$base.dir"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($base.dir, '/')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:value-of select="$epub.oebps.dir"/>
     <xsl:if test="substring($epub.oebps.dir, string-length($epub.oebps.dir), 1) != '/'">
       <xsl:text>/</xsl:text>
     </xsl:if>
- </xsl:variable>
- 
+  </xsl:variable>
+
  <!-- This param only has a side effect of checking for base.dir usage -->
 
   <xsl:param name="epub.ncx.filename" select="'toc.ncx'"/> 
