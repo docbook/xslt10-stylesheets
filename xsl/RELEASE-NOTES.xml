@@ -42,7 +42,7 @@ changes made over the entire history of the codebase.</para>
 <para condition="snapshot">This is a pre-release “snapshot” of the
 DocBook XSL Stylesheets. The change information in the first
 section of this file 
-(for “<xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/title/text())"/>”) is
+(for “<xi:include href="NEWS.xml" xpointer="xmlns(d=http://docbook.org/ns/docbook) xpointer(/d:article/d:section/d:title/text())"/>”) is
 auto-generated from change descriptions stored in the project
 source-code repository.</para>
 <para condition="snapshot">That means the first section contains
@@ -55,7 +55,7 @@ public APIs (user-configurable parameters).</para>
 </info>
 
 <sect1 condition="snapshot" xml:id="current">
-  <xi:include href="NEWS.xml" xpointer="xpointer(/article/sect1/*)"/>
+  <xi:include href="NEWS.xml" xpointer="xmlns(d=http://docbook.org/ns/docbook) xpointer(/d:article/d:section/*)"/>
 </sect1>
 <sect1 xml:id="V1.77.0">
 <title>Release Notes: 1.77.1</title>
