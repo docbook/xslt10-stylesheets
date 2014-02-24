@@ -60,9 +60,9 @@ NEWS.xml: ChangeLog.xml
 	element.file="$(DOCBOOK_ELEMENTS)" \
 	param.file="$(XSL_PARAMS)"
 
-        mv NEWS.xml NEWS-4.xml
-        $(XSLT) NEWS-4.xml $(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl $@
-        rm NEWS-4.xml
+	mv NEWS.xml NEWS-4.xml
+	$(XSLT) NEWS-4.xml $(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl $@
+	rm NEWS-4.xml
 
 NEWS.html: NEWS.xml
 	$(XSLT) $< $(DOC_LINK_STYLE) $@ \
