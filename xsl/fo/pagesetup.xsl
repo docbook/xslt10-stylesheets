@@ -2400,11 +2400,18 @@
     <xsl:call-template name="user.pagemasters"/>
 
     </fo:layout-master-set>
+  
+    <xsl:call-template name="user.declarations"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template name="user.pagemasters"/> <!-- intentionally empty -->
+
+<!-- ==================================================================== -->
+
+<xsl:template name="user.declarations"/> <!-- intentionally empty; add your fo:declarations -->
+
 
 <!-- ==================================================================== -->
 
