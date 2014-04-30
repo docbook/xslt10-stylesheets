@@ -145,7 +145,7 @@
 <xsl:template match="epigraph">
   <fo:block>
     <xsl:call-template name="anchor"/>
-    <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
+    <xsl:apply-templates select="node()[not(local-name(attribution))]"/>
     <xsl:if test="attribution">
       <fo:inline>
         <xsl:text>&#x2014;</xsl:text>
