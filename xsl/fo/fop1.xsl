@@ -24,7 +24,8 @@
 <xsl:template match="set|book|part|reference|
                      preface|chapter|appendix|article|topic
                      |glossary|bibliography|index|setindex
-                     |refentry
+                     |refentry|refsynopsisdiv
+                     |refsect1|refsect2|refsect3|refsection
                      |sect1|sect2|sect3|sect4|sect5|section"
               mode="fop1.outline">
 
@@ -70,7 +71,8 @@
       <xsl:if test="contains($toc.params, 'toc')
                     and (book|part|reference|preface|chapter|appendix|article|topic
                          |glossary|bibliography|index|setindex
-                         |refentry
+                         |refentry|refsynopsisdiv
+                         |refsect1|refsect2|refsect3|refsection
                          |sect1|sect2|sect3|sect4|sect5|section)">
         <fo:bookmark internal-destination="toc...{$id}">
           <fo:bookmark-title>
