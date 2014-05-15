@@ -72,6 +72,7 @@
                    | @frame
                    | @headers
                    | @height
+                   | @id
                    | @lang
                    | @nowrap
                    | @onclick
@@ -85,12 +86,14 @@
                    | @onmouseover
                    | @onmouseup
                    | @rules
+                   | @scope
                    | @style
                    | @summary
                    | @title
                    | @valign
                    | @valign
                    | @width
+                   | @xml:id
                    | @xml:lang">
   <xsl:copy-of select="."/>
 </xsl:template>
