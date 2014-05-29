@@ -711,14 +711,6 @@
 </xsl:template>
 
 <xsl:template match="emphasis">
-  <xsl:variable name="depth">
-    <xsl:call-template name="dot.count">
-      <xsl:with-param name="string">
-        <xsl:number level="multiple"/>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="@role='bold' or @role='strong'">
       <xsl:call-template name="inline.boldseq"/>
@@ -734,6 +726,11 @@
       </fo:inline>
     </xsl:when>
     <xsl:otherwise>
+      <!-- How many regular emphasis ancestors does this element have -->
+      <xsl:variable name="depth" select="count(ancestor::emphasis
+	[not(contains(' bold strong underline strikethrough ', concat(' ', @role, ' ')))]
+	)"/>
+
       <xsl:choose>
         <xsl:when test="$depth mod 2 = 1">
           <fo:inline font-style="normal">
