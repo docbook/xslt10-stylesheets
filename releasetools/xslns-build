@@ -458,6 +458,11 @@ sub namespacefilter {
       # pass this name through
       $newstring .= $name;
     }
+    # Pass through html name used in pi.dbhtml-include template 
+    elsif ( $name =~ /(^html$)/ ) {
+      $newstring .= $name;
+    }
+
     # Pass through if preceded or followed by uppercase letters
     elsif ($pre =~ /[-._A-Z]$/ || $rest =~ /^[-._A-Z]/) {
       $newstring .= $name;
