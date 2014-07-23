@@ -484,17 +484,21 @@ title of the element. This does not include the label.
 
 <xsl:template match="question" mode="title.markup">
   <!-- questions don't have titles -->
-  <xsl:text>Question</xsl:text>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key">question</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="answer" mode="title.markup">
   <!-- answers don't have titles -->
-  <xsl:text>Answer</xsl:text>
+  <xsl:call-template name="gentext">
+    <xsl:with-param name="key">answer</xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="qandaentry" mode="title.markup">
   <!-- qandaentrys are represented by the first question in them -->
-  <xsl:text>Question</xsl:text>
+  <xsl:apply-templates select="question" mode="title.markup"/>
 </xsl:template>
 
 <xsl:template match="qandaset" mode="title.markup">
