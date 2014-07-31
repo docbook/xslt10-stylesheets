@@ -212,6 +212,7 @@ GlossEntry ::=
           <xsl:apply-templates select="acronym|abbrev"/>
           <xsl:text>)</xsl:text>
         </xsl:if>
+        <xsl:apply-templates select="indexterm"/>
       </dt>
     </xsl:when>
     <xsl:otherwise>
@@ -234,11 +235,12 @@ GlossEntry ::=
         </xsl:call-template>
 
         <xsl:apply-templates select="glossterm"/>
+        <xsl:apply-templates select="indexterm"/>
       </dt>
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:apply-templates select="indexterm|revhistory|glosssee|glossdef"/>
+  <xsl:apply-templates select="glosssee|glossdef"/>
 </xsl:template>
 
 <xsl:template match="glossentry/glossterm">
