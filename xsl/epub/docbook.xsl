@@ -845,11 +845,9 @@
       </xsl:if>  
 
       <xsl:if test="$html.stylesheet != ''">
-        <xsl:element namespace="http://www.idpf.org/2007/opf" name="item">
-          <xsl:attribute name="media-type">text/css</xsl:attribute>
-          <xsl:attribute name="id">css</xsl:attribute>
-          <xsl:attribute name="href"><xsl:value-of select="$html.stylesheet"/></xsl:attribute>
-        </xsl:element>
+        <xsl:call-template name="css.item">
+          <xsl:with-param name="stylesheets" select="$html.stylesheet"/>
+        </xsl:call-template>
       </xsl:if>
 
       <xsl:if test="/*/*[cover or contains(name(.), 'info')]//mediaobject[@role='cover' or ancestor::cover]"> 
@@ -1786,4 +1784,51 @@
   </xsl:element>
 </xsl:template>
 
+<xsl:template name="css.item">
+  <xsl:param name="stylesheets" select="''"/>
+  <xsl:param name="count" select="1"/>
+
+  <xsl:variable name="opf.namespace">http://www.idpf.org/2007/opf</xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="contains($stylesheets, ' ')">
+      <xsl:variable name="css.filename" select="substring-before($stylesheets, ' ')"/>
+      <xsl:if test="$css.filename != ''">
+        <xsl:element namespace="{$opf.namespace}" name="item">
+          <xsl:attribute name="media-type">text/css</xsl:attribute>
+          <xsl:attribute name="id">
+            <xsl:text>html-css</xsl:text>
+            <xsl:if test="$count &gt; 1">
+              <xsl:value-of select="$count"/>
+            </xsl:if>
+          </xsl:attribute>
+          <xsl:attribute name="href">
+            <xsl:value-of select="$css.filename"/>
+          </xsl:attribute>
+        </xsl:element>
+      </xsl:if>
+
+      <xsl:call-template name="css.item">
+        <xsl:with-param name="stylesheets" select="substring-after($stylesheets, ' ')"/>
+        <xsl:with-param name="count" select="$count + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:if test="$stylesheets != ''">
+        <xsl:element namespace="{$opf.namespace}" name="item">
+          <xsl:attribute name="media-type">text/css</xsl:attribute>
+          <xsl:attribute name="id">
+            <xsl:text>html-css</xsl:text>
+            <xsl:if test="$count &gt; 1">
+              <xsl:value-of select="$count"/>
+            </xsl:if>
+          </xsl:attribute>
+          <xsl:attribute name="href">
+            <xsl:value-of select="$stylesheets"/>
+          </xsl:attribute>
+        </xsl:element>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 </xsl:stylesheet>
