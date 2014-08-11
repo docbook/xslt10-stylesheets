@@ -648,15 +648,18 @@ article  toc,title,figure,table,example,equation
   </xsl:variable>
 
   <xsl:if test="string-length($date) != 0">
-    <xsl:element name="meta" namespace="{$opf.namespace}">
-      <xsl:attribute name="property">dcterms:date</xsl:attribute>
-      <xsl:value-of select="$date"/>
-    </xsl:element>
-  
-    <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
-      <dc:date>
+    <!-- Can only output one date for epub, pubdate has priority -->
+    <xsl:if test="self::pubdate or (self::date and not(../pubdate) )">
+      <xsl:element name="meta" namespace="{$opf.namespace}">
+        <xsl:attribute name="property">dcterms:date</xsl:attribute>
         <xsl:value-of select="$date"/>
-      </dc:date>
+      </xsl:element>
+    
+      <xsl:if test="$epub.include.optional.metadata.dc.elements != 0">
+        <dc:date>
+          <xsl:value-of select="$date"/>
+        </dc:date>
+      </xsl:if>
     </xsl:if>
   </xsl:if>
 
@@ -841,7 +844,7 @@ article  toc,title,figure,table,example,equation
   </xsl:variable>
 
   <!-- if no docbook date element, use copyright year for single date metadata -->
-  <xsl:if test="not(../date)">
+  <xsl:if test="not(../date) and not(../pubdate)">
     <xsl:variable name="date.content">
       <xsl:call-template name="format.meta.date">
         <xsl:with-param name="string">
