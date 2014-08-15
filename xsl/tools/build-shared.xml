@@ -5,6 +5,7 @@
   <property name="libs" value="${dbroot.dir}/tools/lib"/>
   <property name="saxon9.jar" value="${libs}/saxon9he.jar"/>
   <property name="saxon.jar" value="${libs}/saxon.jar"/>
+  <property name="xerces.jar" value="${libs}/xercesImpl.jar"/>
   <property name="saxon-ant.jar" value="${libs}/saxon9-ant.jar"/>
   <property name="jing.jar" value="${libs}/jing.jar"/>
   <property name="ant-contrib.jar" value="${libs}/ant-contrib-1.0b3.jar"/>
@@ -22,6 +23,7 @@
   </path>
 
   <path id="saxon.classpath">
+    <pathelement location="${xerces.jar}"/>
     <pathelement location="${saxon.jar}"/>
     <pathelement location="${extensions.jar}"/>
   </path>
@@ -41,5 +43,32 @@
            classname="net.sf.saxon.ant.AntTransform">
     <classpath refid="saxon9.classpath"/>
   </taskdef>
+
+  <target name="build-params">
+    <!-- FIXME parameter checking -->
+    <xslt in="param.xweb" out=".param.profiled" style="../profiling/profile.xsl">
+      <factory name="com.icl.saxon.TransformerFactoryImpl"/>
+      <classpath refid="saxon.classpath"/>
+      <param name="profile.condition" expression="${condition}"/>
+    </xslt>
+    <xslt in=".param.profiled" out=".param.stripped" style="../profiling/strip-attributes.xsl">
+      <factory name="com.icl.saxon.TransformerFactoryImpl"/>
+      <classpath refid="saxon.classpath"/>
+      <param name="attributes" expression="condition"/>
+    </xslt>
+    <xslt in=".param.stripped" out=".param.dbkns" style="../../releasetools/xtangle.xsl">
+      <factory name="com.icl.saxon.TransformerFactoryImpl"/>
+      <classpath refid="saxon.classpath"/>
+    </xslt>
+    <xslt in=".param.dbkns" out="param.xsl.tmp" style="../tools/xsl/build/fix-params-ns.xsl">
+      <factory name="com.icl.saxon.TransformerFactoryImpl"/>
+      <classpath refid="saxon.classpath"/>
+    </xslt>
+    <xslt in="param.xsl.tmp" out="param.xsl" style="../tools/xsl/build/addnewline.xsl">
+      <factory name="com.icl.saxon.TransformerFactoryImpl"/>
+      <classpath refid="saxon.classpath"/>
+    </xslt>
+    <!-- FIXME: remove temporary files -->
+  </target>
 
 </project>

@@ -7,6 +7,8 @@
   <target name="all">
     <echo>Adding missing translations from English master localization...</echo>
     <xslt style="../../gentext/xsl/xsl-primary-is-locale.xsl" destdir="." basedir="../../gentext/locale" force="true">
+      <factory name="com.icl.saxon.TransformerFactoryImpl"/>
+      <classpath refid="saxon.classpath"/>
       <param name="en.locale.file" expression="en.xml"/>
       <include name="*.xml"/>
       <mapper type="flatten"/>
