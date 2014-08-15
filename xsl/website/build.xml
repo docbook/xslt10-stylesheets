@@ -15,11 +15,7 @@
   </target>
 
   <target name="clean">
-    <delete>
-      <fileset dir=".">
-	<!-- FIXME -->
-      </fileset>
-    </delete>
+    <antcall target="clean-params"/>
   </target>
 
 </project>

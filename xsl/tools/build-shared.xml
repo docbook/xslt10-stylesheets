@@ -69,7 +69,18 @@
       <factory name="com.icl.saxon.TransformerFactoryImpl"/>
       <classpath refid="saxon.classpath"/>
     </xslt>
-    <!-- FIXME: remove temporary files -->
+  </target>
+
+  <target name="clean-params">
+    <delete>
+      <fileset dir=".">
+	<include name=".param.profiled"/>
+	<include name=".param.stripped"/>
+	<include name=".param.dbkns"/>
+	<include name="param.xsl.tmp"/>
+	<include name="param.xsl"/>
+      </fileset>
+    </delete>
   </target>
 
 </project>

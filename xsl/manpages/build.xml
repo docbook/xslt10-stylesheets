@@ -33,9 +33,11 @@
   <target name="clean">
     <delete>
       <fileset dir=".">
-	<!-- FIXME -->
+	<include name="profile-docbook.xsl"/>
+	<include name="html-synop.xsl"/>
       </fileset>
     </delete>
+    <antcall target="clean-params"/>
   </target>
 
 </project>

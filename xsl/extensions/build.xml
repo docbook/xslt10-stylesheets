@@ -35,7 +35,13 @@
   <target name="clean">
     <delete>
       <fileset dir=".">
-	<!-- FIXME -->
+	<include name="saxon65.jar"/>
+	<include name="xalan27.jar"/>
+	<include name="webhelpindexer.jar"/>
+	<include name="*.jar"/>
+	<include name="xslt.py"/>
+	<include name="python.py"/>
+	<include name="README.LIBXSLT"/>
       </fileset>
     </delete>
   </target>
