@@ -30,7 +30,7 @@
     <ant dir="extensions"/>
     <ant dir="xhtml"/>
     <ant dir="xhtml-1_1"/>
-    <ant dir="webhelp"/>
+    <!-- <ant dir="webhelp"/> --> <!-- Webhelp is excluded as it builds only demo document not files needed for runtime -->
     <ant dir="xhtml5"/>
     <ant dir="epub3"/>
   </target>
