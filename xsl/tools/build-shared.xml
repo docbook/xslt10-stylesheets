@@ -46,39 +46,41 @@
   </taskdef>
 
   <target name="build-params">
+    <property name="file" value="param"/>
     <!-- FIXME parameter checking -->
-    <xslt in="param.xweb" out=".param.profiled" style="../profiling/profile.xsl">
+    <xslt in="${file}.xweb" out=".${file}.profiled" style="../profiling/profile.xsl">
       <factory name="com.icl.saxon.TransformerFactoryImpl"/>
       <classpath refid="saxon.classpath"/>
       <param name="profile.condition" expression="${condition}"/>
     </xslt>
-    <xslt in=".param.profiled" out=".param.stripped" style="../profiling/strip-attributes.xsl">
+    <xslt in=".${file}.profiled" out=".${file}.stripped" style="../profiling/strip-attributes.xsl">
       <factory name="com.icl.saxon.TransformerFactoryImpl"/>
       <classpath refid="saxon.classpath"/>
       <param name="attributes" expression="condition"/>
     </xslt>
-    <xslt in=".param.stripped" out=".param.dbkns" style="../../releasetools/xtangle.xsl">
+    <xslt in=".${file}.stripped" out=".${file}.dbkns" style="../../releasetools/xtangle.xsl">
       <factory name="com.icl.saxon.TransformerFactoryImpl"/>
       <classpath refid="saxon.classpath"/>
     </xslt>
-    <xslt in=".param.dbkns" out="param.xsl.tmp" style="../tools/xsl/build/fix-params-ns.xsl">
+    <xslt in=".${file}.dbkns" out="${file}.xsl.tmp" style="../tools/xsl/build/fix-params-ns.xsl">
       <factory name="com.icl.saxon.TransformerFactoryImpl"/>
       <classpath refid="saxon.classpath"/>
     </xslt>
-    <xslt in="param.xsl.tmp" out="param.xsl" style="../tools/xsl/build/addnewline.xsl">
+    <xslt in="${file}.xsl.tmp" out="${file}.xsl" style="../tools/xsl/build/addnewline.xsl">
       <factory name="com.icl.saxon.TransformerFactoryImpl"/>
       <classpath refid="saxon.classpath"/>
     </xslt>
   </target>
 
   <target name="clean-params">
+    <property name="file" value="param"/>
     <delete>
       <fileset dir=".">
-	<include name=".param.profiled"/>
-	<include name=".param.stripped"/>
-	<include name=".param.dbkns"/>
-	<include name="param.xsl.tmp"/>
-	<include name="param.xsl"/>
+	<include name=".${file}.profiled"/>
+	<include name=".${file}.stripped"/>
+	<include name=".${file}.dbkns"/>
+	<include name="${file}.xsl.tmp"/>
+	<include name="${file}.xsl"/>
       </fileset>
     </delete>
   </target>

@@ -18,7 +18,7 @@
 
   <target name="build">
     <ant dir="common"/>
-    <!-- FIXME: lib, should be generated using xweb -->
+    <ant dir="lib"/>
     <ant dir="html"/>
     <ant dir="fo"/>
     <ant dir="manpages"/>
@@ -38,6 +38,7 @@
 
   <target name="clean">
     <ant dir="common" target="clean"/>
+    <ant dir="lib" target="clean"/>
     <ant dir="html" target="clean"/>
     <ant dir="fo" target="clean"/>
     <ant dir="manpages" target="clean"/>
