@@ -5,6 +5,7 @@
   <property name="libs" value="${dbroot.dir}/tools/lib"/>
   <property name="saxon9.jar" value="${libs}/saxon9he.jar"/>
   <property name="saxon.jar" value="${libs}/saxon.jar"/>
+  <property name="xalan.jar" value="${libs}/xalan.jar"/>
   <property name="xerces.jar" value="${libs}/xercesImpl.jar"/>
   <property name="saxon-ant.jar" value="${libs}/saxon9-ant.jar"/>
   <property name="jing.jar" value="${libs}/jing.jar"/>
