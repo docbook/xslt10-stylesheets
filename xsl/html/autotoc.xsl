@@ -183,7 +183,7 @@
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
-    <xsl:with-param name="nodes" select="book|setindex|set"/>
+    <xsl:with-param name="nodes" select="book|setindex|set|article"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -390,6 +390,15 @@
     <xsl:apply-templates select="." mode="titleabbrev.markup"/>
   </a>
   </span>
+</xsl:template>
+
+<xsl:template match="set" mode="toc">
+  <xsl:param name="toc-context" select="."/>
+
+  <xsl:call-template name="subtoc">
+    <xsl:with-param name="toc-context" select="$toc-context"/>
+    <xsl:with-param name="nodes" select="set|book|setindex|article"/>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="book" mode="toc">
