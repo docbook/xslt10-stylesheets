@@ -132,6 +132,15 @@
       <xsl:value-of select="$filename"/>
     </xsl:when>
 
+    <!-- treat nested set separate from root -->
+    <xsl:when test="self::set and ancestor::set">
+      <xsl:text>se</xsl:text>
+      <xsl:number level="any" format="01"/>
+      <xsl:if test="not($recursive)">
+        <xsl:value-of select="$html.ext"/>
+      </xsl:if>
+    </xsl:when>
+
     <xsl:when test="self::set">
       <xsl:value-of select="$root.filename"/>
       <xsl:if test="not($recursive)">
