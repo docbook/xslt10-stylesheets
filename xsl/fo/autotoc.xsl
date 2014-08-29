@@ -30,7 +30,7 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="nodes" select="book|set|setindex"/>
+  <xsl:variable name="nodes" select="book|set|setindex|article"/>
 
   <xsl:if test="$nodes">
     <fo:block id="toc...{$id}"
@@ -420,7 +420,7 @@
     <xsl:with-param name="toc-context" select="$toc-context"/>
   </xsl:call-template>
 
-  <xsl:variable name="nodes" select="set|book|setindex"/>
+  <xsl:variable name="nodes" select="set|book|setindex|article"/>
 
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
