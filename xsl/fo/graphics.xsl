@@ -174,6 +174,7 @@
         <xsl:with-param name="filename">
           <xsl:if test="$img.src.path != '' and
                         not(starts-with($filename, '/')) and
+                        not(starts-with($filename, 'file:/')) and
                         not(contains($filename, '://'))">
             <xsl:value-of select="$img.src.path"/>
           </xsl:if>
