@@ -2597,12 +2597,6 @@
   <!-- default is a single table style for all headers -->
   <!-- Customize it for different page classes or sequence location -->
 
-  <xsl:choose>
-      <xsl:when test="$pageclass = 'index'">
-          <xsl:attribute name="margin-{$direction.align.start}">0pt</xsl:attribute>
-      </xsl:when>
-  </xsl:choose>
-
   <xsl:variable name="column1">
     <xsl:choose>
       <xsl:when test="$double.sided = 0">1</xsl:when>
@@ -2942,12 +2936,6 @@
 
   <!-- default is a single table style for all footers -->
   <!-- Customize it for different page classes or sequence location -->
-
-  <xsl:choose>
-      <xsl:when test="$pageclass = 'index'">
-          <xsl:attribute name="margin-{$direction.align.start}">0pt</xsl:attribute>
-      </xsl:when>
-  </xsl:choose>
 
   <xsl:variable name="column1">
     <xsl:choose>
