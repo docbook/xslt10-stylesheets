@@ -127,7 +127,11 @@
               <xsl:otherwise>
                 <a>
                   <xsl:apply-templates select="." mode="common.html.attributes"/>
+                  <!-- id attribute goes on the element calling
+                  simple.xlink, not on the anchor element, so
+                  this is commented out:
                   <xsl:call-template name="id.attribute"/>
+                  -->
 
                   <xsl:attribute name="href">
                     <xsl:call-template name="href.target">
