@@ -122,9 +122,22 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:call-template name="simple.xlink">
-    <xsl:with-param name="content" select="$content"/>
-  </xsl:call-template>
+  <xsl:variable name="id" select="(@id | @xml:id)[1]"/> 
+
+  <xsl:choose>
+    <xsl:when test="$id">
+      <span id="{$id}">
+        <xsl:call-template name="simple.xlink">
+          <xsl:with-param name="content" select="$content"/>
+        </xsl:call-template>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 
 </xsl:template>
 
@@ -999,13 +1012,30 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:call-template name="simple.xlink">
-    <xsl:with-param name="node" select="."/>
-    <xsl:with-param name="linkend" select="$linkend"/>
-    <xsl:with-param name="content" select="$content"/>
-    <xsl:with-param name="a.target" select="$a.target"/>
-    <xsl:with-param name="xhref" select="$xhref"/>
-  </xsl:call-template>
+  <xsl:variable name="id" select="(@id | @xml:id)[1]"/> 
+
+  <xsl:choose>
+    <xsl:when test="$id">
+      <span id="{$id}">
+        <xsl:call-template name="simple.xlink">
+          <xsl:with-param name="node" select="."/>
+          <xsl:with-param name="linkend" select="$linkend"/>
+          <xsl:with-param name="content" select="$content"/>
+          <xsl:with-param name="a.target" select="$a.target"/>
+          <xsl:with-param name="xhref" select="$xhref"/>
+        </xsl:call-template>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="node" select="."/>
+        <xsl:with-param name="linkend" select="$linkend"/>
+        <xsl:with-param name="content" select="$content"/>
+        <xsl:with-param name="a.target" select="$a.target"/>
+        <xsl:with-param name="xhref" select="$xhref"/>
+      </xsl:call-template>
+    </xsl:otherwise>
+  </xsl:choose>
 
 </xsl:template>
 
