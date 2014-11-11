@@ -344,14 +344,24 @@
       <xsl:choose>
         <!-- width and height attributes are ok for img element -->
         <xsl:when test="local-name() = 'width' and $element != 'img'">
+          <xsl:variable name="attvalue" select="normalize-space(.)"/>
           <xsl:text>width: </xsl:text>
-          <xsl:value-of select="."/>
+          <xsl:value-of select="$attvalue"/>
+          <!-- if integer value, add px unit -->
+          <xsl:if test="floor($attvalue) = $attvalue">
+            <xsl:text>px</xsl:text>
+          </xsl:if>
           <xsl:text>; </xsl:text>
         </xsl:when>
 
         <xsl:when test="local-name() = 'height' and $element != 'img'">
-          <xsl:text>height </xsl:text>
-          <xsl:value-of select="."/>
+          <xsl:variable name="attvalue" select="normalize-space(.)"/>
+          <xsl:text>height: </xsl:text>
+          <xsl:value-of select="$attvalue"/>
+          <!-- if integer value, add px unit -->
+          <xsl:if test="floor($attvalue) = $attvalue">
+            <xsl:text>px</xsl:text>
+          </xsl:if>
           <xsl:text>; </xsl:text>
         </xsl:when>
 
@@ -376,12 +386,14 @@
         <xsl:when test="local-name() = 'cellspacing'">
           <xsl:text>border-spacing: </xsl:text>
           <xsl:value-of select="."/>
+          <xsl:text>px</xsl:text>
           <xsl:text>; </xsl:text>
         </xsl:when>
 
         <xsl:when test="local-name() = 'cellpadding'">
           <xsl:text>padding: </xsl:text>
           <xsl:value-of select="."/>
+          <xsl:text>px</xsl:text>
           <xsl:text>; </xsl:text>
         </xsl:when>
       </xsl:choose>
