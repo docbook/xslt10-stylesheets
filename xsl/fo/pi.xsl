@@ -993,11 +993,15 @@
   </xsl:variable>
 
   <xsl:choose>
-    <xsl:when test="$fop1.extensions != 0">
-      <!-- Doesn't work in fop -->
-    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
+    </xsl:when>
+    <xsl:when test="$fop1.extensions != 0">
+      <!-- fop1 does not need space adjustment because
+           space-after.precedence="force" does not work -->
+      <fo:block space-after="0pt" space-before="0em">
+        <xsl:copy-of select="$spacer"/>
+      </fo:block>
     </xsl:when>
     <xsl:when test="$pi-before != '' and
       not(following-sibling::listitem) and
@@ -1011,6 +1015,26 @@
         xsl:use-attribute-sets="normal.para.spacing">
         <xsl:copy-of select="$spacer"/>
       </fo:block>
+    </xsl:when>
+    <xsl:when test="following-sibling::note or
+      following-sibling::warning or
+      following-sibling::caution or
+      following-sibling::important or
+      following-sibling::tip">
+      <xsl:choose>
+        <xsl:when test="$admon.graphics = 0">
+          <fo:block space-after="0pt" 
+            xsl:use-attribute-sets="nongraphical.admonition.properties">
+            <xsl:copy-of select="$spacer"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block space-after="0pt" 
+            xsl:use-attribute-sets="graphical.admonition.properties">
+            <xsl:copy-of select="$spacer"/>
+          </fo:block>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:when test="following-sibling::table or
       following-sibling::figure or
@@ -1070,9 +1094,6 @@
   </xsl:choose>
 
   <xsl:choose>
-    <xsl:when test="$fop1.extensions != 0">
-      <!-- Doesn't work in fop -->
-    </xsl:when>
     <xsl:when test="$fop.extensions != 0">
       <!-- Doesn't work in fop -->
     </xsl:when>
