@@ -187,6 +187,18 @@
   </xsl:if>
 </xsl:template>
 
+<!-- This handles repurpose in TOC line to turn off any nested links -->
+<xsl:template match="refpurpose" mode="no.anchor.mode">
+  <xsl:if test="node()">
+    <xsl:text> </xsl:text>
+    <xsl:call-template name="dingbat">
+      <xsl:with-param name="dingbat">em-dash</xsl:with-param>
+    </xsl:call-template>
+    <xsl:text> </xsl:text>
+    <xsl:apply-templates mode="no.anchor.mode"/>
+  </xsl:if>
+</xsl:template>
+
 <xsl:template match="refdescriptor">
   <xsl:apply-templates/>
 </xsl:template>
