@@ -173,10 +173,12 @@
 
 <xsl:template name="inline.sansseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-        <xsl:with-param name="content">
-          <xsl:apply-templates/>
-        </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -190,11 +192,11 @@
               <xsl:otherwise>rtl</xsl:otherwise>
             </xsl:choose>
           </xsl:attribute>
-          <xsl:copy-of select="$content"/>
+          <xsl:copy-of select="$contentwithlink"/>
         </fo:inline>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:copy-of select="$content"/>
+        <xsl:copy-of select="$contentwithlink"/>
       </xsl:otherwise>
     </xsl:choose>
   </fo:inline>
@@ -202,10 +204,12 @@
 
 <xsl:template name="inline.charseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -218,23 +222,26 @@
             <xsl:otherwise>rtl</xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>
-        <xsl:copy-of select="$content"/>
+        <xsl:copy-of select="$contentwithlink"/>
       </fo:inline>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:copy-of select="$content"/>
+      <xsl:copy-of select="$contentwithlink"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
+
 
   <fo:inline xsl:use-attribute-sets="monospace.properties">
     <xsl:call-template name="anchor"/>
@@ -246,16 +253,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.boldseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -268,16 +277,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.italicseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -291,16 +302,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -314,16 +327,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -337,16 +352,18 @@
         </xsl:choose>
       </xsl:attribute>
     </xsl:if>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.superscriptseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -368,16 +385,18 @@
         <xsl:attribute name="baseline-shift">super</xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.subscriptseq">
   <xsl:param name="content">
+    <xsl:apply-templates/>
+  </xsl:param>
+
+  <xsl:param name="contentwithlink">
     <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:apply-templates/>
-      </xsl:with-param>
+      <xsl:with-param name="content" select="$content"/>
     </xsl:call-template>
   </xsl:param>
 
@@ -399,7 +418,7 @@
         <xsl:attribute name="baseline-shift">sub</xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:copy-of select="$content"/>
+    <xsl:copy-of select="$contentwithlink"/>
   </fo:inline>
 </xsl:template>
 
