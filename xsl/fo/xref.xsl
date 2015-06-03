@@ -757,8 +757,10 @@
 
 <xsl:template match="varlistentry/term" mode="xref-to">
   <xsl:param name="verbose" select="1"/>
-  <!-- to avoid the comma that will be generated if there are several terms -->
-  <xsl:apply-templates/>
+  <!-- avoids the comma that will be generated if there are several terms -->
+  <!-- Use no.anchor.mode to turn off nested xrefs and indexterms
+       in link text -->
+  <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
 
 <xsl:template match="co" mode="xref-to">
