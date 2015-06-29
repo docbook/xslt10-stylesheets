@@ -1221,7 +1221,7 @@ the ID is not unique.</para>
     <xsl:if test="count($targets)=0">
       <xsl:message>
         <xsl:text>Error: no ID for constraint linkend: </xsl:text>
-        <xsl:value-of select="$linkend"/>
+        <xsl:value-of select="concat('&quot;', $linkend, '&quot;')"/>
         <xsl:text>.</xsl:text>
       </xsl:message>
       <!--
