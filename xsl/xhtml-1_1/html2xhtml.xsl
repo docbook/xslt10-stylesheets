@@ -419,4 +419,45 @@
   <xsl:copy/>
 </xsl:template>
 
+<xsl:template match="@*">
+  <xsl:copy-of select="."/>
+</xsl:template>
+
+<xsl:template name="strippath">
+  <xsl:param name="filename" select="''"/>
+  <xsl:choose>
+    <!-- Leading .. are not eliminated -->
+    <xsl:when test="starts-with($filename, '../')">
+      <xsl:value-of select="'../'"/>
+      <xsl:call-template name="strippath">
+        <xsl:with-param name="filename" select="substring-after($filename, '../')"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="contains($filename, '/../')">
+      <xsl:call-template name="strippath">
+        <xsl:with-param name="filename">
+          <xsl:call-template name="getdir">
+            <xsl:with-param name="filename" select="substring-before($filename, '/../')"/>
+          </xsl:call-template>
+          <xsl:value-of select="substring-after($filename, '/../')"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="$filename"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="getdir">
+  <xsl:param name="filename" select="''"/>
+  <xsl:if test="contains($filename, '/')">
+    <xsl:value-of select="substring-before($filename, '/')"/>
+    <xsl:text>/</xsl:text>
+    <xsl:call-template name="getdir">
+      <xsl:with-param name="filename" select="substring-after($filename, '/')"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template>
+
 </xsl:stylesheet>
