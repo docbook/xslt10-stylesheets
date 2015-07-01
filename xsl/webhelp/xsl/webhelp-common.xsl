@@ -453,7 +453,9 @@ border: none; background: none; font-weight: none; color: none; }
 	</xsl:choose>
 	
 
-	<xsl:call-template name="l10n.js"/>
+        <xsl:if test="$collect.xref.targets != 'only'">
+          <xsl:call-template name="l10n.js"/>
+        </xsl:if>
     </xsl:template>
 
 
