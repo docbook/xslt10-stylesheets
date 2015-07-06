@@ -548,7 +548,7 @@
 </xsl:template>
 
 <xsl:template match="glossterm|firstterm" mode="xref-to">
-  <xsl:apply-templates/>
+  <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
 
 <xsl:template match="index" mode="xref-to">
