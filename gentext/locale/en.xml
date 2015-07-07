@@ -159,10 +159,8 @@
 <gentext key="unexpectedelementname" text="Unexpected element name"/>
 <gentext key="unsupported" text="unsupported"/>
 <gentext key="xrefto" text="xref to"/>
-<gentext key="video-unsupported" text="Your browser does not
-support the video tag"/>
-<gentext key="audio-unsupported" text="Your browser does not
-support the video tag"/>
+<gentext key="video-unsupported" text="Your browser does not support the video tag"/>
+<gentext key="audio-unsupported" text="Your browser does not support the video tag"/>
 
 <!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
 <!-- * in a man page AUTHORS section which lists multiple authors -->
