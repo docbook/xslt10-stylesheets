@@ -160,7 +160,8 @@
   </xsl:variable>
 
   <table>
-    <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <!-- common attributes should come from parent table, not tgroup -->
+    <xsl:apply-templates select=".." mode="common.html.attributes"/>
 
     <xsl:choose>
       <!-- If there's a textobject/phrase for the table summary, use it -->
