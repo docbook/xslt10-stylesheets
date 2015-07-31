@@ -45,9 +45,9 @@
 <gentext key="book" text="Livro"/>
 <gentext key="CAUTION" text="CUIDADO"/>
 <gentext key="Caution" text="Cuidado"/>
-<gentext key="caution" text="buidado"/>
+<gentext key="caution" text="cuidado"/>
 <gentext key="Chapter" text="Capítulo"/>
-<gentext key="chapter" text="bapítulo"/>
+<gentext key="chapter" text="Capítulo"/>
 <gentext key="Colophon" text="Ficha Técnica"/>
 <gentext key="colophon" text="ficha técnica"/>
 <gentext key="Copyright" text="Copyright"/>
@@ -214,8 +214,8 @@
 <gentext key="index symbols" text="Símbolos"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+<gentext key="lowercase.alpha" text="aáàâãbcçdeéêfghiíjklmnoóôõpqrstuúvwxyz"/>
+<gentext key="uppercase.alpha" text="AÁÀÂÃBCÇDEÉÊFGHIÍJKLMNOÓÔÕPQRSTUÚVWXYZ"/>
 
 <dingbat key="startquote" text="&#x201C;"/>
 <dingbat key="endquote" text="&#x201D;"/>
