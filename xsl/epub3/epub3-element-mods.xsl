@@ -1639,42 +1639,44 @@ article  toc,title,figure,table,example,equation
   <xsl:param name="object" select="."/>
 
   <xsl:if test="$object">
-    <xsl:variable name="output_filename">
-      <xsl:call-template name="mediaobject.filename">
-        <xsl:with-param name="object" select="$object"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:variable name="image.filename">
-       <xsl:if test="$img.src.path != '' and
-                       not(starts-with($output_filename, '/')) and
-                       not(contains($output_filename, '://'))">
-         <xsl:value-of select="$img.src.path"/>
-       </xsl:if>
-       <xsl:value-of select="$output_filename"/>
-    </xsl:variable>
-
-    <xsl:variable name="image.extension">
-      <xsl:call-template name="filename-extension">
-        <xsl:with-param name="filename" select="$image.filename"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:variable name="image.type">
-      <xsl:call-template name="graphic.format.content-type">
-        <xsl:with-param name="format" select="translate($image.extension, 
-                   &lowercase;, &uppercase;)"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:element name="tmp-filename" namespace="">
-      <xsl:element name="tmp-href" namespace="">
-        <xsl:value-of select="$image.filename"/>
+    <xsl:for-each select="$object/imagedata|$object/videodata|$object/audiodata">
+      <xsl:variable name="output_filename">
+        <xsl:call-template name="mediaobject.filename">
+          <xsl:with-param name="object" select="."/>
+        </xsl:call-template>
+      </xsl:variable>
+  
+      <xsl:variable name="image.filename">
+         <xsl:if test="$img.src.path != '' and
+                         not(starts-with($output_filename, '/')) and
+                         not(contains($output_filename, '://'))">
+           <xsl:value-of select="$img.src.path"/>
+         </xsl:if>
+         <xsl:value-of select="$output_filename"/>
+      </xsl:variable>
+  
+      <xsl:variable name="image.extension">
+        <xsl:call-template name="filename-extension">
+          <xsl:with-param name="filename" select="$image.filename"/>
+        </xsl:call-template>
+      </xsl:variable>
+  
+      <xsl:variable name="image.type">
+        <xsl:call-template name="graphic.format.content-type">
+          <xsl:with-param name="format" select="translate($image.extension, 
+                     &lowercase;, &uppercase;)"/>
+        </xsl:call-template>
+      </xsl:variable>
+  
+      <xsl:element name="tmp-filename" namespace="">
+        <xsl:element name="tmp-href" namespace="">
+          <xsl:value-of select="$image.filename"/>
+        </xsl:element>
+        <xsl:element name="media-type" namespace="">
+          <xsl:value-of select="$image.type"/>
+        </xsl:element>
       </xsl:element>
-      <xsl:element name="media-type" namespace="">
-        <xsl:value-of select="$image.type"/>
-      </xsl:element>
-    </xsl:element>
+    </xsl:for-each>
 
   </xsl:if>
 </xsl:template>
