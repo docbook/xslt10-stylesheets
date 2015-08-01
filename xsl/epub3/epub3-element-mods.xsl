@@ -33,10 +33,6 @@
 
 <xsl:import href="titlepage.templates.xsl"/>
 
-<!--
-<xsl:key name="image-filerefs" match="graphic|inlinegraphic|imagedata" use="@fileref"/>
--->
-
 <!--==============================================================-->
 <!--  DocBook XSL Parameter settings                              -->
 <!--==============================================================-->
@@ -1238,7 +1234,69 @@ article  toc,title,figure,table,example,equation
   </xsl:element>
 </xsl:template>
 
-<xsl:template name="manifest.fonts"/>
+<xsl:template name="manifest.fonts">
+  <xsl:param name="font.list" select="$epub.embedded.fonts"/>
+  <xsl:param name="count" select="0"/>
+
+  <xsl:choose>
+    <xsl:when test="$font.list != '' and
+            not(contains($font.list, ','))">
+      <xsl:call-template name="embedded-font-item">
+        <xsl:with-param name="font.file" select="normalize-space($font.list)"/>
+        <xsl:with-param name="font.order" select="$count + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$font.list != '' and
+           contains($font.list, ',')">
+      <xsl:variable name="this.font" 
+                    select="substring-before($font.list, ',')"/>
+      <xsl:variable name="rest"
+                    select="substring-after($font.list, ',')"/>
+
+      <xsl:call-template name="embedded-font-item">
+        <xsl:with-param name="font.file" select="normalize-space($this.font)"/>
+        <xsl:with-param name="font.order" select="$count + 1"/>
+      </xsl:call-template>
+
+      <!-- recurse to process the rest -->
+      <xsl:call-template name="manifest.fonts">
+        <xsl:with-param name="font.list" select="$rest"/>
+        <xsl:with-param name="count" select="$count + 1"/>
+      </xsl:call-template>
+    </xsl:when>
+  </xsl:choose>
+
+</xsl:template>
+
+
+<xsl:template name="embedded-font-item">
+  <xsl:param name="font.file"/>
+  <xsl:param name="font.order" select="1"/>
+
+  <xsl:element namespace="http://www.idpf.org/2007/opf" name="item">
+    <xsl:attribute name="id">
+      <xsl:value-of select="concat('epub.embedded.font.', $font.order)"/>
+    </xsl:attribute>
+    <xsl:attribute name="href">
+      <xsl:value-of select="$font.file"/>
+    </xsl:attribute>
+    <xsl:choose>
+      <xsl:when test="contains($font.file, '.otf')">
+        <xsl:attribute name="media-type">application/vnd.ms-opentype</xsl:attribute>
+      </xsl:when>
+      <xsl:when test="contains($font.file, '.woff')">
+        <xsl:attribute name="media-type">application/font-woff</xsl:attribute>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>
+          <xsl:text>WARNING: embedded fonts should be OpenType or WOFF!  (</xsl:text>
+          <xsl:value-of select="$font.file"/>
+          <xsl:text>)</xsl:text>
+        </xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:element>
+</xsl:template>
 
 <!--Misc items in the manifest based on content -->
 <xsl:template name="manifest.other.items">
