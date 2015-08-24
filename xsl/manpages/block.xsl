@@ -139,6 +139,7 @@
       and not(substring(local-name(..),
       string-length(local-name(..))-7) = 'synopsis')
       and not(ancestor::*[local-name() = 'refsynopsisdiv'])
+      and not(ancestor::*[local-name() = 'term'])
       ">
       <xsl:text>Yes</xsl:text>
     </xsl:if>

@@ -71,7 +71,15 @@
     <xsl:variable name="content">
       <xsl:apply-templates/>
     </xsl:variable>
-    <xsl:value-of select="normalize-space($content)"/>
+    <xsl:choose>
+      <!-- don't normalize verbatim synopsis -->
+      <xsl:when test="child::synopsis">
+        <xsl:value-of select="$content"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="normalize-space($content)"/>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:choose>
       <xsl:when test="position() = last()"/> <!-- do nothing -->
       <xsl:otherwise>
