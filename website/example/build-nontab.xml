@@ -1,0 +1,24 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="nontabular">
+<config param="desc" value="Building Non-Tabular Websites"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Building Non-Tabular Websites</title>
+<titleabbrev>Non-Tabular</titleabbrev>
+<summary>Building non-tabular Websites</summary>
+</head>
+
+<para>The <filename>tabular.xsl</filename> and
+<filename>chunk-tabular.xsl</filename> stylesheets produce a two-column
+tabular website. If you wish to produce a non-tabular presentation
+more suitable for text-only or audio browsing, use the
+<filename>website.xsl</filename> or
+<filename>chunk-website.xsl</filename> stylesheets.</para>
+
+<para>It's possible to generate both tabular and non-tabular presentations
+in the same directory(ies). Use the <literal>filename-prefix</literal>
+parameter to put a prefix (such as <quote><literal>nontab-</literal></quote>)
+on the non-tabular versions (or put a prefix on the tabular versions,
+if you prefer).</para>
+
+</webpage>

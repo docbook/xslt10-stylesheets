@@ -1,0 +1,225 @@
+# This file is part of DocBook NG: The "Gin" Release.
+
+# This schema is a reinterpretation of "Simplified DocBook" in the NG framework.
+#
+# Author: Norman Walsh, <ndw@nwalsh.com>
+# Source: Derived from DocBook XML V4.3
+# Release: $Id$
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start = db.article
+
+include "../../docbook/src/hier.rnc" {
+   # Set is recursive so we have to do this so that its definition will be pruned
+   db.set.components = notAllowed
+
+   db.toplevel.sections = db.section+
+
+   db.recursive.sections = db.section+
+
+   db.article.components = db.section+
+
+   db.ackno = notAllowed
+
+   db.article =
+      element article {
+         db.article.attlist,
+         db.article.info,
+         ((db.all.blocks+, db.article.components?)
+          | db.article.components),
+         (db.appendix | db.navigation.components | db.ackno)*
+      }
+}
+
+include "../../docbook/src/bibliography.rnc" {
+   db.bibliolist = notAllowed
+   db.biblioset = notAllowed
+   db.biblioref = notAllowed
+
+   db.bibliography =
+      element bibliography {
+         db.bibliography.attlist,
+         db.bibliography.info,
+         db.all.blocks*,
+         (db.bibliodiv+ | db.bibliomixed+)
+      }
+
+   db.bibliodiv =
+      element bibliodiv {
+         db.bibliodiv.attlist,
+         db.bibliodiv.info,
+         db.all.blocks*,
+         db.bibliomixed+
+      }
+}
+
+include "../../docbook/src/calstbl.rnc"
+include "../../docbook/src/htmltbl.rnc"
+
+include "../../docbook/src/pool.rnc" {
+   db.common.attributes =
+      attribute xml:id { xsd:ID }?,
+      attribute version { text }?,
+      attribute xml:lang { text }?,
+      attribute xml:base { text }?,
+      attribute revisionflag { "changed" | "added" | "deleted" | "off" }?
+
+   db.common.idreq.attributes =
+      attribute xml:id { xsd:ID },
+      attribute version { text }?,
+      attribute xml:lang { text }?,
+      attribute xml:base { text }?,
+      attribute revisionflag { "changed" | "added" | "deleted" | "off" }?
+
+   db.info.elements =
+      db.abstract
+    | db.author
+    | db.authorgroup
+    | db.copyright
+    | db.date
+    | db.edition
+    | db.editor
+    | db.issuenum
+    | db.keywordset
+    | db.legalnotice
+    | db.othercredit
+    | db.pubdate
+    | db.publishername
+    | db.releaseinfo
+    | db.revhistory
+    | db.subjectset
+    | db.volumenum
+
+   db.bibliographic.elements =
+      db.info.elements
+    | db.abbrev
+    | db.affiliation
+    | db.citetitle
+    | db.orgname
+    | db.personblurb
+    | db.personname
+    | db.subtitle
+    | db.title
+    | db.titleabbrev
+
+   db.list.blocks = db.itemizedlist|db.orderedlist|db.variablelist
+   db.admonition.blocks = db.note
+   db.verbatim.blocks = db.literallayout|db.programlisting
+   db.para.blocks = db.para
+   db.publishing.blocks = db.blockquote|db.sidebar|db.epigraph
+   db.graphic.blocks = db.mediaobject
+   db.informal.blocks = db.informaltable
+   db.formal.blocks = db.example|db.figure|db.table
+   db.technical.blocks = empty
+   db.synopsis.blocks = empty
+
+   db.nopara.blocks =
+      db.list.blocks
+    | db.admonition.blocks
+    | db.formal.blocks
+    | db.informal.blocks
+    | db.publishing.blocks
+    | db.graphic.blocks
+    | db.technical.blocks
+    | db.verbatim.blocks
+    | db.synopsis.blocks
+    | db.revhistory
+
+   db.ubiq.inlines =
+      db.inlinemediaobject
+    | db.superscript
+    | db.subscript
+
+   db.publishing.inlines =
+      db.abbrev
+    | db.acronym
+    | db.emphasis
+    | db.footnote
+    | db.footnoteref
+    | db.phrase
+    | db.quote
+
+   db.os.inlines =
+      db.filename
+    | db.command
+    | db.computeroutput
+    | db.userinput
+
+   db.programming.inlines = empty
+   db.product.inlines = db.trademark
+
+   db.bibliography.inlines =
+      db.citetitle
+    | db.author
+    | db.personname
+    | db.orgname
+    | db.editor
+
+   db.markup.inlines = db.literal | db.email
+
+   db.technical.inlines = db.replaceable | db.option | db.systemitem
+   db.error.inlines = empty
+   db.oo.inlines = empty
+
+   db.link.inlines = db.xref
+    | db.link
+    | db.anchor
+
+   db.gui.inlines = empty
+   db.keyboard.inlines = empty
+   db.math.inlines = empty
+
+   db.bibliorelation = notAllowed
+
+   # ======================================================================
+
+   db.person.author.contentmodel =
+      db.personname,
+      (db.personblurb
+       | db.affiliation
+       | db.email)*
+
+   db.org.author.contentmodel =
+      db.orgname,
+      (db.affiliation
+       | db.email)*
+
+   db.abbrev =
+      element abbrev {
+         db.abbrev.attlist,
+         (db._text | db.trademark)*
+      }
+
+   db.acronym =
+      element acronym {
+         db.acronym.attlist,
+         (db._text | db.trademark)*
+      }
+
+   db.attribution =
+      element attribution {
+         db.attribution.attlist,
+         (db._text | db.personname | db.citetitle)*
+      }
+
+   db.affiliation =
+      element affiliation {
+         db.affiliation.attlist,
+         db.jobtitle*,
+         db.orgname?
+      }
+
+   db.para =
+      element para {
+         db.para.attlist,
+         db.para.info,
+         db.all.inlines*
+      }
+}

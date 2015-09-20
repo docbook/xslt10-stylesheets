@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-2'?>
+<chapter lang='sr' id='srchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Vrzić</surname>
+  <firstname>Vladimir</firstname>
+  <affiliation><address><email>random@bsd.org.yu</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Serbian</title>
+
+<para lang="sr_yu">
+DocBook je definicija tipa dokumenta (<ulink 
+url="http://www.ucc.ie/xml/#doctype">Document Type 
+Definition</ulink> -- DTD) koju održava <ulink 
+url="mailto:docbook-tc@oasis-open.org">Tehnički komitet za DocBook</ulink> 
+organizacije <ulink url="http://www.oasis-open.org/">OASIS</ulink>. 
+Posebno je primenljiv za knjige i radove o računarskom hardveru i softveru 
+(mada nipošto nije ograničen samo na te primene).
+</para>
+
+<para lang="sr_yu">
+Zbog činjenice da je u pitanju opsežan i robustan DTD, i zbog toga što 
+njegove glavne strukture odgovaraju opštem shvatanju onoga što čini 
+<quote>knjigu</quote>, DocBook je usvojila velika i rastuća zajednica 
+autora dokumenata svih vrsta. DocBook je podržan <quote>out of the 
+box</quote> od strane mnogih komercijalnih aplikacija, i postoji ubrzana 
+ekspanzija podrške od strane mnogobrojnih okruženja baziranih na 
+besplatnom softveru. Ove osobine čine DocBook generalno lako razumljivim, 
+široko upotrebljivim i vrlo popularnim DTD-om. Na desetine organizacija 
+koriste DocBook za milione stranica dokumentacije, u raznim elektronskim i 
+štampanim oblicima, širom sveta.
+</para>
+
+</chapter>

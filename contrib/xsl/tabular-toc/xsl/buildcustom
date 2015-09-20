@@ -1,0 +1,74 @@
+
+# probably a bourne shell script ... 
+
+# make the header
+
+echo "<?xml version='1.0'?> 
+<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+                xmlns:html='http://www.w3.org/1999/xhtml'
+                xmlns:doc='http://nwalsh.com/xsl/documentation/1.0'
+                xmlns:suwl='http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks'
+                exclude-result-prefixes='doc html'
+                version='1.0'>
+
+<!--
+  This is a docbook XSL stylesheet customization that embeds the
+  DocBook document chunking formalism within the DocBook Website 
+  formalism, in order to extend the hierarchical tabular navigation
+  menu of Docbook website to the chunked sections of website
+  embedded books, parts or articles. 
+  Caveat: Website really likes unique IDs on all chunkable nodes.
+
+  As a bonus, it still works for Website 'webpage' documents too!
+  Webpages are explicitly "unchunkable"
+
+  Actually if you omit to define the 'autolayout-file' parameter string
+  you may well find yourself with a stand-alone chunked tabular book,
+  of a sort ... 
+
+  Customization by Doug du Boulay (2005) ddb@owari.msl.titech.ac.jp
+  Be freeeee...
+   
+  -->
+
+<!--
+<xsl:import href='xbel.xsl'/>
+<xsl:include href='VERSION'/>
+<xsl:include href='head.xsl'/>
+<xsl:include href='rss.xsl'/>
+<xsl:include href='olink.xsl'/>
+  -->
+
+<xsl:preserve-space elements='*'/>
+<xsl:strip-space elements='website webpage'/>
+
+<xsl:output method='html'
+            indent='no'/>
+"                                  >  tabular-docbook.xsl
+
+# fill in the guts
+
+cat html/website-param.xsl        >>  tabular-docbook.xsl
+cat html/website-tabular.xsl      >>  tabular-docbook.xsl
+cat html/website-tabular-toc.xsl  >>  tabular-docbook.xsl
+cat html/website-common.xsl       >>  tabular-docbook.xsl
+cat html/website-head.xsl         >>  tabular-docbook.xsl
+cat html/website.xsl              >>  tabular-docbook.xsl
+cat html/admon.xsl                >>  tabular-docbook.xsl
+cat html/autotoc.xsl              >>  tabular-docbook.xsl
+cat html/chunk-code.xsl           >>  tabular-docbook.xsl
+cat html/chunk-common.xsl         >>  tabular-docbook.xsl
+###### cat html/chunktoc.xsl             >>  tabular-docbook.xsl
+cat html/graphics.xsl             >>  tabular-docbook.xsl
+cat html/html.xsl                 >>  tabular-docbook.xsl
+cat html/titlepage.xsl            >>  tabular-docbook.xsl
+cat html/xref.xsl                 >>  tabular-docbook.xsl
+cat html/manifest.xsl             >>  tabular-docbook.xsl
+cat common/olink.xsl              >>  tabular-docbook.xsl
+cat common/en.xml                 >>  tabular-docbook.xsl
+
+# add the trailer
+
+echo "</xsl:stylesheet>"          >>  tabular-docbook.xsl
+
+# and we are done!

@@ -1,0 +1,324 @@
+.abstract {
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	margin-left: 25px;
+	display: block;
+}
+.appendixheading1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18pt;
+	font-weight: bold;
+	list-style-type: upper-alpha;
+	color: #66116D;
+}
+.appendixheading2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+.appendixheading3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+.attribute {
+	font-family: "Courier New", Courier, mono;
+	font-size: 10pt;
+}
+.codelisting {
+	font-family: "Courier New", Courier, mono;
+	font-size: 9pt;
+	background-color: #9999FF;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-top-style: solid;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+	white-space: pre;
+}
+.codelistingsmall {
+	font-family: "Courier New", Courier, mono;
+	font-size: 8pt;
+	background-color: #9999FF;
+	margin-right: 10%;
+	border-top-style: solid;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #000000;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+	margin-left: 10%;
+	white-space: pre;
+}
+.codetemp {
+	font-family: "Courier New", Courier, mono;
+	font-size: 10pt;
+}
+.contributor {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 25px;
+}
+.datatype {
+	font-family: "Courier New", Courier, mono;
+	font-size: 10pt;
+}
+.definition {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 25px;
+}
+.definitionterm {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
+.element {
+	font-family: "Courier New", Courier, mono;
+	font-size: 10pt;
+}
+.emphasis {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: italic;
+}
+.example {
+	font-family: "Courier New", Courier, mono;
+	font-size: 9pt;
+	background-color: #9999FF;
+	margin-right: 25px;
+	margin-left: 25px;
+}
+.examplesmall {
+	font-family: "Courier New", Courier, mono;
+	font-size: 8pt;
+	margin-right: 25px;
+	margin-left: 25px;
+	background-color: #9999FF;
+}
+h1,
+.heading1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+h2,
+.heading2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+h3,
+.heading3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+h4,
+.heading4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+h5,
+.heading5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+h6,
+.heading6 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	list-style-type: decimal;
+	color: #66116D;
+}
+.keyword {
+	font-family: "Courier New", Courier, mono;
+	font-size: 10pt;
+	font-style: normal;
+}
+.listbullet {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	list-style-type: disc;
+}
+.listbullet2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 25px;
+	list-style-type: circle;
+}
+.listcontinue {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 25px;
+	margin-bottom: 0px;
+}
+.listcontinue2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 50px;
+}
+.normal {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	margin-top: 0px;
+}
+.note {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+.notices {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18pt;
+	font-weight: bold;
+	color: #66116D;
+}
+.ref {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	margin-left: 125px;
+	margin-top: 0px;
+}
+.refterm {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-bottom: 0px;
+	color: #66116D;
+}
+.relatedwork {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 50px;
+	list-style-type: disc;
+	list-style-position: outside;
+	display: list-item;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.subtitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18pt;
+	font-weight: bold;
+	color: #66116D;
+}
+.title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24pt;
+	font-weight: bold;
+	color: #66116D;
+}
+.titlepageinfo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #66116D;
+	margin-bottom: 0px;
+}
+.titlepageinfodescription {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	text-indent: 25px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-style: normal;
+}
+.variable {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-style: italic;
+}
+
+/* ============================================================ */
+.head {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: #66116D;
+}
+
+.head h1 {
+	font-size: 24pt;
+	font-weight: bold;
+}
+
+.head h2 {
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.head h3 {
+	font-weight: bold;
+}
+
+.head dt {
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+.head dd {
+	color: black;
+        margin-left: 25px;
+}
+
+.head p {
+  color: black;
+}
+
+.head div h3 {
+  font-size: 10pt;
+}
+
+.head .abstract h3 {
+  margin-left: -25px !important;
+}
+
+.head .status {
+  margin-left: 25px;
+}
+
+.head .status h3 {
+  margin-left: -25px;
+}
+
+.head .notices { 
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+.table-wrapper .title {
+  font-size: 12pt;
+  color: #66116D;
+}
+
+.itemizedlist .title {
+  font-size: 12pt;
+  color: #66116D;
+}
+

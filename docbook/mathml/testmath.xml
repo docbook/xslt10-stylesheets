@@ -1,0 +1,13 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook MathML Module V1.1b1//EN"
+              "dbmathml.dtd">
+<book>
+<title>Book Title</title>
+<chapter><title>Chapter Title</title>
+<para>Content.</para>
+
+<informalequation>
+<mml:math><mml:apply><mml:divide/></mml:apply></mml:math>
+</informalequation>
+
+</chapter>
+</book>

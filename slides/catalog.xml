@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<!--  XML Catalog file for DocBook Slides -->
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/current/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.4/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/slides/current/xsl/"
+            rewritePrefix="xsl/"/>
+
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/slides/3.4.0/xsl/"
+            rewritePrefix="xsl/"/>
+
+<!-- the following are for older versions of Slides DTD; the DTD is -->
+<!-- backward compatible, so we just remap the older URIs to the local URI -->
+<!-- of the current version; otherwise, users would need to manually change -->
+<!-- the URIs in all their existing Slides document instances -->
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.3.1/schema/"
+            rewritePrefix="schema/"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.3.0/schema/"
+            rewritePrefix="schema/"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.1.0/schema/"
+            rewritePrefix="schema/"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.0/"
+            rewritePrefix="schema/"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/3.0b1/"
+            rewritePrefix="schema/"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/2.1/"
+            rewritePrefix="schema/"/>
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/slides/2.1b1/"
+            rewritePrefix="schema/"/>
+
+</catalog>

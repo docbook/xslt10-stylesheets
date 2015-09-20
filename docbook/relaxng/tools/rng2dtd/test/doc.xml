@@ -1,0 +1,10 @@
+<!DOCTYPE book SYSTEM "../output.dtd">
+<book>
+<info>
+  <title>Book title</title>
+</info>
+<chapter>
+<title>Chapter title</title>
+<para>Some text.</para>
+</chapter>
+</book>

@@ -1,0 +1,29 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2b1//EN"
+               "dbforms.dtd">
+<book>
+<title>Book Title</title>
+<chapter><title>Chapter Title</title>
+<para>Content.</para>
+
+<programlisting>
+class Rectangle_with_data:  virtual Shape, virtual Data_container
+{
+...
+};
+</programlisting>
+
+<para><html:input/>ClassSynopsis version:</para>
+
+<html:form action="dosomething">
+<para>foo<html:button>xxx</html:button>
+</para>
+</html:form>
+
+<classsynopsis language="cpp">
+  <ooclass><classname>Rectangle_with_data</classname></ooclass>
+  <ooclass><modifier>virtual</modifier><classname>Shape</classname></ooclass>
+  <ooclass><modifier>virtual</modifier><classname>Data_container</classname></ooclass>
+</classsynopsis>
+
+</chapter>
+</book>

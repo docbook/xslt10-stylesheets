@@ -1,0 +1,596 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.setindex | db.index | db.indexdiv
+
+db.ubiq.inlines |= db.indexterm
+db.indexing.inlines |= db.indexterm
+db.nopara.blocks |= db.indexterm
+db.navigation.components |= db.index
+db.setindex.components |= db.setindex
+
+db.info.elements |= db.itermset
+
+# ======================================================================
+
+db.significance.enumeration =
+   ## Normal
+   "normal"
+ | ## Preferred
+   "preferred"
+
+db.significance.attribute =
+      [
+         db:refpurpose [ "Specifies the significance of the term" ]
+      ]
+   attribute significance { db.significance.enumeration }
+
+db.zone.attribute =
+      [
+         db:refpurpose [ "Specifies the IDs of the elements to which this term applies" ]
+      ]
+   attribute zone { xsd:IDREFS }
+
+db.indexterm.pagenum.attribute =
+      [
+         db:refpurpose [ "Indicates the page on which this index term occurs in some version of the printed document" ]
+      ]
+   attribute pagenum { text }
+
+db.scope.enumeration =
+   ## All indexes
+   "all"
+ | ## The global index (as for a combined index of a set of books)
+   "global"
+ | ## The local index (the index for this document only)
+   "local"
+
+db.scope.attribute =
+      [
+         db:refpurpose [ "Specifies the scope of the index term" ]
+      ]
+   attribute scope { db.scope.enumeration }
+
+db.sortas.attribute =
+      [
+         db:refpurpose [ "Specifies the string by which the term is to be sorted; if unspecified, the term content is used" ]
+      ]
+   attribute sortas { text }
+
+db.index.type.attribute =
+      [
+         db:refpurpose [ "Specifies the target index for this term" ]
+      ]
+   attribute type { text }
+
+# ======================================================================
+
+[
+   db:refname [ "itermset" ]
+   db:refpurpose [ "A set of index terms in the meta-information of a document" ]
+]
+div {
+
+   db.itermset.role.attribute = attribute role { text }
+
+   db.itermset.attlist =
+      db.itermset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.itermset =
+      element itermset {
+         db.itermset.attlist,
+         db.indexterm.singular+
+      }
+}
+
+# ======================================================================
+
+db.indexterm.contentmodel =
+   db.primary?,
+   ((db.secondary,
+      ((db.tertiary, (db.see | db.seealso+)?)
+       | db.see
+       | db.seealso+)?)
+    | db.see
+    | db.seealso+)?
+
+# ======================================================================
+
+[
+   db:refname [ "indexterm" ]
+   db:refpurpose [ "A wrapper for an indexed term" ]
+]
+div {
+
+   db.indexterm.singular.role.attribute = attribute role { text }
+
+   db.indexterm.singular.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of index term" ]
+      ]
+      attribute class {
+         ## A singular index term
+         "singular"
+      }
+
+   db.indexterm.singular.attlist =
+      db.indexterm.singular.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.significance.attribute?
+    & db.zone.attribute?
+    & db.indexterm.pagenum.attribute?
+    & db.scope.attribute?
+    & db.index.type.attribute?
+    & db.indexterm.singular.class.attribute?
+
+   db.indexterm.singular =
+      element indexterm {
+         db.indexterm.singular.attlist,
+         db.indexterm.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "indexterm" ]
+   db:refpurpose [ "A wrapper for an indexed term that covers a range" ]
+]
+div {
+
+   db.indexterm.startofrange.role.attribute = attribute role { text }
+
+   db.indexterm.startofrange.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of index term" ]
+      ]
+      attribute class {
+         ## The start of a range
+         "startofrange"
+      }
+
+   db.indexterm.startofrange.attlist =
+      db.indexterm.startofrange.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.significance.attribute?
+    & db.zone.attribute?
+    & db.indexterm.pagenum.attribute?
+    & db.scope.attribute?
+    & db.index.type.attribute?
+    & db.indexterm.startofrange.class.attribute
+
+   db.indexterm.startofrange =
+      element indexterm {
+         db.indexterm.startofrange.attlist,
+         db.indexterm.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "indexterm" ]
+   db:refpurpose [ "Identifies the end of a range associated with an indexed term" ]
+]
+div {
+
+   db.indexterm.endofrange.role.attribute = attribute role { text }
+
+   db.indexterm.endofrange.class.attribute =
+      [
+         db:refpurpose [ "Identifies the class of index term" ]
+      ]
+      attribute class {
+         ## The end of a range
+         "endofrange"
+      }
+
+   db.indexterm.endofrange.startref.attribute =
+      [
+         db:refpurpose [ "Points to the start of the range" ]
+      ]
+      attribute startref { xsd:IDREF }
+
+   db.indexterm.endofrange.attlist =
+      db.indexterm.endofrange.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.indexterm.endofrange.class.attribute
+    & db.indexterm.endofrange.startref.attribute
+
+   db.indexterm.endofrange =
+      element indexterm {
+         db.indexterm.endofrange.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "indexterm" ]
+   db:refpurpose [ "A wrapper for terms to be indexed" ]
+]
+div {
+   db.indexterm =
+      db.indexterm.singular
+    |db.indexterm.startofrange
+    |db.indexterm.endofrange
+}
+
+# ======================================================================
+
+[
+   db:refname [ "primary" ]
+   db:refpurpose [ "The primary word or phrase under which an index term should be sorted" ]
+]
+div {
+
+   db.primary.role.attribute = attribute role { text }
+
+   db.primary.attlist =
+      db.primary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.sortas.attribute?
+
+   db.primary =
+      element primary {
+         db.primary.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "secondary" ]
+   db:refpurpose [ "A secondary word or phrase in an index term" ]
+]
+div {
+
+   db.secondary.role.attribute = attribute role { text }
+
+   db.secondary.attlist =
+      db.secondary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.sortas.attribute?
+
+   db.secondary =
+      element secondary {
+         db.secondary.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tertiary" ]
+   db:refpurpose [ "A tertiary word or phrase in an index term" ]
+]
+div {
+
+   db.tertiary.role.attribute = attribute role { text }
+
+   db.tertiary.attlist =
+      db.tertiary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.sortas.attribute?
+
+   db.tertiary =
+      element tertiary {
+         db.tertiary.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "see" ]
+   db:refpurpose [ "Part of an index term directing the reader instead to another entry in the index" ]
+]
+div {
+
+   db.see.role.attribute = attribute role { text }
+
+   db.see.attlist =
+      db.see.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.see =
+      element see {
+         db.see.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "seealso" ]
+   db:refpurpose [ "Part of an index term directing the reader also to another entry in the index" ]
+]
+div {
+
+   db.seealso.role.attribute = attribute role { text }
+
+   db.seealso.attlist =
+      db.seealso.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.seealso =
+      element seealso {
+         db.seealso.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "index" ]
+   db:refpurpose [ "An index to a book or part of a book" ]
+]
+div {
+
+   db.index.status.attribute = db.status.attribute
+
+   db.index.role.attribute = attribute role { text }
+
+   db.index.attlist =
+      db.index.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.index.status.attribute?
+    & db.index.type.attribute?
+
+   db.index.info = db._info
+
+   # Yes, db.indexdiv* and db.indexentry*; that way an <index/> is valid.
+   # Authors can use an empty index to indicate where a generated index should
+   # appear.
+   db.index =
+      element index {
+         db.index.attlist,
+         db.index.info,
+         db.all.blocks*,
+         (db.indexdiv* | db.indexentry* | db.segmentedlist)
+      }
+}
+
+#  ======================================================================
+
+[
+   db:refname [ "setindex" ]
+   db:refpurpose [ "An index to a set of books" ]
+]
+div {
+
+   db.setindex.status.attribute = db.status.attribute
+
+   db.setindex.role.attribute = attribute role { text }
+
+   db.setindex.attlist =
+      db.setindex.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.setindex.status.attribute?
+    & db.index.type.attribute?
+
+   db.setindex.info = db._info
+
+   db.setindex =
+      element setindex {
+         db.setindex.attlist,
+         db.setindex.info,
+         db.all.blocks*,
+         (db.indexdiv* | db.indexentry*)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "indexdiv" ]
+   db:refpurpose [ "A division in an index" ]
+]
+div {
+
+   db.indexdiv.status.attribute = db.status.attribute
+
+   db.indexdiv.role.attribute = attribute role { text }
+
+   db.indexdiv.attlist =
+      db.indexdiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.indexdiv.status.attribute?
+
+   db.indexdiv.info = db._info.title.req
+
+   db.indexdiv =
+      element indexdiv {
+         db.indexdiv.attlist,
+         db.indexdiv.info,
+         db.all.blocks*,
+         (db.indexentry+|db.segmentedlist)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "indexentry" ]
+   db:refpurpose [ "An entry in an index" ]
+]
+div {
+
+   db.indexentry.role.attribute = attribute role { text }
+
+   db.indexentry.attlist =
+      db.indexentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.indexentry =
+      element indexentry {
+         db.indexentry.attlist,
+         db.primaryie,
+         (db.seeie | db.seealsoie)*,
+         (db.secondaryie, (db.seeie | db.seealsoie | db.tertiaryie)*)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "primaryie" ]
+   db:refpurpose [ "A primary term in an index entry, not in the text" ]
+]
+div {
+
+   db.primaryie.role.attribute = attribute role { text }
+
+   db.primaryie.attlist =
+      db.primaryie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
+
+   db.primaryie =
+      element primaryie {
+         db.primaryie.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "secondaryie" ]
+   db:refpurpose [ "A secondary term in an index entry, rather than in the text" ]
+]
+div {
+
+   db.secondaryie.role.attribute = attribute role { text }
+
+   db.secondaryie.attlist =
+      db.secondaryie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
+
+   db.secondaryie =
+      element secondaryie {
+         db.secondaryie.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "tertiaryie" ]
+   db:refpurpose [ "A tertiary term in an index entry, rather than in the text" ]
+]
+div {
+
+   db.tertiaryie.role.attribute = attribute role { text }
+
+   db.tertiaryie.attlist =
+      db.tertiaryie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
+
+   db.tertiaryie =
+      element tertiaryie {
+         db.tertiaryie.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "seeie" ]
+   db:refpurpose [ "A " db:quote [ "See" ] "entry in an index, rather than in the text" ]
+]
+div {
+
+   db.seeie.role.attribute = attribute role { text }
+
+   db.seeie.attlist =
+      db.seeie.role.attribute?
+    & db.common.attributes
+    & db.linkend.attribute?
+
+   db.seeie =
+      element seeie {
+         db.seeie.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "seealsoie" ]
+   db:refpurpose [ "A " db:quote [ "See also" ] " entry in an index, rather than in the text" ]
+]
+div {
+
+   db.seealsoie.role.attribute = attribute role { text }
+
+   db.seealsoie.attlist =
+      db.seealsoie.role.attribute?
+    & db.common.attributes
+    & db.linkends.attribute?
+
+   db.seealsoie =
+      element seealsoie {
+         db.seealsoie.attlist,
+         db.all.inlines*
+      }
+}

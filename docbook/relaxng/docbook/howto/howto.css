@@ -1,0 +1,69 @@
+.figure .title,
+.note .title,
+.example .title,
+.toc b,       /* ToC label */
+div.titlepage { font-family: Arial, sans-serif;
+              }
+
+div.titlepage
+h1            { font-size: 36pt;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+              }
+
+div.titlepage
+h2            { font-size: 24pt;
+                margin-top: 0px;
+                padding-top: 0px;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+              }
+
+div.titlepage
+h3            { font-size: 18pt;
+                margin-top: 10px;
+                padding-top: 0px;
+              }
+
+div.titlepage
+h4            { font-size: 12pt;
+                margin-bottom: 0px;
+		padding-bottom: 0px;
+              }
+
+div.titlepage
+dl            { margin-left: 3em;
+                padding-top: 0px;
+		margin-top: 0px;
+              }
+
+.screen, .programlisting { background-color: silver; padding: 4px; }
+.menuchoice, .guimenu, .guisubmenu, .guimenuitem { font-weight: bold; }
+.guibutton { background-color: silver; padding: 2px; }
+
+/* programlisting types */
+.programlisting, 
+.programlistingco, 
+.screen { padding-left: 14pt;
+          white-space: pre-wrap; /* css-3 */
+          white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+          white-space: -pre-wrap; /* Opera 4-6 */
+          white-space: -o-pre-wrap; /* Opera 7 */
+          word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+          
+.rolelabel {
+	position: absolute; 
+	margin-left: -14pt; 
+	background-color: #606060; 
+	color: white;
+	line-height: 1; 
+	font-family: sans-serif; 
+	font-weight: bold; 
+	text-align: center; 
+	padding: 1px; 
+	font-size: smaller; 
+	text-transform: uppercase }
+
+.yes     { color: green; }
+.no      { color: red; }

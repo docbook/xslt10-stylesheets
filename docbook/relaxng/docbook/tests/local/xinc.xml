@@ -1,0 +1,55 @@
+<book xmlns="http://docbook.org/ns/docbook" version="lillet"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<info>
+  <title>XInclude Test</title>
+  <abstract>
+    <para>This test checks to see that XInclude is allowed in the right
+places. It should be validated before XInclude expansion, none of the
+XInclude hrefs are actually expected to work.</para>
+  </abstract>
+</info>
+
+<chapter>
+<title>Some title</title>
+
+<section>
+<title>Section title</title>
+<para>Some content.</para>
+</section>
+
+<xi:include href="somecontent"/>
+
+</chapter>
+
+<xi:include href="somecontent"/>
+
+<chapter>
+<title>Some title</title>
+<para>Some content.</para>
+
+<refentry>
+<refnamediv>
+<refname>name</refname>
+<refpurpose>purpose</refpurpose>
+</refnamediv>
+<refsect1>
+<title>refsect</title>
+<para>Some content.</para>
+</refsect1>
+</refentry>
+
+<xi:include href="somecontent"/>
+
+<refentry>
+<refnamediv>
+<refname>name</refname>
+<refpurpose>purpose</refpurpose>
+</refnamediv>
+<refsect1>
+<title>refsect</title>
+<para>Some content.</para>
+</refsect1>
+</refentry>
+</chapter>
+
+</book>

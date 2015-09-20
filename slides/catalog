@@ -1,0 +1,57 @@
+--  SGML Catalog file for DocBook Slides --
+OVERRIDE YES
+
+PUBLIC "-//Norman Walsh//DTD Slides V3.4//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.4/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+SYSTEM "http://docbook.sourceforge.net/release/slides/current/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V3.4//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.4/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+SYSTEM "http://docbook.sourceforge.net/release/slides/current/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+-- the following are for older versions of the Slides DTD; the DTD is --
+-- backward compatible, so we just remap the older URIs to the local URI --
+-- of the current version; otherwise, users would need to manually change --
+-- the URIs in all their existing Slides document instances --
+
+PUBLIC "-//Norman Walsh//DTD Slides V3.3.1//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.3.1/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V3.3.1//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.3.1/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides V3.3.0//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.3.0/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V3.3.0//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.3.0/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides V3.1.0//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.1.0/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V3.1.0//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.1.0/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides V3.0//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.0/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V3.0//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.0/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides V3.0b1//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.0b1/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V3.0b1//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/3.0b1/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides V2.1/EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/2.1/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V2.1//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/2.1/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides V2.1b1//EN" "schema/dtd/slides.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/2.1b1/schema/slides.dtd" "schema/dtd/slides.dtd"/>
+
+PUBLIC "-//Norman Walsh//DTD Slides Full V2.1b1//EN" "schema/dtd/slides-full.dtd"
+SYSTEM "http://docbook.sourceforge.net/release/slides/2.1b1/schema/slides-full.dtd" "schema/dtd/slides-full.dtd"/>

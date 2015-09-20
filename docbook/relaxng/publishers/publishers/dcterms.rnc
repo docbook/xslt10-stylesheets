@@ -1,0 +1,524 @@
+default namespace = "http://purl.org/dc/terms/"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
+namespace xlink = "http://www.w3.org/1999/xlink"
+namespace html = "http://www.w3.org/1999/xhtml"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace dcterms = "http://purl.org/dc/terms/"
+namespace dcmitype = "http://purl.org/dc/dcmitype/"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+a:documentation [
+  "\x{a}" ~
+  "    \x{a}" ~
+  "      DCterms XML Schema\x{a}" ~
+  "      XML Schema for http://purl.org/dc/terms/ namespace\x{a}" ~
+  " \x{a}" ~
+  "      Created 2008-02-11\x{a}" ~
+  "\x{a}" ~
+  "      Created by \x{a}" ~
+  "\x{a}" ~
+  "      Tim Cole (t-cole3@uiuc.edu)\x{a}" ~
+  "      Tom Habing (thabing@uiuc.edu)\x{a}" ~
+  "      Jane Hunter (jane@dstc.edu.au)\x{a}" ~
+  "      Pete Johnston (p.johnston@ukoln.ac.uk),\x{a}" ~
+  "      Carl Lagoze (lagoze@cs.cornell.edu)\x{a}" ~
+  "\x{a}" ~
+  "      This schema declares XML elements for the DC elements and\x{a}" ~
+  "      DC element refinements from the http://purl.org/dc/terms/ namespace.\x{a}" ~
+  "      \x{a}" ~
+  "      It reuses the complexType dc:SimpleLiteral, imported from the dc.xsd\x{a}" ~
+  "      schema, which permits simple element content, and makes the xml:lang\x{a}" ~
+  "      attribute available.\x{a}" ~
+  "\x{a}" ~
+  "      This complexType permits the derivation of other complexTypes\x{a}" ~
+  "      which would permit child elements.\x{a}" ~
+  "\x{a}" ~
+  "      XML elements corresponding to DC elements are declared as substitutable for the abstract element dc:any, and \x{a}" ~
+  "      XML elements corresponding to DC element refinements are defined as substitutable for the base elements \x{a}" ~
+  "      which they refine.\x{a}" ~
+  "\x{a}" ~
+  "      This means that the default type for all XML elements (i.e. corresponding to all DC elements and \x{a}" ~
+  "      element refinements) is dc:SimpleLiteral.\x{a}" ~
+  "\x{a}" ~
+  "      Encoding schemes are defined as complexTypes which are restrictions\x{a}" ~
+  "      of the dc:SimpleLiteral complexType. These complexTypes restrict \x{a}" ~
+  "      values to an appropriates syntax or format using data typing,\x{a}" ~
+  "      regular expressions, or enumerated lists.\x{a}" ~
+  "  \x{a}" ~
+  "      In order to specify one of these encodings an xsi:type attribute must \x{a}" ~
+  "      be used in the instance document.\x{a}" ~
+  "\x{a}" ~
+  "      Also, note that one shortcoming of this approach is that any type can be \x{a}" ~
+  "      applied to any of the elements or refinements.  There is no convenient way\x{a}" ~
+  "      to restrict types to specific elements using this approach.\x{a}" ~
+  "\x{a}" ~
+  "      Changes in 2008-02-11 version:\x{a}" ~
+  "      \x{a}" ~
+  "      Add element declarations corresponding to 15 new dcterms URIs, and amend use of substitutionGroups.\x{a}" ~
+  "      \x{a}" ~
+  "      Add compexType definitions corresponding to ISO639-3, RFC4646.\x{a}" ~
+  "      \x{a}" ~
+  "    \x{a}" ~
+  "\x{a}" ~
+  "  "
+]
+
+#include "dcmitype.rnc" inherit = dcmitype
+
+start |= dcterms.title
+| dcterms.creator
+| dcterms.subject
+| dcterms.description
+| dcterms.publisher
+| dcterms.contributor
+| dcterms.date
+| dcterms.type
+| dcterms.format
+| dcterms.identifier
+| dcterms.source
+| dcterms.language
+| dcterms.relation
+| dcterms.coverage
+| dcterms.rights
+| dcterms.any
+| dcterms.alternative
+| dcterms.tableOfContents
+| dcterms.abstract
+| dcterms.created
+| dcterms.valid
+| dcterms.available
+| dcterms.issued
+| dcterms.modified
+| dcterms.dateAccepted
+| dcterms.dateCopyrighted
+| dcterms.dateSubmitted
+| dcterms.extent
+| dcterms.medium
+| dcterms.isVersionOf
+| dcterms.hasVersion
+| dcterms.isReplacedBy
+| dcterms.replaces
+| dcterms.isRequiredBy
+| dcterms.requires
+| dcterms.isPartOf
+| dcterms.hasPart
+| dcterms.isReferencedBy
+| dcterms.references
+| dcterms.isFormatOf
+| dcterms.hasFormat
+| dcterms.conformsTo
+| dcterms.spatial
+| dcterms.temporal
+| dcterms.audience
+| dcterms.accrualMethod
+| dcterms.accrualPeriodicity
+| dcterms.accrualPolicy
+| dcterms.instructionalMethod
+| dcterms.provenance
+| dcterms.rightsHolder
+| dcterms.mediator
+| dcterms.educationLevel
+| dcterms.accessRights
+| dcterms.license
+| dcterms.bibliographicCitation
+
+dcterms.title =
+  [
+    db:refpurpose [ "A name given to the resource."
+    ]
+  ]
+  element dcterms:title { text }
+dcterms.creator =
+  [
+    db:refpurpose [ "An entity primarily responsible for making the resource. Examples of a Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity."
+    ]
+  ]
+  element dcterms:creator { text }
+dcterms.subject =
+  [
+    db:refpurpose [ "The topic of the resource. Typically, the subject will be represented using keywords, key phrases, or classification codes. Recommended best practice is to use a controlled vocabulary. To describe the spatial or temporal topic of the resource, use the Coverage element."
+    ]
+  ]
+  element dcterms:subject { text }
+dcterms.description =
+  [
+    db:refpurpose [ "An account of the resource. Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource."
+    ]
+  ]
+  element dcterms:description { text }
+dcterms.publisher =
+  [
+    db:refpurpose [ "An entity responsible for making the resource available. Examples of a Publisher include a person, an organization, or a service. Typically, the name of a Publisher should be used to indicate the entity."
+    ]
+  ]
+  element dcterms:publisher { text }
+dcterms.contributor =
+  [
+    db:refpurpose [ "An entity responsible for making contributions to the resource. Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity."
+    ]
+  ]
+  element dcterms:contributor { text }
+dcterms.date =
+  [
+    db:refpurpose [ "A point or period of time associated with an event in the lifecycle of the resource. Date may be used to express temporal information at any level of granularity. Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."
+    ]
+  ]
+  element dcterms:date { text }
+dcterms.type =
+  [
+    db:refpurpose [ "The nature or genre of the resource. Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element."
+    ]
+  ]
+  element dcterms:type { text }
+dcterms.format =
+  [
+    db:refpurpose [ "The file format, physical medium, or dimensions of the resource. Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME]."
+    ]
+  ]
+  element dcterms:format { text }
+dcterms.identifier =
+  [
+    db:refpurpose [ "An unambiguous reference to the resource within a given context. Recommended best practice is to identify the resource by means of a string conforming to a formal identification system."
+    ]
+  ]
+  element dcterms:identifier { text }
+dcterms.source =
+  [
+    db:refpurpose [ "A related resource from which the described resource is derived. The described resource may be derived from the related resource in whole or in part. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system."
+    ]
+  ]
+  element dcterms:source { text }
+dcterms.language =
+  [
+    db:refpurpose [ "A language of the resource. Recommended best practice is to use a controlled vocabulary such as RFC 4646 [RFC4646]."
+    ]
+  ]
+  element dcterms:language { text }
+dcterms.relation =
+  [
+    db:refpurpose [ "A related resource. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system."
+    ]
+  ]
+  element dcterms:relation { text }
+dcterms.coverage =
+  [
+    db:refpurpose [ "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant. Spatial topic and spatial applicability may be a named place or a location specified by its geographic coordinates. Temporal topic may be a named period, date, or date range. A jurisdiction may be a named administrative entity or a geographic place to which the resource applies. Recommended best practice is to use a controlled vocabulary such as the Thesaurus of Geographic Names [TGN]. Where appropriate, named places or time periods can be used in preference to numeric identifiers such as sets of coordinates or date ranges."
+    ]
+  ]
+  element dcterms:coverage { text }
+dcterms.rights =
+  [
+    db:refpurpose [ "Information about rights held in and over the resource. Typically, rights information includes a statement about various property rights associated with the resource, including intellectual property rights."
+    ]
+  ]
+  element dcterms:rights { text }
+dcterms.alternative =
+  [
+    db:refpurpose [ "An alternative name for the resource. The distinction between titles and alternative titles is application-specific."
+    ]
+  ]
+  element dcterms:alternative { text }
+dcterms.tableOfContents =
+  [
+    db:refpurpose [ "A list of subunits of the resource."
+    ]
+  ]
+  element dcterms:tableOfContents { text }
+dcterms.abstract =
+  [
+    db:refpurpose [ "A summary of the resource."
+    ]
+  ]
+  element dcterms:abstract { text }
+dcterms.created =
+  [
+    db:refpurpose [ "Date of creation of the resource."
+    ]
+  ]
+  element dcterms:created { text }
+dcterms.valid =
+  [
+    db:refpurpose [ "Date (often a range) of validity of a resource."
+    ]
+  ]
+  element dcterms:valid { text }
+dcterms.available =
+  [
+    db:refpurpose [ "Date (often a range) that the resource became or will become available."
+    ]
+  ]
+  element dcterms:available { text }
+dcterms.issued =
+  [
+    db:refpurpose [ "Date of formal issuance (e.g., publication) of the resource."
+    ]
+  ]
+  element dcterms:issued { text }
+dcterms.modified =
+  [
+    db:refpurpose [ "Date on which the resource was changed."
+    ]
+  ]
+  element dcterms:modified { text }
+dcterms.dateAccepted =
+  [
+    db:refpurpose [ "Date of acceptance of the resource. Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal)."
+    ]
+  ]
+  element dcterms:dateAccepted { text }
+dcterms.dateCopyrighted =
+  [
+    db:refpurpose [ "Date of copyright."
+    ]
+  ]
+  element dcterms:dateCopyrighted { text }
+dcterms.dateSubmitted =
+  [
+    db:refpurpose [ "Date of submission of the resource. Examples of resources to which a Date Submitted may be relevant are a thesis (submitted to a university department) or an article (submitted to a journal)."
+    ]
+  ]
+  element dcterms:dateSubmitted { text }
+dcterms.extent =
+  [
+    db:refpurpose [ "The size or duration of the resource."
+    ]
+  ]
+  element dcterms:extent { text }
+dcterms.medium =
+  [
+    db:refpurpose [ "The material or physical carrier of the resource."
+    ]
+  ]
+  element dcterms:medium { text }
+dcterms.isVersionOf =
+  [
+    db:refpurpose [ "A related resource of which the described resource is a version, edition, or adaptation. Changes in version imply substantive changes in content rather than differences in format."
+    ]
+  ]
+  element dcterms:isVersionOf { text }
+dcterms.hasVersion =
+  [
+    db:refpurpose [ "A related resource that is a version, edition, or adaptation of the described resource."
+    ]
+  ]
+  element dcterms:hasVersion { text }
+dcterms.isReplacedBy =
+  [
+    db:refpurpose [ "A related resource that supplants, displaces, or supersedes the described resource."
+    ]
+  ]
+  element dcterms:isReplacedBy { text }
+dcterms.replaces =
+  [
+    db:refpurpose [ "A related resource that is supplanted, displaced, or superseded by the described resource."
+    ]
+  ]
+  element dcterms:replaces { text }
+dcterms.isRequiredBy =
+  [
+    db:refpurpose [ "A related resource that requires the described resource to support its function, delivery, or coherence."
+    ]
+  ]
+  element dcterms:isRequiredBy { text }
+dcterms.requires =
+  [
+    db:refpurpose [ "A related resource that is required by the described resource to support its function, delivery, or coherence."
+    ]
+  ]
+  element dcterms:requires { text }
+dcterms.isPartOf =
+  [
+    db:refpurpose [ "A related resource in which the described resource is physically or logically included."
+    ]
+  ]
+  element dcterms:isPartOf { text }
+dcterms.hasPart =
+  [
+    db:refpurpose [ "A related resource that is included either physically or logically in the described resource."
+    ]
+  ]
+  element dcterms:hasPart { text }
+dcterms.isReferencedBy =
+  [
+    db:refpurpose [ "A related resource that references, cites, or otherwise points to the described resource."
+    ]
+  ]
+  element dcterms:isReferencedBy { text }
+dcterms.references =
+  [
+    db:refpurpose [ "A related resource that is referenced, cited, or otherwise pointed to by the described resource."
+    ]
+  ]
+  element dcterms:references { text }
+dcterms.isFormatOf =
+  [
+    db:refpurpose [ "A related resource that is substantially the same as the described resource, but in another format."
+    ]
+  ]
+  element dcterms:isFormatOf { text }
+dcterms.hasFormat =
+  [
+    db:refpurpose [ "A related resource that is substantially the same as the pre-existing described resource, but in another format."
+    ]
+  ]
+  element dcterms:hasFormat { text }
+dcterms.conformsTo =
+  [
+    db:refpurpose [ "An established standard to which the described resource conforms."
+    ]
+  ]
+  element dcterms:conformsTo { text }
+dcterms.spatial =
+  [
+    db:refpurpose [ "Spatial characteristics of the resource."
+    ]
+  ]
+  element dcterms:spatial { text }
+dcterms.temporal =
+  [
+    db:refpurpose [ "Temporal characteristics of the resource."
+    ]
+  ]
+  element dcterms:temporal { text }
+dcterms.audience =
+  [
+    db:refpurpose [ "A class of entity for whom the resource is intended or useful."
+    ]
+  ]
+  element dcterms:audience { text }
+dcterms.accrualMethod =
+  [
+    db:refpurpose [ "The method by which items are added to a collection."
+    ]
+  ]
+  element dcterms:accrualMethod { text }
+dcterms.accrualPeriodicity =
+  [
+    db:refpurpose [ "The frequency with which items are added to a collection."
+    ]
+  ]
+  element dcterms:accrualPeriodicity { text }
+dcterms.accrualPolicy =
+  [
+    db:refpurpose [ "The policy governing the addition of items to a collection."
+    ]
+  ]
+  element dcterms:accrualPolicy { text }
+dcterms.instructionalMethod =
+  [
+    db:refpurpose [ "A process, used to engender knowledge, attitudes and skills, that the described resource is designed to support. Instructional Method will typically include ways of presenting instructional materials or conducting instructional activities, patterns of learner-to-learner and learner-to-instructor interactions, and mechanisms by which group and individual levels of learning are measured. Instructional methods include all aspects of the instruction and learning processes from planning and implementation through evaluation and feedback."
+    ]
+  ]
+  element dcterms:instructionalMethod { text }
+dcterms.provenance =
+  [
+    db:refpurpose [ "A statement of any changes in ownership and custody of the resource since its creation that are significant for its authenticity, integrity, and interpretation. The statement may include a description of any changes successive custodians made to the resource."
+    ]
+  ]
+  element dcterms:provenance { text }
+dcterms.rightsHolder =
+  [
+    db:refpurpose [ "A person or organization owning or managing rights over the resource."
+    ]
+  ]
+  element dcterms:rightsHolder { text }
+dcterms.mediator =
+  [
+    db:refpurpose [ "An entity that mediates access to the resource and for whom the resource is intended or useful. In an educational context, a mediator might be a parent, teacher, teaching assistant, or care-giver."
+    ]
+  ]
+  element dcterms:mediator { text }
+dcterms.educationLevel =
+  [
+    db:refpurpose [ "A class of entity, defined in terms of progression through an educational or training context, for which the described resource is intended."
+    ]
+  ]
+  element dcterms:educationLevel { text }
+dcterms.accessRights =
+  [
+    db:refpurpose [ "Information about who can access the resource or an indication of its security status. Access Rights may include information regarding access or restrictions based on privacy, security, or other policies."
+    ]
+  ]
+  element dcterms:accessRights { text }
+dcterms.license =
+  [
+    db:refpurpose [ "A legal document giving official permission to do something with the resource."
+    ]
+  ]
+  element dcterms:license { text }
+dcterms.bibliographicCitation =
+  [
+    db:refpurpose [ "A bibliographic reference for the resource. Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible."
+    ]
+  ]
+  element dcterms:bibliographicCitation { text }
+
+SimpleStringLiteral = element * { text }?
+SimpleURILiteral = element * { xsd:anyURI }?
+SimpleDCMITypeLiteral = element * { DCMIType.enumeration }?
+SimpleLanguageLiteral = element * { xsd:language }?
+SimpleLiteral =
+   (SimpleStringLiteral | SimpleURILiteral
+    | SimpleDCMITypeLiteral | SimpleLanguageLiteral)
+
+dcterms.any = element any { SimpleLiteral }
+
+LCSH = SimpleStringLiteral
+MESH = SimpleStringLiteral
+DDC = SimpleStringLiteral
+LCC = SimpleStringLiteral
+UDC = SimpleStringLiteral
+Period = SimpleStringLiteral
+W3CDTF = SimpleLiteral
+DCMIType |= SimpleDCMITypeLiteral
+IMT = SimpleStringLiteral
+URI = SimpleURILiteral
+ISO639-2 = SimpleStringLiteral
+ISO639-3 = SimpleStringLiteral
+RFC1766 = SimpleLanguageLiteral
+RFC3066 = SimpleLanguageLiteral
+RFC4646 = SimpleLanguageLiteral
+Point = SimpleStringLiteral
+ISO3166 = SimpleStringLiteral
+Box = SimpleStringLiteral
+TGN = SimpleStringLiteral
+
+##
+##
+##     		This group is included as a convenience for schema authors
+##             who need to refer to all the DC elements and element refinements
+##             in the http://purl.org/dc/elements/1.1/ and
+##             http://purl.org/dc/terms namespaces.
+##             N.B. Refinements available via substitution groups.
+##
+##
+elementsAndRefinementsGroup = text
+
+##
+##
+##     		This is included as a convenience for schema authors who need to define a root
+##     		or container element for all of the DC elements and element refinements.
+##
+##
+elementOrRefinementContainer =   elementsAndRefinementsGroup
+
+
+##
+##
+##     	    This group is included as a convenience for schema authors
+##             who need to refer to all the elements in the
+##             http://purl.org/dc/elements/1.1/ namespace.
+##
+##
+elementsGroup = text
+
+##
+##
+##     		This complexType is included as a convenience for schema authors who need to define a root
+##     		or container element for all of the DC elements.
+##
+##
+elementContainer = elementsGroup

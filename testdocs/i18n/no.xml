@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='no' id='nochap'>
+<chapterinfo>
+<othercredit>
+  <surname>Bang</surname>
+  <firstname>Steinar</firstname>
+  <affiliation><address><email>steinar@bang.priv.no</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Norwegian</title>
+
+<para lang="no">
+DocBook er en såkalt <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD), som blir vedlikeholdt av <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink>, som er en del av <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>.  Denne dokumenttypen
+er spesielt godt egnet til bøker og artikler om datamaskiner og
+programvare (men er langt ifra avgrenset til disse områdene).
+</para>
+
+<para lang="no">
+Fordi dette er en stor og robust DTD, og fordi hovedstrukturene
+stemmer overens med den allmene oppfatningen av hva som utgjør ei
+<quote>bok</quote>, har DocBook blitt adoptert av ei stor og vekslende
+gruppe forfatterer, som skriv alle typer av dokumenter.  DocBook er
+støtta <quote>rett fra eska</quote> av en mengde kommersielle
+verktøy, og det er en raskt voksende støtte for DocBook blandt fri
+programvare.  Disse egenskapene har til sammen gjort DocBook til en
+DTD som er lett å forstå, nyttig til en mengde oppgaver, og veldig
+populær.  Dusinvis med organisasjoner bruker DocBook til å produsere
+millioner av sider med dokumentasjon, i forskjellige trykte og
+elektroniske format verden over.  </para>
+
+</chapter>

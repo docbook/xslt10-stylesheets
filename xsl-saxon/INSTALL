@@ -1,0 +1,31 @@
+$Id$
+
+INSTALL file for the DocBook Saxon extensions
+
+----------------------------------------------------------------------
+Case #1: Installation using a package management system
+----------------------------------------------------------------------
+If you've installed the DocBook Saxon extensions distribution using
+"apt-get", "yum", "urpmi", or some similar package-management
+front-end, then as part of the package installation, the
+saxon65.jar file for the extensions have most likely already been
+installed in the appropriate location for your system. To determine
+where the jar file is installed, consult the specific documentation
+for your system (for example, the README.Debian file).
+
+----------------------------------------------------------------------
+Case #2: Installing manually
+----------------------------------------------------------------------
+To manually "install" the saxon65.jar file, simply place it in a
+directory where you'd normally store jar files.
+
+----------------------------------------------------------------------
+How to use the DocBook Saxon extensions
+----------------------------------------------------------------------
+To use the DocBook Saxon extensions, add the absolute path to the
+saxon65.jar file (wherever you may it installed) to your Java
+classpath and process your documents with the Saxon XSLT engine and
+with the value of the DocBook XSL stylesheets "use.extensions"
+parameter set to 1.
+
+For a few more details, see the README file.

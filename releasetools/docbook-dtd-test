@@ -1,0 +1,92 @@
+#!/bin/sh
+# $Id$
+
+TEMPDIR=/tmp
+SVN=svn
+SVN_OPTS='-q'
+CVS=cvs
+CVS_OPTS='-Q'
+WGET=wget
+WGET_OPTS='-q'
+UNZIP=unzip
+UNZIP_OPTS='-q'
+SED=sed
+SED_OPTS=
+XMLLINT=xmllint
+XMLLINT_OPTS='--noout --nonet --postvalid --nowarning --xinclude'
+usage="Usage:
+
+  `basename $0` [-t TEMPDIR] [-v] URI
+
+"
+opts_admon="Type '`basename $0` -h' for details about options.
+"
+help="Options:
+
+   -t TEMPDIR  Specifies temporary directory (default: /tmp)
+
+   -v          Specifies verbose output for validation phase
+
+  URI          Location of zip file containing DocBook DTD to validate against
+
+Example:
+
+  `basename $0` -v -t /scratch http://www.docbook.org/xml/4.4CR2/docbook-xml-4.4CR2.zip
+
+"
+while getopts "ht:v" opt; do
+  case $opt in
+    h  ) printf "$usage"
+         printf "$help"
+         exit 0 ;;
+    t  ) TEMPDIR=$OPTARG ;;
+    v  ) VERBOSE=Yes ;;
+    \? ) printf "$usage"
+         printf "$opts_admon"
+         exit 1 ;;
+  esac
+done
+shift $(($OPTIND - 1))
+if [ "$1" = "" ]; then
+  echo "`basename $0`: Error - no URI specified"
+  printf "$usage"
+  printf "$opts_admon"
+  exit 1
+fi
+
+cd $TEMPDIR
+$SVN $SVN_OPTS co https://svn.sourceforge.net/svnroot/docbook/trunk/testdocs
+
+zipfile=`basename $1`
+unzip_dir=`basename $1 .zip`
+url_base=`dirname $1`
+version=`basename $url_base`
+rm -rf $unzip_dir
+mkdir $unzip_dir
+cd $unzip_dir
+$WGET $WGET_OPTS $1
+$UNZIP $UNZIP_OPTS `basename $1`
+
+XML_CATALOG_FILES="$TEMPDIR/$unzip_dir/catalog.xml"
+export XML_CATALOG_FILES
+cd $TEMPDIR/testdocs/tests
+for file in `find .  -maxdepth 1 -name "*.xml" | cut -c3-`; do
+  if [ "$VERBOSE" = "Yes" ]; then
+    $SED $SED_OPTS "s#/[^/]\+/docbookx.dtd#/$version/docbookx.dtd#" $file \
+    | $XMLLINT $XMLLINT_OPTS -
+  else
+    $SED $SED_OPTS "s#/[^/]\+/docbookx.dtd#/$version/docbookx.dtd#" $file \
+    | $XMLLINT $XMLLINT_OPTS - 1>/dev/null 2>&1
+  fi
+
+  echo $file
+  if [ $? != "0" ] ; then
+    echo "Not valid: $file"
+    if [ "$VERBOSE" = "Yes" ]; then
+      echo
+    fi
+  fi
+done
+cd $TEMPDIR
+#rm -rf testdocs
+rm -rf $unzip_dir

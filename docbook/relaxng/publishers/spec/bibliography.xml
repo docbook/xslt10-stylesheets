@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<bibliography xmlns="http://docbook.org/ns/docbook"
+	      xmlns:xlink="http://www.w3.org/1999/xlink"
+	      version="5.0">
+<title>References</title>
+
+<!-- A bibliography database for the DocBook spec -->
+
+<bibliomixed xml:id="relaxng"><abbrev>RELAX NG</abbrev>James Clark, editor.
+<citetitle><link xlink:href="http://www.oasis-open.org/committees/relax-ng/spec-20010811.html">RELAX NG Specification (Committee Specification)</link></citetitle>. OASIS. 2001.
+</bibliomixed>
+
+<bibliomixed xml:id="xml-rec"><abbrev>XML</abbrev>Tim Bray,
+Jean Paoli, C. M. Sperberg-McQueen, <foreignphrase>et. al.</foreignphrase>,
+editors.
+<citetitle><link xlink:href="http://www.w3.org/TR/REC-xml">Extensible Markup
+Language (XML) 1.0 (Fourth Edition)</link></citetitle>.
+World Wide Web Consortium, 16 August 2006.
+</bibliomixed>
+
+<bibliomixed xml:id="xlink11"><abbrev>XLink11</abbrev>Steven DeRose, Eve Maler,
+David Orchard, Norman Walsh, editors.
+<citetitle><link xlink:href="http://www.w3.org/TR/xlink11">XML Linking Language (XLink)
+Version 1.1</link></citetitle>.
+World Wide Web Consortium, 2005.
+</bibliomixed>
+
+<bibliomixed xml:id="rfc2119"><abbrev>RFC 2119</abbrev>IETF
+(Internet Engineering Task Force).
+<citetitle><link xlink:href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119:
+Key words for use in RFCs to Indicate Requirement Levels</link></citetitle>.
+S. Bradner. 1997.</bibliomixed>
+
+<bibliomixed xml:id="rfc3023"><abbrev>RFC 3023</abbrev>IETF
+(Internet Engineering Task Force).
+<citetitle><link xlink:href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023: XML
+Media Types</link></citetitle>.
+M. Murata, S. St. Laurent, D. Kohn. 2001.
+</bibliomixed>
+
+<bibliomixed xml:id="bib.docbooktdg5"><abbrev>DocBook: TDG5</abbrev>
+Norman Walsh and Leonard Meullner.
+<citetitle><link xlink:href="http://docbook.org/tdg5/en/">DocBook 5.0:
+The Definitive Guide</link>.</citetitle>
+</bibliomixed>
+
+<bibliomixed xml:id="iso8879"><abbrev>SGML</abbrev>JTC 1, SC 34.
+<citetitle>ISO 8879:1986
+Information processing -- Text and office systems --
+Standard Generalized Markup Language (SGML)</citetitle>. 1986.
+</bibliomixed>
+
+<bibliomixed xml:id="xmlschema-1"><abbrev>W3C XML Schema</abbrev>Henry S. Thompson,
+David Beech, Murray Maloney, et. al., editors.
+<citetitle><link xlink:href="http://www.w3.org/TR/xmlschema-1/">XML Schema Part 1: Structures</link></citetitle>.
+World Wide Web Consortium, 2000.
+</bibliomixed>
+
+<bibliomixed xml:id="xmlschema-2"><abbrev>W3C XML Datatypes</abbrev>Paul V. Biron
+and Ashok Malhotra, editors.
+<citetitle><link xlink:href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes</link></citetitle>.
+World Wide Web Consortium, 2000.
+</bibliomixed>
+
+<bibliomixed xml:id="schematron2000"><abbrev>Schematron</abbrev>Rick Jelliffe, editor.
+<citetitle><link xlink:href="http://www.ascc.net/xml/resource/schematron/Schematron2000.html">The Schematron Assertion Language 1.5</link></citetitle>. Rick Jelliffe and
+Acedemia Sinica Computing Centre. 2001, 2001.
+</bibliomixed>
+    
+<bibliomixed xml:id="dcterms"><abbrev>DCMI Metadata Terms</abbrev>DCMI Usage Board
+    <citetitle><link xlink:href="http://dublincore.org/documents/dcmi-terms/">DCMI Metadata Terms (DCMI Recommendation)</link></citetitle>. Copyright © 2008-01-14 Dublin Core Metadata Initiative. All Rights Reserved. http://www.dublincore.org/about/copyright.
+</bibliomixed>
+
+</bibliography>

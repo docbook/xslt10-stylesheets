@@ -1,0 +1,73 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+use LWP::UserAgent;
+use URI::Escape;
+use Data::Dumper;
+use SVN::Log;
+use WWW::Shorten;
+
+# usage: svn2twitter REPOSITORY WEBVCSURL SUBJECT TWITTER_USER TWITTER_PASS
+# examples:
+#
+#   svn2twitter https://docbook.svn.sourceforge.net/svnroot/docbook/ \
+#     "http://docbook.svn.sourceforge.net/viewvc/docbook?view=rev&revision=" \
+#     "SF.net SVN: docbook: [7978] trunk/xsl/roundtrip" \
+#     codpeace foobar
+#
+#   svn2twitter http://svn.webkit.org/repository/webkit/trunk/ \
+#     "http://trac.webkit.org/projects/webkit/changeset/" \
+#     "[webkit-changes] [31430] trunk/WebCore" \
+#     codpeace foobar
+
+my $repository  = shift @ARGV;
+my $webvcsurl   = shift @ARGV;
+my $subject     = shift @ARGV;
+my $twitteruser = shift @ARGV;
+my $twitterpass = shift @ARGV;
+
+$subject =~ tr/\n/ /;
+my $revision    = $subject;
+
+# parse out just the [NNNN] revision number from the Subject
+$revision =~ s/^.+\[([0-9]+)\].*$/$1/;
+#print "$revision\n";
+
+my $revs = SVN::Log::retrieve ($repository, $revision);
+
+my $author = $revs->[0]{author};
+$author =~ s/^([^@]+)@.+$/$1/;
+
+# use only first 6 chars of author username
+#if (length($author) > 6) {
+#  $author = substr($author, 0, 6);
+#}
+my $message = $revs->[0]{message};
+chomp $message;
+# strip out any date at beginning message and beginning of line
+$message =~ s/^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] //g;
+$message =~ s/\n[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] //g;
+
+#my @paths = keys %{$revs->[0]{paths}};
+
+#my $twitter = $author . ": " . $message . "; " . join (", ", @paths);
+my $twitter = $author . ": " . $message;
+
+# strip out <foo@bar.org> e-mail addresses (replace with dot)
+$twitter =~ s/\s+<[^@]+@.[^>]+>/./g;
+$twitter =~ tr/\n/ /;
+$twitter =~ s/\s+/ /g;
+
+if (length($twitter) > 118) {
+  $twitter = substr($twitter, 0, 118-1) . '…';
+}
+
+my $tinyurl = makeashorterlink($webvcsurl . $revision);
+$twitter = $tinyurl . " " . $twitter;
+
+#print "$twitter\n";
+
+my $status = uri_escape($twitter);
+my $twitterurl = 'http://' . $twitteruser . ':' . $twitterpass;
+$twitterurl .= '@twitter.com/statuses/update.xml?status=' . $status;
+#print $twitterurl;
+my $result = LWP::UserAgent->new->post($twitterurl);
+die "Failed to update Twitter\n" . Dumper($result) if $result->code ne '200';

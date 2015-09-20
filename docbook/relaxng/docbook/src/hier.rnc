@@ -1,0 +1,498 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace dbx = "http://sourceforge.net/projects/docbook/defguide/schema/extra-markup"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.partintro | db.simplesect
+
+db.status.attribute =
+   [
+      db:refpurpose [
+         "Identifies the editorial or publication status of the element " ~
+         "on which it occurs"
+      ]
+   ]
+   attribute status { text }
+
+# ======================================================================
+
+db.toplevel.sections = (db.section+, db.simplesect*) | db.simplesect+
+
+db.toplevel.blocks.or.sections =
+  (db.all.blocks+, db.toplevel.sections?) | db.toplevel.sections
+
+db.recursive.sections = (db.section+, db.simplesect*) | db.simplesect+
+
+db.recursive.blocks.or.sections =
+  (db.all.blocks+, db.recursive.sections?) | db.recursive.sections
+
+# ======================================================================
+
+db.divisions = db.part
+
+db.components =
+   db.dedication
+ | db.acknowledgements
+ | db.preface
+ | db.chapter
+ | db.appendix
+ | db.article
+ | db.colophon
+
+db.navigation.components = notAllowed
+
+db.component.contentmodel =
+  db.navigation.components*, db.toplevel.blocks.or.sections, db.navigation.components*
+
+# ======================================================================
+
+db.setindex.components = notAllowed
+db.toc.components = notAllowed
+
+db.set.components = db.set | db.book
+
+# ======================================================================
+
+[
+   db:refname [ "set" ]
+   db:refpurpose [ "A collection of books" ]
+]
+div {
+
+   db.set.status.attribute = db.status.attribute
+
+   db.set.role.attribute = attribute role { text }
+
+   db.set.attlist =
+      db.set.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.set.status.attribute?
+
+   db.set.info = db._info.title.req
+
+   db.set =
+      element set {
+         db.set.attlist,
+         db.set.info,
+         db.toc.components?,
+         db.set.components+,
+         db.setindex.components?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "book" ]
+   db:refpurpose [ "A book" ]
+]
+div {
+
+   db.book.status.attribute = db.status.attribute
+
+   db.book.role.attribute = attribute role { text }
+
+   db.book.attlist =
+      db.book.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.book.status.attribute?
+
+   db.book.info = db._info
+
+   db.book =
+      element book {
+         db.book.attlist,
+         db.book.info,
+         (db.navigation.components | db.components | db.divisions)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "dedication" ]
+   db:refpurpose [ "The dedication of a book or other component" ]
+]
+div {
+
+   db.dedication.status.attribute = db.status.attribute
+
+   db.dedication.role.attribute = attribute role { text }
+
+   db.dedication.attlist =
+      db.dedication.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.dedication.status.attribute?
+
+   db.dedication.info = db._info
+
+   db.dedication =
+      element dedication {
+         db.dedication.attlist,
+         db.dedication.info,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "acknowledgements" ]
+   db:refpurpose [ "Acknowledgements of a book or other component" ]
+]
+div {
+
+   db.acknowledgements.status.attribute = db.status.attribute
+
+   db.acknowledgements.role.attribute = attribute role { text }
+
+   db.acknowledgements.attlist =
+      db.acknowledgements.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.acknowledgements.status.attribute?
+
+   db.acknowledgements.info = db._info
+
+   db.acknowledgements =
+      element acknowledgements {
+         db.acknowledgements.attlist,
+         db.acknowledgements.info,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "colophon" ]
+   db:refpurpose [ "Text at the back of a book describing facts about its production" ]
+]
+div {
+
+   db.colophon.status.attribute = db.status.attribute
+
+   db.colophon.role.attribute = attribute role { text }
+
+   db.colophon.attlist =
+      db.colophon.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.colophon.status.attribute?
+
+   db.colophon.info = db._info
+
+   db.colophon =
+      element colophon {
+         db.colophon.attlist,
+         db.colophon.info,
+         ((db.all.blocks+, db.simplesect*)
+          |(db.all.blocks*, db.simplesect+))
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "appendix" ]
+   db:refpurpose [ "An appendix in a book or article" ]
+]
+div {
+
+   db.appendix.status.attribute = db.status.attribute
+
+   db.appendix.role.attribute = attribute role { text }
+
+   db.appendix.attlist =
+      db.appendix.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.appendix.status.attribute?
+
+   db.appendix.info = db._info.title.req
+
+   db.appendix =
+      element appendix {
+         db.appendix.attlist,
+         db.appendix.info,
+         db.component.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "chapter" ]
+   db:refpurpose [ "A chapter, as of a book" ]
+]
+div {
+
+   db.chapter.status.attribute = db.status.attribute
+
+   db.chapter.role.attribute = attribute role { text }
+
+   db.chapter.attlist =
+      db.chapter.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.chapter.status.attribute?
+
+   db.chapter.info = db._info.title.req
+
+   db.chapter =
+      element chapter {
+         db.chapter.attlist,
+         db.chapter.info,
+         db.component.contentmodel
+      }
+}
+
+# ======================================================================
+
+db.part.components = db.navigation.components | db.components
+
+# ======================================================================
+
+[
+   db:refname [ "part" ]
+   db:refpurpose [ "A division in a book" ]
+]
+div {
+
+   db.part.status.attribute = db.status.attribute
+
+   db.part.role.attribute = attribute role { text }
+
+   db.part.attlist =
+      db.part.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.part.status.attribute?
+
+   db.part.info = db._info.title.req
+
+   db.part =
+      element part {
+         db.part.attlist,
+         db.part.info,
+         db.partintro?,
+         db.part.components+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "preface" ]
+   db:refpurpose [ "Introductory matter preceding the first chapter of a book" ]
+]
+div {
+
+   db.preface.status.attribute = db.status.attribute
+
+   db.preface.role.attribute = attribute role { text }
+
+   db.preface.attlist =
+      db.preface.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.preface.status.attribute?
+
+   db.preface.info = db._info.title.req
+
+   db.preface =
+      element preface {
+         db.preface.attlist,
+         db.preface.info,
+         db.component.contentmodel
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "partintro" ]
+   db:refpurpose [ "An introduction to the contents of a part" ]
+]
+div {
+
+   db.partintro.status.attribute = db.status.attribute
+
+   db.partintro.role.attribute = attribute role { text }
+
+   db.partintro.attlist =
+      db.partintro.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.partintro.status.attribute?
+
+   db.partintro.info = db._info
+
+   db.partintro =
+      element partintro {
+         db.partintro.attlist,
+         db.partintro.info,
+         db.toplevel.blocks.or.sections
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "section" ]
+   db:refpurpose [ "A recursive section" ]
+]
+div {
+
+   db.section.status.attribute = db.status.attribute
+
+   db.section.role.attribute = attribute role { text }
+
+   db.section.attlist =
+      db.section.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.section.status.attribute?
+
+   db.section.info = db._info.title.req
+
+   db.section =
+      element section {
+         db.section.attlist,
+         db.section.info,
+         db.recursive.blocks.or.sections,
+         db.navigation.components*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "simplesect" ]
+   db:refpurpose [ "A section of a document with no subdivisions" ]
+]
+div {
+
+   db.simplesect.status.attribute = db.status.attribute
+
+   db.simplesect.role.attribute = attribute role { text }
+
+   db.simplesect.attlist =
+      db.simplesect.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.simplesect.status.attribute?
+
+   db.simplesect.info = db._info.title.req
+
+   db.simplesect =
+      element simplesect {
+         db.simplesect.attlist,
+         db.simplesect.info,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+db.article.components = db.toplevel.sections
+
+# ======================================================================
+
+[
+   db:refname [ "article" ]
+   db:refpurpose [ "An article" ]
+]
+div {
+
+   db.article.status.attribute = db.status.attribute
+
+
+   db.article.class.enumeration =
+      ## A collection of frequently asked questions.
+      "faq"
+    | ## An article in a journal or other periodical.
+      "journalarticle"
+    | ## A description of a product.
+      "productsheet"
+    | ## A specification.
+      "specification"
+    | ## A technical report.
+      "techreport"
+    | ## A white paper.
+      "whitepaper"
+
+   db.article.class.attribute =
+      [
+         db:refpurpose [ "Identifies the nature of the article" ]
+      ]
+      attribute class { db.article.class.enumeration }
+
+   db.article.role.attribute = attribute role { text }
+
+   db.article.attlist =
+      db.article.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.article.status.attribute?
+    & db.article.class.attribute?
+
+   db.article.info = db._info.title.req
+
+   db.article =
+      element article {
+         db.article.attlist,
+         db.article.info,
+         (db.navigation.components | db.appendix | db.acknowledgements | db.colophon)*,
+         ((db.all.blocks+, db.article.components?)
+          | db.article.components),
+         (db.navigation.components | db.appendix | db.acknowledgements | db.colophon)*
+      }
+}
+

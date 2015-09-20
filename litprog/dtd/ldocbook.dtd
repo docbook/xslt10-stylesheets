@@ -1,0 +1,41 @@
+<!ENTITY % docbook
+  PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+         "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<!ENTITY % local.link.char.class "|src:fragref">
+<!ENTITY % local.linespecific.class "|src:fragment">
+
+<!ENTITY % local.article.attrib "
+	xmlns:src	CDATA	#IMPLIED
+	xmlns:xsl	CDATA	#IMPLIED
+">
+
+<!ENTITY % local.book.attrib "
+	xmlns:src	CDATA	#IMPLIED
+	xmlns:xsl	CDATA	#IMPLIED
+">
+
+<!ENTITY % local.reference.attrib "
+	xmlns:src	CDATA	#IMPLIED
+	xmlns:xsl	CDATA	#IMPLIED
+">
+
+%docbook;
+
+<!ELEMENT src:fragment (%para.char.mix; | co | lineannotation)*>
+<!ATTLIST src:fragment
+		%width.attrib;
+		%linespecific.attrib;
+		%common.attrib;
+		%role.attrib;
+>
+
+<!ELEMENT src:fragref (%para.char.mix;)*>
+<!ATTLIST src:fragref
+		disable-output-escaping	(yes|no)	"no"
+		endterm		IDREF		#IMPLIED
+		%linkendreq.attrib;
+		type		CDATA		#IMPLIED
+		%common.attrib;
+		%role.attrib;
+>

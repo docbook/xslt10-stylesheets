@@ -1,0 +1,25 @@
+#!/bin/sh
+# $Id$
+if [ "$1" = "uninstall" ]
+then
+  if [ -f ./uninstall.sh ]
+  then
+    ./uninstall.sh --batch
+  else
+    echo
+    echo "Nothing to uninstall."
+    echo
+    echo "To set up catalogs, first run $0"
+    echo "without the 'uninstall' argument."
+    exit 1
+  fi
+else
+  echo
+  make install.sh \
+  && echo \
+  && ./install.sh --batch \
+  && . $(pwd)/.profile.incl \
+  && echo "OK, did . $(pwd)/.profile.incl" \
+  && echo "to source environment." \
+  && ./test.sh
+fi

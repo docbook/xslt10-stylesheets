@@ -1,0 +1,90 @@
+<article xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+         xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<articleinfo>
+<title>Calculating Members of the Fibonacci Series</title>
+<author>
+  <firstname>Norman</firstname>
+  <surname>Walsh</surname>
+</author>
+</articleinfo>
+
+<para>This trivial document describes a simple, recursive
+implementation of the Fibonacci series in Perl. The principal
+motivation for this document is to demonstrate the use of Literate XML.
+</para>
+
+<section><title>Recursive Definition</title>
+
+<para>The Fibonacci series begins: 1 1 2 3 5 8 13... Each member of
+the series, after the first two, is the sum of the preceding two
+members.</para>
+
+<para>This can be implemented recursively by calculating the preceding
+two members of the series and returning their sum:</para>
+
+<src:fragment id="sub.fib.recursion">
+&amp;fib($n-2) + &amp;fib($n-1);
+</src:fragment>
+</section>
+
+<section><title>The <function>fib</function> Function</title>
+
+<para>The heart of this program is the recursive function that
+calculates the members of the Fibonacci series.</para>
+
+<para>The first and second members of the Fibonnacci series are
+<quote>1</quote>; all other values are calculated recursively.</para>
+
+<src:fragment id="sub.fib">
+sub fib {
+    my $n = shift;
+
+    if ($n &lt;= 2) {
+        return 1;
+    } else {
+        return <src:fragref linkend="sub.fib.recursion"/>
+    }
+}
+</src:fragment>
+</section>
+
+<section><title>Code Preamble</title>
+
+<para>The program preamble simply establishes a default location for
+the Perl executable and informs the interpreter that we want to use
+the strict pragma.</para>
+
+<src:fragment id="preamble">
+#!/usr/bin/perl -w
+
+use strict;
+</src:fragment>
+</section>
+
+<section><title>Argument Checking</title>
+
+<para>This program expects its argument on the command line and it expects
+that argument to be an unsigned decimal integer.</para>
+
+<src:fragment id="argcheck">
+my $num = shift @ARGV || die;
+
+die "Not a number: $num\n" if $num !~ /^\d+$/;
+</src:fragment>
+</section>
+
+<section><title>The Program</title>
+
+<para>The program prints out the Fibonacci number requested:</para>
+
+<src:fragment id="top">
+<src:fragref linkend="preamble"/>
+<src:fragref linkend="argcheck"/>
+
+print "Fib($num) = ", &amp;fib($num), "\n";
+
+<src:fragref linkend="sub.fib"/>
+</src:fragment>
+</section>
+
+</article>

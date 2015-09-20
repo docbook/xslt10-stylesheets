@@ -1,0 +1,10 @@
+<!DOCTYPE db:book SYSTEM "../output.dtd">
+<db:book xmlns:db="http://docbook.org/ns/docbook">
+<db:info>
+  <db:title>Book title</db:title>
+</db:info>
+<db:chapter>
+<db:title>Chapter title</db:title>
+<db:para>Some text.</db:para>
+</db:chapter>
+</db:book>

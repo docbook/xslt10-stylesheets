@@ -1,0 +1,11 @@
+<!ENTITY slide.font.family SYSTEM "../../params/slide.font.family.xml">
+<!ENTITY slide.title.font.family SYSTEM "./../../params/slide.title.font.family.xml">
+<!ENTITY foil.title.master SYSTEM "../../params/foil.title.master.xml">
+<!ENTITY foil.title.size SYSTEM "../../params/foil.title.size.xml">
+<!ENTITY foil.properties SYSTEM "../../params/foil.properties.xml">
+<!ENTITY foil.subtitle.properties SYSTEM "../../params/foil.subtitle.properties.xml">
+<!ENTITY foilgroup.properties SYSTEM "../../params/foilgroup.properties.xml">
+<!ENTITY running.foot.properties SYSTEM "../../params/running.foot.properties.xml">
+<!ENTITY slides.properties SYSTEM "../../params/slides.properties.xml">
+<!ENTITY speakernote.properties SYSTEM "../../params/speakernote.properties.xml">
+

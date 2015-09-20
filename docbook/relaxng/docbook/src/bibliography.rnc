@@ -1,0 +1,306 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.bibliodiv | db.bibliolist
+
+db.navigation.components |= db.bibliography
+
+db.list.blocks |= db.bibliolist
+
+db.info.elements |= db.bibliomisc | db.bibliomset | db.bibliorelation | db.biblioset
+
+db.link.inlines |= db.biblioref
+
+# ======================================================================
+
+db.relation.attribute =
+      [
+         db:refpurpose [ "Identifies the relationship between the bibliographic elemnts" ]
+      ]
+   attribute relation { text }
+
+# ======================================================================
+
+[
+   db:refname [ "biblioentry" ]
+   db:refpurpose [ "A raw entry in a bibliography" ]
+]
+div {
+
+   db.biblioentry.role.attribute = attribute role { text }
+
+   db.biblioentry.attlist =
+      db.biblioentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.biblioentry =
+      element biblioentry {
+         db.biblioentry.attlist,
+         db.bibliographic.elements+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliomixed" ]
+   db:refpurpose [ "A cooked entry in a bibliography" ]
+]
+div {
+
+   db.bibliomixed.role.attribute = attribute role { text }
+
+   db.bibliomixed.attlist =
+      db.bibliomixed.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.bibliomixed =
+      element bibliomixed {
+         db.bibliomixed.attlist,
+         ((db._text | db.honorific | db.firstname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*
+         | (db._text | db.honorific | db.givenname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "biblioset" ]
+   db:refpurpose [ "A raw container for related bibliographic information" ]
+]
+div {
+
+   db.biblioset.relation.attribute = db.relation.attribute
+
+   db.biblioset.role.attribute = attribute role { text }
+
+   db.biblioset.attlist =
+      db.biblioset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.biblioset.relation.attribute?
+
+   db.biblioset =
+      element biblioset {
+         db.biblioset.attlist,
+         db.bibliographic.elements+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliomset" ]
+   db:refpurpose [ "A cooked container for related bibliographic information" ]
+]
+div {
+
+   db.bibliomset.relation.attribute = db.relation.attribute
+
+   db.bibliomset.role.attribute = attribute role { text }
+
+   db.bibliomset.attlist =
+      db.bibliomset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.bibliomset.relation.attribute?
+
+   db.bibliomset =
+      element bibliomset {
+         db.bibliomset.attlist,
+         ((db._text | db.honorific | db.firstname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*
+         | (db._text | db.honorific | db.givenname | db.surname
+           | db.lineage | db.othername | db.bibliographic.elements)*)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliomisc" ]
+   db:refpurpose [ "Untyped bibliographic information" ]
+]
+div {
+
+   db.bibliomisc.role.attribute = attribute role { text }
+
+   db.bibliomisc.attlist =
+      db.bibliomisc.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.bibliomisc =
+      element bibliomisc {
+         db.bibliomisc.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliography" ]
+   db:refpurpose [ "A bibliography" ]
+]
+div {
+
+   db.bibliography.status.attrib = db.status.attribute
+
+   db.bibliography.role.attribute = attribute role { text }
+
+   db.bibliography.attlist =
+      db.bibliography.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.bibliography.status.attrib?
+
+   db.bibliography.info = db._info
+
+   db.bibliography =
+      element bibliography {
+         db.bibliography.attlist,
+         db.bibliography.info,
+         db.all.blocks*,
+         (db.bibliodiv+ | (db.biblioentry | db.bibliomixed)+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliodiv" ]
+   db:refpurpose [ "A section of a bibliography" ]
+]
+div {
+
+   db.bibliodiv.status.attrib = db.status.attribute
+
+   db.bibliodiv.role.attribute = attribute role { text }
+
+   db.bibliodiv.attlist =
+      db.bibliodiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.bibliodiv.status.attrib?
+
+   db.bibliodiv.info = db._info.title.req
+
+   db.bibliodiv =
+      element bibliodiv {
+         db.bibliodiv.attlist,
+         db.bibliodiv.info,
+         db.all.blocks*,
+         (db.biblioentry | db.bibliomixed)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "bibliolist" ]
+   db:refpurpose [ "A wrapper for a list of bibliography entries" ]
+]
+div {
+
+   db.bibliolist.role.attribute = attribute role { text }
+
+   db.bibliolist.attlist =
+      db.bibliolist.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.bibliolist.info = db._info.title.only
+
+   db.bibliolist =
+      element bibliolist {
+         db.bibliolist.attlist,
+         db.bibliolist.info?,
+         db.all.blocks*,
+         (db.biblioentry | db.bibliomixed)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "biblioref" ]
+   db:refpurpose [ "A cross-reference to a bibliographic entry" ]
+]
+div {
+
+   db.biblioref.role.attribute = attribute role { text }
+   db.biblioref.xrefstyle.attribute = db.xrefstyle.attribute
+   db.biblioref.endterm.attribute = db.endterm.attribute
+   db.biblioref.units.attribute =
+      [
+         db:refpurpose [ "The units (for example, pages) used to identify the beginning and ending of a reference." ]
+      ]
+      attribute units { xsd:token }
+
+   db.biblioref.begin.attribute =
+      [
+         db:refpurpose [ "Identifies the beginning of a reference; the location within the work that is being referenced." ]
+      ]
+      attribute begin {xsd:token }
+
+   db.biblioref.end.attribute =
+      [
+         db:refpurpose [ "Identifies the end of a reference." ]
+      ]
+      attribute end { xsd:token }
+
+   db.biblioref.attlist =
+      db.biblioref.role.attribute?
+    & db.common.attributes
+    & db.common.req.linking.attributes
+    & db.biblioref.xrefstyle.attribute?
+    & db.biblioref.endterm.attribute?
+    & db.biblioref.units.attribute?
+    & db.biblioref.begin.attribute?
+    & db.biblioref.end.attribute?
+
+   db.biblioref =
+      element biblioref {
+         db.biblioref.attlist,
+         empty
+      }
+}

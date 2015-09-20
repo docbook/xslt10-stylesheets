@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="stringtype">
+ <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:complexType name="colortype">
+  <xs:simpleContent>
+    <xs:extension base="stringtype">
+      <xs:attribute name="name" type="stringtype" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>    
+</xs:complexType>
+
+<xs:complexType name="colorstype">
+  <xs:sequence>
+   <xs:element name="color" type="colortype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>   
+</xs:complexType>
+
+<xs:complexType name="unitstype">
+  <xs:sequence>
+   <xs:element name="unit" type="stringtype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="fonttype">
+  <xs:sequence>
+   <xs:element name="font" type="stringtype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="typestype">
+  <xs:sequence>
+   <xs:element name="colors" type="colorstype" minOccurs="1" maxOccurs="1"/>
+   <xs:element name="units" type="unitstype" minOccurs="1" maxOccurs="1"/>
+   <xs:element name="fonts" type="fonttype" minOccurs="1" maxOccurs="1"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="types" type="typestype"/>
+
+</xs:schema>

@@ -1,0 +1,75 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook EBNF Module V1.2b1//EN"
+               "dbebnf.dtd">
+<book>
+<title>Book Title</title>
+<chapter><title>Chapter Title</title>
+<para>Content.</para>
+
+<productionset><title>Character Range</title>
+<production id="NT-Char">
+<lhs>Char</lhs>
+<rhs>#x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD]
+<!-- The above line break in the source file has nothing to do with the
+line breaks in the output. -->
+| [#x10000-#x10FFFF]
+<lineannotation>any Unicode character, excluding the surrogate
+blocks, FFFE, and FFFF.
+</lineannotation>
+</rhs>
+</production>
+</productionset>
+
+<productionset><title>Standalone Document Declaration</title>
+<production id="NT-SDDecl">
+<lhs>SDDecl</lhs>
+<rhs><nonterminal def="#NT-S">S</nonterminal> 'standalone' <nonterminal def="#NT-Eq">Eq</nonterminal>
+<!-- The above line break in the source file has nothing to do with the
+line breaks in the output. -->
+(("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
+</rhs>
+<constraint linkend="check-rmd"/>
+</production>
+</productionset>
+
+<productionset>
+<production id="NT-element">
+<lhs>element</lhs>
+<rhs>
+<nonterminal def="#NT-EmptyElemTag">EmptyElemTag</nonterminal>
+<sbr/><!-- There will be a line break in the output because of the sbr. -->
+| <nonterminal def="#NT-STag">STag</nonterminal> <nonterminal def="#NT-content">content</nonterminal>
+<!-- The above line break has nothing to do with the output. -->
+<nonterminal def="#NT-SDDecl"/>
+</rhs>
+<constraint linkend="GIMatch"/>
+<constraint linkend="elementvalid"/>
+</production>
+<productionrecap linkend="NT-SDDecl"/>
+</productionset>
+
+<para>A bunch of anchors to make the preceding examples valid:
+<anchor id="NT-S"/>
+<anchor id="NT-Eq"/>
+<anchor id="NT-content"/>
+<anchor id="NT-ETag"/>
+<anchor id="NT-EmptyElemTag"/>
+<anchor id="NT-STag"/>
+</para>
+
+<constraintdef id="check-rmd" role="VC">
+<title>Standalone Document Declaration</title>
+<para>Some description...</para>
+</constraintdef>
+
+<constraintdef id="elementvalid" role="VC">
+<title>Element Valid</title>
+<para>Some description...</para>
+</constraintdef>
+
+<constraintdef id="GIMatch" role="WFC">
+<title>Element Type Match</title>
+<para>Some description...</para>
+</constraintdef>
+
+</chapter>
+</book>

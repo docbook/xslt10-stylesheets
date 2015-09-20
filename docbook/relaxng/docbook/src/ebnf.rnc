@@ -1,0 +1,230 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.productionset | db.constraintdef
+
+db.technical.inlines |= db.nonterminal
+db.technical.blocks |= db.productionset | db.constraintdef
+
+# ======================================================================
+
+[
+   db:refname [ "productionset" ]
+   db:refpurpose [ "A set of EBNF productions" ]
+]
+div {
+
+   db.productionset.role.attribute = attribute role { text }
+
+   db.productionset.attlist =
+      db.productionset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.productionset.info = db._info.title.only
+
+   db.productionset =
+      element productionset {
+         db.productionset.attlist,
+         db.productionset.info,
+         (db.production|db.productionrecap)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "production" ]
+   db:refpurpose [ "A production in a set of EBNF productions" ]
+]
+div {
+
+   db.production.role.attribute = attribute role { text }
+
+   db.production.attlist =
+      db.production.role.attribute?
+    & db.common.idreq.attributes
+    & db.common.linking.attributes
+
+   db.production =
+      element production {
+         db.production.attlist,
+         db.lhs,
+         db.rhs,
+         db.constraint*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "lhs" ]
+   db:refpurpose [ "The left-hand side of an EBNF production" ]
+]
+div {
+
+   db.lhs.role.attribute = attribute role { text }
+
+   db.lhs.attlist =
+      db.lhs.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.lhs =
+      element lhs {
+         db.lhs.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "rhs" ]
+   db:refpurpose [ "The right-hand side of an EBNF production" ]
+]
+div {
+
+   db.rhs.role.attribute = attribute role { text }
+
+   db.rhs.attlist =
+      db.rhs.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.rhs =
+      element rhs {
+         db.rhs.attlist,
+         (text|db.nonterminal|db.lineannotation|db.sbr)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "nonterminal" ]
+   db:refpurpose [ "A non-terminal in an EBNF production" ]
+]
+div {
+
+   db.nonterminal.role.attribute = attribute role { text }
+   db.nonterminal.def.attribute =
+      [
+         db:refpurpose [ "Specifies a URI that points to a " db:tag [ "production" ] "where the " db:tag [ "nonterminal" ] " is defined" ]
+      ]
+      attribute def { xsd:anyURI }
+
+   db.nonterminal.attlist =
+      db.nonterminal.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.nonterminal.def.attribute
+
+   db.nonterminal =
+      element nonterminal {
+         db.nonterminal.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constraint" ]
+   db:refpurpose [ "A constraint in an EBNF production" ]
+]
+div {
+
+   db.constraint.role.attribute = attribute role { text }
+
+   db.constraint.attlist =
+      db.constraint.role.attribute?
+    & db.common.attributes
+    & db.common.req.linking.attributes
+
+   db.constraint =
+      element constraint {
+         db.constraint.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "productionrecap" ]
+   db:refpurpose [ "A cross-reference to an EBNF production" ]
+]
+div {
+
+   db.productionrecap.role.attribute = attribute role { text }
+
+   db.productionrecap.attlist =
+      db.productionrecap.role.attribute?
+    & db.common.attributes
+    & db.common.req.linking.attributes
+
+   db.productionrecap =
+      element productionrecap {
+         db.productionrecap.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "constraintdef" ]
+   db:refpurpose [ "The definition of a constraint in an EBNF production" ]
+]
+div {
+
+   db.constraintdef.role.attribute = attribute role { text }
+
+   db.constraintdef.attlist =
+      db.constraintdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.constraintdef.info = db._info.title.only
+
+   db.constraintdef =
+      element constraintdef {
+         db.constraintdef.attlist,
+         db.constraintdef.info,
+         db.all.blocks+
+      }
+}
+

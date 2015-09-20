@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter lang='uk' id='ukchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Tkatchenko</surname>
+  <firstname>Olexij</firstname>
+  <affiliation><address><email>ot@parcs.de</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+
+<title lang="en">Ukranian</title>
+
+<para lang="uk">
+Docbook це <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD, oзначення типу документу), яке підтримується <ulink url="mailto:docbook-tc@oasis-open.org">DocBook Technical Committee</ulink> з <ulink url="http://www.oasis-open.org/">OASIS</ulink>. Воно зокрема добре придатне для створення книжок та статей які стосуються апаратного та програмного забезпечення (хоча цим застосуванням ніяк не обмежується).
+</para>
+
+<para lang="uk">
+Поскільки це велике та надійне DTD, і поскільки його основні структури відповідають загальним поняттям структури <quote>книжки</quote>, DocBook був прийнятий великою і постійно зростаючою громадою авторів документів різних тиів. DocBook підтримуєтся багатьма комерційними продуктами, його підтримка у вільних програмних середовищах швидко зростає. Ці ознаки зробили DocBook загальнозрозумілим, багатостороннім і дуже популярним DTD. Десятки організацій по цілому світу використовують DocBook для написання мільйонів сторінок документації в різних друкованих та онлайн-форматах.
+</para>
+
+</chapter>

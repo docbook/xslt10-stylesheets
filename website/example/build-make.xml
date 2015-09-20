@@ -1,0 +1,65 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="buildmake">
+<config param="desc" value="Building with Make"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Building with Make</title>
+<titleabbrev>Using Make</titleabbrev>
+<summary>Building with Make</summary>
+</head>
+
+<para>The following instructions work with recent versions of GNU Make;
+you may have to tweak them a bit if you're using some other version of
+<command>make</command>.
+</para>
+
+<orderedlist>
+<listitem><para>Create your webpages and your <filename>layout.xml</filename>
+file.</para></listitem>
+
+<listitem><para>Create a skeletal <filename>Makefile</filename> like
+the one below.</para>
+
+<note>
+  <para>See the included <ulink
+  url="Makefile-example.txt">Makefile-example.txt</ulink> file for a
+  more detailed example of a real-world makefile. The
+  <filename>Makefile-example.txt</filename> file is the actual
+  makefile used to build the pages you are reading now.</para>
+</note>
+
+<programlisting><![CDATA[PROC=xsltproc
+STYLEDIR=../xsl
+TABSTYLE=$(STYLEDIR)/tabular.xsl
+STYLESHEET=$(TABSTYLE)
+# Change the path in output-root to put your HTML output elsewhere
+STYLEOPT= --stringparam output-root .
+
+.PHONY : clean
+
+all: depends.tabular
+	@$(MAKE) website
+
+-include depends.tabular
+
+autolayout.xml: layout.xml
+	$(PROC) --output $@ $(STYLEDIR)/autolayout.xsl $<
+
+%.html: autolayout.xml
+	$(PROC) --output $@  $(STYLEOPT)  $(STYLESHEET)  \
+        $(filter-out depends.tabular,$(filter-out autolayout.xml,$^))
+
+depends.tabular: autolayout.xml
+	$(PROC) --output depends.tabular $(STYLEOPT) $(STYLEDIR)/makefile-dep.xsl $<
+]]></programlisting>
+
+<para>You'll have to change the <literal>PROC</literal> setting and
+the command-lines used to run the processor.</para>
+</listitem>
+
+<listitem><para>Run <command>make</command>. That should build your
+website.
+</para></listitem>
+</orderedlist>
+
+</webpage>

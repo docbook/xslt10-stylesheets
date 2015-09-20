@@ -1,0 +1,152 @@
+#!/usr/bin/perl
+
+# $Id$
+
+=head1 NAME
+
+    cloak, uncloak - cloak/uncloak content in XML/SGML documents
+
+=head1 SYNOPSIS
+
+    cloak [filename]
+    uncloak [filename]
+
+=cut
+
+    undef $/;
+
+$comment = "DO NOT REMOVE THIS COMMENT! This is a 'cloaked' document - use 'cloak' or 'uncloak' to uncloak it.";
+
+$file = shift(@ARGV);
+if ($file)
+{
+    open(FILE, $file) || die "$0: Cannot read from $file\n";
+    $handle = "FILE";
+}
+else
+{
+    $handle = "STDIN";
+}
+
+my $lines = <$handle>;
+
+# if the document has already been cloaked, uncloak it
+if ($lines =~ m/$comment/ || $0 =~ m/uncloak/) {
+
+# NOTE: We do [\?]+ intead of just \? because some tools (osx
+# and/or sgml2xml, for one) add an extra question mark in PIs
+# during processing (because SGML PI syntax is different than XML
+# PI syntax in that SGML PIs don't have the closing question mark
+
+    $lines =~ s/<\?$comment [\?]+>//;                                        # remove comment added by cloak
+    $lines =~ s/##AMP_ENT##/\&/g;                                            # uncloak all cloaked entities
+    if ($lines =~ /<\?DOCTYPE(.*)_END_SUBSET[\?]+>/s) {
+      $doctype = $1;
+      $doctype =~ s/xxLESS_THANxx/</sg;
+      $doctype =~ s/xxGREATER_THANxx/>/sg;
+      $doctype =~ s/xxLEFT_SQUARE_BRACKETxx/[/sg;
+      $doctype =~ s/xxRIGHT_SQUARE_BRACKETxx/]/sg;
+      $lines =~ s/\?DOCTYPE(.*)_END_SUBSET[\?]+>/!DOCTYPE$doctype>\n/s;          # uncloak DOCTYPE, subset
+    }
+
+} else {
+
+# otherwise, cloak the document
+
+    $lines = $lines . "\n<?" . $comment . " ?>\n";
+
+    # cloak all entities
+    $lines =~ s/&/##AMP_ENT##/g;
+
+    # uncloak entities in subset
+    while ($lines =~ /(<!ENTITY[^']*?'[^']*?)##AMP_ENT##(.*?'\s*>)/s) {
+        $lines =~ s/(<!ENTITY[^']*?'[^']*?)##AMP_ENT##(.*?'\s*>)/$1\&$2/s
+                          }
+                     while ($lines =~ /(<!ENTITY[^']*?'[^']*?)##AMP_ENT##(.*?'\s*>)/s) {
+                         $lines =~ s/(<!ENTITY[^"]*?'[^"]*?)##AMP_ENT##(.*?"\s*>)/$1\&$2/s
+}
+# test to see if there is an internal subset or not, then
+# cloak DOCTYPE declaration and internal subset (if there is one)
+
+    if ($lines =~ /<!(DOCTYPE.*]\s*)>/s) {
+        $doctype = $1;
+        $doctype =~ s/\[/xxLEFT_SQUARE_BRACKETxx/sg;
+        $doctype =~ s/\]/xxRIGHT_SQUARE_BRACKETxx/sg;
+        $doctype =~ s/>/xxGREATER_THANxx/sg;
+        $doctype =~ s/</xxLESS_THANxx/sg;
+        $lines =~ s/<!DOCTYPE.*]\s*>/<\?$doctype\_END_SUBSET\?>/s
+
+    } else { 
+        $lines =~ s/<!DOCTYPE([^>]*)>/<\?DOCTYPE$1_END_SUBSET\?>/s;
+    }
+}
+
+print $lines;
+close $handle;
+__END__
+
+=head1 DESCRIPTION
+
+Run this script on an XML or SGML document any time
+you're doing some kind of processing (e.g. an XML-to-XML
+transform) on the doc and want to preserve/hide the
+following so that the processing app won't drop, change,
+or choke on them.
+
+  * entities and words containing entities
+  * DOCTYPE declaration
+  * internal DTD subset
+  * CDATA sections
+
+Before processing, run it to "cloak" those things; after
+processing, run it to "uncloak" them (that is, restore
+your XML or SGML document back to "normal").
+
+You might want to use this script before/after running:
+
+  * an XSLT engine to do some kind of XML-to-XML
+    transform of your source (i.e., instead of an HTML
+    to FO transform) and don't want the entities
+    resolved, don't want the DOCTYPE dropped, etc.
+
+  * a spell checker, and don't want it to choke on any
+    words containing character entities
+
+  * tidy (or some other app) to pretty-print/indent
+    the document
+
+This script reads from a file, if one is specified;
+otherwise it reads from STDIN. It writes to STDOUT.
+
+For convenience, you may want to create an alias or
+symlink to this script, named "uncloak".
+
+=head1 AUTHOR
+
+Michael Smith <smith@sideshowbarker.net>
+
+=head1 COPYRIGHT
+
+Copyright 2005 Michael Smith <smith@sideshowbarker.net>
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+=cut

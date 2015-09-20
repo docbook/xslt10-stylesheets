@@ -1,0 +1,757 @@
+<?xml version="1.0"?>
+<!-- there is no doctype for these files, they are WF only -->
+<locale language="te"
+        english-language-name="Telugu"
+        xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
+
+<doc:localeinfo>
+<authorgroup>
+  <author><firstname>Krishna Babu</firstname><surname>K</surname>
+          <affiliation><address><email>kkrothap@redhat.com</email></address>
+          </affiliation>
+  </author>
+</authorgroup>
+</doc:localeinfo>
+
+<gentext key="Abstract" text="సంక్షిప్తము"/>
+<gentext key="abstract" text="సంక్షిప్తము"/>
+<gentext key="Acknowledgements" text="గుర్తింపులు"/>
+<gentext key="acknowledgements" text="గుర్తింపులు"/>
+<gentext key="Answer" text="సమాధానం:"/>
+<gentext key="answer" text="సమాధానం:"/>
+<gentext key="Appendix" text="అనుబంధం"/>
+<gentext key="appendix" text="అనుబంధం"/>
+<gentext key="Article" text="ప్రకరణము"/>
+<gentext key="article" text="ప్రకరణము"/>
+<gentext key="Author" text="గ్రంధకర్త"/>
+<gentext key="Bibliography" text="గ్రంధ పట్టిక"/>
+<gentext key="bibliography" text="గ్రంధ పట్టిక"/>
+<gentext key="Book" text="పుస్తకము"/>
+<gentext key="book" text="పుస్తకము"/>
+<gentext key="CAUTION" text="ముందుజాగ్రత్త"/>
+<gentext key="Caution" text="ముందుజాగ్రత్త"/>
+<gentext key="caution" text="ముందుజాగ్రత్త"/>
+<gentext key="Chapter" text="అధ్యాయము"/>
+<gentext key="chapter" text="అధ్యాయము"/>
+<gentext key="Colophon" text="చివరిమాట"/>
+<gentext key="colophon" text="చివరిమాట"/>
+<gentext key="Copyright" text="కాపీరైటు"/>
+<gentext key="copyright" text="కాపీరైటు"/>
+<gentext key="Dedication" text="అంకితం"/>
+<gentext key="dedication" text="అంకితం"/>
+<gentext key="Edition" text="సంచిక"/>
+<gentext key="edition" text="సంచిక"/>
+<gentext key="Editor" text="సంపాదకుడు"/>
+<gentext key="Equation" text="సమీకరణము"/>
+<gentext key="equation" text="సమీకరణము"/>
+<gentext key="Example" text="ఉదాహరణ"/>
+<gentext key="example" text="ఉదాహరణ"/>
+<gentext key="Figure" text="మూర్తి"/>
+<gentext key="figure" text="మూర్తి"/>
+<gentext key="Glossary" text="పదకోశం"/>
+<gentext key="glossary" text="పదకోశం"/>
+<gentext key="GlossSee" text="చూడుము"/>
+<gentext key="glosssee" text="చూడుము"/>
+<gentext key="GlossSeeAlso" text="ఇదికూడా చూడుము"/>
+<gentext key="glossseealso" text="ఇదికూడా చూడుము"/>
+<gentext key="IMPORTANT" text="ముఖ్యమైన"/>
+<gentext key="important" text="ముఖ్యమైన"/>
+<gentext key="Important" text="ముఖ్యమైన"/>
+<gentext key="Index" text="విషయసూచిక"/>
+<gentext key="index" text="విషయసూచిక"/>
+<gentext key="ISBN" text="ISBN"/>
+<gentext key="isbn" text="ISBN"/>
+<gentext key="LegalNotice" text="చట్టబద్ద నోటీసు"/>
+<gentext key="legalnotice" text="చట్టబద్ద నోటీసు"/>
+<gentext key="MsgAud" text="ప్రేక్షకులు"/>
+<gentext key="msgaud" text="ప్రేక్షకులు"/>
+<gentext key="MsgLevel" text="స్థాయి"/>
+<gentext key="msglevel" text="స్థాయి"/>
+<gentext key="MsgOrig" text="మూలము"/>
+<gentext key="msgorig" text="మూలము"/>
+<gentext key="NOTE" text="గమనిక"/>
+<gentext key="Note" text="గమనిక"/>
+<gentext key="note" text="గమనిక"/>
+<gentext key="Part" text="భాగము"/>
+<gentext key="part" text="భాగము"/>
+<gentext key="Preface" text="ముందుమాట"/>
+<gentext key="preface" text="ముందుమాట"/>
+<gentext key="Procedure" text="పద్ధతి"/>
+<gentext key="procedure" text="పద్ధతి"/>
+<gentext key="ProductionSet" text="ఉత్పత్తి"/>
+<gentext key="PubDate" text="ప్రచురణ తేది"/>
+<gentext key="pubdate" text="ప్రచురణ తేది"/>
+<gentext key="Published" text="ప్రచురితమైంది"/>
+<gentext key="published" text="ప్రచురితమైంది"/>
+<gentext key="Publisher" text="ప్రచురణకర్త"/>
+<gentext key="Qandadiv" text="ప్రశ్నలు &amp; సమాధానములు"/>
+<gentext key="qandadiv" text="ప్రశ్నలు &amp; సమాధానములు"/>
+<gentext key="QandASet" text="తరచుగా అడుగు ప్రశ్నలు"/>
+<gentext key="Question" text="ప్రశ్న:"/>
+<gentext key="question" text="ప్రశ్న:"/>
+<gentext key="RefEntry" text="పేజీ"/>
+<gentext key="refentry" text="పేజీ"/>
+<gentext key="Reference" text="సంభందిత"/>
+<gentext key="reference" text="సంభందిత"/>
+<gentext key="References" text="సంభందితములు"/>
+<gentext key="RefName" text="నామము"/>
+<gentext key="refname" text="నామము"/>
+<gentext key="RefSection" text="విభాగము"/>
+<gentext key="refsection" text="విభాగము"/>
+<gentext key="RefSynopsisDiv" text="ముఖ్యవిషయసూచిక"/>
+<gentext key="refsynopsisdiv" text="ముఖ్యవిషయసూచిక"/>
+<gentext key="RevHistory" text="పునఃపరిశీలన చరిత్ర"/>
+<gentext key="revhistory" text="పునఃపరిశీలన చరిత్ర"/>
+<gentext key="revision" text="పునఃపరిశీలన"/>
+<gentext key="Revision" text="పునఃపరిశీలన"/>
+<gentext key="sect1" text="విభాగము"/>
+<gentext key="sect2" text="విభాగము"/>
+<gentext key="sect3" text="విభాగము"/>
+<gentext key="sect4" text="విభాగము"/>
+<gentext key="sect5" text="విభాగము"/>
+<gentext key="section" text="విభాగము"/>
+<gentext key="Section" text="విభాగము"/>
+<gentext key="see" text="చూడుము"/> 
+<gentext key="See" text="చూడుము"/>
+<gentext key="seealso" text="ఇదికూడా చూడుము"/> 
+<gentext key="Seealso" text="ఇదికూడా చూడుము"/>
+<gentext key="SeeAlso" text="ఇదికూడా చూడుము"/>
+<gentext key="set" text="సమితి"/>
+<gentext key="Set" text="సమితి"/>
+<gentext key="setindex" text="సమితి విషయసూచిక"/>
+<gentext key="SetIndex" text="సమితి విషయసూచిక"/>
+<gentext key="Sidebar" text="ప్రక్కపట్టీ"/>
+<gentext key="sidebar" text="ప్రక్కపట్టీ"/>
+<gentext key="step" text="అంచె"/>
+<gentext key="Step" text="అంచె"/>
+<gentext key="table" text="పట్టిక"/>
+<gentext key="Table" text="పట్టిక"/>
+<gentext key="task" text="కర్తవ్యము"/>
+<gentext key="Task" text="కర్తవ్యము"/>
+<gentext key="tip" text="చిట్కా"/>
+<gentext key="TIP" text="చిట్కా"/>
+<gentext key="Tip" text="చిట్కా"/>
+<gentext key="Warning" text="హెచ్చరిక"/>
+<gentext key="warning" text="హెచ్చరిక"/>
+<gentext key="WARNING" text="హెచ్చరిక"/>
+
+<gentext key="and" text="మరియు"/>
+<gentext key="by" text="వీరిచేత"/>
+<gentext key="Edited" text="సరికూర్చిన"/>
+<gentext key="edited" text="సరికూర్చిన"/>
+<gentext key="Editedby" text="వీరిచేత సరికూర్చబడింది"/>
+<gentext key="editedby" text="వీరిచేత సరికూర్చబడింది"/>
+<gentext key="in" text="నందు"/>
+<gentext key="lastlistcomma" text=","/>
+<gentext key="listcomma" text=","/>
+<gentext key="notes" text="గమనికలు"/>
+<gentext key="Notes" text="గమనికలు"/>
+<gentext key="Pgs" text="పేజీలు"/>
+<gentext key="pgs" text="పేజీలు"/>
+<gentext key="Revisedby" text="వీరిచేత పునఃపరిశీలించబడింది: "/>
+<gentext key="revisedby" text="వీరిచేత పునఃపరిశీలించబడింది: "/>
+<gentext key="TableNotes" text="గమనికలు"/>
+<gentext key="tablenotes" text="గమనికలు"/>
+<gentext key="TableofContents" text="సారముల పట్టిక"/>
+<gentext key="tableofcontents" text="సారముల పట్టిక"/>
+<gentext key="unexpectedelementname" text="అనుకోని మూలకం నామము"/>
+<gentext key="unsupported" text="మద్దతీయని"/>
+<gentext key="xrefto" text="xref"/>
+
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="గ్రంధ కర్తలు"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="కాపీ సంపాదకుడు"/>
+<gentext key="graphicdesigner" text="గ్రాఫిక్ రూపకర్త"/>
+<gentext key="productioneditor" text="ఉత్పత్తి సంపాదకుడు"/>
+<gentext key="technicaleditor" text="సాంకేతిక సంపాదకుడు"/>
+<gentext key="translator" text="అనువాదకుడు"/>
+
+<gentext key="listofequations" text="సమీకరణముల జాబితా"/>
+<gentext key="ListofEquations" text="సమీకరణముల జాబితా"/>
+<gentext key="ListofExamples" text="ఉదాహరణముల జాబితా"/>
+<gentext key="listofexamples" text="ఉదాహరణముల జాబితా"/>
+<gentext key="ListofFigures" text="మూర్తుల జాబితా"/>
+<gentext key="listoffigures" text="మూర్తుల జాబితా"/>
+<gentext key="ListofProcedures" text="పద్ధతుల జాబితా"/>
+<gentext key="listofprocedures" text="పద్ధతుల జాబితా"/>
+<gentext key="listoftables" text="పట్టికల జాబితా"/>
+<gentext key="ListofTables" text="పట్టికల జాబితా"/>
+<gentext key="ListofUnknown" text="తెలియనివాటి జాబితా"/>
+<gentext key="listofunknown" text="తెలియనివాటి జాబితా"/>
+
+<gentext key="nav-home" text="నివాసము"/>
+<gentext key="nav-next" text="తరువాతి"/>
+<gentext key="nav-next-sibling" text="ముందుకు నడుపు"/>
+<gentext key="nav-prev" text="ముందరి"/>
+<gentext key="nav-prev-sibling" text="వెనుకకు నడుపు"/>
+<gentext key="nav-up" text="పైనకు"/>
+<gentext key="nav-toc" text="వివరముల పట్టిక"/>
+
+<gentext key="Draft" text="ముసాయిదా"/>
+<gentext key="above" text="పైన"/>
+<gentext key="below" text="క్రింది"/>
+<gentext key="sectioncalled" text="ఆ విభాగము పిలువబడుతుంది"/>
+<gentext key="index symbols" text="చిహ్నములు"/>
+<gentext key="writing-mode" text="lr-tb"/>
+
+<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/>
+<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
+<dingbat key="startquote" text="“"/>
+<dingbat key="endquote" text="”"/>
+<dingbat key="nestedstartquote" text="‘"/>
+<dingbat key="nestedendquote" text="’"/>
+<dingbat key="singlestartquote" text="‘"/>
+<dingbat key="singleendquote" text="’"/>
+<dingbat key="bullet" text="•"/>
+
+<!-- n.b. &#x2010; might be better, but it doesn't always render properly -->
+<gentext key="hyphenation-character" text="-"/>
+<gentext key="hyphenation-push-character-count" text="2"/>
+<gentext key="hyphenation-remain-character-count" text="2"/>
+
+<context name="styles">
+
+<template name="person-name">first-last</template>
+
+</context>
+
+<context name="title">
+
+<template name="abstract">%t</template>
+<template name="acknowledgements">%t</template>
+<template name="answer">%t</template>
+<template name="appendix"><Appendix/>&#160;%n.&#160;%t</template>
+<template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
+<template name="biblioentry">%t</template>
+<template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
+<template name="bibliomixed">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
+<template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
+<template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+<template name="colophon">%t</template>
+<template name="dedication">%t</template>
+<template name="equation"><Equation/>&#160;%n.&#160;%t</template>
+<template name="example"><Example/>&#160;%n.&#160;%t</template>
+<template name="figure"><Figure/>&#160;%n.&#160;%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
+<template name="formalpara">%t</template>
+<template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
+<template name="glossentry">%t</template>
+<template name="important">%t</template>
+<template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
+<template name="listitem"/>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
+<template name="partintro">%t</template>
+<template name="preface">%t</template>
+<template name="procedure">%t</template>
+<template name="procedure.formal"><Procedure/>&#160;%n.&#160;%t</template>
+<template name="productionset">%t</template>
+<template name="productionset.formal"><ProductionSet/>&#160;%n</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry">%t</template>
+<template name="qandaset">%t</template>
+<template name="question">%t</template>
+<template name="refentry">%t</template>
+<template name="reference">%t</template>
+<template name="refsection">%t</template>
+<template name="refsect1">%t</template>
+<template name="refsect2">%t</template>
+<template name="refsect3">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="refsynopsisdivinfo">%t</template>
+<template name="segmentedlist">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="sidebar">%t</template>
+<template name="step">%t</template>
+<template name="table"><Table/>&#160;%n.&#160;%t</template>
+<template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="varlistentry"/>
+<template name="warning">%t</template>
+
+</context>
+
+<context name="title-unnumbered">
+
+<template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
+<template name="bridgehead">%t</template>
+<template name="chapter">%t</template>
+<template name="sect1">%t</template>
+<template name="sect2">%t</template>
+<template name="sect3">%t</template>
+<template name="sect4">%t</template>
+<template name="sect5">%t</template>
+<template name="section">%t</template>
+<template name="simplesect">%t</template>
+<template name="part">%t</template>
+
+</context>
+
+<context name="title-numbered">
+
+<template name="appendix"><Appendix/>&#160;%n.&#160;%t</template>
+<template name="article/appendix">%n.&#160;%t</template>
+<template name="bridgehead">%n.&#160;%t</template>
+<template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+<template name="part"><Part/>&#160;%n.&#160;%t</template>
+<template name="sect1">%n.&#160;%t</template>
+<template name="sect2">%n.&#160;%t</template>
+<template name="sect3">%n.&#160;%t</template>
+<template name="sect4">%n.&#160;%t</template>
+<template name="sect5">%n.&#160;%t</template>
+<template name="section">%n.&#160;%t</template>
+<template name="simplesect">%t</template>
+
+</context>
+
+<context name="subtitle">
+
+<template name="appendix">%s</template>
+<template name="acknowledgements">%s</template>
+<template name="article">%s</template>
+<template name="bibliodiv">%s</template>
+<template name="biblioentry">%s</template>
+<template name="bibliography">%s</template>
+<template name="bibliomixed">%s</template>
+<template name="bibliomset">%s</template>
+<template name="biblioset">%s</template>
+<template name="book">%s</template>
+<template name="chapter">%s</template>
+<template name="colophon">%s</template>
+<template name="dedication">%s</template>
+<template name="glossary">%s</template>
+<template name="glossdiv">%s</template>
+<template name="index">%s</template>
+<template name="indexdiv">%s</template>
+<template name="lot">%s</template>
+<template name="part">%s</template>
+<template name="partintro">%s</template>
+<template name="preface">%s</template>
+<template name="refentry">%s</template>
+<template name="reference">%s</template>
+<template name="refsection">%s</template>
+<template name="refsect1">%s</template>
+<template name="refsect2">%s</template>
+<template name="refsect3">%s</template>
+<template name="refsynopsisdiv">%s</template>
+<template name="sect1">%s</template>
+<template name="sect2">%s</template>
+<template name="sect3">%s</template>
+<template name="sect4">%s</template>
+<template name="sect5">%s</template>
+<template name="section">%s</template>
+<template name="set">%s</template>
+<template name="setindex">%s</template>
+<template name="sidebar">%s</template>
+<template name="simplesect">%s</template>
+<template name="toc">%s</template>
+
+</context>
+
+<context name="xref">
+<template name="abstract">%t</template>
+<template name="acknowledgements">%t</template>
+<template name="answer"><Answer/>&#160;%n</template>
+<template name="appendix">%t</template>
+<template name="article">%t</template>
+<template name="authorblurb">%t</template>
+<template name="bibliodiv">%t</template>
+<template name="bibliography">%t</template>
+<template name="bibliomset">%t</template>
+<template name="biblioset">%t</template>
+<template name="blockquote">%t</template>
+<template name="book">%t</template>
+<template name="calloutlist">%t</template>
+<template name="caution">%t</template>
+<template name="chapter">%t</template>
+<template name="colophon">%t</template>
+<template name="constraintdef">%t</template>
+<template name="dedication">%t</template>
+<template name="equation">%t</template>
+<template name="example">%t</template>
+<template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
+<template name="formalpara">%t</template>
+<template name="glossary">%t</template>
+<template name="glossdiv">%t</template>
+<template name="important">%t</template>
+<template name="index">%t</template>
+<template name="indexdiv">%t</template>
+<template name="itemizedlist">%t</template>
+<template name="legalnotice">%t</template>
+<template name="listitem">%n</template>
+<template name="lot">%t</template>
+<template name="msg">%t</template>
+<template name="msgexplan">%t</template>
+<template name="msgmain">%t</template>
+<template name="msgrel">%t</template>
+<template name="msgset">%t</template>
+<template name="msgsub">%t</template>
+<template name="note">%t</template>
+<template name="orderedlist">%t</template>
+<template name="part">%t</template>
+<template name="partintro">%t</template>
+<template name="preface">%t</template>
+<template name="procedure">%t</template>
+<template name="productionset">%t</template>
+<template name="qandadiv">%t</template>
+<template name="qandaentry"><Question/>&#160;%n</template>
+<template name="qandaset">%t</template>
+<template name="question"><Question/>&#160;%n</template>
+<template name="reference">%t</template>
+<template name="refsynopsisdiv">%t</template>
+<template name="segmentedlist">%t</template>
+<template name="set">%t</template>
+<template name="setindex">%t</template>
+<template name="sidebar">%t</template>
+<template name="table">%t</template>
+<template name="task">%t</template>
+<template name="tip">%t</template>
+<template name="toc">%t</template>
+<template name="variablelist">%t</template>
+<template name="varlistentry">%n</template>
+<template name="warning">%t</template>
+<template name="olink.document.citation"> in %o</template>
+<template name="olink.page.citation"> (page %p)</template>
+<template name="page.citation"> [%p]</template>
+<template name="page">(page %p)</template>
+<template name="docname"> in %o</template>
+<template name="docnamelong"> in the document titled %o</template>
+<template name="pageabbrev">(p. %p)</template>
+<template name="Page">Page %p</template>
+
+<template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect1"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect2"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect3"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect1"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect2"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect3"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect4"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect5"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="section"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="simplesect"><sectioncalled/> <startquote/>%t<endquote/></template>
+
+</context>
+
+<context name="xref-number">
+
+<template name="answer"><Answer/>&#160;%n</template>
+<template name="appendix"><Appendix/>&#160;%n</template>
+<template name="bridgehead"><Section/>&#160;%n</template>
+<template name="chapter"><Chapter/>&#160;%n</template>
+<template name="equation"><Equation/>&#160;%n</template>
+<template name="example"><Example/>&#160;%n</template>
+<template name="figure"><Figure/>&#160;%n</template>
+<template name="part"><Part/>&#160;%n</template>
+<template name="procedure"><Procedure/>&#160;%n</template>
+<template name="productionset"><ProductionSet/>&#160;%n</template>
+<template name="qandadiv"><Qandadiv/>&#160;%n</template>
+<template name="qandaentry"><Question/>&#160;%n</template>
+<template name="question"><Question/>&#160;%n</template>
+<template name="sect1"><Section/>&#160;%n</template>
+<template name="sect2"><Section/>&#160;%n</template>
+<template name="sect3"><Section/>&#160;%n</template>
+<template name="sect4"><Section/>&#160;%n</template>
+<template name="sect5"><Section/>&#160;%n</template>
+<template name="section"><Section/>&#160;%n</template>
+<template name="table"><Table/>&#160;%n</template>
+
+</context>
+
+<context name="xref-number-and-title">
+
+<template name="appendix"><Appendix/>&#160;%n, %t</template>
+<template name="bridgehead"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="chapter"><Chapter/>&#160;%n, %t</template>
+<template name="equation"><Equation/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="example"><Example/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="figure"><Figure/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="part"><Part/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="procedure"><Procedure/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="productionset"><ProductionSet/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="qandadiv"><Qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="refsect1"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect2"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect3"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect1"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect2"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect3"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect4"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect5"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="section"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="simplesect"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="table"><Table/>&#160;%n, <startquote/>%t<endquote/></template>
+
+</context>
+
+<context name="authorgroup">
+<template name="sep"><listcomma/> </template>
+<template name="sep2"> <and/> </template>
+<template name="seplast"><lastlistcomma/> <and/> </template>
+</context>
+
+<context name="glossary">
+<template name="see"><GlossSee/> %t.</template>
+<template name="seealso"><GlossSeeAlso/> %t.</template>
+<template name="seealso-separator">, </template>
+</context>
+
+<context name="msgset">
+<template name="MsgAud"><MsgAud/>: </template>
+<template name="MsgLevel"><MsgLevel/>: </template>
+<template name="MsgOrig"><MsgOrig/>: </template>
+</context>
+
+<context name="datetime">
+<template name="format">d/m/Y</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definition: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">జనవరి</template>
+<template name="February">ఫిబ్రవరి</template>
+<template name="March">మార్చి</template>
+<template name="April">ఏప్రిల్</template>
+<template name="May">మే</template>
+<template name="June">జూన్</template>
+<template name="July">జులై</template>
+<template name="August">ఆగస్టు</template>
+<template name="September">సెప్టెంబర్</template>
+<template name="October">అక్టోబర్</template>
+<template name="November">నవంబర్</template>
+<template name="December">డిసెంబర్</template>
+<template name="Monday">సోమవారము</template>
+<template name="Tuesday">మంగళవారము</template>
+<template name="Wednesday">బుధవారము</template>
+<template name="Thursday">గురువారము</template>
+<template name="Friday">శుక్రవారము</template>
+<template name="Saturday">శనివారము</template>
+<template name="Sunday">ఆదివారము</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">జన</template>
+<template name="Feb">ఫిబ్ర</template>
+<template name="Mar">మార్చి</template>
+<template name="Apr">ఏప్రి</template>
+<template name="May">మే</template>
+<template name="Jun">జూన్</template>
+<template name="Jul">జులై</template>
+<template name="Aug">ఆగ</template>
+<template name="Sep">సెప్టెం</template>
+<template name="Oct">అక్టో</template>
+<template name="Nov">నవం</template>
+<template name="Dec">డిసెం</template>
+<template name="Mon">సోమ</template>
+<template name="Tue">మంగళ</template>
+<template name="Wed">బుధ</template>
+<template name="Thu">గురు</template>
+<template name="Fri">శుక్ర</template>
+<template name="Sat">శని</template>
+<template name="Sun">ఆది</template>
+</context>
+
+<context name="htmlhelp">
+<template name="langcode">0x044a Telugu</template>
+</context>
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">-</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor"> (ed.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, et al.</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">-</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [cited </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Available </template>
+  <template name="acctoo">Also available </template>
+  <template name="onwww">from World Wide Web</template>
+  <template name="oninet">from Internet</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">చిహ్నములు</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="170">Q</l>
+  <l i="170">q</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="230">W</l>
+  <l i="230">w</l>
+  <l i="240">X</l>
+  <l i="240">x</l>
+  <l i="250">Y</l>
+  <l i="250">y</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+</letters>
+
+</locale>

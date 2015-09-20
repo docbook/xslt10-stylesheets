@@ -1,0 +1,22 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="test2" xmlns:html="http://www.w3.org/1999/xhtml">
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Form Test</title>
+<summary>Form Test Page</summary>
+</head>
+<para>This is just a form test page.</para>
+<html:form action="javascript:alert('you did something');">
+<para>An input field: <html:input name="text"/>.</para>
+<para>A label: <html:label>label</html:label>.</para>
+<para>A button: <html:button><emphasis>This</emphasis> Button</html:button>.</para>
+<para>Selection: <html:select>
+<html:option>foo</html:option>
+<html:option selected="selected">bar</html:option>
+<html:option>baz</html:option>
+</html:select>.
+</para>
+<para><html:input type="submit" value="Do it!"/>.</para>
+</html:form>
+</webpage>
+

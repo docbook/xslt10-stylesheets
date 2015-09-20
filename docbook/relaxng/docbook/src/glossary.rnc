@@ -1,0 +1,459 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.glossary | db.glossdiv | db.glosslist
+
+db.publishing.inlines |= db.glossary.inlines
+db.list.blocks |= db.glosslist
+db.navigation.components |= db.glossary
+
+db.glossary.inlines =
+   db.firstterm
+ | db.glossterm
+ | db._firstterm
+ | db._glossterm
+
+# ======================================================================
+
+db.baseform.attribute =
+   [
+      db:refpurpose [ "Specifies the base form of the term, the one that appears in the glossary. This allows adjectival, plural, and other variations of the term to appear in the element. The element content is the default base form." ]
+   ]
+   attribute baseform { text }?
+
+# ======================================================================
+
+[
+   db:refname [ "glosslist" ]
+   db:refpurpose [ "A wrapper for a list of glossary entries" ]
+]
+div {
+
+   db.glosslist.role.attribute = attribute role { text }
+
+   db.glosslist.attlist =
+      db.glosslist.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.glosslist.info = db._info.title.only
+
+   db.glosslist =
+      element glosslist {
+         db.glosslist.attlist,
+         db.glosslist.info?,
+         db.all.blocks*,
+         db.glossentry+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossentry" ]
+   db:refpurpose [ "An entry in a glossary or glosslist" ]
+]
+div {
+
+   db.glossentry.role.attribute = attribute role { text }
+
+   db.glossentry.sortas.attribute =
+      [
+         db:refpurpose [ "Specifies the string by which the element's content is to be sorted; if unspecified, the content is used" ]
+      ]
+      attribute sortas { text }
+
+   db.glossentry.attlist =
+      db.glossentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.glossentry.sortas.attribute?
+
+   db.glossentry =
+      element glossentry {
+         db.glossentry.attlist,
+         db.glossterm,
+         db.acronym?,
+         db.abbrev?,
+         db.indexterm*,
+         (db.glosssee | db.glossdef+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossdef" ]
+   db:refpurpose [ "A definition in a glossentry" ]
+]
+div {
+
+   db.glossdef.role.attribute = attribute role { text }
+   db.glossdef.subject.attribute =
+      [
+         db:refpurpose [ "Specifies a list of keywords for the definition" ]
+      ]
+      attribute subject { text }
+
+   db.glossdef.attlist =
+      db.glossdef.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.glossdef.subject.attribute?
+
+   db.glossdef =
+      element glossdef {
+         db.glossdef.attlist,
+         db.all.blocks+,
+         db.glossseealso*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glosssee" ]
+   db:refpurpose [ "A cross-reference from one " db:tag [ "glossentry" ] " to another" ]
+]
+div {
+
+   db.glosssee.role.attribute = attribute role { text }
+   db.glosssee.otherterm.attribute =
+      [
+         db:refpurpose [ "Identifies the other term" ]
+      ]
+      attribute otherterm { xsd:IDREF }
+
+   db.glosssee.attlist =
+      db.glosssee.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.glosssee.otherterm.attribute?
+
+   db.glosssee =
+      [
+         s:pattern [
+            name = "Glosssary 'see' type constraint"
+            s:rule [
+               context = "db:glosssee[@otherterm]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
+                  "@otherterm on glosssee must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element glosssee {
+         db.glosssee.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossseealso" ]
+   db:refpurpose [ "A cross-reference from one glossentry to another" ]
+]
+div {
+
+   db.glossseealso.role.attribute = attribute role { text }
+   db.glossseealso.otherterm.attribute =
+      [
+         db:refpurpose [ "Identifies the other term" ]
+      ]
+      attribute otherterm { xsd:IDREF }
+
+   db.glossseealso.attlist =
+      db.glossseealso.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.glossseealso.otherterm.attribute?
+
+   db.glossseealso =
+      [
+         s:pattern [
+            name = "Glossary 'seealso' type constraint"
+            s:rule [
+               context = "db:glossseealso[@otherterm]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
+                  "@otherterm on glossseealso must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element glossseealso {
+         db.glossseealso.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "firstterm" ]
+   db:refpurpose [ "The first occurrence of a term" ]
+]
+div {
+
+   db.firstterm.role.attribute = attribute role { text }
+
+   db.firstterm.attlist =
+      db.firstterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db.firstterm =
+      [
+         s:pattern [
+            name = "Glossary 'firstterm' type constraint"
+            s:rule [
+               context = "db:firstterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on firstterm must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element firstterm {
+         db.firstterm.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "firstterm" ]
+   db:refpurpose [ "The first occurrence of a term, with limited content" ]
+]
+div {
+
+   db._firstterm.role.attribute = attribute role { text }
+
+   db._firstterm.attlist =
+      db._firstterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db._firstterm =
+      [
+         s:pattern [
+            name = "Glossary 'firstterm' type constraint"
+            s:rule [
+               context = "db:firstterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on firstterm must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element firstterm {
+         db._firstterm.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossterm" ]
+   db:refpurpose [ "A glossary term" ]
+]
+div {
+
+   db.glossterm.role.attribute = attribute role { text }
+
+   db.glossterm.attlist =
+      db.glossterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db.glossterm =
+      [
+         s:pattern [
+            name = "Glossary 'glossterm' type constraint"
+            s:rule [
+               context = "db:glossterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on glossterm must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element glossterm {
+         db.glossterm.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossterm" ]
+   db:refpurpose [ "A glossary term" ]
+]
+div {
+
+   db._glossterm.role.attribute = attribute role { text }
+
+   db._glossterm.attlist =
+      db._glossterm.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db._glossterm =
+      [
+         s:pattern [
+            name = "Glossary 'glossterm' type constraint"
+            s:rule [
+               context = "db:glossterm[@linkend]"
+               s:assert [
+                  test = "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
+                  "@linkend on glossterm must point to a glossentry."
+               ]
+            ]
+         ]
+      ]
+      element glossterm {
+         db._glossterm.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossary" ]
+   db:refpurpose [ "A glossary" ]
+]
+div {
+
+   db.glossary.status.attribute = db.status.attribute
+
+   db.glossary.role.attribute = attribute role { text }
+
+   db.glossary.attlist =
+      db.glossary.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.glossary.status.attribute?
+
+   db.glossary.info = db._info
+
+   db.glossary =
+      element glossary {
+         db.glossary.attlist,
+         db.glossary.info,
+         db.all.blocks*,
+         (db.glossdiv* | db.glossentry*),
+         db.bibliography?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "glossdiv" ]
+   db:refpurpose [ "A division in a glossary" ]
+]
+div {
+
+   db.glossdiv.status.attribute = db.status.attribute
+
+   db.glossdiv.role.attribute = attribute role { text }
+
+   db.glossdiv.attlist =
+      db.glossdiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.glossdiv.status.attribute?
+
+   db.glossdiv.info = db._info.title.req
+
+   db.glossdiv =
+      element glossdiv {
+         db.glossdiv.attlist,
+         db.glossdiv.info,
+         db.all.blocks*,
+         db.glossentry+
+      }
+}
+
+# ======================================================================
+
+db.technical.inlines |= db.termdef
+
+[
+   db:refname [ "termdef" ]
+   db:refpurpose [ "An inline definition of a term" ]
+]
+div {
+   db.termdef.role.attribute = attribute role { text }
+
+   db.termdef.attlist =
+      db.termdef.role.attribute?
+    & db.glossentry.sortas.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.baseform.attribute
+
+   db.termdef =
+      [
+         s:pattern [
+            name = "Glossary term definition constraint"
+            s:rule [
+               context = "db:termdef"
+               s:assert [
+                  test = "count(db:firstterm) = 1"
+                  "A termdef must contain exactly one firstterm"
+               ]
+            ]
+         ]
+      ]
+      element termdef {
+         db.termdef.attlist,
+         db.all.inlines*
+      }
+}

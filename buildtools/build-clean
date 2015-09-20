@@ -1,0 +1,18 @@
+#!/bin/sh
+# $Id$
+if [ -z "$(svn status | egrep '^\?|^X')" ]
+then
+  # remove all files ignored by Subversion
+  for file in $(svn status --no-ignore | grep '^I' | cut -c8- | cat -s); do
+    echo "removing $file"
+    rm -rf $file;
+  done
+else
+  echo
+  echo "Unversioned files found. Before building, either delete the"
+  echo "following files, add them to the repository, or add them to"
+  echo "the svn:ignore properties for their parent directories."
+  echo
+  svn status | egrep '^\?|^X' | cut -c2-
+  exit 1
+fi

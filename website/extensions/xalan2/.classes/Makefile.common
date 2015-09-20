@@ -1,0 +1,47 @@
+SOURCEFILES=$(shell find $(VPATH) -name '*.java')
+
+all: $(CLASSFILES)
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            cd $$f; make all; cd ..; \
+          fi \
+        done
+
+clean:
+	rm -f *.class
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            cd $$f; make clean; cd ..; \
+          fi \
+        done
+
+realclean: clean
+	rm -f *.incl
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            cd $$f; make realclean; cd ..; \
+          fi \
+        done
+
+%.class : %.java
+	javac -classpath $(CLASSBASE):$(CLASSPATH) \
+		-sourcepath $(SOURCEPATH) \
+		-g -d $(CLASSBASE) \
+		$<
+
+Makefile.incl: $(SOURCEFILES)
+	printf "CLASSFILES=" > Makefile.incl
+	find $(VPATH) -name "*.java" -maxdepth 1 -exec basename {} \; \
+	| sed 's/\.java$$/.class /' \
+	| tr -d "\n" \
+	| sed 's/ \([^ \]\)/ \\\n\1/g' >> Makefile.incl
+	-@for f in $(SUBDIRS); do \
+          if [ "$$f" != "__PHONY__" ]; then \
+            if [ -d "$$f" -a -f "$$f/Makefile" ]; then \
+              cd $$f; make Makefile.incl; cd ..; \
+            else if [ ! -d "$$f" ]; then \
+              mkdir $$f; \
+              fi; \
+            fi; \
+          fi; \
+        done

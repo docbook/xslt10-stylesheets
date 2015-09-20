@@ -1,0 +1,114 @@
+#!/bin/bash
+# $Id $
+
+# update_locatingrules - Update a central "locating rules" file
+
+XSLT=xsltproc
+XSLTOPTS=
+XMLPARSER=xmllint
+XMLPARSER_OPTS=--format
+DEFAULT_RULESFILE=/etc/xml/locatingrules.xml
+
+update_locatingrules() {
+  RULESFILE=$1
+  ACTION=$2
+  URI=$3
+  # if no existing rulesfile in specified locaation, first create it
+  if [ ! -f "$RULESFILE" ]; then
+    echo "Creating $RULESFILE"
+    printf "`cat <<-EOF
+<?xml version='1.0'?>
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+</locatingRules>
+EOF
+`" > $RULESFILE
+  fi
+  if [ "$ACTION" = "add" ]; then
+    echo "Adding URI $URI to file $RULESFILE"
+  else
+    echo "Deleting URI $URI from file $RULESFILE"
+  fi
+  printf "`cat <<-EOF
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  version='1.0'>
+  <xsl:param name="delete"/>
+  <xsl:param name="add"/>
+  <!-- standard identity transform -->
+  <xsl:template match="node() | @*">
+    <xsl:copy>
+      <xsl:apply-templates select="@* | node()"/>
+    </xsl:copy>
+  </xsl:template>
+  <xsl:template match="*[local-name() = 'locatingRules']">
+    <xsl:copy>
+      <xsl:apply-templates/>
+      <!-- if "add" parameter has been specified, add an "include" element and -->
+      <!-- "rules" attribute whose value is the value of the "add" parameter -->
+      <xsl:if test="\\$add != ''">
+        <xsl:element name="include">
+          <xsl:attribute name="rules">
+            <xsl:value-of select="\\$add"/>
+          </xsl:attribute>
+        </xsl:element>
+      </xsl:if>
+    </xsl:copy>
+  </xsl:template>
+  <xsl:template match="*[local-name() = 'include']">
+    <xsl:choose>
+      <!-- if a particular "include" element has a "rules" attribute that -->
+      <!-- matches the value of the "delete" parameter, do not copy that -->
+      <!-- "include" element into the result tree -->
+      <xsl:when test="@rules = \\$delete"/>
+      <xsl:otherwise>
+        <xsl:copy>
+          <xsl:apply-templates select="@* | node()"/>
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+</xsl:stylesheet>
+EOF
+`" |\
+  $XSLT --stringparam $ACTION $URI - $RULESFILE | $XMLPARSER $XMLPARSER_OPTS -
+  exit 0
+}
+
+# if 3 args and 2nd arg is "add" or "delete", pass all three to
+# update_locatingrules()
+if [ -n "$1" ] && [ "$2" = "add" -o "$2" = "delete" ] && [ -n "$3" ]; then
+  update_locatingrules $1 $2 $3
+else
+  # if only two args and 2nd arg is "add" or "delete", call
+  # update_locatingrules() with first arg being value of
+  # DEFAULT_RULESFILE
+  if [ "$1" = "add" -o "$1" = "delete" ] && [ -n "$2" ]; then
+    update_locatingrules $DEFAULT_RULESFILE $1 $2
+  else
+    echo "usage: `basename $0` [<locatingRulesFile>] add|delete <URI>"
+    exit 1
+  fi
+fi
+
+# Copyright
+# ---------
+# Copyright 2005 Michael Smith <smith@sideshowbarker.net>
+# 
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use, copy,
+# modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.

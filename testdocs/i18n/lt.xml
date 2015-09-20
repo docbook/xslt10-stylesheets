@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='windows-1257'?>
+<chapter lang='lt' id='ltchap'>
+<title lang="lt">Lithuanian</title>
+
+<para lang="lt">
+DocBook - tai <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook'o techninio komiteto</ulink> 
+(<ulink url="http://www.oasis-open.org/">OASIS</ulink>) palaikomas 
+<ulink url="http://www.ucc.ie/xml/#doctype">Dokumento tipo apraÕas (DTD)</ulink>
+¾ie dokumentÖ tipÖ apraÕai skirti knygoms, techniniams popieriams apie techninŅ bei programinŅ
+kompiuteriÖ ŌrangŠ.
+</para>
+
+<para lang="lt">
+DidelÓ visuomenÓ dalis koregavo DocBook'o DTD pagal savo poreikius, bei 
+pasinaudodami DocBook'u raÕÓ ŌvairiausiÖ sryŃiÖ dokumentacijas. ¾iuo metu 
+DocBook'Š palaiko Ōvairiausios komercinÓs bei nekomercinÓs pragraminÓs Ōrangos. 
+Taip DocBook'as pasidarÓ lengvai suprantamas, plaŃiai naudojamas bei 
+populiarus DTD. BegalÓ organizacijÖ naudoja DocBook'Š savo didelÓms 
+dokumentacijoms raÕyti, ir platinti Ōvairiausiais formatais visame pasaulyje.
+</para>
+
+</chapter>

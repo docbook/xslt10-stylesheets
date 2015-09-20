@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='pt' id='ptchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Matos</surname>
+  <firstname>Jose Abilio Oliveira</firstname>
+  <affiliation><address><email>jamatos@novalis.fc.up.pt</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Portuguese</title>
+
+<para lang="pt_pt">
+O DocBook é uma <ulink url="http://www.ucc.ie/xml/#doctype">Definição do Tipo 
+de Documento</ulink> (DTD) mantida pelo <ulink 
+url="mailto:docbook-tc@oasis-open.org"> Comité Técnico do DocBook </ulink> da 
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>. É particularmente 
+apropriado para livros e artigos sobre programas e equipamento relacionados 
+com computadores (apesar de não estar por quaisquer meios limitado a estas 
+aplicações).
+</para>
+
+<para lang="pt_pt">
+Porque é uma DTD grande e robusta, e porque as suas principais estruturas 
+correspondem à noção geral do que constitui um <quote>livro</quote>, o 
+DocBook tem sido adoptado por uma grande e crescente comunidade de autores 
+que escrevem documentos de todos os tipos. O DocBook é suportado 
+<quote>pronto a usar</quote> por uma série de ferramentas comerciais, e 
+existe um suporte que se expande rapidamente por parte de ambientes de 
+software livre. Estas características combinaram-se para fazer do Docbook uma 
+DTD geralmente fácil de entender, de uma utilidade alargada e muito 
+popular. Dezenas de organizações estão a usar, em todo o mundo, o Docbook 
+para milhões de páginas de documentação, em vários formatos de impressão e 
+<quote>online</quote>.
+</para>
+
+</chapter>

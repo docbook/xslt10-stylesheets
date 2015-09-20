@@ -1,0 +1,126 @@
+#!/usr/bin/perl -w -- # -*- Perl -*-
+
+my @filenames = ();
+my $opts = "";
+
+my $tmpStdout = "/tmp/tidy.stdout.$$";
+my $tmpStderr = "/tmp/tidy.stderr.$$";
+
+while (@ARGV) {
+    $_ = shift @ARGV;
+    if (@filenames || !/^-/) {
+	push (@filenames, $_);
+    } else {
+	$opts .= " " if $opts ne "";
+	$opts .= $_;
+
+	if ($_ eq '--doctype') {
+	    $_ = shift @ARGV;
+	    $opts .= " $_";
+	}
+    }
+}
+
+foreach my $file (@filenames) {
+    my $content = "";
+
+    system("/usr/bin/tidy -wrap 512 $opts $file > $tmpStdout 2>$tmpStderr");
+    if (-s $tmpStderr != 0) {
+	print STDERR "Tidy $file...\n";
+	open (F, $tmpStderr);
+	while (<F>) {
+	    print $_;
+	}
+	close (F);
+    }
+
+    if (-s $tmpStdout == 0) {
+	# we must have done an "in-place" tidy
+	open (F, $file);
+	read (F, $content, -s $file);
+	close (F);
+    } else {
+	open (F, $tmpStdout);
+	read (F, $content, -s $tmpStdout);
+	close (F);
+    }
+
+    $content = cleanupContent($content);
+
+    open (F, ">$file");
+    print F $content;
+    close (F);
+}
+
+unlink $tmpStdout;
+unlink $tmpStderr;
+
+sub cleanupContent {
+    my $content = shift;
+
+    $content =~ s/(<a\s[^>]+>)\s+/$1/sg;
+    $content =~ s/\s+(<\/a>)/$1/sg;
+
+    my $newContent = "";
+
+    # workaround a bug in tidy...it removes &nbsp; sometimes!
+    while ($content
+	     =~ /^(.*?)(<div class=([\'\"])literallayout\3.*?>)(.*?)(<\/div>.*)$/is) {
+	my $pre = $1;
+	my $starttag = $2;
+	my $litlayout = $4;
+	my $post = $5;
+
+	#print "====$litlayout====\n";
+	#print "------------------\n";
+	#print "====", addnbsp($litlayout), "====\n";
+
+	$newContent .= $pre . $starttag . addnbsp($litlayout);
+	$content = $post;
+    }
+
+    $content = $newContent . $content;
+    $newContent = "";
+
+    while ($content
+	   =~ /^(.*?)(<script[^>]+text\/javascript.*?>\s*\/\/<!\[CDATA\[)(.*?)(\/\/\]\]\>.*)$/is) {
+	my $pre = $1;
+	my $scripttag = $2;
+	my $script = $3;
+	my $post = $4;
+
+	# belt and suspenders is both unnecessary ... and WRONG
+	$script =~ s/\&lt;/</sg;
+	$script =~ s/\&gt;/>/sg;
+	$script =~ s/\&amp;/\&/sg;
+
+	$newContent .= $pre . $scripttag . $script;
+
+	$content = $post;
+    }
+
+    return $newContent . $content;
+}
+
+sub addnbsp {
+    my $content = shift;
+    my $esc = "";
+
+    while ($content ne "") {
+	if ($content =~ /^(.*?)(<.*?>)(.*)$/s) {
+	    my $text = $1;
+	    my $tag = $2;
+	    $content = $3;
+	    $text =~ s/ /&\#160;/g;
+	    $esc .= $text . $tag;
+	} else {
+	    my $text = $content;
+	    $content = "";
+	    $text =~ s/ /&\#160;/g;
+	    $esc .= $text;
+	}
+    }
+
+    return $esc;
+}
+

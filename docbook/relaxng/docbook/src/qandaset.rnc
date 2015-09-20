@@ -1,0 +1,200 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.qandadiv | db.qandaentry | db.qandaset
+
+db.list.blocks |= db.qandaset
+
+# ======================================================================
+
+[
+   db:refname [ "qandaset" ]
+   db:refpurpose [ "A question-and-answer set" ]
+]
+div {
+
+   db.qandaset.role.attribute = attribute role { text }
+
+   db.qandaset.defaultlabel.enumeration =
+      ## No labels
+      "none"
+    | ## Numeric labels
+      "number"
+    | ## "Q:" and "A:" labels
+      "qanda"
+
+   db.qandaset.defaultlabel.attribute =
+      [
+         db:refpurpose [ "Specifies the default labelling" ]
+      ]
+      attribute defaultlabel { db.qandaset.defaultlabel.enumeration }
+
+   db.qandaset.attlist =
+      db.qandaset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.qandaset.defaultlabel.attribute?
+
+   db.qandaset.info = db._info.title.only
+
+   db.qandaset =
+      element qandaset {
+         db.qandaset.attlist,
+         db.qandaset.info,
+         db.all.blocks*,
+         (db.qandadiv+ | db.qandaentry+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "qandadiv" ]
+   db:refpurpose [ "A titled division in a qandaset" ]
+]
+div {
+
+   db.qandadiv.role.attribute = attribute role { text }
+
+   db.qandadiv.attlist =
+      db.qandadiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.qandadiv.info = db._info.title.only
+
+   db.qandadiv =
+      element qandadiv {
+         db.qandadiv.attlist,
+         db.qandadiv.info,
+         db.all.blocks*,
+         (db.qandadiv+ | db.qandaentry+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "qandaentry" ]
+   db:refpurpose [ "A question/answer set within a qandaset" ]
+]
+div {
+
+   db.qandaentry.role.attribute = attribute role { text }
+
+   db.qandaentry.attlist =
+      db.qandaentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.qandaentry.info = db._info.title.only
+
+   db.qandaentry =
+      element qandaentry {
+         db.qandaentry.attlist,
+         db.qandaentry.info,
+         db.question,
+         db.answer*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "question" ]
+   db:refpurpose [ "A question in a qandaset" ]
+]
+div {
+
+   db.question.role.attribute = attribute role { text }
+
+   db.question.attlist =
+      db.question.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.question =
+      element question {
+         db.question.attlist,
+         db.label?,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "answer" ]
+   db:refpurpose [ "An answer to a question posed in a qandaset" ]
+]
+div {
+
+   db.answer.role.attribute = attribute role { text }
+
+   db.answer.attlist =
+      db.answer.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.answer =
+      element answer {
+         db.answer.attlist,
+         db.label?,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "label" ]
+   db:refpurpose [ "A label on a question or answer" ]
+]
+div {
+
+   db.label.role.attribute = attribute role { text }
+
+   db.label.attlist =
+      db.label.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.label =
+      element label {
+         db.label.attlist,
+         db._text
+      }
+}
+

@@ -1,0 +1,153 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.equation | db.informalequation
+
+db.formal.blocks |= db.equation
+db.informal.blocks |= db.informalequation
+
+db.math.inlines = db.inlineequation
+db.domain.inlines |= db.math.inlines
+
+db.initializer.inlines |= db.mathphrase
+
+# ======================================================================
+
+db.equation.content = db.mediaobject+ | db.mathphrase+
+db.inlineequation.content = db.inlinemediaobject+ | db.mathphrase+
+
+# ======================================================================
+
+[
+   db:refname [ "equation" ]
+   db:refpurpose [ "A displayed mathematical equation" ]
+]
+div {
+
+   db.equation.role.attribute = attribute role { text }
+   db.equation.label.attribute = db.label.attribute
+
+   db.equation.attlist =
+      db.equation.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.equation.label.attribute?
+    & db.pgwide.attribute?
+    & db.floatstyle.attribute?
+
+   db.equation.info = db._info.title.only
+
+   db.equation =
+      element equation {
+         db.equation.attlist,
+         db.equation.info,
+         db.alt?,
+         db.equation.content,
+         db.caption?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "informalequation" ]
+   db:refpurpose [ "A displayed mathematical equation without a title" ]
+]
+div {
+
+   db.informalequation.role.attribute = attribute role { text }
+
+   db.informalequation.attlist =
+      db.informalequation.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.informalequation.info = db._info.title.forbidden
+
+   db.informalequation =
+      element informalequation {
+         db.informalequation.attlist,
+         db.informalequation.info,
+         db.alt?,
+         db.equation.content,
+         db.caption?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "inlineequation" ]
+   db:refpurpose [ "A mathematical equation or expression occurring inline" ]
+]
+div {
+
+   db.inlineequation.role.attribute = attribute role { text }
+
+   db.inlineequation.attlist =
+      db.inlineequation.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.inlineequation =
+      element inlineequation {
+         db.inlineequation.attlist,
+         db.alt?,
+         db.inlineequation.content
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "mathphrase" ]
+   db:refpurpose [ "A mathematical phrase that can be represented with ordinary text and a small amount of markup" ]
+]
+div {
+
+   db.mathphrase.role.attribute = attribute role { text }
+
+   db.mathphrase.attlist =
+      db.mathphrase.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.mathphrase =
+      element mathphrase {
+         db.mathphrase.attlist,
+         (db._text | db.ubiq.inlines | db._emphasis)*
+      }
+}
+

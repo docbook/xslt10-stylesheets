@@ -1,0 +1,498 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace ns1 = "http://www.w3.org/1999/xlink"
+default namespace ns2 = "http://www.w3.org/2005/11/its"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace teix = "http://www.tei-c.org/ns/Examples"
+
+# Schema generated from ODD source 2007-04-02T11:42:44+09:00. This schema has been developed using the ODD (One Document Does it
+# all) language of the Text Encoding Initiative (). This is a literate programming language for writing XML schemas, with three
+# characteristics: (1) The element and attribute set is specified using
+#   an XML vocabulary which includes support for macros
+#   (like DTD entities, or schema patterns), a hierarchical
+#   class system for attributes and elements, and creation
+#   of modules. (2) The content models for elements and attributes is
+#   written using embedded RELAX NG XML notation. (3) Documentation for elements, attributes, value
+#   lists etc. is written inline, along with examples and
+#   other supporting material. XSLT transformations
+#   are provided by the TEI to extract documentation in
+#   HTML, XSL FO or LaTeX forms, and to generate RELAX NG
+#   documents and DTD. From the RELAX NG documents, James
+#   Clark's trang
+#   can be used to create XML Schema documents.
+its-rules =
+  
+  ## Container for global rules.
+  element rules { its-rules.content, its-rules.attributes }
+its-rules.content =
+  (its-translateRule
+   | its-locNoteRule
+   | its-termRule
+   | its-dirRule
+   | its-rubyRule
+   | its-langRule
+   | its-withinTextRule)*
+its-rules.attributes =
+  
+  ## Version of the ITS schema.
+  [ a:defaultValue = "1.0" ] attribute version { xsd:float },
+  
+  ## Pointer to external rules files.
+  attribute ns1:href { xsd:anyURI }?,
+  
+  ## Type of pointer to external rules files.
+  attribute ns1:type {
+    
+    ## Simple link.
+    "simple"
+  }?
+its-att.selector.attributes = att.selector.attribute.selector
+att.selector.attribute.selector =
+  
+  ## XPath expression identifying the nodes to be selected.
+  attribute selector { xsd:string }
+its-att.version.attributes = att.version.attribute.version
+att.version.attribute.version =
+  
+  ## Version of the ITS schema.
+  [ a:defaultValue = "1.0" ] attribute ns2:version { xsd:float }
+its-att.local.no-ns.attributes =
+  att.local.no-ns.attribute.translate,
+  att.local.no-ns.attribute.locNote,
+  att.local.no-ns.attribute.locNoteType,
+  att.local.no-ns.attribute.locNoteRef,
+  att.local.no-ns.attribute.termInfoRef,
+  att.local.no-ns.attribute.term,
+  att.local.no-ns.attribute.dir
+att.local.no-ns.attribute.translate =
+  
+  ## The Translate data category information to be attached to
+  ##		the current node.
+  attribute translate {
+    
+    ## The nodes need to be translated.
+    "yes"
+    | 
+      ## The nodes must not be translated.
+      "no"
+  }?
+att.local.no-ns.attribute.locNote =
+  
+  ## Localization note.
+  attribute locNote { xsd:string }?
+att.local.no-ns.attribute.locNoteType =
+  
+  ## The type of localization note.
+  attribute locNoteType {
+    
+    ## Localization note is an alert.
+    "alert"
+    | 
+      ## Localization note is a description.
+      "description"
+  }?
+att.local.no-ns.attribute.locNoteRef =
+  
+  ## URI referring to the location of the localization note.
+  attribute locNoteRef { xsd:anyURI }?
+att.local.no-ns.attribute.termInfoRef =
+  
+  ## Pointer to a resource containing
+  ##		      information about the term.
+  attribute termInfoRef { xsd:anyURI }?
+att.local.no-ns.attribute.term =
+  
+  ## Indicates a term locally.
+  attribute term {
+    
+    ## The value 'yes' means that this is a term.
+    "yes"
+    | 
+      ## The value 'no' means that this is not a term.
+      "no"
+  }?
+att.local.no-ns.attribute.dir =
+  
+  ## The text direction for the context.
+  attribute dir {
+    
+    ## Left-to-right text.
+    "ltr"
+    | 
+      ## Right-to-left text.
+      "rtl"
+    | 
+      ## Left-to-right override.
+      "lro"
+    | 
+      ## Right-to-left override.
+      "rlo"
+  }?
+its-att.local.with-ns.attributes =
+  att.local.with-ns.attribute.translate,
+  att.local.with-ns.attribute.locNote,
+  att.local.with-ns.attribute.locNoteType,
+  att.local.with-ns.attribute.locNoteRef,
+  att.local.with-ns.attribute.termInfoRef,
+  att.local.with-ns.attribute.term,
+  att.local.with-ns.attribute.dir
+att.local.with-ns.attribute.translate =
+  
+  ## The Translate data category information to be attached to
+  ##		the current node.
+  attribute ns2:translate {
+    
+    ## The nodes need to be translated.
+    "yes"
+    | 
+      ## The nodes must not be translated.
+      "no"
+  }?
+att.local.with-ns.attribute.locNote =
+  
+  ## Localization note.
+  attribute ns2:locNote { xsd:string }?
+att.local.with-ns.attribute.locNoteType =
+  
+  ## The type of localization note.
+  attribute ns2:locNoteType {
+    
+    ## Localization note is an alert.
+    "alert"
+    | 
+      ## Localization note is a description.
+      "description"
+  }?
+att.local.with-ns.attribute.locNoteRef =
+  
+  ## URI referring to the location of the localization note.
+  attribute ns2:locNoteRef { xsd:anyURI }?
+att.local.with-ns.attribute.termInfoRef =
+  
+  ## Pointer to a resource containing
+  ##		      information about the term.
+  attribute ns2:termInfoRef { xsd:anyURI }?
+att.local.with-ns.attribute.term =
+  
+  ## Indicates a term locally.
+  attribute ns2:term {
+    
+    ## The value 'yes' means that this is a term.
+    "yes"
+    | 
+      ## The value 'no' means that this is not a term.
+      "no"
+  }?
+att.local.with-ns.attribute.dir =
+  
+  ## The text direction for the context.
+  attribute ns2:dir {
+    
+    ## Left-to-right text.
+    "ltr"
+    | 
+      ## Right-to-left text.
+      "rtl"
+    | 
+      ## Left-to-right override.
+      "lro"
+    | 
+      ## Right-to-left override.
+      "rlo"
+  }?
+its-span =
+  
+  ## Inline element to contain ITS information.
+  element span { its-span.content, its-span.attributes }
+its-span.content = (text | its-ruby | its-span)*
+its-span.attributes = its-att.local.no-ns.attributes
+its-translateRule =
+  
+  ## Rule about the Translate data category.
+  element translateRule {
+    its-translateRule.content, its-translateRule.attributes
+  }
+its-translateRule.content = empty
+its-translateRule.attributes =
+  its-att.selector.attributes,
+  
+  ## The Translate data category information to be
+  ##		    applied to selected nodes.
+  attribute translate {
+    
+    ## The nodes need to be translated.
+    "yes"
+    | 
+      ## The nodes must not be translated.
+      "no"
+  }
+its-att.translate.attributes = att.translate.attribute.translate
+att.translate.attribute.translate =
+  
+  ## The Translate data category information to be attached to
+  ##		the current node.
+  attribute ns2:translate {
+    
+    ## The nodes need to be translated.
+    "yes"
+    | 
+      ## The nodes must not be translated.
+      "no"
+  }?
+its-locNoteRule =
+  
+  ## Rule about the Localization Note data category.
+  element locNoteRule {
+    its-locNoteRule.content, its-locNoteRule.attributes
+  }
+its-locNoteRule.content = its-locNote?
+its-locNoteRule.attributes =
+  its-att.selector.attributes,
+  
+  ## Relative XPath expression pointing to a node that holds the localization note.
+  attribute locNotePointer { xsd:string }?,
+  
+  ## The type of localization note.
+  attribute locNoteType {
+    
+    ## Localization note is an alert.
+    "alert"
+    | 
+      ## Localization note is a description.
+      "description"
+  },
+  
+  ## URI referring to the location of the localization note.
+  attribute locNoteRef { xsd:anyURI }?,
+  
+  ## Relative XPath expression pointing to a node that holds the URI referring to the location of the localization note.
+  attribute locNoteRefPointer { xsd:string }?
+its-locNote =
+  
+  ## Contains a localization note.
+  element locNote { its-locNote.content, its-locNote.attributes }
+its-locNote.content = (text | its-ruby | its-span)*
+its-locNote.attributes = its-att.local.no-ns.attributes
+its-att.locNote.attributes =
+  att.locNote.attribute.locNote,
+  att.locNote.attribute.locNoteType,
+  att.locNote.attribute.locNoteRef
+att.locNote.attribute.locNote =
+  
+  ## Localization note.
+  attribute ns2:locNote { xsd:string }?
+att.locNote.attribute.locNoteType =
+  
+  ## The type of localization note.
+  attribute ns2:locNoteType {
+    
+    ## Localization note is an alert.
+    "alert"
+    | 
+      ## Localization note is a description.
+      "description"
+  }?
+att.locNote.attribute.locNoteRef =
+  
+  ## URI referring to the location of the localization note.
+  attribute ns2:locNoteRef { xsd:anyURI }?
+its-termRule =
+  
+  ## Rule about the Terminology data category.
+  element termRule { its-termRule.content, its-termRule.attributes }
+its-termRule.content = empty
+its-termRule.attributes =
+  its-att.selector.attributes,
+  
+  ## Indicates whether the selection is a term or not.
+  attribute term {
+    
+    ## The value 'yes' means that this is a term.
+    "yes"
+    | 
+      ## The value 'no' means that this is not a term.
+      "no"
+  },
+  
+  ## URI referring to the resource providing information about the term.
+  attribute termInfoRef { xsd:anyURI }?,
+  
+  ## Relative XPath expression pointing to a node containing a URI referring to the resource providing information about the term.
+  attribute termInfoRefPointer { xsd:string }?,
+  
+  ## Relative XPath expression pointing to a node containing
+  ##		      information about the term.
+  attribute termInfoPointer { xsd:string }?
+its-att.term.attributes =
+  att.term.attribute.termInfoRef, att.term.attribute.term
+att.term.attribute.termInfoRef =
+  
+  ## Pointer to a resource containing
+  ##		      information about the term.
+  attribute ns2:termInfoRef { xsd:anyURI }?
+att.term.attribute.term =
+  
+  ## Indicates a term locally.
+  attribute ns2:term {
+    
+    ## The value 'yes' means that this is a term.
+    "yes"
+    | 
+      ## The value 'no' means that this is not a term.
+      "no"
+  }?
+its-dirRule =
+  
+  ## Rule about the Directionality data category.
+  element dirRule { its-dirRule.content, its-dirRule.attributes }
+its-dirRule.content = empty
+its-dirRule.attributes =
+  its-att.selector.attributes,
+  
+  ## The text direction for the selection.
+  attribute dir {
+    
+    ## Left-to-right text.
+    "ltr"
+    | 
+      ## Right-to-left text.
+      "rtl"
+    | 
+      ## Left-to-right override.
+      "lro"
+    | 
+      ## Right-to-left override.
+      "rlo"
+  }
+its-att.dir.attributes = att.dir.attribute.dir
+att.dir.attribute.dir =
+  
+  ## The text direction for the context.
+  attribute ns2:dir {
+    
+    ## Left-to-right text.
+    "ltr"
+    | 
+      ## Right-to-left text.
+      "rtl"
+    | 
+      ## Left-to-right override.
+      "lro"
+    | 
+      ## Right-to-left override.
+      "rlo"
+  }?
+its-rubyRule =
+  
+  ## Rule about the Ruby data category.
+  element rubyRule { its-rubyRule.content, its-rubyRule.attributes }
+its-rubyRule.content = its-rubyText?
+its-rubyRule.attributes =
+  its-att.selector.attributes,
+  
+  ## Relative XPath expression pointing to a node that corresponds to a ruby element
+  attribute rubyPointer { xsd:string }?,
+  
+  ## Relative XPath expression pointing to a node that
+  ##                    corresponds to a rt element
+  attribute rtPointer { xsd:string }?,
+  
+  ## Relative XPath expression pointing to a node that
+  ##                    corresponds to a rp element
+  attribute rpPointer { xsd:string }?,
+  
+  ## Relative XPath expression pointing to a node that
+  ##                    corresponds to a rbc element
+  attribute rbcPointer { xsd:string }?,
+  
+  ## Relative XPath expression pointing to a node that
+  ##                    corresponds to a rtc element
+  attribute rtcPointer { xsd:string }?,
+  
+  ## Relative XPath expression pointing to a node that corresponds to a rbspan attribute.
+  attribute rbspanPointer { xsd:string }?
+its-rubyText =
+  
+  ## Ruby text.
+  element rubyText { its-rubyText.content, its-rubyText.attributes }
+its-rubyText.content = text
+its-rubyText.attributes =
+  its-att.local.no-ns.attributes,
+  
+  ## Allows an rt element to span multiple rb elements in complex ruby markup.
+  attribute rbspan { xsd:string }?
+its-ruby =
+  
+  ## Ruby markup.
+  element ruby { its-ruby.content, its-ruby.attributes }
+its-ruby.content =
+  (its-rb,
+   (its-rt | (its-rp, its-rt, its-rp)))
+  | (its-rbc, its-rtc, its-rtc?)
+its-ruby.attributes = its-att.local.no-ns.attributes
+its-rb =
+  
+  ## Ruby base text.
+  element rb { its-rb.content, its-rb.attributes }
+its-rb.content = (text | its-span)*
+its-rb.attributes = its-att.local.no-ns.attributes
+its-rt =
+  
+  ## Ruby text.
+  element rt { its-rt.content, its-rt.attributes }
+its-rt.content = (text | its-span)*
+its-rt.attributes =
+  its-att.local.no-ns.attributes,
+  
+  ## Allows an rt element to span multiple rb elements in complex ruby markup.
+  attribute rbspan { xsd:string }?
+its-rbc =
+  
+  ## Container for rb elements in the case of complex ruby markup.
+  element rbc { its-rbc.content, its-rbc.attributes }
+its-rbc.content = its-rb+
+its-rbc.attributes = its-att.local.no-ns.attributes
+its-rtc =
+  
+  ## Container for rt elements in the case of complex ruby markup. 
+  element rtc { its-rtc.content, its-rtc.attributes }
+its-rtc.content = its-rt+
+its-rtc.attributes = its-att.local.no-ns.attributes
+its-rp =
+  
+  ## Used in the case of simple ruby markup to specify characters that can denote the beginning and end of ruby text when user agents do not have other ways to present ruby text distinctively from the base text.
+  element rp { its-rp.content, its-rp.attributes }
+its-rp.content = text
+its-rp.attributes = its-att.local.no-ns.attributes
+its-langRule =
+  
+  ## Rule about the Language Information data category.
+  element langRule { its-langRule.content, its-langRule.attributes }
+its-langRule.content = empty
+its-langRule.attributes =
+  its-att.selector.attributes,
+  
+  ## Relative XPath expression pointing to a node that contains language information.
+  attribute langPointer { xsd:string }
+its-withinTextRule =
+  
+  ## Rule about the Elements Within Text data category.
+  element withinTextRule {
+    its-withinTextRule.content, its-withinTextRule.attributes
+  }
+its-withinTextRule.content = empty
+its-withinTextRule.attributes =
+  its-att.selector.attributes,
+  
+  ## States whether current context is regarded as
+  ##		    "within text".
+  attribute withinText {
+    
+    ## The element and its content are part of the flow of its parent element.
+    "yes"
+    | 
+      ## The element splits the text flow of its parent element and its content is an independent text flow.
+      "no"
+    | 
+      ## The element is part of the flow of its parent element, its content is an independent flow.
+      "nested"
+  }

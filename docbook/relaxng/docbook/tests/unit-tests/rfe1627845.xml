@@ -1,0 +1,55 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Sample book title</title>
+
+<chapter>
+<title>Sample chapter title</title>
+
+<para>This unit test contains a CALS <tag>table</tag> and a CALS
+<tag>informaltable</tag>, each with a <tag>caption</tag>, per
+<link xlink:href="https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1627845&amp;group_id=21935&amp;atid=384107"/>. It also contains an HTML
+<tag>table</tag> with a <tag>caption</tag> that contains inlines, a decision
+reached while resolving the caption RFE.</para>
+
+<table>
+<title>Some table</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>T1.A1</entry>
+<entry>T1.A2</entry>
+</row>
+</tbody>
+</tgroup>
+<caption>
+<para>This is a table caption.</para>
+</caption>
+</table>
+
+<informaltable>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>T2.A1</entry>
+<entry>T2.A2</entry>
+</row>
+</tbody>
+</tgroup>
+<caption>
+<para>This is an informal table caption.</para>
+</caption>
+</informaltable>
+
+<table>
+<caption>This is an <emphasis>HTML</emphasis> table</caption>
+<tbody>
+<tr>
+<td>T3.A1</td>
+<td>T3.A2</td>
+</tr>
+</tbody>
+</table>
+
+</chapter>
+
+</book>

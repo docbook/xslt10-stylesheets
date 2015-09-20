@@ -1,0 +1,12 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="test1" lang="de">
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Test <emphasis>1</emphasis></title>
+<summary>Test 1 Page</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+</webpage>
+

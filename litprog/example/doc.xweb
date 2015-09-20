@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/TR/xhtml-basic"
+      xmlns:xs='http://www.w3.org/2001/XMLSchema'
+      xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+      xmlns:ex='urn:publicid:-:Norman+Walsh:Schema Example:EN'>
+<head>
+<title>Document Schema</title>
+</head>
+<body>
+
+<div>
+<h1>A Simple Document W3C XML Schema</h1>
+
+<p>This schema defines the
+<tt>urn:publicid:-:Norman+Walsh:Schema Example:EN</tt> namespace
+by defining several elements and their complex types.
+</p>
+
+<p>Documents that conform to this schema have the general form:</p>
+
+<pre>&lt;doc xmlns="urn:publicid:-:Norman+Walsh:Schema Example:EN">
+  &lt;title>Sample Document&lt;/title>
+  &lt;para>Some paragraphs.&lt;/para>
+&lt;/doc></pre>
+</div>
+
+<div>
+<h1><a name="types"/>The Types</h1>
+
+<p>This schema only defines three element types: <tt>doc</tt>,
+<tt>title</tt>, and <tt>para</tt>.</p>
+
+<div>
+<h2>The <tt>doc</tt> Type</h2>
+
+<p>This is a document.</p>
+
+<src:fragment id="doc.type">
+  <xs:complexType name='doc'>
+    <xs:sequence>
+      <xs:element ref="ex:title" minOccurs='0' maxOccurs='1'/>
+      <xs:choice minOccurs='1' maxOccurs='unbounded'>
+        <xs:element ref='ex:para'/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+</src:fragment>
+</div>
+
+<div>
+<h2>The <tt>title</tt> Type</h2>
+
+<p>This is a title.</p>
+
+<src:fragment id="title.type">
+  <xs:complexType name='title' mixed="true">
+    <src:fragref linkend="role.attrib"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+</src:fragment>
+</div>
+
+<div>
+<h2>The <tt>para</tt> Type</h2>
+
+<p>This is a paragraph.</p>
+
+<src:fragment id="para.type">
+  <xs:complexType name='para' mixed="true">
+    <src:fragref linkend="role.attrib"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+</src:fragment>
+</div>
+</div>
+
+<div>
+<h1>The <tt>role</tt> Attribute</h1>
+
+<p>Each of the complex types in this schema allows an optional role attribute.
+The role attribute is simply a string.</p>
+
+<src:fragment id="role.attrib">
+    <xs:attribute name="role" type="xs:string"/>
+</src:fragment>
+</div>
+
+<div>
+<h1>The Elements</h1>
+
+<p>This schema defines one element of each <a href="#types">complex
+type</a>.</p>
+
+<src:fragment id="elements">
+  <xs:element name="doc" type="ex:doc"/>
+  <xs:element name="para" type="ex:para"/>
+  <xs:element name="title" type="ex:title"/>
+</src:fragment>
+</div>
+
+<div>
+<h1>The Schema</h1>
+
+<p>The schema wrapper surrounds all these definitions.</p>
+
+<src:fragment id="top" mundane-result-prefixes="ex xs">
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+           xmlns:ex='urn:publicid:-:Norman+Walsh:Schema Example:EN'
+           targetNamespace='urn:publicid:-:Norman+Walsh:Schema Example:EN'
+           elementFormDefault='qualified'>
+  <src:fragref linkend="doc.type"/>
+  <src:fragref linkend="title.type"/>
+  <src:fragref linkend="para.type"/>
+  <src:fragref linkend="elements"/>
+</xs:schema>
+</src:fragment>
+</div>
+
+</body>
+</html>
+

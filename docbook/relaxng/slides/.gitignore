@@ -1,0 +1,14 @@
+build
+semantic.cache
+slides-full.dtd
+slides-full.rnc
+slides-full.rng
+slides-full.sch
+slides-full.xsd
+slides.dtd
+slides.rnc
+slides.rng
+slides.sch
+slides.xsd
+xlink.xsd
+xml.xsd

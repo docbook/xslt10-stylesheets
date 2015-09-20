@@ -1,0 +1,137 @@
+<book xml:id="locales" xmlns:xl="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title><?dbcurrentlang ?> DocBook</title>
+  <info>
+    <authorgroup>
+      <editor>
+	<personname>
+	<firstname>Leahçim</firstname>
+	<surname>H'tims</surname>
+	</personname>
+      </editor>
+    </authorgroup>
+    <copyright><year>2005</year></copyright>
+    <pubdate><?dbtimestamp format="A, B d, Y"?></pubdate>
+    <revhistory>
+      <revision>
+	<revnumber>1</revnumber>
+	<date><?dbtimestamp format="a, b d, Y"?></date>
+	<authorinitials>LH</authorinitials>
+	<revdescription>
+	  <simpara>First version.</simpara>
+	</revdescription>
+      </revision>
+    </revhistory>
+    <abstract xml:id="abstract">
+      <simpara>This document demonstrates output of localized
+      generated text in <?dbcurrentlang ?>.</simpara>
+    </abstract>
+  </info>
+  <dedication xml:id="dedication">
+    <simpara>Thanks to the 50+ translators who have helped in the
+    localization effort for the DocBook XSL and DSSSL
+    stylesheets.</simpara>
+  </dedication>
+  <colophon xml:id="colophon">
+    <simpara>This document was generated using the DocBook XSL Stylesheets.</simpara>
+  </colophon>
+  <chapter role="blurb" xml:id="about">
+    <title>About DocBook</title>
+    <para/> <!-- replaced during transformation to HTML -->
+  </chapter>
+  <chapter xml:id="moreinfo">
+    <title >For more information</title>
+    <para>For more information about DocBook, visit the <phrase
+    xl:href="http://wiki.docbook.org/topic/DocBook" >DocBook
+    Wiki</phrase>.</para>
+  </chapter>
+  <chapter xml:id="features">
+    <title>Localization features</title>
+    <simpara>This section demonstrates some specific examples of
+    localized text.</simpara>
+    <sect1 xml:id="admons">
+      <title>Admonitions</title>
+      <simpara>Titles of admonitions are localized.</simpara>
+      <important>
+	<para>When evaluating a system for authoring documentation for
+	computer software and hardware, it is important to look
+	carefully at the localization support it provides.</para>
+      </important>
+      <note>
+	<para>Through the DocBook XSL Stylesheets, DocBook supports
+	localization in more that 50 languages.</para>
+      </note>
+      <warning>
+	<para>You'll have a hard time finding another industry-standard
+	XML-based authoring system that has localization support as
+	thorough as DocBook's.</para>
+      </warning>
+      <caution>
+	<para>Don't make the mistake of choosing an authoring system
+	that is lacking in internationalization and localization
+	support.</para>
+      </caution>
+      <tip>
+	<para>Stick with DocBook. You'll be happier that you did.</para>
+      </tip>
+    </sect1>
+    <sect1 xml:id="formal">
+      <title>Formal objects</title>
+      <simpara>Labels of formal objects are localized.</simpara>
+      <sect2>
+      <title>A figure</title>
+	<simpara>The following is an example figure.</simpara>
+      <figure xml:id="duck">
+	<title>Duck</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="./graphics/stamp400x256.png"/>
+	  </imageobject>
+	  <textobject>
+	   <phrase>DocBook: The Source for Documentation</phrase>
+	  </textobject>
+	</mediaobject>
+      </figure>
+      </sect2>
+      <sect2 xml:id="table">
+	<title>A table</title>
+	<simpara>The following is an example table.</simpara>
+	<xi:include  href="translators.xml"  
+		     xmlns:xi="http://www.w3.org/2001/XInclude"/>
+    </sect2>
+    <sect2>
+      <title>An example</title>
+      <simpara>The following is an example example.</simpara>
+      <example>
+	<title>Foo</title>
+	<simpara>bar</simpara>
+      </example>
+    </sect2>
+    <sect2>
+      <title>An equation</title>
+      <simpara>The following is an example equation.</simpara>
+      <equation xml:id="fermat">
+	<title>A Mathematical Limerick</title>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="./math_limerick.png"/>
+	  </imageobject>
+	  <textobject>
+	    <phrase>humourous equation</phrase>
+	  </textobject>
+	</mediaobject>
+      </equation>
+      <literallayout>
+Integral z-squared dz
+from 1 to the cube root of 3
+times the cosine
+of three pi over 9
+equals log of the cube root of 'e'.
+      </literallayout>
+      <simpara>From Thomas Bätzler's <phrase
+      xl:href="http://www.baetzler.de/humor/humor_en.html">Humor on
+      the Internet</phrase> site.</simpara>
+    </sect2>
+    </sect1>
+  </chapter>
+</book>

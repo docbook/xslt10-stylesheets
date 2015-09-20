@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dtd xmlns="http://nwalsh.com/ns/dtd-xml">
+
+  <!-- Fix "any" content -->
+
+  <del-pe name="db._any.attribute"/>
+  <del-element name="db._any"/>
+
+  <!-- Fix info -->
+
+   <pe name="db._info">
+     <group>
+       <optional>
+         <ref name="db._title"/>
+       </optional>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+   <pe name="db._info.title.req">
+     <group>
+       <ref name="db._title.req"/>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+   <pe name="db._info.title.only">
+     <group>
+       <ref name="db._title.only"/>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+   <pe name="db._info.title.onlyreq">
+     <group>
+       <ref name="db._title.onlyreq"/>
+       <optional>
+         <ref name="db.info" optional="true"/>
+       </optional>
+     </group>
+   </pe>
+
+  <!-- Fix procedure  -->
+
+   <pe name="db.technical.blocks">
+      <choice>
+         <ref name="db.task"/>
+      </choice>
+   </pe>
+
+  <!-- Fix indexterm -->
+
+  <ref-rename name="db.indexterm.singular" rename="db.indexterm"/>
+
+  <!-- Fix caption -->
+
+  <ref-rename name="db.html.caption" rename="db.caption"/>
+
+  <!-- Fix attribute co-constraints -->
+  <pe name="db.orgname.class.enumeration">
+    <choice>
+      <value>consortium</value>
+      <value>corporation</value>
+      <value>informal</value>
+      <value>nonprofit</value>
+      <value>other</value>
+    </choice>
+  </pe>
+
+   <del-pe name="db.orgname.class-other.attributes"/>
+   <del-pe name="db.orgname.class-enum.attribute"/>
+
+   <pe name="db.orgname.class.attribute">
+      <attdecl name="class">
+         <ref name="db.orgname.class.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.biblio.class.enumeration">
+      <choice>
+         <value>doi</value>
+         <value>isbn</value>
+         <value>isrn</value>
+         <value>issn</value>
+         <value>libraryofcongress</value>
+         <value>pubsnumber</value>
+         <value>uri</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.biblio.class-other.attributes"/>
+   <del-pe name="db.biblio.class-enum.attribute"/>
+
+   <pe name="db.biblio.class.attribute">
+      <attdecl name="class">
+         <ref name="db.biblio.class.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.othercredit.class.enumeration">
+      <choice>
+         <value>copyeditor</value>
+         <value>graphicdesigner</value>
+         <value>productioneditor</value>
+         <value>technicaleditor</value>
+         <value>translator</value>
+         <value>indexer</value>
+         <value>proofreader</value>
+         <value>coverdesigner</value>
+         <value>interiordesigner</value>
+         <value>illustrator</value>
+         <value>reviewer</value>
+         <value>typesetter</value>
+         <value>conversion</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.othercredit.class-other.attributes"/>
+   <del-pe name="db.othercredit.class-enum.attribute"/>
+
+   <pe name="db.othercredit.class.attribute">
+      <attdecl name="class">
+         <ref name="db.othercredit.class.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.bibliorelation.type.enumeration">
+      <choice>
+         <value>hasformat</value>
+         <value>haspart</value>
+         <value>hasversion</value>
+         <value>isformatof</value>
+         <value>ispartof</value>
+         <value>isreferencedby</value>
+         <value>isreplacedby</value>
+         <value>isrequiredby</value>
+         <value>isversionof</value>
+         <value>references</value>
+         <value>replaces</value>
+         <value>requires</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.bibliorelation.type-other.attributes"/>
+   <del-pe name="db.bibliorelation.type-enum.attribute"/>
+
+   <pe name="db.bibliorelation.type.attribute">
+      <attdecl name="type">
+         <ref name="db.bibliorelation.type.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.bridgehead.renderas.enumeration">
+      <choice>
+         <value>sect1</value>
+         <value>sect2</value>
+         <value>sect3</value>
+         <value>sect4</value>
+         <value>sect5</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.bridgehead.renderas-other.attributes"/>
+   <del-pe name="db.bridgehead.renderas-enum.attribute"/>
+
+   <pe name="db.bridgehead.renderas.attribute">
+      <attdecl name="class">
+         <ref name="db.bridgehead.renderas.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.bibliocoverage.spacial.enumeration"> <!-- [sic] -->
+      <choice>
+         <value>dcmipoint</value>
+         <value>iso3166</value>
+         <value>dcmibox</value>
+         <value>tgn</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.bibliocoverage.spatial-other.attributes"/>
+   <del-pe name="db.bibliocoverage.spatial-enum.attribute"/>
+
+   <pe name="db.bibliocoverage.spatial.attribute">
+      <attdecl name="spatial">
+         <ref name="db.bibliocoverage.spacial.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.bibliocoverage.temporal.enumeration">
+      <choice>
+         <value>dcmiperiod</value>
+         <value>w3c-dtf</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.bibliocoverage.temporal-other.attributes"/>
+   <del-pe name="db.bibliocoverage.temporal-enum.attribute"/>
+
+   <pe name="db.bibliocoverage.temporal.attribute">
+      <attdecl name="temporal">
+         <ref name="db.bibliocoverage.temporal.enumeration"/>
+      </attdecl>
+   </pe>
+
+   <pe name="db.area.units.enumeration">
+      <choice>
+         <value>calspair</value>
+         <value>linecolumn</value>
+         <value>linecolumnpair</value>
+         <value>linerange</value>
+         <value>other</value>
+      </choice>
+   </pe>
+
+   <del-pe name="db.area.units-other.attributes"/>
+   <del-pe name="db.area.units-enum.attribute"/>
+
+   <pe name="db.area.units.attribute">
+      <attdecl name="class">
+         <ref name="db.area.units.enumeration"/>
+      </attdecl>
+   </pe>
+
+  <!-- Fix namest on entry -->
+
+   <pe name="db.specify-span-directly.attributes" depth="1">
+      <attdecl name="nameend"/>
+   </pe>
+
+  <!-- Fix limited content model inlines -->
+
+  <del-element name="db._foreignphrase"/>
+  <ref-rename name="db._foreignphrase" rename="db.foreignphrase"/>
+
+  <del-element name="db._emphasis"/>
+  <ref-rename name="db._emphasis" rename="db.emphasis"/>
+
+  <del-element name="db._quote"/>
+  <ref-rename name="db._quote" rename="db.quote"/>
+
+  <del-element name="db._firstterm"/>
+  <ref-rename name="db._firstterm" rename="db.firstterm"/>
+
+  <del-element name="db._glossterm"/>
+  <ref-rename name="db._glossterm" rename="db.glossterm"/>
+
+  <del-element name="db._phrase"/>
+  <ref-rename name="db._phrase" rename="db.phrase"/>
+
+  <!-- Fix SVG and MathML -->
+
+  <ref-rename name="db.imagedata.mathml" rename="db.imagedata"/>
+  <ref-rename name="db.imagedata.svg" rename="db.imagedata"/>
+
+  <!-- area -->
+
+  <ref-rename name="db.area.inareaset" rename="db.area"/>
+
+  <!-- group -->
+
+  <ref-rename name="db.group.methodparam" rename="db.group"/>
+  <ref-rename name="db.group.paramdef" rename="db.group"/>
+
+  <!-- info -->
+
+  <ref-rename name="db.titlereq.info" rename="db.info"/>
+  <ref-rename name="db.titleonly.info" rename="db.info"/>
+  <ref-rename name="db.titleonlyreq.info" rename="db.info"/>
+  <ref-rename name="db.titleforbidden.info" rename="db.info"/>
+
+</dtd>

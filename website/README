@@ -1,0 +1,152 @@
+$Id$
+
+README for the DocBook Website distribution
+
+Website is an XML DTD and XSL stylesheet collection for building,
+er, web sites.
+
+For installation information, see the INSTALL file. This README
+file provides some minimal documentation on authoring, validating,
+and transforming Website documents.
+
+----------------------------------------------------------------------
+Website how-to guides
+----------------------------------------------------------------------
+For more complete how-to information, see the following:
+
+  Website chapter in Bob Stayton's "DocBook XSL: The Complete Guide
+  http://sagehill.net/docbookxsl/Website.html
+
+  Website example
+  http://docbook.sourceforge.net/release/website/current/example/
+
+The Website example is also in the example/ subdirectory in the
+Website distribution (which may have been renamed to "examples" if
+you have installed Website from a package via the
+package-management system for your OS).
+
+----------------------------------------------------------------------
+Authoring and validating with DTDs (website.dtd or website-full.dtd)
+----------------------------------------------------------------------
+To do DTD-driven authoring and validation of DocBook Website
+documents, add a DOCTYPE to your documents using either a PUBLIC
+or SYSTEM ID with the appropriate URI for either the included
+website.dtd (based on Simplified DocBook) or website-full.dtd
+(based on full DocBook) DTDs.
+
+For example:
+
+  <!DOCTYPE website PUBLIC "-//Norman Walsh//DTD Website V2.6//EN"
+  "http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website.dtd">
+
+IMPORTANT: The example above may not be up-to-date. For the
+           current PUBLIC ID and URI see the actual website.dtd
+           and website-full.dtd files. 
+
+----------------------------------------------------------------------
+Authoring with RELAX NG (website.rnc and website-full.rnc)
+----------------------------------------------------------------------
+To do RNC-driven authoring of DocBook Website content with a
+"RELAX NG aware" XML editing application such as Emacs/nXML,
+oXygen XML Editor, XMLBuddy, or Exchanger XML Editor, point your
+editing application at the included website.rnc (based on
+Simplified DocBook) or website-full.rnc (based on full DocBook)
+schema files.
+
+Alternatively, if you are authoring with an editor, such as
+Emacs/nXML mode, that supports schema "locating rules", use the
+included locatingrules.xml file. It tells your editor to
+automatically associate any documents whose root element is
+"webpage" (DocBook Website documents), with (by default) the
+website.rnc schema. To have "webpage" documents instead associated
+with the website-full.rnc, edit the locatingrules.xml file.
+
+To use the locating-rules.xml file with Emacs/nXML mode, either
+
+  - do M-x customize-variable rng-schema-locating-files and then
+    add the absolute path to the locatingrules.xml file there
+
+    OR
+
+  - put the following into your .emacs file:
+
+      (setq rng-schema-locating-files
+        (append
+          '("~/docbook-website/locatingrules.xml")))
+
+  Of course, replace the ~/docbook-website/locatingrules.xml
+  pathname with the appropriate location for your system.
+
+----------------------------------------------------------------------
+Validating with RELAX NG (website.rnc and website-full.rnc)
+----------------------------------------------------------------------
+To validate Website documents using RELAX NG, do either of the
+following:
+
+  1. Use RNV[1]; for example:
+
+     rnv ~/docbook-website/website.rnc foo.xml
+
+  2. Use the xmllint tool from libxml2[1]; for example:
+
+     xmllint --noout --relaxng ~/docbook-website/website.rng foo.xml
+
+     IMPORTANT: If you use xmllint, you need to validate against
+                the *.rng versions of the schemas, not the *.rnc
+                versions.
+
+[1] http://davidashen.net/rnv.html
+[2] http://xmlsoft.org/
+
+----------------------------------------------------------------------
+Transforming your Website documents to HTML
+----------------------------------------------------------------------
+Generating a website from your DocBook Website XML sources is a
+multi-step process. The details are beyond the scope of this
+README. For complete information, see the "Website how-to guides"
+section at the beginning of this README.
+
+You can learn a lot by looking through the Makefile-example.txt
+file included in the example/ directory. That is the actual
+Makefile that was used, during the build of this distribution, to
+generate the HTML output in the example/ directory.
+
+You can re-generate the output in the examples directory using the
+following steps.
+
+1. Copy the example/ directory to another location (so that you
+   don't overwrite the original) and then change to that location.
+
+     cp -pR /foo/docbook-website/example /tmp
+     cd /tmp/example
+
+2. Rename the Makefile-example.txt file to "Makefile".
+
+     mv Makefile-example.txt Makefile
+
+3. Examine the Makefile and change the values of the following
+   variables as needed.
+
+     DOCBOOK_WEBSITE
+     XSLT
+     XMLPARSER
+
+4. Clean out the existing HTML output.
+
+     make clean
+
+5. Re-generate the HTML output.
+
+     make
+
+   That will build the default "tabular" version of the site.
+
+6. Optionally, you can also:
+
+     * generate the alternative "non-tabular" version of the site
+     * post-process all of the HTML content with 'tidy'
+
+   The easiest way to do those things is to feed 'make' some
+   variables on the command line:
+
+     make USETIDY=1 MAKENONTAB=1

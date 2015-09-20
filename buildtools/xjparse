@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#
+# Usage: xjparse [opts] src.xml
+#
+
+MYDIR=`dirname $0`
+. $MYDIR/common-functions.sh
+
+XERCES=`findxerces2`
+RESOLVER=`findresolver`
+if [ ! "$RESOLVER" ] && [[ $CLASSPATH != *xml-commons-resolver* ]]; then
+  echo "cannot find resolver classes" 1>&2
+  exit 1
+fi
+
+HTTP_PROXY=
+HTTPS_PROXY=
+
+if [ "$http_proxy_host" != "" ]; then
+    HTTP_PROXY="-Dhttp.proxyHost=$http_proxy_host -Dhttp.proxyPort=$http_proxy_port"
+    HTTPS_PROXY="-Dhttps.proxyHost=$http_proxy_host -Dhttps.proxyPort=$http_proxy_port"
+fi
+
+XERCES="${XERCES:-/projects/apache/xml-xerces/java/build/classes}:"
+
+if [ $RESOLVER ] && [ ${RESOLVER/sun/} != ${RESOLVER} ]; then
+    # guess this is the sun resolver
+    XREAD=com.sun.resolver.apps.xread
+else
+    # guess this is the Apache resolver
+    XREAD=org.apache.xml.resolver.apps.xread
+fi
+
+#XREAD=org.apache.xerces.impl.Version
+
+CLASSPATH=$RESOLVER:$XERCES:$CLASSPATH
+#echo $CLASSPATH
+
+exec java $HTTP_PROXY $HTTPS_PROXY -cp $CLASSPATH $XREAD $*

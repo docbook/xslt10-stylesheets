@@ -1,0 +1,66 @@
+<!DOCTYPE book [
+<!ENTITY % param.ent SYSTEM "param.ent">
+%param.ent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  >
+  <info>
+    <title>Roundtrip Parameter Reference</title>
+    <releaseinfo role="meta">
+      $Id$
+    </releaseinfo>
+    <author>
+      <personname>
+      <surname>Ball</surname>
+      <firstname>Steve</firstname>
+      </personname>
+    </author>
+    <copyright>
+      <year>2007</year>
+      <year>2006</year>
+      <year>2005</year>
+      <year>2004</year>
+      <holder>Steve Ball</holder>
+    </copyright>
+    <abstract>
+      <para>This is reference documentation for all user-configurable
+      parameters in the DocBook “Roundtrip” Stylesheets (for
+      transforming DocBook to WordML, OpenDocument, and Apple Pages,
+      and for converting from those formats back to DocBook).</para>
+    </abstract>
+  </info>
+  <reference xml:id="params">
+  <title>Parameters</title>
+&wordml.template;
+&pages.template;
+  </reference>
+  <appendix xml:id="stylesheet">
+    <title>The Stylesheet</title>
+    <para>The <filename>param.xsl</filename> stylesheet is just a
+      wrapper around all of these parameters.</para>
+    <src:fragment xml:id='top' mundane-result-prefixes='xsl'>
+<xsl:stylesheet xmlns='http://www.w3.org/1999/XSL/Transform'
+  exclude-result-prefixes='src'
+  version='1.0'>
+
+<!-- This file is generated from param.xweb -->
+
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the XSL DocBook Stylesheet distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+<src:fragref linkend="wordml.template.frag"/>
+<src:fragref linkend="pages.template.frag"/>
+</xsl:stylesheet>
+    </src:fragment>
+  </appendix>
+</book>

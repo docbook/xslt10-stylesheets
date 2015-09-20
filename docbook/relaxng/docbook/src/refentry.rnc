@@ -1,0 +1,370 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.refentry | db.refsection | db.refsynopsisdiv
+
+db.divisions |= db.reference
+
+db.part.components |= db.refentry | db.reference
+
+db.toplevel.sections |= db.refentry+
+
+db.recursive.sections |= db.refentry+
+
+db.toplevel.refsection = db.refsection+
+
+db.secondlevel.refsection = db.refsection+
+
+# ======================================================================
+
+db.reference.components = db.refentry
+
+# ======================================================================
+
+[
+   db:refname [ "reference" ]
+   db:refpurpose [ "A collection of reference entries" ]
+]
+div {
+
+   db.reference.role.attribute = attribute role { text }
+
+   db.reference.attlist =
+      db.reference.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.status.attribute?
+    & db.label.attribute?
+
+   db.reference.info = db._info.title.req
+
+   db.reference =
+      element reference {
+         db.reference.attlist,
+         db.reference.info,
+         db.partintro?,
+         db.reference.components+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refentry" ]
+   db:refpurpose [ "A reference page (originally a UNIX man-style reference page)" ]
+]
+div {
+
+   db.refentry.role.attribute = attribute role { text }
+
+   db.refentry.attlist =
+      db.refentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.status.attribute?
+    & db.label.attribute?
+
+   db.refentry.info = db._info.title.forbidden
+
+   db.refentry =
+      element refentry {
+         db.refentry.attlist,
+         db.indexterm*,
+         db.refentry.info,
+         db.refmeta?,
+         db.refnamediv+,
+         db.refsynopsisdiv?,
+         db.toplevel.refsection
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refmeta" ]
+   db:refpurpose [ "Meta-information for a reference entry" ]
+]
+div {
+
+   db.refmeta.role.attribute = attribute role { text }
+
+   db.refmeta.attlist =
+      db.refmeta.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refmeta =
+      element refmeta {
+         db.refmeta.attlist,
+         db.indexterm*,
+         db.refentrytitle,
+         db.manvolnum?,
+         db.refmiscinfo*,
+         db.indexterm*
+      }
+}
+
+# ======================================================================
+
+ctrl:other-attribute [ name="db.refmiscinfo.class.attribute"
+                       enum-name="db.refmiscinfo.class-enum.attribute"
+                       other-name="db.refmiscinfo.class-other.attributes" ]
+
+db.refmiscinfo.class.enumeration =
+   ## The name of the software product or component to which this topic applies
+   "source"
+ | ## The version of the software product or component to which this topic applies
+   "version"
+ | ## The section title of the reference page (e.g., User Commands)
+   "manual"
+ | ## The section title of the reference page (believed synonymous with "manual" but in wide use)
+   "sectdesc"
+ | ## The name of the software product or component to which this topic applies (e.g., SunOS x.y; believed synonymous with "source" but in wide use)
+   "software"
+
+db.refmiscinfo.class-enum.attribute =
+   [
+      db:refpurpose [ "Identifies the kind of miscellaneous information" ]
+   ]
+   attribute class { db.refmiscinfo.class.enumeration } ?
+
+db.refmiscinfo.class-other.attribute =
+   [
+      db:refpurpose [ "Identifies the nature of non-standard miscellaneous information" ]
+   ]
+   attribute otherclass { text }
+
+db.refmiscinfo.class-other.attributes =
+   [
+      db:refpurpose [ "Identifies the kind of miscellaneious information" ]
+   ]
+   attribute class {
+      ## Indicates that the information is some 'other' kind.
+      "other"
+   }
+ & db.refmiscinfo.class-other.attribute
+
+db.refmiscinfo.class.attribute =
+  (db.refmiscinfo.class-enum.attribute | db.refmiscinfo.class-other.attributes)
+
+# ======================================================================
+
+[
+   db:refname [ "refmiscinfo" ]
+   db:refpurpose [ "Meta-information for a reference entry other than the title and volume number" ]
+]
+div {
+
+   db.refmiscinfo.role.attribute = attribute role { text }
+
+   db.refmiscinfo.attlist =
+      db.refmiscinfo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.refmiscinfo.class.attribute?
+
+   db.refmiscinfo =
+      element refmiscinfo {
+         db.refmiscinfo.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refnamediv" ]
+   db:refpurpose [ "The name, purpose, and classification of a reference page" ]
+]
+div {
+
+   db.refnamediv.role.attribute = attribute role { text }
+
+   db.refnamediv.attlist =
+      db.refnamediv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refnamediv =
+      element refnamediv {
+         db.refnamediv.attlist,
+         db.refdescriptor?,
+         db.refname+,
+         db.refpurpose,
+         db.refclass*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refdescriptor" ]
+   db:refpurpose [ "A description of the topic of a reference page" ]
+]
+div {
+
+   db.refdescriptor.role.attribute = attribute role { text }
+
+   db.refdescriptor.attlist =
+      db.refdescriptor.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refdescriptor =
+      element refdescriptor {
+         db.refdescriptor.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refname" ]
+   db:refpurpose [ "The name of (one of) the subject(s) of a reference page" ]
+]
+div {
+
+   db.refname.role.attribute = attribute role { text }
+
+   db.refname.attlist =
+      db.refname.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refname =
+      element refname {
+         db.refname.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refpurpose" ]
+   db:refpurpose [ "A short (one sentence) synopsis of the topic of a reference page" ]
+]
+div {
+
+   db.refpurpose.role.attribute = attribute role { text }
+
+   db.refpurpose.attlist =
+      db.refpurpose.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refpurpose =
+      element refpurpose {
+         db.refpurpose.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refclass" ]
+   db:refpurpose [ "The scope or other indication of applicability of a reference entry" ]
+]
+div {
+
+   db.refclass.role.attribute = attribute role { text }
+
+   db.refclass.attlist =
+      db.refclass.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refclass =
+      element refclass {
+         db.refclass.attlist,
+         (text | db.application)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refsynopsisdiv" ]
+   db:refpurpose [ "A syntactic synopsis of the subject of the reference page" ]
+]
+div {
+
+   db.refsynopsisdiv.role.attribute = attribute role { text }
+
+   db.refsynopsisdiv.attlist =
+      db.refsynopsisdiv.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.refsynopsisdiv.info = db._info
+
+   db.refsynopsisdiv =
+      element refsynopsisdiv {
+         db.refsynopsisdiv.attlist,
+         db.refsynopsisdiv.info,
+         ((db.all.blocks+, db.secondlevel.refsection?)
+          | db.secondlevel.refsection)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "refsection" ]
+   db:refpurpose [ "A recursive section in a refentry" ]
+]
+div {
+
+   db.refsection.role.attribute = attribute role { text }
+
+   db.refsection.attlist =
+      db.refsection.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.status.attribute?
+    & db.label.attribute?
+
+   db.refsection.info = db._info.title.req
+
+   db.refsection =
+      element refsection {
+         db.refsection.attlist,
+         db.refsection.info,
+         ((db.all.blocks+, db.refsection*)
+          | db.refsection+)
+      }
+}

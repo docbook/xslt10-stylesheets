@@ -1,0 +1,146 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="olink">
+<config param="desc" value="Linking Pages"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Linking Pages</title>
+<titleabbrev>Linking</titleabbrev>
+<summary>Linking across Pages</summary>
+</head>
+<para>In Website, the website pages are separate XML documents, so it
+is not possible to use <sgmltag>xref</sgmltag> or <sgmltag>link</sgmltag> to make links
+between them.  Instead, you must use <sgmltag>olink</sgmltag><footnote>
+<para>It's also possible to use <sgmltag>ulink</sgmltag> and make links
+directly to the generated HTML pages, but that's a bad idea; if you change
+the hierarchy or rename a page, the link will become stale. With
+<sgmltag>olink</sgmltag> this won't happen.</para></footnote>.</para> 
+<para><sgmltag>Olink</sgmltag> differs from other linking elements because it requires two attributes: one to locate the document and one to locate an ID value within that document. Here is an example of an <sgmltag>olink</sgmltag>:</para> 
+<programlisting>&lt;olink targetdoc="home" targetptr="whatsnew"/&gt;</programlisting>
+<itemizedlist>
+<listitem>
+<para>The <sgmltag class="attribute">targetdoc</sgmltag> attribute identifies the document that contains the target of the link. In Website, the <sgmltag>id</sgmltag> attribute value on the <sgmltag class="element">webpage</sgmltag> element used as the document identifier since it must be unique. Its value should be used in the <sgmltag class="attribute">targetdoc</sgmltag> attribute of an <sgmltag class="element">olink</sgmltag>.</para>
+</listitem>
+<listitem>
+<para>The <sgmltag class="attribute">targetptr</sgmltag> attribute must match an <sgmltag>id</sgmltag> attribute value on an element within that document. If you want to link to the top of the page, then the <sgmltag class="attribute">targetptr</sgmltag> is the same as the <sgmltag class="attribute">targetdoc</sgmltag> value.</para>
+</listitem>
+<listitem>
+<para>If an <sgmltag class="element">olink</sgmltag> has no content, then the stylesheet generates content in a manner similar to an <sgmltag class="element">xref</sgmltag>. The content comes from a website database document that the stylesheets can create. If an <sgmltag class="element">olink</sgmltag> element has content, then that is used instead of the generated content.</para>
+</listitem>
+<listitem>
+<para>Once you enter olinks in your webpages, you need to make sure the right parameters are set to process them.</para>
+</listitem>
+</itemizedlist> 
+<section>
+<title>Olinks with XSLT build method</title>
+<para>Here is how you process a website with olinks using  the <olink targetdoc="buildmake" targetptr="buildmake">XSLT build</olink> method.</para>
+<orderedlist>
+<listitem>
+<para>Create your <filename>layout.xml</filename> file the same as before.</para>
+</listitem>
+<listitem>
+<para>Process your <filename>layout.xml</filename> file as before with the <filename>autolayout.xsl</filename> stylesheet to create the <filename>autolayout.xml</filename> file.</para>
+</listitem>
+<listitem>
+<para>Process your <filename>autolayout.xml</filename> file as before with either the <filename>chunk-tabular.xsl</filename> or <filename>chunk-website.xsl</filename> stylesheet. But set the parameter <literal>collect.xref.targets</literal> to the value <quote><literal>yes</literal></quote>. That will generate a database file named <filename>website.database.xml</filename> in the current directory, and use that to resolve olinks.</para>
+</listitem>
+</orderedlist>
+</section>
+<section>
+<title>Olinks with Make method</title>
+<para>Here is how you process a website with olinks using  the <olink targetdoc="buildmake" targetptr="buildmake">Makefile</olink>  method.</para>
+<orderedlist>
+<listitem>
+<para>Create your <filename>layout.xml</filename> file the same as before.</para>
+</listitem>
+<listitem>
+<para>Do the <literal>autolayout.xml</literal> and <literal>depends</literal> processing steps as before.</para>
+</listitem>
+<listitem>
+<para>Generate the website database file by processing your <filename>autolayout.xml</filename> file with the <filename>website-targets.xsl</filename> stylesheet, saving the output to a file named <filename>website.database.xml</filename>.</para>
+</listitem>
+<listitem>
+<para>Process your website as you would normally (usually by typing <command>make website</command>).</para>
+</listitem>
+</orderedlist>
+<para>Here is a sample <filename>Makefile</filename> using xsltproc and XML catalogs:</para>
+<programlisting>
+PROC = XML_CATALOG_FILES=../catalog.xml  xsltproc
+
+all:
+        make website
+
+include depends.tabular
+
+autolayout.xml:  layout.xml
+        $(PROC) \
+        --output  $@ \
+        autolayout.xsl  $&lt;
+
+        make depends
+
+depends:  autolayout.xml
+        $(PROC) \
+        --output depends.tabular \
+        --stringparam  output-root  htdocs  \
+        makefile-dep.xsl  $&lt;
+
+website.database.xml:  autolayout.xml
+        $(PROC) \
+        --output $@ \
+       website-targets.xsl  $&lt;
+
+%.html: autolayout.xml 
+        $(PROC) \
+        --output $@  \
+        --stringparam  output-root  htdocs
+        tabular.xsl  \
+        $(filter-out autolayout.xml,$^)
+
+</programlisting>
+
+</section>
+<section>
+<title>Olinks with system entities</title>
+<para>The original system for olinks uses SYSTEM entities referenced by a <sgmltag class="attribute">targetdocent</sgmltag> attribute instead of a <sgmltag class="attribute">targetdoc</sgmltag> attribute. And it uses the <sgmltag class="attribute">localinfo</sgmltag> attribute instead of <sgmltag class="attribute">targetptr</sgmltag> to locate a reference point within the document. Here is how you process the original kind of olinks with Website.</para>
+<orderedlist>
+<listitem>
+<para>Create an entity declaration that identifies the target
+page. For example, to link to this page, I would use the following
+declaration:</para> 
+<programlisting><![CDATA[<!ENTITY linking SYSTEM "olink.xml" NDATA XML>]]></programlisting>
+<para>The name that you use for the entity, <literal>linking</literal>
+in this case, is irrelevant. The important thing is that the entity
+point to the right page. I've used a system identifier here, but you could
+also use public identifiers if you wanted more flexibility.</para> 
+<para>Keep in mind that the systen identifier specified here must be
+either an absolute URI or a relative URI that will resolve to the
+target page (in other words, you may need to prefix it with a partial
+path name, if you keep your XML webpages in different directories).</para> 
+</listitem> 
+<listitem>
+<para>Make sure the webpage that you are linking
+<emphasis>from</emphasis> (you don't have to do anything special to
+the page you're linking to) has a <quote>DOCTYPE</quote> declaration with
+an internal subset. If your <sgmltag>olink</sgmltag> entity is the only
+thing in it, it should look like something like this:</para> 
+<programlisting><![CDATA[<!DOCTYPE webpage PUBLIC "-//SF DocBook//DTD Website V2.0//EN"
+          SYSTEM "http://www.sourceforge.net/docbook/release/website/2.0/website.dtd [
+<!ENTITY linking SYSTEM "olink.xml" NDATA XML>
+]>]]></programlisting>
+<para>If you want to link to several different pages, you will need an
+entity declaration for each of them.</para> 
+</listitem> 
+<listitem>
+<para>Use the <sgmltag class="attribute">targetdocent</sgmltag>
+attribute of <sgmltag>olink</sgmltag> to identify the entity of the page
+you want to link to:</para> 
+<programlisting><![CDATA[<olink targetdocent="linking">link text</olink>]]></programlisting>
+<para>That will link to the correct page in the resulting website. If you
+want to link to a specific anchor in that web page, use the
+<sgmltag class="attribute">localinfo</sgmltag> attribute to specify the
+XML ID.</para> 
+</listitem>
+</orderedlist>
+</section> 
+
+</webpage>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="stringtype">
+ <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:complexType name="attributetype">
+  <xs:simpleContent> 
+    <xs:extension base="stringtype">
+      <xs:attribute name="type" type="stringtype" use="required"/>
+      <xs:attribute name="default" type="stringtype" use="required"/>
+      <xs:attribute name="values" type="stringtype"/>
+    </xs:extension>
+  </xs:simpleContent>  
+</xs:complexType>
+
+<xs:complexType name="grouptype">
+  <xs:sequence>
+   <xs:element name="attribute" type="attributetype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="name" type="stringtype" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="attributestype">
+  <xs:sequence>
+   <xs:element name="group" type="grouptype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="attributes" type="attributestype"/>
+
+</xs:schema>

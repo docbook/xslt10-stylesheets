@@ -1,0 +1,424 @@
+<?xml version="1.0"?>
+<book xmlns:xi="http://www.w3.org/2001/XInclude">
+  
+
+  <preface xml:id="about"><info><title>What's Included in This Document</title></info>
+    
+
+    <para>This document represents only a subset of the full Boost
+    documentation: that part which is generated from BoostBook or
+    QuickBook sources.  Eventually all Boost libraries may use these
+    formats, but in the meantime, much of Boost's documentation is not
+    available here.  Please
+    see <link xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook" xlink:href="http://www.boost.org/libs" href="">http://www.boost.org/libs</link>
+    for complete documentation.
+    </para>
+
+    <para>
+      Documentation for some of the libraries described in this document is
+      available in alternative formats:
+       <itemizedlist>
+         <listitem>
+           <simpara><link xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook" xlink:href="http://www.boost.org/doc/boost-doc-html.tar.gz" href="">HTML (tarred, gzipped)</link></simpara>
+         </listitem>
+         <listitem>
+           <simpara><link xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook" xlink:href="http://www.boost.org/doc/boost.pdf" href="">PDF</link></simpara>
+         </listitem>
+         <listitem>
+           <simpara>
+             <link xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook" xlink:href="http://www.boost.org/doc/boost-doc-man.tar.gz" href="">Unix man pages</link>
+           </simpara>
+         </listitem>
+         <listitem>
+           <simpara><link xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook" xlink:href="../boost.docbook" href="">DocBook</link></simpara>
+         </listitem>
+         <listitem>
+           <simpara>
+             <link xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook" xlink:href="../boost.fo" href="">XSL Formatting Objects</link>
+           </simpara>
+         </listitem>
+       </itemizedlist>
+    </para>
+
+  </preface>
+
+  <part xml:id="libraries"><info><title>The Boost C++ Libraries (BoostBook Subset)</title></info>
+    
+
+    <chapter xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" id="id18968-bb" rev:last-revision="$Date: 2009-07-22 23:35:08 +0100 (Wed, 22 Jul 2009) $">
+  <chapterinfo><author>
+      <personname>Kevlin Henney</personname>
+    </author><copyright>
+      <year>2001</year>
+      <holder>Kevlin Henney</holder>
+    </copyright><legalnotice>
+      <para>Distributed under the Boost Software License, Version 1.0.
+      (See accompanying file <filename>LICENSE_1_0.txt</filename> or copy at 
+      <link xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.boost.org/LICENSE_1_0.txt" href="">http://www.boost.org/LICENSE_1_0.txt</link>)
+      </para>
+    </legalnotice></chapterinfo>
+
+  <title>Boost.Any</title>
+
+  <section xml:id="any.introduction">
+    <title>Introduction</title>
+
+    <para>There are times when a generic (in the sense of
+    <emphasis>general</emphasis> as opposed to
+    <emphasis>template-based programming</emphasis>) type is needed:
+    variables that are truly variable, accommodating values of many
+    other more specific types rather than C++'s normal strict and
+    static types. We can distinguish three basic kinds of generic
+    type:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Converting types that can hold one of a number of
+        possible value types, e.g. <computeroutput>int</computeroutput> and
+        <computeroutput>string</computeroutput>, and freely convert between them, for
+        instance interpreting <computeroutput>5</computeroutput> as <computeroutput>"5"</computeroutput> or
+        vice-versa.  Such types are common in scripting and other
+        interpreted
+        languages. 
+        <computeroutput>boost::lexical_cast</computeroutput>
+        supports such conversion functionality.</para>
+      </listitem>
+      <listitem>
+        <para>
+        Discriminated types that contain values of different types but
+        do not attempt conversion between them, i.e. <computeroutput>5</computeroutput> is
+        held strictly as an <computeroutput>int</computeroutput> and is not implicitly
+        convertible either to <computeroutput>"5"</computeroutput> or to
+        <computeroutput>5.0</computeroutput>. Their indifference to interpretation but
+        awareness of type effectively makes them safe, generic
+        containers of single values, with no scope for surprises from
+        ambiguous conversions.</para>
+      </listitem>
+      <listitem>
+        <para>
+        Indiscriminate types that can refer to anything but are
+        oblivious to the actual underlying type, entrusting all forms
+        of access and interpretation to the programmer. This niche is
+        dominated by <computeroutput>void *</computeroutput>, which offers plenty of scope
+        for surprising, undefined behavior.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> class
+    (based on the class of the same name described in <link xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.two-sdg.demon.co.uk/curbralan/papers/ValuedConversions.pdf" href="">"Valued
+    Conversions"</link> by Kevlin Henney, <emphasis>C++
+    Report</emphasis> 12(7), July/August 2000) is a variant value type
+    based on the second category. It supports copying of any value
+    type and safe checked extraction of that value strictly against
+    its type. A similar design, offering more appropriate operators,
+    can be used for a generalized function adaptor,
+    <computeroutput>any_function</computeroutput>, a generalized iterator adaptor,
+    <computeroutput>any_iterator</computeroutput>, and other object types that need
+    uniform runtime treatment but support only compile-time template
+    parameter conformance.</para>
+  </section>
+
+  <section xml:id="any.examples">
+    <title>Examples</title>
+
+    
+    
+
+    <para>The following code demonstrates the syntax for using
+    implicit conversions to and copying of any objects:</para>
+
+<programlisting>
+#include &lt;list&gt;
+#include &lt;boost/any.hpp&gt;
+
+using <computeroutput><link linkend="boost.any_cast">boost::any_cast</link></computeroutput>;
+typedef std::list&lt;<computeroutput><link linkend="boost.any">boost::any</link></computeroutput>&gt; many;
+
+void append_int(many &amp; values, int value)
+{
+    <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> to_append = value;
+    values.push_back(to_append);
+}
+
+void append_string(many &amp; values, const std::string &amp; value)
+{
+    values.push_back(value);
+}
+
+void append_char_ptr(many &amp; values, const char * value)
+{
+    values.push_back(value);
+}
+
+void append_any(many &amp; values, const <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> &amp; value)
+{
+    values.push_back(value);
+}
+
+void append_nothing(many &amp; values)
+{
+    values.push_back(<computeroutput><link linkend="boost.any">boost::any</link></computeroutput>());
+}
+</programlisting>
+
+    <para>The following predicates follow on from the previous
+    definitions and demonstrate the use of queries on any
+    objects:</para>
+
+<programlisting>
+bool is_empty(const <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> &amp; operand)
+{
+    return operand.<computeroutput><link linkend="id61996-bb">empty</link></computeroutput>();
+}
+
+bool is_int(const <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> &amp; operand)
+{
+    return operand.<computeroutput><link linkend="id62025-bb">type</link></computeroutput>() == typeid(int);
+}
+
+bool is_char_ptr(const <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> &amp; operand)
+{
+    try
+    {
+        <computeroutput><link linkend="boost.any_cast">any_cast</link></computeroutput>&lt;const char *&gt;(operand);
+        return true;
+    }
+    catch(const <computeroutput><link linkend="boost.bad_any_cast">boost::bad_any_cast</link></computeroutput> &amp;)
+    {
+        return false;
+    }
+}
+
+bool is_string(const <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> &amp; operand)
+{
+    return <computeroutput><link linkend="boost.any_cast">any_cast</link></computeroutput>&lt;std::string&gt;(&amp;operand);
+}
+
+void count_all(many &amp; values, std::ostream &amp; out)
+{
+    out &lt;&lt; "#empty == "
+        &lt;&lt; std::count_if(values.begin(), values.end(), is_empty) &lt;&lt; std::endl;
+    out &lt;&lt; "#int == "
+        &lt;&lt; std::count_if(values.begin(), values.end(), is_int) &lt;&lt; std::endl;
+    out &lt;&lt; "#const char * == "
+        &lt;&lt; std::count_if(values.begin(), values.end(), is_char_ptr) &lt;&lt; std::endl;
+    out &lt;&lt; "#string == "
+        &lt;&lt; std::count_if(values.begin(), values.end(), is_string) &lt;&lt; std::endl;
+}
+</programlisting>
+
+    <para>The following type, patterned after the OMG's Property Service, defines name-value pairs for arbitrary value types:</para>
+
+<programlisting>
+struct property
+{
+    property();
+    property(const std::string &amp;, const <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> &amp;);
+
+    std::string name;
+    <computeroutput><link linkend="boost.any">boost::any</link></computeroutput> value;
+};
+
+typedef std::list&lt;property&gt; properties;
+</programlisting>
+
+    <para>The following base class demonstrates one approach to
+    runtime polymorphism based callbacks that also require arbitrary
+    argument types. The absence of virtual member templates requires
+    that different solutions have different trade-offs in terms of
+    efficiency, safety, and generality. Using a checked variant type
+    offers one approach:</para>
+
+<programlisting>
+class consumer
+{
+public:
+    virtual void notify(const <computeroutput><link linkend="boost.any">any</link></computeroutput> &amp;) = 0;
+    ...
+};
+</programlisting>
+  </section>
+
+  <section id="any.reference"><title>Reference</title>
+    <section xml:id="any.ValueType">
+      <title><emphasis role="bold">ValueType</emphasis> requirements</title>
+
+      <para>Values are strongly informational objects for which
+      identity is not significant, i.e. the focus is principally on
+      their state content and any behavior organized around
+      that. Another distinguishing feature of values is their
+      granularity: normally fine-grained objects representing simple
+      concepts in the system such as quantities.</para>
+
+      <para>As the emphasis of a value lies in its state not its
+      identity, values can be copied and typically assigned one to
+      another, requiring the explicit or implicit definition of a
+      public copy constructor and public assignment operator. Values
+      typically live within other scopes, i.e. within objects or
+      blocks, rather than on the heap. Values are therefore normally
+      passed around and manipulated directly as variables or through
+      references, but not as pointers that emphasize identity and
+      indirection.</para>
+
+      <para>The specific requirements on value types to be used in an
+      <computeroutput><link linkend="boost.any">any</link></computeroutput>
+      are:</para>
+
+      <itemizedlist spacing="compact">
+        <listitem><simpara>A <emphasis>ValueType</emphasis> is
+          <emphasis>CopyConstructible</emphasis> [20.1.3].</simpara>
+        </listitem>
+        
+        <listitem><simpara>A <emphasis>ValueType</emphasis> is
+        optionally <emphasis>Assignable</emphasis> [23.1]. The strong
+        exception-safety guarantee is required for all forms of
+        assignment.</simpara>
+        </listitem>
+        
+        <listitem><simpara>The destructor for a
+        <emphasis>ValueType</emphasis> upholds the no-throw
+        exception-safety guarantee.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="header.boost.any_hpp"><title>Header &lt;<ulink url="../../boost/any.hpp">boost/any.hpp</ulink>&gt;</title><synopsis><phrase role="keyword">namespace</phrase> <phrase role="identifier">boost</phrase> <phrase role="special">{</phrase>
+  <phrase role="keyword">class</phrase> <link linkend="boost.bad_any_cast">bad_any_cast</link><phrase role="special">;</phrase>
+  <phrase role="keyword">class</phrase> <link linkend="boost.any">any</link><phrase role="special">;</phrase>
+  <phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="identifier">T</phrase> <link linkend="boost.any_cast"><phrase role="identifier">any_cast</phrase></link><phrase role="special">(</phrase><link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="identifier">T</phrase> <link linkend="boost.any_cast"><phrase role="identifier">any_cast</phrase></link><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="keyword">const</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">*</phrase> <link linkend="boost.any_cast"><phrase role="identifier">any_cast</phrase></link><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">*</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">*</phrase> <link linkend="boost.any_cast"><phrase role="identifier">any_cast</phrase></link><phrase role="special">(</phrase><link linkend="boost.any">any</link> <phrase role="special">*</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+<phrase role="special">}</phrase></synopsis>
+      <refentry id="boost.bad_any_cast"><refmeta><refentrytitle>Class bad_any_cast</refentrytitle><manvolnum>3</manvolnum></refmeta><refnamediv><refname>boost::bad_any_cast</refname><refpurpose>The exception thrown in the event of a failed
+          <computeroutput><link linkend="boost.any_cast">any_cast</link></computeroutput> of an
+          <computeroutput><link linkend="boost.any">any</link></computeroutput> value.</refpurpose></refnamediv><refsynopsisdiv><synopsis><phrase role="comment">// In header: &lt;<link linkend="header.boost.any_hpp">boost/any.hpp</link>&gt;
+
+</phrase>
+<phrase role="keyword">class</phrase> <link linkend="boost.bad_any_cast">bad_any_cast</link> <phrase role="special">:</phrase> <phrase role="keyword">public</phrase> std::bad_cast <phrase role="special">{</phrase>
+<phrase role="keyword">public</phrase><phrase role="special">:</phrase>
+  <phrase role="keyword">virtual</phrase> <phrase role="keyword">const</phrase> <phrase role="keyword">char</phrase> <phrase role="special">*</phrase> <link linkend="id61674-bb"><phrase role="identifier">what</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase> <phrase role="keyword">const</phrase><phrase role="special">;</phrase>
+<phrase role="special">}</phrase><phrase role="special">;</phrase></synopsis></refsynopsisdiv><refsect1><title>Description</title><para><literallayout class="monospaced"><phrase role="keyword">virtual</phrase> <phrase role="keyword">const</phrase> <phrase role="keyword">char</phrase> <phrase role="special">*</phrase> <anchor id="id61674-bb"/><phrase role="identifier">what</phrase><phrase role="special">(</phrase><phrase role="special">)</phrase> <phrase role="keyword">const</phrase><phrase role="special">;</phrase></literallayout></para></refsect1></refentry><refentry id="boost.any"><refmeta><refentrytitle>Class any</refentrytitle><manvolnum>3</manvolnum></refmeta><refnamediv><refname>boost::any</refname><refpurpose>A class whose instances can hold instances of any
+          type that satisfies <link linkend="any.ValueType">ValueType</link>
+          requirements.</refpurpose></refnamediv><refsynopsisdiv><synopsis><phrase role="comment">// In header: &lt;<link linkend="header.boost.any_hpp">boost/any.hpp</link>&gt;
+
+</phrase>
+<phrase role="keyword">class</phrase> <link linkend="boost.any">any</link> <phrase role="special">{</phrase>
+<phrase role="keyword">public</phrase><phrase role="special">:</phrase>
+  <phrase role="comment">// <link linkend="boost.anyconstruct-copy-destruct">construct/copy/destruct</link></phrase>
+  <link linkend="id61705-bb"><phrase role="identifier">any</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <link linkend="id61718-bb"><phrase role="identifier">any</phrase></link><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <link linkend="id61766-bb"><phrase role="identifier">any</phrase></link><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> <link linkend="id61826-bb"><phrase role="keyword">operator</phrase><phrase role="special">=</phrase></link><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> <link linkend="id61883-bb"><phrase role="keyword">operator</phrase><phrase role="special">=</phrase></link><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+  <link linkend="id61812-bb"><phrase role="special">~</phrase><phrase role="identifier">any</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+
+  <phrase role="comment">// <link linkend="id61937-bb">modifiers</link></phrase>
+  <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> <link linkend="id61941-bb"><phrase role="identifier">swap</phrase></link><phrase role="special">(</phrase><link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase>
+
+  <phrase role="comment">// <link linkend="id61992-bb">queries</link></phrase>
+  <phrase role="keyword">bool</phrase> <link linkend="id61996-bb"><phrase role="identifier">empty</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase> <phrase role="keyword">const</phrase><phrase role="special">;</phrase>
+  <phrase role="keyword">const</phrase> std::type_info <phrase role="special">&amp;</phrase> <link linkend="id62025-bb"><phrase role="identifier">type</phrase></link><phrase role="special">(</phrase><phrase role="special">)</phrase> <phrase role="keyword">const</phrase><phrase role="special">;</phrase>
+<phrase role="special">}</phrase><phrase role="special">;</phrase></synopsis></refsynopsisdiv><refsect1><title>Description</title><refsect2><title><anchor id="boost.anyconstruct-copy-destruct"/><computeroutput>any</computeroutput> 
+        public
+       construct/copy/destruct</title><orderedlist><listitem><para><literallayout class="monospaced"><anchor id="id61705-bb"/><phrase role="identifier">any</phrase><phrase role="special">(</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Postconditions:</term><listitem><simpara><computeroutput>this-&gt;<link linkend="id61996-bb">empty</link>()</computeroutput></simpara></listitem></varlistentry></variablelist></listitem><listitem><para><literallayout class="monospaced"><anchor id="id61718-bb"/><phrase role="identifier">any</phrase><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> other<phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Effects:</term><listitem><simpara> Copy constructor that copies content of
+            <computeroutput>other</computeroutput> into new instance, so that any content
+            is equivalent in both type and value to the content of
+            <computeroutput>other</computeroutput>, or empty if <computeroutput>other</computeroutput> is
+            empty. </simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara>May fail with a
+            <computeroutput>std::bad_alloc</computeroutput>
+            exception or any exceptions arising from the copy
+            constructor of the contained type.</simpara></listitem></varlistentry></variablelist></listitem><listitem><para><literallayout class="monospaced"><phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <anchor id="id61766-bb"/><phrase role="identifier">any</phrase><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">&amp;</phrase> value<phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Effects:</term><listitem><simpara>Makes a copy of <computeroutput>value</computeroutput>, so
+            that the initial content of the new instance is equivalent
+            in both type and value to
+            <computeroutput>value</computeroutput>.</simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara><computeroutput>std::bad_alloc</computeroutput>
+            or any exceptions arising from the copy constructor of the
+            contained type.</simpara></listitem></varlistentry></variablelist></listitem><listitem><para><literallayout class="monospaced"><link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> <anchor id="id61826-bb"/><phrase role="keyword">operator</phrase><phrase role="special">=</phrase><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> rhs<phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Effects:</term><listitem><simpara>Copies content of <computeroutput>rhs</computeroutput> into
+            current instance, discarding previous content, so that the
+            new content is equivalent in both type and value to the
+            content of <computeroutput>rhs</computeroutput>, or empty if
+            <computeroutput>rhs.<link linkend="id61996-bb">empty</link>()</computeroutput>.</simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara><computeroutput>std::bad_alloc</computeroutput>
+            or any exceptions arising from the copy constructor of the
+            contained type. Assignment satisfies the strong guarantee
+            of exception safety.</simpara></listitem></varlistentry></variablelist></listitem><listitem><para><literallayout class="monospaced"><phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> <anchor id="id61883-bb"/><phrase role="keyword">operator</phrase><phrase role="special">=</phrase><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">&amp;</phrase> rhs<phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Effects:</term><listitem><simpara>Makes a copy of <computeroutput>rhs</computeroutput>,
+            discarding previous content, so that the new content of is
+            equivalent in both type and value to
+            <computeroutput>rhs</computeroutput>.</simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara><computeroutput>std::bad_alloc</computeroutput>
+            or any exceptions arising from the copy constructor of the
+            contained type. Assignment satisfies the strong guarantee
+            of exception safety.</simpara></listitem></varlistentry></variablelist></listitem><listitem><para><literallayout class="monospaced"><anchor id="id61812-bb"/><phrase role="special">~</phrase><phrase role="identifier">any</phrase><phrase role="special">(</phrase><phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Effects:</term><listitem><simpara>Releases any and all resources used in
+            management of instance.</simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara>Nothing.</simpara></listitem></varlistentry></variablelist></listitem></orderedlist></refsect2><refsect2><title><anchor id="id61937-bb"/><computeroutput>any</computeroutput> modifiers</title><orderedlist><para><literallayout class="monospaced"><link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> <anchor id="id61941-bb"/><phrase role="identifier">swap</phrase><phrase role="special">(</phrase><link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> rhs<phrase role="special">)</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Effects:</term><listitem><simpara>Exchange of the contents of
+              <computeroutput>*this</computeroutput> and
+              <computeroutput>rhs</computeroutput>.</simpara></listitem></varlistentry><varlistentry><term>Returns:</term><listitem><simpara><computeroutput>*this</computeroutput></simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara>Nothing.</simpara></listitem></varlistentry></variablelist></orderedlist></refsect2><refsect2><title><anchor id="id61992-bb"/><computeroutput>any</computeroutput> queries</title><orderedlist><para><literallayout class="monospaced"><phrase role="keyword">bool</phrase> <anchor id="id61996-bb"/><phrase role="identifier">empty</phrase><phrase role="special">(</phrase><phrase role="special">)</phrase> <phrase role="keyword">const</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Returns:</term><listitem><simpara><computeroutput>true</computeroutput> if instance is
+              empty, otherwise <computeroutput>false</computeroutput>.</simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara>Will not throw.</simpara></listitem></varlistentry></variablelist><para><literallayout class="monospaced"><phrase role="keyword">const</phrase> std::type_info <phrase role="special">&amp;</phrase> <anchor id="id62025-bb"/><phrase role="identifier">type</phrase><phrase role="special">(</phrase><phrase role="special">)</phrase> <phrase role="keyword">const</phrase><phrase role="special">;</phrase></literallayout></para><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Returns:</term><listitem><simpara>the <computeroutput>typeid</computeroutput> of the
+              contained value if instance is non-empty, otherwise
+              <computeroutput>typeid(void)</computeroutput>.</simpara></listitem></varlistentry><varlistentry><term>Notes:</term><listitem><simpara>Useful for querying against types known
+              either at compile time or only at
+              runtime.</simpara></listitem></varlistentry></variablelist></orderedlist></refsect2></refsect1></refentry><refentry id="boost.any_cast"><refmeta><refentrytitle>Function any_cast</refentrytitle><manvolnum>3</manvolnum></refmeta><refnamediv><refname>boost::any_cast</refname><refpurpose>Custom keyword cast for extracting a value
+          of a given type from an
+          <computeroutput><link linkend="boost.any">any</link></computeroutput>.</refpurpose></refnamediv><refsynopsisdiv><synopsis><phrase role="comment">// In header: &lt;<link linkend="header.boost.any_hpp">boost/any.hpp</link>&gt;
+
+</phrase>
+<phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="identifier">T</phrase> <phrase role="identifier">any_cast</phrase><phrase role="special">(</phrase><link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> operand<phrase role="special">)</phrase><phrase role="special">;</phrase>
+<phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="identifier">T</phrase> <phrase role="identifier">any_cast</phrase><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">&amp;</phrase> operand<phrase role="special">)</phrase><phrase role="special">;</phrase>
+<phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="keyword">const</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">*</phrase> <phrase role="identifier">any_cast</phrase><phrase role="special">(</phrase><phrase role="keyword">const</phrase> <link linkend="boost.any">any</link> <phrase role="special">*</phrase> operand<phrase role="special">)</phrase><phrase role="special">;</phrase>
+<phrase role="keyword">template</phrase><phrase role="special">&lt;</phrase><phrase role="special">&gt;</phrase> <phrase role="identifier">ValueType</phrase> <phrase role="special">*</phrase> <phrase role="identifier">any_cast</phrase><phrase role="special">(</phrase><link linkend="boost.any">any</link> <phrase role="special">*</phrase> operand<phrase role="special">)</phrase><phrase role="special">;</phrase></synopsis></refsynopsisdiv><refsect1><title>Description</title><variablelist spacing="compact"><?dbhtml 
+          list-presentation="table"
+        ?><varlistentry><term>Returns:</term><listitem><simpara> If passed a pointer, it returns a
+          similarly qualified pointer to the value content if
+	  successful, otherwise null is returned.
+	  If T is ValueType, it returns a copy of the held value, otherwise, if T is a reference 
+	  to (possibly const qualified) ValueType, it returns a reference to the held 
+	  value.</simpara></listitem></varlistentry><varlistentry><term>Throws:</term><listitem><simpara>Overloads taking an
+          <computeroutput><link linkend="boost.any">any</link></computeroutput> pointer do not
+          throw; overloads taking an
+          <computeroutput><link linkend="boost.any">any</link></computeroutput> value or reference
+          throws <computeroutput><link linkend="boost.bad_any_cast">bad_any_cast</link></computeroutput> if
+          unsuccessful.</simpara></listitem></varlistentry></variablelist></refsect1></refentry>
+    </section>
+  </section>
+
+  <section xml:id="any.acknowledgments">
+    <title>Acknowledgements</title>
+
+    <para>Doug Gregor ported the documentation to the BoostBook format.</para>
+  </section>
+</chapter>
+
+  </part>
+
+  <part xml:id="tools"><info><title>Boost Tools</title></info>
+    
+    <partintro>
+      <para>
+        Boost developers, testers, and maintainers have developed various programs to 
+        help with the administration of the Boost Libraries. Like everything else about 
+        Boost, these tools are available in source form, and are part of the regular 
+        Boost distribution.
+      </para>
+      <para>
+        Users may find these tools useful when porting Boost libraries to a new platform, 
+        or for use with their own applications.
+      </para>
+    </partintro>
+
+  </part>
+</book>

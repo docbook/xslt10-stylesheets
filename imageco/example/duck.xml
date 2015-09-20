@@ -1,0 +1,58 @@
+<!DOCTYPE article [
+<!ENTITY duck SYSTEM "figures/duckl-co.png" NDATA PNG>
+]>
+<article xmlns="http://docbook.org/ns/docbook">
+<info>
+<title>Callout Test</title>
+</info>
+
+<para>Two ducks with callouts</para>
+
+<mediaobject>
+  <imageobjectco>
+    <areaspec>
+      <area xml:id="p1" coords="240,9049 497,8786"   linkends="c1"/>
+      <area xml:id="p2" coords="2905,1360 3162,1098" linkends="c2"/>
+      <area xml:id="p3" coords="8796,1491 9052,1229" linkends="c3"/>
+    </areaspec>
+    <imageobject>
+      <?base-image figures/duckl.png?>
+      <imagedata
+	  entityref="duck"/>
+    </imageobject>
+  </imageobjectco>
+</mediaobject>
+
+<calloutlist>
+  <callout arearefs="p1" xml:id="c1"><para>The bill.</para></callout>
+  <callout arearefs="p2" xml:id="c2"><para>The feet.</para></callout>
+  <callout arearefs="p3" xml:id="c3"><para>The tail.</para></callout>
+</calloutlist>
+
+<mediaobject>
+  <imageobjectco>
+    <areaspec>
+      <area xml:id="p4" coords="9333,9455 9633,9149" linkends="c4"/>
+      <area xml:id="p5" coords="5000,5170 5633,4523" linkends="c5"/>
+      <area xml:id="p6" coords="300,3027 600,2721" linkends="c6"/>
+      <areaset xml:id="p7" linkends="c7">
+	<area coords="5500,1666 5800,1360"/>
+	<area coords="5866,1054 6166,748"/>
+      </areaset>
+    </areaspec>
+    <imageobject>
+      <?base-image figures/duckr.png?>
+      <imagedata
+	  fileref="figures/duckr-co.png"/>
+    </imageobject>
+  </imageobjectco>
+</mediaobject>
+
+<calloutlist>
+  <callout arearefs="p4" xml:id="c4"><para>The bill.</para></callout>
+  <callout arearefs="p5" xml:id="c5"><para>The body.</para></callout>
+  <callout arearefs="p6" xml:id="c6"><para>The tail.</para></callout>
+  <callout arearefs="p7" xml:id="c7"><para>The feet.</para></callout>
+</calloutlist>
+
+</article>

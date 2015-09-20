@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+          "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<book>
+<title>Small Duck</title>
+<chapter>
+  <title>Chapter One</title>
+<sect1>
+<title>Fowl</title>
+
+<para>The small duck.</para>
+
+<para>Include a copy entity to trigger a bug in entity collapsing 
+  following <ulink url="https://sourceforge.net/tracker/?func=detail&amp;aid=2750442&amp;group_id=21935&amp;atid=373747">Bug #2750442</ulink>'s resolution.
+To that end: &copy;.
+Reported by Michael Wiedmann.</para>
+
+<mediaobject>
+  <imageobject role="webhires">
+    <imagedata format="PNG" fileref="graphics/duck-small.png"/>
+  </imageobject>
+  <imageobject role="weblowres">
+    <imagedata format="GIF" fileref="graphics/duck-small.gif"/>
+  </imageobject>
+  <imageobject role="print">
+    <imagedata format="PDF" fileref="graphics/duck-small.pdf"/>
+  </imageobject>
+</mediaobject>
+
+</sect1>
+
+</chapter>
+</book>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="kahlúa">
+<info><title>Unit Test: variablelist.002</title>
+
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><personname><firstname>Norman</firstname><surname>Walsh</surname></personname><affiliation><address><email>ndw@nwalsh.com</email></address></affiliation></author>
+</info>
+
+<variablelist>
+  <varlistentry>
+    <term>
+      <methodsynopsis>
+        <modifier>static</modifier>
+        <modifier>public</modifier>
+
+        <type>void</type>
+        <methodname>import</methodname>
+
+        <methodparam>
+          <type>HttpServletRequest</type>
+          <parameter>req</parameter>
+        </methodparam>
+      </methodsynopsis>
+    </term>
+  <listitem>
+  <para>Foobar</para>
+  </listitem>
+      </varlistentry>
+</variablelist>
+
+</article>

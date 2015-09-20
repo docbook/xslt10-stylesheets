@@ -1,0 +1,112 @@
+<!DOCTYPE book [
+<!ENTITY % param.ent SYSTEM "param.ent">
+%param.ent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+  xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xml:id="slides_fo_doc">
+<info>
+<title>Slides FO Parameter Reference</title>
+<releaseinfo role="meta">
+$Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
+</releaseinfo>
+<author>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
+</author>
+<copyright>
+  <year>2002</year>
+  <holder>Norman Walsh</holder>
+</copyright>
+<abstract>
+  <para>This is reference documentation for all user-configurable
+    parameters in the DocBook XSL Slides FO stylesheet (for
+    generating PDF slide presentations). Note that the Slides
+    stylesheet for FO output is a customization layer of the
+    DocBook XSL FO stylesheet. Therefore, in addition to the
+    slides-specific parameters listed in this section, you can
+    also use a number of <link xlink:href="../fo/" >FO stylesheet
+    parameters</link> to control Slides FO output.</para>
+</abstract>
+</info>
+<reference xml:id="fo">
+  <title>FO: General Params</title>
+&slide.title.font.family;
+&slide.font.family;
+&foil.title.master;
+&foil.title.size;
+</reference>
+<reference xml:id="propsets">
+  <title>FO: Property Sets</title>
+&slides.properties;
+&foilgroup.properties;
+&foil.subtitle.properties;
+&foil.properties;
+&speakernote.properties;
+&running.foot.properties;
+</reference>
+<!--
+<refentry xml:id="">
+<refmeta>
+<refentrytitle></refentrytitle>
+<refmiscinfo role="type">string</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname></refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment xml:id='.frag'>
+<xsl:param name="" select="''"/>
+</src:fragment>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+
+<para>FIXME:</para>
+
+</refsect1>
+</refentry>
+-->
+<appendix xml:id="styleheet"><title>The Stylesheet</title>
+
+<para>The <filename>param.xsl</filename> stylesheet is just a wrapper
+around all these parameters.</para>
+
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
+
+<!-- This file is generated from param.xweb -->
+
+<xsl:stylesheet exclude-result-prefixes="src" version="1.0">
+
+<!-- ********************************************************************
+     $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
+     ********************************************************************
+
+     This file is part of the DocBook Slides Stylesheet distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+<src:fragref linkend="slide.font.family.frag"/>
+<src:fragref linkend="slide.title.font.family.frag"/>
+<src:fragref linkend="foil.title.master.frag"/>
+<src:fragref linkend="foil.title.size.frag"/>
+<src:fragref linkend="foilgroup.properties.frag"/>
+<src:fragref linkend="foil.properties.frag"/>
+<src:fragref linkend="foil.subtitle.properties.frag"/>
+<src:fragref linkend="running.foot.properties.frag"/>
+<src:fragref linkend="speakernote.properties.frag"/>
+<src:fragref linkend="slides.properties.frag"/>
+
+</xsl:stylesheet>
+</src:fragment>
+
+</appendix>
+</book>

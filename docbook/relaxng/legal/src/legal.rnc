@@ -1,0 +1,87 @@
+# This file is a customization of DocBook V5.0 created by the 
+# OASIS DocBook Publishers Subcommittee.
+#
+# Copyright 1992-2007 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: publishers.rnc 7466 2007-09-27 14:03:55Z shudson310 $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start = db.set
+        | db.book
+	| db.divisions
+	| db.components
+	| db.navigation.components
+	| db.section
+	| db.para
+
+include "publishers.rnc" 
+
+   db.legalcitation =
+      element legalcitation {
+         (db.casename|db.legislation|db.parties),
+         db.country, 
+         db.year,
+         (db.court|db.legis_org),
+         db.sectionnum
+      }
+      
+   db.casename =
+        element casename {
+        db.all.inlines
+        }
+        
+   db.legislation =
+        element legislation {
+        db.all.inlines
+        }
+        
+    db.parties =
+        element parties {
+        db.person |
+        db.org |
+        db.all.inlines
+        }
+        
+     db.court =
+        element court {
+        db.all.inlines
+        }
+        
+    db.legis_org =
+        element casename {
+        db.all.inlines
+        }
+
+   db.sectionnum =
+        element sectionnum {
+        text |
+        db.sectionnum
+        }

@@ -1,0 +1,368 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.msg | db.msgexplan | db.msgmain | db.msgrel | db.msgset | db.msgsub
+
+db.technical.blocks |= db.msgset
+
+# ======================================================================
+
+[
+   db:refname [ "msgset" ]
+   db:refpurpose [ "A detailed set of messages, usually error messages" ]
+]
+div {
+
+   db.msgset.role.attribute = attribute role { text }
+
+   db.msgset.attlist =
+      db.msgset.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgset.info = db._info.title.only
+
+   db.msgset =
+      element msgset {
+         db.msgset.attlist,
+         db.msgset.info,
+         (db.msgentry+|db.simplemsgentry+)
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgentry" ]
+   db:refpurpose [ "A wrapper for an entry in a message set" ]
+]
+div {
+
+   db.msgentry.role.attribute = attribute role { text }
+
+   db.msgentry.attlist =
+      db.msgentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgentry =
+      element msgentry {
+         db.msgentry.attlist,
+         db.msg+,
+         db.msginfo?,
+         db.msgexplan*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "simplemsgentry" ]
+   db:refpurpose [ "A wrapper for a simpler entry in a message set" ]
+]
+div {
+
+   db.simplemsgentry.role.attribute = attribute role { text }
+
+   db.simplemsgentry.msgaud.attribute =
+      [
+         db:refpurpose [ "The audience to which the message relevant" ]
+      ]
+      attribute msgaud { text }
+
+   db.simplemsgentry.msgorig.attribute =
+      [
+         db:refpurpose [ "The origin of the message" ]
+      ]
+      attribute msgorig { text }
+
+   db.simplemsgentry.msglevel.attribute =
+      [
+         db:refpurpose [ "The level of importance or severity of a message" ]
+      ]
+      attribute msglevel { text }
+
+   db.simplemsgentry.attlist =
+      db.simplemsgentry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.simplemsgentry.msgaud.attribute?
+    & db.simplemsgentry.msgorig.attribute?
+    & db.simplemsgentry.msglevel.attribute?
+
+   db.simplemsgentry =
+      element simplemsgentry {
+         db.simplemsgentry.attlist,
+         db.msgtext,
+         db.msgexplan+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msg" ]
+   db:refpurpose [ "A message in a message set" ]
+]
+div {
+
+   db.msg.role.attribute = attribute role { text }
+
+   db.msg.attlist =
+      db.msg.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msg.info = db._info.title.only
+
+   db.msg =
+      element msg {
+         db.msg.attlist,
+         db.msg.info,
+         db.msgmain,
+         (db.msgsub|db.msgrel)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgmain" ]
+   db:refpurpose [ "The primary component of a message in a message set " ]
+]
+div {
+
+   db.msgmain.role.attribute = attribute role { text }
+
+   db.msgmain.attlist =
+      db.msgmain.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgmain.info = db._info.title.only
+
+   db.msgmain =
+      element msgmain {
+         db.msgmain.attlist,
+         db.msgmain.info,
+         db.msgtext
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgsub" ]
+   db:refpurpose [ "A subcomponent of a message in a message set" ]
+]
+div {
+
+   db.msgsub.role.attribute = attribute role { text }
+
+   db.msgsub.attlist =
+      db.msgsub.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgsub.info = db._info.title.only
+
+   db.msgsub =
+      element msgsub {
+         db.msgsub.attlist,
+         db.msgsub.info,
+         db.msgtext
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgrel" ]
+   db:refpurpose [ "A related component of a message in a message set" ]
+]
+div {
+
+   db.msgrel.role.attribute = attribute role { text }
+
+   db.msgrel.attlist =
+      db.msgrel.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgrel.info = db._info.title.only
+
+   db.msgrel =
+      element msgrel {
+         db.msgrel.attlist,
+         db.msgrel.info,
+         db.msgtext
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgtext" ]
+   db:refpurpose [ "The actual text of a message component in a message set" ]
+]
+div {
+
+   db.msgtext.role.attribute = attribute role { text }
+
+   db.msgtext.attlist =
+      db.msgtext.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgtext =
+      element msgtext {
+         db.msgtext.attlist,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msginfo" ]
+   db:refpurpose [ "Information about a message in a message set" ]
+]
+div {
+
+   db.msginfo.role.attribute = attribute role { text }
+
+   db.msginfo.attlist =
+      db.msginfo.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msginfo =
+      element msginfo {
+         db.msginfo.attlist,
+         (db.msglevel|db.msgorig|db.msgaud)*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msglevel" ]
+   db:refpurpose [ "The level of importance or severity of a message in a message set" ]
+]
+div {
+
+   db.msglevel.role.attribute = attribute role { text }
+
+   db.msglevel.attlist =
+      db.msglevel.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msglevel =
+      element msglevel {
+         db.msglevel.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgorig" ]
+   db:refpurpose [ "The origin of a message in a message set" ]
+]
+div {
+
+   db.msgorig.role.attribute = attribute role { text }
+
+   db.msgorig.attlist =
+      db.msgorig.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgorig =
+      element msgorig {
+         db.msgorig.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgaud" ]
+   db:refpurpose [ "The audience to which a message in a message set is relevant" ]
+]
+div {
+
+   db.msgaud.role.attribute = attribute role { text }
+
+   db.msgaud.attlist =
+      db.msgaud.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgaud =
+      element msgaud {
+         db.msgaud.attlist,
+         db._text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "msgexplan" ]
+   db:refpurpose [ "Explanatory material relating to a message in a message set" ]
+]
+div {
+
+   db.msgexplan.role.attribute = attribute role { text }
+
+   db.msgexplan.attlist =
+      db.msgexplan.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.msgexplan.info = db._info.title.only
+
+   db.msgexplan =
+      element msgexplan {
+         db.msgexplan.attlist,
+         db.msgexplan.info,
+         db.all.blocks+
+      }
+}
+

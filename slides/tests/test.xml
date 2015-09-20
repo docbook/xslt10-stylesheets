@@ -1,0 +1,124 @@
+<?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
+<?dbhtml graphics-dir="../graphics"?>
+<?dbhtml css-stylesheet="../browser/slides.css"?>
+<?dbhtml script-dir="../browser"?>
+<slides>
+<slidesinfo>
+  <title>Test Slides Title That's Really Really Long and Would Never Really Be Used Exactly Like This</title>
+  <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
+</slidesinfo>
+
+<speakernotes>
+<para>Welcome the audience</para>
+</speakernotes>
+
+<foilgroup><title>Foilgroup 1</title>
+
+<speakernotes>
+<para>Introduce the foilgroup</para>
+</speakernotes>
+
+<foil><title>Test Slides Title 1</title>
+
+<speakernotes>
+<para>Tell a funny joke. Remember, I said a funny one.</para>
+</speakernotes>
+
+<para>...</para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+
+<screen>
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+this is a long screen
+</screen>
+</foil>
+
+</foilgroup>
+<foilgroup><title>Foilgroup 2</title>
+
+<foil><title>Test Slides Title 1</title>
+<para>...<footnote><para>This is a footnote.</para></footnote></para>
+</foil>
+
+<foil><title>Test Slides Title 2</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+
+</foilgroup>
+
+</slides>

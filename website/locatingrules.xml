@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+
+<!-- This is a schema-locating file for use with a RELAX NG-aware editor -->
+<!-- such as Emacs/nXML mode. It tells your editor to automatically -->
+<!-- associate any documents whose root element is "webpage" (that is -->
+<!-- DocBook Website documents), with the RNC schema file at the URI -->
+<!-- "schema/relaxng/website.rnc". -->
+
+<locatingRules xmlns="http://thaiopensource.com/ns/locating-rules/1.0">
+  <documentElement prefix="" localName="webpage" uri="schema/relaxng/website.rnc"/>
+<!--   <documentElement prefix="" localName="webpage" uri="schema/relaxng/website-full.rnc"/> -->
+</locatingRules>
+
+<!-- To use this file with Emacs/nXML mode, either: -->
+
+<!-- - do M-x customize-variable rng-schema-locating-files -->
+<!--   and then add the absolute path to this file there -->
+
+<!--   OR -->
+
+<!-- - put the following into your .emacs file: -->
+
+<!--     (setq rng-schema-locating-files -->
+<!--       (append -->
+<!--         '("~/docbook-website/locatingrules.xml"))) -->
+
+<!--   Of course, replace the ~/docbook-website/locatingrules.xml -->
+<!--   pathname with the appropriate location for your system. -->

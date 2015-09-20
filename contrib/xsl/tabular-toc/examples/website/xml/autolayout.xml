@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE autolayout PUBLIC "-//Norman Walsh//DTD Website Autolayout V2.4.1//EN"
+         "http://docbook.sourceforge.net/release/website/2.4.1/schema/dtd/autolayout.dtd">
+
+  <!--  
+     The purpose of this example is to demonstrate website chunking of a book. 
+
+     In contrast to normal website autolayout files, this version 
+     uses the $html.ext parameter, so the .html should be removed from all 
+     target filenames.
+
+     You will want to avoid recreating this file from the layout.xml file for this reason.
+      
+   -->
+
+<autolayout>
+  <config param="text-prefix" value="txt" />
+  <config param="homebanner-tabular" value="graphics/homebanner.png" altval="Home Banner" />
+  <config param="banner-tabular" value="graphics/banner.png" altval="Banner" />
+  <config param="homebanner" value="graphics/homebanner.png" altval="Home Banner" />
+  <config param="banner" value="graphics/icons/iconhome.gif" altval="Banner" />
+  <copyright>
+    <year>1999</year>
+    <year>2000</year>
+    <year>2001</year>
+    <holder role="http://nwalsh.com/~ndw/">Norman Walsh</holder>
+  </copyright>
+  <headlink rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png" />
+  <style src="example.css" type="text/css" />
+
+
+
+  <toc page="website.xml" id="home" filename="index">
+    <title>Welcome to Website</title>
+    <summary>Introduction</summary>
+
+    <tocentry page="wslayout.xml" id="layout" filename="layout">
+      <title>Site Layout</title>
+      <summary>Site Navigation Layout Setup</summary>
+    </tocentry>
+
+    <tocentry page="olink.xml" id="olink" filename="linking">
+      <title>Linking Pages</title>
+      <titleabbrev>Linking</titleabbrev>
+      <summary>Linking across Pages</summary>
+    </tocentry>
+
+    <tocentry page="custom.xml" id="customize"
+    filename="custom">
+      <title>Customizing the Stylesheets</title>
+      <titleabbrev>Customization</titleabbrev>
+      <summary>Stylesheet customization instructions</summary>
+    </tocentry>
+    <tocentry page="building.xml" id="building"
+    filename="building" tocskip="1">
+      <title>Building the HTML Pages</title>
+      <titleabbrev>Building</titleabbrev>
+      <summary>Building strategies</summary>
+      <tocentry revisionflag="changed" page="build-make.xml"
+      id="buildmake" filename="buildmake">
+        <title>Building with Make</title>
+        <titleabbrev>Using Make</titleabbrev>
+        <summary>Building with Make</summary>
+      </tocentry>
+      <tocentry page="build-ext.xml" id="buildext"
+      filename="buildext">
+        <title>Building with XSLT</title>
+        <titleabbrev>Using XSLT</titleabbrev>
+        <summary>Building with XSLT Extensions</summary>
+      </tocentry>
+      <tocentry page="build-textonly.xml" id="textonly"
+      filename="textonly">
+        <title>Building Text-only Websites</title>
+        <titleabbrev>Text-only</titleabbrev>
+        <summary>Building Text-onlyt Websites</summary>
+      </tocentry>
+    </tocentry>
+    <tocentry page="test2.xml" id="test2" filename="formtest">
+      <title>Form Test</title>
+      <summary>Form Test Page</summary>
+    </tocentry>
+    <tocentry page="test3.xml" id="test3" filename="test3">
+      <title>XBEL Bookmarks</title>
+      <summary>XBEL Bookmark test</summary>
+    </tocentry>
+    <tocentry page="rddl.xml" id="rddl" filename="rddl">
+      <title>RDDL</title>
+      <summary>RDDL</summary>
+    </tocentry>
+    <tocentry page="php.xml" id="php" filename="php">
+      <title>PHP</title>
+      <summary>PHP</summary>
+    </tocentry>
+    <tocentry revisionflag="added" page="rss.xml" id="rss"
+    filename="rss">
+      <title>RSS</title>
+    </tocentry>
+    <tocentry revisionflag="added" page="full.xml" id="test"
+    filename="full">
+      <title>Website-Full</title>
+      <summary>Full Website</summary>
+    </tocentry>
+
+                      <!--  this is the whole point of the example -->
+
+    <tocentry revisionflag="added" page="book/book.001.xml" multisect="1"
+                     id="book" filename="index" dir="book/" >
+      <title>Chunked Book test</title>
+      <summary>Chunking Augmented by Website (or seemingly
+      vice-versa)</summary>
+    </tocentry>
+
+
+    <tocentry page="revflag.xml" id="revflag"
+    filename="revflag">
+      <title>Revision Flags</title>
+      <summary>Revision Flags</summary>
+    </tocentry>
+    <tocentry id="nwalsh.com" href="http://nwalsh.com/" framelink="_blank">
+      <title>nwalsh.com</title>
+    </tocentry>
+  </toc>
+
+
+  <toc page="test1.xml" id="test1" filename="test1">
+    <title>Test 1</title>
+    <summary>Test 1 Page</summary>
+    <tocentry page="test1a.xml" id="test1a" dir="subdir/"
+    filename="test1a">
+      <title>Test 1a</title>
+      <summary>Test 1a Page</summary>
+    </tocentry>
+    <tocentry page="test1b.xml" id="test1b" dir="subdir/"
+    filename="test1b">
+      <title>Test 1b</title>
+      <summary>Test 1b Page</summary>
+    </tocentry>
+  </toc>
+  <notoc page="about.xml" id="about" filename="about">
+    <title>About the Test Home Page</title>
+    <summary>About the Test Home Page</summary>
+  </notoc>
+</autolayout>

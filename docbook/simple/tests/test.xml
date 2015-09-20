@@ -1,0 +1,10 @@
+<!DOCTYPE article
+          PUBLIC "-//OASIS//DTD Simplified DocBook XML V1.0b2//EN"
+          "../sdocbook.dtd">
+<article>
+<articleinfo>
+  <title>Article Title</title>
+  <titleabbrev>Title</titleabbrev>
+</articleinfo>
+<para>Paragraph.</para>
+</article>

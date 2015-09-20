@@ -1,0 +1,448 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace html = "http://www.w3.org/1999/xhtml"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+db.htmlform.blocks = db.html.form
+db.htmlform.inlines =
+   db.html.input
+ | db.html.button
+ | db.html.label
+ | db.html.select
+ | db.html.textarea
+ | db.html.fieldset
+
+db.extension.blocks |= db.htmlform.blocks
+db.extension.inlines |= db.htmlform.inlines
+
+# ======================================================================
+
+db.html.onfocus.attribute =
+   [
+      db:refpurpose [ "Script to evaluate when a control receives focus" ]
+   ]
+   attribute onfocus { text }
+
+db.html.onblur.attribute =
+   [
+      db:refpurpose [ "Script to evaluate when a control loses focus" ]
+   ]
+   attribute onblur { text }
+
+db.html.onselect.attribute =
+   [
+      db:refpurpose [ "Script to evaluate when a user selects some text" ]
+   ]
+   attribute onselect { text }
+
+db.html.onchange.attribute =
+   [
+      db:refpurpose [ "Script to evaluate when a control loses focus " db:emphasis [ "and" ] " its value has changed" ]
+   ]
+   attribute onchange { text }
+
+db.html.disabled.attribute =
+   [
+      db:refpurpose [ "Indicates a control is unavailable" ]
+   ]
+   attribute disabled {
+      ## The element is disabled
+      "disabled"
+   }
+
+db.html.readonly.attribute =
+   [
+      db:refpurpose [ "Indicates that a control cannot be changed" ]
+   ]
+   attribute readonly {
+      ## The element is read only
+      "readonly"
+   }
+
+db.html.size.attribute =
+   [
+      db:refpurpose [ "Specifies the size of a control" ]
+   ]
+   attribute size { text }
+
+db.html.tabindex.attribute =
+   [
+      db:refpurpose [ "Specifies the position of the element in tabbing order" ]
+   ]
+   attribute tabindex { text }
+
+db.html.accesskey.attribute =
+   [
+      db:refpurpose [ "Specifies the access key for the element" ]
+   ]
+   attribute accesskey { text }
+
+db.html.name.attribute =
+   [
+      db:refpurpose [ "Specifies the name of the parameter associated with a control" ]
+   ]
+   attribute name { text }
+
+db.html.value.attribute =
+   [
+      db:refpurpose [ "Specifies the default value for the control" ]
+   ]
+   attribute value { text }
+
+
+# ======================================================================
+
+[
+   db:refname [ "html:form" ]
+   db:refpurpose [ "An HTML form" ]
+]
+div {
+
+   db.html.form.attlist =
+      db.html.attrs
+ & [
+      db:refpurpose [ "Specifies a form processing agent. User agent behavior for a value other than an HTTP URI is undefined." ]
+   ]
+   attribute action { xsd:anyURI }
+ & [
+      db:refpurpose [ "Specifies which HTTP method will be used to submit the form data set. Possible (case-insensitive) values are " db:quote [ "get" ] " (the default) and " db:quote [ "post" ] ". " ]
+   ]
+   attribute method { 
+      ## Use HTTP GET
+      "get"
+    | ## Use HTTP POST
+      "post" }?
+ & [
+      db:refpurpose [ "Ocurs when a form is submitted. It only applies to the " db:tag [ "html:form" ] " element." ]
+   ]
+   attribute onsubmit { text }?
+ & [
+      db:refpurpose [ "Ocurs when a form is reset. It only applies to the " db:tag [ "html:form" ] " element." ]
+   ]
+   attribute onreset { text }?
+ & [
+      db:refpurpose [ "Specifies the content type used to submit the form to the server (when the value of method is " db:quote [ "post" ] "). The default value for this attribute is " db:quote [ "application/x-www-form-urlencoded" ] ". The value " db:quote [ "multipart/form-data" ] " should be used in combination with the " db:tag [ "html:input" ] " element, type=" db:quote [ "file" ] "." ]
+   ]
+   attribute enctype { text }?
+ & [
+      db:refpurpose [ "Specifies a comma-separated list of content types that a server processing this form will handle correctly." ]
+   ]
+   attribute accept { text }?
+ & [
+      db:refpurpose [ "Specifies the list of character encodings for input data that is accepted by the server processing this form. The value is a space- and/or comma-delimited list of charset values. The client must interpret this list as an exclusive-or list, i.e., the server is able to accept any single character encoding per entity received." ]
+   ]
+   attribute accept-charset { text }?
+
+   db.html.form =
+      element html:form {
+         db.html.form.attlist,
+         ( db.all.blocks
+          | db.html.input
+          | db.html.button
+          | db.html.label
+          | db.html.select
+          | db.html.textarea
+          | db.html.fieldset)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:input" ]
+   db:refpurpose [ "An input element in an HTML form" ]
+]
+div {
+
+   db.html.input.attlist =
+      db.html.attrs
+    & [
+         db:refpurpose [ "Specifies the type of input control" ]
+      ]
+      attribute type {
+         ## A text control
+         "text"
+       | ## A password control
+         "password"
+       | ## A check box control
+         "checkbox"
+       | ## A radio button control
+         "radio"
+       | ## Submit the form
+         "submit"
+       | ## Reset the form
+         "reset"
+       | ## A file select control
+         "file"
+       | ## A hidden control
+         "hidden"
+       | ## A graphical submit control
+         "image"
+       | ## A button control
+         "button" }?
+    & db.html.name.attribute?
+    & db.html.value.attribute?
+    & [
+       db:refpurpose [ "Indicates that the initial state of a check box or radio control" ]
+      ]
+      attribute checked {
+         ## The control is on
+         "checked"
+      }?
+    & db.html.disabled.attribute?
+    & db.html.readonly.attribute?
+    & db.html.size.attribute?
+    & [
+       db:refpurpose [ "Indicates the maximum length of the control" ]
+      ]
+      attribute maxlength { text }?
+    & [
+       db:refpurpose [ "Identifies the URI of the graphical submit control" ]
+      ]
+      attribute src { text }?
+    & [
+       db:refpurpose [ "Identifies the alt text of the graphical submit control" ]
+      ]
+      attribute alt { text }?
+    & [
+       db:refpurpose [ "Identifies an image map to use with the graphical submit control" ]
+      ]
+      attribute usemap { text }?
+    & db.html.tabindex.attribute?
+    & db.html.accesskey.attribute?
+    & db.html.onfocus.attribute?
+    & db.html.onblur.attribute?
+    & db.html.onselect.attribute?
+    & db.html.onchange.attribute?
+
+   db.html.input =
+      element html:input {
+         db.html.input.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:button" ]
+   db:refpurpose [ "A button in an HTML form" ]
+]
+div {
+
+   db.html.button.attlist =
+      db.html.attrs
+    & db.html.name.attribute?
+    & db.html.value.attribute?
+    & [
+       db:refpurpose [ "Specifies the type of button control" ]
+      ]
+      attribute type {
+         ## A regular button
+         "button"
+       | ## A submit button
+         "submit"
+       | ## A reset button
+         "reset" }?
+    & db.html.disabled.attribute?
+    & db.html.tabindex.attribute?
+    & db.html.accesskey.attribute?
+    & db.html.onfocus.attribute?
+    & db.html.onblur.attribute?
+
+   db.html.button =
+      element html:button {
+         db.html.button.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:label" ]
+   db:refpurpose [ "A label in an HTML form" ]
+]
+div {
+
+   db.html.label.attlist =
+      db.html.attrs
+    & db.html.accesskey.attribute?
+    & db.html.onfocus.attribute?
+    & db.html.onblur.attribute?
+
+   db.html.label =
+      element html:label {
+         db.html.label.attlist,
+         db.all.inlines*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:select" ]
+   db:refpurpose [ "A select element in an HTML form" ]
+]
+div {
+
+   db.html.select.attlist =
+      db.html.attrs
+    & db.html.name.attribute?
+    & db.html.size.attribute?
+    & [
+       db:refpurpose [ "Indicates that multiple selections are allowed" ]
+      ]
+      attribute multiple {
+         ## Allow multiple selections
+         "multiple"
+      }?
+    & db.html.disabled.attribute?
+    & db.html.tabindex.attribute?
+    & db.html.onfocus.attribute?
+    & db.html.onblur.attribute?
+    & db.html.onchange.attribute?
+
+   db.html.select =
+      element html:select {
+         db.html.select.attlist,
+         db.html.option+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:option" ]
+   db:refpurpose [ "An option element in an HTML form" ]
+]
+div {
+
+   db.html.option.attlist =
+      db.html.attrs
+    & [
+       db:refpurpose [ "Indicates if the option is initially selected" ]
+      ]
+      attribute selected {
+         ## Initially selected
+         "selected"
+      }?
+    & db.html.disabled.attribute?
+    & db.html.value.attribute?
+
+   db.html.option =
+      element html:option {
+         db.html.option.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:textarea" ]
+   db:refpurpose [ "A textarea element in an HTML form" ]
+]
+div {
+
+   db.html.textarea.attlist =
+      db.html.attrs
+    & db.html.name.attribute?
+    & [
+       db:refpurpose [ "Specifies the number of rows in the text area" ]
+      ]
+      attribute rows { text }
+    & [
+       db:refpurpose [ "Specifies the number of columns in the text area" ]
+      ]
+      attribute cols { text }
+    & db.html.disabled.attribute?
+    & db.html.readonly.attribute?
+    & db.html.tabindex.attribute?
+    & db.html.accesskey.attribute?
+    & db.html.onfocus.attribute?
+    & db.html.onblur.attribute?
+    & db.html.onselect.attribute?
+    & db.html.onchange.attribute?
+
+   db.html.textarea =
+      element html:textarea {
+         db.html.textarea.attlist,
+         text
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:fieldset" ]
+   db:refpurpose [ "A fieldset element in an HTML form" ]
+]
+div {
+
+   db.html.fieldset.attlist =
+      db.html.attrs
+
+   db.html.fieldset =
+      element html:fieldset {
+         db.html.fieldset.attlist,
+         db.html.legend?,
+         (db.all.blocks
+          | db.html.input
+          | db.html.button
+          | db.html.label
+          | db.html.select
+          | db.html.textarea
+          | db.html.fieldset)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "html:legend" ]
+   db:refpurpose [ "A legend in an HTML form fieldset" ]
+]
+div {
+
+   db.html.legend.attlist =
+      db.html.attrs
+    & db.html.accesskey.attribute?
+
+   db.html.legend =
+      element html:legend {
+         db.html.legend.attlist,
+         db.all.inlines*
+      }
+}

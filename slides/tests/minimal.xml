@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../schema/dtd/slides.dtd">
+<slides>
+<slidesinfo>
+<title>Presentation Title</title>
+</slidesinfo>
+<foilgroup><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle>
+<para>Some premable.</para>
+<foil><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle>
+<para>Foil content</para>
+</foil>
+</foilgroup>
+</slides>
+

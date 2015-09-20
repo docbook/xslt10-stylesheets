@@ -1,0 +1,153 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+namespace xlink = "http://www.w3.org/1999/xlink"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+default namespace = "http://docbook.org/ns/docbook"
+
+db.info.elements |= db.extendedlink
+
+db.xlink.from.attribute =
+   [
+      db:refpurpose [ "Specifies the XLink traversal-from" ]
+   ]
+   attribute xlink:from { xsd:NMTOKEN }
+
+db.xlink.label.attribute =
+   [
+      db:refpurpose [ "Specifies the XLink label" ]
+   ]
+   attribute xlink:label { xsd:NMTOKEN }
+
+db.xlink.to.attribute =
+   [
+      db:refpurpose [ "Specifies the XLink traversal-to" ]
+   ]
+   attribute xlink:to { xsd:NMTOKEN }
+
+# ======================================================================
+
+[
+   db:refname [ "extendedlink" ]
+   db:refpurpose [ "An XLink extended link" ]
+]
+div {
+
+   db.extendedlink.role.attribute = attribute role { text }
+
+   db.extendedlink.attlist =
+      db.extendedlink.role.attribute?
+    & db.common.attributes
+    & [ a:defaultValue="extended"
+        db:refpurpose [ "Identifies the XLink link type " ]
+      ]
+      attribute xlink:type {
+         ## An XLink extended link
+         "extended"
+      }?
+    & db.xlink.role.attribute?
+    & db.xlink.title.attribute?
+
+   db.extendedlink =
+      element extendedlink {
+         db.extendedlink.attlist,
+         (db.locator|db.arc)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "locator" ]
+   db:refpurpose [ "An XLink locator in an " db:tag [ "extendedlink" ]]
+]
+div {
+
+   db.locator.role.attribute = attribute role { text }
+
+   db.locator.attlist =
+      db.locator.role.attribute?
+    & db.common.attributes
+    & [ a:defaultValue="locator"
+        db:refpurpose [ "Identifies the XLink link type " ]
+      ]
+      attribute xlink:type {
+         ## An XLink locator link
+         "locator"
+      }?
+    & db.xlink.href.attribute
+    & db.xlink.role.attribute?
+    & db.xlink.title.attribute?
+    & db.xlink.label.attribute?
+
+   db.locator =
+      element locator {
+         db.locator.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "arc" ]
+   db:refpurpose [ "An XLink arc in an " db:tag [ "extendedlink" ] ]
+]
+div {
+
+   db.arc.role.attribute = attribute role { text }
+
+   db.arc.attlist =
+      db.arc.role.attribute?
+    & db.common.attributes
+    & [ a:defaultValue="arc"
+        db:refpurpose [ "Identifies the XLink link type " ]
+      ]
+      attribute xlink:type {
+         ## An XLink arc link
+         "arc"
+      }?
+    & db.xlink.arcrole.attribute?
+    & db.xlink.title.attribute?
+    & db.xlink.show.attribute?
+    & db.xlink.actuate.attribute?
+    & db.xlink.from.attribute?
+    & db.xlink.to.attribute?
+
+   db.arc =
+      element arc {
+         db.arc.attlist,
+         empty
+      }
+}
+

@@ -1,0 +1,30 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website-full.dtd">
+<webpage id="test">
+<head>
+<title>Website-Full</title>
+<summary>Full Website</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+<para>This page uses <filename>website-full.dtd</filename>/<filename>website-full.rnc</filename><indexterm>
+<primary><quote>Full</quote> website</primary></indexterm>. The <quote>full</quote>
+DTD/RELAX NG schema is based on DocBook, not Simplified DocBook. As such, it can include elements,
+like <sgmltag>qandaset</sgmltag> and <sgmltag>index</sgmltag> not present in
+<quote>regular</quote> website.</para>
+
+<section><title>Questions and Answers</title>
+
+<qandaset>
+<qandaentry>
+<question><para>A question.<indexterm><primary>Question</primary></indexterm></para>
+</question>
+<answer><para>An answer.<indexterm><primary>Answer</primary></indexterm></para>
+</answer>
+</qandaentry>
+</qandaset>
+</section>
+
+<index/>
+
+</webpage>

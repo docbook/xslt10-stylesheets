@@ -1,0 +1,63 @@
+#!/bin/bash
+
+FORMAT=$1; shift
+DSSSL=$1; shift
+SOURCE=$1; shift
+# optional args later
+
+# find jade in the path
+JADE=`command -v jade`
+if [ ! -x "$JADE" ]; then
+  # fallback to openjade
+  JADE=`command -v openjade`
+  if [ ! -x "$JADE" ]; then
+    echo "cannot find jade or openjade" 1>&2
+    exit 1
+  fi
+fi
+
+# include dsssl/catalog
+MYDIR=`dirname $0`
+DOCBKCVSDIR=`cd ${MYDIR}/.. && pwd`
+if [ -f ${DOCBKCVSDIR}/dsssl/catalog ]; then
+  CATALOGS="$CATALOGS -c ${DOCBKCVSDIR}/dsssl/catalog"
+elif [ -f /sourceforge/docbook/dsssl/catalog ]; then
+  CATALOGS="$CATALOGS -c /sourceforge/docbook/dsssl/catalog"
+fi
+
+# sanity checks
+if [ ! -f $DSSSL ]; then
+    echo "cannot DSSSL stylesheet $DSSSL" 1>&2
+    exit 1
+fi
+if [ ! -f $SOURCE ]; then
+    echo "cannot SGML/XML source $SOURCE" 1>&2
+    exit 1
+fi
+
+# optional extra catalogs
+if [ -f /share/doctypes/catalog ]; then
+    CATALOGS="$CATALOGS -c /share/doctypes/catalog"
+fi
+
+# set -V FORMAT-backend if appropriate
+if [ "$FORMAT" = rtf -o "$FORMAT" = tex -o "$FORMAT" = mif ]; then
+    BACKENDSET="-V $FORMAT-backend"
+fi
+
+# if jade && file is XML, add the XML catalog, set SP_ENCODING
+if [ `basename $JADE` = jade ] && [ ${SOURCE%.xml} != $SOURCE ]; then
+  for file in /usr/share/sgml/declaration/xml.dcl \
+              /usr/share/sgml/declaration/xml.decl \
+              /usr/lib/sgml/declaration/xml.dcl \
+              /usr/lib/sgml/declaration/xml.decl ; do
+    if [ -f $file ]; then
+      DECL=$file
+      break
+    fi
+  done
+  export SP_ENCODING=xml
+fi
+
+echo $ENV $JADE -E5 $CATALOGS -t $FORMAT -d $DSSSL $BACKENDSET $* $DECL $SOURCE 1>&2
+exec $JADE -E5 $CATALOGS -t $FORMAT -d $DSSSL $BACKENDSET $* $DECL $SOURCE

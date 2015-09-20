@@ -1,0 +1,198 @@
+<!-- ...................................................................... -->
+<!-- DocBook HTML Forms Module V1.2CR1 ....................................... -->
+<!-- File dbforms.dtd ..................................................... -->
+
+<!-- Copyright (C) 2000, 2001, 2002, 2003, 2004 Organization for the Advancement
+     of Structured Information Standards (OASIS).
+
+     $Id$
+
+     Permission to use, copy, modify and distribute the DocBook HTML Forms
+     Module and its accompanying documentation for any purpose and
+     without fee is hereby granted in perpetuity, provided that the
+     above copyright notice and this paragraph appear in all copies.
+     The copyright holders make no representation about the
+     suitability of the DTD for any purpose.  It is provided "as is"
+     without expressed or implied warranty.
+
+     If you modify the DocBook HTML Forms Module in any way, label your DTD
+     as a variant of DocBook.  See the maintenance documentation for
+     more information.
+
+     Please direct all questions, bug reports, or suggestions for 
+     changes to the docbook@lists.oasis-open.org mailing list. For more
+     information, see http://www.oasis-open.org/docbook/.
+-->
+
+<!-- ...................................................................... -->
+
+<!-- This is the driver file for V1.2CR1 of the DocBook HTML Forms Module.
+     Please use the following formal public identifier to identify it:
+
+     "-//OASIS//DTD DocBook HTML Forms Module V1.2CR1//EN"
+
+     For example, if your document's top-level element is Book, and
+     you are using DocBook directly, use the FPI in the DOCTYPE
+     declaration:
+
+     <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2CR1//EN"
+                    "http://www.oasis-open.org/docbook/xml/htmlforms/1.2CR1/dbforms.dtd"
+                    [...]>
+
+     Or, if you have a higher-level driver file that customizes DocBook,
+     use the FPI in the parameter entity declaration:
+
+     <!ENTITY % DocBookHTMLFormsDTD PUBLIC "-//OASIS//DTD DocBook HTML Forms Module V1.2CR1//EN"
+                "http://www.oasis-open.org/docbook/xml/htmlforms/1.2CR1/dbforms.dtd">
+     %DocBookHTMLFormsDTD;
+
+     See the documentation for detailed information on the parameter
+     entity and module scheme used in DocBook, customizing DocBook and
+     planning for interchange, and changes made since the last release
+     of DocBook.
+-->
+
+<!ENTITY % html-prefix   'html:'>
+<!ENTITY % html-suffix   ':html'>
+<!ENTITY % html-xmlns    'xmlns%html-suffix;'>
+<!ENTITY % html-namespace "'http://www.w3.org/1999/xhtml'">
+
+<!ENTITY % html-form     "%html-prefix;form">
+<!ENTITY % html-input    "%html-prefix;input">
+<!ENTITY % html-button   "%html-prefix;button">
+<!ENTITY % html-label    "%html-prefix;label">
+<!ENTITY % html-select   "%html-prefix;select">
+<!ENTITY % html-option   "%html-prefix;option">
+<!ENTITY % html-textarea "%html-prefix;textarea">
+
+<!ENTITY % forminlines.hook "|%html-input;|%html-button;|%html-label;|%html-select;|%html-textarea;">
+<!ENTITY % forms.hook "|%html-form;">
+
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+%docbook;
+
+<!ENTITY % events
+ "onclick		CDATA		#IMPLIED
+  ondblclick		CDATA		#IMPLIED
+  onmousedown		CDATA		#IMPLIED
+  onmouseup		CDATA		#IMPLIED
+  onmouseover		CDATA		#IMPLIED
+  onmousemove		CDATA		#IMPLIED
+  onmouseout		CDATA		#IMPLIED
+  onkeypress		CDATA		#IMPLIED
+  onkeydown		CDATA		#IMPLIED
+  onkeyup		CDATA		#IMPLIED"
+>
+
+<!ELEMENT %html-form; ((%component.mix;)|%html-input;|%html-button;
+			|%html-label;|%html-select;|%html-textarea;)+>
+
+<!ATTLIST %html-form;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	action		CDATA		#REQUIRED
+	method		(GET|POST)	"GET"
+	onsubmit	CDATA		#IMPLIED
+	onreset		CDATA		#IMPLIED
+>
+
+<!ENTITY % inputtype  "(text | password | checkbox | radio
+                       | submit | reset | file | hidden | image | button)">
+
+<!ELEMENT %html-input; EMPTY>
+<!ATTLIST %html-input;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	type		%inputtype;	"text"
+	name		CDATA		#IMPLIED
+	value		CDATA		#IMPLIED
+	checked		(checked)	#IMPLIED
+	disabled	(disabled)	#IMPLIED
+	readonly	(readonly)	#IMPLIED
+	size		CDATA		#IMPLIED
+	maxlength	CDATA		#IMPLIED
+	src		CDATA		#IMPLIED
+	alt		CDATA		#IMPLIED
+	usemap		CDATA		#IMPLIED
+	tabindex	CDATA		#IMPLIED
+	accesskey	CDATA		#IMPLIED
+	onfocus		CDATA		#IMPLIED
+	onblur		CDATA		#IMPLIED
+	onselect	CDATA		#IMPLIED
+	onchange	CDATA		#IMPLIED
+>
+
+<!ELEMENT %html-button; (%para.char.mix;)*>
+<!ATTLIST %html-button;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	name		CDATA		#IMPLIED
+	value		CDATA		#IMPLIED
+	type		(button|submit|reset)	"submit"
+	disabled	(disabled)	#IMPLIED
+	tabindex	CDATA		#IMPLIED
+	accesskey	CDATA		#IMPLIED
+	onfocus		CDATA		#IMPLIED
+	onblur		CDATA		#IMPLIED
+>
+
+<!ELEMENT %html-label; (%para.char.mix;)*>
+<!ATTLIST %html-label;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	for		IDREF		#IMPLIED
+	accesskey	CDATA		#IMPLIED
+	onfocus		CDATA		#IMPLIED
+	onblur		CDATA		#IMPLIED
+>
+
+<!ELEMENT %html-select; (%html-option;)+>
+<!ATTLIST %html-select;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	name		CDATA		#IMPLIED
+	size		CDATA		#IMPLIED
+	multiple	(multiple)	#IMPLIED
+	disabled	(disabled)	#IMPLIED
+	tabindex	CDATA		#IMPLIED
+	onfocus		CDATA		#IMPLIED
+	onblur		CDATA		#IMPLIED
+	onchange	CDATA		#IMPLIED
+>
+
+<!ELEMENT %html-option; (#PCDATA)>
+<!ATTLIST %html-option;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	selected    	(selected)	#IMPLIED
+	disabled    	(disabled)	#IMPLIED
+	value		CDATA		#IMPLIED
+>
+
+<!ELEMENT %html-textarea; (#PCDATA)>
+<!ATTLIST %html-textarea;
+	%html-xmlns;	CDATA	#FIXED %html-namespace;
+	%common.attrib;
+	%events;
+	name		CDATA		#IMPLIED
+	rows		CDATA		#REQUIRED
+	cols		CDATA		#REQUIRED
+	disabled	(disabled)	#IMPLIED
+	readonly	(readonly)	#IMPLIED
+	tabindex	CDATA		#IMPLIED
+	accesskey	CDATA		#IMPLIED
+	onfocus		CDATA		#IMPLIED
+	onblur		CDATA		#IMPLIED
+	onselect	CDATA		#IMPLIED
+	onchange	CDATA		#IMPLIED
+>
+
+<!-- End of dbforms.dtd V1.2CR1 .............................................. -->
+<!-- ...................................................................... -->

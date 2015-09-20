@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<slides xmlns="http://docbook.org/ns/docbook">
+<info>
+<title>Presentation Title</title>
+</info>
+<foilgroup><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle>
+<para>Some premable.</para>
+<foil><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle>
+<para>Foil content</para>
+</foil>
+</foilgroup>
+</slides>
+

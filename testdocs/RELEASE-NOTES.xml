@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article>
+  <articleinfo>
+    <title>DocBook Project Testdocs</title>
+    <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
+    <releaseinfo role="cvs">$Id$</releaseinfo> 
+    <corpauthor>DocBook Project Development Team</corpauthor> 
+  </articleinfo> 
+
+  <para>These are the release notes for the DocBook Project Testdocs.</para>
+
+  <section>
+    <title>Release 1.02.0</title>
+    <para>This release is the first documented DocBook Project
+    Testdocs release.</para>
+  </section>
+</article>

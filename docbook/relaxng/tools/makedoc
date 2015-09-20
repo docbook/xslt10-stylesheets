@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Use rngdocxml-multipass.xsl to work around problems and bugs in rngdocxml.xsl
+#
+# 1. Running rngdocxml.xsl under saxon is tediously slow (maybe because
+#    of object creation issues?)
+# 2. xsltproc has a bug in key()
+
+STYLESHEET=tools/rngdocxml-multipass.xsl
+SAVETEMP=0
+INPUT=$1
+OUTPUT=$2
+
+COUNT=1
+
+xsltproc -stringparam pass group -output out$COUNT.xml $STYLESHEET $INPUT
+
+while [ `head out$COUNT.xml | grep next-pass=.expand | wc -l` -gt 0 ]; do
+  INPUT=out$COUNT.xml
+  COUNT=`expr $COUNT + 1`
+  xsltproc -stringparam pass expand -output out$COUNT.xml $STYLESHEET $INPUT
+  if [ $SAVETEMP = 0 ]; then rm -f $INPUT; fi
+done
+
+INPUT=out$COUNT.xml
+COUNT=`expr $COUNT + 1`
+
+xsltproc -stringparam pass classify -output out$COUNT.xml $STYLESHEET $INPUT
+if [ $SAVETEMP = 0 ]; then rm -f $INPUT; fi
+
+while [ `head out$COUNT.xml | grep next-pass=.flatten | wc -l` -gt 0 ]; do
+  INPUT=out$COUNT.xml
+  COUNT=`expr $COUNT + 1`
+  xsltproc -stringparam pass flatten -output out$COUNT.xml $STYLESHEET $INPUT
+  if [ $SAVETEMP = 0 ]; then rm -f $INPUT; fi
+done
+
+mv out$COUNT.xml $OUTPUT

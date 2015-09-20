@@ -1,0 +1,11 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd">
+<webpage id="about">
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>About the Test Home Page</title>
+<summary>About the Test Home Page</summary>
+</head>
+<para>This collection of pages is built from a set of XML
+documents using XSLT.</para>
+</webpage>
+

@@ -1,0 +1,77 @@
+==============================
+Installing FO Parameter Editor
+==============================
+	
+  ------------
+  Requirements
+  ------------
+
+  * Sun or Apple Java[tm] runtime 1.5.0 or above.
+  * Runs with Docbook XSL parameters of version 1.73.2 or above.
+
+  FO Parameter Editor is officially supported on Windows XP and Linux.
+  
+  
+  ------------------
+  Install on Windows  
+  ------------------
+  
+  1. Make sure that you have a Java™ 1.5.0+ runtime installed on your machine. 
+  To check this, open a command window and type "java -version" followed by Enter. 
+  You should get something looking like this:
+  
+    C:\> java -version
+    java version "1.5.0_04"
+    Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_04-b05)
+    Java HotSpot(TM) Client VM (build 1.5.0_04-b05, mixed mode, sharing)
+    
+  2. Use a tool like WinZip (http://www.winzip.com/), 7-Zip (http://www.7-zip.org/) 
+  or Info-Zip (http://www.info-zip.org/) to unzip the FO Parameter Editor distribution 
+  inside any directory you want:
+
+  C:\> unzip FOeditor-1_0.zip
+  
+  3. FO Parameter Editor is intended to be used directly from the FOeditor-1_0 directory. 
+  That is, you can start FO Parameter Editor by 
+   - simply clicking on FOEditor.jar
+   - or by executing:  C:\> FOeditor-1_0\run.bat
+
+  After that, you may want to add a shortcut to "C:\FOeditor\run.bat" or 
+  "C:\FOeditor\FOEditor.jar" on your desktop. 
+  Errors occuring during the editor run are written down in a log file error.log.
+
+  4. Specify path to params directory in your DocBook XSL Stylesheets distribution using
+  Options -> Editor Options... -> FO parameter XML specification. It is necessary to restart
+  application after this.
+  
+
+  ------------------
+  Install on Linux  
+  ------------------
+  
+  1. Make sure that you have a Java™ 1.5.0+ runtime installed on your machine. 
+  To check this, open a command window and type "java -version" followed by Enter. 
+  You should get something looking like this:
+  
+    # java -version
+    java version "1.5.0_04"
+    Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_04-b05)
+    Java HotSpot(TM) Client VM (build 1.5.0_04-b05, mixed mode, sharing)
+    
+  2. Unzip the FO Parameter Editor distribution inside any directory you want:
+
+  # unzip FOeditor-1_0.zip
+  
+  3. FO Parameter Editor is intended to be used directly from the FOeditor-1_0 directory. 
+  That is, you can start FO Parameter Editor by 
+   - simply clicking on FOEditor.jar
+   - or by executing:  # FOeditor-1_0\run.sh
+
+  After that, you may want to add a shortcut to "..\FOeditor\run.sh" or 
+  "..\FOeditor\FOEditor.jar" on your desktop. 
+  Errors occuring during the editor run are written down in a log file error.log.
+
+  4. Specify path to params directory in your DocBook XSL Stylesheets distribution using
+  Options -> Editor Options... -> FO parameter XML specification. It is necessary to restart
+  application after this.
+  

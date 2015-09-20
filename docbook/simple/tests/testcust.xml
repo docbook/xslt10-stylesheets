@@ -1,0 +1,9 @@
+<!DOCTYPE article SYSTEM "../sdocbook-custom.dtd">
+<article>
+<articleinfo>
+  <title>Article Title</title>
+  <titleabbrev>Title</titleabbrev>
+</articleinfo>
+<para>Paragraph.</para>
+<para>This paragraph contains an <anchor id="foo"/>inline anchor.</para>
+</article>

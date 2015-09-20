@@ -1,0 +1,14 @@
+<book xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Sample book title</title>
+
+<chapter>
+<title>Sample chapter title</title>
+
+<para>This unit test contains an empty <tag>glossary</tag>, per
+<link xlink:href="https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1630203&amp;group_id=21935&amp;atid=384107"/>.</para>
+</chapter>
+
+<glossary/>
+
+</book>

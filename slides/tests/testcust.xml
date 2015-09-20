@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+<!DOCTYPE slides SYSTEM "../schema/dtd/slides-custom.dtd">
+<?dbhtml graphics-dir="../graphics"?>
+<?dbhtml css-stylesheet="../browser/slides.css"?>
+<?dbhtml script-dir="../browser"?>
+<slides>
+<slidesinfo>
+<title>Test Slides Title</title>
+</slidesinfo>
+<foil><title>Test Slides Title</title>
+<para>...</para>
+</foil>
+<foil><title>Test Slides Title</title>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</foil>
+</slides>

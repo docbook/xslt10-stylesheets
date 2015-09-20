@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     05/2007                                                       
+
+     FO parameter editor    
+     version 1.0
+                                                                                 
+     ====================================================================== -->
+<project name="editor" default="dist">
+    <description>
+            Create distribution for FO parameter editor.
+    </description>
+	
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist"  location="dist"/>
+	<property name="dist-pack"  location="dist-pack"/>
+	<property name="dist-name"  value="fo-editor"/>
+	<property name="resources"  value="resources"/>
+	<property name="lib"  value="lib"/>
+	
+	<property name="params"  value="docbook-params"/>
+	<property name="config"  value="configuration"/>
+	<property name="schemas"  value="schemas"/>
+	<property name="script"  value="scripts"/>
+	<property name="template"  value="templates"/>
+	<property name="doc"  value="doc"/>
+	
+	<!-- name of the application -->
+	<property name="name"  value="FOeditor"/>	
+	<!-- version of the application -->
+	<property name="version"  value="1.0.1"/>	
+	
+	<property name="main"  value="cz.zcu.fav.kiv.editor.controller.MainController"/>
+
+	<target name="init_dist" description="Initialize distribution">
+    	<delete dir="${dist}"/>
+	  	<mkdir dir="${dist}"/>
+	</target>
+	
+	<target name="init_compile" description="Initialize compilation">
+	    <delete dir="${build}"/>
+		<mkdir dir="${build}"/>		
+	</target>
+	
+    <target name="copy_resources" description="Copy resources">
+        <copy todir="${build}">
+            <fileset dir="${src}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>	
+
+	<target name="compile" depends="init_compile, copy_resources"
+	        description="Compile the source" >
+	    <!-- Compile the java code from ${src} into ${build} -->
+	    <javac srcdir="${src}" destdir="${build}" debug="on">
+        	<classpath>
+        	    <fileset dir="${lib}">
+        	        <include name="*.jar"/>
+       	    	 </fileset>
+      		 </classpath> 
+	    </javac>		
+	</target>
+	
+	<target name="copy_config" depends="init_dist" description="Copy configuration files">
+	   <mkdir dir="${dist}/${config}"/>
+	   <copy todir="${dist}/${config}">
+	      <fileset dir="${config}"/>
+	   </copy>
+	   <copy todir="${dist}/${template}">
+		   <fileset dir="${template}"/>
+	   </copy>	
+	   <mkdir dir="${params}"/>
+	   <copy todir="${dist}/${params}">
+		 <fileset dir="${params}"/>
+	   </copy>		
+	</target>
+	
+	<target name="dist" depends="compile, copy_config"
+	        description="Generate the distribution" >
+		<copy todir="${dist}">
+			<fileset dir="${script}"/>
+		</copy>
+	    <jar jarfile="${dist}/${name}.jar" basedir="${build}">
+	    	<manifest>
+	    	    <attribute name="Main-Class" value="${main}"/>	
+	    		<attribute name="Class-Path" value="log4j-1.2.14.jar" />
+	    	</manifest>
+	    	<zipfileset src="${lib}/log4j-1.2.14.jar"/>	
+	    	<zipfileset src="${lib}/jh.jar"/>
+	    	<zipfileset src="${lib}/help.jar"/>
+		</jar>
+	</target>	
+	
+	<target name="dist_zip" depends="dist"
+		        description="Generate and pack the distribution" >
+		<delete dir="${dist-pack}"/>
+		<mkdir dir="${dist-pack}"/>
+		<zip destfile="${dist-pack}/${dist-name}-${version}.zip"
+		       basedir="${dist}"
+		       update="true"
+		  />
+	</target>
+	
+	<target name="javadoc" description="Generate javadoc" >	
+		<delete dir="${doc}"/>
+		<mkdir dir="${doc}"/>
+		<javadoc
+	           destdir="doc"
+	           author="true"
+	           version="true"
+	           use="true"
+	           windowtitle="FO Parameter Editor API">
+		 <packageset dir="src"/>
+       	 <classpath>
+       	    <fileset dir="${lib}">
+       	        <include name="*.jar"/>
+  	    	 </fileset>
+ 		 </classpath> 
+		</javadoc>
+	</target>		
+</project>

@@ -1,0 +1,104 @@
+$Id$
+
+README for the DocBook Slides distribution
+
+For installation information, see the INSTALL file. This README
+file provides some minimal documentation on authoring, validating,
+and transforming Slides documents.
+
+----------------------------------------------------------------------
+Slides how-to and reference documentation
+----------------------------------------------------------------------
+Some minimal how-to documentation on Slides is available at:
+
+  http://docbook.sourceforge.net/release/slides/current/doc/
+
+Reference documentation on XSL stylesheet parameters is at:
+
+  http://docbook.sourceforge.net/release/slides/current/doc/param.html
+
+The same documentation is also in the doc/ subdirectory in the
+Slides distribution.
+
+----------------------------------------------------------------------
+Authoring and validating with DTDs (slides.dtd or slides-full.dtd)
+----------------------------------------------------------------------
+To do DTD-driven authoring and validation of DocBook Slides
+documents, add a DOCTYPE to your documents using either a PUBLIC
+or SYSTEM ID with the appropriate URI for either the included
+slides.dtd (based on Simplified DocBook) or slides-full.dtd
+(based on full DocBook) DTD.
+
+For example:
+
+  <!DOCTYPE slides PUBLIC "-//Norman Walsh//DTD Slides V3.4//EN"
+  "http://docbook.sourceforge.net/release/slides/3.4/schema/dtd/slides.dtd">
+
+IMPORTANT: The example above may not be up-to-date. For the
+           current PUBLIC ID and URI see the actual slides.dtd
+           and slides-full.dtd files. 
+
+----------------------------------------------------------------------
+Authoring with RELAX NG (slides.rnc and slides-full.rnc)
+----------------------------------------------------------------------
+To do RNC-driven authoring of DocBook Slides content with a
+"RELAX NG aware" XML editing application such as Emacs/nXML,
+oXygen XML Editor, XMLBuddy, or Exchanger XML Editor, point your
+editing application at the included slides.rnc (based on
+Simplified DocBook) or slides-full.rnc (based on full DocBook)
+schema files.
+
+Alternatively, if you are authoring with an editor such as
+Emacs/nXML mode that supports schema "locating rules", use the
+included locatingrules.xml file. It tells your editor to
+automatically associate any documents whose root element is
+"slides" (DocBook Slides documents), with (by default) the
+slides.rnc schema. To have "slides" documents instead associated
+with the slides-full.rnc, edit the locatingrules.xml file.
+
+To use the locating-rules.xml file with Emacs/nXML mode, either
+
+  - do M-x customize-variable rng-schema-locating-files and then
+    add the absolute path to the locatingrules.xml file there
+
+    OR
+
+  - put the following into your .emacs file:
+
+      (setq rng-schema-locating-files
+        (append
+          '("~/docbook-slides/locatingrules.xml")))
+
+  Of course, replace the ~/docbook-slides/locatingrules.xml
+  pathname with the appropriate location for your system.
+
+----------------------------------------------------------------------
+Validating with RELAX NG (slides.rnc and slides-full.rnc)
+----------------------------------------------------------------------
+To validate Slides documents using RELAX NG, do either of the
+following:
+
+  1. Use RNV[1]; for example:
+
+     rnv ~/docbook-slides/slides.rnc foo.xml
+
+  2. Use the xmllint tool from libxml2[1]; for example:
+
+     xmllint --noout --relaxng ~/docbook-slides/slides.rng foo.xml
+
+     IMPORTANT: If you use xmllint, you need to validate against
+                the *.rng versions of the schemas, not the *.rnc
+                versions.
+
+[1] http://davidashen.net/rnv.html
+[2] http://xmlsoft.org/
+
+----------------------------------------------------------------------
+Transforming your Slides documents to HTML and PDF
+----------------------------------------------------------------------
+See the documentation at:
+
+  http://docbook.sourceforge.net/release/slides/current/doc/
+
+The same documentation is also in the doc/ subdirectory in the
+Slides distribution.

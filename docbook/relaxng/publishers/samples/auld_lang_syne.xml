@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?oxygen RNGSchema="../publishers/publishers.rnc" type="compact"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+    <title>Poems And Songs Of Robert Burns</title>
+    <info>
+        <author>
+            <personname>
+                <firstname>Robert</firstname>
+                <surname>Burns</surname>
+            </personname>
+        </author>
+    </info>
+    <chapter>
+        <title>1788</title>
+        <poetry>
+            <title>Auld Lang Syne</title>
+            <info>
+                <author>
+                    <personname>
+                        <firstname>Robert</firstname>
+                        <surname>Burns</surname>
+                    </personname>
+                </author>
+            </info>
+            <linegroup>
+                <line>Should auld acquaintance be forgot,</line>
+                <line>And never brought to mind?</line>
+                <line>Should auld acquaintance be forgot,</line>
+                <line>And auld lang syne?</line>
+            </linegroup>
+            <linegroup>
+                <line>For auld lang syne, my dear,</line>
+                <line>For auld lang syne,</line>
+                <line>We'll tak a cup o' kindness yet,</line>
+                <line>For auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>And surely ye'll be your pint-stowp,</line>
+                <line>And surely I'll be mine!</line>
+                <line>And we'll tak a cup o' kindness yet,</line>
+                <line>For auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>For auld lang syne, my dear,</line>
+                <line>For auld lang syne,</line>
+                <line>We'll tak a cup o' kindness yet,</line>
+                <line>For auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>We twa hae run about the braes,</line>
+                <line>And pu'd the gowans fine;</line>
+                <line>But we've wandered mony a weary fit</line>
+                <line>Sin' auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>For auld lang syne, my dear,</line>
+                <line>For auld lang syne,</line>
+                <line>We'll tak a cup o' kindness yet,</line>
+                <line>For auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>We twa hae paidled i' the burn,</line>
+                <line>Frae morning sun till dine;</line>
+                <line>But seas between us braid hae roared</line>
+                <line>Sin' auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>For auld lang syne, my dear,</line>
+                <line>For auld lang syne,</line>
+                <line>We'll tak a cup o' kindness yet,</line>
+                <line>For auld lang syne.</line>
+            </linegroup>
+            <linegroup>
+                <line>And there's a hand, my trusty fiere,</line>
+                <line>And gie's a hand o' thine!</line>
+                <line>And we'll tak a right guid-willie waught</line>
+            </linegroup>
+            <line>For auld lang syne.</line>
+            <linegroup>
+                <line>For auld lang syne, my dear,</line>
+                <line>For auld lang syne,</line>
+                <line>We'll tak a cup o' kindness yet,</line>
+                <line>For auld lang syne.</line>
+            </linegroup>
+        </poetry>
+    </chapter>
+</book>

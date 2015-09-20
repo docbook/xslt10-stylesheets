@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='vi' id='vichap'>
+<title lang="vi">Ti&#7871;ng Vi&#7879;t</title>
+
+<para lang="vi">
+DocBook l&#224; <ulink url="http://www.ucc.ie/xml/#doctype">&#272;&#7883;nh ngh&#297;a 
+Ki&#7875;u t&#432; li&#7879;u</ulink> (Document Type Definition - DTD) &#273;&#432;&#7907;c qu&#7843;n l&#253;
+b&#7903;i <ulink url="mailto:docbook-tc@oasis-open.org">&#7910;y ban K&#7929; thu&#7853;t 
+DocBook</ulink> c&#7911;a <ulink url="http://www.oasis-open.org/">
+OASIS</ulink>. N&#243; &#273;&#7863;c bi&#7879;t th&#237;ch h&#7907;p cho c&#225;c lo&#7841;i s&#225;ch v&#224; t&#224;i li&#7879;u
+m&#225;y t&#237;nh v&#7873; ph&#7847;n c&#7913;ng v&#224; ph&#7847;n m&#7873;m (tuy nhi&#234;n &#273;i&#7873;u &#273;&#243; kh&#244;ng c&#243; ngh&#297;a
+l&#224; ch&#7881; gi&#7899;i h&#7841;n &#7913;ng d&#7909;ng trong nh&#7919;ng lo&#7841;i n&#224;y).
+</para>
+
+<para lang="vi">
+V&#236; &#273;&#226;y l&#224; m&#7897;t DTD l&#7899;n v&#224; m&#7841;nh m&#7869;, v&#224; v&#236; c&#7845;u tr&#250;c ch&#237;nh c&#7911;a n&#243; ph&#249;
+h&#7907;p v&#7899;i c&#225;c kh&#225;i ni&#7879;m chung c&#7911;a &#273;&#7875; t&#7841;o n&#234;n m&#7897;t <quote>cu&#7889;n s&#225;ch</quote>, 
+DocBook &#273;&#227; &#273;&#432;&#7907;c m&#7897;t nh&#243;m l&#7899;n c&#225;c t&#225;c gi&#7843; ch&#7885;n &#273;&#7875; vi&#7871;t t&#224;i li&#7879;u &#273;&#7911;
+th&#7875; lo&#7841;i. DocBook &#273;&#432;&#7907;c h&#7895; tr&#7907; b&#7903;i nhi&#7873;u c&#244;ng c&#7909; th&#432;&#417;ng m&#7841;i, v&#224; m&#244;i
+tr&#432;&#7901;ng ph&#7847;n m&#7873;m t&#7921; do c&#361;ng &#273;ang &#273;ang t&#259;ng c&#432;&#7901;ng h&#7895; tr&#7907; cho DocBook.
+Nh&#7919;ng &#273;&#7863;c &#273;i&#7875;m n&#224;y &#273;&#432;&#7907;c k&#7871;t h&#7907;p &#273;&#7875; l&#224;m cho DocBook tr&#7903; th&#224;nh m&#7897;t
+DTD d&#7877; hi&#7875;u, h&#7919;u d&#7909;ng v&#224; &#273;&#432;&#7907;c d&#249;ng r&#7897;ng r&#227;i. H&#224;ng ch&#7909;c t&#7893; ch&#7913;c &#273;ang
+s&#7917; d&#7909;ng DocBook trong h&#224;ng tri&#7879;u trang v&#259;n b&#7843;n, v&#7899;i nhi&#7873;u d&#7841;ng
+th&#7913;c in v&#224; d&#7841;ng th&#7913;c tr&#7921;c tuy&#7871;n kh&#225;c nhau tr&#234;n to&#224;n th&#7871; gi&#7899;i.
+
+</para>
+
+</chapter>

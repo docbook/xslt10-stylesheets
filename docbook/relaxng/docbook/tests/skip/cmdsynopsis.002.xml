@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article xmlns="http://docbook.org/ns/docbook" version="kahlúa">
+<info><title>Unit test: cmdsynopsis.002</title>
+
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><personname><firstname>Adam</firstname><surname>Di Carlo</surname></personname><affiliation><address><email>adam@onshored.com</email></address></affiliation></author>
+</info>
+
+  <section><info><title>Cmdsynopsis Test</title></info>
+    
+    
+    <para>Cmdsynopsis test in the context of glossentry follows.</para>
+
+    <glosslist>
+
+      <glossentry>
+        <glossterm>
+          <cmdsynopsis>
+            <command>command</command>
+            <arg choice="req">req</arg>
+            <arg choice="req" rep="repeat">repeatandreq</arg>
+            <arg rep="repeat">repeat</arg>
+            <arg>optional</arg>
+          </cmdsynopsis>
+        </glossterm>
+        <glossdef>
+          <para>Do black magic.</para>
+        </glossdef>
+      </glossentry>
+
+    </glosslist>
+
+  </section>
+
+</article>

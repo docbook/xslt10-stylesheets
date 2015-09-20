@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE webpage SYSTEM "../website.dtd">
+<webpage id="test">
+<head>
+<title>Test</title>
+<summary>Test Page</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+</webpage>

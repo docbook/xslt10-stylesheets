@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="stringtype">
+ <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:complexType name="grouptype">
+  <xs:choice minOccurs="0" maxOccurs="unbounded">
+   <xs:element name="parameter" type="stringtype" minOccurs="0" maxOccurs="unbounded"/>
+   <xs:element name="attribute-set" type="stringtype" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:choice>
+  <xs:attribute name="name" type="stringtype"/>
+  <xs:attribute name="graphics" type="stringtype"/> 
+</xs:complexType>
+
+<xs:complexType name="subsectiontype">
+  <xs:choice minOccurs="0" maxOccurs="unbounded">
+   <xs:element name="group" type="grouptype" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:choice>
+  <xs:attribute name="name" type="stringtype" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="sectiontype">
+  <xs:sequence>
+   <xs:element name="subsection" type="subsectiontype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="name" type="stringtype" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="configtype">
+  <xs:sequence>
+   <xs:element name="section" type="sectiontype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="config" type="configtype"/>
+
+</xs:schema>

@@ -1,0 +1,89 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace svg = "http://www.w3.org/2000/svg"
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+db.imageobject.content |= db.imagedata.svg
+
+# ============================================================
+
+[
+   db:refname [ "imagedata" ]
+   db:refpurpose [ "An SVG drawing in a media object" ]
+]
+div {
+   db.imagedata.svg.role.attribute = attribute role { text }
+
+   db.imagedata.svg.attlist =
+      db.imagedata.svg.role.attribute?
+    & db.common.attributes
+    & [
+       db:refpurpose [ "Specifies that the format of the data is SVG" ]
+      ]
+      attribute format {
+         ## Specifies SVG.
+         "svg"
+      }?
+    & db.imagedata.align.attribute?
+    & db.imagedata.valign.attribute?
+    & db.imagedata.width.attribute?
+    & db.imagedata.contentwidth.attribute?
+    & db.imagedata.scalefit.attribute?
+    & db.imagedata.scale.attribute?
+    & db.imagedata.depth.attribute?
+    & db.imagedata.contentdepth.attribute?
+
+   db.imagedata.svg.info = db._info.title.forbidden
+
+   db.imagedata.svg =
+      element imagedata {
+         db.imagedata.svg.attlist,
+         db.imagedata.svg.info,
+         db._any.svg+
+      }
+}
+
+# ============================================================
+
+[
+   db:refname [ "svg:*" ]
+   db:refpurpose [ "Any element from the SVG namespace" ]
+]
+div {
+
+   db._any.svg =
+      element svg:* { (db._any.attribute | text | db._any)* }
+
+}
+

@@ -1,0 +1,380 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.calloutlist | db.programlistingco | db.screenco | db.imageobjectco
+
+db.publishing.inlines |= db.coref
+db.list.blocks |= db.calloutlist
+db.verbatim.blocks |= db.programlistingco | db.screenco
+db.computeroutput.inlines |= db.co
+db.verbatim.inlines |= db.co
+db.prompt.inlines |= db.co
+db.systemitem.inlines |= db.co
+db.userinput.inlines |= db.co
+db.replaceable.inlines |= db.co
+
+db.mediaobject.content |= db.imageobjectco
+
+# ======================================================================
+
+ctrl:other-attribute [ name="area.units.attrib"
+                       enum-name="area.units-enum.attribute"
+                       other-name="area.units-other.attributes" ]
+
+db.area.units.enumeration =
+   ## Coordinates expressed as a pair of CALS graphic coordinates.
+   "calspair"
+ | ## Coordinates expressed as a line and column.
+   "linecolumn"
+ | ## Coordinates expressed as a pair of lines and columns.
+   "linecolumnpair"
+ | ## Coordinates expressed as a line range.
+   "linerange"
+
+db.area.units-enum.attribute =
+   [
+      db:refpurpose [ "Identifies the units used in the coords attribute. The default units vary according to the type of callout specified: " db:tag [ class="attvalue" "calspair" ] " for graphics and " db:tag [ class="attvalue" "linecolumn" ] " for line-oriented elements." ]
+   ]
+   attribute units { db.area.units.enumeration }?
+
+db.area.units-other.attributes =
+   [
+      db:refpurpose [ "Indicates that non-standard units are used for this " db:tag [ "area" ] ". In this case " db:tag [ class="attribute" "otherunits" ] " must be specified." ]
+   ]
+   attribute units {
+      ## Coordinates expressed in some non-standard units.
+      "other" }?,
+   [
+      db:refpurpose [ "Identifies the units used in the " db:tag [ class="attribute" "coords" ] " attribute when the " db:tag [ class="attribute" "units" ] " attribute is " db:quote [ "other" ] ". This attribute is forbidden otherwise." ]
+   ]
+   attribute otherunits { xsd:NMTOKEN }
+
+db.area.units.attribute =
+   (db.area.units-enum.attribute | db.area.units-other.attributes)
+
+# ======================================================================
+
+[
+   db:refname [ "calloutlist" ]
+   db:refpurpose [ "A list of " db:tag [ "callout" ] "s" ]
+]
+div {
+
+   db.calloutlist.role.attribute = attribute role { text }
+
+   db.calloutlist.attlist =
+      db.calloutlist.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.calloutlist.info = db._info.title.only
+
+   db.calloutlist =
+      element calloutlist {
+         db.calloutlist.attlist,
+         db.calloutlist.info,
+         db.all.blocks*,
+         db.callout+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "callout" ]
+   db:refpurpose [ "A " db:quote [ "called out" ] " description of a marked area" ]
+]
+div {
+
+   db.callout.role.attribute = attribute role { text }
+   db.callout.arearefs.attribute =
+      [
+         db:refpurpose [ "Identifies the areas described by this callout." ]
+      ]
+      attribute arearefs { xsd:IDREFS }
+
+   db.callout.attlist =
+      db.callout.role.attribute?
+    & db.common.attributes
+    & db.callout.arearefs.attribute
+
+   db.callout =
+      element callout {
+         db.callout.attlist,
+         db.all.blocks+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "programlistingco" ]
+   db:refpurpose [ "A program listing with associated areas used in callouts" ]
+]
+div {
+
+   db.programlistingco.role.attribute = attribute role { text }
+
+   db.programlistingco.attlist =
+      db.programlistingco.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.programlistingco.info = db._info.title.forbidden
+
+   db.programlistingco =
+      element programlistingco {
+         db.programlistingco.attlist,
+         db.programlistingco.info,
+         db.areaspec,
+         db.programlisting,
+         db.calloutlist*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "areaspec" ]
+   db:refpurpose [ "A collection of regions in a graphic or code example" ]
+]
+div {
+
+   db.areaspec.role.attribute = attribute role { text }
+
+   db.areaspec.attlist =
+      db.areaspec.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.area.units.attribute
+
+   db.areaspec =
+      element areaspec {
+         db.areaspec.attlist,
+         (db.area | db.areaset)+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "area" ]
+   db:refpurpose [ "A region defined for a callout in a graphic or code example" ]
+]
+div {
+
+   db.area.role.attribute = attribute role { text }
+   db.area.linkends.attribute =
+      [
+         db:refpurpose [ "Point to the " db:tag [ "callout" ] "s which refer to this area. (This provides bidirectional linking which may be useful in online presentation.)" ]
+      ]
+      attribute linkends { xsd:IDREFS }
+   db.area.label.attribute =
+      [
+         db:refpurpose [ "Specifies an identifying number or string that may be used in presentation. The area label might be drawn on top of the figure, for example, at the position indicated by the coords attribute." ]
+      ]
+      attribute label { text }
+   db.area.coords.attribute =
+      [
+         db:refpurpose [ "Provides the coordinates of the area. The coordinates must be interpreted using the " db:tag [ class="attribute" "units" ] " specified." ]
+      ]
+      attribute coords { text }
+
+   db.area.attlist =
+      db.area.role.attribute?
+    & db.common.idreq.attributes
+    & db.area.units.attribute
+    & (db.area.linkends.attribute | db.href.attributes)?
+    & db.area.label.attribute?
+    & db.area.coords.attribute
+
+   db.area =
+      element area {
+         db.area.attlist,
+         db.alt?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "area" ]
+   db:refpurpose [ "A region defined for a callout in a graphic or code example" ]
+]
+div {
+   # The only difference is that xml:id is optional
+   db.area.inareaset.attlist =
+      db.area.role.attribute?
+    & db.common.attributes
+    & db.area.units.attribute
+    & (db.area.linkends.attribute | db.href.attributes)?
+    & db.area.label.attribute?
+    & db.area.coords.attribute
+
+   db.area.inareaset =
+      element area {
+         db.area.inareaset.attlist,
+         db.alt?
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "areaset" ]
+   db:refpurpose [ "A set of related areas in a graphic or code example" ]
+]
+div {
+
+   db.areaset.role.attribute = attribute role { text }
+   db.areaset.linkends.attribute = db.linkends.attribute
+   db.areaset.label.attribute = db.label.attribute
+
+   db.areaset.attlist =
+      db.areaset.role.attribute?
+    & db.common.idreq.attributes
+    & db.area.units.attribute
+    & (db.areaset.linkends.attribute | db.href.attributes)?
+    & db.areaset.label.attribute?
+
+   db.areaset =
+      element areaset {
+         db.areaset.attlist,
+         db.area.inareaset+
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "screenco" ]
+   db:refpurpose [ "A screen with associated areas used in callouts" ]
+]
+div {
+
+   db.screenco.role.attribute = attribute role { text }
+
+   db.screenco.attlist =
+      db.screenco.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.screenco.info = db._info.title.forbidden
+
+   db.screenco =
+      element screenco {
+         db.screenco.attlist,
+         db.screenco.info,
+         db.areaspec,
+         db.screen,
+         db.calloutlist*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "imageobjectco" ]
+   db:refpurpose [ "A wrapper for an image object with callouts" ]
+]
+div {
+
+   db.imageobjectco.role.attribute = attribute role { text }
+
+   db.imageobjectco.attlist =
+      db.imageobjectco.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+
+   db.imageobjectco.info = db._info.title.forbidden
+
+   db.imageobjectco =
+      element imageobjectco {
+         db.imageobjectco.attlist,
+         db.imageobjectco.info,
+         db.areaspec,
+         db.imageobject+,
+         db.calloutlist*
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "co" ]
+   db:refpurpose [ "The location of a callout embedded in text" ]
+]
+div {
+
+   db.co.role.attribute = attribute role { text }
+   db.co.linkends.attribute = db.linkends.attribute
+   db.co.label.attribute = db.label.attribute
+
+   db.co.attlist =
+      db.co.role.attribute?
+    & db.common.idreq.attributes
+    & db.co.linkends.attribute?
+    & db.co.label.attribute?
+
+   db.co =
+      element co {
+         db.co.attlist,
+         empty
+      }
+}
+
+# ======================================================================
+
+[
+   db:refname [ "coref" ]
+   db:refpurpose [ "A cross reference to a co" ]
+]
+div {
+
+   db.coref.role.attribute = attribute role { text }
+   db.coref.label.attribute = db.label.attribute
+
+   db.coref.attlist =
+      db.coref.role.attribute?
+    & db.common.attributes
+    & db.linkend.attribute
+    & db.coref.label.attribute?
+
+   db.coref =
+      element coref {
+         db.coref.attlist,
+         empty
+      }
+}

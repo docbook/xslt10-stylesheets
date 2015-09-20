@@ -1,0 +1,131 @@
+<!DOCTYPE book [
+<!ENTITY % param.ent SYSTEM "param.ent">
+%param.ent;
+]>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+   xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   >
+<info>
+<title>Website Parameter Reference</title>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+<author>
+  <personname>
+    <surname>Walsh</surname>
+    <firstname>Norman</firstname>
+  </personname>
+</author>
+<copyright>
+  <year>2002-2005</year>
+  <holder>Norman Walsh</holder>
+</copyright>
+<abstract>
+  <para>This is reference documentation for all user-configurable
+    parameters in the DocBook XSL Website stylesheet (for
+    generating websites from DocBook XML sources). Note that the
+    Website stylesheet is a customization layer of the DocBook XSL
+    HTML stylesheet.  Therefore, in addition to the
+    Website-specific parameters listed in this section, you can
+    also use a number of <link xlink:href="../html/" >HTML
+     stylesheet parameters</link> to control Website output.</para>
+</abstract>
+</info>
+<reference xml:id="general">
+<title>General Parameters</title>
+&autolayout-file;
+&body.attributes;
+&currentpage.marker;
+&dry-run;
+&feedback.href;
+&feedback.link.text;
+&feedback.with.ids;
+&filename-prefix;
+&footer.hr;
+&header.hr;
+&output-root;
+&rebuild-all;
+&sequential.links;
+&suppress.homepage.title;
+&table.spacer.image;
+</reference>
+<reference xml:id="nav">
+<title>Navigation Parameters</title>
+&banner.before.navigation;
+&navbgcolor;
+&navbodywidth;
+&nav.table.summary;
+&navtocwidth;
+&textbgcolor;
+</reference>
+<reference xml:id="toc">
+<title>ToC Parameters</title>
+&toc.blank.graphic;
+&toc.blank.image;
+&toc.blank.text;
+&toc.pointer.graphic;
+&toc.pointer.image;
+&toc.pointer.text;
+&toc.spacer.graphic;
+&toc.spacer.image;
+&toc.spacer.text;
+</reference>
+<appendix xml:id="stylesheet"><title>The Stylesheet</title>
+
+<para>The <filename>param.xsl</filename> stylesheet is just a wrapper
+around all these parameters.</para>
+
+<src:fragment xml:id="top" mundane-result-prefixes="xsl">
+
+<!-- This file is generated from param.xweb -->
+
+<xsl:stylesheet exclude-result-prefixes="src" version="1.0">
+
+<!-- ********************************************************************
+     $Id$
+     ********************************************************************
+
+     This file is part of the DocBook XSL Stylesheets distribution.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
+
+     ******************************************************************** -->
+
+<src:fragref linkend="autolayout-file.frag"/>
+<src:fragref linkend="header.hr.frag"/>
+<src:fragref linkend="footer.hr.frag"/>
+<src:fragref linkend="feedback.href.frag"/>
+<src:fragref linkend="feedback.with.ids.frag"/>
+<src:fragref linkend="feedback.link.text.frag"/>
+<src:fragref linkend="filename-prefix.frag"/>
+<src:fragref linkend="output-root.frag"/>
+<src:fragref linkend="dry-run.frag"/>
+<src:fragref linkend="rebuild-all.frag"/>
+<src:fragref linkend="nav.table.summary.frag"/>
+<src:fragref linkend="navtocwidth.frag"/>
+<src:fragref linkend="navbodywidth.frag"/>
+<src:fragref linkend="textbgcolor.frag"/>
+<src:fragref linkend="navbgcolor.frag"/>
+<src:fragref linkend="toc.spacer.graphic.frag"/>
+<src:fragref linkend="toc.spacer.text.frag"/>
+<src:fragref linkend="toc.spacer.image.frag"/>
+<src:fragref linkend="toc.pointer.graphic.frag"/>
+<src:fragref linkend="toc.pointer.text.frag"/>
+<src:fragref linkend="toc.pointer.image.frag"/>
+<src:fragref linkend="toc.blank.graphic.frag"/>
+<src:fragref linkend="toc.blank.text.frag"/>
+<src:fragref linkend="toc.blank.image.frag"/>
+<src:fragref linkend="suppress.homepage.title.frag"/>
+<src:fragref linkend="body.attributes.frag"/>
+<src:fragref linkend="sequential.links.frag"/>
+<src:fragref linkend="currentpage.marker.frag"/>
+<src:fragref linkend="banner.before.navigation.frag"/>
+<src:fragref linkend="table.spacer.image.frag"/>
+
+</xsl:stylesheet>
+</src:fragment>
+
+</appendix>
+</book>

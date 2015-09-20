@@ -1,0 +1,7 @@
+build
+semantic.cache
+*.dtd
+*.rnc
+*.rng
+*.sch
+*.xsd

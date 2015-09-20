@@ -1,0 +1,204 @@
+# This file is part of DocBook V5.0
+#
+# Copyright 1992-2008 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id$
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+start |= db.sect1 | db.sect2 | db.sect3 | db.sect4 | db.sect5
+
+db.toplevel.sections |= (db.sect1+, db.simplesect*)
+
+# ======================================================================
+
+db.sect1.sections = (db.sect2+, db.simplesect*) | db.simplesect+
+
+[
+   db:refname [ "sect1" ]
+   db:refpurpose [ "A top-level section of document" ]
+]
+div {
+
+   db.sect1.status.attribute = db.status.attribute
+
+   db.sect1.role.attribute = attribute role { text }
+
+   db.sect1.attlist =
+      db.sect1.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect1.status.attribute?
+
+   db.sect1.info = db._info.title.req
+
+   db.sect1 =
+      element sect1 {
+         db.sect1.attlist,
+         db.sect1.info,
+         ((db.all.blocks+, db.sect1.sections?)
+          | db.sect1.sections),
+         db.navigation.components*
+      }
+}
+
+# ======================================================================
+
+db.sect2.sections = (db.sect3+, db.simplesect*) | db.simplesect+
+
+[
+   db:refname [ "sect2" ]
+   db:refpurpose [ "A subsection within a sect1" ]
+]
+div {
+
+   db.sect2.status.attribute = db.status.attribute
+
+   db.sect2.role.attribute = attribute role { text }
+
+   db.sect2.attlist =
+      db.sect2.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect2.status.attribute?
+
+   db.sect2.info = db._info.title.req
+
+   db.sect2 =
+      element sect2 {
+         db.sect2.attlist,
+         db.sect2.info,
+         ((db.all.blocks+, db.sect2.sections?)
+          | db.sect2.sections),
+         db.navigation.components*
+      }
+}
+
+# ======================================================================
+
+db.sect3.sections = (db.sect4+, db.simplesect*) | db.simplesect+
+
+[
+   db:refname [ "sect3" ]
+   db:refpurpose [ "A subsection within a sect2" ]
+]
+div {
+
+   db.sect3.status.attribute = db.status.attribute
+
+   db.sect3.role.attribute = attribute role { text }
+
+   db.sect3.attlist =
+      db.sect3.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect3.status.attribute?
+
+   db.sect3.info = db._info.title.req
+
+   db.sect3 =
+      element sect3 {
+         db.sect3.attlist,
+         db.sect3.info,
+         ((db.all.blocks+, db.sect3.sections?)
+          | db.sect3.sections),
+         db.navigation.components*
+      }
+}
+
+# ======================================================================
+
+db.sect4.sections = (db.sect5+, db.simplesect*) | db.simplesect+
+
+[
+   db:refname [ "sect4" ]
+   db:refpurpose [ "A subsection within a sect3" ]
+]
+div {
+
+   db.sect4.status.attribute = db.status.attribute
+
+   db.sect4.role.attribute = attribute role { text }
+
+   db.sect4.attlist =
+      db.sect4.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect4.status.attribute?
+
+   db.sect4.info = db._info.title.req
+
+   db.sect4 =
+      element sect4 {
+         db.sect4.attlist,
+         db.sect4.info,
+         ((db.all.blocks+, db.sect4.sections?)
+          | db.sect4.sections),
+         db.navigation.components*
+      }
+}
+
+# ======================================================================
+
+db.sect5.sections = db.simplesect+
+
+[
+   db:refname [ "sect5" ]
+   db:refpurpose [ "A subsection within a sect4" ]
+]
+div {
+
+   db.sect5.status.attribute = db.status.attribute
+
+   db.sect5.role.attribute = attribute role { text }
+
+   db.sect5.attlist =
+      db.sect5.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    & db.label.attribute?
+    & db.sect5.status.attribute?
+
+   db.sect5.info = db._info.title.req
+
+   db.sect5 =
+      element sect5 {
+         db.sect5.attlist,
+         db.sect5.info,
+         ((db.all.blocks+, db.sect5.sections?)
+          | db.sect5.sections),
+         db.navigation.components*
+      }
+}
+

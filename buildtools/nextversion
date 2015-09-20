@@ -1,0 +1,72 @@
+#!/usr/bin/perl -- # --*-Perl-*--
+
+use strict;
+use Getopt::Std;
+use vars qw($opt_v);
+
+select STDOUT; $| = 1;
+
+my $usage = "Usage: $0 [-v version]\n";
+
+die $usage if ! getopts('v:');
+my $version = $opt_v || undef;
+
+open (F, 'VERSION') || die "Cannot find VERSION.\n";
+read (F, $_, -s 'VERSION');
+close (F);
+
+if (/^(.*name=.VERSION.>)([\.\d]+.*?)\+?(<.*)$/s) {
+    # ok
+} elsif (/^(.*?)([\.\d]+.*?)\+?\s*$/s) {
+    # ok
+} else {
+    die "Cannot find version in VERSION.\n";
+}
+
+my $pre = $1;
+my $fvers = $2;
+my $post = $3;
+
+my $oldver = $fvers;
+
+my @cvsbad = `cvs -n update 2>&1 | grep -v ^cvs`;
+if (@cvsbad) {
+    print STDERR @cvsbad;
+    die "CVS is not up-to-date!\n";
+}
+
+my $major = undef;
+my $middle = undef;
+my $minor = undef;
+
+if ($fvers =~ /^(\d+)\.(\d+)\.(\d+)$/) {
+    $major = $1;
+    $middle = $2;
+    $minor = $3;
+    $minor++;
+    $fvers = "$major.$middle.$minor";
+} elsif ($fvers =~ /^(\d+)\.(\d+.*)$/) {
+    $major = $1;
+    $minor = $2;
+    $minor++;
+    $fvers = "$major.$minor";
+} else {
+    die "Cannot parse version: $fvers\n";
+}
+
+$version = "$fvers" if !$version;
+
+print "About to release $version (previous $oldver); are you sure? ";
+chop($_ = scalar(<>));
+
+die "Aborted!\n" if !/^y/i;
+
+open (F, ">VERSION");
+print F "$pre$version$post";
+close (F);
+
+system ("cvs commit -m \"Version $version released.\" VERSION");
+
+$version =~ s/\.//g;
+
+system ("cvs tag V$version");

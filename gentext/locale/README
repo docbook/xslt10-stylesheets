@@ -1,0 +1,228 @@
+README for DocBook locale files
+
+$Id$
+
+This README explains how to create, change, and
+contribute locale files for use with DocBook.
+
+-------------------------------------------------------
+CREATING OR CHANGING A LOCALE FILE
+-------------------------------------------------------
+If you want to contribute a locale file for a language
+that is not in the current distribution, copy the
+en.xml file from here:
+
+  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/en.xml
+
+If you want to make changes to an existing locale file,
+copy the appropriate locale file from:
+
+  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/
+
+The main parts of the file that you need to translate are:
+
+  - The 'text' attribute of <gentext> and <dingbat>
+    elements.
+
+  - The "datetime-full" and "datetime-abbrev" parts
+    (translators often overlook those because they are
+    near the end of the file)
+
+You may also want to translate parts of he element
+content of the <template> elements. In particular:
+
+  <template name="page">(page %p)</template>
+  <template name="docname"> in %o</template>
+  <template name="docnamelong"> in the document titled %o</template>
+  <template name="pageabbrev">(p. %p)</template>
+  <template name="Page">Page %p</template>
+
+NOTE: You don't have to translate empty elements such
+as '<Chapter/>' that are used in the <template> element
+content. For example, you can just leave the <Chapter/>
+part of the following unchanged.
+
+  <template name="chapter"><Chapter/>&#160;%n.&#160;%t</template>
+
+You'd only want to change the "&#160;%n.&#160;%t" if
+needed for your locale.
+
+-------------------------------------------------------
+ABOUT THE <letters> PART
+-------------------------------------------------------
+The content in the <letters> part of the file is used
+for building of sorted indexes.
+
+You can find more information at:
+
+  http://www.idealliance.org/proceedings/xml04/papers/77/xslindex.html#S5.
+
+And the easiest way to understand it is to probably to
+at the <letters> part of the Czech locale file:
+
+  http://cvs.sourceforge.net/viewcvs.py/*checkout*/docbook/gentext/locale/cs.xml
+
+Basically:
+
+  - for each letter used in the alphabet for your
+    locale, include a <l i="n">X</l> instance; (i.e.,
+    if your locale has a 46-letter alphabet, include
+    <l> element for each letter)
+
+  - the value of "i" attribute is a number that
+    indicates the sorting order for that letter. For
+    letters that should be grouped together, just use
+    the same value for the "i" attribute.
+
+NOTE: You do not need to translate the <letters> part
+of the file UNLESS, in your locale:
+
+  - words with initial accented letters are typically
+    sorted into different index divisions than words
+    with unaccented initial letters.
+
+  OR 
+
+  - words starting with certain combinations of
+    two-letter initial characters are are sorted
+    differently/separately (e.g., in Spanish indexes,
+    words starting with "ch" are sorted differently
+    than other words starting with "c").
+
+If you need more help with understanding the <letters>
+part, post a request to docbook-apps@lists.oasis-open.org
+
+-------------------------------------------------------
+ABOUT ENCODINGS
+-------------------------------------------------------
+Encode your locale file into UTF-8 (or convert it to
+UTF-8 before submitting it).  Use "real" Unicode
+characters is possible; if not, use numerical character
+references (hexadecimal or decimal). Do not use named
+character entities.
+
+-------------------------------------------------------
+SUBMITTING A NEW OR CHANGED LOCALE FILE
+-------------------------------------------------------
+After you have finished creating or changing a locale
+file, please zip it (using zip or gzip or bzip2) and
+e-mail it to:
+
+  Michael Smith <smith@xml-doc.org>
+
+And/or mail it to:
+
+  docbook-developers@lists.sourceforge.net
+
+NOTE: It's important to zip/compress/tar the file to
+prevent the possibility of the file being corrupted by
+mail programs.
+
+That's all you need to know in order to create, change,
+and submit locale files.
+
+If you want more info, read on.
+
+-------------------------------------------------------
+                BACKGROUND INFORMATION
+-------------------------------------------------------
+The purpose of these files is to provide localizations
+of certain text used in output from the DocBook
+stylesheets. The files are used in building both the
+DSSSL and XSL stylesheet distributions.
+
+-------------------------------------------------------
+The DTD
+-------------------------------------------------------
+There is a separate file for each language.  
+They are written in XML, using the DTD in
+docbook/gentext/dtd/l10n.dtd.  However, each file
+does not have a DOCTYPE declaration because each
+is a SYSTEM entity that is pulled into the master
+file at runtime.  The master file in XSL is
+docbook/xsl/common/l10n.xml.  Also, the files
+will not validate against the DTD because they
+also contain elements in the "doc:" namespace
+that are not in the DTD.
+
+-------------------------------------------------------
+The elements
+-------------------------------------------------------
+
+<gentext>
+  General strings and labels that need translation
+  are in <gentext> elements. The 'key' attribute is
+  how each element is referenced by the stylesheet,
+  and the 'text' attribute contains the actual
+  text to insert.  There are also some <dingbat>
+  elements for special characters.
+
+<context>
+  The <context> elements are wrappers around a group of
+  <template> elements that apply in that context.
+  The stylesheet determines when a given context name is
+  used.
+
+<template>
+  In a <template> element, the 'name' attribute identifies
+  the element to which the template applies, and the content
+  of the <template> element is the generated string.
+  Within the element's content, any empty elements such
+  as '<Chapter/>' are replaced with the 'text' from the
+  <gentext> element whose 'key' attribute matches the
+  element name.  That enables items translated in <gentext>
+  to be used in the <template> elements. That way many of the
+  <template> elements do not require direct translation.
+
+  Also, %t, %s, and %n in the template content are
+  placeholders for an element's title, subtitle, or label
+  number, respectively.  These are replaced at runtime for
+  the document instance.
+
+<letters>
+  The content in the <letters> part of the file is used
+  for building of sorted indexes.
+
+NOTE: The DSSSL stylesheets use only the <gentext>
+      elements, not the <context> or <template> or
+      <letters> elements.
+
+-------------------------------------------------------
+The build process
+-------------------------------------------------------
+When an XSL stylesheet distribution is created, each source
+locale file is processed with docbook/gentext/xsl/xsl.xsl
+stylesheet to produce the distributed version.
+The stylesheet replaces elements such as '<Chapter/>'
+with the corresponding text, and fills in missing items
+with English versions.
+
+The DSSSL distribution uses the dsssl.xsl stylesheet instead.
+It does not backfill missing entries with English.
+
+-------------------------------------------------------
+Comparing a locale file to the en.xml file
+-------------------------------------------------------
+The locale files should all contain the same number of
+entries, but unfortunately they are not all kept up to
+date and so they may differ somewhat.  The included Perl
+script Auditlocale.pl can be used to compare a given
+locale file with the English file en.xml, which is the
+most complete file.  Usage:
+
+  perl Auditlocale.pl  fr.xml  >  report.fr
+
+In the report, the various sections of the
+locale file are indicated with lines like:
+
+  =================================== gentext
+
+These are followed by any differences in that section.
+
+You can also look in the corresponding locale file in
+the distribution.  During the build, any items that were
+missing from the source file are filled in with English
+versions in the distribution, and marked with a lang="en"
+attribute so it is obvious.  That ensures that all
+locale files in the distribution have the same set of
+entries, even if not all of them are translated.

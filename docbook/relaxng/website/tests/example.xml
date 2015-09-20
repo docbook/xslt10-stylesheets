@@ -1,0 +1,11 @@
+<webpage xmlns="http://docbook.org/ns/docbook"
+	 xml:id="test1" xml:lang="de">
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Test <emphasis>1</emphasis></title>
+<summary>Test 1 Page</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+</webpage>

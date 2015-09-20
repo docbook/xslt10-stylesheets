@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+<article>
+<articleinfo>
+<title>The Slides Document Type</title>
+<releaseinfo role="CVS">$Id$</releaseinfo>
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+        <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
+</author>
+</articleinfo>
+
+<para>The Slides Document Type is an XML vocabulary derived from
+DocBook. It is used to create presentations (slides, foils, whatever
+you call them) in HTML or print.</para>
+
+<para>Presentations are by nature visual and the Slides stylesheets
+provide a wide range of options to control how the transformation from
+XML to HTML is performed.</para>
+
+<para>This document is a first attempt at describing what some of
+these options are and how to use them.</para>
+
+<section id="ch.stylesheet">
+<title>Choose a Stylesheet</title>
+
+<para>At the highest level, you can choose one of five stylesheets:</para>
+
+<itemizedlist>
+<listitem>
+<para><filename>slides.xsl</filename> produces basic slides in HTML, one page
+per slide.
+</para>
+</listitem>
+
+<listitem>
+<para><filename>frames.xsl</filename> produces slides in HTML using frames.
+</para>
+</listitem>
+
+<listitem>
+<para><filename>tables.xsl</filename> produces slides in HTML using tables, one page
+per slide.
+</para>
+</listitem>
+
+<listitem>
+<para><filename>w3c.xsl</filename> produces basic slides in HTML, one
+page per slide, using a navigation style similar to that of most W3C
+talks.
+</para>
+</listitem>
+
+<listitem>
+<para><filename>fo-plain.xsl</filename> produces basic slides, one
+page per slide, for print using XSL Formatting Objects.
+</para>
+</listitem>
+</itemizedlist>
+
+</section>
+
+<section id="ch.params">
+<title>Choose your Parameters</title>
+
+<para>The <ulink url="param.html">parameter reference</ulink> summarizes the
+parameters that you can set to change the features of the slides.</para>
+
+<para>Be aware that some features require JavaScript. Some effort has been taken
+to assure that these features work across different browsers on different platforms,
+but it is possible that older browsers will not render slides that use JavaScript
+correctly.</para>
+
+</section>
+
+<section id="ch.process">
+<title>Process the Slides</title>
+
+<para>Run your slides source through your favorite XSLT processor using the stylesheet
+and parameters you selected.</para>
+
+<para>View the results in your favorite browser.</para>
+
+</section>
+
+</article>

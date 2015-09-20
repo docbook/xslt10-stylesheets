@@ -1,0 +1,40 @@
+<article>
+  <title>Slides Demos</title>
+  
+  <para>There are 12 online HTML versions of the slides presentation,
+  and one PDF version.</para>
+
+  <itemizedlist>
+    <title>HTML output</title>
+    <listitem><simpara><ulink url="default/index.html">default</ulink>, a
+    simple presentation</simpara></listitem>
+    <listitem><simpara><ulink url="plain/index.html">plain</ulink>, a
+    simple presentation</simpara></listitem>
+    <listitem><simpara><ulink url="tables/index.html">tables</ulink>,
+    uses a table for the ToC on each page</simpara></listitem>
+    <listitem><simpara><ulink url="vslides/index.html">vslides</ulink>,
+    uses a vertical navigation style</simpara></listitem>
+    <listitem><simpara><ulink url="w3c/index.html">w3c</ulink>, uses a
+    style like the W3C "talk" style</simpara></listitem>
+    <listitem><simpara><ulink url="frames1/frames.html">frames1</ulink>,
+    uses frames</simpara></listitem>
+    <listitem><simpara><ulink url="frames2/frames.html">frames2</ulink>,
+    uses frames and JavaScript</simpara></listitem>
+    <listitem><simpara><ulink url="frames3/frames.html">frames3</ulink>,
+    uses multiple frames</simpara></listitem>
+    <listitem><simpara><ulink url="frames4/frames.html">frames4</ulink>,
+    uses frames and JavaScript</simpara></listitem>
+    <listitem><simpara><ulink url="frames5/frames.html">frames5</ulink>,
+    uses frames and JavaScript</simpara></listitem>
+    <listitem><simpara><ulink url="frames6/frames.html">frames6</ulink>,
+    uses frames and JavaScript</simpara></listitem>
+    <listitem><simpara><ulink url="frames7/frames.html">frames7</ulink>,
+    uses frames and JavaScript</simpara></listitem>
+  </itemizedlist>
+  <itemizedlist>
+    <title>PDF output</title>
+    <listitem><simpara><ulink url="slides.pdf">slides.pdf</ulink>. 
+    no special options</simpara></listitem>
+  </itemizedlist>
+</article>
+

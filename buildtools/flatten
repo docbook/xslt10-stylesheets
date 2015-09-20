@@ -1,0 +1,299 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+$dtd = shift @ARGV || die;
+
+select(STDERR); $| = 1;
+select(STDOUT); $| = 1;
+
+%entity = ();
+%used = ();
+
+$pass = 1;
+@dirstack = ('.');
+&read_dtd($dtd);
+
+$changed = 1;
+while ($changed) {
+    $changed = 0;
+    foreach $ent (keys %entity) {
+	&check_used("ENTITY $ent", $entity{$ent}) if $used{$ent};
+    }
+}
+
+# Force local.* entities to be used for all entities that are used.
+foreach $ent (keys %entity) {
+    next if $ent !~ /^local\.(.*)$/;
+    next if !$used{$1};
+    $used{$ent} = 1;
+}
+
+print "<!-- *********************************************************************
+     *** THIS IS THE FLATTENED DTD. DO NOT EDIT THIS DTD BY HAND, EDIT ***
+     *** THE CUSTOMIZATION LAYER AND REGENERATE THE FLATTENED DTD! ********
+     ********************************************************************* -->\n\n";
+
+open (F, $dtd);
+while (<F>) {
+    last if /^<!A/ || /^<!N/ || /^<!E/;
+    print $_;
+}
+close (F);
+print "\n";
+
+$pass = 2;
+%entity = ();
+@dirstack = ('.');
+&read_dtd($dtd);
+
+sub read_dtd {
+    my($dtd) = shift;
+    my($totsize);
+    local(*F, $_);
+
+    # HACK HACK HACK
+    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/simple\/.*\/([^\/]+)$/
+	|| $dtd =~ /http:\/\/docbook.org\/xml\/simple\/.*\/([^\/]+)$/) {
+	print STDERR "$dtd ==>\n";
+	$dtd = "/sourceforge/docbook/docbook/simple/$1";
+	print STDERR "\t$dtd\n";
+    }
+
+    # HACK HACK HACK
+    if ($dtd =~ /http:\/\/www.oasis-open.org\/docbook\/xml\/(.*)$/
+	|| $dtd =~ /http:\/\/docbook.org\/xml\/(.*)$/) {
+	print STDERR "$dtd ==>\n";
+	$dtd = "/share/websites/docbook/xml/$1";
+	print STDERR "\t$dtd\n";
+    }
+
+    # HACK HACK HACK
+    if ($dtd =~ /http:\/\/www.w3.org\/2003\/entities\/(.*)$/) {
+	print STDERR "$dtd ==>\n";
+	$dtd = "/projects/w3c/WWW/2003/entities/$1";
+	print STDERR "\t$dtd\n";
+    }
+
+    if (! -f $dtd) {
+	$dtd = $dirstack[$#dirstack] . "/" . $dtd;
+    }
+
+    if ($dtd =~ /^(.*)[\/\\]([^\/\\]+)$/) {
+	push (@dirstack, $1);
+    } else {
+	push (@dirstack, ".");
+    }
+
+    open (F, $dtd) || die "Cannot open $dtd\n";
+    read (F, $_, -s $dtd);
+    close (F);
+
+    print STDERR "\nParsing $dtd...\n";
+    $totsize = -s $dtd;
+
+    while (/^.*?<!(.*?)>/s) {
+	my($decl) = $1;
+	my($rest) = $';
+
+	# comments are a special case...
+	if ($decl =~ /^--/) {
+	    /^.*?<!(--.*?--)>/s;
+	    $decl = $1;
+	    $rest = $';
+	}
+
+	# marked sections are a special case...
+	if ($decl =~ /^\[\s*%(.*?);?\s*\[/s) {
+	    my($mspe) = $1;
+	    my($depth) = 1;
+	    my($content) = "";
+	    $_ = $' . ">" . $rest;
+#	    print STDERR "$mspe:\n";
+#	    print STDERR "!!>", substr($_, 0, 200), "<!!\n";
+	    while (($depth > 0) && /^(.*?)((<!\[)|(\]\]>))/s) {
+		$content .= $1;
+		if ($4) {
+		    $depth--;
+		    if ($depth > 0) {
+			$content .= $4;
+		    }
+		} else { 
+		    $depth++;
+		    $content .= $3;
+		}
+		$_ = $';
+	    }
+#	    print STDERR "**>$content<**\n";
+
+	    $rest = $_;
+
+	    if ($entity{$mspe} eq 'INCLUDE') {
+#		print STDERR "\nIncluding $mspe...\n";
+		$_ = $content . $rest;
+		next;
+	    } elsif ($entity{$mspe} eq 'IGNORE') {
+#		print STDERR "\nSkipping $mspe...\n";
+		$_ = $rest;
+		next;
+	    } else {
+		die "Invalid MSPE: $mspe ", $entity{$mspe}, "\n";
+	    }
+	}
+
+	$_ = $rest;
+
+#	print STDERR "\n$decl\n";
+
+	$percent = (($totsize - length($rest)) / $totsize) * 100;
+	printf STDERR "%05.1f\r", $percent;
+
+	if ($pass > 1) {
+	    &output($decl);
+	} else {
+	    &handle($decl);
+	}
+    }
+
+    pop (@dirstack);
+}
+
+sub handle {
+    my($decl) = shift;
+
+    if ($decl =~ /^ENTITY % (\S+)\s+(PUBLIC\s+\".*?\"|SYSTEM)\s+\"(.*?)\"/s) {
+	my($ent) = $1;
+	my($pub) = $2;
+	my($sys) = $3;
+	if (0 && $pub =~ /^PUBLIC\s+\"ISO/s) {
+	    # charent
+	} else {
+	    if (!exists($entity{$ent})) {
+#		print STDERR "Reading $sys\n";
+		&read_dtd($sys);
+	    }
+
+	    $entity{$ent} = "%%%";
+	}
+    } elsif ($decl =~ /^ENTITY % (\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
+
+	if (!exists($entity{$ent})) {
+	    $entity{$ent} = $val;
+
+#	    if ($ent =~ /^local\./) {
+#		print STDERR "\nForcing $ent to be used.\n";
+#		$used{$ent} = 1;
+#	    }
+	}
+    } elsif ($decl =~ /^ENTITY\s+(\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
+	if (!exists($entity{$ent})) {
+	    $entity{$ent} = $val;
+	    $used{$ent} = 1;
+	}
+    } elsif ($decl =~ /^--.*?--/s) {
+	# comment;
+    } elsif ($decl =~ /^NOTATION\s+(\S+)/s) {
+	# notation;
+	&check_used("NOTATION $1", $decl);
+    } elsif ($decl =~ /^ELEMENT\s+(\S+)/s) {
+	# element
+	&check_used("ELEMENT $1", $decl);
+    } elsif ($decl =~ /^ATTLIST\s+(\S+)/s) {
+	# element
+	&check_used("ATTLIST $1", $decl);
+    } else {
+	print STDERR "?? ", $decl, "\n";
+	exit;
+    }
+}
+
+sub check_used {
+    my($thing, $decl) = @_;
+
+#    print "\ncu: $thing == $decl\n";
+
+    while ($decl =~ /%([^;]+)/) {
+	$decl = $` . $';
+	$changed = 1 if !$used{$1};
+#	print "$thing uses $1\n";
+	$used{$1} = 1;
+    }
+}
+
+sub output {
+    my($decl) = shift;
+
+#    print "Output? $decl\n";
+
+    if ($decl =~ /^ENTITY % (\S+)\s+(PUBLIC\s+\".*?\"|SYSTEM)\s+\"(.*?)\"/s) {
+	my($ent) = $1;
+	my($pub) = $2;
+	my($sys) = $3;
+	if (!exists($entity{$ent})) {
+	    if (0 && $pub =~ /^PUBLIC\s+\"ISO/s) {
+		print "\n<!", $decl, ">\n";
+		print "\%$ent;\n";
+	    } else {
+		&read_dtd($3);
+	    }
+	}
+    } elsif ($decl =~ /^ENTITY % (\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
+#	print "ot: $ent = ", $used{$ent}, "\n";
+
+	$decl = &trim_null($decl);
+
+	if (!exists($entity{$ent})) {
+	    if ($val ne '' || $ent =~ /^local\./) {
+		print "<!", $decl, ">\n" if $used{$ent};
+	    }
+	    $entity{$ent} = $val;
+	}
+    } elsif ($decl =~ /^ENTITY\s+(\S+)\s+([\'\"])(.*?)\2/s) {
+	my($ent, $val) = ($1, $3);
+
+	if (!exists($entity{$ent})) {
+	    if ($val ne '' || $ent =~ /^local\./) {
+		print "<!", $decl, ">\n" if $used{$ent};
+	    }
+	    $entity{$ent} = $val;
+	}
+    } elsif ($decl =~ /^--.*?--/s) {
+	# comment;
+    } elsif ($decl =~ /^NOTATION\s+/) {
+	# notation
+	$decl = &trim_null($decl);
+	print "<!", $decl, ">\n";
+    } elsif ($decl =~ /^ELEMENT\s+/) {
+	# element
+	$decl = &trim_null($decl);
+	print "<!", $decl, ">\n";
+    } elsif ($decl =~ /^ATTLIST\s+/) {
+	# element
+	$decl = &trim_null($decl);
+	print "<!", $decl, ">\n";
+    } else {
+	print STDERR "?? ", $decl, "\n";
+	exit;
+    }	
+}
+
+sub trim_null {
+    my($decl) = shift;
+    my($new) = "";
+    my($ent);
+
+    while ($decl =~ /^(.*?)%(\S[^;]+);?/s) {
+	$new .= $1;
+	$ent = $2;
+	$decl = $';
+
+#	print STDERR "entity{$ent} = $entity{$ent}\n";
+
+	if ($entity{$ent} ne '' || $ent =~ /^local\./) {
+	    $new .= "%$ent;";
+	}
+    }
+
+    return $new . $decl;
+}

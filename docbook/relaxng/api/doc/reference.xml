@@ -1,0 +1,2941 @@
+<!-- Converted by db4-upgrade version 1.0 -->
+
+<article xmlns="http://docbook.org/ns/docbook" version="5.0"><info><title>DocBook API Reference</title></info>
+  <para>Elements:<itemizedlist spacing="compact"><listitem><simpara><link linkend="docbook.api.access">Element <tag>access</tag> - Declares an access specification for class members</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.api">Element <tag>api</tag> - Defines a DocBook API</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.class">Element <tag>class</tag> - Declares a class or class template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.class-specialization">Element <tag>class-specialization</tag> - A specialization (partial or full) of a class template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.code">Element <tag>code</tag> - Mimics the <tag>code</tag> tag in HTML</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.compile-fail-test">Element <tag>compile-fail-test</tag> - A testcase that should fail to compile</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.compile-test">Element <tag>compile-test</tag> - A testcase that should compile correctly</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.complexity">Element <tag>complexity</tag> - The time/space/etc. complexity of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.constructor">Element <tag>constructor</tag> - Declares a constructor of the enclosing class</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.copy-assignment">Element <tag>copy-assignment</tag> - Declares a copy-assignment operator</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.data-member">Element <tag>data-member</tag> - Declares a data member of a class</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.default">Element <tag>default</tag> - The default value of a function or template parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.description">Element <tag>description</tag> - Detailed description of a construct</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.destructor">Element <tag>destructor</tag> - Declares a destructor for the enclosing class</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.effects">Element <tag>effects</tag> - Declares the side effects of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.enum">Element <tag>enum</tag> - Declares an enumeration type</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.enumname">Element <tag>enumname</tag> - References an enumeration type with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.enumvalue">Element <tag>enumvalue</tag> - A single value of an enumeration</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.free-function-group">Element <tag>free-function-group</tag> - A set of functions that are grouped together under one name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.function">Element <tag>function</tag> - Declares a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.functionname">Element <tag>functionname</tag> - References a function with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.globalname">Element <tag>globalname</tag> - References a global with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.header">Element <tag>header</tag> - Declares a C++ header with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.headername">Element <tag>headername</tag> - References a C++ header with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.if-fails">Element <tag>if-fails</tag> - What it means when a testcase fails</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.inherit">Element <tag>inherit</tag> - Declares a base class of the enclosing class or struct</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.lib">Element <tag>lib</tag> - A library dependency</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.library">Element <tag>library</tag> - Top-level element for a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.library-reference">Element <tag>library-reference</tag> - Declares the reference material for a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarycategory">Element <tag>librarycategory</tag> - Declares that the enclosing library is in this category</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarycategorydef">Element <tag>librarycategorydef</tag> - Defines a new library category</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarycategorylist">Element <tag>librarycategorylist</tag> - Categorized listing of libraries</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.libraryinfo">Element <tag>libraryinfo</tag> - Provides information about a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarylist">Element <tag>librarylist</tag> - Placeholder for an alphabetical list of libraries</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.libraryname">Element <tag>libraryname</tag> - References a library of the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.librarypurpose">Element <tag>librarypurpose</tag> - Describes in one short sentence or phrase the purpose of a library</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.link-fail-test">Element <tag>link-fail-test</tag> - Declares a test that should compile but fail to link</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.link-test">Element <tag>link-test</tag> - Declares a test that should compile and link</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.macroname">Element <tag>macroname</tag> - References a macro with the given name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.method">Element <tag>method</tag> - Declares a method, i.e., a member function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.method-group">Element <tag>method-group</tag> - A set of methods that are grouped together under one name</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.namespace">Element <tag>namespace</tag> - Declares a namespace</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.notes">Element <tag>notes</tag> - Non-normative notes about a function's semantics</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.overloaded-function">Element <tag>overloaded-function</tag> - An overloaded function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.overloaded-method">Element <tag>overloaded-method</tag> - An overloaded method</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.parameter">Element <tag>parameter</tag> - A function parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.paramtype">Element <tag>paramtype</tag> - The type of a function parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.postconditions">Element <tag>postconditions</tag> - Conditions that must hold after the function returns</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.precondition">Element <tag>precondition</tag> - Conditions that must be met prior to executing a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.programlisting">Element <tag>programlisting</tag> - A sample of program code</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.purpose">Element <tag>purpose</tag> - A short description of an entity's use</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.rationale">Element <tag>rationale</tag> - Describes the rationale for a particular function's design</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.requirement">Element <tag>requirement</tag> - A requirement/property in the Jamfile for a testcase</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.requires">Element <tag>requires</tag> - Declares the requirements of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.returns">Element <tag>returns</tag> - Description of the return value of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.run-fail-test">Element <tag>run-fail-test</tag> - A testcase that should compile and link, but fail on execution</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.run-test">Element <tag>run-test</tag> - A testcase that should compile, link, and execute</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.signature">Element <tag>signature</tag> - One signature of an overloaded function or method</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.snippet">Element <tag>snippet</tag> - Pulls in a code snippet from a <tag>programlisting</tag> element</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.source">Element <tag>source</tag> - Defines source code for a test</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.specialization">Element <tag>specialization</tag> - Defines the specialization arguments for a class specialization</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.static-constant">Element <tag>static-constant</tag> - Declares a static constant, e.g., <code>const int foo = 5;</code>.</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.struct">Element <tag>struct</tag> - Declares a C++ struct</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.struct-specialization">Element <tag>struct-specialization</tag> - A specialization (full or partial) of a struct template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template">Element <tag>template</tag> - Declares the template parameters of a class or function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-arg">Element <tag>template-arg</tag> - A template argument in a specialization</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-nontype-parameter">Element <tag>template-nontype-parameter</tag> - A nontype template parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-type-parameter">Element <tag>template-type-parameter</tag> - Declares a template type parameter</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.template-varargs">Element <tag>template-varargs</tag> - Declares a variable-length list of template parameters</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.testsuite">Element <tag>testsuite</tag> - Describes a library testsuite</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.throws">Element <tag>throws</tag> - Description of the exceptions thrown by a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.type">Element <tag>type</tag> - The type of an element or return type of a function</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.typedef">Element <tag>typedef</tag> - Declares a typedef</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.union">Element <tag>union</tag> - Declares a C++ union or union template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.union-specialization">Element <tag>union-specialization</tag> - A specialization (full or partial) of a union template</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.using-class">Element <tag>using-class</tag> - Injects the method and function names of a class into the local scope</link></simpara></listitem><listitem><simpara><link linkend="docbook.api.using-namespace">Element <tag>using-namespace</tag> - Injects the declared names from a namespace into the local scope</link></simpara></listitem></itemizedlist></para>
+  <refentry xml:id="docbook.api.class-specialization">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>class-specialization</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>class-specialization</refname>
+      <refpurpose>A specialization (partial or full) of a class template</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>class-specialization ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.specialization">specialization</link>?, <link linkend="docbook.api.inherit">inherit</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.link-test">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>link-test</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>link-test</refname>
+      <refpurpose>Declares a test that should compile and link</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>link-test ::= 
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>filename</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the file associated with this element</entry></row>
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.link-fail-test">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>link-fail-test</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>link-fail-test</refname>
+      <refpurpose>Declares a test that should compile but fail to link</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>link-fail-test ::= 
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>filename</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the file associated with this element</entry></row>
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.typedef">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>typedef</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>typedef</refname>
+      <refpurpose>Declares a typedef</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>typedef ::= 
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.static-constant">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>static-constant</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>static-constant</refname>
+      <refpurpose>Declares a static constant, e.g., <code>const int foo = 5;</code>.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>static-constant ::= 
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.default">default</link>, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.code">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>code</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>code</refname>
+      <refpurpose>Mimics the <tag>code</tag> tag in HTML</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>code ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>Text within a <tag>code</tag> tag is generally typeset
+  in a different, monospaced font so that it stands out as code. The
+  <tag>code</tag> tag in api is transformed directly
+  into the <tag>computeroutput</tag> tag in DocBook.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.destructor">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>destructor</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>destructor</refname>
+      <refpurpose>Declares a destructor for the enclosing class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>destructor ::= 
+  (<link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>General documentation on functions in api is provided in
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
+  element documentation.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.template-type-parameter">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>template-type-parameter</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>template-type-parameter</refname>
+      <refpurpose>Declares a template type parameter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>template-type-parameter ::= 
+  (<link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.purpose">purpose</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>pack</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to '1' if the parameter is a parameter pack.</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.description">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>description</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>description</refname>
+      <refpurpose>Detailed description of a construct</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>description ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>Although the context model for this element is
+  <code>ANY</code>, detailed descriptions should contain structured
+  DocBook elements that occur within sections, e.g., paragraphs
+  (<tag>para</tag>, <tag>simpara</tag>), lists
+  (<tag>orderedlist</tag>, <tag>itemizedlist</tag>),
+  tables (<tag>informaltable</tag>, <tag>table</tag>),
+  etc.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.librarylist">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>librarylist</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>librarylist</refname>
+      <refpurpose>Placeholder for an alphabetical list of libraries</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>librarylist ::= 
+  EMPTY
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>Its existence is mainly as a placeholder in the main XML document for the alphabetical list of libraries.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.library-reference">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>library-reference</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>library-reference</refname>
+      <refpurpose>Declares the reference material for a library</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>library-reference ::= 
+  (title?, section*, (<link linkend="docbook.api.header">header</link>| <link linkend="docbook.api.library-reference">library-reference</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>Reference documentation for a library is contained with a
+  &lt;library-reference&gt; element. The &lt;library-reference&gt;
+  element has no attributes, and contains as children only
+  &lt;header&gt; elements.</para>
+
+  <para>The &lt;header&gt; element defines a C++ header file. Within
+  each C++ header file lie the definitions of C++ constructs to be
+  documented. The <code>name</code> attribute of the &lt;header&gt;
+  element gives the name of the header, as one would specify when
+  including the header. For instance, the &lt;library-reference&gt;
+  for the <libraryname>Any</libraryname> library may look like
+  this:</para>
+
+  <programlisting>&lt;library-reference&gt;
+  &lt;header name="boost/any.hpp"&gt;
+    &lt;!-- C++ constructs in this header --&gt;
+  &lt;/header&gt;
+&lt;/library-reference&gt;</programlisting>
+
+  <para>If the <libraryname>Any</libraryname> library contained
+  multiple headers, we would list them all as children of the
+  &lt;library-reference&gt; element.</para>
+
+  <para><tag>library-reference</tag> elements can be nested,
+  so that reference material can be divided into separate sections
+  that each contain different headers.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.api">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>api</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>api</refname>
+      <refpurpose>Defines an API</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>api ::= 
+  (title, (chapter| <link linkend="docbook.api.library">library</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <simpara>This element is the topmost level defined by
+  main XML file for all API documentation</simpara>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.union">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>union</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>union</refname>
+      <refpurpose>Declares a C++ union or union template</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>union ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.inherit">inherit</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.inherit">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>inherit</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>inherit</refname>
+      <refpurpose>Declares a base class of the enclosing class or struct</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>inherit ::= 
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.purpose">purpose</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>This element contains the type of the class inherited.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>access</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The access specifier ("public", "private", or "protected") of the inheritance.</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>pack</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to '1' if this is a pack exapansion.</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.template-varargs">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>template-varargs</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>template-varargs</refname>
+      <refpurpose>Declares a variable-length list of template parameters</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>template-varargs ::= 
+  EMPTY
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>Variable-length template parameter lists are not allowed in
+  C++, but because they are sometimes needed in documentation they are
+  allowed in api. This element generally expands to "..." and
+  can be used anywhere any other template parameter can be
+  used.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.source">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>source</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>source</refname>
+      <refpurpose>Defines source code for a test</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>source ::= 
+  (#PCDATA| <link linkend="docbook.api.snippet">snippet</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>This element will contain the source code for a testcase that
+  will be generated from the documentation. To reduce the amount of escaping in the text, it is recommended to use CDATA sections, which look like this:
+
+    <programlisting>&lt;![CDATA[
+&lt;your program text here: no escaping needed!&gt;
+]]&gt;</programlisting>
+  </para>
+
+  <para>In addition to CDATA sections, code snippets can be pulled in
+  from <tag>programlisting</tag> elements using the <link linkend="docbook.api.snippet"><tag>snippet</tag></link>
+  element.</para>
+</refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.function">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>function</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>function</refname>
+      <refpurpose>Declares a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>function ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>api functions are documented by specifying the
+  function's interface (e.g., its C++ signature) and its
+  behavior. Constructors, destructors, member functions, and free
+  functions all use the same documentation method, although the
+  top-level tags differ.</para>
+
+  <para>The behavior of functions in api is documenting using a
+  style similar to that of the C++ standard, with clauses describing
+  the requirements, effects, postconditions, exception behavior, and
+  return values of functions.</para>
+
+  <para>The following example illustrates some constructors and a
+  destructor for <classname>boost::any</classname>. Note that one of
+  the constructors takes a single parameter whose name is "other" and
+  whose type, <code>const any&amp;</code> is contained in the
+  &lt;paramtype&gt; element; any number of parameters may be specified
+  in this way.</para>
+
+  <programlisting>&lt;class name="any"&gt;
+  &lt;constructor&gt;
+    &lt;postconditions&gt;&lt;para&gt;&lt;this-&gt;empty()&gt;&lt;/para&gt;&lt;/postconditions&gt;
+  &lt;/constructor&gt;
+
+  &lt;constructor&gt;
+    &lt;parameter name="other"&gt;
+      &lt;paramtype&gt;const &lt;classname&gt;any&lt;/classname&gt;&amp;amp;&lt;/paramtype&gt;
+    &lt;/parameter&gt;
+
+    &lt;effects&gt;
+      &lt;simpara&gt; Copy constructor that copies
+        content of &lt;code&gt;other&lt;/code&gt; into the new instance,
+        so that any content is equivalent in both type and value to the
+        content of &lt;code&gt;other&lt;/code&gt;, or empty if
+        &lt;code&gt;other&lt;/code&gt; is
+        empty.
+      &lt;/simpara&gt;
+    &lt;/effects&gt;
+
+    &lt;throws&gt;
+      &lt;simpara&gt;May fail with a
+        &lt;classname&gt;std::bad_alloc&lt;/classname&gt; exception or any
+        exceptions arising from the copy constructor of the
+        contained type.
+      &lt;/simpara&gt;
+    &lt;/throws&gt;
+  &lt;/constructor&gt;
+
+  &lt;destructor&gt;
+     &lt;effects&gt;&lt;simpara&gt;Releases any and all resources used in
+     management of instance.&lt;/simpara&gt;&lt;/effects&gt;
+
+     &lt;throws&gt;&lt;simpara&gt;Nothing.&lt;/simpara&gt;&lt;/throws&gt;
+  &lt;/destructor&gt;
+&lt;/class&gt;</programlisting>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.macroname">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>macroname</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>macroname</refname>
+      <refpurpose>References a macro with the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>macroname ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>alt</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.postconditions">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>postconditions</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>postconditions</refname>
+      <refpurpose>Conditions that must hold after the function returns</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>postconditions ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.compile-test">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>compile-test</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>compile-test</refname>
+      <refpurpose>A testcase that should compile correctly</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>compile-test ::= 
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>filename</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the file associated with this element</entry></row>
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.method">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>method</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>method</refname>
+      <refpurpose>Declares a method, i.e., a member function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>method ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>General documentation on functions in api is provided in
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
+  element documentation.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>cv</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>cv-qualifiers for this method, e.g., const volatile</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.snippet">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>snippet</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>snippet</refname>
+      <refpurpose>Pulls in a code snippet from a <tag>programlisting</tag> element</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>snippet ::= 
+  EMPTY
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the <tag>programlisting</tag> element to insert</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.constructor">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>constructor</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>constructor</refname>
+      <refpurpose>Declares a constructor of the enclosing class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>constructor ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>General documentation on functions in api is provided in
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
+  element documentation.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.namespace">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>namespace</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>namespace</refname>
+      <refpurpose>Declares a namespace</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>namespace ::= 
+  (<link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.namespace">namespace</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>api namespaces are declared via the &lt;namespace&gt;
+  element. As in C++, namespaces can be nested and contain other C++
+  constructs, such as classes or functions. The <code>name</code>
+  attribute of a &lt;namespace&gt; element gives the namespace name
+  (e.g., "boost"). The <libraryname>Any</libraryname> library is
+  defined entirely within namespace boost by:</para>
+
+  <programlisting>&lt;library-reference&gt;
+  &lt;header name="boost/any.hpp"&gt;
+    &lt;namespace name="boost"&gt;
+      &lt;!-- C++ constructs in the boost namespace --&gt;
+    &lt;/namespace&gt;
+  &lt;/header&gt;
+&lt;/library-reference&gt;</programlisting>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.if-fails">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>if-fails</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>if-fails</refname>
+      <refpurpose>What it means when a testcase fails</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>if-fails ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>
+    Describes to the user the effect a certain failing testcase will
+    have on the usefulness of a library. This field is useful in cases
+    where a failed testcase does not mean that the library won't be
+    useful, but may mean that certain library features will not be
+    available.
+  </para>
+</refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.headername">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>headername</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>headername</refname>
+      <refpurpose>References a C++ header with the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>headername ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>alt</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.free-function-group">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>free-function-group</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>free-function-group</refname>
+      <refpurpose>A set of functions that are grouped together under one name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>free-function-group ::= 
+  (<link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.functionname">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>functionname</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>functionname</refname>
+      <refpurpose>References a function with the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>functionname ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>If a function (or overloaded function) with the given,
+  possibly-qualified name is found, this generates a link to that
+  function. Lookups obey currently-active <link linkend="docbook.api.using-class"><tag>using-class</tag></link>
+  and <link linkend="docbook.api.using-namespace"><tag>using-namespace</tag></link>
+  directives to aid in the search, along with searching within the
+  current scope.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>alt</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.librarycategory">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>librarycategory</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>librarycategory</refname>
+      <refpurpose>Declares that the enclosing library is in this category</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>librarycategory ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.notes">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>notes</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>notes</refname>
+      <refpurpose>Non-normative notes about a function's semantics</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>notes ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.data-member">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>data-member</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>data-member</refname>
+      <refpurpose>Declares a data member of a class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>data-member ::= 
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.specialization">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>specialization</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>specialization</refname>
+      <refpurpose>Defines the specialization arguments for a class specialization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>specialization ::= 
+  (<link linkend="docbook.api.template-arg">template-arg</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.union-specialization">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>union-specialization</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>union-specialization</refname>
+      <refpurpose>A specialization (full or partial) of a union template</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>union-specialization ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.specialization">specialization</link>?, <link linkend="docbook.api.inherit">inherit</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.throws">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>throws</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>throws</refname>
+      <refpurpose>Description of the exceptions thrown by a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>throws ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.template-arg">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>template-arg</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>template-arg</refname>
+      <refpurpose>A template argument in a specialization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>template-arg ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>pack</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to '1' if this is a pack exapansion.</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.globalname">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>globalname</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>globalname</refname>
+      <refpurpose>References a global with the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>globalname ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>alt</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.method-group">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>method-group</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>method-group</refname>
+      <refpurpose>A set of methods that are grouped together under one name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>method-group ::= 
+  (<link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.requirement">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>requirement</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>requirement</refname>
+      <refpurpose>A requirement/property in the Jamfile for a testcase</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>requirement ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>A requirement is part of the dependencies of a target in a
+  Jamfile. The <code>name</code> attribute of a requirement element
+  gives the name of the Boost.Build feature and the content of the
+  requirement gives the value of that feature. A requirement such as
+  <code>&lt;includes&gt;foo.hpp</code> would be encoded as
+  <code>&lt;requirement
+  name="includes"&gt;foo.hpp&lt;/requirement&gt;</code>.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.precondition">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>precondition</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>precondition</refname>
+      <refpurpose>Conditions that must be met prior to executing a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>precondition ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.paramtype">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>paramtype</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>paramtype</refname>
+      <refpurpose>The type of a function parameter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>paramtype ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.using-class">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>using-class</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>using-class</refname>
+      <refpurpose>Injects the method and function names of a class into the local scope</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>using-class ::= 
+  EMPTY
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.run-test">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>run-test</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>run-test</refname>
+      <refpurpose>A testcase that should compile, link, and execute</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>run-test ::= 
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>filename</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the file associated with this element</entry></row>
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.librarypurpose">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>librarypurpose</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>librarypurpose</refname>
+      <refpurpose>Describes in one short sentence or phrase the purpose of a library</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>librarypurpose ::= 
+  (#PCDATA| <link linkend="docbook.api.code">code</link>| ulink| <link linkend="docbook.api.functionname">functionname</link>| methodname| classname| <link linkend="docbook.api.macroname">macroname</link>| <link linkend="docbook.api.headername">headername</link>| <link linkend="docbook.api.enumname">enumname</link>| <link linkend="docbook.api.globalname">globalname</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.copy-assignment">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>copy-assignment</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>copy-assignment</refname>
+      <refpurpose>Declares a copy-assignment operator</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>copy-assignment ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>?, <link linkend="docbook.api.parameter">parameter</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>The return type of the copy-assignment operator does not need
+  to be specified. If left unspecified, it will default to an
+  unqualified reference to the enclosing class type.</para>
+
+  <para>General documentation on functions in api is provided in
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
+  element documentation.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>cv</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>cv-qualifiers for this method, e.g., const volatile</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.run-fail-test">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>run-fail-test</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>run-fail-test</refname>
+      <refpurpose>A testcase that should compile and link, but fail on execution</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>run-fail-test ::= 
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>filename</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the file associated with this element</entry></row>
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.template">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>template</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>template</refname>
+      <refpurpose>Declares the template parameters of a class or function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>template ::= 
+  (<link linkend="docbook.api.template-type-parameter">template-type-parameter</link>| <link linkend="docbook.api.template-nontype-parameter">template-nontype-parameter</link>| <link linkend="docbook.api.template-varargs">template-varargs</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.compile-fail-test">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>compile-fail-test</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>compile-fail-test</refname>
+      <refpurpose>A testcase that should fail to compile</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>compile-fail-test ::= 
+  (<link linkend="docbook.api.source">source</link>*, <link linkend="docbook.api.lib">lib</link>*, <link linkend="docbook.api.requirement">requirement</link>*, <link linkend="docbook.api.purpose">purpose</link>, <link linkend="docbook.api.if-fails">if-fails</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>filename</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the file associated with this element</entry></row>
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.returns">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>returns</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>returns</refname>
+      <refpurpose>Description of the return value of a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>returns ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.default">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>default</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>default</refname>
+      <refpurpose>The default value of a function or template parameter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>default ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.parameter">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>parameter</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>parameter</refname>
+      <refpurpose>A function parameter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>parameter ::= 
+  (<link linkend="docbook.api.paramtype">paramtype</link>, <link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.description">description</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>pack</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to '1' if the parameter is a parameter pack.</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.signature">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>signature</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>signature</refname>
+      <refpurpose>One signature of an overloaded function or method</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>signature ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.parameter">parameter</link>*)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>
+    A signature refers to one declaration of an overloaded function or
+    method. The signature itself has no name, because the name of the
+    overloaded function or method is used. An overloaded function or
+    method will have several signatures that will generally be typeset
+    together.
+  </para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>cv</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>cv-qualifiers for this method, e.g., const volatile</entry></row>
+<row><entry>specifiers</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The specifiers for this function, e.g., inline, static, etc.</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.overloaded-function">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>overloaded-function</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>overloaded-function</refname>
+      <refpurpose>An overloaded function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>overloaded-function ::= 
+  (<link linkend="docbook.api.signature">signature</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>General documentation on functions in api is provided in
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
+  element documentation.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.access">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>access</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>access</refname>
+      <refpurpose>Declares an access specification for class members</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>access ::= 
+  (<link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)+
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+    <para>The access specifications of class members (public, private, or protected) may be determined by enclosing them in an &lt;access&gt; element.</para>
+  </refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the access specification, e.g. "public", "private", or "protected".</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.class">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>class</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>class</refname>
+      <refpurpose>Declares a class or class template</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>class ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.inherit">inherit</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>C++ classes and class templates are described via the
+  &lt;class&gt; element. Each class has a name (e.g., "any") given by
+  the <code>name</code> attribute, a purpose given by the
+  &lt;purpose&gt; element, documentation, and a set of types,
+  functions, base classes, and data members. Here is a minimal
+  definition of the <classname>boost::any</classname> class:</para>
+
+  <programlisting>&lt;namespace name="boost"&gt;
+  &lt;class name="any"&gt;
+    &lt;purpose&gt;
+      A class whose instances can hold instances of any type that satisfies
+      ValueType requirements.
+    &lt;/purpose&gt;
+  &lt;/class&gt;
+&lt;/namespace&gt;</programlisting>
+
+  <para>Additional class documentation can be contained in a
+  <tag>description</tag> element following the &lt;purpose&gt;
+  element. This documentation will be typeset prior to documentation
+  for specific elements in the class (e.g., constructors or
+  methods).</para>
+
+  <para>Class inheritance is described via the &lt;inherit&gt;
+  element. The &lt;inherit&gt; element requires an <code>access</code>
+  attribute which must be one of <emphasis>public</emphasis>,
+  <emphasis>protected</emphasis>, or <emphasis>private</emphasis>. The
+  content of the &lt;inherited&gt; element in C++ code that names the
+  class inherited, and may contain markup to link to the class. The
+  following description of the class
+  <classname>boost::bad_any_cast</classname> describes public
+  inheritance from the class <classname>std::bad_cast</classname>. It
+  also defines the &lt;purpose&gt; element, which contains a short
+  description of the use of the class.</para>
+
+  <programlisting>&lt;class name="bad_any_cast"&gt;
+  &lt;inherit access="public"&gt;&lt;classname&gt;std::bad_cast&lt;/classname&gt;&lt;/inherit&gt;
+  &lt;purpose&gt;&lt;para&gt;The exception thrown in the event of a failed
+  &lt;functionname&gt;any_cast&lt;/functionname&gt; of an
+  &lt;classname&gt;any&lt;/classname&gt; value.&lt;/para&gt;&lt;/purpose&gt;
+&lt;/class&gt;</programlisting>
+
+  <para>Class templates are defined by &lt;class&gt; elements with a
+  &lt;template&gt; child element at the beginning.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.librarycategorydef">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>librarycategorydef</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>librarycategorydef</refname>
+      <refpurpose>Defines a new library category</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>librarycategorydef ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>All library category definitions should be in the main xml file, and the names of categories must be prefixed with "<code>category:</code>".</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.type">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>type</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>type</refname>
+      <refpurpose>The type of an element or return type of a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>type ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.enumvalue">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>enumvalue</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>enumvalue</refname>
+      <refpurpose>A single value of an enumeration</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>enumvalue ::= 
+  (<link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.overloaded-method">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>overloaded-method</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>overloaded-method</refname>
+      <refpurpose>An overloaded method</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>overloaded-method ::= 
+  (<link linkend="docbook.api.signature">signature</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, <link linkend="docbook.api.requires">requires</link>?, <link linkend="docbook.api.effects">effects</link>?, <link linkend="docbook.api.postconditions">postconditions</link>?, <link linkend="docbook.api.returns">returns</link>?, <link linkend="docbook.api.throws">throws</link>?, <link linkend="docbook.api.complexity">complexity</link>?, <link linkend="docbook.api.notes">notes</link>?, <link linkend="docbook.api.rationale">rationale</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>General documentation on functions in api is provided in
+  the <link linkend="docbook.api.function"><tag>function</tag></link>
+  element documentation.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.programlisting">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>programlisting</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>programlisting</refname>
+      <refpurpose>A sample of program code</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>programlisting ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>name</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.complexity">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>complexity</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>complexity</refname>
+      <refpurpose>The time/space/etc. complexity of a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>complexity ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.purpose">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>purpose</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>purpose</refname>
+      <refpurpose>A short description of an entity's use</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>purpose ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.template-nontype-parameter">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>template-nontype-parameter</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>template-nontype-parameter</refname>
+      <refpurpose>A nontype template parameter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>template-nontype-parameter ::= 
+  (<link linkend="docbook.api.type">type</link>, <link linkend="docbook.api.default">default</link>?, <link linkend="docbook.api.purpose">purpose</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>pack</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to '1' if the parameter is a parameter pack.</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.library">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>library</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>library</refname>
+      <refpurpose>Top-level element for a library</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>library ::= 
+  (<link linkend="docbook.api.libraryinfo">libraryinfo</link>, (title, ((section| <link linkend="docbook.api.library-reference">library-reference</link>| <link linkend="docbook.api.testsuite">testsuite</link>))+)?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>dirname</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>url</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+<row><entry>html-only</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.librarycategorylist">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>librarycategorylist</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>librarycategorylist</refname>
+      <refpurpose>Categorized listing of libraries</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>librarycategorylist ::= 
+  (<link linkend="docbook.api.librarycategorydef">librarycategorydef</link>)*
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>This element is used by the main XML document as a
+  placeholder.</para>
+</refsection>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.using-namespace">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>using-namespace</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>using-namespace</refname>
+      <refpurpose>Injects the declared names from a namespace into the local scope</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>using-namespace ::= 
+  EMPTY
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.enumname">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>enumname</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>enumname</refname>
+      <refpurpose>References an enumeration type with the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>enumname ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>alt</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry/></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.struct-specialization">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>struct-specialization</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>struct-specialization</refname>
+      <refpurpose>A specialization (full or partial) of a struct template</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>struct-specialization ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.specialization">specialization</link>?, <link linkend="docbook.api.inherit">inherit</link>?, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.struct">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>struct</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>struct</refname>
+      <refpurpose>Declares a C++ struct</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>struct ::= 
+  (<link linkend="docbook.api.template">template</link>?, <link linkend="docbook.api.inherit">inherit</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?, (<link linkend="docbook.api.access">access</link>| <link linkend="docbook.api.static-constant">static-constant</link>| <link linkend="docbook.api.typedef">typedef</link>| <link linkend="docbook.api.enum">enum</link>| <link linkend="docbook.api.copy-assignment">copy-assignment</link>| <link linkend="docbook.api.constructor">constructor</link>| <link linkend="docbook.api.destructor">destructor</link>| <link linkend="docbook.api.method-group">method-group</link>| <link linkend="docbook.api.free-function-group">free-function-group</link>| <link linkend="docbook.api.function">function</link>| <link linkend="docbook.api.method">method</link>| <link linkend="docbook.api.overloaded-function">overloaded-function</link>| <link linkend="docbook.api.overloaded-method">overloaded-method</link>| <link linkend="docbook.api.data-member">data-member</link>| <link linkend="docbook.api.class">class</link>| <link linkend="docbook.api.class-specialization">class-specialization</link>| <link linkend="docbook.api.struct">struct</link>| <link linkend="docbook.api.struct-specialization">struct-specialization</link>| <link linkend="docbook.api.union">union</link>| <link linkend="docbook.api.union-specialization">union-specialization</link>)*)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.lib">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>lib</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>lib</refname>
+      <refpurpose>A library dependency</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>lib ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Description</title></info>
+  <para>Declares a library dependency on the library named by the content of this element, to be emitted in a Jamfile.</para>
+</refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.enum">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>enum</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>enum</refname>
+      <refpurpose>Declares an enumeration type</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>enum ::= 
+  (<link linkend="docbook.api.enumvalue">enumvalue</link>*, <link linkend="docbook.api.purpose">purpose</link>?, <link linkend="docbook.api.description">description</link>?)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.requires">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>requires</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>requires</refname>
+      <refpurpose>Declares the requirements of a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>requires ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.effects">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>effects</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>effects</refname>
+      <refpurpose>Declares the side effects of a function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>effects ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.libraryname">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>libraryname</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>libraryname</refname>
+      <refpurpose>References a library of the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>libraryname ::= 
+  (#PCDATA)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.libraryinfo">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>libraryinfo</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>libraryinfo</refname>
+      <refpurpose>Provides information about a library</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>libraryinfo ::= 
+  (author+, copyright*, legalnotice*, <link linkend="docbook.api.librarypurpose">librarypurpose</link>, <link linkend="docbook.api.librarycategory">librarycategory</link>*)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.testsuite">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>testsuite</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>testsuite</refname>
+      <refpurpose>Describes a library testsuite</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>testsuite ::= 
+  ((<link linkend="docbook.api.compile-test">compile-test</link>| <link linkend="docbook.api.link-test">link-test</link>| <link linkend="docbook.api.run-test">run-test</link>| <link linkend="docbook.api.compile-fail-test">compile-fail-test</link>| <link linkend="docbook.api.link-fail-test">link-fail-test</link>| <link linkend="docbook.api.run-fail-test">run-fail-test</link>)+)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.header">
+    <refmeta>
+      <refentrytitle>
+          DocBook API Element <tag>header</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>header</refname>
+      <refpurpose>Declares a C++ header with the given name</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>header ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>name</entry><entry>#REQUIRED</entry><entry>CDATA</entry><entry>The name of the element being declared to referenced</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+  <refentry xml:id="docbook.api.rationale">
+    <refmeta>
+      <refentrytitle>
+          DocBook API element <tag>rationale</tag></refentrytitle>
+      <manvolnum>9</manvolnum>
+    </refmeta>
+    <refnamediv>
+      <refname>rationale</refname>
+      <refpurpose>Describes the rationale for a particular function's design</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>rationale ::= 
+  (ANY)
+</refsynopsisdiv>
+    <refsection><info><title>Attributes</title></info>
+      
+      <informaltable>
+        <tgroup cols="4">
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Type</entry>
+              <entry>Value</entry>
+              <entry>Purpose</entry>
+            </row>
+          </thead>
+          <tbody>
+
+<row><entry>last-revision</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Set to $Date: 2009-10-10 14:01:30 +0100 (Sat, 10 Oct 2009) $ to keep "last revised" information in sync with CVS changes</entry></row>
+<row><entry>xml:id</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>A global identifier for this element</entry></row>
+<row><entry>xml:base</entry><entry>#IMPLIED</entry><entry>CDATA</entry><entry>Implementation detail used by XIncludes</entry></row>
+</tbody>
+        </tgroup>
+      </informaltable>
+    </refsection>
+  </refentry>
+</article>

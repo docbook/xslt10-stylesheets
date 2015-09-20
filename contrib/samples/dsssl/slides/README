@@ -1,0 +1,23 @@
+This directory contains slides.dsl stylesheet which can be used for
+rendering DocBook Slides. It outputs one slide to one page and you can
+use auxiliary tools or print drivers to get 2up or 4up page
+arrangements. I use this stylesheet to print slides for my
+students. Stylesheet is not perfect, but it does amount of usable work.
+
+Typical usage is:
+
+jade -d slides.dsl -t rtf /path/to/xml.dcl your-slides.xml
+
+If you get following error message from Jade:
+
+jade.exe:slides.dsl:2:96:W: cannot generate system identifier for public text "-//Norman Walsh//DOCUMENT DocBook Print Stylesheet//EN"
+
+you must add entry for DSSSL print stylesheet to your catalog file, or
+change second line of slides.dsl from PUBLIC to SYSTEM identifier and
+replace FPI with path to your local copy of print stylesheet.
+
+Enjoy it!
+
+Jirka Kosek
+
+e-mail:jirka@kosek.cz

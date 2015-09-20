@@ -1,0 +1,64 @@
+# This schema integrates ITS markup (http://www.w3.org/TR/its/) 
+# into DocBook schema (http://docbook.org)
+#
+# This schema conforms to Conformance Type 1 defined in
+# http://www.w3.org/TR/its/#conformance-product-schema
+# 
+# Schema adds the following ITS elements into DocBook schema: 
+#  * rules
+#  * ruby
+#
+# Schema adds the following local ITS attributes into DocBook schema:
+#  * translate
+#  * locNote
+#  * locNoteType
+#  * locNoteRef
+#  * term
+#  * termInfoRef
+#
+# $Id$
+#
+# Copyright 2007 Jirka Kosek (jirka@kosek.cz)
+#
+# Permission to use, copy, modify and distribute this schema for any
+# purpose and without fee is hereby granted in perpetuity, provided
+# that the above copyright notice and this paragraph appear in all
+# copies. The copyright holders make no representation about the
+# suitability of the schema for any purpose. It is provided "as is"
+# without expressed or implied warranty.
+
+# Namespace declarations for DocBook, ITS and HTML (HTML is used internally in DocBook schema)  
+namespace db = "http://docbook.org/ns/docbook"
+namespace its = "http://www.w3.org/2005/11/its"
+namespace html = "http://www.w3.org/1999/xhtml"
+
+# Include base DocBook schema
+include "../src/docbook.rnc"
+{
+   # Exclude ITS markup from "wildcard" element
+   db._any =
+      element * - (db:* | html:* | its:*) {
+         (attribute * { text }
+          | text
+          | db._any)*
+      }
+}
+
+# Include base ITS schema
+include "its.rnc"
+
+# Define pattern for local ITS attributes
+db.its.attributes = 
+   its-att.translate.attributes?
+   & its-att.locNote.attributes?
+   & its-att.term.attributes?
+   & its-att.version.attributes?
+
+# Add local ITS attributes to all DocBook elements
+db.common.base.attributes &= db.its.attributes
+
+# Allow its:rules inside info element
+db.info.extension |= its-rules
+
+# Allow Ruby markup almost everywhere
+db.ubiq.inlines |= its-ruby

@@ -1,0 +1,320 @@
+# This file is a customization of DocBook V5.0 created by the 
+# OASIS DocBook Publishers Subcommittee.
+#
+# Copyright 1992-2007 HaL Computer Systems, Inc.,
+# O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+# Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+# Organization for the Advancement of Structured Information
+# Standards (OASIS).
+#
+# Release: $Id: publishers.rnc 7466 2007-09-27 14:03:55Z shudson310 $
+#
+# Permission to use, copy, modify and distribute the DocBook schema
+# and its accompanying documentation for any purpose and without fee
+# is hereby granted in perpetuity, provided that the above copyright
+# notice and this paragraph appear in all copies. The copyright
+# holders make no representation about the suitability of the schema
+# for any purpose. It is provided "as is" without expressed or implied
+# warranty.
+#
+# If you modify the DocBook schema in any way, label your schema as a
+# variant of DocBook. See the reference documentation
+# (http://docbook.org/tdg5/en/html/ch05.html#s-notdocbook)
+# for more information.
+#
+# Please direct all questions, bug reports, or suggestions for changes
+# to the docbook@lists.oasis-open.org mailing list. For more
+# information, see http://www.oasis-open.org/docbook/.
+#
+# ======================================================================
+
+namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
+namespace rng  = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace db = "http://docbook.org/ns/docbook"
+default namespace = "http://docbook.org/ns/docbook"
+
+include "../../docbook/src/core.rnc" {
+  start = db.set
+   | db.book
+   | db.divisions
+   | db.components
+   | db.navigation.components
+   | db.section
+   | db.para
+   | db.drama
+   | db.poetry
+   | db.dialogue
+   
+ db.sidebar =
+      element sidebar {
+         db.sidebar.attlist,
+         db._title, 
+         db.sidebar.info,
+         db.all.blocks+, db.recursive.sections*
+      }
+db.person =
+      element person {
+         db.person.attlist,
+         db.personname,
+         (db.address|db.affiliation|db.email|db.uri|db.personblurb|db.mediaobject)*
+      }
+      
+db.org =
+      element org {
+         db.org.attlist,
+         db.orgname,
+         (db.address|db.affiliation|db.email|db.uri|db.orgdiv|db.mediaobject)*
+      }
+
+db.parameter = notAllowed
+
+db.info =
+element info
+{
+db.info.attlist,
+(
+db._title
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.titleforbidden.info =
+element info
+{
+db.titleforbidden.info.attlist,
+(db.info.elements*|db.dublincore.elements*)
+}
+
+db.titleonly.info =
+element info
+{
+db.titleonly.info.attlist,
+(
+db._title.only
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.titleonlyreq.info =
+element info
+{
+db.titleonlyreq.info.attlist,
+(
+db._title.onlyreq
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.titlereq.info =
+element info
+{
+db.titlereq.info.attlist,
+(
+db._title.req
+& (db.info.elements*|db.dublincore.elements*)
+)
+}
+
+db.bibliographic.elements =
+(db.info.elements*|db.dublincore.elements*)
+| db.publishing.inlines
+| db.citerefentry
+| db.citetitle
+| db.citebiblioid
+| db.person
+| db.personblurb
+| db.personname
+| db.subtitle
+| db.title
+| db.titleabbrev
+
+  db.extension.blocks = db.dialogue | db.poetry
+}
+include "../../docbook/src/bibliography.rnc"
+include "../../docbook/src/calstbl.rnc" 
+include "../../docbook/src/callouts.rnc" 
+db.programlisting = notAllowed
+include "../../docbook/src/glossary.rnc"
+include "../../docbook/src/index.rnc"
+include "../../docbook/src/markup.rnc" 
+db.programming.inlines = notAllowed
+include "../../docbook/src/math.rnc"
+include "../../docbook/src/mathml.rnc"
+include "../../docbook/src/qandaset.rnc"
+include "../../docbook/src/svg.rnc"
+include "../../docbook/src/tasks.rnc"
+include "dcterms.rnc" {start |= notAllowed}
+include "dcmitype.rnc"
+
+            db.dublincore.elements = 
+            dcterms.title
+            | dcterms.creator 
+            | dcterms.subject
+            | dcterms.description
+            | dcterms.publisher
+            | dcterms.contributor
+            | dcterms.date
+            | dcterms.type
+            | dcterms.format
+            | dcterms.identifier
+            | dcterms.source
+            | dcterms.language
+            | dcterms.relation
+            | dcterms.coverage
+            | dcterms.rights
+            | dcterms.alternative
+            | dcterms.tableOfContents
+            | dcterms.abstract
+            | dcterms.created
+            | dcterms.valid
+            | dcterms.available
+            | dcterms.issued
+            | dcterms.modified
+            | dcterms.dateAccepted
+            | dcterms.dateCopyrighted
+            | dcterms.dateSubmitted
+            | dcterms.extent
+            | dcterms.medium
+            | dcterms.isVersionOf
+            | dcterms.hasVersion
+            | dcterms.isReplacedBy
+            | dcterms.replaces
+            | dcterms.isRequiredBy
+            | dcterms.requires
+            | dcterms.isPartOf
+            | dcterms.hasPart
+            | dcterms.isReferencedBy
+            | dcterms.references
+            | dcterms.isFormatOf
+            | dcterms.hasFormat
+            | dcterms.conformsTo
+            | dcterms.spatial
+            | dcterms.temporal
+            | dcterms.audience
+            | dcterms.accrualMethod
+            | dcterms.accrualPeriodicity
+            | dcterms.accrualPolicy
+            | dcterms.instructionalMethod
+            | dcterms.provenance
+            | dcterms.rightsHolder
+            | dcterms.mediator
+            | dcterms.educationLevel
+            | dcterms.accessRights
+            | dcterms.license
+            | dcterms.bibliographicCitation
+
+ db.speaker.role.attribute = attribute role { text }
+ 
+   db.speaker.attlist =
+    db.speaker.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+ 
+ db.speaker =  
+  [
+    db:refpurpose [ "Designates a person who is giving a speech or lecture."
+    ]
+  ]
+       element speaker {
+       db.speaker.attlist,
+       ( db.person
+       | text)*
+       }
+       
+    db.line.role.attribute = attribute role { text }
+       
+    db.line.attlist =
+    db.line.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    
+    db.line = 
+  [
+    db:refpurpose [ "A line of dialogue or other form of communication."
+    ]
+  ]
+         element line {
+       db.line.attlist,
+       (db.all.inlines | text)+
+       }
+       
+    db.linegroup.role.attribute = attribute role { text }
+       
+    db.linegroup.attlist =
+    db.linegroup.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+       
+db.linegroup = 
+  [
+    db:refpurpose [ "A grouping of lines in dialogue or other form of communication."
+    ]
+  ]
+     element linegroup {
+   db.linegroup.attlist,
+   db.speaker*, (db.line|db.all.blocks)+
+   }
+       
+ db.poetry = 
+  [
+    db:refpurpose [ "A container for poetry."
+    ]
+  ]
+        element poetry {
+      db.poetry.attlist,
+      db.poetry.info?,
+      (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
+      }
+      
+ db.poetry.info =
+     db._info.title.only
+     
+  db.poetry.role.attribute = attribute role { text }
+  
+  db.poetry.attlist =
+    db.poetry.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+      
+ db.dialogue = 
+  [
+    db:refpurpose [ "A container for speeches and other forms of communication involving dialogue."
+    ]
+  ]
+        element dialogue {
+      db.dialogue.attlist,
+      db.dialogue.info?,
+      (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
+      }
+      
+  db.dialogue.info =
+     db._info.title.only
+     
+  db.dialogue.role.attribute = attribute role { text }
+     
+  db.dialogue.attlist =
+    db.dialogue.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes
+    
+ db.drama = 
+  [
+    db:refpurpose [ "A container for plays and other forms of dramatic presentation."
+    ]
+  ]
+        element drama {
+      db.drama.attlist,
+      db.drama.info?,
+      (db.mediaobject|db.linegroup|db.line|db.all.blocks)+
+      }
+      
+  db.drama.info =
+     db._info.title.only
+     
+  db.drama.role.attribute = attribute role { text }
+     
+  db.drama.attlist =
+    db.drama.role.attribute?
+    & db.common.attributes
+    & db.common.linking.attributes    
