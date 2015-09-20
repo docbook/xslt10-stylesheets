@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='nl' id='nlchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Fouvry</surname>
+  <firstname>Frederik</firstname>
+  <affiliation><address><email>fouvry@CoLi.Uni-SB.DE</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+<othercredit>
+  <surname>Huijzer</surname>
+  <firstname>Arjan</firstname>
+  <affiliation><address><email>ahuijze@bit-ic.nl</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+<othercredit>
+  <surname>Kuilder</surname>
+  <firstname>Gerrit</firstname>
+  <affiliation><address><email>gkuilder@portalyx.com</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Dutch</title>
+
+<para lang="nl">
+DocBook is een <ulink url="http://www.ucc.ie/xml/#doctype"
+lang="en">Document Type Definition</ulink> (DTD) onderhouden
+door het <ulink url="mailto:docbook-tc@oasis-open.org"
+lang="en">DocBook Technical Committee</ulink> van <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>.  Het is bijzonder
+goed geschikt voor boeken en artikels over computerhardware en
+-software (maar geenszins beperkt tot deze toepassingen).
+</para>
+
+<para lang="nl">
+Omdat het een grote en robuuste DTD is, en omdat zijn belangrijkste
+structuren overeenkomen met het algemene idee van wat een
+<quote>boek</quote> uitmaakt, wordt DocBook gebruikt door een grote en
+groeiende gemeenschap van auteurs die allerhande soorten documenten
+schrijven.  DocBook wordt standaard ondersteund door een aantal
+commerci&#xEB;le toepassingen, en er is een snelgroeiende
+ondersteuning voor in een aantal gratis software-omgevingen.  De
+combinatie van deze eigenschappen hebben van DocBook een algemeen
+gemakkelijk te begrijpen, in veel gevallen nuttige en heel populaire
+DTD gemaakt.  Tientallen organisaties gebruiken DocBook voor miljoenen
+bladzijden documentatie, in verschillende druk- en on-line-formaten,
+over de hele wereld.
+</para>
+
+<para lang="nl">
+DocBook is een <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD), onderhouden door het <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Technical Committee</ulink>
+van <ulink url="http://www.oasis-open.org/">OASIS</ulink>. Het is
+uitzonderlijk geschikt voor boeken en artikelen over computer hardware en
+software (hoewel het in geen geval beperkt blijft tot deze toepassingen).
+</para>
+
+<para lang="nl">
+Omdat het een uitgebreide en robuuste DTD is en omdat de hoofdstructuren
+overeenkomen met het algemene begrip van waaruit een <quote>boek</quote>
+bestaat, is DocBook aangenomen door een grote en groeiende gemeenschap van
+auteurs, die allerlei verschillende documenten schrijven. DocBook wordt
+<quote>out of the box</quote> ondersteund door een aantal commerci&#x00EB;le
+toepassingen en er is een snel groeiende ondersteuning voor in een aantal
+gratis software omgevingen. Deze kenmerken hebben er gezamenlijk voor
+gezorgd dat DocBook een over het algemeen makkelijk te begrijpen, ruim toe
+te passen, en erg populaire DTD is. Tientallen bedrijven gebruiken DocBook
+voor miljoenen pagina's documentatie, in verscheidene gedrukte en online
+formaten, over de hele wereld.
+</para>
+
+<para lang="nl">
+DocBook is een Document Type Definition <ulink
+url="http://www.ucc.ie/xml/#doctype">(DTD)</ulink> onderhouden door
+het <foreignphrase><ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink></foreignphrase> van <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>. Het is speciaal
+geschikt voor boeken en documenten over computer hard- en soft-ware
+(alhoewel het absoluut niet beperkt is tot dit soort
+toepassingen).</para>
+
+<para lang="nl">
+Omdat het een uigebreide en robuuste DTD is en omdat de structuuur in
+grote lijnen overeen komt met wat men in het algemeen onder een
+<quote>boek</quote> verstaat, wordt DocBook gebruikt door een grote en
+groeiende groep van auteurs die allerlei soorten documenten schrijven.
+DocBook wordt rechtstreeeks (<quote>out of the box</quote>)
+ondersteund door allerlei commerciele software and er is een snel
+groeiende ondersteuning door een aantal gratis verkrijgbare software
+omgevingen. Dit alles bij elkaar heeft van Docbook een makkelijk te
+begrijpen, op vele manieren inzetbare en populaire DTD gemaakt.
+Tientallen organistaties gebruiken DocBook voor miljoenen pagina's
+documentatie, in verschillende gedrukte en online vormen,
+wereldwijd.</para>
+
+</chapter>

@@ -1,0 +1,123 @@
+<?xml version='1.0'?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+<article>
+  <articleinfo>
+    <title>DocBook Website Release Notes</title>
+    <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
+    <releaseinfo role="cvs">$Id$</releaseinfo> 
+    <corpauthor>DocBook Project Development Team</corpauthor> 
+  </articleinfo> 
+  <para>These are the release notes for the DocBook Website
+  distribution. This file provides a high-level overview of features
+  and API changes in each release.</para>
+
+  <para>Bug fixes are (mostly) not documented here. For a complete
+  list of changes, including descriptions of bug fixes, see the <ulink
+  url="NEWS"/> file, which is auto-generated from the commit
+  descriptions for changes in the project CVS repository.</para>
+
+  <section>
+    <title>Release 2.6.0</title>
+    <para>This release includes some significant schema changes, as
+    well as a few relatively minor changes to the Website XSL
+    stylesheets, and a handful of bug fixes. It also includes a new
+    (and still experimental) <filename>install.sh</filename> script to
+    facilitate XML catalog and locating-rules setup.
+    <itemizedlist id="V260_schema">
+      <title>Schemas</title>
+      <listitem>
+	<para>Website (non-full) is now based on <ulink
+	url="http://docbook.org/xml/simple/1.1/index.html" >Simplified
+	DocBook 1.1</ulink> and Website "full" is now based on <ulink
+	url="http://docbook.org/xml/4.4/index.html" >DocBook
+	4.4</ulink>. The main benefit this provides is the ability to
+	use HTML tables in your Website XML source (instead of just
+	CALS tables).</para>
+      </listitem>
+      <listitem>
+	<para>RELAX NG schemas in RNC (compact-syntax) form as well as
+	in RNG (XML syntax) form are now included in the
+	distribution. You can use those to do context-sensitive
+	Website editing in a RELAX NG-aware editor such as Emacs/nXML,
+	oXygen XML Editor, XMLBuddy, or Exchanger XML Editor. (Note
+	that the RELAX NG schemas are currently generated from the
+	DTDs).</para>
+      </listitem>
+      <listitem>
+	<para>A <filename>locatingrules.xml</filename> file has been
+	added to the distribution. The
+	<filename>locatingrules.xml</filename> file tells a "locating
+	rules"-aware editor such as Emacs/nXML to automatically
+	associate the included RELAX NG Website schema with any
+	document whose root element is <sgmltag>webpage</sgmltag>.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist id="V260_example">
+      <title>Example</title>
+      <listitem>
+	<para>An example makefile,
+	<filename>Makefile-example.txt</filename> is now included in
+	the distribution. It is the actual makefile used to build the
+	content in the <filename>example</filename> directory.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist id="V260_xsl">
+      <title>XSL</title>
+      <listitem>
+	<para>Added sample gentext strings for de and fr.</para>
+      </listitem>
+      <listitem>
+	<para>Updated to work with revisions to olink in main
+	DocBook stylesheet starting with version 1.66.</para>
+      </listitem>
+      <listitem>
+	<para>gentext is now used for "Home" text</para>
+      </listitem>
+      <listitem>
+	<para>All types of nodes under <sgmltag>webpage</sgmltag>
+	(including PIs and comments, not only elements) are now
+	processed.</para>
+      </listitem>
+      <listitem>
+	<para><literal>baseuri</literal> attribute in
+	<filename>website.database.xml</filename> now adds the
+	<literal>$filename-prefix</literal> value.</para>
+      </listitem>
+      <listitem>
+	<para>Accepted patch #787260 from vyt</para>
+      </listitem>
+      <listitem>
+	<para>Use
+	<parameter>table.navigation.cell.properties</parameter> for
+	the <parameter>table.spacer.image</parameter> in the
+	navigation column. Use the spacer image again in the hspacer
+	for that row. Added new param to the hspacer template so that
+	the template can tell if its being called for the vspacer
+	cell.</para>
+      </listitem>
+      <listitem>
+	<para>note.gif, note.png, note.svg, note.tif files added</para>
+      </listitem>
+      <listitem>
+	<para>A <parameter>depends-file</parameter> parameter was
+	added to more easily facilitate cleanup of depends files for
+	website builds.</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist id="V260_install">
+      <title>Install</title>
+      <listitem>
+	<para>A new (and still experimental)
+	<filename>install.sh</filename> file has been added to the
+	Website distribution. For information on using it, see the
+	<filename>INSTALL</filename> file.</para>
+      </listitem>
+    </itemizedlist>
+    </para>
+  </section>
+  <section>
+    <title>Older releases</title>
+    <para>Sorry, there are no release notes for releases prior to the
+    2.6.0 release.</para>
+  </section>
+</article>

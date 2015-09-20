@@ -1,0 +1,171 @@
+<!-- ============================================================ -->
+
+<!ENTITY % xlink-colon               ':'>
+<!ENTITY % xlink-prefix              'xlink'>
+
+<!ENTITY % xmlns-xlink               'xmlns%xlink-colon;%xlink-prefix;' >
+<!ENTITY % xlink-type                '%xlink-prefix;%xlink-colon;type' >
+<!ENTITY % xlink-href                '%xlink-prefix;%xlink-colon;href' >
+<!ENTITY % xlink-role                '%xlink-prefix;%xlink-colon;role' >
+<!ENTITY % xlink-arcrole             '%xlink-prefix;%xlink-colon;arcrole' >
+<!ENTITY % xlink-title               '%xlink-prefix;%xlink-colon;title' >
+<!ENTITY % xlink-show                '%xlink-prefix;%xlink-colon;show' >
+<!ENTITY % xlink-actuate             '%xlink-prefix;%xlink-colon;actuate' >
+
+<!ENTITY % xlink-optional-simple-link "
+		%xmlns-xlink;	CDATA		#FIXED 'http://www.w3.org/1999/xlink'
+		%xlink-type;	(simple)	#IMPLIED
+		%xlink-href;	CDATA		#IMPLIED
+		%xlink-role;	CDATA		#IMPLIED
+		%xlink-arcrole;	CDATA		#IMPLIED
+		%xlink-title;	CDATA		#IMPLIED
+		%xlink-show;	(new|replace|embed|other|none)	#IMPLIED
+		%xlink-actuate;	(onLoad|onRequest|other|none)	#IMPLIED">
+
+<!ENTITY % xlink-required-simple-link "
+		%xmlns-xlink;	CDATA		#FIXED 'http://www.w3.org/1999/xlink'
+		%xlink-type;	CDATA		#FIXED 'simple'
+		%xlink-href;	CDATA		#IMPLIED
+		%xlink-role;	CDATA		#IMPLIED
+		%xlink-arcrole;	CDATA		#IMPLIED
+		%xlink-title;	CDATA		#IMPLIED
+		%xlink-show;	(new|replace|embed|other|none)	#IMPLIED
+		%xlink-actuate;	(onLoad|onRequest|other|none)	#IMPLIED">
+
+<!-- ============================================================ -->
+
+<!ENTITY % local.abbrev.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.accel.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.acronym.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.action.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.application.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.arg.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.author.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.citation.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.citerefentry.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.citetitle.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.city.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.classname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.co.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.command.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.computeroutput.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.confgroup.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.confsponsor.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.conftitle.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.constant.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.contractnum.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.contractsponsor.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.copyright.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.corpauthor.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.country.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.database.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.editor.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.emphasis.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.envar.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.errorcode.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.errorname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.errortype.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.exceptionname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.fax.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.filename.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.firstname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.firstterm.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.footnote.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.foreignphrase.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.funcdef.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.funcparams.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.funcprototype.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.function.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.glossterm.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.group.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.guibutton.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.guiicon.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.guilabel.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.guimenu.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.guimenuitem.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.guisubmenu.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.hardware.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.holder.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.honorific.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.initializer.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.interface.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.interfacename.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.invpartnumber.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.isbn.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.issn.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.issuenum.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.jobtitle.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.keycap.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.keycode.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.keycombo.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.keysym.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.keyword.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.lineage.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.lineannotation.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.literal.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.markup.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.medialabel.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.member.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.menuchoice.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.methodname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.methodparam.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.modifier.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.mousebutton.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.ooclass.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.ooexception.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.oointerface.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.option.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.optional.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.otheraddr.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.othercredit.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.othername.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.pagenums.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.paramdef.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.parameter.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.personname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.phone.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.phrase.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.pob.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.postcode.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.productname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.productnumber.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.prompt.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.property.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.publishername.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.pubsnumber.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.quote.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.releaseinfo.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.replaceable.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.returnvalue.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.revision.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.seriesvolnums.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.sgmltag.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.shortaffil.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.shortcut.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.state.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.street.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.structfield.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.structname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.subject.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.subjectterm.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.subscript.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.subtitle.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.superscript.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.surname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.symbol.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.systemitem.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.title.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.token.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.trademark.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.type.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.userinput.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.varname.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.volumenum.attrib "%xlink-optional-simple-link;">
+<!ENTITY % local.wordasword.attrib "%xlink-optional-simple-link;">
+
+<!-- ============================================================ -->
+
+<!ENTITY % docbook PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+                          "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+%docbook;
+

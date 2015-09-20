@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="XSLprocessors"><title>XSL processors</title><para><indexterm><primary>XSL</primary><secondary>processors</secondary></indexterm>An <emphasis>XSL processor</emphasis> is the software that transforms an
+        XML file into formatted output. There is a growing list of XSL processors to choose
+        from. Each tool implements parts or all of the XSL standard, which actually has
+        several components: <variablelist><title>The XSL Standards</title><varlistentry><term>Extensible Stylesheet Language (XSL)</term><listitem><para>A language for expressing stylesheets written in XML. It includes
+                        the XSL formatting objects (XSL-FO) language, but refers to separate
+                        documents for the transformation language and the path
+                        language.</para></listitem></varlistentry><varlistentry><term>XSL Transformation (XSLT)</term><listitem><para>The part of XSL for transforming XML documents into other XML
+                        documents, HTML, or text. It can be used to rearrange the content
+                        and generate new content.</para></listitem></varlistentry><varlistentry><term>XML Path Language (XPath)</term><listitem><para>A language for addressing parts of an XML document. It is used to
+                        find the parts of your document to apply different styles to. All
+                        XSL processors use this component.</para></listitem></varlistentry></variablelist></para><para>To publish HTML from your XML documents, you just need an XSLT processor. It will include the XPath
+        language since that is used extensively in XSLT. To get to print, you need an XSLT
+        processor to produce an intermediate formatting objects (FO) file, and then you need
+        an XSL-FO processor to produce
+        PostScript or PDF output from the FO file. A diagram of the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://nwalsh.com/docbook/procdiagram/index.html">DocBook Publishing
+            Model</link> <indexterm><primary>publishing model</primary></indexterm>is available if you want to see how all the components flow
+        together.</para></topic>

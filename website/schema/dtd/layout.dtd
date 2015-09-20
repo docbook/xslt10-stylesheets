@@ -1,0 +1,100 @@
+<!-- ====================================================================== -->
+<!-- Website Layout DTD V2.5.0
+     Part of the Website distribution
+     http://sourceforge.net/projects/docbook/
+
+     Please use the following formal public identifier to identify it:
+
+     "-//Norman Walsh//DTD Website Layout V2.5.0//EN"
+
+     For example:
+
+     <!DOCTYPE layout PUBLIC "-//Norman Walsh//DTD Website Layout V2.5.0//EN"
+                     "http://docbook.sourceforge.net/release/website/2.5.0/layout.dtd">
+
+     Please direct all questions and comments about this DTD to
+     Norman Walsh, <ndw@nwalsh.com>.
+                                                                            -->
+<!-- ====================================================================== -->
+
+<!ELEMENT layout ((config|style|script|headlink|copyright)*, toc+, notoc*)>
+
+<!ELEMENT config EMPTY>
+<!ATTLIST config
+	param	CDATA	#REQUIRED
+	value	CDATA	#REQUIRED
+	altval	CDATA	#IMPLIED
+>
+
+<!ELEMENT style (#PCDATA)>
+<!ATTLIST style
+	src	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
+>
+
+<!ELEMENT script (#PCDATA)>
+<!ATTLIST script
+	src	CDATA	#IMPLIED
+	language	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
+>
+
+<!ELEMENT headlink EMPTY>
+<!ATTLIST headlink
+	href	CDATA	#IMPLIED
+	media	CDATA	#IMPLIED
+	name	CDATA	#IMPLIED
+	rel	CDATA	#IMPLIED
+	rev	CDATA	#IMPLIED
+	src	CDATA	#IMPLIED
+	title	CDATA	#IMPLIED
+	type	CDATA	#IMPLIED
+>
+
+<!ELEMENT copyright (year+, holder+)>
+
+<!ELEMENT year (#PCDATA)*>
+
+<!ELEMENT holder (#PCDATA|ulink)*>
+<!ATTLIST holder
+	role	CDATA	#IMPLIED
+>
+
+<!ELEMENT ulink (#PCDATA)*>
+<!ATTLIST ulink
+	url	CDATA	#REQUIRED
+>
+
+<!ELEMENT toc (tocentry*)>
+<!ATTLIST toc
+	page		CDATA	#REQUIRED
+	dir		CDATA	#IMPLIED
+	filename	CDATA	#IMPLIED
+>
+
+<!ELEMENT tocentry ((title|titleabbrev|summary)*, tocentry*)>
+<!ATTLIST tocentry
+	id		ID	#IMPLIED
+	page		CDATA	#IMPLIED
+	href		CDATA	#IMPLIED
+	dir		CDATA	#IMPLIED
+	filename	CDATA	#IMPLIED
+	revisionflag	(added|changed)	#IMPLIED
+	tocskip		(0|1)	"0"
+>
+
+<!ELEMENT notoc EMPTY>
+<!ATTLIST notoc
+	page		CDATA	#REQUIRED
+	dir		CDATA	#IMPLIED
+	filename	CDATA	#IMPLIED
+>
+
+<!ELEMENT title ANY>
+
+<!ELEMENT titleabbrev ANY>
+
+<!ELEMENT summary (#PCDATA)*>
+
+<!-- End of layout.dtd V2.5.0 ............................................. -->
+<!-- ...................................................................... -->

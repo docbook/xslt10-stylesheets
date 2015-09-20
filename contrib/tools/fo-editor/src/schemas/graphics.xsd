@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="stringtype">
+ <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:complexType name="figuretype">
+  <xs:sequence>
+   <xs:element name="parameter" type="stringtype" minOccurs="1" maxOccurs="unbounded"/>
+  </xs:sequence>
+  <xs:attribute name="name" type="stringtype" use="required"/>
+  <xs:attribute name="class" type="stringtype" use="required"/>  
+</xs:complexType>
+
+<xs:complexType name="graphicstype">
+  <xs:sequence>
+   <xs:element name="figure" type="figuretype" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="graphics" type="graphicstype"/>
+
+</xs:schema>

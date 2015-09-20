@@ -1,0 +1,11 @@
+Version @@version@@ of the DocBook XSL Stylesheets, for processing
+non-namespaced (DocBook 4 or earlier) documents, is now available:
+
+  http://docbook.sf.net/files/xsl/latest
+
+The release notes are included below, and also available online.
+The reference docs are available as a separate package, and online.
+
+  http://docbook.sf.net/files/xsl-doc/latest
+  http://docbook.sf.net/release/xsl/current/doc/
+  http://docbook.sf.net/release/xsl/current/RELEASE-NOTES.html

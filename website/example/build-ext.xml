@@ -1,0 +1,54 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd" [
+<!ENTITY buildmake.xml SYSTEM "build-make.xml" NDATA XML>
+]>
+<webpage id="buildext">
+<config param="desc" value="Building with XSLT Extensions"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Building with XSLT</title>
+<titleabbrev>Using XSLT</titleabbrev>
+<summary>Building with XSLT Extensions</summary>
+</head>
+
+<para>The alternative to <olink targetdocent="buildmake.xml">using
+make</olink> is to use XSLT extension functions. Naturally this will
+only be possible if you're using a processor for which the extensions
+have been implemented. The Website distribution includes extensions
+for Xalan and Saxon.</para>
+
+<para>You can still use other processors such as
+xsltproc or MSXML with this method, but the file dependencies won't be
+tracked.  Dependency tracking means the process can avoid having to 
+reprocess XML files that have not changed.
+So with xsltproc, all the XML files will be processed every time
+it is run.</para>
+
+<note>
+<para>If the source pages for your website are stored in several
+files, this method will probably will not work correctly all the time.
+The extension can only see if the <quote>main</quote> page has
+changed, not subsidiary pages that it (logically) depends on. If you
+have a complex source layout, you will probably have to <olink
+targetdocent="buildmake.xml">use make</olink>.</para>
+</note>
+
+<orderedlist>
+<listitem><para>Create your webpages and your <filename>layout.xml</filename>
+file.</para></listitem>
+
+<listitem><para>Use XSLT to create <filename>autolayout.xml</filename>.
+Do this by processing your <filename>layout.xml</filename> with the
+<filename>autolayout.xsl</filename> stylesheet.
+</para></listitem>
+
+<listitem><para>Use XSLT to build the website: process the
+<filename>autolayout.xml</filename> file with the
+<filename>chunk-tabular.xsl</filename> stylesheet. That should build your
+website.
+</para>
+
+<para>You can use the <literal>output-root</literal> parameter to direct
+where the result documents are produced.</para>
+</listitem>
+</orderedlist>
+</webpage>

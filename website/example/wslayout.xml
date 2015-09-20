@@ -1,0 +1,196 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd" [
+<!ENTITY olink.xml SYSTEM "olink.xml" NDATA XML>
+<!ENTITY about.xml SYSTEM "about.xml" NDATA XML>
+<!ENTITY building.xml SYSTEM "building.xml" NDATA XML>
+]>
+<webpage id="layout">
+<config param="desc" value="Navigation Layout"/>
+<config param="rcsdate" value="$Date$"/>
+<head>
+<title>Site Layout</title>
+<summary>Site Navigation Layout Setup</summary>
+</head>
+
+<para>Breaking all of the web pages into separate XML documents
+introduces a significant problem: the hierarchical structure of the website
+is no longer manifest in the source document.</para>
+
+<para>In order for the stylesheets to construct the navigation system,
+you must describe the desired hierarchy explicitly in a
+<emphasis>layout</emphasis> file. The layout file, which must
+conform to <filename>layout.dtd</filename>, identifies all of the
+pages in the website and defines how they fit into the navigational
+hierarchy. Here is simple layout file:
+</para>
+
+<programlisting><![CDATA[<?xml version="1.0"?>
+<layout>
+  <toc page="website.xml" filename="index.html">
+    <tocentry page="doc1.xml" filename="page1.html"/>
+    <tocentry page="doc2.xml" filename="page2.html"/>
+  </toc>
+</layout>]]></programlisting>
+
+<para>This website has three pages:</para>
+
+<orderedlist>
+<listitem><para><filename>index.html</filename>,
+generated from <filename>website.xml</filename>;
+</para></listitem>
+<listitem><para><filename>page1.html</filename>,
+generated from <filename>doc1.xml</filename>; and
+</para></listitem>
+<listitem><para><filename>page2.html</filename>,
+generated from <filename>doc2.xml</filename>
+</para></listitem>
+</orderedlist>
+
+<para>(See also: <ulink url="revflag.html">revision flags</ulink>)</para>
+
+<para>Using this layout file, the hierarchical structure of the website
+is a main page <filename>index.html</filename> with two subordinate
+pages that are siblings:</para>
+
+<programlisting>
+  + index.html
+    + page1.html
+    + page2.html
+</programlisting>
+
+<para>Here's a slightly more complicated example:</para>
+
+<programlisting><![CDATA[<?xml version="1.0"?>
+<layout>
+  <toc page="website.xml" filename="index.html">
+    <tocentry page="doc1.xml" dir="subdir"
+              filename="index.html">
+      <tocentry page="doc1.1.xml" filename="page2.html"/>
+      <tocentry page="doc1.2.xml" filename="page3.html"/>
+    </tocentry>
+    <tocentry page="doc2.xml" filename="page2.html"/>
+  </toc>
+</layout>]]></programlisting>
+
+
+<para>This website has five pages:</para>
+
+<orderedlist>
+<listitem><para><filename>index.html</filename>,
+generated from <filename>website.xml</filename>;
+</para></listitem>
+<listitem><para><filename>subdir/index.html</filename>,
+generated from <filename>doc1.xml</filename>;
+</para></listitem>
+<listitem><para><filename>subdir/page2.html</filename>,
+generated from <filename>doc1.1.xml</filename>;
+</para></listitem>
+<listitem><para><filename>subdir/page3.html</filename>,
+generated from <filename>doc1.2.xml</filename>; and
+</para></listitem>
+<listitem><para><filename>page2.html</filename>,
+generated from <filename>doc2.xml</filename>
+</para></listitem>
+</orderedlist>
+
+<para>Using this layout file, the hierarchical structure of the website
+is a main page <filename>index.html</filename> with two subordinate
+pages that are siblings (<filename>subdir/index.html</filename>
+and <filename>page2.html</filename>). The first sibling page has
+two siblings of its own (<filename>subdir/page2.html</filename>
+and <filename>subdir/page3.html</filename>):</para>
+
+<programlisting>
+  + index.html
+    + subdir/index.html
+      + subdir/page2.html
+      + subdir/page3.html
+    + page2.html
+</programlisting>
+
+<para>In brief, the hierarchy of <sgmltag>tocentry</sgmltag> elements
+in a <sgmltag>toc</sgmltag> describes the logical navigation hierarchy
+of the website. Each entry must identify the XML document (containing
+a <sgmltag class="starttag">webpage</sgmltag>) that it represents and
+may identify the directory and filename where the file will appear in
+the HTML website.</para>
+
+<para>By default, directories are inherited (hence
+<filename>page2.html</filename> and <filename>page3.html</filename>
+will appear in the <filename>subdir</filename> directory) which makes
+it easy to build a website that has similar logical and physical
+organization. It is not necessary for the logical and physical
+hierarchy of your website to be consistent; you can specify an absolute
+directory at any level and on any file by beginning the name with a
+slash.</para>
+
+<para>If a directory is not specified, the files will appear in the currently
+inherited directory (or in the root, if no directory is specified anywhere
+in the <sgmltag>tocentry</sgmltag> ancestry).</para>
+
+<para>If a filename is not specified, <filename>index.html</filename> will
+be used.</para>
+
+<para>It is possible to map two different XML documents to the same HTML
+filename. At present, the stylesheets do not detect this, but the result
+will be a broken website. Exercise caution.</para>
+
+<section><title>Global Parameters</title>
+
+<para>The layout file can also contain a number of global parameters:
+<sgmltag>config</sgmltag>,
+<sgmltag>script</sgmltag>,
+<sgmltag>style</sgmltag>, and
+<sgmltag>copyright</sgmltag>. For the most part, these elements behave
+as they do on individual pages, except that they apply to every page.
+</para>
+
+</section>
+
+<section><title>Multiple <sgmltag>toc</sgmltag>s</title>
+
+<para>If you put multiple <sgmltag>toc</sgmltag> elements in your
+layout file, the result will be completely separate navigational hierarchies.
+Note, however, that the restriction that a page can only appear once in
+a website prevents a page from appearing in more than one hierarchy.
+</para>
+
+<para>Navigation between hierarchies is only possible if you insert
+<olink targetdocent="olink.xml">links between pages</olink>
+across hierarchies.
+</para>
+
+</section>
+
+<section><title>Standalone Pages</title>
+
+<para>Pages identified with <sgmltag>notoc</sgmltag> elements instead
+of <sgmltag>tocentry</sgmltag>s will be in the website but will not appear
+in any hierarchy. The <olink targetdocent="about.xml">about page</olink>
+of this example website uses <sgmltag>notoc</sgmltag>.
+</para>
+
+</section>
+
+<section><title><quote>Dummy</quote> Pages</title>
+
+<para>Sometimes it's useful to have a page in the hierarchy in order to
+make the TOC clearer, without actually wanting to construct the page.
+Consider the <quote>Building</quote> page in this website. It's really
+just a hierarchy placeholder for the different sorts of building that
+are possible.</para>
+
+<para>If you click on <quote>Building</quote> in the TOC, you'll discover
+that you don't actually go to that page, instead you go to that page's
+first child.</para>
+
+<para>This effect is achieved by using the
+<sgmltag class="attribute">tocskip</sgmltag> attribute on the
+<sgmltag>tocentry</sgmltag> for the building page.</para>
+
+<para>Note, however, that the skipped page must exist and it is still
+possible to link directly to
+<olink targetdocent="building.xml">the page</olink>.</para>
+
+</section>
+
+</webpage>

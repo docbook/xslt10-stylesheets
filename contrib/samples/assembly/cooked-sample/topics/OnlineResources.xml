@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="OnlineResources"><title>Online resources for finding solutions to problems</title><para><indexterm><primary>online resources</primary></indexterm>If you run into problems with the DocBook XSL stylesheets that are
+            not addressed anywhere in this guide, you can use a number of online resources
+            to find solutions. <itemizedlist><listitem><para><indexterm><primary>mailing lists</primary></indexterm><indexterm><primary>docbook-apps mailing list</primary></indexterm>First try searching the archives of the <systemitem role="mailinglist">docbook-apps</systemitem> mailing list for
+                        keywords related to the problem. There is a good chance that someone
+                        else has run into something similar. Archives of the list are
+                        available at two different sites: an <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://lists.oasis-open.org/archives/docbook-apps/">archive
+                            at OASIS</link> (which also hosts the actual mailing list) and
+                        an <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://sources.redhat.com/ml/docbook-apps/">archive
+                            at Red Hat</link>.</para><para>If, for example, you are seeing a specific error message, trying
+                        cutting and pasting the error message (or some part of it) into the
+                        search form for the mailing list archives.</para></listitem><listitem><para><indexterm><primary>chat channel</primary></indexterm><indexterm><primary>IRC channel</primary></indexterm>You can get help in real time on the <systemitem role="channel">#docbook</systemitem> channel on <systemitem class="fqdomainname">irc.openprojects.net</systemitem>. If your
+                        browser supports IRC URLs (or, like Mozilla, has a built-in IRC
+                        client), you can access the channel by entering the following URL in
+                        your browser: <blockquote><simpara> <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="irc://irc.openprojects.net#docbook"/> </simpara></blockquote>
+                    </para></listitem><listitem><para>If you cannot find a solution in the <systemitem role="mailinglist">docbook-apps</systemitem> or on the
+                            <systemitem role="channel">#docbook</systemitem>, you should try
+                        posting a question to <systemitem role="mailinglist">docbook-apps</systemitem>. To subscribe to the list, send a
+                        message from your email account to: <blockquote><simpara> <email>docbook-apps-subscribe@lists.oasis-open.org</email> </simpara></blockquote> To post a message to the list, send it to: <blockquote><simpara>
+                    <email>docbook-apps@lists.oasis-open.org</email> </simpara></blockquote>
+                    </para><para>Please read the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.oasis-open.org/docbook/mailinglist/guidelines.html">list guidelines</link> first, and to include examples of your
+                        DocBook source document and your output (for example, HTML or FO
+                        output) along with details about the tools you're using (including
+                        version numbers of the tools). <note><simpara>Do not include attachments when you post to <systemitem role="mailinglist">docbook-apps</systemitem>—the mailing
+                                list management software automatically strips out
+                                attachments. If you have a long example or an output format
+                                that you cannot paste into your message, post it to a Web
+                                site, and then include the URL in your message to the
+                                list.</simpara></note> </para></listitem><listitem><para>The <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://wiki.docbook.org">DocBook Wiki</link>
+                        website collects contributions from DocBook users and makes them
+                        available to the world.</para></listitem><listitem><para><indexterm><primary>SourceForge</primary></indexterm><indexterm><primary>DocBook</primary><secondary>SourceForge</secondary></indexterm>If you find something that seems to be a legitimate bug
+                        in the DocBook XSL stylesheets, you can file a bug report from the
+                            <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://sourceforge.net/tracker/?group_id=21935">Tracker page</link> at the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://sourceforge.net/projects/docbook/">DocBook Open
+                            Repository</link> site at SourceForge. If instead you want to
+                        request an enhancement to the stylesheets, file a <emphasis>feature
+                            request</emphasis> from the same Tracker page at the SourceForge
+                        site. <note><simpara>You will need to have a SourceForge user account to
+                                file a bug report or feature request. This requirement makes
+                                it easier follow up on bug reports. If the DocBook XSL
+                                stylesheet developers need to get more details about a
+                                specific bug report, it's difficult to follow up on it if it
+                                was submitted anonymously.</simpara><simpara>You can <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://sourceforge.net/account/registration">register for an account</link> at the SourceForge
+                                site.</simpara></note> </para></listitem></itemizedlist> </para></topic>

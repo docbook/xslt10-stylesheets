@@ -1,0 +1,35 @@
+PARAMS=../../params/foil.footer.properties.xml \
+       ../../params/foil.header.properties.xml \
+       ../../params/foil.master.properties.xml \
+       ../../params/foil.page-sequence.properties.xml \
+       ../../params/foil.properties.xml \
+       ../../params/foil.region-after.properties.xml \
+       ../../params/foil.region-before.properties.xml \
+       ../../params/foil.region-body.properties.xml \
+       ../../params/foil.subtitle.properties.xml \
+       ../../params/foil.title.master.xml \
+       ../../params/foil.title.properties.xml \
+       ../../params/foil.title.size.xml \
+       ../../params/generate.copyright.xml \
+       ../../params/generate.foilgroup.numbered.toc.xml \
+       ../../params/generate.foilgroup.toc.xml \
+       ../../params/generate.handoutnotes.xml \
+       ../../params/generate.page.number.xml \
+       ../../params/generate.pubdate.xml \
+       ../../params/generate.speakernotes.xml \
+       ../../params/generate.titlepage.xml \
+       ../../params/handoutnotes.properties.xml \
+       ../../params/mml.embedding.mode.fo.xml \
+       ../../params/slide.font.family.xml \
+       ../../params/slide.title.font.family.xml \
+       ../../params/slides.properties.xml \
+       ../../params/slides.titlepage.author.properties.xml \
+       ../../params/slides.titlepage.authorgroup.properties.xml \
+       ../../params/slides.titlepage.corpauthor.properties.xml \
+       ../../params/slides.titlepage.master.properties.xml \
+       ../../params/slides.titlepage.pubdate.properties.xml \
+       ../../params/slides.titlepage.region-body.properties.xml \
+       ../../params/slides.titlepage.subtitle.properties.xml \
+       ../../params/slides.titlepage.title.properties.xml \
+       ../../params/speakernotes.properties.xml \
+       ../../params/svg.embedding.mode.fo.xml

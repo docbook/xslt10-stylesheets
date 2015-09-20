@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!-- This is the ant build file for the example website. It uses the resolver
+     classes from the xml-commons project at Apache. This file was inspired by
+     Dave Pawson's excellent work at http://www.dpawson.co.uk/docbook/ant.html -->
+
+<!-- THIS IS A WORK IN PROGRESS. IN PARTICULAR, IT DOESN'T WORK AT ALL -->
+
+<!-- $Id$ -->
+
+<!-- Set the base directory to the location of the xml files -->
+<project name="generate"
+         basedir="/sourceforge/docbook/website/example"
+         default="output-all">
+
+ <!-- DocBook location: Everything taken relative to this for docbook stuff -->
+ <property name="docbookHome" value="/sourceforge/docbook/"/>
+
+ <!-- Main stylesheets -->
+ <property name="stylesheetHome" value="${docbookHome}/xsl"/>
+
+ <!-- Website DTDs/schemas and stylesheets -->
+ <property name="websiteHome" value="${docbookHome}/website"/>
+
+ <!-- Main Docbook stylesheet -->
+ <property name="docbook.stylesheet" value="${stylesheetHome}/html/docbook.xsl"/>
+
+ <!-- Stylesheet to use for website processing -->
+ <property name="website.stylesheet" value="${websiteHome}/xsl/chunk-website.xsl"/>
+
+ <!-- Stylesheet to use for layout file -->
+ <property name="autolayout.stylesheet" value="${websiteHome}/xsl/autolayout.xsl"/>
+
+ <!-- Input properties:  -->
+
+ <!-- all files should be in this directry-->
+ <property name="in.dir" value="/sourceforge/docbook/website/example"/>
+
+ <!-- input file for any docbook valid document -->
+ <property name="main.infile" value="doco.xml"/>
+
+ <!-- source file for layout styling -->
+ <property name="autolayout.infile" value="layout.xml"/>
+
+ <!-- Output Properties: -->
+
+ <!-- output directory -->
+ <property name="out.dir" value="${in.dir}" />
+
+ <!-- Main output file used for docbook transform -->
+ <property name="main.outfile" value="op.html"/>
+
+ <!-- Null (dummy)output file for website transform -->
+ <property name="website.outfile" value="op.html"/>
+
+ <!-- output file for layout styling -->
+ <property name="autolayout.outfile" value="autolayout.xml"/>
+
+ <!-- Post XSLT transform parameter. Leave as is for Saxon -->
+ <property name="param.args.post" value="saxon.extensions=1"/>
+
+ <!-- XSLT engine class -->
+ <property name="xslt.processor.class" value="com.icl.saxon.StyleSheet" />
+
+ <!-- path for xslt processor.
+      Includes resolver and extensions and catalogManager.properties file.  -->
+ <path id="xslt.processor.classpath">
+  <!-- Saxon jar -->
+  <pathelement path="/usr/local/java/saxon-6.5.2/saxon.jar" />
+  <!-- resolver jar -->
+  <pathelement path="/projects/apache/xml-commons/java/build/resolver.jar"/>
+  <!-- docbook extensions -->
+  <pathelement path="${stylesheetHome}/extensions/saxon643.jar"/>
+  <!-- website extensions -->
+  <pathelement path="${websiteHome}/extensions/saxon64.jar"/>
+  <!-- for catalogManager.properties -->
+  <pathelement path="${HOME}/java"/>
+ </path>
+
+ <!-- Use javac 1.3 -->
+ <property name="build.compiler" value="modern"/>
+
+ <!--  -->
+ <!--Initial processing: If any required.  -->
+ <!--  -->
+ <target name="init">
+  <echo message="Initializing..." />
+  <tstamp>
+   <format property="TODAY_UK" pattern="d-MMM-yyyy" locale="en"/>
+  </tstamp>
+  <echo>building on ${TODAY_UK}</echo>
+ </target>
+
+ <!-- ================================================ -->
+ <!-- Generate output (select as needed)               -->
+ <!-- ================================================ -->
+ <target name="output-all" depends="init,doMain,run-j">
+  <!-- -->
+ </target>
+
+
+ <!-- ================================================ -->
+ <!-- Use layout to create layout.xml                  -->
+ <!-- ================================================ -->
+ <target name="doLayout">
+   <java classname="${xslt.processor.class}"
+         fork="yes"
+         dir="${in.dir}"
+         failonerror="true">
+     <classpath refid="xslt.processor.classpath" />
+     <arg line="-o ${out.dir}/${autolayout.outfile}"/>
+     <arg line="-x org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+     <arg line="-y org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+     <arg line="-r org.apache.xml.resolver.tools.CatalogResolver"/>
+     <arg line="${in.dir}/${autolayout.infile}"/>
+     <arg line="${autolayout.stylesheet}"/>
+     <arg line="${param.args.post}"/>
+   </java>
+ </target>
+
+ <!-- ================================================ -->
+ <!-- Generic XSLT-processor call (main docbook transform) -->
+ <!-- ================================================ -->
+ <target name="doMain">
+   <java classname="${xslt.processor.class}"
+         fork="yes"
+         dir="${in.dir}"
+         failonerror="true">
+     <classpath refid="xslt.processor.classpath" />
+     <arg line="-o ${out.dir}/${main.outfile}"/>
+     <arg line="-l"/>
+     <arg line="-x org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+     <arg line="-y org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+     <arg line="-r org.apache.xml.resolver.tools.CatalogResolver"/>
+     <arg line="${in.dir}/${main.infile} ${docbook.stylesheet} ${param.args.post}" />
+   </java>
+ </target>
+
+ <!-- ================================================ -->
+ <!-- Generic XSLT-processor call (website transform)  -->
+ <!-- ================================================ -->
+ <target name="doWebsite">
+    <java classname="${xslt.processor.class}"
+          fork="yes"
+          dir="${in.dir}"
+          failonerror="true">
+      <classpath refid="xslt.processor.classpath" />
+      <arg line="-o ${out.dir}/${website.outfile}"/>
+      <arg line="-x org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+      <arg line="-y org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+      <arg line="-r org.apache.xml.resolver.tools.CatalogResolver"/>
+      <arg line="${in.dir}/${autolayout.outfile}"/>
+      <arg line="${website.stylesheet}"/>
+      <arg line="${param.args.post}"/>
+    </java>
+ </target>
+
+ <!-- ================================================   -->
+ <!--                run                               -->
+ <!-- ================================================ -->
+
+ <!-- Fill these in if you want to view files post build -->
+
+ <target name="run-j">
+   <tstamp>
+     <format property="TODAY_UK" pattern="d-MMM-yyyy" locale="en"/>
+   </tstamp>
+
+   <echo>View ${out.dir}/${main.outfile} output file.</echo>
+   <echo>Completed at ${TODAY_UK}</echo>
+ </target>
+
+</project>

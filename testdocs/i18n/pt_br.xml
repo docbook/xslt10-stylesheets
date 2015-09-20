@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='pt-BR' id='pt_brchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Amaral</surname>
+  <firstname>Marcelo Jaccoud</firstname>
+  <affiliation><address><email>jaccoud@cenpes.petrobras.com.br</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Portuguese (Brazil)</title>
+
+<para lang="pt_br">
+Doc Book é uma <ulink url="http://www.ucc.ie/xml/#doctype">Definição de 
+Tipo de Documento</ulink> (DTD) mantida pelo <ulink 
+url="mailto:docbook-tc@oasis-open.org">Comitê Técnico DocBook</ulink> da 
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>. Ela é 
+particularmente apropriada para livros e artigos sobre computação (tanto 
+<foreignphrase>hardware</foreignphrase> quanto 
+<foreignphrase>software</foreignphrase>), mas não está de forma alguma 
+limitada a tais aplicações.
+</para>
+
+<para lang="pt_br">
+Em virtude de ser uma grande e robusta DTD, e porque suas estruturas 
+principais correspondem à idéia geral do que constitui um 
+<quote>livro</quote>, DocBook vem sendo adotada por uma ampla e próspera 
+comunidade de autores de todos os gêneros. Ela é suportada <quote>no 
+estado</quote> por várias ferramentas comerciais, e há suporte em plena 
+expansão em diversos ambientes de <foreignphrase>software</foreignphrase> 
+livre. Essas características se uniram para tornar DocBook uma DTD de 
+fácil compreensão, de larga serventia e muito popular. Dezenas de 
+organizações ao redor do mundo estão usando DocBook em milhões de páginas 
+de documentação, tanto em formatos impressos como 
+<foreignphrase>on-line</foreignphrase>.
+</para>
+
+</chapter>

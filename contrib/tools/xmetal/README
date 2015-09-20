@@ -1,0 +1,30 @@
+XMetal DocBook support files
+-------------------------------
+
+This directory contains a sample of 
+the support files needed to write and
+edit DocBook XML files in SoftQuad's
+XMetal editor.  Copy these files to
+the Rules directory under your installed
+XMetal directory.  When you start a new
+XML document, you can select 'docbook412.rlx'
+and all these files will be used.
+
+ docbook412.css    - cascading stylesheet for screen display
+ docbook412.ctm    - rules for handling xml in editor
+ docbook412.rlx    - compiled DocBook XML 4.1.2 DTD
+ docbook412.tbr    - another support file
+
+These are contrib files and carry no guarantee.
+They are meant as a sample starting point for
+using DocBook XML in  XMetal.  Adapt them for
+your own needs.  See the COPYRIGHT file
+for the legal notice associated with these files.
+
+Feedback welcome.
+
+bobs
+Bob Stayton
+Publications Architect
+Caldera International, Inc.
+bobs@caldera.com

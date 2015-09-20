@@ -1,0 +1,96 @@
+$Id$
+
+INSTALL file for the DocBook Website distribution
+
+----------------------------------------------------------------------
+Case #1: Installation using a package management system
+----------------------------------------------------------------------
+If you have installed the Website distribution using "apt-get",
+"yum", "urpmi", or some similar package-management front-end,
+then, as part of the package installation, the Website DTDs, Relax
+NG schemas, and XSL stylesheets have already been automatically
+installed in the appropriate locations for your system, and your
+XML catalog environment was updated to use those locations.
+
+However, note that this release also includes a locatingrules.xml
+file to simplify authoring of Website documents in Emacs/nXML.
+There are not yet any cross-distro standards for handling
+installation of locating-rules files. So, for specific
+instructions about how to make use of the locatingrules.xml file
+with your distro, see the distro-specific documentation installed
+along with the package. For example, on a Debian system, check the
+/usr/share/doc/docbook-website/README.Debian.gz file.
+
+----------------------------------------------------------------------
+Case #2: Installing manually
+----------------------------------------------------------------------
+If you have downloaded a docbook-website zip, tar.gz, or tar.bz2
+file, use the following steps to install it.
+
+  1. Move the zip, tar.gz, or tar.bz2 file to the directory where
+     you'd like to install it (not to a temporary directory).
+
+  2. unzip or untar/uncompress the file
+
+     That will create a docbook-website-x.xx.x directory (where
+     x.xx.x is the version number for the release).
+
+The remaining steps are all OPTIONAL. They are intended to
+automatically update your user environment with XML Catalog
+information about the Website distribution. You are NOT REQUIRED
+to complete these remaining steps. However, if you do not, and you
+want to use XML catalogs with Website, you will need to manually
+update your XML catalog environment
+
+  3. Change to the docbook-website-x.xx.x and execute the
+     install.sh script:
+
+       ./install.sh
+
+     That will launch an interactive installer, which will emit a
+     series of prompts for you to respond to. After the process is
+     complete, the installer will emit a message with a command
+     you need to run in order to source your environment for use
+     with Website.
+
+  4. To test that he installation has updated your environment
+     correctly, execute the test.sh script:
+
+       ./test.sh
+
+     That will test your XML catalog environment, using both the
+     xmlcatalog application and the Apache XML Commons Resolver.
+
+     NOTE: The test.sh file is not created until the install.sh
+           file is run for the first time. So you need to run the
+           install.sh script before running the test.sh script.
+
+  5. (UNINSTALLING) If/when you want to uninstall the release,
+     execute the uninstall.sh script.
+
+       ./uninstall.sh
+
+     That will revert all changes made by the install.sh script.
+
+     NOTE: The uninstall.sh file is not created until the install.sh
+           file is run for the first time. So you need to run the
+           install.sh script before running the uninstall.sh script.
+
+
+----------------------------------------------------------------------
+Note to packagers
+----------------------------------------------------------------------
+The install.sh, .CatalogManager.properties.example, and .urilist
+files should not be packaged. They are useful only to users who
+are installing Website manually.
+
+The catalog, catalog.xml, and locatingrules.xml file should be
+packaged, and your package installation should automatically
+update your system configuration to make use of of them.
+
+If your package doesn't automatically update your system Emacs
+configuration to make use of the locatingrules.xml file, the
+distro-specific documentation for your package should include
+instructions explaining to users how to make use of the
+locatingrules.xml file -- and/or the package installation should
+emit a message with similar instructions during installation.

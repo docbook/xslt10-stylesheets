@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DocBook XSLT 2.0 stylesheets - Shared settings" default="all">
+  
+  <property name="libs" value="${dbroot.dir}/anttools/lib"/>
+  <property name="saxon.jar" value="${libs}/saxon9he.jar"/>
+  <property name="saxon-ant.jar" value="${libs}/saxon9-ant.jar"/>
+  <property name="jing.jar" value="${libs}/jing.jar"/>  
+  <property name="ant-contrib.jar" value="${libs}/ant-contrib-1.0b3.jar"/>
+
+  <!--
+  <taskdef resource="net/sf/antcontrib/antlib.xml" 
+           classpath="${ant-contrib.jar}"
+           uri="antlib:net.sf.antcontrib">       
+  </taskdef>
+  -->
+  
+  <taskdef name="jing"
+           classname="com.thaiopensource.relaxng.util.JingTask"
+           classpath="${jing.jar}"/>
+  
+  <taskdef name="xslt2"
+           classname="net.sf.saxon.ant.AntTransform">
+    <classpath location="${saxon.jar}"/>
+    <classpath location="${saxon-ant.jar}"/>
+  </taskdef>
+    
+</project>

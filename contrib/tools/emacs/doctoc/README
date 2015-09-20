@@ -1,0 +1,85 @@
+DOCbook Table Of Contents -- doctoc
+===================================
+
+This is doctoc version 2.0.
+Copyright (C) 2001, 2002 Jens Emmerich, see doctoc.el for conditions.
+
+Overview
+--------
+
+The doctoc package provides a navigation aid for editing richly
+structured DocBook documents with (X)Emacs. It generates a table of
+contents (TOC) for the current buffer using an external perl script or
+using PSGML's parse tree. The TOC is displayed in a seperate buffer
+with a suiteable major mode to jump to or view the respective
+destination.
+
+Speed is better using the external parser compared to
+PSGML. Installation is easier and integration is a little smoother
+with PSGML.
+
+Installation
+------------
+
+Both versions: Simply put the lisp files somewhere into your
+load-path. They can be byte-compiled, but that's not neccesary if you
+use the external parser: haven't seen any noticeable delay caused by
+doctoc.el in comparison to toc.pl. Some more installation instructions
+and the keys can be found directly in doctoc.el.
+
+a) PSGML Version
+
+Put something like
+
+(defun my-sgml-setup ()
+  "Customize psgml for docbook."
+  (require 'doctoc-psgml) 
+  ;; ... more customizations
+  (define-key sgml-mode-map [(control c)(=)] 'doctoc-toc-current-line))
+
+(add-hook 'sgml-mode-hook 'my-sgml-setup)
+
+into your .xemacs/init.el or .emacs file.
+
+b) External Parser Version
+ 
+Put toc.pl somewhere in your $PATH. It needs perl5 with XML::Parser
+module.
+
+(defun my-sgml-setup ()
+  "Customize psgml for docbook."
+  (require 'doctoc-ext) 
+  ;; ... more customizations
+  (define-key sgml-mode-map [(control c)(=)] 'doctoc-toc-current-line))
+
+(add-hook 'sgml-mode-hook 'my-sgml-setup)
+
+You should be able to switch between both at any time by
+M-x load-library doctoc-<variant>.
+
+Future Plans
+------------
+
+(Priorities might differ from numbering:)
+
+1. Removal of XEmacs specific stuff
+2. Use autoloads, customize package, other Emacs conventions
+3. Check if PSGMLs parse tree can/should be used -- done
+4. Support for parsed external entities, i.e. documents split into
+   multiple files, with single TOC (*is* possible with XML::Parser)
+   -- done
+5. Look into using speedbar
+6. ID/IDREF display/selection in TOC
+
+Credits
+-------
+
+I do miss RefTeX's/AucTeX's elaborate features, all ideas borrowed
+there. PSGML is great stuff, nevertheless.
+
+Contact
+-------
+
+Please use the SourceForge facilities (DocBook open repository
+project) or contact me at Jens.Emmerich@itp.uni-leipzig.de and be
+patient.

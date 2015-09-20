@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<graphics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <figure name="page-format" class="cz.zcu.fav.kiv.editor.displays.PageFigure">
+    <parameter>page.width</parameter>
+    <parameter>page.height</parameter>
+  </figure>
+</graphics>

@@ -1,0 +1,27 @@
+# this file is a -*- makefile -*- snippet
+# use it to configure DocBook Project builds
+
+CVSTOOLSROOT=$(DOCBOOK_SVN)/buildtools
+XSLROOT=$(DOCBOOK_SVN)/xsl
+DSSSLROOT=$(DOCBOOK_SVN)/dsssl
+WEBSITEROOT=$(DOCBOOK_SVN)/website
+CVS2LOG=$(CVSTOOLSROOT)/cvs2log
+FLATTEN=$(CVSTOOLSROOT)/flatten
+MERGELOGS=$(CVSTOOLSROOT)/mergechangelogs
+NEXTVERSION=$(CVSTOOLSROOT)/nextversion
+SCHEMATRON-BASIC=$(SCHEMATRON-PATH)/schematron-basic.xsl
+SCHEMATRON-PATH=/share/doctypes/schematron
+SCHEMATRON-SKELETON=$(SCHEMATRON-PATH)/skeleton1-5.xsl
+TIDY=$(CVSTOOLSROOT)/untidy
+XJPARSE=$(CVSTOOLSROOT)/xjparse
+XJPARSEFLAGS=
+XNSGMLS=xnsgmls
+DTDDISTRIB=$(CVSTOOLSROOT)/dtd-distrib
+JADE=$(CVSTOOLSROOT)/runjade
+XSLTENGINE=saxon
+XSLT=$(CVSTOOLSROOT)/xslt -$(XSLTENGINE)
+XSLTOPT=
+XSLTPROC=
+RUNTRANG=$(CVSTOOLSROOT)/runtrang
+CLDR_DIR=$(DOCBOOK_SVN)/contrib/cldr
+XMLFORMAT_DIR=$(DOCBOOK_SVN)/contrib/tools/xmlformat/xmlformat-1.03

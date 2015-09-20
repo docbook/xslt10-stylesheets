@@ -1,0 +1,26 @@
+PARAMS=../../params/disable.collapsible.xml \
+       ../../params/disable.incremental.xml \
+       ../../params/generate.copyright.xml \
+       ../../params/generate.foilgroup.numbered.toc.xml \
+       ../../params/generate.foilgroup.toc.xml \
+       ../../params/generate.handoutnotes.xml \
+       ../../params/generate.pubdate.xml \
+       ../../params/generate.speakernotes.xml \
+       ../../params/generate.titlepage.xml \
+       ../../params/mml.embedding.mode.xml \
+       ../../params/svg.embedding.mode.xml \
+       ../../params/user.css.xml \
+       ../../params/wrap.slidecontent.xml \
+       ../../params/s5.controls.xml \
+       ../../params/s5.defaultview.xml \
+       ../../params/s5.opera.css.xml \
+       ../../params/s5.outline.css.xml \
+       ../../params/s5.path.prefix.xml \
+       ../../params/s5.print.css.xml \
+       ../../params/s5.slides.css.xml \
+       ../../params/s5.slides.js.xml \
+       ../../params/slidy.duration.xml \
+       ../../params/slidy.path.prefix.xml \
+       ../../params/slidy.slidy.css.xml \
+       ../../params/slidy.slidy.js.xml \
+       ../../params/slidy.user.css.xml

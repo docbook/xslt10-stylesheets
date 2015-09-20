@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE targetset
+       SYSTEM "file:////usr/share/xml/docbook/stylesheet/nwalsh/common/targetdatabase.dtd" [
+
+<!--  This file: hand crafted by ddb 2004-09-15 20:55 -->
+
+]>
+
+
+<targetset xmlns:xi="http://www.w3.org/2001/XInclude" >
+  <targetsetinfo>
+    This is a DocBook olink target database document.
+    It specifies the ultimate layout of the transformed xhtml
+    along with the relevent page and section ids.
+  </targetsetinfo>
+
+  <!-- Site map for generating relative paths between documents -->
+  <sitemap>
+    <dir name="doc">  <!-- ignore top level directory -->
+      <document targetdoc="home">
+<div element="webpage" href="index.html" number="" targetptr="home">
+  <ttl>Home</ttl>
+  <xreftext>Section Home</xreftext>
+</div>
+      </document>
+      <document targetdoc="wslayouthome">
+<div element="webpage" href="layout.html" number="" targetptr="layout">
+  <ttl>Layout</ttl>
+  <xreftext>Section Layout</xreftext>
+</div>
+      </document>
+
+      <document targetdoc="olink">
+<div element="webpage" href="olink.html" number="" targetptr="olink">
+  <ttl>Olink</ttl>
+  <xreftext>Section Olink</xreftext>
+</div>
+      </document>
+
+      <document targetdoc="buildmake">
+<div element="webpage" href="buildmake.html" number="" targetptr="buildmake">
+  <ttl>Build Make</ttl>
+  <xreftext>Section BuildMake</xreftext>
+</div>
+      </document>
+      <document targetdoc="building">
+<div element="webpage" href="building.html" number="" targetptr="building">
+  <ttl>Building strategies</ttl>
+  <xreftext>Building strategies</xreftext>
+</div>
+      </document>
+      <document targetdoc="about">
+<div element="webpage" href="about.html" number="" targetptr="about">
+  <ttl>About these pages</ttl>
+  <xreftext>Section About</xreftext>
+</div>
+      </document>
+      <document targetdoc="bookmark-entity">
+<div element="webpage" href="bookmark-entity.html" number="" targetptr="bookmark-entity">
+  <ttl>Bookmarks</ttl>
+  <xreftext>Section Bookmarks</xreftext>
+</div>
+      </document>
+
+      <dir name="book">
+          <document targetdoc="book" >
+             <!-- xincludes are done relative to dir containing targetset file -->
+<!--
+             <xi:include href="cif/spec/olinkdb.xml"  />
+  -->
+          </document>
+      </dir>
+    </dir>
+  </sitemap>
+</targetset>

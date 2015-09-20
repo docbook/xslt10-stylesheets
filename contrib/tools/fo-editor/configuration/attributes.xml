@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<attributes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">    
+  <group name="Space-before">
+    <attribute type="length" default="0pt">space-before</attribute>     
+    <attribute type="length" default="0pt">space-before.optimum</attribute> 
+    <attribute type="length" default="0pt">space-before.minimum</attribute>
+    <attribute type="length" default="0pt">space-before.maximum</attribute>  
+  </group>
+
+  <group name="Space-after"> 
+    <attribute type="length" default="0pt">space-after</attribute>           
+    <attribute type="length" default="0pt">space-after.optimum</attribute> 
+    <attribute type="length" default="0pt">space-after.minimum</attribute>
+    <attribute type="length" default="0pt">space-after.maximum</attribute>      
+  </group>
+
+  <group name="Paragraph"> 
+    <attribute type="length" default="0pt">start-indent</attribute> 
+    <attribute type="length" default="0pt">end-indent</attribute>  
+    <attribute type="length" default="0pt">line-height</attribute>
+    <attribute type="list" default="true" values="false,true">hyphenate</attribute>       
+    <attribute type="list" default="left" values="justify,center,left,right,start,end">text-align</attribute>             
+  </group>
+  
+  <group name="Font">  
+    <attribute type="font" default="serif">font-family</attribute>    
+    <attribute type="list" default="normal" values="normal,bold,bolder,lighter,100,200,300,400,500,600,700,800,900">font-weight</attribute>
+    <attribute type="length" default="10pt">font-size</attribute> 
+    <attribute type="list" default="normal" values="normal,italic,oblique">font-style</attribute>       
+  </group>  
+  
+      
+  <group name="Margin">
+    <attribute type="length" default="0pt">margin</attribute>
+    <attribute type="length" default="0pt">margin-left</attribute>
+    <attribute type="length" default="0pt">margin-right</attribute>
+    <attribute type="length" default="0pt">margin-bottom</attribute>
+    <attribute type="length" default="0pt">margin-top</attribute>   
+  </group>
+
+  <group name="Padding"> 
+    <attribute type="length" default="0pt">padding</attribute>
+    <attribute type="length" default="0pt">padding-left</attribute>
+    <attribute type="length" default="0pt">padding-right</attribute>
+    <attribute type="length" default="0pt">padding-bottom</attribute>
+    <attribute type="length" default="0pt">padding-top</attribute>  
+  </group>  
+    
+  <group name="Tables"> 
+    <attribute type="length" default="0pt">width</attribute>
+    <attribute type="length" default="0pt">border-width</attribute>
+    <attribute type="color" default="black">border-color</attribute>
+    <attribute type="list" default="solid" values="none,solid,dotted,dashed,double,groove,ridge,inset,outset">border-style</attribute>     
+    <attribute type="list" default="collapse" values="collapse,collapse-with-precedence,separate">border-collapse</attribute>
+    <attribute type="list" default="auto" values="auto,fixed">table-layout</attribute>        
+  </group>
+  
+  <group name="Keep-with-next">
+    <attribute type="list" default="always" values="auto, always">keep-with-next.within-column</attribute>  
+    <attribute type="list" default="always" values="auto, always">keep-with-next.within-line</attribute>  
+    <attribute type="list" default="always" values="auto, always">keep-with-next.within-page</attribute>
+    <attribute type="list" default="no-wrap" values="no-wrap,wrap">wrap-option</attribute>          
+  </group>
+
+  <group name="Colors">
+    <attribute type="color" default="black">color</attribute>
+    <attribute type="color" default="black">background-color</attribute>   
+  </group>
+  
+</attributes>
+

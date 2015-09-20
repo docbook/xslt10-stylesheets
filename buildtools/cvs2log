@@ -1,0 +1,183 @@
+#!/usr/bin/perl -- # --*-Perl-*--
+
+use Getopt::Std;
+
+$usage = "Usage: $0 [-l logfile] [-w] [-c date] [-n]\n";
+
+die $usage if ! getopts('c:l:wn');
+
+# yes, the trailing blank is significant
+my %authorName = ('adicarlo' => 'Adam Di Carlo ',
+		  'bobstayton' => 'Robert Stayton ',
+		  'kosek' => 'Jirka Kosek ',
+		  'lmuellner' => 'Leonard Muellner ',
+		  'mrjohnson' => 'Mark Johnson ',
+		  'nikclayton' => 'Nik Clayton ',
+		  'nwalsh' => 'Norman Walsh ',
+		  'nyraghu' => 'N. Raghavendra ',
+		  'petere78' => 'Peter Eisentraut ',
+		  'xmldoc' => 'Michael Smith ');
+
+# Open the log file...
+if ($opt_l) {
+    open (LOG, "$opt_l");
+} else {
+    open (LOG, "cvs -q log |");
+}
+
+$log  = {};
+$logdesc  = {};
+$file = "";
+$date = "";
+$rev  = "";
+
+while (<LOG>) {
+    if (/^Working file: (.*)$/) {
+	$file = $1;
+	if ($file =~ /^(.*)\/([^\/]+)$/) {
+	    $dir = $1;
+	    $file = $2;
+	}
+    }
+
+    if (/^description:/) {
+	$desc = "";
+	$_ = scalar(<LOG>);
+	while (!/^----/) {
+	    $desc .= $_;
+	    $_ = scalar(<LOG>);
+	}
+
+	$logdesc->{$dir} = {} if ! exists $logdesc->{$dir};
+	$logdesc->{$dir}->{$file} = $desc;
+    }
+
+    if (/^----/) {
+	while (/^----/) {
+	    &read_revision(*LOG);
+	}
+
+	$log->{$dir}->{$date}->{$file}->{$rev}->{'new'} = 1;
+    }
+}
+
+close (LOG);
+
+foreach $dir (sort keys %{$log}) {
+    $cl = "ChangeLog";
+    $cl = "$dir/$cl" if $dir;
+
+    $cutoff = $opt_c || "0000-00-00";
+    if ($opt_w) {
+	open (F, ">$cl");
+    } else {
+	print "Would have written $cl\n";
+	open (F, ">/dev/null");
+    }
+
+    foreach $date (sort { $b cmp $a } keys %{$log->{$dir}}) {
+	if ($date lt $cutoff) {
+	    print "\tStopping at cutoff date: $cutoff\n";
+	    last;
+	}
+
+	$msgs = {};
+	$author = "";
+	$lastauthor = "";
+
+	foreach $file (sort keys %{$log->{$dir}->{$date}}) {
+	    foreach $rev (sort keys %{$log->{$dir}->{$date}->{$file}}) {
+		$logmsg = $log->{$dir}->{$date}->{$file}->{$rev}->{'logmsg'};
+		$author = $log->{$dir}->{$date}->{$file}->{$rev}->{'author'};
+
+		if ($author ne $lastauthor && $lastauthor ne '') {
+		    &show_messages($date, $lastauthor, $msgs);
+		    $msgs = {};
+		}
+
+		$lastauthor = $author;
+
+		if (exists $msgs->{$logmsg}) {
+		    $msgsnew->{$logmsg} = $msgsnew->{$logmsg}
+		        && $log->{$dir}->{$date}->{$file}->{$rev}->{'new'};
+		    $msgs->{$logmsg} .= ", $file";
+		} else {
+		    $msgsnew->{$logmsg}
+		        = $log->{$dir}->{$date}->{$file}->{$rev}->{'new'};
+		    $msgs->{$logmsg} = "$file";
+		}
+	    }
+	}
+
+	&show_messages($date, $author, $msgs);
+    }
+    close (F);
+}
+
+sub show_messages {
+    my $date = shift;
+    my $author = shift;
+    my $msgs = shift;
+
+    if ($opt_n) {
+      print F "$date  ", $authorName{$author}, "$author\n\n";
+    } else {
+      print F "$date  ", $authorName{$author}, "<$author\@users.sourceforge.net>\n\n";
+    }
+
+    foreach $msg (sort fnsort keys %{$msgs}) {
+	$files = $msgs->{$msg};
+	print F "\t* $files: ";
+	print F "\n\t" if (length($files) > 50);
+
+	if ($msgsnew->{$msg}) {
+	    print F "New file.\n\n";
+	} else {
+	    print F "$msg\n";
+	}
+    }
+}
+
+sub fnsort {
+    return $msgs->{$a} cmp $msgs->{$b};
+}
+
+sub read_revision {
+    local(*LOG) = shift;
+
+    $_ = scalar(<LOG>);
+    chop;
+    die if !/^revision (\d.*)$/;
+    $rev = $1;
+
+    $_ = scalar(<LOG>);
+    chop;
+    die if !/^date: (.*?);\s+author: (\S+?);/;
+    $date = $1;
+    $author = $2;
+
+    $date = $1 if $date =~ /^(\S+)\s/;
+    $date =~ s/[\\\/]/-/g;
+
+    $logmsg = "";
+    $_ = scalar(<LOG>);
+    while(!/----/ && !/====/) {
+	$logmsg .= "\t" if ($logmsg ne "");
+	$logmsg .= $_;
+	$_ = scalar(<LOG>);
+    }
+# $log->{$dir}->{$date}->{$file}->{$revision}->{author}
+#                                            ->{logmsg}
+
+    $log->{$dir} = {}
+        if ! exists $log->{$dir};
+    $log->{$dir}->{$date} = {}
+        if ! exists $log->{$dir}->{$date};
+    $log->{$dir}->{$date}->{$file} = {}
+        if ! exists $log->{$dir}->{$date}->{$file};
+    $log->{$dir}->{$date}->{$file}->{$rev} = {}
+        if ! exists $log->{$dir}->{$date}->{$file}->{$rev};
+
+    $log->{$dir}->{$date}->{$file}->{$rev}->{'author'} = $author;
+    $log->{$dir}->{$date}->{$file}->{$rev}->{'logmsg'} = $logmsg;
+}

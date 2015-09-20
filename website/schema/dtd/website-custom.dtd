@@ -1,0 +1,55 @@
+<!-- ====================================================================== -->
+<!-- Website DTD V2.6
+     Copyright (C) 1997-2003 Norman Walsh
+     http://sourceforge.net/projects/docbook/
+
+     $Id$
+
+     Please direct all questions and comments about this DTD to
+     Norman Walsh, <ndw@nwalsh.com>.
+
+     Common declaration:
+
+     <?xml version="1.0"?>
+     <!DOCTYPE webpage
+       PUBLIC "-//Norman Walsh//DTD Website V2.6//EN"
+       "http://docbook.sourceforge.net/release/website/2.6/schema/dtd/website.dtd">
+                                                                            -->
+<!-- ====================================================================== -->
+
+<!-- allow some things that would be excluded by simple -->
+<!ENTITY % sgmltag.module "INCLUDE">
+<!ENTITY % local.tech.char.class "|sgmltag">
+
+<!ENTITY % olink.module "INCLUDE">
+<!ENTITY % local.link.char.class "|olink">
+
+<!ENTITY % simplelist.content.module "INCLUDE">
+<!ENTITY % local.list.class "|simplelist">
+
+<!ENTITY % qandaset.content.module "INCLUDE">
+<!ENTITY % qandaset.module "INCLUDE">
+<!ENTITY % qandadiv.module "INCLUDE">
+<!ENTITY % qandaentry.module "INCLUDE">
+<!ENTITY % question.module "INCLUDE">
+<!ENTITY % answer.module "INCLUDE">
+<!ENTITY % label.module "INCLUDE">
+<!ENTITY % blockinfo.module "INCLUDE">
+
+<!ENTITY % local.compound.class "|qandaset">
+
+<!ENTITY % extensions.mod SYSTEM "extensions.mod">
+%extensions.mod;
+
+<!-- Now that individual XML pages are possible; it makes sense to use the -->
+<!-- simple subset for maximum utility in sending these pages across the -->
+<!-- web directly. -->
+<!ENTITY % sdocbook PUBLIC "-//OASIS//DTD Simplified DocBook XML Customization V1.1//EN"
+      "http://docbook.org/xml/simple/1.1/sdocbook-custom.dtd">
+%sdocbook;
+
+<!ENTITY % website.mod SYSTEM "website.mod">
+%website.mod;
+
+<!-- End of Website DTD V2.6 ............................................ -->
+<!-- ...................................................................... -->

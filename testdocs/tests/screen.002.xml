@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+          "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+<articleinfo>
+<title>Unit Test: screen.002</title>
+<releaseinfo role="CVS">$Id: $</releaseinfo>
+<author><firstname>Thomas</firstname><surname>Schraitle</surname>
+</author>
+</articleinfo>
+
+  <sect1>
+    <title>Change Font Size Directly</title>
+    <para>If you want to change the font size directly, insert a
+        <sgmltag class="xmlpi">dbfo font-size="SIZE"</sgmltag>
+      processing instruction into the respective verbatim
+      element:</para>
+    <screen><![CDATA[<screen><?dbfo font-size="8pt"?>Hello World</screen>]]></screen>
+    <para>This is used if you want to change the font size for only one
+      verbatim element, but leave the others intact.</para>
+  </sect1>
+  
+  <sect1>
+    <title>Change Font Size as Upper Element</title>
+    <para>If you want to change the font size for consecutive verbatim
+      elements, position the <sgmltag class="xmlpi">dbfo
+        font-size="SIZE"</sgmltag> processing instruction outside the
+      verbatim element:</para>
+    <screen><![CDATA[<?dbfo font-size="8pt"?>
+<screen>Hello World</screen>
+<screen>Hello Tux</screen>]]></screen>
+    <para>Any following verbatim elements will use the parent PI. This
+      is used if you want to change the font size for more than one
+      verbatim elements. To reset the font size, use <sgmltag
+        class="xmlpi">dbfo font-size=""</sgmltag>.</para>
+  </sect1>
+  
+  
+</article>

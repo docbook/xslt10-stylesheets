@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<assembly xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://docbook.org/ns/docbook">
+  <resources xml:base="topics">
+    <resource fileref="frontmatter.xml" xml:id="user.guide-info"/>
+    <resource fileref="preface.xml" xml:id="preface">
+      <description>Preface</description>
+    </resource>
+    <resource fileref="WhatIsDocbook.xml" xml:id="WhatIsDocbook">
+      <description>What is DocBook?</description>
+    </resource>
+    <resource fileref="Audience.xml" xml:id="Audience">
+      <description>Audience</description>
+    </resource>
+    <resource fileref="ToolsPart.xml" xml:id="ToolsPart">
+      <description>Setting up the tools</description>
+    </resource>
+    <resource fileref="introchapter.xml" xml:id="introchapter">
+      <description>Introduction</description>
+    </resource>
+    <resource fileref="HowOrganized.xml" xml:id="HowOrganized">
+      <description>How this book is organized</description>
+    </resource>
+    <resource fileref="OnlineResources.xml" xml:id="OnlineResources">
+      <description>Online resources for finding solutions to problems</description>
+    </resource>
+    <resource fileref="XSLprocessors.xml" xml:id="XSLprocessors">
+      <description>XSL processors</description>
+    </resource>
+    <resource fileref="XSLTprocessors.xml" xml:id="XSLTprocessors">
+      <description>XSLT processors</description>
+    </resource>
+    <resource fileref="FOprocessors.xml" xml:id="FOprocessors">
+      <description>XSL-FO processors</description>
+    </resource>
+    <resource fileref="Portability.xml" xml:id="Portability">
+      <description>Portability considerations</description>
+    </resource>
+  </resources>
+  <structure type="book" xml:id="user.guide">
+    <title>DocBook XSL: The Incomplete Sample</title>
+    <module resourceref="user.guide-info" contentonly="true"/>
+    <module resourceref="preface">
+      <output renderas="preface"/>
+      <module resourceref="WhatIsDocbook">
+        <output renderas="section"/>
+      </module>
+      <module resourceref="Audience">
+        <output renderas="section"/>
+      </module>
+    </module>
+    <module resourceref="ToolsPart">
+      <module resourceref="introchapter">
+        <output renderas="chapter"/>
+        <module resourceref="HowOrganized">
+          <output renderas="section"/>
+        </module>
+        <module resourceref="OnlineResources">
+          <output renderas="section"/>
+        </module>
+      </module>
+      <module resourceref="XSLprocessors">
+        <output renderas="chapter"/>
+        <module resourceref="XSLTprocessors">
+          <output renderas="section"/>
+        </module>
+        <module resourceref="FOprocessors">
+          <output renderas="section"/>
+        </module>
+        <module resourceref="Portability">
+          <output renderas="section"/>
+        </module>
+      </module>
+    </module>
+  </structure>
+</assembly>

@@ -1,0 +1,73 @@
+README
+
+What is this and how do I use it?
+
+This customization of Jirka Kosek's customization of Norm
+Walsh's DocBook xsls generates a frameset with ingredients
+necessary to view an uncompiled help project in most
+browsers that support Java applets, much like the "WebHelp"
+format available from RoboHELP. You simply have to add a few
+files found in the installation directory of the HTML Help
+Workshop to the base directory of the frameset. The applet
+creates a toc and index tab (though no search or favorites
+tab) that works well in most browsers that support applets.
+The stuff added for frameset doesn't affect the chm at all.
+
+After generating your html files, copy the contents of the
+'java' folder from your HTML Help Workshop installation to
+the directory containing the frameset files. Note that you
+must copy the *contents* of C:\Program Files\HTML Help
+Workshop\java (not the folder-so HHCtrl.class etc. must be
+in the same directory as index.html, contents.pane.html, and
+index.pane.html).
+
+So when you're done, your directory will look like this
+(where build/index.html runs the frameset):
+
+build/	cntimage.gif
+		contents.pane.html
+		DialogLayout.class
+		Element.class
+		ElementList.class
+		files/*.html
+		HHCtrl.cab
+		HHCtrl.class
+		htmlhelp.hhp
+		images/	cntidx.gif
+				cntimage.gif
+				cnttab.gif
+				indexcnt.gif
+				indextab.gif
+				*.gif 
+		index.hhk
+		index.html
+		index.pane.html
+		IndexPanel.class
+		RelatedDialog.class
+		SitemapParser.class
+		toc.hhc
+		TreeCanvas.class
+		TreeView.class
+
+Note that you can still compile the htmlhelp.hhp file. The
+applets .class files are not needed or included in the chm.
+
+This stylesheet was tested with 1.64.1 of the docbook xsls,
+but may work with later versions.
+
+Known Limitation: The indexterms in the index tab are
+currently not sorted. This can be fixed by tweaking the
+xsls. Also, multiple instances of the same indexterm appear
+in the index pane (in a chm, they are combined and a choice
+of terms is presented when it is double clicked). 
+
+Resources:
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/vsconwhtsja.asp
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp
+http://www.mvps.org/htmlhelpcenter/hhjapplt.htm
+
+This is a contrib file and carries no guarantee.
+
+David Cramer
+dcramer A T motive D O T com
+david A T thingbag D O T net

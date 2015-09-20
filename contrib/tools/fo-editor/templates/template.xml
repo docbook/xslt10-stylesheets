@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<attribute-sets>
+  <attribute-set name="monospace.properties">
+    <attribute default="3.0in">start-indent</attribute>
+    <attribute default="4.0in">end-indent</attribute>
+  </attribute-set>
+
+  <attribute-set name="abstract.title.properties">
+    <attribute default="bold">font-weight</attribute>
+    <attribute default="always">keep-with-next.within-column</attribute>
+    <attribute default="false">hyphenate</attribute>
+    <attribute default="center">text-align</attribute>
+  </attribute-set>
+  
+  <attribute-set name="component.title.properties">
+    <attribute default="always">keep-with-next.within-column</attribute>
+    <attribute default="false">hyphenate</attribute>   
+  </attribute-set>  
+  
+  <attribute-set name="formal.object.properties">
+    <attribute default="0.5em">space-before.minimum</attribute>
+    <attribute default="1em">space-before.optimum</attribute>
+    <attribute default="2em">space-before.maximum</attribute>
+    <attribute default="0.5em">space-after.minimum</attribute>
+    <attribute default="1em">space-after.optimum</attribute>
+    <attribute default="2em">space-after.maximum</attribute>
+    <attribute default="always">keep-with-next.within-column</attribute>
+  </attribute-set>          
+</attribute-sets>
+
+<parameters>
+  <parameter default="1">double.sided</parameter>
+  <parameter default="A4">paper.type</parameter>
+</parameters>
+</template>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='es' id='eschap'>
+<chapterinfo>
+<othercredit>
+  <surname></surname>
+  <firstname>Horacio</firstname>
+  <affiliation><address><email>homega@wanadoo.es</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Spanish</title>
+
+<para lang="es">
+DocBook es una
+<ulink url="http://www.ucc.ie/xml/#doctype">Definici&#xF3;n
+de Tipo de Documento</ulink> (DTD) mantenida por el
+<ulink url="mailto:docbook-tc@oasis-open.org">Comit&#xE9;
+T&#xE9;cnico de DocBook</ulink> de
+<ulink url="http://www.oasis-open.org/">OASIS</ulink>.
+Es muy conveniente para el dise&#xF1;o de libros y otra
+documentaci&#xF3;n sobre equipos y componentes
+(<foreignphrase>hardware</foreignphrase>), as&#xED;
+como aplicaciones y programas
+(<foreignphrase>software</foreignphrase>),
+inform&#xE1;ticos (aunque no est&#xE1; en absoluto
+limitado a &#xE9;stos).
+</para>
+
+<para lang="es">
+Debido a que es una DTD grande y robusta, y a que sus
+estructuras principales se corresponden con la noci&#xF3;n
+general de lo que es un <quote>libro</quote>, DocBook ha sido
+adoptado por una numerosa y creciente comunidad de autores
+que escriben documentaci&#xF3;n de todo tipo.  Muchos
+programas comerciales disponen de soporte para DocBook sin
+necesidad de aplicar cambios, y la cantidad de entornos
+inform&#xE1;ticos libres que ofrecen soporte crece
+vergitinosamente.  Estas caracter&#xED;sticas se han unido
+para hacer de DocBook una DTD f&#xE1;cil de comprender, muy
+&#xFA;til, y muy popularizada.  DocBook est&#xE1; siendo
+utilizado por muchas organizaciones en todo el munddo para
+crear millones de p&#xE1;ginas de documentaci&#xF3;n,
+tanto en formatos de impresi&#xF3;n como
+<foreignphrase>online</foreignphrase>.
+</para>
+
+</chapter>

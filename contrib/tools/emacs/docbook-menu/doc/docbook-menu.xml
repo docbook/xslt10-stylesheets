@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<article>
+    <title
+  ><command>docbk-menu-mode</command> — a DocBook menu for GNU Emacs</title>
+  <articleinfo>
+    <pubdate>$Date$</pubdate>
+    <releaseinfo>$Id$ 
+      <ulink url="./docbook-menu.xml">xml source</ulink></releaseinfo>
+  </articleinfo>
+  <section id='intro'>
+    <title>Introduction</title>
+    <para><command>docbk-menu-mode</command> is a GNU Emacs minor mode
+    that provide a hierarchical, customizable menu for quickly accessing
+    a variety of DocBook-related documentation and for easily getting to
+    files in the DocBook XSLT stylesheets distribution.</para>
+
+    <para>It is intended as a sort of “at your fingertips”
+    ready-reference for people who use Emacs to edit DocBook XML files
+    and/or work with the DocBook XSLT stylesheets (creating
+    customization layers to change parameters and templates).</para>
+
+    <para><command>docbk-menu-mode</command> has been tested and found
+    to work reliably with GNU Emacs 21.3, 21.2, and 20.7 (tested both
+    on GNU/Linux (Debian) and on Microsoft Windows). It probably will
+    not work at all with XEmacs or with earlier versions of GNU Emacs
+    (e.g., Emacs 19.x).</para>
+  </section>
+
+  <section id='download'>
+    <title>Download</title>
+    
+    <para>Download the latest
+    <filename>docbook-menu-N.NN.zip</filename> file from the
+    DocBook project download site:</para>
+    
+    <literallayout
+     ><ulink
+       url="https://sourceforge.net/project/showfiles.php?group_id=21935"/></literallayout>
+    
+  </section>
+
+  <section id='screenshots'>
+    <title>Screenshots</title>
+
+    <figure id='tdg-submenu'>
+      <title>DocBook: The Complete Guide submenu</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="./images/docbook-menu-tdg.gif"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Full hiearchical TDG TOC from within Emacs.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+
+    <figure id='els-alpha'>
+      <title>DocBook: Elements Reference (Alphabetical) submenu</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="./images/docbook-menu-els-alpha.gif"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Alphabetical elements submenu include short descriptions.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+    
+    <figure id='els-logical'>
+      <title>DocBook: Elements Reference (Logical) submenu</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="./images/docbook-menu-els-logic.gif"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Logical elements menu is multi-level.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+
+    <figure id='xsl-tcg'>
+      <title>DocBook XSL: The Complete Guide submenu</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="./images/docbook-menu-xsl-tcg.gif"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Full TOC for Bob Stayton’s book.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+
+    <figure id='xsl-params-fo'>
+      <title>DocBook XSL: Parameter Reference - FO submenu</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="./images/docbook-menu-xsl-fo.gif"/>
+	</imageobject>
+	<textobject>
+	  <phrase>XSLT params reference menu includes short descriptions.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+
+    <figure id='xsl-faq'>
+      <title>DocBook FAQ submenu</title>
+      <mediaobject>
+	<imageobject>
+	  <imagedata fileref="./images/docbook-menu-faq.gif"/>
+	</imageobject>
+	<textobject>
+	  <phrase>Quick access to Dave Pawson’s DocBook FAQ.</phrase>
+	</textobject>
+      </mediaobject>
+    </figure>
+    
+  </section>
+
+</article>

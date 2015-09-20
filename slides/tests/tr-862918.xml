@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+
+<info>
+<title>GITK - Generalized Interface ToolKit</title>
+<subtitle>Dynamically generated multi-modal application interfaces</subtitle>
+<titleabbrev>GITK</titleabbrev>
+
+<authorgroup>
+<author>
+<personname>
+<honorific>Dipl. Inf</honorific>
+<firstname>Stefan</firstname>
+<surname>Kost</surname>
+</personname>
+</author>
+
+<othercredit>
+<personname>
+<honorific>Prof. Dr</honorific>
+<firstname>Wolfgang</firstname>
+<surname>Wünschmann</surname>
+</personname>
+<contrib>Betreuer der Arbeit</contrib>
+<affiliation>
+<orgname>TU Dresden</orgname>
+<orgdiv>FB Informatik, Institut für Angewandte
+Informatik</orgdiv>
+</affiliation>
+</othercredit>
+
+<othercredit>
+<personname>
+<honorific>Prof. Dr</honorific>
+<firstname>Klaus</firstname>
+<surname>Bastian</surname>
+</personname>
+<contrib>Betreuer der Arbeit</contrib>
+<affiliation>
+<orgname>HTWK Leipzig</orgname>
+<orgdiv>FB IMN</orgdiv>
+</affiliation>
+</othercredit>
+</authorgroup>
+
+<releaseinfo role="version">0.2.0</releaseinfo>
+<copyright>
+<year>2003</year>
+<holder>Stefan Kost</holder>
+</copyright>
+<pubdate>16.12.2003</pubdate>
+</info>
+
+<dbs:foilgroup><info><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle></info>
+<para>Some premable.</para>
+<dbs:foil><info><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle></info>
+<para>Foil content</para>
+</dbs:foil>
+</dbs:foilgroup>
+</dbs:slides>

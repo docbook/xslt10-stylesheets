@@ -1,0 +1,19 @@
+<?xml version='1.0'?>
+
+<?dbhtml graphics-dir="../graphics"?>
+<?dbhtml css-stylesheet="../browser/slides.css"?>
+<?dbhtml script-dir="../browser"?>
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
+<title>Test Slides Title</title>
+</info>
+<dbs:foil><info><title>Test Slides Title</title></info>
+<para>...</para>
+</dbs:foil>
+<dbs:foil><info><title>Test Slides Title</title></info>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</dbs:foil>
+</dbs:slides>

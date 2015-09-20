@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
+  <title>Test Slides Title</title>
+  <copyright><year>2001</year><holder>Norman Walsh</holder></copyright>
+</info>
+
+<dbs:foilgroup><info><title>Section 1</title></info>
+
+<dbs:foil><info><title>Test Slides Title 1</title></info>
+<para>...<keycombo><keycap>X</keycap></keycombo></para>
+</dbs:foil>
+
+<dbs:foil><info><title>Test Slides Title 2</title></info>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</dbs:foil>
+
+</dbs:foilgroup>
+<dbs:foilgroup><info><title>Section 2</title></info>
+
+<dbs:foil><info><title>Test Slides Title 1</title></info>
+<para>...</para>
+</dbs:foil>
+
+<dbs:foil><info><title>Test Slides Title 2</title></info>
+<para>...</para>
+<screen>
+this is a screen
+</screen>
+</dbs:foil>
+
+</dbs:foilgroup>
+
+</dbs:slides>

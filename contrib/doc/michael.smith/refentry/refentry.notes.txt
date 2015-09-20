@@ -1,0 +1,48 @@
+$Id$
+
+This is simply a list of standard and commonly used section
+heading names for "top level" (.SH) sections in man pages (which
+correspond to Refsect1 element in DocBook.
+
+* all of the section heading names in this first set are verbatim
+* from the man(7) man page, with the exception of added "plurals";
+* e.g., "AUTHORS"
+
+  DESCRIPTION
+  RETURN VALUE
+  RETURN VALUES
+  EXIT STATUS
+  OPTIONS
+  USAGE
+  EXAMPLE
+  EXAMPLES
+  FILES
+  ENVIRONMENT
+  DIAGNOSTICS
+  SECURITY
+  CONFORMING TO
+  NOTES
+  BUGS
+  AUTHOR
+  AUTHORS
+  SEE ALSO
+
+* all of the following in this next set are from the groff_mdoc(7)
+* man page
+
+  LIBRARY
+  IMPLEMENTATION NOTES
+  COMPATIBILITY
+  ERRORS
+  STANDARDS
+  HISTORY
+
+* Though none of the following are standard, they all seem to be
+* used fairly commonly.
+
+  REPORTING BUGS
+  ENVIRONMENT VARIABLES
+  COPYRIGHT
+  LICENSE
+  VERSION
+  EXIT STATUS

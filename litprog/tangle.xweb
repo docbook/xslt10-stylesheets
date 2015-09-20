@@ -1,0 +1,587 @@
+<!DOCTYPE article [
+<!ENTITY xweb "<acronym>XWEB</acronym>">
+]>
+<article xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+         xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<articleinfo>
+<title>Tangle</title>
+<subtitle>Part of
+<citetitle>Literate Programming in XML</citetitle></subtitle>
+<pubdate>05 Oct 2001</pubdate>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+
+<revhistory>
+<revision>
+<revnumber>0.1</revnumber>
+<date>05 Oct 2001</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Initial draft.</revremark>
+</revision>
+</revhistory>
+
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+</author>
+</articleinfo>
+
+<!-- ============================================================ -->
+
+<para>The <filename>tangle.xsl</filename> stylesheet transforms an
+&xweb; document into a <quote>source code</quote> document. This
+is a relatively straightforward process: starting with the top fragment,
+all of the source fragments are simply stitched together, discarding any
+intervening documentation.</para>
+
+<para>The resulting <quote>tangled</quote> document is ready for use
+by the appropriate processor.</para>
+
+<section><title>The Stylesheet</title>
+
+<para>This &xweb; document contains the source for two stylesheets,
+<filename>tangle.xsl</filename> and <filename>xtangle.xsl</filename>.
+Both stylesheets produce tangled sources, the latter is a simple
+customization of the former for producing XML vocabularies.</para>
+
+<para>Each of these stylesheets performs some initialization, sets
+the output method appropriately, begins processing at the root template,
+and processes fragments, copying the content appropriately.</para>
+
+<section><title>The <filename>tangle.xsl</filename> Stylesheet</title>
+
+<para>The tangle stylesheet produces text output.</para>
+
+<src:fragment id="top" mundane-result-prefixes="xsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                exclude-result-prefixes="src"
+                version="1.0">
+
+  <src:fragref linkend="init"/>
+
+  <xsl:output method="text"/>
+
+  <src:fragref linkend="root.template"/>
+  <src:fragref linkend="process-fragments"/>
+  <src:fragref linkend="copy-elements"/>
+</xsl:stylesheet>
+</src:fragment>
+</section>
+
+<section><title>The <filename>xtangle.xsl</filename> Stylesheet</title>
+
+<para>The xtangle stylesheet produces XML output.</para>
+
+<src:fragment id="xtop" mundane-result-prefixes="xsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                exclude-result-prefixes="src"
+                version="1.0">
+
+  <src:fragref linkend="init"/>
+
+  <xsl:output method="xml"/>
+
+  <src:fragref linkend="root.template"/>
+  <src:fragref linkend="process-fragments"/>
+  <src:fragref linkend="copy-elements"/>
+  <src:fragref linkend="copy-xml-constructs"/>
+</xsl:stylesheet>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Initialization</title>
+
+<para>The stylesheet initializes the processor by loading its version
+information (stored in a separate file because it is shared by several
+stylesheets) and telling the processor to preserve whitespace on all
+input elements.</para>
+
+<para>The stylesheet also constructs a key for the ID values used on
+fragments. Because &xweb; documents do not have to be valid according
+to any particular DTD or Schema, the stylesheet cannot rely on having
+the IDs identified as type ID in the source document.</para>
+
+<src:fragment id="init">
+  <xsl:include href="VERSION"/>
+  <xsl:preserve-space elements="*"/>
+
+  <xsl:key name="fragment" match="src:fragment" use="@*[local-name() = 'id']"/>
+
+  <xsl:param name="top" select="'top'"/>
+  <xsl:param name="suppress.doctype.in.output" select="0"/>
+
+</src:fragment>
+
+</section>
+
+<section><title>The Root Template</title>
+
+<para>The root template begins processing at the root of the &xweb;
+document. It outputs a couple of informative comments and then
+directs the processor to transform the <sgmltag>src:fragment</sgmltag>
+element with the <varname>$top</varname> ID.</para>
+
+<para>Source code fragments in the &xweb; document are not required
+to be sequential, so it is necessary to distinguish one fragment
+as the primary starting point.</para>
+
+<src:fragment id="root.template">
+<xsl:template match="/">
+  <xsl:apply-templates select="key('fragment', $top)"/>
+</xsl:template>
+</src:fragment>
+</section>
+
+<section><title>Processing Fragments</title>
+
+<para>In order to <quote>tangle</quote> an &xweb; document, we need
+only copy the contents of the fragments to the result tree.</para>
+
+<para>Processing <sgmltag>src:fragment</sgmltag> elements is
+conceptually easy, simply copy their children. However, if we simply used:</para>
+
+<screen>&lt;xsl:apply-templates mode="copy"/&gt;</screen>
+
+<para>we'd copy the newlines at the beginning and end of a fragment that the
+author might have added for editing convenience. In environments where
+whitespace is significant (e.g., Python), this would introduce errors.
+We must avoid copying the first and last newlines.
+</para>
+
+<src:fragment id="process-fragments">
+<xsl:template match="src:fragment">
+  <src:fragref linkend="cc-storevars"/>
+  <src:fragref linkend="cc-first-node"/>
+  <src:fragref linkend="cc-middle-nodes"/>
+  <src:fragref linkend="cc-last-node"/>
+</xsl:template>
+</src:fragment>
+
+<section><title>Convenience Variables</title>
+
+<para>For convenience, we store subexpressions containing the first,
+last, and all the middle nodes in variables.</para>
+
+<src:fragment id="cc-storevars">
+  <xsl:variable name="first-node"
+                select="node()[1]"/>
+  <xsl:variable name="middle-nodes"
+                select="node()[position() &gt; 1 and position() &lt; last()]"/>
+  <xsl:variable name="last-node"
+                select="node()[position() &gt; 1 and position() = last()]"/>
+</src:fragment>
+
+</section>
+
+<section><title>Handle First Node</title>
+
+<para>Handling the leading newline is conceptually a simple matter of
+looking at the first character on the line and skipping it if it is
+a newline. A slight complexity is introduced by the fact that if the
+fragment contains only a single text node, the first node is also the
+last node and we have to possibly trim off a trialing newline as well.
+We separate that out as a special case.
+</para>
+
+<src:fragment id="cc-first-node">
+    <xsl:choose>
+      <src:fragref linkend="cc-only-node"/>
+      <src:fragref linkend="cc-leading-nl"/>
+      <src:fragref linkend="cc-no-leading-nl"/>
+    </xsl:choose>
+</src:fragment>
+
+<section><title>Handle A Fragment that Contains a Single Node</title>
+
+<para>If the <varname>$first-node</varname> is a text node and the
+fragment contains only a single child, then it is also the last node.</para>
+
+<para>In order to deal with a single text node child, we must address
+four cases: the node has both leading and trailing newlines, the node
+has only leading newlines, only trailing newlines, or no newlines at
+all.</para>
+
+<src:fragment id="cc-only-node">
+      <xsl:when test="$first-node = text() and count(node()) = 1">
+        <src:fragref linkend="cc-more-conv"/>
+        <xsl:choose>
+          <src:fragref linkend="cc-both"/>
+          <src:fragref linkend="cc-leading"/>
+          <src:fragref linkend="cc-trailing"/>
+          <src:fragref linkend="cc-none"/>
+        </xsl:choose>
+      </xsl:when>
+</src:fragment>
+
+<section><title>More Convenience Variables</title>
+
+<para>For convenience, we calculate whether or not the node in question
+has leading and/or trailing newlines and store those results in variables.
+</para>
+
+<src:fragment id="cc-more-conv">
+        <xsl:variable name="leading-nl"
+                      select="substring($first-node, 1, 1) = '&#xA;'"/>
+        <xsl:variable name="trailing-nl"
+                      select="substring($first-node, string-length($first-node), 1) = '&#xA;'"/>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node With Leading and Trailing Newlines</title>
+
+<para>If the node has both leading and trailing newlines, trim a character
+off each end.</para>
+
+<src:fragment id="cc-both">
+          <xsl:when test="$leading-nl and $trailing-nl">
+            <xsl:value-of select="substring($first-node, 2, string-length($first-node)-2)"/>
+          </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node With Only Leading Newlines</title>
+
+<para>If the node has only leading newlines, trim off the first character.
+</para>
+
+<src:fragment id="cc-leading">
+          <xsl:when test="$leading-nl">
+            <xsl:value-of select="substring($first-node, 2)"/>
+          </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node with Only Trailing Newlines</title>
+
+<para>If the node has only trailing newlines, trim off the last character.
+</para>
+
+<src:fragment id="cc-trailing">
+          <xsl:when test="$trailing-nl">
+            <xsl:value-of select="substring($first-node, 1, string-length($first-node)-1)"/>
+          </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a Single Node with No Newlines</title>
+
+<para>Otherwise, the node has no newlines and it is simply printed.
+</para>
+
+<src:fragment id="cc-none">
+          <xsl:otherwise>
+            <xsl:value-of select="$first-node"/>
+          </xsl:otherwise>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Handle a First Node with a Leading Newline</title>
+
+<para>If the first node is a text node and begins with a newline,
+trim off the first character.</para>
+
+<src:fragment id="cc-leading-nl">
+      <xsl:when test="$first-node = text() and substring($first-node, 1, 1) = '&#xA;'">
+        <xsl:value-of select="substring($first-node, 2)"/>
+      </xsl:when>
+</src:fragment>
+</section>
+
+<section><title>Handle a First Node without a Leading Newline</title>
+
+<para>Otherwise, the first node is not a text node or does not begin
+with a newline, so use the <quote>copy</quote> mode to copy it to
+the result tree.</para>
+
+<src:fragment id="cc-no-leading-nl">
+      <xsl:otherwise>
+        <xsl:apply-templates select="$first-node" mode="copy"/>
+      </xsl:otherwise>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Handle Last Node</title>
+
+<para>Handling the last node is roughly analagous to handling the first
+node, except that we know this code is only evaluated if the last node
+is not also the first node.</para>
+
+<para>If the last node is a text node and ends with a newline, strip
+it off. Otherwise, just copy the content of the last node
+using the <quote>copy</quote> mode.
+</para>
+
+<src:fragment id="cc-last-node">
+    <xsl:choose>
+      <xsl:when test="$last-node = text() and substring($last-node, string-length($last-node), 1) = '&#xA;'">
+        <xsl:value-of select="substring($last-node, 1, string-length($last-node)-1)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="$last-node" mode="copy"/>
+      </xsl:otherwise>
+    </xsl:choose>
+</src:fragment>
+
+</section>
+
+<section><title>Handle the Middle Nodes</title>
+
+<para>The middle nodes are easy, just copy them
+using the <quote>copy</quote> mode.</para>
+
+<src:fragment id="cc-middle-nodes">
+    <xsl:apply-templates select="$middle-nodes" mode="copy"/>
+</src:fragment>
+
+</section>
+</section>
+
+<section><title>Copying Elements</title>
+
+<para>Copying elements to the result tree can be divided into four
+cases: <link linkend="s.copy-passthrough">copying passthrough elements</link>,
+<link linkend="s.copy-fragref">copying fragment references</link>, and
+<link linkend="s.copy-default">copying everything else</link>.</para>
+
+<src:fragment id="copy-elements">
+<src:fragref linkend="copy-passthrough"/>
+<src:fragref linkend="copy-fragref"/>
+<src:fragref linkend="copy-default"/>
+</src:fragment>
+
+<section id="s.copy-passthrough">
+<title>Copying <sgmltag>src:passthrough</sgmltag></title>
+
+<para>Passthrough elements contain text that is intended to appear
+literally in the result tree. We use XSLT
+<quote>disable-output-escaping</quote> to copy it without
+interpretation:</para>
+
+<src:fragment id="copy-passthrough">
+<xsl:template match="src:passthrough" mode="copy">
+  <xsl:value-of disable-output-escaping="yes" select="."/>
+</xsl:template>
+</src:fragment>
+</section>
+
+<section id="s.copy-fragref">
+<title>Copying <sgmltag>src:fragref</sgmltag></title>
+
+<para>With a unique exception, copying fragment references is
+straightforward: find the fragment that is identified by the
+cross-reference and process it.
+</para>
+
+<para>The single exception arises only in the processing of
+<sgmltag>src:fragref</sgmltag> elements in the <sgmltag>weave.xweb</sgmltag>
+document. There is a single template in the <quote>weave</quote> program
+that needs to copy a literal <sgmltag>src:fragref</sgmltag> element to the
+result tree. That is the <emphasis>only</emphasis> time the
+<xref linkend="doe-fragref"/> branch is executed.
+</para>
+
+<src:fragment id="copy-fragref">
+<xsl:template match="src:fragref" mode="copy">
+  <xsl:variable name="node" select="."/>
+  <xsl:choose>
+    <src:fragref linkend="doe-fragref"/>
+    <src:fragref linkend="normal-fragref"/>
+  </xsl:choose>
+</xsl:template>
+</src:fragment>
+
+<section><title>Copying Normal Fragment References</title>
+
+<para>To copy a normal fragment reference, identify what the
+<sgmltag class="attribute">linkend</sgmltag> attribute points to,
+make sure it is valid, and process it.</para>
+
+<src:fragment id="normal-fragref">    <xsl:otherwise>
+      <xsl:variable name="fragment" select="key('fragment', @linkend)"/>
+      <src:fragref linkend="fragref-unique"/>
+      <src:fragref linkend="fragref-isfragment"/>
+      <xsl:apply-templates select="$fragment"/>
+    </xsl:otherwise></src:fragment>
+
+<section><title>Fragment is Unique</title>
+
+<para>Make sure that the <sgmltag class="attribute">linkend</sgmltag>
+attribute points to exactly one node in the source tree. It is an error
+if no element exists with that ID value or if more than one exists.</para>
+
+<src:fragment id="fragref-unique">      <xsl:if test="count($fragment) != 1">
+        <xsl:message terminate="yes">
+          <xsl:text>Link to fragment "</xsl:text>
+          <xsl:value-of select="@linkend"/>
+          <xsl:text>" does not uniquely identify a single fragment.</xsl:text>
+        </xsl:message>
+      </xsl:if></src:fragment>
+
+</section>
+
+<section><title>Fragment is a <sgmltag>src:fragment</sgmltag></title>
+
+<para>Make sure that the <sgmltag class="attribute">linkend</sgmltag>
+attribute points to a <sgmltag>src:fragment</sgmltag> element.</para>
+
+<para>FIXME: this code should test the namespace name of the $fragment</para>
+
+<src:fragment id="fragref-isfragment">
+<xsl:if test="local-name($fragment) != 'fragment'">
+  <xsl:message terminate="yes">
+    <xsl:text>Link "</xsl:text>
+    <xsl:value-of select="@linkend"/>
+    <xsl:text>" does not point to a src:fragment.</xsl:text>
+  </xsl:message>
+</xsl:if>
+</src:fragment>
+</section>
+</section>
+</section>
+
+<section><title>Copying Disable-Output-Escaping Fragment References</title>
+
+<para>A <sgmltag>src:fragref</sgmltag> that specifies
+<sgmltag class="attribute">disable-output-escaping</sgmltag> is treated
+essentially as if it was
+<link linkend="s.copy-default">any other element</link>. The only
+exception is that the
+<sgmltag class="attribute">disable-output-escaping</sgmltag> attribute
+is not copied.</para>
+
+<para>Because <application>tangle</application> and
+<application>weave</application> are XSLT stylesheets that process
+XSLT stylesheets, processing <sgmltag>src:fragref</sgmltag> poses
+a unique challenge.</para>
+
+<para>In ordinary <application>tangle</application> processing, they
+are expanded and replaced with the content of the fragment that they
+point to. But when <filename>weave.xweb</filename> is tangled, they
+must be copied through literally. The
+<sgmltag class="attribute">disable-output-escaping</sgmltag> attribute
+provides the hook that allows this.
+</para>
+
+<src:fragment id="doe-fragref">
+    <xsl:when test="@disable-output-escaping='yes'">
+      <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+        <src:fragref linkend="copy-namespaces"/>
+        <xsl:for-each select="@*">
+          <xsl:if test="not(name(.) = 'disable-output-escaping')">
+            <xsl:copy/>
+          </xsl:if>
+        </xsl:for-each>
+        <xsl:apply-templates mode="copy"/>
+      </xsl:element>
+    </xsl:when></src:fragment>
+</section>
+
+<section id="s.copy-default">
+<title>Copying Everything Else</title>
+
+<para>Everything else is copied verbatim. This is a five step process:
+</para>
+
+<orderedlist>
+<listitem><para>Save a copy of the context node in
+<literal>$node</literal> so that we can refer to it later from
+inside an <sgmltag>xsl:for-each</sgmltag>.</para>
+</listitem>
+<listitem><para>Construct a new node in the result tree with
+the same qualified name and namespace as the context node.</para>
+</listitem>
+<listitem><para>Copy the namespace nodes on the context node to the
+new node in the result tree. We must do this manually because the
+&xweb; file may have broken the content of this element into several
+separate fragments. Breaking things into separate fragments makes it
+impossible for the XSLT processor to always construct the right namespace
+nodes automatically.</para>
+</listitem>
+<listitem><para>Copy the attributes.
+</para></listitem>
+<listitem><para>Copy the children.
+</para></listitem>
+</orderedlist>
+
+<src:fragment id="copy-default">
+  <xsl:template match="*" mode="copy">
+    <xsl:variable name="node" select="."/>
+    <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
+      <src:fragref linkend="copy-namespaces"/>
+      <xsl:for-each select="@*">
+        <xsl:choose>
+          <xsl:when test="not($suppress.doctype.in.output = 0)
+          and (local-name(.) = 'doctype-public'
+          or local-name(.) = 'doctype-system')
+          "/>
+          <xsl:otherwise>
+            <xsl:copy-of select="."/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+      <xsl:apply-templates mode="copy"/>
+    </xsl:element>
+  </xsl:template>
+</src:fragment>
+
+<para>For non-XML source docuements, this template will never match
+because there will be no XML elements in the source fragments.</para>
+
+<section><title>Copy Namespaces</title>
+
+<para>Copying the namespaces is a simple loop over the elements on
+the <literal>namespace</literal> axis, with one wrinkle.</para>
+
+<para>It is an error to copy a namespace node onto an element if a
+namespace node is already present for that namespace.  The fact that
+we're running this loop in a context where we've constructed the
+result node explicitly in the correct namespace means that attempting
+to copy that namespace node again will produce an error. We work
+around this problem by explicitly testing for that namespace and not
+copying it.
+</para>
+
+<src:fragment id="copy-namespaces">
+  <xsl:for-each select="namespace::*">
+    <xsl:if test="string(.) != namespace-uri($node)">
+      <xsl:copy/>
+    </xsl:if>
+  </xsl:for-each>
+</src:fragment>
+
+</section>
+</section>
+</section>
+
+<section><title>Copy XML Constructs</title>
+
+<para>In the <filename>xtangle.xsl</filename> stylesheet, we also want
+to preserve XML constructs (processing instructions and comments) that
+we encounter in the fragments.</para>
+
+<para>Note that many implementations of XSLT do not provide comments in
+the source document (they are discarded before building the tree), in which
+case the comments cannot be preserved.</para>
+
+<src:fragment id="copy-xml-constructs">
+<xsl:template match="processing-instruction()" mode="copy">
+  <xsl:processing-instruction name='{name(.)}'>
+    <xsl:value-of select="."/>
+  </xsl:processing-instruction>
+</xsl:template>
+
+<xsl:template match="comment()" mode="copy">
+  <xsl:comment>
+    <xsl:value-of select="."/>
+  </xsl:comment>
+</xsl:template>
+</src:fragment>
+
+</section>
+
+</article>
+

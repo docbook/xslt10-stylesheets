@@ -1,0 +1,38 @@
+#!/bin/bash
+
+DONE=0
+DEBUG=0
+QUIET=0
+OPTS=""
+
+while [ "$DONE" = "0" ]; do
+    case $1 in
+	-d)	DEBUG=1;
+		shift;
+		;;
+        -q)     shift
+		QUIET=1
+		;;
+	-*)	DONE=1;
+		;;
+	*)	DONE=1
+		;;
+    esac
+done
+
+if [ "$DEBUG" = "1" ]; then
+    OPTS="--debug"
+fi
+
+if [ "$QUIET" = "0" ]; then
+    echo 4xslt $OPTS $@
+fi
+
+/usr/local/bin/4xslt $OPTS $@
+
+if [ $? != 0 ]; then
+  echo ""
+  echo FAILED
+  echo ""
+fi
+

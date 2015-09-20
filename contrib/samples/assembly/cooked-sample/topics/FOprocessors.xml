@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<topic xmlns="http://docbook.org/ns/docbook" xml:id="FOprocessors"><title>XSL-FO processors</title><para><indexterm><primary>XSL-FO processor</primary></indexterm>XSL-FO processors are really typesetting engines. An XSL-FO file is
+        a mixture of text from your XML source document and XSL-FO tags that suggest how
+        the text should be formatted. It is the XSL-FO processor that actually creates
+        the typeset lines of text and lays them out on pages. An XSL-FO processor
+        typically generates a PDF or PostScript file which can be fed to a printer to
+        produce hardcopy output.</para><para>Currently there are many XSL-FO processors, but few of them have completely
+        implemented the standard. There are at least three reasons for this: <itemizedlist><listitem><para>The XSL-FO standard was finalized almost two years after the XSLT
+                    standard.</para></listitem><listitem><para>The XSL-FO standard is big and complicated.</para></listitem><listitem><para>Typesetting is hard.</para></listitem></itemizedlist></para><para>The authors of the XSL-FO standard recognized how difficult it would be to
+        implement, and so divided it into three levels of conformance: basic, extended,
+        and complete. That way a processor can claim conformance to the lower
+        conformance levels and produce useful output, while still be under development
+        for the higher conformance levels.</para><para>Here are some of the currently available XSL-FO processors, listed in
+        alphabetical order. FOP, PassiveTeX, and xmlroff are the free processors, but
+        the commercial products implement more of the XSL-FO standard.</para><variablelist><varlistentry><term>E3</term><listitem><para><indexterm><primary>E3 FO processor</primary></indexterm><indexterm><primary>Arbortext</primary></indexterm>High end publishing server from Arbortext, Inc. (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.arbortext.com"/>). It runs on Windows and
+                    Unix.</para></listitem></varlistentry><varlistentry><term>FOP</term><listitem><para><indexterm><primary>FOP</primary></indexterm>FOP is a Java-based processor available free from the
+                    Apache XML Project (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://xml.apache.org/fop/"/>). FOP
+                    can produce usable output, but it is still under development and has
+                    some limitations. </para></listitem></varlistentry><varlistentry><term>PassiveTeX</term><listitem><para><indexterm><primary>PassiveTeX</primary></indexterm>PassiveTeX from Sebastian Rahtz (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.tei-c.org.uk/Software/passivetex/"/>) is a free
+                    XSL-FO processor based on TeX. It has fallen behind in its
+                    implementation of the XSL-FO specification, and many features of
+                    DocBook XSL do not work in PassiveTeX. Not recommended.</para></listitem></varlistentry><varlistentry><term>Unicorn Formatting Objects</term><listitem><para><indexterm><primary>Unicorn Formatting Objects</primary></indexterm>A commercial product from Unicorn Enterprises SA (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.unicorn-enterprises.com"/>). Implements only a
+                    subset of the XSL-FO standard. For Windows only.</para></listitem></varlistentry><varlistentry><term>XEP</term><listitem><para><indexterm><primary>XEP</primary></indexterm>A commercial product from RenderX <indexterm><primary>RenderX</primary></indexterm>(<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.renderx.com"/>). It is a
+                    Java-based product that runs on most platforms.</para></listitem></varlistentry><varlistentry><term>Xinc</term><listitem><para><indexterm><primary>Xinc FO processor</primary></indexterm>A commercial product from Lunasil LTD (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.lunasil.com/"/>). It is a Java-based product
+                    that runs on Linux and Windows. </para></listitem></varlistentry><varlistentry><term>XML2PDF</term><listitem><para><indexterm><primary>XML2PDF</primary></indexterm>A commercial product from Altsoft (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.alt-soft.com/"/>). For Windows only.</para></listitem></varlistentry><varlistentry><term> XML Professional Publisher (XPP)</term><listitem><para><indexterm><primary>XPP FO processor</primary></indexterm>A high-end XML publishing environment from XyEnterprise
+                        (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.xyenterprise.com/"/>). It runs on
+                    Windows and Unix.</para></listitem></varlistentry><varlistentry><term>xmlroff</term><listitem><para><indexterm><primary>xmlroff</primary></indexterm>xmlroff (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://xmlroff.sourceforge.net/"/>)
+                    is a free open source project based on libxml2 and other GNOME
+                    libraries. It is written in C.</para></listitem></varlistentry><varlistentry><term>XSL Formatter</term><listitem><para><indexterm><primary>XSL Formatter</primary><see>Antenna House</see></indexterm><indexterm><primary>Antenna House</primary></indexterm>A commercial product from Antenna House (<link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.antennahouse.com"/>). It runs on Windows, Unix,
+                    and Linux.</para></listitem></varlistentry><varlistentry><term>other</term><listitem><para>Other XSL-FO processors are listed on the <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/Style/XSL/">W3C's XSL information
+                        page</link>. </para></listitem></varlistentry></variablelist><para>A useful method for evaluating an XSL-FO processor is to review its compliance
+        to the XSL-FO standard. Most processor vendors can provide a summary of which
+        XSL-FO elements and properties their processor supports. Scan the list for
+        features you need to see if they are supported. Such summaries are also useful
+        in comparing different processors.</para></topic>

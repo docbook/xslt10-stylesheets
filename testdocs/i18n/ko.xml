@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<chapter lang='ko' id='kochap'>
+<chapterinfo>
+<othercredit>
+  <surname>Yong Joo</surname>
+  <firstname>Park</firstname>
+  <affiliation><address><email>yongjoo@kldp.org</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Korean</title>
+
+<para lang="ko">
+DocBook은 하나의 <ulink url="http://www.ucc.ie/xml/#doctype">Document 
+Type Definition</ulink>(DTD)으로서, <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>의 <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink>에 의해 관리되고 있습니다. 이것은 특히
+컴퓨터 하드웨어와 소프트웨어에 관한 논문이나 책을 펴내기에 알맞게
+되어 있습니다(물론 다른 분야에도 얼마든지 적용 가능합니다).
+</para>
+
+<para lang="ko">
+이 DTD는 잘 구성된 한권의 <quote>책</quote>을 펴내는데 
+부족함이 없을 정도로 방대하면서도 그 신뢰도가 높고 강력하기 
+때문에, 점점 더 많은 분야에서 글을 짓고 펴내는 데 이를 채택하고 
+있습니다. DocBook은 자유 소프트웨어 환경에서 급격히 성장하고 
+있으며, 또한 많은 영리 목적의 소프트웨어들도 이를
+<quote>외곽 지원</quote>하고 있습니다. 
+한마디로, DocBook은 이해하기 쉽고 세계적으로 널리 사용되는
+강력한 DTD입니다. 이미 수십개 이상의 기관과 단체에서 수백만 
+페이지가 넘는 문서들을 DocBook을 사용해 작성하고, 출판하며,
+전세계로 보급하고 있습니다.
+</para>
+
+</chapter>

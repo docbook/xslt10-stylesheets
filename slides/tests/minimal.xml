@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+
+<dbs:slides xmlns="http://docbook.org/ns/docbook" xmlns:dbs="http://docbook.org/ns/docbook-slides">
+<info>
+<title>Presentation Title</title>
+</info>
+<dbs:foilgroup><info><title>Foilgroup Title</title>
+<subtitle>Foilgroup Subtitle</subtitle></info>
+<para>Some premable.</para>
+<dbs:foil><info><title>Foil Title</title>
+<subtitle>Foil Subtitle</subtitle></info>
+<para>Foil content</para>
+</dbs:foil>
+</dbs:foilgroup>
+</dbs:slides>
+

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='ca' id='cachap'>
+<!--
+<chapterinfo>
+<othercredit>
+  <surname></surname>
+  <firstname></firstname>
+  <affiliation><address><email></email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+-->
+<title lang="en">Catalan</title>
+
+<para>No translation available.</para>
+
+<para lang="en_us">
+DocBook is a <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD) maintained by the <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink> of <ulink
+url="http://www.oasis-open.org/">OASIS</ulink>. It is particularly
+well suited to books and papers about computer hardware and software
+(though it is by no means limited to these applications).
+</para>
+
+<para lang="en_us">
+Because it is a large and robust DTD, and because its main
+structures correspond to the general notion of what constitutes
+a <quote>book</quote>, DocBook has been adopted by a large and
+growing community of authors writing documents of all kinds. DocBook
+is supported <quote>out of the box</quote> by a number of
+commercial tools, and there is rapidly expanding support for it
+in a number of free software environments. These features have
+combined to make DocBook a generally easy to understand, widely
+useful, and very popular DTD. Dozens of organizations are using
+DocBook for millions of pages of documentation, in various print
+and online formats, worldwide.
+</para>
+
+</chapter>

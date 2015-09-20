@@ -1,0 +1,190 @@
+<html xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="generator" content="DocBook HTML XSL Stylesheet V1.66.0">
+<link rel="stylesheet" href="website.css" type="text/css">
+<link rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png">
+<link rel="stylesheet" href="example.css" type="text/css">
+<title>Linking Pages</title>
+
+
+</head>
+<body class="tabular" bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<a class="skiplink" href="#startcontent">Skip over navigation</a><div class="webpage">
+<a name="olink"></a><table border="0" cellpadding="0" cellspacing="0" width="100%" summary="Navigation">
+<tr>
+<td valign="top" align="left" bgcolor="#4080FF"><img src="graphics/spacer.gif" alt=" " width="1" height="1"></td>
+<td class="webpage-body" rowspan="2" valign="top" align="left" bgcolor="white">
+<a name="startcontent"></a><h1>Linking Pages</h1>
+<p>In Website, the website pages are separate XML documents, so it
+is not possible to use <tt class="sgmltag-element">xref</tt> or <tt class="sgmltag-element">link</tt> to make links
+between them.  Instead, you must use <tt class="sgmltag-element">olink</tt><sup>[<a name="id2474791" href="#ftn.id2474791">1</a>]</sup>.</p>
+<p><tt class="sgmltag-element">Olink</tt> differs from other linking elements because it requires two attributes: one to locate the document and one to locate an ID value within that document. Here is an example of an <tt class="sgmltag-element">olink</tt>:</p>
+<pre class="programlisting">&lt;olink targetdoc="home" targetptr="whatsnew"/&gt;</pre>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>The <tt class="sgmltag-attribute">targetdoc</tt> attribute identifies the document that contains the target of the link. In Website, the <tt class="sgmltag-element">id</tt> attribute value on the <tt class="sgmltag-element">webpage</tt> element used as the document identifier since it must be unique. Its value should be used in the <tt class="sgmltag-attribute">targetdoc</tt> attribute of an <tt class="sgmltag-element">olink</tt>.</p>
+</li>
+<li>
+<p>The <tt class="sgmltag-attribute">targetptr</tt> attribute must match an <tt class="sgmltag-element">id</tt> attribute value on an element within that document. If you want to link to the top of the page, then the <tt class="sgmltag-attribute">targetptr</tt> is the same as the <tt class="sgmltag-attribute">targetdoc</tt> value.</p>
+</li>
+<li>
+<p>If an <tt class="sgmltag-element">olink</tt> has no content, then the stylesheet generates content in a manner similar to an <tt class="sgmltag-element">xref</tt>. The content comes from a website database document that the stylesheets can create. If an <tt class="sgmltag-element">olink</tt> element has content, then that is used instead of the generated content.</p>
+</li>
+<li>
+<p>Once you enter olinks in your webpages, you need to make sure the right parameters are set to process them.</p>
+</li>
+</ul></div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2474451"></a>Olinks with XSLT build method</h2></div></div></div>
+
+<p>Here is how you process a website with olinks using  the <a href="buildmake.html">XSLT build</a> method.</p>
+<div class="orderedlist"><ol type="1">
+<li>
+<p>Create your <tt class="filename">layout.xml</tt> file the same as before.</p>
+</li>
+<li>
+<p>Process your <tt class="filename">layout.xml</tt> file as before with the <tt class="filename">autolayout.xsl</tt> stylesheet to create the <tt class="filename">autolayout.xml</tt> file.</p>
+</li>
+<li>
+<p>Process your <tt class="filename">autolayout.xml</tt> file as before with either the <tt class="filename">chunk-tabular.xsl</tt> or <tt class="filename">chunk-website.xsl</tt> stylesheet. But set the parameter <tt class="literal">collect.xref.targets</tt> to the value &#8220;<span class="quote"><tt class="literal">yes</tt></span>&#8221;. That will generate a database file named <tt class="filename">website.database.xml</tt> in the current directory, and use that to resolve olinks.</p>
+</li>
+</ol></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2494666"></a>Olinks with Make method</h2></div></div></div>
+
+<p>Here is how you process a website with olinks using  the <a href="buildmake.html">Makefile</a>  method.</p>
+<div class="orderedlist"><ol type="1">
+<li>
+<p>Create your <tt class="filename">layout.xml</tt> file the same as before.</p>
+</li>
+<li>
+<p>Do the <tt class="literal">autolayout.xml</tt> and <tt class="literal">depends</tt> processing steps as before.</p>
+</li>
+<li>
+<p>Generate the website database file by processing your <tt class="filename">autolayout.xml</tt> file with the <tt class="filename">website-targets.xsl</tt> stylesheet, saving the output to a file named <tt class="filename">website.database.xml</tt>.</p>
+</li>
+<li>
+<p>Process your website as you would normally (usually by typing <span><b class="command">make website</b></span>).</p>
+</li>
+</ol></div>
+<p>Here is a sample <tt class="filename">Makefile</tt> using xsltproc and XML catalogs:</p>
+<pre class="programlisting">
+PROC = XML_CATALOG_FILES=../catalog.xml  xsltproc
+
+all:
+        make website
+
+include depends.tabular
+
+autolayout.xml:  layout.xml
+        $(PROC) \
+        --output  $@ \
+        autolayout.xsl  $&lt;
+
+        make depends
+
+depends:  autolayout.xml
+        $(PROC) \
+        --output depends.tabular \
+        --stringparam  output-root  htdocs  \
+        makefile-dep.xsl  $&lt;
+
+website.database.xml:  autolayout.xml
+        $(PROC) \
+        --output $@ \
+       website-targets.xsl  $&lt;
+
+%.html: autolayout.xml 
+        $(PROC) \
+        --output $@  \
+        --stringparam  output-root  htdocs
+        tabular.xsl  \
+        $(filter-out autolayout.xml,$^)
+
+</pre>
+
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2494765"></a>Olinks with system entities</h2></div></div></div>
+
+<p>The original system for olinks uses SYSTEM entities referenced by a <tt class="sgmltag-attribute">targetdocent</tt> attribute instead of a <tt class="sgmltag-attribute">targetdoc</tt> attribute. And it uses the <tt class="sgmltag-attribute">localinfo</tt> attribute instead of <tt class="sgmltag-attribute">targetptr</tt> to locate a reference point within the document. Here is how you process the original kind of olinks with Website.</p>
+<div class="orderedlist"><ol type="1">
+<li>
+<p>Create an entity declaration that identifies the target
+page. For example, to link to this page, I would use the following
+declaration:</p> 
+<pre class="programlisting">&lt;!ENTITY linking SYSTEM "olink.xml" NDATA XML&gt;</pre>
+<p>The name that you use for the entity, <tt class="literal">linking</tt>
+in this case, is irrelevant. The important thing is that the entity
+point to the right page. I've used a system identifier here, but you could
+also use public identifiers if you wanted more flexibility.</p> 
+<p>Keep in mind that the systen identifier specified here must be
+either an absolute URI or a relative URI that will resolve to the
+target page (in other words, you may need to prefix it with a partial
+path name, if you keep your XML webpages in different directories).</p> 
+</li>
+<li>
+<p>Make sure the webpage that you are linking
+<span class="emphasis"><em>from</em></span> (you don't have to do anything special to
+the page you're linking to) has a &#8220;<span class="quote">DOCTYPE</span>&#8221; declaration with
+an internal subset. If your <tt class="sgmltag-element">olink</tt> entity is the only
+thing in it, it should look like something like this:</p> 
+<pre class="programlisting">&lt;!DOCTYPE webpage PUBLIC "-//SF DocBook//DTD Website V2.0//EN"
+          SYSTEM "http://www.sourceforge.net/docbook/release/website/2.0/website.dtd [
+&lt;!ENTITY linking SYSTEM "olink.xml" NDATA XML&gt;
+]&gt;</pre>
+<p>If you want to link to several different pages, you will need an
+entity declaration for each of them.</p> 
+</li>
+<li>
+<p>Use the <tt class="sgmltag-attribute">targetdocent</tt>
+attribute of <tt class="sgmltag-element">olink</tt> to identify the entity of the page
+you want to link to:</p> 
+<pre class="programlisting">&lt;olink targetdocent="linking"&gt;link text&lt;/olink&gt;</pre>
+<p>That will link to the correct page in the resulting website. If you
+want to link to a specific anchor in that web page, use the
+<tt class="sgmltag-attribute">localinfo</tt> attribute to specify the
+XML ID.</p> 
+</li>
+</ol></div>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote">
+<p><sup>[<a name="ftn.id2474791" href="#id2474791">1</a>] </sup>It's also possible to use <tt class="sgmltag-element">ulink</tt> and make links
+directly to the generated HTML pages, but that's a bad idea; if you change
+the hierarchy or rename a page, the link will become stale. With
+<tt class="sgmltag-element">olink</tt> this won't happen.</p>
+</div>
+</div>
+<br>
+</td>
+</tr>
+<tr><td valign="top" align="left" bgcolor="#4080FF" width="220"><p class="navtoc"><a href="index.html"><img align="left" border="0" src="graphics/banner.png" alt="Banner"></a><br clear="all"><br><span class="toplevel"><a href="layout.html" title="Site Navigation Layout Setup"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="layout.html" title="Site Navigation Layout Setup">Site Layout</a></span><br></span><span class="toplevel"><a href="linking.html" title="Linking across Pages"><img src="graphics/navicons/triangle/current/leaf.gif" alt="+" border="0"></a><span class="curpage">Linking <img src="graphics/navicons/triangle/current/pointer.gif" alt="&lt;-"></span><br></span><span class="toplevel"><a href="custom.html" title="Stylesheet customization instructions"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="custom.html" title="Stylesheet customization instructions">Customization</a></span><br></span><span class="toplevel"><a href="buildmake.html" title="Building strategies"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="otherpage"><a href="buildmake.html" title="Building with Make">Building</a></span><br></span><span class="toplevel"><a href="formtest.html" title="Form Test Page"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="formtest.html" title="Form Test Page">Form Test</a></span><br></span><span class="toplevel"><a href="test3.html" title="XBEL Bookmark test"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="test3.html" title="XBEL Bookmark test">XBEL Bookmarks</a></span><br></span><span class="toplevel"><a href="rddl.html" title="RDDL"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="rddl.html" title="RDDL">RDDL</a></span><br></span><span class="toplevel"><a href="php.html" title="PHP"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="php.html" title="PHP">PHP</a></span><br></span><span class="toplevel"><a href="rss.html"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="rss.html">RSS</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="full.html" title="Full Website"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="full.html" title="Full Website">Website-Full</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="otherpage"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)">Chunked Book test</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="revflag.html" title="Revision Flags"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="revflag.html" title="Revision Flags">Revision Flags</a></span><br></span><span class="toplevel"><a href="http://nwalsh.com/" target="$framelink"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="otherpage"><a href="http://nwalsh.com/" target="$framelink">nwalsh.com</a></span><br></span><br></p></td></tr>
+</table>
+<a name="pagefooter"></a><div class="navfoot">
+<hr>
+<table width="100%" border="0" summary="Footer navigation">
+<tr>
+<td width="33%" align="left"><span class="footdate">$Date$</span></td>
+<td width="34%" align="center"><span class="foothome"><a href="index.html">Home</a></span></td>
+<td width="33%" align="right"> </td>
+</tr>
+<tr><td colspan="3" align="right"><span class="footcopy"><span class="copyright">Copyright © 1999, 2000, 2001 Norman Walsh. </span></span></td></tr>
+<tr>
+<td align="left" valign="top"><a href="linking.html">Prev</a></td>
+<td> </td>
+<td align="right" valign="top"><a href="linking.html">Next</a></td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>

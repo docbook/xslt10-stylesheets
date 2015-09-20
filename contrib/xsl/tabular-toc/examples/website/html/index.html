@@ -1,0 +1,169 @@
+<html xmlns:suwl="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.UnwrapLinks">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="generator" content="DocBook HTML XSL Stylesheet V1.66.0">
+<link rel="stylesheet" href="website.css" type="text/css">
+<link rel="icon" href="http://nwalsh.com/images/nwalsh-icon16.png" type="image/png">
+<link rel="stylesheet" href="example.css" type="text/css">
+<title>Welcome to Website</title>
+
+<meta name="keyword" content="Norman Walsh, DSSSL, SGML, XML, DocBook, Website">
+</head>
+<body class="tabular" bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<a class="skiplink" href="#startcontent">Skip over navigation</a><div class="webpage">
+<a name="home"></a><table border="0" cellpadding="0" cellspacing="0" width="100%" summary="Navigation">
+<tr>
+<td valign="top" align="left" bgcolor="#4080FF"><img src="graphics/spacer.gif" alt=" " width="1" height="1"></td>
+<td class="webpage-body" rowspan="2" valign="top" align="left" bgcolor="white">
+<table border="0" summary="home page extra headers" cellpadding="0" cellspacing="0" width="100%"><tr>
+<td width="50%" valign="middle" align="left">Navhead</td>
+<td width="50%" valign="middle" align="right">Upper-right</td>
+</tr></table>
+<hr>
+<a name="startcontent"></a><p> This small, somewhat contrived website demonstrates the
+Website document type. Website provides a system for building static
+Websites from XML content.</p>
+<p>A <a href="txtindex.html" target="_top">text-only</a> version is also
+available, demonstrating how multiple presentations can be derived from
+the same sources.</p>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2474276"></a>What is a Website?</h2></div></div></div>
+
+<p>A website is a collection of pages organized, for the purposes of
+navigation, into one or more hierarchies. In Website, each page is a
+separate XML document authored according to the Website DTD, a customization
+of <a href="http://www.oasis-open.org/docbook/" target="_top">DocBook</a>.</p>
+
+<p>Website imposes the following additional constraints:</p>
+
+<div class="itemizedlist"><ul type="disc">
+<li>
+<p>Each <tt class="sgmltag-element">webpage</tt> must have an ID and
+the IDs must be unique across the entire website.</p>
+</li>
+<li>
+<p>No page can occur in more than one location in the
+navigational hierarchy of the website. Note, however, that you can have
+pages, such as the <a href="/cgi-bin/olink?sysid=about.xml">about page</a>,
+that don't appear in the navigational hierarchy at all.</p>
+</li>
+</ul></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2474587"></a>Requirements</h2></div></div></div>
+
+<p>In order to build a website with Website, you must have:</p>
+
+<div class="itemizedlist"><ul type="disc">
+<li><p>The
+<a href="http://www.oasis-open.org/docbook/xml/4.1.2/" target="_top">DocBook XML
+V4.1.2</a> DTD.
+</p></li>
+<li><p>An XSLT processor.
+</p></li>
+<li>
+<p>The <a href="http://nwalsh.com/docbook/xsl/" target="_top">DocBook
+XSL Stylesheets</a>.</p>
+</li>
+<li><p>The Website DTD and stylesheets.
+</p></li>
+</ul></div>
+
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id2475059"></a>Changes from Website 1.x</h2></div></div></div>
+
+<p>I've completely redesigned the way the Website doctype works for
+V2. In version 1, all of the pages in a website were part of a single,
+monolithic XML document.</p>
+
+<p>Making all of the pages part of a single document had a number
+of drawbacks:</p>
+
+<div class="orderedlist"><ol type="1">
+<li><p>It wasn't convenient to update only part of a website
+(only the pages that had been changed, for example).
+</p></li>
+<li><p>For very large websites, there were memory issues associated
+with parsing and formatting the whole thing.
+</p></li>
+<li><p>There was no practical way to publish the XML content of
+a site.
+</p></li>
+<li><p>It was difficult to share pages across different web sites.
+</p></li>
+<li><p>It was very tedious to setup a system that allowed
+the same content to be published
+with different navigational hierarchies.
+</p></li>
+</ol></div>
+
+<p>Website overcomes all of these difficulties.</p>
+
+<p>In fairness, the old style had some advantages:</p>
+
+<div class="orderedlist"><ol type="1">
+<li><p>There was only a single source document to maintain.
+</p></li>
+<li><p>Navigation was derived automatically from the structure
+of the source document.
+</p></li>
+<li><p>Link checking was cheap and easy.
+</p></li>
+</ol></div>
+</div>
+<div class="section" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="whatsnew"></a>What's New</h2></div></div></div>
+
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">20 Mar 2001</span></td>
+<td>
+<p>Reworked using the Website paradigm.</p>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">25 Mar 2005</span></td>
+<td>
+<p>DocBook html chunking was hacked to accomodate the Website paradigm.
+ Consequently we can embed books in the website and cascade the website TOC
+all the way down to the leaves of the book! Is that not cool I ask you?</p>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br>
+</td>
+</tr>
+<tr><td valign="top" align="left" bgcolor="#4080FF" width="220"><p class="navtoc"><img align="left" border="0" src="graphics/homebanner.png" alt="Home Banner"><br clear="all"><br><span class="toplevel"><a href="layout.html" title="Site Navigation Layout Setup"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="layout.html" title="Site Navigation Layout Setup">Site Layout</a></span><br></span><span class="toplevel"><a href="linking.html" title="Linking across Pages"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="linking.html" title="Linking across Pages">Linking</a></span><br></span><span class="toplevel"><a href="custom.html" title="Stylesheet customization instructions"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="custom.html" title="Stylesheet customization instructions">Customization</a></span><br></span><span class="toplevel"><a href="buildmake.html" title="Building strategies"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="descendant"><a href="buildmake.html" title="Building with Make">Building</a></span><br></span><span class="toplevel"><a href="formtest.html" title="Form Test Page"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="formtest.html" title="Form Test Page">Form Test</a></span><br></span><span class="toplevel"><a href="test3.html" title="XBEL Bookmark test"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="test3.html" title="XBEL Bookmark test">XBEL Bookmarks</a></span><br></span><span class="toplevel"><a href="rddl.html" title="RDDL"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="rddl.html" title="RDDL">RDDL</a></span><br></span><span class="toplevel"><a href="php.html" title="PHP"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="php.html" title="PHP">PHP</a></span><br></span><span class="toplevel"><a href="rss.html"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="rss.html">RSS</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="full.html" title="Full Website"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="full.html" title="Full Website">Website-Full</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)"><img src="graphics/navicons/triangle/other/closed.gif" alt="+" border="0"></a><span class="descendant"><a href="book/index.html" title="Chunking Augmented by Website (or seemingly
+      vice-versa)">Chunked Book test</a> <img src="graphics/navicons/triangle/added.gif" alt="New"></span><br></span><span class="toplevel"><a href="revflag.html" title="Revision Flags"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="revflag.html" title="Revision Flags">Revision Flags</a></span><br></span><span class="toplevel"><a href="http://nwalsh.com/" target="$framelink"><img src="graphics/navicons/triangle/other/leaf.gif" alt=" " border="0"></a><span class="descendant"><a href="http://nwalsh.com/" target="$framelink">nwalsh.com</a></span><br></span><br></p></td></tr>
+</table>
+<a name="pagefooter"></a><div class="navfoot">
+<hr>
+<table width="100%" border="0" summary="Footer navigation">
+<tr>
+<td width="33%" align="left"><span class="footdate">$Date$</span></td>
+<td width="34%" align="center"><span class="foothome"><a href="about.html">About...</a></span></td>
+<td width="33%" align="right"> </td>
+</tr>
+<tr><td colspan="3" align="right"><span class="footcopy"><span class="copyright">Copyright © 1999, 2000, 2001 Norman Walsh. </span></span></td></tr>
+<tr>
+<td align="left" valign="top"><a href="index.html">Prev</a></td>
+<td> </td>
+<td align="right" valign="top"><a href="index.html">Next</a></td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>

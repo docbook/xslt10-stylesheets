@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# $Id$
+
+# This script attempts to find and run trang. Any arguments given
+# to it are passed "as is" to trang.
+#
+# Usage: runtrang <arg>...
+
+# if trang is found in CLASSPATH, then call trang "manually"
+if [[ $CLASSPATH == *trang* ]]; then
+  TRANG="java com.thaiopensource.relaxng.translate.Driver";
+else
+  # otherwise, try to find trang.jar using the "locate" command
+  if [ "$(locate trang.jar)" ]; then
+    for jar in `locate trang.jar`; do
+      TRANG="java -jar $jar";
+      break;
+    done
+  else
+    # otherwise, look in a few likely places
+    if \
+      [ -f  "/usr/share/java/trang.jar" ] || \
+      [ -f "/usr/local/java/trang.jar" ] || \
+      [ -f "/usr/local/share/java/trang.jar" ]; then
+      for jar in \
+        "/usr/share/java/trang.jar" \
+        "/usr/local/java/trang.jar" \
+        "/usr/local/share/java/trang.jar"; do
+        if [ -f "$jar" ]; then
+          TRANG="java -jar $jar"
+          break
+        fi
+      done
+    else 
+      # otherwise, look for a non-jar "trang" executable (as in Debian)
+      if [ "$(which trang)" ]; then
+        TRANG=`which trang`;
+      fi
+    fi
+  fi
+fi
+
+# if trang was found, run it
+if [ -n "$TRANG" ]; then
+  echo "$0: using $TRANG"
+  $TRANG $@
+else
+  # otherwise, exit with an error
+  echo "error: cannot locate trang" 1>&2
+  exit 1
+fi

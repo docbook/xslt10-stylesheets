@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+  <id>resources</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>  
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}/target/xsltmp/${docbook.xsl.release}/</directory>
+      <outputDirectory>docbook/</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

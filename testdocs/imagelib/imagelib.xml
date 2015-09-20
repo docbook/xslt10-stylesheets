@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<image-library>
+<image filename="graphics/duck-small.gif">
+  <properties width="10" height="10"></properties>
+</image>
+<image filename="graphics/duck-small.png">
+  <properties width="20" height="20"></properties>
+</image>
+</image-library>

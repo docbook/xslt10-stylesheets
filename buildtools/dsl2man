@@ -1,0 +1,401 @@
+#!/usr/bin/perl -- # -*- Perl -*-
+
+use Text::DelimMatch;
+use Getopt::Std;
+use File::Basename;
+use English;
+use strict;
+use vars qw($opt_i $opt_d $opt_D);
+
+# call \share\dsssl\bin\dsl2man -i lib -d ..\docsrc\libref dblib.dsl
+
+my $usage = "Usage: $0 -i idprefix -d dir [-D] [ file ... ]\n";
+die $usage if ! getopts('i:d:D');
+
+my $pubid = "-//OASIS//DTD DocBook V3.1//EN";
+
+my $psearch = new Text::DelimMatch '\(', '\)';
+
+my $DOCINFO = "";
+
+my %FNAME = ();
+my %FFUNC = ();
+my %FFILE = ();
+my %FDEFN = ();
+
+my $idprefix = $opt_i || die $usage; # idprefix doesn't seem to be implemented
+my $outputdir = $opt_d || die $usage;
+
+sub debugmsg {
+    if ( $opt_D ) {
+        warn('D: ' . shift() . "\n");
+    }
+}
+
+my @FILES = @ARGV;
+if (!@FILES) {
+    opendir (DIR, ".") or
+        die("error opening dir '.': $!\n");
+    while (my $file = readdir(DIR)) {
+	next if -d $file;
+	next if $file !~ /\.dsl$/;
+	push (@FILES, $file);
+    }
+}
+
+open(SGM, ">$outputdir/refentry.sgm") or
+    die("cannot write to $outputdir/refentry.sgm: $!\n");
+my $inref = 0;
+
+while (@FILES) {
+    my $file = shift @FILES;
+    my $reference, $DOCINFO;
+
+    ($reference = $file) =~ s/\.dsl/\.sgm/;
+    $reference = basename($reference);
+    open (REF, ">$outputdir/$reference") or
+        die("cannot write to $outputdir/$reference: $!\n");
+
+    open (F, "<$file") or
+        die("cannot read $file: $!\n");
+    read (F, $_, -s $file);
+    close (F);
+
+    debugmsg("reading from $file, writing to $outputdir/$reference");
+
+    if (/;; DOCINFO(.*?);; \/DOCINFO/s) {
+	$_ = $PREMATCH . $POSTMATCH;
+	$DOCINFO = $1;
+	$DOCINFO =~ s/^\s*;; *//gm;
+    }
+
+    if ($DOCINFO) {
+	print REF "<!doctype book public \"$pubid\" [\n";
+	open (INFO, ">$outputdir/docinfo.sgm") or 
+            die("error writing to $outputdir/docinfo.sgm: $!\n");
+    } else {
+	print REF "<!doctype reference public \"$pubid\" [\n";
+    }
+
+    while ($_ ne "") {
+	debugmsg("_  : " . substr($_, 0, 30));
+	my ($pre, $match, $post) = $psearch->match($_);
+
+	$_ = $post;
+
+#	print "pre: ", substr($pre, 0, 30), "\n";
+#	print "mth: ", substr($match, 0, 30), "\n";
+#	print "pst: ", substr($post, 0, 30), "\n";
+
+	if ($pre =~ /;; REFERENCE (.*?)\s*$/s) {
+	    print SGM "\n</reference>\n" if $inref;
+	    print SGM "<reference><title>$1</title>\n\n";
+	    print "Reference: $1\n";
+	    $inref = 1;
+	}
+
+	next if $match !~ /^\(/;
+
+	if ($match =~ /^\(define /) {
+	    my($function) = $match;
+	    my($funcmatch) = new Text::DelimMatch '\(', '\)';
+	    my($func) = $';     # '
+            my($fname);
+
+	    if ($func =~ /^\(/) {
+		$func = $funcmatch->match($func);
+		($fname = $func) =~ s/^\((\S+).*$/$1/s;
+	    } else {
+		$func = $1 if $func =~ /^(\S+)\s/s;
+		($fname = $func) =~ s/^\((\S+).*$/$1/s;
+	    }
+
+	    $func =~ s/[\t\n]/ /gs;
+	    $fname = lc($fname);
+
+#	    print "$fname\n";
+#	    print substr($_, 1, 40), "\n";
+
+	    $fname =~ s/[^A-Z0-9\-]/sprintf("X%02X", ord($&))/gie;
+
+	    if (exists $FNAME{$fname}) {
+		my($x);
+		print "\n$fname already exists:\n";
+		print "\t$fname=$func\n";
+		print "\t$fname=$FNAME{$fname}\n\n";
+		$x = scalar(<>);
+	    } else {
+		$FNAME{$fname} = $func;
+	    }
+
+#	    print "$fname = $func\n";
+
+	    $FFUNC{$fname} = $func;
+	    $FFILE{$fname} = $file;
+	    $FDEFN{$fname} = $function;
+
+	    { # for SGML file ...
+		my($html_filename, $refpurp, $desc, $example, $author, $email, $id);
+		if ($function =~ /;; REFENTRY/) {
+		    ($html_filename, $refpurp, $desc,
+		     $example, $author, $email) 
+			= &refentry($fname, $function);
+		}
+		
+		$id = $fname;
+		
+		if (length($id) > 40) {
+		    $id = substr($id, 0, 20) . substr($id, -20);
+		}
+		
+		$html_filename = $id if $html_filename eq '';
+		print SGM "&$html_filename;\n";
+	    }
+	} elsif ($match =~ /^\(element/i) {
+	    #nop;
+	} else {
+	    print $file, ": ignoring ", substr($match, 0, 30), "\n";
+	}
+    }
+
+    print REF "<!ENTITY % refentry.ent SYSTEM \"refentry.ent\">\n";
+    print REF "%refentry.ent;\n";
+    print REF "<!ENTITY refentry.sgm SYSTEM \"refentry.sgm\">\n";
+    print REF "<!ENTITY docinfo SYSTEM \"docinfo.sgm\">\n"
+	if $DOCINFO;
+
+    print REF "]>\n";
+
+    print REF "<book>\n";
+
+    if ($DOCINFO) {
+	print INFO "$DOCINFO\n";
+	close (INFO);
+	print REF "<bookinfo>\n&docinfo;\n</bookinfo>\n";
+    }
+    print REF "&refentry.sgm;\n";
+    print REF "</book>\n" if $DOCINFO;
+
+    close (REF);
+}
+
+print SGM "\n</reference>\n" if $inref;
+close (SGM);
+
+open (ENT, ">$outputdir/refentry.ent") or
+    die("cannot write to $outputdir/refentry.ent: $!\n");
+
+foreach my $func (keys %FFUNC) {
+    my($refname, $synopsis) = ("", "");
+    my($refpurp, $desc, $example) = ("", "", "");
+    my($author, $email) = ("", "");
+    my($id, $html_filename) = ("", "");
+    local($_);
+
+    $refpurp = "no documented purpose";
+
+    $synopsis = $FFUNC{$func};
+    if ($synopsis =~ /^\(/) {
+	$refname = $1 if $synopsis =~ /^\(([^\(\)\s]+).*/;
+    } else {
+	$refname = $synopsis;
+    }
+
+    if ($FDEFN{$func} =~ /;; REFENTRY/) {
+	($html_filename, $refpurp, $desc, $example, $author, $email) 
+	    = &refentry($func, $FDEFN{$func});
+    }
+
+    $id = $func;
+
+    if (length($id) > 40) {
+	$id = substr($id, 0, 20) . substr($id, -20);
+    }
+
+    $html_filename = $id if $html_filename eq '';
+
+    print ENT "<!ENTITY $html_filename SYSTEM \"$html_filename.sgm\">\n";
+
+    open (F, ">$outputdir/$html_filename.sgm") or
+        die("error writing to $outputdir/$html_filename.sgm: $!\n");
+    print F <<RFEOF;
+<RefEntry id="$id">
+<!-- This file is generated automatically from the DSSSL source. -->
+<!-- Do not edit this file! -->
+<?html-filename $html_filename.html>
+
+<RefMeta>
+  <RefEntryTitle>$refname</RefEntryTitle>
+  <RefMiscInfo Role="file">$FFILE{$func}</RefMiscInfo>
+</RefMeta>
+
+<RefNameDiv>
+  <RefName>$refname</RefName>
+  <RefPurpose>$refpurp</RefPurpose>
+</RefNameDiv>
+
+<RefSynopsisDiv><Title>Synopsis</Title>
+<Synopsis>
+$synopsis
+</Synopsis>
+</RefSynopsisDiv>
+RFEOF
+
+    if ($desc) {
+	print F <<RFEOF1;
+
+<RefSect1><Title>Description</Title>
+
+$desc
+
+</RefSect1>
+RFEOF1
+    }
+
+    if ($example) {
+	print F <<RFEOF2;
+
+<RefSect1><Title>Example</Title>
+
+$example
+
+</RefSect1>
+RFEOF2
+}
+
+    if ($author && $author ne "N/A") {
+	print F "\n<RefSect1><Title>Author</Title>\n\n<para>\n$author";
+        if ($email) {
+	    print F ", &lt;$email&gt;\n</para>\n";
+        } else {
+            print F "</para>\n";
+	}
+	print F "</RefSect1>\n";
+    }
+
+
+    print F "<RefSect1><Title>Source Code</Title>\n\n";
+    print F "<ProgramListing>\n";
+
+    $_ = $FDEFN{$func};
+    s/;; REFENTRY.*?;; \/REFENTRY\s*\n/;; $refpurp\n/s;
+
+#    s/\&/\&amp;/sg;
+#    s/\</\&lt;/sg;
+
+    print F "$_\n";
+    print F "</ProgramListing>\n";
+    print F "</RefSect1>\n\n";
+
+    print F "</RefEntry>\n";
+
+    close (F);
+}
+
+close (ENT);
+
+sub refentry {
+    my($funcname, $refentry) = @_;
+    my($refpurp, $desc, $example) = ("", "", "");
+    my($author, $email) = ("", "");
+    my($html_filename) = "";
+    my(@lines) = ();
+
+    if ($refentry =~ /;; REFENTRY (\S+)/s) {
+	$html_filename = $1;
+	$refentry = ";; REFENTRY$'";
+    }
+
+    if ($refentry =~ /;; REFENTRY\s*(.*?)\s*;; \/REFENTRY/s) {
+	$refentry = $1;
+    } else {
+	warn "$funcname: unparseable refentry\n";
+	return ();
+    }
+    
+    @lines = split(/\n/, $refentry);
+
+    if ($lines[0] =~ /;; PURP (.*)$/) {
+	$refpurp = $1;
+	shift @lines;
+    } else {
+	warn "$funcname: no PURP in refentry\n";
+    }
+
+    if ($lines[0] =~ /;; DESC/) {
+	local($_) = "<para>";
+	shift @lines;
+	while (@lines && @lines[0] !~ /;; \/DESC/) {
+	    $_ .= "\n";
+	    $_ .= shift @lines;
+	}
+
+	# Remove the comment markers
+	s/^\s*;; *//gm;
+
+	# Make the ARGS into variable lists
+	s/^ARGS\s*$/<\/para>\n<variablelist>/gm;
+	s/^\/ARGS\s*$/<\/variablelist>/gm;
+
+	# Make the ARGs into variable list entries
+	s/^ARG\s+(\S+)\s*(o?)\s*$/<varlistentry><term>\1<\/term>\n<listitem>\n<para>/gm;
+	s/^\/ARG\s*$/<\/para>\n<\/listitem>\n<\/varlistentry>/gm;
+
+	# Blank lines are paragraph breaks
+	s/\n\n/\n<\/para>\n<para>\n/gs;
+
+	# Single quotes enclose verbatim text
+	s/\'(.*?)\'/<literal>\1<\/literal>/gs;
+
+	if (!/<variablelist>/) {
+	    $_ .= "</para>\n";
+	}
+
+	$desc = $_;
+	shift @lines;
+    } else {
+	warn "$funcname: no DESC in refentry\n";
+    }
+
+    if ($lines[0] =~ /;; EXAMPLE/) {
+	local($_) = "<para>";
+	shift @lines;
+	while (@lines && @lines[0] !~ /;; \/EXAMPLE/) {
+	    $_ .= "\n";
+	    $_ .= shift @lines;
+	}
+
+	# Remove the comment markers
+	s/^\s*;; *//gm;
+
+	# Blank lines are paragraph breaks
+	s/\n\n/\n<\/para>\n<para>\n/gs;
+
+	# Single quotes enclose verbatim text
+	s/\'(.*?)\'/<literal>\1<\/literal>/gs;
+
+	$_ .= "\n</para>\n";
+
+	$example = $_;
+
+	shift @lines;
+    }
+
+    if ($lines[0] =~ /;; AUTHOR (.*)$/) {
+	$author = $1;
+	shift @lines;
+    } else {
+	$author = "Norman Walsh";
+	$email = "ndw\@nwalsh.com";
+    }
+
+    if ($lines[0] =~ /;; EMAIL (.*)$/) {
+	$email = $1;
+	shift @lines;
+    }
+
+    return ($html_filename, $refpurp, $desc, $example, $author, $email);
+}
+
+__END__
+:endofperl

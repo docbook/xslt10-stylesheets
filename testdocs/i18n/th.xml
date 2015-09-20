@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter lang='th' id='thchap'>
+<chapterinfo>
+<othercredit>
+  <surname>Duangdara</surname>
+  <firstname>Phattanon</firstname>
+  <affiliation><address><email>sf_alpha@samart.co.th</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Thai</title>
+
+<para lang="th">
+DocBook เป็น <ulink url="http://www.ucc.ie/xml/#doctype">Document Type
+Definition</ulink> (DTD) ซึ่งดูแลโดย <ulink
+url="mailto:docbook-tc@oasis-open.org">DocBook Technical
+Committee</ulink> of <ulink
+url="http://www.oasis-open.org/">OASIS</ulink> มันเหมาะสำหรับหนังสือและ
+เอกสารต่าง ๆ เกี่ยวกับคอมพิวเตอร์ฮาร์ดแวร์ และ ซอฟต์แลวร์
+(ซึ่งจริง ๆ แล้วไม่ได้จำกัดสำหรับใช้งานเพียงเท่านี้)
+</para>
+
+<para lang="th">
+เนื่องจากมันเป็น DTD ที่ใหญ่และมั่งคง อีกทั้งโครงสร้างหลักก็เน้นให้เหมือนกับส่วน
+ประกอบ ต่าง ๆ ของ<quote>หนังสือ</quote> ซึ่ง DocBook ก็ได้รับการพัฒนา
+โดยกลุ่มสมาคมที่กำลังโตขี้นเรื่อย ๆ ของนักเขียนกลุ่มใหญ่ในทุกสาขา เครื่องมือต่าง ๆ
+มากมายในท้องตลาด <quote>ได้พัฒนาออกมา</quote> สนับสนุน DocBook
+และจะเห็นได้ว่า DocBook ได้รับการสนุนเพื่มขึ่นอย่างต่อเนื่องจาก ซอฟต์แวร์ในกลุ่ม
+ฟรีซอฟต์แวร์ด้วย จากเหตุดังกล่าวจึงทำให้ DocBook ง่ายต่อการเข้าใจโดยทั่วไป
+ใช้งานได้กว้างขวาง และเป็น DTD ได้รับความนิยมอย่างมาก มีองค์กรนับสิบทั่วโลก
+ที่กำลังใช้ DocBook สำหรับเอกสารนับล้าน ๆ หน้า ในทุก ๆ ด้านทั้งในรูปแบบสิ่งพิมพ์
+และ แบบออนไลน์
+</para>
+
+</chapter>

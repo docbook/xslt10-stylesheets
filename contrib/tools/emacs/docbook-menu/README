@@ -1,0 +1,103 @@
+-------------------------------------------------------------------
+ Compatibility
+-------------------------------------------------------------------
+`docbook-menu-mode' has been tested and found to work reliably with
+both the GNU/Linux (Debian) and Microsoft Windows versions of GNU
+Emacs 21.3, 21.2, and 20.7, as well as Meadow version 20.7. It
+probably will not work at all with XEmacs or with earlier versions of
+GNU Emacs (e.g., Emacs 19.x).
+
+-------------------------------------------------------------------
+ Commentary
+------------------------------------------------------------------
+This package adds a hierarchical, customizable menu for quickly
+accessing a variety of DocBook-related documentation and for easily
+getting to files in the DocBook XSLT stylesheets distribution.
+
+See the Installation and Configuration, and Customization sections
+below for "getting started" how-to instructions.
+
+The menu this package provides is intended as a sort of "at your
+fingertips" ready-reference for people who use Emacs to edit
+DocBook XML files and/or work with the DocBook XSLT stylesheets
+(creating customization layers to change parameters and templates).
+
+There are some screenshots of it at:
+
+  http://www.logopoeia.com/docbook/docbook-menu.html
+
+-------------------------------------------------------------------
+ Installation and Configuration
+-------------------------------------------------------------------
+
+To install and use this package:
+
+1. Go to the DocBook project download site:
+
+     https://sourceforge.net/project/showfiles.php?group_id=21935 
+
+   And download the latest docbook-menu-N.NN.zip file
+   (for example, docbook-menu-1.00.zip).
+
+2. Move the docbook-menu-N.NN.zip file into the folder/directory
+   where you want to install it (e.g., your Emacs "site-lisp"
+   directory or your "My Documents" folder or whatever) and then
+   unzip it to create a docbook-menu-N.NN directory (for example,
+   'docbook-menu-1.00').
+
+3. Add the docbook-menu-N.NN directory to your Emacs load-path.
+   You can do that by adding a line similar to the following to
+   the beginning of your .emacs file.
+
+     (add-to-list 'load-path "c:/my-xml-stuff/docbook-menu-1.00")
+
+4. Add the following to your .emacs file exactly as shown:
+
+     (require 'docbk-menu)
+
+==================================================================
+Note: The *.elc files included in this distribution are byte-compiled
+      for Emacs 21.x. So, to use this package with Emacs 20.7 or
+      Meadow 20.7, you must remove all *.elc files from the main
+      "docbook-menu" directory and its "submenus" subdirectory before
+      restarting Emacs. Then re-compile them.
+==================================================================
+
+After you restart Emacs, to view the menu at any time, either:
+
+  - choose Show DocBook Menu from the Emacs Help menu
+      or
+  - type "\M-x docbook-menu-mode<return>" (on MS Windows, that's
+    "Alt-x docbook-menu-mode" and then hit <Enter>)
+
+Note: To make the DocBook: The Definitive Guide (HTML Help) and
+      DocBook XSL submenus work correctly, you must set values for
+      some options.  See the Customization section below for details.
+
+Showing the menu automatically
+------------------------------
+There are a couple of ways you can make the menu automatically
+show up (rather than needing to invoke it manually)
+
+  - To show the menu by default, after you open a new file, so that
+    it shows up no matter what buffer/mode you're in, add the
+    following to your .emacs file:
+
+      (add-hook 'find-file-hooks 'docbook-menu-mode)
+
+  - To show the menu only when you're in a certain major mode (for
+    example, only in nxml-mode)
+
+      (add-hook 'nxml-mode-hook 'docbook-menu-mode)
+
+To be able to show/hide the menu using a shorter keyboard shortcut,
+you need to add something like the following to your .emacs file.
+
+  (define-key global-map "\C-cd" 'docbook-menu-mode)
+
+That example will enable you to use the 'Ctrl-c d' keyboard to
+show/hide the menu.
+
+For more details, see documentation within the docbk-menu.el file.
+
+# $Revision$ $Date$ $Author$

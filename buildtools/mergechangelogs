@@ -1,0 +1,169 @@
+#!/usr/bin/perl -- # --*-Perl-*--
+
+use strict;
+use Getopt::Std;
+use vars qw($opt_v);
+use Cwd;
+
+my $usage = "Usage: $0 [-v version]\n";
+
+die $usage if ! getopts('v:');
+my $version = $opt_v || &last_version();
+
+die "Cannot find ChangeLog.\n" if ! -f "ChangeLog";
+
+my $root = cwd();
+
+$root =~ s/^.*\/([^\/]+)$/$1/;
+
+my @dirs = ();
+my @ldirs = ('.');
+while (@ldirs) {
+    my $dir = shift @ldirs;
+    push (@dirs, $dir);
+
+    opendir (DIR, $dir);
+    while (my $name = readdir(DIR)) {
+	my $file = "$dir/$name";
+	next if $name =~ /^\.\.?$/;
+	next if ! -d $file;
+	next if $name eq 'CVS';
+	next if $name eq 'RCS';
+	push (@ldirs, $file);
+    }
+    closedir (DIR);
+}
+
+my $date = "";
+my $found = 0;
+open (F, "ChangeLog");
+while (<F>) {
+    chop;
+    $date = $1 if /^(\d+-\d+-\d+)/;
+    $found = 1 if /^\s+\* \S+: Version $version\s+/;
+    $found = 1 if /^\s+\* \S+: Version $version\s*$/;
+    # following match needed because Changelog might have
+    # "* VERSION, VERSION: Version 1.69.1 released." (if same
+    # change description was entered twice). -Mike
+    $found = 1 if /^\s+\* [^:]+: Version $version\s+/;
+    last if $found;
+}
+
+if (!$found) {
+    warn "Cannot find version $version in ChangeLog\n";
+    $date = "0000-00-00";
+}
+
+print "Changes since version $version ($date)\n\n";
+
+$date =~ /(\d+)-(\d+)-(\d+)/;
+$date = sprintf("%04d%02d%02d", $1, $2, $3);
+
+foreach my $dir (@dirs) {
+    $found = 0;
+    my @LINES = ();
+    open(F, "$dir/ChangeLog");
+    while (<F>) {
+	chop;
+	if (/^(\d+)-(\d+)-(\d+)/) {
+	    my $cdate = sprintf("%04d%02d%02d", $1, $2, $3);
+	    $found = ($cdate <= $date);
+	}
+
+	last if $found;
+
+	push (@LINES, $_);
+    }
+    close (F);
+
+    next if !@LINES;
+
+    $dir =~ s/^\./$root/;
+    print "Changes to $dir/*\n\n";
+
+    my @entry = ();
+    foreach $_ (@LINES) {
+	if (/^\t/) {
+	    push (@entry, $_);
+	} else {
+	    &format(@entry) if @entry;
+	    @entry = ();
+	    print "  | $_\n";
+	}
+    }
+    &format(@entry) if @entry;
+    print "\n";
+}
+
+sub format {
+    my @lines = @_;
+    local $_ = join(" ", @lines);
+
+    # get rid of leading *
+    s/^\t\* //;
+
+    # get rid of tabs
+    s/\t/ /sg;
+
+    # get rid of multiple spaces
+    s/\s+/ /sg;
+
+    my $star = "*";
+    while (length($_) > 60) {
+	if (/^(.{1,60})\s/) {
+	    print "  | \t$star $1\n";
+	    $star = " ";
+	    $_ = $'; # '
+	} else {
+	    print "  | \t$star $_\n";
+	    $_ = "";
+	}
+    }
+
+    print "  | \t$star $_\n" if $_ ne "";
+}
+
+sub last_version {
+    local $_;
+    my $version = undef;
+
+    open (F, 'VERSION') || die "Cannot find VERSION.\n";
+    read (F, $_, -s 'VERSION');
+    close (F);
+
+    if (/name=.VERSION.>(.*?)</s) {
+	$version = $1;
+    } elsif (/<fm:Version>(.*?)</s) {
+	$version = $1;
+    } elsif (/^([\d\.]+)/) {
+	$version = $1;
+    } else {
+	die "Cannot find version in VERSION.\n";
+    }
+
+    if ($version =~ /^(\d+)\.(\d+)$/) {
+	my $major = $1;
+	my $minor = $2;
+
+	$minor--;
+
+	return "$major.$minor";
+    } elsif ($version =~ /^(\d+)\.(\d+)\.(\d+)$/) {
+	my $major = $1;
+	my $middle = $2;
+	my $minor = $3;
+
+	if ($minor == 0) {
+	# do the following in order to get useful merged changelog
+	# for snapshot builds --Mike
+	    $middle--;
+	    $minor++;
+	} else {
+	    $minor--;
+	}
+
+	return "$major.$middle.$minor";
+    } else {
+	return $version;
+    }
+}

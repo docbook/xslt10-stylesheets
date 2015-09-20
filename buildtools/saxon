@@ -1,0 +1,342 @@
+#!/usr/bin/perl -w -- #  -*- Perl -*-
+#
+# This script runs the Saxon XSLT processor. It relies on a configuration
+# file to identify java versions, class paths, etc.
+#
+# Usage: saxon [opts] input style [output] [params]
+#
+# Options:
+#
+#    -6...     Specifies Saxon 6 or some specific version of Saxon 6
+#    -8...     Specifies Saxon 8 or some specific version of Saxon 8
+#    -8...sa   Specifies "Schema Aware" Saxon. Requires a license.
+#    -8...b    Specifies basic Saxon.
+#    -9...sa   Specifies "Schema Aware" Saxon. Requires a license.
+#    -9...b    Specifies basic Saxon.
+#    -debug    Debugging
+#    -config   Where is the config file? Defaults to ~/.xmlc
+#    -opts id  Use additional options 'id' from the config file.
+#              The -opts option may be specified more than once
+#
+# Any other options are passed to Saxon unchanged
+#
+# Default version is calculated by looking at the stylesheet. So the
+# -6/-8/-9 option is usually unnecessary.
+
+use strict;
+use English;
+use XML::XPath;
+use XML::XPath::XMLParser;
+
+my $usage = "saxon [opts] input style [output] [params]\n";
+
+my $version = undef;
+my $saxonsa = undef;
+my $debug = 0;
+my $config = "~/.xmlc";
+my @opts = ();
+
+while (@ARGV) {
+    if ($ARGV[0] =~ /^\-6/) {
+	$version = substr($ARGV[0],1);
+	shift @ARGV;
+    } elsif ($ARGV[0] =~ /^\-(8.*?)-?(sa|b)?$/) {
+	$version = $1;
+	$saxonsa = $2 if defined($2);
+	shift @ARGV;
+    } elsif ($ARGV[0] =~ /^\-(9.*?)-?(sa|b)?$/) {
+	$version = $1;
+	$saxonsa = $2 if defined($2);
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-debug') {
+	$debug = 1;
+	shift @ARGV;
+    } elsif ($ARGV[0] eq '-config') {
+	shift @ARGV;
+	$config = shift @ARGV;
+    } elsif ($ARGV[0] eq '-opts') {
+	shift @ARGV;
+	push(@opts, shift @ARGV);
+    } else {
+	last;
+    }
+}
+
+my @params = ();
+while (@ARGV && $ARGV[$#ARGV] =~ /=/) {
+    unshift (@params, pop @ARGV);
+}
+
+my $input = undef;
+my $style = undef;
+my $output = undef;
+
+my $opt_a = 0;
+foreach my $opt (@ARGV) {
+    $opt_a = 1 if $opt eq '-a';
+    last if $opt_a;
+}
+
+if ($opt_a) {
+    $output = pop @ARGV;
+    $input = pop @ARGV;
+
+    # What if the user didn't specify an output location?
+    if (!defined($input) || $input =~ /^-/) {
+	push (@ARGV, $input) if defined($input);
+	$input = $output;
+	$output = undef;
+    }
+} else {
+    $output = pop @ARGV;
+    $style = pop @ARGV;
+    $input = pop @ARGV;
+
+    # What if the user didn't specify an output location?
+    if (!defined($input) || $input =~ /^-/) {
+	push (@ARGV, $input) if defined($input);
+	$input = $style;
+	$style = $output;
+	$output = undef;
+    }
+}
+
+# Everything else goes to Saxon
+my @saxonopts = @ARGV;
+push (@saxonopts, "-o $output") if defined($output) && $output ne '-';
+
+die $usage if !defined($input) || (!defined($style) && !$opt_a);
+
+if (!defined($version)) {
+    if (defined($style)) {
+	open (F, $style) || die "Cannot open stylesheet: $style\n$usage";
+	read (F, $_, 4096);
+	close (F);
+
+	if (/<\S+:?import-schema/s) {
+	    $version = "9" if !defined($version);
+	    $saxonsa = "sa" if !defined($saxonsa);
+	} elsif (/<\S+:?stylesheet[^>]*\sversion=.2\.0/s
+		 || /<\S+:?transform[^>]*\sversion=.2\.0/s) {
+	    $version = "9" if !defined($version);
+	    $saxonsa = "b" if !defined($saxonsa) && $version =~ /^9/;
+	} else {
+	    $version = "6" if !defined($version);
+	}
+    } else {
+	$style = "";
+	$version = "6" if !defined($version);
+    }
+}
+
+my $optsname = "saxon";
+$optsname .= "-$version";
+$optsname .= "a" if defined($saxonsa) && $saxonsa eq 'sa';
+
+# Inelegantly, these are used as globals by several functions
+my %seenopts = ();
+my $classname = "";
+my $java = "";
+my @systemprops = ();
+my @javaopts = ();
+my @classpath = ();
+
+$config = (glob($config))[0]; # hack to expand ~/.xmlc to right place
+
+die "Cannot read config: $config\n$usage" if ! -f $config;
+my $xp = XML::XPath->new('filename' => $config);
+my $doc = ($xp->find("/config")->get_nodelist())[0];
+die "Unexpected root element in configuration file.\n" if !$doc;
+
+# Figure out the class path separator before we go any further
+my $cpseparator = $doc->getAttribute('classpath-separator');
+# Default to ';' if it appears in $CLASSPATH, otherwise ':'
+my $CLASSPATH = $ENV{'CLASSPATH'} || "";
+$cpseparator = ($CLASSPATH =~ /\;/ ? ";" : ":")
+    if !defined($cpseparator) or $cpseparator eq '';
+
+foreach my $name (@opts, $optsname) {
+    applyOpts($xp, $name);
+}
+
+$java = "java" if $java eq '';
+
+foreach my $path (reverse split(/$cpseparator/, $CLASSPATH)) {
+    unshift(@classpath, $path);
+}
+
+showVars() if $debug;
+
+die "No classname?\n" if !defined($classname);
+
+my $jopts = join(" ", @javaopts);
+my $jprops = join(" ", @systemprops);
+my $jcp = join($cpseparator, @classpath);
+my $sopts = join(" ", @saxonopts);
+
+my $sparam = "";
+foreach my $param (@params) {
+    $sparam .= " " if $sparam ne '';
+    if ($param =~ /^(.+?)=(.+)$/) {
+	$sparam .= "$1=\"$2\"";
+    } else {
+	$sparam .= "$param";
+    }
+}
+
+if ($cpseparator eq ';') {
+    # This must be cygwin or some windows flavor, let's try to make it work
+    $jcp =~ s/\//\\\\/sg; # turn / into \\ in classpath paths
+    $jcp =~ s/\;/\\\;/sg; # escape semicolons
+    if (@params) {
+	$sparam = "\"" . join("\" \"", @params) . "\"";
+    } else {
+	$sparam = "";
+    }
+}
+
+print "$java $jopts -cp $jcp $jprops $classname $sopts $input $style $sparam\n" if $debug;
+exec("$java $jopts -cp $jcp $jprops $classname $sopts $input $style $sparam");
+
+# ============================================================
+
+sub applyOpts {
+    my $xp = shift;
+    my $id = shift;
+
+    # Avoid loops
+    if ($seenopts{$id}) {
+	print STDERR "Skipping $id (already seen)\n" if $debug;
+	return;
+    }
+    $seenopts{$id} = 1;
+
+    my $saxon = ($xp->find("/config/*[\@xml:id='$id']")->get_nodelist())[0];
+
+    die "Config $config does not contain $id.\n" if !defined($saxon);
+
+    print STDERR "Loading $id from $config\n" if $debug;
+
+    $classname = $saxon->getAttribute('class')
+	if $classname eq '';
+
+    $java = $saxon->getAttribute('java')
+	if $java eq '';
+
+    foreach my $path (configPath($saxon, 'classpath', $cpseparator)) {
+	addOpt(\@classpath, $path);
+    }
+
+    foreach my $prop (configArgs($saxon, 'system-property', '-D', '=')) {
+	addOpt(\@systemprops, $prop, '=');
+    }
+
+    foreach my $arg (configArgs($saxon, 'arg', '-', ' ')) {
+	addOpt(\@saxonopts, $arg, ' ');
+    }
+
+    foreach my $opt (configArgs($saxon, 'java-option', '-', '=')) {
+	addOpt(\@javaopts, $opt, ' ');
+    }
+
+    foreach my $param (configArgs($saxon, 'param', '', '=')) {
+	addOpt(\@params, $param, '=');
+    }
+
+    my $extends = $saxon->getAttribute('extends');
+    applyOpts($xp, $extends) if $extends ne '';
+}
+
+sub configArgs {
+    my $context = shift;
+    my $elemname = shift;
+    my $prefix = shift;
+    my $sep = shift;
+    my @opts = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $name = $arg->getAttribute('name');
+	    my $value = $arg->getAttribute('value');
+	    if (defined($value) && $value ne '') {
+		push(@opts, "$prefix$name$sep$value");
+	    } else {
+		push(@opts, "$prefix$name");
+	    }
+	}
+    }
+
+    return @opts;
+}
+
+sub configPath {
+    my $context = shift;
+    my $elemname = shift;
+    my $sep = shift || ":";
+    my @path = ();
+
+    if ($context) {
+	my $args = $context->find($elemname);
+	foreach my $arg ($args->get_nodelist()) {
+	    my $dir = $arg->getAttribute('path');
+	    if ($dir ne '') {
+		foreach my $f (split(/$sep/, $dir)) {
+		    if (-d $f || -f $f) {
+			push (@path, $f);
+		    } else {
+			warn "Invalid path component: $f\n";
+		    }
+		}
+	    } else {
+		warn "Invalid path component (no \@dir)\n";
+	    }
+	}
+    }
+
+    return @path;
+}
+
+sub addOpt {
+    my $arrayref = shift;
+    my $newopt = shift;
+    my $sep = shift;
+    my $newname = $newopt;
+
+    $newname = $1 if defined($sep) && $newopt =~ /^(.*?)$sep/;
+
+    foreach my $opt (@{$arrayref}) {
+	my $name = $opt;
+	$name = $1 if defined($sep) && $opt =~ /^(.*?)$sep/;
+	return if $name eq $newname;
+    }
+
+    push(@{$arrayref}, $newopt);
+}
+
+sub showVars {
+    print STDERR "config: $config\n";
+    print STDERR "java: $java\n";
+    print STDERR "optsname: $optsname\n";
+    showArr("opts", @opts);
+    showArr("saxon opts", @saxonopts);
+    print STDERR "input: $input\n" if defined($input);
+    print STDERR "style: $style\n" if defined($style);
+    showArr("params", @params);
+    showArr("java opts", @javaopts);
+    showArr("system props", @systemprops);
+    print STDERR "cpseparator: $cpseparator\n";
+    showArr("classpath", @classpath);
+}
+
+sub showArr {
+    my $name = shift;
+    my @arr = @_;
+
+    if (@arr) {
+	print STDERR "$name:\n";
+	foreach my $p (@arr) {
+	    print STDERR "\t$p\n";
+	}
+    }
+}

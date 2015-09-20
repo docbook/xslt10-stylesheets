@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<!--  XML Catalog file for DocBook Website -->
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/current/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.6/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/current/xsl/"
+            rewritePrefix="xsl/"/>
+
+<rewriteURI uriStartString="http://docbook.sourceforge.net/release/website/2.6.0/xsl/"
+            rewritePrefix="xsl/"/>
+
+<!-- the following are for older versions of Website DTD; the DTD is -->
+<!-- backward compatible, so we just remap the older URIs to the local URI -->
+<!-- of the current version; otherwise, users would need to manually change -->
+<!-- the URIs in all their existing Website document instances -->
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.5.0/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.4.1/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.4.0/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.3/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.2/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.1/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.1b1/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.0/schema/"
+            rewritePrefix="schema/"/>
+
+<rewriteSystem systemIdStartString="http://docbook.sourceforge.net/release/website/2.0b1/schema/"
+            rewritePrefix="schema/"/>
+
+</catalog>

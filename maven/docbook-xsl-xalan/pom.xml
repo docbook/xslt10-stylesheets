@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.docbook</groupId>
+  <artifactId>docbook-xsl-xalan</artifactId>
+  <name>DocBook XSL Xalan extension</name>
+  <packaging>jar</packaging>
+  <version>1.0.1-pre</version>
+  <description>These are Java extensions for use with the DocBook XML stylesheets and the Xalan-Java XSLT engine.
+  </description>
+  <url>http://sourceforge.net/projects/docbook/</url>
+
+  <parent>
+    <groupId>net.sf.docbook</groupId>
+    <artifactId>docbook</artifactId>
+    <version>5.0-2</version>
+  </parent>
+
+
+  <properties>
+    <docbook.xsl.xalan.release>docbook-xsl-xalan-1.00</docbook.xsl.xalan.release>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <echo>Extracting docbook xsl xalan sources ${docbook.xsl.xalan.release}.zip.</echo>
+
+                <unzip dest="${project.basedir}/target/xalan">
+                  <fileset dir="lib/" includes="${docbook.xsl.xalan.release}.zip"/>
+                  <patternset>
+                    <include name="${docbook.xsl.xalan.release}/src/**"/>
+                  </patternset>
+                </unzip>
+
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.basedir}/target/xalan/${docbook.xsl.xalan.release}/src/</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.4</source>
+          <target>1.4</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

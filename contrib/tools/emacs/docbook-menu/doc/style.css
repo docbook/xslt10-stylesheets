@@ -1,0 +1,112 @@
+body {
+  background-color: #eeeeee;
+  font-family: sans-serif;
+  width: 75%;
+}
+.title {
+  color: #913004;
+}
+.book,.part,.preface,.chapter,.reference,.appendix,.glossary,.refentry,
+.index,.colophon
+{
+        background-color:white;
+        margin-left:1em;
+        margin-right:1em;
+        margin-top:1em;
+        margin-bottom:1em;
+        padding-left:1em;
+        padding-right:1em;
+        padding-top:1em;
+        padding-bottom:1em;
+}
+
+div.section
+{
+        background-color:white;
+        margin-left:1em;
+        margin-right:1em;
+        padding-left:1em;
+        padding-right:1em;
+        padding-top:.5em;
+        padding-bottom:.5em;
+}
+.guimenu, .guisubmenu, .guimenuitem, .guibutton {
+  padding-left: .2em;
+  padding-right: .2em;
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  border-width: .5pt;
+  border-color: black;
+  background-color: #cccccc;
+  font-family: Tahoma, Sans-Serif;
+  font-size: 85%;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: black;
+  border-bottom-color: black;
+  border-width: thin;
+  border-style: outset;
+}
+.term {
+  font-weight: bold
+}
+.sgmltag, .sgmltag-element, .sgmltag-attribute {
+  color: #008000;
+}
+.computeroutput, .literal, .filename {
+  color: #008000;
+}
+.keycap {
+  color: white;
+  background-color: #333333;
+  padding-left: .2em;
+  padding-right: .2em;
+  padding-top: 0pt;
+  padding-bottom: 0pt;
+  border-width: thin;
+  border-style: outset;
+}
+.keysym {
+  color: #008000;
+  font-family: monospace;
+}
+img {
+  border-width: 0
+}
+
+div.note{
+ margin-bottom: 1em;
+ width: 90%;
+ }
+
+div.note table td p {
+  margin-top: -.2em
+}
+
+div.tip table td p {
+  margin-top: -.2em
+}
+
+div.important table td p {
+  width: 90%
+}
+
+div.caution table td p {
+  margin-top: -.2em
+}
+
+div.warning table td p {
+  margin-top: -.2em
+}
+
+td div.itemizedlist {
+  margin-top: 1.5em;
+}
+
+hr {
+  color: #cccccc;
+  background-color: #cccccc;
+  border-style: outset;
+  border-color: #cccccc;
+}
+

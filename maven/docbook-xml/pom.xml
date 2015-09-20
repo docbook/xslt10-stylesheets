@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sf.docbook</groupId>
+  <artifactId>docbook-xml</artifactId>
+  <name>DocBook XML</name>
+  <packaging>pom</packaging>
+  <version>5.1b4-all</version>
+  <description>Docbook XML</description>
+  <url>http://www.docbook.org/</url>
+
+  <parent>
+     <groupId>net.sf.docbook</groupId>
+     <artifactId>docbook</artifactId>
+     <version>5.0-2</version>
+   </parent>
+
+  <properties>
+    <docbook.xml.release>docbook-5.1b4</docbook.xml.release>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <!-- Extract XML resources-->
+                <echo>Extracting XML resources from Docbook XML distribution ${docbook.xml.release}.zip.</echo>
+                <unzip dest="${project.basedir}/target/xmltmp">
+                  <fileset dir="${project.basedir}/lib" includes="${docbook.xml.release}.zip"/>
+                  <patternset>
+                    <include name="${docbook.xml.release}/**"/>
+                    <exclude name="${docbook.xml.release}/docs/"/>
+                  </patternset>
+                </unzip>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2-beta-1</version>
+
+        <executions>
+          <execution>
+            <id>make docbook schemas resources</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>${project.basedir}/assembly-all.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>

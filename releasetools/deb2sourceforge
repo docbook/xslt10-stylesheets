@@ -1,0 +1,121 @@
+#!/bin/sh
+
+# $Id$
+
+# deb2sourceforge - Upload .deb to a Sourceforge project website
+#
+# Usage: deb2sourceforge
+#
+# There are no switches (yet).
+#
+# Use deb2sourceforge to automate upload of debs and deb sources
+# to a Sourceforge project website and to generate the files
+# needed for making the deb apt-gettable from that site.
+#
+# deb2sourceforge needs to be run from within the root of the
+# source tree (working directory) for the Debian package.
+#
+# This is free software. See the copyright notice at the end of
+# the script.
+
+# You must specify an Sourceforge project name and username
+#SF_PROJECT_NAME=docbook
+#SF_USER_NAME=xmldoc
+if [ ! -n "$SF_PROJECT_NAME" ] || [ ! -n "$SF_USER_NAME" ]; then
+  echo
+  echo "`basename $0`: Error (upload failed)"
+  echo "Set values for both SF_PROJECT_NAME and SF_USER_NAME,"
+  echo "either as environment variables or within the `basename $0` script;"
+  echo "then run `basename $0` again."
+exit 1
+fi
+
+SCP=scp
+SCP_OPTS=
+SSH=ssh
+SSH_OPTS=
+
+SF_PROJECTHOST=$SF_PROJECT_NAME.sourceforge.net
+SF_PROJECT_HTDOCS=/home/groups/\
+`echo $SF_PROJECT_NAME | cut -c-1`/\
+`echo $SF_PROJECT_NAME | cut -c-2`/\
+$SF_PROJECT_NAME/htdocs
+
+DEBIAN_BASEDIR=debian
+DEBIAN_SUBDIR=unstable
+
+# SF_DPKG_BIN directory needs to contain the following:
+#
+#   dpkg, dpkg-deb, dpkg-scanpackages, dpkg-scansources
+#
+# Feel free to copy them to your own project space.
+#
+SF_DPKG_BIN=/home/groups/d/do/docbook/htdocs/bin
+
+# check to make sure we're actually in a built package source tree
+if [ ! -f debian/files ]; then
+  echo
+  echo "`basename $0`: Error (could not find or read debian/files)"
+  exit 1
+fi
+
+PACKAGENAME=`cut -d" " -f 1 debian/files | sed 's/\(.\+\)_[^.]\+.deb/\1/'`
+ORIGINALNAME=`echo $PACKAGENAME | sed 's/\(.\+\)-.\+/\1/'`
+
+echo "Checking remote directories and removing old package (if any)..."
+$SSH $SSH_OPTS -l $SF_USER_NAME $SF_PROJECTHOST \
+  "(\
+   mkdir -p $SF_PROJECT_HTDOCS/$DEBIAN_BASEDIR/$DEBIAN_SUBDIR; \
+   cd $SF_PROJECT_HTDOCS/$DEBIAN_BASEDIR/$DEBIAN_SUBDIR; \
+   rm -rf $PACKAGENAME*; \
+   )"
+
+echo "Uploading new package to $SF_PROJECT_HTDOCS/$DEBIAN_BASEDIR/$DEBIAN_SUBDIR..."
+cd ..
+$SCP $SCPOPTS \
+  $PACKAGENAME*.deb \
+  $PACKAGENAME*.diff.gz \
+  $PACKAGENAME*.dsc \
+  $PACKAGENAME*.changes \
+  $ORIGINALNAME.orig.tar.gz \
+  $SF_USER_NAME@$SF_PROJECTHOST:$SF_PROJECT_HTDOCS/$DEBIAN_BASEDIR/$DEBIAN_SUBDIR/
+
+echo "Re-generating Packages.gz & Sources.gz files..."
+$SSH $SSH_OPTS -l $SF_USER_NAME $SF_PROJECTHOST \
+  "(\
+   umask 002; \
+   export PATH=$SF_PROJECT_HTDOCS/bin:$PATH; \
+   cd $SF_PROJECT_HTDOCS/$DEBIAN_BASEDIR; \
+   dpkg-scanpackages $DEBIAN_SUBDIR /dev/null | gzip -9c > $DEBIAN_SUBDIR/Packages.gz; \
+   dpkg-scansources $DEBIAN_SUBDIR /dev/null  | gzip -9c > $DEBIAN_SUBDIR/Sources.gz \
+   )"
+echo
+echo "To apt-get the package you uploaded, users need to add the"
+echo "the following to their /etc/apt/sources.list"
+echo
+echo "  deb http://$SF_PROJECT_NAME.sourceforge.net/$DEBIAN_BASEDIR $DEBIAN_SUBDIR/"
+echo "  deb-src http://$SF_PROJECT_NAME.sourceforge.net/$DEBIAN_BASEDIR $DEBIAN_SUBDIR/"
+
+# Copyright
+# ---------
+# Copyright 2005 Michael Smith <xmldoc@users.sourceforge.net>
+# 
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use, copy,
+# modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.

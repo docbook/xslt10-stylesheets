@@ -1,0 +1,29 @@
+website: ../html/layout.html ../html/linking.html ../html/custom.html ../html/building.html ../html/buildmake.html ../html/buildext.html ../html/textonly.html ../html/formtest.html ../html/test3.html ../html/rddl.html ../html/php.html ../html/rss.html ../html/full.html ../html/book/index.html ../html/revflag.html ../html/index.html ../html/subdir/test1a.html ../html/subdir/test1b.html ../html/test1.html ../html/about.html 
+
+../html/index.html: website.xml
+../html/layout.html: wslayout.xml
+../html/linking.html: olink.xml
+../html/custom.html: custom.xml
+../html/building.html: building.xml
+../html/buildmake.html: build-make.xml
+../html/buildext.html: build-ext.xml
+../html/textonly.html: build-textonly.xml
+../html/formtest.html: test2.xml
+../html/test3.html: test3.xml
+../html/rddl.html: rddl.xml
+../html/php.html: php.xml
+../html/rss.html: rss.xml
+../html/full.html: full.xml
+../html/book/index.html: book/book.001.xml
+../html/revflag.html: revflag.xml
+../html/test1.html: test1.xml
+../html/subdir/test1a.html: test1a.xml
+../html/subdir/test1b.html: test1b.xml
+../html/about.html: about.xml
+
+distclean: clean
+	rm -f autolayout.xml depends.tabular
+
+clean:
+	rm -f ../html/layout.html ../html/linking.html ../html/custom.html ../html/building.html ../html/buildmake.html ../html/buildext.html ../html/textonly.html ../html/formtest.html ../html/test3.html ../html/rddl.html ../html/php.html ../html/rss.html ../html/full.html ../html/book/index.html ../html/revflag.html ../html/index.html ../html/subdir/test1a.html ../html/subdir/test1b.html ../html/test1.html ../html/about.html 
+

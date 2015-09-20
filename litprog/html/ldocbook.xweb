@@ -1,0 +1,445 @@
+<!DOCTYPE article [
+<!ENTITY xweb "<acronym>XWEB</acronym>">
+<!ENTITY lt	"&#38;#60;"> <!-- LESS-THAN SIGN -->
+<!ENTITY gt	"&#x003E;"> <!-- GREATER-THAN SIGN -->
+<!ENTITY amp	"&#38;#38;"> <!-- AMPERSAND -->
+]>
+<article xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+         xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<articleinfo>
+<title>Literate DocBook XML Stylesheets</title>
+<subtitle>Part of
+<citetitle>Literate Programming in XML</citetitle></subtitle>
+<pubdate>05 Oct 2001</pubdate>
+<releaseinfo role="meta">
+$Id$
+</releaseinfo>
+
+<revhistory>
+<revision>
+<revnumber>0.1</revnumber>
+<date>05 Oct 2001</date>
+<authorinitials>ndw</authorinitials>
+<revremark>Initial draft.</revremark>
+</revision>
+</revhistory>
+
+<author><firstname>Norman</firstname><surname>Walsh</surname>
+</author>
+</articleinfo>
+
+<!-- ============================================================ -->
+
+<para>The <filename>ldocbook.xsl</filename> stylesheet transforms an
+&xweb; documentation file (a <quote>woven</quote> &xweb; document)
+into HTML documentation.</para>
+
+<para>This stylesheet assumes that fragments appear inside DocBook
+<sgmltag>section</sgmltag> elements. Some additional customization of
+the <src:fragref linkend="fragment-label"/> and
+<src:fragref linkend="fragment-title"/> will be required
+to support a different organization.</para>
+
+<section><title>The Stylesheets</title>
+
+<para>This document describes both the HTML and XSL Formatting Objects
+versions of the stylesheet.</para>
+
+<section><title>The HTML Stylesheet</title>
+
+<para>The stylesheet performs some initialization and establishes
+templates for the Literate Programming elements that can appear in
+the documentation. Most of the documentation elements will be
+DocBook elements handled by the imported stylesheet.</para>
+
+<src:fragment id="top" mundane-result-prefixes="xsl fo verb">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                xmlns:verb="com.nwalsh.saxon.Verbatim"
+                exclude-result-prefixes="verb src"
+                version="1.0">
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
+
+  <src:fragref linkend="init"/>
+  <src:fragref linkend="proc-html-fragment"/>
+  <src:fragref linkend="proc-html-fragref"/>
+</xsl:stylesheet>
+</src:fragment>
+
+</section>
+
+<section><title>The Chunking HTML Stylesheet</title>
+
+<para>The stylesheet performs some initialization and establishes
+templates for the Literate Programming elements that can appear in
+the documentation. Most of the documentation elements will be
+DocBook elements handled by the imported stylesheet.</para>
+
+<src:fragment id="top-chunk" mundane-result-prefixes="xsl fo verb">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                xmlns:verb="com.nwalsh.saxon.Verbatim"
+                exclude-result-prefixes="verb src"
+                version="1.0">
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/chunk.xsl"/>
+
+  <src:fragref linkend="init"/>
+  <src:fragref linkend="proc-html-fragment"/>
+  <src:fragref linkend="proc-html-fragref"/>
+</xsl:stylesheet>
+</src:fragment>
+
+</section>
+
+<section><title>The FO Stylesheet</title>
+
+<para>The stylesheet performs some initialization and establishes
+templates for the Literate Programming elements that can appear in
+the documentation. Most of the documentation elements will be
+DocBook elements handled by the imported stylesheet.</para>
+
+<src:fragment id="fo-top" mundane-result-prefixes="xsl fo verb">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+                xmlns:verb="com.nwalsh.saxon.Verbatim"
+                exclude-result-prefixes="verb src fo"
+                version="1.0">
+
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
+
+  <xsl:param name="page.margin.outer" select="'1in'"/>
+  <xsl:param name="title.margin.left" select="'-0pt'"/>
+
+  <src:fragref linkend="init"/>
+  <src:fragref linkend="proc-fo-fragment"/>
+  <src:fragref linkend="proc-fo-fragref"/>
+</xsl:stylesheet>
+</src:fragment>
+</section>
+
+<section><title>Initialization</title>
+
+<para>The stylesheet initializes the processor by loading its version
+information (stored in a separate file because it is shared by several
+stylesheets), importing the base DocBook stylesheet, setting some
+parameters, and setting up
+some internationalized text.</para>
+
+<src:fragment id="init">
+  <xsl:include href="../VERSION"/>
+
+  <xsl:template match="revhistory" mode="titlepage.mode"/>
+
+  <src:fragref linkend="param"/>
+  <src:fragref linkend="i18n"/>
+</src:fragment>
+
+<section><title>Parameters</title>
+
+<para>In DocBook Literate Programming documentation, we always number
+sections and verbatim environments.</para>
+
+<src:fragment id="param">
+<xsl:param name="section.autolabel" select="1"/>
+<xsl:param name="linenumbering.everyNth" select="5"/>
+<xsl:param name="linenumbering.separator" select="'| '"/>
+</src:fragment>
+</section>
+
+<section><title>Localization</title>
+
+<para>Localized text in the DocBook stylesheets makes use of an
+external document to determine the nature of, among other things,
+element titles and cross references.</para>
+
+<para>Cross references to <sgmltag>src:fragments</sgmltag> are not
+supported in the stock stylesheets (since there is no such element
+in DocBook).</para>
+
+<para>In order to make cross references work properly, we must provide
+an appropriate localization for <sgmltag>src:fragment</sgmltag> titles.
+We do this by pointing the <parameter>local.l10n.xml</parameter>
+<emphasis>at ourselves</emphasis> (at the stylesheet document).</para>
+
+<para>In our local localization document, we add an
+<sgmltag>l:i18n</sgmltag> element to provide the necessary context.</para>
+
+<para>If you want to support DocBook Literate Programming in other
+languages, this section will have to be updated.</para>
+
+<src:fragment id="i18n">
+<xsl:param name="local.l10n.xml" select="document('')"/>
+
+<l:i18n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">
+  <l:l10n language="en">
+   <l:context name="title">
+      <l:template name="fragment" text="%t"/>
+    </l:context>
+  </l:l10n>
+</l:i18n>
+</src:fragment>
+</section>
+</section>
+</section>
+
+<section><title>Process HTML Fragments</title>
+
+<para>Fragments are output as verbatim environments with numbered lines,
+if possible. A table is used to make the listings stand out.</para>
+
+<src:fragment id="proc-html-fragment">
+<xsl:template match="src:fragment">
+  <xsl:param name="suppress-numbers" select="'0'"/>
+  <xsl:param name="linenumbering" select="'numbered'"/>
+
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+  <xsl:variable name="id" select="@id"/>
+  <xsl:variable name="referents"
+                select="//src:fragment[.//src:fragref[@linkend=$id]]"/>
+
+  <div class="src-fragment">
+  <a name="{@id}"/>
+  <table border="1" width="100%">
+    <tr>
+      <td>
+        <p>
+          <b>
+            <xsl:apply-templates select="." mode="label.markup"/>
+          </b>
+          <xsl:if test="$referents">
+            <xsl:text>: </xsl:text>
+            <xsl:for-each select="$referents">
+              <xsl:if test="position() &gt; 1">, </xsl:if>
+              <a>
+                <xsl:attribute name="href">
+                  <xsl:call-template name="href.target">
+                    <xsl:with-param name="object" select="."/>
+                  </xsl:call-template>
+                </xsl:attribute>
+                <xsl:apply-templates select="." mode="label.markup"/>
+              </a>
+            </xsl:for-each>
+          </xsl:if>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <xsl:choose>
+          <xsl:when test="$suppress-numbers = '0'
+                          and $linenumbering = 'numbered'
+                          and $use.extensions != '0'
+                          and $linenumbering.extension != '0'">
+            <xsl:variable name="rtf">
+              <xsl:apply-templates/>
+            </xsl:variable>
+            <pre class="{name(.)}">
+              <xsl:copy-of select="verb:numberLines($rtf)"/>
+            </pre>
+          </xsl:when>
+          <xsl:otherwise>
+            <pre class="{name(.)}">
+              <xsl:apply-templates/>
+            </pre>
+          </xsl:otherwise>
+        </xsl:choose>
+      </td>
+    </tr>
+  </table>
+  </div>
+</xsl:template>
+
+<src:fragref linkend="fragment-label"/>
+<src:fragref linkend="fragment-title"/>
+</src:fragment>
+
+<para>Fragment labels and titles must also be supported.</para>
+
+<section><title>Fragment Labels</title>
+
+<para>A fragment label consists of a section mark followed by the
+label of the current section and the number of the fragment within
+that section.</para>
+
+<src:fragment id="fragment-label">
+<xsl:template match="src:fragment" mode="label.markup">
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <xsl:text>&#xA7;</xsl:text>
+
+  <xsl:choose>
+    <xsl:when test="$section">
+      <xsl:variable name="section.label">
+        <xsl:apply-templates select="$section" mode="label.markup"/>
+      </xsl:variable>
+      <xsl:choose>
+        <xsl:when test="string($section.label) = ''">
+          <xsl:number from="section"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="$section.label"/>
+          <xsl:text>.</xsl:text>
+          <xsl:number from="section"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:number from="/"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+</src:fragment>
+</section>
+
+<section><title>Fragment Titles</title>
+
+<para>A fragment title is the title of the section that contains it.
+</para>
+
+<src:fragment id="fragment-title">
+<xsl:template match="src:fragment" mode="title.markup">
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <xsl:if test="$section">
+    <xsl:apply-templates select="$section" mode="title.markup"/>
+  </xsl:if>
+</xsl:template>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Process FO Fragments</title>
+
+<para>Fragments are output as verbatim environments with numbered lines,
+if possible.</para>
+
+<src:fragment id="proc-fo-fragment">
+<xsl:template match="src:fragment">
+  <xsl:param name="suppress-numbers" select="'0'"/>
+  <xsl:param name="linenumbering" select="'numbered'"/>
+
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+  <xsl:variable name="id" select="@id"/>
+  <xsl:variable name="referents"
+                select="//src:fragment[.//src:fragref[@linkend=$id]]"/>
+
+  <fo:block xsl:use-attribute-sets="formal.object.properties"
+            keep-together="always"
+            border-style="solid"
+            border-width="0pt"
+	    border-before-width="0.25pt"
+	    border-after-width="0.25pt">
+    <fo:block id="{@id}"
+              border-width="0pt"
+              border-style="solid"
+              border-after-width="0.25pt">
+      <fo:inline font-weight="bold">
+        <xsl:apply-templates select="." mode="label.markup"/>
+      </fo:inline>
+      <fo:inline>
+        <xsl:if test="$referents">
+          <xsl:text>: </xsl:text>
+          <xsl:for-each select="$referents">
+            <xsl:if test="position() &gt; 1">, </xsl:if>
+            <xsl:apply-templates select="." mode="label.markup"/>
+          </xsl:for-each>
+        </xsl:if>
+      </fo:inline>
+    </fo:block>
+
+    <fo:block wrap-option='no-wrap'
+              text-align='start'
+              white-space-collapse='false'
+              linefeed-treatment="preserve"
+              xsl:use-attribute-sets="monospace.verbatim.properties">
+      <xsl:variable name="rtf">
+        <xsl:apply-templates/>
+      </xsl:variable>
+
+      <xsl:choose>
+        <xsl:when test="$suppress-numbers = '0'
+                        and $linenumbering = 'numbered'
+                        and $use.extensions != '0'
+                        and $linenumbering.extension != '0'">
+          <xsl:call-template name="number.rtf.lines">
+            <xsl:with-param name="rtf" select="$rtf"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:copy-of select="$rtf"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </fo:block>
+  </fo:block>
+</xsl:template>
+
+<src:fragref linkend="fragment-label"/>
+<src:fragref linkend="fragment-title"/>
+</src:fragment>
+</section>
+
+<section><title>Process HTML Fragment References</title>
+
+<para>A fragment reference has exactly the same semantics as a DocBook
+<sgmltag>xref</sgmltag>.</para>
+
+<src:fragment id="proc-html-fragref">
+<xsl:template match="src:fragref">
+  <xsl:call-template name="xref"/>
+</xsl:template>
+<src:fragref linkend="fragref-html-xref-to"/>
+</src:fragment>
+
+<section><title>Fragment Cross-Reference Text</title>
+
+<para>Cross references to fragments produce the fragment label
+and title.</para>
+
+<src:fragment id="fragref-html-xref-to">
+<xsl:template match="src:fragment" mode="xref-to">
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <i>
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:text>. </xsl:text>
+    <xsl:apply-templates select="." mode="title.markup"/>
+  </i>
+</xsl:template>
+</src:fragment>
+</section>
+</section>
+
+<section><title>Process FO Fragment References</title>
+
+<para>A fragment reference has exactly the same semantics as a DocBook
+<sgmltag>xref</sgmltag>.</para>
+
+<src:fragment id="proc-fo-fragref">
+<xsl:template match="src:fragref">
+  <xsl:call-template name="xref"/>
+</xsl:template>
+<src:fragref linkend="fragref-fo-xref-to"/>
+</src:fragment>
+
+<section><title>Fragment Cross-Reference Text</title>
+
+<para>Cross references to fragments produce the fragment label
+and title.</para>
+
+<src:fragment id="fragref-fo-xref-to">
+<xsl:template match="src:fragment" mode="xref-to">
+  <xsl:variable name="section" select="ancestor::section[1]"/>
+
+  <fo:inline font-style="italic">
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:text>. </xsl:text>
+    <xsl:apply-templates select="." mode="title.markup"/>
+  </fo:inline>
+</xsl:template>
+</src:fragment>
+</section>
+</section>
+
+</article>

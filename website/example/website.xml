@@ -1,0 +1,144 @@
+<!DOCTYPE webpage SYSTEM "../schema/dtd/website.dtd" [
+<!ENTITY test1a SYSTEM "test1a.xml" NDATA XML>
+<!ENTITY test3 SYSTEM "test3.xml" NDATA XML>
+<!ENTITY about.xml SYSTEM "about.xml" NDATA XML>
+]>
+<webpage id="home">
+<config param="desc" value="The Test Home Page"/>
+<config param="rcsdate" value="$Date$"/>
+<config param="footer" value="about.html" altval="About..."/>
+<head>
+<title>Welcome to Website</title>
+<summary>Introduction</summary>
+<keywords>Norman Walsh, DSSSL, SGML, XML, DocBook, Website</keywords>
+</head>
+
+<para>This small, somewhat contrived website demonstrates the
+Website document type. Website provides a system for building static
+Websites from XML content.</para>
+
+<note>
+  <para>Though this "site" remains a good example of a Website
+  instance, the how-to information here is no longer actively
+  maintained. For more up-to-date information, see the <ulink
+  url="http://sagehill.net/docbookxsl/Website.html">Website</ulink>
+  chapter in Bob Stayton's book <ulink
+  url="http://sagehill.net/book-description.html">DocBook XSL: The
+  Complete Guide</ulink>.</para>
+</note>
+
+<para>Both <ulink url="index.html">tabular</ulink> and <ulink
+url="n-index.html">non-tabular</ulink> versions are available,
+demonstrating how multiple presentations can be derived from the same
+sources.</para>
+
+<webtoc/>
+
+<section><title>What is a Website?</title>
+
+<para>A website is a collection of pages organized, for the purposes of
+navigation, into one or more hierarchies. In Website, each page is a
+separate XML document authored according to the Website schema/DTD, a customization
+of <ulink url="http://www.oasis-open.org/docbook/">DocBook</ulink>.</para>
+
+<para>Website imposes the following additional constraints:</para>
+
+<itemizedlist>
+<listitem><para>Each <sgmltag>webpage</sgmltag> must have an ID and
+the IDs must be unique across the entire website.</para>
+</listitem>
+<listitem><para>No page can occur in more than one location in the
+navigational hierarchy of the website. Note, however, that you can have
+pages, such as the <olink targetdocent="about.xml">about page</olink>,
+that don't appear in the navigational hierarchy at all.</para>
+</listitem>
+</itemizedlist>
+</section>
+
+<section><title>Requirements</title>
+
+<para>In order to build a website with DocBook Website, you must have,
+at a minimum:</para>
+
+<itemizedlist>
+<listitem><para>The Website DTD (either
+<filename>website.dtd</filename> or
+<filename>website-full.dtd</filename>) OR the Website RELAX NG schema
+(<filename>website.rnc</filename> or
+<filename>website-full.rnc</filename>).</para></listitem>
+<listitem><para>The <ulink
+url="http://www.oasis-open.org/docbook/xml/4.4/">DocBook XML
+V4.4</ulink> DTD (if you want to use
+<filename>website-full.dtd</filename>).</para></listitem>
+<listitem><para>The Website XSL stylesheets.</para></listitem>
+<listitem><para>The <ulink
+url="http://docbook.sourceforge.net/release/xsl/">DocBook XSL
+Stylesheets</ulink> (which are imported by the Website XSL
+stylesheets).</para>
+</listitem>
+<listitem><para>An XSLT engine such as Saxon or xsltproc.
+</para></listitem>
+</itemizedlist>
+
+</section>
+
+<section><title>Changes from Website 1.x</title>
+
+<para>I've completely redesigned the way the Website doctype works for
+V2. In version 1, all of the pages in a website were part of a single,
+monolithic XML document.</para>
+
+<para>Making all of the pages part of a single document had a number
+of drawbacks:</para>
+
+<orderedlist>
+<listitem><para>It wasn't convenient to update only part of a website
+(only the pages that had been changed, for example).
+</para></listitem>
+<listitem><para>For very large websites, there were memory issues associated
+with parsing and formatting the whole thing.
+</para></listitem>
+<listitem><para>There was no practical way to publish the XML content of
+a site.
+</para></listitem>
+<listitem><para>It was difficult to share pages across different web sites.
+</para></listitem>
+<listitem><para>It was very tedious to setup a system that allowed
+the same content to be published
+with different navigational hierarchies.
+</para></listitem>
+</orderedlist>
+
+<para>Website overcomes all of these difficulties.</para>
+
+<para>In fairness, the old style had some advantages:</para>
+
+<orderedlist>
+<listitem><para>There was only a single source document to maintain.
+</para></listitem>
+<listitem><para>Navigation was derived automatically from the structure
+of the source document.
+</para></listitem>
+<listitem><para>Link checking was cheap and easy.
+</para></listitem>
+</orderedlist>
+</section>
+
+<section id="whatsnew">
+<title>What's New</title>
+<variablelist>
+<varlistentry><term>20 Mar 2001</term>
+<listitem>
+<para>Reworked using the Website paradigm.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+
+</webpage>
+
+<!--
+Local variables:
+mode: docbook
+End:
+-->

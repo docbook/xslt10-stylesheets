@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<chapter lang='fi' id='fichap'>
+<chapterinfo>
+<othercredit>
+  <surname>Valo</surname>
+  <firstname>Kalle</firstname>
+  <affiliation><address><email>Kalle.Valo@hut.fi</email></address></affiliation>
+  <contrib>Translation</contrib>
+</othercredit>
+</chapterinfo>
+<title lang="en">Finnish</title>
+
+  <para lang="fi">
+    DocBook on <ulink
+      url="http://www.oasis-open.org/">OASIS</ulink>-organisaation
+      alla toimivan <ulink
+      url="mailto:docbook-tc@oasis-open.org">DocBookin teknisen
+      komitean</ulink> (DocBook Technical Committee) ylläpitämä <ulink
+      url="http://www.ucc.ie/xml/#doctype">dokumenttityyppimääritelmä</ulink>
+      (Document Type Definition, DTD). Se sopii erityisesti
+      tietokonejärjestelmiä ja -ohjelmistoja käsittelevien kirjojen ja
+      artikkelien kirjoittamiseen (tietenkään se ei ole mitenkään
+      rajoitettu näihin alueisiin).
+  </para>
+
+  <para lang="fi">
+    Koska DocBook on laaja ja vakaa DTD, ja koska sen rakenne kuvaa
+    <quote>kirjaa</quote>, laaja ja kasvava joukko teknisen
+    dokumentaation kirjoittajia ovat ottaneet DocBookin käyttöön
+    monenlaisien tekstien kirjoittamiseen. Monet kaupalliset työkalut
+    tukevat DocBookia suoraan, ja vapaiden ohjelmistojen tuki
+    lisääntyy voimakkaasti. Näiden ominaisuuksien avulla DocBookista
+    on tullut helposti ymmärrettävä, yleiskäyttöinen ja hyvin suosittu
+    DTD. Monet organisaatiot ympäri maailman käyttävät DocBookia
+    tuottamaan miljoonia sivuja dokumentaatiota eri muodoissa.
+  </para>
+
+</chapter>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN" 
+          "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+
+<article lang="de">
+  <articleinfo>
+    <title>Test file</title>
+
+    <date>2009-04-12</date>
+
+    <author>
+      <firstname>Michael</firstname>
+      <surname>Wiedmann</surname>
+    </author>
+
+    <publisher><publishername>Person</publishername></publisher>
+    <biblioid class="other">unique-doc-id</biblioid>
+
+    <copyright>
+      <year>2009</year>
+      <holder>Michael Wiedmann</holder>
+    </copyright>
+
+    <abstract id="abstract">
+      <para>some abstract</para>
+    </abstract>
+  </articleinfo>
+
+  <section>
+    <title>Title</title>
+    <para>foo foo</para>
+  </section>
+
+</article>

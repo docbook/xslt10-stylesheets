@@ -1,0 +1,1558 @@
+$DOCUMENT {
+  font-family: "Times New Roman", "serif";
+  font-size: 11pt;
+  font-weight: normal;
+}
+
+$COMMENT {
+  display: none;
+  color: purple;
+}
+
+$PROCINS {
+  color: black;
+  background-color: #c0c0c0;
+}
+
+accel {
+  display: inline;
+  font-weight: bold;
+}
+
+acronym {
+  text-transform: uppercase;
+  display: inline;
+}
+
+appendix {
+  display: block;
+  margin-top: 18pt;
+}
+
+blockquote {
+  display: block;
+  position: relative;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+book, bookinfo {
+  display: block;
+}
+
+bridgehead {
+  display: block;
+}
+
+caution {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+  border-top: solid;
+  margin-right: 1pc;
+  margin-left: 1pc;
+  border-bottom: solid;
+}
+
+caution:before {
+  content: "Caution: ";
+  font-weight: bold;
+  display: inline;
+}
+
+chapter {
+  display: block;
+  text-indent: 1pt;
+  margin-top: 18pt;
+}
+
+chapter>title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 24pt;
+  font-weight: bold;
+  color: red;
+  line-height: 24pt;
+  display: block;
+}
+
+citetitle {
+  display: inline;
+  font-style: italic;
+}
+
+colspec {
+  display: block;
+}
+
+command {
+  display: inline;
+  font-weight: bold;
+}
+
+remark {
+  display: inline;
+  padding-left: 3pt;
+  padding-bottom: 3pt;
+  background-color: aqua;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  white-space: normal;
+  list-style-type: none;
+}
+
+computeroutput {
+  display: inline;
+  font-family: Courier, monospace;
+}
+
+copyright {
+  display: block;
+}
+
+docinfo {
+  display: block;
+}
+
+email {
+  display: inline;
+}
+
+emphasis {
+  display: inline;
+  font-style: italic;
+}
+
+entry {
+  display: block;
+}
+
+example {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+figure {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+filename {
+  display: inline;
+  font-style: italic;
+}
+
+footnoteref {
+  display: inline;
+}
+
+footnote {
+  display: inline;
+}
+
+formalpara {
+  display: block;
+}
+
+function {
+  display: inline;
+  font-weight: bold;
+}
+
+glossary {
+  display: block;
+  margin-top: 12pt;
+}
+
+glossdef {
+  display: block;
+}
+
+glossdiv {
+  display: block;
+}
+
+glossentry {
+  display: block;
+  margin-top: 6pt;
+}
+
+glossterm {
+  display: block;
+  font-weight: bold;
+}
+
+graphic {
+  display: block;
+}
+
+guibutton {
+  display: inline;
+  font-weight: bold;
+}
+
+guiicon {
+  display: inline;
+  font-weight: bold;
+}
+
+guilabel {
+  display: inline;
+  font-weight: bold;
+}
+
+guimenuitem {
+  display: inline;
+  font-weight: bold;
+}
+
+guimenu {
+  display: inline;
+  font-weight: bold;
+}
+
+guisubmenu {
+  display: inline;
+  font-weight: bold;
+}
+
+holder {
+  display: inline;
+}
+
+indexterm {
+  display: none;
+  color: #0000FF;
+}
+
+index {
+  display: block;
+}
+
+informalexample {
+  display: block;
+}
+
+informaltable {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+inlinegraphic {
+  display: inline;
+}
+
+itemizedlist {
+  display: block;
+  margin-top: 5pt;
+}
+
+itemizedlist>listitem {
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1pc;
+  white-space: normal;
+}
+
+itemizedlist>listitem>itemizedlist>listitem {
+  display: list-item;
+  list-style-type: circle;
+  list-style-position: outside;
+  margin-left: 1pc;
+  white-space: normal;
+}
+
+keycombo {
+  display: inline;
+}
+
+keycap {
+  display: inline;
+  border-top: thin solid;
+  font-weight: bold;
+  border-right: thin;
+  border-bottom: thin;
+  border-left: none;
+}
+
+legalnotice {
+  display: block;
+}
+
+lineannotation {
+  display: inline;
+  font-family: serif;
+  font-style: italic;
+}
+
+listitem {
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-left: 1pc;
+  white-space: normal;
+  margin-top: 6pt;
+}
+
+listitem>para {
+  border-top: 0pt;
+  margin-top: 0pt;
+  margin-right: 0pt;
+}
+
+literallayout {
+  font-size: smaller;
+  white-space: pre;
+  display: block;
+  font-family: monospace;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+literal {
+  display: inline;
+  font-family: monospace, "Courier", "serif";
+  font-size: small;
+  white-space: nowrap;
+}
+
+manvolnum {
+  display: inline;
+  font-weight: bold;
+  font-size: 18pt;
+  font-family: Helvetica, Arial;
+}
+
+menuchoice {
+  display: inline;
+}
+
+note {
+  display: block;
+  margin-top: 6pt;
+  margin-right: 1pc;
+  margin-left: 1pc;
+  margin-bottom: 6pt;
+}
+
+note:before {
+  content: "Note: ";
+  font-weight: bold;
+}
+
+olink {
+  display: inline;
+}
+
+option {
+  display: inline;
+  font-weight: bold;
+}
+
+orderedlist {
+  display: block;
+}
+
+orderedlist>listitem {
+  display: list-item;
+  list-style-position: outside;
+  white-space: normal;
+  list-style-type: decimal;
+}
+
+orderedlist>listitem>orderedlist>listitem {
+  display: list-item;
+  list-style-position: outside;
+  white-space: normal;
+  list-style-type: lower-alpha;
+  margin-left: 1pc;
+}
+
+para {
+  display: block;
+  font-weight: normal;
+  margin-top: 6pt;
+  white-space: normal;
+}
+
+parameter {
+  display: inline;
+  font-weight: bold;
+}
+
+part {
+  display: block;
+}
+
+partintro {
+  display: block;
+}
+
+phrase {
+  display: inline;
+}
+
+preface {
+  display: block;
+  margin-top: 12pt;
+}
+
+indexterm>primary {
+  display: none;
+}
+
+procedure {
+  display: block;
+  margin-top: 6pt;
+}
+
+productname {
+  display: inline;
+}
+
+programlisting {
+  display: block;
+  font-family: monospace;
+  font-size: smaller;
+  margin-top: 6pt;
+  white-space: pre;
+}
+
+quote:before {
+  content: "``";
+}
+
+refdescriptor {
+  display: inline;
+}
+
+refentry {
+  display: block;
+  margin-top: 6pt;
+}
+
+refentrytitle {
+  display: block;
+  font-weight: bold;
+  font-size: 20pt;
+  font-family: Helvetica, Arial;
+}
+
+reference {
+  display: block;
+}
+
+refmeta {
+  display: block;
+}
+
+refmiscinfo {
+  display: block;
+}
+
+refnamediv {
+  display: block;
+  font-weight: bold;
+}
+
+refname {
+  display: inline;
+}
+
+refpurpose {
+  display: inline;
+}
+
+refsect1 {
+  display: block;
+}
+
+refsect2 {
+  display: block;
+  font-weight: bold;
+  margin-top: 6pt;
+}
+
+refsynopsisdiv {
+  display: block;
+  margin-top: 6pt;
+}
+
+replaceable {
+  display: inline;
+  font-style: italic;
+  font-weight: bold;
+}
+
+row {
+  display: block;
+}
+
+secondary {
+  display: inline;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+}
+
+sect1 {
+  display: block;
+  margin-top: 12pt;
+}
+
+sect1info {
+  display: block;
+}
+
+sect1>title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 19pt;
+  font-weight: bold;
+  color: black;
+  line-height: 20pt;
+  display: block;
+}
+
+sect2 {
+  display: block;
+  margin-top: 10pt;
+}
+
+sect2info {
+  display: block;
+}
+
+sect2>title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  color: black;
+  line-height: 16pt;
+  display: block;
+}
+
+sect3 {
+  display: block;
+  margin-top: 8pt;
+}
+
+sect3info {
+  display: block;
+}
+
+sect3>title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  line-height: 14pt;
+  color: black;
+  display: block;
+}
+
+sect4 {
+  display: block;
+  font-weight: bold;
+  margin-top: 8pt;
+}
+
+sect4info {
+  display: block;
+}
+
+sect5 {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-top: 6pt;
+}
+
+sect5info {
+  display: block;
+}
+
+see {
+  display: inline;
+}
+
+seealso {
+  display: inline;
+}
+
+seglistitem {
+  display: list-item;
+  margin-top: 5pt;
+}
+
+segmentedlist {
+  display: block;
+  margin-top: 5pt;
+}
+
+segtitle {
+  display: block;
+}
+
+shortcut {
+  display: inline;
+}
+
+sidebar {
+  display: block;
+}
+
+simplelist {
+  display: block;
+  margin-top: 5pt;
+}
+
+spanspec {
+  display: block;
+}
+
+subscript {
+  display: inline;
+  vertical-align: sub;
+}
+
+substeps {
+  display: block;
+}
+
+superscript {
+  display: inline;
+  vertical-align: super;
+}
+
+synopsis {
+  display: block;
+}
+
+systemitem {
+  display: inline;
+  font-style: italic;
+}
+
+table {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+tbody {
+  display: block;
+}
+
+term {
+  display: block;
+}
+
+tertiary {
+  display: inline;
+}
+
+tfoot {
+  display: block;
+}
+
+tgroup {
+  display: block;
+}
+
+thead {
+  display: block;
+  font-weight: bold;
+}
+
+titleabbrev {
+  display: block;
+}
+
+sect5>title {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 9pt;
+  font-weight: bold;
+  margin-top: 8pt;
+}
+
+trademark {
+  display: inline;
+}
+
+ulink {
+  display: inline;
+  font-style: italic;
+}
+
+userinput {
+  display: inline;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+variablelist {
+  display: block;
+  margin-left: 0pt;
+  text-indent: 0pt;
+  border-top: 0pt;
+  padding-left: 0pt;
+}
+
+varlistentry {
+  display: block;
+  margin-top: 6pt;
+}
+
+variablelist>listitem {
+  display: list-item;
+  list-style-type: none;
+  list-style-position: outside;
+  white-space: normal;
+  text-indent: 0pt;
+  margin-left: 2pc;
+}
+
+warning {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+  margin-right: 1pc;
+  margin-left: 1pc;
+}
+
+warning:before {
+  content: "Warning:";
+  font-weight: bold;
+}
+
+wordasword {
+  display: inline;
+}
+
+year {
+  display: inline;
+}
+
+emphasis[role="strong"] {
+  font-style: normal;
+  font-weight: bold;
+  display: inline;
+}
+
+quote:after {
+  content: "''";
+}
+
+sect4>title {
+  font-size: 10pt;
+  font-family: Helvetica;
+  font-weight: bold;
+  display: block;
+}
+
+book {
+  font-family: "Times New Roman";
+  font-size: 11pt;
+  display: block;
+}
+
+example>title {
+  font-weight: bold;
+  display: block;
+}
+
+figure>title {
+  font-weight: bold;
+  display: block;
+}
+
+formalpara>title {
+  font-weight: bold;
+  display: block;
+}
+
+table>title {
+  font-weight: bold;
+}
+
+varlistentry>listitem {
+  display: list-item;
+  list-style-type: none;
+  margin-top: 0pt;
+  margin-left: 2pc;
+}
+
+appendix>title {
+  font-family: Helvetica, Arial;
+  font-size: 20pt;
+  line-height: 22pt;
+  font-weight: bold;
+  color: red;
+  display: block;
+}
+
+glossary>title {
+  font-family: Helvetica, Arial;
+  font-size: 18pt;
+  line-height: 20pt;
+  font-weight: bold;
+  display: block;
+}
+
+glossdef>para {
+  margin-top: 0pt;
+}
+
+formalpara>para {
+  display: block;
+}
+
+secondary:before {
+  content: ", ";
+}
+
+tertiary:before {
+  content: ", ";
+}
+
+see:before {
+  content: ", See ";
+}
+
+seealso:before {
+  content: ", See also ";
+}
+
+indexterm:before {
+  content: "[Index: ";
+}
+
+indexterm:after {
+  content: "]";
+}
+
+procedure>step {
+  display: list-item;
+  list-style-type: decimal;
+  list-style-position: outside;
+  white-space: normal;
+}
+
+procedure>title {
+  font-weight: bold;
+  display: block;
+}
+
+step>title {
+  font-weight: bold;
+  display: block;
+}
+
+manvolnum:after {
+  content: ")";
+}
+
+manvolnum:before {
+  content: "(";
+}
+
+refpurpose:before {
+  content: " -- ";
+}
+
+refsect1>title {
+  font-family: Helvetica, Arial;
+  font-size: 12pt;
+  font-weight: bold;
+  display: block;
+}
+
+refsynopsisdiv>title {
+  font-family: Helvetica, Arial;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+refsect2>title {
+  font-family: Helvetica, Arial;
+  font-size: 10pt;
+  display: block;
+}
+
+preface>title {
+  font-family: Helvetica, Arial;
+  font-size: 19pt;
+  line-height: 20pt;
+  display: block;
+}
+
+title {
+  font-weight: bold;
+  display: block;
+}
+
+step {
+  display: list-item;
+  list-style-type: decimal;
+  list-style-position: outside;
+  white-space: normal;
+}
+
+tbody entry {
+  font-weight: normal;
+}
+
+thead entry {
+  font-weight: bold;
+}
+
+sgmltag {
+  font-family: monospace;
+  display: inline;
+}
+
+citation {
+  font-style: italic;
+  display: inline;
+}
+
+abbrev {
+  display: inline;
+}
+
+abstract {
+  display: block;
+  margin-top: 6pt;
+  margin-bottom: 6pt;
+}
+
+answer {
+  display: block;
+}
+
+appendixinfo {
+  display: block;
+}
+
+article {
+  display: block;
+}
+
+articleinfo {
+  display: block;
+}
+
+ackno {
+  display: block;
+}
+
+action {
+  display: inline;
+}
+
+alt {
+  display: inline;
+}
+
+article>title {
+  font-size: 24pt;
+  line-height: 26pt;
+  font-weight: bold;
+  font-family: Arial;
+  display: block;
+}
+
+anchor {
+  display: inline;
+}
+
+application {
+  display: inline;
+}
+
+arg {
+  display: inline;
+}
+
+artpagenums {
+  display: inline;
+}
+
+bibliodiv {
+  display: block;
+}
+
+biblioentry {
+  display: block;
+}
+
+bibliography {
+  display: block;
+}
+
+bibliographyinfo {
+  display: block;
+}
+
+bibliomixed {
+  display: block;
+}
+
+bibliomset {
+  display: block;
+}
+
+biblioset {
+  display: block;
+}
+
+bookinfo {
+  display: block;
+}
+
+callout {
+  display: block;
+}
+
+calloutlist {
+  display: block;
+}
+
+caption {
+  display: block;
+}
+
+chapterinfo {
+  display: block;
+}
+
+citerefentry {
+  display: inline;
+}
+
+classsynopsis {
+  display: block;
+}
+
+classsynopsisinfo {
+  display: block;
+}
+
+cmdsynopsis {
+  display: block;
+}
+
+colophon {
+  display: block;
+}
+
+confgroup {
+  display: block;
+}
+
+constant {
+  display: inline;
+}
+
+constructorsynopsis {
+  display: block;
+}
+
+country {
+  display: inline;
+}
+
+database {
+  display: inline;
+}
+
+date {
+  display: inline;
+}
+
+dedication {
+  display: block;
+}
+
+destructorsynopsis {
+  display: block;
+}
+
+edition {
+  display: inline;
+}
+
+envar {
+  display: inline;
+}
+
+epigraph {
+  display: block;
+}
+
+equation {
+  display: block;
+}
+
+fax {
+  display: inline;
+}
+
+fieldsynopsis {
+  display: block;
+}
+
+firstname {
+  display: inline;
+}
+
+firstterm {
+  display: inline;
+}
+
+foreignphrase {
+  display: inline;
+}
+
+funcdef {
+  display: inline;
+}
+
+funcparams {
+  display: inline;
+}
+
+funcsynopsis {
+  display: block;
+}
+
+funcsynopsisinfo {
+  display: block;
+}
+
+glossaryinfo {
+  display: block;
+}
+
+glosslist {
+  display: block;
+}
+
+glosssee {
+  display: block;
+}
+
+graphicco {
+  display: block;
+}
+
+hardware {
+  display: inline;
+}
+
+highlights {
+  display: block;
+}
+
+important {
+  display: block;
+}
+
+indexdiv {
+  display: block;
+}
+
+indexentry {
+  display: block;
+}
+
+indexinfo {
+  display: block;
+}
+
+informalequation {
+  display: block;
+}
+
+informalfigure {
+  display: block;
+}
+
+inlineequation {
+  display: inline;
+}
+
+inlinemediaobject {
+  display: inline;
+}
+
+interface {
+  display: inline;
+}
+
+interfacename {
+  display: inline;
+}
+
+invpartnumber {
+  display: inline;
+}
+
+isbn {
+  display: inline;
+}
+
+issn {
+  display: inline;
+}
+
+issuenum {
+  display: inline;
+}
+
+jobtitle {
+  display: inline;
+}
+
+keycode {
+  display: inline;
+}
+
+keysym {
+  display: inline;
+}
+
+lineage {
+  display: inline;
+}
+
+link {
+  display: inline;
+}
+
+lot {
+  display: block;
+}
+
+lotentry {
+  display: block;
+}
+
+markup {
+  display: inline;
+}
+
+medialabel {
+  display: inline;
+}
+
+mediaobject {
+  display: block;
+}
+
+mediaobjectco {
+  display: block;
+}
+
+methodname {
+  display: inline;
+}
+
+methodparam {
+  display: inline;
+}
+
+methodsynopsis {
+  display: block;
+}
+
+modespec {
+  display: none;
+}
+
+modifier {
+  display: inline;
+}
+
+mousebutton {
+  display: inline;
+}
+
+msgentry {
+  display: block;
+}
+
+msgset {
+  display: block;
+}
+
+ooclass {
+  display: inline;
+}
+
+ooexception {
+  display: inline;
+}
+
+oointerface {
+  display: inline;
+}
+
+orgdiv {
+  display: inline;
+}
+
+pagenums {
+  display: inline;
+}
+
+paramdef {
+  display: inline;
+}
+
+partinfo {
+  display: block;
+}
+
+phone {
+  display: inline;
+}
+
+prefaceinfo {
+  display: block;
+}
+
+productnumber {
+  display: inline;
+}
+
+programlistingco {
+  display: block;
+  white-space: pre;
+}
+
+prompt {
+  display: inline;
+}
+
+property {
+  display: inline;
+}
+
+pubdate {
+  display: inline;
+}
+
+publisher {
+  display: inline;
+}
+
+publishername {
+  display: inline;
+}
+
+qandadiv {
+  display: block;
+}
+
+pubsnumber {
+  display: inline;
+}
+
+qandaentry {
+  display: block;
+}
+
+qandaset {
+  display: block;
+}
+
+question {
+  display: block;
+}
+
+quote {
+  display: inline;
+}
+
+referenceinfo {
+  display: block;
+}
+
+refsect1info {
+  display: block;
+}
+
+refsect2info {
+  display: block;
+}
+
+refsect3 {
+  display: block;
+}
+
+refsect3info {
+  display: block;
+}
+
+returnvalue {
+  display: inline;
+}
+
+revdescription {
+  display: block;
+}
+
+revhistory {
+  display: block;
+}
+
+revision {
+  display: block;
+}
+
+screen {
+  display: block;
+  white-space: pre;
+}
+
+screenco {
+  display: block;
+  white-space: pre;
+}
+
+screeninfo {
+  display: block;
+}
+
+screenshot {
+  display: block;
+}
+
+section {
+  display: block;
+}
+
+sectioninfo {
+  display: block;
+}
+
+set {
+  display: block;
+}
+
+setindex {
+  display: block;
+}
+
+setindexinfo {
+  display: block;
+}
+
+setinfo {
+  display: block;
+}
+
+shortaffil {
+  display: inline;
+}
+
+sidebarinfo {
+  display: block;
+}
+
+simpara {
+  display: block;
+}
+
+simplesect {
+  display: block;
+}
+
+state {
+  display: inline;
+}
+
+structfield {
+  display: inline;
+}
+
+structname {
+  display: inline;
+}
+
+subjectset {
+  display: block;
+}
+
+subtitle {
+  display: block;
+}
+
+surname {
+  display: inline;
+}
+
+symbol {
+  display: inline;
+}
+
+synopfragment {
+  display: inline;
+}
+
+textobject {
+  display: block;
+}
+
+tip {
+  display: block;
+  margin-left: 1pc;
+  margin-right: 1pc;
+}
+
+tip:before {
+  content: "Tip: ";
+  font-weight: bold;
+}
+
+toc {
+  display: block;
+}
+
+tocback {
+  display: block;
+}
+
+token {
+  display: inline;
+}
+
+type {
+  display: inline;
+}
+
+varargs {
+  display: inline;
+}
+
+varname {
+  display: inline;
+}
+
+void {
+  display: inline;
+}
+
+volumenum {
+  display: inline;
+}
+
+xref {
+  display: inline;
+}
