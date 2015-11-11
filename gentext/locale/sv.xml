@@ -77,6 +77,8 @@
 <gentext key="Procedure" text="Procedur"/>
 <gentext key="procedure" text="Procedur"/>
 <gentext key="ProductionSet" text="Production"/> <!-- en -->
+<gentext key="PubDate" text="Publiceringsdatum"/>
+<gentext key="pubdate" text="publiceringsdatum"/>
 <gentext key="Published" text="Publicerad"/>
 <gentext key="published" text="Publicerad"/>
 <gentext key="Qandadiv" text="Fr&#229;ga och A"/>
