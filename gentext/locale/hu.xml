@@ -83,8 +83,8 @@
 <gentext key="Procedure" text="Eljárás"/>
 <gentext key="procedure" text="eljárás"/>
 <gentext key="ProductionSet" text="Elemcsoport"/>
-<gentext key="PubDate" text="Publication Date"/>
-<gentext key="pubdate" text="Publication date"/>
+<gentext key="PubDate" text="Kiadás dátuma"/>
+<gentext key="pubdate" text="kiadás dátuma"/>
 <gentext key="Published" text="Megjelent"/>
 <gentext key="published" text="megjelent"/>
 <gentext key="Publisher" text="Kiadó"/>

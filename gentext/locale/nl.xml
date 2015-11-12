@@ -88,8 +88,8 @@
 <gentext key="Procedure" text="Procedure"/>
 <gentext key="procedure" text="procedure"/>
 <gentext key="ProductionSet" text="Productie"/> 
-<gentext key="PubDate" text="Publicatie datum"/>
-<gentext key="pubdate" text="publicatie datum"/>
+<gentext key="PubDate" text="Publicatiedatum"/>
+<gentext key="pubdate" text="publicatiedatum"/>
 <gentext key="Published" text="Uitgegeven"/>
 <gentext key="published" text="uitgegeven"/> 
 <gentext key="Publisher" text="Uitgever"/>
