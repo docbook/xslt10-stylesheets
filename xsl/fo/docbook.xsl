@@ -13,7 +13,7 @@
 <xsl:output method="xml" indent="no"/>
 
 <!-- ********************************************************************
-     $Id$
+     $Id: docbook.xsl 9988 2015-09-17 20:22:22Z bobstayton $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -77,6 +77,7 @@
 <xsl:include href="ebnf.xsl"/>
 <xsl:include href="../html/chunker.xsl"/>
 <xsl:include href="annotations.xsl"/>
+<xsl:include href="publishers.xsl"/>
 <xsl:include href="../common/stripns.xsl"/>
 
 <xsl:include href="fop.xsl"/>

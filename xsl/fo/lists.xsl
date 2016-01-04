@@ -4,7 +4,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id$
+     $Id: lists.xsl 9999 2015-10-15 17:55:56Z bobstayton $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -594,6 +594,7 @@
 
 <xsl:template match="varlistentry/term">
   <fo:inline>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content">
         <xsl:apply-templates/>

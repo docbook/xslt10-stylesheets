@@ -19,7 +19,7 @@
              t:copy-namespaces="fo">
 
 <!-- ********************************************************************
-     $Id$
+     $Id: titlepage.templates.xml 9990 2015-09-17 20:52:14Z bobstayton $
      ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
@@ -822,6 +822,108 @@
 </t:titlepage>
 
 <t:titlepage t:element="simplesect" t:wrapper="fo:block">
+  <t:titlepage-content t:side="recto">
+    <title
+	   margin-left="{$title.margin.left}"
+	   font-family="{$title.fontset}"/>
+    <subtitle
+	      font-family="{$title.fontset}"/>
+    <corpauthor/>
+    <authorgroup/>
+    <author/>
+    <othercredit/>
+    <releaseinfo/>
+    <copyright/>
+    <legalnotice/>
+    <pubdate/>
+    <revision/>
+    <revhistory/>
+    <abstract/>
+    <itermset/>
+  </t:titlepage-content>
+
+  <t:titlepage-content t:side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before t:side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before t:side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<t:titlepage t:element="dialogue" t:wrapper="fo:block">
+  <t:titlepage-content t:side="recto">
+    <title
+	   margin-left="{$title.margin.left}"
+	   font-family="{$title.fontset}"/>
+    <subtitle
+	      font-family="{$title.fontset}"/>
+    <corpauthor/>
+    <authorgroup/>
+    <author/>
+    <othercredit/>
+    <releaseinfo/>
+    <copyright/>
+    <legalnotice/>
+    <pubdate/>
+    <revision/>
+    <revhistory/>
+    <abstract/>
+    <itermset/>
+  </t:titlepage-content>
+
+  <t:titlepage-content t:side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before t:side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before t:side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<t:titlepage t:element="drama" t:wrapper="fo:block">
+  <t:titlepage-content t:side="recto">
+    <title
+	   margin-left="{$title.margin.left}"
+	   font-family="{$title.fontset}"/>
+    <subtitle
+	      font-family="{$title.fontset}"/>
+    <corpauthor/>
+    <authorgroup/>
+    <author/>
+    <othercredit/>
+    <releaseinfo/>
+    <copyright/>
+    <legalnotice/>
+    <pubdate/>
+    <revision/>
+    <revhistory/>
+    <abstract/>
+    <itermset/>
+  </t:titlepage-content>
+
+  <t:titlepage-content t:side="verso">
+  </t:titlepage-content>
+
+  <t:titlepage-separator>
+  </t:titlepage-separator>
+
+  <t:titlepage-before t:side="recto">
+  </t:titlepage-before>
+
+  <t:titlepage-before t:side="verso">
+  </t:titlepage-before>
+</t:titlepage>
+
+<t:titlepage t:element="poetry" t:wrapper="fo:block">
   <t:titlepage-content t:side="recto">
     <title
 	   margin-left="{$title.margin.left}"
