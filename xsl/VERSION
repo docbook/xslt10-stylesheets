@@ -26,7 +26,7 @@
   <fm:Branch>XSL Stylesheets</fm:Branch>
   <!-- * set/keep fm:version as N.NN.N-pre except for official releases, -->
   <!-- * then after the release, revert it to N.NN.N-pre & check back in -->
-  <fm:Version>1.78.1</fm:Version>
+  <fm:Version>1.79.1</fm:Version>
 <!--
   <fm:License>MIT/X Consortium License</fm:License>
 -->
