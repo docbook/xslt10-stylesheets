@@ -39,6 +39,10 @@
 <gentext key="copyright" text="Copyright"/>
 <gentext key="Dedication" text="Dedication"/>
 <gentext key="dedication" text="Dedication"/>
+<gentext key="Dialogue" text="Dialogue"/>
+<gentext key="dialogue" text="Dialogue"/>
+<gentext key="Drama" text="Drama"/>
+<gentext key="drama" text="Drama"/>
 <gentext key="Edition" text="Edition"/>
 <gentext key="edition" text="Edition"/>
 <gentext key="Editor" text="Editor"/>
@@ -74,6 +78,8 @@
 <gentext key="note" text="Note"/>
 <gentext key="Part" text="Part"/>
 <gentext key="part" text="Part"/>
+<gentext key="Poetry" text="Poetry"/>
+<gentext key="poetry" text="Poetry"/>
 <gentext key="Preface" text="Preface"/>
 <gentext key="preface" text="Preface"/>
 <gentext key="Procedure" text="Procedure"/>
@@ -367,6 +373,9 @@
 <template name="simplesect">%t</template>
 <template name="topic">%t</template>
 <template name="part">%t</template>
+<template name="dialogue">%t</template>
+<template name="drama">%t</template>
+<template name="poetry">%t</template>
 
 </context>
 
@@ -430,6 +439,9 @@
 <template name="simplesect">%s</template>
 <template name="topic">%t</template>
 <template name="toc">%s</template>
+<template name="dialogue">%s</template>
+<template name="drama">%s</template>
+<template name="poetry">%s</template>
 
 </context>
 
@@ -507,6 +519,9 @@
 <template name="pageabbrev">(p. %p)</template>
 <template name="Page">Page %p</template>
 <template name="topic">%t</template>
+<template name="dialogue">%t</template>
+<template name="drama">%t</template>
+<template name="poetry">%t</template>
 
 <template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
