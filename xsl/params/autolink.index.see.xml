@@ -31,7 +31,7 @@ applying the <literal>normalize-space()</literal> function.
 If the <tag>see</tag> or <tag>seealso</tag> text contains a comma,
 then only the text prior to the comma is used.
 This assumes the author is using the convention "see primary, secondary"
-to specify a subentry.  Thus links always land on the primary
+to specify a subentry.  Automatic links always land on the primary
 entry in the index, so the reader has to look down to see the
 secondary entry.</para>
 <para>If there is no match on a 
@@ -40,20 +40,18 @@ still displays.</para>
 
 <para>No attempt is made to automatically link to text in
 <tag>secondary</tag> or <tag>tertiary</tag> elements.
+If you want to link to such elements, you can form a
+manual link by adding a linkend attribute to the 
+<tag>see</tag> or <tag>seealso</tag> element, where
+the linkend references an id or xml:id attribute on
+such a subelement.  Such manual links take precedence over
+any automatic links.
 </para>
 
 <para>If this parameter is zero, then
 no automatic links from see and seealso
-are formed within the index. </para>
-
-<caution><para>?Trying to form manual links to indexterm
-child elements such as <tag>primary</tag> or
-<tag>secondary</tag> may produce erratic results.
-Duplicate entries in an index are merged during processing, and
-not all id attributes on those child elements are copied through
-to the output.
-</para></caution>
-
+are formed within the index.  Any manual links are
+still processed, however.</para>
 
 </refsection>
 </refentry>
