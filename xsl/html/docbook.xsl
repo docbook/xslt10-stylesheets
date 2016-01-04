@@ -9,7 +9,7 @@
             indent="no"/>
 
 <!-- ********************************************************************
-     $Id$
+     $Id: docbook.xsl 9983 2015-09-16 20:58:50Z bobstayton $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -72,6 +72,7 @@
 <xsl:include href="html-rtf.xsl"/>
 <xsl:include href="annotations.xsl"/>
 <xsl:include href="../common/stripns.xsl"/>
+<xsl:include href="publishers.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'html'"/>
 <xsl:param name="htmlhelp.output" select="0"/>
