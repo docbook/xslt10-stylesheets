@@ -55,6 +55,10 @@
 <gentext key="copyright" text="版权"/>
 <gentext key="Dedication" text="题词"/>
 <gentext key="dedication" text="题词"/>
+<gentext key="Dialogue" text="对白"/>
+<gentext key="dialogue" text="对白"/>
+<gentext key="Drama" text="剧本"/>
+<gentext key="drama" text="剧本"/>
 <gentext key="Edition" text="版"/>
 <gentext key="edition" text="版"/>
 <gentext key="Editor" text="编者"/>
@@ -90,6 +94,8 @@
 <gentext key="note" text="注意"/>
 <gentext key="Part" text="部分"/>
 <gentext key="part" text="部分"/>
+<gentext key="Poetry" text="诗歌"/>
+<gentext key="poetry" text="诗歌"/>
 <gentext key="Preface" text="前言"/>
 <gentext key="preface" text="前言"/>
 <gentext key="Procedure" text="过程"/>
@@ -127,9 +133,9 @@
 <gentext key="sect5" text="节"/>
 <gentext key="section" text="节"/>
 <gentext key="Section" text="节"/>
-<gentext key="see" text="见"/>   
+<gentext key="see" text="见"/>
 <gentext key="See" text="见"/>
-<gentext key="seealso" text="参见"/> 
+<gentext key="seealso" text="参见"/>
 <gentext key="Seealso" text="参见"/>
 <gentext key="SeeAlso" text="参见"/>
 <gentext key="set" text="集合"/>
@@ -154,6 +160,7 @@
 <gentext key="and" text="和"/>
 <gentext key="or" text="或"/>
 <gentext key="by" text="由"/>
+<gentext key="optional-step" text="(可选的) "/>
 <gentext key="Edited" text="编辑时间"/>
 <gentext key="edited" text="编辑时间"/>
 <gentext key="Editedby" text="编辑"/>
@@ -174,6 +181,8 @@
 <gentext key="unexpectedelementname" text="未预期的名称"/>
 <gentext key="unsupported" text="不支持"/>
 <gentext key="xrefto" text="xref to"/>
+<gentext key="video-unsupported" text="你的浏览器不支持 video 标签"/>
+<gentext key="audio-unsupported" text="你的浏览器不支持 audio 标签"/>
 
 <!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
 <!-- * in a man page AUTHORS section which lists multiple authors -->
@@ -233,6 +242,46 @@
 <gentext key="hyphenation-character" text="-"/>
 <gentext key="hyphenation-push-character-count" text="2"/>
 <gentext key="hyphenation-remain-character-count" text="2"/>
+
+<context name="keycap">
+  <template name="alt">Alt</template>
+  <template name="backspace">&lt;&#x2014;</template><!-- mdash -->
+  <template name="command">&#x2318;</template><!-- Apple key -->
+  <template name="control">Ctrl</template>
+  <template name="delete">Del</template>
+  <template name="down">&#x2193;</template><!-- darr -->
+  <template name="end">End</template>
+  <template name="enter">Enter</template>
+  <template name="escape">Esc</template>
+  <template name="home">Home</template>
+  <template name="insert">Ins</template>
+  <template name="left">&#x2190;</template><!-- larr -->
+  <template name="meta">Meta</template>
+  <template name="option">&#x2325;</template><!-- on Apple keyboards -->
+  <template name="pagedown">Page &#x02193;</template>
+  <template name="pageup">Page &#x02191;</template>
+  <template name="right">&#x2192;</template><!-- rarr -->
+  <template name="shift">Shift</template>
+  <template name="space">Space</template>
+  <template name="tab">&#x02192;|</template>
+  <template name="up">&#x02191;</template><!-- uarr -->
+</context>
+
+<!-- WebHelp -->
+<context name="webhelp">
+  <template name="Search">搜索</template>
+  <template name="Enter_a_term_and_click">输入字词，然后点击 </template>
+  <template name="Go">去</template>
+  <template name="to_perform_a_search"> to perform a search.</template>
+  <template name="txt_filesfound">条结果</template>
+  <template name="txt_enter_at_least_1_char">您必须输入至少一个字符。</template>
+  <template name="txt_browser_not_supported">JavaScript is disabled on your browser. Please enable JavaScript to enjoy all the features of this site.</template>
+  <template name="txt_please_wait">请稍候。搜索中...</template>
+  <template name="txt_results_for">结果： </template>
+  <template name="TableofContents">Contents</template>
+  <template name="HighlightButton">Toggle search result highlighting</template>
+  <template name="Your_search_returned_no_results">Your search returned no results.</template>
+</context>
 
 <context name="styles">
 
@@ -306,6 +355,7 @@
 <template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="refsynopsisdivinfo">%t</template>
+<template name="screenshot">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
@@ -337,7 +387,11 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="topic">%t</template>
 <template name="part">%t</template>
+<template name="dialogue">%t</template>
+<template name="drama">%t</template>
+<template name="poetry">%t</template>
 
 </context>
 
@@ -355,6 +409,7 @@
 <template name="sect5">%n.&#160;%t</template>
 <template name="section">%n.&#160;%t</template>
 <template name="simplesect">%t</template>
+<template name="topic">%t</template>
 
 </context>
 
@@ -398,7 +453,11 @@
 <template name="setindex">%s</template>
 <template name="sidebar">%s</template>
 <template name="simplesect">%s</template>
+<template name="topic">%t</template>
 <template name="toc">%s</template>
+<template name="dialogue">%s</template>
+<template name="drama">%s</template>
+<template name="poetry">%s</template>
 
 </context>
 
@@ -455,6 +514,7 @@
 <template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
 <template name="refsynopsisdiv">%t</template>
+<template name="screenshot">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
@@ -474,6 +534,10 @@
 <template name="docnamelong"> 在文档标题 %o</template>
 <template name="pageabbrev">(第 %p 页)</template>
 <template name="Page">第 %p 页</template>
+<template name="topic">%t</template>
+<template name="dialogue">%t</template>
+<template name="drama">%t</template>
+<template name="poetry">%t</template>
 
 <template name="bridgehead"><startquote/>%t<endquote/><sectioncalled/></template>
 <template name="refsection"><startquote/>%t<endquote/><sectioncalled/></template>
