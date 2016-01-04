@@ -10,7 +10,7 @@
 <info>
 <title>HTML Parameter Reference</title>
 <releaseinfo role="meta">
-$Id$
+$Id: param.xweb 9995 2015-10-01 16:34:45Z bobstayton $
 </releaseinfo>
 <author>
   <personname>
@@ -343,6 +343,7 @@ profiling of your document. For more information about profiling, see
 &profile.conformance;
 &profile.lang;
 &profile.os;
+&profile.outputformat;
 &profile.revision;
 &profile.revisionflag;
 &profile.role;
@@ -446,7 +447,7 @@ around all these parameters.</para>
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id$
+     $Id: param.xweb 9995 2015-10-01 16:34:45Z bobstayton $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -690,6 +691,7 @@ around all these parameters.</para>
 <src:fragref linkend="profile.conformance.frag"/>
 <src:fragref linkend="profile.lang.frag"/>
 <src:fragref linkend="profile.os.frag"/>
+<src:fragref linkend="profile.outputformat.frag"/>
 <src:fragref linkend="profile.revision.frag"/>
 <src:fragref linkend="profile.revisionflag.frag"/>
 <src:fragref linkend="profile.role.frag"/>

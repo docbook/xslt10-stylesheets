@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id$
+     $Id: titlepage.xsl 9983 2015-09-16 20:58:50Z bobstayton $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -118,6 +118,16 @@
 
 <xsl:attribute-set name="list.of.unknowns.titlepage.recto.style"/>
 <xsl:attribute-set name="list.of.unknowns.contents.titlepage.verso.style"/>
+
+<xsl:attribute-set name="dialogue.titlepage.recto.style"/>
+<xsl:attribute-set name="dialogue.titlepage.verso.style"/>
+
+<xsl:attribute-set name="drama.titlepage.recto.style"/>
+<xsl:attribute-set name="drama.titlepage.verso.style"/>
+
+<xsl:attribute-set name="poetry.titlepage.recto.style"/>
+<xsl:attribute-set name="poetry.titlepage.verso.style"/>
+
 
 <!-- ==================================================================== -->
 
