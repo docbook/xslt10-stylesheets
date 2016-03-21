@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/releasetools/Variables.mk
+include $(repo_dir)/releasetools/Variables.mk
 
 XJPARSEFLAGS= -E 0 -w
 FO_BUILDER=saxon
@@ -40,7 +40,7 @@ DIRS=common fo html lib manpages pi refentry roundtrip slides template utility w
 # otherwise, xsltproc reports duplicate ID errors...
 %.included: %
 	$(XINCLUDE) $< > $@.tmp
-	$(DOCBOOK_SVN)/buildtools/saxon $@.tmp $(XMLID_TO_ID) > $@
+	$(repo_dir)/buildtools/saxon $@.tmp $(XMLID_TO_ID) > $@
 	$(RM) $@.tmp
 
 # build reference.pdf.gz except for snapshot and "-pre" releases
@@ -65,7 +65,7 @@ reference.css: ../docsrc/reference.css
 	for dir in $(DIRS); do cp -p $< $$dir; done
 
 reference.fo: ../docsrc/reference.xml.included $(REFERENCEFOXSL) fo/page.png $(DOC_SOURCE_XML_FILES)
-	$(DOCBOOK_SVN)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
+	$(repo_dir)/buildtools/xslt -$(FO_BUILDER) $< $(REFERENCEFOXSL) > $@
 
 reference.pdf: reference.fo
 ifeq ($(PDF_MAKER),dblatex)

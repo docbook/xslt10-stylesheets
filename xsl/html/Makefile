@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include $(repo_dir)/buildtools/Makefile.incl
 
 PARAMBASE=param
 XSLFILES=param.xsl profile-docbook.xsl profile-chunk-code.xsl
@@ -14,10 +14,10 @@ ifeq ($(XSLTENGINE),saxon)
 profile-chunk-code.xsl: chunk-code.xsl ../profiling/xsl2profile.xsl
 	$(XSLT) $< ../profiling/xsl2profile.xsl $@
 else
-profile-chunk-code.xsl: chunk-code.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl
-	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl $@
+profile-chunk-code.xsl: chunk-code.xsl $(repo_dir)/xsl/profiling/xsl2profile.xsl
+	$(XSLT) $< $(repo_dir)/xsl/profiling/xsl2profile.xsl $@
 endif
 else
-profile-chunk-code.xsl: chunk-code.xsl $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl
-	$(XSLT) $< $(DOCBOOK_SVN)/xsl/profiling/xsl2profile.xsl $@
+profile-chunk-code.xsl: chunk-code.xsl $(repo_dir)/xsl/profiling/xsl2profile.xsl
+	$(XSLT) $< $(repo_dir)/xsl/profiling/xsl2profile.xsl $@
 endif

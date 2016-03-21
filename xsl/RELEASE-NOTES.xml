@@ -4770,7 +4770,7 @@ HTML build.</phrase></screen>
             <filename>extensions</filename> code
             since the 1.73.2 release.</para>
 <itemizedlist>
-<listitem> <para><literal>Keith Fahlgren: Makefile</literal></para><screen><phrase role="commit-message">Use DOCBOOK_SVN variable everywhere, please; build with PDF_MAKER</phrase></screen> </listitem>
+<listitem> <para><literal>Keith Fahlgren: Makefile</literal></para><screen><phrase role="commit-message">Use repo_dir variable everywhere, please; build with PDF_MAKER</phrase></screen> </listitem>
 <listitem>
 <para><literal>Michael(tm) Smith: Makefile</literal></para><screen><phrase role="commit-message">moved extensions build targets from master xsl/Makefile to
 xsl/extensions/Makefile</phrase></screen>

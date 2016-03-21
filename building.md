@@ -50,7 +50,7 @@ lock file, and continues.
 13. Build the XSL files using this command. This Makefile must also build the -ns version as well, because no other commands in the script do so.
 
     ```
-    make distrib -C xsl XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" \
+    make distrib -C xsl XSLT="$repo_dir/buildtools/xslt -$ENGINE" \
       PDF_MAKER=$PDF_MAKER
     ```
 14. echo some descriptive text to a file named header.txt.
@@ -58,7 +58,7 @@ lock file, and continues.
 
     ```
     make zip-ns -C xsl ZIPVER=$RELEASEVERSION TMP=$TMP \
-      XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+      XSLT="$repo_dir/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
     ```
     where `$RELEASEVERSION` is the value from the -v command line option.
 16. Generate a list of changes to a LatestChanges file using this command:

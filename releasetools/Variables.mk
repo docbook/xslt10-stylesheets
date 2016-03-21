@@ -8,23 +8,23 @@
 
 # $Id$
 
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include $(repo_dir)/buildtools/Makefile.incl
 
-RELEASE_ANNOUNCE=$(DOCBOOK_SVN)/releasetools/release-announce
+RELEASE_ANNOUNCE=$(repo_dir)/releasetools/release-announce
 ANNOUNCE_RECIPIENTS=docbook-apps@lists.oasis-open.org
 ANNOUNCE_CHANGES=RELEASE-NOTES-PARTIAL.txt
-FRESHMEAT_SUBMIT=$(DOCBOOK_SVN)/releasetools/freshmeat-submit
+FRESHMEAT_SUBMIT=$(repo_dir)/releasetools/freshmeat-submit
 
-CATALOGMANAGER=$(DOCBOOK_SVN)/releasetools/.CatalogManager.properties.example
-INSTALL_SH=$(DOCBOOK_SVN)/releasetools/install.sh
+CATALOGMANAGER=$(repo_dir)/releasetools/.CatalogManager.properties.example
+INSTALL_SH=$(repo_dir)/releasetools/install.sh
 ifneq ($(shell uname -s | grep -i cygwin),)
 ifeq ($(XSLTENGINE),saxon)
 MAKECATALOG=../releasetools/make-catalog.xsl
 else
-MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
+MAKECATALOG=$(repo_dir)/releasetools/make-catalog.xsl
 endif
 else
-MAKECATALOG=$(DOCBOOK_SVN)/releasetools/make-catalog.xsl
+MAKECATALOG=$(repo_dir)/releasetools/make-catalog.xsl
 endif
 
 ifneq ($(shell uname -s | grep -i cygwin),)
@@ -32,12 +32,12 @@ ifeq ($(XSLTENGINE),saxon)
 DOCBUILD_STYLESHEETS=../../xsl/tools/xsl/build
 RELEASEDOC_STYLESHEETS=../xsl/tools/xsl/build
 else
-DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
-RELEASEDOC_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
+DOCBUILD_STYLESHEETS=$(repo_dir)/xsl/tools/xsl/build
+RELEASEDOC_STYLESHEETS=$(repo_dir)/xsl/tools/xsl/build
 endif
 else
-DOCBUILD_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
-RELEASEDOC_STYLESHEETS=$(DOCBOOK_SVN)/xsl/tools/xsl/build
+DOCBUILD_STYLESHEETS=$(repo_dir)/xsl/tools/xsl/build
+RELEASEDOC_STYLESHEETS=$(repo_dir)/xsl/tools/xsl/build
 endif
 
 PARAMPROF=$(VPATH)/.param.profiled
@@ -85,12 +85,12 @@ DBX_STYLE=$(RELEASEDOC_STYLESHEETS)/dblatex-release-notes.xsl
 # MARKUP_XSL is a modified version of Jeni Tennison's "Markup Utility"
 ifneq ($(shell uname -s | grep -i cygwin),)
 ifeq ($(XSLTENGINE),saxon)
-MARKUP_XSL=$(DOCBOOK_SVN)/releasetools/modified-markup.xsl
+MARKUP_XSL=$(repo_dir)/releasetools/modified-markup.xsl
 else
 MARKUP_XSL=../releasetools/modified-markup.xsl
 endif
 else
-MARKUP_XSL=$(DOCBOOK_SVN)/releasetools/modified-markup.xsl
+MARKUP_XSL=$(repo_dir)/releasetools/modified-markup.xsl
 endif
 
 # stylesheet used in taking XML output from "svn log" and using it
@@ -99,10 +99,10 @@ ifneq ($(shell uname -s | grep -i cygwin),)
 ifeq ($(XSLTENGINE),saxon)
 SVNLOG2DOCBOOK=../releasetools/svnlog2docbook.xsl
 else
-SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
+SVNLOG2DOCBOOK=$(repo_dir)/releasetools/svnlog2docbook.xsl
 endif
 else
-SVNLOG2DOCBOOK=$(DOCBOOK_SVN)/releasetools/svnlog2docbook.xsl
+SVNLOG2DOCBOOK=$(repo_dir)/releasetools/svnlog2docbook.xsl
 endif
 
 SVN_INFO_FILE=.svninfo.xml
@@ -246,10 +246,10 @@ ifneq ($(shell uname -s | grep -i cygwin),)
 ifeq ($(XSLTENGINE),saxon)
 EVALXPATH=../releasetools/eval-xpath.xsl
 else
-EVALXPATH=$(DOCBOOK_SVN)/releasetools/eval-xpath.xsl
+EVALXPATH=$(repo_dir)/releasetools/eval-xpath.xsl
 endif
 else
-EVALXPATH=$(DOCBOOK_SVN)/releasetools/eval-xpath.xsl
+EVALXPATH=$(repo_dir)/releasetools/eval-xpath.xsl
 endif
 
 XMLLINT=xmllint

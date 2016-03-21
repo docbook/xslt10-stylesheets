@@ -22,7 +22,7 @@ zip-ns: zip
 	$(RM)  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER).zip
 	(cd $(TMP) && \
 	  unzip $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip && \
-	  $(DOCBOOK_SVN)/releasetools/xslns-build \
+	  $(repo_dir)/releasetools/xslns-build \
 	  docbook-$(DISTRO)-$(ZIPVER) \
 	  docbook-$(DISTRO)-ns-$(ZIPVER)); 
 
@@ -30,11 +30,11 @@ zip-ns: zip
 # Run xslt on xsl/webhelp/docsrc/readme.xml
 	$(XSLT) \
 	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/readme.xml \
-	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl \
+	$(repo_dir)/docbook/relaxng/tools/db4-upgrade.xsl \
 	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/readme.xml 
 	$(XSLT) \
 	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/xinclude-test.xml \
-	$(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl \
+	$(repo_dir)/docbook/relaxng/tools/db4-upgrade.xsl \
 	$(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/webhelp/docsrc/xinclude-test.xml 
 
 # Turn off validation in webhelp:
@@ -127,6 +127,6 @@ install-ns: install upload-to-project-webspace-ns
 
 announce-ns: announce
 	$(RELEASE_ANNOUNCE) "XSL-NS Stylesheets" "$(RELVER)" \
-	  $(DOCBOOK_SVN)/releasetools/xslnsfiles/announcement-text \
+	  $(repo_dir)/releasetools/xslnsfiles/announcement-text \
 	  $(ANNOUNCE_CHANGES) \
 	 "$(ANNOUNCE_RECIPIENTS)"

@@ -61,7 +61,7 @@ NEWS.xml: ChangeLog.xml
 	param.file="$(XSL_PARAMS)"
 
 	mv NEWS.xml NEWS-4.xml
-	$(XSLT) NEWS-4.xml $(DOCBOOK_SVN)/docbook/relaxng/tools/db4-upgrade.xsl $@
+	$(XSLT) NEWS-4.xml $(repo_dir)/docbook/relaxng/tools/db4-upgrade.xsl $@
 	rm NEWS-4.xml
 
 NEWS.html: NEWS.xml
@@ -251,7 +251,7 @@ announce: $(ANNOUNCE_CHANGES) .announcement-text
 	$(RELEASE_ANNOUNCE) "$(DISTRO_TITLE)" "$(RELVER)" .announcement-text $< "$(ANNOUNCE_RECIPIENTS)"
 
 tag:
-ifeq (,$(shell svn status))
+ifeq (,$(shell git status --porcelain))
 ifneq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO) 2>/dev/null))
 	  $(SVN) $(SVN_OPTS) delete -m "deleting the $(DISTRO) $(ZIPVER) tag" \
 	    $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)

@@ -21,17 +21,18 @@ EOF
   exit 1
 fi
 
-# fail if no DOCBOOK_SVN set
-if [ -z "$DOCBOOK_SVN" ]; then
+export repo_dir=`dirname $(cd $(dirname $0); pwd)`
+# fail if no repo_dir set
+if [ -z "$repo_dir" ]; then
   cat <<- EOF
-`basename $0`: error: DOCBOOK_SVN not set. Stopping.
+`basename $0`: error: repo_dir not set. Stopping.
 
-Before invoking `basename $0`, you must set the DOCBOOK_SVN
+Before invoking `basename $0`, you must set the repo_dir
 environment variable in the environment from which the script
-runs. The value of DOCBOOK_SVN should be the absolute path to the
+runs. The value of repo_dir should be the absolute path to the
 base of a DocBook Project Subversion working directory that
 contains the various DocBook Project modules; that is, such that
-the modules can be found in \$DOCBOOK_SVN/xsl, etc.
+the modules can be found in \$repo_dir/xsl, etc.
 EOF
   exit 1
 fi
@@ -78,7 +79,7 @@ Options:
      Specifies the location of the base directory containing the
      SVN working directories for modules from the DocBook project
      (directory containing 'xsl', 'dsssl', 'slides', etc. subdirs)
-     Default: value of the DOCBOOK_SVN environment variable, if
+     Default: value of the repo_dir environment variable, if
      set; otherwise, the directory from which the script is run.
 
   -d DOMAIN
@@ -182,6 +183,9 @@ fi
 cd $BUILDDIR
 
 DISTROS="$@"
+if [ -z "$DISTROS" ]; then
+  DISTROS=xsl
+fi
 
 if [ -z "$DISTROS" ]; then
   echo
@@ -191,8 +195,8 @@ if [ -z "$DISTROS" ]; then
   printf "$opts_admon"
   exit 1;
 else
-  svn cleanup
-  REVISION=$(svn update > /dev/null 2>&1 && svn info | grep "^Revision:" | sed -r 's/^Revision: (.+)$/\1/')
+  # We may want to use `git describe` here, once we use real tags...
+  REVISION=$(git rev-parse HEAD)
   for DISTRO in $DISTROS; do
     printf "Running svn update in gentext and $DISTRO working directories...\n" 1>&2
     if test "$SVNCHECK" = "yes"; then
@@ -246,7 +250,7 @@ else
     #fi
     #rm -f $DISTRO/LatestTag
     rm -f $DISTRO/VERSION
-    svn update $DISTRO/VERSION 1>/dev/null 2>&1
+    git checkout $DISTRO/VERSION
 
     printf "." 1>&2
 
@@ -292,9 +296,9 @@ else
     echo
 
     if test "$SVNCHECK" = "yes"; then
-      make distrib -C $DISTRO XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+      make distrib -C $DISTRO XSLT="$repo_dir/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
     else
-      make release -C $DISTRO XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
+      make release -C $DISTRO XSLT="$repo_dir/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER
     fi
 
     cat <<- EOF > HEADER.txt
@@ -307,7 +311,7 @@ These snapshots are intended for testing purposes only and otherwise come with
 no guarantees. Any of them may in fact be broken at any given time.
 EOF
 
-    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP XSLT="$DOCBOOK_SVN/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER || exit 1
+    make $ZIPTARG -C $DISTRO ZIPVER=$RELEASEVERSION TMP=$TMP XSLT="$repo_dir/buildtools/xslt -$ENGINE" PDF_MAKER=$PDF_MAKER || exit 1
 
     cat <<- EOF > $TMP/line.tmp
 
@@ -316,7 +320,7 @@ Latest Changes:
 --------------------------------------------------------------------------------
 
 EOF
-    svn cleanup && svn update && svn log --verbose --limit 200 > LatestChanges
+    git log -n 200 > LatestChanges
 
     cat HEADER.txt $TMP/line.tmp LatestChanges > README.txt
     rm $TMP/line.tmp
@@ -366,7 +370,7 @@ To: docbook-snapshots@lists.sourceforge.net
 EOF
 
     # Run build-check and determine if it exits without any errors
-    if $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp
+    if $repo_dir/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp
     then
       # build-check completed successfully, so prepare the
       # buildbot message accordingly
@@ -375,7 +379,7 @@ EOF
       echo "$DISTRO snapshot $REVISION appears to have been built successfully" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # append the commit message for this revision
-      /usr/bin/svn log -r$REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      git show --quiet $REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "For further details about the code changes in this revision, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "http://docbook.svn.sf.net/docbook/?rev=$REVISION&view=rev" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
@@ -390,10 +394,10 @@ EOF
       echo "The $DISTRO snapshot build appears to be broken at r$REVISION or before." >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # run buildcheck again and copy the output to the beginning
       # of the buildbot message
-      $DOCBOOK_SVN/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      $repo_dir/buildtools/build-check $LOGDIR/docbook-$DISTRO-$RELEASEVERSION.log.tmp >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       # append the commit message for this revision
-      /usr/bin/svn log -r$REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
+      git show --quiet $REVISION >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo "For further details about the code changes in this revision, see:" >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt
       echo >> $TMP/docbook-$DISTRO-$RELEASEVERSION-message.txt

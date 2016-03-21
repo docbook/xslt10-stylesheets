@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/releasetools/Variables.mk
+include $(repo_dir)/releasetools/Variables.mk
 
 XJPARSEFLAGS= -E 0 -w
 
@@ -13,10 +13,10 @@ ifneq ($(shell uname -s | grep -i cygwin),)
 ifeq ($(XSLTENGINE),saxon)
 DOCBOOK_RNG=../../releasetools/docbook.rng
 else
-DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
+DOCBOOK_RNG=$(repo_dir)/releasetools/docbook.rng
 endif
 else
-DOCBOOK_RNG=$(DOCBOOK_SVN)/releasetools/docbook.rng
+DOCBOOK_RNG=$(repo_dir)/releasetools/docbook.rng
 endif
 PARAM_XSL_FILES=$(foreach format,$(PARAM_DIRS),../$(format)/param.xsl)
 PI_XSL_FILES=$(foreach format,$(PI_DIRS),../$(format)/pi.xsl)
