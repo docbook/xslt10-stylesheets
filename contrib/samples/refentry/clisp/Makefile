@@ -3,7 +3,7 @@ all: clisp/doc
 clisp:
 	cvs -z3 -d:pserver:anonymous@clisp.cvs.sourceforge.net:/cvsroot/clisp co -P clisp
 clisp/doc: clisp
-	$(MAKE) -C clisp/doc STYLESHEETS_PATH=$(DOCBOOK_SVN)/xsl/
+	$(MAKE) -C clisp/doc STYLESHEETS_PATH=$(repo_dir)/xsl/
 clean:
 	$(MAKE) -C clisp/doc clean
 realclean:

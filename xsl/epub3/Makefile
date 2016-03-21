@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include $(repo_dir)/buildtools/Makefile.incl
 
 TARGETNS=http://www.w3.org/1999/xhtml
 

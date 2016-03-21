@@ -26,7 +26,7 @@ DISTRIB_EXCLUDES = \
 ANT = ant
 ANT_OPTS =
 
-all: saxon65.jar javadoc
+all: saxon65.jar #javadoc
 
 saxon65.jar: $(wildcard src/com/nwalsh/saxon/*.java)
 	$(ANT) jar

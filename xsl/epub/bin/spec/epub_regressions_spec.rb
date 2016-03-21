@@ -21,7 +21,7 @@ $DEBUG = false
 describe DocBook::Epub do
   before(:all) do
     @filedir = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
-    @testdocsdir = File.expand_path(File.join(ENV['DOCBOOK_SVN'], 'testdocs', 'tests'))
+    @testdocsdir = File.expand_path(File.join(ENV['repo_dir'], 'testdocs', 'tests'))
     @tmpdir = File.join(Dir::tmpdir(), "epubregressions"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
   end
 

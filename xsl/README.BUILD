@@ -106,7 +106,7 @@ contributions welcome...
    following in it:
 
      # directory that is base directory for all your DocBook modules
-     export DOCBOOK_SVN=/opt/sandbox/docbook/trunk
+     export repo_dir=/opt/sandbox/docbook/trunk
      # directory containing all your jar files
      export JARDIR=/usr/share/java
      export CLASSPATH=$CLASSPATH:$JARDIR/xml-commons-resolver-1.1.jar
@@ -224,11 +224,11 @@ and all other Parts following it).
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/buildtools/build-clean && \
+     $repo_dir/buildtools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG
 
    The preceding will cause the following:
 
@@ -258,7 +258,7 @@ and all other Parts following it).
      make check 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG
 
    After running with "xsltproc", you should run it again with
    "saxon":
@@ -267,7 +267,7 @@ and all other Parts following it).
      make check 2>&1 \
        XSLTENGINE=saxon \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG
 
 4. Fix any obvious problems.
    If build-check and/or "make check" report any problems, fix
@@ -345,18 +345,18 @@ the stylesheets -- then you can ignore this "Part 2" section; the
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/buildtools/build-clean && \
+     $repo_dir/buildtools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/catalog-install && \
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG && \
+     $repo_dir/releasetools/catalog-install && \
      make distrib 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG
+     $repo_dir/releasetools/catalog-install uninstall && \
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG
 
    The above first runs a "make all" build, and if that succeeds
    without any errors, then runs a "make distrib" build.
@@ -461,18 +461,18 @@ you're not a project member, you can safely ignore this part.
 
      rm -f DOCBOOK-BUILD.LOG && \
      . ~/docbk.sh && \
-     $DOCBOOK_SVN/buildtools/build-clean && \
+     $repo_dir/buildtools/build-clean && \
      make all 2>&1 \
        XSLTENGINE=xsltproc \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/catalog-install && \
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG && \
+     $repo_dir/releasetools/catalog-install && \
      make release 2>&1 \
        XSLTENGINE=xsltproc \
        PDF_MAKER=dblatex \
        | tee DOCBOOK-BUILD.LOG && \
-     $DOCBOOK_SVN/releasetools/catalog-install uninstall && \
-     $DOCBOOK_SVN/buildtools/build-check DOCBOOK-BUILD.LOG; \
+     $repo_dir/releasetools/catalog-install uninstall && \
+     $repo_dir/buildtools/build-check DOCBOOK-BUILD.LOG; \
      rm -f DOCBOOK-BUILD.LOG
 
    In addition to the normal error-checking that build-check

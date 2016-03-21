@@ -26,7 +26,7 @@ DISTRIB_EXCLUDES = \
 ANT = ant
 ANT_OPTS =
 
-all: xalan27.jar javadoc
+all: xalan27.jar #javadoc
 
 xalan27.jar: $(wildcard src/com/nwalsh/xalan/*.java)
 	$(ANT) jar

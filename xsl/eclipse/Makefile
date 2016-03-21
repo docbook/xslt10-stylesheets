@@ -1,4 +1,4 @@
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include $(repo_dir)/buildtools/Makefile.incl
 all: profile-eclipse.xsl
 
 profile-eclipse.xsl: eclipse.xsl ../profiling/xsl2profile.xsl

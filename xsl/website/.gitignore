@@ -1,6 +1,8 @@
 .param.stripped
 .param.dbkns
 .param.xmlid
+.param.profiled
 param.xsl
+param.xsl.tmp
 param.xml
 Makefile.param

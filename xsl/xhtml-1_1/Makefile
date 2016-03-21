@@ -1,7 +1,7 @@
 PARAMBASE=param
 ALLTARGETS=param.xml
 
-include $(DOCBOOK_SVN)/buildtools/Makefile.incl
+include $(repo_dir)/buildtools/Makefile.incl
 
 all: xsl-files profile-docbook.xsl profile-chunk.xsl profile-onechunk.xsl
 

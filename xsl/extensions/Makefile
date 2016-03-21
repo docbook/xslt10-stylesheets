@@ -2,33 +2,33 @@
 
 all: saxon65.jar xalan27.jar webhelpindexer.jar xslt.py docbook.py README.LIBXSLT
 
-saxon65.jar: $(DOCBOOK_SVN)/xsl-saxon/saxon65.jar
+saxon65.jar: $(repo_dir)/xsl-saxon/saxon65.jar
 	cp -p $^ $@
 
-xalan27.jar: $(DOCBOOK_SVN)/xsl-xalan/xalan27.jar
+xalan27.jar: $(repo_dir)/xsl-xalan/xalan27.jar
 	cp -p $^ $@
 
-webhelpindexer.jar: $(DOCBOOK_SVN)/xsl-webhelpindexer/webhelpindexer.jar
+webhelpindexer.jar: $(repo_dir)/xsl-webhelpindexer/webhelpindexer.jar
 	cp -p $^ $@
-	cp -p $(DOCBOOK_SVN)/xsl-webhelpindexer/lib/*.jar .
-	cp -p $(DOCBOOK_SVN)/xsl-webhelpindexer/*.txt .
+	cp -p $(repo_dir)/xsl-webhelpindexer/lib/*.jar .
+	cp -p $(repo_dir)/xsl-webhelpindexer/*.txt .
 
-$(DOCBOOK_SVN)/xsl-saxon/saxon65.jar: $(wildcard $(DOCBOOK_SVN)/xsl-saxon/src/com/nwalsh/saxon/*.java) 
+$(repo_dir)/xsl-saxon/saxon65.jar: $(wildcard $(repo_dir)/xsl-saxon/src/com/nwalsh/saxon/*.java) 
 	$(MAKE) -C $(dir $@)
 
-$(DOCBOOK_SVN)/xsl-xalan/xalan27.jar: $(wildcard $(DOCBOOK_SVN)/xsl-xalan/src/com/nwalsh/xalan/*.java) 
+$(repo_dir)/xsl-xalan/xalan27.jar: $(wildcard $(repo_dir)/xsl-xalan/src/com/nwalsh/xalan/*.java) 
 	$(MAKE) -C $(dir $@)
 
-$(DOCBOOK_SVN)/xsl-webhelpindexer/webhelpindexer.jar: $(wildcard $(DOCBOOK_SVN)/xsl-webhelpindexer/src/com/nexwave/*/*.java) 
+$(repo_dir)/xsl-webhelpindexer/webhelpindexer.jar: $(wildcard $(repo_dir)/xsl-webhelpindexer/src/com/nexwave/*/*.java) 
 	$(MAKE) -C $(dir $@)
 
-xslt.py: $(DOCBOOK_SVN)/xsl-libxslt/python/xslt.py
+xslt.py: $(repo_dir)/xsl-libxslt/python/xslt.py
 	cp -p $^ $@
 
-docbook.py: $(DOCBOOK_SVN)/xsl-libxslt/python/docbook.py
+docbook.py: $(repo_dir)/xsl-libxslt/python/docbook.py
 	cp -p $^ $@
 
-README.LIBXSLT: $(DOCBOOK_SVN)/xsl-libxslt/python/README.LIBXSLT
+README.LIBXSLT: $(repo_dir)/xsl-libxslt/python/README.LIBXSLT
 	cp -p $^ $@
 
 clean:

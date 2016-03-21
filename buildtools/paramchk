@@ -14,8 +14,8 @@ my $file = shift @ARGV || die $usage;
 my $dir = ".";
 $dir = $1 if $file =~ /^(.*)\/[^\/]+$/;
 
-if ($ENV{DOCBOOK_SVN}) {
-  $dir = "$ENV{DOCBOOK_SVN}/xsl/params";
+if ($ENV{repo_dir}) {
+  $dir = "$ENV{repo_dir}/xsl/params";
 }
 
 my $entfile = $file;

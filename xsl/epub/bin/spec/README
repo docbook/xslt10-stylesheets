@@ -43,7 +43,7 @@ Environment
 
 Before running the test suite you must check out (all of) 
 https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/ and set the
-environment variable DOCBOOK_SVN to the location of the checkout.
+environment variable repo_dir to the location of the checkout.
 
 
 Running tests
