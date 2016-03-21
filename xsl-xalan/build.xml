@@ -17,6 +17,6 @@
     <target name="default" depends="jar"/>
 
     <target name="jar" depends="compile">
-      <jar destfile="build/xsl-xalan.jar" basedir="build/classes"/>
+      <jar destfile="xalan27.jar" basedir="build/classes"/>
     </target>
 </project>
