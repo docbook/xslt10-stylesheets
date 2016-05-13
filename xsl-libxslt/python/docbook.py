@@ -1,5 +1,4 @@
 # docbook.py: extension module
-# $Id$
 
 import sys
 import string

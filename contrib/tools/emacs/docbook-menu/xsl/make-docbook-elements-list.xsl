@@ -2,8 +2,6 @@
 		version="1.0">
   <xsl:output method="text"/>
   <!--
-   * $Id$
-   *
    * Transform TDG Element Reference TOC HTML file into lisp code to
    * for making an Emacs menu
    *

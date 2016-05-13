@@ -7,8 +7,6 @@
                 exclude-result-prefixes="doc exsl set">
 
 <!-- ********************************************************************
-     $Id$
-     ******************************************************************** 
 
      This file is part customization layer on top of the XSL DocBook
      Stylesheet distribution that generates webhelp output.

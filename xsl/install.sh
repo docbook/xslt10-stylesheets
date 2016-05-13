@@ -1,6 +1,4 @@
 #!/bin/bash
-# $Id: install.sh 7942 2008-03-26 06:08:08Z xmldoc $
-# $Source$ #
 
 # install.sh - Set up user environment for a XML/XSLT distribution
 

@@ -8,14 +8,6 @@
 <!--= by makeSubsections.xsl and a     =-->
 <!--= mapping specification.           =-->
 <!--=                                  =-->
-<!--= Revision history:                =-->
-<!--=  1.1 2007-01-10 SRB              =-->
-<!--=   Output DocBook 5.0.            =-->
-<!--=  1.0 2005-11-08 SRB              =-->
-<!--=   Initial version.               =-->
-<!--=                                  =-->
-<!--= $Id$ =-->
-<!--=                                  =-->
 <!--====================================-->
   <axsl:output indent="yes"/>
   <axsl:strip-space elements="*"/>

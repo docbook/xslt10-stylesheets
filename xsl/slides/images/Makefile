@@ -1,7 +1,11 @@
-all:
-	cp ../slidy/graphics/face* ./
-	cd callouts && make all
+faces=face1.gif face2.gif face3.gif face4.gif
+
+all: $(faces)
+	$(MAKE) -C callouts
 
 clean:
 	rm ./face*
-	cd callouts && make clean
+	$(MAKE) -C callouts clean
+
+%.gif: ../slidy/graphics/%.gif
+	cp $< $@

@@ -3,8 +3,8 @@
     <title
   ><command>docbk-menu-mode</command> — a DocBook menu for GNU Emacs</title>
   <articleinfo>
-    <pubdate>$Date$</pubdate>
-    <releaseinfo>$Id$ 
+    <pubdate></pubdate>
+    <releaseinfo> 
       <ulink url="./docbook-menu.xml">xml source</ulink></releaseinfo>
   </articleinfo>
   <section id='intro'>

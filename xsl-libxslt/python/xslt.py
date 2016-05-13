@@ -1,5 +1,4 @@
 #!/usr/bin/python -u
-# $Id$
 
 import sys
 import libxml2

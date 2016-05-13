@@ -6,8 +6,6 @@
 # used only when doing release builds.
 #-----------------------------------------------------------------
 
-# $Id$
-
 include $(repo_dir)/buildtools/Makefile.incl
 
 RELEASE_ANNOUNCE=$(repo_dir)/releasetools/release-announce

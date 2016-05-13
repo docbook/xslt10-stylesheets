@@ -1,7 +1,4 @@
 ;;; dbk-tdg.el --- List of TDG chapters
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-tdg-toc
     (list "DocBook: The Definitive Guide"

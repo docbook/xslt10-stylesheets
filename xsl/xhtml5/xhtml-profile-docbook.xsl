@@ -8,8 +8,6 @@
 <xsl:output method="xml" encoding="UTF-8" indent="no"/>
 
 <!-- ********************************************************************
-     $Id: xhtml-profile-docbook.xsl,v 1.1 2011-09-16 21:44:00 bobs Exp $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

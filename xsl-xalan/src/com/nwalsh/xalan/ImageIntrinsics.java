@@ -14,8 +14,6 @@ import org.apache.xalan.extensions.ExpressionContext;
 /**
  * <p>Xalan extension to examine intrinsic size of images</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2002 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -30,8 +28,6 @@ import org.apache.xalan.extensions.ExpressionContext;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class ImageIntrinsics implements ImageObserver {

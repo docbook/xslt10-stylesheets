@@ -1,7 +1,6 @@
 ----------------------------------------------------------------------
               README file for the DocBook XSL Stylesheets
 ----------------------------------------------------------------------
-$Id$
 
 These are XSL stylesheets for transforming DocBook XML document
 instances into various output formats.

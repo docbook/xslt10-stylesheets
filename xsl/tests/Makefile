@@ -1,5 +1,3 @@
-# $Id$
-
 all: refentry.007.xml refentry.007.ns.xml
 
 refentry.007.xml: $(repo_dir)/releasetools/refentry.007.xml 

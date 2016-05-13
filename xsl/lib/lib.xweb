@@ -9,7 +9,7 @@
   xmlns:saxon="http://icl.com/saxon">
   <info>
     <title>XSL Library Template Reference</title>
-    <releaseinfo role="cvs">$Id$</releaseinfo>
+    <releaseinfo role="cvs"></releaseinfo>
     <author>
       <personname>
         <surname>Walsh</surname><firstname>Norman</firstname>
@@ -1121,8 +1121,6 @@ around these functions.</para>
 <src:fragment xml:id="top" mundane-result-prefixes="xsl">
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

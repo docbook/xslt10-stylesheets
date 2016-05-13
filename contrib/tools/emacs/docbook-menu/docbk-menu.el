@@ -1,5 +1,4 @@
 ;;; docbk-menu.el --- Easy access to DocBook docs
-;; $Id$
 
 ;; Copyright (C) 2003 Michael Smith
 
@@ -7,9 +6,6 @@
 ;; Maintainer: Michael Smith <smith@sideshowbarker.net>
 ;; Created: 2003-11-04
 ;; Version: 0.92
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 ;; X-URL: http://docbook.sf.net/projects/docbook-menu
 ;; Keywords: xml docbook
 

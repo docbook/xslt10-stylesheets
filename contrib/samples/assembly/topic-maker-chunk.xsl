@@ -6,11 +6,6 @@
 		version="1.0"
                 exclude-result-prefixes="exsl">
 
-<!-- ********************************************************************
-     $Id: topic-maker-chunk.xsl,v 1.6 2011-08-18 19:16:28 bobs Exp $
-     ********************************************************************
--->
-
 <xsl:import href="topic-maker.xsl"/>
 
 <xsl:import href="file:///c:/xml/docbook-xsl-ns-1.75.2/xhtml/chunk-common.xsl"/>

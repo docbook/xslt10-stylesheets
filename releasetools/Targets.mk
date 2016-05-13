@@ -1,8 +1,6 @@
 # this file is a -*- makefile -*- snippet
 # targets in the file are used only for release builds
 
-# $Id$
-
 debug:
 
 .PHONY: ChangeLog.xml ChangeHistory.xml
@@ -58,7 +56,7 @@ NEWS.xml: ChangeLog.xml
 	param.file="$(XSL_PARAMS)"
 
 	mv NEWS.xml NEWS-4.xml
-	$(XSLT) NEWS-4.xml $(repo_dir)/docbook/relaxng/tools/db4-upgrade.xsl $@
+	$(XSLT) NEWS-4.xml $(repo_dir)/xsl/tools/xsl/build/db4-upgrade.xsl $@
 	rm NEWS-4.xml
 
 NEWS.html: NEWS.xml

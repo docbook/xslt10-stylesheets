@@ -13,8 +13,6 @@
 ;; This stylesheet would work, except that files like ../locale/ca.xml
 ;; have a doctype declaration but no DTD and Jade doesn't like that.
 
-;; $Id$
-
 (declare-flow-object-class formatting-instruction
   "UNREGISTERED::James Clark//Flow Object Class::formatting-instruction")
 

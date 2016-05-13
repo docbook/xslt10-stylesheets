@@ -1,8 +1,5 @@
 ;;; dbk-xsldoc.el --- DocBook XSLT stylesheets documentation
 ;; for DocBook XSLT stylesheets version 1.64.0
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-xsl-docs
   (list "DocBook XSL: Stylesheet Documentation"

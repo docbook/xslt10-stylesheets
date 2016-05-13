@@ -1,8 +1,5 @@
 ;;; dbk-xslhtm.el --- List of DocBook XSLT HTML parameters
 ;; for DocBook XSLT stylesheets version 1.64.0
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-xsl-params-html
   (list "DocBook XSL: Parameter Reference - HTML"

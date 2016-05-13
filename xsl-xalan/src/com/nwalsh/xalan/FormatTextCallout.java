@@ -6,8 +6,6 @@ import com.nwalsh.xalan.Callout;
 /**
  * <p>Utility class for the Verbatim extension (ignore this).</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000, 2001 Norman Walsh.</p>
  *
  * <p><b>Change Log:</b></p>
@@ -20,8 +18,6 @@ import com.nwalsh.xalan.Callout;
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
  *
  * @see Verbatim
- *
- * @version $Id$
  **/
 
 public class FormatTextCallout extends FormatCallout {

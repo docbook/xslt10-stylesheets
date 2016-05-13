@@ -1,5 +1,4 @@
 #!/bin/sh
-# $Id$
 grep=egrep
 LOGFILENAME=$1
 # FIXME: This regexp may not catch all error messages emitted;

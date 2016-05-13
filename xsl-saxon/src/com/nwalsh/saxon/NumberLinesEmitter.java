@@ -9,8 +9,6 @@ import com.icl.saxon.tree.AttributeCollection;
 /**
  * <p>Saxon extension to decorate a result tree fragment with line numbers.</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides the guts of a
@@ -38,8 +36,6 @@ import com.icl.saxon.tree.AttributeCollection;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class NumberLinesEmitter extends CopyEmitter {

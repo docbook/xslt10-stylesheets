@@ -21,7 +21,7 @@ DISTRIB_DEPENDS = doc docsrc install.sh RELEASE-NOTES.txt extensions tests
 
 # value of RELEASE_DEPENDS is a space-separated list of any
 # targets for this distro's "release" target to depend on
-RELEASE_DEPENDS = check RELEASE-NOTES.pdf RELEASE-NOTES-PARTIAL.txt
+RELEASE_DEPENDS = RELEASE-NOTES.pdf RELEASE-NOTES-PARTIAL.txt
 
 # value of RELEASE_CLEAN_TARGETS is any distro-specific targets
 # that should be run when the release-clean target is called
@@ -70,23 +70,8 @@ DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides webs
 .PHONY: distrib clean doc docsrc xhtml
 
 all: base
-# If you're annoyed about getting the reminder that it's possible
-# to use xsltproc to build, delete the following conditional from
-# this makefile.
-ifeq (,$(findstring xsltproc,$(XSLT)))
-	@echo
-	@echo "-----------------------------------------------------------------"
-	@echo "   To build using xsltproc, run make as follows:"
-	@echo "     make XSLTENGINE=\"xsltproc\""
-	@echo "-----------------------------------------------------------------"
-endif
-
 base:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
-		fi \
-	done
+	for d in $(DIRS) ; do $(MAKE) -C $$d; done
 
 xhtml:
 	$(MAKE) -C xhtml
@@ -99,11 +84,7 @@ doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
 clean:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) clean -C $$i"; $(MAKE) clean -C $$i; \
-		fi \
-	done
+	for d in $(DIRS) ; do $(MAKE) -C $$d clean; done
 	$(MAKE) clean -C xhtml
 	$(MAKE) clean -C xhtml-1_1
 	$(MAKE) clean -C doc

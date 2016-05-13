@@ -7,8 +7,6 @@
   exclude-result-prefixes="exsl d xlink"
   version="1.0">
 
-<!-- $Id: assemble.xsl,v 1.10 2012-04-10 07:56:58 bobs Exp $ -->
-
 <xsl:preserve-space elements="*"/>
 <xsl:strip-space elements="assembly structure module resources resource"/>
 

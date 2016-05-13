@@ -1,4 +1,3 @@
-# $Id$
 #
 # This makefile does a "smoketest" of stylesheets for various
 # output formats in the DocBook XSL Stylesheets release package.
@@ -39,7 +38,11 @@ TMP_OUTPUT_DIR=/tmp/smoketest-output/
 # SMOKETEST_CLEAN_TARGET; e.g. "make check SMOKETEST_CLEAN_TARGET=''"
 SMOKETEST_CLEAN_TARGET=smoketest-clean
 
-check: smoketest-make-tmp-dir smoketest-normal smoketest-normal-profile smoketest-chunk smoketest-chunk-profile smoketest-man smoketest-man-profile smoketest-two-profile $(SMOKETEST_CLEAN_TARGET)
+check: tests smoketest-make-tmp-dir smoketest-normal smoketest-normal-profile smoketest-chunk smoketest-chunk-profile smoketest-man smoketest-man-profile smoketest-two-profile $(SMOKETEST_CLEAN_TARGET)
+
+.PHONY: tests
+tests:
+	$(MAKE) -C tests
 
 smoketest-make-tmp-dir:
 	$(RM) -r $(TMP_OUTPUT_DIR)

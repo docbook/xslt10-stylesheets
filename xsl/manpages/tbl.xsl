@@ -5,7 +5,6 @@
   exclude-result-prefixes="exsl"
   version="1.0">
 
-<!-- $Id$ -->
 <!-- This stylesheet module contains templates that match on
 non-namespaced HTML table elements and generate tbl markup.
 The HTML comes either from an HTML-markup table in the source,

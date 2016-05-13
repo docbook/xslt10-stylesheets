@@ -7,8 +7,6 @@
 	exclude-result-prefixes="exsl ng db">
 
     <!-- ********************************************************************
-     $Id$
-     ******************************************************************** 
 
      This file is part customization layer on top of the XSL DocBook
      Stylesheet distribution that generates webhelp output.

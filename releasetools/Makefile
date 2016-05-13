@@ -34,7 +34,7 @@ refentry.007.xml: ../testdocs/tests/refentry.007.xml
 	cp $< $@
 
 %.ns.xml: %.xml
-	$(XSLT) $< ../docbook/relaxng/tools/db4-upgrade.xsl > $@
+	$(XSLT) $< ../xsl/tools/xsl/build/db4-upgrade.xsl > $@
 
 clean:
 	$(RM) modified-markup.xsl

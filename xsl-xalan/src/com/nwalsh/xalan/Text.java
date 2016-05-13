@@ -22,8 +22,6 @@ import org.apache.xalan.transformer.TransformerImpl;
 /**
  * <p>Xalan extension element for inserting text
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2001 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -38,8 +36,6 @@ import org.apache.xalan.transformer.TransformerImpl;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class Text {

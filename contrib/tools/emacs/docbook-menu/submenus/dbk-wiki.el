@@ -1,7 +1,4 @@
 ;;; dbk-wiki.el --- List of DocBook Wiki pages
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-wiki
     (list "DocBook Wiki"

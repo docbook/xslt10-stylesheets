@@ -5,8 +5,6 @@
 
 <!-- THIS IS A WORK IN PROGRESS. IN PARTICULAR, IT DOESN'T WORK AT ALL -->
 
-<!-- $Id$ -->
-
 <!-- Set the base directory to the location of the xml files -->
 <project name="generate"
          basedir="/sourceforge/docbook/website/example"

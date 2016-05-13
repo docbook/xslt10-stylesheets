@@ -1326,8 +1326,6 @@ website presentation.
   -->
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the WebSite distribution.
      See ../README or http://nwalsh.com/website/ for copyright
@@ -2550,8 +2548,6 @@ node.</para>
   -->
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://nwalsh.com/docbook/xsl/ for copyright

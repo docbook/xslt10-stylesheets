@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# $Id$
-
 # deb2sourceforge - Upload .deb to a Sourceforge project website
 #
 # Usage: deb2sourceforge

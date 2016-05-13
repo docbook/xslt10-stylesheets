@@ -1,8 +1,5 @@
 <?php
 /* dir2xml.php --- Transform directory listing into elisp list
- * Revision: $Revision$
- * Date: $Date$
- * RCS Id: $Id$
  *
  * Use this script to transform a listing of the DocBook XSLT
  * stylesheet distro directory into a lisp list for use with the

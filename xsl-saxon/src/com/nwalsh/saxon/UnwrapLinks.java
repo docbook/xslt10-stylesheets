@@ -15,8 +15,6 @@ import com.nwalsh.saxon.UnwrapLinksEmitter;
 /**
  * <p>Saxon extension for unwrapping nested links</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000, 2002 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -31,8 +29,6 @@ import com.nwalsh.saxon.UnwrapLinksEmitter;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class UnwrapLinks {

@@ -1,7 +1,6 @@
 ----------------------------------------------------------------------
               README file for the libxslt extensions
 ----------------------------------------------------------------------
-$Id$
 
 These are XSLT extensions written in Python for use with the DocBook XML 
 stylesheets and the libxslt library[1].

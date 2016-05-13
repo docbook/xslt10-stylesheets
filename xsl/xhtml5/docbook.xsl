@@ -12,7 +12,6 @@
   exclude-result-prefixes="exsl stbl xtbl lxslt ptbl"
   version="1.0">
 
-<!-- $Id: docbook.xsl,v 1.2 2011-09-18 17:47:28 bobs Exp $ -->
 <xsl:import href="xhtml-docbook.xsl"/>
 <xsl:include href="html5-element-mods.xsl"/>
 

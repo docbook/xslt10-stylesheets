@@ -4,7 +4,7 @@
   <articleinfo>
     <title>DocBook Project Testdocs</title>
     <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
-    <releaseinfo role="cvs">$Id$</releaseinfo> 
+    <releaseinfo role="cvs"></releaseinfo> 
     <corpauthor>DocBook Project Development Team</corpauthor> 
   </articleinfo> 
 

@@ -6,6 +6,4 @@ all: slides.rng
 	trang $< $@
 
 clean:
-
-maintainer-clean: clean
-	rm -f slides.rng
+	rm -f *.rng

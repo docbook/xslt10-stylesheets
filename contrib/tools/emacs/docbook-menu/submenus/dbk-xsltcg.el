@@ -1,8 +1,5 @@
 ;;; dbk-xsltcg.el --- List of DocBook:XSL TCG chapters
 ;; for the second edition
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-xsl-tcg
   (list "DocBook XSL: The Complete Guide"

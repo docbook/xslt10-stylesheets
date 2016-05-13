@@ -1,6 +1,4 @@
 <?xml version="1.0"?>
-<!-- $Id$ -->
-
 
 <!-- This is a schema-locating file for use with a RELAX NG-aware editor -->
 <!-- such as Emacs/nXML mode. It tells your editor to automatically -->

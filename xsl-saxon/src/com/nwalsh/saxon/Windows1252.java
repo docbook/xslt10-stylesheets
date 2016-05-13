@@ -5,8 +5,6 @@ import com.icl.saxon.charcode.PluggableCharacterSet;
 
 /**
  *
- * $Id$
- *
  * File:      Windows1252CharacterSet.java
  * Created:   May 26 2004
  * Author:    Pontus Haglund

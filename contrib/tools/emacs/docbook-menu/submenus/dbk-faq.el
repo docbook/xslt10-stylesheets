@@ -1,7 +1,4 @@
 ;;; dbk-faq.el --- List of DocBook FAQ sections
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 
 (defvar docbook-menu-faq

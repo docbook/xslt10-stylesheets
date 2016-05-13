@@ -1,5 +1,3 @@
-# $Id: Makefile 7424 2007-09-01 10:59:59Z xmldoc $
-
 include ../buildtools/Makefile.incl
 include ../releasetools/Variables.mk
 

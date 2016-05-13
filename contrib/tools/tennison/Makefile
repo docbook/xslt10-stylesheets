@@ -1,5 +1,3 @@
-# $Id$
-
 DOWNLOAD_URL ?= http://www.jenitennison.com/xslt/utilities
 DOWNLOAD_FILENAME ?= markup.xsl
 

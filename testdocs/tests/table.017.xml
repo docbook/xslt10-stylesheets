@@ -4,9 +4,7 @@
 <article>
 <articleinfo>
 <title>Unit Test: table.017</title>
-<releaseinfo role="CVS">
-$Id$
-</releaseinfo>
+<releaseinfo role="CVS"></releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>

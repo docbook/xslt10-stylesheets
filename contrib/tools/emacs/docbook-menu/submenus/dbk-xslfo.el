@@ -1,8 +1,5 @@
 ;;; dbk-xslfo.el --- List of DocBook XSLT FO parameters
 ;; for DocBook XSLT stylesheets version 1.64.0
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-xsl-params-fo
       (list "DocBook XSL: Parameter Reference - FO"

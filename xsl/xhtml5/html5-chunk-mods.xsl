@@ -6,8 +6,6 @@
   exclude-result-prefixes="exsl"
   version="1.0">
 
-<!-- $Id: html5-chunk-mods.xsl,v 1.1 2011-09-16 21:44:00 bobs Exp $ -->
-
 <!-- call HTML5  header and footer templates for navigation -->
 <xsl:template name="chunk-element-content">
   <xsl:param name="prev"/>

@@ -10,7 +10,6 @@
 <info>
 <title>Slides XHTML Parameter Reference</title>
 <releaseinfo role="meta">
-$Id$
 </releaseinfo>
 <author>
   <personname>
@@ -110,8 +109,6 @@ around all these parameters.</para>
 <xsl:stylesheet exclude-result-prefixes="src" version="1.0">
 
 <!-- ********************************************************************
-     $Id: param.xweb 6633 2007-02-21 18:33:33Z xmldoc $
-     ********************************************************************
 
      This file is part of the DocBook Slides Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

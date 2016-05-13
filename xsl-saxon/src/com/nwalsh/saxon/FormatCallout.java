@@ -13,8 +13,6 @@ import com.nwalsh.saxon.Callout;
 /**
  * <p>Utility class for the Verbatim extension (ignore this).</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000, 2001 Norman Walsh.</p>
  *
  * <p><b>Change Log:</b></p>
@@ -27,9 +25,7 @@ import com.nwalsh.saxon.Callout;
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
  *
  * @see Verbatim
- *
- * @version $Id$
- **/
+ */
 
 public abstract class FormatCallout {
   protected static final String foURI = "http://www.w3.org/1999/XSL/Format";

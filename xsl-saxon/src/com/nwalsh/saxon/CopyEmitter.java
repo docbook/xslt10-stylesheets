@@ -10,8 +10,6 @@ import com.icl.saxon.output.Emitter;
 /**
  * <p>A Saxon 6.0 Emitter that clones its input.</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -34,8 +32,6 @@ import com.icl.saxon.output.Emitter;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class CopyEmitter extends com.icl.saxon.output.Emitter {

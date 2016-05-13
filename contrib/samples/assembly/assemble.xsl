@@ -7,8 +7,6 @@
   exclude-result-prefixes="exsl d"
   version="1.0">
 
-<!-- $Id: assemble.xsl,v 1.8 2011-08-22 04:09:42 bobs Exp $ -->
-
 <xsl:preserve-space elements="*"/>
 <xsl:strip-space elements="d:assembly d:structure d:module d:resources d:resource"/>
 

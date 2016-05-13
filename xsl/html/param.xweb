@@ -10,7 +10,6 @@
 <info>
 <title>HTML Parameter Reference</title>
 <releaseinfo role="meta">
-$Id: param.xweb 9995 2015-10-01 16:34:45Z bobstayton $
 </releaseinfo>
 <author>
   <personname>
@@ -447,8 +446,6 @@ around all these parameters.</para>
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: param.xweb 9995 2015-10-01 16:34:45Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

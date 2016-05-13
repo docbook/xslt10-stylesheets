@@ -1,9 +1,6 @@
-# $Id$
 #
 # ::: Basic makefile for generating HTML and HTML Help from DocBook XML source files
 #
-# $DateTime: 2003/10/14 03:36:19 $
-# $Author$
 
 SCP          = scp
 SCP_OPTS     =

@@ -1,8 +1,5 @@
 ;;; dbk-xsldir.el --- DocBook XSLT stylesheets directory contents
 ;; for DocBook XSLT stylesheets version 1.64.0
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-xsl-distro
   (list "DocBook XSL: Stylesheet Distribution"

@@ -1,7 +1,4 @@
 ;;; dbk-el-lg.el --- Logical list of DocBook elements
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-elements-logical
   (list "DocBook: Element Reference (Logical)"

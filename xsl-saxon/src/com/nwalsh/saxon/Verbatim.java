@@ -17,8 +17,6 @@ import com.nwalsh.saxon.CalloutEmitter;
 /**
  * <p>Saxon extensions supporting DocBook verbatim environments</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -49,8 +47,6 @@ import com.nwalsh.saxon.CalloutEmitter;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class Verbatim {
