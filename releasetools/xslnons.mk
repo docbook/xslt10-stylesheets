@@ -30,11 +30,11 @@ zip-nons: zip
 # Run xslt on xsl/webhelp/docsrc/readme.xml
 	$(XSLT) \
 	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/readme.xml \
-	$(repo_dir)/docbook/relaxng/tools/db4-upgrade.xsl \
+	$(repo_dir)/xsl/tools/xsl/build/db4-upgrade.xsl \
 	$(TMP)/docbook-$(DISTRO)-nons-$(ZIPVER)/webhelp/docsrc/readme.xml 
 	$(XSLT) \
 	$(TMP)/docbook-$(DISTRO)-$(ZIPVER)/webhelp/docsrc/xinclude-test.xml \
-	$(repo_dir)/docbook/relaxng/tools/db4-upgrade.xsl \
+	$(repo_dir)/xsl/tools/xsl/build/db4-upgrade.xsl \
 	$(TMP)/docbook-$(DISTRO)-nons-$(ZIPVER)/webhelp/docsrc/xinclude-test.xml 
 
 # Turn off validation in webhelp:
