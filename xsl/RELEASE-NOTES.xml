@@ -54,6 +54,9 @@ public APIs (user-configurable parameters).</para>-->
 </abstract>
 </info>
 
+<section condition="snapshot" xml:id="current">
+  <xi:include href="NEWS.xml" xpointer="xmlns(d=http://docbook.org/ns/docbook) xpointer(/d:article/d:section/*)"/>
+</section>
 <section xml:id="V1.79.1">
 <title>Release Notes: 1.79.1</title>
 <para>The following is a list of changes that have been made

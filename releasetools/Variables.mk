@@ -93,27 +93,10 @@ else
 MARKUP_XSL=$(repo_dir)/releasetools/modified-markup.xsl
 endif
 
-# stylesheet used in taking XML output from "svn log" and using it
-# to generate NEWS file(s) and releases notes
-ifneq ($(shell uname -s | grep -i cygwin),)
-ifeq ($(XSLTENGINE),saxon)
-SVNLOG2DOCBOOK=../releasetools/svnlog2docbook.xsl
-else
-SVNLOG2DOCBOOK=$(repo_dir)/releasetools/svnlog2docbook.xsl
-endif
-else
-SVNLOG2DOCBOOK=$(repo_dir)/releasetools/svnlog2docbook.xsl
-endif
-
-SVN_INFO_FILE=.svninfo.xml
+GITLOG2DOCBOOK=$(repo_dir)/releasetools/gitlog2docbook.xsl
 
 PREVIOUS_RELEASE=$(shell $(XSLTPROC) --stringparam get PreviousRelease VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
 DISTRO_TITLE=$(shell $(XSLTPROC) --stringparam get DistroTitle VERSION.xsl VERSION.xsl | $(GREP) $(GREPFLAGS) -v "xml version=")
-
-REPOSITORY_ROOT=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //root $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
-DISTRO_URL=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //url $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
-REVISION=$(shell if [ -f $(SVN_INFO_FILE) ]; then $(XSLTPROC) --stringparam expression //commit/@revision $(EVALXPATH) $(SVN_INFO_FILE) | $(GREP) $(GREPFLAGS) -v "xml version="; fi)
-DISTRO_PARENT_URL=$(dir $(basename $(DISTRO_URL)))
 
 # stylesheet for stripping DB5 namespace
 STRIP_NS=common/stripns.xsl
@@ -255,9 +238,6 @@ endif
 XMLLINT=xmllint
 XMLLINT_OPTS=--noent
 XINCLUDE=$(XMLLINT) $(XMLLINT_OPTS) --xinclude
-
-SVN=svn
-SVN_OPTS=
 
 SED=sed
 SED_OPTS=

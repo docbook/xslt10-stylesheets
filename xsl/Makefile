@@ -1,4 +1,4 @@
-: Makefile 9654 2012-10-28 22:54:32Z stefan $
+export repo_dir ?= $(abspath ../)
 
 include $(repo_dir)/buildtools/Makefile.incl
 include $(repo_dir)/releasetools/Variables.mk
