@@ -5,7 +5,7 @@
 
 debug:
 
-.PHONY: ChangeLog.xml ChangeHistory.xml $(SVN_INFO_FILE)
+.PHONY: ChangeLog.xml ChangeHistory.xml
 
 RELEASE-NOTES.html: RELEASE-NOTES.xml NEWS.xml
 	$(XINCLUDE) $< > RELEASE-NOTES-TMP.xml
@@ -38,7 +38,7 @@ ifeq ($(PDF_MAKER),xep)
 else
 ifeq ($(PDF_MAKER),dblatex)
 	$(XSLT) RELEASE-NOTES-TMP.xml $(STRIP_NS) RELEASE-NOTES-STRIPPED-TMP.xml \
-	-$(DBLATEX) $(DBLATEX_FLAGS) \
+	&& $(DBLATEX) $(DBLATEX_FLAGS) \
 	  -p $(DBX_STYLE) \
 	  -o $@ \
 	  RELEASE-NOTES-STRIPPED-TMP.xml
@@ -51,10 +51,7 @@ $(MARKUP_XSL):
 	$(MAKE) -C $(dir $(MARKUP_XSL))
 
 NEWS.xml: ChangeLog.xml
-	$(XSLT) $< $(SVNLOG2DOCBOOK) $@ \
-	repositoryRoot="$(REPOSITORY_ROOT)" \
-	distroParentUrl="$(DISTRO_PARENT_URL)" \
-	distro="$(DISTRO)" \
+	$(XSLT) $< $(GITLOG2DOCBOOK) $@ \
 	previous-release="$(PREVIOUS_RELEASE)" \
 	release-version="$(RELVER)" \
 	element.file="$(DOCBOOK_ELEMENTS)" \
@@ -71,16 +68,8 @@ NEWS.html: NEWS.xml
 $(NEWSFILE): NEWS.html
 	$(BROWSER) $(BROWSER_OPTS) $< > $@
 
-$(SVN_INFO_FILE):
-	$(SVN) $(SVN_OPTS) info --xml \
-	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
-
-ChangeLog.xml: $(SVN_INFO_FILE)
-	$(SVN) $(SVN_OPTS) log --xml --verbose \
-	-r HEAD:$(PREVIOUS_REVISION) \
-	$(DISTRO_PARENT_URL) \
-	$(DISTRO) $(DISTRIB_CHANGELOG_INCLUDES) \
-	| $(XMLLINT) $(XMLLINT_OPTS) --format - > $@
+ChangeLog.xml:
+	python $(repo_dir)/releasetools/changelog.py > $@
 
 ChangeHistory.xml.zip: ChangeHistory.xml
 	$(ZIP) $(ZIP_OPTS) $@ $<
@@ -89,7 +78,7 @@ ChangeHistory.xml.zip: ChangeHistory.xml
 # ChangeHistory.xml holds the whole change history for the module,
 # including all subdirectories
 ChangeHistory.xml:
-	$(SVN) $(SVN_OPTS) log --xml --verbose > $@
+	python $(repo_dir)/releasetools/changelog.py all > $@
 
 .CatalogManager.properties.example:
 	cp -p $(CATALOGMANAGER) .CatalogManager.properties.example
@@ -250,27 +239,6 @@ install: $(INSTALL_DEPENDS) upload-to-sf-incoming upload-to-project-webspace
 announce: $(ANNOUNCE_CHANGES) .announcement-text
 	$(RELEASE_ANNOUNCE) "$(DISTRO_TITLE)" "$(RELVER)" .announcement-text $< "$(ANNOUNCE_RECIPIENTS)"
 
-tag:
-ifeq (,$(shell git status --porcelain))
-ifneq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO) 2>/dev/null))
-	  $(SVN) $(SVN_OPTS) delete -m "deleting the $(DISTRO) $(ZIPVER) tag" \
-	    $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)
-endif
-ifeq (,$(shell svn info $(REPOSITORY_ROOT)/tags/$(TAG) 2>/dev/null))
-	  $(SVN) $(SVN_OPTS) mkdir -m "creating the $(ZIPVER) tag" \
-	    $(REPOSITORY_ROOT)/tags/$(TAG)
-endif
-	  $(SVN) $(SVN_OPTS) copy -m "tagging the $(DISTRO) $(ZIPVER) release" \
-	    -r $(REVISION) $(DISTRO_URL) $(REPOSITORY_ROOT)/tags/$(TAG)/$(DISTRO)
-else
-	  @echo "Unversioned or uncommitted files found. Before tagging/uploading"
-	  @echo "the release, either delete the following files, add them to the"
-	  @echo "repository, or add them to the svn:ignore properties for their"
-	  @echo "parent directories."
-	  @echo
-	  @svn status
-endif
-
 release-clean: clean $(RELEASE_CLEAN_TARGETS)
 	$(RM) TERMS.xml
 	$(RM) $(NEWSFILE)
@@ -280,7 +248,6 @@ release-clean: clean $(RELEASE_CLEAN_TARGETS)
 	$(RM) ChangeHistory.xml
 	$(RM) ChangeHistory.xml.zip
 	$(RM) ChangeLog.xml 
-	$(RM) $(SVN_INFO_FILE)
 	$(RM) RELEASE-NOTES.txt
 	$(RM) RELEASE-NOTES.html
 	$(RM) RELEASE-NOTES.fo

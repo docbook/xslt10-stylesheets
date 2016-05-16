@@ -22,17 +22,8 @@
   <xsl:import href="./modified-markup.xsl" />
   <xsl:include href="../xsl/lib/lib.xsl" />
 
-  <!-- * RepositoryRoot is the same as what "svn info" shows -->
-  <xsl:param name="repositoryRoot"/>
-  <!-- * distroParentUrl is what "svn info" shows as "url"/URL for the parent -->
-  <!-- * of the distro dir -->
-  <xsl:param name="distroParentUrl"/>
-  <xsl:param name="distroParentDir">
-    <xsl:value-of select="substring-after($distroParentUrl,$repositoryRoot)"/>
-  </xsl:param>
-
   <!-- * name of main distro this changelog is for-->
-  <xsl:param name="distro"/>
+  <xsl:param name="distro">xsl</xsl:param>
 
   <!-- * file containing DocBook XSL stylesheet param names -->
   <xsl:param name="param.file"/>
@@ -158,15 +149,7 @@
           <para><emphasis role="strong">Note:</emphasis> This
             document lists changes only since the <xsl:value-of
               select="$previous-release"/> release.
-            If you instead want a record of the complete list of
-            changes for the codebase over its entire history, you
-            can obtain one by running the following commands:
-            <xsl:text>&#xa;</xsl:text>
-<screen
-><xsl:text>  </xsl:text><code>svn checkout <xsl:value-of select="concat($distroParentUrl,$distro)"/></code>
-<xsl:text>&#xa;</xsl:text>
-<xsl:text>  </xsl:text><code>svn log --xml --verbose <xsl:value-of select="$distro"/> > ChangeHistory.xml</code></screen></para>
-            <xsl:text>&#xa;</xsl:text>
+	  </para>
         </abstract>
         <xsl:text>&#xa;</xsl:text>
       </info>
@@ -225,8 +208,8 @@
       <!-- * for changed files in the $dirname subsection of the distro -->
       <!-- * OR in the $dirname sibling of the distro -->
       <xsl:if test="logentry[paths/path[
-        starts-with(.,concat($distroParentDir,$distro,'/',$dirname,'/'))
-        or starts-with(.,concat($distroParentDir,$dirname,'/'))]]
+        starts-with(.,concat($distro,'/',$dirname,'/'))
+        or starts-with(.,concat($dirname,'/'))]]
         ">
         <sect2>
           <!-- * the ID on each Sect2 is the release version plus the -->
@@ -280,8 +263,8 @@
     <xsl:for-each
       select="
       logentry[paths/path[
-      starts-with(.,concat($distroParentDir,$distro,'/',$dirname,'/'))
-      or starts-with(.,concat($distroParentDir,$dirname,'/'))]]
+      starts-with(.,concat($distro,'/',$dirname,'/'))
+      or starts-with(.,concat($dirname,'/'))]]
       ">
       <!-- * each Lisitem corresponds to a single commit -->
       <listitem>
@@ -298,8 +281,8 @@
               <!-- * that we are currently formatting -->
               <xsl:for-each select="
                 paths/path[
-                starts-with(.,concat($distroParentDir,$distro,'/',$dirname,'/'))
-                or starts-with(.,concat($distroParentDir,$dirname,'/'))]
+                starts-with(.,concat($distro,'/',$dirname,'/'))
+                or starts-with(.,concat($dirname,'/'))]
                 ">
                 <!-- * for each changed file we list, we don't want to show -->
                 <!-- * its whole repository path back to the repository -->
@@ -307,12 +290,12 @@
                 <xsl:variable name="pathprefix">
                   <xsl:choose>
                     <!-- * first case, changed file is in a subdir of distro -->
-                    <xsl:when test="contains(.,(concat($distroParentDir,$dirname,'/')))">
-                      <xsl:value-of select="concat($distroParentDir,$dirname,'/')"/>
+                    <xsl:when test="contains(.,(concat($dirname,'/')))">
+                      <xsl:value-of select="concat($dirname,'/')"/>
                     </xsl:when>
                     <!-- * other case, changed file is in a sibling dir of distro -->
                     <xsl:otherwise>
-                      <xsl:value-of select="concat($distroParentDir,$distro,'/',$dirname,'/')"/>
+                      <xsl:value-of select="concat($distro,'/',$dirname,'/')"/>
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:variable>
