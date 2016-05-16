@@ -9,7 +9,7 @@ MYDIR=`dirname $0`
 
 XERCES=`findxerces2`
 RESOLVER=`findresolver`
-if [ ! "$RESOLVER" ] && [[ $CLASSPATH != *xml-commons-resolver* ]]; then
+if [ ! "$RESOLVER" ] && [[ $CLASSPATH != *xml*resolver* ]]; then
   echo "cannot find resolver classes" 1>&2
   exit 1
 fi

@@ -21,7 +21,7 @@ DISTRIB_DEPENDS = doc docsrc install.sh RELEASE-NOTES.txt extensions tests
 
 # value of RELEASE_DEPENDS is a space-separated list of any
 # targets for this distro's "release" target to depend on
-RELEASE_DEPENDS = check RELEASE-NOTES.pdf RELEASE-NOTES-PARTIAL.txt
+RELEASE_DEPENDS = RELEASE-NOTES.pdf RELEASE-NOTES-PARTIAL.txt
 
 # value of RELEASE_CLEAN_TARGETS is any distro-specific targets
 # that should be run when the release-clean target is called
