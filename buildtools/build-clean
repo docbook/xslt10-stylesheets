@@ -1,5 +1,4 @@
 #!/bin/sh
-# $Id$
 if [ -z "$(svn status | egrep '^\?|^X')" ]
 then
   # remove all files ignored by Subversion

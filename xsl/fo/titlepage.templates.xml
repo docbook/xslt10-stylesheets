@@ -19,8 +19,6 @@
              t:copy-namespaces="fo">
 
 <!-- ********************************************************************
-     $Id: titlepage.templates.xml 9990 2015-09-17 20:52:14Z bobstayton $
-     ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
      See ../README or http://docbook.sf.net/ for copyright

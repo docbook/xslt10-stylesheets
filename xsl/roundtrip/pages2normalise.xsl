@@ -13,8 +13,6 @@
   <xsl:output method="xml" indent='yes'/>
 
   <!-- ********************************************************************
-       $Id$
-       ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
        See ../README or http://nwalsh.com/docbook/xsl/ for copyright

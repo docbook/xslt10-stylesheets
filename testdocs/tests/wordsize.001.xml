@@ -4,9 +4,7 @@
 <article id="ws">
 <articleinfo>
 <title>Unit Test: wordsize.001.xml</title>
-<releaseinfo role="CVS">
-$Id$
-</releaseinfo>
+<releaseinfo role="CVS"></releaseinfo>
 <author><firstname>Norman</firstname><surname>Walsh</surname>
         <affiliation><address><email>ndw@nwalsh.com</email></address></affiliation>
 </author>

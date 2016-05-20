@@ -1,7 +1,6 @@
 ----------------------------------------------------------------------
               README file for the DocBook Xalan Extensions
 ----------------------------------------------------------------------
-$Id: README 7275 2007-08-23 04:49:53Z xmldoc $
 
 These are Java extensions for use with the DocBook XML stylesheets
 and the Xalan-Java XSLT engine.

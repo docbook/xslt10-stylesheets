@@ -9,8 +9,6 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for
@@ -33,7 +31,6 @@
   <info>
     <title>Titlepage Template Stylesheet Reference</title>
     <releaseinfo role="meta">
-      $Id$
     </releaseinfo>
   </info>
   <partintro xml:id="intro_partintro">

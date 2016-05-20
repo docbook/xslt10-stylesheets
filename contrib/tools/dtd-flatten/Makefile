@@ -1,5 +1,3 @@
-# $Id$
-
 DOWNLOAD_URL ?= http://woodstox.codehaus.org/tools
 DOWNLOAD_FILENAME ?= dtd-flatten.jar
 

@@ -10,7 +10,6 @@
   <info>
     <title>Manpages Parameter Reference</title>
     <releaseinfo role="meta">
-      $Id$
     </releaseinfo>
     <author>
       <orgname>The DocBook Project</orgname>
@@ -143,8 +142,6 @@
 <!-- This file is generated from param.xweb -->
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

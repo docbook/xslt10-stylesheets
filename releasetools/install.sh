@@ -1,6 +1,4 @@
 #!/bin/bash
-# $Id$
-# $Source$ #
 
 # install.sh - Set up user environment for a XML/XSLT distribution
 

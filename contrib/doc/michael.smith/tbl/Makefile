@@ -1,4 +1,3 @@
-# $Id$
 #
 TBLSOURCE=http://cm.bell-labs.com/7thEdMan/vol2/tbl
 WGET=wget

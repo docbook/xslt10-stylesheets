@@ -9,8 +9,6 @@ import com.icl.saxon.tree.AttributeCollection;
 /**
  * <p>Saxon extension to unwrap links in a result tree fragment.</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000, 2002 Norman Walsh.</p>
  *
  * <p>This class provides the guts of a
@@ -34,8 +32,6 @@ import com.icl.saxon.tree.AttributeCollection;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class UnwrapLinksEmitter extends CopyEmitter {

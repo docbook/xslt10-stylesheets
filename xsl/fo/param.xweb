@@ -10,7 +10,6 @@
 <info>
 <title>FO Parameter Reference</title>
 <releaseinfo role="meta">
-$Id: param.xweb 9996 2015-10-01 16:35:10Z bobstayton $
 </releaseinfo>
 <author>
   <personname>
@@ -569,8 +568,6 @@ around all these parameters.</para>
 <!-- This file is generated from param.xweb -->
 
 <!-- ********************************************************************
-     $Id: param.xweb 9996 2015-10-01 16:35:10Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

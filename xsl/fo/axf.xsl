@@ -4,10 +4,6 @@
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version='1.0'>
 
-<!-- ********************************************************************
-     $Id$
-     ******************************************************************** -->
-
 <xsl:template name="axf-document-information">
 
     <xsl:variable name="authors" select="(//author|//editor|

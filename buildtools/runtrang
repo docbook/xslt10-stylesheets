@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# $Id$
-
 # This script attempts to find and run trang. Any arguments given
 # to it are passed "as is" to trang.
 #

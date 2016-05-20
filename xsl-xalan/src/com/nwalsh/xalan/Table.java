@@ -27,8 +27,6 @@ import org.xml.sax.helpers.AttributesImpl;
 /**
  * <p>Xalan extensions supporting Tables</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -59,8 +57,6 @@ import org.xml.sax.helpers.AttributesImpl;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class Table {

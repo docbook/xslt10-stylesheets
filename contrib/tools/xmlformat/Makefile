@@ -1,5 +1,3 @@
-# $Id$
-
 DOWNLOAD_URL ?= http://www.kitebird.com/software/xmlformat
 DOWNLOAD_FILENAME ?= xmlformat-1.03.tar.gz
 

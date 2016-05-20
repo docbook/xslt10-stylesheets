@@ -6,8 +6,6 @@ import com.icl.saxon.om.NamePool;
 /**
  * <p>Saxon extension to scan the column widths in a result tree fragment.</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -29,8 +27,6 @@ import com.icl.saxon.om.NamePool;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class ColumnScanEmitter extends com.icl.saxon.output.Emitter {

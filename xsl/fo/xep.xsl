@@ -5,8 +5,6 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
      (c) Stephane Bline Peregrine Systems 2001
      Implementation of xep extensions:
        * Pdf bookmarks (based on the XEP 2.5 implementation)

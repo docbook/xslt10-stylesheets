@@ -1,5 +1,4 @@
 #!/bin/sh
-# $Id$
 if [ "$1" = "uninstall" ]
 then
   if [ -f ./uninstall.sh ]

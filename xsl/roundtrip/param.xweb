@@ -10,7 +10,6 @@
   <info>
     <title>Roundtrip Parameter Reference</title>
     <releaseinfo role="meta">
-      $Id$
     </releaseinfo>
     <author>
       <personname>
@@ -47,8 +46,6 @@
 <!-- This file is generated from param.xweb -->
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

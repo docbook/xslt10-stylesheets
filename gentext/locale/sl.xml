@@ -1,6 +1,5 @@
 <?xml version='1.0'?>
 <!-- there is no doctype for these files, they are WF only -->
-<!-- $Id$ -->
 <locale language="sl"
         english-language-name="Slovenian"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">

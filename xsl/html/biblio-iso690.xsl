@@ -4,8 +4,6 @@
 
 
 <!-- ********************************************************************
-     $Id: biblio.xsl 6402 2006-11-12 08:23:21Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

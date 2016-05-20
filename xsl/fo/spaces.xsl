@@ -4,8 +4,6 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
      XSL-FO specification treats all space characters like ordinary spaces.
      We need to map them to fo:leader with different widths in order to
      simulate desired behaviour.

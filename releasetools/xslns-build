@@ -4,8 +4,6 @@
 #                  stylesheet directories from a directory of
 #                  non-namespaced stylesheets.
 #
-# $Id$
-#
 
 my $Usage = "
 USAGE:

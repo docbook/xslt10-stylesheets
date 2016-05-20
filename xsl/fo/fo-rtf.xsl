@@ -7,8 +7,6 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
      See ../README or http://docbook.sf.net/ for copyright

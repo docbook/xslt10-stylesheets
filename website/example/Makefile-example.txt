@@ -1,7 +1,5 @@
 # Example -*- makefile -*- for building a site using DocBook Website
 #
-# $Id$
-#
 # ------------------------------------------------------------------
 # The default value DOCBOOK_WEBSITE below is the canonical URI for
 # the current DocBook Website distribution. If you have SGML or

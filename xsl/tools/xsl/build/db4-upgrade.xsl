@@ -14,8 +14,6 @@
 # Organization for the Advancement of Structured Information
 # Standards (OASIS).
 #
-# Release: $Id$
-#
 # Permission to use, copy, modify and distribute this stylesheet
 # and its accompanying documentation for any purpose and without fee
 # is hereby granted in perpetuity, provided that the above copyright

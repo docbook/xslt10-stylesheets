@@ -3,9 +3,6 @@
   xmlns:sf="http://sourceforge.net/"
   xmlns:dyn="http://exslt.org/dynamic"
   version='1.0'>
-  <!-- ********************************************************************
-       $Id$
-       ******************************************************************** -->
 
   <xsl:output method="text"/>
   <xsl:param name="expression"/>

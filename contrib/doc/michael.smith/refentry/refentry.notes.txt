@@ -1,5 +1,3 @@
-$Id$
-
 This is simply a list of standard and commonly used section
 heading names for "top level" (.SH) sections in man pages (which
 correspond to Refsect1 element in DocBook.

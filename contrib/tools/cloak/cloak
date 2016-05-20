@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-# $Id$
-
 =head1 NAME
 
     cloak, uncloak - cloak/uncloak content in XML/SGML documents

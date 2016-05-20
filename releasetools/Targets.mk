@@ -1,8 +1,6 @@
 # this file is a -*- makefile -*- snippet
 # targets in the file are used only for release builds
 
-# $Id$
-
 debug:
 
 .PHONY: ChangeLog.xml ChangeHistory.xml

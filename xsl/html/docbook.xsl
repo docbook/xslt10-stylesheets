@@ -9,8 +9,6 @@
             indent="no"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl 9983 2015-09-16 20:58:50Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

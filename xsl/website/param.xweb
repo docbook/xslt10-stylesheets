@@ -10,7 +10,6 @@
 <info>
 <title>Website Parameter Reference</title>
 <releaseinfo role="meta">
-$Id$
 </releaseinfo>
 <author>
   <personname>
@@ -84,8 +83,6 @@ around all these parameters.</para>
 <xsl:stylesheet exclude-result-prefixes="src" version="1.0">
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the DocBook XSL Stylesheets distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

@@ -7,8 +7,6 @@
                 exclude-result-prefixes="doc exsl set">
 
 <!-- ********************************************************************
-     $Id$
-     ******************************************************************** 
 
      This file is used by htmlhelp.xsl if you want to generate source
      files for HTML Help.  It is based on the XSL DocBook Stylesheet

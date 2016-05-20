@@ -21,8 +21,6 @@ import com.icl.saxon.expr.Expression;
 /**
  * <p>Saxon extension element for inserting text
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -37,8 +35,6 @@ import com.icl.saxon.expr.Expression;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class Text extends StyleElement {

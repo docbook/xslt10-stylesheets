@@ -1,5 +1,3 @@
-# $Id$
-
 include ../../buildtools/Makefile.incl
 
 CLDR_CVS_MODULES ?= common docs dtd tools

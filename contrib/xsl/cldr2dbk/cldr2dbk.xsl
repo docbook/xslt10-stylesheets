@@ -9,8 +9,6 @@
 	      indent="yes"
 	      />
 
-  <!-- $Id$ -->
-
   <!-- cldr2dbk.xsl - convert CLDR locale data to DocBook locale format -->
 
   <!-- For information about the Common Locale Data Repository (CLDR) -->

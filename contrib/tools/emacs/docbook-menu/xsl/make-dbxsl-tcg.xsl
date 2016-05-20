@@ -2,8 +2,6 @@
 		version="1.0">
   <xsl:output method="text"/>
   <!--
-    * $Id$
-    *
     * Run this on the DocBook XSL: The Complete Guide TOC index.html *
     * file to create an elisp file with code for making an Emacs menu.
     *

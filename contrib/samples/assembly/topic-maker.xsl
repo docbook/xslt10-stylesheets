@@ -7,8 +7,6 @@
   exclude-result-prefixes="exsl"
   version="1.0">
 
-<!-- $Id: topic-maker.xsl,v 1.2 2010-08-24 00:46:20 bobs Exp $ -->
-
 <!-- This stylesheet convert DocBook elements into topic element.
      The chunking takes place elsewhere.  -->
 

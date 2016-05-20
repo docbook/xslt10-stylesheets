@@ -5,9 +5,6 @@
   exclude-result-prefixes="exsl"
   version="1.0">
 
-<!-- $Id$ -->
-
-
 <!-- Support for the DocBook Publishers extension -->
 <xsl:template match="drama">
 

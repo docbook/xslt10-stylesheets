@@ -2,8 +2,6 @@
 		version="1.0">
   <xsl:output method="text"/>
   <!--
-   * $Id$
-   *
    * Transform DocBook Stylesheet Reference Doc TOC into lisp code to
    * for making an Emacs menu.
    * 

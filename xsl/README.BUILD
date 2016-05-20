@@ -1,5 +1,3 @@
-$Id$
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The DocBook XSL Stylesheets release build has been tested under
 the bash shell on Linux, Darwin/OSX with MacPorts, and Cygwin. You

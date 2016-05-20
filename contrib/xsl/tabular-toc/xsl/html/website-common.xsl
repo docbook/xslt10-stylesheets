@@ -16,8 +16,6 @@
   -->
 
 <!-- ********************************************************************
-     $Id$
-     ********************************************************************
 
      This file is part of the WebSite distribution.
      See ../README or http://nwalsh.com/website/ for copyright

@@ -8,10 +8,6 @@
 <!--= by makeSections.xsl and a        =-->
 <!--= mapping specification.           =-->
 <!--=                                  =-->
-<!--= Revision history:                =-->
-<!--=                                  =-->
-<!--= $Id$ =-->
-<!--=                                  =-->
 <!--====================================-->
   <axsl:output indent="yes"/>
   <axsl:strip-space elements="*"/>

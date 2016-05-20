@@ -13,8 +13,6 @@ import java.util.StringTokenizer;
 /**
  * <p>Saxon extension to examine intrinsic size of images</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2002 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -29,8 +27,6 @@ import java.util.StringTokenizer;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class ImageIntrinsics implements ImageObserver {

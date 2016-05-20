@@ -1,4 +1,3 @@
-# $Id$
 #
 # This makefile does a "smoketest" of stylesheets for various
 # output formats in the DocBook XSL Stylesheets release package.

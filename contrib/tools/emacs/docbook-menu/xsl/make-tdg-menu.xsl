@@ -2,8 +2,6 @@
 		version="1.0">
   <xsl:output method="text"/>
   <!--
-   * $Id$
-   *
    * Transform TDG into lisp code to for making an Emacs menu
    *
    * Run this on the docbook.html or docbook-x.html file in the TDG distro

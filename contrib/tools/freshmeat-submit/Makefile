@@ -1,5 +1,3 @@
-# $Id$
-
 DOWNLOAD_URL ?= http://www.catb.org/~esr/freshmeat-submit
 DOWNLOAD_FILENAME ?= freshmeat-submit-1.6.tar.gz
 

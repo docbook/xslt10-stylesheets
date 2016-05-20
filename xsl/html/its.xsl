@@ -5,8 +5,6 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: html.xsl 9306 2012-04-28 03:49:00Z bobstayton $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

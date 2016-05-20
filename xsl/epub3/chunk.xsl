@@ -6,8 +6,6 @@
   exclude-result-prefixes="exsl"
   version="1.0">
 
-<!-- $Id: chunk.xsl,v 1.1 2011-09-16 21:43:45 bobs Exp $ -->
-
 <!-- This is the main driver stylesheet file.  It imports or
 includes all the components that it needs. -->
 

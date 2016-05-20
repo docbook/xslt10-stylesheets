@@ -1,5 +1,4 @@
 #!/bin/bash
-# $Id $
 
 # update_locatingrules - Update a central "locating rules" file
 

@@ -7,8 +7,6 @@ import com.icl.saxon.style.ExtensionElementFactory;
 /**
  * <p>Saxon extension element factory
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -24,8 +22,6 @@ import com.icl.saxon.style.ExtensionElementFactory;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  * @see Text
  *

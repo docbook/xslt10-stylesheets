@@ -2,8 +2,6 @@
 # targets in this file are used to build and upload the namespaced
 # version of the DocBook Project XSL Stylesheets
 
-# $Id$
-
 freshmeat-ns:
 ifeq ($(SFRELID),)
 	@echo "You must specify the sourceforge release identifier in SFRELID"

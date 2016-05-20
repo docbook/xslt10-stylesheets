@@ -7,8 +7,6 @@ import java.util.TimeZone;
 /**
  * <p>Xalan extension to convert CVS date strings into local time</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class provides a
@@ -31,8 +29,6 @@ import java.util.TimeZone;
  *
  * @author Norman Walsh
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
- *
- * @version $Id$
  *
  */
 public class CVS {

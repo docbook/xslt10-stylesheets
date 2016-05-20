@@ -2,7 +2,6 @@
 # vim: number
 
 # docbook-xsl-update - Update environment to latest docbook-xsl snapshot
-# $Id$
 
 if [ -z $DOCBOOK_MIRROR ]; then
   myhost=docbook.xml-doc.org:5873;

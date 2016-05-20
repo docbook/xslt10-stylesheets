@@ -3,8 +3,6 @@
 
 
 <!-- ********************************************************************
-     $Id: profile-docbook.xsl,v 1.2 2011-09-18 17:47:28 bobs Exp $
-     ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
      See ../README or http://docbook.sf.net/release/xsl/current/ for

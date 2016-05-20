@@ -5,8 +5,6 @@ import org.w3c.dom.Element;
 /**
  * <p>Utility class for the Verbatim extension (ignore this).</p>
  *
- * <p>$Id$</p>
- *
  * <p>Copyright (C) 2000 Norman Walsh.</p>
  *
  * <p>This class is just for book keeping in the Verbatim class.
@@ -27,9 +25,7 @@ import org.w3c.dom.Element;
  * <a href="mailto:ndw@nwalsh.com">ndw@nwalsh.com</a>
  *
  * @see Verbatim
- *
- * @version $Id$
- * */
+ */
 public class Callout implements Comparable {
   /** The callout number. */
   private int callout = 0;

@@ -1,7 +1,4 @@
 ;;; dbk-el-az.el --- Alphabetical list of DocBook elements
-;; Revision: $Revision$
-;; Date: $Date$
-;; RCS Id: $Id$
 
 (defvar docbook-menu-elements-alphabetical
   (list "DocBook: Element Reference (Alphabetical)"
