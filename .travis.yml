@@ -1,5 +1,4 @@
 language: java
-
 branches:
   only:
   - master
@@ -8,8 +7,8 @@ branches:
 
 env:
   global:
-    - secure: o2OZl3EwpJmlNBqknmUjvORfsY3uKqBIx3PGfIdLggpdiouCvoJXqSGstUElkC0cj6EoMblo0mMYMtQkewu9cklg2+gaSLBgJD3zh0VL3ERo7ivC8mohTiJPRBvFVHmgazF9SwYli2VIMmIHdE/fmfQyJGs6hPM1m7d4xDh3prMOSLqJRktZk7gkhaT4nGYTv3eRrRVdS4/ni5KGDQ2w6p3TszOrTekxgNSLpPwRyxQlTNEOrOR0Woc+4rSWdIZAcGM6IjEpJ7QwCHWuCklHpnp9sw9lQuJm7ArcWE/moVGFGWNnwOA57aq0SXgWN4Da90eRELFTvFSWJuBI+/U2B6262zXWU6un3WFniQs+lCtRtD4G/6VkMmY4f15dCAJJkFM+6lA9LWpEo7ZpPCT0XuMS9K5lezGvZmXFV8t90GHmQnvYjL1D7PpuQH73D2p3pTdXTY8lfdNpDIfjSjUwvc7zZTdazvfuCJi/mo+h9SaqReaQygnYWSyQ04k2jTS6AeuNaKquEWEDdPfGcD3uFOR0PW9zAUHtrKy4gaS07Jq8k+a1qhTHj6HPnWThG8u3Mbfaua/LH5UP9AYQjstrqn/Y+LIwrWcQcVKMmizPpig9gO3vQOr8K2GiryZTwS00wzCOYpAMj90WX+8RtNsAdeiZgtsfzcQaMhOvulkOCE0=
-    - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar
+  - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:$(pwd)/.travis
+  - secure: "CyGQbyoAoFmAst01IZtu3aGGVCTRN/oo8aMZJPwnDRi9F3q/ptueFKYoQEWWEzDYzPMPAtvbDVDx5lhfyZxlm6HwyvU8Frdt+3RTkn287EiDk0fnUhZGSasLaWwZ5SxGuRq/yonc/oLfktK1e6Z9ZUAD9q0GnWncI6ZiLeJussWpRIz5W88Jaz2VJKGdiiHZbQDmCE6b5Oe9Ucu8gYAnmHbz0QbxacPm58+D7rrWVwF9haH0oDlwlMCfM1lI0/GNJVMAREGYLFJBVsieSuDunYz9kZg3ewr0wKud4spy9qUMAGt5yEAn9I+vQYqTgzWpbLAP8cOgSxsVJWbBN8JXUuoQRh1Pu78J0phDII8YouYB98o1JdkQeytrUXJmzfdRtmw/iKKp4qAKHK7v6R0KkcpDhjeiVVWrptc4vXbkpm16EFgv3/d+Gs++M5s6fag60mlth9u6IwZ/tSJbafvUqvPn977YJbua40SSzwwF9/8GP0GGDTp7SoO7oKaIVN9Gv9qMANOYIqOGA/KCyzQ3oLuhD14P5Hy2Gdfa8S4o9UZI43QWURljWniN9ycyZb53px/4WZc2adAcxcB+V64M3UHkLGU+MH7mJWJtLE1v/32fBYaBGEkTch2Ghj/oKV89+rav40ssKyol6IYjKN7uVXh3R3t4kT8jJPbDmUBhFoo="
 
 install:
 - sudo apt-get update -q
@@ -32,25 +31,25 @@ before_deploy:
 - git config --global user.name "Travis CI"
 - export GIT_TAG=snapshot/$TRAVIS_BRANCH-$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
 - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-- git push https://$GITHUBTOKEN@github.com/stefanseefeld/docbook-xsl $GIT_TAG > /dev/null 2>&1
+- git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG > /dev/null 2>&1
 
 deploy:
   provider: releases
   prerelease: true
   api_key:
-    secure: HxUw4mQagxEYvb/yHOjNykxik8w+GKgezb9qmqYg09LWKDmh+thYy1k9llaXDkkHrgki2suJs5auvczsYLzYtKRIF7CU+9UkqEJWU2910Vr4zv8XmClru/cH9/p0eKdOKZ9JRKsEuNyVriyQcwewCY8vA6VpAZYvvijBI7b/ByX8TXsDIJuJ0013t3SiOvQMBJV4Kp/ss3/p/m8dqAHWbi4/mRrNK084KlX597hfebyZ5tAFl38kPYCFy8l9XELCRaceuNSXailUBZaK1oBiVsyeY/dMBTVyiB3eTKVevye9+yf7M0YRFRaJZaV/MMaPFiD1yG+WBcQECfH/krGxxOvH/x4+zHQDB128imu2nL2OMBGbc5ynVxPlE88QUejb/jbE4OW5qmUTY0iaU5aBVQ2atmPS546oMI9xuBrGjVlMFH5ltEhpA4y9FG/MvImprk3gx/+1al2cq2Gttbsqe7Xhc57q3D5DpoMSJKNVXAbgfY9U9utREFV2y9j/0rcpYUMr8F/Uh+W7cdmTYBwPSgo9z+ktzeQ2IKUHdqzxXaRjyhjpKbiIo7t9M/mKGFPlHPX/7aquitO5Ct4VyFoONLkkzZ6BCad28+sHUgT0mi3ede5OPvllLXiDRiBCoowktfWF0mpBTbCeGzaWhBFVwktvmAqL7WxWvfEgEF/0/Jk=
+    secure: "VJAj9hVynNFo4A5G5E6/PbND0dE/NpV1tzhuEgP86RyK1O6CIdIgUMvhjtH2Nv1fuc1C7PdEwMsggNFIelquVIJfdfTSq1xvwYbuQV9djXGhnoDRZB99a8cTI9q7xJ9E4d5fZyLd+s93Pzh3yTUZY+BCaVohnoZPhkA09YqKu/B/XVCDN/Qb3S5rdI+sacGCJqAoXXVrlNn4WUNUBCshJ/o/9KzvdGs5AcVDB8n219CIK5Lw+bM7rV0ifnwcQyLyc2k5fJdQkDoXQwuoeZ9YpNi2Cqoe5NWPtZxzGB5jod21yyU6/QYzOxA/64aC/ZRhEIUMiAnP0gGqTkK+DHJwC+ficoh8iTzNiVNlBuoYqKxo7ErKJPFgpppfCh07SFy8alJ6h1zFeYYLxohqBI1KdfDpDtO5h3YzTm17pQZ8xtuca1U4FgaMnXVMgsvThEwoPgqnhN1ee57MUuwZPc6tc811fZRZcVzfyTIkmpn084Cxl3jk6ZLTF91da/X7FQB/SsKghY1NCpdIwU0oW0PC72fXdSRK+mOegh1Z5aL1unrYp7jVCHEgjHobbe9P5SpycJ3ndiMbTFcnQil/gc6C+7Z7IedE/mlaEtvlrYHtK4w8GNsNWCXfIY4bxZS3XugS43eZc09MTyTTqRHsIgRfsveERmzQRWLtN02VDMYmul4="
   file:
-    - dist/docbook-xsl-snapshot.tar.bz2
-    - dist/docbook-xsl-snapshot.tar.gz
-    - dist/docbook-xsl-snapshot.zip
-    - dist/docbook-xsl-ns-snapshot.tar.bz2
-    - dist/docbook-xsl-ns-snapshot.tar.gz
-    - dist/docbook-xsl-ns-snapshot.zip
-    - dist/docbook-xsl-doc-snapshot.tar.bz2
-    - dist/docbook-xsl-doc-snapshot.tar.gz
-    - dist/docbook-xsl-doc-snapshot.zip
+  - dist/docbook-xsl-snapshot.tar.bz2
+  - dist/docbook-xsl-snapshot.tar.gz
+  - dist/docbook-xsl-snapshot.zip
+  - dist/docbook-xsl-ns-snapshot.tar.bz2
+  - dist/docbook-xsl-ns-snapshot.tar.gz
+  - dist/docbook-xsl-ns-snapshot.zip
+  - dist/docbook-xsl-doc-snapshot.tar.bz2
+  - dist/docbook-xsl-doc-snapshot.tar.gz
+  - dist/docbook-xsl-doc-snapshot.zip
   on:
-    repo: stefanseefeld/docbook-xsl
+    repo: docbook/xslt10-stylesheets
     branch: devel
 
 notifications:

@@ -1,6 +1,6 @@
 ## DocBook XSLT 1.0 Stylesheets
 
-[![Build Status](https://travis-ci.org/stefanseefeld/docbook-xsl.svg)](https://travis-ci.org/stefanseefeld/docbook-xsl)
+[![Build Status](https://travis-ci.org/docbook/xslt10-stylesheets.svg)](https://travis-ci.org/docbook/xslt10-stylesheets)
 
 This repository contains the DocBook XSLT 1.0 Stylesheets, now
 migrated away from SourceForge.

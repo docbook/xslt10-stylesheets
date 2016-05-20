@@ -82,11 +82,7 @@ ifeq (,$(findstring xsltproc,$(XSLT)))
 endif
 
 base:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) -C $$i"; $(MAKE) -C $$i; \
-		fi \
-	done
+	for d in $(DIRS) ; do $(MAKE) -C $$d; done
 
 xhtml:
 	$(MAKE) -C xhtml
@@ -99,11 +95,7 @@ doc: docsrc
 	$(MAKE) -C doc RELVER=$(RELVER)
 
 clean:
-	for i in $(DIRS) __bogus__; do \
-		if [ $$i != __bogus__ ] ; then \
-			echo "$(MAKE) clean -C $$i"; $(MAKE) clean -C $$i; \
-		fi \
-	done
+	for d in $(DIRS) ; do $(MAKE) -C $$d clean; done
 	$(MAKE) clean -C xhtml
 	$(MAKE) clean -C xhtml-1_1
 	$(MAKE) clean -C doc
