@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
+<config>
+  <java classpath-separator=":" xml:id="java">
+    <system-property name="javax.xml.parsers.DocumentBuilderFactory"
+		     value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+    <system-property name="javax.xml.parsers.SAXParserFactory"
+		     value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+    <classpath path="/usr/share/java/xml-resolver.jar"/>
+  </java>
+  <java xml:id="bigmem">
+    <java-option name="Xmx512m"/>
+  </java>
+  <saxon xml:id="saxon" extends="java">
+    <arg name="x" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+    <arg name="y" value="org.apache.xml.resolver.tools.ResolvingXMLReader"/>
+    <arg name="r" value="org.apache.xml.resolver.tools.CatalogResolver"/>
+    <param name="use.extensions" value="1"/>
+  </saxon>
+  <saxon xml:id="saxon-9" extends="saxon" class="net.sf.saxon.Transform"
+	 java="/usr/bin/java">
+    <classpath path="/usr/share/java/saxon/saxon.jar"/>
+    <classpath path="/usr/share/java/xercesImpl.jar"/>
+  </saxon>
+  <saxon xml:id="saxon-6" extends="saxon" class="com.icl.saxon.StyleSheet">
+    <classpath path="/usr/share/java/saxon.jar"/>
+    <classpath path="/usr/share/java/xercesImpl.jar"/>
+  </saxon>
+  <xsltproc xml:id="xsltproc" exec="xsltproc"></xsltproc>
+  <xmllint xml:id="xmllint" exec="xmllint"></xmllint>
+</config>

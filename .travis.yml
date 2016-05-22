@@ -1,0 +1,60 @@
+language: java
+branches:
+  only:
+  - master
+  - "/^release.*/"
+
+env:
+  global:
+  - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:$(pwd)/.travis
+  - secure: "CyGQbyoAoFmAst01IZtu3aGGVCTRN/oo8aMZJPwnDRi9F3q/ptueFKYoQEWWEzDYzPMPAtvbDVDx5lhfyZxlm6HwyvU8Frdt+3RTkn287EiDk0fnUhZGSasLaWwZ5SxGuRq/yonc/oLfktK1e6Z9ZUAD9q0GnWncI6ZiLeJussWpRIz5W88Jaz2VJKGdiiHZbQDmCE6b5Oe9Ucu8gYAnmHbz0QbxacPm58+D7rrWVwF9haH0oDlwlMCfM1lI0/GNJVMAREGYLFJBVsieSuDunYz9kZg3ewr0wKud4spy9qUMAGt5yEAn9I+vQYqTgzWpbLAP8cOgSxsVJWbBN8JXUuoQRh1Pu78J0phDII8YouYB98o1JdkQeytrUXJmzfdRtmw/iKKp4qAKHK7v6R0KkcpDhjeiVVWrptc4vXbkpm16EFgv3/d+Gs++M5s6fag60mlth9u6IwZ/tSJbafvUqvPn977YJbua40SSzwwF9/8GP0GGDTp7SoO7oKaIVN9Gv9qMANOYIqOGA/KCyzQ3oLuhD14P5Hy2Gdfa8S4o9UZI43QWURljWniN9ycyZb53px/4WZc2adAcxcB+V64M3UHkLGU+MH7mJWJtLE1v/32fBYaBGEkTch2Ghj/oKV89+rav40ssKyol6IYjKN7uVXh3R3t4kT8jJPbDmUBhFoo="
+
+install:
+- sudo apt-get update -q
+- sudo apt-get install xsltproc
+- sudo apt-get install libxml-xpath-perl
+- sudo apt-get install libsaxon-java libxml-commons-resolver1.1-java libsaxon-java
+  libxerces2-java
+- sudo apt-get install trang
+- sudo apt-get install imagemagick
+- sudo apt-get install dblatex
+- cp .travis/xmlc ~/.xmlc
+
+script:
+- make
+- make check
+- make dist
+
+before_deploy:
+- git config --global user.email "builds@travis-ci.com"
+- git config --global user.name "Travis CI"
+- export GIT_TAG=snapshot/$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
+- git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
+- git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG > /dev/null 2>&1
+
+deploy:
+  provider: releases
+  prerelease: true
+  api_key:
+    secure: "VJAj9hVynNFo4A5G5E6/PbND0dE/NpV1tzhuEgP86RyK1O6CIdIgUMvhjtH2Nv1fuc1C7PdEwMsggNFIelquVIJfdfTSq1xvwYbuQV9djXGhnoDRZB99a8cTI9q7xJ9E4d5fZyLd+s93Pzh3yTUZY+BCaVohnoZPhkA09YqKu/B/XVCDN/Qb3S5rdI+sacGCJqAoXXVrlNn4WUNUBCshJ/o/9KzvdGs5AcVDB8n219CIK5Lw+bM7rV0ifnwcQyLyc2k5fJdQkDoXQwuoeZ9YpNi2Cqoe5NWPtZxzGB5jod21yyU6/QYzOxA/64aC/ZRhEIUMiAnP0gGqTkK+DHJwC+ficoh8iTzNiVNlBuoYqKxo7ErKJPFgpppfCh07SFy8alJ6h1zFeYYLxohqBI1KdfDpDtO5h3YzTm17pQZ8xtuca1U4FgaMnXVMgsvThEwoPgqnhN1ee57MUuwZPc6tc811fZRZcVzfyTIkmpn084Cxl3jk6ZLTF91da/X7FQB/SsKghY1NCpdIwU0oW0PC72fXdSRK+mOegh1Z5aL1unrYp7jVCHEgjHobbe9P5SpycJ3ndiMbTFcnQil/gc6C+7Z7IedE/mlaEtvlrYHtK4w8GNsNWCXfIY4bxZS3XugS43eZc09MTyTTqRHsIgRfsveERmzQRWLtN02VDMYmul4="
+  file:
+  - dist/docbook-xsl-snapshot.tar.bz2
+  - dist/docbook-xsl-snapshot.tar.gz
+  - dist/docbook-xsl-snapshot.zip
+  - dist/docbook-xsl-ns-snapshot.tar.bz2
+  - dist/docbook-xsl-ns-snapshot.tar.gz
+  - dist/docbook-xsl-ns-snapshot.zip
+  - dist/docbook-xsl-doc-snapshot.tar.bz2
+  - dist/docbook-xsl-doc-snapshot.tar.gz
+  - dist/docbook-xsl-doc-snapshot.zip
+  on:
+    repo: docbook/xslt10-stylesheets
+    branch: master
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+  irc:
+    channels:
+      - "chat.freenode.net#docbook"
