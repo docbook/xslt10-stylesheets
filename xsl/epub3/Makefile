@@ -6,4 +6,4 @@ titlepage.templates.xsl: titlepage.templates.xml $(NESTLEVEL)../template/titlepa
 	$(XSLT) $< $(NESTLEVEL)../template/titlepage.xsl $@ ns=$(TARGETNS)
 
 clean:
-	rm titlepage.templates.xsl
+	$(RM) titlepage.templates.xsl
