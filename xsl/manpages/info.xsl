@@ -8,7 +8,7 @@
 <!-- ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -210,7 +210,7 @@
             <!-- * otherwise we have no info/author content and no Author -->
             <!-- * or Authors section, so we insert a fixme and report -->
             <!-- * the problem to the user -->
-            <xsl:text>[FIXME: author] [see http://docbook.sf.net/el/author]</xsl:text>
+            <xsl:text>[FIXME: author] [see http://www.docbook.org/tdg5/en/html/author]</xsl:text>
             <xsl:if test="$refentry.meta.get.quietly = 0">
               <xsl:call-template name="log.message">
                 <xsl:with-param name="level">Warn</xsl:with-param>
@@ -225,7 +225,7 @@
                 <xsl:with-param name="source" select="$refname"/>
                 <xsl:with-param name="context-desc">meta author</xsl:with-param>
                 <xsl:with-param name="message">
-                  <xsl:text>see http://docbook.sf.net/el/author</xsl:text>
+                  <xsl:text>see http://www.docbook.org/tdg5/en/html/author</xsl:text>
                 </xsl:with-param>
               </xsl:call-template>
               <xsl:call-template name="log.message">
@@ -575,7 +575,7 @@
               <xsl:with-param name="source" select="$refname"/>
               <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:text>see http://docbook.sf.net/el/contrib</xsl:text>
+                <xsl:text>see http://www.docbook.org/tdg5/en/html/contrib</xsl:text>
               </xsl:with-param>
             </xsl:call-template>
             <xsl:call-template name="log.message">
@@ -583,7 +583,7 @@
               <xsl:with-param name="source" select="$refname"/>
               <xsl:with-param name="context-desc">AUTHOR sect.</xsl:with-param>
               <xsl:with-param name="message">
-                <xsl:text>see http://docbook.sf.net/el/personblurb</xsl:text>
+                <xsl:text>see http://www.docbook.org/tdg5/en/html/personblurb</xsl:text>
               </xsl:with-param>
             </xsl:call-template>
           </xsl:if>

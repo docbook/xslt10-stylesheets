@@ -1,14 +1,7 @@
-To view a list of all open DocBook Project XSL stylesheet bugs:
+To view a list of all open DocBook Project XSL stylesheet bugs or
+to submit a bug report against the stylesheets:
 
-  http://docbook.sf.net/tracker/xsl/bugs
-
-To submit a bug report against the stylesheets:
-
-  http://docbook.sf.net/tracker/submit/bug
-
-To do a full-text search of all DocBook Project issues:
-
-  http://docbook.sf.net/tracker/search
+  https://github.com/docbook/xslt10-stylesheets/issues
 
 Discussion about the DocBook Project XSL stylesheets takes place
 on the docbook-apps mailing list:

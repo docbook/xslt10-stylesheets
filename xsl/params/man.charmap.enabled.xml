@@ -34,7 +34,7 @@ are passed through "as is".</para>
 <para>For converting certain Unicode symbols and special characters in
 UTF-8 or UTF-16 encoded XML source to appropriate groff/roff
 equivalents in man-page output, the DocBook XSL Stylesheets
-distribution includes a <link xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">roff character map</link> that is compliant with the <link xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
+distribution includes a <link xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">roff character map</link> that is compliant with the <link xlink:href="http://www.w3.org/TR/xslt20/#character-maps">XSLT character
 map</link> format as detailed in the XSLT 2.0 specification. The map
 contains more than 800 character mappings and can be considered the
 standard roff character map for the distribution.</para>

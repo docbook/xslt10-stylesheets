@@ -7,12 +7,12 @@
   <!-- ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
-       See ../README or http://docbook.sf.net/release/xsl/current/ for
+       See ../README or http://cdn.docbook.org/release/xsl/current/ for
        copyright and other information.
 
        ******************************************************************** -->
   <!--
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"/>
+  <xsl:import href="http://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
   <xsl:param name="tbl.font.title">B</xsl:param>
   <xsl:param name="tbl.font.headings">B</xsl:param>
   -->

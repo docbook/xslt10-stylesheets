@@ -11,7 +11,7 @@
 #   This file is part of the DocBook Project XSL Stylesheet
 #   distribution.
 #
-#   See http://docbook.sourceforge.net/release/xsl/current/
+#   See http://cdn.docbook.org/release/xsl/current/
 #   for copyright and other information.
 
 # DOCBOOK_OUTPUT_FORMATS is the default set of targets (output
@@ -127,9 +127,9 @@ EXPAND = expand
 EXPAND_FLAGS =
 
 # value of DOCBOOK_XSL should either be the canonical
-# (docbook.sourceforge.net) URL for the DocBook Project XSL
+# (cdn.docbook.org) URL for the DocBook Project XSL
 # stylesheets OR it can be a local system path
-DOCBOOK_XSL = http://docbook.sourceforge.net/release/xsl/current
+DOCBOOK_XSL = http://cdn.docbook.org/release/xsl/current
 
 # -----------------------------------------------------------------
 #       names of some DIRECTORIES and FILES we need
@@ -159,13 +159,13 @@ BASEDIR_SUFFIX =
 #                        assorted OPTIONS
 # -----------------------------------------------------------------
 # HTML_STYLESHEET -> $html.stylesheet stylesheet param
-# http://docbook.sourceforge.net/snapshots/xsl/doc/html/html.stylesheet.html
+# http://snapshots.docbook.org/xsl/doc/html/html.stylesheet.html
 HTML_STYLESHEET = style.css
 # HTML_IMAGES -> $admon.graphics.path
-# http://docbook.sourceforge.net/snapshots/xsl/doc/html/admon.graphics.path.html
+# http://snapshots.docbook.org/xsl/doc/html/admon.graphics.path.html
 HTML_IMAGES = images/
 # HTML_IMAGES_EXT -> $admon.graphics.extension
-# http://docbook.sourceforge.net/snapshots/xsl/doc/html/admon.graphics.extension.html
+# http://snapshots.docbook.org/xsl/doc/html/admon.graphics.extension.html
 HTML_IMAGES_EXT = .png
 
 # use these to set params on the command-line

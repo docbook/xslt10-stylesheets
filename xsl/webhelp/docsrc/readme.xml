@@ -505,7 +505,7 @@ suppress.footer.navigation=0</programlisting></para>
                     <filename>lucene-core-3.0.0.jar</filename> - These three are available in the
                   extensions/ directory of docsbook-xsl-1.76.1, and is automatically fetched to the
                   webhelp's Ant script. Go for a XSL snapshot if you can which contains the latest
-                  version http://docbook.sourceforge.net/snapshot/</para>
+                  version http://snapshots.docbook.org/xsl/</para>
               </listitem>
               <listitem>
                 <para><filename>xercesImpl.jar</filename>, <filename> xml-apis.jar</filename> -
@@ -679,7 +679,7 @@ input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
           </listitem>
           <listitem>
             <para>Content: This includes the content of the documentation. The processing of this
-              part is done by <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"> DocBook
+              part is done by <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://cdn.docbook.org/release/xsl/current/xhtml/chunk.xsl"> DocBook
                 XSL Chunking customization</link>. Few further css-styling applied from
                 <filename>positioning.css</filename>. </para>
           </listitem>

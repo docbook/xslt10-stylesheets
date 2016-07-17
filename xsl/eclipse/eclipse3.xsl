@@ -9,7 +9,7 @@
 ********************************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
  * Copyright (c) 2008 Standards for Technology in Automotive Retail and others.

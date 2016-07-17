@@ -24,8 +24,8 @@
 <para>If the value of <parameter>man.endnotes.are.numbered</parameter> is
 non-zero (the default), then for each non-empty<footnote>
 <para>A “non-empty” notesource is one that looks like
-this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
-an “empty” notesource is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/&gt;</literallayout>
+this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
+an “empty” notesource is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"/&gt;</literallayout>
 </para></footnote> “notesource”:
 
 <itemizedlist>

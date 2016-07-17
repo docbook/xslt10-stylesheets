@@ -86,8 +86,8 @@ URL for each link, the endnotes list includes the contents of the
 link. The list thus includes only non-empty<footnote>
 
 <para>A “non-empty” link is one that looks like
-this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
-an “empty link” is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://docbook.sf.net/snapshot/xsl/doc/manpages/"/&gt;</literallayout>
+this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"&gt;manpages&lt;/ulink&gt;</literallayout>
+an “empty link” is on that looks like this:<literallayout class="monospaced">  &lt;ulink url="http://snapshots.docbook.org/xsl/doc/manpages/"/&gt;</literallayout>
 </para></footnote> links.
 
 Empty links are never included, and never numbered. They are simply

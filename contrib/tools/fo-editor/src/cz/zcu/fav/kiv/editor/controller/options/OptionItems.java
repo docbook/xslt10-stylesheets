@@ -180,7 +180,7 @@ public class OptionItems {
         defaultSettings.put(KEY_NEWLINE, NewlineEnum.CRLF.getKey());
         defaultSettings.put(KEY_STYLESHEET_VERSION, "1.0");
         defaultSettings.put(KEY_IMPORT_FILE,
-                "http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl;");
+                "http://cdn.docbook.org/release/xsl/current/fo/docbook.xsl;");
         return defaultSettings;
     }
 

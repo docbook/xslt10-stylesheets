@@ -75,7 +75,7 @@ names and values for <tag
   namespace="http://docbook.sf.net/xmlns/unichar/1.0">output-character</tag>
 elements in the character map.</para>
 
-<para>The attributes supported in the <link xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">standard roff character map included in the distribution</link> are:
+<para>The attributes supported in the <link xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">standard roff character map included in the distribution</link> are:
 <variablelist>
   <varlistentry>
     <term>character</term>
@@ -169,7 +169,7 @@ include in it just the characters you want to use, and so you will
 most likely also want to set the value of
 <parameter>man.charmap.use.subset</parameter> to zero.</para>
 <para>You can create a
-custom character map by making a copy of the <link xlink:href="http://docbook.sourceforge.net/snapshot/xsl/manpages/charmap.groff.xsl">standard roff character map</link> provided in the distribution, and
+custom character map by making a copy of the <link xlink:href="http://snapshots.docbook.org/xsl/manpages/charmap.groff.xsl">standard roff character map</link> provided in the distribution, and
 then adding to, changing, and/or deleting from that.</para>
 
 <caution>

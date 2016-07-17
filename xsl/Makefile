@@ -63,7 +63,7 @@ DISTRIB_PACKAGES = doc
 
 # list of pathname+URIs to test for catalog support
 URILIST = \
-.\ http://docbook.sourceforge.net/release/xsl/current/
+.\ http://cdn.docbook.org/release/xsl/current/
 
 DIRS=common lib html fo manpages htmlhelp javahelp eclipse roundtrip slides website extensions xhtml xhtml-1_1 webhelp xhtml5 epub3
 

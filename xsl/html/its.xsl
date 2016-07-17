@@ -7,7 +7,7 @@
 <!-- ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     See ../README or http://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      Templates in this stylesheet convert ITS 2.0 markup
