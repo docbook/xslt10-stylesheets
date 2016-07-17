@@ -14,8 +14,8 @@
 <xsl:param name="sf-relid" select="0"/>
 
 <xsl:param name="DistroName">docbook-xsl</xsl:param>
-<xsl:param name="PreviousRelease">1.78.1</xsl:param>
-<xsl:param name="PreviousReleaseRevision">9732</xsl:param>
+<xsl:param name="PreviousRelease">1.79.1</xsl:param>
+<xsl:param name="PreviousReleaseRevision">c2af9a74931353e820685a44b9b1d117d74dc194</xsl:param>
 <xsl:param name="Revision">$Revision: 9732 $</xsl:param>
 <xsl:param name="VersionFileURL">$URL: svn+ssh://bobstayton@svn.code.sf.net/p/docbook/code/trunk/xsl/VERSION.xsl $</xsl:param>
 
