@@ -175,4 +175,10 @@
     <xsl:attribute name="href">profile-chunk-code.xsl</xsl:attribute>
   </xsl:copy>
 </xsl:template>
+
+<xsl:template match="xsl:import[@href = 'chunk.xsl']">
+  <xsl:copy>
+    <xsl:attribute name="href">profile-chunk.xsl</xsl:attribute>
+  </xsl:copy>
+</xsl:template>
 </xsl:stylesheet>
