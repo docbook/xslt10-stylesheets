@@ -1,5 +1,6 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:sfa="http://developer.apple.com/namespaces/sfa"
   xmlns:sf="http://developer.apple.com/namespaces/sf"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -261,7 +262,7 @@
   </xsl:template>
 
   <xsl:template name='doc:make-paragraph'>
-    <xsl:param name='style' select='"unknown"'/>
+    <xsl:param name='style' select='"d:unknown"'/>
     <xsl:param name='content'>
       <xsl:apply-templates mode='doc:body'/>
     </xsl:param>
@@ -343,7 +344,7 @@
     <sf:p>
       <xsl:attribute name='sf:style'>
         <xsl:call-template name='doc:lookup-paragraph-style'>
-          <xsl:with-param name='style' select='"para"'/>
+          <xsl:with-param name='style' select='"d:para"'/>
         </xsl:call-template>
       </xsl:attribute>
 

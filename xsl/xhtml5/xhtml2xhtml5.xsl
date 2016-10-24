@@ -1,5 +1,7 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
+<xsl:stylesheet exclude-result-prefixes="d"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:xslo="http://www.w3.org/1999/XSL/TransformAlias"
                 version="1.0">
 
 <xsl:output indent="no" method="xml"/>

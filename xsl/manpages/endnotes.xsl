@@ -1,11 +1,12 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:exsl="http://exslt.org/common"
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:ear="http://fake.namespace"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                exclude-result-prefixes="db ng exsl xlink"
+                exclude-result-prefixes="db ng exsl xlink d"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -89,62 +90,62 @@
   <!-- * multiple indexes. -->
   <xsl:if test="$man.endnotes.are.numbered != 0">
     <!-- * Only create earmark indexes if user wants numbered endnotes -->
-    <xsl:for-each select="//refentry">
+    <xsl:for-each select="//d:refentry">
       <ear:earmark.index>
         <xsl:attribute name="idref">
           <xsl:value-of select="generate-id()"/>
         </xsl:attribute>
         <xsl:for-each
             select=".//*[self::*[@xlink:href]
-                    or self::ulink
-                    or self::imagedata
-                    or self::audiodata
-                    or self::videodata
-                    or self::footnote[not(ancestor::table)]
-                    or self::annotation
-                    or self::alt]
+                    or self::d:ulink
+                    or self::d:imagedata
+                    or self::d:audiodata
+                    or self::d:videodata
+                    or self::d:footnote[not(ancestor::d:table)]
+                    or self::d:annotation
+                    or self::d:alt]
                     [(node()
-                      or self::imagedata
-                      or self::audiodata
-                      or self::videodata
+                      or self::d:imagedata
+                      or self::d:audiodata
+                      or self::d:videodata
                       )
-                    and not(ancestor::refentryinfo)
-                    and not(ancestor::info)
-                    and not(ancestor::docinfo)
-                    and not(ancestor::refmeta)
-                    and not(ancestor::refnamediv)
-                    and not(ancestor::indexterm)
+                    and not(ancestor::d:refentryinfo)
+                    and not(ancestor::d:info)
+                    and not(ancestor::d:docinfo)
+                    and not(ancestor::d:refmeta)
+                    and not(ancestor::d:refnamediv)
+                    and not(ancestor::d:indexterm)
                     and not(. = @url)
                     and not(. = @xlink:href)
                     and not(@url =
-                    preceding::ulink[node()
-                    and not(ancestor::refentryinfo)
-                    and not(ancestor::info)
-                    and not(ancestor::docinfo)
-                    and not(ancestor::refmeta)
-                    and not(ancestor::refnamediv)
-                    and not(ancestor::indexterm)
-                    and (generate-id(ancestor::refentry)
+                    preceding::d:ulink[node()
+                    and not(ancestor::d:refentryinfo)
+                    and not(ancestor::d:info)
+                    and not(ancestor::d:docinfo)
+                    and not(ancestor::d:refmeta)
+                    and not(ancestor::d:refnamediv)
+                    and not(ancestor::d:indexterm)
+                    and (generate-id(ancestor::d:refentry)
                     = generate-id(current()))]/@url)
                     and not(@xlink:href =
                     preceding::*[@xlink:href][node()
-                    and not(ancestor::refentryinfo)
-                    and not(ancestor::info)
-                    and not(ancestor::docinfo)
-                    and not(ancestor::refmeta)
-                    and not(ancestor::refnamediv)
-                    and not(ancestor::indexterm)
-                    and (generate-id(ancestor::refentry)
+                    and not(ancestor::d:refentryinfo)
+                    and not(ancestor::d:info)
+                    and not(ancestor::d:docinfo)
+                    and not(ancestor::d:refmeta)
+                    and not(ancestor::d:refnamediv)
+                    and not(ancestor::d:indexterm)
+                    and (generate-id(ancestor::d:refentry)
                     = generate-id(current()))]/@xlink:href)
                     and not(@fileref =
                     preceding::*[@fileref][
-                    not(ancestor::refentryinfo)
-                    and not(ancestor::info)
-                    and not(ancestor::docinfo)
-                    and not(ancestor::refmeta)
-                    and not(ancestor::refnamediv)
-                    and not(ancestor::indexterm)
-                    and (generate-id(ancestor::refentry)
+                    not(ancestor::d:refentryinfo)
+                    and not(ancestor::d:info)
+                    and not(ancestor::d:docinfo)
+                    and not(ancestor::d:refmeta)
+                    and not(ancestor::d:refnamediv)
+                    and not(ancestor::d:indexterm)
+                    and (generate-id(ancestor::d:refentry)
                     = generate-id(current()))]/@fileref)]">
           <ear:earmark>
             <xsl:attribute name="id">
@@ -173,11 +174,11 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="*[@xlink:href]|ulink
-  |imagedata|audiodata|videodata
-  |footnote[not(ancestor::table)]
-  |annotation|alt">
-  <xsl:variable name="refname" select="ancestor::refentry/refnamediv[1]/refname[1]"/>
+<xsl:template match="*[@xlink:href]|d:ulink
+  |d:imagedata|d:audiodata|d:videodata
+  |d:footnote[not(ancestor::d:table)]
+  |d:annotation|d:alt">
+  <xsl:variable name="refname" select="ancestor::d:refentry/d:refnamediv[1]/d:refname[1]"/>
   <xsl:variable name="all.earmark.indexes.in.current.document.rtf">
     <xsl:call-template name="get.all.earmark.indexes.in.current.document"/>
   </xsl:variable>
@@ -189,7 +190,7 @@
     <xsl:copy-of
         select="$all.earmark.indexes.in.current.document/ear:earmark.index
                 [@idref =
-                generate-id(current()/ancestor::refentry)]/ear:earmark"/>
+                generate-id(current()/ancestor::d:refentry)]/ear:earmark"/>
   </xsl:variable>
   <xsl:variable name="all.earmarks.in.current.refentry"
                 select="exsl:node-set($all.earmarks.in.current.refentry.rtf)"/>
@@ -217,9 +218,9 @@
     <!-- * equal to the value of its url or xlink:href attribute (if -->
     <!-- * it has one) AND user wants endnotes numbered, only then -->
     <!-- * do we output a number for it -->
-    <xsl:if test="(self::imagedata or
-      self::audiodata or
-      self::videodata or
+    <xsl:if test="(self::d:imagedata or
+      self::d:audiodata or
+      self::d:videodata or
       (node()
       and not(. = @url)
       and not(. = @xlink:href))
@@ -233,11 +234,11 @@
       <!-- * numbered earmark; in that case, they get the same number. -->
       <!-- * -->
       <xsl:choose>
-        <xsl:when test="self::ulink or
+        <xsl:when test="self::d:ulink or
           self::*[@xlink:href] or
-          self::imagedata or
-          self::audiodata or
-          self::videodata">
+          self::d:imagedata or
+          self::d:audiodata or
+          self::d:videodata">
           <xsl:value-of select="$all.earmarks.in.current.refentry/ear:earmark[@uri = $earmark]/@number"/>
         </xsl:when>
         <xsl:otherwise>
@@ -253,7 +254,7 @@
       <xsl:when test="node()">
         <!-- * this is a non-empty node, so process its contents -->
         <xsl:apply-templates/>
-        <xsl:if test="../footnote or ../annotation">
+        <xsl:if test="../d:footnote or ../d:annotation">
           <!-- * if this element is a footnote or annotation, we need to -->
           <!-- * do some further checking on it, so we can emit warnings -->
           <!-- * about potential problems -->
@@ -343,7 +344,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:if test="self::ulink or self::*[@xlink:href]">
+  <xsl:if test="self::d:ulink or self::*[@xlink:href]">
     <xsl:variable name="link.wrapper">
       <xsl:value-of select="normalize-space($notesource.contents)"/>
     </xsl:variable>

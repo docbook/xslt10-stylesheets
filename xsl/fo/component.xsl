@@ -1,6 +1,8 @@
 <?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+<xsl:stylesheet exclude-result-prefixes="d"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version='1.0'>
 
@@ -37,14 +39,14 @@
 
   <xsl:variable name="level">
     <xsl:choose>
-      <xsl:when test="ancestor::section">
-        <xsl:value-of select="count(ancestor::section)+1"/>
+      <xsl:when test="ancestor::d:section">
+        <xsl:value-of select="count(ancestor::d:section)+1"/>
       </xsl:when>
-      <xsl:when test="ancestor::sect5">6</xsl:when>
-      <xsl:when test="ancestor::sect4">5</xsl:when>
-      <xsl:when test="ancestor::sect3">4</xsl:when>
-      <xsl:when test="ancestor::sect2">3</xsl:when>
-      <xsl:when test="ancestor::sect1">2</xsl:when>
+      <xsl:when test="ancestor::d:sect5">6</xsl:when>
+      <xsl:when test="ancestor::d:sect4">5</xsl:when>
+      <xsl:when test="ancestor::d:sect3">4</xsl:when>
+      <xsl:when test="ancestor::d:sect2">3</xsl:when>
+      <xsl:when test="ancestor::d:sect1">2</xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -122,7 +124,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="dedication" mode="dedication">
+<xsl:template match="d:dedication" mode="dedication">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -193,15 +195,15 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="dedication"></xsl:template> <!-- see mode="dedication" -->
-<xsl:template match="dedication/docinfo"></xsl:template>
-<xsl:template match="dedication/title"></xsl:template>
-<xsl:template match="dedication/subtitle"></xsl:template>
-<xsl:template match="dedication/titleabbrev"></xsl:template>
+<xsl:template match="d:dedication"></xsl:template> <!-- see mode="dedication" -->
+<xsl:template match="d:dedication/d:docinfo"></xsl:template>
+<xsl:template match="d:dedication/d:title"></xsl:template>
+<xsl:template match="d:dedication/d:subtitle"></xsl:template>
+<xsl:template match="d:dedication/d:titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="acknowledgements" mode="acknowledgements">
+<xsl:template match="d:acknowledgements" mode="acknowledgements">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -269,15 +271,15 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="acknowledgements"></xsl:template>
-<xsl:template match="acknowledgements/info"></xsl:template>
-<xsl:template match="acknowledgements/title"></xsl:template>
-<xsl:template match="acknowledgements/titleabbrev"></xsl:template>
-<xsl:template match="acknowledgements/subtitle"></xsl:template>
+<xsl:template match="d:acknowledgements"></xsl:template>
+<xsl:template match="d:acknowledgements/d:info"></xsl:template>
+<xsl:template match="d:acknowledgements/d:title"></xsl:template>
+<xsl:template match="d:acknowledgements/d:titleabbrev"></xsl:template>
+<xsl:template match="d:acknowledgements/d:subtitle"></xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="colophon">
+<xsl:template match="d:colophon">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -345,12 +347,12 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="colophon/title"></xsl:template>
-<xsl:template match="colophon/subtitle"></xsl:template>
-<xsl:template match="colophon/titleabbrev"></xsl:template>
+<xsl:template match="d:colophon/d:title"></xsl:template>
+<xsl:template match="d:colophon/d:subtitle"></xsl:template>
+<xsl:template match="d:colophon/d:titleabbrev"></xsl:template>
 
 <!-- article/colophon has no page sequence -->
-<xsl:template match="article/colophon">
+<xsl:template match="d:article/d:colophon">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -365,7 +367,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="preface">
+<xsl:template match="d:preface">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -439,15 +441,15 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="preface/docinfo|prefaceinfo"></xsl:template>
-<xsl:template match="preface/info"></xsl:template>
-<xsl:template match="preface/title"></xsl:template>
-<xsl:template match="preface/titleabbrev"></xsl:template>
-<xsl:template match="preface/subtitle"></xsl:template>
+<xsl:template match="d:preface/d:docinfo|d:prefaceinfo"></xsl:template>
+<xsl:template match="d:preface/d:info"></xsl:template>
+<xsl:template match="d:preface/d:title"></xsl:template>
+<xsl:template match="d:preface/d:titleabbrev"></xsl:template>
+<xsl:template match="d:preface/d:subtitle"></xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="chapter">
+<xsl:template match="d:chapter">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -520,15 +522,15 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="chapter/docinfo|chapterinfo"></xsl:template>
-<xsl:template match="chapter/info"></xsl:template>
-<xsl:template match="chapter/title"></xsl:template>
-<xsl:template match="chapter/titleabbrev"></xsl:template>
-<xsl:template match="chapter/subtitle"></xsl:template>
+<xsl:template match="d:chapter/d:docinfo|d:chapterinfo"></xsl:template>
+<xsl:template match="d:chapter/d:info"></xsl:template>
+<xsl:template match="d:chapter/d:title"></xsl:template>
+<xsl:template match="d:chapter/d:titleabbrev"></xsl:template>
+<xsl:template match="d:chapter/d:subtitle"></xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="appendix">
+<xsl:template match="d:appendix">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -601,15 +603,15 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="appendix/docinfo|appendixinfo"></xsl:template>
-<xsl:template match="appendix/info"></xsl:template>
-<xsl:template match="appendix/title"></xsl:template>
-<xsl:template match="appendix/titleabbrev"></xsl:template>
-<xsl:template match="appendix/subtitle"></xsl:template>
+<xsl:template match="d:appendix/d:docinfo|d:appendixinfo"></xsl:template>
+<xsl:template match="d:appendix/d:info"></xsl:template>
+<xsl:template match="d:appendix/d:title"></xsl:template>
+<xsl:template match="d:appendix/d:titleabbrev"></xsl:template>
+<xsl:template match="d:appendix/d:subtitle"></xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="article">
+<xsl:template match="d:article">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -682,14 +684,14 @@
   </fo:page-sequence>
 </xsl:template>
 
-<xsl:template match="article/artheader"></xsl:template>
-<xsl:template match="article/articleinfo"></xsl:template>
-<xsl:template match="article/info"></xsl:template>
-<xsl:template match="article/title"></xsl:template>
-<xsl:template match="article/subtitle"></xsl:template>
-<xsl:template match="article/titleabbrev"></xsl:template>
+<xsl:template match="d:article/d:artheader"></xsl:template>
+<xsl:template match="d:article/d:articleinfo"></xsl:template>
+<xsl:template match="d:article/d:info"></xsl:template>
+<xsl:template match="d:article/d:title"></xsl:template>
+<xsl:template match="d:article/d:subtitle"></xsl:template>
+<xsl:template match="d:article/d:titleabbrev"></xsl:template>
 
-<xsl:template match="article/appendix">
+<xsl:template match="d:article/d:appendix">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -852,42 +854,42 @@
     </xsl:call-template>
   </xsl:if>
 
-  <xsl:if test="contains($toc.params,'figure') and .//figure">
+  <xsl:if test="contains($toc.params,'figure') and .//d:figure">
     <xsl:call-template name="component.list.of.titles">
       <xsl:with-param name="titles" select="'figure'"/>
-      <xsl:with-param name="nodes" select=".//figure"/>
+      <xsl:with-param name="nodes" select=".//d:figure"/>
     </xsl:call-template>
   </xsl:if>
 
-  <xsl:if test="contains($toc.params,'table') and .//table">
+  <xsl:if test="contains($toc.params,'table') and .//d:table">
     <xsl:call-template name="component.list.of.titles">
       <xsl:with-param name="titles" select="'table'"/>
-      <xsl:with-param name="nodes" select=".//table[not(@tocentry = 0)]"/>
+      <xsl:with-param name="nodes" select=".//d:table[not(@tocentry = 0)]"/>
     </xsl:call-template>
   </xsl:if>
 
-  <xsl:if test="contains($toc.params,'example') and .//example">
+  <xsl:if test="contains($toc.params,'example') and .//d:example">
     <xsl:call-template name="component.list.of.titles">
       <xsl:with-param name="titles" select="'example'"/>
-      <xsl:with-param name="nodes" select=".//example"/>
+      <xsl:with-param name="nodes" select=".//d:example"/>
     </xsl:call-template>
   </xsl:if>
 
   <xsl:if test="contains($toc.params,'equation') and 
-                 .//equation[title or info/title]">
+                 .//d:equation[d:title or d:info/d:title]">
     <xsl:call-template name="component.list.of.titles">
       <xsl:with-param name="titles" select="'equation'"/>
       <xsl:with-param name="nodes" 
-                      select=".//equation[title or info/title]"/>
+                      select=".//d:equation[d:title or d:info/d:title]"/>
     </xsl:call-template>
   </xsl:if>
 
   <xsl:if test="contains($toc.params,'procedure') and 
-                 .//procedure[title or info/title]">
+                 .//d:procedure[d:title or d:info/d:title]">
     <xsl:call-template name="component.list.of.titles">
       <xsl:with-param name="titles" select="'procedure'"/>
       <xsl:with-param name="nodes" 
-                      select=".//procedure[title or info/title]"/>
+                      select=".//d:procedure[d:title or d:info/d:title]"/>
     </xsl:call-template>
   </xsl:if>
 
@@ -903,7 +905,7 @@
 
 </xsl:template>
 
-<xsl:template match="topic">
+<xsl:template match="d:topic">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -918,7 +920,7 @@
   </xsl:element>
 </xsl:template>
 
-<xsl:template match="/topic | book/topic" name="topic.page.sequence">
+<xsl:template match="/d:topic | d:book/d:topic" name="topic.page.sequence">
   <xsl:variable name="master-reference">
     <xsl:call-template name="select.pagemaster"/>
   </xsl:variable>
@@ -941,10 +943,10 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="topic/info"></xsl:template>
-<xsl:template match="topic/title"></xsl:template>
-<xsl:template match="topic/subtitle"></xsl:template>
-<xsl:template match="topic/titleabbrev"></xsl:template>
+<xsl:template match="d:topic/d:info"></xsl:template>
+<xsl:template match="d:topic/d:title"></xsl:template>
+<xsl:template match="d:topic/d:subtitle"></xsl:template>
+<xsl:template match="d:topic/d:titleabbrev"></xsl:template>
 
 </xsl:stylesheet>
 

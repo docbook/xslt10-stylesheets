@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:epub="http://www.idpf.org/2007/ops"
   xmlns:dc="http://purl.org/dc/elements/1.1/"  
@@ -11,7 +12,7 @@
   xmlns:str="http://exslt.org/strings"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
   extension-element-prefixes="stext xtext"
-  exclude-result-prefixes="exsl dc ncx opf stext str xtext"
+  exclude-result-prefixes="exsl dc ncx opf stext str xtext d"
   version="1.0">
 
 <xsl:include href="../xhtml5/html5-chunk-mods.xsl"/>

@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="exsl"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:exsl="http://exslt.org/common"
+                exclude-result-prefixes="exsl d"
                 version='1.0'>
 
   <!-- ********************************************************************
@@ -36,7 +37,7 @@
   <!-- *   http://cm.bell-labs.com/cm/cs/doc/76/tbl.ps.gz -->
   <!-- *   http://www.snake.net/software/troffcvt/tbl.html -->
 
-  <xsl:template match="table|informaltable" mode="to.tbl">
+  <xsl:template match="d:table|d:informaltable" mode="to.tbl">
     <!--* the "source" param is an optional param; it can be any -->
     <!--* string you want to use that gives some indication of the -->
     <!--* source context for a table; it gets passed down to the named -->
@@ -65,7 +66,7 @@
     <!-- * If align="center", center the table. Otherwise, tbl(1) -->
     <!-- * left-aligns it by default; note that there is no support -->
     <!-- * in tbl(1) for specifying right alignment. -->
-    <xsl:if test="@align = 'center' or tgroup/@align = 'center'">
+    <xsl:if test="@align = 'center' or d:tgroup/@align = 'center'">
       <xsl:text>center </xsl:text>
     </xsl:if>
     </xsl:param>
@@ -88,12 +89,12 @@
     <!-- * used to process those. -->
     <xsl:param name="html-table-output">
       <xsl:choose>
-        <xsl:when test=".//tr">
+        <xsl:when test=".//d:tr">
           <!-- * If this table has a TR child, it means that it's an -->
           <!-- * HTML table in the DocBook source, instead of a CALS -->
           <!-- * table. So we just copy it as-is, while wrapping it -->
           <!-- * in an element with same name as its original parent. -->
-          <xsl:for-each select="descendant-or-self::table|descendant-or-self::informaltable">
+          <xsl:for-each select="descendant-or-self::d:table|descendant-or-self::d:informaltable">
             <xsl:element name="{local-name(..)}">
               <table>
                 <xsl:apply-templates mode="strip.namespace" select="*"/>

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://docbook.org/ns/docbook"
-  exclude-result-prefixes="exsl d xlink"
+  exclude-result-prefixes="exsl d xlink d"
   version="1.0">
 
 <xsl:preserve-space elements="*"/>
-<xsl:strip-space elements="assembly structure module resources resource"/>
+<xsl:strip-space elements="d:assembly d:structure d:module d:resources d:resource"/>
 
 <xsl:key name="id" match="*" use="@id|@xml:id"/>
 
@@ -37,18 +38,18 @@
 <xsl:template match="processing-instruction('oxygen')"/>
 
 <!-- skip assembly info elements -->
-<xsl:template match="info"/>
+<xsl:template match="d:info"/>
 
 <!-- including for structure info element -->
-<xsl:template match="structure/info"/>
+<xsl:template match="d:structure/d:info"/>
 
 <!-- handle omittitles, but only top level title of resource -->
-<xsl:template match="/*/title 
-                   | /*/info/title 
-                   | /*/subtitle  
-                   | /*/info/subtitle
-                   | /*/titleabbrev  
-                   | /*/info/titleabbrev"
+<xsl:template match="/*/d:title
+                   | /*/d:info/d:title
+                   | /*/d:subtitle
+                   | /*/d:info/d:subtitle
+                   | /*/d:titleabbrev
+                   | /*/d:info/d:titleabbrev"
               mode="copycontent">
   <xsl:param name="omittitles"/>
 
@@ -66,12 +67,12 @@
 </xsl:template>
 
 <!-- handled in a mode -->
-<xsl:template match="resources"/>
-<xsl:template match="output|filterin|filterout|merge|revhistory"/>
-<xsl:template match="output|filterin|filterout|merge|revhistory"
+<xsl:template match="d:resources"/>
+<xsl:template match="d:output|d:filterin|d:filterout|d:merge|d:revhistory"/>
+<xsl:template match="d:output|d:filterin|d:filterout|d:merge|d:revhistory"
               mode="copycontent"/>
 
-<xsl:template match="assembly">
+<xsl:template match="d:assembly">
   <xsl:choose>
     <xsl:when test="$structure.id != ''">
       <xsl:variable name="id.structure" select="key('id', $structure.id)"/>
@@ -95,24 +96,24 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:when>
-    <xsl:when test="$output.type != '' and not(structure[@type = $output.type])">
+    <xsl:when test="$output.type != '' and not(d:structure[@type = $output.type])">
       <xsl:message terminate="yes">
         <xsl:text>ERROR: output.type param set to '</xsl:text>
         <xsl:value-of select="$output.type"/>
         <xsl:text> but no structure element has that type attribute. Exiting.</xsl:text>
       </xsl:message>
     </xsl:when>
-    <xsl:when test="$output.type != '' and structure[@type = $output.type]">
-      <xsl:apply-templates select="structure[@type = $output.type][1]"/>
+    <xsl:when test="$output.type != '' and d:structure[@type = $output.type]">
+      <xsl:apply-templates select="d:structure[@type = $output.type][1]"/>
     </xsl:when>
     <xsl:otherwise>
       <!-- otherwise process the first structure -->
-      <xsl:apply-templates select="structure[1]"/>
+      <xsl:apply-templates select="d:structure[1]"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="structure[not(@resourceref)]">
+<xsl:template match="d:structure[not(@resourceref)]">
 
   <xsl:variable name="output.root.element">
     <xsl:apply-templates select="." mode="compute.element.name"/>
@@ -126,7 +127,7 @@
 
     <!-- use the merge element if present -->
     <xsl:call-template name="merge.info">
-      <xsl:with-param name="merge.element" select="merge"/>
+      <xsl:with-param name="merge.element" select="d:merge"/>
     </xsl:call-template>
 
     <xsl:apply-templates> 
@@ -136,18 +137,18 @@
   </xsl:element>
 </xsl:template>
 
-<xsl:template match="glossary|bibliography|index|toc">
+<xsl:template match="d:glossary|d:bibliography|d:index|d:toc">
    <xsl:param name="parent" select="''"/>
   <xsl:apply-templates select="." mode="copycontent"/>
 </xsl:template>
 
-<xsl:template match="title|titleabbrev|subtitle">
+<xsl:template match="d:title|d:titleabbrev|d:subtitle">
    <xsl:param name="parent" select="''"/>
   <xsl:apply-templates select="." mode="copycontent"/>
 </xsl:template>
 
 <!-- module without a resourceref creates an element -->
-<xsl:template match="module[not(@resourceref)]">
+<xsl:template match="d:module[not(@resourceref)]">
   <xsl:param name="parent" select="''"/>
   
   <xsl:variable name="module" select="."/>
@@ -167,7 +168,7 @@
     </xsl:choose>
 
     <xsl:call-template name="merge.info">
-      <xsl:with-param name="merge.element" select="$module/merge"/>
+      <xsl:with-param name="merge.element" select="$module/d:merge"/>
     </xsl:call-template>
       
     <xsl:apply-templates>
@@ -195,7 +196,7 @@
   <xsl:param name="property" select="''"/>
   
   <xsl:variable name="default.format"
-                select="ancestor::structure/@defaultformat"/>
+                select="ancestor::d:structure/@defaultformat"/>
 
   <xsl:variable name="property.value">
     <xsl:choose>
@@ -203,30 +204,30 @@
            and it has that property -->
       <!-- The format attribute can be multivalued -->
       <xsl:when test="$output.format != '' and 
-                      output[contains(concat(' ', normalize-space(@format), ' '),  
+                      d:output[contains(concat(' ', normalize-space(@format), ' '),
                                  $output.format)]
                         [@*[local-name() = $property]]">
         <xsl:value-of 
-           select="output[contains(concat(' ', normalize-space(@format), ' '), 
+           select="d:output[contains(concat(' ', normalize-space(@format), ' '),
                               $output.format)]
                            [@*[local-name() = $property]][1]
                            /@*[local-name() = $property]"/>
       </xsl:when>
       <!-- try with the structure's @defaultformat -->
       <xsl:when test="$default.format != '' and 
-                      output[contains(concat(' ', normalize-space(@format), ' '),  
+                      d:output[contains(concat(' ', normalize-space(@format), ' '),
                                  $default.format)]
                         [@*[local-name() = $property]]">
         <xsl:value-of 
-           select="output[contains(concat(' ', normalize-space(@format), ' '), 
+           select="d:output[contains(concat(' ', normalize-space(@format), ' '),
                               $default.format)]
                            [@*[local-name() = $property]][1]
                            /@*[local-name() = $property]"/>
       </xsl:when>
       <!-- try the first output with the property-->
-      <xsl:when test="output[@*[local-name() = $property]]">
+      <xsl:when test="d:output[@*[local-name() = $property]]">
         <xsl:value-of 
-           select="output[@*[local-name() = $property]][1]
+           select="d:output[@*[local-name() = $property]][1]
                            /@*[local-name() = $property]"/>
       </xsl:when>
       <!-- and try the module element itself -->
@@ -240,7 +241,7 @@
   <xsl:value-of select="$property.value"/>
 </xsl:template>
 
-<xsl:template match="module[not(@resourceref)]" mode="compute.element.name">
+<xsl:template match="d:module[not(@resourceref)]" mode="compute.element.name">
 
   <xsl:variable name="renderas">
     <xsl:call-template name="compute.renderas"/>
@@ -259,7 +260,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="module[@resourceref]" mode="compute.element.name">
+<xsl:template match="d:module[@resourceref]" mode="compute.element.name">
   <xsl:param name="ref.name" select="''"/>
 
   <xsl:variable name="renderas">
@@ -288,7 +289,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="structure" mode="compute.element.name">
+<xsl:template match="d:structure" mode="compute.element.name">
   <xsl:param name="ref.name" select="''"/>
 
   <xsl:variable name="renderas">
@@ -315,7 +316,7 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="module[@resourceref] | structure[@resourceref]">
+<xsl:template match="d:module[@resourceref] | d:structure[@resourceref]">
   <xsl:param name="parent" select="''"/>
 
   <xsl:variable name="module" select="."/>
@@ -330,7 +331,7 @@
         <xsl:text>'.</xsl:text>
       </xsl:message>
     </xsl:when>
-    <xsl:when test="not($resource/self::resource)">
+    <xsl:when test="not($resource/self::d:resource)">
       <xsl:message terminate="yes">
         <xsl:text>ERROR: xml:id matching @resourceref = '</xsl:text>
         <xsl:value-of select="$resourceref"/>
@@ -360,9 +361,9 @@
 
   <xsl:variable name="fileref">
     <xsl:choose>
-      <xsl:when test="$resource/ancestor::resources/@xml:base">
+      <xsl:when test="$resource/ancestor::d:resources/@xml:base">
         <xsl:value-of 
-            select="concat($resource/ancestor::resources[@xml:base][1]/@xml:base,
+            select="concat($resource/ancestor::d:resources[@xml:base][1]/@xml:base,
                                  '/', $filename)"/>
       </xsl:when>
       <xsl:otherwise>
@@ -440,7 +441,7 @@
               </xsl:choose>
           
               <xsl:call-template name="merge.info">
-                <xsl:with-param name="merge.element" select="$module/merge"/>
+                <xsl:with-param name="merge.element" select="$module/d:merge"/>
                 <xsl:with-param name="ref.content" select="$ref.content"/>
                 <xsl:with-param name="omittitles" select="$omittitles.property"/>
               </xsl:call-template>
@@ -478,7 +479,7 @@
             </xsl:choose>
         
             <xsl:call-template name="merge.info">
-              <xsl:with-param name="merge.element" select="merge"/>
+              <xsl:with-param name="merge.element" select="d:merge"/>
               <xsl:with-param name="ref.content" select="$ref.content"/>
               <xsl:with-param name="omittitles" select="$omittitles.property"/>
             </xsl:call-template>
@@ -520,7 +521,7 @@
             <xsl:text>'.</xsl:text>
           </xsl:message>
         </xsl:when>
-        <xsl:when test="not($resource/self::resource)">
+        <xsl:when test="not($resource/self::d:resource)">
           <xsl:message terminate="yes">
             <xsl:text>ERROR: xml:id matching @resourceref = '</xsl:text>
             <xsl:value-of select="$resourceref"/>
@@ -533,9 +534,9 @@
 
       <xsl:variable name="fileref">
         <xsl:choose>
-          <xsl:when test="$resource/ancestor::resources/@xml:base">
+          <xsl:when test="$resource/ancestor::d:resources/@xml:base">
             <xsl:value-of 
-                select="concat($resource/ancestor::resources[@xml:base][1]/@xml:base,
+                select="concat($resource/ancestor::d:resources[@xml:base][1]/@xml:base,
                                '/', $href.att)"/>
           </xsl:when>
           <xsl:otherwise>
@@ -551,7 +552,7 @@
   </xsl:variable>
 
   <xsl:variable name="merge.ref.info" 
-                select="exsl:node-set($merge.ref.content)//info[1]"/>
+                select="exsl:node-set($merge.ref.content)//d:info[1]"/>
 
   <xsl:if test="$merge.element/@resourceref and not($merge.ref.info)">
     <xsl:message terminate="yes">
@@ -574,18 +575,18 @@
   <!-- output info if there is any -->
   <xsl:if test="$merge.element/node() or 
                 $merge.ref.info/node() or
-                $ref.content/info/node() or
-                $ref.content/title[$omittitles.boolean = 0] or
-                $ref.content/subtitle[$omittitles.boolean = 0] or
-                $ref.content/titleabbrev[$omittitles.boolean = 0]">
+                $ref.content/d:info/node() or
+                $ref.content/d:title[$omittitles.boolean = 0] or
+                $ref.content/d:subtitle[$omittitles.boolean = 0] or
+                $ref.content/d:titleabbrev[$omittitles.boolean = 0]">
 
-    <xsl:variable name="ref.info" select="$ref.content/info"/>
-    <xsl:variable name="ref.title" select="$ref.content/title"/>
-    <xsl:variable name="ref.subtitle" select="$ref.content/subtitle"/>
-    <xsl:variable name="ref.titleabbrev" select="$ref.content/titleabbrev"/>
-    <xsl:variable name="ref.info.title" select="$ref.content/info/title"/>
-    <xsl:variable name="ref.info.subtitle" select="$ref.content/info/subtitle"/>
-    <xsl:variable name="ref.info.titleabbrev" select="$ref.content/info/titleabbrev"/>
+    <xsl:variable name="ref.info" select="$ref.content/d:info"/>
+    <xsl:variable name="ref.title" select="$ref.content/d:title"/>
+    <xsl:variable name="ref.subtitle" select="$ref.content/d:subtitle"/>
+    <xsl:variable name="ref.titleabbrev" select="$ref.content/d:titleabbrev"/>
+    <xsl:variable name="ref.info.title" select="$ref.content/d:info/d:title"/>
+    <xsl:variable name="ref.info.subtitle" select="$ref.content/d:info/d:subtitle"/>
+    <xsl:variable name="ref.info.titleabbrev" select="$ref.content/d:info/d:titleabbrev"/>
 
     <info>
       <!-- First copy through any merge attributes and elements and comments -->
@@ -649,28 +650,28 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="relationships">
+<xsl:template match="d:relationships">
   <xsl:message>
     <xsl:text>WARNING: the &lt;relationships&gt; element is not currently </xsl:text>
     <xsl:text>supported by this stylesheet.</xsl:text>
   </xsl:message>
 </xsl:template>
 
-<xsl:template match="transforms">
+<xsl:template match="d:transforms">
   <xsl:message>
     <xsl:text>WARNING: the &lt;transforms&gt; element is not currently </xsl:text>
     <xsl:text>supported by this stylesheet.</xsl:text>
   </xsl:message>
 </xsl:template>
 
-<xsl:template match="filterin">
+<xsl:template match="d:filterin">
   <xsl:message>
     <xsl:text>WARNING: the &lt;filterin&gt; element is not currently </xsl:text>
     <xsl:text>supported by this stylesheet.</xsl:text>
   </xsl:message>
 </xsl:template>
 
-<xsl:template match="filterout">
+<xsl:template match="d:filterout">
   <xsl:message>
     <xsl:text>WARNING: the &lt;filterin&gt; element is not currently </xsl:text>
     <xsl:text>supported by this stylesheet.</xsl:text>

@@ -1,9 +1,10 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:exsl="http://exslt.org/common"
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
-                exclude-result-prefixes="exsl"
+                exclude-result-prefixes="exsl d"
                 version='1.0'>
 
   <xsl:import href="../html/docbook.xsl"/>
@@ -57,15 +58,15 @@
   <xsl:choose>
     <!-- fix namespace if necessary -->
     <xsl:when test="$exsl.node.set.available != 0 and 
-                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+                  namespace-uri(/*) != 'http://docbook.org/ns/docbook'">
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$doc.title"/>
         <xsl:with-param name="context-desc">
-          <xsl:text>namesp. cut</xsl:text>
+          <xsl:text>namesp. add</xsl:text>
         </xsl:with-param>
         <xsl:with-param name="message">
-          <xsl:text>stripped namespace before processing</xsl:text>
+          <xsl:text>added namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
       <!-- DEBUG: uncomment to save namespace-fixed document.
@@ -74,16 +75,16 @@
         <xsl:with-param name="filename" select="'namespace-fixed.debug.xml'"/>
         <xsl:with-param name="method" select="'xml'"/>
         <xsl:with-param name="content">
-          <xsl:copy-of select="$no.namespace"/>
+          <xsl:copy-of select="$with.namespace"/>
         </xsl:with-param>
       </xsl:call-template>
       -->
-      <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
+      <xsl:apply-templates select="exsl:node-set($with.namespace)"/>
     </xsl:when>
     <!-- Can't process unless namespace fixed with exsl node-set()-->
-    <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+    <xsl:when test="namespace-uri(/*) != 'http://docbook.org/ns/docbook'">
       <xsl:message terminate="yes">
-        <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+        <xsl:text>Unable to add the namespace from DB4 document,</xsl:text>
         <xsl:text> cannot proceed.</xsl:text>
       </xsl:message>
     </xsl:when>
@@ -97,7 +98,7 @@
       <!-- * manpages/profile-docbook.xsl, and the refentry child check -->
       <!-- * in the profile-docbook.xsl stylesheet won't work if we do -->
       <!-- * a simple //refentry check. -->
-      <xsl:apply-templates select="//refentry"/>
+      <xsl:apply-templates select="//d:refentry"/>
       <!-- * if $man.output.manifest.enabled is non-zero, -->
       <!-- * generate a manifest file -->
       <xsl:if test="not($man.output.manifest.enabled = 0)">
@@ -156,13 +157,13 @@
 
   <!-- ============================================================== -->
 
-  <xsl:template match="refentry">
+  <xsl:template match="d:refentry">
     <xsl:param name="lang">
       <xsl:call-template name="l10n.language"/>
     </xsl:param>
     <!-- * Just use the first refname found as the "name" of the man -->
     <!-- * page (which may different from the "title"...) -->
-    <xsl:variable name="first.refname" select="refnamediv[1]/refname[1]"/>
+    <xsl:variable name="first.refname" select="d:refnamediv[1]/d:refname[1]"/>
 
     <xsl:call-template name="root.messages">
       <xsl:with-param name="refname" select="$first.refname"/>

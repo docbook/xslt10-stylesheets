@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://docbook.org/ns/docbook"
-  exclude-result-prefixes="exsl"
+  exclude-result-prefixes="exsl d"
   version="1.0">
 
 <!-- This stylesheet convert DocBook elements into topic element.
@@ -47,7 +48,7 @@
    </xsl:copy>
 </xsl:template>
 
-<xsl:template match="preface|chapter|appendix|section|article">
+<xsl:template match="d:preface|d:chapter|d:appendix|d:section|d:article">
   <xsl:variable name="element.name">
     <xsl:call-template name="element.name"/>
   </xsl:variable>

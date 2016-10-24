@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl"
+  exclude-result-prefixes="exsl d"
   version="1.0">
 
 <!-- call HTML5  header and footer templates for navigation -->
@@ -52,8 +53,8 @@
 
 <!-- Add HTML5 <header>  wrapper, and convert some attributes to styles -->
 <xsl:template name="html5.header.navigation">
-  <xsl:param name="prev" select="/foo"/>
-  <xsl:param name="next" select="/foo"/>
+  <xsl:param name="prev" select="/d:foo"/>
+  <xsl:param name="next" select="/d:foo"/>
   <xsl:param name="nav.context"/>
 
   <xsl:variable name="content">
@@ -80,8 +81,8 @@
 
 <!-- Add HTML5 <footer>  wrapper, and convert some attributes to styles -->
 <xsl:template name="html5.footer.navigation">
-  <xsl:param name="prev" select="/foo"/>
-  <xsl:param name="next" select="/foo"/>
+  <xsl:param name="prev" select="/d:foo"/>
+  <xsl:param name="next" select="/d:foo"/>
   <xsl:param name="nav.context"/>
 
   <xsl:variable name="content">

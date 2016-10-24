@@ -1,6 +1,8 @@
 <?xml version='1.0'?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version='1.0'>
+<xsl:stylesheet exclude-result-prefixes="d"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:d="http://docbook.org/ns/docbook"
+		version='1.0'>
 
 <!-- ********************************************************************
 
@@ -20,7 +22,7 @@
 <!-- ==================================================================== -->
 <!-- called from named templates in a given mode -->
 
-<xsl:template match="corpauthor">
+<xsl:template match="d:corpauthor">
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
@@ -30,7 +32,7 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="jobtitle">
+<xsl:template match="d:jobtitle">
   <span>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>

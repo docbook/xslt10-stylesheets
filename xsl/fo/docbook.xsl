@@ -1,10 +1,11 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:exsl="http://exslt.org/common"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
-                exclude-result-prefixes="db ng exsl"
+                exclude-result-prefixes="db ng exsl d"
                 version='1.0'>
 
 <!-- It is important to use indent="no" here, otherwise verbatim -->
@@ -76,7 +77,7 @@
 <xsl:include href="../html/chunker.xsl"/>
 <xsl:include href="annotations.xsl"/>
 <xsl:include href="publishers.xsl"/>
-<xsl:include href="../common/stripns.xsl"/>
+<xsl:include href="../common/addns.xsl"/>
 
 <xsl:include href="fop.xsl"/>
 <xsl:include href="fop1.xsl"/>
@@ -129,19 +130,19 @@
   <xsl:choose>
     <!-- fix namespace if necessary -->
     <xsl:when test="$exsl.node.set.available != 0 and 
-                  namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
-      <xsl:variable name="no.namespace">
-        <xsl:apply-templates select="/*" mode="stripNS"/>
+                  namespace-uri(/*) != 'http://docbook.org/ns/docbook'">
+      <xsl:variable name="with.namespace">
+        <xsl:apply-templates select="/*" mode="addNS"/>
       </xsl:variable>
 
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Note</xsl:with-param>
         <xsl:with-param name="source" select="$doc.title"/>
         <xsl:with-param name="context-desc">
-          <xsl:text>namesp. cut</xsl:text>
+          <xsl:text>namesp. add</xsl:text>
         </xsl:with-param>
         <xsl:with-param name="message">
-          <xsl:text>stripped namespace before processing</xsl:text>
+          <xsl:text>added namespace before processing</xsl:text>
         </xsl:with-param>
       </xsl:call-template>
       <!-- DEBUG: uncomment to save namespace-fixed document.
@@ -150,16 +151,16 @@
         <xsl:with-param name="filename" select="'namespace-fixed.debug.xml'"/>
         <xsl:with-param name="method" select="'xml'"/>
         <xsl:with-param name="content">
-          <xsl:copy-of select="exsl:node-set($no.namespace)"/>
+          <xsl:copy-of select="exsl:node-set($with.namespace)"/>
         </xsl:with-param>
       </xsl:call-template>
       -->
-      <xsl:apply-templates select="exsl:node-set($no.namespace)"/>
+      <xsl:apply-templates select="exsl:node-set($with.namespace)"/>
     </xsl:when>
     <!-- Can't process unless namespace fixed with exsl node-set()-->
-    <xsl:when test="namespace-uri(/*) = 'http://docbook.org/ns/docbook'">
+    <xsl:when test="namespace-uri(/*) != 'http://docbook.org/ns/docbook'">
       <xsl:message terminate="yes">
-        <xsl:text>Unable to strip the namespace from DB5 document,</xsl:text>
+        <xsl:text>Unable to add the namespace from DB4 document,</xsl:text>
         <xsl:text> cannot proceed.</xsl:text>
       </xsl:message>
     </xsl:when>
@@ -236,9 +237,9 @@
 
   <xsl:variable name="title">
     <xsl:choose>
-      <xsl:when test="$document.element/title | $document.element/info/title">
+      <xsl:when test="$document.element/d:title | $document.element/d:info/d:title">
         <xsl:value-of 
-             select="($document.element/title | $document.element/info/title)[1]"/>
+             select="($document.element/d:title | $document.element/d:info/d:title)[1]"/>
       </xsl:when>
       <xsl:otherwise>[could not find document title]</xsl:otherwise>
     </xsl:choose>
@@ -357,11 +358,11 @@
   <xsl:apply-templates select="*" mode="bookmark"/>
 </xsl:template>
 
-<xsl:template match="set|book|part|reference|
-                     preface|chapter|appendix|article|topic
-                     |glossary|bibliography|index|setindex
-                     |refentry
-                     |sect1|sect2|sect3|sect4|sect5|section"
+<xsl:template match="d:set|d:book|d:part|d:reference|
+                     d:preface|d:chapter|d:appendix|d:article|d:topic
+                     |d:glossary|d:bibliography|d:index|d:setindex
+                     |d:refentry
+                     |d:sect1|d:sect2|d:sect3|d:sect4|d:sect5|d:section"
               mode="bookmark">
 
   <xsl:variable name="id">
@@ -375,7 +376,7 @@
   <!-- If the object is a set or book, generate a bookmark for the toc -->
 
   <xsl:choose>
-    <xsl:when test="self::index and $generate.index = 0"/>
+    <xsl:when test="self::d:index and $generate.index = 0"/>
     <xsl:when test="parent::*">
       <fo:bookmark internal-destination="{$id}">
         <xsl:attribute name="starting-state">
@@ -404,10 +405,10 @@
       </xsl:variable>
 
       <xsl:if test="contains($toc.params, 'toc')
-                    and (book|part|reference|preface|chapter|appendix|article|topic
-                         |glossary|bibliography|index|setindex
-                         |refentry
-                         |sect1|sect2|sect3|sect4|sect5|section)">
+                    and (d:book|d:part|d:reference|d:preface|d:chapter|d:appendix|d:article|d:topic
+                         |d:glossary|d:bibliography|d:index|d:setindex
+                         |d:refentry
+                         |d:sect1|d:sect2|d:sect3|d:sect4|d:sect5|d:section)">
         <fo:bookmark internal-destination="toc...{$id}">
           <fo:bookmark-title>
             <xsl:call-template name="gentext">

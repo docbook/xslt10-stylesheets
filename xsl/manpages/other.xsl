@@ -1,10 +1,11 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
+                xmlns:d="http://docbook.org/ns/docbook"
+		xmlns:exsl="http://exslt.org/common"
                 xmlns:ng="http://docbook.org/docbook-ng"
                 xmlns:db="http://docbook.org/ns/docbook"
                 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-                exclude-result-prefixes="exsl"
+                exclude-result-prefixes="exsl d"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -44,7 +45,7 @@
     <xsl:if test="$man.charmap.enabled != 0">
       <xsl:variable name="lang">
         <xsl:call-template name="l10n.language">
-          <xsl:with-param name="target" select="//refentry[1]"/>
+          <xsl:with-param name="target" select="//d:refentry[1]"/>
         </xsl:call-template>
       </xsl:variable>
       <xsl:call-template name="read-character-map">
@@ -80,7 +81,7 @@
   <!-- redefine this any way you'd like to output messages -->
   <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
   <!-- Example:
-  <xsl:if test="//foo">
+  <xsl:if test="//d:foo">
     <xsl:call-template name="log.message">
       <xsl:with-param name="level">Warn</xsl:with-param>
       <xsl:with-param name="source" select="$refname"/>
@@ -111,7 +112,7 @@
 <!-- *  -->
 <!-- ******************************************************************** -->
 
-<xsl:template match="//refentry//text()">
+<xsl:template match="//d:refentry//text()">
   <xsl:call-template name="escape.roff.specials">
     <xsl:with-param name="content">
       <xsl:value-of select="."/>
@@ -119,7 +120,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="//refentry//text()" mode="no.anchor.mode">
+<xsl:template match="//d:refentry//text()" mode="no.anchor.mode">
   <xsl:call-template name="escape.roff.specials">
     <xsl:with-param name="content">
       <xsl:value-of select="."/>
@@ -543,7 +544,7 @@
     <xsl:param name="first.refname"/>
     <xsl:param name="section"/>
     <xsl:param name="lang"/>
-    <xsl:for-each select="refnamediv/refname">
+    <xsl:for-each select="d:refnamediv/d:refname">
       <xsl:if test=". != $first.refname">
         <xsl:call-template name="write.text.chunk">
           <xsl:with-param name="filename">
@@ -590,7 +591,7 @@
   <!-- *  generated, including any "stub" pages. -->
   <xsl:template name="generate.manifest">
     <xsl:variable name="filelist">
-      <xsl:for-each select="//refentry">
+      <xsl:for-each select="//d:refentry">
         <!-- * all refname instances in a Refentry inherit their section -->
         <!-- * numbers from the parent Refentry; so we only need to get -->
         <!-- * the section once per Refentry, not once per Refname -->
@@ -602,7 +603,7 @@
         <xsl:variable name="lang">
           <xsl:call-template name="l10n.language"/>
         </xsl:variable>
-        <xsl:for-each select="refnamediv/refname">
+        <xsl:for-each select="d:refnamediv/d:refname">
           <xsl:call-template name="make.adjusted.man.filename">
             <xsl:with-param name="name" select="."/>
             <xsl:with-param name="section" select="$section"/>
