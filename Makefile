@@ -11,7 +11,7 @@ check:
 
 dist:
 	$(MAKE) -C xsl release
-	$(MAKE) -C xsl zip-ns TMP=$(repo_dir)/dist
+	$(MAKE) -C xsl zip-nons TMP=$(repo_dir)/dist
 
 clean:
 	$(MAKE) -C xsl clean

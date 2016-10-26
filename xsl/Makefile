@@ -96,4 +96,4 @@ docsrc-clean:
 
 include Makefile.tests
 include $(repo_dir)/releasetools/Targets.mk
-include $(repo_dir)/releasetools/xslns.mk
+include $(repo_dir)/releasetools/xslnons.mk
