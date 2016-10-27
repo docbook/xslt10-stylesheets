@@ -41,9 +41,9 @@ deploy:
   - dist/docbook-xsl-snapshot.tar.bz2
   - dist/docbook-xsl-snapshot.tar.gz
   - dist/docbook-xsl-snapshot.zip
-  - dist/docbook-xsl-ns-snapshot.tar.bz2
-  - dist/docbook-xsl-ns-snapshot.tar.gz
-  - dist/docbook-xsl-ns-snapshot.zip
+  - dist/docbook-xsl-nons-snapshot.tar.bz2
+  - dist/docbook-xsl-nons-snapshot.tar.gz
+  - dist/docbook-xsl-nons-snapshot.zip
   - dist/docbook-xsl-doc-snapshot.tar.bz2
   - dist/docbook-xsl-doc-snapshot.tar.gz
   - dist/docbook-xsl-doc-snapshot.zip
