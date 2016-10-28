@@ -11,7 +11,6 @@ include $(repo_dir)/buildtools/Makefile.incl
 RELEASE_ANNOUNCE=$(repo_dir)/releasetools/release-announce
 ANNOUNCE_RECIPIENTS=docbook-apps@lists.oasis-open.org
 ANNOUNCE_CHANGES=RELEASE-NOTES-PARTIAL.txt
-FRESHMEAT_SUBMIT=$(repo_dir)/releasetools/freshmeat-submit
 
 CATALOGMANAGER=$(repo_dir)/releasetools/.CatalogManager.properties.example
 INSTALL_SH=$(repo_dir)/releasetools/install.sh
@@ -195,8 +194,6 @@ ZIP_EXCLUDES = \
  lib/lib\.xml$$ \
  \.announcement-text
 
-# specifies options to feed to "freshmeat-submit"
-FMGO=-N
 # SFRELID specifies Sourceforge release ID for current release.
 # Before running "make freshmeat", you need to manually create the
 # new release at Sourceforge (via the SF web interface), then copy

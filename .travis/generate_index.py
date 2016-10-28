@@ -26,7 +26,7 @@ def make_index(dir, dirs, files):
         return
     with open(filename, 'w') as output:
         output.write("""<html><head>
-<title>Index of %s</title>
+<title>Index of {name}</title>
 <style>
 table {{ width: 100%; font-family: monospace;}}
 td {{ text-align: right}}
@@ -34,8 +34,8 @@ td:first-child {{ text-align: left}}
 td:last-child {{ text-align: center}}
 </style>
 </head>
-<body><h1>{}</h1>
-<table>""".format(relpath(dir, base)))
+<body><h1>{name}</h1>
+<table>""".format(name=relpath(dir, base)))
         output.write('<tr><th>{}</th><th>{}</th><th>{}</th></tr>'.format("Name", "Size", "Last Modified"))
         output.write('<tr><td><a href="..">..</a>/</td><td></td><td></td></tr>')
         for d in dirs:

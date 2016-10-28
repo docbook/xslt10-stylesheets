@@ -104,15 +104,6 @@ endif
 
 release: distrib $(RELEASE_DEPENDS)
 
-freshmeat:
-ifeq ($(SFRELID),)
-	@echo "You must specify the sourceforge release identifier in SFRELID"
-	exit 1
-else
-	$(XSLT) VERSION.xsl VERSION.xsl $(TMP)/fm-docbook-$(DISTRO) sf-relid=$(SFRELID)
-	grep -v "<?xml" $(TMP)/fm-docbook-$(DISTRO) | $(FRESHMEAT_SUBMIT) $(FMGO)
-endif
-
 zip: $(ZIP_DEPENDS)
 ifeq ($(ZIPVER),)
 	@echo You must specify ZIPVER for the zip target
@@ -197,42 +188,7 @@ ifneq ($(DISTRIB_PACKAGES),)
 endif
 endif
 
-upload-to-sf-incoming: zip
-ifeq ($(SF_USERNAME),)
-	$(error You must specify a value for $$SF_USERNAME)
-else
-	-$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-*-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST) && \
-	$(FTP) $(FTP_OPTS) "mput -O $(SF_UPLOAD_DIR) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).*; quit" $(SF_UPLOAD_HOST)
-endif
-
-upload-to-project-webspace: zip
-ifeq ($(SF_USERNAME),)
-	$(error You must specify a value for $$SF_USERNAME)
-else
-	-$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2 $(SF_USERNAME)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
-	-$(SCP) $(SCP_OPTS) $(TMP)/docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2 $(SF_USERNAME)@$(PROJECT_HOST):$(RELEASE_DIR)/$(DISTRO)/
-	-$(SSH) $(SSH_OPTS)-l $(SF_USERNAME) $(PROJECT_HOST) \
-	  "(\
-	   cd $(RELEASE_DIR)/$(DISTRO); \
-	   rm -rf $(ZIPVER); \
-	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
-	   $(TAR) xfj$(TARFLAGS) docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2; \
-	   mv docbook-$(DISTRO)-$(ZIPVER) $(ZIPVER); \
-	   gunzip $(ZIPVER)/doc/reference.pdf.gz; \
-	   gunzip $(ZIPVER)/doc/reference.txt.gz; \
-	   chmod -R g+w $(ZIPVER); \
-	   $(RM) current; \
-	   ln -s $(ZIPVER) current; \
-	   rm -f docbook-$(DISTRO)-$(ZIPVER).tar.bz2; \
-	   rm -f docbook-$(DISTRO)-doc-$(ZIPVER).tar.bz2; \
-	   )"
-endif
-
-install: $(INSTALL_DEPENDS) upload-to-sf-incoming upload-to-project-webspace
-	@echo "The docbook-$(DISTRO) and docbook-$(DISTRO)-doc packages have been uploaded to the SF incoming area."
-	@echo "Use the form at the following URL to move files to the project release area."
-	@echo
-	@echo "  http://sourceforge.net/project/admin/editpackages.php?group_id=21935"
+install: $(INSTALL_DEPENDS)
 
 announce: $(ANNOUNCE_CHANGES) .announcement-text
 	$(RELEASE_ANNOUNCE) "$(DISTRO_TITLE)" "$(RELVER)" .announcement-text $< "$(ANNOUNCE_RECIPIENTS)"
