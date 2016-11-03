@@ -7,7 +7,7 @@ upstream_xsl:=$(wildcard ../html/*.xsl)
 xsl_files:=$(patsubst ../html/%.xsl, %.xsl, $(upstream_xsl))
 xsl_files:=$(filter-out html2xhtml.xsl $(profile_files), $(xsl_files))
 
-all: $(xsl_files) $(profile_files) docbook-no-doctype.xsl
+all: $(xsl_files) $(profile_files) docbook-no-doctype.xsl docbook.css.xml
 
 clean:
 	$(RM) $(xsl_files) $(profile_files)
@@ -21,3 +21,5 @@ $(profile_files): profile-%.xsl: %.xsl
 docbook-no-doctype.xsl: ../html/docbook.xsl
 	$(XSLT) $< html2xhtml.xsl docbook-no-doctype.xsl include.output.doctype=0
 
+docbook.css.xml: ../html/docbook.css.xml
+	cp $< $@
