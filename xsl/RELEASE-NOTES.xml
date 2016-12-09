@@ -7,7 +7,7 @@
 <info>
   <title>Release Notes for the DocBook XSL Stylesheets</title>
   <pubdate><?dbtimestamp format="Y-m-d"?></pubdate>
-  <releaseinfo role="cvs">$Revision: 10010 $ $Date: 2015-12-26 15:05:24 -0800 (Sat, 26 Dec 2015) $</releaseinfo>
+  <!-- <releaseinfo role="cvs">$Revision: 10010 $ $Date: 2015-12-26 15:05:24 -0800 (Sat, 26 Dec 2015) $</releaseinfo>-->
   <!-- * <author><orgname>DocBook Project Development Team</orgname></author> -->
 <abstract>
 <para condition="dot-zero;dot-one-plus">This release-notes
@@ -27,11 +27,7 @@ of enhancements and changes to the stylesheets’ public APIs
 bug fixes. For a complete list of all changes (including all bug
 fixes) that have been made since the previous release, see the
 separate <link xlink:href="NEWS">NEWS</link> (plain text) or <link
-  xlink:href="NEWS.html">NEWS.html</link> files. Also available:
-An online <link
-  xlink:href="http://docbook.svn.sourceforge.net/viewvc/docbook/trunk/xsl/?view=log"
-  >hyperlinked change history</link> (warning: big file) of all
-changes made over the entire history of the codebase.</para>
+  xlink:href="NEWS.html">NEWS.html</link> files.</para>
 <para condition="dot-zero">As with all DocBook Project <link
     linkend="dot0">dot-zero</link> releases, this is a
   candidate release for testing by the DocBook community. It will be followed shortly by a stable
@@ -56,6 +52,13 @@ public APIs (user-configurable parameters).</para>-->
 
 <section condition="snapshot" xml:id="current">
   <xi:include href="NEWS.xml" xpointer="xmlns(d=http://docbook.org/ns/docbook) xpointer(/d:article/d:section/*)"/>
+</section>
+<section xml:id="V1.79.2">
+<title>Release Notes: 1.79.2</title>
+  <para>This release doesn't contain any functional changes to the stylesheets. Rather, it includes changes that reflect
+  the recent transition from <link xlink:href="http://docbook.sourceforge.net">sourceforge.net</link> to
+  <link xlink:href="http://github.com/docbook">github.com</link> both as source repository as well as
+  content delivery network. See the NEWS.xml file for a complete unedited  list of commits.</para>
 </section>
 <section xml:id="V1.79.1">
 <title>Release Notes: 1.79.1</title>
