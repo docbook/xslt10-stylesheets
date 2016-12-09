@@ -50,7 +50,7 @@ else
 ifeq (-pre,$(findstring -pre,$(RELVER)))
 all: fo/page.png reference.html reference.css reference.txt.gz
 else
-all: fo/page.png reference.html reference.css reference.txt.gz reference.pdf.gz
+all: fo/page.png reference.html reference.css reference.txt.gz #reference.pdf.gz
 endif
 endif
 
