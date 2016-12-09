@@ -73,6 +73,9 @@ all: base
 base:
 	for d in $(DIRS) ; do $(MAKE) -C $$d; done
 
+version:
+	echo $(RELVER)
+
 xhtml:
 	$(MAKE) -C xhtml
 	$(MAKE) -C xhtml-1_1

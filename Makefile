@@ -3,6 +3,9 @@ export repo_dir ?= $(abspath .)
 all:
 	$(MAKE) -C xsl
 
+version:
+	@$(MAKE) -s -C xsl version
+
 doc:
 	$(MAKE) -C xsl doc
 

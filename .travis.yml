@@ -29,6 +29,7 @@ script:
 - make
 - make check
 - make dist
+- export VERSION=$(make version)
 
 after_success:
 # Update CDN
@@ -52,15 +53,15 @@ deploy:
   api_key:
     secure: "VJAj9hVynNFo4A5G5E6/PbND0dE/NpV1tzhuEgP86RyK1O6CIdIgUMvhjtH2Nv1fuc1C7PdEwMsggNFIelquVIJfdfTSq1xvwYbuQV9djXGhnoDRZB99a8cTI9q7xJ9E4d5fZyLd+s93Pzh3yTUZY+BCaVohnoZPhkA09YqKu/B/XVCDN/Qb3S5rdI+sacGCJqAoXXVrlNn4WUNUBCshJ/o/9KzvdGs5AcVDB8n219CIK5Lw+bM7rV0ifnwcQyLyc2k5fJdQkDoXQwuoeZ9YpNi2Cqoe5NWPtZxzGB5jod21yyU6/QYzOxA/64aC/ZRhEIUMiAnP0gGqTkK+DHJwC+ficoh8iTzNiVNlBuoYqKxo7ErKJPFgpppfCh07SFy8alJ6h1zFeYYLxohqBI1KdfDpDtO5h3YzTm17pQZ8xtuca1U4FgaMnXVMgsvThEwoPgqnhN1ee57MUuwZPc6tc811fZRZcVzfyTIkmpn084Cxl3jk6ZLTF91da/X7FQB/SsKghY1NCpdIwU0oW0PC72fXdSRK+mOegh1Z5aL1unrYp7jVCHEgjHobbe9P5SpycJ3ndiMbTFcnQil/gc6C+7Z7IedE/mlaEtvlrYHtK4w8GNsNWCXfIY4bxZS3XugS43eZc09MTyTTqRHsIgRfsveERmzQRWLtN02VDMYmul4="
   file:
-  - dist/docbook-xsl-snapshot.tar.bz2
-  - dist/docbook-xsl-snapshot.tar.gz
-  - dist/docbook-xsl-snapshot.zip
-  - dist/docbook-xsl-nons-snapshot.tar.bz2
-  - dist/docbook-xsl-nons-snapshot.tar.gz
-  - dist/docbook-xsl-nons-snapshot.zip
-  - dist/docbook-xsl-doc-snapshot.tar.bz2
-  - dist/docbook-xsl-doc-snapshot.tar.gz
-  - dist/docbook-xsl-doc-snapshot.zip
+  - dist/docbook-xsl-$VERSION.tar.bz2
+  - dist/docbook-xsl-$VERSION.tar.gz
+  - dist/docbook-xsl-$VERSION.zip
+  - dist/docbook-xsl-nons-$VERSION.tar.bz2
+  - dist/docbook-xsl-nons-$VERSION.tar.gz
+  - dist/docbook-xsl-nons-$VERSION.zip
+  - dist/docbook-xsl-doc-$VERSION.tar.bz2
+  - dist/docbook-xsl-doc-$VERSION.tar.gz
+  - dist/docbook-xsl-doc-$VERSION.zip
   on:
     repo: docbook/xslt10-stylesheets
     branch: master
