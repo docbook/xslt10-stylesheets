@@ -36,6 +36,8 @@ entries = [dict(zip(GIT_COMMIT_FIELDS, entry)) for entry in entries]
 builder = ET.TreeBuilder()
 builder.start('log', {})
 for e in entries:
+    if not e['id']:
+        continue
     builder.start('logentry', {'revision':e['id']})
     builder.start('author', {})
     builder.data(e['author_name'])
