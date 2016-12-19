@@ -44,8 +44,7 @@
   <!-- is the @xlink:href a local idref link? -->
   <xsl:param name="xlink.idref">
     <xsl:if test="starts-with($xhref,'#')
-                  and (not(contains($xhref,'&#40;'))
-                  or starts-with($xhref, '#xpointer&#40;id&#40;'))">
+                  and not(contains($xhref,'&#40;'))">
       <xsl:call-template name="xpointer.idref">
         <xsl:with-param name="xpointer" select="$xhref"/>
       </xsl:call-template>
