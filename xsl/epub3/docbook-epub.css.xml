@@ -95,6 +95,16 @@ div.sidebar-title {
 /********************************/
 
 /********************************/
+/* start of styles in lists.xsl */
+
+.step-title {
+  font-weight: bold;
+}
+
+/* end of styles in lists.xsl */
+/********************************/
+
+/********************************/
 /* start of styles in verbatim.xsl */
 
 div.programlisting {
