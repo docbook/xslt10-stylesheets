@@ -581,16 +581,16 @@
 
 <context name="xref-number-and-title">
 
-<template name="appendix"><Appendix/>&#160;%n, %t</template>
+<template name="appendix"><Appendix/>&#160;%n %t</template>
 <template name="bridgehead">第&#160;%n&#160;<Section/> <startquote/>%t<endquote/></template>
 <template name="chapter">第&#160;%n&#160;<Chapter/> %t</template>
 <template name="equation"><Equation/>&#160;%n <startquote/>%t<endquote/></template>
 <template name="example"><Example/>&#160;%n <startquote/>%t<endquote/></template>
 <template name="figure"><Figure/>&#160;%n <startquote/>%t<endquote/></template>
 <template name="part">第&#160;%n&#160;<Part/> <startquote/>%t<endquote/></template>
-<template name="procedure"><Procedure/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="productionset"><ProductionSet/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="qandadiv"><Qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="procedure"><Procedure/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="productionset"><ProductionSet/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="qandadiv"><Qandadiv/>&#160;%n <startquote/>%t<endquote/></template>
 <template name="refsect1"><startquote/>%t<endquote/><sectioncalled/></template>
 <template name="refsect2"><startquote/>%t<endquote/><sectioncalled/></template>
 <template name="refsect3"><startquote/>%t<endquote/><sectioncalled/></template>
