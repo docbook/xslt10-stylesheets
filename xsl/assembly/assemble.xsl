@@ -45,11 +45,9 @@
 
 <!-- handle omittitles, but only top level title of resource -->
 <xsl:template match="/*/d:title
-                   | /*/d:info/d:title
                    | /*/d:subtitle
-                   | /*/d:info/d:subtitle
                    | /*/d:titleabbrev
-                   | /*/d:info/d:titleabbrev"
+                   | /*/d:info"
               mode="copycontent">
   <xsl:param name="omittitles"/>
 
