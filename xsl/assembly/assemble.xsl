@@ -551,16 +551,17 @@
     </xsl:if>
   </xsl:variable>
 
-  <xsl:variable name="merge.ref.info" 
-                select="exsl:node-set($merge.ref.content)//d:info[1]"/>
+  <!-- Copy all metadata from merge.ref.content to a single node-set -->
+  <xsl:variable name="merge.ref.metadata">
+    <xsl:copy-of select="exsl:node-set($merge.ref.content)/*/d:info[1]/@*"/>
+    <xsl:copy-of select="exsl:node-set($merge.ref.content)/*/d:title[1]"/>
+    <xsl:copy-of select="exsl:node-set($merge.ref.content)/*/d:titleabbrev[1]"/>
+    <xsl:copy-of select="exsl:node-set($merge.ref.content)/*/d:subtitle[1]"/>
+    <xsl:copy-of select="exsl:node-set($merge.ref.content)/*/d:info[1]/node()"/>
+  </xsl:variable>
 
-  <xsl:if test="$merge.element/@resourceref and not($merge.ref.info)">
-    <xsl:message terminate="yes">
-      <xsl:text>ERROR: merge element with resourceref '</xsl:text>
-      <xsl:value-of select="$merge.element/@resourceref"/>
-      <xsl:text>' must point to something with an info element.'</xsl:text>
-    </xsl:message>
-  </xsl:if>
+  <xsl:variable name="merge.ref.info"
+                select="exsl:node-set($merge.ref.metadata)"/>
 
   <xsl:variable name="omittitles.boolean">
     <xsl:choose>
