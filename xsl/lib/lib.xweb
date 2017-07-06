@@ -6,7 +6,8 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:dyn="http://exslt.org/dynamic"
   xmlns:ssb="http://sideshowbarker.net/ns"
-  xmlns:saxon="http://icl.com/saxon">
+  xmlns:saxon="http://icl.com/saxon"
+  xmlns:str="http://exslt.org/strings">
   <info>
     <title>XSL Library Template Reference</title>
     <releaseinfo role="cvs"></releaseinfo>
@@ -142,6 +143,9 @@ with <parameter>replacement</parameter> and returns the result.
   <xsl:param name="replacement"></xsl:param>
 
   <xsl:choose>
+    <xsl:when xmlns:str="http://exslt.org/strings" str:foo="" test="function-available('str:replace')">
+      <xsl:value-of select="str:replace($string, string($target), string($replacement))"/>
+    </xsl:when>
     <xsl:when test="contains($string, $target)">
       <xsl:variable name="rest">
         <xsl:call-template name="string.subst">
