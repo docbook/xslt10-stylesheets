@@ -63,6 +63,7 @@
   <xsl:variable name="target.database.filename">
     <xsl:choose>
       <xsl:when test="$xml.base != '' and
+                   not($target.database.document = '') and
                    not(starts-with($target.database.document, 'file:/')) and
                    not(starts-with($target.database.document, '/'))">
         <xsl:call-template name="systemIdToBaseURI">
