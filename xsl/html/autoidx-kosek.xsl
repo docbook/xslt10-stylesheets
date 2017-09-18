@@ -106,7 +106,7 @@
       <dl>
         <xsl:apply-templates select="key('group-code', $key)[&scope;][count(.|key('primary', &primary;)[&scope;][1])=1]"
                              mode="index-primary">
-          <xsl:sort select="&primary;" lang="{$lang}"/>
+          <xsl:sort select="i:term-index(&primary;)" lang="{$lang}"/>
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
