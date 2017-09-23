@@ -7,8 +7,9 @@
                 xmlns:d="http://docbook.org/ns/docbook"
 		xmlns:exslt="http://exslt.org/common"
                 xmlns:xlink='http://www.w3.org/1999/xlink'
+                xmlns:i="urn:cz-kosek:functions:index"
                 extension-element-prefixes="exslt"
-                exclude-result-prefixes="exslt d"
+                exclude-result-prefixes="exslt d i"
                 version="1.0">
 
 <!-- ********************************************************************
