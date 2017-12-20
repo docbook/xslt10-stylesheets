@@ -513,7 +513,7 @@
 </context>
 
 <context name="datetime">
-<template name="format">m/d/Y</template>
+<template name="format">d.m.Y</template>
 </context>
 
 <context name="termdef">
