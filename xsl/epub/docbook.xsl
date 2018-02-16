@@ -302,7 +302,7 @@
 
 
   <xsl:template name="opf">
-    <xsl:variable name="package-identifier-id"><xsl:value-of select="concat(name(/*), 'id')"/></xsl:variable>
+    <xsl:variable name="package-identifier-id"><xsl:value-of select="concat(local-name(/*), 'id')"/></xsl:variable>
     <xsl:variable name="doc.title">
       <xsl:call-template name="get.doc.title" />
     </xsl:variable>
