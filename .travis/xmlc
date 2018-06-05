@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?> <!-- -*- nxml -*- -->
-<config>
-  <java classpath-separator=":" xml:id="java">
+<config classpath-separator=":">
+  <java xml:id="java">
     <system-property name="javax.xml.parsers.DocumentBuilderFactory"
 		     value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
     <system-property name="javax.xml.parsers.SAXParserFactory"
