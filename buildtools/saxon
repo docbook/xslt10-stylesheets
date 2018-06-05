@@ -159,7 +159,7 @@ foreach my $name (@opts, $optsname) {
     applyOpts($xp, $name);
 }
 
-$java = "java" if $java eq '';
+$java = "java" if !defined($java) or $java eq '';
 
 foreach my $path (reverse split(/$cpseparator/, $CLASSPATH)) {
     unshift(@classpath, $path);
@@ -221,7 +221,7 @@ sub applyOpts {
 	if $classname eq '';
 
     $java = $saxon->getAttribute('java')
-	if $java eq '';
+        if !defined($java) or $java eq '';
 
     foreach my $path (configPath($saxon, 'classpath', $cpseparator)) {
 	addOpt(\@classpath, $path);
@@ -244,7 +244,7 @@ sub applyOpts {
     }
 
     my $extends = $saxon->getAttribute('extends');
-    applyOpts($xp, $extends) if $extends ne '';
+    applyOpts($xp, $extends) if defined($extends) and $extends ne '';
 }
 
 sub configArgs {
