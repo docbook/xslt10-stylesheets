@@ -697,7 +697,7 @@
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
             <xsl:with-param name="object" select="$target[1]"/>
-            <xsl:with-param name="context" select="//d:index[&scope;][1]"/>
+            <xsl:with-param name="context" select="(//d:index[&scope;])[1]"/>
           </xsl:call-template>
         </xsl:attribute>
         <xsl:apply-templates select="$target[1]" mode="index-title-content"/>
