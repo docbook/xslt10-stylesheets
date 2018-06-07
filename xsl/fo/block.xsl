@@ -88,16 +88,17 @@
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
+  <xsl:variable name="norm.titleStr" select="normalize-space($titleStr)"/>
   <xsl:variable name="lastChar">
     <xsl:if test="$titleStr != ''">
-      <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
+      <xsl:value-of select="substring($norm.titleStr,string-length($norm.titleStr),1)"/>
     </xsl:if>
   </xsl:variable>
 
   <fo:inline font-weight="bold"
              keep-with-next.within-line="always"
              padding-end="1em">
-    <xsl:copy-of select="$titleStr"/>
+    <xsl:copy-of select="$norm.titleStr"/>
     <xsl:if test="$lastChar != ''
                   and not(contains($runinhead.title.end.punct, $lastChar))">
       <xsl:value-of select="$runinhead.default.title.end.punct"/>
