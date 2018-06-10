@@ -78,8 +78,8 @@
 <gentext key="part" text="部"/>
 <gentext key="Preface" text="序言"/>
 <gentext key="preface" text="序言"/>
-<gentext key="Procedure" text="過程"/>
-<gentext key="procedure" text="過程"/>
+<gentext key="Procedure" text="程序"/>
+<gentext key="procedure" text="程序"/>
 <gentext key="ProductionSet" text="奉獻"/>
 <gentext key="PubDate" text="出版日期"/>
 <gentext key="pubdate" text="出版日期"/>
@@ -180,8 +180,8 @@
 <gentext key="listofexamples" text="範例目錄"/>
 <gentext key="ListofFigures" text="附圖目錄"/>
 <gentext key="listoffigures" text="附圖目錄"/>
-<gentext key="ListofProcedures" text="過程清單"/>
-<gentext key="listofprocedures" text="過程清單"/>
+<gentext key="ListofProcedures" text="程序清單"/>
+<gentext key="listofprocedures" text="程序清單"/>
 <gentext key="listoftables" text="附表目錄"/>
 <gentext key="ListofTables" text="附表目錄"/>
 <gentext key="ListofUnknown" text="其他內容目錄"/>
@@ -463,28 +463,28 @@
 
 <context name="xref-number-and-title">
 
-<template name="appendix"><Appendix/>&#160;%n, %t</template>
-<template name="bridgehead"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="chapter"><Chapter/>&#160;%n, %t</template>
-<template name="equation"><Equation/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="example"><Example/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="figure"><Figure/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="part"><Part/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="procedure"><Procedure/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="productionset"><ProductionSet/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="qandadiv"><Qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="appendix"><Appendix/>&#160;%n %t</template>
+<template name="bridgehead"><Section/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="chapter"><Chapter/>&#160;%n %t</template>
+<template name="equation"><Equation/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="example"><Example/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="figure"><Figure/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="part"><Part/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="procedure"><Procedure/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="productionset"><ProductionSet/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="qandadiv"><Qandadiv/>&#160;%n <startquote/>%t<endquote/></template>
 <template name="refsect1"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsect2"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsect3"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
-<template name="sect1"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect2"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect3"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect4"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect5"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="section"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect1"><Section/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="sect2"><Section/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="sect3"><Section/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="sect4"><Section/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="sect5"><Section/>&#160;%n <startquote/>%t<endquote/></template>
+<template name="section"><Section/>&#160;%n <startquote/>%t<endquote/></template>
 <template name="simplesect"><sectioncalled/> <startquote/>%t<endquote/></template>
-<template name="table"><Table/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="table"><Table/>&#160;%n <startquote/>%t<endquote/></template>
 
 </context>
 

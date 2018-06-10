@@ -1319,7 +1319,7 @@
 </xsl:template>
 
 <!-- in Addresses, for example -->
-<xsl:template match="d:honorific|d:firstname|d:surname|d:lineage|d:othername">
+<xsl:template match="d:honorific|d:firstname|d:givenname|d:surname|d:lineage|d:othername">
   <xsl:call-template name="inline.charseq"/>
 </xsl:template>
 

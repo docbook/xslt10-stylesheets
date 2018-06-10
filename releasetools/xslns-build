@@ -247,7 +247,7 @@ sub nsfilter {
   
   # Add the docbook5 namespace declaration to root element
   
-  s|(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform"(?!>))(\s*\n?)(\s*)|$1$2$3xmlns:d="http://docbook.org/ns/docbook"\n$3|s;
+  s|([ \t]*)(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform")|$1$2\n$1xmlns:d="http://docbook.org/ns/docbook"|s;
   
   # Add namespace d to exclude-result-prefixes
   

@@ -14,7 +14,7 @@ Run
 
   `make`
 
-Avalable flags:
+Available flags:
 
 * XSLTENGINE=[saxon,xsltproc]
 

@@ -692,6 +692,10 @@ title of the element. This does not include the label.
   <!-- nop, suppressed -->
 </xsl:template>
 
+<xsl:template match="d:footnoteref" mode="no.anchor.mode">
+  <!-- nop, suppressed -->
+</xsl:template>
+
 <xsl:template match="d:anchor" mode="no.anchor.mode">
   <!-- nop, suppressed -->
 </xsl:template>

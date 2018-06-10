@@ -201,8 +201,8 @@
 <gentext key="index symbols" text="Símbolos"/> 
 <gentext key="writing-mode" text="lr-tb"/>
 
-<gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyz"/> 
-<gentext key="uppercase.alpha" text="ABCDEFGHIJKLMNOPQRSTUVWXYZ"/> 
+<gentext key="lowercase.alpha" text="aáàâãbcçdeéêfghiíjklmnoóôõpqrstuúüvwxyz"/>
+<gentext key="uppercase.alpha" text="AÁÀÂÃBCÇDEÉÊFGHIÍJKLMNOÓÔÕPQRSTUÚÜVWXYZ"/>
 
 <dingbat key="startquote"		text="&#x201C;"/>
 <dingbat key="endquote"			text="&#x201D;"/>
