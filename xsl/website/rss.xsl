@@ -53,7 +53,7 @@
   <xsl:apply-templates select="rss:items"/>
 
   <xsl:if test="$image">
-    <br clear="right"/>
+    <br style="clear: both"/>
   </xsl:if>
 </xsl:template>
 
