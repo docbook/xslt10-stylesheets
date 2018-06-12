@@ -64,7 +64,7 @@
           <xsl:value-of select="$homebanner/@altval"/>
         </xsl:attribute>
       </img>
-      <br clear="all"/>
+      <br style="clear: both"/>
       <br/>
     </xsl:when>
     <xsl:otherwise>
@@ -79,7 +79,7 @@
           </xsl:attribute>
         </img>
       </a>
-      <br clear="all"/>
+      <br style="clear: both"/>
       <br/>
     </xsl:otherwise>
   </xsl:choose>
