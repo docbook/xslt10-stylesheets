@@ -86,13 +86,30 @@
 
 <xsl:template match="d:formalpara/d:title|d:formalpara/d:info/d:title">
   <xsl:variable name="titleStr">
-      <xsl:apply-templates/>
+    <xsl:choose>
+      <!-- cannot safely normalize space if it has child elements -->
+      <xsl:when test="child::*">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="normalize-space(.)"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
+
   <xsl:variable name="lastChar">
     <xsl:if test="$titleStr != ''">
       <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
     </xsl:if>
   </xsl:variable>
+
+  <xsl:if test="contains(' &#10;&#13;', $lastChar)">
+    <xsl:message>
+      <xsl:text>WARNING: formalpara title '</xsl:text>
+      <xsl:value-of select="$titleStr"/>
+      <xsl:text>' has trailing whitespace before runheadhead.title.end.punct.</xsl:text>
+    </xsl:message>
+  </xsl:if>
 
   <fo:inline font-weight="bold"
              keep-with-next.within-line="always"
