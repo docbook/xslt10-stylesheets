@@ -1005,7 +1005,7 @@
             </xsl:attribute>
 
             <xsl:call-template name="inline.italicseq">
-              <xsl:with-param name="content" select="$content"/>
+              <xsl:with-param name="contentwithlink" select="$content"/>
             </xsl:call-template>
           </a>
         </xsl:when>
