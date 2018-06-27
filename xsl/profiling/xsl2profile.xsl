@@ -30,13 +30,15 @@
       <xsl:attribute name="extension-element-prefixes">exslt</xsl:attribute>
     </xsl:if>
     <xsl:if test="not(@exclude-result-prefixes)">
-      <xsl:attribute name="exclude-result-prefixes">exslt</xsl:attribute>
+      <xsl:attribute name="exclude-result-prefixes">exslt ng db</xsl:attribute>
     </xsl:if>
     <xsl:for-each select="@*">
       <xsl:choose>
-        <xsl:when test="local-name(.) = 'extension-element-prefixes' or
-                        local-name(.) = 'exclude-result-prefixes'">
+        <xsl:when test="local-name(.) = 'extension-element-prefixes'">
           <xsl:attribute name="{local-name(.)}"><xsl:value-of select="concat(., ' exslt')"/></xsl:attribute>
+        </xsl:when>
+        <xsl:when test="local-name(.) = 'exclude-result-prefixes'">
+          <xsl:attribute name="{local-name(.)}"><xsl:value-of select="concat(., ' exslt db ng')"/></xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="{local-name(.)}"><xsl:value-of select="."/></xsl:attribute>
