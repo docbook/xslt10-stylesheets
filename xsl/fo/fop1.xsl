@@ -21,12 +21,33 @@
   <xsl:apply-templates select="*" mode="fop1.outline"/>
 </xsl:template>
 
-<xsl:template match="d:set|d:book|d:part|d:reference|
-                     d:preface|d:chapter|d:appendix|d:article|d:topic
-                     |d:glossary|d:bibliography|d:index|d:setindex
-                     |d:refentry|d:refsynopsisdiv
-                     |d:refsect1|d:refsect2|d:refsect3|d:refsection
-                     |d:sect1|d:sect2|d:sect3|d:sect4|d:sect5|d:section"
+<!-- to turn off any of these, add to your customization layer
+     an empty template matching on that element and in this mode -->
+<xsl:template match="d:appendix |
+                     d:article |
+                     d:bibliography |
+                     d:book |
+                     d:chapter |
+                     d:glossary |
+                     d:index |
+                     d:part |
+                     d:preface |
+                     d:refentry |
+                     d:reference |
+                     d:refsect1 |
+                     d:refsect2 |
+                     d:refsect3 |
+                     d:refsection |
+                     d:refsynopsisdiv |
+                     d:sect1 |
+                     d:sect2 |
+                     d:sect3 |
+                     d:sect4 |
+                     d:sect5 |
+                     d:section |
+                     d:set |
+                     d:setindex |
+                     d:topic"
               mode="fop1.outline">
 
   <xsl:variable name="id">
