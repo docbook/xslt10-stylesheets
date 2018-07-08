@@ -97,7 +97,7 @@
           <xsl:for-each select="descendant-or-self::d:table|descendant-or-self::d:informaltable">
             <xsl:element name="{local-name(..)}">
               <table>
-                <xsl:apply-templates mode="strip.namespace" select="*"/>
+                <xsl:apply-templates mode="stripNS" select="*"/>
               </table>
             </xsl:element>
           </xsl:for-each>
