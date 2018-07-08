@@ -72,7 +72,6 @@
                    | @frame
                    | @headers
                    | @height
-                   | @id
                    | @lang
                    | @nowrap
                    | @onclick
