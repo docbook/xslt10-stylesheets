@@ -883,12 +883,16 @@
                     and $glossary.collection != ''">
       <xsl:variable name="term">
         <xsl:choose>
-          <xsl:when test="@baseform"><xsl:value-of select="@baseform"/></xsl:when>
-          <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+          <xsl:when test="@baseform">
+            <xsl:value-of select="normalize-space(@baseform)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="normalize-space(.)"/>
+          </xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
       <xsl:variable name="cterm"
-           select="(document($glossary.collection,.)//d:glossentry[d:glossterm=$term])[1]"/>
+           select="(document($glossary.collection,.)//d:glossentry[normalize-space(d:glossterm)=$term])[1]"/>
 
       <xsl:choose>
         <xsl:when test="not($cterm)">
@@ -936,7 +940,7 @@
         <xsl:when test="count($targets)=0">
           <xsl:message>
             <xsl:text>Error: no glossentry for glossterm: </xsl:text>
-            <xsl:value-of select="."/>
+            <xsl:value-of select="normalize-space(.)"/>
             <xsl:text>.</xsl:text>
           </xsl:message>
           <xsl:call-template name="inline.italicseq"/>
