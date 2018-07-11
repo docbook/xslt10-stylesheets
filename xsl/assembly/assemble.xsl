@@ -445,6 +445,9 @@
           <!-- must use for-each to set context node for xsl:copy -->
           <xsl:for-each select="$ref.content">
             <xsl:copy>
+              <xsl:attribute name="xml:base">
+                <xsl:value-of select="$fileref"/>
+              </xsl:attribute>
               <xsl:copy-of select="@*[not(name() = 'xml:id')]"/>
               <xsl:choose>
                 <!-- Use the module's xml:id if it has one -->
@@ -482,6 +485,9 @@
         <xsl:otherwise>
           <!-- create the element instead of copying it -->
           <xsl:element name="{$element.name}" namespace="http://docbook.org/ns/docbook">
+            <xsl:attribute name="xml:base">
+              <xsl:value-of select="$fileref"/>
+            </xsl:attribute>
             <xsl:copy-of select="$ref.content/@*[not(name() = 'xml:id')]"/>
             <xsl:choose>
               <!-- Use the module's xml:id if it has one -->
