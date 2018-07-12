@@ -254,11 +254,15 @@
     </xsl:call-template>
     <xsl:text> &lt;http://docbook.sf.net/></xsl:text>
     <xsl:text>&#10;</xsl:text>
-    <xsl:text>.\"      Date: </xsl:text>
-    <xsl:call-template name="replace.dots.and.dashes">
-      <xsl:with-param name="content" select="$date"/>
-    </xsl:call-template>
-    <xsl:text>&#10;</xsl:text>
+    <!-- option to turn off date to avoid triggering version in
+         archive systems -->
+    <xsl:if test="$man.show.top.comment.date != 0">
+      <xsl:text>.\"      Date: </xsl:text>
+      <xsl:call-template name="replace.dots.and.dashes">
+        <xsl:with-param name="content" select="$date"/>
+      </xsl:call-template>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:if>
     <xsl:text>.\"    Manual: </xsl:text>
     <xsl:call-template name="replace.dots.and.dashes">
       <xsl:with-param name="content" select="$manual"/>

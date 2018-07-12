@@ -127,6 +127,7 @@
 &man.table.footnotes.divider;
 &man.subheading.divider.enabled;
 &man.subheading.divider;
+&man.show.top.comment.date;
   </reference>
   <appendix xml:id="stylesheet">
     <title>The Stylesheet</title>
@@ -192,6 +193,7 @@
 <src:fragref linkend="man.string.subst.map.local.pre.frag"/>
 <src:fragref linkend="man.subheading.divider.enabled.frag"/>
 <src:fragref linkend="man.subheading.divider.frag"/>
+<src:fragref linkend="man.show.top.comment.date.frag"/>
 <src:fragref linkend="man.table.footnotes.divider.frag"/>
 <src:fragref linkend="man.th.extra1.suppress.frag"/>
 <src:fragref linkend="man.th.extra2.max.length.frag"/>

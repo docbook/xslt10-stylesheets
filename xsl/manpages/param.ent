@@ -41,6 +41,7 @@
 <!ENTITY man.string.subst.map SYSTEM "../params/man.string.subst.map.xml">
 <!ENTITY man.subheading.divider.enabled SYSTEM "../params/man.subheading.divider.enabled.xml">
 <!ENTITY man.subheading.divider SYSTEM "../params/man.subheading.divider.xml">
+<!ENTITY man.show.top.comment.date SYSTEM "../params/man.show.top.comment.date.xml">
 <!ENTITY man.table.footnotes.divider SYSTEM "../params/man.table.footnotes.divider.xml">
 <!ENTITY man.th.extra1.suppress SYSTEM "../params/man.th.extra1.suppress.xml">
 <!ENTITY man.th.extra2.max.length SYSTEM "../params/man.th.extra2.max.length.xml">
