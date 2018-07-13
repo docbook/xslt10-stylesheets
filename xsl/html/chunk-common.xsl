@@ -241,6 +241,7 @@
 
   <xsl:variable name="prev"
     select="(preceding::d:book[1]
+             |preceding::d:set[1]
              |preceding::d:preface[1]
              |preceding::d:chapter[1]
              |preceding::d:appendix[1]
@@ -341,6 +342,7 @@
 
   <xsl:variable name="next"
     select="(following::d:book[1]
+             |following::d:set[1]
              |following::d:preface[1]
              |following::d:chapter[1]
              |following::d:appendix[1]
@@ -403,6 +405,7 @@
 
   <xsl:variable name="prev"
     select="(preceding::d:book[1]
+             |preceding::d:set[1]
              |preceding::d:preface[1]
              |preceding::d:chapter[1]
              |preceding::d:appendix[1]
@@ -448,6 +451,7 @@
 
   <xsl:variable name="next"
     select="(following::d:book[1]
+             |following::d:set[1]
              |following::d:preface[1]
              |following::d:chapter[1]
              |following::d:appendix[1]
