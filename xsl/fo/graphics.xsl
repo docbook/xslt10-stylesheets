@@ -571,7 +571,10 @@
 </xsl:template>
 
 <xsl:template match="d:inlinemediaobject">
-  <xsl:call-template name="select.mediaobject"/>
+  <fo:inline>
+    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="select.mediaobject"/>
+  </fo:inline>
 </xsl:template>
 
 <!-- ==================================================================== -->

@@ -228,6 +228,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 
   <fo:basic-link internal-destination="{$href}"
                  xsl:use-attribute-sets="xref.properties">
+    <xsl:call-template name="anchor"/>
     <xsl:choose>
       <xsl:when test="*|text()">
         <xsl:apply-templates/>

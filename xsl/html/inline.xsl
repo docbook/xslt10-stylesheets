@@ -1589,4 +1589,10 @@
   <!-- does nothing; this *is not* markup to force a page break. -->
 </xsl:template>
 
+<!-- ==================================================================== -->
+<!-- generate text for xrefs to inline elements -->
+<xsl:template match="&inline.elements;" mode="xref-to">
+  <xsl:apply-templates mode="no.anchor.mode"/>
+</xsl:template>
+
 </xsl:stylesheet>

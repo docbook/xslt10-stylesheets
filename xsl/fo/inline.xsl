@@ -182,6 +182,7 @@
   </xsl:param>
 
   <fo:inline font-family="{$sans.font.family}">
+    <xsl:call-template name="anchor"/>
     <xsl:choose>
       <xsl:when test="@dir">
         <fo:inline>
@@ -212,22 +213,25 @@
     </xsl:call-template>
   </xsl:param>
 
-  <xsl:choose>
-    <xsl:when test="@dir">
-      <fo:inline>
-        <xsl:attribute name="direction">
-          <xsl:choose>
-            <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
-            <xsl:otherwise>rtl</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
+  <fo:inline>
+    <xsl:call-template name="anchor"/>
+    <xsl:choose>
+      <xsl:when test="@dir">
+        <fo:inline>
+          <xsl:attribute name="direction">
+            <xsl:choose>
+              <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+              <xsl:otherwise>rtl</xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
+          <xsl:copy-of select="$contentwithlink"/>
+        </fo:inline>
+      </xsl:when>
+      <xsl:otherwise>
         <xsl:copy-of select="$contentwithlink"/>
-      </fo:inline>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:copy-of select="$contentwithlink"/>
-    </xsl:otherwise>
-  </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template name="inline.monoseq">
@@ -268,6 +272,7 @@
   </xsl:param>
 
   <fo:inline font-weight="bold">
+    <xsl:call-template name="anchor"/>
     <xsl:if test="@dir">
       <xsl:attribute name="direction">
         <xsl:choose>
@@ -427,7 +432,10 @@
 <xsl:template match="d:author">
   <xsl:call-template name="simple.xlink">
     <xsl:with-param name="content">
-      <xsl:call-template name="person.name"/>
+      <fo:inline>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="person.name"/>
+      </fo:inline>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -435,7 +443,10 @@
 <xsl:template match="d:editor">
   <xsl:call-template name="simple.xlink">
     <xsl:with-param name="content">
-      <xsl:call-template name="person.name"/>
+      <fo:inline>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="person.name"/>
+      </fo:inline>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -443,7 +454,10 @@
 <xsl:template match="d:othercredit">
   <xsl:call-template name="simple.xlink">
     <xsl:with-param name="content">
-      <xsl:call-template name="person.name"/>
+      <fo:inline>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="person.name"/>
+      </fo:inline>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -773,7 +787,6 @@
 
 <xsl:template match="d:phrase">
   <fo:inline>
-    <xsl:call-template name="anchor"/>
     <xsl:call-template name="inline.charseq"/>
   </fo:inline>
 </xsl:template>
@@ -800,7 +813,6 @@
   </xsl:variable>
 
   <fo:inline>
-    <xsl:call-template name="anchor"/>
     <xsl:copy-of select="$content"/>
   </fo:inline>
 
@@ -967,6 +979,7 @@
 
 <xsl:template match="d:termdef">
   <fo:inline>
+    <xsl:call-template name="anchor"/>
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'termdef'"/>
       <xsl:with-param name="name" select="'prefix'"/>
@@ -1128,10 +1141,13 @@
       <xsl:otherwise>+</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:for-each select="*">
-    <xsl:if test="position()>1"><xsl:value-of select="$joinchar"/></xsl:if>
-    <xsl:apply-templates select="."/>
-  </xsl:for-each>
+  <fo:inline>
+    <xsl:call-template name="anchor"/>
+    <xsl:for-each select="*">
+      <xsl:if test="position()>1"><xsl:value-of select="$joinchar"/></xsl:if>
+      <xsl:apply-templates select="."/>
+    </xsl:for-each>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match="d:uri">
@@ -1142,7 +1158,10 @@
 
 <xsl:template match="d:menuchoice">
   <xsl:variable name="shortcut" select="./d:shortcut"/>
-  <xsl:call-template name="process.menuchoice"/>
+  <fo:inline>
+    <xsl:call-template name="anchor"/>
+    <xsl:call-template name="process.menuchoice"/>
+  </fo:inline>
   <xsl:if test="$shortcut">
     <xsl:text> (</xsl:text>
     <xsl:apply-templates select="$shortcut"/>
@@ -1330,13 +1349,19 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="d:person">
-  <xsl:apply-templates select="d:personname"/>
+  <fo:inline>
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates select="d:personname"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match="d:personname">
   <xsl:call-template name="simple.xlink">
     <xsl:with-param name="content">
-      <xsl:call-template name="person.name"/>
+      <fo:inline>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="person.name"/>
+      </fo:inline>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -1344,7 +1369,10 @@
 <xsl:template match="d:jobtitle">
   <xsl:call-template name="simple.xlink">
     <xsl:with-param name="content">
-      <xsl:apply-templates/>
+      <fo:inline>
+        <xsl:call-template name="anchor"/>
+        <xsl:apply-templates/>
+      </fo:inline>
     </xsl:with-param>
   </xsl:call-template>
 </xsl:template>
@@ -1384,6 +1412,12 @@
   -->
   <!-- Since this is a mode, you can create different
        templates with different properties for different linking elements -->
+</xsl:template>
+
+<!-- ==================================================================== -->
+<!-- generate text for xrefs to inline elements -->
+<xsl:template match="&inline.elements;" mode="xref-to">
+  <xsl:apply-templates mode="no.anchor.mode"/>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -63,3 +63,17 @@
                                 parent::d:sect5|parent::d:section|parent::d:setindex|parent::d:sidebar|
                                 parent::d:simplesect|parent::d:taskprerequisites|parent::d:taskrelated|
                                 parent::d:tasksummary|parent::d:warning|parent::d:topic">
+
+<!-- Entity used in xref-to for inline elements -->
+<!ENTITY inline.elements "d:abbrev | d:accel | d:acronym | d:application | d:author | d:citation | d:citebiblioid
+                | d:citetitle | d:classname | d:code | d:command | d:computeroutput | d:constant | d:database
+                | d:date | d:editor | d:email | d:emphasis | d:envar | d:errorcode | d:errorname | d:errortext
+                | d:errortype | d:exceptionname | d:filename | d:firstterm | d:foreignphrase | d:function
+                | d:glossterm | d:guibutton | d:guiicon | d:guilabel | d:guimenu | d:guimenuitem | d:guisubmenu
+                | d:hardware | d:initializer | d:inlineequation | d:inlinemediaobject | d:interfacename | d:jobtitle
+                | d:keycap | d:keycode | d:keycombo | d:keysym | d:literal | d:markup | d:menuchoice | d:methodname
+                | d:modifier | d:mousebutton | d:nonterminal | d:ooclass | d:ooexception | d:oointerface
+                | d:option | d:optional | d:org | d:orgname | d:package | d:parameter | d:person | d:personname
+                | d:phrase | d:productname | d:productnumber | d:prompt | d:property | d:quote | d:replaceable
+                | d:returnvalue | d:shortcut | d:symbol | d:systemitem | d:tag | d:termdef | d:token | d:trademark
+                | d:type | d:uri | d:userinput | d:varname | d:wordasword">
