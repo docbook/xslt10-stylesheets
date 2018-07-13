@@ -314,7 +314,7 @@
   <xsl:choose>
     <!-- FIXME: how reliable is this? -->
     <xsl:when test="contains(local-name(parent::*), 'info')">
-      <xsl:apply-templates select="parent::*[2]" mode="xref-to">
+      <xsl:apply-templates select="ancestor::*[2]" mode="xref-to">
         <xsl:with-param name="referrer" select="$referrer"/>
         <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
         <xsl:with-param name="verbose" select="$verbose"/>
