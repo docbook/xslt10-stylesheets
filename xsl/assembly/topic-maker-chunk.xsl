@@ -156,7 +156,7 @@
 
   <xsl:if test="$is.chunk = 1">
     <resource>
-      <xsl:attribute name="fileref">
+      <xsl:attribute name="href">
         <!--
         <xsl:if test="$manifest.in.base.dir = 0">
           <xsl:value-of select="$base.dir"/>
@@ -193,7 +193,7 @@
   </xsl:param>
 
   <resource>
-    <xsl:attribute name="fileref">
+    <xsl:attribute name="href">
       <xsl:apply-templates select="." mode="chunk-filename"/>
     </xsl:attribute>
     <xsl:attribute name="xml:id">
