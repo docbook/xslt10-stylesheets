@@ -975,8 +975,11 @@
 </xsl:template>
 
 <!-- Used when not occurring as a child of classsynopsis -->
-<xsl:template match="d:ooclass|d:oointerface|d:ooexception">
-  <xsl:apply-templates/>
+<xsl:template match="d:ooclass|d:oointerface|d:ooexception|d:modifier|d:initializer">
+  <fo:inline>
+    <xsl:call-template name="anchor"/>
+    <xsl:apply-templates/>
+  </fo:inline>
 </xsl:template>
 
 <!-- ==================================================================== -->
