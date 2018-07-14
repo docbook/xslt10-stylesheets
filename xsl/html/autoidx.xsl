@@ -307,7 +307,8 @@
     <xsl:if test="$autolink.index.see != 0">
       <!-- add internal id attribute to form see and seealso links -->
       <xsl:attribute name="id">
-        <xsl:value-of select="concat('ientry-', generate-id())"/>
+        <xsl:text>ientry-</xsl:text>
+        <xsl:call-template name="object.id"/>
       </xsl:attribute>
     </xsl:if>
     <xsl:for-each select="$refs/d:primary">
@@ -730,7 +731,10 @@
 
   <xsl:variable name="linkend">
     <xsl:if test="$seetarget">
-      <xsl:value-of select="concat('#ientry-', generate-id($seetarget))"/>
+      <xsl:text>#ientry-</xsl:text>
+      <xsl:call-template name="object.id">
+        <xsl:with-param name="object" select="$seetarget"/>
+      </xsl:call-template>
     </xsl:if>
   </xsl:variable>
 
@@ -789,7 +793,10 @@
 
     <xsl:variable name="linkend">
       <xsl:if test="$seealsotarget">
-        <xsl:value-of select="concat('#ientry-', generate-id($seealsotarget))"/>
+        <xsl:text>#ientry-</xsl:text>
+        <xsl:call-template name="object.id">
+          <xsl:with-param name="object" select="$seealsotarget"/>
+        </xsl:call-template>
       </xsl:if>
     </xsl:variable>
 
