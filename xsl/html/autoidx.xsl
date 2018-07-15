@@ -76,7 +76,22 @@
 
 
 <xsl:template name="generate-index">
-  <xsl:param name="scope" select="(ancestor::d:book|/)[last()]"/>
+  <!-- these are all the elements that can contain an index element -->
+  <xsl:param name="scope" select="(ancestor::d:book 
+                                 | ancestor::d:appendix 
+                                 | ancestor::d:article 
+                                 | ancestor::d:chapter 
+                                 | ancestor::d:part 
+                                 | ancestor::d:preface 
+                                 | ancestor::d:sect1 
+                                 | ancestor::d:sect2 
+                                 | ancestor::d:sect3 
+                                 | ancestor::d:sect4 
+                                 | ancestor::d:sect5 
+                                 | ancestor::d:section 
+                                 | ancestor::d:set
+                                 | ancestor::d:topic 
+                                 |/)[last()]"/>
 
   <xsl:choose>
     <xsl:when test="$index.method = 'kosek'">
