@@ -109,11 +109,11 @@
 
   <xsl:variable name="terms"
                 select="//d:indexterm
-                        [count(.|key('letter',
+                        [generate-id() = generate-id(key('letter',
                           translate(substring(&primary;, 1, 1),
                              &lowercase;,
                              &uppercase;))
-                          [&scope;][1]) = 1
+                          [&scope;])
                           and not(@class = 'endofrange')]"/>
 
   <xsl:variable name="alphabetical"
@@ -135,8 +135,8 @@
       </xsl:call-template>
 
       <fo:block>
-        <xsl:apply-templates select="$others[count(.|key('primary',
-                                     &primary;)[&scope;][1]) = 1]"
+        <xsl:apply-templates select="$others[generate-id() = generate-id(key('primary',
+                                     &primary;)[&scope;])]"
                              mode="index-symbol-div">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
@@ -147,10 +147,10 @@
       </fo:block>
     </xsl:if>
 
-    <xsl:apply-templates select="$alphabetical[count(.|key('letter',
+    <xsl:apply-templates select="$alphabetical[generate-id() = generate-id(key('letter',
                                  translate(substring(&primary;, 1, 1),
                                            &lowercase;,&uppercase;))
-                                           [&scope;][1]) = 1]"
+                                           [&scope;])]"
                          mode="index-div-basic">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -224,7 +224,7 @@
                          &lowercase;,&uppercase;)"/>
 
   <xsl:if test="key('letter', $key)[&scope;]
-                [count(.|key('primary', &primary;)[&scope;][1]) = 1]">
+                [generate-id() = generate-id(key('primary', &primary;)[&scope;])]">
     <fo:block>
       <xsl:if test="contains(concat(&lowercase;, &uppercase;), $key)">
         <xsl:call-template name="indexdiv.title">
@@ -235,8 +235,8 @@
       </xsl:if>
       <fo:block xsl:use-attribute-sets="index.entry.properties">
         <xsl:apply-templates select="key('letter', $key)[&scope;]
-                                     [count(.|key('primary', &primary;)
-                                     [&scope;][1])=1]"
+                                     [generate-id() = generate-id(key('primary', &primary;)
+                                     [&scope;])]"
                              mode="index-primary">
           <xsl:sort select="translate(&primary;, &lowercase;, &uppercase;)"/>
           <xsl:with-param name="scope" select="$scope"/>
@@ -257,7 +257,7 @@
                 select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
 
   <fo:block xsl:use-attribute-sets="index.entry.properties">
-    <xsl:apply-templates select="key('letter', $key)[&scope;][count(.|key('primary', &primary;)[&scope;][1]) = 1]"
+    <xsl:apply-templates select="key('letter', $key)[&scope;][generate-id() = generate-id(key('primary', &primary;)[&scope;])]"
                          mode="index-primary">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -349,7 +349,7 @@
     </xsl:choose>
 
     <xsl:if test="$refs[not(d:secondary)]/*[self::d:see]">
-      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, d:see))[&scope;][1])]"
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, d:see))[&scope;])]"
                            mode="index-see">
          <xsl:with-param name="scope" select="$scope"/>
          <xsl:with-param name="role" select="$role"/>
@@ -362,14 +362,14 @@
 
   <xsl:if test="$refs/d:secondary or $refs[not(d:secondary)]/*[self::d:seealso]">
     <fo:block start-indent="1pc">
-      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, d:seealso))[&scope;][1])]"
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, d:seealso))[&scope;])]"
                            mode="index-seealso">
          <xsl:with-param name="scope" select="$scope"/>
          <xsl:with-param name="role" select="$role"/>
          <xsl:with-param name="type" select="$type"/>
          <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
-      <xsl:apply-templates select="$refs[d:secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[&scope;][1]) = 1]"
+      <xsl:apply-templates select="$refs[d:secondary and generate-id() = generate-id(key('secondary', concat($key, &sep;, &secondary;))[&scope;])]"
                            mode="index-secondary">
        <xsl:with-param name="scope" select="$scope"/>
        <xsl:with-param name="role" select="$role"/>
@@ -467,7 +467,7 @@
     </xsl:choose>
 
     <xsl:if test="$refs[not(d:tertiary)]/*[self::d:see]">
-      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:see))[&scope;][1])]"
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:see))[&scope;])]"
                            mode="index-see">
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
@@ -480,14 +480,14 @@
 
   <xsl:if test="$refs/d:tertiary or $refs[not(d:tertiary)]/*[self::d:seealso]">
     <fo:block start-indent="2pc">
-      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:seealso))[&scope;][1])]"
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:seealso))[&scope;])]"
                            mode="index-seealso">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
           <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
-      <xsl:apply-templates select="$refs[d:tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]"
+      <xsl:apply-templates select="$refs[d:tertiary and generate-id() = generate-id(key('tertiary', concat($key, &sep;, &tertiary;))[&scope;])]"
                            mode="index-tertiary">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
@@ -588,7 +588,7 @@
     </xsl:choose>
 
     <xsl:if test="$refs/d:see">
-      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:see))[&scope;][1])]"
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:see))[&scope;])]"
                            mode="index-see">
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
@@ -601,7 +601,7 @@
 
   <xsl:if test="$refs/d:seealso">
     <fo:block>
-      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:seealso))[&scope;][1])]"
+      <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:seealso))[&scope;])]"
                            mode="index-seealso">
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
@@ -676,7 +676,7 @@
       </fo:basic-link>
 
       <xsl:if test="key('endofrange', $id)[&scope;]">
-        <xsl:apply-templates select="key('endofrange', $id)[&scope;][last()]"
+        <xsl:apply-templates select="(key('endofrange', $id)[&scope;])[last()]"
                              mode="reference">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
@@ -905,8 +905,8 @@
   <xsl:param name="role" select="@role"/>
   <xsl:param name="type" select="@type"/>
 
-  <xsl:variable name="terms" select="$scope//d:indexterm[count(.|key('letter',
-                                     translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[&scope;][1]) = 1]"/>
+  <xsl:variable name="terms" select="$scope//d:indexterm[generate-id() = generate-id(key('letter',
+                                     translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[&scope;])]"/>
   <xsl:variable name="alphabetical"
                 select="$terms[contains(concat(&lowercase;, &uppercase;),
                                         substring(&primary;, 1, 1))]"/>
@@ -922,8 +922,8 @@
       <xsl:with-param name="key" select="'index symbols'"/>
     </xsl:call-template>
     <xsl:text>&lt;/title&gt;&#10;</xsl:text>
-    <xsl:apply-templates select="$others[count(.|key('primary',
-                                 &primary;)[&scope;][1]) = 1]"
+    <xsl:apply-templates select="$others[generate-id() = generate-id(key('primary',
+                                 &primary;)[&scope;])]"
                          mode="index-symbol-div-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -933,8 +933,8 @@
     <xsl:text>&lt;/indexdiv&gt;&#10;</xsl:text>
   </xsl:if>
 
-  <xsl:apply-templates select="$alphabetical[count(.|key('letter',
-                               translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[&scope;][1]) = 1]"
+  <xsl:apply-templates select="$alphabetical[generate-id() = generate-id(key('letter',
+                               translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;))[&scope;])]"
                        mode="index-div-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -969,7 +969,7 @@
   <xsl:value-of select="translate($key, &lowercase;, &uppercase;)"/>
   <xsl:text>&lt;/title&gt;&#10;</xsl:text>
 
-  <xsl:apply-templates select="key('letter', $key)[&scope;][count(.|key('primary', &primary;)[&scope;][1]) = 1]"
+  <xsl:apply-templates select="key('letter', $key)[&scope;][generate-id() = generate-id(key('primary', &primary;)[&scope;])]"
                        mode="index-primary-markup">
     <xsl:with-param name="scope" select="$scope"/>
     <xsl:with-param name="role" select="$role"/>
@@ -985,7 +985,7 @@
   <xsl:param name="type" select="''"/>
   <xsl:variable name="key" select="translate(substring(&primary;, 1, 1),&lowercase;,&uppercase;)"/>
 
-  <xsl:apply-templates select="key('letter', $key)[&scope;][count(.|key('primary', &primary;)[&scope;][1]) = 1]"
+  <xsl:apply-templates select="key('letter', $key)[&scope;][generate-id() = generate-id(key('primary', &primary;)[&scope;])]"
                        mode="index-primary-markup">
     <xsl:with-param name="scope" select="$scope"/>
     <xsl:with-param name="role" select="$role"/>
@@ -1023,7 +1023,7 @@
   <xsl:text>&lt;/primaryie&gt;&#10;</xsl:text>
 
   <xsl:if test="$refs/d:secondary or $refs[not(d:secondary)]/*[self::d:see or self::d:seealso]">
-    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, d:see))[&scope;][1])]"
+    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &sep;, &sep;, d:see))[&scope;])]"
                          mode="index-see-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -1031,7 +1031,7 @@
       <xsl:sort select="translate(d:see, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
 
-    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, d:seealso))[&scope;][1])]"
+    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, d:seealso))[&scope;])]"
                          mode="index-seealso-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -1039,7 +1039,7 @@
       <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
 
-    <xsl:apply-templates select="$refs[d:secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[&scope;][1]) = 1]"
+    <xsl:apply-templates select="$refs[d:secondary and generate-id() = generate-id(key('secondary', concat($key, &sep;, &secondary;))[&scope;])]"
                          mode="index-secondary-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -1078,21 +1078,21 @@
   <xsl:text>&lt;/secondaryie&gt;&#10;</xsl:text>
 
   <xsl:if test="$refs/d:tertiary or $refs[not(d:tertiary)]/*[self::d:see or self::d:seealso]">
-    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:see))[&scope;][1])]"
+    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:see))[&scope;])]"
                          mode="index-see-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
       <xsl:with-param name="type" select="$type"/>
       <xsl:sort select="translate(d:see, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:seealso))[&scope;][1])]"
+    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:seealso))[&scope;])]"
                          mode="index-seealso-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
       <xsl:with-param name="type" select="$type"/>
       <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="$refs[d:tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]"
+    <xsl:apply-templates select="$refs[d:tertiary and generate-id() = generate-id(key('tertiary', concat($key, &sep;, &tertiary;))[&scope;])]"
                          mode="index-tertiary-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
@@ -1131,14 +1131,14 @@
 
   <xsl:variable name="see" select="$refs/d:see | $refs/d:seealso"/>
   <xsl:if test="$see">
-    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:see))[&scope;][1])]"
+    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:see))[&scope;])]"
                          mode="index-see-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
       <xsl:with-param name="type" select="$type"/>
       <xsl:sort select="translate(d:see, &lowercase;, &uppercase;)"/>
     </xsl:apply-templates>
-    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:seealso))[&scope;][1])]"
+    <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:seealso))[&scope;])]"
                          mode="index-seealso-markup">
       <xsl:with-param name="scope" select="$scope"/>
       <xsl:with-param name="role" select="$role"/>
