@@ -102,6 +102,11 @@
 <xsl:template match="d:index/d:title"></xsl:template>
 <xsl:template match="d:index/d:subtitle"></xsl:template>
 <xsl:template match="d:index/d:titleabbrev"></xsl:template>
+<xsl:template match="d:setindex/d:indexinfo"></xsl:template>
+<xsl:template match="d:setindex/d:info"></xsl:template>
+<xsl:template match="d:setindex/d:title"></xsl:template>
+<xsl:template match="d:setindex/d:subtitle"></xsl:template>
+<xsl:template match="d:setindex/d:titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
