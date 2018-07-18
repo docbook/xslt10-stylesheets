@@ -59,9 +59,9 @@
   </xsl:variable>
 
   <xsl:variable name="preamble"
-                select="*[not(self::d:book or self::d:set or self::d:setindex)]"/>
+                select="*[not(self::d:book or self::d:set or self::d:setindex or d:article)]"/>
 
-  <xsl:variable name="content" select="d:book|d:set|d:setindex"/>
+  <xsl:variable name="content" select="d:book|d:set|d:setindex|d:article"/>
 
   <xsl:variable name="titlepage-master-reference">
     <xsl:call-template name="select.pagemaster">
@@ -75,69 +75,17 @@
     </xsl:call-template>
   </xsl:variable>
 
+  <!-- a set is like a book part and creates a page sequence only for its titlepage and
+       toc.  Its children create their own page sequences. -->
   <xsl:if test="$preamble">
-    <fo:page-sequence hyphenate="{$hyphenate}"
-                      master-reference="{$titlepage-master-reference}">
-      <xsl:attribute name="language">
-        <xsl:call-template name="l10n.language"/>
-      </xsl:attribute>
-      <xsl:attribute name="format">
-        <xsl:call-template name="page.number.format">
-          <xsl:with-param name="master-reference" 
-                          select="$titlepage-master-reference"/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:attribute name="initial-page-number">
-        <xsl:call-template name="initial.page.number">
-          <xsl:with-param name="master-reference" 
-                          select="$titlepage-master-reference"/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:attribute name="force-page-count">
-        <xsl:call-template name="force.page.count">
-          <xsl:with-param name="master-reference" 
-                          select="$titlepage-master-reference"/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:attribute name="hyphenation-character">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'hyphenation-character'"/>
-        </xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="hyphenation-push-character-count">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
-        </xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="hyphenation-remain-character-count">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-reference" select="$titlepage-master-reference"/>
-      </xsl:apply-templates>
-
-      <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-reference" select="$titlepage-master-reference"/>
-      </xsl:apply-templates>
-
-      <fo:flow flow-name="xsl-region-body">
-        <xsl:call-template name="set.flow.properties">
-          <xsl:with-param name="element" select="local-name(.)"/>
-          <xsl:with-param name="master-reference" 
-                          select="$titlepage-master-reference"/>
-        </xsl:call-template>
-
+    <xsl:call-template name="page.sequence">
+      <xsl:with-param name="master-reference" select="$titlepage-master-reference"/>
+      <xsl:with-param name="content">
         <fo:block id="{$id}">
           <xsl:call-template name="set.titlepage"/>
         </fo:block>
-      </fo:flow>
-    </fo:page-sequence>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:if>
 
   <xsl:variable name="toc.params">
@@ -147,74 +95,28 @@
   </xsl:variable>
 
   <xsl:if test="contains($toc.params, 'toc')">
-    <fo:page-sequence hyphenate="{$hyphenate}"
-                      master-reference="{$lot-master-reference}">
-      <xsl:attribute name="language">
-        <xsl:call-template name="l10n.language"/>
-      </xsl:attribute>
-      <xsl:attribute name="format">
-        <xsl:call-template name="page.number.format">
-          <xsl:with-param name="element" select="'toc'"/>
-          <xsl:with-param name="master-reference"
-                          select="$lot-master-reference"/>
-        </xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="initial-page-number">
-        <xsl:call-template name="initial.page.number">
-          <xsl:with-param name="master-reference"
-                          select="$lot-master-reference"/>
-        </xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="force-page-count">
-        <xsl:call-template name="force.page.count">
-          <xsl:with-param name="master-reference"
-                          select="$lot-master-reference"/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:attribute name="hyphenation-character">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'hyphenation-character'"/>
-        </xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="hyphenation-push-character-count">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'hyphenation-push-character-count'"/>
-        </xsl:call-template>
-      </xsl:attribute>
-      <xsl:attribute name="hyphenation-remain-character-count">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key" select="'hyphenation-remain-character-count'"/>
-        </xsl:call-template>
-      </xsl:attribute>
-
-      <xsl:apply-templates select="." mode="running.head.mode">
-        <xsl:with-param name="master-reference" select="$lot-master-reference"/>
-      </xsl:apply-templates>
-
-      <xsl:apply-templates select="." mode="running.foot.mode">
-        <xsl:with-param name="master-reference" select="$lot-master-reference"/>
-      </xsl:apply-templates>
-
-      <fo:flow flow-name="xsl-region-body">
-        <xsl:call-template name="set.flow.properties">
-          <xsl:with-param name="element" select="local-name(.)"/>
-          <xsl:with-param name="master-reference" 
-                          select="$lot-master-reference"/>
-        </xsl:call-template>
-
+    <xsl:call-template name="page.sequence">
+      <xsl:with-param name="master-reference" select="$lot-master-reference"/>
+      <xsl:with-param name="content">
         <xsl:call-template name="set.toc"/>
-      </fo:flow>
-    </fo:page-sequence>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:if>
 
   <xsl:apply-templates select="$content"/>
+
 </xsl:template>
 
 <xsl:template match="d:set/d:setinfo"></xsl:template>
+<xsl:template match="d:set/d:info"></xsl:template>
 <xsl:template match="d:set/d:title"></xsl:template>
 <xsl:template match="d:set/d:subtitle"></xsl:template>
 <xsl:template match="d:set/d:titleabbrev"></xsl:template>
+<xsl:template match="d:setindex/d:setindexinfo"></xsl:template>
+<xsl:template match="d:setindex/d:info"></xsl:template>
+<xsl:template match="d:setindex/d:title"></xsl:template>
+<xsl:template match="d:setindex/d:subtitle"></xsl:template>
+<xsl:template match="d:setindex/d:titleabbrev"></xsl:template>
 
 <!-- ==================================================================== -->
 
