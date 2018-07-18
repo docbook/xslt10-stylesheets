@@ -376,3 +376,4 @@
 <!ENTITY speaker.properties SYSTEM "../params/speaker.properties.xml">
 <!ENTITY line.properties SYSTEM "../params/line.properties.xml">
 <!ENTITY inlinestagedir.properties SYSTEM "../params/inlinestagedir.properties.xml">
+<!ENTITY simplelist.vertical.properties SYSTEM "../params/simplelist.vertical.properties.xml">

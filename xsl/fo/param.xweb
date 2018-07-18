@@ -203,6 +203,7 @@ generate.section.toc.level;
 &orderedlist.properties;
 &orderedlist.label.properties;
 &orderedlist.label.width;
+&simplelist.vertical.properties;
 &variablelist.max.termlength;
 &variablelist.term.separator;
 &variablelist.term.properties;
@@ -953,6 +954,7 @@ around all these parameters.</para>
 <src:fragref linkend="line.properties.frag"/>
 <src:fragref linkend="inlinestagedir.properties.frag"/>
 <src:fragref linkend="dialogue.properties.frag"/>
+<src:fragref linkend="simplelist.vertical.properties.frag"/>
 
 </xsl:stylesheet>
 </src:fragment>
