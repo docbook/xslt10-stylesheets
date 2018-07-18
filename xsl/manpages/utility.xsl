@@ -561,4 +561,17 @@
     <xsl:text>.\}&#10;</xsl:text>
   </xsl:template>
 
+<!-- number formal objects restarting in each man page -->
+<xsl:template match="d:figure|d:table|d:example" mode="label.markup">
+
+  <xsl:choose>
+    <xsl:when test="@label">
+      <xsl:value-of select="@label"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:number format="1" from="d:refentry" level="any" />
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 </xsl:stylesheet>
