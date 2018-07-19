@@ -322,10 +322,18 @@
 
   <fo:block>
     <xsl:if test="$autolink.index.see != 0">
-      <xsl:attribute name="id">
-        <xsl:text>ientry-</xsl:text>
-        <xsl:call-template name="object.id"/>
-      </xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="$fop1.extensions != 0 and count(//d:index|//d:setindex) &gt; 1">
+          <!-- more than one index can generate duplicate ids
+               which cause FOP to fail -->
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="id">
+            <xsl:text>ientry-</xsl:text>
+            <xsl:call-template name="object.id"/>
+          </xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
     <xsl:if test="$axf.extensions != 0">
       <xsl:attribute name="axf:suppress-duplicate-page-number">true</xsl:attribute>
@@ -843,6 +851,9 @@
       <xsl:when test="$autolink.index.see = 0">
          <xsl:value-of select="$see"/>
       </xsl:when>
+      <xsl:when test="$fop1.extensions != 0 and count(//d:index|//d:setindex) &gt; 1">
+         <xsl:value-of select="$see"/>
+      </xsl:when>
       <xsl:when test="$seetarget">
         <fo:basic-link internal-destination="{$linkend}"
                        xsl:use-attribute-sets="xref.properties">
@@ -907,6 +918,9 @@
         </xsl:when>
         <xsl:when test="$autolink.index.see = 0">
           <xsl:value-of select="$seealso"/>
+        </xsl:when>
+        <xsl:when test="$fop1.extensions != 0 and count(//d:index|//d:setindex) &gt; 1">
+           <xsl:value-of select="$seealso"/>
         </xsl:when>
         <xsl:when test="$seealsotarget">
           <fo:basic-link internal-destination="{$linkend}"

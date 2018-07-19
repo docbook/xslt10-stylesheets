@@ -53,5 +53,12 @@ no automatic links from see and seealso
 are formed within the index.  Any manual links are
 still processed, however.</para>
 
+<para>If a document contains more than one index, then any indexterms used
+in more than one index will generate duplicate id attributes, which will 
+cause the FOP processor to fail. Therefore the stylesheet turns this feature off
+if it detects more than one index and setindex, and the fop1.extensions parameter
+is nonzero.
+</para>
+
 </refsection>
 </refentry>
