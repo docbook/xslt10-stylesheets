@@ -651,6 +651,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                 <xsl:when test="$alt != ''">
                   <xsl:copy-of select="$alt"/>
                 </xsl:when>
+                <xsl:when test="ancestor::d:inlinemediaobject">
+                </xsl:when>
                 <xsl:when test="ancestor::d:figure">
                   <xsl:variable name="fig.title">
                     <xsl:apply-templates select="ancestor::d:figure/d:title/node()"/>
