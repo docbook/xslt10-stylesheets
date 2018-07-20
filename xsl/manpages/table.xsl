@@ -97,7 +97,17 @@
           <xsl:for-each select="descendant-or-self::d:table|descendant-or-self::d:informaltable">
             <xsl:element name="{local-name(..)}">
               <table>
-                <xsl:apply-templates mode="stripNS" select="*"/>
+                <!-- strip namespace from docbook HTML table markup if present -->
+                <xsl:apply-templates mode="strip.html.table.ns" select="*"/>
+                <xsl:if test=".//d:footnote|../d:title//d:footnote">
+                  <tbody class="footnotes">
+                    <tr>
+                      <td colspan="{@cols}">
+                        <xsl:apply-templates select=".//d:footnote|../d:title//d:footnote" mode="table.footnote.mode"/>
+                      </td>
+                    </tr>
+                  </tbody>
+                </xsl:if>
               </table>
             </xsl:element>
           </xsl:for-each>
@@ -122,5 +132,39 @@
       <xsl:with-param name="center" select="$center"/>
     </xsl:call-template>
   </xsl:template>
+
+<!-- strip namespace only from docbook html markup elements -->
+<xsl:template match="d:tbody
+                    |d:caption
+                    |d:col
+                    |d:colgroup
+                    |d:thead
+                    |d:tfoot
+                    |d:tr
+                    |d:th
+                    |d:td" mode="strip.html.table.ns">
+  <xsl:element name="{local-name(.)}">
+    <xsl:copy-of select="@*[not(name(.) = 'xml:id')
+                            and not(name(.) = 'version')]"/>
+    <xsl:if test="@xml:id">
+      <xsl:attribute name="id">
+        <xsl:value-of select="@xml:id"/>
+      </xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates mode="strip.html.table.ns"/>
+  </xsl:element>
+</xsl:template>
+
+<!-- do not strip namespace from cell contents -->
+<xsl:template match="*|text()|processing-instruction()|comment()" mode="strip.html.table.ns">
+  <!-- process in normal mode -->
+  <xsl:apply-templates select="."/>
+  <!--
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates mode="strip.html.table.ns"/>
+  </xsl:copy>
+  -->
+</xsl:template>
 
 </xsl:stylesheet>
