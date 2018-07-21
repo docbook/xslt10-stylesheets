@@ -122,32 +122,14 @@
 </xsl:template>
 
 <xsl:template name="informal.object">
+  <xsl:param name="pgwide"/>
+
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
 
   <xsl:variable name="keep.together">
     <xsl:call-template name="pi.dbfo_keep-together"/>
-  </xsl:variable>
-
-  <!-- Some don't have a pgwide attribute, so may use a PI -->
-  <xsl:variable name="pgwide.pi">
-    <xsl:call-template name="pi.dbfo_pgwide"/>
-  </xsl:variable>
-
-  <xsl:variable name="pgwide">
-    <xsl:choose>
-      <xsl:when test="@pgwide">
-        <xsl:value-of select="@pgwide"/>
-      </xsl:when>
-      <xsl:when test="$pgwide.pi">
-        <xsl:value-of select="$pgwide.pi"/>
-      </xsl:when>
-      <!-- child element may set pgwide -->
-      <xsl:when test="*[@pgwide]">
-        <xsl:value-of select="*[@pgwide][1]/@pgwide"/>
-      </xsl:when>
-    </xsl:choose>
   </xsl:variable>
 
   <xsl:choose>
@@ -560,9 +542,16 @@
     </xsl:choose>
   </xsl:variable>
 
-  <!-- Equation doesn't have a pgwide attribute, so may use a PI -->
+  <!-- Equation only recently got a pgwide attribute, so may use a PI -->
   <xsl:variable name="pgwide">
-    <xsl:call-template name="pi.dbfo_pgwide"/>
+    <xsl:choose>
+      <xsl:when test="@pgwide != ''">
+        <xsl:value-of select="@pgwide"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="pi.dbfo_pgwide"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
 
   <xsl:variable name="equation">
@@ -609,19 +598,50 @@
 <xsl:template match="d:equation/d:title"></xsl:template>
 <xsl:template match="d:equation/d:titleabbrev"></xsl:template>
 
-<xsl:template match="d:informalfigure">
-  <xsl:call-template name="informal.object"/>
-</xsl:template>
+<xsl:template match="d:informalfigure | d:informalexample | d:informalequation">
+  <xsl:variable name="pgwide.pi">
+    <xsl:call-template name="pi.dbfo_pgwide"/>
+  </xsl:variable>
 
-<xsl:template match="d:informalexample">
-  <xsl:call-template name="informal.object"/>
+  <xsl:variable name="pgwide">
+    <xsl:choose>
+      <xsl:when test="@pgwide">
+        <xsl:value-of select="@pgwide"/>
+      </xsl:when>
+      <xsl:when test="$pgwide.pi">
+        <xsl:value-of select="$pgwide.pi"/>
+      </xsl:when>
+      <!-- child element may set pgwide -->
+      <xsl:when test="*[@pgwide]">
+        <xsl:value-of select="*[@pgwide][1]/@pgwide"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="iobject">
+    <xsl:call-template name="informal.object">
+      <xsl:with-param name="pgwide" select="$pgwide"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="floatstyle">
+    <xsl:call-template name="floatstyle"/>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="$floatstyle != ''">
+      <xsl:call-template name="floater">
+        <xsl:with-param name="position" select="$floatstyle"/>
+        <xsl:with-param name="content" select="$iobject"/>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy-of select="$iobject"/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="d:informaltable/d:textobject"></xsl:template>
-
-<xsl:template match="d:informalequation">
-  <xsl:call-template name="informal.object"/>
-</xsl:template>
 
 <xsl:template name="floatstyle">
   <xsl:if test="(@float and @float != '0') or @floatstyle != ''">
