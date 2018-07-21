@@ -326,15 +326,33 @@
     <!-- * validation does not provide a way to constrain them to be -->
     <!-- * "space free" -->
     <xsl:text>.TH "</xsl:text>
+    <xsl:variable name="title.n" select="normalize-space($title)"/>
     <xsl:call-template name="string.upper">
       <xsl:with-param name="string">
         <xsl:choose>
           <xsl:when test="$man.th.title.max.length != ''">
-            <xsl:value-of
-                select="normalize-space(substring($title, 1, $man.th.title.max.length))"/>
+            <xsl:choose>
+              <!-- if last two are double backslash, then two less -->
+              <xsl:when test="substring($title.n,$man.th.title.max.length - 1, 2) = '\\'">
+                <xsl:value-of select="substring($title.n, 1, $man.th.title.max.length - 2)"/>
+              </xsl:when>
+              <xsl:when test="substring($title.n,$man.th.title.max.length - 1, 2) = '\E'">
+                <xsl:value-of select="substring($title.n, 1, $man.th.title.max.length - 2)"/>
+              </xsl:when>
+              <xsl:when test="substring($title.n,$man.th.title.max.length - 1, 2) = '\e'">
+                <xsl:value-of select="substring($title.n, 1, $man.th.title.max.length - 2)"/>
+              </xsl:when>
+              <!-- if last character is backslash, then one less -->
+              <xsl:when test="substring($title.n,$man.th.title.max.length,1) = '\'">
+                <xsl:value-of select="substring($title.n, 1, $man.th.title.max.length - 1)"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="substring($title.n, 1, $man.th.title.max.length)"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="normalize-space($title)"/>
+            <xsl:value-of select="$title.n"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:with-param>
