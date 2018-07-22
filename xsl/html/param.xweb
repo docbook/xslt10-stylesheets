@@ -169,6 +169,7 @@
 &generate.revhistory.link;
 &html.head.legalnotice.link.types;
 &html.head.legalnotice.link.multiple;
+&copy.rdfa.attributes;
 </reference>
 <reference xml:id="refentry"><title>Reference Pages</title>
 &funcsynopsis.decoration;
@@ -502,6 +503,7 @@ around all these parameters.</para>
 <src:fragref linkend="collect.xref.targets.frag"/>
 <src:fragref linkend="component.label.includes.part.label.frag"/>
 <src:fragref linkend="contrib.inline.enabled.frag"/>
+<src:fragref linkend="copy.rdfa.attributes.frag"/>
 <src:fragref linkend="css.decoration.frag"/>
 <src:fragref linkend="current.docid.frag"/>
 <src:fragref linkend="custom.css.source.frag"/>
