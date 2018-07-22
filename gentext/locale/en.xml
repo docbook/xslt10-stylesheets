@@ -150,6 +150,7 @@
 <gentext key="Editedby" text="Edited by"/>
 <gentext key="editedby" text="Edited by"/>
 <gentext key="in" text="in"/>
+<gentext key="In" text="In"/>
 <gentext key="lastlistcomma" text=","/>
 <gentext key="listcomma" text=","/>
 <gentext key="notes" text="Notes"/>
