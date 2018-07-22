@@ -328,3 +328,4 @@
 <!ENTITY webhelp.tree.cookie.id     SYSTEM "../params/webhelp.tree.cookie.id.xml">
 <!ENTITY activate.external.olinks     SYSTEM "../params/activate.external.olinks.xml">
 <!ENTITY autolink.index.see         SYSTEM "../params/autolink.index.see.xml">
+<!ENTITY copy.rdfa.attributes       SYSTEM "../params/copy.rdfa.attributes.xml">

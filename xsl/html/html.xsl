@@ -354,6 +354,10 @@
     <xsl:with-param name="class" select="$class"/>
     <xsl:with-param name="inherit" select="$inherit"/>
   </xsl:apply-templates>
+  <xsl:if test="$copy.rdfa.attributes != 0">
+    <!-- copy through any RDFA attributes -->
+    <xsl:apply-templates select="." mode="rdfa.html.attributes"/>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="*" mode="common.html.attributes">
@@ -380,6 +384,14 @@
   <xsl:call-template name="generate.html.lang"/>
   <xsl:call-template name="dir"/>
   <xsl:call-template name="its.attributes"/>
+</xsl:template>
+
+<xsl:template match="*" mode="rdfa.html.attributes">
+  <xsl:copy-of select="@vocab"/>
+  <xsl:copy-of select="@typeof"/>
+  <xsl:copy-of select="@property"/>
+  <xsl:copy-of select="@resource"/>
+  <xsl:copy-of select="@prefix"/>
 </xsl:template>
 
 <!-- Pass through any lang attributes -->
