@@ -2719,6 +2719,15 @@
     </fo:table>
   </xsl:variable>
 
+  <!-- Really output a header? -->
+  <xsl:call-template name="header.output.control">
+    <xsl:with-param name="candidate" select="$candidate"/>
+    <xsl:with-param name="pageclass" select="$pageclass"/>
+    <xsl:with-param name="sequence" select="$sequence"/>
+    <xsl:with-param name="gentext-key" select="$gentext-key"/>
+  </xsl:call-template>
+</xsl:template>
+
 <xsl:template name="header.table.cell.properties">
   <xsl:param name="position" select="''"/>
   <xsl:param name="pageclass" select="''"/>
