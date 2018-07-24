@@ -2666,11 +2666,13 @@
           <xsl:attribute name="block-progression-dimension.minimum">
             <xsl:value-of select="$header.table.height"/>
           </xsl:attribute>
-          <fo:table-cell text-align="start"
-                         display-align="before">
-            <xsl:if test="$fop.extensions = 0">
-              <xsl:attribute name="relative-align">baseline</xsl:attribute>
-            </xsl:if>
+          <fo:table-cell>
+            <xsl:call-template name="header.table.cell.properties">
+              <xsl:with-param name="pageclass" select="$pageclass"/>
+              <xsl:with-param name="sequence" select="$sequence"/>
+              <xsl:with-param name="position" select="$direction.align.start"/>
+              <xsl:with-param name="gentext-key" select="$gentext-key"/>
+            </xsl:call-template>
             <fo:block>
               <xsl:call-template name="header.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -2680,11 +2682,13 @@
               </xsl:call-template>
             </fo:block>
           </fo:table-cell>
-          <fo:table-cell text-align="center"
-                         display-align="before">
-            <xsl:if test="$fop.extensions = 0">
-              <xsl:attribute name="relative-align">baseline</xsl:attribute>
-            </xsl:if>
+          <fo:table-cell>
+            <xsl:call-template name="header.table.cell.properties">
+              <xsl:with-param name="pageclass" select="$pageclass"/>
+              <xsl:with-param name="sequence" select="$sequence"/>
+              <xsl:with-param name="position" select="center"/>
+              <xsl:with-param name="gentext-key" select="$gentext-key"/>
+            </xsl:call-template>
             <fo:block>
               <xsl:call-template name="header.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -2694,11 +2698,13 @@
               </xsl:call-template>
             </fo:block>
           </fo:table-cell>
-          <fo:table-cell text-align="right"
-                         display-align="before">
-            <xsl:if test="$fop.extensions = 0">
-              <xsl:attribute name="relative-align">baseline</xsl:attribute>
-            </xsl:if>
+          <fo:table-cell>
+            <xsl:call-template name="header.table.cell.properties">
+              <xsl:with-param name="pageclass" select="$pageclass"/>
+              <xsl:with-param name="sequence" select="$sequence"/>
+              <xsl:with-param name="position" select="$direction.align.end"/>
+              <xsl:with-param name="gentext-key" select="$gentext-key"/>
+            </xsl:call-template>
             <fo:block>
               <xsl:call-template name="header.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -2712,6 +2718,41 @@
       </fo:table-body>
     </fo:table>
   </xsl:variable>
+
+<xsl:template name="header.table.cell.properties">
+  <xsl:param name="position" select="''"/>
+  <xsl:param name="pageclass" select="''"/>
+  <xsl:param name="sequence" select="''"/>
+  <xsl:param name="gentext-key" select="''"/>
+
+  <xsl:choose>
+    <xsl:when test="$position = 'left'">
+      <xsl:attribute name="text-align">left</xsl:attribute>
+      <xsl:attribute name="display-align">before</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$position = 'center'">
+      <xsl:attribute name="text-align">center</xsl:attribute>
+      <xsl:attribute name="display-align">before</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$position = 'right'">
+      <xsl:attribute name="text-align">right</xsl:attribute>
+      <xsl:attribute name="display-align">before</xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
+
+  <xsl:if test="$fop.extensions = 0">
+    <xsl:attribute name="relative-align">baseline</xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
+<!-- controls whether the header content assembled in
+     'header.table' template is actually output -->
+<xsl:template name="header.output.control">
+  <xsl:param name="candidate"/>
+  <xsl:param name="position" select="''"/>
+  <xsl:param name="pageclass" select="''"/>
+  <xsl:param name="sequence" select="''"/>
+  <xsl:param name="gentext-key" select="''"/>
 
   <!-- Really output a header? -->
   <xsl:choose>
@@ -3005,11 +3046,13 @@
           <xsl:attribute name="block-progression-dimension.minimum">
             <xsl:value-of select="$footer.table.height"/>
           </xsl:attribute>
-          <fo:table-cell text-align="start"
-                         display-align="after">
-            <xsl:if test="$fop.extensions = 0">
-              <xsl:attribute name="relative-align">baseline</xsl:attribute>
-            </xsl:if>
+          <fo:table-cell>
+            <xsl:call-template name="footer.table.cell.properties">
+              <xsl:with-param name="pageclass" select="$pageclass"/>
+              <xsl:with-param name="sequence" select="$sequence"/>
+              <xsl:with-param name="position" select="$direction.align.start"/>
+              <xsl:with-param name="gentext-key" select="$gentext-key"/>
+            </xsl:call-template>
             <fo:block>
               <xsl:call-template name="footer.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -3019,11 +3062,13 @@
               </xsl:call-template>
             </fo:block>
           </fo:table-cell>
-          <fo:table-cell text-align="center"
-                         display-align="after">
-            <xsl:if test="$fop.extensions = 0">
-              <xsl:attribute name="relative-align">baseline</xsl:attribute>
-            </xsl:if>
+          <fo:table-cell>
+            <xsl:call-template name="footer.table.cell.properties">
+              <xsl:with-param name="pageclass" select="$pageclass"/>
+              <xsl:with-param name="sequence" select="$sequence"/>
+              <xsl:with-param name="position" select="center"/>
+              <xsl:with-param name="gentext-key" select="$gentext-key"/>
+            </xsl:call-template>
             <fo:block>
               <xsl:call-template name="footer.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -3033,11 +3078,13 @@
               </xsl:call-template>
             </fo:block>
           </fo:table-cell>
-          <fo:table-cell text-align="end"
-                         display-align="after">
-            <xsl:if test="$fop.extensions = 0">
-              <xsl:attribute name="relative-align">baseline</xsl:attribute>
-            </xsl:if>
+          <fo:table-cell>
+            <xsl:call-template name="footer.table.cell.properties">
+              <xsl:with-param name="pageclass" select="$pageclass"/>
+              <xsl:with-param name="sequence" select="$sequence"/>
+              <xsl:with-param name="position" select="$direction.align.end"/>
+              <xsl:with-param name="gentext-key" select="$gentext-key"/>
+            </xsl:call-template>
             <fo:block>
               <xsl:call-template name="footer.content">
                 <xsl:with-param name="pageclass" select="$pageclass"/>
@@ -3053,10 +3100,54 @@
   </xsl:variable>
 
   <!-- Really output a footer? -->
+  <xsl:call-template name="footer.output.control">
+    <xsl:with-param name="candidate" select="$candidate"/>
+    <xsl:with-param name="pageclass" select="$pageclass"/>
+    <xsl:with-param name="sequence" select="$sequence"/>
+    <xsl:with-param name="gentext-key" select="$gentext-key"/>
+  </xsl:call-template>
+</xsl:template>
+
+<xsl:template name="footer.table.cell.properties">
+  <xsl:param name="position" select="''"/>
+  <xsl:param name="pageclass" select="''"/>
+  <xsl:param name="sequence" select="''"/>
+  <xsl:param name="gentext-key" select="''"/>
+
   <xsl:choose>
-    <xsl:when test="$pageclass='titlepage' and $gentext-key='book'
+    <xsl:when test="$position = 'left'">
+      <xsl:attribute name="text-align">left</xsl:attribute>
+      <xsl:attribute name="display-align">after</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$position = 'center'">
+      <xsl:attribute name="text-align">center</xsl:attribute>
+      <xsl:attribute name="display-align">after</xsl:attribute>
+    </xsl:when>
+    <xsl:when test="$position = 'right'">
+      <xsl:attribute name="text-align">right</xsl:attribute>
+      <xsl:attribute name="display-align">after</xsl:attribute>
+    </xsl:when>
+  </xsl:choose>
+
+  <xsl:if test="$fop.extensions = 0">
+    <xsl:attribute name="relative-align">baseline</xsl:attribute>
+  </xsl:if>
+</xsl:template>
+
+<!-- controls whether the footer content assembled in
+     'footer.table' template is actually output -->
+<xsl:template name="footer.output.control">
+  <xsl:param name="candidate"/>
+  <xsl:param name="position" select="''"/>
+  <xsl:param name="pageclass" select="''"/>
+  <xsl:param name="sequence" select="''"/>
+  <xsl:param name="gentext-key" select="''"/>
+
+  <!-- Really output a footer? -->
+  <xsl:choose>
+    <xsl:when test="$pageclass = 'titlepage' and $gentext-key = 'book'
                     and $sequence='first'">
-      <!-- no, book titlepages have no footers at all -->
+      <!-- no, book titlepages have no footer at all -->
     </xsl:when>
     <xsl:when test="$sequence = 'blank' and $footers.on.blank.pages = 0">
       <!-- no output -->
