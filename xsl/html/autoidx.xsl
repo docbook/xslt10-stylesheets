@@ -358,7 +358,7 @@
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
-        <xsl:sort select="i:term-index(d:see)"/>
+        <xsl:sort select="translate(d:see, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </xsl:if>
   </dt>
@@ -372,7 +372,7 @@
             <xsl:with-param name="scope" select="$scope"/>
             <xsl:with-param name="role" select="$role"/>
             <xsl:with-param name="type" select="$type"/>
-            <xsl:sort select="i:term-index(d:seealso)"/>
+            <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
           </xsl:apply-templates>
           <xsl:variable name="secondaries" 
                         select="$refs[d:secondary and 
@@ -383,7 +383,7 @@
             <xsl:with-param name="scope" select="$scope"/>
             <xsl:with-param name="role" select="$role"/>
             <xsl:with-param name="type" select="$type"/>
-            <xsl:sort select="i:term-index(&secondary;)"/>
+            <xsl:sort select="translate(&secondary;, &lowercase;, &uppercase;)"/>
           </xsl:apply-templates>
         </dl>
       </dd>
@@ -449,7 +449,7 @@
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
-        <xsl:sort select="i:term-index(d:see)"/>
+        <xsl:sort select="translate(d:see, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </xsl:if>
   </dt>
@@ -463,7 +463,7 @@
             <xsl:with-param name="scope" select="$scope"/>
             <xsl:with-param name="role" select="$role"/>
             <xsl:with-param name="type" select="$type"/>
-            <xsl:sort select="i:term-index(d:seealso)"/>
+            <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
           </xsl:apply-templates>
 
           <xsl:variable name="tertiaries"
@@ -476,7 +476,7 @@
             <xsl:with-param name="scope" select="$scope"/>
             <xsl:with-param name="role" select="$role"/>
             <xsl:with-param name="type" select="$type"/>
-            <xsl:sort select="i:term-index(&tertiary;)"/>
+            <xsl:sort select="translate(&tertiary;, &lowercase;, &uppercase;)"/>
           </xsl:apply-templates>
         </dl>
       </dd>
@@ -541,7 +541,7 @@
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
-        <xsl:sort select="i:term-index(d:see)"/>
+        <xsl:sort select="translate(d:see, &lowercase;, &uppercase;)"/>
       </xsl:apply-templates>
     </xsl:if>
   </dt>
@@ -555,7 +555,7 @@
             <xsl:with-param name="scope" select="$scope"/>
             <xsl:with-param name="role" select="$role"/>
             <xsl:with-param name="type" select="$type"/>
-            <xsl:sort select="i:term-index(d:seealso)"/>
+            <xsl:sort select="translate(d:seealso, &lowercase;, &uppercase;)"/>
           </xsl:apply-templates>
         </dl>
       </dd>
@@ -780,8 +780,8 @@
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
 
-  <xsl:for-each select="seealso">
-    <xsl:sort select="i:term-index(.)"/>
+  <xsl:for-each select="d:seealso">
+    <xsl:sort select="translate(., &lowercase;, &uppercase;)"/>
 
     <xsl:variable name="seealso" select="normalize-space(.)"/>
 
