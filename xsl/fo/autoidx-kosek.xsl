@@ -124,7 +124,7 @@
         <xsl:apply-templates select="key('group-code', $key)[&scope;]
                                      [count(.|key('primary', &primary;)
                                      [&scope;][1])=1]"
-                             mode="index-primary">
+                             mode="index-primary-kosek">
           <xsl:sort select="i:term-index(&primary;)" lang="{$lang}"/>
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
@@ -135,7 +135,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="d:indexterm" mode="index-primary">
+<xsl:template match="d:indexterm" mode="index-primary-kosek">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
@@ -230,14 +230,14 @@
   <xsl:if test="$refs/d:secondary or $refs[not(d:secondary)]/*[self::d:seealso]">
     <fo:block start-indent="1pc">
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &sep;, &sep;, d:seealso))[&scope;][1])]"
-                           mode="index-seealso">
+                           mode="index-seealso-kosek">
          <xsl:with-param name="scope" select="$scope"/>
          <xsl:with-param name="role" select="$role"/>
          <xsl:with-param name="type" select="$type"/>
          <xsl:sort select="i:term-index(d:seealso)"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="$refs[d:secondary and count(.|key('secondary', concat($key, &sep;, &secondary;))[&scope;][1]) = 1]"
-                           mode="index-secondary">
+                           mode="index-secondary-kosek">
        <xsl:with-param name="scope" select="$scope"/>
        <xsl:with-param name="role" select="$role"/>
        <xsl:with-param name="type" select="$type"/>
@@ -247,7 +247,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="d:indexterm" mode="index-secondary">
+<xsl:template match="d:indexterm" mode="index-secondary-kosek">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
@@ -348,14 +348,14 @@
   <xsl:if test="$refs/d:tertiary or $refs[not(d:tertiary)]/*[self::d:seealso]">
     <fo:block start-indent="2pc">
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &sep;, d:seealso))[&scope;][1])]"
-                           mode="index-seealso">
+                           mode="index-seealso-kosek">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
           <xsl:sort select="i:index-term(d:seealso)"/>
       </xsl:apply-templates>
       <xsl:apply-templates select="$refs[d:tertiary and count(.|key('tertiary', concat($key, &sep;, &tertiary;))[&scope;][1]) = 1]"
-                           mode="index-tertiary">
+                           mode="index-tertiary-kosek">
           <xsl:with-param name="scope" select="$scope"/>
           <xsl:with-param name="role" select="$role"/>
           <xsl:with-param name="type" select="$type"/>
@@ -365,7 +365,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="d:indexterm" mode="index-tertiary">
+<xsl:template match="d:indexterm" mode="index-tertiary-kosek">
   <xsl:param name="scope" select="."/>
   <xsl:param name="role" select="''"/>
   <xsl:param name="type" select="''"/>
@@ -469,7 +469,7 @@
   <xsl:if test="$refs/d:seealso">
     <fo:block>
       <xsl:apply-templates select="$refs[generate-id() = generate-id(key('see-also', concat(&primary;, &sep;, &secondary;, &sep;, &tertiary;, &sep;, d:seealso))[&scope;][1])]"
-                           mode="index-seealso">
+                           mode="index-seealso-kosek">
         <xsl:with-param name="scope" select="$scope"/>
         <xsl:with-param name="role" select="$role"/>
         <xsl:with-param name="type" select="$type"/>
@@ -479,7 +479,7 @@
   </xsl:if>
 </xsl:template>
 
-  <xsl:template match="d:indexterm" mode="index-seealso">
+  <xsl:template match="d:indexterm" mode="index-seealso-kosek">
     <xsl:param name="scope" select="."/>
     <xsl:param name="role" select="''"/>
     <xsl:param name="type" select="''"/>
