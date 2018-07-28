@@ -10,9 +10,8 @@
                 xmlns:xlink='http://www.w3.org/1999/xlink'
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 xmlns:exslt="http://exslt.org/common"
-                xmlns:i="urn:cz-kosek:functions:index"
                 extension-element-prefixes="exslt"
-                exclude-result-prefixes="exslt d i"
+                exclude-result-prefixes="exslt d"
                 version="1.0">
 
 <!-- ********************************************************************
