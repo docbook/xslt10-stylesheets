@@ -18,8 +18,12 @@ GIT_LOG_FORMAT = '%x1e' + '%x1f'.join(GIT_LOG_FORMAT)
 command = ['git', 'log', '--format=%s' % GIT_LOG_FORMAT, '--name-only']
 if not all:
     # Determine the last release tag and limit history to then.
-    release = ['git', 'describe', '--tags', '--match', 'release/*', '--abbrev=0']
-    out = subprocess.check_output(release)
+    release = ['git', 'describe', '--tags', '--match', 'release/*', '--abbrev=0', '--always']
+    try:
+        out = subprocess.check_output(release, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        print >> sys.stderr, 'Error executing "{}": {}'.format(' '.join(e.cmd), e.output)
+        sys.exit(-1)
     out = out.strip()
     command.append('%s..HEAD'%out.decode(encoding='UTF-8'))
 out = subprocess.check_output(command)
