@@ -1,19 +1,16 @@
 language: java
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 branches:
   only:
   - master
   - travis
   - "/^release.*/"
-
 env:
   global:
   - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:$(pwd)/.travis
-  - secure: "CyGQbyoAoFmAst01IZtu3aGGVCTRN/oo8aMZJPwnDRi9F3q/ptueFKYoQEWWEzDYzPMPAtvbDVDx5lhfyZxlm6HwyvU8Frdt+3RTkn287EiDk0fnUhZGSasLaWwZ5SxGuRq/yonc/oLfktK1e6Z9ZUAD9q0GnWncI6ZiLeJussWpRIz5W88Jaz2VJKGdiiHZbQDmCE6b5Oe9Ucu8gYAnmHbz0QbxacPm58+D7rrWVwF9haH0oDlwlMCfM1lI0/GNJVMAREGYLFJBVsieSuDunYz9kZg3ewr0wKud4spy9qUMAGt5yEAn9I+vQYqTgzWpbLAP8cOgSxsVJWbBN8JXUuoQRh1Pu78J0phDII8YouYB98o1JdkQeytrUXJmzfdRtmw/iKKp4qAKHK7v6R0KkcpDhjeiVVWrptc4vXbkpm16EFgv3/d+Gs++M5s6fag60mlth9u6IwZ/tSJbafvUqvPn977YJbua40SSzwwF9/8GP0GGDTp7SoO7oKaIVN9Gv9qMANOYIqOGA/KCyzQ3oLuhD14P5Hy2Gdfa8S4o9UZI43QWURljWniN9ycyZb53px/4WZc2adAcxcB+V64M3UHkLGU+MH7mJWJtLE1v/32fBYaBGEkTch2Ghj/oKV89+rav40ssKyol6IYjKN7uVXh3R3t4kT8jJPbDmUBhFoo="
-  - secure: "pJBf2nm1HXQAqJTZ7+CdXAjBmppD2eOw4AlvSpkHDgUilKUBYfjSy1R5TY/CQ+TmlDOV6wX5FMVEj8XV0Kn7w5gQ+7n7J+dyDr6Cg51oYIhmHW+z+5+rc1yhikDdkQxZbQ2ervR0WaF35oZTsVnC7qw4UvAz/fHbmLBbWjjfyOhOlo7yXz+HMNt53CclZjn8BrU+O7EsQZAgY4t50iQy4D1v92hev1XKcV57ITGWvla28VZR8BBK2iMvuW+OM0DzPNJsyybwrVHOwZ0XVuDq0NNexMc6n85ISuIVhEzr2OeL5tnmpH9hECMzuVvBbNE2f7xnDJkl1XADIhEzgsljKbnNLmrP8o5Lalpi6mCB2WIPX2PRt9k2d6nj3Kx7vPNcF55f822/DfGO62LNGHressDEXAUhuyyzAHvxfp8ExxHEyj5eN3as8GY3F/fGNwGpDOfy9/yKetBVWdijdmWsqKCLIYze9JaliI3mJfUu6VzFVWalGApgVNPVUPtJaWB1qay3aDNpH2LqPu82sefD0StnjJgroKHqHBBT0MNlML2xR+HLVsU3krSZcPLFn3eWsz/Zc6Rl1ZlcarKiMAPKdUS7jVJSO/G8rfH6Y5h5jP31aV3i/0WTLoBxru69Eh4hs1QPvg1j9ZBGSKjWenP9wwxKKhY5OT6wL8tr/5e2WSw="
-
+  - secure: CyGQbyoAoFmAst01IZtu3aGGVCTRN/oo8aMZJPwnDRi9F3q/ptueFKYoQEWWEzDYzPMPAtvbDVDx5lhfyZxlm6HwyvU8Frdt+3RTkn287EiDk0fnUhZGSasLaWwZ5SxGuRq/yonc/oLfktK1e6Z9ZUAD9q0GnWncI6ZiLeJussWpRIz5W88Jaz2VJKGdiiHZbQDmCE6b5Oe9Ucu8gYAnmHbz0QbxacPm58+D7rrWVwF9haH0oDlwlMCfM1lI0/GNJVMAREGYLFJBVsieSuDunYz9kZg3ewr0wKud4spy9qUMAGt5yEAn9I+vQYqTgzWpbLAP8cOgSxsVJWbBN8JXUuoQRh1Pu78J0phDII8YouYB98o1JdkQeytrUXJmzfdRtmw/iKKp4qAKHK7v6R0KkcpDhjeiVVWrptc4vXbkpm16EFgv3/d+Gs++M5s6fag60mlth9u6IwZ/tSJbafvUqvPn977YJbua40SSzwwF9/8GP0GGDTp7SoO7oKaIVN9Gv9qMANOYIqOGA/KCyzQ3oLuhD14P5Hy2Gdfa8S4o9UZI43QWURljWniN9ycyZb53px/4WZc2adAcxcB+V64M3UHkLGU+MH7mJWJtLE1v/32fBYaBGEkTch2Ghj/oKV89+rav40ssKyol6IYjKN7uVXh3R3t4kT8jJPbDmUBhFoo=
+  - secure: pJBf2nm1HXQAqJTZ7+CdXAjBmppD2eOw4AlvSpkHDgUilKUBYfjSy1R5TY/CQ+TmlDOV6wX5FMVEj8XV0Kn7w5gQ+7n7J+dyDr6Cg51oYIhmHW+z+5+rc1yhikDdkQxZbQ2ervR0WaF35oZTsVnC7qw4UvAz/fHbmLBbWjjfyOhOlo7yXz+HMNt53CclZjn8BrU+O7EsQZAgY4t50iQy4D1v92hev1XKcV57ITGWvla28VZR8BBK2iMvuW+OM0DzPNJsyybwrVHOwZ0XVuDq0NNexMc6n85ISuIVhEzr2OeL5tnmpH9hECMzuVvBbNE2f7xnDJkl1XADIhEzgsljKbnNLmrP8o5Lalpi6mCB2WIPX2PRt9k2d6nj3Kx7vPNcF55f822/DfGO62LNGHressDEXAUhuyyzAHvxfp8ExxHEyj5eN3as8GY3F/fGNwGpDOfy9/yKetBVWdijdmWsqKCLIYze9JaliI3mJfUu6VzFVWalGApgVNPVUPtJaWB1qay3aDNpH2LqPu82sefD0StnjJgroKHqHBBT0MNlML2xR+HLVsU3krSZcPLFn3eWsz/Zc6Rl1ZlcarKiMAPKdUS7jVJSO/G8rfH6Y5h5jP31aV3i/0WTLoBxru69Eh4hs1QPvg1j9ZBGSKjWenP9wwxKKhY5OT6wL8tr/5e2WSw=
 install:
 - sudo apt-get update -q
 - sudo apt-get install xsltproc
@@ -24,34 +21,30 @@ install:
 - sudo apt-get install imagemagick
 - sudo apt-get install dblatex
 - cp .travis/xmlc ~/.xmlc
-
 script:
 - make
 - make check
 - make dist
 - export VERSION=$(make version)
-
 after_success:
-# Update CDN
 - |
-   if [ "$TRAVIS_REPO_SLUG" = "docbook/xslt10-stylesheets" -a \
-        "$TRAVIS_PULL_REQUEST" = "false" ]; then
-     export GH_TOKEN
-     .travis/publish-release.sh
-   fi
-
+  if [ "$TRAVIS_REPO_SLUG" = "docbook/xslt10-stylesheets" -a \
+       "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    export GH_TOKEN
+    .travis/publish-release.sh
+  fi
 before_deploy:
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"
 - export GIT_TAG=snapshot/$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
 - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-- git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG > /dev/null 2>&1
-
+- git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG > /dev/null
+  2>&1
 deploy:
   provider: releases
   prerelease: true
   api_key:
-    secure: "VJAj9hVynNFo4A5G5E6/PbND0dE/NpV1tzhuEgP86RyK1O6CIdIgUMvhjtH2Nv1fuc1C7PdEwMsggNFIelquVIJfdfTSq1xvwYbuQV9djXGhnoDRZB99a8cTI9q7xJ9E4d5fZyLd+s93Pzh3yTUZY+BCaVohnoZPhkA09YqKu/B/XVCDN/Qb3S5rdI+sacGCJqAoXXVrlNn4WUNUBCshJ/o/9KzvdGs5AcVDB8n219CIK5Lw+bM7rV0ifnwcQyLyc2k5fJdQkDoXQwuoeZ9YpNi2Cqoe5NWPtZxzGB5jod21yyU6/QYzOxA/64aC/ZRhEIUMiAnP0gGqTkK+DHJwC+ficoh8iTzNiVNlBuoYqKxo7ErKJPFgpppfCh07SFy8alJ6h1zFeYYLxohqBI1KdfDpDtO5h3YzTm17pQZ8xtuca1U4FgaMnXVMgsvThEwoPgqnhN1ee57MUuwZPc6tc811fZRZcVzfyTIkmpn084Cxl3jk6ZLTF91da/X7FQB/SsKghY1NCpdIwU0oW0PC72fXdSRK+mOegh1Z5aL1unrYp7jVCHEgjHobbe9P5SpycJ3ndiMbTFcnQil/gc6C+7Z7IedE/mlaEtvlrYHtK4w8GNsNWCXfIY4bxZS3XugS43eZc09MTyTTqRHsIgRfsveERmzQRWLtN02VDMYmul4="
+    secure: aOUJ3GnxifQIcY0c5c64VCufjUR/+L30ana1IVvv5wmBmUakTkmj1BWHFxWLly2A3HpNeXRnSD3lZpzLAtiYV5uxNr2LcR+joX0l4D1Lepu1Tu/mObePXliHp+N0D/iraB3LLg2Awe7cVOPc5krIA20w+MCUXKQ6tPALc68uX4T4I7tz1LVK6pC219+72cWKF5AFhlPDqR69g7FUZZ06H6vdR0D55HKubtU9Wkaj5gfqHARKsf7miJRYY+bKEkbMtoSgEghecF+G97Uk13epoVDbIxuFLZyVKFFf88quGaw9zpeZme0KzLga9ZvSW+8magR3D2rXLWDrqIH/ZoyQa27WDlDBcAQHYOWlLKs0FaMZmfs8OUVhjkZMM02H/Gx9iAxlFBTll/4wDSEw+iwFcQTwBoZgLX907U273KZ08XR2CIA/4lI24a/hjN1n8uEHPshMXa0E6sS4LAjfY4+Ilmb63fXplLITxizrPzi+sOMFlWEeamcuQyhYHgclsgIj29LU/4zq6WCwf2JVSz2N6mfMwBy4FtfF7rXXGR0FDPYTY2stDWUV32Q61Ld8XUjc9jX1w4t2EtfXspe3MCKuEMjDJ4QWT0q107xmCvbtIkgQ6632tEl9+/QxuHRx914lskvp022WhULthSwNe10GpChUdg1S8sDrkOtV6q8V490=
   file:
   - dist/docbook-xsl-$VERSION.tar.bz2
   - dist/docbook-xsl-$VERSION.tar.gz
@@ -65,11 +58,10 @@ deploy:
   on:
     repo: docbook/xslt10-stylesheets
     branch: master
-
 notifications:
   email:
     on_success: change
     on_failure: change
   irc:
     channels:
-      - "chat.freenode.net#docbook"
+    - chat.freenode.net#docbook
