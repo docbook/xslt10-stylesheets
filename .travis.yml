@@ -48,11 +48,19 @@ before_deploy:
 - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
 - git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG
 
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+  irc:
+    channels:
+    - chat.freenode.net#docbook
+
 deploy:
   provider: releases
   prerelease: true
   api_key:
-    secure: YG6AK8dVvCoDayk2LAw9XUqUyPs1yBRQMjPsyegXiyrAOZb7dvgaDDhiB99nL/CokqUHVk/DwKlAGsMMUuY67iBaXg8puByGAd4CmFi8OGNhzEv+kdmqst6xk9MVcnIepWruYjZa9C8isy9Sk0s0zMKS6JMJEOnnYveFCQWZazZziz//N+77VPyyMqDksn8vJqdTM6h5H6rw39oiYGoWGuiNxT5wd05FenuIs8YtuE4IQn/vyx8xcmFk54FZ50MyXNAbB3GJoqlLYQgLmoI+04CgyljAOlIn+KfW3/+FDVQlIAKY5K1Eu4YQkloMeRCkTpEux6wpsbkN1nevbpw8IANYRckag6WJZNQ7xOZvwSpHSoBMfir66lJty1ANzYmvJS0uMkEJK2io8MZ3JoPdk7iJEYJdFr1mM7F6qq14eB93VrZZuG+E7/r6SPahLKYRxkLM3LqQ8FMnBg4q+x8+cG/F0ad+icffgOQ/LoC+OdgHYQlHaRWO7DwNKkxSjCi3OKnKfRLEEMzcxignkx4qu3ybi7h1J+F0wegFPfNeaG/dkVj0nDYV7QF5kskCZ6yBK18slN6oSnwaxSmnCACN0FdVcpoHttHkkQf2I01iEcskWOgT2WBlup2do4Yzv9tlZcCJ4QeX4ozfPPcisnNK7Cpc5uY7X0wWJbAyVw88kX8=
+    secure: C3XlJYP4Fr5bkZRTZWAEZiAi4FxxFWE8oWTwYEH0aBj5Duc+l/M4WUWlI7kuRvf4nJVYjJ4Ano55M6KGlXU1Nqrkzza/y9MFdWvvlDROhgwftmf4kiVBKSu/Db13jipne7hDu7N32aBA6jhS6f8hTUTYXrp1aojeY04czrBtzKjAvWjwBpZlPMhaQcxxg1ta18dLA2oo+k6XvNXIvZBVxumk6LlGWNmXPig5KTyntRJtFak5MplyPEQ6hYIq5HFS5nY3WOMIPW+io0mmr1ESr//98Z9Q6N0Pr5PCQadF0eOOlSYkY3ggEKT7v+g+uFrGnUHXnhcWmydy798RRr/ixbMd5jVtOWIRuGp7oQud1P2oY0ICPiF6S0a24alpELpnjGtqnZ4RH2jNQZhRgD71466Og5ZSsN09+HzXghY0KSUw65emgZGYN6LU0NgL+13PIje5Ow2E236wkDmlnxIkXvpr/UAQlyXR6QWHSG2gzgSn4zoHSHWRDc/5Jhgd0WDEnMV5U1SnC8w/bObjTvNhtIkXTDdMWLGQDR5Me4qg4IT0FtnpMai3aOvnRyMyfNy/yAY5jEX8bBwVDwXYxxIUz2O88zyxTWgZVM2OvUeVi9xKjtfskp9pwFs3xEB+Q8T8HFYAKmcVxxsW9U2C1Zy6Q2eKDrjXx/bn/27GecQa26k=
   file:
   - dist/docbook-xsl-$VERSION.tar.bz2
   - dist/docbook-xsl-$VERSION.tar.gz
@@ -66,11 +74,3 @@ deploy:
   on:
     repo: docbook/xslt10-stylesheets
     branch: master
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-  irc:
-    channels:
-    - chat.freenode.net#docbook
