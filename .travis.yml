@@ -1,20 +1,21 @@
+# N.B. The tokens GH_TOKEN and GITHUBTOKEN are set in the Travis setup panel
+# not encrypted into this file.
+
 language: java
+
 jdk:
 - oraclejdk8
+
 branches:
   only:
   - master
   - travis
   - "/^release.*/"
+
 env:
   global:
   - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:$(pwd)/.travis
-  #- secure: CyGQbyoAoFmAst01IZtu3aGGVCTRN/oo8aMZJPwnDRi9F3q/ptueFKYoQEWWEzDYzPMPAtvbDVDx5lhfyZxlm6HwyvU8Frdt+3RTkn287EiDk0fnUhZGSasLaWwZ5SxGuRq/yonc/oLfktK1e6Z9ZUAD9q0GnWncI6ZiLeJussWpRIz5W88Jaz2VJKGdiiHZbQDmCE6b5Oe9Ucu8gYAnmHbz0QbxacPm58+D7rrWVwF9haH0oDlwlMCfM1lI0/GNJVMAREGYLFJBVsieSuDunYz9kZg3ewr0wKud4spy9qUMAGt5yEAn9I+vQYqTgzWpbLAP8cOgSxsVJWbBN8JXUuoQRh1Pu78J0phDII8YouYB98o1JdkQeytrUXJmzfdRtmw/iKKp4qAKHK7v6R0KkcpDhjeiVVWrptc4vXbkpm16EFgv3/d+Gs++M5s6fag60mlth9u6IwZ/tSJbafvUqvPn977YJbua40SSzwwF9/8GP0GGDTp7SoO7oKaIVN9Gv9qMANOYIqOGA/KCyzQ3oLuhD14P5Hy2Gdfa8S4o9UZI43QWURljWniN9ycyZb53px/4WZc2adAcxcB+V64M3UHkLGU+MH7mJWJtLE1v/32fBYaBGEkTch2Ghj/oKV89+rav40ssKyol6IYjKN7uVXh3R3t4kT8jJPbDmUBhFoo=
-  #- secure: pJBf2nm1HXQAqJTZ7+CdXAjBmppD2eOw4AlvSpkHDgUilKUBYfjSy1R5TY/CQ+TmlDOV6wX5FMVEj8XV0Kn7w5gQ+7n7J+dyDr6Cg51oYIhmHW+z+5+rc1yhikDdkQxZbQ2ervR0WaF35oZTsVnC7qw4UvAz/fHbmLBbWjjfyOhOlo7yXz+HMNt53CclZjn8BrU+O7EsQZAgY4t50iQy4D1v92hev1XKcV57ITGWvla28VZR8BBK2iMvuW+OM0DzPNJsyybwrVHOwZ0XVuDq0NNexMc6n85ISuIVhEzr2OeL5tnmpH9hECMzuVvBbNE2f7xnDJkl1XADIhEzgsljKbnNLmrP8o5Lalpi6mCB2WIPX2PRt9k2d6nj3Kx7vPNcF55f822/DfGO62LNGHressDEXAUhuyyzAHvxfp8ExxHEyj5eN3as8GY3F/fGNwGpDOfy9/yKetBVWdijdmWsqKCLIYze9JaliI3mJfUu6VzFVWalGApgVNPVUPtJaWB1qay3aDNpH2LqPu82sefD0StnjJgroKHqHBBT0MNlML2xR+HLVsU3krSZcPLFn3eWsz/Zc6Rl1ZlcarKiMAPKdUS7jVJSO/G8rfH6Y5h5jP31aV3i/0WTLoBxru69Eh4hs1QPvg1j9ZBGSKjWenP9wwxKKhY5OT6wL8tr/5e2WSw=
-  # GITHUBTOKEN for tagging...
-  - secure: Fh+liddtfIeHXc2P7PKjtk+EBfaGdCmLghYXhuSeWRwgd7x9xZsvRc3SHdsnMNBxV7lLXKNHWcNbidCd/Yiqhcz4QA4DkP4bT0SlHNBKGGe6l37eQrAgvDopH37cX3NYyWq6V2RwfSVpuCeD+a95NLaYSP16z/xZN8vpLobv4Z+Mg7yq4vQG7mL/D0iKwRHhQ/7GINXoDjx0FLO+NmYXSeh45oNI44pI1Iz8lQusnhkVDOmtsteM+1Lj1xlVhnQiw1tBqKAeqItIkHjbcWA+mHYbZ/IbARSYRvLey05nre0ejRZwjmI/UqCxO2I2fBjiadS5dRQDUUJOr8KIPQ0Ll6eyQwppe+iEzPz4Xr7HDko5K3ykQ4xtTPe3H+fQ+5Z7PNs9WHQkheR4xBYCDyWP+XkLdau39Go+RklqECZvGaYDR+eKPXBN5N5ke7TuA26XjkNOVOqo0wdL3gJfRUWEciH3lUc82Thcgz/6t0YSyTfcz0BnR4gRzvGwEVG+la7NXN8mRQduwwQHwkBuPvUYOngKf4f8jQPUKXYhtXJnCfDEtKEqtKvAJfNYfLdpaIl+ajNblBDXBPmiOJIIz8FjLqayJxRxRpPsNisSAq2Tx2GX22VteITr3q1K5GNpUePskVFLJm6Z1FjXYF1raFvikgT6dQqhJEtfY1ww2+kEilA=
-  # GH_TOKEN for publish-release.sh
-  - secure: Zu2UlfEaHcDolnQepwt0EK7TkVl2Ng5mJF6oTJmziMC2BXoLHskm5FxfzoeBwGMb6an0IvAA86l+XU8P6XtG3Ks8vidFrSo94So2XL5b6P/CIM5QsqdkeH1A2AdwOaQLde473jphwxEAm9Up7Zha2uO4b67eDopecTCircabZiU=
+
 install:
 - sudo apt-get update -q
 - sudo apt-get install xsltproc
@@ -25,11 +26,13 @@ install:
 - sudo apt-get install imagemagick
 - sudo apt-get install dblatex
 - cp .travis/xmlc ~/.xmlc
+
 script:
 - make
 - make check
 - make dist
 - export VERSION=$(make version)
+
 after_success:
 - |
   if [ "$TRAVIS_REPO_SLUG" = "docbook/xslt10-stylesheets" -a \
@@ -37,12 +40,14 @@ after_success:
     export GH_TOKEN
     .travis/publish-release.sh
   fi
+
 before_deploy:
 - git config --global user.email "builds@travis-ci.com"
 - git config --global user.name "Travis CI"
 - export GIT_TAG=snapshot/$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
 - git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
 - git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG
+
 deploy:
   provider: releases
   prerelease: true
@@ -61,6 +66,7 @@ deploy:
   on:
     repo: docbook/xslt10-stylesheets
     branch: master
+
 notifications:
   email:
     on_success: change
