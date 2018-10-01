@@ -80,6 +80,10 @@
                 </xsl:attribute>
               </fo:external-graphic>
             </fo:block>
+            <!-- include leading indexterms in this part to prevent
+                 extra spacing above first para from its space-before -->
+            <xsl:apply-templates mode="leading.indexterms" 
+                                 select="child::d:indexterm[not(preceding-sibling::*)]"/>
           </fo:list-item-label>
           <fo:list-item-body start-indent="body-start()">
             <xsl:if test="$admon.textlabel != 0 or d:title or d:info/d:title">
@@ -90,7 +94,7 @@
               </fo:block>
             </xsl:if>
             <fo:block xsl:use-attribute-sets="admonition.properties">
-              <xsl:apply-templates/>
+              <xsl:apply-templates select="*[not(self::d:indexterm[not(preceding-sibling::*)])]"/>
             </fo:block>
           </fo:list-item-body>
       </fo:list-item>
