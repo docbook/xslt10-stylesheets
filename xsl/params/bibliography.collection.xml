@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="bibliography.collection.frag">
-<xsl:param name="bibliography.collection">http://cdn.docbook.org/release/xsl/bibliography/bibliography.xml</xsl:param>
+<xsl:param name="bibliography.collection">https://cdn.docbook.org/resources/latest/xml/bibliography.xml</xsl:param>
 
 </src:fragment>
 </refsynopsisdiv>
