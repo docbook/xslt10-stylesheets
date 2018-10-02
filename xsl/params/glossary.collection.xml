@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="glossary.collection.frag">
-<xsl:param name="glossary.collection"></xsl:param>
+<xsl:param name="glossary.collection">https://cdn.docbook.org/resources/latest/xml/glossary.xml</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
