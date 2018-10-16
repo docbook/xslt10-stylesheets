@@ -5,8 +5,6 @@
 This repository contains the DocBook XSLT 1.0 Stylesheets, now
 migrated away from SourceForge.
 
-The latest stable release is docbook-xsl-1.79.2.
-
 There are still some rough edges here as the build system and various
 other things are being ported.
 
