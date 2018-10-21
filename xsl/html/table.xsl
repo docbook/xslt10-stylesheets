@@ -761,7 +761,8 @@
       </xsl:when>
       <!-- not last row with @morerows (thead is not last row) -->
       <xsl:when test="not(ancestor::d:thead) and @morerows and not(@morerows &lt;
-                 count(ancestor-or-self::d:row[1]/following-sibling::d:row))">
+                 ( count(ancestor-or-self::d:row[1]/following-sibling::d:row) +
+                   count(ancestor::d:tgroup/d:tfoot/d:row)) )">
         <xsl:value-of select="0"/>
       </xsl:when>
       <xsl:otherwise>
