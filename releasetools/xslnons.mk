@@ -9,7 +9,7 @@ zip-nons: zip
 	$(RM)  $(TMP)/docbook-$(DISTRO)-nons-$(ZIPVER).tar.bz2
 	$(RM)  $(TMP)/docbook-$(DISTRO)-nons-$(ZIPVER).zip
 	(cd $(TMP) && \
-	  unzip $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip && \
+	  unzip -qq $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip && \
 	  $(repo_dir)/releasetools/xslnons-build \
 	  docbook-$(DISTRO)-$(ZIPVER) \
 	  docbook-$(DISTRO)-nons-$(ZIPVER)); 
