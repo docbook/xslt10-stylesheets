@@ -9,7 +9,7 @@ zip-ns: zip
 	$(RM)  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER).tar.bz2
 	$(RM)  $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER).zip
 	(cd $(TMP) && \
-	  unzip $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip && \
+	  unzip -qq $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip && \
 	  $(repo_dir)/releasetools/xslns-build \
 	  docbook-$(DISTRO)-$(ZIPVER) \
 	  docbook-$(DISTRO)-ns-$(ZIPVER)); 

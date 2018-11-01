@@ -11,6 +11,8 @@ branches:
   - master
   - travis
   - "/^release.*/"
+  - "/^snapshot.*/"
+  - "/^ndw-test.*/"
 
 env:
   global:
@@ -41,13 +43,6 @@ after_success:
     .travis/publish-release.sh
   fi
 
-before_deploy:
-- git config --global user.email "builds@travis-ci.com"
-- git config --global user.name "Travis CI"
-- export GIT_TAG=snapshot/$(date -u "+%Y-%m-%d")-$TRAVIS_BUILD_NUMBER
-- git tag $GIT_TAG -a -m "Generated tag from TravisCI build $TRAVIS_BUILD_NUMBER"
-- git push https://$GITHUBTOKEN@github.com/docbook/xslt10-stylesheets $GIT_TAG
-
 notifications:
   email:
     on_success: change
@@ -58,19 +53,13 @@ notifications:
 
 deploy:
   provider: releases
-  prerelease: true
   api_key:
-    secure: C3XlJYP4Fr5bkZRTZWAEZiAi4FxxFWE8oWTwYEH0aBj5Duc+l/M4WUWlI7kuRvf4nJVYjJ4Ano55M6KGlXU1Nqrkzza/y9MFdWvvlDROhgwftmf4kiVBKSu/Db13jipne7hDu7N32aBA6jhS6f8hTUTYXrp1aojeY04czrBtzKjAvWjwBpZlPMhaQcxxg1ta18dLA2oo+k6XvNXIvZBVxumk6LlGWNmXPig5KTyntRJtFak5MplyPEQ6hYIq5HFS5nY3WOMIPW+io0mmr1ESr//98Z9Q6N0Pr5PCQadF0eOOlSYkY3ggEKT7v+g+uFrGnUHXnhcWmydy798RRr/ixbMd5jVtOWIRuGp7oQud1P2oY0ICPiF6S0a24alpELpnjGtqnZ4RH2jNQZhRgD71466Og5ZSsN09+HzXghY0KSUw65emgZGYN6LU0NgL+13PIje5Ow2E236wkDmlnxIkXvpr/UAQlyXR6QWHSG2gzgSn4zoHSHWRDc/5Jhgd0WDEnMV5U1SnC8w/bObjTvNhtIkXTDdMWLGQDR5Me4qg4IT0FtnpMai3aOvnRyMyfNy/yAY5jEX8bBwVDwXYxxIUz2O88zyxTWgZVM2OvUeVi9xKjtfskp9pwFs3xEB+Q8T8HFYAKmcVxxsW9U2C1Zy6Q2eKDrjXx/bn/27GecQa26k=
+    secure: f4w3jrlDESAlhSZIGzBLMbL5OVdQu+zG1SPmXHYN5GUacrV+WnxuhiuVsbkxKMasltIGVijeWWBnVMD8k8HF3YgWQad80TLgBTpUnWeQK5mrJ4SkdpVryjeS31ZU7sk7DaT4AdyaTvgunINTNO2XH2mp1J6Ou20f9z3up+7uy1PLQHb9WU4OojqzASmcH48dklDX4bjDejc7GgXV3EKydZsx7fCEBp6KpDZ+dkYheB1byBAEJ3DXpY3gTU0yt6oS8g8PXSmoTtqY6eWCv0UffWLGphqHAH/VEsZmQhlP+y7H8QFKXiPxFW6IsjigeJ4lBSpJ5oDoJVY5v1XhR7Oe8IHMVprvGl3OQbOO1tDp93fYKGqloF+p5V7AYY89Fg7JmWVTduLInShFRhXjt2TzjNdbo0VHVpKRnr01zDHWuOXcGgsMLO/K1jdyMWnYFoJd5OEhEMOqA7Q8hpi8YGmR3hZTanCiDGkpMpKqQG7quGSqidJBjC/wdo8mqNl2wNy7VyqVCOYUwnB9s5s6JjWykOEa5TX/oQ9kbWNLUf18Z9sfTkQwAJhuE1CmVbk6gosmo3ZlqBpLiuSYVLZC98fgRwv6p22Vy8SpH7Q6tVaTG3UoVaX+DggJYUXADWh7/eDvGYXw0OCE78SSktry/wfENUlKqnLEbzvcQAgqnl3sUro=
   file:
-  - dist/docbook-xsl-$VERSION.tar.bz2
-  - dist/docbook-xsl-$VERSION.tar.gz
   - dist/docbook-xsl-$VERSION.zip
-  - dist/docbook-xsl-nons-$VERSION.tar.bz2
-  - dist/docbook-xsl-nons-$VERSION.tar.gz
   - dist/docbook-xsl-nons-$VERSION.zip
-  - dist/docbook-xsl-doc-$VERSION.tar.bz2
-  - dist/docbook-xsl-doc-$VERSION.tar.gz
   - dist/docbook-xsl-doc-$VERSION.zip
+  skip_cleanup: true
   on:
-    repo: docbook/xslt10-stylesheets
-    branch: master
+    tags: true
+    all_branches: true

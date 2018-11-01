@@ -39,7 +39,7 @@ ifeq ($(PDF_MAKER),dblatex)
 	&& $(DBLATEX) $(DBLATEX_FLAGS) \
 	  -p $(DBX_STYLE) \
 	  -o $@ \
-	  RELEASE-NOTES-STRIPPED-TMP.xml
+	  RELEASE-NOTES-STRIPPED-TMP.xml 2>&1 | $(TAIL)
 	$(RM) RELEASE-NOTES-STRIPPED-TMP.xml
 	$(RM) RELEASE-NOTES-TMP.xml
 endif
@@ -115,8 +115,6 @@ else
 # -----------------------------------------------------------------
 	rm -rf $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
 	$(RM)  $(TMP)/tar.exclude
-	$(RM)  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.gz
-	$(RM)  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).tar.bz2
 	$(RM)  $(TMP)/docbook-$(DISTRO)-$(ZIPVER).zip
 	umask 022; mkdir -p $(TMP)/docbook-$(DISTRO)-$(ZIPVER)
 	touch $(TMP)/tar.exclude
@@ -144,8 +142,6 @@ endif
 	fi
 # tar up distro, then gzip/bzip/zip it
 	-$(TAR) cf$(TARFLAGS) - -X $(TMP)/tar.exclude * .[^.]* | (cd $(TMP)/docbook-$(DISTRO)-$(ZIPVER); $(TAR) xf$(TARFLAGS) -)
-	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | gzip > docbook-$(DISTRO)-$(ZIPVER).tar.gz
-	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-$(ZIPVER) | bzip2 > docbook-$(DISTRO)-$(ZIPVER).tar.bz2
 	umask 022; cd $(TMP) && $(ZIP) $(ZIPFLAGS) docbook-$(DISTRO)-$(ZIPVER).zip docbook-$(DISTRO)-$(ZIPVER)
 	$(RM) $(TMP)/tar.exclude
 
@@ -162,8 +158,6 @@ ifneq ($(DISTRIB_PACKAGES),)
           fi; \
 	  rm -rf $(TMP)/$$dirname; \
 	  $(RM)  $(TMP)/tar.exclude; \
-	  $(RM)  $(TMP)/$$package_name.tar.gz; \
-	  $(RM)  $(TMP)/$$package_name.tar.bz2; \
 	  $(RM)  $(TMP)/$$package_name.zip; \
 	  umask 022; mkdir -p $(TMP)/$$dirname; \
 	  touch $(TMP)/tar.exclude; \
@@ -180,8 +174,6 @@ ifneq ($(DISTRIB_PACKAGES),)
 	  if [ -d $$dirname/images ]; \
 	    then mv $$dirname/images $$dirname/doc/; \
 	  fi) ; \
-	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - $$dirname | gzip > $$package_name.tar.gz); \
-	  umask 022; (cd $(TMP) && $(TAR) cf$(TARFLAGS) - $$dirname | bzip2 > $$package_name.tar.bz2); \
 	  umask 022; (cd $(TMP) && $(ZIP) $(ZIPFLAGS) $$package_name.zip $$dirname); \
 	  $(RM) $(TMP)/tar.exclude; \
 	done
