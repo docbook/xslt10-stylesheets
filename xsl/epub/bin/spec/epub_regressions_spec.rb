@@ -22,7 +22,7 @@ describe DocBook::Epub do
   before(:all) do
     @filedir = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
     @testdocsdir = File.expand_path(File.join(ENV['repo_dir'], 'testdocs', 'tests'))
-    @tmpdir = File.join(Dir::tmpdir(), "epubregressions"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
+    @tmpdir = File.join(Dir.mktmpdir(), "epubregressions"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
   end
 
   it "should not include two <itemref>s to the contents of <part>s in the OPF file" do
@@ -33,7 +33,7 @@ describe DocBook::Epub do
 
     FileUtils.copy(epub_file, "./.t.epub") if $DEBUG
 
-    itemref_tmpdir = File.join(Dir::tmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
+    itemref_tmpdir = File.join(Dir.mktmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
     system(%Q(unzip -q -o -d "#{itemref_tmpdir}" "#{epub_file}"))
     opf_file = File.join(itemref_tmpdir, "OEBPS", "content.opf")
     opf = REXML::Document.new(File.new(opf_file))
@@ -44,7 +44,7 @@ describe DocBook::Epub do
 
   it "should preserve content from <dedication> elements" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubdedtest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubdedtest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       epub = DocBook::Epub.new(File.join(@testdocsdir, "xref.001.xml"), @tmpdir)
       epubfile = File.join(tmpdir, "regress.ded.epub")
@@ -71,7 +71,7 @@ describe DocBook::Epub do
       css_epubfile = File.join(@tmpdir, "css.epub")
       css_epub.render_to_file(css_epubfile, $DEBUG)
 
-      tmpdir = File.join(Dir::tmpdir(), "epubcssreg"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubcssreg"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{css_epubfile}"))
       raise "Could not unzip #{css_epubfile}" unless success
@@ -96,7 +96,7 @@ describe DocBook::Epub do
 
     xhtml_dtd = "DTD XHTML 1.1"
 
-    itemref_tmpdir = File.join(Dir::tmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
+    itemref_tmpdir = File.join(Dir.mktmpdir(), "epubitemref"); Dir.mkdir(itemref_tmpdir) rescue Errno::EEXIST
     system(%Q(unzip -q -o -d "#{itemref_tmpdir}" "#{epub_file}"))
 
     opf_file = File.join(itemref_tmpdir, "OEBPS", "content.opf")
@@ -155,7 +155,7 @@ describe DocBook::Epub do
   it "should not use a namespace prefix for the container element to help some broken reading systems" do
     filename = "isbn.xml"
     shortname = filename.gsub(/\W/, '')
-    tmpdir = File.join(Dir::tmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+    tmpdir = File.join(Dir.mktmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
     epub = DocBook::Epub.new(File.join(@filedir, filename), tmpdir)
     epubfile  = File.join(tmpdir, shortname + ".epub")
     epub.render_to_file(epubfile, $DEBUG)
@@ -192,7 +192,7 @@ describe DocBook::Epub do
 
   it "should not include font style elements like <b> or <i>" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubbtest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubbtest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
       epubfile = File.join(tmpdir, "bcount.epub")
@@ -228,7 +228,7 @@ describe DocBook::Epub do
     ncx_epub.render_to_file(ncx_epubfile, $DEBUG)
     ncx_epubfile.should be_valid_epub  
 
-    ncx_tmpdir = File.join(Dir::tmpdir(), "epubncx"); Dir.mkdir(ncx_tmpdir) rescue Errno::EEXIST
+    ncx_tmpdir = File.join(Dir.mktmpdir(), "epubncx"); Dir.mkdir(ncx_tmpdir) rescue Errno::EEXIST
     system(%Q(unzip -q -o -d "#{ncx_tmpdir}" "#{ncx_epubfile}"))
 
     ncx_file = File.join(ncx_tmpdir, "OEBPS", "toc.ncx")

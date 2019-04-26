@@ -20,7 +20,7 @@ TESTDOCSDIR = File.expand_path(File.join(File.dirname(__FILE__), 'files'))
 
 describe DocBook::Epub do
   before(:all) do
-    @tmpdir = File.join(Dir::tmpdir(), "epubspecreal"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
+    @tmpdir = File.join(Dir.mktmpdir(), "epubspecreal"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
     @xml_file = Dir["#{TESTDOCSDIR}/orm*.[0-9][0-9][0-9].xml"].sort_by { rand }.first 
     @epub = DocBook::Epub.new(@xml_file, @tmpdir)
     @epub_file = File.join(@tmpdir, File.basename(@xml_file, ".xml") + ".epub")
@@ -28,7 +28,7 @@ describe DocBook::Epub do
 
     FileUtils.copy(@epub_file, "." + File.basename(@xml_file, ".xml") + ".epub") if $DEBUG
 
-    @tmpdir2 = File.join(Dir::tmpdir(), "epubreal"); Dir.mkdir(@tmpdir2) rescue Errno::EEXIST
+    @tmpdir2 = File.join(Dir.mktmpdir(), "epubreal"); Dir.mkdir(@tmpdir2) rescue Errno::EEXIST
     success = system(%Q(unzip -q -o -d "#{@tmpdir2}" "#{@epub_file}"))
     raise "Could not unzip #{epub_file}" unless success
 

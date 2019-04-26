@@ -41,7 +41,7 @@ end
 # Helper Functions
 def opf_lines(filename, filedir)
   shortname = filename.gsub(/\W/, '')
-  tmpdir = File.join(Dir::tmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+  tmpdir = File.join(Dir.mktmpdir(), shortname); Dir.mkdir(tmpdir) rescue Errno::EEXIST
   epub = DocBook::Epub.new(File.join(filedir, filename), tmpdir)
   epubfile  = File.join(tmpdir, shortname + ".epub")
   epub.render_to_file(epubfile, $DEBUG)
