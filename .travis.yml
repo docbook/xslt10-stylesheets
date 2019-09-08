@@ -6,14 +6,6 @@ language: java
 jdk:
 - oraclejdk8
 
-branches:
-  only:
-  - master
-  - travis
-  - "/^release.*/"
-  - "/^snapshot.*/"
-  - "/^ndw-test.*/"
-
 env:
   global:
   - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:$(pwd)/.travis
