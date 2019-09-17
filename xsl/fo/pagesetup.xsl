@@ -3507,7 +3507,7 @@
 <!-- Customize this template for custom side regions -->
 <xsl:template name="region.inner">
   <xsl:param name="sequence">blank</xsl:param>
-  <xsl:param name="classname">blank</xsl:param>
+  <xsl:param name="pageclass">blank</xsl:param>
 
   <xsl:choose>
     <xsl:when test="$sequence = 'first' or $sequence = 'odd'">
@@ -3544,7 +3544,7 @@
 <!-- Customize this template for custom side regions -->
 <xsl:template name="region.outer">
   <xsl:param name="sequence">blank</xsl:param>
-  <xsl:param name="classname">blank</xsl:param>
+  <xsl:param name="pageclass">blank</xsl:param>
 
   <xsl:choose>
     <xsl:when test="$sequence = 'first' or $sequence = 'odd'">
