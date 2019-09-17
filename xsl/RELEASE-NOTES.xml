@@ -13838,7 +13838,7 @@ images.
 </para>
 </listitem> 
 <listitem>
-<para>Added seperate property sets for <tag>figure</tag>s,
+<para>Added separate property sets for <tag>figure</tag>s,
 <tag>example</tag>s, <tag>equation</tag>s, <tag>tables</tag>s,
 and <tag>procedure</tag>s.
 </para>
