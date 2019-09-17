@@ -48,11 +48,8 @@
     </xsl:variable>
 
     <!-- * see bug report #1465301 - mzjn -->
-    <axf:document-info name="title">
-      <xsl:attribute name="value">
-        <xsl:value-of select="normalize-space($title)"/>
-      </xsl:attribute>
-    </axf:document-info>
+    <axf:document-info name="title" value="{normalize-space($title)}"/>
+    <axf:document-info name="displaydoctitle" value="true"/>
 
     <xsl:if test="//d:keyword">
       <xsl:element name="axf:document-info">
