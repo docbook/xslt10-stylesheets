@@ -22,7 +22,7 @@ NUMBER_TO_TEST = 15
 describe DocBook::Epub do
 
   before do
-    @tmpdir = File.join(Dir::tmpdir(), "epubspecsmoke"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
+    @tmpdir = File.join(Dir.mktmpdir(), "epubspecsmoke"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
   end
 
   Dir["#{TESTDOCSDIR}/*.[0-9][0-9][0-9].xml"].sort_by { rand }[0..(NUMBER_TO_TEST-1)].each do |xml_file|

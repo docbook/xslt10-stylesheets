@@ -23,7 +23,7 @@ describe DocBook::Epub do
     @testdocsdir = File.expand_path(File.join(ENV['repo_dir'], 'testdocs', 'tests'))
     exampledir = File.expand_path(File.join(File.dirname(__FILE__), 'examples'))
     @valid_epub = File.join(exampledir, "AMasqueOfDays.epub")
-    @tmpdir = File.join(Dir::tmpdir(), "epubspec"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
+    @tmpdir = File.join(Dir.mktmpdir(), "epubspec"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
 
 
     @simple_bookfile = File.join(@testdocsdir, "book.001.xml")
@@ -168,7 +168,7 @@ describe DocBook::Epub do
 
   it "should not include PDFs in rendered epub files as valid image inclusions" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubinclusiontest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubinclusiontest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{File.expand_path(@manygraphic_epubfile)}"))
       raise "Could not unzip #{@manygraphic_epubfile}" unless success
@@ -184,7 +184,7 @@ describe DocBook::Epub do
 
   it "should include a CSS link in HTML files when a CSS file has been provided" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
@@ -200,7 +200,7 @@ describe DocBook::Epub do
 
   it "should include CSS file in .epub when a CSS file has been provided" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubcssfiletest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubcssfiletest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
 
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
@@ -215,7 +215,7 @@ describe DocBook::Epub do
 
   it "should include a reference in the OPF manifest to the provided CSS file" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubcsshtmltest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
@@ -231,7 +231,7 @@ describe DocBook::Epub do
 
   it "should include a reference in the OPF manifest to the embedded font" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubfontman"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubfontman"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
@@ -250,7 +250,7 @@ describe DocBook::Epub do
 
   it "should include the embedded font file in the bundle" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubfontbundle"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubfontbundle"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       success = system(%Q(unzip -q -d "#{File.expand_path(tmpdir)}" -o "#{@css_epubfile}"))
       raise "Could not unzip #{@css_epubfile}" unless success
@@ -271,7 +271,7 @@ describe DocBook::Epub do
 
   it "should include one and only one <h1> in each HTML file in rendered ePub files for <book>s" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
       epubfile = File.join(tmpdir, "h1count.epub")
@@ -295,7 +295,7 @@ describe DocBook::Epub do
 
   it "should include one and only one <h1> in each HTML file in rendered ePub files for <book>s even if they do not have section markup" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
       epubfile = File.join(tmpdir, "h1count2.epub")
@@ -319,7 +319,7 @@ describe DocBook::Epub do
 
   it "should include a TOC link in rendered epub files for <book>s" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubtoctest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       epub = DocBook::Epub.new(File.join(@testdocsdir, "book.002.xml"), @tmpdir)
       epubfile = File.join(tmpdir, "toclink.epub")
@@ -341,7 +341,7 @@ describe DocBook::Epub do
 
   it "should allow for the stylesheets to be overridden by a customization layer" do
     begin
-      tmpdir = File.join(Dir::tmpdir(), "epubcusttest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
+      tmpdir = File.join(Dir.mktmpdir(), "epubcusttest"); Dir.mkdir(tmpdir) rescue Errno::EEXIST
       
       css_file = nil
       customization_layer = File.join(@filedir, "test_cust.xsl")
