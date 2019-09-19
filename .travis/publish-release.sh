@@ -14,10 +14,10 @@ fi
 #     exit 0
 # fi
 
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
-    echo "Skipping deploy for pull request."
-    exit 0
-fi
+# if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+#     echo "Skipping deploy for pull request."
+#     exit 0
+# fi
 
 # Remember the SHA of the current build.
 SHA=$(git rev-parse --verify HEAD)
