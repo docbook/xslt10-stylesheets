@@ -36,13 +36,7 @@ script:
 - make dist
 - export VERSION=$(make version)
 
-after_success:
-- |
-  if [ "$TRAVIS_REPO_SLUG" = "docbook/xslt10-stylesheets" -a \
-       "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    export GH_TOKEN
-    .travis/publish-release.sh
-  fi
+after_success: .travis/publish-release.sh
 
 notifications:
   email:

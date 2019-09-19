@@ -3,9 +3,19 @@ set -e # Exit with nonzero exit code if anything fails
 here=$(dirname "${BASH_SOURCE[0]}")
 # Only commits to master should trigger deployment
 # (add 'travis' for testing purposes.)
-if [ "$TRAVIS_PULL_REQUEST" != "false" ] || \
-   [ "$TRAVIS_BRANCH" != master -a "$TRAVIS_BRANCH" != travis ]; then
-    echo "Skipping deployment"
+
+if [ "$TRAVIS_REPO_SLUG" != "docbook/xslt10-stylesheets" ]; then
+    echo "Skipping deploy for $TRAVIS_REPO_SLUG"
+    exit 0
+fi
+
+if [ "$TRAVIS_TAG" == "" ]; then
+    echo "Skipping deploy for untagged commit."
+    exit 0
+fi
+
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+    echo "Skipping deploy for pull request."
     exit 0
 fi
 
