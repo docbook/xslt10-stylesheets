@@ -9,10 +9,10 @@ if [ "$TRAVIS_REPO_SLUG" != "docbook/xslt10-stylesheets" ]; then
     exit 0
 fi
 
-if [ "$TRAVIS_TAG" == "" ]; then
-    echo "Skipping deploy for untagged commit."
-    exit 0
-fi
+# if [ "$TRAVIS_TAG" == "" ]; then
+#     echo "Skipping deploy for untagged commit."
+#     exit 0
+# fi
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     echo "Skipping deploy for pull request."
