@@ -7,7 +7,7 @@
 <!-- * This modified version of markup.xsl is used as part of -->
 <!-- * the internal build of the DocBook Project XSL Stylesheets -->
 <!-- * -->
-<!-- *   http://cdn.docbook.org/release/xsl/current/ -->
+<!-- *   https://cdn.docbook.org/release/xsl/current/ -->
 <!-- * -->
 <!-- * Copyright 2007 The DocBook Project <docbook-developers@sf.net> -->
 <!-- * -->

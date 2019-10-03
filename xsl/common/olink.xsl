@@ -5,7 +5,7 @@
 <!-- ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
-     See ../README or http://cdn.docbook.org/ for copyright
+     See ../README or https://cdn.docbook.org/ for copyright
      copyright and other information.
 
      ******************************************************************** -->

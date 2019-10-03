@@ -11,7 +11,7 @@
 #   This file is part of the DocBook Project XSL Stylesheet
 #   distribution.
 #
-#   See http://cdn.docbook.org/release/xsl/current/
+#   See https://cdn.docbook.org/release/xsl/current/
 #   for copyright and other information.
 #
 # This makefile creates "wrapper" files that combine sets of

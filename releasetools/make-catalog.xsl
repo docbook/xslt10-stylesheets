@@ -15,7 +15,7 @@
 <xsl:param name="BRANCH">
   <xsl:value-of select="string(document('VERSION.xsl')//fm:Branch[1])"/>
 </xsl:param>
-<xsl:param name="URI_BASE">http://cdn.docbook.org/release</xsl:param>
+<xsl:param name="URI_BASE">https://cdn.docbook.org/release</xsl:param>
 <xsl:param name="DISTRO"/>
 <xsl:param name="SUBDIR">current</xsl:param>
 

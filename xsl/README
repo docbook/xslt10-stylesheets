@@ -21,7 +21,7 @@ How to use the stylesheets
 ----------------------------------------------------------------------
 The base canonical URI for these stylesheets is:
 
-  http://cdn.docbook.org/release/xsl/current/
+  https://cdn.docbook.org/release/xsl/current/
 
 You call any of the stylesheets in this distribution by doing one
 of the following:
@@ -29,7 +29,7 @@ of the following:
   - Use the base canonical URI in combination with one of the
     pathnames below. For example, for "chunked" HTML, output:
 
-    http://cdn.docbook.org/release/xsl/current/html/chunk.xsl
+    https://cdn.docbook.org/release/xsl/current/html/chunk.xsl
 
     If your system has a working XML Catalog or SGML Catalog setup
     (most Linux systems do), then that URI will automatically be

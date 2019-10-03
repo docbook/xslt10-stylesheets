@@ -26,7 +26,7 @@
 <!-- ==================================================================== -->
 
 <!-- must wait until xml catalogs are working...-->
-<!-- <xsl:import href="http://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/> -->
+<!-- <xsl:import href="https://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/> -->
 
 <!--
 <xsl:include href="website-tabular.xsl"/>

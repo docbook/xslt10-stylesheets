@@ -3,7 +3,7 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version="1.0">
 
-<xsl:import href="http://cdn.docbook.org/release/xsl/current/fo/docbook.xsl"/>
+<xsl:import href="https://cdn.docbook.org/release/xsl/current/fo/docbook.xsl"/>
 <xsl:include href="titlepage-fo.xsl"/>
 
 <!-- ====================================================================== -->

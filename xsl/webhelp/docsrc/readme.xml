@@ -679,7 +679,7 @@ input-images-dirs=images/**,figures/**,graphics/**</programlisting></para>
           </listitem>
           <listitem>
             <para>Content: This includes the content of the documentation. The processing of this
-              part is done by <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://cdn.docbook.org/release/xsl/current/xhtml/chunk.xsl"> DocBook
+              part is done by <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://cdn.docbook.org/release/xsl/current/xhtml/chunk.xsl"> DocBook
                 XSL Chunking customization</link>. Few further css-styling applied from
                 <filename>positioning.css</filename>. </para>
           </listitem>
