@@ -28,7 +28,7 @@ default namespace dbs = "http://docbook.org/ns/docbook-slides"
 # 
 # ======================================================================
 
-include "http://docbook.org/xml/5.0/rng/docbook.rnc" inherit = db {
+include "https://docbook.org/xml/5.0/rng/docbook.rnc" inherit = db {
   start = dbs.slides
   
   # Avoid ID clashes
