@@ -8,7 +8,7 @@
          indent="no" 
 	 encoding="utf-8"
          doctype-public="-//Norman Walsh//DTD DocBook OLink Summary V2.0//EN"
-         doctype-system="http://cdn.docbook.org/release/xsl/current/common/targetdatabase.dtd"/>
+         doctype-system="https://cdn.docbook.org/release/xsl/current/common/targetdatabase.dtd"/>
 
 
 <!-- Used only when processing autolayout.xml -->

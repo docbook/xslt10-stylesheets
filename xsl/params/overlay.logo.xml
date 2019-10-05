@@ -15,7 +15,7 @@
 
 <refsynopsisdiv>
 <src:fragment xml:id="overlay.logo.frag">
-<xsl:param name="overlay.logo">http://cdn.docbook.org/release/xsl/buttons/slides-1.png</xsl:param>
+<xsl:param name="overlay.logo">https://cdn.docbook.org/release/xsl/buttons/slides-1.png</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 

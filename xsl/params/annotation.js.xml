@@ -17,7 +17,7 @@
 <src:fragment xml:id="annotation.js.frag">
 
 <xsl:param name="annotation.js">
-<xsl:text>http://cdn.docbook.org/release/xsl/script/AnchorPosition.js http://cdn.docbook.org/release/xsl/script/PopupWindow.js</xsl:text></xsl:param>
+<xsl:text>https://cdn.docbook.org/release/xsl/script/AnchorPosition.js https://cdn.docbook.org/release/xsl/script/PopupWindow.js</xsl:text></xsl:param>
 
 </src:fragment>
 </refsynopsisdiv>

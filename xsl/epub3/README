@@ -168,13 +168,13 @@ custom-epub3-chunk.xsl
 <xsl:import href="custom-epub3-elements.xsl"/>
 
 <!-- import stock DocBook XSL file; use a catalog for local files-->
-<xsl:import href="http://cdn.docbook.org/release/xsl/current/xhtml/chunk-common.xsl"/>
+<xsl:import href="https://cdn.docbook.org/release/xsl/current/xhtml/chunk-common.xsl"/>
 
 <!-- include (not import) stock DocBook XSL file; use a catalog for local files-->
-<xsl:include href="http://cdn.docbook.org/release/xsl/current/xhtml/chunk-code.xsl"/>
+<xsl:include href="https://cdn.docbook.org/release/xsl/current/xhtml/chunk-code.xsl"/>
 
 <!-- include (not import) stock DocBook XSL file; use a catalog for local files-->
-<xsl:include href="http://cdn.docbook.org/release/xsl/current/epub3/epub3-chunk-mods.xsl"/>
+<xsl:include href="https://cdn.docbook.org/release/xsl/current/epub3/epub3-chunk-mods.xsl"/>
 
 <!-- Add here any templates that change chunking behavior.
 That is, any templates copied from chunk-common.xsl or
@@ -197,8 +197,8 @@ custom-epub3-elements.xsl
   exclude-result-prefixes="#default d"
   version="1.0">
 
-<xsl:import href="http://cdn.docbook.org/release/xsl/current/xhtml5/docbook.xsl"/>
-<xsl:include href="http://cdn.docbook.org/release/xsl/current/epub3/epub3-element-mods.xsl"/>
+<xsl:import href="https://cdn.docbook.org/release/xsl/current/xhtml5/docbook.xsl"/>
+<xsl:include href="https://cdn.docbook.org/release/xsl/current/epub3/epub3-element-mods.xsl"/>
 
 <!-- Add here any templates that change element format.  Any
 such customized templates with a @match attribute must also

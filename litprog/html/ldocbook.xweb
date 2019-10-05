@@ -58,7 +58,7 @@ DocBook elements handled by the imported stylesheet.</para>
                 xmlns:verb="com.nwalsh.saxon.Verbatim"
                 exclude-result-prefixes="verb src"
                 version="1.0">
-  <xsl:import href="http://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
+  <xsl:import href="https://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
 
   <src:fragref linkend="init"/>
   <src:fragref linkend="proc-html-fragment"/>
@@ -81,7 +81,7 @@ DocBook elements handled by the imported stylesheet.</para>
                 xmlns:verb="com.nwalsh.saxon.Verbatim"
                 exclude-result-prefixes="verb src"
                 version="1.0">
-  <xsl:import href="http://cdn.docbook.org/release/xsl/current/html/chunk.xsl"/>
+  <xsl:import href="https://cdn.docbook.org/release/xsl/current/html/chunk.xsl"/>
 
   <src:fragref linkend="init"/>
   <src:fragref linkend="proc-html-fragment"/>
@@ -106,7 +106,7 @@ DocBook elements handled by the imported stylesheet.</para>
                 exclude-result-prefixes="verb src fo"
                 version="1.0">
 
-  <xsl:import href="http://cdn.docbook.org/release/xsl/current/fo/docbook.xsl"/>
+  <xsl:import href="https://cdn.docbook.org/release/xsl/current/fo/docbook.xsl"/>
 
   <xsl:param name="page.margin.outer" select="'1in'"/>
   <xsl:param name="title.margin.left" select="'-0pt'"/>

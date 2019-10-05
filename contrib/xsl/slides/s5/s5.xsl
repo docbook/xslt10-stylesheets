@@ -5,7 +5,7 @@
 
 <!-- Generate an S5 slide show. See http://www.meyerweb.com/eric/tools/s5/ -->
 
-<xsl:import href="http://cdn.docbook.org/release/xsl/current/xhtml/docbook.xsl"/>
+<xsl:import href="https://cdn.docbook.org/release/xsl/current/xhtml/docbook.xsl"/>
 
 <xsl:template match="/">
   <xsl:apply-templates/>

@@ -8,7 +8,7 @@
 <!-- ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://cdn.docbook.org/release/xsl/current/ for
+     See ../README or https://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      The original code for processing bibliography in ISO690 style
