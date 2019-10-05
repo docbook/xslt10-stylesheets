@@ -57,11 +57,7 @@ zip-ns: zip
 	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/install.sh
 	chmod 755 $(TMP)/docbook-$(DISTRO)-ns-$(ZIPVER)/tools/bin/docbook-xsl-update
 
-# gzip/bzip/zip it
-	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-ns-$(ZIPVER) \
-	| gzip >  docbook-$(DISTRO)-ns-$(ZIPVER).tar.gz
-	umask 022; cd $(TMP) && $(TAR) cf$(TARFLAGS) - docbook-$(DISTRO)-ns-$(ZIPVER) \
-	| bzip2 > docbook-$(DISTRO)-ns-$(ZIPVER).tar.bz2
+# zip it
 	umask 022; cd $(TMP) && $(ZIP) $(ZIPFLAGS) docbook-$(DISTRO)-ns-$(ZIPVER).zip \
 	 docbook-$(DISTRO)-ns-$(ZIPVER)
 
