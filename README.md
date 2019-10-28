@@ -52,8 +52,8 @@ git commit -m "message"
 6.  On github, go to your fork and create a new pull request,
     adding a comment and hitting submit.
 
-7.  The github repo will run the check routine. When complete, you can Merge to
-    docbook.
+7.  The github repo will run the check routine which takes about 10 minutes.
+    When complete, you can Merge to docbook.
 
 8.  The repo will rebuild the stock snapshot which after about ten
     minutes you can view at: https://cdn.docbook.org/release/xsl/snapshot
@@ -68,5 +68,5 @@ git commit -m "message"
     `git push -u upstream snapshot/2019-10-01`
 
 3.  This will trigger the build of the zip files, which will
-    appear in https://github.com/docbook/xslt10-stylesheets/releases
+    eventually appear in https://github.com/docbook/xslt10-stylesheets/releases
 
