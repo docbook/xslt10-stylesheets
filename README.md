@@ -27,9 +27,10 @@ and click on the Fork button to create your own fork.
 2. Clone your fork to your local filesystem.
 
 3. In your clone of the repo, set up the remote:
-
-`git remote add upstream https://github.com/docbook/xslt10-stylesheets`
-`git remote -v`
+```
+git remote add upstream https://github.com/docbook/xslt10-stylesheets
+git remote -v
+```
 
 **Repo procedure**
 
@@ -40,8 +41,10 @@ and click on the Fork button to create your own fork.
 3.  Make your changes on this branch, and compare your changes using `git diff`.
 
 4.  Commit the changes:
-    `git add filename`
-    `git commit -m "message"`
+```
+git add filename
+git commit -m "message"
+```
 
 5.  Push your commits:
     `git push origin bugfix_branch`
