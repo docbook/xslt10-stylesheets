@@ -34,30 +34,42 @@ git remote -v
 
 **Repo procedure**
 
-1.  In your repo, update your fork from upstream: `git fetch upstream`
+1.  In your local fork, update your fork from the main repo (upstream): `git fetch upstream`
 
-2.  Create a branch: `git checkout -b bugfix_branch` 
+2.  Make sure you are on your master branch: `git checkout master`
 
-3.  Make your changes on this branch, and compare your changes using `git diff`.
+3.  Merge upstream into your local fork: `git rebase upstream/master`
 
-4.  Commit the changes:
+4.  Push these changes to your github fork to put that fork in synch with the main repo:  `git push origin master`
+
+5.  Create a branch: `git checkout -b bugfix_branch` 
+
+6.  Make your changes on this branch, and compare your changes using `git diff`.
+
+7.  Commit the changes:
 ```
 git add filename
 git commit -m "message"
 ```
 
-5.  Push your commits:
-    `git push origin bugfix_branch`
+8.  Push your commits:
+    `git push -u origin bugfix_branch`
 
-6.  On github, go to your fork and create a new pull request,
-    adding a comment and hitting submit.
+9.  On github, go to your fork or the main repo and create a new pull request, adding a comment and hitting submit.
 
-7.  The github repo will run the check routine which takes about 10 minutes.
-    When complete, you can Merge to docbook.
+10.  The github repo will run the check routine which takes about 10 minutes.  When complete, you can Merge to docbook.
 
-8.  The repo will rebuild the stock snapshot which after about ten
-    minutes you can view at: https://cdn.docbook.org/release/xsl/snapshot
+11.  The repo will rebuild the stock snapshot, which after about ten minutes you can view at: https://cdn.docbook.org/release/xsl/snapshot
 
+12.  To immediately resynch your fork and delete the branch:
+
+```
+git checkout master
+git fetch upstream
+git rebase upstream/master
+git push
+git branch -d bugfix_branch
+```
 
 **Creating snapshot zip files**
 
