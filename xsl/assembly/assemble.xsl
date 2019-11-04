@@ -7,6 +7,8 @@
   xmlns="http://docbook.org/ns/docbook"
   exclude-result-prefixes="exsl d xlink d"
   version="1.0">
+  
+<xsl:include href="effectivity.xsl"/>
 
 <xsl:preserve-space elements="*"/>
 <xsl:strip-space elements="d:assembly d:structure d:module d:resources d:resource"/>
@@ -17,7 +19,6 @@
 <xsl:param name="docbook.version">5.0</xsl:param>
 <xsl:param name="root.default.renderas">book</xsl:param>
 <xsl:param name="topic.default.renderas">section</xsl:param>
-<xsl:param name="filterout.condition" />
 
 <xsl:param name="output.type" select="''"/>
 <xsl:param name="output.format" select="''"/>
@@ -316,10 +317,6 @@
   <xsl:variable name="renderas">
     <xsl:call-template name="compute.renderas"/>
   </xsl:variable>
-  
-  <xsl:variable name="filterout.condition.value">
-    <xsl:value-of select="@condition" />
-  </xsl:variable>
 
   <xsl:choose>
     <xsl:when test="string-length($renderas) != 0">
@@ -347,8 +344,12 @@
   <xsl:variable name="module" select="."/>
   <xsl:variable name="resourceref" select="@resourceref"/>
   <xsl:variable name="resource" select="key('id', $resourceref)"/>
-  <xsl:variable name="filterout.condition.attribute.value">
-    <xsl:value-of select="d:filterout/@condition" />
+
+  <!-- Determine whether a filterin or filterout element controls 
+       whether this module or structure should occur in the output 
+       document. -->
+  <xsl:variable name="effectivity.include">
+    <xsl:apply-templates select="." mode="evaluate.effectivity" />
   </xsl:variable>
 
   <xsl:choose>
@@ -461,16 +462,15 @@
       <xsl:variable name="merge.resource" select="key('id', $merge.resourceref)"/>
 
       <xsl:choose>
-        <xsl:when test="$filterout.condition = $filterout.condition.attribute.value">
+        <xsl:when test="contains($effectivity.include, 'false')">
           <!-- Do not render a module if it includes a filterout 
-          element with its condition attribute set to a string that 
-          matches the filterout.condition parameter. -->
+          element that includes an effectivity attribute that matches 
+          an effectivity parameter passed to the assembly stylesheet. 
+          Do not render a module if it includes a filterin element that 
+          does not match an effectivity parameter passed to the 
+          assembly stylesheet. -->
           <xsl:message>
-            <xsl:text>INFO: omitting a module because </xsl:text>
-            <xsl:value-of select="$filterout.condition" />
-            <xsl:text> is set to </xsl:text>
-            <xsl:value-of select="$filterout.condition.attribute.value" />
-            <xsl:text>.</xsl:text>
+            <xsl:text>INFO: omitting a module based on the effectivity attributes in a filterin or filterout element.</xsl:text>
           </xsl:message>
         </xsl:when>
         <xsl:when test="$contentonly.property = 'true' or 
