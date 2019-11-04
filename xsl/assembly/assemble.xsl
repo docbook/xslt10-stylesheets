@@ -752,11 +752,4 @@
   </xsl:message>
 </xsl:template>
 
-<xsl:template match="d:filterin">
-  <xsl:message>
-    <xsl:text>WARNING: the &lt;filterin&gt; element is not currently </xsl:text>
-    <xsl:text>supported by this stylesheet.</xsl:text>
-  </xsl:message>
-</xsl:template>
-
 </xsl:stylesheet>
