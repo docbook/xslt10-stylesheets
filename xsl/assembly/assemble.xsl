@@ -469,9 +469,6 @@
           Do not render a module if it includes a filterin element that 
           does not match an effectivity parameter passed to the 
           assembly stylesheet. -->
-          <xsl:message>
-            <xsl:text>INFO: omitting a module based on the effectivity attributes in a filterin or filterout element.</xsl:text>
-          </xsl:message>
         </xsl:when>
         <xsl:when test="$contentonly.property = 'true' or 
                         $contentonly.property = 'yes' or
