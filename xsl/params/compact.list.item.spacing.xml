@@ -18,11 +18,14 @@
   <xsl:attribute name="space-before.optimum">0em</xsl:attribute>
   <xsl:attribute name="space-before.minimum">0em</xsl:attribute>
   <xsl:attribute name="space-before.maximum">0.2em</xsl:attribute>
+  <xsl:attribute name="relative-align">baseline</xsl:attribute>
 </xsl:attribute-set></src:fragment>
 </refsynopsisdiv>
 <refsection><info><title>Description</title></info>
 <para>Specify what spacing you want between each list item when
 <tag class="attribute">spacing</tag> is
 <quote><literal>compact</literal></quote>.</para>
+<para>The setting for <tag class="attribute">relative-align</tag> ensures the text aligns vertically with the list mark
+even if an inline image is in the text.</para>
 </refsection>
 </refentry>
