@@ -125,47 +125,57 @@
       </xsl:when> -->
       <xsl:when test="$effectivity.attribute.audience = $effectivity.audience">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.attribute.audience" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.attribute.audience" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.condition = $effectivity.condition">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the condition attribute value is set to <xsl:value-of select="$effectivity.attribute.condition" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the condition attribute value is set to <xsl:value-of select="$effectivity.attribute.condition" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.conformance = $effectivity.conformance">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the conformance attribute value is set to <xsl:value-of select="$effectivity.attribute.conformance" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the conformance attribute value is set to <xsl:value-of select="$effectivity.attribute.conformance" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.os = $effectivity.os">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.attribute.os" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.attribute.os" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.outputformat = $effectivity.outputformat">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the outputformat attribute value is set to <xsl:value-of select="$effectivity.attribute.outputformat" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the outputformat attribute value is set to <xsl:value-of select="$effectivity.attribute.outputformat" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.revision = $effectivity.revision">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the revision attribute value is set to <xsl:value-of select="$effectivity.attribute.revision" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the revision attribute value is set to <xsl:value-of select="$effectivity.attribute.revision" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.security = $effectivity.security">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the security attribute value is set to <xsl:value-of select="$effectivity.attribute.security" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the security attribute value is set to <xsl:value-of select="$effectivity.attribute.security" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.userlevel = $effectivity.userlevel">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the userlevel attribute value is set to <xsl:value-of select="$effectivity.attribute.userlevel" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the userlevel attribute value is set to <xsl:value-of select="$effectivity.attribute.userlevel" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.vendor = $effectivity.vendor">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.attribute.vendor" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.attribute.vendor" />.</xsl:message> -->
       </xsl:when>
       <xsl:when test="$effectivity.attribute.wordsize = $effectivity.wordsize">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.attribute.wordsize" />.</xsl:message>
+        <!--
+        <xsl:message>INFO: including a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.attribute.wordsize" />.</xsl:message> -->
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: No modules or structures matched attributes for inclusion.</xsl:message>
+        <!-- <xsl:message>INFO: No modules or structures matched attributes for inclusion.</xsl:message> -->
       </xsl:otherwise>
     </xsl:choose>
 
