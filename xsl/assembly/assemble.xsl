@@ -7,6 +7,8 @@
   xmlns="http://docbook.org/ns/docbook"
   exclude-result-prefixes="exsl d xlink d"
   version="1.0">
+  
+<xsl:include href="effectivity.xsl"/>
 
 <xsl:preserve-space elements="*"/>
 <xsl:strip-space elements="d:assembly d:structure d:module d:resources d:resource"/>
@@ -343,6 +345,13 @@
   <xsl:variable name="resourceref" select="@resourceref"/>
   <xsl:variable name="resource" select="key('id', $resourceref)"/>
 
+  <!-- Determine whether a filterin or filterout element controls 
+       whether this module or structure should occur in the output 
+       document. -->
+  <xsl:variable name="effectivity.exclude">
+    <xsl:apply-templates select="." mode="evaluate.effectivity" />
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="not($resource)">
       <xsl:message terminate="yes">
@@ -453,6 +462,14 @@
       <xsl:variable name="merge.resource" select="key('id', $merge.resourceref)"/>
 
       <xsl:choose>
+        <xsl:when test="contains($effectivity.exclude, 'exclude')">
+          <!-- Do not render a module if it includes a filterout 
+          element that includes an effectivity attribute that matches 
+          an effectivity parameter passed to the assembly stylesheet. 
+          Do not render a module if it includes a filterin element that 
+          does not match an effectivity parameter passed to the 
+          assembly stylesheet. -->
+        </xsl:when>
         <xsl:when test="$contentonly.property = 'true' or 
                         $contentonly.property = 'yes' or
                         $contentonly.property = '1'">
@@ -728,20 +745,6 @@
 <xsl:template match="d:transforms">
   <xsl:message>
     <xsl:text>WARNING: the &lt;transforms&gt; element is not currently </xsl:text>
-    <xsl:text>supported by this stylesheet.</xsl:text>
-  </xsl:message>
-</xsl:template>
-
-<xsl:template match="d:filterin">
-  <xsl:message>
-    <xsl:text>WARNING: the &lt;filterin&gt; element is not currently </xsl:text>
-    <xsl:text>supported by this stylesheet.</xsl:text>
-  </xsl:message>
-</xsl:template>
-
-<xsl:template match="d:filterout">
-  <xsl:message>
-    <xsl:text>WARNING: the &lt;filterin&gt; element is not currently </xsl:text>
     <xsl:text>supported by this stylesheet.</xsl:text>
   </xsl:message>
 </xsl:template>
