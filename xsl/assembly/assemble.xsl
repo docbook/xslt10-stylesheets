@@ -348,7 +348,7 @@
   <!-- Determine whether a filterin or filterout element controls 
        whether this module or structure should occur in the output 
        document. -->
-  <xsl:variable name="effectivity.include">
+  <xsl:variable name="effectivity.exclude">
     <xsl:apply-templates select="." mode="evaluate.effectivity" />
   </xsl:variable>
 
@@ -462,7 +462,7 @@
       <xsl:variable name="merge.resource" select="key('id', $merge.resourceref)"/>
 
       <xsl:choose>
-        <xsl:when test="contains($effectivity.include, 'false')">
+        <xsl:when test="contains($effectivity.exclude, 'exclude')">
           <!-- Do not render a module if it includes a filterout 
           element that includes an effectivity attribute that matches 
           an effectivity parameter passed to the assembly stylesheet. 
