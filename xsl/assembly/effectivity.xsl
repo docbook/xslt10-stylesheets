@@ -63,8 +63,8 @@
       <xsl:when test="$effectivity.attribute.os = $effectivity.os">
         <xsl:text>exclude</xsl:text>
         <!--
-        <xsl:message>INFO: filtering out a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.attribute.os" />.</xsl:message>
-      </xsl:when> -->
+        <xsl:message>INFO: filtering out a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.attribute.os" />.</xsl:message> -->
+      </xsl:when>
       <xsl:when test="$effectivity.attribute.outputformat = $effectivity.outputformat">
         <xsl:text>exclude</xsl:text>
         <!--
@@ -88,8 +88,8 @@
       <xsl:when test="$effectivity.attribute.vendor = $effectivity.vendor">
         <xsl:text>exclude</xsl:text>
         <!--
-        <xsl:message>INFO: filtering out a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.attribute.vendor" />.</xsl:message>
-      </xsl:when> -->
+        <xsl:message>INFO: filtering out a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.attribute.vendor" />.</xsl:message> -->
+      </xsl:when>
       <xsl:when test="$effectivity.attribute.wordsize = $effectivity.wordsize">
         <xsl:text>exclude</xsl:text>
         <!--
@@ -121,8 +121,8 @@
       <xsl:when test="$effectivity.attribute.arch = $effectivity.arch">
         <xsl:text>include</xsl:text>
         <!--
-        <xsl:message>INFO: including a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.attribute.arch" />.</xsl:message>
-      </xsl:when> -->
+        <xsl:message>INFO: including a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.attribute.arch" />.</xsl:message> -->
+      </xsl:when>
       <xsl:when test="$effectivity.attribute.audience = $effectivity.audience">
         <xsl:text>include</xsl:text>
         <!--
