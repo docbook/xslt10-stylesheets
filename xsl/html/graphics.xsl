@@ -67,6 +67,7 @@
              or $lcext = 'ogv'
              or $lcext = 'ogg'
              or $lcext = 'webm'
+             or $lcext = 'webp'
              or $lcext = 'bmp'">1</xsl:if>
 </xsl:template>
 
