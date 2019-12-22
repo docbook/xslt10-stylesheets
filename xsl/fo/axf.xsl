@@ -7,7 +7,7 @@
                 version='1.0'>
 
 <xsl:key name="keywords"
-         match="keyword[normalize-space(.) != '']"
+         match="d:keyword[normalize-space(.) != '']"
          use="normalize-space(.)" />
 
 <xsl:template name="axf-document-information">
@@ -55,13 +55,13 @@
     <axf:document-info name="title" value="{normalize-space($title)}"/>
     <axf:document-info name="displaydoctitle" value="true"/>
 
-    <xsl:if test="//keyword">
+    <xsl:if test="//d:keyword">
       <xsl:element name="axf:document-info">
         <xsl:attribute name="name">keywords</xsl:attribute>
         <xsl:attribute name="value">
           <xsl:for-each
-              select="//keyword[normalize-space(.) != '']
-                               [count(. | key('keywords', normalize-space(.))[1]) = 1]">
+              select="//d:keyword[normalize-space(.) != '']
+                                 [count(. | key('keywords', normalize-space(.))[1]) = 1]">
             <xsl:sort select="normalize-space(.)"/>
             <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
