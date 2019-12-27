@@ -79,7 +79,11 @@
       </xsl:element>
     </xsl:if>
 
+    <xsl:call-template name="user-axf-document-information" />
+
 </xsl:template>
+
+<xsl:template name="user-axf-document-information" />
 
 <!-- These properties are added to fo:simple-page-master -->
 <xsl:template name="axf-page-master-properties">
