@@ -16,28 +16,78 @@
 
 <xsl:import href="../highlighting/common.xsl"/>
 
+<xsl:attribute-set name="highlight.keyword.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.string.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+  <xsl:attribute name="font-style">italic</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.comment.properties">
+  <xsl:attribute name="font-style">italic</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.tag.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.attribute.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.value.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.number.properties" />
+
+<xsl:attribute-set name="highlight.annotation.properties">
+  <xsl:attribute name="color">gray</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="highlight.directive.properties" />
+
+<xsl:attribute-set name="highlight.doccomment.properties">
+  <xsl:attribute name="font-weight">bold</xsl:attribute>
+</xsl:attribute-set>
+
+
 <xsl:template match='xslthl:keyword' mode="xslthl">
-  <fo:inline font-weight="bold"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.keyword.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:string' mode="xslthl">
-  <fo:inline font-weight="bold" font-style="italic"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.string.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:comment' mode="xslthl">
-  <fo:inline font-style="italic"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.comment.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:tag' mode="xslthl">
-  <fo:inline font-weight="bold"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.tag.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:attribute' mode="xslthl">
-  <fo:inline font-weight="bold"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.attribute.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:value' mode="xslthl">
-  <fo:inline font-weight="bold"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.value.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <!--
@@ -55,22 +105,29 @@
 -->
 
 <xsl:template match='xslthl:number' mode="xslthl">
-  <xsl:apply-templates mode="xslthl"/>
+  <fo:inline xsl:use-attribute-sets="highlight.number.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:annotation' mode="xslthl">
-  <fo:inline color="gray"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.value.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match='xslthl:directive' mode="xslthl">
-  <xsl:apply-templates mode="xslthl"/>
+  <fo:inline xsl:use-attribute-sets="highlight.directive.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 <!-- Not sure which element will be in final XSLTHL 2.0 -->
 <xsl:template match='xslthl:doccomment|xslthl:doctype' mode="xslthl">
-  <fo:inline font-weight="bold"><xsl:apply-templates mode="xslthl"/></fo:inline>
+  <fo:inline xsl:use-attribute-sets="highlight.doccomment.properties">
+    <xsl:apply-templates mode="xslthl"/>
+  </fo:inline>
 </xsl:template>
 
 
 </xsl:stylesheet>
-
