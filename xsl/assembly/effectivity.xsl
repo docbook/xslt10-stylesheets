@@ -27,20 +27,26 @@
   </xsl:template>
   
   <xsl:template match="d:filterout" mode="evaluate.effectivity">
-    <xsl:variable name="effectivity.attribute.arch" select="@arch" />
-    <xsl:variable name="effectivity.attribute.audience" select="@audience" />
-    <xsl:variable name="effectivity.attribute.condition" select="@condition" />
-    <xsl:variable name="effectivity.attribute.conformance" select="@conformance" />
-    <xsl:variable name="effectivity.attribute.os" select="@os" />
-    <xsl:variable name="effectivity.attribute.outputformat" select="@outputformat" />
-    <xsl:variable name="effectivity.attribute.revision" select="@revision" />
-    <xsl:variable name="effectivity.attribute.security" select="@security" />
-    <xsl:variable name="effectivity.attribute.userlevel" select="@userlevel" />
-    <xsl:variable name="effectivity.attribute.vendor" select="@vendor" />
-    <xsl:variable name="effectivity.attribute.wordsize" select="@wordsize" />
+    <xsl:variable name="effectivity.match.arch">
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="effectivity.arch" />
+        <xsl:with-param name="b" select="@arch" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="effectivity.match.audience" select="@audience" />
+    <xsl:variable name="effectivity.match.condition" select="@condition" />
+    <xsl:variable name="effectivity.match.conformance" select="@conformance" />
+    <xsl:variable name="effectivity.match.os" select="@os" />
+    <xsl:variable name="effectivity.match.outputformat" select="@outputformat" />
+    <xsl:variable name="effectivity.match.revision" select="@revision" />
+    <xsl:variable name="effectivity.match.security" select="@security" />
+    <xsl:variable name="effectivity.match.userlevel" select="@userlevel" />
+    <xsl:variable name="effectivity.match.vendor" select="@vendor" />
+    <xsl:variable name="effectivity.match.wordsize" select="@wordsize" />
 
     <xsl:choose>
-      <xsl:when test="$effectivity.attribute.arch = $effectivity.arch">
+      <!-- <xsl:when test="$effectivity.attribute.arch = $effectivity.arch"> -->
+      <xsl:when test="effectivity.match.arch != ''">
         <xsl:text>exclude</xsl:text>
         <!--
         <xsl:message>INFO: filtering out a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.attribute.arch" />.</xsl:message> -->
