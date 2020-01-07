@@ -7,6 +7,9 @@
   xmlns="http://docbook.org/ns/docbook"
   exclude-result-prefixes="exsl d xlink d"
   version="1.0">
+
+<xsl:include href="../profiling/profile-mode.xsl"/>
+<xsl:include href="../common/addns.xsl"/>
   
 <!-- NOTE: If a structure or module is filtered out due to a matching effectivity attribute, children of that structure or module cannot be filtered in using another effectivity attribute. -->
 
@@ -21,41 +24,79 @@
   <xsl:param name="effectivity.userlevel" />
   <xsl:param name="effectivity.vendor" />
   <xsl:param name="effectivity.wordsize" />
+  <xsl:param name="effectivity.separator" />
+
+  <xsl:param name="profile.arch" select="$effectivity.arch"/>
+  <xsl:param name="profile.audience" select="$effectivity.audience"/>
+  <xsl:param name="profile.condition" select="$effectivity.condition" />
+  <xsl:param name="profile.conformance" select="$effectivity.conformance"/>
+  <xsl:param name="profile.os" select="$effectivity.os"/>
+  <xsl:param name="profile.outputformat" select="$effectivity.outputformat"/>
+  <xsl:param name="profile.revision" select="$effectivity.revision"/>
+  <xsl:param name="profile.security" select="$effectivity.security"/>
+  <xsl:param name="profile.userlevel" select="$effectivity.userlevel"/>
+  <xsl:param name="profile.vendor" select="$effectivity.vendor"/>
+  <xsl:param name="profile.wordsize" select="$effectivity.wordsize"/>
+  <xsl:param name="profile.lang"/>
+  <xsl:param name="profile.revisionflag"/>
+  <xsl:param name="profile.role"/>
+  <xsl:param name="profile.status"/>
+  <xsl:param name="profile.attribute"/>
+  <xsl:param name="profile.value"/>
+  <xsl:param name="profile.separator" select="$effectivity.separator" />
+
+
 
   <xsl:template match="d:module[@resourceref] | d:structure[@resourceref]" mode="evaluate.effectivity">
     <xsl:apply-templates mode="evaluate.effectivity" />
   </xsl:template>
   
   <xsl:template match="d:filterout" mode="evaluate.effectivity">
+    <xsl:message>INFO: I'm inside the filterout template!</xsl:message>
+    
     <xsl:variable name="effectivity.match.arch">
+      <xsl:message>INFO: The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
+      <xsl:message>INFO: The value of @arch as read from the XML file is <xsl:value-of select="@arch" /> ... </xsl:message>
       <xsl:call-template name="cross.compare">
-        <xsl:with-param name="a" select="effectivity.arch" />
+        <xsl:with-param name="a" select="$effectivity.arch" />
         <xsl:with-param name="b" select="@arch" />
       </xsl:call-template>
     </xsl:variable>
-    <xsl:variable name="effectivity.match.audience" select="@audience" />
-    <xsl:variable name="effectivity.match.condition" select="@condition" />
-    <xsl:variable name="effectivity.match.conformance" select="@conformance" />
-    <xsl:variable name="effectivity.match.os" select="@os" />
-    <xsl:variable name="effectivity.match.outputformat" select="@outputformat" />
-    <xsl:variable name="effectivity.match.revision" select="@revision" />
-    <xsl:variable name="effectivity.match.security" select="@security" />
-    <xsl:variable name="effectivity.match.userlevel" select="@userlevel" />
-    <xsl:variable name="effectivity.match.vendor" select="@vendor" />
-    <xsl:variable name="effectivity.match.wordsize" select="@wordsize" />
+    <xsl:message>INFO: The value of effectivity.match.arch is <xsl:value-of select="$effectivity.match.arch"/> ... </xsl:message>
+
+    <xsl:variable name="effectivity.match.audience">
+      <xsl:message>INFO: The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
+      <xsl:message>INFO: The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message>
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$effectivity.audience" />
+        <xsl:with-param name="b" select="@audience" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="effectivity.attribute.condition" select="@condition" />
+    <xsl:variable name="effectivity.attribute.conformance" select="@conformance" />
+    <xsl:variable name="effectivity.attribute.os" select="@os" />
+    <xsl:variable name="effectivity.attribute.outputformat" select="@outputformat" />
+    <xsl:variable name="effectivity.attribute.revision" select="@revision" />
+    <xsl:variable name="effectivity.attribute.security" select="@security" />
+    <xsl:variable name="effectivity.attribute.userlevel" select="@userlevel" />
+    <xsl:variable name="effectivity.attribute.vendor" select="@vendor" />
+    <xsl:variable name="effectivity.attribute.wordsize" select="@wordsize" />
 
     <xsl:choose>
       <!-- <xsl:when test="$effectivity.attribute.arch = $effectivity.arch"> -->
-      <xsl:when test="effectivity.match.arch != ''">
+      <!-- <xsl:when test="effectivity.match.arch != '' "> -->
+      <xsl:when test="$effectivity.match.arch != ''">
         <xsl:text>exclude</xsl:text>
-        <!--
-        <xsl:message>INFO: filtering out a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.attribute.arch" />.</xsl:message> -->
+        
+        <xsl:message>INFO: filtering out a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.match.arch" />.</xsl:message>
       </xsl:when>
-      <xsl:when test="$effectivity.attribute.audience = $effectivity.audience">
+
+      <xsl:when test="$effectivity.match.audience != ''">
         <xsl:text>exclude</xsl:text>
-        <!--
-        <xsl:message>INFO: filtering out a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.attribute.audience" />.</xsl:message> -->
+        
+        <xsl:message>INFO: filtering out a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.match.audience" />.</xsl:message> -->
       </xsl:when>
+
       <xsl:when test="$effectivity.attribute.condition = $effectivity.condition">
         <xsl:text>exclude</xsl:text>
         <!--
@@ -102,7 +143,7 @@
         <xsl:message>INFO: filtering out a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.attribute.wordsize" />.</xsl:message> -->
       </xsl:when>
       <xsl:otherwise>
-        <!-- <xsl:message>INFO: no filterout attributes matched.</xsl:message> -->
+        <xsl:message>INFO: no filterout attributes matched.</xsl:message>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -110,13 +151,30 @@
   
   <!-- filterin logic -->
   <xsl:template match="d:filterin" mode="evaluate.effectivity">
+    <xsl:message>INFO: I'm inside the filterout template!</xsl:message>
 
-    <xsl:variable name="effectivity.attribute.arch" select="@arch" />
+    <xsl:variable name="effectivity.match.arch">
+      <xsl:message>INFO (filterin): The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
+      <xsl:message>INFO (filterin): The value of @arch as read from the XML file is <xsl:value-of select="@arch" /> ... </xsl:message>
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$effectivity.arch" />
+        <xsl:with-param name="b" select="@arch" />
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:variable name="effectivity.attribute.audience" select="@audience" />
     <xsl:variable name="effectivity.attribute.condition" select="@condition" />
     <xsl:variable name="effectivity.attribute.conformance" select="@conformance" />
     <xsl:variable name="effectivity.attribute.os" select="@os" />
-    <xsl:variable name="effectivity.attribute.outputformat" select="@outputformat" />
+
+    <xsl:variable name="effectivity.attribute.outputformat">
+      <xsl:message>INFO (filterin): The value of effectivity.outputformat as passed in is <xsl:value-of select="$effectivity.outputformat" /> ... </xsl:message>
+      <xsl:message>INFO (filterin): The value of @outputformat as read from the XML file is <xsl:value-of select="@outputformat" /> ... </xsl:message>
+      <xsl:call-template name="cross.compare">
+        <xsl:with-param name="a" select="$effectivity.outputformat" />
+        <xsl:with-param name="b" select="@outputformat" />
+      </xsl:call-template>
+    </xsl:variable>
+
     <xsl:variable name="effectivity.attribute.revision" select="@revision" />
     <xsl:variable name="effectivity.attribute.security" select="@security" />
     <xsl:variable name="effectivity.attribute.userlevel" select="@userlevel" />
@@ -124,7 +182,7 @@
     <xsl:variable name="effectivity.attribute.wordsize" select="@wordsize" />
 
     <xsl:choose>
-      <xsl:when test="$effectivity.attribute.arch = $effectivity.arch">
+      <xsl:when test="$effectivity.match.arch != ''">
         <xsl:text>include</xsl:text>
         <!--
         <xsl:message>INFO: including a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.attribute.arch" />.</xsl:message> -->
@@ -186,5 +244,33 @@
     </xsl:choose>
 
   </xsl:template>
+
+
+  <!-- Returns non-empty string if list in $b contains one ore more values from list $a --> 
+ <!-- Commenting out the copied cross.compare template 
+<xsl:template name="cross.compare">
+
+  <xsl:param name="a"/>
+  <xsl:param name="b"/>
+  <xsl:param name="sep" select="$profile.separator"/>
+  <xsl:variable name="head" select="substring-before(concat($a, $sep), $sep)"/>
+  <xsl:variable name="tail" select="substring-after($a, $sep)"/> 
+-->
+<!-- <xsl:message> -->
+<!-- a="<xsl:value-of select="$a"/>" -->
+<!-- a="<xsl:value-of select="normalize-space($a)"/>" -->
+<!-- head="<xsl:value-of select="$head"/>" -->
+<!-- tail="<xsl:value-of select="$tail"/>" -->
+<!-- </xsl:message> -->
+<!--
+  <xsl:message>INFO: My profile separator character is <xsl:value-of select="$profile.separator"/> ...</xsl:message>
+  <xsl:if test="contains(concat($sep, $b, $sep), concat($sep, $head, $sep)) or normalize-space($a) = '' ">1</xsl:if>
+  <xsl:if test="$tail">
+    <xsl:call-template name="cross.compare">
+      <xsl:with-param name="a" select="$tail"/>
+      <xsl:with-param name="b" select="$b"/>
+    </xsl:call-template>
+  </xsl:if>
+</xsl:template> -->
 
 </xsl:stylesheet>
