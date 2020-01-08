@@ -52,21 +52,19 @@
   </xsl:template>
   
   <xsl:template match="d:filterout" mode="evaluate.effectivity">
-    <xsl:message>INFO: I'm inside the filterout template!</xsl:message>
     
     <xsl:variable name="effectivity.match.arch">
-      <xsl:message>INFO: The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
-      <xsl:message>INFO: The value of @arch as read from the XML file is <xsl:value-of select="@arch" /> ... </xsl:message>
+      <!-- <xsl:message>INFO: The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
+      <xsl:message>INFO: The value of @arch as read from the XML file is <xsl:value-of select="@arch" /> ... </xsl:message> -->
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.arch" />
         <xsl:with-param name="b" select="@arch" />
       </xsl:call-template>
     </xsl:variable>
-    <xsl:message>INFO: The value of effectivity.match.arch is <xsl:value-of select="$effectivity.match.arch"/> ... </xsl:message>
 
     <xsl:variable name="effectivity.match.audience">
-      <xsl:message>INFO: The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
-      <xsl:message>INFO: The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message>
+      <!-- <xsl:message>INFO: The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
+      <xsl:message>INFO: The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message> -->
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.audience" />
         <xsl:with-param name="b" select="@audience" />
@@ -155,8 +153,6 @@
     </xsl:variable>
 
     <xsl:choose>
-      <!-- <xsl:when test="$effectivity.attribute.arch = $effectivity.arch"> -->
-      <!-- <xsl:when test="effectivity.match.arch != '' "> -->
       <xsl:when test="$effectivity.match.arch != ''">
         <xsl:text>exclude</xsl:text>        
         <xsl:message>INFO: filtering out a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.arch" />.</xsl:message>
@@ -164,52 +160,52 @@
 
       <xsl:when test="$effectivity.match.audience != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.match.audience" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.audience" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.condition != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the condition attribute value is set to <xsl:value-of select="$effectivity.match.condition" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the condition attribute value is set to <xsl:value-of select="$effectivity.condition" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.conformance != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the conformance attribute value is set to <xsl:value-of select="$effectivity.match.conformance" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the conformance attribute value is set to <xsl:value-of select="$effectivity.conformance" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.os != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.match.os" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.os" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.outputformat != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the outputformat attribute value is set to <xsl:value-of select="$effectivity.match.outputformat" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the outputformat attribute value is set to <xsl:value-of select="$effectivity.outputformat" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.revision != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the revision attribute value is set to <xsl:value-of select="$effectivity.match.revision" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the revision attribute value is set to <xsl:value-of select="$effectivity.revision" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.security != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the security attribute value is set to <xsl:value-of select="$effectivity.match.security" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the security attribute value is set to <xsl:value-of select="$effectivity.security" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.userlevel != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the userlevel attribute value is set to <xsl:value-of select="$effectivity.match.userlevel" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the userlevel attribute value is set to <xsl:value-of select="$effectivity.userlevel" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.vendor != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.match.vendor" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.vendor" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.wordsize != ''">
         <xsl:text>exclude</xsl:text>
-        <xsl:message>INFO: filtering out a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.match.wordsize" />.</xsl:message>
+        <xsl:message>INFO: filtering out a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.wordsize" />.</xsl:message>
       </xsl:when>
 
       <xsl:otherwise>
@@ -221,7 +217,6 @@
   
   <!-- filterin logic -->
   <xsl:template match="d:filterin" mode="evaluate.effectivity">
-    <xsl:message>INFO: I'm inside the filterin template!</xsl:message>
 
     <xsl:variable name="effectivity.match.arch">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
@@ -269,8 +264,8 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.outputformat">
-      <xsl:message>INFO (filterin): The value of effectivity.outputformat as passed in is <xsl:value-of select="$effectivity.outputformat" /> ... </xsl:message>
-      <xsl:message>INFO (filterin): The value of @outputformat as read from the XML file is <xsl:value-of select="@outputformat" /> ... </xsl:message>
+      <!-- <xsl:message>INFO (filterin): The value of effectivity.outputformat as passed in is <xsl:value-of select="$effectivity.outputformat" /> ... </xsl:message>
+      <xsl:message>INFO (filterin): The value of @outputformat as read from the XML file is <xsl:value-of select="@outputformat" /> ... </xsl:message> -->
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.outputformat" />
         <xsl:with-param name="b" select="@outputformat" />
@@ -325,57 +320,57 @@
     <xsl:choose>
       <xsl:when test="$effectivity.match.arch != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO (filterin): including a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.match.arch" />.</xsl:message>
+        <xsl:message>INFO (filterin): including a module or structure because the arch attribute value is set to <xsl:value-of select="$effectivity.arch" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.audience != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.match.audience" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the audience attribute value is set to <xsl:value-of select="$effectivity.audience" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.condition != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the condition attribute value is set to <xsl:value-of select="$effectivity.match.condition" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the condition attribute value is set to <xsl:value-of select="$effectivity.condition" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.conformance != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the conformance attribute value is set to <xsl:value-of select="$effectivity.match.conformance" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the conformance attribute value is set to <xsl:value-of select="$effectivity.conformance" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.os != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.match.os" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the os attribute value is set to <xsl:value-of select="$effectivity.os" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.outputformat != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the outputformat attribute value is set to <xsl:value-of select="$effectivity.match.outputformat" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the outputformat attribute value is set to <xsl:value-of select="$effectivity.outputformat" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.revision != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the revision attribute value is set to <xsl:value-of select="$effectivity.match.revision" />.</xsl:message> 
+        <xsl:message>INFO: including a module or structure because the revision attribute value is set to <xsl:value-of select="$effectivity.revision" />.</xsl:message> 
       </xsl:when>
 
       <xsl:when test="$effectivity.match.security != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the security attribute value is set to <xsl:value-of select="$effectivity.match.security" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the security attribute value is set to <xsl:value-of select="$effectivity.security" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.userlevel != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the userlevel attribute value is set to <xsl:value-of select="$effectivity.match.userlevel" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the userlevel attribute value is set to <xsl:value-of select="$effectivity.userlevel" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.vendor != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.match.vendor" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the vendor attribute value is set to <xsl:value-of select="$effectivity.vendor" />.</xsl:message>
       </xsl:when>
 
       <xsl:when test="$effectivity.match.wordsize != ''">
         <xsl:text>include</xsl:text>
-        <xsl:message>INFO: including a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.match.wordsize" />.</xsl:message>
+        <xsl:message>INFO: including a module or structure because the wordsize attribute value is set to <xsl:value-of select="$effectivity.wordsize" />.</xsl:message>
       </xsl:when>
 
       <xsl:otherwise>
