@@ -24,7 +24,9 @@
   <xsl:param name="effectivity.userlevel" />
   <xsl:param name="effectivity.vendor" />
   <xsl:param name="effectivity.wordsize" />
-  <xsl:param name="effectivity.separator" />
+  <xsl:param name="effectivity.separator">;</xsl:param> 
+  <!-- NOTE: The separator param is set to ; by default; this is ensure the conditional processing will work even if user does not pass in a 
+  separator -->
 
   <xsl:param name="profile.arch" select="$effectivity.arch"/>
   <xsl:param name="profile.audience" select="$effectivity.audience"/>
@@ -56,100 +58,127 @@
     <xsl:variable name="effectivity.match.arch">
       <!-- <xsl:message>INFO: The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
       <xsl:message>INFO: The value of @arch as read from the XML file is <xsl:value-of select="@arch" /> ... </xsl:message> -->
+    <xsl:if test="@arch">  
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.arch" />
         <xsl:with-param name="b" select="@arch" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.audience">
-      <!-- <xsl:message>INFO: The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
-      <xsl:message>INFO: The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message> -->
+      <!-- <xsl:if test="effectivity.audience">
+        <xsl:message>INFO: The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
+        <xsl:message>INFO: The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message>
+      </xsl:if> -->
+    <xsl:if test="@audience">
+      <xsl:message>INFO: The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
+      <xsl:message>INFO: The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message>
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.audience" />
         <xsl:with-param name="b" select="@audience" />
+        <xsl:with-param name="sep" select="effectivity.separator" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.condition">
       <!-- <xsl:message>INFO: The value of effectivity.condition as passed in is <xsl:value-of select="$effectivity.condition" /> ... </xsl:message>
       <xsl:message>INFO: The value of @condition as read from the XML file is <xsl:value-of select="@condition" /> ... </xsl:message> -->
+    <xsl:if test="@condition">  
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.condition" />
         <xsl:with-param name="b" select="@condition" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.conformance">
       <!-- <xsl:message>INFO: The value of effectivity.conformance as passed in is <xsl:value-of select="$effectivity.conformance" /> ... </xsl:message>
       <xsl:message>INFO: The value of @conformance as read from the XML file is <xsl:value-of select="@conformance" /> ... </xsl:message> -->
+    <xsl:if test="@conformance">  
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.conformance" />
         <xsl:with-param name="b" select="@conformance" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.os">
       <!-- <xsl:message>INFO: The value of effectivity.os as passed in is <xsl:value-of select="$effectivity.os" /> ... </xsl:message>
       <xsl:message>INFO: The value of @os as read from the XML file is <xsl:value-of select="@os" /> ... </xsl:message> -->
+    <xsl:if test="@os">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.os" />
         <xsl:with-param name="b" select="@os" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.outputformat">
-      <!-- <xsl:message>INFO: The value of effectivity.outputformat as passed in is <xsl:value-of select="$effectivity.outputformat" /> ... </xsl:message>
-      <xsl:message>INFO: The value of @outputformat as read from the XML file is <xsl:value-of select="@outputformat" /> ... </xsl:message> -->
+      <xsl:message>INFO: The value of effectivity.outputformat as passed in is <xsl:value-of select="$effectivity.outputformat" /> ... </xsl:message>
+      <xsl:message>INFO: The value of @outputformat as read from the XML file is <xsl:value-of select="@outputformat" /> ... </xsl:message>
+    <xsl:if test="@outputformat">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.outputformat" />
         <xsl:with-param name="b" select="@outputformat" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.revision">
       <!-- <xsl:message>INFO: The value of effectivity.revision as passed in is <xsl:value-of select="$effectivity.revision" /> ... </xsl:message>
       <xsl:message>INFO: The value of @revision as read from the XML file is <xsl:value-of select="@revision" /> ... </xsl:message> -->
+    <xsl:if test="@revision">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.revision" />
         <xsl:with-param name="b" select="@revision" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.security">
       <!-- <xsl:message>INFO: The value of effectivity.security as passed in is <xsl:value-of select="$effectivity.security" /> ... </xsl:message>
       <xsl:message>INFO: The value of @security as read from the XML file is <xsl:value-of select="@security" /> ... </xsl:message> -->
+    <xsl:if test="@security">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.security" />
         <xsl:with-param name="b" select="@security" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.userlevel">
       <!-- <xsl:message>INFO: The value of effectivity.userlevel as passed in is <xsl:value-of select="$effectivity.userlevel" /> ... </xsl:message>
       <xsl:message>INFO: The value of @userlevel as read from the XML file is <xsl:value-of select="@userlevel" /> ... </xsl:message> -->
+      <xsl:if test="@userlevel">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.userlevel" />
         <xsl:with-param name="b" select="@userlevel" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.vendor">
       <!-- <xsl:message>INFO: The value of effectivity.vendor as passed in is <xsl:value-of select="$effectivity.vendor" /> ... </xsl:message>
       <xsl:message>INFO: The value of @vendor as read from the XML file is <xsl:value-of select="@vendor" /> ... </xsl:message> -->
+    <xsl:if test="@vendor">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.vendor" />
         <xsl:with-param name="b" select="@vendor" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.wordsize">
       <!-- <xsl:message>INFO: The value of effectivity.wordsize as passed in is <xsl:value-of select="$effectivity.wordsize" /> ... </xsl:message>
       <xsl:message>INFO: The value of @wordize as read from the XML file is <xsl:value-of select="@wordsize" /> ... </xsl:message> -->
+    <xsl:if test="@wordsize">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.wordsize" />
         <xsl:with-param name="b" select="@wordsize" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:choose>
@@ -221,100 +250,122 @@
     <xsl:variable name="effectivity.match.arch">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.arch as passed in is <xsl:value-of select="$effectivity.arch" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @arch as read from the XML file is <xsl:value-of select="@arch" /> ... </xsl:message> -->
+    <xsl:if test="@arch">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.arch" />
         <xsl:with-param name="b" select="@arch" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.audience">
        <!-- <xsl:message>INFO (filterin): The value of effectivity.audience as passed in is <xsl:value-of select="$effectivity.audience" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @audience as read from the XML file is <xsl:value-of select="@audience" /> ... </xsl:message> -->
+    <xsl:if test="@audience">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.audience" />
         <xsl:with-param name="b" select="@audience" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.condition">
        <!-- <xsl:message>INFO (filterin): The value of effectivity.condition as passed in is <xsl:value-of select="$effectivity.condition" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @condition as read from the XML file is <xsl:value-of select="@condition" /> ... </xsl:message> -->
+    <xsl:if test="@condition">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.condition" />
         <xsl:with-param name="b" select="@condition" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.conformance">
        <!-- <xsl:message>INFO (filterin): The value of effectivity.conformance as passed in is <xsl:value-of select="$effectivity.conformance" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @conformance as read from the XML file is <xsl:value-of select="@conformance" /> ... </xsl:message> -->
+    <xsl:if test="@conformance">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.conformance" />
         <xsl:with-param name="b" select="@conformance" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.os">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.os as passed in is <xsl:value-of select="$effectivity.os" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @os as read from the XML file is <xsl:value-of select="@os" /> ... </xsl:message> -->
+      <xsl:if test="@os">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.os" />
         <xsl:with-param name="b" select="@os" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.outputformat">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.outputformat as passed in is <xsl:value-of select="$effectivity.outputformat" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @outputformat as read from the XML file is <xsl:value-of select="@outputformat" /> ... </xsl:message> -->
+    <xsl:if test="@outputformat">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.outputformat" />
         <xsl:with-param name="b" select="@outputformat" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.revision">
        <!-- <xsl:message>INFO (filterin): The value of effectivity.revision as passed in is <xsl:value-of select="$effectivity.revision" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @revision as read from the XML file is <xsl:value-of select="@revision" /> ... </xsl:message> -->
+    <xsl:if test="@revision">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.revision" />
         <xsl:with-param name="b" select="@revision" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.security">
        <!-- <xsl:message>INFO (filterin): The value of effectivity.security as passed in is <xsl:value-of select="$effectivity.security" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @security as read from the XML file is <xsl:value-of select="@security" /> ... </xsl:message> -->
+    <xsl:if test="@security">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.security" />
         <xsl:with-param name="b" select="@security" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.userlevel">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.userlevel as passed in is <xsl:value-of select="$effectivity.userlevel" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @userlevel as read from the XML file is <xsl:value-of select="@userlevel" /> ... </xsl:message> -->
+    <xsl:if test="@userlevel">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.userlevel" />
         <xsl:with-param name="b" select="@userlevel" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.vendor">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.vendor as passed in is <xsl:value-of select="$effectivity.vendor" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @vendor as read from the XML file is <xsl:value-of select="@vendor" /> ... </xsl:message> -->
+    <xsl:if test="@vendor">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.vendor" />
         <xsl:with-param name="b" select="@vendor" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.wordsize">
       <!-- <xsl:message>INFO (filterin): The value of effectivity.wordsize as passed in is <xsl:value-of select="$effectivity.wordsize" /> ... </xsl:message>
       <xsl:message>INFO (filterin): The value of @wordsize as read from the XML file is <xsl:value-of select="@wordsize" /> ... </xsl:message> -->
+    <xsl:if test="@wordsize">
       <xsl:call-template name="cross.compare">
         <xsl:with-param name="a" select="$effectivity.wordsize" />
         <xsl:with-param name="b" select="@wordsize" />
       </xsl:call-template>
+    </xsl:if>
     </xsl:variable>
 
     <xsl:choose>
