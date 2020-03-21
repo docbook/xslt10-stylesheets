@@ -24,7 +24,7 @@
   <xsl:param name="effectivity.userlevel" />
   <xsl:param name="effectivity.vendor" />
   <xsl:param name="effectivity.wordsize" />
-  <xsl:param name="effectivity.separator"/>
+  <xsl:param name="effectivity.separator">;</xsl:param>
 
 
   <xsl:param name="profile.arch" select="$effectivity.arch"/>
@@ -44,7 +44,7 @@
   <xsl:param name="profile.status"/>
   <xsl:param name="profile.attribute"/>
   <xsl:param name="profile.value"/>
-  <xsl:param name="profile.separator" select="';'" />
+  <xsl:param name="profile.separator" select="$effectivity.separator" />
 <!-- NOTE: The separator param is set to ; by default; this is ensure the conditional processing will work even if user does not pass in a 
   separator -->
 
@@ -56,7 +56,7 @@
   <xsl:template match="d:filterout" mode="evaluate.effectivity">
 
     <xsl:variable name="effectivity.match.arch">
-      <xsl:if test="@arch">  
+      <xsl:if test="@arch and string-length($effectivity.arch) &gt; 0">  
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.arch" />
           <xsl:with-param name="b" select="@arch" />
@@ -65,7 +65,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.audience">
-      <xsl:if test="@audience">
+      <xsl:if test="@audience and string-length($effectivity.audience) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.audience" />
           <xsl:with-param name="b" select="@audience" />
@@ -74,7 +74,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.condition">
-      <xsl:if test="@condition">  
+      <xsl:if test="@condition and string-length($effectivity.condition) &gt; 0">  
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.condition" />
           <xsl:with-param name="b" select="@condition" />
@@ -83,7 +83,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.conformance">
-      <xsl:if test="@conformance">  
+      <xsl:if test="@conformance and string-length($effectivity.conformance) &gt; 0">  
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.conformance" />
           <xsl:with-param name="b" select="@conformance" />
@@ -92,7 +92,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.os">
-      <xsl:if test="@os">
+      <xsl:if test="@os and string-length($effectivity.os) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.os" />
           <xsl:with-param name="b" select="@os" />
@@ -101,7 +101,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.outputformat">
-      <xsl:if test="@outputformat">
+      <xsl:if test="@outputformat and string-length($effectivity.outputformat) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.outputformat" />
           <xsl:with-param name="b" select="@outputformat" />
@@ -110,7 +110,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.revision">
-      <xsl:if test="@revision">
+      <xsl:if test="@revision and string-length($effectivity.revision) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.revision" />
           <xsl:with-param name="b" select="@revision" />
@@ -119,7 +119,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.security">
-      <xsl:if test="@security">
+      <xsl:if test="@security and string-length($effectivity.security) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.security" />
           <xsl:with-param name="b" select="@security" />
@@ -128,7 +128,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.userlevel">
-      <xsl:if test="@userlevel">
+      <xsl:if test="@userlevel and string-length($effectivity.userlevel) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.userlevel" />
           <xsl:with-param name="b" select="@userlevel" />
@@ -137,7 +137,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.vendor">
-      <xsl:if test="@vendor">
+      <xsl:if test="@vendor and string-length($effectivity.vendor) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.vendor" />
           <xsl:with-param name="b" select="@vendor" />
@@ -146,7 +146,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.wordsize">
-      <xsl:if test="@wordsize">
+      <xsl:if test="@wordsize and string-length($effectivity.wordsize) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.wordsize" />
           <xsl:with-param name="b" select="@wordsize" />
@@ -221,7 +221,7 @@
   <xsl:template match="d:filterin" mode="evaluate.effectivity">
 
     <xsl:variable name="effectivity.match.arch">
-      <xsl:if test="@arch">
+      <xsl:if test="@arch and string-length($effectivity.arch) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.arch" />
           <xsl:with-param name="b" select="@arch" />
@@ -230,7 +230,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.audience">
-      <xsl:if test="@audience">
+      <xsl:if test="@audience and string-length($effectivity.audience) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.audience" />
           <xsl:with-param name="b" select="@audience" />
@@ -239,7 +239,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.condition">
-      <xsl:if test="@condition">
+      <xsl:if test="@condition and string-length($effectivity.condition) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.condition" />
           <xsl:with-param name="b" select="@condition" />
@@ -248,7 +248,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.conformance">
-      <xsl:if test="@conformance">
+      <xsl:if test="@conformance and string-length($effectivity.conformance) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.conformance" />
           <xsl:with-param name="b" select="@conformance" />
@@ -257,7 +257,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.os">
-      <xsl:if test="@os">
+      <xsl:if test="@os and string-length($effectivity.os) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.os" />
           <xsl:with-param name="b" select="@os" />
@@ -266,7 +266,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.outputformat">
-      <xsl:if test="@outputformat">
+      <xsl:if test="@outputformat and string-length($effectivity.outputformat) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.outputformat" />
           <xsl:with-param name="b" select="@outputformat" />
@@ -275,7 +275,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.revision">
-      <xsl:if test="@revision">
+      <xsl:if test="@revision and string-length($effectivity.revision) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.revision" />
           <xsl:with-param name="b" select="@revision" />
@@ -284,16 +284,16 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.security">
-      <xsl:if test="@security">
+      <xsl:if test="@security and string-length($effectivity.security) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.security" />
           <xsl:with-param name="b" select="@security" />
         </xsl:call-template>
       </xsl:if>
     </xsl:variable>
-
+    
     <xsl:variable name="effectivity.match.userlevel">
-      <xsl:if test="@userlevel">
+      <xsl:if test="@userlevel and string-length($effectivity.userlevel) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.userlevel" />
           <xsl:with-param name="b" select="@userlevel" />
@@ -302,7 +302,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.vendor">
-      <xsl:if test="@vendor">
+      <xsl:if test="@vendor and string-length($effectivity.vendor) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.vendor" />
           <xsl:with-param name="b" select="@vendor" />
@@ -311,7 +311,7 @@
     </xsl:variable>
 
     <xsl:variable name="effectivity.match.wordsize">
-      <xsl:if test="@wordsize">
+      <xsl:if test="@wordsize and string-length($effectivity.wordsize) &gt; 0">
         <xsl:call-template name="cross.compare">
           <xsl:with-param name="a" select="$effectivity.wordsize" />
           <xsl:with-param name="b" select="@wordsize" />
