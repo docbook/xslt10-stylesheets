@@ -344,12 +344,13 @@
   <xsl:variable name="module" select="."/>
   <xsl:variable name="resourceref" select="@resourceref"/>
   <xsl:variable name="resource" select="key('id', $resourceref)"/>
-
+  
   <!-- Determine whether a filterin or filterout element controls 
        whether this module or structure should occur in the output 
        document. -->
   <xsl:variable name="effectivity.exclude">
-    <xsl:apply-templates select="." mode="evaluate.effectivity" />
+    <xsl:apply-templates select="child::d:filterin | child::d:filterout"
+      mode="evaluate.effectivity" />
   </xsl:variable>
 
   <xsl:choose>
