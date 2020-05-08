@@ -11,7 +11,9 @@
 <xsl:include href="../profiling/profile-mode.xsl"/>
 <xsl:include href="../common/addns.xsl"/>
   
-<!-- NOTE: If a structure or module is filtered out due to a matching effectivity attribute, children of that structure or module cannot be filtered in using another effectivity attribute. -->
+  <!-- NOTE: If a structure or module is filtered out due to a matching 
+    effectivity attribute, children of that structure or module cannot 
+    be filtered in using another effectivity attribute. -->
 
   <xsl:param name="effectivity.arch" />
   <xsl:param name="effectivity.audience" />
@@ -45,13 +47,10 @@
   <xsl:param name="profile.attribute"/>
   <xsl:param name="profile.value"/>
   <xsl:param name="profile.separator" select="$effectivity.separator" />
-<!-- NOTE: The separator param is set to ; by default; this is ensure the conditional processing will work even if user does not pass in a 
-  separator -->
+  <!-- NOTE: The separator param is set to ; by default; this is ensure 
+    the conditional processing will work even if user does not pass in 
+    a separator -->
 
-
-  <xsl:template match="d:module[@resourceref] | d:structure[@resourceref]" mode="evaluate.effectivity">
-    <xsl:apply-templates mode="evaluate.effectivity" />
-  </xsl:template>
   
   <xsl:template match="d:filterout" mode="evaluate.effectivity">
 
