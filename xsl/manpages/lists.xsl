@@ -7,7 +7,7 @@
 <!-- ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://cdn.docbook.org/release/xsl/current/ for
+     See ../README or https://cdn.docbook.org/release/xsl/current/ for
      copyright and other information.
 
      ******************************************************************** -->
@@ -198,6 +198,18 @@
 </xsl:template>
 
 <xsl:template match="d:orderedlist/d:listitem|d:procedure/d:step">
+
+
+  <xsl:variable name="format">
+    <xsl:choose>
+      <xsl:when test="parent::d:orderedlist/@numeration != ''">
+      <xsl:value-of select="concat(parent::d:orderedlist/@numeration, '.')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>1.</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <xsl:text>&#10;</xsl:text>
   <xsl:text>.sp</xsl:text>
   <xsl:text>&#10;</xsl:text>
@@ -226,7 +238,7 @@
   <xsl:if test="count(preceding-sibling::d:listitem) &lt; 9">
     <xsl:text> </xsl:text>
   </xsl:if>
-  <xsl:number format="1."/>
+  <xsl:number format="{$format}"/>>
   <xsl:text>\h'+</xsl:text>
   <xsl:choose>
     <xsl:when test="not($list-indent = '')">
@@ -249,7 +261,7 @@
   <xsl:if test="count(preceding-sibling::d:listitem) &lt; 9">
     <xsl:text>  </xsl:text>
   </xsl:if>
-  <xsl:number format="1."/>
+  <xsl:number format="{$format}"/>>
   <xsl:text>" 4.2&#10;</xsl:text>
   <!-- * The value 4.2 is the amount of indentation; we use 4.2 instead -->
   <!-- * of 4 because when the font family is Bookman it seems to require -->

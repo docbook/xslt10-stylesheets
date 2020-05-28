@@ -74,7 +74,7 @@ REFERENCETXTXSL=$(DOCBUILD_STYLESHEETS)/reference-txt.xsl
 
 # RELEASE-NOTES.xml to RELEASE-NOTES.html
 DOC_LINK_STYLE=$(RELEASEDOC_STYLESHEETS)/doc-link-docbook.xsl
-DOC_BASEURI=http://cdn.docbook.org/release/xsl/current/doc/
+DOC_BASEURI=https://cdn.docbook.org/release/xsl/current/doc/
 
 # RELEASE-NOTES.xml to RELEASE-NOTES.pdf
 DBX_STYLE=$(RELEASEDOC_STYLESHEETS)/dblatex-release-notes.xsl

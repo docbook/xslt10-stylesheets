@@ -8,12 +8,12 @@
   <!-- ********************************************************************
 
        This file is part of the XSL DocBook Stylesheet distribution.
-       See ../README or http://cdn.docbook.org/release/xsl/current/ for
+       See ../README or https://cdn.docbook.org/release/xsl/current/ for
        copyright and other information.
 
        ******************************************************************** -->
   <!--
-  <xsl:import href="http://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
+  <xsl:import href="https://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
   <xsl:param name="tbl.font.title">B</xsl:param>
   <xsl:param name="tbl.font.headings">B</xsl:param>
   -->

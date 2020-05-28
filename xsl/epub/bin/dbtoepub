@@ -62,7 +62,7 @@ if db_files.size == 0
 end
 
 db_files.each {|docbook_file|
-  dir = File.expand_path(File.join(Dir.tmpdir, ".epubtmp#{Time.now.to_f.to_s}"))
+  dir = File.expand_path(File.join(Dir.mktmpdir(), ".epubtmp#{Time.now.to_f.to_s}"))
   FileUtils.mkdir_p(dir)
   e = DocBook::Epub.new(docbook_file, dir, css_file, customization_layer, otf_files)
 

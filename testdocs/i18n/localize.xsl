@@ -5,7 +5,7 @@
 		exclude-result-prefixes="l xl"
 		version="1.0">
   
-  <xsl:import href="http://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
+  <xsl:import href="https://cdn.docbook.org/release/xsl/current/html/docbook.xsl"/>
 
   <xsl:param name="admon.graphics" select="1"></xsl:param>
   <xsl:param name="section.autolabel" select="1"></xsl:param>

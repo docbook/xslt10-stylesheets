@@ -7,7 +7,7 @@
   version="1.0">
 
   <!-- Adjust this path as necessary -->
-  <xsl:import href="http://cdn.docbook.org/release/xsl/1.64.1/htmlhelp/htmlhelp.xsl"/>
+  <xsl:import href="https://cdn.docbook.org/release/xsl/1.64.1/htmlhelp/htmlhelp.xsl"/>
   <xsl:include href="htmlhelp-common.xsl"/>
 
   <!-- Five new parameters: -->

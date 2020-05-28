@@ -22,7 +22,7 @@ TESTDOCSDIR = File.expand_path(File.join(ENV['repo_dir'], 'testdocs', 'tests'))
 describe DocBook::Epub do
 
   before do
-    @tmpdir = File.join(Dir::tmpdir(), "epubspecsmoke"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
+    @tmpdir = File.join(Dir.mktmpdir(), "epubspecsmoke"); Dir.mkdir(@tmpdir) rescue Errno::EEXIST
   end
 
   # TODO 

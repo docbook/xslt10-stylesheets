@@ -13,14 +13,14 @@
 <para condition="dot-zero;dot-one-plus">This release-notes
   document is available in the following formats:
   <link
-    xlink:href="http://cdn.docbook.org/release/xsl/current/RELEASE-NOTES.html"
+    xlink:href="https://cdn.docbook.org/release/xsl/current/RELEASE-NOTES.html"
     >HTML</link>,
   <!--
   <link
-    xlink:href="http://cdn.docbook.org/release/xsl/current/RELEASE-NOTES.pdf"
+    xlink:href="https://cdn.docbook.org/release/xsl/current/RELEASE-NOTES.pdf"
     >PDF</link>, -->
   <link
-    xlink:href="http://cdn.docbook.org/release/xsl/current/RELEASE-NOTES.txt"
+    xlink:href="https://cdn.docbook.org/release/xsl/current/RELEASE-NOTES.txt"
     >plain text</link>; it provides a per-release list
 of enhancements and changes to the stylesheets’ public APIs
 (user-configurable parameters) and excludes descriptions of most
@@ -7755,7 +7755,7 @@ significant feature changes:
     <listitem>
       <para>The reference documentation that ships with the
         release now includes <link
-          xlink:href="http://cdn.docbook.org/release/xsl/current/doc/pi/"
+          xlink:href="https://cdn.docbook.org/release/xsl/current/doc/pi/"
           >documentation on all PIs</link> that you can use to
         control output from the stylesheets.</para>
     </listitem>
@@ -11784,7 +11784,7 @@ Steve Ball</para>
           stylesheets into the DocBook XSL stylesheets package. So,
           for example, Website documents can now be processed using
           the following URI for the driver Website
-          <filename>tabular.xsl</filename> file: <literallayout class="monospaced"><uri>http://cdn.docbook.org/release/xsl/current/website/tabular.xsl</uri></literallayout></para>
+          <filename>tabular.xsl</filename> file: <literallayout class="monospaced"><uri>https://cdn.docbook.org/release/xsl/current/website/tabular.xsl</uri></literallayout></para>
         </listitem>
         <listitem>
           <para>A <tag>procedure</tag> without a <tag>title</tag> is
@@ -12993,7 +12993,7 @@ Steve Ball</para>
               <screen>  &lt;xsl:stylesheet
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     version='1.0'&gt;
-    &lt;xsl:import href="http://cdn.docbook.org/release/xsl/current/htmlhelp/htmlhelp.xsl"/&gt;
+    &lt;xsl:import href="https://cdn.docbook.org/release/xsl/current/htmlhelp/htmlhelp.xsl"/&gt;
     &lt;xsl:output method="html" encoding="WINDOWS-1252" indent="no"/&gt;
     &lt;xsl:param name="htmlhelp.encoding" select="'WINDOWS-1252'"&gt;&lt;/xsl:param&gt;
     &lt;xsl:param name="chunker.output.encoding" select="'WINDOWS-1252'"&gt;&lt;/xsl:param&gt;
@@ -13414,8 +13414,8 @@ stylesheet with new indexing code
 <programlisting>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0"&gt;
 
-&lt;xsl:import href="http://cdn.docbook.org/release/xsl/current/fo/docbook.xsl"/&gt;
-&lt;xsl:include href="http://cdn.docbook.org/release/xsl/current/fo/autoidx-ng.xsl"/&gt;
+&lt;xsl:import href="https://cdn.docbook.org/release/xsl/current/fo/docbook.xsl"/&gt;
+&lt;xsl:include href="https://cdn.docbook.org/release/xsl/current/fo/autoidx-ng.xsl"/&gt;
 
 &lt;/xsl:stylesheet&gt;</programlisting>
 <para>New method is known to work with Saxon and it should also work
@@ -13838,7 +13838,7 @@ images.
 </para>
 </listitem> 
 <listitem>
-<para>Added seperate property sets for <tag>figure</tag>s,
+<para>Added separate property sets for <tag>figure</tag>s,
 <tag>example</tag>s, <tag>equation</tag>s, <tag>tables</tag>s,
 and <tag>procedure</tag>s.
 </para>

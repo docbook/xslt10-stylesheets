@@ -48,7 +48,7 @@
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> This file is part of the XSL DocBook Stylesheet distribution. </xsl:comment>
     <xsl:text>&#10;</xsl:text>
-    <xsl:comment> See ../README or http://cdn.docbook.org/release/xsl/current/ for </xsl:comment>
+    <xsl:comment> See ../README or https://cdn.docbook.org/release/xsl/current/ for </xsl:comment>
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> copyright and other information. </xsl:comment>
     <xsl:text>&#10;</xsl:text>

@@ -367,7 +367,7 @@ the stylesheets -- then you can ignore this "Part 2" section; the
 
    NOTE: The catalog-install script "installs" some XML Catalog
    settings in your environment so xsltproc/saxon will resolve the
-   http://cdn.docbook.org/release/xsl/current/ canonical
+   https://cdn.docbook.org/release/xsl/current/ canonical
    URL to the working directory you're actually building in
    (instead of to whatever it would normally resolve to).
 

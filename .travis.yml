@@ -4,7 +4,7 @@
 language: java
 
 jdk:
-- oraclejdk8
+- openjdk8
 
 branches:
   only:
@@ -22,8 +22,8 @@ install:
 - sudo apt-get update -q
 - sudo apt-get install xsltproc
 - sudo apt-get install libxml-xpath-perl
-- sudo apt-get install libsaxon-java libxml-commons-resolver1.1-java libsaxon-java
-  libxerces2-java
+- sudo apt-get install libxml2-utils
+- sudo apt-get install libsaxon-java libxml-commons-resolver1.1-java libsaxon-java libxerces2-java
 - sudo apt-get install trang
 - sudo apt-get install imagemagick
 - sudo apt-get install dblatex

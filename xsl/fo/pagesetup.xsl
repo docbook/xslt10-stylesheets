@@ -36,21 +36,6 @@
   <xsl:value-of select="$symbol.font.family"/>
 </xsl:param>
 
-<!-- These are internal parameters are for the individual precedence attributes -->
-<xsl:param name="region.start.precedence">
-  <xsl:choose>
-    <xsl:when test="$side.region.precedence = 'true'">true</xsl:when>
-    <xsl:otherwise>false</xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
-<xsl:param name="region.end.precedence">
-  <xsl:choose>
-    <xsl:when test="$side.region.precedence = 'true'">true</xsl:when>
-    <xsl:otherwise>false</xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
 <xsl:param name="region.before.precedence">
   <xsl:choose>
     <xsl:when test="$side.region.precedence = 'true'">false</xsl:when>
@@ -3507,7 +3492,7 @@
 <!-- Customize this template for custom side regions -->
 <xsl:template name="region.inner">
   <xsl:param name="sequence">blank</xsl:param>
-  <xsl:param name="classname">blank</xsl:param>
+  <xsl:param name="pageclass">blank</xsl:param>
 
   <xsl:choose>
     <xsl:when test="$sequence = 'first' or $sequence = 'odd'">
@@ -3515,9 +3500,6 @@
         <xsl:attribute name="region-name">
           <xsl:text>xsl-region-inner-</xsl:text>
           <xsl:value-of select="$sequence"/>
-        </xsl:attribute>
-        <xsl:attribute name="precedence">
-          <xsl:value-of select="$region.start.precedence"/>
         </xsl:attribute>
         <xsl:attribute name="extent">
           <xsl:value-of select="$region.inner.extent"/>
@@ -3530,9 +3512,6 @@
           <xsl:text>xsl-region-inner-</xsl:text>
           <xsl:value-of select="$sequence"/>
         </xsl:attribute>
-        <xsl:attribute name="precedence">
-          <xsl:value-of select="$region.end.precedence"/>
-        </xsl:attribute>
         <xsl:attribute name="extent">
           <xsl:value-of select="$region.inner.extent"/>
         </xsl:attribute>
@@ -3544,7 +3523,7 @@
 <!-- Customize this template for custom side regions -->
 <xsl:template name="region.outer">
   <xsl:param name="sequence">blank</xsl:param>
-  <xsl:param name="classname">blank</xsl:param>
+  <xsl:param name="pageclass">blank</xsl:param>
 
   <xsl:choose>
     <xsl:when test="$sequence = 'first' or $sequence = 'odd'">
@@ -3552,9 +3531,6 @@
         <xsl:attribute name="region-name">
           <xsl:text>xsl-region-outer-</xsl:text>
           <xsl:value-of select="$sequence"/>
-        </xsl:attribute>
-        <xsl:attribute name="precedence">
-          <xsl:value-of select="$region.start.precedence"/>
         </xsl:attribute>
         <xsl:attribute name="extent">
           <xsl:value-of select="$region.outer.extent"/>
@@ -3566,9 +3542,6 @@
         <xsl:attribute name="region-name">
           <xsl:text>xsl-region-outer-</xsl:text>
           <xsl:value-of select="$sequence"/>
-        </xsl:attribute>
-        <xsl:attribute name="precedence">
-          <xsl:value-of select="$region.end.precedence"/>
         </xsl:attribute>
         <xsl:attribute name="extent">
           <xsl:value-of select="$region.outer.extent"/>

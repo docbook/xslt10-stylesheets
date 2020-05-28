@@ -37,15 +37,13 @@ Any value other than <literal>true</literal> or
 <literal>false</literal> is taken to be <literal>false</literal>.</para>
 
 <para>If you need to set precedence separately for
-individual regions, then you can set four
+individual regions, then you can set two
 parameters that are normally internal to the stylesheet.
-These four parameters are normally set based
+These two parameters are normally set based
 on the value from <parameter>side.region.precedence</parameter>:</para>
 
 <programlisting>region.before.precedence
-region.after.precedence
-region.start.precedence
-region.end.precedence</programlisting>
+region.after.precedence</programlisting>
 
 <para>See also
 <parameter>region.inner.extent</parameter>,

@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -- #  -*- Perl -*-
 #
-#    xslns-build - generate a parallel set of DocBook5 namespaced 
+#    xslns-build - generate a parallel set of DocBook5 namespaced
 #                  stylesheet directories from a directory of
 #                  non-namespaced stylesheets.
 #
@@ -19,7 +19,7 @@ USAGE:
 
 #######################################################
 # Modules to use
-# 
+#
 use strict;
 use IO::File;
 use File::Basename;
@@ -29,7 +29,7 @@ use File::Copy;
 
 #######################################################
 # Global variables
-# 
+#
 my $srcdir;
 my $destdir;
 
@@ -73,7 +73,7 @@ umask 002;
 
 #######################################################
 #   main
-# 
+#
 
 # Get the source and output directories
 
@@ -94,7 +94,7 @@ unless ( -d $srcdir ) {
 unless ( $destdir ) {
   print "ERROR: must specify output directory. Exiting.\n";
   die "$Usage\n";
-  
+
 }
 
 # Remove any previous output completely
@@ -125,17 +125,17 @@ addFiles();
 
 #######################################################
 # copyDirectories - create the output directories
-# 
+#
 sub copyDirectories {
 
   my ($src) = @_;
-  
+
   # populate @dirlist
   find(\&dirlist, $src );
 
   foreach my $d (@dirlist) {
     $d =~ s/$srcdir/$destdir/;
-    print "$d\n";
+    #print "$d\n";
     mkdir $d;
   }
 
@@ -144,7 +144,7 @@ sub copyDirectories {
 
 #######################################################
 # dirlist - list directories (used by find)
-# 
+#
 sub dirlist {
 
   if ( -d $_  ) {
@@ -154,7 +154,7 @@ sub dirlist {
 
 #######################################################
 # copyPassthru - copy non-XSL files to output
-# 
+#
 sub copyPassthru {
 
   # populate @passthru
@@ -163,7 +163,7 @@ sub copyPassthru {
   foreach my $f (@passthru) {
     my $dest = $f;
     $dest =~ s/$srcdir/$destdir/;
-    print STDOUT "$f\n";
+    #print STDOUT "$f\n";
     copy ($f, $dest);
   }
 
@@ -172,7 +172,7 @@ sub copyPassthru {
 
 #######################################################
 # passthruFiles - list non-xsl files to copy
-# 
+#
 sub passthruFiles {
 
   if ( -f $_ ) {
@@ -184,7 +184,7 @@ sub passthruFiles {
 
 #######################################################
 # copyXsl - copy XSL files to output, possibly filtering
-# 
+#
 sub copyXsl {
 
   # populate @xslfiles
@@ -193,7 +193,7 @@ sub copyXsl {
   foreach my $f (@xslfiles) {
     my $dest = $f;
     $dest =~ s/$srcdir/$destdir/;
-    print STDOUT "$f\n";
+    #print STDOUT "$f\n";
 
     my $basename = basename $f;
     my $dirname = dirname $f;
@@ -202,7 +202,7 @@ sub copyXsl {
     if ( grep /^$basename$/,@PassthruFiles ) {
       copy($f, $dest);
     }
-    elsif ( grep /^$dir$/, @PassthruDirs ) {
+    elsif ( defined($dir) && grep /^$dir$/, @PassthruDirs ) {
       copy($f, $dest);
     }
     else {
@@ -215,7 +215,7 @@ sub copyXsl {
 
 #######################################################
 # xslFiles - list xsl files to process
-# 
+#
 sub xslFiles {
 
   if ( -f $_ ) {
@@ -227,40 +227,40 @@ sub xslFiles {
 
 #######################################################
 # nsfilter - delete namespace prefix to element names
-# 
+#
 sub nsfilter {
 
   my ($infile, $outfile) = @_;
-  
+
   # Open and read the whole file into $_ variable for parsing
   my $Filehandle = IO::File->new($infile)
       or die "Can't open file $infile $!\n";
   read ($Filehandle, $_, -s $infile);
   $Filehandle->close;
-  
-  my $Output = IO::File->new("> $outfile") 
+
+  my $Output = IO::File->new("> $outfile")
      or die "Cannot write to output file $outfile.\n";
-  
-  # Set to autoflush 
+
+  # Set to autoflush
   select($Output); $| = 1;
-  
+
   # delete the docbook5 namespace declaration in root element
-  
+
   s|xmlns:d="http://docbook.org/ns/docbook"\n?||s;
-  
+
   # remove namespace d from exclude-result-prefixes
   # This version if only "d"
   s|\s*exclude-result-prefixes\s*=\s*"d"\s*| |s;
   # This version if d added to others at end
   s|(exclude-result-prefixes\s*=\s*".*?)\s+d"|$1"|s;
-  # This version if d added at beginning 
+  # This version if d added at beginning
   s|(exclude-result-prefixes\s*=\s*")d\s+(.*?")|$1$2|s;
   # This version if d added in middle
   s|(exclude-result-prefixes\s*=\s*".*?)\s+d\s+(.*?")|$1 $2|s;
 
-  # Convert addNS to stripNS 
+  # Convert addNS to stripNS
   s|href="../common/addns.xsl"|href="../common/stripns.xsl"|sg;
-  
+
   s|addns\.xsl|stripns.xsl|sg;
   s|with\.namespace|no.namespace|sg;
   s|addNS|stripNS|sg;
@@ -268,12 +268,12 @@ sub nsfilter {
   s|added namespace before|stripped namespace before|sg;
   s|(Unable to )add( the namespace from )DB4( document)|$1strip$2DB5$3|sg;
 
-  # change namespace test from != to = 
+  # change namespace test from != to =
   s|(namespace-uri\(/\*\)\s*)!=(\s*['"]http://docbook.org/ns/docbook['"])|$1=$2|sg;
 
   # Set the db.prefix for template/titlepage.xsl
   s|(<xsl:variable name="db.prefix">)d:(</xsl:variable>)|$1$2|sg;
-  
+
   # remove d: prefix to literal tocentry in maketoc.xsl
   if ($infile =~ /maketoc/) {
     s|d:(tocentry)|$1|sg;
@@ -281,29 +281,29 @@ sub nsfilter {
 
   # Process certain XSL attributes to remove d: namespace if needed
   # and output everything using this while loop.
-  
+
   while ( /^(.*?)((match|select|test|count|from|use|elements)(\s*=\s*("|'))(.*?)(\5)|(select)(\s*=\s*("|'))(.*?)(\5))/sg ) {
-  
+
     my $notname = $1;
     my $attname = $3;
     my $prefix =  $4;
     my $attvalue = $6;
     my $post = $7;
     my $rest = $';
-    
+
     &filter($notname, $Output);
 
     print $Output $attname . $prefix;
-    
+
     # parse the attribute value
     while ( $attvalue =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
-  
+
       # process the leading content which is not pass through
       &fixnamespace($1, $Output);
-  
+
       if ( $2 eq 'd:' ) {
         print $Output $3;
-        
+
       }
       else {
         print $Output $2;
@@ -312,15 +312,15 @@ sub nsfilter {
 
       $attvalue = $4;    # and recurse
     }
-  
+
     &fixnamespace($attvalue, $Output);
-  
+
     print $Output $post;
-  
+
     $_ = $rest;
-  
+
   }
-  
+
   # print the leftovers
   &filter($_, $Output);
 
@@ -337,7 +337,7 @@ sub filter {
 
   # Fix up index ENTITY declarations
   $string = &indexentitydecl($string);
-  
+
   while ( $string =~ m|^(.*?)(<xsl:param([^>]+[^/])>)(.*?)(</xsl:param>)|sg  ) {
     my $before = $1;
     my $starttag = $2;
@@ -358,10 +358,10 @@ sub filter {
       # while ( $value =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
 
       while ( $value =~ /^(.*?)($ns:)($n)(.*$)/sg ) {
-  
+
         # process the leading content which is not pass through
         &fixnamespace($1, $Output);
-  
+
         if ( $2 eq 'd:' ) {
           print $Output $3;
         }
@@ -371,7 +371,7 @@ sub filter {
         }
         $value = $4;    # and recurse
       }
-  
+
       &fixnamespace($value, $Output);
     }
     else {
@@ -381,7 +381,7 @@ sub filter {
     print $Output $endtag;
 
     $string = $rest;
-    
+
   }
 
   print $Output $string;
@@ -411,7 +411,7 @@ sub indexentitydecl {
 
       if ( $2 eq 'd:' ) {
         $newstring .= $3;
-        
+
       }
       else {
         $newstring .= $2;
@@ -427,7 +427,7 @@ sub indexentitydecl {
     $newstring .= $entityend;
 
     $string = $rest;
-    
+
   }
 
   $newstring .= $string;
@@ -498,7 +498,7 @@ sub namespacefilter {
 
 #######################################################
 # addFiles - add some new files to db5xsl
-# 
+#
 sub addFiles {
   my $miscdir = dirname $0;
   $miscdir .= '/xslnsfiles';

@@ -21,7 +21,7 @@
     <xsl:comment> * This modified version of markup.xsl is used as part of </xsl:comment>
     <xsl:comment> * the internal build of the DocBook Project XSL Stylesheets </xsl:comment>
     <xsl:comment> * </xsl:comment>
-    <xsl:comment> *   http://cdn.docbook.org/release/xsl/current/ </xsl:comment>
+    <xsl:comment> *   https://cdn.docbook.org/release/xsl/current/ </xsl:comment>
     <xsl:comment> * </xsl:comment>
     <xsl:comment> * Copyright 2007 The DocBook Project &lt;docbook-developers@sf.net> </xsl:comment>
     <xsl:comment> * </xsl:comment>
