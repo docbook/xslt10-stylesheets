@@ -77,7 +77,10 @@
       <xsl:element name="rx:meta-field">
         <xsl:attribute name="name">keywords</xsl:attribute>
         <xsl:attribute name="value">
-          <xsl:for-each select="//d:keyword">
+          <xsl:for-each
+              select="//d:keyword[normalize-space(.) != '']
+                                 [count(. | key('keywords', normalize-space(.))[1]) = 1]">
+            <xsl:sort select="normalize-space(.)"/>
             <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
               <xsl:text>, </xsl:text>
