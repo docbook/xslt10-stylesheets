@@ -6,10 +6,6 @@
                 xmlns:axf="http://www.antennahouse.com/names/XSL/Extensions"
                 version='1.0'>
 
-<xsl:key name="keywords"
-         match="d:keyword[normalize-space(.) != '']"
-         use="normalize-space(.)" />
-
 <xsl:template name="axf-document-information">
 
     <xsl:variable name="authors" select="(//d:author|//d:editor|

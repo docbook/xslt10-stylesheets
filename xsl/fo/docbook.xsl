@@ -91,6 +91,10 @@
 
 <xsl:key name="id" match="*" use="@id|@xml:id"/>
 
+<xsl:key name="keywords"
+         match="d:keyword[normalize-space(.) != '']"
+         use="normalize-space(.)" />
+
 <!-- ==================================================================== -->
 
 <xsl:template match="*">
