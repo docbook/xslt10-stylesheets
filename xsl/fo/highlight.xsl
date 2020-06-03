@@ -111,7 +111,7 @@
 </xsl:template>
 
 <xsl:template match='xslthl:annotation' mode="xslthl">
-  <fo:inline xsl:use-attribute-sets="highlight.value.properties">
+  <fo:inline xsl:use-attribute-sets="highlight.annotation.properties">
     <xsl:apply-templates mode="xslthl"/>
   </fo:inline>
 </xsl:template>
