@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Syntax highlighting definition for XQuery
+
+xslthl - XSLT Syntax Highlighting
+http://sourceforge.net/projects/xslthl/
+Copyright (C) 2005-2008 Michal Molhanec, Jirka Kosek, Michiel Hendriks
+
+This software is provided 'as-is', without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+Michal Molhanec <mol1111 at users.sourceforge.net>
+Jirka Kosek <kosek at users.sourceforge.net>
+Michiel Hendriks <elmuerte at users.sourceforge.net>
+
+-->
+<highlighters>
+  <highlighter type="nested-multiline-comment">
+    <start>(:</start>
+    <end>:)</end>
+  </highlighter>
+  <highlighter type="string">
+    <string>"</string>
+    <escape>\</escape>
+  </highlighter>
+  <highlighter type="string">
+    <string>'</string>
+    <escape>\</escape>
+  </highlighter>
+  <highlighter type="hexnumber">
+    <prefix>&amp;x</prefix>
+    <suffix>;</suffix>
+    <ignoreCase />
+  </highlighter>
+  <highlighter type="number">
+    <point>.</point>
+    <exponent>e</exponent>
+    <ignoreCase />
+  </highlighter>
+  <highlighter type="keywords">
+    <keyword>NaN</keyword>
+    <keyword>allowing</keyword>
+    <keyword>ancestor</keyword>
+    <keyword>ancestor-or-self</keyword>
+    <keyword>and</keyword>
+    <keyword>array</keyword>
+    <keyword>as</keyword>
+    <keyword>ascending</keyword>
+    <keyword>at</keyword>
+    <keyword>attribute</keyword>
+    <keyword>base-uri</keyword>
+    <keyword>boundary-space</keyword>
+    <keyword>by</keyword>
+    <keyword>case</keyword>
+    <keyword>cast</keyword>
+    <keyword>castable</keyword>
+    <keyword>catch</keyword>
+    <keyword>child</keyword>
+    <keyword>collation</keyword>
+    <keyword>comment</keyword>
+    <keyword>construction</keyword>
+    <keyword>context</keyword>
+    <keyword>copy-namespaces</keyword>
+    <keyword>count</keyword>
+    <keyword>decimal-format</keyword>
+    <keyword>decimal-separator</keyword>
+    <keyword>declare</keyword>
+    <keyword>default</keyword>
+    <keyword>descendant</keyword>
+    <keyword>descendant-or-self</keyword>
+    <keyword>descending</keyword>
+    <keyword>digit</keyword>
+    <keyword>div</keyword>
+    <keyword>document</keyword>
+    <keyword>document-node</keyword>
+    <keyword>element</keyword>
+    <keyword>else</keyword>
+    <keyword>empty</keyword>
+    <keyword>empty-sequence</keyword>
+    <keyword>encoding</keyword>
+    <keyword>end</keyword>
+    <keyword>eq</keyword>
+    <keyword>every</keyword>
+    <keyword>except</keyword>
+    <keyword>exponent-separator</keyword>
+    <keyword>external</keyword>
+    <keyword>empty-sequence</keyword>
+    <keyword>following</keyword>
+    <keyword>following-sibling</keyword>
+    <keyword>for</keyword>
+    <keyword>function</keyword>
+    <keyword>ge</keyword>
+    <keyword>greatest</keyword>
+    <keyword>group</keyword>
+    <keyword>grouping-separator</keyword>
+    <keyword>gt</keyword>
+    <keyword>idiv</keyword>
+    <keyword>if</keyword>
+    <keyword>import</keyword>
+    <keyword>in</keyword>
+    <keyword>infinity</keyword>
+    <keyword>inherit</keyword>
+    <keyword>instance</keyword>
+    <keyword>intersect</keyword>
+    <keyword>is</keyword>
+    <keyword>item</keyword>
+    <keyword>lax</keyword>
+    <keyword>le</keyword>
+    <keyword>least</keyword>
+    <keyword>let</keyword>
+    <keyword>lt</keyword>
+    <keyword>map</keyword>
+    <keyword>minus-sign</keyword>
+    <keyword>mod</keyword>
+    <keyword>module</keyword>
+    <keyword>namespace</keyword>
+    <keyword>namespace-node</keyword>
+    <keyword>ne</keyword>
+    <keyword>next</keyword>
+    <keyword>no-inherit</keyword>
+    <keyword>no-preserve</keyword>
+    <keyword>node</keyword>
+    <keyword>of</keyword>
+    <keyword>only</keyword>
+    <keyword>option</keyword>
+    <keyword>or</keyword>
+    <keyword>order</keyword>
+    <keyword>ordered</keyword>
+    <keyword>ordering</keyword>
+    <keyword>parent</keyword>
+    <keyword>pattern-separator</keyword>
+    <keyword>per-mille</keyword>
+    <keyword>percent</keyword>
+    <keyword>preceding</keyword>
+    <keyword>preceding-sibling</keyword>
+    <keyword>preserve</keyword>
+    <keyword>previous</keyword>
+    <keyword>processing-instruction</keyword>
+    <keyword>return</keyword>
+    <keyword>satisfies</keyword>
+    <keyword>schema</keyword>
+    <keyword>schema-attribute</keyword>
+    <keyword>schema-element</keyword>
+    <keyword>self</keyword>
+    <keyword>sliding</keyword>
+    <keyword>some</keyword>
+    <keyword>stable</keyword>
+    <keyword>start</keyword>
+    <keyword>strict</keyword>
+    <keyword>strip</keyword>
+    <keyword>switch</keyword>
+    <keyword>text</keyword>
+    <keyword>then</keyword>
+    <keyword>to</keyword>
+    <keyword>treat</keyword>
+    <keyword>try</keyword>
+    <keyword>tumbling</keyword>
+    <keyword>type</keyword>
+    <keyword>typeswitch</keyword>
+    <keyword>union</keyword>
+    <keyword>unordered</keyword>
+    <keyword>validate</keyword>
+    <keyword>variable</keyword>
+    <keyword>version</keyword>
+    <keyword>when</keyword>
+    <keyword>where</keyword>
+    <keyword>window</keyword>
+    <keyword>xquery</keyword>
+    <keyword>zero-digit</keyword>
+  </highlighter>
+  <highlighter type="keywords">
+    <!--<style>axis</style>-->
+    <keyword>child::</keyword>
+    <keyword>descendant::</keyword>
+    <keyword>attribute::</keyword>
+    <keyword>self::</keyword>
+    <keyword>descendant-or-self::</keyword>
+    <keyword>following-sibling::</keyword>
+    <keyword>folowing::</keyword>
+    <keyword>parent::</keyword>
+    <keyword>ancestor::</keyword>
+    <keyword>preceding::</keyword>
+    <keyword>preceding-sibling::</keyword>
+    <keyword>ancestor-or-self::</keyword>
+  </highlighter>
+  <!--<highlighter type="xml">
+  </highlighter>-->
+</highlighters>
