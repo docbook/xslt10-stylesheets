@@ -279,11 +279,19 @@ border: none; background: none; font-weight: none; color: none; }
 	<script type="text/javascript" src="{$webhelp.common.dir}browserDetect.js">
             <xsl:comment> </xsl:comment>
 	</script>
-        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-1.7.2.min.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-1.9.1.min.js">
             <xsl:comment> </xsl:comment>
         </script>
-        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery.ui.all.js">
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-migrate-1.4.1.min.js">
             <xsl:comment> </xsl:comment>
+        </script>
+        <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery-ui.min.js">
+            <xsl:comment> </xsl:comment>
+        </script>
+        <script>
+        jQuery.curCSS = function(element, prop, val) {
+          return jQuery(element).css(prop, val);
+          };
         </script>
         <script type="text/javascript" src="{$webhelp.common.dir}jquery/jquery.cookie.js">
             <xsl:comment> </xsl:comment>
