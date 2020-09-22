@@ -4,186 +4,249 @@
         english-language-name="Norwegian Bokmål"
         xmlns:doc="http://nwalsh.com/xsl/documentation/1.0">
 
-<!-- Earlier this was language code 'no' -->
+<!-- Earlier this was language code 'no', which was shared with the
+     'nn' language -->
 
 <!-- Sources for Norwegian quote rules: 
  http://www.sprakrad.no/Aktuelt-ord/Anforselstegn/
- http://www.sprakrad.no/nb-NO/Sprakhjelp/Skriveregler_og_grammatikk/Hermeteikn-bokmal-anforselstegn/
+ https://www.sprakradet.no/sprakhjelp/Skriveregler/tegn/Hermeteikn/
 -->
 
 <doc:localeinfo>
 <authorgroup>
-<!-- FIXME: list the real contributors 
-  <author><firstname>Hans Fredrik</firstname><surname>Nordhaug</surname>
-          <affiliation><address><email>hans@nordhaug.priv.no</email></address>
-          </affiliation>
+  <author>
+    <firstname>Hans Fredrik</firstname><surname>Nordhaug</surname>
+    <affiliation>
+      <address><email>hans@nordhaug.priv.no</email></address>
+    </affiliation>
   </author>
--->
-  <author><firstname>Petter</firstname><surname>Reinholdtsen</surname>
-          <affiliation><address><email>pere@hungry.com</email></address>
-          </affiliation>
+  <author>
+    <firstname>Michael</firstname><surname>Smith</surname>
+    <affiliation>
+      <address><email>xmldoc@users.sourceforge.net</email></address>
+    </affiliation>
+  </author>
+  <author>
+    <firstname>Bob</firstname><surname>Stayton</surname>
+    <affiliation>
+      <address><email>bobs@sagehill.net</email></address>
+    </affiliation>
+  </author>
+  <author>
+    <firstname>David</firstname><surname>Cramer</surname>
+    <affiliation>
+      <address><email>david@thingbag.net</email></address>
+    </affiliation>
+  </author>
+  <author>
+    <firstname>Rüdiger</firstname><surname>Landmann</surname>
+    <affiliation>
+      <address><email>r.landmann@redhat.com</email></address>
+    </affiliation>
+  </author>
+  <author>
+    <firstname>Petter</firstname><surname>Reinholdtsen</surname>
+    <affiliation>
+      <address><email>pere@hungry.com</email></address>
+    </affiliation>
   </author>
 </authorgroup>
 </doc:localeinfo>
 
 <gentext key="Abstract" text="Sammendrag"/>
 <gentext key="abstract" text="Sammendrag"/>
-<gentext key="Answer" text="Svar"/>
-<gentext key="answer" text="svar"/>
+<gentext key="Acknowledgements" text="Takk til"/>
+<gentext key="acknowledgements" text="takk til"/>
+<gentext key="Answer" text="Svar:"/>
+<gentext key="answer" text="svar:"/>
 <gentext key="Appendix" text="Tillegg"/>
-<gentext key="appendix" text="Tillegg"/>
+<gentext key="appendix" text="tillegg"/>
 <gentext key="Article" text="Artikkel"/>
 <gentext key="article" text="artikkel"/>
-<gentext key="Bibliography" text="Bibliografi"/>
-<gentext key="bibliography" text="Bibliografi"/>
+<gentext key="Author" text="Forfatter"/>
+<gentext key="Bibliography" text="Litteratur"/>
+<gentext key="bibliography" text="litteratur"/>
 <gentext key="Book" text="Bok"/>
 <gentext key="book" text="bok"/>
-<gentext key="CAUTION" text="OBS"/>
-<gentext key="Caution" text="Obs"/>
-<gentext key="caution" text="obs"/>
+<gentext key="CAUTION" text="VÆR OBS"/>
+<gentext key="Caution" text="Vær obs"/>
+<gentext key="caution" text="vær obs"/>
 <gentext key="Chapter" text="Kapittel"/>
-<gentext key="chapter" text="Kapittel"/>
+<gentext key="chapter" text="kapittel"/>
 <gentext key="Colophon" text="Kolofon"/>
 <gentext key="colophon" text="kolofon"/>
-<gentext key="Copyright" text="Opphavsrett"/>
-<gentext key="copyright" text="opphavsrett"/>
+<gentext key="Copyright" text=""/>
+<gentext key="copyright" text=""/>
 <gentext key="Dedication" text="Dedikasjon"/>
-<gentext key="dedication" text="Dedikasjon"/>
+<gentext key="dedication" text="dedikasjon"/>
+<gentext key="Dialogue" text="Dialog"/>
+<gentext key="dialogue" text="dialog"/>
+<gentext key="Drama" text="Drama"/>
+<gentext key="drama" text="drama"/>
 <gentext key="Edition" text="Utgave"/>
 <gentext key="edition" text="utgave"/>
-<gentext key="Equation" text="Formel"/>
-<gentext key="equation" text="Formel"/>
+<gentext key="Editor" text="Redaktør"/>
+<gentext key="Equation" text="Ligning"/>
+<gentext key="equation" text="ligning"/>
 <gentext key="Example" text="Eksempel"/>
-<gentext key="example" text="Eksempel"/>
+<gentext key="example" text="eksempel"/>
 <gentext key="Figure" text="Figur"/>
-<gentext key="figure" text="Figur"/>
+<gentext key="figure" text="figur"/>
 <gentext key="Glossary" text="Ordliste"/>
-<gentext key="glossary" text="Ordliste"/>
+<gentext key="glossary" text="ordliste"/>
 <gentext key="GlossSee" text="Se"/>
-<gentext key="glosssee" text="Se"/>
+<gentext key="glosssee" text="se"/>
 <gentext key="GlossSeeAlso" text="Se også"/>
 <gentext key="glossseealso" text="se også"/>
 <gentext key="IMPORTANT" text="VIKTIG"/>
-<gentext key="Important" text="Viktig"/>
 <gentext key="important" text="viktig"/>
+<gentext key="Important" text="Viktig"/>
 <gentext key="Index" text="Register"/>
 <gentext key="index" text="register"/>
 <gentext key="ISBN" text="ISBN"/>
 <gentext key="isbn" text="ISBN"/>
 <gentext key="LegalNotice" text="Rettslig merknad"/>
 <gentext key="legalnotice" text="rettslig merknad"/>
-<gentext key="MsgAud" text="Publikum"/>
-<gentext key="msgaud" text="Publikum"/>
+<gentext key="MsgAud" text="Målgruppe"/>
+<gentext key="msgaud" text="målgruppe"/>
 <gentext key="MsgLevel" text="Nivå"/>
-<gentext key="msglevel" text="Nivå"/>
-<gentext key="MsgOrig" text="Opphav"/>
-<gentext key="msgorig" text="Opphav"/>
-<gentext key="NOTE" text="NOTAT"/>
-<gentext key="Note" text="Notat"/>
-<gentext key="note" text="notat"/>
+<gentext key="msglevel" text="nivå"/>
+<gentext key="MsgOrig" text="Kilde"/>
+<gentext key="msgorig" text="kilde"/>
+<gentext key="NOTE" text="MERK"/>
+<gentext key="Note" text="Merk"/>
+<gentext key="note" text="merk"/>
 <gentext key="Part" text="Del"/>
 <gentext key="part" text="del"/>
+<gentext key="Poetry" text="Poesi"/>
+<gentext key="poetry" text="poesi"/>
 <gentext key="Preface" text="Forord"/>
 <gentext key="preface" text="forord"/>
 <gentext key="Procedure" text="Prosedyre"/>
 <gentext key="procedure" text="prosedyre"/>
 <gentext key="ProductionSet" text="Produksjon"/>
-<gentext key="Published" text="Publisert"/>
-<gentext key="published" text="publisert"/>
+<gentext key="PubDate" text="Utgivelsesdato"/>
+<gentext key="pubdate" text="Utgivelsesdato"/>
+<gentext key="Published" text="Utgitt"/>
+<gentext key="published" text="utgitt"/>
+<gentext key="Publisher" text="Utgiver"/>
 <gentext key="Qandadiv" text="Spørsmål og svar"/>
 <gentext key="qandadiv" text="spørsmål og svar"/>
-<gentext key="Question" text="Spørsmål"/>
-<gentext key="question" text="spørsmål"/>
+<gentext key="QandASet" text="Ofte stilte spørsmål"/>
+<gentext key="Question" text="Spørsmål:"/>
+<gentext key="question" text="spørsmål:"/>
 <gentext key="RefEntry" text=""/>
 <gentext key="refentry" text=""/>
 <gentext key="Reference" text="Referanse"/>
 <gentext key="reference" text="referanse"/>
+<gentext key="References" text="Referanser"/>
 <gentext key="RefName" text="Navn"/>
 <gentext key="refname" text="navn"/>
 <gentext key="RefSection" text=""/>
 <gentext key="refsection" text=""/>
-<gentext key="RefSynopsisDiv" text="Synopsis"/>
-<gentext key="refsynopsisdiv" text="Synopsis"/>
-<gentext key="RevHistory" text="Revisjonshistorie"/>
-<gentext key="revhistory" text="revisjonshistorie"/>
-<gentext key="Revision" text="Revisjon"/>
+<gentext key="RefSynopsisDiv" text="Oversikt"/>
+<gentext key="refsynopsisdiv" text="oversikt"/>
+<gentext key="RevHistory" text="Revisjoner"/>
+<gentext key="revhistory" text="revisjoner"/>
 <gentext key="revision" text="revisjon"/>
-<gentext key="sect1" text="Seksjon"/>
-<gentext key="sect2" text="Seksjon"/>
-<gentext key="sect3" text="Seksjon"/>
-<gentext key="sect4" text="Seksjon"/>
-<gentext key="sect5" text="Seksjon"/>
-<gentext key="Section" text="Seksjon"/>
-<gentext key="section" text="seksjon"/>
+<gentext key="Revision" text="Revisjon"/>
+<gentext key="sect1" text="avsnitt"/>
+<gentext key="sect2" text="avsnitt"/>
+<gentext key="sect3" text="avsnitt"/>
+<gentext key="sect4" text="avsnitt"/>
+<gentext key="sect5" text="avsnitt"/>
+<gentext key="section" text="avsnitt"/>
+<gentext key="Section" text="Avsnitt"/>
+<gentext key="see" text="se"/>             <!-- uncapitalized -->
 <gentext key="See" text="Se"/>
-<gentext key="see" text="Se"/>
-<gentext key="SeeAlso" text="Se også"/>
+<gentext key="seealso" text="se også"/>    <!-- uncapitalized -->
 <gentext key="Seealso" text="Se også"/>
-<gentext key="seealso" text="se også"/>
-<gentext key="Set" text="Sett"/>
-<gentext key="set" text="sett"/>
-<gentext key="SetIndex" text="Settindeks"/>
-<gentext key="setindex" text="settindeks"/>
-<gentext key="Sidebar" text=""/>
-<gentext key="sidebar" text=""/>
-<gentext key="Step" text="Steg"/>
+<gentext key="SeeAlso" text="Se også"/>
+<gentext key="set" text="serie"/>
+<gentext key="Set" text="Serie"/>
+<gentext key="setindex" text="serieregister"/>
+<gentext key="SetIndex" text="Serieregister"/>
+<gentext key="Sidebar" text="Sidespalte"/>
+<gentext key="sidebar" text="sidespalte"/>
 <gentext key="step" text="steg"/>
-<gentext key="Table" text="Tabell"/>
+<gentext key="Step" text="Steg"/>
 <gentext key="table" text="tabell"/>
+<gentext key="Table" text="Tabell"/>
+<gentext key="task" text="oppgave"/>
+<gentext key="Task" text="Oppgave"/>
+<gentext key="tip" text="tips"/>
 <gentext key="TIP" text="TIPS"/>
 <gentext key="Tip" text="Tips"/>
-<gentext key="tip" text="Tips"/>
-<gentext key="WARNING" text="ADVARSEL"/>
 <gentext key="Warning" text="Advarsel"/>
 <gentext key="warning" text="advarsel"/>
+<gentext key="WARNING" text="ADVARSEL"/>
 
 <gentext key="and" text="og"/>
 <gentext key="or" text="eller"/>
 <gentext key="by" text="av"/>
+<gentext key="optional-step" text="(Valgfri) "/>
 <gentext key="Edited" text="Redigert"/>
 <gentext key="edited" text="redigert"/>
 <gentext key="Editedby" text="Redigert av"/>
 <gentext key="editedby" text="redigert av"/>
 <gentext key="in" text="i"/>
-<gentext key="lastlistcomma" text=","/>
+<gentext key="In" text="I"/>
+<gentext key="lastlistcomma" text=""/>
 <gentext key="listcomma" text=","/>
-<gentext key="notes" text="Sluttnotater"/>
-<gentext key="Notes" text="sluttnotater"/>
+<gentext key="notes" text="merknader"/>
+<gentext key="Notes" text="Merknader"/>
 <gentext key="Pgs" text="Sider"/>
 <gentext key="pgs" text="sider"/>
-<gentext key="Revisedby" text="Gjennomgått av: "/>
-<gentext key="revisedby" text="gjennomgått av: "/>
-<gentext key="TableNotes" text="Notater"/>
-<gentext key="tablenotes" text="notater"/>
-<gentext key="TableofContents" text="Innholdsfortegnelse"/>
-<gentext key="tableofcontents" text="innholdsfortegnelse"/>
-<gentext key="unexpectedelementname" text="UVENTET-ELEMENTNAVN"/>
+<gentext key="Revisedby" text="Revidert av "/>
+<gentext key="revisedby" text="revidert av "/>
+<gentext key="TableNotes" text="Merknader"/>
+<gentext key="tablenotes" text="merknader"/>
+<gentext key="TableofContents" text="Innhold"/>
+<gentext key="tableofcontents" text="innhold"/>
+<gentext key="unexpectedelementname" text="Uventet elementnavn"/>
 <gentext key="unsupported" text="ikke støttet"/>
-<gentext key="xrefto" text="xref til"/>
+<gentext key="xrefto" text="kryssreferanse til"/>
+<gentext key="video-unsupported" text="Nettleseren din støtter ikke «video»-elementet"/>
+<gentext key="audio-unsupported" text="Nettleseren din støtter ikke «audio»-elementet"/>
 
-<gentext key="listofequations" text="Formeloversikt"/>
-<gentext key="ListofEquations" text="formeloversikt"/>
-<gentext key="ListofExamples" text="Eksempeloversikt"/>
-<gentext key="listofexamples" text="eksempeloversikt"/>
-<gentext key="ListofFigures" text="Figuroversikt"/>
-<gentext key="listoffigures" text="figuroversikt"/>
-<gentext key="listoftables" text="Tabelloversikt"/>
-<gentext key="ListofTables" text="tabelloversikt"/>
+<!-- * Sometimes we need to generate a plural "Authors" title; for example, -->
+<!-- * in a man page AUTHORS section which lists multiple authors -->
+<gentext key="Authors" text="Forfattere"/>
+
+<!-- * The following all correspond to enumerated values for the Class -->
+<!-- *  attribute on the Othercredit element -->
+<gentext key="copyeditor" text="Manuskriptredaktør"/>
+<gentext key="graphicdesigner" text="Grafisk utformer"/>
+<gentext key="productioneditor" text="Produksjonsredaktør"/>
+<gentext key="technicaleditor" text="Teknisk redaktør"/>
+<gentext key="translator" text="Oversetter"/>
+
+<gentext key="listofequations" text="ligninger"/>
+<gentext key="ListofEquations" text="Ligninger"/>
+<gentext key="ListofExamples" text="Eksempler"/>
+<gentext key="listofexamples" text="eksempler"/>
+<gentext key="ListofFigures" text="Figurer"/>
+<gentext key="listoffigures" text="figurer"/>
+<gentext key="ListofProcedures" text="Prosedyrer"/>
+<gentext key="listofprocedures" text="prosedyrer"/>
+<gentext key="listoftables" text="tabeller"/>
+<gentext key="ListofTables" text="Tabeller"/>
 <gentext key="ListofUnknown" text="???-oversikt"/>
 <gentext key="listofunknown" text="???-oversikt"/>
 
 <gentext key="nav-home" text="Hjem"/>
 <gentext key="nav-next" text="Neste"/>
-<gentext key="nav-next-sibling" text="Raskt fremover"/>
+<gentext key="nav-next-sibling" text="Neste på samme nivå"/>
 <gentext key="nav-prev" text="Forrige"/>
-<gentext key="nav-prev-sibling" text="Raskt bakover"/>
+<gentext key="nav-prev-sibling" text="Forrige på samme nivå"/>
 <gentext key="nav-up" text="Opp"/>
+<gentext key="nav-toc" text="Innhold"/>
 
-<gentext key="sectioncalled" text="Seksjonen kalt"/>
 <gentext key="Draft" text="Utkast"/>
 <gentext key="above" text="over"/>
 <gentext key="below" text="under"/>
-<gentext key="index symbols" text="Symboler"/>
+<gentext key="sectioncalled" text="avsnitt"/>
+<gentext key="index symbols" text="Symbol"/>
 <gentext key="writing-mode" text="lr-tb"/>
 
 <gentext key="lowercase.alpha" text="abcdefghijklmnopqrstuvwxyzæøå"/>
@@ -191,14 +254,54 @@
 
 <dingbat key="startquote" text="«"/>
 <dingbat key="endquote" text="»"/>
-<dingbat key="nestedstartquote" text="“"/>
-<dingbat key="nestedendquote" text="”"/>
+<dingbat key="nestedstartquote" text="‘"/>
+<dingbat key="nestedendquote" text="’"/>
 <dingbat key="singlestartquote" text="‘"/>
 <dingbat key="singleendquote" text="’"/>
-<dingbat key="bullet" text="•"/>
-<gentext key="hyphenation-character" text="-" lang="en"/>
+<dingbat key="bullet" text="–"/>
+<gentext key="hyphenation-character" text="-"/>
 <gentext key="hyphenation-push-character-count" text="2" lang="en"/>
 <gentext key="hyphenation-remain-character-count" text="2" lang="en"/>
+
+<context name="keycap">
+  <template name="alt">Alt</template>
+  <template name="backspace">&#x232b;</template><!-- mdash -->
+  <template name="command">&#x2318;</template><!-- Apple key -->
+  <template name="control">Ctrl</template>
+  <template name="delete">Delete</template>
+  <template name="down">&#x2193;</template><!-- darr -->
+  <template name="end">End</template>
+  <template name="enter">Enter</template>
+  <template name="escape">Esc</template>
+  <template name="home">Home</template>
+  <template name="insert">Ins</template>
+  <template name="left">&#x2190;</template><!-- larr -->
+  <template name="meta">Meta</template>
+  <template name="option">&#x2325;</template><!-- on Apple keyboards -->
+  <template name="pagedown">Page Down</template>
+  <template name="pageup">Page Up</template>
+  <template name="right">&#x2192;</template><!-- rarr -->
+  <template name="shift">Shift</template>
+  <template name="space">Mellomrom</template>
+  <template name="tab">&#x2b7e;</template>
+  <template name="up">&#x02191;</template><!-- uarr -->
+</context>
+
+<!-- WebHelp -->
+<context name="webhelp">
+  <template name="Search">Søk</template>
+  <template name="Enter_a_term_and_click">Skriv inn søketekst og trykk </template>
+  <template name="Go">søk</template>
+  <template name="to_perform_a_search"> for å søke.</template>
+  <template name="txt_filesfound">Resultat</template>
+  <template name="txt_enter_at_least_1_char">Du må skrive inn minst ett tegn.</template>
+  <template name="txt_browser_not_supported">JavaScript er slått av i nettleseren. Slå på JavaScript for å få tilgang til alle funksjonene på nettstedet.</template>
+  <template name="txt_please_wait">Søker. Vent litt …</template>
+  <template name="txt_results_for">Result for: </template>
+  <template name="TableofContents">Innhold</template>
+  <template name="HighlightButton">Slå på/av markering av søkjetreff</template>
+  <template name="Your_search_returned_no_results">Søket ga ingen treff.</template>
+</context>
 
 <context name="styles">
 
@@ -209,13 +312,15 @@
 <context name="title">
 
 <template name="abstract">%t</template>
+<template name="acknowledgements">%t</template>
 <template name="answer">%t</template>
-<template name="appendix"><Appendix/> %n. %t</template>
+<template name="appendix"><Appendix/>&#160;%n:&#160;%t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
 <template name="bibliodiv">%t</template>
 <template name="biblioentry">%t</template>
 <template name="bibliography">%t</template>
+<template name="bibliolist">%t</template>
 <template name="bibliomixed">%t</template>
 <template name="bibliomset">%t</template>
 <template name="biblioset">%t</template>
@@ -223,15 +328,19 @@
 <template name="book">%t</template>
 <template name="calloutlist">%t</template>
 <template name="caution">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
+<template name="chapter"><Chapter/>&#160;%n:&#160;%t</template>
 <template name="colophon">%t</template>
 <template name="dedication">%t</template>
-<template name="equation"><Equation/> %n. %t</template>
-<template name="example"><Example/> %n. %t</template>
-<template name="figure"><Figure/> %n. %t</template>
+<template name="equation"><Equation/>&#160;%n:&#160;%t</template>
+<template name="example"><Example/>&#160;%n:&#160;%t</template>
+<template name="figure"><Figure/>&#160;%n:&#160;%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template>  <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
+<template name="glosslist">%t</template>
+<template name="glossentry">%t</template>
 <template name="important">%t</template>
 <template name="index">%t</template>
 <template name="indexdiv">%t</template>
@@ -247,11 +356,11 @@
 <template name="msgsub">%t</template>
 <template name="note">%t</template>
 <template name="orderedlist">%t</template>
-<template name="part"><Part/> %n. %t</template>
+<template name="part"><Part/>&#160;%n:&#160;%t</template>
 <template name="partintro">%t</template>
 <template name="preface">%t</template>
 <template name="procedure">%t</template>
-<template name="procedure.formal"><Procedure/>&#160;%n.&#160;%t</template>
+<template name="procedure.formal"><Procedure/>&#160;%n:&#160;%t</template>
 <template name="productionset">%t</template>
 <template name="productionset.formal"><ProductionSet/>&#160;%n</template>
 <template name="qandadiv">%t</template>
@@ -266,15 +375,21 @@
 <template name="refsect3">%t</template>
 <template name="refsynopsisdiv">%t</template>
 <template name="refsynopsisdivinfo">%t</template>
+<template name="screenshot">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="step">%t</template>
-<template name="table"><Table/> %n. %t</template>
+<template name="table"><Table/>&#160;%n:&#160;%t</template>
+<template name="task">%t</template>
+<template name="tasksummary">%t</template>
+<template name="taskprerequisites">%t</template>
+<template name="taskrelated">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
+<template name="varlistentry"/>
 <template name="warning">%t</template>
 
 </context>
@@ -282,6 +397,7 @@
 <context name="title-unnumbered">
 
 <template name="appendix">%t</template>
+<template name="article/appendix">%t</template>
 <template name="bridgehead">%t</template>
 <template name="chapter">%t</template>
 <template name="sect1">%t</template>
@@ -291,28 +407,36 @@
 <template name="sect5">%t</template>
 <template name="section">%t</template>
 <template name="simplesect">%t</template>
+<template name="topic">%t</template>
+<template name="part">%t</template>
+<template name="dialogue">%t</template>
+<template name="drama">%t</template>
+<template name="poetry">%t</template>
 
 </context>
 
 <context name="title-numbered">
 
-<template name="appendix"><Appendix/> %n. %t</template>
-<template name="bridgehead">%t</template>
-<template name="chapter"><Chapter/> %n. %t</template>
-<template name="part"><Part/>&#160;%n.&#160;%t</template>
-<template name="sect1">%n. %t</template>
-<template name="sect2">%n. %t</template>
-<template name="sect3">%n. %t</template>
-<template name="sect4">%n. %t</template>
-<template name="sect5">%n. %t</template>
-<template name="section">%n. %t</template>
-<template name="simplesect">%n. %t</template>
+<template name="appendix"><Appendix/>&#160;%n:&#160;%t</template>
+<template name="article/appendix">%n:&#160;%t</template>
+<template name="bridgehead">%n:&#160;%t</template>
+<template name="chapter"><Chapter/>&#160;%n:&#160;%t</template>
+<template name="part"><Part/>&#160;%n:&#160;%t</template>
+<template name="sect1">%n&#160;%t</template>
+<template name="sect2">%n&#160;%t</template>
+<template name="sect3">%n&#160;%t</template>
+<template name="sect4">%n&#160;%t</template>
+<template name="sect5">%n&#160;%t</template>
+<template name="section">%n&#160;%t</template>
+<template name="simplesect">%t</template>
+<template name="topic">%t</template>
 
 </context>
 
 <context name="subtitle">
 
 <template name="appendix">%s</template>
+<template name="acknowledgements">%s</template>
 <template name="article">%s</template>
 <template name="bibliodiv">%s</template>
 <template name="biblioentry">%s</template>
@@ -349,12 +473,17 @@
 <template name="setindex">%s</template>
 <template name="sidebar">%s</template>
 <template name="simplesect">%s</template>
+<template name="topic">%t</template>
 <template name="toc">%s</template>
+<template name="dialogue">%s</template>
+<template name="drama">%s</template>
+<template name="poetry">%s</template>
 
 </context>
 
 <context name="xref">
 <template name="abstract">%t</template>
+<template name="acknowledgements">%t</template>
 <template name="answer"><Answer/>&#160;%n</template>
 <template name="appendix">%t</template>
 <template name="article">%t</template>
@@ -374,6 +503,8 @@
 <template name="equation">%t</template>
 <template name="example">%t</template>
 <template name="figure">%t</template>
+<template name="foil">%t</template>	<!-- For Slides document type -->
+<template name="foilgroup">%t</template> <!-- For Slides document type -->
 <template name="formalpara">%t</template>
 <template name="glossary">%t</template>
 <template name="glossdiv">%t</template>
@@ -403,82 +534,95 @@
 <template name="question"><Question/>&#160;%n</template>
 <template name="reference">%t</template>
 <template name="refsynopsisdiv">%t</template>
+<template name="screenshot">%t</template>
 <template name="segmentedlist">%t</template>
 <template name="set">%t</template>
 <template name="setindex">%t</template>
 <template name="sidebar">%t</template>
 <template name="table">%t</template>
+<template name="task">%t</template>
 <template name="tip">%t</template>
 <template name="toc">%t</template>
 <template name="variablelist">%t</template>
 <template name="varlistentry">%n</template>
 <template name="warning">%t</template>
+<template name="olink.document.citation"> i %o</template>
+<template name="olink.page.citation"> (side %p)</template>
 <template name="page.citation"> [%p]</template>
+<template name="page">(side %p)</template>
+<template name="docname"> i %o</template>
+<template name="docnamelong"> i dokumentet %o</template>
+<template name="pageabbrev">(s.&#160;%p)</template>
+<template name="Page">Side&#160;%p</template>
+<template name="topic">%t</template>
+<template name="dialogue">%t</template>
+<template name="drama">%t</template>
+<template name="poetry">%t</template>
 
-<template name="bridgehead"><startquote/>%t<endquote/></template>
-<template name="refsection"><startquote/>%t<endquote/></template>
-<template name="refsect1"><startquote/>%t<endquote/></template>
-<template name="refsect2"><startquote/>%t<endquote/></template>
-<template name="refsect3"><startquote/>%t<endquote/></template>
-<template name="sect1"><startquote/>%t<endquote/></template>
-<template name="sect2"><startquote/>%t<endquote/></template>
-<template name="sect3"><startquote/>%t<endquote/></template>
-<template name="sect4"><startquote/>%t<endquote/></template>
-<template name="sect5"><startquote/>%t<endquote/></template>
-<template name="section"><startquote/>%t<endquote/></template>
-<template name="simplesect"><startquote/>%t<endquote/></template>
+<template name="bridgehead"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect1"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect2"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="refsect3"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect1"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect2"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect3"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect4"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="sect5"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="section"><sectioncalled/> <startquote/>%t<endquote/></template>
+<template name="simplesect"><sectioncalled/> <startquote/>%t<endquote/></template>
 
 </context>
 
 <context name="xref-number">
 
-<template name="answer"><Answer/>&#160;%n</template>
-<template name="appendix"><Appendix/>&#160;%n</template>
-<template name="bridgehead"><Section/>&#160;%n</template>
-<template name="chapter"><Chapter/>&#160;%n</template>
-<template name="equation"><Equation/>&#160;%n</template>
-<template name="example"><Example/>&#160;%n</template>
-<template name="figure"><Figure/>&#160;%n</template>
-<template name="part"><Part/>&#160;%n</template>
-<template name="procedure"><Procedure/>&#160;%n</template>
+<template name="answer"><answer/>&#160;%n</template>
+<template name="appendix"><appendix/>&#160;%n</template>
+<template name="bridgehead"><section/>&#160;%n</template>
+<template name="chapter"><chapter/>&#160;%n</template>
+<template name="equation"><equation/>&#160;%n</template>
+<template name="example"><example/>&#160;%n</template>
+<template name="figure"><figure/>&#160;%n</template>
+<template name="part"><part/>&#160;%n</template>
+<template name="procedure"><procedure/>&#160;%n</template>
 <template name="productionset"><ProductionSet/>&#160;%n</template>
-<template name="qandadiv"><Qandadiv/>&#160;%n</template>
-<template name="qandaentry"><Question/>&#160;%n</template>
-<template name="question"><Question/>&#160;%n</template>
-<template name="sect1"><Section/>&#160;%n</template>
-<template name="sect2"><Section/>&#160;%n</template>
-<template name="sect3"><Section/>&#160;%n</template>
-<template name="sect4"><Section/>&#160;%n</template>
-<template name="sect5"><Section/>&#160;%n</template>
-<template name="section"><Section/>&#160;%n</template>
-<template name="table"><Table/>&#160;%n</template>
+<template name="qandadiv"><qandadiv/>&#160;%n</template>
+<template name="qandaentry"><question/>&#160;%n</template>
+<template name="question"><question/>&#160;%n</template>
+<template name="sect1"><section/>&#160;%n</template>
+<template name="sect2"><section/>&#160;%n</template>
+<template name="sect3"><section/>&#160;%n</template>
+<template name="sect4"><section/>&#160;%n</template>
+<template name="sect5"><section/>&#160;%n</template>
+<template name="section"><section/>&#160;%n</template>
+<template name="table"><table/>&#160;%n</template>
 
 </context>
 
 <context name="xref-number-and-title">
 
-<template name="appendix"><Appendix/>&#160;%n, %t</template>
-<template name="bridgehead"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="chapter"><Chapter/>&#160;%n, %t</template>
-<template name="equation"><Equation/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="example"><Example/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="figure"><Figure/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="part"><Part/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="procedure"><Procedure/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="appendix"><appendix/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="bridgehead"><section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="chapter"><chapter/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="equation"><equation/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="example"><example/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="figure"><figure/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="part"><part/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="procedure"><procedure/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="productionset"><ProductionSet/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="qandadiv"><Qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="qandadiv"><qandadiv/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="refsect1"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsect2"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsect3"><sectioncalled/> <startquote/>%t<endquote/></template>
 <template name="refsection"><sectioncalled/> <startquote/>%t<endquote/></template>
-<template name="sect1"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect2"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect3"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect4"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="sect5"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
-<template name="section"><Section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect1"><section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect2"><section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect3"><section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect4"><section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="sect5"><section/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="section"><section/>&#160;%n, <startquote/>%t<endquote/></template>
 <template name="simplesect"><sectioncalled/> <startquote/>%t<endquote/></template>
-<template name="table"><Table/>&#160;%n, <startquote/>%t<endquote/></template>
+<template name="table"><table/>&#160;%n, <startquote/>%t<endquote/></template>
 
 </context>
 
@@ -489,8 +633,8 @@
 </context>
 
 <context name="glossary">
-<template name="see"><GlossSee/> %t.</template>
-<template name="seealso"><GlossSeeAlso/> %t.</template>
+<template name="see"><GlossSee/> <startquote/>%t<endquote/>.</template>
+<template name="seealso"><GlossSeeAlso/> <startquote/>%t<endquote/>.</template>
 <template name="seealso-separator">, </template>
 </context>
 
@@ -500,8 +644,790 @@
 <template name="MsgOrig"><MsgOrig/>: </template>
 </context>
 
+<context name="datetime">
+<template name="format">Y-m-d</template>
+</context>
+
+<context name="termdef">
+<template name="prefix">[Definisjon: </template>
+<template name="suffix">]</template>
+</context>
+
+<context name="datetime-full">
+<template name="January">Januar</template>
+<template name="February">Februar</template>
+<template name="March">Mars</template>
+<template name="April">April</template>
+<template name="May">Mai</template>
+<template name="June">Juni</template>
+<template name="July">Juli</template>
+<template name="August">August</template>
+<template name="September">September</template>
+<template name="October">Oktober</template>
+<template name="November">November</template>
+<template name="December">Desember</template>
+<template name="Monday">Mandag</template>
+<template name="Tuesday">Tirsdag</template>
+<template name="Wednesday">Onsdag</template>
+<template name="Thursday">Torsdag</template>
+<template name="Friday">Fredag</template>
+<template name="Saturday">Lørdag</template>
+<template name="Sunday">Søndag</template>
+</context>
+
+<context name="datetime-abbrev">
+<template name="Jan">Jan</template>
+<template name="Feb">Feb</template>
+<template name="Mar">Mar</template>
+<template name="Apr">Apr</template>
+<template name="May">Mai</template>
+<template name="Jun">Jun</template>
+<template name="Jul">Jul</template>
+<template name="Aug">Aug</template>
+<template name="Sep">Sep</template>
+<template name="Oct">Okt</template>
+<template name="Nov">Nov</template>
+<template name="Dec">Des</template>
+<template name="Mon">Man</template>
+<template name="Tue">Tir</template>
+<template name="Wed">Ons</template>
+<template name="Thu">Tor</template>
+<template name="Fri">Fre</template>
+<template name="Sat">Lør</template>
+<template name="Sun">Søn</template>
+</context>
+
 <context name="htmlhelp">
 <template name="langcode">0x0414 Norwegian Bokmål</template>
 </context>
+
+
+<context name="index">
+<template name="term-separator">, </template>
+<template name="number-separator">, </template>
+<template name="range-separator">–</template>
+</context>
+
+<context name="iso690">
+  <!-- Primary responsibility -->
+  <!-- HORÁK, F., URBÁNKOVÁ, E. a WIŽĎÁLKOVÁ, B. -->
+  <template name="lastfirst.sep">, </template> <!-- separator between firstname and surname -->
+  <template name="alt.person.two.sep"> &#x2013; </template><!-- separator between two authors - replacement of " and " (if lang="en") -->
+  <template name="alt.person.last.sep"> &#x2013; </template> <!-- separator between last two authors - replacement of ", and " (if lang="en") -->
+  <template name="alt.person.more.sep"> &#x2013; </template> <!-- separator between not last two authors - replacement of ", " (if lang="en") -->
+  <template name="primary.editor">&#160;(red.)</template> <!-- primary responsibility has/have editor/editors; printed after last editor -->
+  <template name="primary.many">, med flere</template> <!-- for more than three authors or some authors and collective; printer will be first $biblioentry.primary.count authors and this -->
+  <template name="primary.sep">. </template> <!-- end -->
+  
+  <!-- Title -->
+  <!-- Cyclotron waves in plasma. -->
+  <template name="submaintitle.sep">: </template> <!-- separator between title and subtitle -->
+  <template name="title.sep">. </template> <!-- end -->
+  <template name="othertitle.sep">, </template> <!-- end of title of serial, when citing article -->
+  
+  <!-- Type of medium -->
+  <!-- Alice's Adventures in Wonderland [online]. -->
+  <template name="medium1"> [</template>
+  <template name="medium2">]</template>
+  
+  <!-- Subordinate responsibility -->
+  <!-- Translated by AN. Dellis; edited by SM. Hamberger. -->
+  <template name="secondary.person.sep">; </template> <!-- separator between more subordinate responsibilities -->
+  <template name="secondary.sep">. </template> <!-- end -->
+  
+  <!-- Responsibility (Serial) -->
+  <!-- Manufacturing and Primary Industries Division, Statistics Canada. -->
+  <template name="respons.sep">. </template> <!-- end -->
+  
+  <!-- Edition -->
+  <template name="edition.sep">. </template> <!-- end -->
+  <template name="edition.serial.sep">, </template> <!-- end after serial, when followed by issue designation -->
+  
+  <!-- Issue designation (date and/or n°) -->
+  <template name="issuing.range">–</template> <!-- range -->
+  <template name="issuing.div">, </template> <!-- separator of values -->
+  <template name="issuing.sep">. </template> <!-- end -->
+  
+  <!-- Numeration of the part -->
+  <template name="partnr.sep">. </template> <!-- end -->
+  
+  <!-- Place of publication, Publisher, Year/Date of publication -->
+  <template name="placepubl.sep">: </template> <!-- between place and publisher -->
+  <template name="publyear.sep">, </template> <!-- between publisher and year/date -->
+  <template name="pubinfo.sep">. </template> <!-- end -->
+  <template name="spec.pubinfo.sep">, </template> <!-- end of contribution in monograph -->
+  
+  <!-- Date of update/revision -->
+  <template name="upd.sep">, </template> <!-- BEFORE date of update/revision -->
+  
+  <!-- Date of citation -->
+  <!-- [cit. 1.1.2000] -->
+  <template name="datecit1"> [sitert </template>
+  <template name="datecit2">]</template>
+  
+  <!-- Extent -->
+  <template name="extent.sep">. </template>
+  
+  <!-- Location within host -->
+  <template name="locs.sep">, </template> <!-- separator of volumes, numbers, pages etc. -->
+  <template name="location.sep">. </template>
+  
+  <!-- Series -->
+  <template name="serie.sep">. </template>
+  
+  <!-- Notes -->
+  <template name="notice.sep">. </template>
+  
+  <!-- Avaibility and access -->
+  <!-- Available from World Wide Web: <http://www.collectionscanada.ca/iso/tc46sc9/standard/690-2e.htm> -->
+  <template name="access">Tilgjengelig </template>
+  <template name="acctoo">Også tilgjengelig </template>
+  <template name="onwww">på verdensveven</template>
+  <template name="oninet">på Internett</template>
+  <template name="access.end">: </template>
+  <template name="link1">&lt;</template> <!-- < before link -->
+  <template name="link2">&gt;</template> <!-- > after link -->
+  <template name="access.sep">. </template>
+  
+  <!-- Standard number -->
+  <!-- ISBN 80-90-10-30 -->
+  <template name="isbn">ISBN </template>
+  <template name="issn">ISSN </template>
+  <template name="stdnum.sep">. </template> <!-- end -->
+  
+  <!-- Identification of patent document -->
+  <template name="patcountry.sep">. </template> <!-- after country or issuing office -->
+  <template name="pattype.sep">, </template> <!-- after kind of patent document -->
+  <template name="patnum.sep">. </template> <!-- after number -->
+  <template name="patdate.sep">. </template> <!-- after date of publication -->
+</context>
+  
+<letters>
+  <l i="-1"/>
+  <l i="0">Symbols</l>
+  <l i="10">A</l>
+  <l i="10">a</l>
+  <l i="10">À</l>
+  <l i="10">à</l>
+  <l i="10">Á</l>
+  <l i="10">á</l>
+  <l i="10">Â</l>
+  <l i="10">â</l>
+  <l i="10">Ã</l>
+  <l i="10">ã</l>
+  <l i="10">Ā</l>
+  <l i="10">ā</l>
+  <l i="10">Ă</l>
+  <l i="10">ă</l>
+  <l i="10">Ą</l>
+  <l i="10">ą</l>
+  <l i="10">Ǎ</l>
+  <l i="10">ǎ</l>
+  <l i="10">Ǟ</l>
+  <l i="10">ǟ</l>
+  <l i="10">Ǡ</l>
+  <l i="10">ǡ</l>
+  <l i="10">Ǻ</l>
+  <l i="10">ǻ</l>
+  <l i="10">Ȁ</l>
+  <l i="10">ȁ</l>
+  <l i="10">Ȃ</l>
+  <l i="10">ȃ</l>
+  <l i="10">Ȧ</l>
+  <l i="10">ȧ</l>
+  <l i="10">Ḁ</l>
+  <l i="10">ḁ</l>
+  <l i="10">ẚ</l>
+  <l i="10">Ạ</l>
+  <l i="10">ạ</l>
+  <l i="10">Ả</l>
+  <l i="10">ả</l>
+  <l i="10">Ấ</l>
+  <l i="10">ấ</l>
+  <l i="10">Ầ</l>
+  <l i="10">ầ</l>
+  <l i="10">Ẩ</l>
+  <l i="10">ẩ</l>
+  <l i="10">Ẫ</l>
+  <l i="10">ẫ</l>
+  <l i="10">Ậ</l>
+  <l i="10">ậ</l>
+  <l i="10">Ắ</l>
+  <l i="10">ắ</l>
+  <l i="10">Ằ</l>
+  <l i="10">ằ</l>
+  <l i="10">Ẳ</l>
+  <l i="10">ẳ</l>
+  <l i="10">Ẵ</l>
+  <l i="10">ẵ</l>
+  <l i="10">Ặ</l>
+  <l i="10">ặ</l>
+  <l i="20">B</l>
+  <l i="20">b</l>
+  <l i="20">ƀ</l>
+  <l i="20">Ɓ</l>
+  <l i="20">ɓ</l>
+  <l i="20">Ƃ</l>
+  <l i="20">ƃ</l>
+  <l i="20">Ḃ</l>
+  <l i="20">ḃ</l>
+  <l i="20">Ḅ</l>
+  <l i="20">ḅ</l>
+  <l i="20">Ḇ</l>
+  <l i="20">ḇ</l>
+  <l i="30">C</l>
+  <l i="30">c</l>
+  <l i="30">Ç</l>
+  <l i="30">ç</l>
+  <l i="30">Ć</l>
+  <l i="30">ć</l>
+  <l i="30">Ĉ</l>
+  <l i="30">ĉ</l>
+  <l i="30">Ċ</l>
+  <l i="30">ċ</l>
+  <l i="30">Č</l>
+  <l i="30">č</l>
+  <l i="30">Ƈ</l>
+  <l i="30">ƈ</l>
+  <l i="30">ɕ</l>
+  <l i="30">Ḉ</l>
+  <l i="30">ḉ</l>
+  <l i="40">D</l>
+  <l i="40">d</l>
+  <l i="40">Ď</l>
+  <l i="40">ď</l>
+  <l i="40">Đ</l>
+  <l i="40">đ</l>
+  <l i="40">Ɗ</l>
+  <l i="40">ɗ</l>
+  <l i="40">Ƌ</l>
+  <l i="40">ƌ</l>
+  <l i="40">ǅ</l>
+  <l i="40">ǲ</l>
+  <l i="40">ȡ</l>
+  <l i="40">ɖ</l>
+  <l i="40">Ḋ</l>
+  <l i="40">ḋ</l>
+  <l i="40">Ḍ</l>
+  <l i="40">ḍ</l>
+  <l i="40">Ḏ</l>
+  <l i="40">ḏ</l>
+  <l i="40">Ḑ</l>
+  <l i="40">ḑ</l>
+  <l i="40">Ḓ</l>
+  <l i="40">ḓ</l>
+  <l i="50">E</l>
+  <l i="50">e</l>
+  <l i="50">È</l>
+  <l i="50">è</l>
+  <l i="50">É</l>
+  <l i="50">é</l>
+  <l i="50">Ê</l>
+  <l i="50">ê</l>
+  <l i="50">Ë</l>
+  <l i="50">ë</l>
+  <l i="50">Ē</l>
+  <l i="50">ē</l>
+  <l i="50">Ĕ</l>
+  <l i="50">ĕ</l>
+  <l i="50">Ė</l>
+  <l i="50">ė</l>
+  <l i="50">Ę</l>
+  <l i="50">ę</l>
+  <l i="50">Ě</l>
+  <l i="50">ě</l>
+  <l i="50">Ȅ</l>
+  <l i="50">ȅ</l>
+  <l i="50">Ȇ</l>
+  <l i="50">ȇ</l>
+  <l i="50">Ȩ</l>
+  <l i="50">ȩ</l>
+  <l i="50">Ḕ</l>
+  <l i="50">ḕ</l>
+  <l i="50">Ḗ</l>
+  <l i="50">ḗ</l>
+  <l i="50">Ḙ</l>
+  <l i="50">ḙ</l>
+  <l i="50">Ḛ</l>
+  <l i="50">ḛ</l>
+  <l i="50">Ḝ</l>
+  <l i="50">ḝ</l>
+  <l i="50">Ẹ</l>
+  <l i="50">ẹ</l>
+  <l i="50">Ẻ</l>
+  <l i="50">ẻ</l>
+  <l i="50">Ẽ</l>
+  <l i="50">ẽ</l>
+  <l i="50">Ế</l>
+  <l i="50">ế</l>
+  <l i="50">Ề</l>
+  <l i="50">ề</l>
+  <l i="50">Ể</l>
+  <l i="50">ể</l>
+  <l i="50">Ễ</l>
+  <l i="50">ễ</l>
+  <l i="50">Ệ</l>
+  <l i="50">ệ</l>
+  <l i="60">F</l>
+  <l i="60">f</l>
+  <l i="60">Ƒ</l>
+  <l i="60">ƒ</l>
+  <l i="60">Ḟ</l>
+  <l i="60">ḟ</l>
+  <l i="70">G</l>
+  <l i="70">g</l>
+  <l i="70">Ĝ</l>
+  <l i="70">ĝ</l>
+  <l i="70">Ğ</l>
+  <l i="70">ğ</l>
+  <l i="70">Ġ</l>
+  <l i="70">ġ</l>
+  <l i="70">Ģ</l>
+  <l i="70">ģ</l>
+  <l i="70">Ɠ</l>
+  <l i="70">ɠ</l>
+  <l i="70">Ǥ</l>
+  <l i="70">ǥ</l>
+  <l i="70">Ǧ</l>
+  <l i="70">ǧ</l>
+  <l i="70">Ǵ</l>
+  <l i="70">ǵ</l>
+  <l i="70">Ḡ</l>
+  <l i="70">ḡ</l>
+  <l i="80">H</l>
+  <l i="80">h</l>
+  <l i="80">Ĥ</l>
+  <l i="80">ĥ</l>
+  <l i="80">Ħ</l>
+  <l i="80">ħ</l>
+  <l i="80">Ȟ</l>
+  <l i="80">ȟ</l>
+  <l i="80">ɦ</l>
+  <l i="80">Ḣ</l>
+  <l i="80">ḣ</l>
+  <l i="80">Ḥ</l>
+  <l i="80">ḥ</l>
+  <l i="80">Ḧ</l>
+  <l i="80">ḧ</l>
+  <l i="80">Ḩ</l>
+  <l i="80">ḩ</l>
+  <l i="80">Ḫ</l>
+  <l i="80">ḫ</l>
+  <l i="80">ẖ</l>
+  <l i="90">I</l>
+  <l i="90">i</l>
+  <l i="90">Ì</l>
+  <l i="90">ì</l>
+  <l i="90">Í</l>
+  <l i="90">í</l>
+  <l i="90">Î</l>
+  <l i="90">î</l>
+  <l i="90">Ï</l>
+  <l i="90">ï</l>
+  <l i="90">Ĩ</l>
+  <l i="90">ĩ</l>
+  <l i="90">Ī</l>
+  <l i="90">ī</l>
+  <l i="90">Ĭ</l>
+  <l i="90">ĭ</l>
+  <l i="90">Į</l>
+  <l i="90">į</l>
+  <l i="90">İ</l>
+  <l i="90">Ɨ</l>
+  <l i="90">ɨ</l>
+  <l i="90">Ǐ</l>
+  <l i="90">ǐ</l>
+  <l i="90">Ȉ</l>
+  <l i="90">ȉ</l>
+  <l i="90">Ȋ</l>
+  <l i="90">ȋ</l>
+  <l i="90">Ḭ</l>
+  <l i="90">ḭ</l>
+  <l i="90">Ḯ</l>
+  <l i="90">ḯ</l>
+  <l i="90">Ỉ</l>
+  <l i="90">ỉ</l>
+  <l i="90">Ị</l>
+  <l i="90">ị</l>
+  <l i="100">J</l>
+  <l i="100">j</l>
+  <l i="100">Ĵ</l>
+  <l i="100">ĵ</l>
+  <l i="100">ǰ</l>
+  <l i="100">ʝ</l>
+  <l i="110">K</l>
+  <l i="110">k</l>
+  <l i="110">Ķ</l>
+  <l i="110">ķ</l>
+  <l i="110">Ƙ</l>
+  <l i="110">ƙ</l>
+  <l i="110">Ǩ</l>
+  <l i="110">ǩ</l>
+  <l i="110">Ḱ</l>
+  <l i="110">ḱ</l>
+  <l i="110">Ḳ</l>
+  <l i="110">ḳ</l>
+  <l i="110">Ḵ</l>
+  <l i="110">ḵ</l>
+  <l i="120">L</l>
+  <l i="120">l</l>
+  <l i="120">Ĺ</l>
+  <l i="120">ĺ</l>
+  <l i="120">Ļ</l>
+  <l i="120">ļ</l>
+  <l i="120">Ľ</l>
+  <l i="120">ľ</l>
+  <l i="120">Ŀ</l>
+  <l i="120">ŀ</l>
+  <l i="120">Ł</l>
+  <l i="120">ł</l>
+  <l i="120">ƚ</l>
+  <l i="120">ǈ</l>
+  <l i="120">ȴ</l>
+  <l i="120">ɫ</l>
+  <l i="120">ɬ</l>
+  <l i="120">ɭ</l>
+  <l i="120">Ḷ</l>
+  <l i="120">ḷ</l>
+  <l i="120">Ḹ</l>
+  <l i="120">ḹ</l>
+  <l i="120">Ḻ</l>
+  <l i="120">ḻ</l>
+  <l i="120">Ḽ</l>
+  <l i="120">ḽ</l>
+  <l i="130">M</l>
+  <l i="130">m</l>
+  <l i="130">ɱ</l>
+  <l i="130">Ḿ</l>
+  <l i="130">ḿ</l>
+  <l i="130">Ṁ</l>
+  <l i="130">ṁ</l>
+  <l i="130">Ṃ</l>
+  <l i="130">ṃ</l>
+  <l i="140">N</l>
+  <l i="140">n</l>
+  <l i="140">Ñ</l>
+  <l i="140">ñ</l>
+  <l i="140">Ń</l>
+  <l i="140">ń</l>
+  <l i="140">Ņ</l>
+  <l i="140">ņ</l>
+  <l i="140">Ň</l>
+  <l i="140">ň</l>
+  <l i="140">Ɲ</l>
+  <l i="140">ɲ</l>
+  <l i="140">ƞ</l>
+  <l i="140">Ƞ</l>
+  <l i="140">ǋ</l>
+  <l i="140">Ǹ</l>
+  <l i="140">ǹ</l>
+  <l i="140">ȵ</l>
+  <l i="140">ɳ</l>
+  <l i="140">Ṅ</l>
+  <l i="140">ṅ</l>
+  <l i="140">Ṇ</l>
+  <l i="140">ṇ</l>
+  <l i="140">Ṉ</l>
+  <l i="140">ṉ</l>
+  <l i="140">Ṋ</l>
+  <l i="140">ṋ</l>
+  <l i="150">O</l>
+  <l i="150">o</l>
+  <l i="150">Ò</l>
+  <l i="150">ò</l>
+  <l i="150">Ó</l>
+  <l i="150">ó</l>
+  <l i="150">Ô</l>
+  <l i="150">ô</l>
+  <l i="150">Õ</l>
+  <l i="150">õ</l>
+  <l i="150">Ō</l>
+  <l i="150">ō</l>
+  <l i="150">Ŏ</l>
+  <l i="150">ŏ</l>
+  <l i="150">Ő</l>
+  <l i="150">ő</l>
+  <l i="150">Ɵ</l>
+  <l i="150">Ơ</l>
+  <l i="150">ơ</l>
+  <l i="150">Ǒ</l>
+  <l i="150">ǒ</l>
+  <l i="150">Ǫ</l>
+  <l i="150">ǫ</l>
+  <l i="150">Ǭ</l>
+  <l i="150">ǭ</l>
+  <l i="150">Ǿ</l>
+  <l i="150">ǿ</l>
+  <l i="150">Ȍ</l>
+  <l i="150">ȍ</l>
+  <l i="150">Ȏ</l>
+  <l i="150">ȏ</l>
+  <l i="150">Ȫ</l>
+  <l i="150">ȫ</l>
+  <l i="150">Ȭ</l>
+  <l i="150">ȭ</l>
+  <l i="150">Ȯ</l>
+  <l i="150">ȯ</l>
+  <l i="150">Ȱ</l>
+  <l i="150">ȱ</l>
+  <l i="150">Ṍ</l>
+  <l i="150">ṍ</l>
+  <l i="150">Ṏ</l>
+  <l i="150">ṏ</l>
+  <l i="150">Ṑ</l>
+  <l i="150">ṑ</l>
+  <l i="150">Ṓ</l>
+  <l i="150">ṓ</l>
+  <l i="150">Ọ</l>
+  <l i="150">ọ</l>
+  <l i="150">Ỏ</l>
+  <l i="150">ỏ</l>
+  <l i="150">Ố</l>
+  <l i="150">ố</l>
+  <l i="150">Ồ</l>
+  <l i="150">ồ</l>
+  <l i="150">Ổ</l>
+  <l i="150">ổ</l>
+  <l i="150">Ỗ</l>
+  <l i="150">ỗ</l>
+  <l i="150">Ộ</l>
+  <l i="150">ộ</l>
+  <l i="150">Ớ</l>
+  <l i="150">ớ</l>
+  <l i="150">Ờ</l>
+  <l i="150">ờ</l>
+  <l i="150">Ở</l>
+  <l i="150">ở</l>
+  <l i="150">Ỡ</l>
+  <l i="150">ỡ</l>
+  <l i="150">Ợ</l>
+  <l i="150">ợ</l>
+  <l i="160">P</l>
+  <l i="160">p</l>
+  <l i="160">Ƥ</l>
+  <l i="160">ƥ</l>
+  <l i="160">Ṕ</l>
+  <l i="160">ṕ</l>
+  <l i="160">Ṗ</l>
+  <l i="160">ṗ</l>
+  <l i="170">Q</l>
+  <l i="170">q</l>
+  <l i="170">ʠ</l>
+  <l i="180">R</l>
+  <l i="180">r</l>
+  <l i="180">Ŕ</l>
+  <l i="180">ŕ</l>
+  <l i="180">Ŗ</l>
+  <l i="180">ŗ</l>
+  <l i="180">Ř</l>
+  <l i="180">ř</l>
+  <l i="180">Ȑ</l>
+  <l i="180">ȑ</l>
+  <l i="180">Ȓ</l>
+  <l i="180">ȓ</l>
+  <l i="180">ɼ</l>
+  <l i="180">ɽ</l>
+  <l i="180">ɾ</l>
+  <l i="180">Ṙ</l>
+  <l i="180">ṙ</l>
+  <l i="180">Ṛ</l>
+  <l i="180">ṛ</l>
+  <l i="180">Ṝ</l>
+  <l i="180">ṝ</l>
+  <l i="180">Ṟ</l>
+  <l i="180">ṟ</l>
+  <l i="190">S</l>
+  <l i="190">s</l>
+  <l i="190">Ś</l>
+  <l i="190">ś</l>
+  <l i="190">Ŝ</l>
+  <l i="190">ŝ</l>
+  <l i="190">Ş</l>
+  <l i="190">ş</l>
+  <l i="190">Š</l>
+  <l i="190">š</l>
+  <l i="190">Ș</l>
+  <l i="190">ș</l>
+  <l i="190">ʂ</l>
+  <l i="190">Ṡ</l>
+  <l i="190">ṡ</l>
+  <l i="190">Ṣ</l>
+  <l i="190">ṣ</l>
+  <l i="190">Ṥ</l>
+  <l i="190">ṥ</l>
+  <l i="190">Ṧ</l>
+  <l i="190">ṧ</l>
+  <l i="190">Ṩ</l>
+  <l i="190">ṩ</l>
+  <l i="200">T</l>
+  <l i="200">t</l>
+  <l i="200">Ţ</l>
+  <l i="200">ţ</l>
+  <l i="200">Ť</l>
+  <l i="200">ť</l>
+  <l i="200">Ŧ</l>
+  <l i="200">ŧ</l>
+  <l i="200">ƫ</l>
+  <l i="200">Ƭ</l>
+  <l i="200">ƭ</l>
+  <l i="200">Ʈ</l>
+  <l i="200">ʈ</l>
+  <l i="200">Ț</l>
+  <l i="200">ț</l>
+  <l i="200">ȶ</l>
+  <l i="200">Ṫ</l>
+  <l i="200">ṫ</l>
+  <l i="200">Ṭ</l>
+  <l i="200">ṭ</l>
+  <l i="200">Ṯ</l>
+  <l i="200">ṯ</l>
+  <l i="200">Ṱ</l>
+  <l i="200">ṱ</l>
+  <l i="200">ẗ</l>
+  <l i="210">U</l>
+  <l i="210">u</l>
+  <l i="210">Ù</l>
+  <l i="210">ù</l>
+  <l i="210">Ú</l>
+  <l i="210">ú</l>
+  <l i="210">Û</l>
+  <l i="210">û</l>
+  <l i="210">Ü</l>
+  <l i="210">ü</l>
+  <l i="210">Ũ</l>
+  <l i="210">ũ</l>
+  <l i="210">Ū</l>
+  <l i="210">ū</l>
+  <l i="210">Ŭ</l>
+  <l i="210">ŭ</l>
+  <l i="210">Ů</l>
+  <l i="210">ů</l>
+  <l i="210">Ű</l>
+  <l i="210">ű</l>
+  <l i="210">Ų</l>
+  <l i="210">ų</l>
+  <l i="210">Ư</l>
+  <l i="210">ư</l>
+  <l i="210">Ǔ</l>
+  <l i="210">ǔ</l>
+  <l i="210">Ǖ</l>
+  <l i="210">ǖ</l>
+  <l i="210">Ǘ</l>
+  <l i="210">ǘ</l>
+  <l i="210">Ǚ</l>
+  <l i="210">ǚ</l>
+  <l i="210">Ǜ</l>
+  <l i="210">ǜ</l>
+  <l i="210">Ȕ</l>
+  <l i="210">ȕ</l>
+  <l i="210">Ȗ</l>
+  <l i="210">ȗ</l>
+  <l i="210">Ṳ</l>
+  <l i="210">ṳ</l>
+  <l i="210">Ṵ</l>
+  <l i="210">ṵ</l>
+  <l i="210">Ṷ</l>
+  <l i="210">ṷ</l>
+  <l i="210">Ṹ</l>
+  <l i="210">ṹ</l>
+  <l i="210">Ṻ</l>
+  <l i="210">ṻ</l>
+  <l i="210">Ụ</l>
+  <l i="210">ụ</l>
+  <l i="210">Ủ</l>
+  <l i="210">ủ</l>
+  <l i="210">Ứ</l>
+  <l i="210">ứ</l>
+  <l i="210">Ừ</l>
+  <l i="210">ừ</l>
+  <l i="210">Ử</l>
+  <l i="210">ử</l>
+  <l i="210">Ữ</l>
+  <l i="210">ữ</l>
+  <l i="210">Ự</l>
+  <l i="210">ự</l>
+  <l i="220">V</l>
+  <l i="220">v</l>
+  <l i="220">Ʋ</l>
+  <l i="220">ʋ</l>
+  <l i="220">Ṽ</l>
+  <l i="220">ṽ</l>
+  <l i="220">Ṿ</l>
+  <l i="220">ṿ</l>
+  <l i="230">W</l>
+  <l i="230">w</l>
+  <l i="230">Ŵ</l>
+  <l i="230">ŵ</l>
+  <l i="230">Ẁ</l>
+  <l i="230">ẁ</l>
+  <l i="230">Ẃ</l>
+  <l i="230">ẃ</l>
+  <l i="230">Ẅ</l>
+  <l i="230">ẅ</l>
+  <l i="230">Ẇ</l>
+  <l i="230">ẇ</l>
+  <l i="230">Ẉ</l>
+  <l i="230">ẉ</l>
+  <l i="230">ẘ</l>
+  <l i="240">X</l>
+  <l i="240">x</l>
+  <l i="240">Ẋ</l>
+  <l i="240">ẋ</l>
+  <l i="240">Ẍ</l>
+  <l i="240">ẍ</l>
+  <l i="250">Y</l>
+  <l i="250">y</l>
+  <l i="250">Ý</l>
+  <l i="250">ý</l>
+  <l i="250">ÿ</l>
+  <l i="250">Ÿ</l>
+  <l i="250">Ŷ</l>
+  <l i="250">ŷ</l>
+  <l i="250">Ƴ</l>
+  <l i="250">ƴ</l>
+  <l i="250">Ȳ</l>
+  <l i="250">ȳ</l>
+  <l i="250">Ẏ</l>
+  <l i="250">ẏ</l>
+  <l i="250">ẙ</l>
+  <l i="250">Ỳ</l>
+  <l i="250">ỳ</l>
+  <l i="250">Ỵ</l>
+  <l i="250">ỵ</l>
+  <l i="250">Ỷ</l>
+  <l i="250">ỷ</l>
+  <l i="250">Ỹ</l>
+  <l i="250">ỹ</l>
+  <l i="260">Z</l>
+  <l i="260">z</l>
+  <l i="260">Ź</l>
+  <l i="260">ź</l>
+  <l i="260">Ż</l>
+  <l i="260">ż</l>
+  <l i="260">Ž</l>
+  <l i="260">ž</l>
+  <l i="260">Ƶ</l>
+  <l i="260">ƶ</l>
+  <l i="260">Ȥ</l>
+  <l i="260">ȥ</l>
+  <l i="260">ʐ</l>
+  <l i="260">ʑ</l>
+  <l i="260">Ẑ</l>
+  <l i="260">ẑ</l>
+  <l i="260">Ẓ</l>
+  <l i="260">ẓ</l>
+  <l i="260">Ẕ</l>
+  <l i="260">ẕ</l>
+  <l i="270">Æ</l>
+  <l i="270">æ</l>
+  <l i="270">Ä</l>
+  <l i="270">ä</l>
+  <l i="280">Ø</l>
+  <l i="280">ø</l>
+  <l i="280">Ö</l>
+  <l i="280">ö</l>
+  <l i="290">Å</l>
+  <l i="290">å</l>
+</letters>
 
 </locale>
