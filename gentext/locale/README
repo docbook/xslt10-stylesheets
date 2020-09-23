@@ -10,12 +10,12 @@ If you want to contribute a locale file for a language
 that is not in the current distribution, copy the
 en.xml file from here:
 
-  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/en.xml
+  https://github.com/docbook/xslt10-stylesheets/tree/master/gentext/locale/en.xml
 
 If you want to make changes to an existing locale file,
 copy the appropriate locale file from:
 
-  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/
+  https://github.com/docbook/xslt10-stylesheets/tree/master/gentext/locale/
 
 The main parts of the file that you need to translate are:
 
@@ -58,7 +58,7 @@ You can find more information in this article:
 And the easiest way to understand it is probably to examine
 the <letters> part of the Czech locale file:
 
-  https://docbook.svn.sourceforge.net/svnroot/docbook/trunk/gentext/locale/cs.xml
+  https://github.com/docbook/xslt10-stylesheets/tree/master/gentext/locale/cs.xml
 
 Basically:
 
@@ -104,9 +104,9 @@ SUBMITTING A NEW OR CHANGED LOCALE FILE
 -------------------------------------------------------
 After you have finished creating or changing a locale
 file, please submit the updated file (or a diff) to 
-either the "Bugs" or "Patches" tracker available via
+either the "Issues" or "Pull request" tracker available via
 
-  https://sourceforge.net/projects/docbook
+  https://github.com/docbook/xslt10-stylesheets/
 
 That's all you need to know in order to create, change,
 and submit locale files.
