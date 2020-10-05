@@ -97,8 +97,8 @@
 <gentext key="Editor" text="Redaktør"/>
 <gentext key="Equation" text="Likning"/>
 <gentext key="equation" text="likning"/>
-<gentext key="Example" text="Eksempel"/>
-<gentext key="example" text="eksempel"/>
+<gentext key="Example" text="Døme"/>
+<gentext key="example" text="døme"/>
 <gentext key="Figure" text="Figur"/>
 <gentext key="figure" text="figur"/>
 <gentext key="Glossary" text="Ordliste"/>
@@ -232,8 +232,8 @@
 
 <gentext key="listofequations" text="likningar"/>
 <gentext key="ListofEquations" text="Likningar"/>
-<gentext key="ListofExamples" text="Eksempel"/>
-<gentext key="listofexamples" text="eksempel"/>
+<gentext key="ListofExamples" text="Døme"/>
+<gentext key="listofexamples" text="døme"/>
 <gentext key="ListofFigures" text="Figurar"/>
 <gentext key="listoffigures" text="figurar"/>
 <gentext key="ListofProcedures" text="Prosedyrar"/>
@@ -493,7 +493,7 @@
 <context name="xref">
 <template name="abstract">%t</template>
 <template name="acknowledgements">%t</template>
-<template name="answer"><Answer/>&#160;%n</template>
+<template name="answer"><answer/>&#160;%n</template>
 <template name="appendix">%t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -813,7 +813,7 @@
   
 <letters>
   <l i="-1"/>
-  <l i="0">Symbols</l>
+  <l i="0">Symbol</l>
   <l i="10">A</l>
   <l i="10">a</l>
   <l i="10">À</l>
