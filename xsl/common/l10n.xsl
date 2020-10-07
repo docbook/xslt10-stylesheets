@@ -417,7 +417,12 @@
 	      <xsl:text>" localization.</xsl:text>
 	    </xsl:message>
 	  </xsl:if>
-
+	  <xsl:if test="$purpose = 'check' and
+			(count($localization.node) = 0 or
+			count($context.node) = 0)">
+	    <xsl:text>0</xsl:text> <!-- no template -->
+	  </xsl:if>
+	  
 	  <xsl:for-each select="$context.node">
 	    <xsl:variable name="template.node"
 			  select="(key('l10n-template-style', concat($context, '#', $name, '#', $xrefstyle))
@@ -425,7 +430,10 @@
 
 	    <xsl:choose>
 	      <xsl:when test="$template.node/@text">
-		<xsl:value-of select="$template.node/@text"/>
+		<xsl:choose>
+		  <xsl:when test="$purpose = 'check'"><xsl:text>1</xsl:text></xsl:when>
+		  <xsl:otherwise><xsl:value-of select="$template.node/@text"/></xsl:otherwise>
+		</xsl:choose>
 	      </xsl:when>
 	      <xsl:otherwise>
 		<xsl:choose>
@@ -442,9 +450,11 @@
 		    </xsl:call-template>
 		  </xsl:when>
 		  <xsl:when test="$verbose = 0">
+		    <xsl:if test="$purpose = 'check'"><xsl:text>0</xsl:text></xsl:if>
 		    <!-- silence -->
 		  </xsl:when>
 		  <xsl:otherwise>
+		    <xsl:if test="$purpose = 'check'"><xsl:text>0</xsl:text></xsl:if>
 		    <xsl:message>
 		      <xsl:text>No template for "</xsl:text>
 		      <xsl:value-of select="$origname"/>
@@ -473,13 +483,15 @@
 			select="key('l10n-lang', $lang)[1]"/>
 
 	  <xsl:if test="count($localization.node) = 0
-			and count($local.localization.node) = 0
-			and $verbose != 0">
-	    <xsl:message>
-	      <xsl:text>No "</xsl:text>
-	      <xsl:value-of select="$lang"/>
-	      <xsl:text>" localization exists.</xsl:text>
-	    </xsl:message>
+			and count($local.localization.node) = 0">
+	    <xsl:if test="$purpose = 'check'"><xsl:text>0</xsl:text></xsl:if>
+	    <xsl:if test="$verbose != 0">
+	      <xsl:message>
+		<xsl:text>No "</xsl:text>
+		<xsl:value-of select="$lang"/>
+		<xsl:text>" localization exists.</xsl:text>
+	      </xsl:message>
+	    </xsl:if>
 	  </xsl:if>
 
 	  <xsl:variable name="local.context.node"
@@ -489,15 +501,17 @@
 			select="key('l10n-context', $context)[1]"/>
 
 	  <xsl:if test="count($context.node) = 0
-			and count($local.context.node) = 0
-			and $verbose != 0">
-	    <xsl:message>
-	      <xsl:text>No context named "</xsl:text>
-	      <xsl:value-of select="$context"/>
-	      <xsl:text>" exists in the "</xsl:text>
-	      <xsl:value-of select="$lang"/>
-	      <xsl:text>" localization.</xsl:text>
-	    </xsl:message>
+			and count($local.context.node) = 0">
+	    <xsl:if test="$purpose = 'check'"><xsl:text>0</xsl:text></xsl:if>
+	    <xsl:if test="$verbose != 0">
+	      <xsl:message>
+		<xsl:text>No context named "</xsl:text>
+		<xsl:value-of select="$context"/>
+		<xsl:text>" exists in the "</xsl:text>
+		<xsl:value-of select="$lang"/>
+		<xsl:text>" localization.</xsl:text>
+	      </xsl:message>
+	    </xsl:if>
 	  </xsl:if>
 
 	  <xsl:variable name="local.template.node"
@@ -509,7 +523,10 @@
 
 	  <xsl:choose>
 	    <xsl:when test="$local.template.node/@text">
-	      <xsl:value-of select="$local.template.node/@text"/>
+	      <xsl:choose>
+		<xsl:when test="$purpose = 'check'"><xsl:text>1</xsl:text></xsl:when>
+		<xsl:otherwise><xsl:value-of select="$local.template.node/@text"/></xsl:otherwise>
+	      </xsl:choose>
 	    </xsl:when>
 	    <xsl:otherwise>
 	      <xsl:for-each select="$context.node">
@@ -519,7 +536,10 @@
 
 		<xsl:choose>
 		  <xsl:when test="$template.node/@text">
-		    <xsl:value-of select="$template.node/@text"/>
+		    <xsl:choose>
+		      <xsl:when test="$purpose = 'check'"><xsl:text>1</xsl:text></xsl:when>
+		      <xsl:otherwise><xsl:value-of select="$template.node/@text"/></xsl:otherwise>
+		    </xsl:choose>
 		  </xsl:when>
 		  <xsl:otherwise>
 		    <xsl:choose>
@@ -536,9 +556,11 @@
 			</xsl:call-template>
 		      </xsl:when>
 		      <xsl:when test="$verbose = 0">
+			<xsl:if test="$purpose = 'check'"><xsl:text>0</xsl:text></xsl:if>
 			<!-- silence -->
 		      </xsl:when>
 		      <xsl:otherwise>
+			<xsl:if test="$purpose = 'check'"><xsl:text>0</xsl:text></xsl:if>
 			<xsl:message>
 			  <xsl:text>No template for "</xsl:text>
 			  <xsl:value-of select="$origname"/>
@@ -579,7 +601,7 @@
       <xsl:with-param name="context" select="$context"/>
       <xsl:with-param name="name" select="$name"/>
       <xsl:with-param name="origname" select="$origname"/>
-      <xsl:with-param name="purpose" select="$purpose"/>
+      <xsl:with-param name="purpose" select="'check'"/>
       <xsl:with-param name="xrefstyle" select="$xrefstyle"/>
       <xsl:with-param name="referrer" select="$referrer"/>
       <xsl:with-param name="lang" select="$lang"/>
@@ -587,10 +609,7 @@
     </xsl:call-template>
   </xsl:variable>
   
-  <xsl:choose>
-    <xsl:when test="string-length($template) != 0">1</xsl:when>
-    <xsl:otherwise>0</xsl:otherwise>
-  </xsl:choose>
+  <xsl:value-of select="substring($template,1,1)"/>
 </xsl:template>
 
 </xsl:stylesheet>
