@@ -484,7 +484,7 @@
 <context name="xref">
 <template name="abstract">%t</template>
 <template name="acknowledgements">%t</template>
-<template name="answer"><Answer/>&#160;%n</template>
+<template name="answer"><answer/>&#160;%n</template>
 <template name="appendix">%t</template>
 <template name="article">%t</template>
 <template name="authorblurb">%t</template>
@@ -804,7 +804,7 @@
   
 <letters>
   <l i="-1"/>
-  <l i="0">Symbols</l>
+  <l i="0">Symbol</l>
   <l i="10">A</l>
   <l i="10">a</l>
   <l i="10">À</l>
