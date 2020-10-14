@@ -6,34 +6,19 @@ language: java
 jdk:
 - openjdk8
 
-branches:
-  only:
-  - master
-  - travis
-  - "/^release.*/"
-  - "/^snapshot.*/"
-  - "/^ndw-test.*/"
+services:
+- docker
 
 env:
   global:
-  - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:$(pwd)/.travis
+  - CLASSPATH=/usr/share/java/xalan-j2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xml-resolver.jar:/build/.travis
+  matrix:
+  - BUILD_IMG=ubuntu:16.04 DEPS=openjdk-8-jdk JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+  - BUILD_IMG=ubuntu:18.04 DEPS=openjdk-8-jdk JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+  - BUILD_IMG=ubuntu:19.10 DEPS=openjdk-13-jdk JAVA_HOME=/usr/lib/jvm/java-13-openjdk-amd64/
+  - BUILD_IMG=ubuntu:20.04 DEPS=openjdk-14-jdk JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64/
 
-install:
-- sudo apt-get update -q
-- sudo apt-get install xsltproc
-- sudo apt-get install libxml-xpath-perl
-- sudo apt-get install libxml2-utils
-- sudo apt-get install libsaxon-java libxml-commons-resolver1.1-java libsaxon-java libxerces2-java
-- sudo apt-get install trang
-- sudo apt-get install imagemagick
-- sudo apt-get install dblatex
-- cp .travis/xmlc ~/.xmlc
-
-script:
-- make
-- make check
-- make dist
-- export VERSION=$(make version)
+script: docker run --rm=true -v $(pwd):/build:rw --env CLASSPATH=$CLASSPATH --env JAVA_HOME=$JAVA_HOME $BUILD_IMG /bin/sh -c "apt-get update && env DEBIAN_FRONTEND=noninteractive apt-get install --yes build-essential ant xsltproc libxml-xpath-perl libxml2-utils libsaxon-java libxml-commons-resolver1.1-java libsaxon-java libxerces2-java trang imagemagick dblatex w3m $DEPS && cd /build && cp .travis/xmlc ~/.xmlc && env JAVA_HOME=$JAVA_HOME make && env JAVA_HOME=$JAVA_HOME make check && env JAVA_HOME=$JAVA_HOME make dist" && export VERSION=$(make version)
 
 after_success:
 - |
