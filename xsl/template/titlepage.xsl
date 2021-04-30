@@ -7,7 +7,7 @@
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:axsl="http://www.w3.org/1999/XSL/TransformAlias"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="doc t param axsl exsl"
+                exclude-result-prefixes="doc t param axsl exsl d"
                 version='1.0'>
 
 <!-- ********************************************************************
