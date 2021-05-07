@@ -485,79 +485,85 @@ and <quote>verso</quote> sides of the title page.</para>
     </xsl:element>
   </xsl:if>
 
+  <xsl:apply-templates select="t:titlepage-content/*" mode="default.template" />
+</xsl:template>
+  
+<xsl:template match="t:wrapper" mode="default.template">
+  <xsl:apply-templates mode="default.template" />
+</xsl:template>
+  
+<xsl:template match="*" mode="default.template">
   <!-- output default templates for each of the elements listed in  -->
   <!-- the titlepage-content. If a template is suppressed or forced -->
   <!-- to be off, or has already been output, don't output it.      -->
-  <xsl:for-each select="t:titlepage-content/*">
-    <xsl:variable name="thisnode" select="."/>
-    <xsl:if test="(not(@t:suppress-template) or @t:suppress-template='0')
-                  and (not(@t:force) or @t:force='0')
-                  and (not(preceding-sibling::*[name(.)=name($thisnode)]))">
-      <xsl:text>&#xA;&#xA;</xsl:text>
-      <xsl:element name="xsl:template">
-        <xsl:attribute name="match">
-          <xsl:value-of select="$db.prefix"/>
-          <xsl:value-of select="name(.)"/>
-        </xsl:attribute>
-        <xsl:attribute name="mode">
-          <xsl:value-of select="../../@t:element"/>
+  <xsl:variable name="thisnode" select="."/>
+  <xsl:if test="(not(@t:suppress-template) or @t:suppress-template='0')
+                 and (not(@t:force) or @t:force='0')
+                  and (count($thisnode | ancestor::t:titlepage-content//*[name(.)=name($thisnode)][1]) = 1)">
+    <xsl:text>&#xA;&#xA;</xsl:text>
+    <xsl:element name="xsl:template">
+      <xsl:attribute name="match">
+        <xsl:value-of select="$db.prefix"/>
+        <xsl:value-of select="name(.)"/>
+      </xsl:attribute>
+      <xsl:attribute name="mode">
+        <xsl:value-of select="ancestor::t:titlepage/@t:element"/>
+        <xsl:text>.titlepage.</xsl:text>
+        <xsl:value-of select="ancestor::t:titlepage-content/@t:side"/>
+        <xsl:text>.auto.mode</xsl:text>
+      </xsl:attribute>
+      <xsl:text>&#xA;</xsl:text>
+      <xsl:call-template name="output.wrapper">
+        <xsl:with-param name="attr.sets">
+          <xsl:value-of select="ancestor::t:titlepage/@t:element"/>
           <xsl:text>.titlepage.</xsl:text>
-          <xsl:value-of select="../@t:side"/>
-          <xsl:text>.auto.mode</xsl:text>
-        </xsl:attribute>
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:call-template name="output.wrapper">
-          <xsl:with-param name="attr.sets">
-            <xsl:value-of select="../../@t:element"/>
-            <xsl:text>.titlepage.</xsl:text>
-            <xsl:value-of select="../@t:side"/>
-            <xsl:text>.style</xsl:text>
-          </xsl:with-param>
-          <xsl:with-param name="content">
-            <xsl:text>&#xA;</xsl:text>
+          <xsl:value-of select="ancestor::t:titlepage-content/@t:side"/>
+          <xsl:text>.style</xsl:text>
+        </xsl:with-param>
+        <xsl:with-param name="content">
+          <xsl:text>&#xA;</xsl:text>
 
-            <xsl:choose>
-              <xsl:when test="@t:named-template">
-                <xsl:element name="xsl:call-template">
-                  <xsl:attribute name="name">
-                    <xsl:value-of select="@t:named-template"/>
-                  </xsl:attribute>
-                  <xsl:for-each select="@*">
-                    <xsl:if test="namespace-uri(.)='http://nwalsh.com/docbook/xsl/template/1.0/param'">
-                      <xsl:text>&#xA;</xsl:text>
-                      <xsl:element name="xsl:with-param">
-                        <xsl:attribute name="name">
-                          <xsl:value-of select="local-name(.)"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="select">
-                          <xsl:call-template name="param.node"/>
-                        </xsl:attribute>
-                      </xsl:element>
-                    </xsl:if>
-                  </xsl:for-each>
-                  <xsl:text>&#xA;</xsl:text>
-                </xsl:element>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:element name="xsl:apply-templates">
-                  <xsl:attribute name="select">.</xsl:attribute>
-                  <xsl:attribute name="mode">
-                    <xsl:value-of select="../../@t:element"/>
-                    <xsl:text>.titlepage.</xsl:text>
-                    <xsl:value-of select="../@t:side"/>
-                    <xsl:text>.mode</xsl:text>
-                  </xsl:attribute>
-                </xsl:element>
-              </xsl:otherwise>
-            </xsl:choose>
+          <xsl:choose>
+            <xsl:when test="@t:named-template">
+              <xsl:element name="xsl:call-template">
+                <xsl:attribute name="name">
+                  <xsl:value-of select="@t:named-template"/>
+                </xsl:attribute>
+                <xsl:for-each select="@*">
+                  <xsl:if test="namespace-uri(.)='http://nwalsh.com/docbook/xsl/template/1.0/param'">
+                    <xsl:text>&#xA;</xsl:text>
+                    <xsl:element name="xsl:with-param">
+                      <xsl:attribute name="name">
+                        <xsl:value-of select="local-name(.)"/>
+                      </xsl:attribute>
+                      <xsl:attribute name="select">
+                        <xsl:call-template name="param.node"/>
+                      </xsl:attribute>
+                    </xsl:element>
+                  </xsl:if>
+                </xsl:for-each>
+                <xsl:text>&#xA;</xsl:text>
+              </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:element name="xsl:apply-templates">
+                <xsl:attribute name="select">.</xsl:attribute>
+                <xsl:attribute name="mode">
+                  <xsl:value-of select="ancestor::t:titlepage/@t:element"/>
+                  <xsl:text>.titlepage.</xsl:text>
+                  <xsl:value-of select="ancestor::t:titlepage-content/@t:side"/>
+                  <xsl:text>.mode</xsl:text>
+                </xsl:attribute>
+              </xsl:element>
+            </xsl:otherwise>
+          </xsl:choose>
 
-            <xsl:text>&#xA;</xsl:text>
-          </xsl:with-param>
-        </xsl:call-template>
-        <xsl:text>&#xA;</xsl:text>
-      </xsl:element>
-    </xsl:if>
-  </xsl:for-each>
+          <xsl:text>&#xA;</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+      <xsl:text>&#xA;</xsl:text>
+    </xsl:element>
+  </xsl:if>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -940,14 +946,47 @@ names.</para>
 </xsl:template>
 
 <!-- ==================================================================== -->
+  
+<doc:template match="t:wrapper" mode="stylesheet.order" xmlns="" id="wrapper_in_stylesheet.order">
+<refpurpose>Create rules to process t:wrapper elements in stylesheet order</refpurpose>
 
-<doc:template match="*" mode="document.order" xmlns="" id="star_in_document.order">
+<refdescription>
+<para>This template is called to generate a wrapper element and
+process all of the children of the <literal>t:wrapper</literal>
+element. It creates the set of <literal>xsl:apply-templates</literal>
+elements necessary to process each of those elements in the
+wrapper.</para>
+
+<para>Note that this template automatically handles the case where
+some DocBook elements, like title and subtitle, can occur both inside
+the *info elements where metadata is usually stored and outside.
+</para>
+
+<para>It also automatically calculates the name for the *info container
+and handles elements that have historically had containers with different
+names.</para>
+
+</refdescription>
+</doc:template>
+
+<xsl:template match="t:wrapper" mode="stylesheet.order">
+  <xsl:text>&#xA;  </xsl:text>
+  <xsl:call-template name="output.wrapper">
+    <xsl:with-param name="wrapper" select="." />
+    <xsl:with-param name="content">
+      <xsl:apply-templates mode="stylesheet.order" />
+    </xsl:with-param>
+  </xsl:call-template>
+  <xsl:text>  </xsl:text>
+</xsl:template>
+
+<doc:template match="*" mode="document.order" xmlns="" id="star_in_stylesheet.order">
 <refpurpose>Create rules to process titlepage elements in stylesheet order</refpurpose>
 
 <refdescription>
 <para>This template is called to process all of the children of the
 <literal>t:titlepage-content</literal> element. It creates the set
-of <literal>xsl:apply-templates</literal> elements necessary
+of <literal>xsl:apply-templates</literal> elements necessary to
 process each of those elements in the title page.</para>
 
 <para>Note that this template automatically handles the case where
@@ -1013,9 +1052,9 @@ names.</para>
         <xsl:when test="@t:named-template">
           <xsl:call-template name="output.wrapper">
             <xsl:with-param name="attr.sets">
-              <xsl:value-of select="../../@t:element"/>
+              <xsl:value-of select="ancestor::t:titlepage/@t:element"/>
               <xsl:text>.titlepage.</xsl:text>
-              <xsl:value-of select="../@t:side"/>
+              <xsl:value-of select="ancestor::t:titlepage-content/@t:side"/>
               <xsl:text>.style</xsl:text>
             </xsl:with-param>
             <xsl:with-param name="content">
@@ -1240,7 +1279,8 @@ names.</para>
 <refdescription>
 <para>This template is called to process all of the descendants of the
 <literal>t:titlepage-content</literal> element that require special
-processing. At present, that's just <literal>t:or</literal> elements.
+processing. At present, that's just <literal>t:or</literal> and
+<literal>t:wrapper</literal> elements.
 </para>
 </refdescription>
 </doc:template>
@@ -1266,6 +1306,7 @@ processing. At present, that's just <literal>t:or</literal> elements.
     <xsl:when test="name(.)='t:or'">
       <xsl:apply-templates select="*" mode="titlepage.specialrules"/>
     </xsl:when>
+    <xsl:when test="name(.)='t:wrapper'" />
     <xsl:otherwise>
       <xsl:if test="*"><!-- does this element have children? -->
       <xsl:text>&#xA;&#xA;</xsl:text>
