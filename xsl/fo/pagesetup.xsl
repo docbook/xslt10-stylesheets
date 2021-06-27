@@ -2734,9 +2734,12 @@
     </xsl:when>
   </xsl:choose>
 
+  <!-- turn this off because relative-align is ignored unless display-align = auto -->
+  <!--
   <xsl:if test="$fop.extensions = 0">
     <xsl:attribute name="relative-align">baseline</xsl:attribute>
   </xsl:if>
+  -->
 </xsl:template>
 
 <!-- controls whether the header content assembled in
@@ -3123,9 +3126,12 @@
     </xsl:when>
   </xsl:choose>
 
+  <!-- turn this off because relative-align is ignored unless display-align = auto -->
+  <!--
   <xsl:if test="$fop.extensions = 0">
     <xsl:attribute name="relative-align">baseline</xsl:attribute>
   </xsl:if>
+  -->
 </xsl:template>
 
 <!-- controls whether the footer content assembled in
