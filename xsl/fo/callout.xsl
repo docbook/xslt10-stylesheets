@@ -280,16 +280,14 @@
         </xsl:choose>
       </xsl:variable>
 
-      <xsl:choose>
-        <xsl:when test="$callout.unicode.font != ''">
-          <fo:inline font-family="{$callout.unicode.font}">
-            <xsl:copy-of select="$comarkup"/>
-          </fo:inline>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:copy-of select="$comarkup"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <fo:inline xsl:use-attribute-sets="callout.unicode.properties">
+        <xsl:if test="$callout.unicode.font != ''">
+          <xsl:attribute name="font-family">
+            <xsl:value-of select="$callout.unicode.font"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:copy-of select="$comarkup"/>
+      </fo:inline>
     </xsl:when>
 
     <!-- Most safe: draw a dark gray square with a white number inside -->

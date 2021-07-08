@@ -29,6 +29,7 @@
 <!ENTITY callout.unicode SYSTEM "../params/callout.unicode.xml">
 <!ENTITY callout.unicode.font SYSTEM "../params/callout.unicode.font.xml">
 <!ENTITY callout.unicode.number.limit SYSTEM "../params/callout.unicode.number.limit.xml">
+<!ENTITY callout.unicode.properties SYSTEM "../params/callout.unicode.properties.xml">
 <!ENTITY callout.unicode.start.character SYSTEM "../params/callout.unicode.start.character.xml">
 <!ENTITY callouts.extension SYSTEM "../params/callouts.extension.xml">
 <!ENTITY chapter.autolabel SYSTEM "../params/chapter.autolabel.xml">
