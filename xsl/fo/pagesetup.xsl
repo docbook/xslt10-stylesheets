@@ -590,6 +590,55 @@
       </xsl:call-template>
     </fo:simple-page-master>
 
+    <fo:simple-page-master master-name="body-first-even"
+                           page-width="{$page.width}"
+                           page-height="{$page.height}"
+                           margin-top="{$page.margin.top}"
+                           margin-bottom="{$page.margin.bottom}">
+      <xsl:attribute name="margin-{$direction.align.start}">
+        <xsl:value-of select="$page.margin.inner"/>
+	<xsl:if test="$fop.extensions != 0">
+	  <xsl:value-of select="concat(' - (',$title.margin.left,')')"/>
+        </xsl:if>
+      </xsl:attribute>
+      <xsl:attribute name="margin-{$direction.align.end}">
+        <xsl:value-of select="$page.margin.outer"/>
+      </xsl:attribute>
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">body-first-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
+      <fo:region-body margin-bottom="{$body.margin.bottom}"
+                      margin-top="{$body.margin.top}"
+                      column-gap="{$column.gap.body}"
+                      column-count="{$column.count.body}">
+        <xsl:attribute name="margin-{$direction.align.start}">
+          <xsl:value-of select="$body.margin.outer"/>
+        </xsl:attribute>
+        <xsl:attribute name="margin-{$direction.align.end}">
+          <xsl:value-of select="$body.margin.inner"/>
+        </xsl:attribute>
+      </fo:region-body>
+      <fo:region-before region-name="xsl-region-before-first"
+                        extent="{$region.before.extent}"
+                        precedence="{$region.before.precedence}"
+                        display-align="before"/>
+      <fo:region-after region-name="xsl-region-after-first"
+                       extent="{$region.after.extent}"
+                        precedence="{$region.after.precedence}"
+                       display-align="after"/>
+      <xsl:call-template name="region.inner"
+                         >
+        <xsl:with-param name="sequence">first-even</xsl:with-param>
+        <xsl:with-param name="pageclass">body</xsl:with-param>
+      </xsl:call-template>
+      <xsl:call-template name="region.outer">
+        <xsl:with-param name="sequence">first-even</xsl:with-param>
+        <xsl:with-param name="pageclass">body</xsl:with-param>
+      </xsl:call-template>
+    </fo:simple-page-master>
+
     <fo:simple-page-master master-name="body-odd"
                            page-width="{$page.width}"
                            page-height="{$page.height}"
@@ -2179,6 +2228,9 @@
         <fo:conditional-page-master-reference master-reference="blank"
                                               blank-or-not-blank="blank"/>
         <xsl:if test="$force.blank.pages != 0">
+          <fo:conditional-page-master-reference master-reference="body-first-even"
+                                                page-position="first"
+                                                odd-or-even="even"/>
           <fo:conditional-page-master-reference master-reference="body-first"
                                                 page-position="first"/>
         </xsl:if>
