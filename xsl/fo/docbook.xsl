@@ -409,6 +409,7 @@
           <xsl:value-of select="$bookmarks.state"/>
         </xsl:attribute>
         <fo:bookmark-title>
+          <xsl:call-template name="bookmark.title.style"/>
           <xsl:value-of select="normalize-space($bookmark-label)"/>
         </fo:bookmark-title>
         <xsl:apply-templates select="*" mode="bookmark"/>
@@ -420,6 +421,7 @@
           <xsl:value-of select="$bookmarks.state"/>
         </xsl:attribute>
         <fo:bookmark-title>
+          <xsl:call-template name="bookmark.title.style"/>
           <xsl:value-of select="normalize-space($bookmark-label)"/>
         </fo:bookmark-title>
       </fo:bookmark>
@@ -437,6 +439,9 @@
                          |d:sect1|d:sect2|d:sect3|d:sect4|d:sect5|d:section)">
         <fo:bookmark internal-destination="toc...{$id}">
           <fo:bookmark-title>
+            <xsl:call-template name="bookmark.title.style">
+              <xsl:with-param name="key" select="'TableofContents'"/>
+            </xsl:call-template>
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'TableofContents'"/>
             </xsl:call-template>
@@ -446,6 +451,12 @@
       <xsl:apply-templates select="*" mode="bookmark"/>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<!-- Optionally set the color, font-style, and/or font-weight of an
+     fo:bookmark-title. -->
+<xsl:template name="bookmark.title.style">
+  <xsl:param name="key" select="local-name()"/>
 </xsl:template>
 
 <xsl:template name="root.messages">
