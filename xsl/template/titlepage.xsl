@@ -5,8 +5,9 @@
                 xmlns:param="http://nwalsh.com/docbook/xsl/template/1.0/param"
                 xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:axsl="http://www.w3.org/1999/XSL/TransformAlias"
                 xmlns:exsl="http://exslt.org/common"
-                exclude-result-prefixes="doc t param exsl d"
+                exclude-result-prefixes="doc t param axsl exsl d"
                 version='1.0'>
 
 <!-- ********************************************************************
@@ -18,6 +19,9 @@
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
+
+<xsl:namespace-alias stylesheet-prefix="axsl" result-prefix="xsl"/>
+
 <xsl:variable name="db.prefix">d:</xsl:variable>
 
 <xsl:template match="/">
@@ -175,6 +179,10 @@ to the resulting stylesheet. Default namespace is always copied.</para>
       </xsl:for-each>
     </xsl:if>
 
+    <xsl:for-each select="document('')/xsl:stylesheet/namespace::axsl">
+      <xsl:copy/>
+    </xsl:for-each>
+
     <xsl:for-each select="document('')/xsl:stylesheet/namespace::exsl">
       <xsl:copy/>
     </xsl:for-each>
@@ -191,8 +199,8 @@ to the resulting stylesheet. Default namespace is always copied.</para>
 
     <xsl:attribute name="exclude-result-prefixes">
       <xsl:choose>
-        <xsl:when test="$db.prefix = 'd:'">exsl d</xsl:when>
-        <xsl:otherwise>exsl</xsl:otherwise>
+        <xsl:when test="$db.prefix = 'd:'">axsl exsl d</xsl:when>
+        <xsl:otherwise>axsl exsl</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
 
@@ -212,6 +220,32 @@ to the resulting stylesheet. Default namespace is always copied.</para>
     </xsl:if>
 
     <xsl:apply-templates/>
+
+    <xsl:text>&#xA;&#xA;</xsl:text>
+    <axsl:template name="count.elements">
+      <xsl:text>&#xA;  </xsl:text>
+      <axsl:param name="elements" />
+      <axsl:choose>
+        <xsl:text>&#xA;    </xsl:text>
+        <axsl:when test="function-available('exsl:node-set')">
+          <xsl:text>&#xA;      </xsl:text>
+          <axsl:value-of select="count(exsl:node-set($elements)/*)" />
+          <xsl:text>&#xA;    </xsl:text>
+        </axsl:when>
+        <xsl:text>&#xA;    </xsl:text>
+        <axsl:when test="contains(system-property('xsl:vendor'), 'Apache Software Foundation')">
+          <xsl:text>&#xA;      </xsl:text>
+          <xsl:comment>Xalan quirk</xsl:comment>
+          <xsl:text>&#xA;      </xsl:text>
+          <axsl:value-of select="count(exsl:node-set($elements)/*)" />
+          <xsl:text>&#xA;    </xsl:text>
+        </axsl:when>
+        <xsl:text>&#xA;    </xsl:text>
+        <axsl:otherwise>1</axsl:otherwise>
+        <xsl:text>&#xA;  </xsl:text>
+      </axsl:choose>
+      <xsl:text>&#xA;</xsl:text>
+    </axsl:template>
 
     <xsl:text>&#xA;&#xA;</xsl:text>
   </xsl:element>
@@ -320,34 +354,12 @@ and <quote>verso</quote> sides of the title page.</para>
           <xsl:text>&#xA;    </xsl:text>
         </xsl:element>
         <xsl:text>&#xA;    </xsl:text>
-        <xsl:element name="xsl:variable">
-          <xsl:attribute name="name">recto.elements.count</xsl:attribute>
+        <axsl:variable name="recto.elements.count">
           <xsl:text>&#xA;      </xsl:text>
-          <xsl:element name="xsl:choose">
-            <xsl:text>&#xA;        </xsl:text>
-            <xsl:element name="xsl:when">
-              <xsl:attribute name="test">function-available('exsl:node-set')</xsl:attribute>
-              <xsl:element name="xsl:value-of">
-                <xsl:attribute name="select">count(exsl:node-set($recto.content)/*)</xsl:attribute>
-              </xsl:element>
-            </xsl:element>
-            <xsl:text>&#xA;        </xsl:text>
-            <xsl:element name="xsl:when">
-              <xsl:attribute name="test">contains(system-property('xsl:vendor'), 'Apache Software Foundation')</xsl:attribute>
-              <xsl:text>&#xA;          </xsl:text>
-              <xsl:comment>Xalan quirk</xsl:comment>
-              <xsl:element name="xsl:value-of">
-                <xsl:attribute name="select">count(exsl:node-set($recto.content)/*)</xsl:attribute>
-              </xsl:element>
-            </xsl:element>
-            <xsl:text>&#xA;        </xsl:text>
-            <xsl:element name="xsl:otherwise">
-              <xsl:text>1</xsl:text>
-            </xsl:element>
-            <xsl:text>&#xA;      </xsl:text>
-          </xsl:element>
-          <xsl:text>&#xA;    </xsl:text>
-        </xsl:element>
+          <axsl:call-template name="count.elements">
+            <axsl:with-param name="elements" select="$recto.content" />
+          </axsl:call-template>
+        </axsl:variable>
         <xsl:text>&#xA;    </xsl:text>
         <xsl:element name="xsl:if">
           <xsl:attribute name="test">(normalize-space($recto.content) != '') or ($recto.elements.count > 0)</xsl:attribute>
@@ -382,34 +394,12 @@ and <quote>verso</quote> sides of the title page.</para>
           <xsl:text>&#xA;    </xsl:text>
         </xsl:element>
         <xsl:text>&#xA;    </xsl:text>
-        <xsl:element name="xsl:variable">
-          <xsl:attribute name="name">verso.elements.count</xsl:attribute>
+        <axsl:variable name="verso.elements.count">
           <xsl:text>&#xA;      </xsl:text>
-          <xsl:element name="xsl:choose">
-            <xsl:text>&#xA;        </xsl:text>
-            <xsl:element name="xsl:when">
-              <xsl:attribute name="test">function-available('exsl:node-set')</xsl:attribute>
-              <xsl:element name="xsl:value-of">
-                <xsl:attribute name="select">count(exsl:node-set($verso.content)/*)</xsl:attribute>
-              </xsl:element>
-            </xsl:element>
-            <xsl:text>&#xA;        </xsl:text>
-            <xsl:element name="xsl:when">
-              <xsl:attribute name="test">contains(system-property('xsl:vendor'), 'Apache Software Foundation')</xsl:attribute>
-              <xsl:text>&#xA;          </xsl:text>
-              <xsl:comment>Xalan quirk</xsl:comment>
-              <xsl:element name="xsl:value-of">
-                <xsl:attribute name="select">count(exsl:node-set($verso.content)/*)</xsl:attribute>
-              </xsl:element>
-            </xsl:element>
-            <xsl:text>&#xA;        </xsl:text>
-            <xsl:element name="xsl:otherwise">
-              <xsl:text>1</xsl:text>
-            </xsl:element>
-            <xsl:text>&#xA;      </xsl:text>
-          </xsl:element>
-          <xsl:text>&#xA;    </xsl:text>
-        </xsl:element>
+          <axsl:call-template name="count.elements">
+            <axsl:with-param name="elements" select="$verso.content" />
+          </axsl:call-template>
+        </axsl:variable>
         <xsl:text>&#xA;    </xsl:text>
         <xsl:element name="xsl:if">
           <xsl:attribute name="test">(normalize-space($verso.content) != '') or ($verso.elements.count > 0)</xsl:attribute>
