@@ -5,7 +5,7 @@ SOURCES=af.xml am.xml ar.xml as.xml ast.xml az.xml bg.xml bn.xml bn_in.xml bs.xm
 	fa.xml fi.xml fr.xml ga.xml gl.xml gu.xml he.xml hi.xml hr.xml hu.xml id.xml \
 	is.xml it.xml ja.xml ka.xml kn.xml ko.xml ky.xml la.xml lt.xml lv.xml \
 	ml.xml mn.xml mr.xml nb.xml nds.xml nl.xml nn.xml or.xml pa.xml pl.xml \
-	pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
+	pt.xml pt_br.xml ro.xml ru.xml se.xml sk.xml sl.xml sq.xml sr.xml sr_Latn.xml sv.xml \
 	ta.xml te.xml th.xml tl.xml tr.xml uk.xml ur.xml vi.xml xh.xml zh.xml zh_cn.xml \
 	zh_tw.xml
 
@@ -69,6 +69,7 @@ pt.xml: $(repo_dir)/gentext/locale/pt.xml $(GENSTYLE)
 pt_br.xml: $(repo_dir)/gentext/locale/pt_br.xml $(GENSTYLE)
 ro.xml: $(repo_dir)/gentext/locale/ro.xml $(GENSTYLE)
 ru.xml: $(repo_dir)/gentext/locale/ru.xml $(GENSTYLE)
+se.xml: $(repo_dir)/gentext/locale/se.xml $(GENSTYLE)
 sk.xml: $(repo_dir)/gentext/locale/sk.xml $(GENSTYLE)
 sl.xml: $(repo_dir)/gentext/locale/sl.xml $(GENSTYLE)
 sq.xml: $(repo_dir)/gentext/locale/sq.xml $(GENSTYLE)

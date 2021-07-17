@@ -6,7 +6,7 @@ SOURCES=af.xml am.xml ar.xml as.xml ast.xml az.xml bg.xml bn.xml bn_in.xml bs.xm
 	eu.xml fa.xml fi.xml fr.xml ga.xml gl.xml gu.xml he.xml hi.xml hr.xml \
 	hu.xml id.xml is.xml it.xml ja.xml ka.xml kn.xml ko.xml ky.xml la.xml \
 	lt.xml lv.xml ml.xml mn.xml mr.xml nb.xml nds.xml nl.xml nn.xml or.xml \
-	pa.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml sk.xml sl.xml sq.xml sr.xml \
+	pa.xml pl.xml pt.xml pt_br.xml ro.xml ru.xml se.xml sk.xml sl.xml sq.xml sr.xml \
 	sr_Latn.xml sv.xml ta.xml te.xml th.xml tl.xml tr.xml uk.xml vi.xml xh.xml \
 	zh.xml zh_cn.xml zh_tw.xml
 
@@ -19,7 +19,7 @@ DSSSLENT=dbl1af.ent dbl1am.ent dbl1ar.ent dbl1as.ent dbl1ast.ent dbl1az.ent \
 	dbl1kn.ent dbl1ko.ent dbl1ky.ent dbl1la.ent dbl1lt.ent dbl1lv.ent \
 	dbl1ml.ent dbl1mn.ent dbl1mr.ent dbl1nb.ent dbl1nds.ent dblnl.ent \
 	dblnn.ent dbl1or.ent dbl1pa.ent dbl1pl.ent dbl1pt.ent dbl1ptbr.ent \
-	dbl1ro.ent dbl1ru.ent dbl1sk.ent dbl1sl.ent dbl1sq.ent dbl1sr.ent \
+	dbl1ro.ent dbl1ru.ent dbl1se.ent dbl1sk.ent dbl1sl.ent dbl1sq.ent dbl1sr.ent \
 	dbl1srLatn.ent dbl1sv.ent dbl1ta.ent dbl1te.ent dbl1th.ent dbl1tl.ent \
 	dbl1tr.ent dbl1uk.ent dbl1vi.ent dbl1xh.ent dbl1zh.ent dbl1zhcn.ent \
 	dbl1zhtw.ent
@@ -89,6 +89,7 @@ dbl1pt.ent: locale/pt.xml
 dbl1ptbr.ent: locale/pt_br.xml
 dbl1ro.ent: locale/ro.xml
 dbl1ru.ent: locale/ru.xml
+dbl1se.ent: locale/se.xml
 dbl1sk.ent: locale/sk.xml
 dbl1sl.ent: locale/sl.xml
 dbl1sq.ent: locale/sq.xml
