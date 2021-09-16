@@ -150,4 +150,157 @@
          match="d:indexterm"
          use="i:group-index(&primary;)"/>
 
+  <func:function name="i:term-index">
+    <xsl:param name="term"/>
+    
+    <xsl:variable name="letters-rtf">
+      <xsl:variable name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:variable>
+      
+      <xsl:variable name="local.l10n.letters"
+        select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:letters)[1]"/>
+      
+      <xsl:for-each select="$l10n.xml">
+        <xsl:variable name="l10n.letters"
+          select="document(key('l10n-lang', $lang)/@href)/l:l10n/l:letters[1]"/>
+        
+        <xsl:choose>
+          <xsl:when test="count($local.l10n.letters) &gt; 0">
+            <xsl:copy-of select="$local.l10n.letters"/>
+          </xsl:when>
+          <xsl:when test="count($l10n.letters) &gt; 0">
+            <xsl:copy-of select="$l10n.letters"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>No "</xsl:text>
+              <xsl:value-of select="$lang"/>
+              <xsl:text>" localization of index grouping letters exists</xsl:text>
+              <xsl:choose>
+                <xsl:when test="$lang = 'en'">
+                  <xsl:text>.</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>; using "en".</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:message>
+            <xsl:copy-of select="document(key('l10n-lang', 'en'))/l:l10n/l:letters[1]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
+    
+    <xsl:variable name="letters" select="exslt:node-set($letters-rtf)/*"/>
+    
+    <xsl:variable name="normalize.sort">
+      <xsl:variable name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:variable>
+      
+      <xsl:variable name="local.l10n.normalize.sort" select="($local.l10n.xml//l:i18n/l:l10n[@language=$lang]/l:gentext[starts-with(@key,  'normalize.sort')])"/>
+      
+      <xsl:for-each select="$l10n.xml">
+        <xsl:variable name="l10n.normalize.sort" select="document(key('l10n-lang', $lang)/@href)/l:l10n/l:gentext[starts-with(@key, 'normalize.sort')]"/>
+        
+        <xsl:choose>
+          <xsl:when test="count($local.l10n.normalize.sort) &gt; 0">
+            <xsl:copy-of select="$local.l10n.normalize.sort"/>
+          </xsl:when>
+          <xsl:when test="count($l10n.normalize.sort) &gt; 0">
+            <xsl:copy-of select="$l10n.normalize.sort"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:message>
+              <xsl:text>No "</xsl:text>
+              <xsl:value-of select="$lang"/>
+              <xsl:text>" normalizing translate strings exists</xsl:text>
+              <xsl:choose>
+                <xsl:when test="$lang = 'en'">
+                  <xsl:text>.</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>; using "en".</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:message>
+            <xsl:copy-of select="document(key('l10n-lang', 'en')/@href)/l:l10n/l:gentext[starts-with(@key, 'normalize.sort.input')]"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:for-each>
+    </xsl:variable>
+    
+    <xsl:variable name="normalize.sort.input">
+      <xsl:value-of select="exslt:node-set($normalize.sort)/l:gentext[@key = 'normalize.sort.input']/@text"/>
+    </xsl:variable>
+    <xsl:variable name="normalize.sort.output">
+      <xsl:value-of select="exslt:node-set($normalize.sort)/l:gentext[@key = 'normalize.sort.output']/@text"/>
+    </xsl:variable>
+    
+    <xsl:variable name="term-index">
+      <xsl:call-template name="calculate-term-index">
+        <xsl:with-param name="term" select="$term"/>
+        <xsl:with-param name="term-index" select="' '"/>
+        <xsl:with-param name="letters" select="$letters"/>
+        <xsl:with-param name="normalize.sort.input" select="$normalize.sort.input"/>
+        <xsl:with-param name="normalize.sort.output" select="$normalize.sort.output"/>
+      </xsl:call-template>
+    </xsl:variable>
+    
+    <func:result select="normalize-space($term-index)"/>
+  </func:function>
+  
+  <xsl:template name="calculate-term-index">
+    <xsl:param name="term"/>
+    <xsl:param name="term-index"/>
+    <xsl:param name="letters"/>
+    <xsl:param name="normalize.sort.input"/>
+    <xsl:param name="normalize.sort.output"/>
+    
+    <xsl:variable name="firstletterinterm" select="substring($term, 1, 1)"/>
+    <xsl:variable name="firstletterindex">
+      <xsl:choose>
+        <xsl:when test="$letters/l:l[. = $firstletterinterm]/@i">
+          <xsl:variable name="indexnumber" select="$letters/l:l[. = $firstletterinterm]/@i"/> 
+          <xsl:if test="$indexnumber &lt; 10">
+            <xsl:text>0</xsl:text>
+          </xsl:if>
+          <xsl:value-of select="$indexnumber"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:variable name="tmpc" select="translate($firstletterinterm, $normalize.sort.input, $normalize.sort.output)"/>      
+          <xsl:choose>
+            <xsl:when test="$letters/l:l[. = $tmpc]/@i">
+              <xsl:variable name="indexnumber" select="$letters/l:l[. = $tmpc]/@i"/> 
+              <xsl:if test="$indexnumber &lt; 10">
+                <xsl:text>0</xsl:text>
+              </xsl:if>
+              <xsl:value-of select="$indexnumber"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$firstletterinterm"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="restofterm" select="substring-after($term, $firstletterinterm)"/>
+    
+    <xsl:choose>
+      <xsl:when test="$restofterm != ''">
+        <xsl:call-template name="calculate-term-index">
+          <xsl:with-param name="term" select="$restofterm"/>
+          <xsl:with-param name="term-index" select="concat($term-index, ' ', $firstletterindex)"/>
+          <xsl:with-param name="letters" select="$letters"/>
+          <xsl:with-param name="normalize.sort.input" select="$normalize.sort.input"/>
+          <xsl:with-param name="normalize.sort.output" select="$normalize.sort.output"/>
+        </xsl:call-template>  
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($term-index, ' ', $firstletterindex)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+  
 </xsl:stylesheet>
