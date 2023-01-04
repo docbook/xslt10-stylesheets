@@ -38,7 +38,7 @@ public class ParameterDependencyParser {
     /** The name contains */
     private static final String CONTAINS = "contains";
 
-    /** The format for formating double numbers */
+    /** The format for formatting double numbers */
     private static final DecimalFormat formatDouble = new DecimalFormat("0.##");
 
     /** The parser of XML parameter definitions */
