@@ -134,7 +134,7 @@
     <xsl:attribute name="version">
       <xsl:value-of select="$docbook.version"/>
     </xsl:attribute>
-    <xsl:copy-of select="@xml:id"/>
+    <xsl:copy-of select="@xml:id|@xml:lang"/>
 
     <!-- get any merge resource element before changing context -->
     <xsl:variable name="merge.resourceref" select="d:merge[1]/@resourceref"/>
