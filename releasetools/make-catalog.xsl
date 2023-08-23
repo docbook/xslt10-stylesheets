@@ -15,7 +15,7 @@
 <xsl:param name="BRANCH">
   <xsl:value-of select="string(document('VERSION.xsl')//fm:Branch[1])"/>
 </xsl:param>
-<xsl:param name="URI_BASE">https://cdn.docbook.org/release</xsl:param>
+<xsl:param name="URI_BASE">cdn.docbook.org/release</xsl:param>
 <xsl:param name="DISTRO"/>
 <xsl:param name="SUBDIR">current</xsl:param>
 
@@ -28,17 +28,28 @@
   <xsl:text> </xsl:text>
 </xsl:param>
 
+<xsl:template name="generate-entries"
+              xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <xsl:param name="scheme"/>
+  <rewriteURI uriStartString="{$scheme}://{$URI_BASE}/{$DISTRO}/{$SUBDIR}/" rewritePrefix="./"/>
+  <rewriteSystem systemIdStartString="{$scheme}://{$URI_BASE}/{$DISTRO}/{$SUBDIR}/" rewritePrefix="./"/>
+
+  <rewriteURI uriStartString="{$scheme}://{$URI_BASE}/{$DISTRO}/{$VERSION}/" rewritePrefix="./"/>
+  <rewriteSystem systemIdStartString="{$scheme}://{$URI_BASE}/{$DISTRO}/{$VERSION}/" rewritePrefix="./"/>
+</xsl:template>
+
 <xsl:template match="/">
 
   <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <xsl:text>&#10;</xsl:text>
     <xsl:comment><xsl:value-of select="$COMMENT"/></xsl:comment>
 
-    <rewriteURI uriStartString="{$URI_BASE}/{$DISTRO}/{$SUBDIR}/" rewritePrefix="./"/>
-    <rewriteSystem systemIdStartString="{$URI_BASE}/{$DISTRO}/{$SUBDIR}/" rewritePrefix="./"/>
-
-    <rewriteURI uriStartString="{$URI_BASE}/{$DISTRO}/{$VERSION}/" rewritePrefix="./"/>
-    <rewriteSystem systemIdStartString="{$URI_BASE}/{$DISTRO}/{$VERSION}/" rewritePrefix="./"/>
+    <xsl:call-template name="generate-entries">
+      <xsl:with-param name="scheme">http</xsl:with-param>
+    </xsl:call-template>
+    <xsl:call-template name="generate-entries">
+      <xsl:with-param name="scheme">https</xsl:with-param>
+    </xsl:call-template>
   </catalog>
   <xsl:text>&#10;</xsl:text>
 
