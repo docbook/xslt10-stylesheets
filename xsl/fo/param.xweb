@@ -61,6 +61,7 @@
 &callout.unicode;
 &callout.unicode.font;
 &callout.unicode.number.limit;
+&callout.unicode.properties;
 &callout.unicode.start.character;
 &callouts.extension;
 </reference>
@@ -621,6 +622,7 @@ around all these parameters.</para>
 <src:fragref linkend="callout.unicode.font.frag"/>
 <src:fragref linkend="callout.unicode.frag"/>
 <src:fragref linkend="callout.unicode.number.limit.frag"/>
+<src:fragref linkend="callout.unicode.properties.frag"/>
 <src:fragref linkend="callout.unicode.start.character.frag"/>
 <src:fragref linkend="callouts.extension.frag"/>
 <src:fragref linkend="chapter.autolabel.frag"/>

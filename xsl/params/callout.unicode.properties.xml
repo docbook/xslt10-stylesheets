@@ -1,0 +1,24 @@
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="callout.unicode.properties">
+<refmeta>
+<refentrytitle>callout.unicode.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
+<refnamediv>
+<refname>callout.unicode.properties</refname>
+<refpurpose>Properties that apply to callout labels formatted as Unicode characters.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<src:fragment xml:id="callout.unicode.properties.frag"><xsl:attribute-set name="callout.unicode.properties">
+</xsl:attribute-set></src:fragment>
+</refsynopsisdiv>
+<refsection><info><title>Description</title></info>
+<para>Properties that apply to callout labels formatted as Unicode characters.
+Typically used to set the color of the callout labels.</para>
+</refsection>
+</refentry>
