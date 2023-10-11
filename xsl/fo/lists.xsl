@@ -179,6 +179,9 @@
   <xsl:param name="itemsymbol" select="'disc'"/>
 
   <xsl:choose>
+    <xsl:when test="@override">
+      <xsl:value-of select="@override" />
+    </xsl:when>
     <xsl:when test="$itemsymbol='none'"></xsl:when>
     <xsl:when test="$itemsymbol='disc'">&#x2022;</xsl:when>
     <xsl:when test="$itemsymbol='bullet'">&#x2022;</xsl:when>
