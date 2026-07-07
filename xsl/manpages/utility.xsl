@@ -195,7 +195,6 @@
 
   <xsl:template name="pinch.together">
     <!-- * arcane roff code to suppress line spacing after headings -->
-    <xsl:text>.it 1 an-trap&#10;</xsl:text>
     <xsl:text>.nr an-no-space-flag 1&#10;</xsl:text>
     <xsl:text>.nr an-break-flag 1&#10;</xsl:text>
     <xsl:text>.br&#10;</xsl:text>
